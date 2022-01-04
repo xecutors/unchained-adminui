@@ -1,0 +1,48 @@
+import { useMutation, gql } from '@apollo/client';
+import hashPassword from '../utils/hashPassword';
+
+const CreateUserMutation = gql`
+         mutation CreateUser(
+        $username: String
+        $email: String
+        $password: HashedPasswordInput
+        $plainPassword: String
+        $profile: UserProfileInput
+      ) {
+        createUser(
+          username: $username
+          email: $email
+          password: $password
+          plainPassword: $plainPassword
+          profile: $profile
+        ) {
+          id
+          token
+          tokenExpires
+        }
+      }
+`;
+
+const useCreateUser = () => {
+  const [createUserMutation] = useMutation(CreateUserMutation);
+
+  const createUser = async ({
+    username, email, password, profile, disableHashing = false
+  }) => {
+    const variables = { username, email, profile, plainPassword : null, password: null };
+    if (disableHashing) {
+      variables.plainPassword = password;
+    } else {
+      variables.password = hashPassword(password);
+    }
+    return createUserMutation({
+      variables
+    });
+  };
+
+  return {
+    createUser,
+  };
+};
+
+export default useCreateUser;

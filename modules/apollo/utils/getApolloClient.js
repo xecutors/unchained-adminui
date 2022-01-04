@@ -4,7 +4,7 @@ import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries';
 import { sha256 } from 'crypto-hash';
-import { onTokenChange } from '../../auth/utils/store';
+import { onTokenChange } from '../../account/utils/store';
 import getConfig from 'next/config';
 
 
