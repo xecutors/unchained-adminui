@@ -1,7 +1,17 @@
+import { ApolloProvider } from '@apollo/client'
+import { useRouter } from 'next/router';
+import { useApollo } from '../modules/apollo/apolloClient';
+
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+const UnchainedAdmin  = ({ Component, pageProps, ...rest }) => {
+  const router = useRouter();
+  const routerLocale = rest.router.locale || router.locale;
+
+  const apollo = useApollo(pageProps, { locale: routerLocale });
+  return <ApolloProvider client={apollo}>
+   <Component {...pageProps} />
+   </ApolloProvider>
 }
 
-export default MyApp
+export default UnchainedAdmin
