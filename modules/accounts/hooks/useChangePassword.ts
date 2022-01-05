@@ -1,14 +1,14 @@
 import { useMutation, gql } from '@apollo/client';
 
 const ChangePasswordMutation = gql`
-      mutation ChangePassword($oldPassword: String!, $newPassword: String!) {
-        changePassword(
-          oldPlainPassword: $oldPassword
-          newPlainPassword: $newPassword
-        ) {
-          success
-        }
-      }
+  mutation ChangePassword($oldPassword: String!, $newPassword: String!) {
+    changePassword(
+      oldPlainPassword: $oldPassword
+      newPlainPassword: $newPassword
+    ) {
+      success
+    }
+  }
 `;
 
 const useChangePassword = () => {

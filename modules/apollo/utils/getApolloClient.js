@@ -4,13 +4,12 @@ import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries';
 import { sha256 } from 'crypto-hash';
-import { onTokenChange } from '../../account/utils/store';
 import getConfig from 'next/config';
-
+import { onTokenChange } from '../../accounts/utils/store';
+import apolloCache, { resetCache } from './apolloCach';
 
 const { publicRuntimeConfig } = getConfig() || {};
-import apolloCache, {resetCache} from './apolloCach';
-console.log(process.env.GRAPHQL_ENDPOINT)
+
 const allowedHeaders = [
   'accept-language',
   'pragma',
@@ -43,7 +42,6 @@ const setLocale = (headers, locale) => {
 const getApolloClient = ({ headers = {}, locale }) => {
   const browserFallback =
     process.browser && `${window.location.origin}/graphql`;
- 
 
   const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
     return setLocale({ ...headers, ...contextHeaders }, locale);

@@ -7,7 +7,6 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { ApolloLink } from '@apollo/client';
 
-
 import { linkToExecutor } from '@graphql-tools/links';
 import setLoginCookie from './setLoginCookie';
 
@@ -52,7 +51,6 @@ export const link = ApolloLink.from([
 ]);
 
 const UnchainedSchema = async () => {
-  console.log('heeeeeeeeeeeeeeeeeeeeeeeeee')
   try {
     const executor = linkToExecutor(link);
     const schema = makeRemoteExecutableSchema({
@@ -66,5 +64,4 @@ const UnchainedSchema = async () => {
   }
 };
 
-
-export default UnchainedSchema
+export default UnchainedSchema;

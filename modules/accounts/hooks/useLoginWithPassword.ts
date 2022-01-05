@@ -2,32 +2,44 @@ import { useMutation, gql } from '@apollo/client';
 import hashPassword from '../utils/hashPassword';
 
 const LogInWithPasswordMutation = gql`
-mutation LoginWithPassword(
-        $username: String
-        $email: String
-        $password: HashedPasswordInput
-        $plainPassword: String
-        $totpCode: String
-      ) {
-        loginWithPassword(
-          username: $username
-          email: $email
-          password: $password
-          plainPassword: $plainPassword
-          totpCode: $totpCode
-        ) {
-          id
-          token
-          tokenExpires
-        }
-      }
+  mutation LoginWithPassword(
+    $username: String
+    $email: String
+    $password: HashedPasswordInput
+    $plainPassword: String
+    $totpCode: String
+  ) {
+    loginWithPassword(
+      username: $username
+      email: $email
+      password: $password
+      plainPassword: $plainPassword
+      totpCode: $totpCode
+    ) {
+      id
+      token
+      tokenExpires
+    }
+  }
 `;
 
 const useLoginWithPassword = () => {
   const [logInWithPasswordMutation] = useMutation(LogInWithPasswordMutation);
 
-  const logInWithPassword = async ( { username, email, password, totpCode, disableHashing = false, plain }) => {
-    const variables = { username, email, totpCode, plainPassword: null, password: null };
+  const logInWithPassword = async ({
+    username,
+    email,
+    password,
+    totpCode,
+    disableHashing = false,
+  }) => {
+    const variables = {
+      username,
+      email,
+      totpCode,
+      plainPassword: null,
+      password: null,
+    };
     if (disableHashing) {
       variables.plainPassword = password;
     } else {

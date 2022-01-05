@@ -1,11 +1,11 @@
 import { useMutation, gql } from '@apollo/client';
 
 const LogOutMutation = gql`
-             mutation LogOut($token: String) {
-          logout(token: $token) {
-            success
-          }
-        }
+  mutation LogOut($token: String) {
+    logout(token: $token) {
+      success
+    }
+  }
 `;
 
 const useLogOut = () => {
@@ -13,7 +13,7 @@ const useLogOut = () => {
 
   const logOut = async ({ token }) => {
     return logOutMutation({
-      variables: {token},
+      variables: { token },
     });
   };
 

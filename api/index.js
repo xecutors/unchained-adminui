@@ -21,7 +21,7 @@ const createApolloServer = async () => {
         'request.credentials': 'same-origin',
       },
     },
-    plugins: [ ],
+    plugins: [],
   });
 };
 
@@ -32,5 +32,4 @@ const UnchainedApi = async (...args) => {
   return apolloServer.createHandler({ path: '/api/graphql' })(...args);
 };
 
-
-export default UnchainedApi
+export default UnchainedApi;

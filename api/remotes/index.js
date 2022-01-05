@@ -8,7 +8,7 @@ const {
 const unchainedSchema = buildUnchainedSchema();
 
 export { unchainedSchema };
-const graphqlEndpoint =  async () => {
+const graphqlEndpoint = async () => {
   // eslint-disable-next-line no-undef
   const [unchained] = await Promise.all([buildUnchainedSchema()]);
 
@@ -24,5 +24,4 @@ const graphqlEndpoint =  async () => {
   return [unchained].filter(throwInProduction);
 };
 
-
-export default graphqlEndpoint
+export default graphqlEndpoint;

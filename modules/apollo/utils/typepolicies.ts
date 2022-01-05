@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { offsetLimitPagination } from '@apollo/client/utilities';
 
 /* eslint-disable no-underscore-dangle */
@@ -6,11 +5,6 @@ export const keyMappings: any = {
   SearchResult: {
     fields: {
       products: offsetLimitPagination(),
-    },
-  },
-  PublicareClient: {
-    fields: {
-      orders: offsetLimitPagination(),
     },
   },
 };
@@ -27,4 +21,6 @@ export const keyFields: any = {
   },
 };
 
-export default { ...keyMappings, ...keyFields };
+const typePolicies = { ...keyMappings, ...keyFields };
+
+export default typePolicies;

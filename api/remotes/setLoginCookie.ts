@@ -27,7 +27,6 @@ const extractMutationFromDataObject = (
 
 export default () =>
   new ApolloLink((operation, forward) => {
-
     return forward(operation).map((response) => {
       const { graphqlContext: responseContext } = operation.getContext();
       const { data } = response;
@@ -39,7 +38,7 @@ export default () =>
         data,
         logoutMutations,
       );
-      
+
       if (loginMethodResponse) {
         const { token, tokenExpires, __mutationName, ...rest } =
           loginMethodResponse;
