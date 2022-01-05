@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { InMemoryCache, defaultDataIdFromObject } from '@apollo/client';
-import possibleTypes from './possibleTypes.json';
+import possibleTypes from '../possibleTypes.json';
 import typePolicies from './typepolicies';
 
 const apolloCache = (locale) => {
