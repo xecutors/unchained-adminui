@@ -1,10 +1,296 @@
 const Home = () => {
   return (
-    <div className="container font-mono text-cyan-400 flex h-[100vh] ">
-      <h1 className="text-3xl font-bold underline m-auto justify-center  ">
-        Welcome to unchained admin panel
-        {process.env.NEXT_PUBLIC_UNCHAINED_ENDPOINT}
-      </h1>
+    <div className="container mx-auto pt-5">
+      <div className="flex justify-between items-center">
+        <h3 className="text-2xl leading-6 font-medium text-gray-900">
+          Sync Status
+        </h3>
+        <div className="text-sm">
+          <h6 className="text-gray-900">
+            Last Sync: <span>19.12.2021 08:49</span>
+          </h6>
+          <h6 className="text-gray-400">
+            Next Sync: <span>19.12.2021 12:49</span>
+          </h6>
+        </div>
+      </div>
+      <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">
+            Total Products
+          </dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              71,897
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 70,946
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Increased by</span>
+              997
+            </div>
+          </dd>
+        </div>
+
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">
+            Duration of import
+          </dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              1h 05m 13s
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                1h 02m 12s
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Increased by</span>
+              2.02%
+            </div>
+          </dd>
+        </div>
+
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">??</dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              24.57%
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 28.62%
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Decreased by</span>
+              4.05%
+            </div>
+          </dd>
+        </div>
+      </dl>
+
+      <h3 className="mt-5 pt-5">Products per main category</h3>
+      <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-1 md:divide-x">
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">Inkontinenz</dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              3201
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 3196
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Increased by</span>5
+            </div>
+          </dd>
+        </div>
+
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">
+            Wundbehandlung
+          </dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              6349
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 6349
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Increased by</span>0
+            </div>
+          </dd>
+        </div>
+
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">
+            Ergänzende Produkte
+          </dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              723
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 743
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Decreased by</span>
+              20
+            </div>
+          </dd>
+        </div>
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">Stoma</dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              723
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 743
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Decreased by</span>
+              20
+            </div>
+          </dd>
+        </div>
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">Tracheostoma</dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              723
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 743
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Decreased by</span>
+              20
+            </div>
+          </dd>
+        </div>
+        <div className="px-4 py-5 sm:p-6">
+          <dt className="text-base font-normal text-gray-900">Mustersets</dt>
+          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+              723
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                from 743
+              </span>
+            </div>
+
+            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+              <svg
+                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="sr-only">Decreased by</span>
+              20
+            </div>
+          </dd>
+        </div>
+      </dl>
     </div>
   );
 };
