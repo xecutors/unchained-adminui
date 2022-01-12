@@ -1,25 +1,20 @@
-import { useMutation, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
+import { getLoginToken, resetStore } from '../utils/store';
 
-const LogOutMutation = gql`
-  mutation LogOut($token: String) {
-    logout(token: $token) {
-      success
-    }
-  }
-`;
-
-const useLogOut = () => {
-  const [logOutMutation] = useMutation(LogOutMutation);
-
-  const logOut = async ({ token }) => {
-    return logOutMutation({
-      variables: { token },
-    });
-  };
-
-  return {
-    logOut,
-  };
+const logOut = async (apollo) => {
+  const { token } = await getLoginToken();
+  await apollo.mutate({
+    mutation: gql`
+      mutation logout($token: String) {
+        logout(token: $token) {
+          success
+        }
+      }
+    `,
+    awaitRefetchQueries: true,
+    variables: { token },
+  });
+  await resetStore();
 };
 
-export default useLogOut;
+export default logOut;
