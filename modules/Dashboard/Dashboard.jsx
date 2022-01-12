@@ -1,6 +1,6 @@
 const Dashboard = () => {
   return (
-    <div className="container mx-auto pt-5">
+    <div className="container pt-5 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
       <div className="flex justify-between items-center">
         <h3 className="text-2xl leading-6 font-medium text-gray-900">
           Sync Status

@@ -19,8 +19,7 @@ class MyDocument extends Document {
   |_____|_|___|_____|__|__|__|__|_____|_|___|_____|____/
 
 
-  - Technology & Engineering by Unchained Commerce GmbH - https://unchained.shop
-  - Design: EVUX - http://www.evux.ch/
+  - Technology, Engineering & Design by Unchained Commerce GmbH - https://unchained.shop
 
   -->
 
