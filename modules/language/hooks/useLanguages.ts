@@ -19,14 +19,18 @@ const useLanguages = ({ limit = 20, offset = 0, includeInactive = true }) => {
     data: { languages },
     loading,
     error,
+    fetchMore,
   } = useQuery(LanguageQuery, {
     variables: { limit, offset, includeInactive },
   });
+  const loadMore = () =>
+    fetchMore({ variables: { offset: languages?.length || 0 } });
 
   return {
     languages,
     loading,
     error,
+    loadMore,
   };
 };
 

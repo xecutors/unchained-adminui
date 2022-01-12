@@ -19,14 +19,17 @@ const useCurrencies = ({ limit = 20, offset = 0, includeInactive = true }) => {
     data: { currencies },
     loading,
     error,
+    fetchMore,
   } = useQuery(CurrenciesQuery, {
     variables: { limit, offset, includeInactive },
   });
-
+  const loadMore = () =>
+    fetchMore({ variables: { offset: currencies?.length || 0 } });
   return {
     currencies,
     loading,
     error,
+    loadMore,
   };
 };
 

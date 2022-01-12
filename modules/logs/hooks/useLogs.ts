@@ -25,15 +25,20 @@ const useLogs = ({ limit = 20, offset = 0 }) => {
     data: { logs },
     loading,
     error,
+    fetchMore,
   } = useQuery(LogsQuery, {
     variables: { limit, offset },
     pollInterval: 1000,
   });
 
+  const loadMore = () =>
+    fetchMore({ variables: { offset: logs?.length || 0 } });
+
   return {
     logs,
     loading,
     error,
+    loadMore,
   };
 };
 

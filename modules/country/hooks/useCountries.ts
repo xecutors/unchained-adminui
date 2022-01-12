@@ -19,14 +19,19 @@ const useCountries = ({ limit = 20, offset = 0, includeInactive = true }) => {
     data: { countries },
     loading,
     error,
+    fetchMore,
   } = useQuery(CountriesQuery, {
     variables: { limit, offset, includeInactive },
   });
+
+  const loadMore = () =>
+    fetchMore({ variables: { offset: countries?.length || 0 } });
 
   return {
     countries,
     loading,
     error,
+    loadMore,
   };
 };
 
