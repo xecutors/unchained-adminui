@@ -2,11 +2,12 @@ import { ApolloProvider } from '@apollo/client';
 import cookie from 'cookie';
 import Link from 'next/link';
 import App from 'next/app';
+import { useRouter } from 'next/router';
 
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import LogInPage from './log-in';
-import logOut from '../modules/accounts/hooks/useLogOut';
+import logOut from '../modules/accounts/hooks/logOut';
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -89,6 +90,11 @@ const sidenavItems = [
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn }) => {
   const apollo = useApollo(pageProps, { locale: 'en' });
+  const router = useRouter();
+  const onLogout = async () => {
+    await logOut(apollo);
+    router.replace('/');
+  };
 
   return (
     <ApolloProvider client={apollo}>
@@ -208,9 +214,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn }) => {
                 <a
                   href="#"
                   className="flex-shrink-0 w-full group block"
-                  onClick={async () => {
-                    await logOut(apollo);
-                  }}
+                  onClick={onLogout}
                 >
                   <div className="flex items-center">
                     <div>
