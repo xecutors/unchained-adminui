@@ -1,0 +1,2795 @@
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="publicare-portal-widgets" datatype="plaintext" source-language="de" target-language="fr">
+    <body>
+      <trans-unit id="about_us">
+        <source>Über Publicare</source>
+        <target>À propos de Publicare</target>
+      </trans-unit>
+      <trans-unit id="academy_button">
+        <source>zur Academy</source>
+        <target>Sur l’Academy</target>
+      </trans-unit>
+      <trans-unit id="academy_intro">
+        <source>Besuchen Sie unsere lehrreichen Fachveranstaltungen.</source>
+        <target>Assistez à nos manifestations spécialisées.</target>
+      </trans-unit>
+      <trans-unit id="accept">
+        <source>Akzeptieren</source>
+        <target>Accepter</target>
+      </trans-unit>
+      <trans-unit id="accept_terms">
+        <source>Ich habe die &lt;a target="_blank" rel="noopener noreferrer" href="{termsPath}"&gt;AGB&lt;/a&gt; und &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPolicyPath}"&gt;Datenschutzbestimmungen&lt;/a&gt; gelesen und bin damit einverstanden.</source>
+        <target>J’ai lu et j’accepte les &lt;a target="_blank" rel="noopener noreferrer" href="{termsPath}"&gt;conditions générales de vente&lt;/a&gt; et les &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPolicyPath}"&gt;dispositions relatives à la protection des données&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="accept_terms_required">
+        <source>Es ist erforderlich, dass Sie unsere AGB annehmen</source>
+        <target>Il est nécessaire que vous acceptiez nos CGV.</target>
+      </trans-unit>
+      <trans-unit id="access_label">
+        <source>Zugang</source>
+        <target>Accès</target>
+      </trans-unit>
+      <trans-unit id="actions">
+        <source>Aktionen</source>
+        <target>actions</target>
+      </trans-unit>
+      <trans-unit id="add_address">
+        <source>Weitere Adresse erfassen</source>
+        <target>Ajouter une adresse</target>
+      </trans-unit>
+      <trans-unit id="add_address_delivery_note">
+        <source>Lieferungen sind nur für die Schweiz und Liechtenstein zugelassen.</source>
+        <target>Les livraisons ne sont autorisés que pour la Suisse et le Liechtenstein.</target>
+      </trans-unit>
+      <trans-unit id="add_article">
+        <source>Artikel hinzufügen</source>
+        <target>Ajouter un article</target>
+      </trans-unit>
+      <trans-unit id="add_article_from_shop">
+        <source>Artikel aus Shop suchen und hinzufügen</source>
+        <target>Recherchez des articles dans la boutique et récupérez-les</target>
+      </trans-unit>
+      <trans-unit id="add_employee">
+        <source>Mitarbeiter hinzufügen</source>
+        <target>Ajouter des employés</target>
+      </trans-unit>
+      <trans-unit id="add_heading">
+        <source>Überschrift hinzufügen</source>
+        <target>Ajouter un titre</target>
+      </trans-unit>
+      <trans-unit id="add_product">
+        <source>Produkt hinzufügen</source>
+        <target>Ajouter un produit</target>
+      </trans-unit>
+      <trans-unit id="add_product_done">
+        <source>Produkt hinzugefügt</source>
+        <target>Produit ajouté</target>
+      </trans-unit>
+      <trans-unit id="add_to_calendar">
+        <source>Zum Kalender hinzufügen</source>
+        <target>Ajouter au calendrier</target>
+      </trans-unit>
+      <trans-unit id="add_to_cart">
+        <source>Zum Warenkorb hinzufügen</source>
+        <target>Ajouter au panier</target>
+      </trans-unit>
+      <trans-unit id="added_product_to_cart">
+        <source>{amount, plural, one {# Produkt} other {# Produkte} } dem Warenkorb von {name} hinzugefügt</source>
+        <target>{amount, plural,
+    1 {# produit}
+    other {# produits}
+  } ajouté au panier de {name}</target>
+      </trans-unit>
+      <trans-unit id="additionalName">
+        <source>Abteilung/Stützpunkt</source>
+        <target>Service/base</target>
+      </trans-unit>
+      <trans-unit id="address">
+        <source>Adresse</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="addressLine">
+        <source>Strasse / Hausnummer</source>
+        <target>Rue/n°</target>
+      </trans-unit>
+      <trans-unit id="addressLine2">
+        <source>Adresszusatz</source>
+        <target>Complément d’adresse</target>
+      </trans-unit>
+      <trans-unit id="address_doctor">
+        <source>Adresse des Arztes/Rezeptierers</source>
+        <target>Adresse du médecin / prescripteur</target>
+      </trans-unit>
+      <trans-unit id="adjust">
+        <source>Anpassen</source>
+        <target>Régler</target>
+      </trans-unit>
+      <trans-unit id="agenda">
+        <source>Programm</source>
+        <target>Programme</target>
+      </trans-unit>
+      <trans-unit id="agenda_explore">
+        <source>Entdecken Sie hier das Programm im PDF-Format.</source>
+        <target>Découvrez le programme au format PDF ici.</target>
+      </trans-unit>
+      <trans-unit id="all">
+        <source>Alle</source>
+        <target>Tous</target>
+      </trans-unit>
+      <trans-unit id="all_categories">
+        <source>Alle Kategorien</source>
+        <target>Tous les catégories</target>
+      </trans-unit>
+      <trans-unit id="all_messages">
+        <source>Alle Mitteilungen</source>
+        <target>Tous les messages</target>
+      </trans-unit>
+      <trans-unit id="all_order_positions">
+        <source>Alle Bestellscheinpositionen</source>
+        <target>Tous les articles du bon de commande</target>
+      </trans-unit>
+      <trans-unit id="all_themes">
+        <source>Alle Themen</source>
+        <target>Tous les sujets</target>
+      </trans-unit>
+      <trans-unit id="already_logged_in">
+        <source>Sie sind bereits angemeldet. Klicken Sie hier um sich abzumelden.</source>
+        <target>Vous êtes déjà connecté. Cliquez ici pour vous désabonner.</target>
+      </trans-unit>
+      <trans-unit id="alternative_method">
+        <source>Alternative Methode:</source>
+        <target>Méthode alternative:</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_button">
+        <source>Jetzt online vereinbaren</source>
+        <target>Prendre rendez-vous en ligne</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_text">
+        <source>Vereinbaren Sie jetzt einen Termin zur Beratung rund um unsere Dienstleistungen und Produkte.</source>
+        <target>Fixez un rendez-vous conseil concernant nos services et produits.</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_thank_you">
+        <source>Vielen Dank für Ihre Anfrage! Wir werden Sie sobald wie möglich kontaktieren.</source>
+        <target>Merci pour votre demande! Nous vous contacterons dans les plus brefs délais.</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_title">
+        <source>Vereinbaren Sie einen Beratungstermin</source>
+        <target>Prenez rendez-vous pour un entretien de conseil</target>
+      </trans-unit>
+      <trans-unit id="article">
+        <source>Artikel</source>
+        <target>Articles</target>
+      </trans-unit>
+      <trans-unit id="article_in_bag">
+        <source>Artikel im Warenkorb</source>
+        <target>Articles dans le panier</target>
+      </trans-unit>
+      <trans-unit id="article_number_label">
+        <source>Artikel Nr.</source>
+        <target>N° d’article</target>
+      </trans-unit>
+      <trans-unit id="article_quantity_per_unit">
+        <source>Menge</source>
+        <target>Quantité</target>
+      </trans-unit>
+      <trans-unit id="articles">
+        <source>{count} Artikel</source>
+        <target>{count} articles</target>
+      </trans-unit>
+      <trans-unit id="articles_required">
+        <source>Bitte fügen Sie mindestens 1 Artikel hinzu</source>
+        <target>Veuillez ajouter au moins 1 article</target>
+      </trans-unit>
+      <trans-unit id="availability">
+        <source>Verfügbarkeit</source>
+        <target>Disponibilité</target>
+      </trans-unit>
+      <trans-unit id="available_products_sent_immediately">
+        <source>&lt;h5 class='d-inline font-weight-600'&gt; Hinweis: &lt;/h5&gt; Die Angaben zum Lagerbestand erfolgen ohne Gewähr.      Es kann in seltenen Fällen vorkommen, dass ein Produkt in der Zwischenzeit nicht mehr an Lager ist.     Bei Fragen nehmen Sie bitte mit uns &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer" class='font-weight-bolder' &gt; Kontakt  &lt;/a&gt; auf.</source>
+        <target>&lt;h5 class='d-inline font-weight-600'&gt; Note: &lt;/h5&gt; Les informations sur les disponibilités sont sans garanties. Il peut arriver, dans de rares cas, qu'un produit ne soit plus en stock entre-temps. Si vous avez des questions, n’hésitez pas à nous &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer" class='font-weight-bolder'&gt;contacter&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="back">
+        <source>Zurück</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="back_to_home">
+        <source>zur Startseite</source>
+        <target>Vers la page d’accueil</target>
+      </trans-unit>
+      <trans-unit id="back_to_portal">
+        <source>Zum Kundenportal</source>
+        <target>Aller au portail client</target>
+      </trans-unit>
+      <trans-unit id="back_to_shop">
+        <source>Zurück zum Shop</source>
+        <target>Retour à la boutique</target>
+      </trans-unit>
+      <trans-unit id="billing_address">
+        <source>Rechnungsadresse</source>
+        <target>Adresse de facturation</target>
+      </trans-unit>
+      <trans-unit id="birthday">
+        <source>Geburtsdatum</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="birthday_field_label">
+        <source>Geburtsdatum (Format: 30.05.1956)</source>
+        <target>Date de naissance (Format: 30.05.1956)</target>
+      </trans-unit>
+      <trans-unit id="blanko_help">
+        <source>Hier können Sie eine leere Rezeptvorlage herunterladen</source>
+        <target>blanko_help</target>
+      </trans-unit>
+      <trans-unit id="calculate_route">
+        <source>Route berechnen</source>
+        <target>calculer l`itinéraire</target>
+      </trans-unit>
+      <trans-unit id="call_us">
+        <source>Anrufen</source>
+        <target>Appeler</target>
+      </trans-unit>
+      <trans-unit id="callback_us">
+        <source>Rückruftermin vereinbaren</source>
+        <target>Prendre rendez-vous pour un rappel</target>
+      </trans-unit>
+      <trans-unit id="can_include_costs">
+        <source>kann Selbstkosten enthalten</source>
+        <target>Peut comprendre des frais</target>
+      </trans-unit>
+      <trans-unit id="can_include_costs_detailed">
+        <source>Dieses Produkt kann Selbstkosten enthalten, die nicht von der Krankenkasse übernommen werden.</source>
+        <target>Ce produit peut comprendre des frais qui ne sont pas couverts par la caisse-maladie.</target>
+      </trans-unit>
+      <trans-unit id="cancel">
+        <source>Abbrechen</source>
+        <target>Interrompre</target>
+      </trans-unit>
+      <trans-unit id="cancel_add_address">
+        <source>Abbrechen und bestehende Adresse wählen</source>
+        <target>Annuler et sélectionner une adresse existante</target>
+      </trans-unit>
+      <trans-unit id="cancel_profile">
+        <source>Abbrechen</source>
+        <target>Interrompre</target>
+      </trans-unit>
+      <trans-unit id="cancel_settings">
+        <source>Abbrechen</source>
+        <target>Interrompre</target>
+      </trans-unit>
+      <trans-unit id="career">
+        <source>Karriere</source>
+        <target>Emplois</target>
+      </trans-unit>
+      <trans-unit id="cart">
+        <source>Warenkorb</source>
+        <target>Panier</target>
+      </trans-unit>
+      <trans-unit id="categories">
+        <source>Kategorien</source>
+        <target>Catégories</target>
+      </trans-unit>
+      <trans-unit id="category_help_text">
+        <source>Profitieren Sie von unserer kostenlosen Beratung</source>
+        <target>Profitez de notre entretien de conseil gratuit</target>
+      </trans-unit>
+      <trans-unit id="category_help_title">
+        <source>Wir sind für Sie da</source>
+        <target>Nous nous tenons à votre disposition</target>
+      </trans-unit>
+      <trans-unit id="change_cart">
+        <source>Warenkorb wechseln</source>
+        <target>Changer de patient</target>
+      </trans-unit>
+      <trans-unit id="change_password">
+        <source>Passwort ändern</source>
+        <target>Modifier le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="checkout">
+        <source>Zur Kasse</source>
+        <target>Passer en caisse</target>
+      </trans-unit>
+      <trans-unit id="choose_customer_to_order">
+        <source>Für wen möchten Sie bestellen?</source>
+        <target>Pour qui souhaitez-vous commander?</target>
+      </trans-unit>
+      <trans-unit id="city">
+        <source>Ort</source>
+        <target>Lieu</target>
+      </trans-unit>
+      <trans-unit id="clear_signature_pad">
+        <source>Unterschrift löschen</source>
+        <target>Supprimer la signature</target>
+      </trans-unit>
+      <trans-unit id="client_birthday">
+        <source>Geburtsdatum Klient</source>
+        <target>client_birthday</target>
+      </trans-unit>
+      <trans-unit id="client_firstName">
+        <source>Vorname Klient</source>
+        <target>client_firstName</target>
+      </trans-unit>
+      <trans-unit id="client_lastName">
+        <source>Nachname Klient</source>
+        <target>client_lastName</target>
+      </trans-unit>
+      <trans-unit id="client_list">
+        <source>Kundenliste</source>
+        <target>Liste des clients</target>
+      </trans-unit>
+      <trans-unit id="client_registered_successful">
+        <source>Kunde erfolgreich erfasst.</source>
+        <target>Client capturé avec succès.</target>
+      </trans-unit>
+      <trans-unit id="clients">
+        <source>Kunden</source>
+        <target>Clientèle</target>
+      </trans-unit>
+      <trans-unit id="close">
+        <source>Schliessen</source>
+        <target>Fermer</target>
+      </trans-unit>
+      <trans-unit id="close_recipe_without_original">
+        <source>Ohne Original abschliessen</source>
+        <target>TRANSLATE:close_recipe_without_original</target>
+      </trans-unit>
+      <trans-unit id="comment">
+        <source>Kommentar</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="company">
+        <source>Name Institution</source>
+        <target>Nom de l’institution</target>
+      </trans-unit>
+      <trans-unit id="competence_team">
+        <source>Kompetenz-Team</source>
+        <target>Équipe compétente</target>
+      </trans-unit>
+      <trans-unit id="competences">
+        <source>Fachbereiche</source>
+        <target>Domaines spécialisés</target>
+      </trans-unit>
+      <trans-unit id="connect_error_fullname">
+        <source>Nachname, Vorname:</source>
+        <target>Nom, prénom:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_interface_id">
+        <source>Schnittstellen ID:</source>
+        <target>ID de l'interface:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_no_permission">
+        <source>Leider konnten wir aufgrund eines Konfigurationsfehlers das Kundenkonto nicht öffnen. Bitte melden Sie das Problem per E-Mail an {link} und teilen Sie uns mit, um welchen Klienten es sich gehandelt hat. Vielen Dank!</source>
+        <target>Malheureusement, nous n'avons pas pu ouvrir le compte client en raison d'une erreur de configuration. Veuillez informer Publicare du problème par e-mail à {link}. Veuillez nous faire savoir de quel client il s'agit. Merci!</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_date">
+        <source>Datum / Zeit:</source>
+        <target>Date / Heure :</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_message">
+        <source>System Fehlermeldung:</source>
+        <target>Message d'erreur système :</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_title">
+        <source>Details:</source>
+        <target>Details:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_token">
+        <source>Token:</source>
+        <target>Jeton:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_title">
+        <source>{type} Login Fehler</source>
+        <target>{type} Erreur de connexion</target>
+      </trans-unit>
+      <trans-unit id="connect_error_unknown">
+        <source>Leider ist beim {type} Login für Publicare ein Fehler aufgetreten. Bitte kontaktieren Sie den EDV Support von Publicare: {link}</source>
+        <target>Malheureusement, le {type} Une erreur s'est produite lors de la connexion à Publicare. Veuillez contacter le support informatique de Publicare : {link}</target>
+      </trans-unit>
+      <trans-unit id="consulting">
+        <source>Beratung</source>
+        <target>Conseil</target>
+      </trans-unit>
+      <trans-unit id="contact">
+        <source>Kontakt</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="contactNumber">
+        <source>Falls Sie bereits Kunde sind, geben Sie bitte Ihre Kundennummer ein.</source>
+        <target>Si vous êtes déjà client, veuillez saisir votre numéro de client.</target>
+      </trans-unit>
+      <trans-unit id="contact_box_title">
+        <source>Wir beraten Sie kompetent &amp; kostenlos.</source>
+        <target>Nous vous offrons des conseils d’experts gratuits.</target>
+      </trans-unit>
+      <trans-unit id="contact_date">
+        <source>Termin</source>
+        <target>Rendez-vous</target>
+      </trans-unit>
+      <trans-unit id="contact_thanks">
+        <source>&lt;p&gt;Vielen Dank, dass Sie uns kontaktiert haben!&lt;br/&gt;Wir werden uns so schnell wie möglich bei Ihnen melden.&lt;/p&gt;&lt;p&gt;Das Publicare-Team&lt;/p&gt;</source>
+        <target>&lt;p&gt;Merci de nous avoir contactés !&lt;br/&gt;Nous vous contacterons dès que possible.&lt;/p&gt;&lt;p&gt;L'équipe de Publicare&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="content">
+        <source>Ihre Mitteilung</source>
+        <target>Votre message</target>
+      </trans-unit>
+      <trans-unit id="cookies">
+        <source>Cookies</source>
+        <target>Cookies</target>
+      </trans-unit>
+      <trans-unit id="cookies_text">
+        <source>Mit der Nutzung der Publicare Seiten und Services oder durch das Klicken auf Akzeptieren erklären Sie sich damit einverstanden, dass wir Cookies verwenden.</source>
+        <target>Les cookies permettent une expérience époustouflante de nos services. En utilisant le site web et les services de Publicare ou en cliquant sur Accepter, vous déclarez accepter que nous utilisions des cookies.</target>
+      </trans-unit>
+      <trans-unit id="corporate_customer">
+        <source>Geschäftskunde</source>
+        <target>Client professionnel</target>
+      </trans-unit>
+      <trans-unit id="costs">
+        <source>Kosten</source>
+        <target>Côuts</target>
+      </trans-unit>
+      <trans-unit id="country">
+        <source>Land</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="create_another_recipe">
+        <source>Weiteres Rezept erstellen</source>
+        <target>Créer une nouvelle ordonnance</target>
+      </trans-unit>
+      <trans-unit id="create_new_address">
+        <source>An neue Adresse liefern</source>
+        <target>Livraison à une nouvelle adresse</target>
+      </trans-unit>
+      <trans-unit id="create_new_client">
+        <source>Neuen Kunden erfassen</source>
+        <target>Créer un nouveau client</target>
+      </trans-unit>
+      <trans-unit id="create_new_message">
+        <source>Neue Mitteilung erfassen</source>
+        <target>Saisir un nouveau message</target>
+      </trans-unit>
+      <trans-unit id="create_new_recipe">
+        <source>Neues Rezept erstellen</source>
+        <target>Créer une nouvelle ordonnance</target>
+      </trans-unit>
+      <trans-unit id="create_new_user">
+        <source>Neuen Benutzer erstellen</source>
+        <target>Créer un nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="create_recipe_for_order">
+        <source>Erstellen Sie ein Rezept für diesen Kunden</source>
+        <target>Créer une recette pour ce client</target>
+      </trans-unit>
+      <trans-unit id="creation_date">
+        <source>Erstelldatum</source>
+        <target>creation_date</target>
+      </trans-unit>
+      <trans-unit id="customer">
+        <source>Kunde</source>
+        <target>Client</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment">
+        <source>Sortiment für unsere Kunden</source>
+        <target>Assortiment pour nos clients</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment_help_text">
+        <source>Anhand dieser Favoritenliste kann ein Hauptsortiment für Kundenbestellungen zusammengestellt werden. Dieses Sortiment findet Anwendung auf jeden einzelnen Kunden. Die Liste kann nur von einem Benutzer mit Administratoren-Rechten bearbeitet werden.</source>
+        <target>Liste de favoris pouvant être utilisée pour créer l’assortiment principal des commandes pour les clients de l’institution. Cet assortiment s’applique à chaque client individuel. La liste ne peut être modifiée que par un utilisateur ayant des droits d’administrateur.</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment_help_text_client">
+        <source>Dieses Kundensortiment ist bei allen Kunden verfügbar und wurde von einem Administrator auf der Institution erfasst.</source>
+        <target>L'assortiment prédéfini est disponible pour tous les clients et ne peut être saisi que par les administrateurs au niveau `Institution`</target>
+      </trans-unit>
+      <trans-unit id="customer_number">
+        <source>Kundennummer</source>
+        <target>Numéro client</target>
+      </trans-unit>
+      <trans-unit id="cut_by_template">
+        <source>Gemäss Schablone</source>
+        <target>Selon le chablon</target>
+      </trans-unit>
+      <trans-unit id="cutting">
+        <source>Zuschneiden</source>
+        <target>Découpe</target>
+      </trans-unit>
+      <trans-unit id="cutting_between_error">
+        <source>Zuschnitt nur möglich zwischen {min} mm und {max} mm</source>
+        <target>Découpe uniquement possible entre {min} mm et {max} mm</target>
+      </trans-unit>
+      <trans-unit id="cutting_disabled">
+        <source>Kein Zuschnitt gewählt</source>
+        <target>Aucune coupe sélectionnée</target>
+      </trans-unit>
+      <trans-unit id="cutting_disabled_help">
+        <source>Ohne Zuschneiden wird das Produkt im Originalzustand geliefert.</source>
+        <target>Sans découpe, le produit est livré dans son état d’origine.</target>
+      </trans-unit>
+      <trans-unit id="cutting_free_private">
+        <source>Kostenlos für Privatkunden und Zuweiser</source>
+        <target>Gratuit pour les clients privés et les référents</target>
+      </trans-unit>
+      <trans-unit id="cutting_last_selected">
+        <source>Zuletzt gewählter Zuschnitt: {cutting}</source>
+        <target>Dernière sélection coupe: {cutting}</target>
+      </trans-unit>
+      <trans-unit id="cutting_max_error">
+        <source>Zuschnitt bis maximal {max} mm</source>
+        <target>Découpe jusqu’à {max} mm maximal</target>
+      </trans-unit>
+      <trans-unit id="cutting_min_error">
+        <source>Zuschnitt ab mindestens {min} mm</source>
+        <target>Découpe à partir de {min} mm</target>
+      </trans-unit>
+      <trans-unit id="cutting_selected">
+        <source>Zuschnitt:</source>
+        <target>Découpe:</target>
+      </trans-unit>
+      <trans-unit id="cutting_template_cart_info">
+        <source>Schablone</source>
+        <target>Chablon</target>
+      </trans-unit>
+      <trans-unit id="cutting_user_info">
+        <source>Letzter Zuschnitt für {name}: {value}</source>
+        <target>Dernière découpe pour {name}:{value}</target>
+      </trans-unit>
+      <trans-unit id="delete_address">
+        <source>Adresse löschen</source>
+        <target>Effacer l’adresse</target>
+      </trans-unit>
+      <trans-unit id="delete_all_filters">
+        <source>Alle Filter löschen</source>
+        <target>Supprimer tous les filtres</target>
+      </trans-unit>
+      <trans-unit id="delete_employee_confirm">
+        <source>Wollen Sie diesen Mitarbeiter wirklich aus dem System löschen?</source>
+        <target>Souhaitez-vous vraiment supprimer ce salarié du système?</target>
+      </trans-unit>
+      <trans-unit id="delete_message">
+        <source>Mitteilung löschen</source>
+        <target>Supprimer le message</target>
+      </trans-unit>
+      <trans-unit id="delete_recipe">
+        <source>Löschen</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="delete_user">
+        <source>Benutzer löschen</source>
+        <target>Supprimer l’utilisateur</target>
+      </trans-unit>
+      <trans-unit id="deleted_product">
+        <source>Diesen Artikel führen wir nicht mehr im Sortiment.</source>
+        <target>Cet article n'est plus disponible dans notre assortiment.</target>
+      </trans-unit>
+      <trans-unit id="delivery_address">
+        <source>Lieferadresse</source>
+        <target>Adresse de livraison</target>
+      </trans-unit>
+      <trans-unit id="delivery_and_address">
+        <source>Lieferung &amp; Adresse</source>
+        <target>Livraison et adresse</target>
+      </trans-unit>
+      <trans-unit id="delivery_date">
+        <source>Gewünschtes Lieferdatum</source>
+        <target>Date de livraison souhaitée</target>
+      </trans-unit>
+      <trans-unit id="delivery_option">
+        <source>Zustellanweisung Post</source>
+        <target>Instructions de distribution pour la Poste</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_door">
+        <source>Im Ablagekasten/beim Hauseingang deponieren</source>
+        <target>Dépôt dans le casier pour colis ou dans l’entrée du bâtiment</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_etage">
+        <source>Etagenlieferung (Empfänger muss vor Ort sein)</source>
+        <target>Livraison à l’étage (Le destinataire doit être sur place)</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_info">
+        <source>Diese Option hilft Kunden, die in ihrer Mobilität eingeschränkt sind.</source>
+        <target>Cette option aide les clients dont la mobilité est réduite.</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_no">
+        <source>Keine</source>
+        <target>Aucune</target>
+      </trans-unit>
+      <trans-unit id="delivery_type">
+        <source>Lieferart</source>
+        <target>Type de livraison</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_express">
+        <source>Expresslieferung (Zuschlag)</source>
+        <target>Livraison express (supplément)</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_info">
+        <source>Bitte beachten Sie unsere regulären Öffnungszeiten und die Feiertage.</source>
+        <target>Veuillez prendre en considération nos heures d’ouverture normales et les jours fériés.</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal">
+        <source>Standardlieferung</source>
+        <target>Livraison standard</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal_delayed">
+        <source>Standardlieferung - späteres Datum</source>
+        <target>Livraison standard – date ultérieure</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal_help_text">
+        <source>Standardlieferung: Bestellungen bis 17.00 Uhr erhalten Sie am kommenden Arbeitstag.</source>
+        <target> Livraison standard: les commandes passées avant 17 h vous sont livrées le jour ouvré suivant.</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_pickup">
+        <source>Abholung</source>
+        <target>Retrait</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_saturday">
+        <source>Samstagzustellung</source>
+        <target>Livraison le samedi</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_saturday_help_text">
+        <source>Samstagzustellung: Bestellzeitpunkt spätestens bis Freitag 16:30 Uhr</source>
+        <target>Livraison le samedi: Commande au plus tard le vendredi 16:30 h</target>
+      </trans-unit>
+      <trans-unit id="delivery_unknown">
+        <source>Unbekannt</source>
+        <target>Inconnu</target>
+      </trans-unit>
+      <trans-unit id="department">
+        <source>Abteilung</source>
+        <target>Service</target>
+      </trans-unit>
+      <trans-unit id="department_client_services">
+        <source>Kundendienst</source>
+        <target>Service client</target>
+      </trans-unit>
+      <trans-unit id="department_field_services">
+        <source>Aussendienst</source>
+        <target>Service extérieur</target>
+      </trans-unit>
+      <trans-unit id="department_finances">
+        <source>Finanzen, Informatik, Prozesse &amp; Qualitätsmanagement</source>
+        <target>Finances, Informatique, Processus et gestion de la qualité</target>
+      </trans-unit>
+      <trans-unit id="department_hr">
+        <source>Human Resources</source>
+        <target>Ressources humaines</target>
+      </trans-unit>
+      <trans-unit id="department_management">
+        <source>Geschäftsleitung</source>
+        <target>Direction</target>
+      </trans-unit>
+      <trans-unit id="department_marketing">
+        <source>Marketing &amp; Kommunikation</source>
+        <target>Marketing et Communication</target>
+      </trans-unit>
+      <trans-unit id="department_warehouse">
+        <source>Lager, Einkauf, Versand</source>
+        <target>Stock, Achats, Expédition</target>
+      </trans-unit>
+      <trans-unit id="description_label">
+        <source>Beschreibung des Produktes</source>
+        <target>Description du produit</target>
+      </trans-unit>
+      <trans-unit id="details">
+        <source>Details</source>
+        <target>Détails</target>
+      </trans-unit>
+      <trans-unit id="displayName">
+        <source>Anzeigename</source>
+        <target>Nom affiché</target>
+      </trans-unit>
+      <trans-unit id="download">
+        <source>Herunterladen</source>
+        <target>Télécharger</target>
+      </trans-unit>
+      <trans-unit id="downloads">
+        <source>Downloads</source>
+        <target>Downloads</target>
+      </trans-unit>
+      <trans-unit id="due">
+        <source>Gültig ab</source>
+        <target>Valable à partir de</target>
+      </trans-unit>
+      <trans-unit id="duplicate">
+        <source>Duplizieren</source>
+        <target>Dupliquer</target>
+      </trans-unit>
+      <trans-unit id="e_log">
+        <source>e-log</source>
+        <target>Points de Formation</target>
+      </trans-unit>
+      <trans-unit id="earliest_delivery">
+        <source>Verfügbarkeit</source>
+        <target>Disponibilité</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Bearbeiten</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="edit_employee">
+        <source>Mitarbeiter bearbeiten</source>
+        <target>Modifier l’employé</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>E-Mail</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="emailAddress">
+        <source>E-Mail Adresse</source>
+        <target>Adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_address">
+        <source>E-Mail Adresse</source>
+        <target>Adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_business_register">
+        <source>E-Mail (Falls vorhanden, geben Sie bitte die Haupt-Email Adresse z.B: info@... Ihrer Institution ein.)</source>
+        <target>E-Mail (Si disponible, veuillez entrer l’adresse électronique principale, par exemple: info@... de votre institution.)</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_button_text">
+        <source>Passwort setzen</source>
+        <target>Définir un mot de passe</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_message">
+        <source>Publicare hat für Sie ein Benutzerkonto angelegt. Bitte klicken Sie unten um ein Passwort zu setzen und damit die Registrierung abzuschliessen.</source>
+        <target>Publicare vous a créé un compte utilisateur. Veuillez cliquer ci-dessous pour définir un mot de passe et ainsi terminer votre inscription.</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_subject">
+        <source>Publicare: Für Sie wurde ein Konto eingerichtet</source>
+        <target>Publicare: un compte vous a été ouvert</target>
+      </trans-unit>
+      <trans-unit id="email_footer_customer_service">
+        <source>Kundendienst</source>
+        <target>Service client</target>
+      </trans-unit>
+      <trans-unit id="email_footer_greeting">
+        <source>Ihre Publicare</source>
+        <target>L’équipe de Publicare</target>
+      </trans-unit>
+      <trans-unit id="email_footer_questions">
+        <source>Bei Fragen hilft Ihnen unser Kundendienst gerne weiter. Bitte antworten Sie nicht auf diese E-Mail.</source>
+        <target>Si vous avez des questions, n’hésitez pas à contacter notre service client. Veuillez ne pas répondre à cet e-mail.</target>
+      </trans-unit>
+      <trans-unit id="email_gender_mr">
+        <source>Herr</source>
+        <target>Monsieur</target>
+      </trans-unit>
+      <trans-unit id="email_gender_mrs">
+        <source>Frau</source>
+        <target>Madame</target>
+      </trans-unit>
+      <trans-unit id="email_hello">
+        <source>Guten Tag</source>
+        <target>Bonjour</target>
+      </trans-unit>
+      <trans-unit id="email_help">
+        <source>Geben Sie die E-Mail-Adresse an, damit der Kunde Zugriff auf sein Kundenportal erhält.</source>
+        <target>Indiquez l’adresse e-mail pour permettre au client d’accéder à son portail client.</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_button_text">
+        <source>Bestellstatus verfolgen</source>
+        <target>Suivre la commande</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_subject">
+        <source>Publicare: Bestellbestätigung</source>
+        <target>Publicare: confirmation de commande</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_thankyou">
+        <source>Vielen Dank für Ihre Bestellung bei</source>
+        <target>Merci beaucoup pour votre commande sur</target>
+      </trans-unit>
+      <trans-unit id="email_reset_button_text">
+        <source>Neues Passwort setzen</source>
+        <target>Définir un nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part1">
+        <source>Sie haben auf publicare.ch ein neues Passwort angefordert.
+  Auf unserer Website können Sie ganz einfach ein neues Passwort definieren.</source>
+        <target>Vous avez demandé un nouveau mot de passe sur www.publicare.ch.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part2">
+        <source>Sollten Sie kein neues Passwort angefordert haben, so können Sie diese Nachricht löschen.</source>
+        <target>Si vous n’avez pas fait de demande de nouveau mot de passe, vous pouvez supprimer ce message.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part3">
+        <source>Durch Ihr persönliches Passwort ist sichergestellt, dass nur Sie selbst Zugriff auf Ihre Daten haben oder Ihre Bestellungen einsehen können.
+  Bitte bewahren Sie Ihre Zugangsdaten daher sorgfältig auf.</source>
+        <target>Grâce à votre mot de passe personnel, nous nous assurons que vous êtes la seule personne à accéder
+  à vos données ou à consulter vos commandes.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_subject">
+        <source>Ihr persönliches Publicare Passwort zurücksetzen</source>
+        <target>Réinitialiser votre mot de passe Publicare personnel</target>
+      </trans-unit>
+      <trans-unit id="email_us">
+        <source>E-Mail schreiben</source>
+        <target>Écrire un e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_verify_button_text">
+        <source>E-Mail verifizieren</source>
+        <target>Vérifier l’adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_verify_message_part1">
+        <source>Vielen Dank dass Sie sich auf publicare.ch registriert haben.</source>
+        <target>Nous vous remercions pour votre inscription sur www.publicare.ch.</target>
+      </trans-unit>
+      <trans-unit id="email_verify_subject">
+        <source>Willkommen bei publicare.ch</source>
+        <target>Bienvenue sur www.publicare.ch</target>
+      </trans-unit>
+      <trans-unit id="employee_management">
+        <source>Mitarbeiter verwalten</source>
+        <target>Gérer les employés</target>
+      </trans-unit>
+      <trans-unit id="empty_events">
+        <source>Die nächsten Veranstaltungen werden demnächst auf unserer Website publiziert.</source>
+        <target>Vous trouverez d'autres événements en Suisse alémanique &lt;a href="/de/academy"&gt;ici&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="empty_newsletters">
+        <source></source>
+        <target>La newsletter est uniquement disponible en &lt;a class="link" href="/de/newsletter"&gt;allemand&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="empty_recipe">
+        <source>Blanko Rezept</source>
+        <target>Recette vierge</target>
+      </trans-unit>
+      <trans-unit id="engagement">
+        <source>Engagement</source>
+        <target>Engagement</target>
+      </trans-unit>
+      <trans-unit id="enter_additional_name">
+        <source>Abteilung/Stützpunkt eingeben</source>
+        <target>Saisir le service/la base</target>
+      </trans-unit>
+      <trans-unit id="enter_addressLine">
+        <source>Strasse und Hausnummer eingeben</source>
+        <target>Saisir la rue et le numéro</target>
+      </trans-unit>
+      <trans-unit id="enter_addressLine2">
+        <source>Adresszusatz eingeben</source>
+        <target>Saisir le complément d’adresse</target>
+      </trans-unit>
+      <trans-unit id="enter_city">
+        <source>Ort eingeben</source>
+        <target>Saisir le lieu</target>
+      </trans-unit>
+      <trans-unit id="enter_comment">
+        <source>Kommentar eingeben</source>
+        <target>Ajouter un commentaire</target>
+      </trans-unit>
+      <trans-unit id="enter_contactNumber">
+        <source>Kundennummer eingeben</source>
+        <target>Saisir le numéro de client</target>
+      </trans-unit>
+      <trans-unit id="enter_content">
+        <source>Mitteilung eingeben</source>
+        <target>Saisir le message</target>
+      </trans-unit>
+      <trans-unit id="enter_department">
+        <source>Abteilung eingeben</source>
+        <target>Saisir le service</target>
+      </trans-unit>
+      <trans-unit id="enter_email">
+        <source>E-Mail eingeben</source>
+        <target>Saisir l’adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="enter_familyDoctor">
+        <source>Hausarzt / Rezeptierer angeben</source>
+        <target>Saisir le médecin/prescripteur</target>
+      </trans-unit>
+      <trans-unit id="enter_firstName">
+        <source>Vorname eingeben</source>
+        <target>Saisir le prénom</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceHeadquarters">
+        <source>Sitz der Versicherung angeben</source>
+        <target>Saisir le siège de la compagnie d’assurance</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceName">
+        <source>Name der Versicherung angeben</source>
+        <target>Saisir le nom de la compagnie d’assurance</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceNumber">
+        <source>Versicherungsnummer / AHV-Nummer angeben</source>
+        <target>Saisir le numéro d’assurance/AVS</target>
+      </trans-unit>
+      <trans-unit id="enter_invalidityNumber">
+        <source>IV Verfügungsnummer eingeben</source>
+        <target>Saisir le numéro de décision IV</target>
+      </trans-unit>
+      <trans-unit id="enter_lastName">
+        <source>Nachname eingeben</source>
+        <target>Saisir le nom</target>
+      </trans-unit>
+      <trans-unit id="enter_mobileNumber">
+        <source>Mobiltelefonnummer eingeben</source>
+        <target>Saisir le numéro de téléphone mobile</target>
+      </trans-unit>
+      <trans-unit id="enter_postalCode">
+        <source>PLZ</source>
+        <target>NPA</target>
+      </trans-unit>
+      <trans-unit id="enter_reference">
+        <source>Name Mitarbeiter / Bestellnummer eingeben</source>
+        <target>Saisir le nom du collaborateur/le numéro de commande</target>
+      </trans-unit>
+      <trans-unit id="enter_telephoneNumber">
+        <source>Telefonnummer eingeben</source>
+        <target>Saisir le numéro de téléphone</target>
+      </trans-unit>
+      <trans-unit id="error">
+        <source>Fehler</source>
+        <target>Erreur</target>
+      </trans-unit>
+      <trans-unit id="error_404_content">
+        <source>Sorry, die Seite, die Sie gesucht haben, wurde nicht gefunden!</source>
+        <target>Désolé, la page que vous recherchez n’a pas été trouvée!</target>
+      </trans-unit>
+      <trans-unit id="error_404_search">
+        <source>Oder: Verwenden Sie die Suche, um Ihre gewünschte Information zu finden!</source>
+        <target>Ou: Utilisez la recherche pour trouver les informations dont vous avez besoin!</target>
+      </trans-unit>
+      <trans-unit id="error_404_title">
+        <source>Da ging etwas schief... - Fehler 404</source>
+        <target>Une erreur s’est produite ... - Erreur 404</target>
+      </trans-unit>
+      <trans-unit id="error_add_user">
+        <source>Problem beim Erstellen eines neuen Benutzers</source>
+        <target>Problème lors de la création d’un nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="error_contact_number_already_assigned">
+        <source>Für diese Kundennummer existiert bereits ein Konto</source>
+        <target>Il existe déjà un compte pour ce numéro de client.</target>
+      </trans-unit>
+      <trans-unit id="error_contact_number_invalid">
+        <source>Ungültige Kundennummer. Erwartete Form: K123456.</source>
+        <target>Numéro de client non valide. Forme attendue : K123456.</target>
+      </trans-unit>
+      <trans-unit id="error_date_after">
+        <source>{label} muss nach {dateToCompare} sein.</source>
+        <target>{label} doit être après {dateToCompare}.</target>
+      </trans-unit>
+      <trans-unit id="error_date_before">
+        <source>{label} muss vor {dateToCompare} sein.</source>
+        <target>{label} doit être avant {dateToCompare}.</target>
+      </trans-unit>
+      <trans-unit id="error_delivery_update_failed">
+        <source>Bei der Bestellung ist ein unbekannter Fehler aufgetreten, bitte melden Sie sich beim Kundendienst.</source>
+        <target>Une erreur inconnue est survenue au moment de la commande, veuillez contacter le service client.</target>
+      </trans-unit>
+      <trans-unit id="error_email">
+        <source>{label} muss eine gültige Email-Adresse sein</source>
+        <target>{label} doit être une adresse électronique valide.</target>
+      </trans-unit>
+      <trans-unit id="error_email_already_exists">
+        <source>Diese E-Mail gehört bereits zu einem Benutzerkonto</source>
+        <target>Cet e-mail appartient déjà à un compte d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="error_email_already_registered">
+        <source>Für diese E-Mail besteht bereits ein Kundenkonto. &lt;a href="/de/passwort-vergessen"&gt;Klicken Sie hier, um das Passwort zurückzusetzen&lt;/a&gt; oder kontaktieren Sie unseren Kundendienst.</source>
+        <target>Un compte client existe déjà pour cet e-mail. &lt;a href="/fr/mot-de-passe-perdu"&gt;Cliquez ici pour réinitialiser le mot de passe&lt;/a&gt; ou contactez notre service clientèle.</target>
+      </trans-unit>
+      <trans-unit id="error_forgot_password">
+        <source>E-Mail unbekannt</source>
+        <target>Adresse e-mail inconnue</target>
+      </trans-unit>
+      <trans-unit id="error_generic">
+        <source>Es ist ein unbekannter Fehler aufgetreten. Unser Team ist informiert und kümmert sich so rasch wie möglich darum. Bitte versuchen Sie es später noch einmal oder melden Sie sich beim Kundendienst.</source>
+        <target>Une erreur inconnue s’est produite. Notre équipe est informée et s’en occupera dans les plus brefs délais. Veuillez réessayer plus tard ou contacter le service clientèle.</target>
+      </trans-unit>
+      <trans-unit id="error_invalid_date">
+        <source>{label} ist kein gültiges Datum</source>
+        <target>{label}: Cette date est invalide</target>
+      </trans-unit>
+      <trans-unit id="error_login">
+        <source>Fehlgeschlagen, bitte überprüfen Sie Benutzer/Passwort</source>
+        <target>Échec de la connexion: veuillez contrôler le nom d’utilisateur/mot de passe.</target>
+      </trans-unit>
+      <trans-unit id="error_mark_left">
+        <source>Der Account wurde bereits zum Austritt gemeldet</source>
+        <target>Le compte a déjà été saisi pour la sortie</target>
+      </trans-unit>
+      <trans-unit id="error_max_length">
+        <source>{label} darf nicht länger als {maxLength} Zeichen lang sein</source>
+        <target>{label}: Veuillez saisir moins de {maxLength} caractères</target>
+      </trans-unit>
+      <trans-unit id="error_name_invalid">
+        <source>Ungültiger Name. Bitte keine Sonderzeichen oder Zahlen verwenden.</source>
+        <target>Nom invalide. Veuillez ne pas utiliser de caractères spéciaux ou de chiffres.</target>
+      </trans-unit>
+      <trans-unit id="error_order_update_failed">
+        <source>Bei der Bestellung ist ein unbekannter Fehler aufgetreten, bitte melden Sie sich beim Kundendienst.</source>
+        <target>Une erreur inconnue est survenue au moment de la commande, veuillez contacter le service client.</target>
+      </trans-unit>
+      <trans-unit id="error_phone_number_invalid">
+        <source>Ungültige Telefonnummer</source>
+        <target>Numéro de téléphone invalide</target>
+      </trans-unit>
+      <trans-unit id="error_postal_code_invalid">
+        <source>Ungültige Postleitzahl</source>
+        <target>Code postal invalide</target>
+      </trans-unit>
+      <trans-unit id="error_register">
+        <source>Uups, da ist etwas schief gelaufen. Bitte melden Sie das Problem dem Kundendienst</source>
+        <target>Oups, une erreur s’est produite.</target>
+      </trans-unit>
+      <trans-unit id="error_report">
+        <source>Weitere Informationen zum Fehler angeben</source>
+        <target>Indiquez des informations supplémentaires sur l’erreur</target>
+      </trans-unit>
+      <trans-unit id="error_required">
+        <source>{label} ist ein Pflichtfeld</source>
+        <target>{label}: Veuillez saisir quelque chose</target>
+      </trans-unit>
+      <trans-unit id="error_send_contact_form">
+        <source>Kontaktanfrage fehlgeschlagen, bitte Senden Sie uns eine E-Mail</source>
+        <target>La demande de contact a échoué, veuillez nous envoyer un e-mail</target>
+      </trans-unit>
+      <trans-unit id="error_server">
+        <source>Es ist ein Problem auf dem Server aufgetreten ({details}). Bitte versuchen Sie es später nochmals.</source>
+        <target>Il y a un problème sur le serveur. Veuillez réessayer plus tard.</target>
+      </trans-unit>
+      <trans-unit id="error_set_password">
+        <source>Wiederherstellungslink abgelaufen</source>
+        <target>Lien de récupération expiré</target>
+      </trans-unit>
+      <trans-unit id="error_user_profile">
+        <source>Kontaktinformationen konnten nicht aktualisert werden</source>
+        <target>Les informations de contact n’ont pas pu être actualisées</target>
+      </trans-unit>
+      <trans-unit id="error_user_settings">
+        <source>Fehler beim aktualisieren des Kontos</source>
+        <target>Erreur lors de l’actualisation du compte</target>
+      </trans-unit>
+      <trans-unit id="estimated_delivery_date">
+        <source>Voraussichtlicher Liefertermin: &lt;span className="delivery-time"&gt;{date}&lt;/span&gt;, falls bis 17.00 Uhr bestellt</source>
+        <target>Date de livraison prévue: &lt;span className="delivery-time"&gt;{date}&lt;/span&gt;, si la commande est passée avant 17 h.</target>
+      </trans-unit>
+      <trans-unit id="estimated_delivery_date_unknown">
+        <source>Voraussichtlicher Liefertermin: unbekannt</source>
+        <target>Date de livraison prévue: inconnue</target>
+      </trans-unit>
+      <trans-unit id="event">
+        <source>Veranstaltung</source>
+        <target>un événement</target>
+      </trans-unit>
+      <trans-unit id="event_button_bottom">
+        <source>Hier geht es direkt zur Anmeldung</source>
+        <target>Directement à l`inscription</target>
+      </trans-unit>
+      <trans-unit id="event_button_top">
+        <source>Direkt zur Anmeldung</source>
+        <target>Directement à l`inscription</target>
+      </trans-unit>
+      <trans-unit id="event_target_group">
+        <source>Zielgruppe</source>
+        <target>groupe ciblé</target>
+      </trans-unit>
+      <trans-unit id="excerpt_from_assortment">
+        <source>Auszug aus unserem Sortiment</source>
+        <target>Extrait de notre assortiment</target>
+      </trans-unit>
+      <trans-unit id="familyDoctor">
+        <source>Hausarzt / Rezeptierer</source>
+        <target>Médecin/prescripteur</target>
+      </trans-unit>
+      <trans-unit id="faq">
+        <source>Häufig gestellte Fragen</source>
+        <target>Foire aux questions</target>
+      </trans-unit>
+      <trans-unit id="favorite_general">
+        <source>Favoriten Allgmein</source>
+        <target>Favoris généraux</target>
+      </trans-unit>
+      <trans-unit id="favorite_list">
+        <source>Favoritenliste</source>
+        <target>Liste des favoris</target>
+      </trans-unit>
+      <trans-unit id="favorite_list_empty">
+        <source>Kein Produkt zu dieser Liste hinzugefügt</source>
+        <target>Aucun produit ajouté à cette liste</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list">
+        <source>Neue Liste erstellen</source>
+        <target>Nouvelle liste</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_error">
+        <source>Fehler beim Einfügen der Favoritenliste</source>
+        <target>Erreur lors de l’ajout sur la liste des favoris</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_input_label">
+        <source>Name der Liste</source>
+        <target>Nom de la liste</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_ph">
+        <source>Auf Favoritenliste setzen</source>
+        <target>Placer sur la liste des favoris</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_submit">
+        <source>erstellen</source>
+        <target>Créer</target>
+      </trans-unit>
+      <trans-unit id="favorite_select_list">
+        <source>Favoritenliste auswählen</source>
+        <target>Sélectionner la liste de favoris</target>
+      </trans-unit>
+      <trans-unit id="favorite_select_list_label">
+        <source>Wählen Sie eine Liste aus</source>
+        <target>Sélectionnez une liste</target>
+      </trans-unit>
+      <trans-unit id="favorite_wund">
+        <source>Favoriten wund</source>
+        <target>Favoris plaies</target>
+      </trans-unit>
+      <trans-unit id="filter_by">
+        <source>Filtern nach:</source>
+        <target>Filtrer par:</target>
+      </trans-unit>
+      <trans-unit id="filter_client">
+        <source>Kunden filtern</source>
+        <target>Recherche de client</target>
+      </trans-unit>
+      <trans-unit id="finish_recipe">
+        <source>Rezept abschliessen</source>
+        <target>Compléter la recette</target>
+      </trans-unit>
+      <trans-unit id="finish_recipe_later">
+        <source>Später abschliessen</source>
+        <target>Terminer plus tard</target>
+      </trans-unit>
+      <trans-unit id="firstName">
+        <source>Vorname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="follow_us">
+        <source>Folgen Sie Publicare auf Social Media</source>
+        <target>Suivez Publicare sur les réseaux sociaux</target>
+      </trans-unit>
+      <trans-unit id="footer_bottom_text">
+        <source>Schnellster Lieferant für medizinische Hilfsmittel.</source>
+        <target>Le fournisseur de dispositifs médicaux le plus rapide.</target>
+      </trans-unit>
+      <trans-unit id="forgot_password">
+        <source>Passwort vergessen?</source>
+        <target>Mot de passe oublié?</target>
+      </trans-unit>
+      <trans-unit id="forgot_password_email_sent">
+        <source>Eine E-Mail, mit Instruktionen um das Passwort zurück zu setzen, wurde versendet.</source>
+        <target>Un courriel contenant les instructions pour réinitialiser le mot de passe a été envoyé.</target>
+      </trans-unit>
+      <trans-unit id="form_errors_title">
+        <source>Fehlermeldung:</source>
+        <target>Message d’erreur:</target>
+      </trans-unit>
+      <trans-unit id="free_delivery">
+        <source>Kostenloser Versand</source>
+        <target>Livraison gratuite</target>
+      </trans-unit>
+      <trans-unit id="free_delivery_exceptions">
+        <source>Ausnahmen siehe AGBs</source>
+        <target>Exceptions veuillez voir les CGV</target>
+      </trans-unit>
+      <trans-unit id="gender">
+        <source>Anrede</source>
+        <target>Civilité</target>
+      </trans-unit>
+      <trans-unit id="gender_c">
+        <source>Firma</source>
+        <target>Société</target>
+      </trans-unit>
+      <trans-unit id="gender_f">
+        <source>Frau</source>
+        <target>Madame</target>
+      </trans-unit>
+      <trans-unit id="gender_m">
+        <source>Herr</source>
+        <target>Monsieur</target>
+      </trans-unit>
+      <trans-unit id="general_settings">
+        <source>Allgemeine Einstellungen</source>
+        <target>Paramètres généraux</target>
+      </trans-unit>
+      <trans-unit id="handout_download">
+        <source>Handouts herunterladen</source>
+        <target>Télécharger des présentations</target>
+      </trans-unit>
+      <trans-unit id="handout_text">
+        <source>Sie haben an einer unserer Veranstaltungen teilgenommen?</source>
+        <target>Vous avez participé à un événement?</target>
+      </trans-unit>
+      <trans-unit id="handouts_error">
+        <source>Sorry, der eingegebene Handout Code scheint ungültig zu sein.</source>
+        <target>Désolé, le code que vous avez entré ne semble pas valide.</target>
+      </trans-unit>
+      <trans-unit id="handouts_intro">
+        <source>Hier finden Sie die Handouts und Präsentationen zu unserer Veranstaltung</source>
+        <target>Vous trouverez ici les documents et présentations de notre événement</target>
+      </trans-unit>
+      <trans-unit id="handouts_thankyou">
+        <source>Schön, dass Sie da waren!</source>
+        <target>Merci beaucoup pour votre participation!</target>
+      </trans-unit>
+      <trans-unit id="handouts_title">
+        <source>Handouts &amp; Präsentationen</source>
+        <target>Documents &amp; présentations</target>
+      </trans-unit>
+      <trans-unit id="head_of_customer_service">
+        <source>Leiterin Kundendienst</source>
+        <target>Responsable service client</target>
+      </trans-unit>
+      <trans-unit id="heading">
+        <source>Überschrift</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="help">
+        <source>Hilfe</source>
+        <target>Aide</target>
+      </trans-unit>
+      <trans-unit id="hide">
+        <source>Verbergen</source>
+        <target>Cacher</target>
+      </trans-unit>
+      <trans-unit id="hide_optional_fields">
+        <source>Optionale Angaben ausblenden</source>
+        <target>Masquer les informations facultatives</target>
+      </trans-unit>
+      <trans-unit id="home">
+        <source>Startseite</source>
+        <target>page d’accueil</target>
+      </trans-unit>
+      <trans-unit id="images_can_differ">
+        <source>Das gezeigte Bild dient als Referenz und kann vom tatsächlichen Produkt abweichen. Es gilt immer die Artikelbeschreibung.</source>
+        <target>L’image présentée est uniquement à titre de référence et peut différer du produit réel. La description de l’article s’applique toujours.</target>
+      </trans-unit>
+      <trans-unit id="imprint">
+        <source>Impressum</source>
+        <target>Mentions légales</target>
+      </trans-unit>
+      <trans-unit id="in_stock">
+        <source>Ab Lager verfügbar</source>
+        <target>Disponible en stock</target>
+      </trans-unit>
+      <trans-unit id="in_stock_small">
+        <source>Ab Lager</source>
+        <target>En stock</target>
+      </trans-unit>
+      <trans-unit id="including_tax">
+        <source>inkl. MwSt.</source>
+        <target>La taxe incl.</target>
+      </trans-unit>
+      <trans-unit id="incontinence">
+        <source>Inkontinenz</source>
+        <target>Incontinence</target>
+      </trans-unit>
+      <trans-unit id="info">
+        <source>Hinweis</source>
+        <target>Remarque</target>
+      </trans-unit>
+      <trans-unit id="info_not_in_stock">
+        <source>Nicht an Lager</source>
+        <target>N’est pas en stock</target>
+      </trans-unit>
+      <trans-unit id="info_not_in_stock_long">
+        <source>Was wünschen Sie, wenn ein Produkt nicht an Lager ist?</source>
+        <target>Que voulez-vous si un produit n'est pas en stock ?</target>
+      </trans-unit>
+      <trans-unit id="information">
+        <source>Informationen</source>
+        <target>Information</target>
+      </trans-unit>
+      <trans-unit id="inko">
+        <source>Inkontinenzversorgung</source>
+        <target>Incontinence</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_label">
+        <source>KLV / MiGeL Kapitel 15. / 35. / 99.</source>
+        <target>OPAS / LiMA chapitre 15. / 35. / 99.</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_anal">
+        <source>Anale Irrigation</source>
+        <target>Irrigation anale</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_blasenfistel">
+        <source>suprapubische- oder transurethrale Dauerableitung</source>
+        <target>dérivation permanente sus-pubienne ou transurétrale</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_isk">
+        <source>ISK (Intermettierender Selbstkatheterismus)</source>
+        <target>ACI (auto-cathétérisation intermittente)</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_heavy">
+        <source>schwere Inkontinenz</source>
+        <target>Incontinence grave</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_label">
+        <source>Schweregrad</source>
+        <target>Degré de sévérité</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_medium">
+        <source>mittlere Inkontinenz</source>
+        <target>Incontinence moyenne</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_total">
+        <source>totale Inkontinenz</source>
+        <target>Incontinence totale</target>
+      </trans-unit>
+      <trans-unit id="institution_and_clients">
+        <source>Institution und Kunden</source>
+        <target>Institution et clients</target>
+      </trans-unit>
+      <trans-unit id="institution_assortment">
+        <source>Institutionssortiment</source>
+        <target>Assortiment pour l’institution</target>
+      </trans-unit>
+      <trans-unit id="institution_assortment_help_text">
+        <source>Diese Favoritenliste dient für Bestellungen auf den Stützpunkt und kann nur von einem Benutzer mit Administratoren-Rechten bearbeitet werden.</source>
+        <target>Liste de favoris destinée aux commandes pour l’institution. Elle ne peut être éditée que par un utilisateur ayant des droits administrateur</target>
+      </trans-unit>
+      <trans-unit id="institution_settings">
+        <source>Einstellungen</source>
+        <target>Paramètres</target>
+      </trans-unit>
+      <trans-unit id="insuranceHeadquarters">
+        <source>Sitz der Versicherung</source>
+        <target>Siège de la compagnie d’assurance</target>
+      </trans-unit>
+      <trans-unit id="insuranceName">
+        <source>Name der Versicherung</source>
+        <target>Nom de la compagnie d’assurance</target>
+      </trans-unit>
+      <trans-unit id="insuranceNumber">
+        <source>Versicherungsnummer oder AHV-Nummer</source>
+        <target>Numéro d’assurance ou numéro AVS</target>
+      </trans-unit>
+      <trans-unit id="invalidityNumber">
+        <source>IV Verfügungsnummer</source>
+        <target>Numéro de décision IV</target>
+      </trans-unit>
+      <trans-unit id="invoice_receiver">
+        <source>Rechnungsempfänger</source>
+        <target>Destinataire de la facture</target>
+      </trans-unit>
+      <trans-unit id="invoices">
+        <source>Rechnungen</source>
+        <target>Factures</target>
+      </trans-unit>
+      <trans-unit id="language">
+        <source>Sprache</source>
+        <target>Langue</target>
+      </trans-unit>
+      <trans-unit id="language_code">
+        <source>Sprache</source>
+        <target>Langue de correspondance</target>
+      </trans-unit>
+      <trans-unit id="language_code_french">
+        <source>Französisch</source>
+        <target>Français</target>
+      </trans-unit>
+      <trans-unit id="language_code_german">
+        <source>Deutsch</source>
+        <target>Allemand</target>
+      </trans-unit>
+      <trans-unit id="language_code_italian">
+        <source>Italienisch</source>
+        <target>Italien</target>
+      </trans-unit>
+      <trans-unit id="lastName">
+        <source>Nachname</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="learn_more">
+        <source>Mehr erfahren</source>
+        <target>En savoir plus</target>
+      </trans-unit>
+      <trans-unit id="leave">
+        <source>Austritt melden und Konto löschen</source>
+        <target>Communiquer une sortie et supprimer le compte</target>
+      </trans-unit>
+      <trans-unit id="leave_description">
+        <source>Sie können für den Account den Austritt melden. Der Account wird in 2-4 Arbeitstagen aus Ihrem System gelöscht</source>
+        <target>Vous pouvez annoncer la sortie d’un compte. Le compte sera effacé de votre système sous 2 à 4 jours ouvrés</target>
+      </trans-unit>
+      <trans-unit id="leave_title">
+        <source>Austritt melden</source>
+        <target>Communiquer une sortie</target>
+      </trans-unit>
+      <trans-unit id="leave_type">
+        <source>Grund für den Austritt</source>
+        <target>Raison de la sortie</target>
+      </trans-unit>
+      <trans-unit id="leave_type_dead">
+        <source>Verstorben</source>
+        <target>Décédé</target>
+      </trans-unit>
+      <trans-unit id="leave_type_gone">
+        <source>Austritt</source>
+        <target>Sortie</target>
+      </trans-unit>
+      <trans-unit id="leave_type_institution">
+        <source>Heimübertritt</source>
+        <target>Entrée en maison de soins</target>
+      </trans-unit>
+      <trans-unit id="leave_warning">
+        <source>Austritte müssen mit einer Begründung gemeldet werden</source>
+        <target>Les retraits doivent être déclarés avec une justification</target>
+      </trans-unit>
+      <trans-unit id="liechtenstein">
+        <source>Liechtenstein</source>
+        <target>Liechtenstein</target>
+      </trans-unit>
+      <trans-unit id="link_to_original_recipe">
+        <source>Original Rezept verknüpfen</source>
+        <target>Lier la recette originale</target>
+      </trans-unit>
+      <trans-unit id="load_more">
+        <source>Weitere laden ...</source>
+        <target>Charger plus</target>
+      </trans-unit>
+      <trans-unit id="login">
+        <source>Anmelden</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="login_success">
+        <source>Erfolgreich angemeldet</source>
+        <target>Inscription réussie</target>
+      </trans-unit>
+      <trans-unit id="login_title">
+        <source>Login Benutzerkonto Publicare</source>
+        <target>Connexion compte utilisateur Publicare</target>
+      </trans-unit>
+      <trans-unit id="login_to_order">
+        <source>Zum Bestellen einloggen</source>
+        <target>Se connecter pour commander</target>
+      </trans-unit>
+      <trans-unit id="logout">
+        <source>Abmelden</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="maintenance">
+        <source>Wegen Wartungsarbeiten sind Online-Bestellungen und Login zurzeit nicht möglich. Sie können zwischenzeitlich telefonisch bestellen. Danke für Ihr Verständnis.</source>
+        <target>En raison de travaux de maintenance, les commandes en ligne et la connexion ne sont actuellement pas possibles. En attendant, vous pouvez commander par téléphone. Merci de votre compréhension.</target>
+      </trans-unit>
+      <trans-unit id="manage_clients_corporate">
+        <source>Verwalten Sie Ihre Kunden sowie Ihre eigene Institution</source>
+        <target>Gérez vos clients et votre propre institution.</target>
+      </trans-unit>
+      <trans-unit id="manage_customer_recipes_content">
+        <source>Hinterlegen Sie ein gültiges Rezept, oder erstellen Sie ein neues Rezept für den Rezeptierer:</source>
+        <target>Déposez une ordonnance valable ou créez une nouvelle ordonnance pour le prescripteur:</target>
+      </trans-unit>
+      <trans-unit id="manage_customer_recipes_title">
+        <source>Verwalten Sie sich oder Ihre Kunden</source>
+        <target>Gérez-vous ou vos clients</target>
+      </trans-unit>
+      <trans-unit id="mediator">
+        <source>Name Vermittler/in</source>
+        <target>Nom de l’intermédiaire</target>
+      </trans-unit>
+      <trans-unit id="medicine">
+        <source>Arzneimittel ({type})</source>
+        <target>Médicament ({type})</target>
+      </trans-unit>
+      <trans-unit id="medicine_detailed">
+        <source>Hier handelt es sich um ein Spezialprodukt. Der Kundendienst nimmt bei Bedarf mit Ihnen Kontakt auf.</source>
+        <target>Il s’agit d’un produit spécial. Le service client prendra contact avec vous, si nécessaire.</target>
+      </trans-unit>
+      <trans-unit id="medicine_product_text">
+        <source>Die Produktwelt von Publicare enthält grösstenteils Medizinprodukte (im Webshop mit MiGeL-Nummer versehen). Medizinprodukte werden von Ihrer Krankenkasse im Rahmen der Grundversicherung ganz oder teilweise vergütet, sofern diese durch einen Arzt/eine Ärztin verordnet sind. Senden Sie uns Ihr Rezept und wir übernehmen die direkte Abrechnung mit Ihrer Krankenkasse. Bei Fragen dazu hilft Ihnen unser Kundendienst gerne weiter.</source>
+        <target>L’univers des produits Publicare propose principalement des produits médicaux (dotés d’un numéro LiMa dans la boutique en ligne). Les produits médicaux seront remboursés entièrement ou partiellement par votre caisse-maladie dans le cadre de l’assurance de base dans la mesure où ils ont été prescrits par un médecin. Envoyez-nous votre ordonnance et nous nous chargeons de la facturation directe avec la caisse-maladie. Si vous avez des questions, n’hésitez pas à contacter notre service client.</target>
+      </trans-unit>
+      <trans-unit id="meetingRequest">
+        <source>Ich möchte mich von Publicare beraten lassen und darum gerne ein Gespräch vereinbaren.</source>
+        <target>Je souhaite obtenir des conseils de Publicare et donc fixer un rendez-vous.</target>
+      </trans-unit>
+      <trans-unit id="menu">
+        <source>Menü</source>
+        <target>Menu</target>
+      </trans-unit>
+      <trans-unit id="message">
+        <source>Nachricht</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit id="messages">
+        <source>Mitteilungen</source>
+        <target>Messages</target>
+      </trans-unit>
+      <trans-unit id="migel_label">
+        <source>MiGeL</source>
+        <target>LiMa</target>
+      </trans-unit>
+      <trans-unit id="mission">
+        <source>Leitbild</source>
+        <target>Mission</target>
+      </trans-unit>
+      <trans-unit id="mobileNumber">
+        <source>Mobiltelefonnummer</source>
+        <target>Numéro de mobile</target>
+      </trans-unit>
+      <trans-unit id="more_variants">
+        <source>Weitere Varianten zu diesem Produkt</source>
+        <target>Autres variantes de ce produit</target>
+      </trans-unit>
+      <trans-unit id="my_bookmarks">
+        <source>Meine Merkliste</source>
+        <target>Ma liste de suivi</target>
+      </trans-unit>
+      <trans-unit id="my_portal">
+        <source>Mein Kundenportal</source>
+        <target>Mon portail client</target>
+      </trans-unit>
+      <trans-unit id="my_portal_short">
+        <source>Login</source>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="name_health_institute">
+        <source>Institution</source>
+        <target>Institution</target>
+      </trans-unit>
+      <trans-unit id="new_address">
+        <source>Neue Adresse</source>
+        <target>Nouvelle adresse</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_four">
+        <source>Mehrere Mitarbeiter-Profile für Institutionen</source>
+        <target>Plusieurs profils de collaborateurs pour les institutions</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_one">
+        <source>Schnelles und einfaches Einkaufen</source>
+        <target>Achats simples et rapides</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_three">
+        <source>Zentrale Verwaltung der Kundendaten</source>
+        <target>Gestion centralisée des données clients</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_two">
+        <source>Einblick in die Bestellhistorie</source>
+        <target>Consultation de l’historique de commandes</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantages">
+        <source>Ihre Vorteile auf einen Blick:</source>
+        <target>Vos avantages en un coup d’œil:</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_text">
+        <source>Wenn Sie noch keine Online Zugangsdaten für unseren Online Shop haben, registrieren Sie sich hier.</source>
+        <target>Si vous n’avez pas encore de données de connexion pour accéder à notre boutique en ligne, inscrivez-vous ici.</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_title">
+        <source>Noch keinen Online Account?</source>
+        <target>Vous n’avez pas encore de compte en ligne?</target>
+      </trans-unit>
+      <trans-unit id="new_client">
+        <source>Neuer Kunde</source>
+        <target>Nouveau client</target>
+      </trans-unit>
+      <trans-unit id="new_email">
+        <source>Neue E-Mail Adresse</source>
+        <target>Nouvelle adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="new_password">
+        <source>Neues Passwort</source>
+        <target>Nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="new_password_confirm">
+        <source>Neues Passwort bestätigen</source>
+        <target>Confirmer le nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="new_password_not_same">
+        <source>Neues Passwort stimmt nicht überein</source>
+        <target>Le nouveau mot de passe ne correspond pas</target>
+      </trans-unit>
+      <trans-unit id="new_product_info">
+        <source>Wir empfehlen Ihnen neue Produkte mit Ihrer betreuenden Fachperson abzusprechen.</source>
+        <target>Nous vous recommandons de discuter des nouveaux produits avec le spécialiste qui s’occupe de vous.</target>
+      </trans-unit>
+      <trans-unit id="new_recipe">
+        <source>Rezept erstellen</source>
+        <target>Créer une ordonnance</target>
+      </trans-unit>
+      <trans-unit id="new_roles">
+        <source>Berechtigung</source>
+        <target>Autorisation</target>
+      </trans-unit>
+      <trans-unit id="new_user">
+        <source>Neuer Benutzer erfassen</source>
+        <target>Saisir un nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="newsletter_all">
+        <source>zur Newsletter Übersicht</source>
+        <target>vers l`aperçu de la newsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_availablity">
+        <source>Der Newsletter ist nur in deutscher Sprache verfügbar.</source>
+        <target>La newsletter n'est disponible qu'en allemand.</target>
+      </trans-unit>
+      <trans-unit id="newsletter_button">
+        <source>Newsletter abonnieren</source>
+        <target>S’abboner</target>
+      </trans-unit>
+      <trans-unit id="newsletter_call_button">
+        <source>Abonnieren</source>
+        <target>S’abonner</target>
+      </trans-unit>
+      <trans-unit id="newsletter_call_title">
+        <source>Publicare-Newsletter</source>
+        <target>Newsletter Publicare</target>
+      </trans-unit>
+      <trans-unit id="newsletter_link">
+        <source>/de/newsletteranmeldung</source>
+        <target>/fr/newsletterabonnement</target>
+      </trans-unit>
+      <trans-unit id="newsletter_subscribe">
+        <source>Ich möchte gerne den Newsletter von Publicare erhalten.</source>
+        <target>Je souhaite recevoir le bulletin d'information Publicare. (En allemand)</target>
+      </trans-unit>
+      <trans-unit id="newsletter_subtitle">
+        <source>Abonnieren Sie unseren Newsletter und erfahren Sie regelmässig topaktuelle Neuigkeiten rund um Publicare.</source>
+        <target>Abonnez-vous à notre newsletter et découvrez régulièrement les dernières actualités de Publicare.</target>
+      </trans-unit>
+      <trans-unit id="newsletter_success_url">
+        <source>/de/newsletterbestaetigung</source>
+        <target>/fr/confirmationnewsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_title">
+        <source>News</source>
+        <target>News</target>
+      </trans-unit>
+      <trans-unit id="next">
+        <source>Weiter</source>
+        <target>Continuer</target>
+      </trans-unit>
+      <trans-unit id="next_events">
+        <source>Nächste Veranstaltungen der Academy</source>
+        <target>Prochains événements de l'Académie</target>
+      </trans-unit>
+      <trans-unit id="no_addresses_found">
+        <source>Keine Adressen gefunden</source>
+        <target>Aucune adresse trouvée</target>
+      </trans-unit>
+      <trans-unit id="no_products_found">
+        <source>Keine Produkte gefunden</source>
+        <target>Aucun produit trouvé</target>
+      </trans-unit>
+      <trans-unit id="no_recipes">
+        <source>Keine Rezepte gefunden</source>
+        <target>Aucune recette trouvée</target>
+      </trans-unit>
+      <trans-unit id="not_same_address">
+        <source>Die Rechnungsadresse weicht von der Lieferadresse ab.</source>
+        <target>L’adresse de facturation diffère de l’adresse de livraison.</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email">
+        <source>E-Mail Benachrichtigungen</source>
+        <target>Messages par e-mail</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email_corporate">
+        <source>E-Mail Benachrichtigungen Stützpunkt</source>
+        <target>Messages par e-mail base</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email_patient">
+        <source>E-Mail Benachrichtigungen Kundenbestellungen</source>
+        <target>Messages par e-mail commandes clients</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_mobile">
+        <source>SMS Benachrichtigungen</source>
+        <target>Messages par SMS</target>
+      </trans-unit>
+      <trans-unit id="of">
+        <source>von</source>
+        <target>de</target>
+      </trans-unit>
+      <trans-unit id="often_used_clients">
+        <source>Häufig genutzte Kunden</source>
+        <target>Clients souvent utilisés</target>
+      </trans-unit>
+      <trans-unit id="old_password">
+        <source>Aktuelles Passwort</source>
+        <target>Mot de passe actuel</target>
+      </trans-unit>
+      <trans-unit id="open_positions">
+        <source>Unsere offenen Stellen</source>
+        <target>Nos postes à pourvoir</target>
+      </trans-unit>
+      <trans-unit id="open_positions_occupied">
+        <source>Zurzeit sind alle Stellen besetzt.</source>
+        <target>Tous les postes sont actuellement occupés.</target>
+      </trans-unit>
+      <trans-unit id="open_positions_privacy">
+        <source>Bitte erwähnen Sie im Motivationsschreiben, dass Sie mit der &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPath}"&gt;Datenschutzerklärung&lt;/a&gt; einverstanden sind. Vielen Dank.</source>
+        <target>Dans votre lettre de motivation, mentionnez que vous êtes d’accord avec la &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPath}"&gt;politique de confidentialité&lt;/a&gt;. Merci.</target>
+      </trans-unit>
+      <trans-unit id="opening_times">
+        <source>Öffnungszeiten</source>
+        <target>Horaires</target>
+      </trans-unit>
+      <trans-unit id="opening_times_days">
+        <source>Montag bis Freitag</source>
+        <target>Du lundi au vendredi</target>
+      </trans-unit>
+      <trans-unit id="opening_times_hours">
+        <source>7.00 bis 17.00 Uhr</source>
+        <target>de 7 h 00 à 17 h 00</target>
+      </trans-unit>
+      <trans-unit id="options">
+        <source>Optionen</source>
+        <target>Options</target>
+      </trans-unit>
+      <trans-unit id="order">
+        <source>Bestellen</source>
+        <target>Commander</target>
+      </trans-unit>
+      <trans-unit id="order_by_default">
+        <source>Standardsortierung</source>
+        <target>Tri standard</target>
+      </trans-unit>
+      <trans-unit id="order_by_price_ascending">
+        <source>Preis (niedrigste zuerst)</source>
+        <target>Prix (le plus bas en premier)</target>
+      </trans-unit>
+      <trans-unit id="order_by_price_descending">
+        <source>Preis (höchste zuerst)</source>
+        <target>Prix (le plus élevé en premier)</target>
+      </trans-unit>
+      <trans-unit id="order_by_sku_ascending">
+        <source>Artikelnummer A - Z</source>
+        <target>Numéro d'article A-Z</target>
+      </trans-unit>
+      <trans-unit id="order_by_sku_descending">
+        <source>Artikelnummer Z - A</source>
+        <target>Numéro d'article Z-A</target>
+      </trans-unit>
+      <trans-unit id="order_by_stock_descending">
+        <source>Produkte an Lager zuerst</source>
+        <target>Produits en stock en premier</target>
+      </trans-unit>
+      <trans-unit id="order_by_title_ascending">
+        <source>Titel A - Z</source>
+        <target>Nom du produit A-Z</target>
+      </trans-unit>
+      <trans-unit id="order_by_title_descending">
+        <source>Titel Z - A</source>
+        <target>Nom du produit Z-A</target>
+      </trans-unit>
+      <trans-unit id="order_confirmation">
+        <source>Bestellbestätigung</source>
+        <target>Confirmation de commande</target>
+      </trans-unit>
+      <trans-unit id="order_date">
+        <source>Bestellung aufgegeben</source>
+        <target>Commande passée</target>
+      </trans-unit>
+      <trans-unit id="order_delivery_address">
+        <source>Versandadresse</source>
+        <target>Adresse d’envoi</target>
+      </trans-unit>
+      <trans-unit id="order_estimated_delivery_date">
+        <source>Vorauss. Zustelldatum</source>
+        <target>Date de livraison prévue</target>
+      </trans-unit>
+      <trans-unit id="order_for">
+        <source>Bestellen für {name}</source>
+        <target>Commander pour {name}</target>
+      </trans-unit>
+      <trans-unit id="order_nr">
+        <source>Bestellnummer</source>
+        <target>Numéro de commande</target>
+      </trans-unit>
+      <trans-unit id="order_number">
+        <source>Bestellnr.</source>
+        <target>N° de commande</target>
+      </trans-unit>
+      <trans-unit id="order_overview">
+        <source>Bestellübersicht</source>
+        <target>Aperçu de la commande</target>
+      </trans-unit>
+      <trans-unit id="order_status">
+        <source>Status</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="order_status_invalid">
+        <source>Storniert</source>
+        <target>Annulé</target>
+      </trans-unit>
+      <trans-unit id="order_status_processing">
+        <source>In Bearbeitung</source>
+        <target>En cours de traitement</target>
+      </trans-unit>
+      <trans-unit id="order_status_shipped">
+        <source>Geliefert</source>
+        <target>Livré</target>
+      </trans-unit>
+      <trans-unit id="order_success">
+        <source>Ihre Bestellung war erfolgreich.</source>
+        <target>Votre commande a été passée avec succès.</target>
+      </trans-unit>
+      <trans-unit id="order_success_details">
+        <source>Vielen Dank für Ihre Bestellung. Wir werden Sie benachrichtigen, sobald Ihr(e) Produkte versandt wurde(n). &lt;br/&gt;Um Ihre Bestellung anzusehen, besuchen Sie Ihr &lt;a href="{portalPath}"&gt;persönliches Kundenportal&lt;/a&gt;.</source>
+        <target>Merci beaucoup de votre commande. Nous vous préviendrons dès que votre/vos produit(s) aura/auront été expédié(s). &lt;br/&gt;Pour consulter votre commande, rendez-vous sur votre &lt;a href="{portalPath}"&gt;portail client personnel&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="order_sum">
+        <source>Summe inkl. MwSt.</source>
+        <target>Total TVA incl.</target>
+      </trans-unit>
+      <trans-unit id="order_summary">
+        <source>Zusammenfassung Ihrer Bestellung</source>
+        <target>Composition de votre commande</target>
+      </trans-unit>
+      <trans-unit id="orders">
+        <source>Bestellungen</source>
+        <target>Commandes</target>
+      </trans-unit>
+      <trans-unit id="orders_empty">
+        <source>Es sind noch keine Bestellungen eingegangen.</source>
+        <target>Pas encore de commandes</target>
+      </trans-unit>
+      <trans-unit id="original_recipe">
+        <source>Datei auswählen oder hereinziehen, Kundendaten eingeben und an Publicare übermitteln.</source>
+        <target>Recette originale</target>
+      </trans-unit>
+      <trans-unit id="ostomy_care">
+        <source>Stomaversorgung</source>
+        <target>Appareillage de stomie</target>
+      </trans-unit>
+      <trans-unit id="out_of_stock">
+        <source>Nicht an Lager</source>
+        <target>N’est pas en stock</target>
+      </trans-unit>
+      <trans-unit id="out_of_stock_small">
+        <source>Nicht an Lager</source>
+        <target>N’est pas en stock</target>
+      </trans-unit>
+      <trans-unit id="overview">
+        <source>Übersicht</source>
+        <target>Aperçu</target>
+      </trans-unit>
+      <trans-unit id="password">
+        <source>Passwort</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="password_changed">
+        <source>Passwort erfolgreich geändert</source>
+        <target>Mot de passe modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="past_orders">
+        <source>Letzte Bestellungen</source>
+        <target>Dernières commandes</target>
+      </trans-unit>
+      <trans-unit id="pharma_code_label">
+        <source>Pharmacode</source>
+        <target>Pharmacode</target>
+      </trans-unit>
+      <trans-unit id="portal_institution">
+        <source>Übersicht Kundenportal</source>
+        <target>Aperçu du portail client</target>
+      </trans-unit>
+      <trans-unit id="postalCode">
+        <source>Postleitzahl</source>
+        <target>NPA</target>
+      </trans-unit>
+      <trans-unit id="preview_recipe_with_signature">
+        <source>Rezept mit Unterschrift anschauen</source>
+        <target>Regardez la recette avec votre signature</target>
+      </trans-unit>
+      <trans-unit id="price_including_taxes">
+        <source>Preis inkl. MwSt.</source>
+        <target>Prix TVA incl.</target>
+      </trans-unit>
+      <trans-unit id="primary_address">
+        <source>Hauptadresse/Wohnadresse</source>
+        <target>Adresse principale</target>
+      </trans-unit>
+      <trans-unit id="print">
+        <source>Ausdrucken (PDF)</source>
+        <target>Imprimer (PDF)</target>
+      </trans-unit>
+      <trans-unit id="print_message">
+        <source>Mitteilung drucken</source>
+        <target>Imprimer le message</target>
+      </trans-unit>
+      <trans-unit id="privacy">
+        <source>Datenschutz</source>
+        <target>Protection des données</target>
+      </trans-unit>
+      <trans-unit id="private_customer">
+        <source>Privatkunde</source>
+        <target>Client privé</target>
+      </trans-unit>
+      <trans-unit id="product_details">
+        <source>Produktedetails</source>
+        <target>Détails sur le produit</target>
+      </trans-unit>
+      <trans-unit id="product_inactive">
+        <source>Dieses Produkt ist unter dieser Artikelnummer nicht mehr bestellbar. Bitte benutzen Sie die Freitextsuche oder gehen Sie über die Produktkategorien. In den meisten Fällen führen wir das Produkt von einem anderen Lieferanten oder haben einen Ersatzartikel oder eine Alternative.</source>
+        <target>Ce produit ne peut plus être commandé sous ce numéro d’article. Veuillez utiliser la recherche en texte libre ou passer par les catégories de produits. Dans la plupart des cas, nous proposons le produit d’un autre fournisseur ou un article de remplacement ou une alternative.</target>
+      </trans-unit>
+      <trans-unit id="product_name">
+        <source>Artikelnummer</source>
+        <target>Numéro de l’article</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_custom_assortment_override">
+        <source>Trotzdem bestellen</source>
+        <target>Commander quand même</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_customer_assortment">
+        <source>Dieses Produkt ist ausserhalb vom definierten «Sortiment für unsere Kunden». Laut Ihrer Berechtigung sollten Sie wenn möglich nur Produkte aus dieser Auswahl bestellen.</source>
+        <target>Ce produit est en dehors de l'assortiment pour nos clients défini. En fonction de leurs droits, vous devez, si possible, commander uniquement des produits de cette sélection.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_customer_assortment_strict">
+        <source>Sie haben keine Berechtigung ausserhalb vom definierten „Sortiment für unsere Kunden“ zu bestellen. Bitte wenden Sie sich an Ihren Administrator.</source>
+        <target>Vous n'êtes pas autorisé à commander en dehors de l'assortiment pour nos clients défini. Veuillez contacter votre administrateur.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_institution_assortment">
+        <source>Dieses Produkt ist ausserhalb vom definierten «Institutionssortiment» und sollte nicht auf die Institution bestellt werden. Laut Ihrer Berechtigung sollten Sie wenn möglich nur Produkte aus dieser Auswahl bestellen.</source>
+        <target>Ce produit est en dehors de la gamme institutionnelle définie et ne doit pas être commandé sur l'institution. Selon leur autorisation, vous devez si possible ne commander que des produits de cette sélection.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_institution_assortment_strict">
+        <source>Dieses Produkt kann nicht in den Institutions-Warenkorb abgelegt werden, da es nicht im Institutionssortiment vorhanden ist. Bitte wenden Sie sich an ihren Administrator.</source>
+        <target>Ce produit ne peut pas être ajouté au panier institutionnel, car il n'est pas disponible dans l'assortiment institutionnel. Veuillez contacter votre administrateur.</target>
+      </trans-unit>
+      <trans-unit id="product_suggestions">
+        <source>Auch interessant für Sie</source>
+        <target>Ceci aussi pourrait vous intéresser</target>
+      </trans-unit>
+      <trans-unit id="product_variations">
+        <source>Weitere Varianten dieses Produkts</source>
+        <target>Autres variantes de ce produit</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>Produkte</source>
+        <target>Produits</target>
+      </trans-unit>
+      <trans-unit id="products_search">
+        <source>Produkte filtern</source>
+        <target>Filtrer les produits</target>
+      </trans-unit>
+      <trans-unit id="published">
+        <source>Datum</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="quantity">
+        <source>Anzahl</source>
+        <target>Quantité</target>
+      </trans-unit>
+      <trans-unit id="questions_contact_us">
+        <source>Bei Fragen nehmen Sie bitte mit uns &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer"&gt; &lt;b&gt; Kontakt &lt;/b&gt; &lt;/a&gt; auf.</source>
+        <target>Si vous avez des questions, n’hésitez pas à nous &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer"&gt;contacter&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="recent_clients">
+        <source>Häufig genutzte Kunden</source>
+        <target>Clients souvent utilisés</target>
+      </trans-unit>
+      <trans-unit id="recipe">
+        <source>Rezept</source>
+        <target>Ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipe_after">
+        <source>Vorbezug der Produkte - Rezept folgt</source>
+        <target>Retrait anticipé des produits – l’ordonnance suit</target>
+      </trans-unit>
+      <trans-unit id="recipe_articles">
+        <source>Rezept-Artikel</source>
+        <target>Articles de l’ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_change_type">
+        <source>ändern</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_second_step_subtitle">
+        <source>Empfehlung für diese Bestellung</source>
+        <target>Recommandation pour cette commande</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_select">
+        <source>auswählen</source>
+        <target>Sélectionner</target>
+      </trans-unit>
+      <trans-unit id="recipe_mediator">
+        <source>Vermittler</source>
+        <target>Intermédiaire</target>
+      </trans-unit>
+      <trans-unit id="recipe_mode_direct">
+        <source>Ich bin Rezeptierer/Arzt und will das Dokument direkt unterschreiben</source>
+        <target>Je suis prescripteur/médecin et souhaite signer directement le document</target>
+      </trans-unit>
+      <trans-unit id="recipe_mode_manual">
+        <source>Ich bin Therapeut/Vermittler und will das Dokument zum Rezeptierer weiterleiten</source>
+        <target>Je suis thérapeute/médiateur et souhaite transmettre le document au prescripteur</target>
+      </trans-unit>
+      <trans-unit id="recipe_no">
+        <source>Ohne Rezept bestellen</source>
+        <target>Commander sans ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipe_person_data">
+        <source>Angaben zur Person</source>
+        <target>Informations personnelles</target>
+      </trans-unit>
+      <trans-unit id="recipe_preview">
+        <source>Rezept-Vorschau</source>
+        <target>Aperçu de l’ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipe_preview_link">
+        <source>Rezept-Vorschau in neuem Fenster öffnen</source>
+        <target>Ouvrir l`aperçu de la recette dans une nouvelle fenêtre</target>
+      </trans-unit>
+      <trans-unit id="recipe_publicare">
+        <source>Rezept bei Publicare</source>
+        <target>Ordonnance chez Publicare</target>
+      </trans-unit>
+      <trans-unit id="recipe_ready_for_submission">
+        <source>Das Rezept ist bereit zum Versand oder zur Unterschrift</source>
+        <target>L'ordonnance est prête à être envoyée ou signée</target>
+      </trans-unit>
+      <trans-unit id="recipe_sign_mail_body">
+        <source>Guten Tag,%0A%0Awir würden Sie bitten das Rezept für unseren Kunden {customer} zu unterschreiben und zu retournieren.%0A%0AHier können Sie das Rezept herunterladen: {recipe}%0A%0ADieses Rezept wurde mit dem Rezeptgenerator von Publicare AG erstellt.%0A%0AFreundliche Grüsse</source>
+        <target>TRANSLATE: recipe_sign_mail_body {customer} {recipe}</target>
+      </trans-unit>
+      <trans-unit id="recipe_sign_mail_subject">
+        <source>Rezept zur Unterschrift bereit ({customer})</source>
+        <target>TRANSLATE: recipe_sign_mail_subject {customer}</target>
+      </trans-unit>
+      <trans-unit id="recipe_signature">
+        <source>Digitale Signatur</source>
+        <target>Signature numérique</target>
+      </trans-unit>
+      <trans-unit id="recipe_status">
+        <source>Status</source>
+        <target>recipe_status</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_draft">
+        <source>unvollständig</source>
+        <target>incomplet</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_final">
+        <source>unterschrieben &amp; übermittelt</source>
+        <target>signé &amp; transmis</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_ready">
+        <source>bereit zur Unterschrift</source>
+        <target>prêt pour la signature</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_sent">
+        <source>an Rezeptierer versendet</source>
+        <target>envoyé au prescripteur</target>
+      </trans-unit>
+      <trans-unit id="recipe_type">
+        <source>Rezepttyp</source>
+        <target>Type d’ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipe_upload">
+        <source>Rezept hochladen</source>
+        <target>Télécharger l’ordonnance vers le serveur</target>
+      </trans-unit>
+      <trans-unit id="recipe_upload_ph">
+        <source>PDF (Bild), JPG oder PNG hochladen (maximal 10 Megabyte)</source>
+        <target>Charger un PDF, un JPG ou un PNG (10 mégaoctet max.)</target>
+      </trans-unit>
+      <trans-unit id="recipe_yes">
+        <source>Mit Rezept bestellen</source>
+        <target>Commander avec ordonnance</target>
+      </trans-unit>
+      <trans-unit id="recipes">
+        <source>Rezepte</source>
+        <target>Recettes</target>
+      </trans-unit>
+      <trans-unit id="reference">
+        <source>Ausgeführt durch / Bestellnummer</source>
+        <target>Effectué par/numéro de commande</target>
+      </trans-unit>
+      <trans-unit id="refine_result">
+        <source>Ergebnis verfeinern</source>
+        <target>Affiner le résultat</target>
+      </trans-unit>
+      <trans-unit id="register">
+        <source>Jetzt registrieren</source>
+        <target>S’inscrire</target>
+      </trans-unit>
+      <trans-unit id="register_and_order">
+        <source>Jetzt registrieren und bestellen</source>
+        <target>S’inscrire et commander</target>
+      </trans-unit>
+      <trans-unit id="register_intro_business_clients">
+        <source>Eröffnen Sie hier einen Online Account für Ihre Institution. Bitte geben Sie hier die allgemeinen Daten Ihrer Institution wie z.B. die zentrale Telefonnummer oder Email-Adresse an. Die einzelnen Mitarbeiter, die im Namen Ihrer Institution bestellen, können Sie in einem nächsten Schritt anlegen.</source>
+        <target>Ouvrez un compte en ligne pour votre institution ici. Veuillez indiquer ici les données générales telles qu’un numéro de téléphone central ou une adresse e-mail. Dans l’étape suivante, vous pourrez enregistrer individuellement les collaborateurs qui passent commande pour le compte de votre institution.</target>
+      </trans-unit>
+      <trans-unit id="registration">
+        <source>Anmeldung</source>
+        <target>Généralitiés</target>
+      </trans-unit>
+      <trans-unit id="registration_corporate">
+        <source>Registration als Geschäftskunde</source>
+        <target>Inscription comme client professionnel</target>
+      </trans-unit>
+      <trans-unit id="registration_popup_corporate">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet - danach sehen Sie Ihre persönlichen Preise und Ihre bisherigen Bestellungen. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellungen aufgeben. Besten Dank für Ihre Geduld.</source>
+        <target>Vous recevrez prochainement un e-mail avec les données d’accès. Vos données seront contrôlées en interne. Votre compte sera activé sous un jour ouvrable – vous verrez ensuite vos tarifs personnels et les commandes déjà passées. Vous pouvez d’ores et déjà utiliser tous les services et passer votre commande. Merci de votre patience.</target>
+      </trans-unit>
+      <trans-unit id="registration_popup_private">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellung aufgeben. Besten Dank für Ihre Geduld. </source>
+        <target>Vous recevrez prochainement un e-mail avec les données d’accès. Vos données seront contrôlées en interne. Votre compte sera activé sous un jour ouvrable. Vous pouvez d’ores et déjà utiliser tous les services et passer votre commande. Merci de votre patience.</target>
+      </trans-unit>
+      <trans-unit id="registration_popup_private_existing">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet - danach sehen Sie Ihre bisherigen Bestellungen. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellungen aufgeben. Besten Dank für Ihre Geduld.</source>
+        <target>Vous recevrez prochainement un e-mail avec les données d’accès. Vos données seront contrôlées en interne. Votre compte sera activé sous un jour ouvrable – vous verrez ensuite les commandes déjà passées. Vous pouvez d’ores et déjà utiliser tous les services et passer votre commande. Merci de votre patience.</target>
+      </trans-unit>
+      <trans-unit id="registration_private">
+        <source>Registration als Privatperson</source>
+        <target>Inscription comme client privé</target>
+      </trans-unit>
+      <trans-unit id="remove">
+        <source>Entfernen</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="remove_cutting">
+        <source>Zuschnitt entfernen</source>
+        <target>Enlever découpe</target>
+      </trans-unit>
+      <trans-unit id="remove_favorite_list">
+        <source>Favoritenliste löschen</source>
+        <target>Supprimer la liste des favoris</target>
+      </trans-unit>
+      <trans-unit id="remove_favorite_list_confirmation">
+        <source>Sind Sie sicher dass sie die aktuell ausgewählte Favoritenliste löschen möchten?</source>
+        <target>Êtes-vous sûr de vouloir supprimer la liste des favoris sélectionnée?</target>
+      </trans-unit>
+      <trans-unit id="remove_product_from_favorite_list_confirmation">
+        <source>Sind Sie sicher dass Sie dieses Produkt von der Favoritenliste löschen möchten?</source>
+        <target>Êtes-vous sûr de vouloir supprimer ce produit de votre liste de favoris?</target>
+      </trans-unit>
+      <trans-unit id="remove_product_from_order_list_confirmation">
+        <source>Möchten Sie dieses Produkt wirklich löschen?</source>
+        <target>Êtes-vous sûr de vouloir supprimer ce produit?</target>
+      </trans-unit>
+      <trans-unit id="residence">
+        <source>Wohnort</source>
+        <target>Domicile</target>
+      </trans-unit>
+      <trans-unit id="role">
+        <source>Berechtigung</source>
+        <target>Autorisation</target>
+      </trans-unit>
+      <trans-unit id="role_admin">
+        <source>Administrator</source>
+        <target>Administrateur</target>
+      </trans-unit>
+      <trans-unit id="role_orderer">
+        <source>Besteller</source>
+        <target>Auteur de la commande</target>
+      </trans-unit>
+      <trans-unit id="role_orderer_restricted">
+        <source>Besteller nur Kundensortiment</source>
+        <target>Assortiment de clients uniquement</target>
+      </trans-unit>
+      <trans-unit id="role_orderer_restricted_strict">
+        <source>Besteller nur Kundensortiment (Strikt)</source>
+        <target>Assortiment de clients uniquement (strict)</target>
+      </trans-unit>
+      <trans-unit id="role_user">
+        <source>Kunde</source>
+        <target>Client</target>
+      </trans-unit>
+      <trans-unit id="save">
+        <source>Speichern</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="save_address">
+        <source>Adresse speichern</source>
+        <target>Enregistrer l’adresse</target>
+      </trans-unit>
+      <trans-unit id="save_client">
+        <source>Kunden anlegen</source>
+        <target>Créer un client</target>
+      </trans-unit>
+      <trans-unit id="save_profile">
+        <source>Speichern</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="save_settings">
+        <source>Speichern</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="scribble_digital_signature">
+        <source>Unterschrift digital (im Feld unten unterschreiben)</source>
+        <target>Signature numérique (signez ici)</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>Suchen</source>
+        <target>Rechercher</target>
+      </trans-unit>
+      <trans-unit id="search_client">
+        <source>Kunde suchen</source>
+        <target>Chercher un client</target>
+      </trans-unit>
+      <trans-unit id="search_results_empty">
+        <source>Es wurden keine Produkte gefunden</source>
+        <target>Aucun produit n'a été trouvé.</target>
+      </trans-unit>
+      <trans-unit id="search_results_quantity_text">
+        <source>erzielte Ergebnisse</source>
+        <target>résultats obtenus</target>
+      </trans-unit>
+      <trans-unit id="search_results_title">
+        <source>Ergebnis für:</source>
+        <target>Résultat pour:</target>
+      </trans-unit>
+      <trans-unit id="send_code">
+        <source>Code senden</source>
+        <target>Vers les présentations</target>
+      </trans-unit>
+      <trans-unit id="send_email">
+        <source>Passwort zurücksetzen</source>
+        <target>Réinitialiser le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="send_message">
+        <source>Mitteilung abschicken</source>
+        <target>Envoyer le message</target>
+      </trans-unit>
+      <trans-unit id="send_per_mail">
+        <source>per E-Mail versenden</source>
+        <target>envoyé par email</target>
+      </trans-unit>
+      <trans-unit id="send_sign">
+        <source>Senden / Unterschreiben</source>
+        <target>Envoyer / Signer</target>
+      </trans-unit>
+      <trans-unit id="sent_recipe_checkbox">
+        <source>Ich habe das Rezept weitergeleitet</source>
+        <target>j'ai transmis la recette</target>
+      </trans-unit>
+      <trans-unit id="services">
+        <source>Dienstleistungen</source>
+        <target>Services</target>
+      </trans-unit>
+      <trans-unit id="set_primary_address">
+        <source>Als Hauptadresse/Wohnadresse melden</source>
+        <target>Annonce d'une nouvelle adresse de résidence</target>
+      </trans-unit>
+      <trans-unit id="settings">
+        <source>Einstellungen</source>
+        <target>Paramètres</target>
+      </trans-unit>
+      <trans-unit id="share_story">
+        <source>Beitrag teilen</source>
+        <target>Partager l'article</target>
+      </trans-unit>
+      <trans-unit id="shop">
+        <source>Shop</source>
+        <target>Shop</target>
+      </trans-unit>
+      <trans-unit id="show">
+        <source>Anzeigen</source>
+        <target>Afficher</target>
+      </trans-unit>
+      <trans-unit id="show_all">
+        <source>Alle anzeigen</source>
+        <target>Affiche tous</target>
+      </trans-unit>
+      <trans-unit id="show_more">
+        <source>Weitere anzeigen</source>
+        <target>Afficher plus</target>
+      </trans-unit>
+      <trans-unit id="show_optional_fields">
+        <source>Optionale Angaben einblenden</source>
+        <target>Afficher les informations facultatives</target>
+      </trans-unit>
+      <trans-unit id="show_programm_details">
+        <source>Programm anzeigen</source>
+        <target>Afficher programme</target>
+      </trans-unit>
+      <trans-unit id="signature_missing">
+        <source>Sie müssen entweder digital unterschreiben oder eine Unterschrift als Bild hochladen</source>
+        <target>Vous devez soit signer numériquement, soit télécharger une signature sous forme d'image</target>
+      </trans-unit>
+      <trans-unit id="signup">
+        <source>Registration</source>
+        <target>S'inscrire</target>
+      </trans-unit>
+      <trans-unit id="signup_delivery_note">
+        <source>Registrationen und Lieferungen sind nur für die Schweiz und Liechtenstein zugelassen.</source>
+        <target>Les enregistrements et les livraisons ne sont autorisés que pour la Suisse et le Liechtenstein.</target>
+      </trans-unit>
+      <trans-unit id="siteplan">
+        <source>Lageplan</source>
+        <target>Plan de situation</target>
+      </trans-unit>
+      <trans-unit id="sort_after">
+        <source>Sortieren nach</source>
+        <target>Trier par</target>
+      </trans-unit>
+      <trans-unit id="sort_after_number_down">
+        <source>Artikel Nummer absteigend</source>
+        <target>Numéro d’article descendant</target>
+      </trans-unit>
+      <trans-unit id="sort_after_number_up">
+        <source>Artikel Nummer aufsteigend</source>
+        <target>Numéro d’article ascendant</target>
+      </trans-unit>
+      <trans-unit id="sort_after_relevance">
+        <source>Relevanz</source>
+        <target>Pertinence</target>
+      </trans-unit>
+      <trans-unit id="sortiment">
+        <source>Sortiment</source>
+        <target>Assortiment</target>
+      </trans-unit>
+      <trans-unit id="sortiment_list">
+        <source>Sortimentsliste</source>
+        <target>Liste des gammes de produits</target>
+      </trans-unit>
+      <trans-unit id="speakers">
+        <source>{speakersCount, plural, one {Referent} other {Referenten}}</source>
+        <target>{speakersCount, plural, one {Notre orateur} other {Nos orateurs}}</target>
+      </trans-unit>
+      <trans-unit id="split_order">
+        <source>Ich möchte eine Teillieferung</source>
+        <target>Je souhaite une livraison partielle</target>
+      </trans-unit>
+      <trans-unit id="start_leave">
+        <source>Austritt melden?</source>
+        <target>Communiquer une sortie?</target>
+      </trans-unit>
+      <trans-unit id="stoma">
+        <source>Stomaversorgung</source>
+        <target>Stomies</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_default">
+        <source>Ausschneiden</source>
+        <target>Découper</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_label">
+        <source>Zuschnitt</source>
+        <target>Découpe</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_template">
+        <source>Ausschneiden gemäss Schablone</source>
+        <target>Découper selon gabarit</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_label">
+        <source>KLV / MiGeL Kapitel 29. / 35. / 99.</source>
+        <target>OPAS / LiMA chapitre 29. / 35. / 99.</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_colostomie">
+        <source>Colostomie</source>
+        <target>Colostomie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_fistel">
+        <source>Fistel</source>
+        <target>Fistule</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_ileostomie">
+        <source>Ileostomie</source>
+        <target>Iléostomie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_urostomie">
+        <source>Urostomie</source>
+        <target>Urostomie</target>
+      </trans-unit>
+      <trans-unit id="stories">
+        <source>Stories</source>
+        <target>Stories</target>
+      </trans-unit>
+      <trans-unit id="stories_intro">
+        <source>Publicare Stories</source>
+        <target>Publicare Stories</target>
+      </trans-unit>
+      <trans-unit id="stories_lead">
+        <source>Aktuelle News und Geschichten rund um Publicare</source>
+        <target>Dernières nouvelles et articles sur Publicare</target>
+      </trans-unit>
+      <trans-unit id="stories_link_to_all">
+        <source>Alle Stories</source>
+        <target>Toutes les stories</target>
+      </trans-unit>
+      <trans-unit id="street">
+        <source>Strasse</source>
+        <target>Rue</target>
+      </trans-unit>
+      <trans-unit id="subject">
+        <source>Betreff</source>
+        <target>Objet</target>
+      </trans-unit>
+      <trans-unit id="submit">
+        <source>Senden</source>
+        <target>Envoyer</target>
+      </trans-unit>
+      <trans-unit id="submit_publicare">
+        <source>An Publicare übermitteln</source>
+        <target>Soumettre à Publicare</target>
+      </trans-unit>
+      <trans-unit id="success_mark_left">
+        <source>Der Account wird in 2-4 Arbeitstagen aus Ihrem System entfernt. Wenn Sie Fragen haben, kontaktieren Sie unseren Kundendienst.</source>
+        <target>Le compte sera supprimé de votre système sous 2 à 4 jours ouvrés. Si vous avez des questions, contactez notre service client.</target>
+      </trans-unit>
+      <trans-unit id="success_user_profile">
+        <source>Kontaktinformationen wurden aktualisert</source>
+        <target>Les informations de contact ont été actualisées.</target>
+      </trans-unit>
+      <trans-unit id="success_user_settings">
+        <source>Konto aktualisiert</source>
+        <target>Compte actualisé</target>
+      </trans-unit>
+      <trans-unit id="swissmedic">
+        <source>Swissmedic: Abgabekategorie {categories}</source>
+        <target>Swissmedic: catégorie de remise {categories}</target>
+      </trans-unit>
+      <trans-unit id="switch_off">
+        <source>Aus</source>
+        <target>Off</target>
+      </trans-unit>
+      <trans-unit id="switch_on">
+        <source>Ein</source>
+        <target>Activé</target>
+      </trans-unit>
+      <trans-unit id="switzerland">
+        <source>Schweiz</source>
+        <target>Suisse</target>
+      </trans-unit>
+      <trans-unit id="team">
+        <source>Team</source>
+        <target>Équipe</target>
+      </trans-unit>
+      <trans-unit id="telephone">
+        <source>Telefon</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit id="telephoneNumber">
+        <source>Telefonnummer</source>
+        <target>Numéro de téléphone</target>
+      </trans-unit>
+      <trans-unit id="terms">
+        <source>AGB</source>
+        <target>CGV</target>
+      </trans-unit>
+      <trans-unit id="time_of_day">
+        <source>Uhr</source>
+        <target>h</target>
+      </trans-unit>
+      <trans-unit id="to_the_example_sets">
+        <source>Zu den Mustersets</source>
+        <target>Aux kits d’échantillons</target>
+      </trans-unit>
+      <trans-unit id="topic">
+        <source>Thema</source>
+        <target>Le thème</target>
+      </trans-unit>
+      <trans-unit id="topic_general">
+        <source>Allgemein</source>
+        <target>Divers</target>
+      </trans-unit>
+      <trans-unit id="total_delivery">
+        <source>Liefergebühren</source>
+        <target>Frais de livraison</target>
+      </trans-unit>
+      <trans-unit id="total_including_taxes">
+        <source>Total inkl. MwSt.</source>
+        <target>Total TVA incluse</target>
+      </trans-unit>
+      <trans-unit id="total_items">
+        <source>Zwischensumme</source>
+        <target>Sous-total</target>
+      </trans-unit>
+      <trans-unit id="total_products">
+        <source>{total, plural, one {# Produkt} other {# Produkte}  }</source>
+        <target>{total, plural,
+    one {# produit}
+    other {# produits}
+  }</target>
+      </trans-unit>
+      <trans-unit id="total_taxes">
+        <source>Davon MwSt.</source>
+        <target>dont TVA</target>
+      </trans-unit>
+      <trans-unit id="tracheo">
+        <source>Tracheostoma - Hilfsmittel</source>
+        <target>Accessoires pour trachéostome</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_label">
+        <source>KLV/MiGeL Kapitel 01./14./31./99.</source>
+        <target>OPAS / LiMA chapitre 01./14./31./99.</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_laryngektomie">
+        <source>Laryngektomie</source>
+        <target>Laryngectomie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_tracheotomie">
+        <source>Tracheotomie</source>
+        <target>Trachéotomie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_ostomy_care">
+        <source>Tracheostomaversorgung</source>
+        <target>Appareillage de trachéotomie</target>
+      </trans-unit>
+      <trans-unit id="training">
+        <source>Academy</source>
+        <target>Academy</target>
+      </trans-unit>
+      <trans-unit id="treatment_customer">
+        <source>Verrechnung an Kunde</source>
+        <target>facturation au client</target>
+      </trans-unit>
+      <trans-unit id="treatment_institution">
+        <source>Ihre Institution</source>
+        <target>institution</target>
+      </trans-unit>
+      <trans-unit id="treatment_insurance">
+        <source>Versicherung des Kunden</source>
+        <target>assurance du client</target>
+      </trans-unit>
+      <trans-unit id="treatment_unknown">
+        <source>-</source>
+        <target>-</target>
+      </trans-unit>
+      <trans-unit id="unit">
+        <source>Einheit</source>
+        <target>Unité</target>
+      </trans-unit>
+      <trans-unit id="unknown_delivery">
+        <source>Aktuell nicht lieferbar</source>
+        <target>Actuellement non disponible</target>
+      </trans-unit>
+      <trans-unit id="unsupported_browser">
+        <source>Ihr Webbrowser ist veraltet. Einige Funktionen können möglicherweise nicht richtig angezeigt werden. Klicken Sie hier für mehr Informationen und zum Herunterladen eines aktuellen Browsers.</source>
+        <target>Votre navigateur web est obsolète. Certaines fonctions peuvent ne pas être affichées correctement. Cliquez ici pour plus d'informations et pour télécharger un navigateur actuel.</target>
+      </trans-unit>
+      <trans-unit id="upload_another_recipe">
+        <source>Weiteres Rezept hochladen</source>
+        <target>Télécharger une nouvelle ordonnance vers le serveur</target>
+      </trans-unit>
+      <trans-unit id="upload_digital_signature">
+        <source>Stempel / Unterschrift digital als Bild einfügen</source>
+        <target>Insérer un tampon / une signature numériquement en tant qu'image</target>
+      </trans-unit>
+      <trans-unit id="upload_existing_recipe">
+        <source>Bestehendes Rezept hochladen</source>
+        <target>Télécharger une ordonnance existante vers le serveur</target>
+      </trans-unit>
+      <trans-unit id="upload_original_recipe">
+        <source>Original Rezept hochladen</source>
+        <target>Télécharger la recette originale</target>
+      </trans-unit>
+      <trans-unit id="upload_recipe">
+        <source>Unterschriebenes Rezept hochladen</source>
+        <target>Télécharger l'ordonnance signée</target>
+      </trans-unit>
+      <trans-unit id="upload_signed_recipe">
+        <source>Unterschr. Rezept hochladen &amp; übermitteln</source>
+        <target>Signature Télécharger et soumettre la recette</target>
+      </trans-unit>
+      <trans-unit id="uploader_button">
+        <source>Datei auswählen oder hereinziehen</source>
+        <target>Sélectionner ou tirer le fichier</target>
+      </trans-unit>
+      <trans-unit id="usage_by_invoice">
+        <source>Selbstanwendung: Krankenkasse/Versicherung Kunde</source>
+        <target>Utilisation par les clients: caisse-maladie/assurance du client</target>
+      </trans-unit>
+      <trans-unit id="usage_by_own_institution">
+        <source>Fachanwendung: Ihre Institution</source>
+        <target>Utilisation par les professionnels: votre institution</target>
+      </trans-unit>
+      <trans-unit id="user_account">
+        <source>Anmeldedaten</source>
+        <target>Données de connexion</target>
+      </trans-unit>
+      <trans-unit id="user_additional_info">
+        <source>Weitere Informationen</source>
+        <target>Informations supplémentaires</target>
+      </trans-unit>
+      <trans-unit id="user_addresses">
+        <source>Adressen</source>
+        <target>Adresses</target>
+      </trans-unit>
+      <trans-unit id="user_contact">
+        <source>Kontaktinformationen</source>
+        <target>Informations de contact</target>
+      </trans-unit>
+      <trans-unit id="user_contact_corporate">
+        <source>Informationen zur Institution</source>
+        <target>Informations sur l’institution</target>
+      </trans-unit>
+      <trans-unit id="user_insurance">
+        <source>Informationen zur Versicherung</source>
+        <target>Informations relatives à l’assurance</target>
+      </trans-unit>
+      <trans-unit id="user_management">
+        <source>Benutzerverwaltung</source>
+        <target>Gestion des utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="user_notification_settings_invalid_combination">
+        <source>Kombination ungültig</source>
+        <target>Combinaison invalide</target>
+      </trans-unit>
+      <trans-unit id="user_notifications">
+        <source>Benachrichtigungen</source>
+        <target>Messages</target>
+      </trans-unit>
+      <trans-unit id="user_roles">
+        <source>Berechtigung</source>
+        <target>Autorisation</target>
+      </trans-unit>
+      <trans-unit id="user_settings_title">
+        <source>Meine Einstellungen</source>
+        <target>Paramètres</target>
+      </trans-unit>
+      <trans-unit id="user_utilization">
+        <source>Fachanwendung / Selbstanwendung</source>
+        <target>Utilisation par les professionnels/par les clients</target>
+      </trans-unit>
+      <trans-unit id="utilization_catether">
+        <source>Verweilkatheter</source>
+        <target>Cathéter à demeure</target>
+      </trans-unit>
+      <trans-unit id="utilization_compression">
+        <source>Kompressionstherapie</source>
+        <target>Traitement compressif</target>
+      </trans-unit>
+      <trans-unit id="utilization_inko_help">
+        <source>Inkontinenzhilfen</source>
+        <target>Aides pour l'incontinence</target>
+      </trans-unit>
+      <trans-unit id="utilization_settings_change_request">
+        <source>Wünschen Sie Änderungen an diesen Einstellungen? Dann kontaktieren Sie bitte unseren</source>
+        <target>Voulez-vous modifier ces paramètres? Si oui, veuillez prendre contact avec notre</target>
+      </trans-unit>
+      <trans-unit id="utilization_settings_change_request_hotline">
+        <source>Kundendienst</source>
+        <target>service client.</target>
+      </trans-unit>
+      <trans-unit id="utilization_standard">
+        <source>Folgende Einstellungen sind in Ihrem Profil als Standard hinterlegt:</source>
+        <target>Les paramètres suivants sont définis par défaut dans votre profil:</target>
+      </trans-unit>
+      <trans-unit id="utilization_stoma">
+        <source>Stomaartikel</source>
+        <target>Article de stomie</target>
+      </trans-unit>
+      <trans-unit id="utilization_wund">
+        <source>Wundbehandlung</source>
+        <target>Soin des plaies</target>
+      </trans-unit>
+      <trans-unit id="welcome_portal">
+        <source>Willkommen in Ihrem Kundenportal,</source>
+        <target>Bienvenue sur votre portail client,</target>
+      </trans-unit>
+      <trans-unit id="when">
+        <source>Wann</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="where">
+        <source>Wo</source>
+        <target>Lieu</target>
+      </trans-unit>
+      <trans-unit id="wound_treatment">
+        <source>Wundbehandlung</source>
+        <target>Soin des plaies</target>
+      </trans-unit>
+      <trans-unit id="wrapping">
+        <source>Verpackung</source>
+        <target>Emballage</target>
+      </trans-unit>
+      <trans-unit id="wrapping_corona_alert">
+        <source>Aufgrund der aktuellen Pandemie-Situation bitten wir Sie, momentan darauf wenn immer möglich zu verzichten. Dies belastet unsere Logistik zusätzlich und kann auch für Ihren geschätzten Auftrag zu Lieferverzögerungen führen.</source>
+        <target>En raison de la situation actuelle de pandémie, nous vous demandons dans la mesure du possible de vous abstenir de cette option pour le moment. Cela représente une charge supplémentaire pour notre logistique et peut également entraîner des retards dans la livraison de votre commande estimée.</target>
+      </trans-unit>
+      <trans-unit id="wrapping_discrete_brown_paper">
+        <source>Diskret verpackt mit Packpapier</source>
+        <target>Emballé discrètement dans du papier d’emballage</target>
+      </trans-unit>
+      <trans-unit id="wrapping_without_brown_paper">
+        <source>Ohne Packpapier verpackt</source>
+        <target>Enveloppé sans papier d’emballage</target>
+      </trans-unit>
+      <trans-unit id="wund">
+        <source>Wundbehandlung und Kompression</source>
+        <target>Articles pour soin des plaies et traitement compressif</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_label">
+        <source>KLV/MiGeL Kapitel 17./29./35./99.</source>
+        <target>OPAS / LiMA chapitre 17./29./35./99.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_aktivecarbon">
+        <source>Aktivkohle, Limitation, Kap. 35.03.</source>
+        <target>Produits à base de charbon actif, limitation, chap.35.03.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_compress">
+        <source>Produkte zur Kompressionstherapie, Kap. 17.</source>
+        <target>Produits pour traitement compressif, chap.17.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_fistel">
+        <source>Material für die Fistelversorgung, Kap. 29.</source>
+        <target>Matériel pour le soin des fistules, chap.29.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_wund">
+        <source>Produkte zur Wundbehandlung exkl. Limitationen, Kap. 35./99.</source>
+        <target>Produits pour traiter les plaies à l‘excl. des limitations, chap.35./99.</target>
+      </trans-unit>
+      <trans-unit id="your_bag_is_empty">
+        <source>Ihr Warenkorb ist leer</source>
+        <target>Votre panier est vide</target>
+      </trans-unit>
+      <trans-unit id="your_code">
+        <source>Ihr Zugangscode</source>
+        <target>Votre code d’accès</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

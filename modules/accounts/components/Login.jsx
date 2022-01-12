@@ -1,10 +1,13 @@
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import EmailField from '../../forms/components/EmailField';
+import Form from '../../forms/components/Form';
+import PasswordField from '../../forms/components/PasswordField';
+
+import useForm from '../../forms/hooks/useForm';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import { storeLoginToken } from '../utils/store';
 
 export default function LogInForm() {
-  const { register, handleSubmit } = useForm();
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
   const onSubmit = async ({ email, password }) => {
@@ -16,12 +19,32 @@ export default function LogInForm() {
       });
       const { id, token, tokenExpires } = data.loginWithPassword;
       await storeLoginToken(id, token, new Date(tokenExpires));
-      router.replace('/');
+      return true;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
+      return false;
     }
   };
+
+  const onSubmitSuccess = () => {
+    router.replace('/');
+  };
+
+  const form = useForm({
+    submit: onSubmit,
+    onSubmitSuccess,
+    getSubmitErrorMessage: (error) => {
+      if (error?.message?.includes('auth failed')) {
+        return 'error';
+      }
+      return '';
+    },
+    initialValues: {
+      email: null,
+      password: null,
+    },
+  });
 
   return (
     <>
@@ -37,14 +60,11 @@ export default function LogInForm() {
               Sign in to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <Form form={form} className="mt-8 space-y-6">
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
+                <EmailField
                   id="email-address"
                   name="email"
                   type="email"
@@ -52,14 +72,13 @@ export default function LogInForm() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
-                  {...register('email', { required: true })}
                 />
               </div>
               <div>
                 <label htmlFor="password" className="sr-only">
                   Password
                 </label>
-                <input
+                <PasswordField
                   id="password"
                   name="password"
                   type="password"
@@ -67,7 +86,6 @@ export default function LogInForm() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
-                  {...register('password', { required: true })}
                 />
               </div>
             </div>
@@ -121,7 +139,7 @@ export default function LogInForm() {
                 Sign in
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </>

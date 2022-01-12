@@ -1,0 +1,2805 @@
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="publicare-portal-widgets" datatype="plaintext" source-language="de" target-language="it">
+    <body>
+      <trans-unit id="about_us">
+        <source>Über Publicare</source>
+        <target>Chi siamo</target>
+      </trans-unit>
+      <trans-unit id="academy_button">
+        <source>zur Academy</source>
+        <target>all’Academy</target>
+      </trans-unit>
+      <trans-unit id="academy_intro">
+        <source>Besuchen Sie unsere lehrreichen Fachveranstaltungen.</source>
+        <target>Partecipate ai nostri eventi specializzati educativi.</target>
+      </trans-unit>
+      <trans-unit id="accept">
+        <source>Akzeptieren</source>
+        <target>Accetto</target>
+      </trans-unit>
+      <trans-unit id="accept_terms">
+        <source>Ich habe die &lt;a target="_blank" rel="noopener noreferrer" href="{termsPath}"&gt;AGB&lt;/a&gt; und &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPolicyPath}"&gt;Datenschutzbestimmungen&lt;/a&gt; gelesen und bin damit einverstanden.</source>
+        <target>Ho letto le &lt;a target="_blank" rel="noopener noreferrer" href="{termsPath}"&gt;CG&lt;/a&gt; e le &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPolicyPath}"&gt;disposizioni in materia di protezione dei dati&lt;/a&gt; e fornisco il mio consenso.</target>
+      </trans-unit>
+      <trans-unit id="accept_terms_required">
+        <source>Es ist erforderlich, dass Sie unsere AGB annehmen</source>
+        <target>È necessario accettare le CG</target>
+      </trans-unit>
+      <trans-unit id="access_label">
+        <source>Zugang</source>
+        <target>Accesso</target>
+      </trans-unit>
+      <trans-unit id="actions">
+        <source>Aktionen</source>
+        <target>actions</target>
+      </trans-unit>
+      <trans-unit id="add_address">
+        <source>Weitere Adresse erfassen</source>
+        <target>Registra ulteriori indirizzi</target>
+      </trans-unit>
+      <trans-unit id="add_address_delivery_note">
+        <source>Lieferungen sind nur für die Schweiz und Liechtenstein zugelassen.</source>
+        <target>Le consegne sono consentite solo per la Svizzera e il Liechtenstein.</target>
+      </trans-unit>
+      <trans-unit id="add_article">
+        <source>Artikel hinzufügen</source>
+        <target>Aggiungi articolo</target>
+      </trans-unit>
+      <trans-unit id="add_article_from_shop">
+        <source>Artikel aus Shop suchen und hinzufügen</source>
+        <target>Cerca gli articoli dal negozio e tirali su</target>
+      </trans-unit>
+      <trans-unit id="add_employee">
+        <source>Mitarbeiter hinzufügen</source>
+        <target>Aggiungi collaboratore</target>
+      </trans-unit>
+      <trans-unit id="add_heading">
+        <source>Überschrift hinzufügen</source>
+        <target>Aggiungi titolo</target>
+      </trans-unit>
+      <trans-unit id="add_product">
+        <source>Produkt hinzufügen</source>
+        <target>Aggiungi prodotto</target>
+      </trans-unit>
+      <trans-unit id="add_product_done">
+        <source>Produkt hinzugefügt</source>
+        <target>Prodotto aggiunto</target>
+      </trans-unit>
+      <trans-unit id="add_to_calendar">
+        <source>Zum Kalender hinzufügen</source>
+        <target>Aggiungi al calendario</target>
+      </trans-unit>
+      <trans-unit id="add_to_cart">
+        <source>Zum Warenkorb hinzufügen</source>
+        <target>Aggiungi al carrello</target>
+      </trans-unit>
+      <trans-unit id="added_product_to_cart">
+        <source>{amount, plural, one {# Produkt} other {# Produkte} } dem Warenkorb von {name} hinzugefügt</source>
+        <target>{amount, plural, one {# Produkt} other {# Produkte} } aggiunto al carrello di {name}</target>
+      </trans-unit>
+      <trans-unit id="additionalName">
+        <source>Abteilung/Stützpunkt</source>
+        <target>Reparto/base</target>
+      </trans-unit>
+      <trans-unit id="address">
+        <source>Adresse</source>
+        <target>Indirizzo</target>
+      </trans-unit>
+      <trans-unit id="addressLine">
+        <source>Strasse / Hausnummer</source>
+        <target>Indirizzo/numero civico</target>
+      </trans-unit>
+      <trans-unit id="addressLine2">
+        <source>Adresszusatz</source>
+        <target>Aggiunta indirizzo</target>
+      </trans-unit>
+      <trans-unit id="address_doctor">
+        <source>Adresse des Arztes/Rezeptierers</source>
+        <target>Indirizzo del medico/prescrittore</target>
+      </trans-unit>
+      <trans-unit id="adjust">
+        <source>Anpassen</source>
+        <target>Adatta</target>
+      </trans-unit>
+      <trans-unit id="agenda">
+        <source>Programm</source>
+        <target>Programma</target>
+      </trans-unit>
+      <trans-unit id="agenda_explore">
+        <source>Entdecken Sie hier das Programm im PDF-Format.</source>
+        <target>Scoprite qui il programma in formato PDF.</target>
+      </trans-unit>
+      <trans-unit id="all">
+        <source>Alle</source>
+        <target>Tutti</target>
+      </trans-unit>
+      <trans-unit id="all_categories">
+        <source>Alle Kategorien</source>
+        <target>Tutte le categorie</target>
+      </trans-unit>
+      <trans-unit id="all_messages">
+        <source>Alle Mitteilungen</source>
+        <target>Tutti i messaggi</target>
+      </trans-unit>
+      <trans-unit id="all_order_positions">
+        <source>Alle Bestellscheinpositionen</source>
+        <target>Tutte le voci d’ordine</target>
+      </trans-unit>
+      <trans-unit id="all_themes">
+        <source>Alle Themen</source>
+        <target>Tutti gli argomenti</target>
+      </trans-unit>
+      <trans-unit id="already_logged_in">
+        <source>Sie sind bereits angemeldet. Klicken Sie hier um sich abzumelden.</source>
+        <target>Sei già loggato. Clicca qui per annullare l'iscrizione.</target>
+      </trans-unit>
+      <trans-unit id="alternative_method">
+        <source>Alternative Methode:</source>
+        <target>Metodo alternativo:</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_button">
+        <source>Jetzt online vereinbaren</source>
+        <target>Fissate subito un appuntamento online</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_text">
+        <source>Vereinbaren Sie jetzt einen Termin zur Beratung rund um unsere Dienstleistungen und Produkte.</source>
+        <target>Richiedete ora un appuntamento per i nostri servizi e prodotti.</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_thank_you">
+        <source>Vielen Dank für Ihre Anfrage! Wir werden Sie sobald wie möglich kontaktieren.</source>
+        <target>Molte grazie per la vostra richiesta! Vi contatteremo il prima possibile.</target>
+      </trans-unit>
+      <trans-unit id="appointment_call_title">
+        <source>Vereinbaren Sie einen Beratungstermin</source>
+        <target>Richiedete un appuntamento per una consulenza</target>
+      </trans-unit>
+      <trans-unit id="article">
+        <source>Artikel</source>
+        <target>Articolo</target>
+      </trans-unit>
+      <trans-unit id="article_in_bag">
+        <source>Artikel im Warenkorb</source>
+        <target>Articolo nel carrello</target>
+      </trans-unit>
+      <trans-unit id="article_number_label">
+        <source>Artikel Nr.</source>
+        <target>Codice articolo</target>
+      </trans-unit>
+      <trans-unit id="article_quantity_per_unit">
+        <source>Menge</source>
+        <target>Quantità</target>
+      </trans-unit>
+      <trans-unit id="articles">
+        <source>{count} Artikel</source>
+        <target>{count} articoli</target>
+      </trans-unit>
+      <trans-unit id="articles_required">
+        <source>Bitte fügen Sie mindestens 1 Artikel hinzu</source>
+        <target>Si prega di aggiungere almeno 1 elemento</target>
+      </trans-unit>
+      <trans-unit id="availability">
+        <source>Verfügbarkeit</source>
+        <target>Disponibilità</target>
+      </trans-unit>
+      <trans-unit id="available_products_sent_immediately">
+        <source>&lt;h5 class='d-inline font-weight-600'&gt; Hinweis: &lt;/h5&gt; Die Angaben zum Lagerbestand erfolgen ohne Gewähr.      Es kann in seltenen Fällen vorkommen, dass ein Produkt in der Zwischenzeit nicht mehr an Lager ist.     Bei Fragen nehmen Sie bitte mit uns &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer" class='font-weight-bolder' &gt; Kontakt  &lt;/a&gt; auf.</source>
+        <target>&lt;h5 class="d-inline font-weight-600"&gt;  Nota: &lt;/h5&gt; Le informazioni sullo stato di magazzino sono fornite senza garanzia. Può succedere in rari casi che un prodotto non sia più in stock nel frattempo. In caso di domande non esitate a &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer" class="font-weight-bolder" &gt;contattarci&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="back">
+        <source>Zurück</source>
+        <target>Indietro</target>
+      </trans-unit>
+      <trans-unit id="back_to_home">
+        <source>zur Startseite</source>
+        <target>Alla home page</target>
+      </trans-unit>
+      <trans-unit id="back_to_portal">
+        <source>Zum Kundenportal</source>
+        <target>Al portale cliente</target>
+      </trans-unit>
+      <trans-unit id="back_to_shop">
+        <source>Zurück zum Shop</source>
+        <target>Torna allo shop</target>
+      </trans-unit>
+      <trans-unit id="billing_address">
+        <source>Rechnungsadresse</source>
+        <target>Indirizzo di fatturazione</target>
+      </trans-unit>
+      <trans-unit id="birthday">
+        <source>Geburtsdatum</source>
+        <target>Data di nascita</target>
+      </trans-unit>
+      <trans-unit id="birthday_field_label">
+        <source>Geburtsdatum (Format: 30.05.1956)</source>
+        <target>Data di nascita (Formato: 30.05.1956)</target>
+      </trans-unit>
+      <trans-unit id="blanko_help">
+        <source>Hier können Sie eine leere Rezeptvorlage herunterladen</source>
+        <target>blanko_help</target>
+      </trans-unit>
+      <trans-unit id="calculate_route">
+        <source>Route berechnen</source>
+        <target>Calcola tragitto</target>
+      </trans-unit>
+      <trans-unit id="call_us">
+        <source>Anrufen</source>
+        <target>Chiamateci</target>
+      </trans-unit>
+      <trans-unit id="callback_us">
+        <source>Rückruftermin vereinbaren</source>
+        <target>Richiedete un appuntamento telefonico</target>
+      </trans-unit>
+      <trans-unit id="can_include_costs">
+        <source>kann Selbstkosten enthalten</source>
+        <target>può comportare dei costi personali</target>
+      </trans-unit>
+      <trans-unit id="can_include_costs_detailed">
+        <source>Dieses Produkt kann Selbstkosten enthalten, die nicht von der Krankenkasse übernommen werden.</source>
+        <target>Questo prodotto può comportare dei costi personali non coperti dalla cassa malati.</target>
+      </trans-unit>
+      <trans-unit id="cancel">
+        <source>Abbrechen</source>
+        <target>Annulla</target>
+      </trans-unit>
+      <trans-unit id="cancel_add_address">
+        <source>Abbrechen und bestehende Adresse wählen</source>
+        <target>Annullare e selezionare l'indirizzo esistente</target>
+      </trans-unit>
+      <trans-unit id="cancel_profile">
+        <source>Abbrechen</source>
+        <target>Annulla</target>
+      </trans-unit>
+      <trans-unit id="cancel_settings">
+        <source>Abbrechen</source>
+        <target>Annulla</target>
+      </trans-unit>
+      <trans-unit id="career">
+        <source>Karriere</source>
+        <target>Carriera</target>
+      </trans-unit>
+      <trans-unit id="cart">
+        <source>Warenkorb</source>
+        <target>Carrello</target>
+      </trans-unit>
+      <trans-unit id="categories">
+        <source>Kategorien</source>
+        <target>Categorie</target>
+      </trans-unit>
+      <trans-unit id="category_help_text">
+        <source>Profitieren Sie von unserer kostenlosen Beratung</source>
+        <target>Approfittate della nostra consulenza gratuita</target>
+      </trans-unit>
+      <trans-unit id="category_help_title">
+        <source>Wir sind für Sie da</source>
+        <target>Siamo qui per voi</target>
+      </trans-unit>
+      <trans-unit id="change_cart">
+        <source>Warenkorb wechseln</source>
+        <target>Cambia carrello</target>
+      </trans-unit>
+      <trans-unit id="change_password">
+        <source>Passwort ändern</source>
+        <target>Modifica password</target>
+      </trans-unit>
+      <trans-unit id="checkout">
+        <source>Zur Kasse</source>
+        <target>Alla cassa</target>
+      </trans-unit>
+      <trans-unit id="choose_customer_to_order">
+        <source>Für wen möchten Sie bestellen?</source>
+        <target>Per chi desiderate ordinare?</target>
+      </trans-unit>
+      <trans-unit id="city">
+        <source>Ort</source>
+        <target>Luogo</target>
+      </trans-unit>
+      <trans-unit id="clear_signature_pad">
+        <source>Unterschrift löschen</source>
+        <target>Elimina firma</target>
+      </trans-unit>
+      <trans-unit id="client_birthday">
+        <source>Geburtsdatum Klient</source>
+        <target>client_birthday</target>
+      </trans-unit>
+      <trans-unit id="client_firstName">
+        <source>Vorname Klient</source>
+        <target>client_firstName</target>
+      </trans-unit>
+      <trans-unit id="client_lastName">
+        <source>Nachname Klient</source>
+        <target>client_lastName</target>
+      </trans-unit>
+      <trans-unit id="client_list">
+        <source>Kundenliste</source>
+        <target>Lista clienti</target>
+      </trans-unit>
+      <trans-unit id="client_registered_successful">
+        <source>Kunde erfolgreich erfasst.</source>
+        <target>Cliente acquisito con successo.</target>
+      </trans-unit>
+      <trans-unit id="clients">
+        <source>Kunden</source>
+        <target>Clienti</target>
+      </trans-unit>
+      <trans-unit id="close">
+        <source>Schliessen</source>
+        <target>Chiudi</target>
+      </trans-unit>
+      <trans-unit id="close_recipe_without_original">
+        <source>Ohne Original abschliessen</source>
+        <target>TRANSLATE:close_recipe_without_original</target>
+      </trans-unit>
+      <trans-unit id="comment">
+        <source>Kommentar</source>
+        <target>Commento</target>
+      </trans-unit>
+      <trans-unit id="company">
+        <source>Name Institution</source>
+        <target>Nome istituzione</target>
+      </trans-unit>
+      <trans-unit id="competence_team">
+        <source>Kompetenz-Team</source>
+        <target>Team specializzato</target>
+      </trans-unit>
+      <trans-unit id="competences">
+        <source>Fachbereiche</source>
+        <target>Aree di specializzazione</target>
+      </trans-unit>
+      <trans-unit id="connect_error_fullname">
+        <source>Nachname, Vorname:</source>
+        <target>Cognome, nome:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_interface_id">
+        <source>Schnittstellen ID:</source>
+        <target>ID interfaccia:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_no_permission">
+        <source>Leider konnten wir aufgrund eines Konfigurationsfehlers das Kundenkonto nicht öffnen. Bitte melden Sie das Problem per E-Mail an {link} und teilen Sie uns mit, um welchen Klienten es sich gehandelt hat. Vielen Dank!</source>
+        <target>Purtroppo non siamo riusciti ad aprire il conto cliente a causa di un errore di configurazione. Si prega di informare Publicare del problema via e-mail a {link}. Vi preghiamo di farci sapere di quale cliente si tratta. Grazie! Grazie!</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_date">
+        <source>Datum / Zeit:</source>
+        <target>Data/ora:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_message">
+        <source>System Fehlermeldung:</source>
+        <target>Messaggio d’errore del sistema:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_title">
+        <source>Details:</source>
+        <target>Dettagli:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_tech_token">
+        <source>Token:</source>
+        <target>Token:</target>
+      </trans-unit>
+      <trans-unit id="connect_error_title">
+        <source>{type} Login Fehler</source>
+        <target>Errore login {type}</target>
+      </trans-unit>
+      <trans-unit id="connect_error_unknown">
+        <source>Leider ist beim {type} Login für Publicare ein Fehler aufgetreten. Bitte kontaktieren Sie den EDV Support von Publicare: {link}</source>
+        <target>Si è verificato un errore durante il login {type} per Publicare. Vi invitiamo a contattare il supporto EDV di Publicare: {link}</target>
+      </trans-unit>
+      <trans-unit id="consulting">
+        <source>Beratung</source>
+        <target>Consulenza</target>
+      </trans-unit>
+      <trans-unit id="contact">
+        <source>Kontakt</source>
+        <target>Contatto</target>
+      </trans-unit>
+      <trans-unit id="contactNumber">
+        <source>Falls Sie bereits Kunde sind, geben Sie bitte Ihre Kundennummer ein.</source>
+        <target>Se siete già clienti, inserite il vostro numero cliente.</target>
+      </trans-unit>
+      <trans-unit id="contact_box_title">
+        <source>Wir beraten Sie kompetent &amp; kostenlos.</source>
+        <target>Vi offriamo una consulenza competente e gratuita.</target>
+      </trans-unit>
+      <trans-unit id="contact_date">
+        <source>Termin</source>
+        <target>Appuntamento</target>
+      </trans-unit>
+      <trans-unit id="contact_thanks">
+        <source>&lt;p&gt;Vielen Dank, dass Sie uns kontaktiert haben!&lt;br/&gt;Wir werden uns so schnell wie möglich bei Ihnen melden.&lt;/p&gt;&lt;p&gt;Das Publicare-Team&lt;/p&gt;</source>
+        <target>&lt;p&gt;Grazie per averci contattato!&lt;br/&gt;Vi risponderemo il prima possibile.&lt;/p&gt;&lt;p&gt;Il team di Publicare&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="content">
+        <source>Ihre Mitteilung</source>
+        <target>Il vostro messaggio</target>
+      </trans-unit>
+      <trans-unit id="cookies">
+        <source>Cookies</source>
+        <target>Cookies</target>
+      </trans-unit>
+      <trans-unit id="cookies_text">
+        <source>Mit der Nutzung der Publicare Seiten und Services oder durch das Klicken auf Akzeptieren erklären Sie sich damit einverstanden, dass wir Cookies verwenden.</source>
+        <target>I cookie consentono un’esperienza ottimale dei nostri servizi. Utilizzando le pagine e i servizi Publicare o cliccando su «Accetto», l’utente acconsente all’utilizzo dei cookie.</target>
+      </trans-unit>
+      <trans-unit id="corporate_customer">
+        <source>Geschäftskunde</source>
+        <target>Clienti commerciali</target>
+      </trans-unit>
+      <trans-unit id="costs">
+        <source>Kosten</source>
+        <target>Costi</target>
+      </trans-unit>
+      <trans-unit id="country">
+        <source>Land</source>
+        <target>Paese</target>
+      </trans-unit>
+      <trans-unit id="create_another_recipe">
+        <source>Weiteres Rezept erstellen</source>
+        <target>Crea un’altra ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="create_new_address">
+        <source>An neue Adresse liefern</source>
+        <target>+ Registra ulteriori indirizzi</target>
+      </trans-unit>
+      <trans-unit id="create_new_client">
+        <source>Neuen Kunden erfassen</source>
+        <target>Registra nuovo cliente</target>
+      </trans-unit>
+      <trans-unit id="create_new_message">
+        <source>Neue Mitteilung erfassen</source>
+        <target>Registra nuovo messaggio</target>
+      </trans-unit>
+      <trans-unit id="create_new_recipe">
+        <source>Neues Rezept erstellen</source>
+        <target>Crea nuova ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="create_new_user">
+        <source>Neuen Benutzer erstellen</source>
+        <target>Crea nuovo utente</target>
+      </trans-unit>
+      <trans-unit id="create_recipe_for_order">
+        <source>Erstellen Sie ein Rezept für diesen Kunden</source>
+        <target>Crea una ricetta per questo cliente</target>
+      </trans-unit>
+      <trans-unit id="creation_date">
+        <source>Erstelldatum</source>
+        <target>creation_date</target>
+      </trans-unit>
+      <trans-unit id="customer">
+        <source>Kunde</source>
+        <target>Cliente</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment">
+        <source>Sortiment für unsere Kunden</source>
+        <target>Assortimento per i nostri clienti</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment_help_text">
+        <source>Anhand dieser Favoritenliste kann ein Hauptsortiment für Kundenbestellungen zusammengestellt werden. Dieses Sortiment findet Anwendung auf jeden einzelnen Kunden. Die Liste kann nur von einem Benutzer mit Administratoren-Rechten bearbeitet werden.</source>
+        <target>Questo elenco di preferiti può essere utilizzato per compilare un assortimento principale per gli ordini dei clienti. Questo assortimento viene applicato ad ogni singolo cliente. La lista può essere modificata solo da un utente con diritti di amministratore.</target>
+      </trans-unit>
+      <trans-unit id="customer_assortment_help_text_client">
+        <source>Dieses Kundensortiment ist bei allen Kunden verfügbar und wurde von einem Administrator auf der Institution erfasst.</source>
+        <target>Questo assortimento di clienti è disponibile per tutti i clienti ed è stato registrato da un amministratore dell'istituto.</target>
+      </trans-unit>
+      <trans-unit id="customer_number">
+        <source>Kundennummer</source>
+        <target>Numero cliente</target>
+      </trans-unit>
+      <trans-unit id="cut_by_template">
+        <source>Gemäss Schablone</source>
+        <target>Come da sagoma</target>
+      </trans-unit>
+      <trans-unit id="cutting">
+        <source>Zuschneiden</source>
+        <target>Ritaglia</target>
+      </trans-unit>
+      <trans-unit id="cutting_between_error">
+        <source>Zuschnitt nur möglich zwischen {min} mm und {max} mm</source>
+        <target>Ritaglio possibile solo tra {min} mm e {max} mm</target>
+      </trans-unit>
+      <trans-unit id="cutting_disabled">
+        <source>Kein Zuschnitt gewählt</source>
+        <target>Nessun ritaglio selezionato</target>
+      </trans-unit>
+      <trans-unit id="cutting_disabled_help">
+        <source>Ohne Zuschneiden wird das Produkt im Originalzustand geliefert.</source>
+        <target>Senza ritaglio il prodotto viene consegnato nel suo stato originale.</target>
+      </trans-unit>
+      <trans-unit id="cutting_free_private">
+        <source>Kostenlos für Privatkunden und Zuweiser</source>
+        <target>Gratuito per clienti privati ed enti invianti</target>
+      </trans-unit>
+      <trans-unit id="cutting_last_selected">
+        <source>Zuletzt gewählter Zuschnitt: {cutting}</source>
+        <target>Ultimo ritaglio selezionato: {cutting}</target>
+      </trans-unit>
+      <trans-unit id="cutting_max_error">
+        <source>Zuschnitt bis maximal {max} mm</source>
+        <target>Ritaglio fino a un massimo di {max} mm</target>
+      </trans-unit>
+      <trans-unit id="cutting_min_error">
+        <source>Zuschnitt ab mindestens {min} mm</source>
+        <target>Ritaglio a partire da un minimo di {min} mm</target>
+      </trans-unit>
+      <trans-unit id="cutting_selected">
+        <source>Zuschnitt:</source>
+        <target>Ritaglio:</target>
+      </trans-unit>
+      <trans-unit id="cutting_template_cart_info">
+        <source>Schablone</source>
+        <target>Sagoma</target>
+      </trans-unit>
+      <trans-unit id="cutting_user_info">
+        <source>Letzter Zuschnitt für {name}: {value}</source>
+        <target>Ultimo ritaglio per {name}: {value}</target>
+      </trans-unit>
+      <trans-unit id="delete_address">
+        <source>Adresse löschen</source>
+        <target>Cancella indirizzo</target>
+      </trans-unit>
+      <trans-unit id="delete_all_filters">
+        <source>Alle Filter löschen</source>
+        <target>Cancella tutti i filtri</target>
+      </trans-unit>
+      <trans-unit id="delete_employee_confirm">
+        <source>Wollen Sie diesen Mitarbeiter wirklich aus dem System löschen?</source>
+        <target>Desiderate davvero cancellare questo collaboratore dal sistema?</target>
+      </trans-unit>
+      <trans-unit id="delete_message">
+        <source>Mitteilung löschen</source>
+        <target>Cancella messaggio</target>
+      </trans-unit>
+      <trans-unit id="delete_recipe">
+        <source>Löschen</source>
+        <target>Cancella</target>
+      </trans-unit>
+      <trans-unit id="delete_user">
+        <source>Benutzer löschen</source>
+        <target>Cancella utente</target>
+      </trans-unit>
+      <trans-unit id="deleted_product">
+        <source>Diesen Artikel führen wir nicht mehr im Sortiment.</source>
+        <target>Questo articolo non è più disponibile nel nostro negozio online.</target>
+      </trans-unit>
+      <trans-unit id="delivery_address">
+        <source>Lieferadresse</source>
+        <target>Indirizzo di consegna</target>
+      </trans-unit>
+      <trans-unit id="delivery_and_address">
+        <source>Lieferung &amp; Adresse</source>
+        <target>Consegna e indirizzo</target>
+      </trans-unit>
+      <trans-unit id="delivery_date">
+        <source>Gewünschtes Lieferdatum</source>
+        <target>Data di consegna desiderata</target>
+      </trans-unit>
+      <trans-unit id="delivery_option">
+        <source>Zustellanweisung Post</source>
+        <target>Istruzioni di consegna Posta</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_door">
+        <source>Im Ablagekasten/beim Hauseingang deponieren</source>
+        <target>Lasciare in bucalettere o all’ingresso dell’edificio</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_etage">
+        <source>Etagenlieferung (Empfänger muss vor Ort sein)</source>
+        <target>Consegna al piano</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_info">
+        <source>Diese Option hilft Kunden, die in ihrer Mobilität eingeschränkt sind.</source>
+        <target>Note: Quest’opzione aiuta i clienti dalla mobilità limitata.</target>
+      </trans-unit>
+      <trans-unit id="delivery_option_no">
+        <source>Keine</source>
+        <target>Nessuno</target>
+      </trans-unit>
+      <trans-unit id="delivery_type">
+        <source>Lieferart</source>
+        <target>Tipo di consegna</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_express">
+        <source>Expresslieferung (Zuschlag)</source>
+        <target>Consegna espressa (supplemento)</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_info">
+        <source>Bitte beachten Sie unsere regulären Öffnungszeiten und die Feiertage.</source>
+        <target>Si prega di tener presente i nostri orari di apertura regolari e i giorni festivi.</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal">
+        <source>Standardlieferung</source>
+        <target>Consegna standard</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal_delayed">
+        <source>Standardlieferung - späteres Datum</source>
+        <target>Consegna standard: ultima data</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_normal_help_text">
+        <source>Standardlieferung: Bestellungen bis 17.00 Uhr erhalten Sie am kommenden Arbeitstag.</source>
+        <target>Consegna standard: gli ordini effettuati entro le ore 17.00 vengono consegnati il giorno lavorativo seguente.</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_pickup">
+        <source>Abholung</source>
+        <target>Ritiro</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_saturday">
+        <source>Samstagzustellung</source>
+        <target>Consegna il sabato</target>
+      </trans-unit>
+      <trans-unit id="delivery_type_saturday_help_text">
+        <source>Samstagzustellung: Bestellzeitpunkt spätestens bis Freitag 16:30 Uhr</source>
+        <target>Consegna il sabato: Ordine al più tardi entro le ore 16:30 di venerdì</target>
+      </trans-unit>
+      <trans-unit id="delivery_unknown">
+        <source>Unbekannt</source>
+        <target>Sconosciuto</target>
+      </trans-unit>
+      <trans-unit id="department">
+        <source>Abteilung</source>
+        <target>Reparto</target>
+      </trans-unit>
+      <trans-unit id="department_client_services">
+        <source>Kundendienst</source>
+        <target>servizio clienti</target>
+      </trans-unit>
+      <trans-unit id="department_field_services">
+        <source>Aussendienst</source>
+        <target>Servizio esterno</target>
+      </trans-unit>
+      <trans-unit id="department_finances">
+        <source>Finanzen, Informatik, Prozesse &amp; Qualitätsmanagement</source>
+        <target>Finanze, Informatica, Processi e gestione della qualità</target>
+      </trans-unit>
+      <trans-unit id="department_hr">
+        <source>Human Resources</source>
+        <target>Risorse umane</target>
+      </trans-unit>
+      <trans-unit id="department_management">
+        <source>Geschäftsleitung</source>
+        <target>Direzione aziendale</target>
+      </trans-unit>
+      <trans-unit id="department_marketing">
+        <source>Marketing &amp; Kommunikation</source>
+        <target>Marketing e comunicazione</target>
+      </trans-unit>
+      <trans-unit id="department_warehouse">
+        <source>Lager, Einkauf, Versand</source>
+        <target>Deposito, acquisti, invio</target>
+      </trans-unit>
+      <trans-unit id="description_label">
+        <source>Beschreibung des Produktes</source>
+        <target>Descrizione del prodotto</target>
+      </trans-unit>
+      <trans-unit id="details">
+        <source>Details</source>
+        <target>Dettagli</target>
+      </trans-unit>
+      <trans-unit id="displayName">
+        <source>Anzeigename</source>
+        <target>Nome annuncio</target>
+      </trans-unit>
+      <trans-unit id="download">
+        <source>Herunterladen</source>
+        <target>Scarica</target>
+      </trans-unit>
+      <trans-unit id="downloads">
+        <source>Downloads</source>
+        <target>Download</target>
+      </trans-unit>
+      <trans-unit id="due">
+        <source>Gültig ab</source>
+        <target>Valido da</target>
+      </trans-unit>
+      <trans-unit id="duplicate">
+        <source>Duplizieren</source>
+        <target>Duplicare</target>
+      </trans-unit>
+      <trans-unit id="e_log">
+        <source>e-log</source>
+        <target>e-log</target>
+      </trans-unit>
+      <trans-unit id="earliest_delivery">
+        <source>Verfügbarkeit</source>
+        <target>Disponibilità</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Bearbeiten</source>
+        <target>Modifica</target>
+      </trans-unit>
+      <trans-unit id="edit_employee">
+        <source>Mitarbeiter bearbeiten</source>
+        <target>Modifica collaboratore</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>E-Mail</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="emailAddress">
+        <source>E-Mail Adresse</source>
+        <target>Indirizzo e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_address">
+        <source>E-Mail Adresse</source>
+        <target>Indirizzo e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_business_register">
+        <source>E-Mail (Falls vorhanden, geben Sie bitte die Haupt-Email Adresse z.B: info@... Ihrer Institution ein.)</source>
+        <target>E-mail (Se disponibile, inserite l’indirizzo e-mail principale, esempio: info@... della vostra struttura.)</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_button_text">
+        <source>Passwort setzen</source>
+        <target>Définir un mot de passe</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_message">
+        <source>Publicare hat für Sie ein Benutzerkonto angelegt. Bitte klicken Sie unten um ein Passwort zu setzen und damit die Registrierung abzuschliessen.</source>
+        <target>Publicare vous a créé un compte utilisateur. Veuillez cliquer ci-dessous pour définir un mot de passe et ainsi terminer votre inscription.</target>
+      </trans-unit>
+      <trans-unit id="email_enroll_subject">
+        <source>Publicare: Für Sie wurde ein Konto eingerichtet</source>
+        <target>Publicare: un compte vous a été ouvert</target>
+      </trans-unit>
+      <trans-unit id="email_footer_customer_service">
+        <source>Kundendienst</source>
+        <target>Service client</target>
+      </trans-unit>
+      <trans-unit id="email_footer_greeting">
+        <source>Ihre Publicare</source>
+        <target>L’équipe de Publicare</target>
+      </trans-unit>
+      <trans-unit id="email_footer_questions">
+        <source>Bei Fragen hilft Ihnen unser Kundendienst gerne weiter. Bitte antworten Sie nicht auf diese E-Mail.</source>
+        <target>Si vous avez des questions, n’hésitez pas à contacter notre service client. Veuillez ne pas répondre à cet e-mail.</target>
+      </trans-unit>
+      <trans-unit id="email_gender_mr">
+        <source>Herr</source>
+        <target>Monsieur</target>
+      </trans-unit>
+      <trans-unit id="email_gender_mrs">
+        <source>Frau</source>
+        <target>Madame</target>
+      </trans-unit>
+      <trans-unit id="email_hello">
+        <source>Guten Tag</source>
+        <target>Bonjour</target>
+      </trans-unit>
+      <trans-unit id="email_help">
+        <source>Geben Sie die E-Mail-Adresse an, damit der Kunde Zugriff auf sein Kundenportal erhält.</source>
+        <target>Inserite l’indirizzo e-mail in modo tale che il cliente abbia accesso al suo portale clienti.</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_button_text">
+        <source>Bestellstatus verfolgen</source>
+        <target>Suivre la commande</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_subject">
+        <source>Publicare: Bestellbestätigung</source>
+        <target>Publicare: confirmation de commande</target>
+      </trans-unit>
+      <trans-unit id="email_order_confirmation_thankyou">
+        <source>Vielen Dank für Ihre Bestellung bei</source>
+        <target>Merci beaucoup pour votre commande sur</target>
+      </trans-unit>
+      <trans-unit id="email_reset_button_text">
+        <source>Neues Passwort setzen</source>
+        <target>Définir un nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part1">
+        <source>Sie haben auf publicare.ch ein neues Passwort angefordert.
+  Auf unserer Website können Sie ganz einfach ein neues Passwort definieren.</source>
+        <target>Vous avez demandé un nouveau mot de passe sur www.publicare.ch.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part2">
+        <source>Sollten Sie kein neues Passwort angefordert haben, so können Sie diese Nachricht löschen.</source>
+        <target>Si vous n’avez pas fait de demande de nouveau mot de passe, vous pouvez supprimer ce message.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_message_part3">
+        <source>Durch Ihr persönliches Passwort ist sichergestellt, dass nur Sie selbst Zugriff auf Ihre Daten haben oder Ihre Bestellungen einsehen können.
+  Bitte bewahren Sie Ihre Zugangsdaten daher sorgfältig auf.</source>
+        <target>Grâce à votre mot de passe personnel, nous nous assurons que vous êtes la seule personne à accéder
+  à vos données ou à consulter vos commandes.</target>
+      </trans-unit>
+      <trans-unit id="email_reset_subject">
+        <source>Ihr persönliches Publicare Passwort zurücksetzen</source>
+        <target>Réinitialiser votre mot de passe Publicare personnel</target>
+      </trans-unit>
+      <trans-unit id="email_us">
+        <source>E-Mail schreiben</source>
+        <target>Scrivi e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_verify_button_text">
+        <source>E-Mail verifizieren</source>
+        <target>Vérifier l’adresse e-mail</target>
+      </trans-unit>
+      <trans-unit id="email_verify_message_part1">
+        <source>Vielen Dank dass Sie sich auf publicare.ch registriert haben.</source>
+        <target>Nous vous remercions pour votre inscription sur www.publicare.ch.</target>
+      </trans-unit>
+      <trans-unit id="email_verify_subject">
+        <source>Willkommen bei publicare.ch</source>
+        <target>Bienvenue sur www.publicare.ch</target>
+      </trans-unit>
+      <trans-unit id="employee_management">
+        <source>Mitarbeiter verwalten</source>
+        <target>Gestisci collaboratore</target>
+      </trans-unit>
+      <trans-unit id="empty_events">
+        <source>Die nächsten Veranstaltungen werden demnächst auf unserer Website publiziert.</source>
+        <target>Ulteriori eventi nella Svizzera tedesca si possono trovare  &lt;a href="/de/academy"&gt;qui&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="empty_newsletters">
+        <source></source>
+        <target>La newsletter è disponibile solo in lingua &lt;a class="link" href="/de/newsletter"&gt;tedesca&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="empty_recipe">
+        <source>Blanko Rezept</source>
+        <target>Ricetta vuota</target>
+      </trans-unit>
+      <trans-unit id="engagement">
+        <source>Engagement</source>
+        <target>Impegno</target>
+      </trans-unit>
+      <trans-unit id="enter_additional_name">
+        <source>Abteilung/Stützpunkt eingeben</source>
+        <target>Inserisci reparto/base</target>
+      </trans-unit>
+      <trans-unit id="enter_addressLine">
+        <source>Strasse und Hausnummer eingeben</source>
+        <target>Inserisci indirizzo e numero civico</target>
+      </trans-unit>
+      <trans-unit id="enter_addressLine2">
+        <source>Adresszusatz eingeben</source>
+        <target>Inserisci aggiunta all’indirizzo</target>
+      </trans-unit>
+      <trans-unit id="enter_city">
+        <source>Ort eingeben</source>
+        <target>Inserisci località</target>
+      </trans-unit>
+      <trans-unit id="enter_comment">
+        <source>Kommentar eingeben</source>
+        <target>Inserisci commento</target>
+      </trans-unit>
+      <trans-unit id="enter_contactNumber">
+        <source>Kundennummer eingeben</source>
+        <target>Inserisci numero cliente</target>
+      </trans-unit>
+      <trans-unit id="enter_content">
+        <source>Mitteilung eingeben</source>
+        <target>Inserisci messaggio</target>
+      </trans-unit>
+      <trans-unit id="enter_department">
+        <source>Abteilung eingeben</source>
+        <target>Inserisci reparto</target>
+      </trans-unit>
+      <trans-unit id="enter_email">
+        <source>E-Mail eingeben</source>
+        <target>Inserisci e-mail</target>
+      </trans-unit>
+      <trans-unit id="enter_familyDoctor">
+        <source>Hausarzt / Rezeptierer angeben</source>
+        <target>Inserisci medico di base/prescrivente</target>
+      </trans-unit>
+      <trans-unit id="enter_firstName">
+        <source>Vorname eingeben</source>
+        <target>Inserisci nome</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceHeadquarters">
+        <source>Sitz der Versicherung angeben</source>
+        <target>Inserisci sede dell’assicurazione</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceName">
+        <source>Name der Versicherung angeben</source>
+        <target>Inserisci nome dell’assicurazione</target>
+      </trans-unit>
+      <trans-unit id="enter_insuranceNumber">
+        <source>Versicherungsnummer / AHV-Nummer angeben</source>
+        <target>Inserisci numero assicurazione/numero AVS</target>
+      </trans-unit>
+      <trans-unit id="enter_invalidityNumber">
+        <source>IV Verfügungsnummer eingeben</source>
+        <target>Inserisci numero di disposizione AI</target>
+      </trans-unit>
+      <trans-unit id="enter_lastName">
+        <source>Nachname eingeben</source>
+        <target>Inserisci cognome</target>
+      </trans-unit>
+      <trans-unit id="enter_mobileNumber">
+        <source>Mobiltelefonnummer eingeben</source>
+        <target>Inserisci numero di cellulare</target>
+      </trans-unit>
+      <trans-unit id="enter_postalCode">
+        <source>PLZ</source>
+        <target>NPA</target>
+      </trans-unit>
+      <trans-unit id="enter_reference">
+        <source>Name Mitarbeiter / Bestellnummer eingeben</source>
+        <target>Inserisci nome collaboratore/numero d’ordinazione</target>
+      </trans-unit>
+      <trans-unit id="enter_telephoneNumber">
+        <source>Telefonnummer eingeben</source>
+        <target>Inserisci numero di telefono</target>
+      </trans-unit>
+      <trans-unit id="error">
+        <source>Fehler</source>
+        <target>errore</target>
+      </trans-unit>
+      <trans-unit id="error_404_content">
+        <source>Sorry, die Seite, die Sie gesucht haben, wurde nicht gefunden!</source>
+        <target>Spiacenti, la pagina che stavi cercando non è stata trovata!</target>
+      </trans-unit>
+      <trans-unit id="error_404_search">
+        <source>Oder: Verwenden Sie die Suche, um Ihre gewünschte Information zu finden!</source>
+        <target>Oppure: Usa la ricerca per trovare le informazioni di cui hai bisogno!</target>
+      </trans-unit>
+      <trans-unit id="error_404_title">
+        <source>Da ging etwas schief... - Fehler 404</source>
+        <target>Qualcosa è andato storto ... - Errore 404</target>
+      </trans-unit>
+      <trans-unit id="error_add_user">
+        <source>Problem beim Erstellen eines neuen Benutzers</source>
+        <target>Problema durante la creazione di un nuovo utente</target>
+      </trans-unit>
+      <trans-unit id="error_contact_number_already_assigned">
+        <source>Für diese Kundennummer existiert bereits ein Konto</source>
+        <target>Esiste già un profilo con questo numero cliente</target>
+      </trans-unit>
+      <trans-unit id="error_contact_number_invalid">
+        <source>Ungültige Kundennummer. Erwartete Form: K123456.</source>
+        <target>Numero cliente non valido. Forma prevista: K123456.</target>
+      </trans-unit>
+      <trans-unit id="error_date_after">
+        <source>{label} muss nach {dateToCompare} sein.</source>
+        <target>{label} deve essere dopo {dateToCompare}.</target>
+      </trans-unit>
+      <trans-unit id="error_date_before">
+        <source>{label} muss vor {dateToCompare} sein.</source>
+        <target>{label} deve essere prima di {dateToCompare}.</target>
+      </trans-unit>
+      <trans-unit id="error_delivery_update_failed">
+        <source>Bei der Bestellung ist ein unbekannter Fehler aufgetreten, bitte melden Sie sich beim Kundendienst.</source>
+        <target>Si è verificato un errore sconosciuto in fase di ordinazione. Vi invitiamo a rivolgervi al servizio clienti.</target>
+      </trans-unit>
+      <trans-unit id="error_email">
+        <source>{label} muss eine gültige Email-Adresse sein</source>
+        <target>{label} deve essere un indirizzo e-mail valido</target>
+      </trans-unit>
+      <trans-unit id="error_email_already_exists">
+        <source>Diese E-Mail gehört bereits zu einem Benutzerkonto</source>
+        <target>Questa e-mail appartiene già ad un account utente</target>
+      </trans-unit>
+      <trans-unit id="error_email_already_registered">
+        <source>Für diese E-Mail besteht bereits ein Kundenkonto. &lt;a href="/de/passwort-vergessen"&gt;Klicken Sie hier, um das Passwort zurückzusetzen&lt;/a&gt; oder kontaktieren Sie unseren Kundendienst.</source>
+        <target>Indirizzo e-mail già registrato</target>
+      </trans-unit>
+      <trans-unit id="error_forgot_password">
+        <source>E-Mail unbekannt</source>
+        <target>E-mail sconosciuta</target>
+      </trans-unit>
+      <trans-unit id="error_generic">
+        <source>Es ist ein unbekannter Fehler aufgetreten. Unser Team ist informiert und kümmert sich so rasch wie möglich darum. Bitte versuchen Sie es später noch einmal oder melden Sie sich beim Kundendienst.</source>
+        <target>Si è verificato un errore sconosciuto. Il nostro team ne è informato e se ne occuperà quanto prima. Vi invitiamo a riprovare più tardi, oppure a rivolgervi al servizio clienti.</target>
+      </trans-unit>
+      <trans-unit id="error_invalid_date">
+        <source>{label} ist kein gültiges Datum</source>
+        <target>{label} non è una data valida</target>
+      </trans-unit>
+      <trans-unit id="error_login">
+        <source>Fehlgeschlagen, bitte überprüfen Sie Benutzer/Passwort</source>
+        <target>Tentativo fallito. Controllate il nome utente e la password</target>
+      </trans-unit>
+      <trans-unit id="error_mark_left">
+        <source>Der Account wurde bereits zum Austritt gemeldet</source>
+        <target>L’account è già stato registrato per il rilascio</target>
+      </trans-unit>
+      <trans-unit id="error_max_length">
+        <source>{label} darf nicht länger als {maxLength} Zeichen lang sein</source>
+        <target>{label} non può avere una lunghezza superiore a {maxLength} caratteri</target>
+      </trans-unit>
+      <trans-unit id="error_name_invalid">
+        <source>Ungültiger Name. Bitte keine Sonderzeichen oder Zahlen verwenden.</source>
+        <target>Nome non valido. Si prega di non utilizzare caratteri speciali o numeri.</target>
+      </trans-unit>
+      <trans-unit id="error_order_update_failed">
+        <source>Bei der Bestellung ist ein unbekannter Fehler aufgetreten, bitte melden Sie sich beim Kundendienst.</source>
+        <target>Si è verificato un errore sconosciuto in fase di ordinazione. Vi invitiamo a rivolgervi al servizio clienti.</target>
+      </trans-unit>
+      <trans-unit id="error_phone_number_invalid">
+        <source>Ungültige Telefonnummer</source>
+        <target>Numero di telefono non valido</target>
+      </trans-unit>
+      <trans-unit id="error_postal_code_invalid">
+        <source>Ungültige Postleitzahl</source>
+        <target>Codice postale non valido</target>
+      </trans-unit>
+      <trans-unit id="error_register">
+        <source>Uups, da ist etwas schief gelaufen. Bitte melden Sie das Problem dem Kundendienst</source>
+        <target>Ops, qualcosa è andato storto.</target>
+      </trans-unit>
+      <trans-unit id="error_report">
+        <source>Weitere Informationen zum Fehler angeben</source>
+        <target>Inserisci maggiori informazioni sull’errore</target>
+      </trans-unit>
+      <trans-unit id="error_required">
+        <source>{label} ist ein Pflichtfeld</source>
+        <target>{label} è un campo obbligatorio</target>
+      </trans-unit>
+      <trans-unit id="error_send_contact_form">
+        <source>Kontaktanfrage fehlgeschlagen, bitte Senden Sie uns eine E-Mail</source>
+        <target>Richiesta di contatto fallita, vi invitiamo a inviarci un’e-mail</target>
+      </trans-unit>
+      <trans-unit id="error_server">
+        <source>Es ist ein Problem auf dem Server aufgetreten ({details}). Bitte versuchen Sie es später nochmals.</source>
+        <target>Si è verificato un errore sul server. Vi invitiamo a riprovare più tardi.</target>
+      </trans-unit>
+      <trans-unit id="error_set_password">
+        <source>Wiederherstellungslink abgelaufen</source>
+        <target>Link per il ripristino scaduto</target>
+      </trans-unit>
+      <trans-unit id="error_user_profile">
+        <source>Kontaktinformationen konnten nicht aktualisert werden</source>
+        <target>Non è stato possibile aggiornare le informazioni di contatto</target>
+      </trans-unit>
+      <trans-unit id="error_user_settings">
+        <source>Fehler beim aktualisieren des Kontos</source>
+        <target>Errore durante l’aggiornamento del profilo</target>
+      </trans-unit>
+      <trans-unit id="estimated_delivery_date">
+        <source>Voraussichtlicher Liefertermin: &lt;span className="delivery-time"&gt;{date}&lt;/span&gt;, falls bis 17.00 Uhr bestellt</source>
+        <target>Data di consegna prevista: &lt;span className="delivery-time"&gt;{date}&lt;/span&gt;, se si effettua l’ordinazione entro le ore 17.00</target>
+      </trans-unit>
+      <trans-unit id="estimated_delivery_date_unknown">
+        <source>Voraussichtlicher Liefertermin: unbekannt</source>
+        <target>Data di consegna prevista: sconosciuta</target>
+      </trans-unit>
+      <trans-unit id="event">
+        <source>Veranstaltung</source>
+        <target>evento</target>
+      </trans-unit>
+      <trans-unit id="event_button_bottom">
+        <source>Hier geht es direkt zur Anmeldung</source>
+        <target>Vai direttamente all’iscrizione</target>
+      </trans-unit>
+      <trans-unit id="event_button_top">
+        <source>Direkt zur Anmeldung</source>
+        <target>Direttamente all’iscrizione</target>
+      </trans-unit>
+      <trans-unit id="event_target_group">
+        <source>Zielgruppe</source>
+        <target>gruppo target</target>
+      </trans-unit>
+      <trans-unit id="excerpt_from_assortment">
+        <source>Auszug aus unserem Sortiment</source>
+        <target>Estratto dal nostro assortimento</target>
+      </trans-unit>
+      <trans-unit id="familyDoctor">
+        <source>Hausarzt / Rezeptierer</source>
+        <target>Medico di base/prescrivente</target>
+      </trans-unit>
+      <trans-unit id="faq">
+        <source>Häufig gestellte Fragen</source>
+        <target>Domande frequenti</target>
+      </trans-unit>
+      <trans-unit id="favorite_general">
+        <source>Favoriten Allgmein</source>
+        <target>Preferiti in generale</target>
+      </trans-unit>
+      <trans-unit id="favorite_list">
+        <source>Favoritenliste</source>
+        <target>Lista dei preferiti</target>
+      </trans-unit>
+      <trans-unit id="favorite_list_empty">
+        <source>Kein Produkt zu dieser Liste hinzugefügt</source>
+        <target>Nessun prodotto aggiunto a questo elenco</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list">
+        <source>Neue Liste erstellen</source>
+        <target>Crea nuova lista</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_error">
+        <source>Fehler beim Einfügen der Favoritenliste</source>
+        <target>Errore durante l’inserimento della lista dei preferiti</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_input_label">
+        <source>Name der Liste</source>
+        <target>Nome della lista</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_ph">
+        <source>Auf Favoritenliste setzen</source>
+        <target>Aggiungi alla lista dei preferiti</target>
+      </trans-unit>
+      <trans-unit id="favorite_new_list_submit">
+        <source>erstellen</source>
+        <target>crea</target>
+      </trans-unit>
+      <trans-unit id="favorite_select_list">
+        <source>Favoritenliste auswählen</source>
+        <target>Seleziona lista dei preferiti</target>
+      </trans-unit>
+      <trans-unit id="favorite_select_list_label">
+        <source>Wählen Sie eine Liste aus</source>
+        <target>Selezionate una lista</target>
+      </trans-unit>
+      <trans-unit id="favorite_wund">
+        <source>Favoriten wund</source>
+        <target>Preferiti ferite</target>
+      </trans-unit>
+      <trans-unit id="filter_by">
+        <source>Filtern nach:</source>
+        <target>Filtra per:</target>
+      </trans-unit>
+      <trans-unit id="filter_client">
+        <source>Kunden filtern</source>
+        <target>Filtra i clienti</target>
+      </trans-unit>
+      <trans-unit id="finish_recipe">
+        <source>Rezept abschliessen</source>
+        <target>Completa la ricetta</target>
+      </trans-unit>
+      <trans-unit id="finish_recipe_later">
+        <source>Später abschliessen</source>
+        <target>Completa dopo</target>
+      </trans-unit>
+      <trans-unit id="firstName">
+        <source>Vorname</source>
+        <target>Nome</target>
+      </trans-unit>
+      <trans-unit id="follow_us">
+        <source>Folgen Sie Publicare auf Social Media</source>
+        <target>Seguiteci sui nostri canali social</target>
+      </trans-unit>
+      <trans-unit id="footer_bottom_text">
+        <source>Schnellster Lieferant für medizinische Hilfsmittel.</source>
+        <target>Il fornitore più celere di presidi medici.</target>
+      </trans-unit>
+      <trans-unit id="forgot_password">
+        <source>Passwort vergessen?</source>
+        <target>Avete dimenticato la password?</target>
+      </trans-unit>
+      <trans-unit id="forgot_password_email_sent">
+        <source>Eine E-Mail, mit Instruktionen um das Passwort zurück zu setzen, wurde versendet.</source>
+        <target>Vi è stata inviata un’e-mail contenete le istruzioni per il ripristino della password.</target>
+      </trans-unit>
+      <trans-unit id="form_errors_title">
+        <source>Fehlermeldung:</source>
+        <target>Messaggio d’errore:</target>
+      </trans-unit>
+      <trans-unit id="free_delivery">
+        <source>Kostenloser Versand</source>
+        <target>Spedizione gratuita</target>
+      </trans-unit>
+      <trans-unit id="free_delivery_exceptions">
+        <source>Ausnahmen siehe AGBs</source>
+        <target>Eccezioni vedi condizioni generali di contratto</target>
+      </trans-unit>
+      <trans-unit id="gender">
+        <source>Anrede</source>
+        <target>Appellativo</target>
+      </trans-unit>
+      <trans-unit id="gender_c">
+        <source>Firma</source>
+        <target>Azienda</target>
+      </trans-unit>
+      <trans-unit id="gender_f">
+        <source>Frau</source>
+        <target>Signora</target>
+      </trans-unit>
+      <trans-unit id="gender_m">
+        <source>Herr</source>
+        <target>Signor</target>
+      </trans-unit>
+      <trans-unit id="general_settings">
+        <source>Allgemeine Einstellungen</source>
+        <target>Impostazioni generali</target>
+      </trans-unit>
+      <trans-unit id="handout_download">
+        <source>Handouts herunterladen</source>
+        <target>Scarica opuscoli</target>
+      </trans-unit>
+      <trans-unit id="handout_text">
+        <source>Sie haben an einer unserer Veranstaltungen teilgenommen?</source>
+        <target>Avete partecipato a uno dei nostri eventi?</target>
+      </trans-unit>
+      <trans-unit id="handouts_error">
+        <source>Sorry, der eingegebene Handout Code scheint ungültig zu sein.</source>
+        <target>Ci dispiace, l’handout code inserito sembra non essere valido.</target>
+      </trans-unit>
+      <trans-unit id="handouts_intro">
+        <source>Hier finden Sie die Handouts und Präsentationen zu unserer Veranstaltung</source>
+        <target>Qui trovate gli opuscoli e le presentazioni sul nostro evento</target>
+      </trans-unit>
+      <trans-unit id="handouts_thankyou">
+        <source>Schön, dass Sie da waren!</source>
+        <target>Ci ha fatto piacere avervi come ospiti!</target>
+      </trans-unit>
+      <trans-unit id="handouts_title">
+        <source>Handouts &amp; Präsentationen</source>
+        <target>Opuscoli e presentazioni</target>
+      </trans-unit>
+      <trans-unit id="head_of_customer_service">
+        <source>Leiterin Kundendienst</source>
+        <target>Responsabile servizio clienti</target>
+      </trans-unit>
+      <trans-unit id="heading">
+        <source>Überschrift</source>
+        <target>Titolo</target>
+      </trans-unit>
+      <trans-unit id="help">
+        <source>Hilfe</source>
+        <target>Aiuto</target>
+      </trans-unit>
+      <trans-unit id="hide">
+        <source>Verbergen</source>
+        <target>Nascondi</target>
+      </trans-unit>
+      <trans-unit id="hide_optional_fields">
+        <source>Optionale Angaben ausblenden</source>
+        <target>Nascondi dati opzionali</target>
+      </trans-unit>
+      <trans-unit id="home">
+        <source>Startseite</source>
+        <target>home page</target>
+      </trans-unit>
+      <trans-unit id="images_can_differ">
+        <source>Das gezeigte Bild dient als Referenz und kann vom tatsächlichen Produkt abweichen. Es gilt immer die Artikelbeschreibung.</source>
+        <target>L’immagine mostrata è solo di riferimento e può differire dal prodotto reale. La descrizione dell’articolo è sempre valida.</target>
+      </trans-unit>
+      <trans-unit id="imprint">
+        <source>Impressum</source>
+        <target>Colophon</target>
+      </trans-unit>
+      <trans-unit id="in_stock">
+        <source>Ab Lager verfügbar</source>
+        <target>Disponibile da magazzino</target>
+      </trans-unit>
+      <trans-unit id="in_stock_small">
+        <source>Ab Lager</source>
+        <target>Da magazzino</target>
+      </trans-unit>
+      <trans-unit id="including_tax">
+        <source>inkl. MwSt.</source>
+        <target>IVA inclusa</target>
+      </trans-unit>
+      <trans-unit id="incontinence">
+        <source>Inkontinenz</source>
+        <target>Incontinenza</target>
+      </trans-unit>
+      <trans-unit id="info">
+        <source>Hinweis</source>
+        <target>Indicazioni</target>
+      </trans-unit>
+      <trans-unit id="info_not_in_stock">
+        <source>Nicht an Lager</source>
+        <target>Non in magazzino</target>
+      </trans-unit>
+      <trans-unit id="info_not_in_stock_long">
+        <source>Was wünschen Sie, wenn ein Produkt nicht an Lager ist?</source>
+        <target>Cosa vuoi se un prodotto non è in magazzino?</target>
+      </trans-unit>
+      <trans-unit id="information">
+        <source>Informationen</source>
+        <target>Informazioni</target>
+      </trans-unit>
+      <trans-unit id="inko">
+        <source>Inkontinenzversorgung</source>
+        <target>Incontinence</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_label">
+        <source>KLV / MiGeL Kapitel 15. / 35. / 99.</source>
+        <target>OPAS / LiMA chapitre 15. / 35. / 99.</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_anal">
+        <source>Anale Irrigation</source>
+        <target>Irrigation anale</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_blasenfistel">
+        <source>suprapubische- oder transurethrale Dauerableitung</source>
+        <target>dérivation permanente sus-pubienne ou transurétrale</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_isk">
+        <source>ISK (Intermettierender Selbstkatheterismus)</source>
+        <target>ACI (auto-cathétérisation intermittente)</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_heavy">
+        <source>schwere Inkontinenz</source>
+        <target>Incontinence grave</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_label">
+        <source>Schweregrad</source>
+        <target>Degré de sévérité</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_medium">
+        <source>mittlere Inkontinenz</source>
+        <target>Incontinence moyenne</target>
+      </trans-unit>
+      <trans-unit id="inko_klv_weight_total">
+        <source>totale Inkontinenz</source>
+        <target>Incontinence totale</target>
+      </trans-unit>
+      <trans-unit id="institution_and_clients">
+        <source>Institution und Kunden</source>
+        <target>Struttura e clienti</target>
+      </trans-unit>
+      <trans-unit id="institution_assortment">
+        <source>Institutionssortiment</source>
+        <target>Assortimento per l’istituzione</target>
+      </trans-unit>
+      <trans-unit id="institution_assortment_help_text">
+        <source>Diese Favoritenliste dient für Bestellungen auf den Stützpunkt und kann nur von einem Benutzer mit Administratoren-Rechten bearbeitet werden.</source>
+        <target>Assortimento per l’istituzione</target>
+      </trans-unit>
+      <trans-unit id="institution_settings">
+        <source>Einstellungen</source>
+        <target>Impostazioni</target>
+      </trans-unit>
+      <trans-unit id="insuranceHeadquarters">
+        <source>Sitz der Versicherung</source>
+        <target>Sede dell’assicurazione</target>
+      </trans-unit>
+      <trans-unit id="insuranceName">
+        <source>Name der Versicherung</source>
+        <target>Nome dell’assicurazione</target>
+      </trans-unit>
+      <trans-unit id="insuranceNumber">
+        <source>Versicherungsnummer oder AHV-Nummer</source>
+        <target>Numero assicurazione o numero AVS</target>
+      </trans-unit>
+      <trans-unit id="invalidityNumber">
+        <source>IV Verfügungsnummer</source>
+        <target>Numero di disposizione AI</target>
+      </trans-unit>
+      <trans-unit id="invoice_receiver">
+        <source>Rechnungsempfänger</source>
+        <target>Destinatario della fattura</target>
+      </trans-unit>
+      <trans-unit id="invoices">
+        <source>Rechnungen</source>
+        <target>Fatture</target>
+      </trans-unit>
+      <trans-unit id="language">
+        <source>Sprache</source>
+        <target>Lingua</target>
+      </trans-unit>
+      <trans-unit id="language_code">
+        <source>Sprache</source>
+        <target>Lingua</target>
+      </trans-unit>
+      <trans-unit id="language_code_french">
+        <source>Französisch</source>
+        <target>Francese</target>
+      </trans-unit>
+      <trans-unit id="language_code_german">
+        <source>Deutsch</source>
+        <target>Tedesco</target>
+      </trans-unit>
+      <trans-unit id="language_code_italian">
+        <source>Italienisch</source>
+        <target>Italiano</target>
+      </trans-unit>
+      <trans-unit id="language_not_supported_button_french">
+        <source></source>
+        <target>Continua con il francese</target>
+      </trans-unit>
+      <trans-unit id="language_not_supported_button_german">
+        <source></source>
+        <target>Continua con il tedesco</target>
+      </trans-unit>
+      <trans-unit id="language_not_supported_text">
+        <source></source>
+        <target>L’universo di prodotti e lo shop online di Publicare sono disponibili in tedesco e francese. Selezionate la lingua che preferite:</target>
+      </trans-unit>
+      <trans-unit id="language_not_supported_title">
+        <source></source>
+        <target>Lingua selezionata non disponibile</target>
+      </trans-unit>
+      <trans-unit id="lastName">
+        <source>Nachname</source>
+        <target>Cognome</target>
+      </trans-unit>
+      <trans-unit id="learn_more">
+        <source>Mehr erfahren</source>
+        <target>Maggiori informazioni</target>
+      </trans-unit>
+      <trans-unit id="leave">
+        <source>Austritt melden und Konto löschen</source>
+        <target>Segnala rilascio e cancella profilo</target>
+      </trans-unit>
+      <trans-unit id="leave_description">
+        <source>Sie können für den Account den Austritt melden. Der Account wird in 2-4 Arbeitstagen aus Ihrem System gelöscht</source>
+        <target>Potete segnalare il rilascio per l’account. L’account sarà cancellato dal vostro sistema entro 2–4 giorni lavorativi</target>
+      </trans-unit>
+      <trans-unit id="leave_title">
+        <source>Austritt melden</source>
+        <target>Segnala rilascio</target>
+      </trans-unit>
+      <trans-unit id="leave_type">
+        <source>Grund für den Austritt</source>
+        <target>Motivo del rilascio</target>
+      </trans-unit>
+      <trans-unit id="leave_type_dead">
+        <source>Verstorben</source>
+        <target>Deceduto</target>
+      </trans-unit>
+      <trans-unit id="leave_type_gone">
+        <source>Austritt</source>
+        <target>Rilascio</target>
+      </trans-unit>
+      <trans-unit id="leave_type_institution">
+        <source>Heimübertritt</source>
+        <target>Trasferimento a casa</target>
+      </trans-unit>
+      <trans-unit id="leave_warning">
+        <source>Austritte müssen mit einer Begründung gemeldet werden</source>
+        <target>I rilasci devono essere accompagnati da una motivazione</target>
+      </trans-unit>
+      <trans-unit id="liechtenstein">
+        <source>Liechtenstein</source>
+        <target>Liechtenstein</target>
+      </trans-unit>
+      <trans-unit id="link_to_original_recipe">
+        <source>Original Rezept verknüpfen</source>
+        <target>Link la ricetta originale</target>
+      </trans-unit>
+      <trans-unit id="load_more">
+        <source>Weitere laden ...</source>
+        <target>Carica di più...</target>
+      </trans-unit>
+      <trans-unit id="login">
+        <source>Anmelden</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="login_success">
+        <source>Erfolgreich angemeldet</source>
+        <target>Iscritto con successo</target>
+      </trans-unit>
+      <trans-unit id="login_title">
+        <source>Login Benutzerkonto Publicare</source>
+        <target>Login account utente Publicare</target>
+      </trans-unit>
+      <trans-unit id="login_to_order">
+        <source>Zum Bestellen einloggen</source>
+        <target>Accedi per ordinare</target>
+      </trans-unit>
+      <trans-unit id="logout">
+        <source>Abmelden</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="maintenance">
+        <source>Wegen Wartungsarbeiten sind Online-Bestellungen und Login zurzeit nicht möglich. Sie können zwischenzeitlich telefonisch bestellen. Danke für Ihr Verständnis.</source>
+        <target>Per lavori di manutenzione le ordinazioni online e il login non sono al momento possibili. Nel frattempo, potete contattarci telefonicamente. Grazie per la comprensione.</target>
+      </trans-unit>
+      <trans-unit id="manage_clients_corporate">
+        <source>Verwalten Sie Ihre Kunden sowie Ihre eigene Institution</source>
+        <target>Gestite i vostri clienti e la vostra struttura</target>
+      </trans-unit>
+      <trans-unit id="manage_customer_recipes_content">
+        <source>Hinterlegen Sie ein gültiges Rezept, oder erstellen Sie ein neues Rezept für den Rezeptierer:</source>
+        <target>Lasciate una ricetta medica valida oppure create una nuova ricetta medica per il prescrivente:</target>
+      </trans-unit>
+      <trans-unit id="manage_customer_recipes_title">
+        <source>Verwalten Sie sich oder Ihre Kunden</source>
+        <target>Gestite il vostro profilo o i vostri clienti</target>
+      </trans-unit>
+      <trans-unit id="mediator">
+        <source>Name Vermittler/in</source>
+        <target>Nome intermediario/a</target>
+      </trans-unit>
+      <trans-unit id="medicine">
+        <source>Arzneimittel ({type})</source>
+        <target>Medicamento ({type})</target>
+      </trans-unit>
+      <trans-unit id="medicine_detailed">
+        <source>Hier handelt es sich um ein Spezialprodukt. Der Kundendienst nimmt bei Bedarf mit Ihnen Kontakt auf.</source>
+        <target>Si tratta di un prodotto speciale. Se necessario, il servizio clienti vi contatterà.</target>
+      </trans-unit>
+      <trans-unit id="medicine_product_text">
+        <source>Die Produktwelt von Publicare enthält grösstenteils Medizinprodukte (im Webshop mit MiGeL-Nummer versehen). Medizinprodukte werden von Ihrer Krankenkasse im Rahmen der Grundversicherung ganz oder teilweise vergütet, sofern diese durch einen Arzt/eine Ärztin verordnet sind. Senden Sie uns Ihr Rezept und wir übernehmen die direkte Abrechnung mit Ihrer Krankenkasse. Bei Fragen dazu hilft Ihnen unser Kundendienst gerne weiter.</source>
+        <target>L’assortimento di prodotti di Publicare comprende principalmente dispositivi medici (provvisti di numero EMAp nello shop online). I dispositivi medici vengono sovvenzionati in parte o completamente dalla vostra cassa malati nell’ambito dell’assicurazione di base se sono stati prescritti da un medico. Inviateci la vostra ricetta e ci occuperemo noi della fatturazione diretta con la vostra cassa malati. Il nostro servizio clienti è a vostra disposizione per eventuali domande.</target>
+      </trans-unit>
+      <trans-unit id="meetingRequest">
+        <source>Ich möchte mich von Publicare beraten lassen und darum gerne ein Gespräch vereinbaren.</source>
+        <target>Desidero usufruire della consulenza di Publicare e vorrei concordare un appuntamento in merito.</target>
+      </trans-unit>
+      <trans-unit id="menu">
+        <source>Menü</source>
+        <target>Menù</target>
+      </trans-unit>
+      <trans-unit id="message">
+        <source>Nachricht</source>
+        <target>Messaggio</target>
+      </trans-unit>
+      <trans-unit id="messages">
+        <source>Mitteilungen</source>
+        <target>Messaggi</target>
+      </trans-unit>
+      <trans-unit id="migel_label">
+        <source>MiGeL</source>
+        <target>EMAp</target>
+      </trans-unit>
+      <trans-unit id="mission">
+        <source>Leitbild</source>
+        <target>Filosofia</target>
+      </trans-unit>
+      <trans-unit id="mobileNumber">
+        <source>Mobiltelefonnummer</source>
+        <target>Numero di telefono cellulare</target>
+      </trans-unit>
+      <trans-unit id="more_variants">
+        <source>Weitere Varianten zu diesem Produkt</source>
+        <target>Altre varianti del prodotto</target>
+      </trans-unit>
+      <trans-unit id="my_bookmarks">
+        <source>Meine Merkliste</source>
+        <target>La mia lista desideri</target>
+      </trans-unit>
+      <trans-unit id="my_portal">
+        <source>Mein Kundenportal</source>
+        <target>Il mio portale clienti</target>
+      </trans-unit>
+      <trans-unit id="my_portal_short">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Name</source>
+        <target>Cognome</target>
+      </trans-unit>
+      <trans-unit id="name_health_institute">
+        <source>Institution</source>
+        <target>Struttura</target>
+      </trans-unit>
+      <trans-unit id="new_address">
+        <source>Neue Adresse</source>
+        <target>Nuovo indirizzo</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_four">
+        <source>Mehrere Mitarbeiter-Profile für Institutionen</source>
+        <target>Più profili collaboratore per strutture</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_one">
+        <source>Schnelles und einfaches Einkaufen</source>
+        <target>Acquisto facile e veloce</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_three">
+        <source>Zentrale Verwaltung der Kundendaten</source>
+        <target>Gestione centrale dei dati clienti</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantage_two">
+        <source>Einblick in die Bestellhistorie</source>
+        <target>Visualizzazione della cronologia degli ordini</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_advantages">
+        <source>Ihre Vorteile auf einen Blick:</source>
+        <target>Ecco una panoramica dei vantaggi:</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_text">
+        <source>Wenn Sie noch keine Online Zugangsdaten für unseren Online Shop haben, registrieren Sie sich hier.</source>
+        <target>Se non disponete ancora dei dati di accesso online per il nostro shop online, registratevi qui.</target>
+      </trans-unit>
+      <trans-unit id="new_at_publicare_title">
+        <source>Noch keinen Online Account?</source>
+        <target>Non avete ancora un account online?</target>
+      </trans-unit>
+      <trans-unit id="new_client">
+        <source>Neuer Kunde</source>
+        <target>Nuovo cliente</target>
+      </trans-unit>
+      <trans-unit id="new_email">
+        <source>Neue E-Mail Adresse</source>
+        <target>Nuovo indirizzo e-mail</target>
+      </trans-unit>
+      <trans-unit id="new_password">
+        <source>Neues Passwort</source>
+        <target>Nuova password</target>
+      </trans-unit>
+      <trans-unit id="new_password_confirm">
+        <source>Neues Passwort bestätigen</source>
+        <target>Conferma la nuova password</target>
+      </trans-unit>
+      <trans-unit id="new_password_not_same">
+        <source>Neues Passwort stimmt nicht überein</source>
+        <target>La nuova password non corrisponde</target>
+      </trans-unit>
+      <trans-unit id="new_product_info">
+        <source>Wir empfehlen Ihnen neue Produkte mit Ihrer betreuenden Fachperson abzusprechen.</source>
+        <target>Si consiglia di consultare il proprio medico curante in merito ai nuovi prodotti.</target>
+      </trans-unit>
+      <trans-unit id="new_recipe">
+        <source>Rezept erstellen</source>
+        <target>Crea ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="new_roles">
+        <source>Berechtigung</source>
+        <target>Autorizzazione</target>
+      </trans-unit>
+      <trans-unit id="new_user">
+        <source>Neuer Benutzer erfassen</source>
+        <target>Registra nuovo utente</target>
+      </trans-unit>
+      <trans-unit id="newsletter_all">
+        <source>zur Newsletter Übersicht</source>
+        <target>alla panoramica della newsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_availablity">
+        <source>Der Newsletter ist nur in deutscher Sprache verfügbar.</source>
+        <target>La newsletter è disponibile solo in tedesco.</target>
+      </trans-unit>
+      <trans-unit id="newsletter_button">
+        <source>Newsletter abonnieren</source>
+        <target>Abbonamento alla newsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_call_button">
+        <source>Abonnieren</source>
+        <target>Abbonamento</target>
+      </trans-unit>
+      <trans-unit id="newsletter_call_title">
+        <source>Publicare-Newsletter</source>
+        <target>Newsletter Publicare</target>
+      </trans-unit>
+      <trans-unit id="newsletter_link">
+        <source>/de/newsletteranmeldung</source>
+        <target>/it/newsletteriscrizione</target>
+      </trans-unit>
+      <trans-unit id="newsletter_subscribe">
+        <source>Ich möchte gerne den Newsletter von Publicare erhalten.</source>
+        <target>Vorrei ricevere la newsletter di Publicare. (In tedesco)</target>
+      </trans-unit>
+      <trans-unit id="newsletter_subtitle">
+        <source>Abonnieren Sie unseren Newsletter und erfahren Sie regelmässig topaktuelle Neuigkeiten rund um Publicare.</source>
+        <target>Iscriviti alla nostra newsletter e scopri regolarmente le ultime novità su Publicare.</target>
+      </trans-unit>
+      <trans-unit id="newsletter_success_url">
+        <source>/de/newsletterbestaetigung</source>
+        <target>/fr/confermanewsletter</target>
+      </trans-unit>
+      <trans-unit id="newsletter_title">
+        <source>News</source>
+        <target>News</target>
+      </trans-unit>
+      <trans-unit id="next">
+        <source>Weiter</source>
+        <target>Avanti</target>
+      </trans-unit>
+      <trans-unit id="next_events">
+        <source>Nächste Veranstaltungen der Academy</source>
+        <target>Prossimi eventi dell'Accademia</target>
+      </trans-unit>
+      <trans-unit id="no_addresses_found">
+        <source>Keine Adressen gefunden</source>
+        <target>Nessun indirizzo trovato</target>
+      </trans-unit>
+      <trans-unit id="no_products_found">
+        <source>Keine Produkte gefunden</source>
+        <target>Nessun prodotto trovato</target>
+      </trans-unit>
+      <trans-unit id="no_recipes">
+        <source>Keine Rezepte gefunden</source>
+        <target>Nessuna ricetta trovata</target>
+      </trans-unit>
+      <trans-unit id="not_same_address">
+        <source>Die Rechnungsadresse weicht von der Lieferadresse ab.</source>
+        <target>L’indirizzo di fatturazione non corrisponde all’indirizzo di consegna.</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email">
+        <source>E-Mail Benachrichtigungen</source>
+        <target>Notifiche e-mail</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email_corporate">
+        <source>E-Mail Benachrichtigungen Stützpunkt</source>
+        <target>Notifiche e-mail base</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_email_patient">
+        <source>E-Mail Benachrichtigungen Kundenbestellungen</source>
+        <target>Notifiche e-mail ordini clienti</target>
+      </trans-unit>
+      <trans-unit id="notifications_by_mobile">
+        <source>SMS Benachrichtigungen</source>
+        <target>Notifiche SMS</target>
+      </trans-unit>
+      <trans-unit id="of">
+        <source>von</source>
+        <target>di</target>
+      </trans-unit>
+      <trans-unit id="often_used_clients">
+        <source>Häufig genutzte Kunden</source>
+        <target>Clienti usati frequentemente</target>
+      </trans-unit>
+      <trans-unit id="old_password">
+        <source>Aktuelles Passwort</source>
+        <target>Password aggiornata</target>
+      </trans-unit>
+      <trans-unit id="open_positions">
+        <source>Unsere offenen Stellen</source>
+        <target>Le nostre posizioni aperte</target>
+      </trans-unit>
+      <trans-unit id="open_positions_occupied">
+        <source>Zurzeit sind alle Stellen besetzt.</source>
+        <target>Tutte le posizioni sono attualmente occupate.</target>
+      </trans-unit>
+      <trans-unit id="open_positions_privacy">
+        <source>Bitte erwähnen Sie im Motivationsschreiben, dass Sie mit der &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPath}"&gt;Datenschutzerklärung&lt;/a&gt; einverstanden sind. Vielen Dank.</source>
+        <target>Vi preghiamo di specificare nella lettera di accompagnamento l’accettazione della dichiarazione sulla &lt;a target="_blank" rel="noopener noreferrer" href="{privacyPath}"&gt;protezione dei dati&lt;/a&gt;. Grazie.</target>
+      </trans-unit>
+      <trans-unit id="opening_times">
+        <source>Öffnungszeiten</source>
+        <target>Orari di apertura</target>
+      </trans-unit>
+      <trans-unit id="opening_times_days">
+        <source>Montag bis Freitag</source>
+        <target>Dal lunedì al venerdì</target>
+      </trans-unit>
+      <trans-unit id="opening_times_hours">
+        <source>7.00 bis 17.00 Uhr</source>
+        <target>dalle ore 7.00 alle ore 17.00</target>
+      </trans-unit>
+      <trans-unit id="options">
+        <source>Optionen</source>
+        <target>Opzioni</target>
+      </trans-unit>
+      <trans-unit id="order">
+        <source>Bestellen</source>
+        <target>Ordina</target>
+      </trans-unit>
+      <trans-unit id="order_by_default">
+        <source>Standardsortierung</source>
+        <target>Ordinamento standard</target>
+      </trans-unit>
+      <trans-unit id="order_by_price_ascending">
+        <source>Preis (niedrigste zuerst)</source>
+        <target>Prezzo (prima il più basso) </target>
+      </trans-unit>
+      <trans-unit id="order_by_price_descending">
+        <source>Preis (höchste zuerst)</source>
+        <target>Prezzo (prima il più alto) </target>
+      </trans-unit>
+      <trans-unit id="order_by_sku_ascending">
+        <source>Artikelnummer A - Z</source>
+        <target>Numero di parte A - Z</target>
+      </trans-unit>
+      <trans-unit id="order_by_sku_descending">
+        <source>Artikelnummer Z - A</source>
+        <target>Numero di parte Z - A</target>
+      </trans-unit>
+      <trans-unit id="order_by_stock_descending">
+        <source>Produkte an Lager zuerst</source>
+        <target>Prima i prodotti in magazzino</target>
+      </trans-unit>
+      <trans-unit id="order_by_title_ascending">
+        <source>Titel A - Z</source>
+        <target>Titolo A - Z</target>
+      </trans-unit>
+      <trans-unit id="order_by_title_descending">
+        <source>Titel Z - A</source>
+        <target>Titolo Z - A</target>
+      </trans-unit>
+      <trans-unit id="order_confirmation">
+        <source>Bestellbestätigung</source>
+        <target>Conferma di ordinazione</target>
+      </trans-unit>
+      <trans-unit id="order_date">
+        <source>Bestellung aufgegeben</source>
+        <target>Ordinazione spedita</target>
+      </trans-unit>
+      <trans-unit id="order_delivery_address">
+        <source>Versandadresse</source>
+        <target>Indirizzo di spedizione</target>
+      </trans-unit>
+      <trans-unit id="order_estimated_delivery_date">
+        <source>Vorauss. Zustelldatum</source>
+        <target>Presunta data di consegna</target>
+      </trans-unit>
+      <trans-unit id="order_for">
+        <source>Bestellen für {name}</source>
+        <target>Ordina per {name}</target>
+      </trans-unit>
+      <trans-unit id="order_nr">
+        <source>Bestellnummer</source>
+        <target>Numero d’ordinazione</target>
+      </trans-unit>
+      <trans-unit id="order_number">
+        <source>Bestellnr.</source>
+        <target>Numero d’ordinazione:</target>
+      </trans-unit>
+      <trans-unit id="order_overview">
+        <source>Bestellübersicht</source>
+        <target>Panoramica dell’ordinazione</target>
+      </trans-unit>
+      <trans-unit id="order_status">
+        <source>Status</source>
+        <target>Stato</target>
+      </trans-unit>
+      <trans-unit id="order_status_invalid">
+        <source>Storniert</source>
+        <target>Stornata</target>
+      </trans-unit>
+      <trans-unit id="order_status_processing">
+        <source>In Bearbeitung</source>
+        <target>In preparazione</target>
+      </trans-unit>
+      <trans-unit id="order_status_shipped">
+        <source>Geliefert</source>
+        <target>Consegnata</target>
+      </trans-unit>
+      <trans-unit id="order_success">
+        <source>Ihre Bestellung war erfolgreich.</source>
+        <target>L’ordinazione è stata effettuata correttamente.</target>
+      </trans-unit>
+      <trans-unit id="order_success_details">
+        <source>Vielen Dank für Ihre Bestellung. Wir werden Sie benachrichtigen, sobald Ihr(e) Produkte versandt wurde(n). &lt;br/&gt;Um Ihre Bestellung anzusehen, besuchen Sie Ihr &lt;a href="{portalPath}"&gt;persönliches Kundenportal&lt;/a&gt;.</source>
+        <target>Grazie per l’ordinazione. Vi invieremo una notifica non appena i vostri prodotti saranno spediti. &lt;br/&gt;Per visualizzare la vostra ordinazione, visitate il vostro&lt;a href="{portalPath}"&gt;portale clienti personale&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="order_sum">
+        <source>Summe inkl. MwSt.</source>
+        <target>Somma IVA inclusa</target>
+      </trans-unit>
+      <trans-unit id="order_summary">
+        <source>Zusammenfassung Ihrer Bestellung</source>
+        <target>Riassunto della vostra ordinazione</target>
+      </trans-unit>
+      <trans-unit id="orders">
+        <source>Bestellungen</source>
+        <target>Ordinazioni</target>
+      </trans-unit>
+      <trans-unit id="orders_empty">
+        <source>Es sind noch keine Bestellungen eingegangen.</source>
+        <target>Ancora nessun ordine</target>
+      </trans-unit>
+      <trans-unit id="original_recipe">
+        <source>Datei auswählen oder hereinziehen, Kundendaten eingeben und an Publicare übermitteln.</source>
+        <target>Ricetta originale</target>
+      </trans-unit>
+      <trans-unit id="ostomy_care">
+        <source>Stomaversorgung</source>
+        <target>Cura della stomia</target>
+      </trans-unit>
+      <trans-unit id="out_of_stock">
+        <source>Nicht an Lager</source>
+        <target>Non in magazzino</target>
+      </trans-unit>
+      <trans-unit id="out_of_stock_small">
+        <source>Nicht an Lager</source>
+        <target>Non in magazzino</target>
+      </trans-unit>
+      <trans-unit id="overview">
+        <source>Übersicht</source>
+        <target>Panoramica</target>
+      </trans-unit>
+      <trans-unit id="password">
+        <source>Passwort</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="password_changed">
+        <source>Passwort erfolgreich geändert</source>
+        <target>Password modificata correttamente</target>
+      </trans-unit>
+      <trans-unit id="past_orders">
+        <source>Letzte Bestellungen</source>
+        <target>Ultime ordinazioni</target>
+      </trans-unit>
+      <trans-unit id="pharma_code_label">
+        <source>Pharmacode</source>
+        <target>Pharmacode</target>
+      </trans-unit>
+      <trans-unit id="portal_institution">
+        <source>Übersicht Kundenportal</source>
+        <target>Panoramica portale cliente</target>
+      </trans-unit>
+      <trans-unit id="postalCode">
+        <source>Postleitzahl</source>
+        <target>Numero postale di avviamento</target>
+      </trans-unit>
+      <trans-unit id="preview_recipe_with_signature">
+        <source>Rezept mit Unterschrift anschauen</source>
+        <target>Guarda la ricetta con la tua firma</target>
+      </trans-unit>
+      <trans-unit id="price_including_taxes">
+        <source>Preis inkl. MwSt.</source>
+        <target>Prezzo IVA inclusa</target>
+      </trans-unit>
+      <trans-unit id="primary_address">
+        <source>Hauptadresse/Wohnadresse</source>
+        <target>Indirizzo principale</target>
+      </trans-unit>
+      <trans-unit id="print">
+        <source>Ausdrucken (PDF)</source>
+        <target>Stampa (PDF)</target>
+      </trans-unit>
+      <trans-unit id="print_message">
+        <source>Mitteilung drucken</source>
+        <target>Stampa messaggio</target>
+      </trans-unit>
+      <trans-unit id="privacy">
+        <source>Datenschutz</source>
+        <target>Protezione dei dati</target>
+      </trans-unit>
+      <trans-unit id="private_customer">
+        <source>Privatkunde</source>
+        <target>Clienti privati</target>
+      </trans-unit>
+      <trans-unit id="product_details">
+        <source>Produktedetails</source>
+        <target>Dettagli prodotti</target>
+      </trans-unit>
+      <trans-unit id="product_inactive">
+        <source>Dieses Produkt ist unter dieser Artikelnummer nicht mehr bestellbar. Bitte benutzen Sie die Freitextsuche oder gehen Sie über die Produktkategorien. In den meisten Fällen führen wir das Produkt von einem anderen Lieferanten oder haben einen Ersatzartikel oder eine Alternative.</source>
+        <target>Questo prodotto non può più essere ordinato con questo numero di articolo. Si prega di utilizzare la ricerca a testo libero o di passare attraverso le categorie di prodotti. Nella maggior parte dei casi trasportiamo il prodotto da un altro fornitore o abbiamo un articolo sostitutivo o un’alternativa.</target>
+      </trans-unit>
+      <trans-unit id="product_name">
+        <source>Artikelnummer</source>
+        <target>Codice articolo</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_custom_assortment_override">
+        <source>Trotzdem bestellen</source>
+        <target>Ordinare comunque</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_customer_assortment">
+        <source>Dieses Produkt ist ausserhalb vom definierten «Sortiment für unsere Kunden». Laut Ihrer Berechtigung sollten Sie wenn möglich nur Produkte aus dieser Auswahl bestellen.</source>
+        <target>Questo prodotto è al di fuori dell assortimento definito "per i nostri clienti". In base al loro diritto si dovrebbe, se possibile, ordinare solo i prodotti di questa selezione.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_customer_assortment_strict">
+        <source>Sie haben keine Berechtigung ausserhalb vom definierten „Sortiment für unsere Kunden“ zu bestellen. Bitte wenden Sie sich an Ihren Administrator.</source>
+        <target>Non siete autorizzati ad ordinare al di fuori dell'assortimento definito per i nostri clienti. Contattate il vostro amministratore.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_institution_assortment">
+        <source>Dieses Produkt ist ausserhalb vom definierten «Institutionssortiment» und sollte nicht auf die Institution bestellt werden. Laut Ihrer Berechtigung sollten Sie wenn möglich nur Produkte aus dieser Auswahl bestellen.</source>
+        <target>Questo prodotto non rientra nella «gamma istituzionale» definita e non deve essere ordinato presso l'istituto. In base alla loro autorizzazione, si dovrebbe, se possibile, ordinare solo i prodotti di questa selezione.</target>
+      </trans-unit>
+      <trans-unit id="product_not_in_institution_assortment_strict">
+        <source>Dieses Produkt kann nicht in den Institutions-Warenkorb abgelegt werden, da es nicht im Institutionssortiment vorhanden ist. Bitte wenden Sie sich an ihren Administrator.</source>
+        <target>Questo prodotto non può essere aggiunto al carrello istituzionale, in quanto non è disponibile nell'assortimento istituzionale. Contattate il vostro amministratore.</target>
+      </trans-unit>
+      <trans-unit id="product_suggestions">
+        <source>Auch interessant für Sie</source>
+        <target>Potrebbe interessarvi anche</target>
+      </trans-unit>
+      <trans-unit id="product_variations">
+        <source>Weitere Varianten dieses Produkts</source>
+        <target>Altre varianti di questo prodotto</target>
+      </trans-unit>
+      <trans-unit id="products">
+        <source>Produkte</source>
+        <target>Prodotti</target>
+      </trans-unit>
+      <trans-unit id="products_search">
+        <source>Produkte filtern</source>
+        <target>Filtra prodotti</target>
+      </trans-unit>
+      <trans-unit id="published">
+        <source>Datum</source>
+        <target>Data</target>
+      </trans-unit>
+      <trans-unit id="quantity">
+        <source>Anzahl</source>
+        <target>Quantità</target>
+      </trans-unit>
+      <trans-unit id="questions_contact_us">
+        <source>Bei Fragen nehmen Sie bitte mit uns &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer"&gt; &lt;b&gt; Kontakt &lt;/b&gt; &lt;/a&gt; auf.</source>
+        <target>In caso di domande non esitate a &lt;a href="{contactPath}" target="_blank" rel="noopener noreferrer"&gt;contattarci&lt;/a&gt;.</target>
+      </trans-unit>
+      <trans-unit id="recent_clients">
+        <source>Häufig genutzte Kunden</source>
+        <target>Clienti usati frequentemente</target>
+      </trans-unit>
+      <trans-unit id="recipe">
+        <source>Rezept</source>
+        <target>Ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_after">
+        <source>Vorbezug der Produkte - Rezept folgt</source>
+        <target>Preacquisto dei prodotti – seguirà la ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_articles">
+        <source>Rezept-Artikel</source>
+        <target>Articolo con ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_change_type">
+        <source>ändern</source>
+        <target>modifica</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_second_step_subtitle">
+        <source>Empfehlung für diese Bestellung</source>
+        <target>Suggerimento per questa ordinazione</target>
+      </trans-unit>
+      <trans-unit id="recipe_form_select">
+        <source>auswählen</source>
+        <target>seleziona</target>
+      </trans-unit>
+      <trans-unit id="recipe_mediator">
+        <source>Vermittler</source>
+        <target>Mediatore</target>
+      </trans-unit>
+      <trans-unit id="recipe_mode_direct">
+        <source>Ich bin Rezeptierer/Arzt und will das Dokument direkt unterschreiben</source>
+        <target>Sono un medico prescrittore/medico e voglio firmare direttamente il documento</target>
+      </trans-unit>
+      <trans-unit id="recipe_mode_manual">
+        <source>Ich bin Therapeut/Vermittler und will das Dokument zum Rezeptierer weiterleiten</source>
+        <target>Sono un terapeuta/mediatore e desidero inoltrare il documento al medico prescrittore</target>
+      </trans-unit>
+      <trans-unit id="recipe_no">
+        <source>Ohne Rezept bestellen</source>
+        <target>Ordina senza ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_person_data">
+        <source>Angaben zur Person</source>
+        <target>Dati sulla persona</target>
+      </trans-unit>
+      <trans-unit id="recipe_preview">
+        <source>Rezept-Vorschau</source>
+        <target>Anteprima ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_preview_link">
+        <source>Rezept-Vorschau in neuem Fenster öffnen</source>
+        <target>Apri l'anteprima della ricetta in una nuova finestra</target>
+      </trans-unit>
+      <trans-unit id="recipe_publicare">
+        <source>Rezept bei Publicare</source>
+        <target>Ricetta medica da Publicare</target>
+      </trans-unit>
+      <trans-unit id="recipe_ready_for_submission">
+        <source>Das Rezept ist bereit zum Versand oder zur Unterschrift</source>
+        <target>La ricetta è pronta per essere inviata o firmata or</target>
+      </trans-unit>
+      <trans-unit id="recipe_sign_mail_body">
+        <source>Guten Tag,%0A%0Awir würden Sie bitten das Rezept für unseren Kunden {customer} zu unterschreiben und zu retournieren.%0A%0AHier können Sie das Rezept herunterladen: {recipe}%0A%0ADieses Rezept wurde mit dem Rezeptgenerator von Publicare AG erstellt.%0A%0AFreundliche Grüsse</source>
+        <target>TRANSLATE: recipe_sign_mail_body {customer} {recipe}</target>
+      </trans-unit>
+      <trans-unit id="recipe_sign_mail_subject">
+        <source>Rezept zur Unterschrift bereit ({customer})</source>
+        <target>TRANSLATE: recipe_sign_mail_subject {customer}</target>
+      </trans-unit>
+      <trans-unit id="recipe_signature">
+        <source>Digitale Signatur</source>
+        <target>Firma digitale</target>
+      </trans-unit>
+      <trans-unit id="recipe_status">
+        <source>Status</source>
+        <target>recipe_status</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_draft">
+        <source>unvollständig</source>
+        <target>incompleto</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_final">
+        <source>unterschrieben &amp; übermittelt</source>
+        <target>firmato e trasmesso</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_ready">
+        <source>bereit zur Unterschrift</source>
+        <target>pronto per la firma</target>
+      </trans-unit>
+      <trans-unit id="recipe_status_sent">
+        <source>an Rezeptierer versendet</source>
+        <target>inviato al medico prescrittore</target>
+      </trans-unit>
+      <trans-unit id="recipe_type">
+        <source>Rezepttyp</source>
+        <target>Tipo di ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_upload">
+        <source>Rezept hochladen</source>
+        <target>Carica ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipe_upload_ph">
+        <source>PDF (Bild), JPG oder PNG hochladen (maximal 10 Megabyte)</source>
+        <target>Carica PDF, JPG o PNG (massimo 10 megabyte)</target>
+      </trans-unit>
+      <trans-unit id="recipe_yes">
+        <source>Mit Rezept bestellen</source>
+        <target>Ordina con ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="recipes">
+        <source>Rezepte</source>
+        <target>Ricette</target>
+      </trans-unit>
+      <trans-unit id="reference">
+        <source>Ausgeführt durch / Bestellnummer</source>
+        <target>Eseguito da/numero di ordinazione</target>
+      </trans-unit>
+      <trans-unit id="refine_result">
+        <source>Ergebnis verfeinern</source>
+        <target>Affina risultato</target>
+      </trans-unit>
+      <trans-unit id="register">
+        <source>Jetzt registrieren</source>
+        <target>Registra ora</target>
+      </trans-unit>
+      <trans-unit id="register_and_order">
+        <source>Jetzt registrieren und bestellen</source>
+        <target>Registratevi subito ed effettuate un’ordinazione</target>
+      </trans-unit>
+      <trans-unit id="register_intro_business_clients">
+        <source>Eröffnen Sie hier einen Online Account für Ihre Institution. Bitte geben Sie hier die allgemeinen Daten Ihrer Institution wie z.B. die zentrale Telefonnummer oder Email-Adresse an. Die einzelnen Mitarbeiter, die im Namen Ihrer Institution bestellen, können Sie in einem nächsten Schritt anlegen.</source>
+        <target>Aprite qui un account online per la vostra struttura. Inserite qui i dati generali della vostra struttura come ad esempio il numero di telefono centrale o l’indirizzo e-mail. I singoli collaboratori che effettuano ordinazioni a nome della vostra struttura possono essere impostati in un passaggio successivo.</target>
+      </trans-unit>
+      <trans-unit id="registration">
+        <source>Anmeldung</source>
+        <target>Iscrizione</target>
+      </trans-unit>
+      <trans-unit id="registration_corporate">
+        <source>Registration als Geschäftskunde</source>
+        <target>Registrazione come cliente commerciale</target>
+      </trans-unit>
+      <trans-unit id="registration_popup_corporate">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet - danach sehen Sie Ihre persönlichen Preise und Ihre bisherigen Bestellungen. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellungen aufgeben. Besten Dank für Ihre Geduld.</source>
+        <target>A breve riceverete una e-mail con i dati di accesso. I vostri dati sono soggetti a verifica interna. Il vostro account sarà attivato entro un giorno lavorativo. Potrete quindi vedere i vostri prezzi personali e le ordinazioni finora effettuate. Potete utilizzare fin da ora tutti i servizi e inoltrare le vostre ordinazioni. Grazie.</target>
+      </trans-unit>
+      <trans-unit id="registration_popup_private">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellung aufgeben. Besten Dank für Ihre Geduld. </source>
+        <target>A breve riceverete una e-mail con i dati di accesso. I vostri dati sono soggetti a verifica interna. Il vostro account sarà attivato entro un giorno lavorativo. Potete utilizzare fin da ora tutti i servizi e inoltrare la vostra ordinazione. Grazie. </target>
+      </trans-unit>
+      <trans-unit id="registration_popup_private_existing">
+        <source>Sie erhalten in Kürze eine E-Mail mit den Zugangsdaten. Ihre Eingaben werden intern geprüft. Ihr Account wird innerhalb von einem Arbeitstag freigeschaltet - danach sehen Sie Ihre bisherigen Bestellungen. Sie können bereits jetzt schon alle Services nutzen und Ihre Bestellungen aufgeben. Besten Dank für Ihre Geduld.</source>
+        <target>A breve riceverete una e-mail con i dati di accesso. I vostri dati sono soggetti a verifica interna. Il vostro account sarà attivato entro un giorno lavorativo. Potrete quindi vedere le ordinazioni finora effettuate. Potete utilizzare fin da ora tutti i servizi e inoltrare le vostre ordinazioni. Grazie.</target>
+      </trans-unit>
+      <trans-unit id="registration_private">
+        <source>Registration als Privatperson</source>
+        <target>Registrazione come privato</target>
+      </trans-unit>
+      <trans-unit id="remove">
+        <source>Entfernen</source>
+        <target>Cancellare</target>
+      </trans-unit>
+      <trans-unit id="remove_cutting">
+        <source>Zuschnitt entfernen</source>
+        <target>Rimuovi ritaglio</target>
+      </trans-unit>
+      <trans-unit id="remove_favorite_list">
+        <source>Favoritenliste löschen</source>
+        <target>Cancella lista dei preferiti</target>
+      </trans-unit>
+      <trans-unit id="remove_favorite_list_confirmation">
+        <source>Sind Sie sicher dass sie die aktuell ausgewählte Favoritenliste löschen möchten?</source>
+        <target>Desiderate davvero cancellare la lista dei preferiti selezionata?</target>
+      </trans-unit>
+      <trans-unit id="remove_product_from_favorite_list_confirmation">
+        <source>Sind Sie sicher dass Sie dieses Produkt von der Favoritenliste löschen möchten?</source>
+        <target>Sei sicuro di voler eliminare questo prodotto dalla tua lista dei preferiti?</target>
+      </trans-unit>
+      <trans-unit id="remove_product_from_order_list_confirmation">
+        <source>Möchten Sie dieses Produkt wirklich löschen?</source>
+        <target>Sei sicuro di voler eliminare questo prodotto?</target>
+      </trans-unit>
+      <trans-unit id="residence">
+        <source>Wohnort</source>
+        <target>Luogo di residenza</target>
+      </trans-unit>
+      <trans-unit id="role">
+        <source>Berechtigung</source>
+        <target>Autorizzazione</target>
+      </trans-unit>
+      <trans-unit id="role_admin">
+        <source>Administrator</source>
+        <target>Amministratore</target>
+      </trans-unit>
+      <trans-unit id="role_orderer">
+        <source>Besteller</source>
+        <target>Ordinante</target>
+      </trans-unit>
+      <trans-unit id="role_orderer_restricted">
+        <source>Besteller nur Kundensortiment</source>
+        <target>Assortimento clienti solo per i clienti</target>
+      </trans-unit>
+      <trans-unit id="role_orderer_restricted_strict">
+        <source>Besteller nur Kundensortiment (Strikt)</source>
+        <target>Assortimento clienti solo per i clienti ordinanti (Strict)</target>
+      </trans-unit>
+      <trans-unit id="role_user">
+        <source>Kunde</source>
+        <target>Cliente</target>
+      </trans-unit>
+      <trans-unit id="save">
+        <source>Speichern</source>
+        <target>Salva</target>
+      </trans-unit>
+      <trans-unit id="save_address">
+        <source>Adresse speichern</source>
+        <target>Salva indirizzo</target>
+      </trans-unit>
+      <trans-unit id="save_client">
+        <source>Kunden anlegen</source>
+        <target>Imposta cliente</target>
+      </trans-unit>
+      <trans-unit id="save_profile">
+        <source>Speichern</source>
+        <target>Salva</target>
+      </trans-unit>
+      <trans-unit id="save_settings">
+        <source>Speichern</source>
+        <target>Salva</target>
+      </trans-unit>
+      <trans-unit id="scribble_digital_signature">
+        <source>Unterschrift digital (im Feld unten unterschreiben)</source>
+        <target>Firma digitale (firma qui)</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>Suchen</source>
+        <target>Cerca</target>
+      </trans-unit>
+      <trans-unit id="search_client">
+        <source>Kunde suchen</source>
+        <target>Cerca cliente</target>
+      </trans-unit>
+      <trans-unit id="search_results_empty">
+        <source>Es wurden keine Produkte gefunden</source>
+        <target>Non sono stati trovati prodotti.</target>
+      </trans-unit>
+      <trans-unit id="search_results_quantity_text">
+        <source>erzielte Ergebnisse</source>
+        <target>risultati ottenuti</target>
+      </trans-unit>
+      <trans-unit id="search_results_title">
+        <source>Ergebnis für:</source>
+        <target>Risultato per:</target>
+      </trans-unit>
+      <trans-unit id="send_code">
+        <source>Code senden</source>
+        <target>Invia codice</target>
+      </trans-unit>
+      <trans-unit id="send_email">
+        <source>Passwort zurücksetzen</source>
+        <target>Ripristina password</target>
+      </trans-unit>
+      <trans-unit id="send_message">
+        <source>Mitteilung abschicken</source>
+        <target>Invia messaggio</target>
+      </trans-unit>
+      <trans-unit id="send_per_mail">
+        <source>per E-Mail versenden</source>
+        <target>inviare per email</target>
+      </trans-unit>
+      <trans-unit id="send_sign">
+        <source>Senden / Unterschreiben</source>
+        <target>Invia / Firma</target>
+      </trans-unit>
+      <trans-unit id="sent_recipe_checkbox">
+        <source>Ich habe das Rezept weitergeleitet</source>
+        <target>ho inoltrato la ricetta</target>
+      </trans-unit>
+      <trans-unit id="services">
+        <source>Dienstleistungen</source>
+        <target>Servizi</target>
+      </trans-unit>
+      <trans-unit id="set_primary_address">
+        <source>Als Hauptadresse/Wohnadresse melden</source>
+        <target>Comunicare il nuovo indirizzo di casa</target>
+      </trans-unit>
+      <trans-unit id="settings">
+        <source>Einstellungen</source>
+        <target>Impostazioni</target>
+      </trans-unit>
+      <trans-unit id="share_story">
+        <source>Beitrag teilen</source>
+        <target>Condividi post</target>
+      </trans-unit>
+      <trans-unit id="shop">
+        <source>Shop</source>
+        <target>Shop</target>
+      </trans-unit>
+      <trans-unit id="show">
+        <source>Anzeigen</source>
+        <target>Visualizza</target>
+      </trans-unit>
+      <trans-unit id="show_all">
+        <source>Alle anzeigen</source>
+        <target>Visualizza tutti</target>
+      </trans-unit>
+      <trans-unit id="show_more">
+        <source>Weitere anzeigen</source>
+        <target>Visualizza altro</target>
+      </trans-unit>
+      <trans-unit id="show_optional_fields">
+        <source>Optionale Angaben einblenden</source>
+        <target>Apri dati opzionali</target>
+      </trans-unit>
+      <trans-unit id="show_programm_details">
+        <source>Programm anzeigen</source>
+        <target>Visualizza programma</target>
+      </trans-unit>
+      <trans-unit id="signature_missing">
+        <source>Sie müssen entweder digital unterschreiben oder eine Unterschrift als Bild hochladen</source>
+        <target>Devi firmare digitalmente o caricare una firma come immagine</target>
+      </trans-unit>
+      <trans-unit id="signup">
+        <source>Registration</source>
+        <target>Iscriviti</target>
+      </trans-unit>
+      <trans-unit id="signup_delivery_note">
+        <source>Registrationen und Lieferungen sind nur für die Schweiz und Liechtenstein zugelassen.</source>
+        <target>Le registrazioni e le consegne sono consentite solo per la Svizzera e il Liechtenstein.</target>
+      </trans-unit>
+      <trans-unit id="siteplan">
+        <source>Lageplan</source>
+        <target>Mappa</target>
+      </trans-unit>
+      <trans-unit id="sort_after">
+        <source>Sortieren nach</source>
+        <target>Filtra per</target>
+      </trans-unit>
+      <trans-unit id="sort_after_number_down">
+        <source>Artikel Nummer absteigend</source>
+        <target>Numero d’articolo in ordine decrescente</target>
+      </trans-unit>
+      <trans-unit id="sort_after_number_up">
+        <source>Artikel Nummer aufsteigend</source>
+        <target>Numero d’articolo in ordine crescente</target>
+      </trans-unit>
+      <trans-unit id="sort_after_relevance">
+        <source>Relevanz</source>
+        <target>Rilevanza</target>
+      </trans-unit>
+      <trans-unit id="sortiment">
+        <source>Sortiment</source>
+        <target>Assortimento</target>
+      </trans-unit>
+      <trans-unit id="sortiment_list">
+        <source>Sortimentsliste</source>
+        <target>Lista assortimento</target>
+      </trans-unit>
+      <trans-unit id="speakers">
+        <source>{speakersCount, plural, one {Referent} other {Referenten}}</source>
+        <target>{speakersCount, plural, one {Relatore} other {Relatori}}</target>
+      </trans-unit>
+      <trans-unit id="split_order">
+        <source>Ich möchte eine Teillieferung</source>
+        <target>Desidero una consegna parziale</target>
+      </trans-unit>
+      <trans-unit id="start_leave">
+        <source>Austritt melden?</source>
+        <target>Segnalare rilascio?</target>
+      </trans-unit>
+      <trans-unit id="stoma">
+        <source>Stomaversorgung</source>
+        <target>Stomies</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_default">
+        <source>Ausschneiden</source>
+        <target>Découper</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_label">
+        <source>Zuschnitt</source>
+        <target>Découpe</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_cut_template">
+        <source>Ausschneiden gemäss Schablone</source>
+        <target>Découper selon gabarit</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_label">
+        <source>KLV / MiGeL Kapitel 29. / 35. / 99.</source>
+        <target>OPAS / LiMA chapitre 29. / 35. / 99.</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_colostomie">
+        <source>Colostomie</source>
+        <target>Colostomie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_fistel">
+        <source>Fistel</source>
+        <target>Fistule</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_ileostomie">
+        <source>Ileostomie</source>
+        <target>Iléostomie</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="stoma_klv_variation_urostomie">
+        <source>Urostomie</source>
+        <target>Urostomie</target>
+      </trans-unit>
+      <trans-unit id="stories">
+        <source>Stories</source>
+        <target>Stories</target>
+      </trans-unit>
+      <trans-unit id="stories_intro">
+        <source>Publicare Stories</source>
+        <target>Publicare Stories</target>
+      </trans-unit>
+      <trans-unit id="stories_lead">
+        <source>Aktuelle News und Geschichten rund um Publicare</source>
+        <target>Ultime novità e storie su Publicare</target>
+      </trans-unit>
+      <trans-unit id="stories_link_to_all">
+        <source>Alle Stories</source>
+        <target>Tutte le stories</target>
+      </trans-unit>
+      <trans-unit id="street">
+        <source>Strasse</source>
+        <target>Via</target>
+      </trans-unit>
+      <trans-unit id="subject">
+        <source>Betreff</source>
+        <target>Oggetto</target>
+      </trans-unit>
+      <trans-unit id="submit">
+        <source>Senden</source>
+        <target>Invia</target>
+      </trans-unit>
+      <trans-unit id="submit_publicare">
+        <source>An Publicare übermitteln</source>
+        <target>Invia a Publicare</target>
+      </trans-unit>
+      <trans-unit id="success_mark_left">
+        <source>Der Account wird in 2-4 Arbeitstagen aus Ihrem System entfernt. Wenn Sie Fragen haben, kontaktieren Sie unseren Kundendienst.</source>
+        <target>L’account sarà rimosso dal vostro sistema entro 2–4 giorni lavorativi. Per qualsiasi domanda contattate il nostro servizio clienti.</target>
+      </trans-unit>
+      <trans-unit id="success_user_profile">
+        <source>Kontaktinformationen wurden aktualisert</source>
+        <target>Le informazioni di contatto sono state aggiornate</target>
+      </trans-unit>
+      <trans-unit id="success_user_settings">
+        <source>Konto aktualisiert</source>
+        <target>Profilo aggiornato</target>
+      </trans-unit>
+      <trans-unit id="swissmedic">
+        <source>Swissmedic: Abgabekategorie {categories}</source>
+        <target>Swissmedic: categoria invio {categories}</target>
+      </trans-unit>
+      <trans-unit id="switch_off">
+        <source>Aus</source>
+        <target>In uscita</target>
+      </trans-unit>
+      <trans-unit id="switch_on">
+        <source>Ein</source>
+        <target>in entrata</target>
+      </trans-unit>
+      <trans-unit id="switzerland">
+        <source>Schweiz</source>
+        <target>Svizzera</target>
+      </trans-unit>
+      <trans-unit id="team">
+        <source>Team</source>
+        <target>Team</target>
+      </trans-unit>
+      <trans-unit id="telephone">
+        <source>Telefon</source>
+        <target>Telefono</target>
+      </trans-unit>
+      <trans-unit id="telephoneNumber">
+        <source>Telefonnummer</source>
+        <target>Numero di telefono</target>
+      </trans-unit>
+      <trans-unit id="terms">
+        <source>AGB</source>
+        <target>CG</target>
+      </trans-unit>
+      <trans-unit id="time_of_day">
+        <source>Uhr</source>
+        <target>Ora</target>
+      </trans-unit>
+      <trans-unit id="to_the_example_sets">
+        <source>Zu den Mustersets</source>
+        <target>Ai set di modelli</target>
+      </trans-unit>
+      <trans-unit id="topic">
+        <source>Thema</source>
+        <target>Argomento</target>
+      </trans-unit>
+      <trans-unit id="topic_general">
+        <source>Allgemein</source>
+        <target>Generale</target>
+      </trans-unit>
+      <trans-unit id="total_delivery">
+        <source>Liefergebühren</source>
+        <target>Spese di consegna</target>
+      </trans-unit>
+      <trans-unit id="total_including_taxes">
+        <source>Total inkl. MwSt.</source>
+        <target>Totale incl. IVA</target>
+      </trans-unit>
+      <trans-unit id="total_items">
+        <source>Zwischensumme</source>
+        <target>Somma parziale</target>
+      </trans-unit>
+      <trans-unit id="total_products">
+        <source>{total, plural, one {# Produkt} other {# Produkte}  }</source>
+        <target>{total, plural, one {# Produkt} other {# Produkte} }</target>
+      </trans-unit>
+      <trans-unit id="total_taxes">
+        <source>Davon MwSt.</source>
+        <target>Di cui IVA</target>
+      </trans-unit>
+      <trans-unit id="tracheo">
+        <source>Tracheostoma - Hilfsmittel</source>
+        <target>Accessoires pour trachéostome</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_label">
+        <source>KLV/MiGeL Kapitel 01./14./31./99.</source>
+        <target>OPAS / LiMA chapitre 01./14./31./99.</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_laryngektomie">
+        <source>Laryngektomie</source>
+        <target>Laryngectomie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_klv_variation_tracheotomie">
+        <source>Tracheotomie</source>
+        <target>Trachéotomie</target>
+      </trans-unit>
+      <trans-unit id="tracheo_ostomy_care">
+        <source>Tracheostomaversorgung</source>
+        <target>Cura della tracheostomia</target>
+      </trans-unit>
+      <trans-unit id="training">
+        <source>Academy</source>
+        <target>Academy</target>
+      </trans-unit>
+      <trans-unit id="treatment_customer">
+        <source>Verrechnung an Kunde</source>
+        <target>Fatturazione al cliente</target>
+      </trans-unit>
+      <trans-unit id="treatment_institution">
+        <source>Ihre Institution</source>
+        <target>La vostra struttura</target>
+      </trans-unit>
+      <trans-unit id="treatment_insurance">
+        <source>Versicherung des Kunden</source>
+        <target>Assicurazione del cliente</target>
+      </trans-unit>
+      <trans-unit id="treatment_unknown">
+        <source>-</source>
+        <target>-</target>
+      </trans-unit>
+      <trans-unit id="unit">
+        <source>Einheit</source>
+        <target>Unità</target>
+      </trans-unit>
+      <trans-unit id="unknown_delivery">
+        <source>Aktuell nicht lieferbar</source>
+        <target>Attualmente non disponibile</target>
+      </trans-unit>
+      <trans-unit id="unsupported_browser">
+        <source>Ihr Webbrowser ist veraltet. Einige Funktionen können möglicherweise nicht richtig angezeigt werden. Klicken Sie hier für mehr Informationen und zum Herunterladen eines aktuellen Browsers.</source>
+        <target>Il vostro browser web è obsoleto. Alcune funzioni potrebbero non essere visualizzate correttamente. Clicca qui per maggiori informazioni e per scaricare un browser aggiornato.</target>
+      </trans-unit>
+      <trans-unit id="upload_another_recipe">
+        <source>Weiteres Rezept hochladen</source>
+        <target>Carica altra ricetta medica</target>
+      </trans-unit>
+      <trans-unit id="upload_digital_signature">
+        <source>Stempel / Unterschrift digital als Bild einfügen</source>
+        <target>Inserisci timbro / firma digitalmente come immagine</target>
+      </trans-unit>
+      <trans-unit id="upload_existing_recipe">
+        <source>Bestehendes Rezept hochladen</source>
+        <target>Carica ricetta medica esistente</target>
+      </trans-unit>
+      <trans-unit id="upload_original_recipe">
+        <source>Original Rezept hochladen</source>
+        <target>Carica la ricetta originale</target>
+      </trans-unit>
+      <trans-unit id="upload_recipe">
+        <source>Unterschriebenes Rezept hochladen</source>
+        <target>Carica la ricetta firmata</target>
+      </trans-unit>
+      <trans-unit id="upload_signed_recipe">
+        <source>Unterschr. Rezept hochladen &amp; übermitteln</source>
+        <target>Firma Carica e invia la ricetta</target>
+      </trans-unit>
+      <trans-unit id="uploader_button">
+        <source>Datei auswählen oder hereinziehen</source>
+        <target>Seleziona o trascina file</target>
+      </trans-unit>
+      <trans-unit id="usage_by_invoice">
+        <source>Selbstanwendung: Krankenkasse/Versicherung Kunde</source>
+        <target>Applicazione autonoma: cassa malati/assicurazione cliente</target>
+      </trans-unit>
+      <trans-unit id="usage_by_own_institution">
+        <source>Fachanwendung: Ihre Institution</source>
+        <target>Applicazione da parte di uno specialista: la vostra struttura</target>
+      </trans-unit>
+      <trans-unit id="user_account">
+        <source>Anmeldedaten</source>
+        <target>Dati di iscrizione</target>
+      </trans-unit>
+      <trans-unit id="user_additional_info">
+        <source>Weitere Informationen</source>
+        <target>Maggiori informazioni</target>
+      </trans-unit>
+      <trans-unit id="user_addresses">
+        <source>Adressen</source>
+        <target>Indirizzi</target>
+      </trans-unit>
+      <trans-unit id="user_contact">
+        <source>Kontaktinformationen</source>
+        <target>Informazioni di contatto</target>
+      </trans-unit>
+      <trans-unit id="user_contact_corporate">
+        <source>Informationen zur Institution</source>
+        <target>Informazioni sulla struttura</target>
+      </trans-unit>
+      <trans-unit id="user_insurance">
+        <source>Informationen zur Versicherung</source>
+        <target>Informazioni sull’assicurazione</target>
+      </trans-unit>
+      <trans-unit id="user_management">
+        <source>Benutzerverwaltung</source>
+        <target>Gestione utenti</target>
+      </trans-unit>
+      <trans-unit id="user_notification_settings_invalid_combination">
+        <source>Kombination ungültig</source>
+        <target>Combinazione non valida</target>
+      </trans-unit>
+      <trans-unit id="user_notifications">
+        <source>Benachrichtigungen</source>
+        <target>Notifiche</target>
+      </trans-unit>
+      <trans-unit id="user_roles">
+        <source>Berechtigung</source>
+        <target>Autorizzazione</target>
+      </trans-unit>
+      <trans-unit id="user_settings_title">
+        <source>Meine Einstellungen</source>
+        <target>Le mie impostazioni</target>
+      </trans-unit>
+      <trans-unit id="user_utilization">
+        <source>Fachanwendung / Selbstanwendung</source>
+        <target>Applicazione a cura di uno specialista/applicazione autonoma</target>
+      </trans-unit>
+      <trans-unit id="utilization_catether">
+        <source>Verweilkatheter</source>
+        <target>Catetere permanente</target>
+      </trans-unit>
+      <trans-unit id="utilization_compression">
+        <source>Kompressionstherapie</source>
+        <target>Terapia compressiva</target>
+      </trans-unit>
+      <trans-unit id="utilization_inko_help">
+        <source>Inkontinenzhilfen</source>
+        <target>Mezzi ausiliari per l’incontinenza</target>
+      </trans-unit>
+      <trans-unit id="utilization_settings_change_request">
+        <source>Wünschen Sie Änderungen an diesen Einstellungen? Dann kontaktieren Sie bitte unseren</source>
+        <target>Desiderate apportare delle modifiche a queste impostazioni? Vi invitiamo a contattare il nostro</target>
+      </trans-unit>
+      <trans-unit id="utilization_settings_change_request_hotline">
+        <source>Kundendienst</source>
+        <target>servizio clienti</target>
+      </trans-unit>
+      <trans-unit id="utilization_standard">
+        <source>Folgende Einstellungen sind in Ihrem Profil als Standard hinterlegt:</source>
+        <target>Le seguenti impostazioni sono definite come standard per il vostro profilo:</target>
+      </trans-unit>
+      <trans-unit id="utilization_stoma">
+        <source>Stomaartikel</source>
+        <target>Articoli per stomia</target>
+      </trans-unit>
+      <trans-unit id="utilization_wund">
+        <source>Wundbehandlung</source>
+        <target>Trattamento delle ferite</target>
+      </trans-unit>
+      <trans-unit id="welcome_portal">
+        <source>Willkommen in Ihrem Kundenportal,</source>
+        <target>Benvenuti nel vostro portale clienti,</target>
+      </trans-unit>
+      <trans-unit id="when">
+        <source>Wann</source>
+        <target>Quando</target>
+      </trans-unit>
+      <trans-unit id="where">
+        <source>Wo</source>
+        <target>Dove</target>
+      </trans-unit>
+      <trans-unit id="wound_treatment">
+        <source>Wundbehandlung</source>
+        <target>Trattamento delle ferite</target>
+      </trans-unit>
+      <trans-unit id="wrapping">
+        <source>Verpackung</source>
+        <target>Imballaggio</target>
+      </trans-unit>
+      <trans-unit id="wrapping_corona_alert">
+        <source>Aufgrund der aktuellen Pandemie-Situation bitten wir Sie, momentan darauf wenn immer möglich zu verzichten. Dies belastet unsere Logistik zusätzlich und kann auch für Ihren geschätzten Auftrag zu Lieferverzögerungen führen.</source>
+        <target>A causa dell'attuale situazione pandemica, vi chiediamo di astenervi dal farlo per il momento, se possibile. Ciò comporta un onere aggiuntivo per la nostra logistica e può anche portare a ritardi nella consegna per il vostro ordine stimato.</target>
+      </trans-unit>
+      <trans-unit id="wrapping_discrete_brown_paper">
+        <source>Diskret verpackt mit Packpapier</source>
+        <target>Imballaggio discreto con carta da imballaggio</target>
+      </trans-unit>
+      <trans-unit id="wrapping_without_brown_paper">
+        <source>Ohne Packpapier verpackt</source>
+        <target>Imballaggio senza carta da imballaggio</target>
+      </trans-unit>
+      <trans-unit id="wund">
+        <source>Wundbehandlung und Kompression</source>
+        <target>Articles pour soin des plaies et traitement compressif</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_label">
+        <source>KLV/MiGeL Kapitel 17./29./35./99.</source>
+        <target>OPAS / LiMA chapitre 17./29./35./99.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_illness">
+        <source>Krankheit</source>
+        <target>Maladie</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_incident">
+        <source>Unfall</source>
+        <target>Accident</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_invalidity">
+        <source>IV</source>
+        <target>AI</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_reason_label">
+        <source>Ursache</source>
+        <target>Cause</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_aktivecarbon">
+        <source>Aktivkohle, Limitation, Kap. 35.03.</source>
+        <target>Produits à base de charbon actif, limitation, chap.35.03.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_compress">
+        <source>Produkte zur Kompressionstherapie, Kap. 17.</source>
+        <target>Produits pour traitement compressif, chap.17.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_fistel">
+        <source>Material für die Fistelversorgung, Kap. 29.</source>
+        <target>Matériel pour le soin des fistules, chap.29.</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_label">
+        <source>Ausprägung</source>
+        <target>Manifestation</target>
+      </trans-unit>
+      <trans-unit id="wund_klv_variation_wund">
+        <source>Produkte zur Wundbehandlung exkl. Limitationen, Kap. 35./99.</source>
+        <target>Produits pour traiter les plaies à l‘excl. des limitations, chap.35./99.</target>
+      </trans-unit>
+      <trans-unit id="your_bag_is_empty">
+        <source>Ihr Warenkorb ist leer</source>
+        <target>Il vostro carrello è vuoto</target>
+      </trans-unit>
+      <trans-unit id="your_code">
+        <source>Ihr Zugangscode</source>
+        <target>Codice di accesso personale</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

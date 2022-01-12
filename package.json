@@ -20,6 +20,8 @@
   ],
   "dependencies": {
     "@apollo/client": "^3.5.6",
+    "@formatjs/intl-pluralrules": "^4.3.0",
+    "@formatjs/intl-relativetimeformat": "^9.5.0",
     "@graphql-tools/links": "^8.2.1",
     "@graphql-tools/wrap": "^8.3.2",
     "@headlessui/react": "^1.4.2",
@@ -28,10 +30,13 @@
     "apollo-server-micro": "^3.6.1",
     "apollo-server-plugin-response-cache": "^3.5.0",
     "apollo-upload-client": "^17.0.0",
+    "classnames": "^2.3.1",
     "cookie": "^0.4.1",
     "crypto-hash": "^2.0.1",
+    "date-fns": "^2.28.0",
     "deepmerge": "^4.2.2",
     "dotenv-extended": "^2.9.0",
+    "formik": "^2.2.9",
     "geoip-country": "^4.0.101",
     "graphql": "^16.2.0",
     "intl-messageformat": "^9.11.1",
@@ -41,9 +46,12 @@
     "next": "12.0.7",
     "next-transpile-modules": "^9.0.0",
     "react": "17.0.2",
+    "react-datepicker": "^4.6.0",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.22.5",
-    "react-intl": "^5.24.1"
+    "react-intl": "^5.24.1",
+    "simpl-schema": "^1.12.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.1",
