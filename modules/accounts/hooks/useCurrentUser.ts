@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 
-const CurrentUserQuery = gql`
+export const CurrentUserQuery = gql`
   query CurrentUser {
     me {
       _id

@@ -15,6 +15,7 @@ export default function LogInForm() {
       const { id, token, tokenExpires } = data.loginWithPassword;
       await storeLoginToken(id, token, new Date(tokenExpires));
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   };

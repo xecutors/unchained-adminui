@@ -1,46 +1,16 @@
 import cookie from 'cookie';
 import { ApolloClient, ApolloLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+
 import { createUploadLink } from 'apollo-upload-client';
-import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries';
-import { sha256 } from 'crypto-hash';
+
 import getConfig from 'next/config';
 import { onError } from '@apollo/client/link/error';
 import { onTokenChange } from '../../accounts/utils/store';
-import apolloCache, { resetCache } from './apolloCach';
+import apolloCache, { resetCache } from './apolloCache';
 
 const { publicRuntimeConfig } = getConfig() || {};
 
-const allowedHeaders = [
-  'accept-language',
-  'pragma',
-  'user-agent',
-  'x-forwarded-for',
-  'x-forwarded-host',
-  'x-forwarded-port',
-  'x-forwarded-proto',
-  'x-forwarded-server',
-  'x-mapihttpcapability',
-  'x-real-ip',
-  'x-user-identity',
-  'host',
-  'cookie',
-  'authorization',
-];
-
-const setLocale = (headers, locale) => {
-  const newHeaders = {
-    ...Object.fromEntries(
-      Object.entries(headers).filter(([key]) => {
-        return allowedHeaders.includes(key.toLowerCase());
-      }),
-    ),
-    'accept-language': locale,
-  };
-  return { headers: newHeaders };
-};
-
-function parseCookies(ctx = {}, options = {}) {
+export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
     ctx.req && ctx.req.headers && ctx.req.headers.cookie // eslint-disable-line
       ? ctx.req.headers.cookie
@@ -70,7 +40,7 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
 
   const fallback =
     headersOverride && headersOverride.host
-      ? `http://${headers.host}/graphql`
+      ? `http://${headersOverride.host}/graphql`
       : browserFallback;
   const httpLink = createUploadLink({
     uri: publicRuntimeConfig.GRAPHQL_ENDPOINT || fallback,
