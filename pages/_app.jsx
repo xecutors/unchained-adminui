@@ -1,7 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useApollo } from '../modules/apollo/apolloClient';
-
 import '../styles/globals.css';
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
