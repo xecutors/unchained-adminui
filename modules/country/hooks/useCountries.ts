@@ -28,7 +28,7 @@ const useCountries = ({
   const loadMore = () => fetchMore({ variables: { offset: countries.length } });
 
   return {
-    countries,
+    countries: data?.countries,
     loading,
     error,
     loadMore,

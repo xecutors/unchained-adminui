@@ -35,17 +35,17 @@ const sidenavItems = [
   {
     title: 'Countries',
     icon: 'M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9',
-    path: '/countries',
+    path: '/country',
   },
   {
     title: 'Languages',
     icon: 'M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129',
-    path: '/languages',
+    path: '/language',
   },
   {
     title: 'Currencies',
     icon: 'M14.121 15.536c-1.171 1.952-3.07 1.952-4.242 0-1.172-1.953-1.172-5.119 0-7.072 1.171-1.952 3.07-1.952 4.242 0M8 10.5h4m-4 3h4m9-1.5a9 9 0 11-18 0 9 9 0 0118 0z',
-    path: '/currencies',
+    path: '/currency',
   },
   {
     title: 'Payments',
@@ -65,7 +65,7 @@ const sidenavItems = [
   {
     title: 'Logs',
     icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
-    path: '/logs',
+    path: '/log',
   },
 ];
 
