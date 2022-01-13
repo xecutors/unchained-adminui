@@ -14,18 +14,18 @@ export const CountriesQuery = gql`
   ${CountryFragment}
 `;
 
-const useCountries = ({ limit = 20, offset = 0, includeInactive = true }) => {
-  const {
-    data: { countries },
-    loading,
-    error,
-    fetchMore,
-  } = useQuery(CountriesQuery, {
+const useCountries = ({
+  limit = 20,
+  offset = 0,
+  includeInactive = true,
+} = {}) => {
+  const { data, loading, error, fetchMore }: any = useQuery(CountriesQuery, {
     variables: { limit, offset, includeInactive },
   });
 
-  const loadMore = () =>
-    fetchMore({ variables: { offset: countries?.length || 0 } });
+  const countries = data?.countries || [];
+
+  const loadMore = () => fetchMore({ variables: { offset: countries.length } });
 
   return {
     countries,

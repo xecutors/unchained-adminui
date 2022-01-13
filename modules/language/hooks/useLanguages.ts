@@ -14,17 +14,16 @@ export const LanguageQuery = gql`
   ${LanguageFragment}
 `;
 
-const useLanguages = ({ limit = 20, offset = 0, includeInactive = true }) => {
-  const {
-    data: { languages },
-    loading,
-    error,
-    fetchMore,
-  } = useQuery(LanguageQuery, {
+const useLanguages = ({
+  limit = 20,
+  offset = 0,
+  includeInactive = true,
+} = {}) => {
+  const { data, loading, error, fetchMore } = useQuery(LanguageQuery, {
     variables: { limit, offset, includeInactive },
   });
-  const loadMore = () =>
-    fetchMore({ variables: { offset: languages?.length || 0 } });
+  const languages = data?.languages || [];
+  const loadMore = () => fetchMore({ variables: { offset: languages.length } });
 
   return {
     languages,

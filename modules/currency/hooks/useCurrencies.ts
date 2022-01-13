@@ -14,17 +14,18 @@ export const CurrenciesQuery = gql`
   ${CurrencyFragment}
 `;
 
-const useCurrencies = ({ limit = 20, offset = 0, includeInactive = true }) => {
-  const {
-    data: { currencies },
-    loading,
-    error,
-    fetchMore,
-  } = useQuery(CurrenciesQuery, {
+const useCurrencies = ({
+  limit = 20,
+  offset = 0,
+  includeInactive = true,
+} = {}) => {
+  const { data, loading, error, fetchMore } = useQuery(CurrenciesQuery, {
     variables: { limit, offset, includeInactive },
   });
+
+  const currencies = data?.currencies || [];
   const loadMore = () =>
-    fetchMore({ variables: { offset: currencies?.length || 0 } });
+    fetchMore({ variables: { offset: currencies.length || 0 } });
   return {
     currencies,
     loading,
