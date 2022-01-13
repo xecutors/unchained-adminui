@@ -1,11 +1,7 @@
-import fr from './fr';
-import de from './de';
-import it from './it';
+import en from './en';
 
 const localizations = {
-  fr,
-  de,
-  it,
+  en,
 };
 
 export default localizations;

@@ -20,8 +20,6 @@ const PrevNext = ({
       >
         {intl.formatMessage({ id: backIntlId })}
       </button>
-      {/* When onSubmit is provided, we are using a button.
-         Otherwise it means this is inside an AutoForm */}
       {typeof onSubmit === 'function' ? (
         <button
           type="button"

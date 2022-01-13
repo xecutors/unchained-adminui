@@ -18,8 +18,6 @@ const SubmitButton = ({
   );
   const { disabled: contextDisabled } = useFormContext();
 
-  /* We need to this, because formik.errors contains all errors, including the
-  fields that weren't touched yet */
   const hasError = Object.values(fieldsMetaProps).reduce(
     (acc, { error, touched }) => {
       if (acc) return acc;

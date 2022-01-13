@@ -8,7 +8,7 @@ import FieldWrapper from './FieldWrapper';
 const clean = (val) =>
   val.replace(/\.\.|:|_|`|,|-/g, '.').replace(/[^\d.]/g, '');
 
-const DateField = function ({ validators = [], ...props }: FieldHookProps) {
+const DateField = ({ validators = [], ...props }: FieldHookProps) => {
   const ref: any = useRef();
 
   const field = useField({

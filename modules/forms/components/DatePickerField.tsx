@@ -16,12 +16,12 @@ const defaultParseDate = (date) => {
   return '';
 };
 
-const DatePickerField = function ({
+const DatePickerField = ({
   validators = [],
   parseDate = defaultParseDate,
   datePickerOptions = {},
   ...props
-}: FieldHookProps) {
+}: FieldHookProps) => {
   const field = useField({
     validators: [...validators, validateDate],
     ...props,

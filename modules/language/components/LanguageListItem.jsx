@@ -1,4 +1,9 @@
-const LanguageListItem = ({ language }) => {
+import Link from 'next/link';
+
+const LanguageListItem = ({ language, onRemove }) => {
+  const onRemoveLanguage = (id) => {
+    onRemove(id);
+  };
   return (
     <tr>
       <td className="flex px-6 py-4 whitespace-nowrap">
@@ -18,8 +23,17 @@ const LanguageListItem = ({ language }) => {
         </div>
       </td>
       <td className=" flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <a className="mml-1 mr-1 text-indigo-600 hover:text-indigo-900">Edit</a>
-        <a className="ml-1 mr-1 text-red-600 hover:text-red-900">Delete</a>
+        <Link href={`/language/edit/${language?._id}`}>
+          <a className="mml-1 mr-1 text-indigo-600 hover:text-indigo-900">
+            Edit
+          </a>
+        </Link>
+        <a
+          className="ml-1 mr-1 text-red-600 hover:text-red-900 cursor-pointer"
+          onClick={() => onRemoveLanguage(language?._id)}
+        >
+          Delete
+        </a>
       </td>
     </tr>
   );

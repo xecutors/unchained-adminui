@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import useField from '../hooks/useField';
 
-const CheckboxField = function (props) {
+const CheckboxField = (props) => {
   const { disabled } = props;
   const field = useField(props);
 

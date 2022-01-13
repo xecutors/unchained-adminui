@@ -7,7 +7,7 @@ interface FieldWrapperProps extends ComputedProps {
   children: JSX.Element;
 }
 
-const FieldWrapper = function ({
+const FieldWrapper = ({
   children,
   className,
   error,
@@ -17,7 +17,7 @@ const FieldWrapper = function ({
   required,
   name,
   label,
-}: FieldWrapperProps) {
+}: FieldWrapperProps) => {
   return (
     <div
       className={classnames(className, 'field-container', {
@@ -32,7 +32,7 @@ const FieldWrapper = function ({
         aria-label={label}
         htmlFor={name}
         className={classnames('form-label', {
-          'text-danger': !!error,
+          'text-red-600': !!error,
         })}
       >
         {error || label}

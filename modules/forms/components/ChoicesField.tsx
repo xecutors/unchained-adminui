@@ -11,7 +11,7 @@ interface ChoicesFieldProps extends FieldHookProps {
   choiceContainerClassName?: string;
 }
 
-const ChoicesField = function (props: ChoicesFieldProps) {
+const ChoicesField = (props: ChoicesFieldProps) => {
   const field = useField(props);
   const { choiceClassName = 'col-md-6 col-lg-4', choiceContainerClassName } =
     props;

@@ -24,10 +24,7 @@ const flatten = (obj, path = '') => {
   return Object.fromEntries(entries);
 };
 
-export const FormErrorsPure = function ({
-  submitError = '',
-  fieldErrors = [],
-}) {
+export const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   return (
     <div className="error-message ml-4">
       <ul>
@@ -57,7 +54,7 @@ export const FormErrorsPure = function ({
   );
 };
 
-const FormErrors = function () {
+const FormErrors = () => {
   const { submitError, formik } = useFormContext();
 
   const fieldErrors = formik.errors;

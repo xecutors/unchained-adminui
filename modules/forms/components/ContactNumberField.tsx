@@ -1,7 +1,7 @@
 import TextField from './TextField';
 import { validateContactNumber } from '../lib/validators';
 
-const ContactNumberField = function ({ validators = [], ...props }) {
+const ContactNumberField = ({ validators = [], ...props }) => {
   return (
     <TextField
       {...{
