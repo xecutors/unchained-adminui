@@ -1,8 +1,8 @@
 import Layout from '../../modules/common/components/Layout';
 
-const add = () => {
+const add = ({ ...pageProps }) => {
   return (
-    <Layout>
+    <Layout {...pageProps}>
       <div className="m-10  bg-white shadow-md rounded px-10 pt-8 pb-10 mb-8 ">
         <div className="w-full max-w-xs">
           <h3 className="text-lg leading-6 font-medium text-gray-900">

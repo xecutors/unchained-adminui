@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
+import CheckboxField from '../../forms/components/CheckboxField';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import PasswordField from '../../forms/components/PasswordField';
@@ -10,6 +12,7 @@ import { storeLoginToken } from '../utils/store';
 export default function LogInForm() {
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
+  const intl = useIntl();
   const onSubmit = async ({ email, password }) => {
     try {
       const { data } = await logInWithPassword({
@@ -57,7 +60,10 @@ export default function LogInForm() {
               alt="Publicare Logo"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              {intl.formatMessage({
+                id: 'login_header',
+                defaultMessage: 'Log in to your account',
+              })}
             </h2>
           </div>
           <Form form={form} className="mt-8 space-y-6">
@@ -70,20 +76,25 @@ export default function LogInForm() {
                   type="email"
                   autoComplete="email"
                   required
+                  label={intl.formatMessage({
+                    id: 'email',
+                    defaultMessage: 'E-mail',
+                  })}
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
                 <PasswordField
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   required
+                  label={intl.formatMessage({
+                    id: 'password',
+                    defaultMessage: 'Password',
+                  })}
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                 />
@@ -92,18 +103,16 @@ export default function LogInForm() {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <input
+                <CheckboxField
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
+                  label={intl.formatMessage({
+                    id: 'remember_password',
+                    defaultMessage: 'Remember me',
+                  })}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
               </div>
 
               <div className="text-sm">
@@ -111,7 +120,10 @@ export default function LogInForm() {
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  Forgot your password?
+                  {intl.formatMessage({
+                    id: 'forget_password',
+                    defaultMessage: 'Forgot your password?',
+                  })}
                 </a>
               </div>
             </div>
@@ -136,7 +148,11 @@ export default function LogInForm() {
                     />
                   </svg>
                 </span>
-                Sign in
+
+                {intl.formatMessage({
+                  id: 'log_in',
+                  defaultMessage: 'Log in',
+                })}
               </button>
             </div>
           </Form>

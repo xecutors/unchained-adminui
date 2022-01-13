@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from '../../common/components/Icon';
 
 import TextField from './TextField';
 
@@ -28,6 +29,11 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
         onClick={togglePassword}
         onKeyUp={togglePassword}
       />
+      {isPasswordVisible ? (
+        <Icon icon="view-off" className="password-eye" />
+      ) : (
+        <Icon icon="view-1" className="password-eye" />
+      )}
     </div>
   );
 };

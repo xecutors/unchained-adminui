@@ -3,7 +3,7 @@ import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 
-const Languages = () => {
+const Languages = ({ ...pageProps }) => {
   const { languages } = useLanguages({ limit: 20 });
 
   const { removeLanguage } = useRemoveLanguage();
@@ -12,7 +12,7 @@ const Languages = () => {
     await removeLanguage({ languageId });
   };
   return (
-    <Layout>
+    <Layout {...pageProps}>
       <LanguageList languages={languages} onRemove={onRemoveLanguage} />
     </Layout>
   );

@@ -4,7 +4,7 @@ import Layout from '../../modules/common/components/Layout';
 import LanguageForm from '../../modules/language/components/LanguageForm';
 import useCreateLanguage from '../../modules/language/hooks/useCreateLanguage';
 
-const AddLanguage = () => {
+const AddLanguage = ({ ...pageProps }) => {
   const { createLanguage } = useCreateLanguage();
   const router = useRouter();
 
@@ -18,7 +18,7 @@ const AddLanguage = () => {
   };
 
   return (
-    <Layout>
+    <Layout {...pageProps}>
       <div className="m-10  bg-white shadow-md rounded px-10  ">
         <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
           <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
