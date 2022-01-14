@@ -7,16 +7,12 @@ export const LanguagesCountQuery = gql`
 `;
 
 const useLanguagesCount = ({ includeInactive = false } = {}) => {
-  const {
-    data: { languagesCount },
-    loading,
-    error,
-  } = useQuery(LanguagesCountQuery, {
+  const { data, loading, error } = useQuery(LanguagesCountQuery, {
     variables: { includeInactive },
   });
 
   return {
-    languagesCount,
+    languagesCount: data?.languagesCount,
     loading,
     error,
   };

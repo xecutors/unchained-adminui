@@ -7,16 +7,12 @@ export const UsersCountQuery = gql`
 `;
 
 const useUsersCount = ({ includeGuests = false, queryString = '' } = {}) => {
-  const {
-    data: { usersCount },
-    loading,
-    error,
-  } = useQuery(UsersCountQuery, {
+  const { data, loading, error } = useQuery(UsersCountQuery, {
     variables: { includeGuests, queryString },
   });
 
   return {
-    usersCount,
+    usersCount: data?.usersCount,
     loading,
     error,
   };
