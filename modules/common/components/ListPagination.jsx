@@ -1,7 +1,7 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
 
-const ListPagination = ({ languages, onLoadMore, total, onLimitChange }) => {
+const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
   const { formatMessage } = useIntl();
   return (
     <div>
@@ -17,7 +17,7 @@ const ListPagination = ({ languages, onLoadMore, total, onLimitChange }) => {
               p: (chunks) => <p className="text-sm text-gray-700">{chunks}</p>,
               span: (chunks) => <span className="font-medium">{chunks}</span>,
               icon: <svg />,
-              current: languages?.length,
+              current: data?.length,
               total,
             }}
           />

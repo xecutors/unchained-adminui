@@ -5,13 +5,14 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
+const CurrencyForm = ({ onSubmit, onSubmitSuccess, defaultValue = {} }) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
       isoCode: '',
+      ...defaultValue,
     },
   });
 

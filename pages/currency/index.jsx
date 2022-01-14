@@ -6,10 +6,12 @@ import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
 const Currencies = ({ ...pageProps }) => {
   const { currencies } = useCurrencies({ limit: 20 });
   const { removeCurrency } = useRemoveCurrency();
-
+  const onRemove = async (currencyId) => {
+    await removeCurrency({ currencyId });
+  };
   return (
     <Layout {...pageProps}>
-      <CurrencyList currencies={currencies} onRemoveCurrency={removeCurrency} />
+      <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
     </Layout>
   );
 };

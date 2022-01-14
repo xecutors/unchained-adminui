@@ -14,7 +14,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
       <td className="flex px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], { type: 'currency' }).of(
+          {new Intl.DisplayNames([locale], { type: 'currency' })?.of(
             currency.isoCode,
           )}
         </div>
@@ -27,7 +27,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
       </td>
 
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <Link href={`/currency/edit/${currency?._id}`}>
+        <Link href={`/currency/${currency?._id}`}>
           <a
             type="button"
             href="#"
@@ -53,9 +53,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
         </Link>
         <a
           className=" ml-1 mr-1 text-red-600 hover:text-red-900"
-          onClick={async () => {
-            await onRemove(currency?._id);
-          }}
+          onClick={() => onRemove(currency?._id)}
         >
           <svg
             className="m-2 h-5 w-5 text-red-500"

@@ -1,8 +1,6 @@
-import { useIntl } from 'react-intl';
-import Languages from '../../../pages/language';
 import ListHeader from '../../common/components/ListHeader';
 import ListPagination from '../../common/components/ListPagination';
-import { DefaultLimit, LimitSteps } from '../../common/data/miscellaneous';
+
 import LanguageListItem from './LanguageListItem';
 
 const LanguageList = ({
@@ -12,7 +10,6 @@ const LanguageList = ({
   total,
   onLimitChange,
 }) => {
-  const { formatMessage } = useIntl();
   return (
     <div className="m-8 flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -68,7 +65,12 @@ const LanguageList = ({
         </div>
       </div>
 
-      <ListPagination />
+      <ListPagination
+        onLoadMore={onLoadMore}
+        data={languages}
+        total={total}
+        onLimitChange={onLimitChange}
+      />
     </div>
   );
 };
