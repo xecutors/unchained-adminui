@@ -19,9 +19,7 @@ const CountryListItem = ({ country }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900">
-          {country.defaultCurrency.isoCode}
-        </div>
+        <div className="text-sm text-gray-900">{country.isoCode}</div>
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">

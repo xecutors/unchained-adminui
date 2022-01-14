@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -14,6 +15,8 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess }) => {
     },
   });
 
+  const intl = useIntl();
+
   return (
     <Form form={form}>
       <div className="space-y-6 sm:space-y-5">
@@ -21,7 +24,10 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess }) => {
           <TextField
             name="isoCode"
             id="isoCode"
-            label="ISO Code"
+            label={intl.formatMessage({
+              id: 'iso_code',
+              defaultMessage: 'ISO Code',
+            })}
             autoComplete="on"
             required
             className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
@@ -31,7 +37,10 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess }) => {
           <CheckboxField
             id="isActive"
             name="isActive"
-            label="Active"
+            label={intl.formatMessage({
+              id: 'active',
+              defaultMessage: 'Active',
+            })}
             className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
           />
         </div>
