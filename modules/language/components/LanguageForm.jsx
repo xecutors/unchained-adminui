@@ -43,7 +43,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-500 border-gray-300 rounded"
             />
           </div>
         )}
@@ -51,7 +51,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
       <SubmitButton
         label="Add"
-        className="mt-3 ml-2 mr-2  items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+        className="mt-3 ml-2 mr-2  items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
   );
