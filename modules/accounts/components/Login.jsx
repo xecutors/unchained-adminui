@@ -1,12 +1,18 @@
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { useIntl } from 'react-intl';
+import CheckboxField from '../../forms/components/CheckboxField';
+import EmailField from '../../forms/components/EmailField';
+import Form from '../../forms/components/Form';
+import PasswordField from '../../forms/components/PasswordField';
+
+import useForm from '../../forms/hooks/useForm';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import { storeLoginToken } from '../utils/store';
 
 export default function LogInForm() {
-  const { register, handleSubmit } = useForm();
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
+  const intl = useIntl();
   const onSubmit = async ({ email, password }) => {
     try {
       const { data } = await logInWithPassword({
@@ -16,12 +22,32 @@ export default function LogInForm() {
       });
       const { id, token, tokenExpires } = data.loginWithPassword;
       await storeLoginToken(id, token, new Date(tokenExpires));
-      router.replace('/');
+      return true;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
+      return false;
     }
   };
+
+  const onSubmitSuccess = () => {
+    router.replace('/');
+  };
+
+  const form = useForm({
+    submit: onSubmit,
+    onSubmitSuccess,
+    getSubmitErrorMessage: (error) => {
+      if (error?.message?.includes('auth failed')) {
+        return 'error';
+      }
+      return '';
+    },
+    initialValues: {
+      email: null,
+      password: null,
+    },
+  });
 
   return (
     <>
@@ -34,58 +60,59 @@ export default function LogInForm() {
               alt="Publicare Logo"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              {intl.formatMessage({
+                id: 'login_header',
+                defaultMessage: 'Log in to your account',
+              })}
             </h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <Form form={form} className="mt-8 space-y-6">
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
+                <EmailField
                   id="email-address"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
+                  label={intl.formatMessage({
+                    id: 'email',
+                    defaultMessage: 'E-mail',
+                  })}
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
-                  {...register('email', { required: true })}
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
+                <PasswordField
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   required
+                  label={intl.formatMessage({
+                    id: 'password',
+                    defaultMessage: 'Password',
+                  })}
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
-                  {...register('password', { required: true })}
                 />
               </div>
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <input
+                <CheckboxField
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
+                  label={intl.formatMessage({
+                    id: 'remember_password',
+                    defaultMessage: 'Remember me',
+                  })}
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
               </div>
 
               <div className="text-sm">
@@ -93,7 +120,10 @@ export default function LogInForm() {
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  Forgot your password?
+                  {intl.formatMessage({
+                    id: 'forget_password',
+                    defaultMessage: 'Forgot your password?',
+                  })}
                 </a>
               </div>
             </div>
@@ -118,10 +148,14 @@ export default function LogInForm() {
                     />
                   </svg>
                 </span>
-                Sign in
+
+                {intl.formatMessage({
+                  id: 'log_in',
+                  defaultMessage: 'Log in',
+                })}
               </button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </>

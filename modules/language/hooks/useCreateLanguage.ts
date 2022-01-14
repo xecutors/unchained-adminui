@@ -14,7 +14,7 @@ const useCreateLanguage = () => {
   const createLanguage = async ({ isoCode }) => {
     return createLanguageMutation({
       variables: { language: { isoCode } },
-      refetchQueries: ['Languages'],
+      refetchQueries: ['Languages', 'Language'],
     });
   };
 

@@ -3,8 +3,12 @@ import cookie from 'cookie';
 
 import App from 'next/app';
 
+import { useRouter } from 'next/router';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
+
+import getMessages from '../modules/i18n/utils/getMessages';
+import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -18,11 +22,22 @@ export function parseCookies(ctx = {}, options = {}) {
 }
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
-  const apollo = useApollo(pageProps, { locale: 'de' });
+  const router = useRouter();
+  const { locale } = router;
+
+  const apollo = useApollo(pageProps, { locale });
+
+  const messages = getMessages(router.locale);
 
   return (
     <ApolloProvider client={apollo}>
-      <Component {...pageProps} {...rest} apollo={apollo} />
+      <IntlWrapper
+        locale={router.locale}
+        messages={messages}
+        key="intl-provider"
+      >
+        <Component {...pageProps} {...rest} apollo={apollo} />
+      </IntlWrapper>
     </ApolloProvider>
   );
 };

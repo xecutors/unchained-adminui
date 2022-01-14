@@ -1,9 +1,9 @@
 import React from 'react';
 import Layout from '../../modules/common/components/Layout';
 
-const AddCountries = () => {
+const AddCountries = ({ ...pageProps }) => {
   return (
-    <Layout>
+    <Layout {...pageProps}>
       <div className="m-10   bg-white shadow-md rounded px-10 pt-8 pb-10 mb-8 ">
         <h3 className="flex-1 text-lg leading-6 font-medium text-gray-900">
           New country
