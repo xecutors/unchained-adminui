@@ -1,7 +1,7 @@
 import ListHeader from '../../../common/components/ListHeader';
 import CurrencyListItem from './CurrencyListItem';
 
-const CurrencyList = ({ currencies }) => {
+const CurrencyList = ({ currencies, onRemoveCurrency }) => {
   return (
     <div className="m-8 flex flex-col">
       <div className="-my-1 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -18,6 +18,12 @@ const CurrencyList = ({ currencies }) => {
                   >
                     ISO Code
                   </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
 
                   <th
                     scope="col"
@@ -32,15 +38,15 @@ const CurrencyList = ({ currencies }) => {
                   >
                     &nbsp;
                   </th>
-
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
                 </tr>
               </thead>
               <tbody>
                 {currencies?.map((currency) => (
-                  <CurrencyListItem key={currency._id} currency={currency} />
+                  <CurrencyListItem
+                    key={currency._id}
+                    currency={currency}
+                    onRemove={onRemoveCurrency}
+                  />
                 ))}
               </tbody>
             </table>

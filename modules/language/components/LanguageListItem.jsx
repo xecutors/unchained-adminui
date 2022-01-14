@@ -1,14 +1,22 @@
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 const LanguageListItem = ({ language, onRemove }) => {
-  const onRemoveLanguage = (id) => {
-    onRemove(id);
-  };
+  const { locale } = useIntl();
+
   return (
     <tr>
       <td className="flex px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {language.isoCode}
+          {}
+        </div>
+      </td>
+      <td className="flex px-6 py-4 whitespace-nowrap">
+        <div className="pl-2 flex items-center text-sm text-gray-900">
+          {new Intl.DisplayNames([locale], { type: 'language' }).of(
+            language.isoCode,
+          )}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
@@ -30,7 +38,9 @@ const LanguageListItem = ({ language, onRemove }) => {
         </Link>
         <a
           className="ml-1 mr-1 text-red-600 hover:text-red-900 cursor-pointer"
-          onClick={() => onRemoveLanguage(language?._id)}
+          onClick={async () => {
+            await onRemove(language?._id);
+          }}
         >
           Delete
         </a>

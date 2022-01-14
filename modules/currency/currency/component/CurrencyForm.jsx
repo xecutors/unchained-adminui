@@ -1,9 +1,9 @@
-import { Form } from 'formik';
-import { useForm } from 'react-hook-form';
 import { useIntl } from 'react-intl';
 import CheckboxField from '../../../forms/components/CheckboxField';
+import Form from '../../../forms/components/Form';
 import SubmitButton from '../../../forms/components/SubmitButton';
 import TextField from '../../../forms/components/TextField';
+import useForm from '../../../forms/hooks/useForm';
 
 const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
   const form = useForm({
@@ -15,7 +15,7 @@ const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
     },
   });
 
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
   return (
     <Form form={form}>
@@ -24,7 +24,7 @@ const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
           <TextField
             name="isoCode"
             id="isoCode"
-            label={intl.formatMessage({
+            label={formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO Code',
             })}
@@ -37,7 +37,7 @@ const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
           <CheckboxField
             id="isActive"
             name="isActive"
-            label={intl.formatMessage({
+            label={formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}

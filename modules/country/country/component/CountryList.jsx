@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import ListHeader from '../../../common/components/ListHeader';
 import CountryListItem from './CountryListItem';
 
-const CountryList = ({ countries }) => {
+const CountryList = ({ countries, onRemoveCountry }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="m-8 flex flex-col">
@@ -14,7 +14,7 @@ const CountryList = ({ countries }) => {
                 id: 'country',
                 defaultMessage: 'Country',
               })}
-              addPath="/coutry/add"
+              addPath="/country/add"
             />
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -62,7 +62,11 @@ const CountryList = ({ countries }) => {
 
               <tbody>
                 {countries?.map((country) => (
-                  <CountryListItem key-={country._id} country={country} />
+                  <CountryListItem
+                    key-={country._id}
+                    country={country}
+                    onRemove={onRemoveCountry}
+                  />
                 ))}
               </tbody>
             </table>
