@@ -4,7 +4,6 @@ import Layout from '../../modules/common/components/Layout';
 
 import LanguageForm from '../../modules/language/components/LanguageForm';
 import useCreateLanguage from '../../modules/language/hooks/useCreateLanguage';
-import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 
 const AddLanguage = ({ ...pageProps }) => {
   const { createLanguage } = useCreateLanguage();
@@ -12,10 +11,6 @@ const AddLanguage = ({ ...pageProps }) => {
 
   const onSubmitSuccess = () => {
     router.push('/language');
-  };
-  const { removeLanguage } = useRemoveLanguage();
-  const onDelete = async () => {
-    await removeLanguage('idsss');
   };
 
   const onSubmit = async ({ isoCode }) => {
@@ -26,7 +21,7 @@ const AddLanguage = ({ ...pageProps }) => {
   return (
     <Layout {...pageProps}>
       <div className="m-10  bg-white shadow-md rounded px-10  ">
-        <FormHeader headerText="New" onDelete={onDelete} />
+        <FormHeader headerText="New" />
         <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </div>
     </Layout>

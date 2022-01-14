@@ -23,7 +23,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </td>
       <td className=" flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <Link href={`/language/edit/${language?._id}`}>
+        <Link href={`/language/${language?._id}`}>
           <a className="mml-1 mr-1 text-indigo-600 hover:text-indigo-900">
             Edit
           </a>
