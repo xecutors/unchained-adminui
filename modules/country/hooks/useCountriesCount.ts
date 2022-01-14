@@ -7,16 +7,12 @@ export const CountriesCountQuery = gql`
 `;
 
 const useCountriesCount = ({ includeInactive = false } = {}) => {
-  const {
-    data: { countriesCount },
-    loading,
-    error,
-  } = useQuery(CountriesCountQuery, {
+  const { data, loading, error } = useQuery(CountriesCountQuery, {
     variables: { includeInactive },
   });
 
   return {
-    countriesCount,
+    countriesCount: data?.countriesCount,
     loading,
     error,
   };

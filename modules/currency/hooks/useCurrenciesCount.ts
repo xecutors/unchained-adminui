@@ -7,16 +7,12 @@ export const CurrenciesCountQuery = gql`
 `;
 
 const useCurrenciesCount = ({ includeInactive = false } = {}) => {
-  const {
-    data: { currenciesCount },
-    loading,
-    error,
-  } = useQuery(CurrenciesCountQuery, {
+  const { data, loading, error } = useQuery(CurrenciesCountQuery, {
     variables: { includeInactive },
   });
 
   return {
-    currenciesCount,
+    currenciesCount: data?.currenciesCount,
     loading,
     error,
   };

@@ -1,9 +1,5 @@
 import ListHeader from '../../common/components/ListHeader';
 import ListPagination from '../../common/components/ListPagination';
-
-import { useIntl } from 'react-intl';
-import ListHeader from '../../common/components/ListHeader';
-import ListPagination from '../../common/components/ListPagination';
 import LanguageListItem from './LanguageListItem';
 
 const LanguageList = ({

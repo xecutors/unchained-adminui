@@ -4,9 +4,10 @@ import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import useLanguagesCount from '../../modules/language/hooks/useLanguagesCount';
+import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
 const Languages = ({ ...pageProps }) => {
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(DefaultLimit);
 
   const { languages, loadMore } = useLanguages({ limit });
   const { languagesCount } = useLanguagesCount();

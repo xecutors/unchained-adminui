@@ -1,9 +1,9 @@
+import ListPagination from '../../common/components/ListPagination';
 import UserListItem from './UserListItem';
 
 const UserList = ({
   users,
   total,
-  limit,
   onLimitChange,
   onLoadMore,
   showGuests,
@@ -98,6 +98,12 @@ const UserList = ({
           </div>
         </div>
       </div>
+      <ListPagination
+        onLoadMore={onLoadMore}
+        data={users}
+        total={total}
+        onLimitChange={onLimitChange}
+      />
     </div>
   );
 };

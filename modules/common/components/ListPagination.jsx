@@ -24,12 +24,6 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
         </div>
         <div className="flex-1 flex justify-between sm:justify-end">
           <div>
-            <label
-              htmlFor="location"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Location
-            </label>
             <select
               onChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
               id="location"
