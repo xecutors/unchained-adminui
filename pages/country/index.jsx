@@ -1,5 +1,5 @@
 import Layout from '../../modules/common/components/Layout';
-import CountryList from '../../modules/country/country/component/CountryList';
+import CountryList from '../../modules/country/component/CountryList';
 import useCountries from '../../modules/country/hooks/useCountries';
 
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';

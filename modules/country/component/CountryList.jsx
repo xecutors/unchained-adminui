@@ -1,14 +1,21 @@
-import ListHeader from '../../../common/components/ListHeader';
-import CurrencyListItem from './CurrencyListItem';
+import { useIntl } from 'react-intl';
+import ListHeader from '../../common/components/ListHeader';
+import CountryListItem from './CountryListItem';
 
-const CurrencyList = ({ currencies, onRemoveCurrency }) => {
+const CountryList = ({ countries, onRemoveCountry }) => {
+  const { formatMessage } = useIntl();
   return (
     <div className="m-8 flex flex-col">
-      <div className="-my-1 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <ListHeader headerText="Currency" addPath="/currency/add" />
-
+            <ListHeader
+              headerText={formatMessage({
+                id: 'country',
+                defaultMessage: 'Country',
+              })}
+              addPath="/country/add"
+            />
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -18,6 +25,7 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
                   >
                     ISO Code
                   </th>
+
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -36,16 +44,28 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
+                    Default currency
+                  </th>
+
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     &nbsp;
+                  </th>
+
+                  <th scope="col" className="relative px-6 py-3">
+                    <span className="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
+
               <tbody>
-                {currencies?.map((currency) => (
-                  <CurrencyListItem
-                    key={currency._id}
-                    currency={currency}
-                    onRemove={onRemoveCurrency}
+                {countries?.map((country) => (
+                  <CountryListItem
+                    key-={country._id}
+                    country={country}
+                    onRemove={onRemoveCountry}
                   />
                 ))}
               </tbody>
@@ -53,6 +73,7 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
           </div>
         </div>
       </div>
+
       <nav
         className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
         aria-label="Pagination"
@@ -83,4 +104,4 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
   );
 };
 
-export default CurrencyList;
+export default CountryList;

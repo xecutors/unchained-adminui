@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
-import CheckboxField from '../../../forms/components/CheckboxField';
-import Form from '../../../forms/components/Form';
-import SubmitButton from '../../../forms/components/SubmitButton';
-import TextField from '../../../forms/components/TextField';
-import useForm from '../../../forms/hooks/useForm';
+import CheckboxField from '../../forms/components/CheckboxField';
+import Form from '../../forms/components/Form';
+import SubmitButton from '../../forms/components/SubmitButton';
+import TextField from '../../forms/components/TextField';
+import useForm from '../../forms/hooks/useForm';
 
 const CurrencyForm = ({ onSubmit, onSubmitSuccess }) => {
   const form = useForm({

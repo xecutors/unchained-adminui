@@ -1,5 +1,5 @@
 import Layout from '../../modules/common/components/Layout';
-import CurrencyList from '../../modules/currency/currency/component/CurrencyList';
+import CurrencyList from '../../modules/currency/component/CurrencyList';
 import useCurrencies from '../../modules/currency/hooks/useCurrencies';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
 
