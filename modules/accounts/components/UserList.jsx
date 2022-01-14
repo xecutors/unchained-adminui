@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import ListPagination from '../../common/components/ListPagination';
 import UserListItem from './UserListItem';
 
@@ -9,9 +10,12 @@ const UserList = ({
   showGuests,
   onShowGuestChange,
 }) => {
+  const { formatMessage } = useIntl();
   return (
     <div className="m-5 flex flex-col">
-      <label className="m-3 font-large text-black-700">All Users</label>
+      <label className="m-3 font-large text-black-700">
+        {formatMessage({ id: 'all_users', defaultMessage: 'All Users' })}
+      </label>
 
       <div className="sm:col-span-3">
         <div className="mt-1">
@@ -24,7 +28,10 @@ const UserList = ({
             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
           >
             <option className="text-gray-700" value="" disabled selected>
-              Select User
+              {formatMessage({
+                id: 'select_user',
+                defaultMessage: 'Select User',
+              })}
             </option>
           </select>
         </div>
@@ -48,7 +55,10 @@ const UserList = ({
                   htmlFor="show-guests"
                   className="ml-3 font-medium text-gray-700"
                 >
-                  Show guests?
+                  {formatMessage({
+                    id: 'show_guests',
+                    defaultMessage: 'Show Guests',
+                  })}
                 </label>
               </div>
             </div>
@@ -59,7 +69,10 @@ const UserList = ({
               type="button"
               className="relative inline-flex items-center px-3.5 py-1 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Add New User
+              {formatMessage({
+                id: 'add_new_user',
+                defaultMessage: 'Add New User',
+              })}
             </button>
           </div>
         </div>
@@ -75,17 +88,22 @@ const UserList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    {formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   </th>
 
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    User Type
+                    {formatMessage({
+                      id: 'usertype',
+                      defaultMessage: 'User Type',
+                    })}
                   </th>
                   <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
+                    <span className="sr-only">
+                      {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                    </span>
                   </th>
                 </tr>
               </thead>

@@ -12,7 +12,7 @@ import { storeLoginToken } from '../utils/store';
 export default function LogInForm() {
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
   const onSubmit = async ({ email, password }) => {
     try {
       const { data } = await logInWithPassword({
@@ -60,7 +60,7 @@ export default function LogInForm() {
               alt="Publicare Logo"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              {intl.formatMessage({
+              {formatMessage({
                 id: 'login_header',
                 defaultMessage: 'Log in to your account',
               })}
@@ -76,7 +76,7 @@ export default function LogInForm() {
                   type="email"
                   autoComplete="email"
                   required
-                  label={intl.formatMessage({
+                  label={formatMessage({
                     id: 'email',
                     defaultMessage: 'E-mail',
                   })}
@@ -91,7 +91,7 @@ export default function LogInForm() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  label={intl.formatMessage({
+                  label={formatMessage({
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
@@ -107,7 +107,7 @@ export default function LogInForm() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  label={intl.formatMessage({
+                  label={formatMessage({
                     id: 'remember_password',
                     defaultMessage: 'Remember me',
                   })}
@@ -120,7 +120,7 @@ export default function LogInForm() {
                   href="#"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
-                  {intl.formatMessage({
+                  {formatMessage({
                     id: 'forget_password',
                     defaultMessage: 'Forgot your password?',
                   })}
@@ -148,11 +148,7 @@ export default function LogInForm() {
                     />
                   </svg>
                 </span>
-
-                {intl.formatMessage({
-                  id: 'log_in',
-                  defaultMessage: 'Log in',
-                })}
+                {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
               </button>
             </div>
           </Form>

@@ -25,7 +25,10 @@ const CountryForm = ({ onSubmit, onSubmitSuccess, defaultValue = {} }) => {
             htmlFor="iso-country-code"
             className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
           >
-            ISO Country code
+            {formatMessage({
+              id: 'iso_country_code',
+              defaultMessage: 'ISO Country code',
+            })}
           </label>
         </div>
 
