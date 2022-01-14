@@ -95,10 +95,7 @@ const UserList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    {formatMessage({
-                      id: 'usertype',
-                      defaultMessage: 'User Type',
-                    })}
+                    &nbsp;
                   </th>
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">
