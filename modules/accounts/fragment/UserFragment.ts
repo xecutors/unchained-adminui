@@ -11,6 +11,10 @@ const UserFragment = gql`
       type
       url
     }
+    primaryEmail {
+      address
+      verified
+    }
     emails {
       verified
       address
@@ -37,9 +41,8 @@ const UserFragment = gql`
     isGuest
     isInitialPassword
     name
-    emails
     roles
-    tag
+    tags
   }
 `;
 
