@@ -6,13 +6,13 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
   return (
     <tr>
-      <td className="flex px-6 py-4 whitespace-nowrap">
+      <td className="flex px-6 py-4 border-1 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {currency.isoCode}
         </div>
       </td>
 
-      <td className="flex px-6 py-4 whitespace-nowrap">
+      <td className="px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'currency' })?.of(
             currency.isoCode,

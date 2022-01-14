@@ -1,6 +1,9 @@
 import ListHeader from '../../common/components/ListHeader';
 import ListPagination from '../../common/components/ListPagination';
 
+import { useIntl } from 'react-intl';
+import ListHeader from '../../common/components/ListHeader';
+import ListPagination from '../../common/components/ListPagination';
 import LanguageListItem from './LanguageListItem';
 
 const LanguageList = ({
@@ -30,13 +33,14 @@ const LanguageList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Active?
+                    Name
                   </th>
+
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    Active?
                   </th>
 
                   <th

@@ -7,12 +7,12 @@ const LanguageListItem = ({ language, onRemove }) => {
   return (
     <tr>
       <td className="flex px-6 py-4 whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+        <div className="pl-2 flex items-center text-sm text-gray-900 border-">
           {language.isoCode}
         </div>
       </td>
-      <td className="flex px-6 py-4 whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <td className=" px-6 py-4 whitespace-nowrap">
+        <div className=" text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'language' }).of(
             language.isoCode,
           )}
@@ -29,6 +29,7 @@ const LanguageListItem = ({ language, onRemove }) => {
           {language.isBase && 'Base language'}
         </div>
       </td>
+
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
         <Link href={`/language/${language?._id}`}>
           <a
