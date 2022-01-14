@@ -30,28 +30,34 @@ const CountryList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    ISO Code
+                    {formatMessage({
+                      id: 'iso_code',
+                      defaultMessage: 'ISO Code',
+                    })}
                   </th>
 
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    {formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   </th>
 
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Active?
+                    {formatMessage({ id: 'active', defaultMessage: 'Active' })}
                   </th>
 
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Default currency
+                    {formatMessage({
+                      id: 'default_currency',
+                      defaultMessage: 'Default currency',
+                    })}
                   </th>
 
                   <th
@@ -62,7 +68,9 @@ const CountryList = ({
                   </th>
 
                   <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
+                    <span className="sr-only">
+                      {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                    </span>
                   </th>
                 </tr>
               </thead>

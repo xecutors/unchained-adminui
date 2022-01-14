@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 import logOut from '../../accounts/hooks/logOut';
 
 const Icons = ({ url }) => {
@@ -65,6 +66,7 @@ const sidenavItems = [
 ];
 
 const Layout = ({ children, apollo, router }) => {
+  const { formatMessage } = useIntl();
   const onLogout = async () => {
     await logOut(apollo);
     router.replace('/');
@@ -88,7 +90,12 @@ const Layout = ({ children, apollo, router }) => {
               type="button"
               className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             >
-              <span className="sr-only">Close sidebar</span>
+              <span className="sr-only">
+                {formatMessage({
+                  id: 'close_sidebar',
+                  defaultMessage: 'Close sidebar',
+                })}
+              </span>
 
               <svg
                 className="h-6 w-6 text-white"
@@ -142,10 +149,16 @@ const Layout = ({ children, apollo, router }) => {
                 </div>
                 <div className="ml-3">
                   <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                    Tom Cook
+                    {formatMessage({
+                      id: 'tom_cook',
+                      defaultMessage: 'Tom Cook',
+                    })}
                   </p>
                   <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                    View profile
+                    {formatMessage({
+                      id: 'view_profile',
+                      defaultMessage: 'View profile',
+                    })}
                   </p>
                 </div>
               </div>
@@ -196,10 +209,16 @@ const Layout = ({ children, apollo, router }) => {
                 </div>
                 <div className="ml-3">
                   <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                    Niki Repasi
+                    {formatMessage({
+                      id: 'niki_repasi',
+                      defaultMessage: 'Niki Repasi',
+                    })}
                   </p>
                   <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    View profile
+                    {formatMessage({
+                      id: 'view_profile',
+                      defaultMessage: 'View profile',
+                    })}
                   </p>
                 </div>
               </div>
@@ -213,7 +232,12 @@ const Layout = ({ children, apollo, router }) => {
             type="button"
             className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
-            <span className="sr-only">Open sidebar</span>
+            <span className="sr-only">
+              {formatMessage({
+                id: 'open_sidebar',
+                defaultMessage: ' Open sidebar',
+              })}
+            </span>
 
             <svg
               className="h-6 w-6"

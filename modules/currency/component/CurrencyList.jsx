@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import ListHeader from '../../common/components/ListHeader';
 import ListPagination from '../../common/components/ListPagination';
 import CurrencyListItem from './CurrencyListItem';
@@ -9,6 +10,7 @@ const CurrencyList = ({
   total,
   onLimitChange,
 }) => {
+  const { formatMessage } = useIntl();
   return (
     <div className="m-8 flex flex-col">
       <div className="-my-1 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,20 +25,23 @@ const CurrencyList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    ISO Code
+                    {formatMessage({
+                      id: 'iso_code',
+                      defaultMessage: 'ISO Code',
+                    })}
                   </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    {formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   </th>
 
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Active?
+                    {formatMessage({ id: 'active', defaultMessage: 'Active' })}
                   </th>
 
                   <th
