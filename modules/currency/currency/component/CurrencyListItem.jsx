@@ -1,4 +1,9 @@
-const CurrencyListItem = ({ currency }) => {
+import Link from 'next/link';
+
+const CurrencyListItem = ({ currency, onRemove }) => {
+  const onRemoveCurrency = (id) => {
+    onRemove(id);
+  };
   return (
     <tr>
       <td className="flex px-6 py-4 whitespace-nowrap">
@@ -14,10 +19,15 @@ const CurrencyListItem = ({ currency }) => {
       </td>
 
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <a href="#" className="ml-1 mr-1 text-indigo-600 hover:text-indigo-900">
-          Edit
-        </a>
-        <a href="#" className=" ml-1 mr-1 text-red-600 hover:text-red-900">
+        <Link href={`/currency/edit/${currency?._id}`}>
+          <a className="mml-1 mr-1 text-indigo-600 hover:text-indigo-900">
+            Edit
+          </a>
+        </Link>
+        <a
+          className=" ml-1 mr-1 text-red-600 hover:text-red-900"
+          onClick={() => onRemoveCurrency(currency?._id)}
+        >
           Delete
         </a>
       </td>
