@@ -12,6 +12,7 @@ const Country = ({ ...pageProps }) => {
   const { countries, loadMore } = useCountries({ limit });
   const { countriesCount } = useCountriesCount();
   const { removeCountry } = useRemoveCountry();
+
   return (
     <Layout {...pageProps}>
       <CountryList

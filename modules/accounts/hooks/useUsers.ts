@@ -26,14 +26,27 @@ const useUsers = ({
   includeGuests = false,
   queryString = null,
 }) => {
-  const { data, loading, error } = useQuery(UsersQuery, {
+  const { data, loading, error, fetchMore } = useQuery(UsersQuery, {
     variables: { limit, offset, includeGuests, queryString },
   });
 
   const users = data?.users;
 
+  const loadMore = () =>
+    fetchMore({
+      variables: { offset: users?.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          users: [...prev.users, ...fetchMoreResult.users],
+        };
+      },
+    });
+
   return {
     users,
+    loadMore,
     loading,
     error,
   };

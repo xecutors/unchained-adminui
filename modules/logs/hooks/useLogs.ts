@@ -27,7 +27,16 @@ const useLogs = ({ limit = 20, offset = 0 }) => {
 
   const logs = data?.logs || [];
   const loadMore = () =>
-    fetchMore({ variables: { offset: logs?.length || 0 } });
+    fetchMore({
+      variables: { offset: logs?.length || 0 },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          logs: [...prev.logs, ...fetchMoreResult.logs],
+        };
+      },
+    });
 
   return {
     logs,

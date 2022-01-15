@@ -5,7 +5,7 @@ const LanguageListItem = ({ language, onRemove }) => {
   const { locale } = useIntl();
 
   return (
-    <tr>
+    <tr key={language?._id}>
       <td className="flex px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900 border-">
           {language.isoCode}

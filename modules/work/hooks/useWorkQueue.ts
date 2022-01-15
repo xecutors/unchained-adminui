@@ -33,7 +33,17 @@ const useWorkQueue = ({
     variables: { offset, limit, status, selectTypes, created },
   });
   const workQueue = data?.workQueue || [];
-  const loadMore = () => fetchMore({ variables: { offset: workQueue.length } });
+  const loadMore = () =>
+    fetchMore({
+      variables: { offset: workQueue.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          workQueue: [...prev.workQueue, ...fetchMoreResult.workQueue],
+        };
+      },
+    });
 
   return {
     workQueue,

@@ -12,7 +12,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
   };
 
   return (
-    <div className="position-relative">
+    <div className="relative">
       <TextField
         {...{
           autoComplete: autoComplete || 'on',

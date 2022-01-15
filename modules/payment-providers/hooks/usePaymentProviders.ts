@@ -21,7 +21,19 @@ const usePaymentProviders = ({ type = '' } = {}) => {
   const paymentProviders = data?.paymentProviders || [];
 
   const loadMore = () =>
-    fetchMore({ variables: { offset: paymentProviders.length } });
+    fetchMore({
+      variables: { offset: paymentProviders.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          paymentProviders: [
+            ...prev.paymentProviders,
+            ...fetchMoreResult.paymentProviders,
+          ],
+        };
+      },
+    });
 
   return {
     paymentProviders,

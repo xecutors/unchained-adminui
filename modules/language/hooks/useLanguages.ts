@@ -23,7 +23,18 @@ const useLanguages = ({
     variables: { limit, offset, includeInactive },
   });
   const languages = data?.languages || [];
-  const loadMore = () => fetchMore({ variables: { offset: languages.length } });
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: languages.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          languages: [...prev.languages, ...fetchMoreResult.languages],
+        };
+      },
+    });
+  };
 
   return {
     languages,

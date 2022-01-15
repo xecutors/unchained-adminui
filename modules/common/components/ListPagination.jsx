@@ -39,7 +39,10 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
             </select>
           </div>
           <button
-            onClick={onLoadMore}
+            onClick={(e) => {
+              e.stopPropagation();
+              onLoadMore();
+            }}
             type="button"
             className="mt-8 ml-2 mr-2 relative items-center px-1 py-1 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >

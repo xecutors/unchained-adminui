@@ -11,12 +11,28 @@ export const DeliveryProvidersQuery = gql`
 `;
 
 const useDeliveryProviders = ({ type = '' } = {}) => {
-  const { data, loading, error } = useQuery(DeliveryProvidersQuery, {
+  const { data, loading, error, fetchMore } = useQuery(DeliveryProvidersQuery, {
     variables: { type },
   });
 
+  const deliveryProviders = data?.deliveryProviders || [];
+  const loadMore = () =>
+    fetchMore({
+      variables: { offset: deliveryProviders?.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          deliveryProviders: [
+            ...prev.deliveryProviders,
+            ...fetchMoreResult.deliveryProviders,
+          ],
+        };
+      },
+    });
   return {
-    deliveryProviders: data?.deliveryProviders || [],
+    deliveryProviders,
+    loadMore,
     loading,
     error,
   };

@@ -65,6 +65,7 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
   });
 
   const cache = apolloCache(locale);
+
   const apolloClient = new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: typeof window === 'undefined',

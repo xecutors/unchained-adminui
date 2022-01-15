@@ -12,6 +12,7 @@ const LanguageList = ({
   onLimitChange,
 }) => {
   const { formatMessage } = useIntl();
+
   return (
     <div className="m-8 flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

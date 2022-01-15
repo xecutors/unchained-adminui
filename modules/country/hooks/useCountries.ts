@@ -25,7 +25,17 @@ const useCountries = ({
 
   const countries = data?.countries || [];
 
-  const loadMore = () => fetchMore({ variables: { offset: countries.length } });
+  const loadMore = () =>
+    fetchMore({
+      variables: { offset: countries.length },
+      updateQuery: (prev: any, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return {
+          ...prev,
+          countries: [...prev.countries, ...fetchMoreResult.countries],
+        };
+      },
+    });
 
   return {
     countries: data?.countries,

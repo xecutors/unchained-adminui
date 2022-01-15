@@ -2,14 +2,8 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 
 /* eslint-disable no-underscore-dangle */
 export const keyMappings: any = {
-  Query: {
-    fields: {
-      Country: offsetLimitPagination(),
-      Currency: offsetLimitPagination(),
-      Language: offsetLimitPagination(),
-      Log: offsetLimitPagination(),
-    },
-  },
+  Query: {},
+
   SearchResult: {
     fields: {
       products: offsetLimitPagination(),

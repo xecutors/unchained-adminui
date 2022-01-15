@@ -5,7 +5,7 @@ import useUsersCount from '../../modules/accounts/hooks/useUsersCount';
 import Layout from '../../modules/common/components/Layout';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-const user = () => {
+const user = ({ ...pageProps }) => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeGuests, setShowGuests] = useState(false);
 
@@ -13,7 +13,7 @@ const user = () => {
   const { usersCount } = useUsersCount({ includeGuests });
 
   return (
-    <Layout>
+    <Layout {...pageProps}>
       <UserList
         users={users}
         limit={limit}
