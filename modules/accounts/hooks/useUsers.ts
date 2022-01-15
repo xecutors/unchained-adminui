@@ -16,6 +16,7 @@ export const UsersQuery = gql`
     ) {
       ...UserFragment
     }
+    usersCount(includeGuests: $includeGuests, queryString: $queryString)
   }
   ${UserFragment}
 `;
@@ -30,22 +31,19 @@ const useUsers = ({
     variables: { limit, offset, includeGuests, queryString },
   });
 
-  const users = data?.users;
+  const users = data?.users || [];
+  const usersCount = data?.usersCount;
+  const hasMore = users?.length < usersCount;
 
   const loadMore = () =>
     fetchMore({
       variables: { offset: users?.length },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          users: [...prev.users, ...fetchMoreResult.users],
-        };
-      },
     });
 
   return {
     users,
+    usersCount,
+    hasMore,
     loadMore,
     loading,
     error,

@@ -10,6 +10,7 @@ export const LanguagesQuery = gql`
     ) {
       ...LanguageFragment
     }
+    languagesCount(includeInactive: $includeInactive)
   }
   ${LanguageFragment}
 `;
@@ -23,21 +24,18 @@ const useLanguages = ({
     variables: { limit, offset, includeInactive },
   });
   const languages = data?.languages || [];
+  const languagesCount = data?.languagesCount;
+  const hasMore = languages?.length < languagesCount;
   const loadMore = () => {
     fetchMore({
       variables: { offset: languages.length },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          languages: [...prev.languages, ...fetchMoreResult.languages],
-        };
-      },
     });
   };
 
   return {
     languages,
+    languagesCount,
+    hasMore,
     loading,
     error,
     loadMore,

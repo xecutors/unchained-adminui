@@ -10,6 +10,7 @@ export const CurrenciesQuery = gql`
     ) {
       ...CurrencyFragment
     }
+    currenciesCount(includeInactive: $includeInactive)
   }
   ${CurrencyFragment}
 `;
@@ -24,6 +25,8 @@ const useCurrencies = ({
   });
 
   const currencies = data?.currencies || [];
+  const currenciesCount = data?.currenciesCount;
+  const hasMore = currencies?.length < currenciesCount;
   const loadMore = () =>
     fetchMore({
       variables: { offset: currencies.length || 0 },
@@ -37,6 +40,8 @@ const useCurrencies = ({
     });
   return {
     currencies,
+    currenciesCount,
+    hasMore,
     loading,
     error,
     loadMore,

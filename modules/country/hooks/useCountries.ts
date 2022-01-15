@@ -10,7 +10,9 @@ export const CountriesQuery = gql`
     ) {
       ...CountryFragment
     }
+    countriesCount(includeInactive: $includeInactive)
   }
+
   ${CountryFragment}
 `;
 
@@ -24,21 +26,18 @@ const useCountries = ({
   });
 
   const countries = data?.countries || [];
+  const countriesCount = data?.countriesCount;
+  const hasMore = countries?.length < countriesCount;
 
   const loadMore = () =>
     fetchMore({
       variables: { offset: countries.length },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          countries: [...prev.countries, ...fetchMoreResult.countries],
-        };
-      },
     });
 
   return {
-    countries: data?.countries,
+    countries,
+    countriesCount,
+    hasMore,
     loading,
     error,
     loadMore,

@@ -2,7 +2,35 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 
 /* eslint-disable no-underscore-dangle */
 export const keyMappings: any = {
-  Query: {},
+  Query: {
+    fields: {
+      Country: {
+        keyArgs: ['limit', 'includeInactive'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      Currency: {
+        keyArgs: ['limit', 'includeInactive'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      languages: {
+        keyArgs: ['limit', 'includeInactive'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      users: {
+        keyArgs: ['limit', 'includeGuests', 'queryString'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      Log: offsetLimitPagination(),
+    },
+  },
 
   SearchResult: {
     fields: {
