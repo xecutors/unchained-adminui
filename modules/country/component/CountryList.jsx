@@ -78,7 +78,7 @@ const CountryList = ({
               <tbody>
                 {countries?.map((country) => (
                   <CountryListItem
-                    key-={country._id}
+                    key={country._id}
                     country={country}
                     onRemove={onRemoveCountry}
                   />

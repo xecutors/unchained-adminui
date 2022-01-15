@@ -20,6 +20,7 @@ const UserList = ({
       <div className="sm:col-span-3">
         <div className="mt-1">
           <select
+            defaultValue="-"
             id="SelectUser"
             name="SelectUser"
             placeholder="Select User"
@@ -27,7 +28,7 @@ const UserList = ({
             autoComplete="user-name"
             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
           >
-            <option className="text-gray-700" value="" disabled selected>
+            <option className="text-gray-700" value="-" disabled>
               {formatMessage({
                 id: 'select_user',
                 defaultMessage: 'Select User',
@@ -106,7 +107,7 @@ const UserList = ({
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {users?.map((person) => (
-                  <UserListItem user={person} />
+                  <UserListItem key={person?._id} user={person} />
                 ))}
               </tbody>
             </table>
