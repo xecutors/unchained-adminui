@@ -10,36 +10,17 @@ export const PaymentProvidersQuery = gql`
   ${PaymentProviderFragment}
 `;
 
-const usePaymentProviders = ({ type = '' } = {}) => {
-  const { data, loading, error, fetchMore }: any = useQuery(
-    PaymentProvidersQuery,
-    {
-      variables: { type },
-    },
-  );
+const usePaymentProviders = ({ type = null } = {}) => {
+  const { data, loading, error }: any = useQuery(PaymentProvidersQuery, {
+    variables: { type },
+  });
 
   const paymentProviders = data?.paymentProviders || [];
-
-  const loadMore = () =>
-    fetchMore({
-      variables: { offset: paymentProviders.length },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          paymentProviders: [
-            ...prev.paymentProviders,
-            ...fetchMoreResult.paymentProviders,
-          ],
-        };
-      },
-    });
 
   return {
     paymentProviders,
     loading,
     error,
-    loadMore,
   };
 };
 

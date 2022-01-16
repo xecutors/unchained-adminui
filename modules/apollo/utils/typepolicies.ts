@@ -4,13 +4,13 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 export const keyMappings: any = {
   Query: {
     fields: {
-      Country: {
+      countries: {
         keyArgs: ['limit', 'includeInactive'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      Currency: {
+      currencies: {
         keyArgs: ['limit', 'includeInactive'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
