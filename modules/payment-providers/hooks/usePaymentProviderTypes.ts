@@ -14,7 +14,7 @@ export const PaymentProvidersTypeQuery = gql`
 const usePaymentProviderTypes = () => {
   const { data, loading, error } = useQuery(PaymentProvidersTypeQuery);
 
-  const paymentProviderType = data?.paymentProviderType || [];
+  const paymentProviderType = data?.paymentProviderType?.options || [];
 
   return {
     paymentProviderType,

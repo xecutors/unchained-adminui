@@ -14,7 +14,7 @@ export const DeliveryProvidersTypeQuery = gql`
 const useDeliveryProviderTypes = () => {
   const { data, loading, error } = useQuery(DeliveryProvidersTypeQuery);
 
-  const deliveryProviderType = data?.deliveryProviderType || [];
+  const deliveryProviderType = data?.deliveryProviderType?.options || [];
 
   return {
     deliveryProviderType,
