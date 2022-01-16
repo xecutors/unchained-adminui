@@ -38,8 +38,14 @@ const SwitchField = (props) => {
         <label htmlFor={field.name}>
           <div
             className="can-toggle__switch"
-            data-unchecked={intl.formatMessage({ id: 'switch_on' })}
-            data-checked={intl.formatMessage({ id: 'switch_off' })}
+            data-unchecked={intl.formatMessage({
+              id: 'switch_on',
+              defaultMessage: 'on',
+            })}
+            data-checked={intl.formatMessage({
+              id: 'switch_off',
+              defaultMessage: 'off',
+            })}
           />
           <div className="can-toggle__label-text">{field.label}</div>
         </label>

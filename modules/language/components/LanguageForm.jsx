@@ -27,7 +27,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
             id="isoCode"
             label={intl.formatMessage({
               id: 'iso_code',
-              defaultMessage: 'ISO Code',
+              defaultMessage: 'ISO code',
             })}
             autoComplete="on"
             required

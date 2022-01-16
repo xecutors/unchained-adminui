@@ -32,7 +32,7 @@ const CountryList = ({
                   >
                     {formatMessage({
                       id: 'iso_code',
-                      defaultMessage: 'ISO Code',
+                      defaultMessage: 'ISO code',
                     })}
                   </th>
 

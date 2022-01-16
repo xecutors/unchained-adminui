@@ -54,7 +54,11 @@ const useForm = ({
         setSubmitError(
           (await getSubmitErrorMessage(error)) ||
             intl.formatMessage(
-              { id: 'error_server' },
+              {
+                id: 'error_server',
+                defaultMessage:
+                  'There was a problem on the server ({details}). Please try again later.',
+              },
               { details: error?.message || '' },
             ),
         );
@@ -65,8 +69,16 @@ const useForm = ({
       setSubmitError(
         (await getSubmitErrorMessage(error)) ||
           intl.formatMessage(
-            { id: 'error_server' },
-            { details: error?.message || '' },
+            {
+              id: 'error_server',
+              defaultMessage:
+                'There was a problem on the server ({details}). Please try again later.',
+            },
+            {
+              details:
+                error?.message ||
+                'There was a problem on the server ({details}). Please try again later.',
+            },
           ),
       );
     }

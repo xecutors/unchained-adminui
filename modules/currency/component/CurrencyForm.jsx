@@ -27,7 +27,7 @@ const CurrencyForm = ({ onSubmit, onSubmitSuccess, defaultValue = {} }) => {
             id="isoCode"
             label={formatMessage({
               id: 'iso_code',
-              defaultMessage: 'ISO Code',
+              defaultMessage: 'ISO code',
             })}
             autoComplete="on"
             required

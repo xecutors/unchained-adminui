@@ -9,7 +9,10 @@ const NotFound = () => {
         <div className="flex-shrink-0 flex justify-center">
           <a href="/" className="inline-flex">
             <span className="sr-only">
-              {formatMessage({ id: ' Workflow', defaultMessage: ' workflow' })}{' '}
+              {formatMessage({
+                id: 'publicare',
+                defaultMessage: 'Publicare',
+              })}{' '}
             </span>
             <img
               className="h-12 w-auto"
@@ -31,7 +34,7 @@ const NotFound = () => {
             </h1>
             <p className="mt-2 text-base text-gray-500">
               {formatMessage({
-                id: 'sorry_we_couldnt_find_the_page_youre_looking_for',
+                id: 'not_found_message',
                 defaultMessage:
                   'Sorry, we couldn’t find the page you’re looking for.',
               })}
