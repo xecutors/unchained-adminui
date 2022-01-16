@@ -23,7 +23,7 @@ const LanguageList = ({
                 id: 'languages',
                 defaultMessage: 'Languages',
               })}
-              addPath="/language/add"
+              addPath="/language/new"
             />
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

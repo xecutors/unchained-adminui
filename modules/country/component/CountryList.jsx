@@ -21,7 +21,7 @@ const CountryList = ({
                 id: 'country',
                 defaultMessage: 'Country',
               })}
-              addPath="/country/add"
+              addPath="/country/new"
             />
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

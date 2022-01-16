@@ -42,7 +42,7 @@ const ProviderList = ({
                           })}
                         </option>
                         {providerType.map((type) => (
-                          <option value={type}>
+                          <option key={type} value={type}>
                             {formatMessage({
                               id: type,
                               defaultMessage: type,
@@ -56,7 +56,7 @@ const ProviderList = ({
                 </div>
 
                 <div className="ml-4 mt-2 flex-shrink-0">
-                  <Link href={`${providerPath}/add`}>
+                  <Link href={`${providerPath}/new`}>
                     <a
                       type="button"
                       className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

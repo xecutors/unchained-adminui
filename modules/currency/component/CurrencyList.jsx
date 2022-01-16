@@ -21,7 +21,7 @@ const CurrencyList = ({
                 id: 'currencies',
                 defaultMessage: 'Currencies',
               })}
-              addPath="/currency/add"
+              addPath="/currency/new"
             />
 
             <table className="min-w-full divide-y divide-gray-200">
