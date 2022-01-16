@@ -65,7 +65,7 @@ const sidenavItems = [
   },
 ];
 
-const Layout = ({ children, apollo, router }) => {
+const Layout = ({ children, apollo, router, pageHeader = '' }) => {
   const { formatMessage } = useIntl();
   const onLogout = async () => {
     await logOut(apollo);
@@ -255,7 +255,12 @@ const Layout = ({ children, apollo, router }) => {
         </div>
         <main className="flex-1">
           <div className="py-6">
-            <div className="py-4">{children}</div>
+            <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                {pageHeader}
+              </h3>
+              {children}
+            </div>
           </div>
         </main>
       </div>

@@ -17,25 +17,23 @@ const UserList = ({
         {formatMessage({ id: 'all_users', defaultMessage: 'All Users' })}
       </label>
 
-      <div className="sm:col-span-3">
-        <div className="mt-1">
-          <select
-            defaultValue="-"
-            id="SelectUser"
-            name="SelectUser"
-            placeholder="Select User"
-            input-hint="Select User"
-            autoComplete="user-name"
-            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-          >
-            <option className="text-gray-700" value="-" disabled>
-              {formatMessage({
-                id: 'select_user',
-                defaultMessage: 'Select User',
-              })}
-            </option>
-          </select>
-        </div>
+      <div className="mt-1">
+        <select
+          defaultValue="-"
+          id="SelectUser"
+          name="SelectUser"
+          placeholder="Select User"
+          input-hint="Select User"
+          autoComplete="user-name"
+          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        >
+          <option className="text-gray-700" value="-" disabled>
+            {formatMessage({
+              id: 'select_user',
+              defaultMessage: 'Select User',
+            })}
+          </option>
+        </select>
       </div>
 
       <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
@@ -44,9 +42,9 @@ const UserList = ({
             <div className=" relative flex items-start">
               <div className="flex items-center h-5">
                 <input
-                  id="candidates"
-                  aria-describedby="candidates-description"
-                  name="candidates"
+                  id="shoe-guests"
+                  aria-describedby="shoe-guests"
+                  name="shoe-guests"
                   type="checkbox"
                   checked={showGuests}
                   onChange={() => onShowGuestChange(!showGuests)}

@@ -9,6 +9,8 @@ const CountryList = ({
   total,
   onLimitChange,
   onRemoveCountry,
+  includeInactive,
+  onIncludeInactiveChange,
 }) => {
   const { formatMessage } = useIntl();
   return (
@@ -16,13 +18,28 @@ const CountryList = ({
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <ListHeader
-              headerText={formatMessage({
-                id: 'country',
-                defaultMessage: 'Country',
-              })}
-              addPath="/country/new"
-            />
+            <ListHeader addPath="/country/new">
+              <div className="flex items-center h-5">
+                <input
+                  id="include-inactive"
+                  aria-describedby="include-inactive"
+                  name="include-inactive"
+                  type="checkbox"
+                  checked={includeInactive}
+                  onChange={() => onIncludeInactiveChange(!includeInactive)}
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                />
+                <label
+                  htmlFor="show-guests"
+                  className="ml-3 font-medium text-gray-700"
+                >
+                  {formatMessage({
+                    id: 'show_inactive',
+                    defaultMessage: 'Show inactive',
+                  })}
+                </label>
+              </div>
+            </ListHeader>
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
