@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-const getInterface = ({ label, version }) => {
+const getInterfaceLabel = ({ label, version }) => {
   return `${label} ${version}`;
 };
 
-const PaymentProviderListItem = ({ provider, onRemove }) => {
+const ProviderListItem = ({ provider, onRemove, editPath }) => {
   return (
     <tr key={provider?._id}>
       <td className="flex px-6 py-4 whitespace-nowrap">
@@ -21,7 +21,7 @@ const PaymentProviderListItem = ({ provider, onRemove }) => {
 
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">
-          {getInterface(provider?.interface)}
+          {getInterfaceLabel(provider?.interface)}
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
@@ -31,7 +31,7 @@ const PaymentProviderListItem = ({ provider, onRemove }) => {
       </td>
 
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <Link href={`/payment-provider/${provider?._id}`}>
+        <Link href={`${editPath}/${provider?._id}`}>
           <a
             type="button"
             className="flex text-indigo-500 hover:text-indigo-500"
@@ -81,4 +81,4 @@ const PaymentProviderListItem = ({ provider, onRemove }) => {
   );
 };
 
-export default PaymentProviderListItem;
+export default ProviderListItem;

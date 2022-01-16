@@ -10,7 +10,7 @@ export const DeliveryProvidersQuery = gql`
   ${DeliveryProviderFragment}
 `;
 
-const useDeliveryProviders = ({ type = '' } = {}) => {
+const useDeliveryProviders = ({ type = null } = {}) => {
   const { data, loading, error } = useQuery(DeliveryProvidersQuery, {
     variables: { type },
   });

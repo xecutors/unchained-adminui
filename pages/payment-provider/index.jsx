@@ -1,8 +1,9 @@
 import { useState } from 'react';
+
 import Layout from '../../modules/common/components/Layout';
 import usePaymentProviders from '../../modules/payment-providers/hooks/usePaymentProviders';
-import PaymentProviderList from '../../modules/payment-providers/components/PaymentProviderList';
 import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
+import ProviderList from '../../modules/common/components/ProvidersList';
 
 const PaymentProviders = ({ ...pageProps }) => {
   const [type, setType] = useState(null);
@@ -15,7 +16,9 @@ const PaymentProviders = ({ ...pageProps }) => {
 
   return (
     <Layout {...pageProps}>
-      <PaymentProviderList
+      <ProviderList
+        providerType={['CARD', 'INVOICE', 'GENERIC']}
+        providerPath="/payment-provider"
         providers={paymentProviders}
         onRemove={onRemovePaymentProvider}
         onProviderFilterChange={setType}

@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import PaymentProviderListItem from './PaymentProviderListItem';
+import ProviderListItem from './ProvidersListItem';
 
-const PaymentProviderType = ['CARD', 'INVOICE', 'GENERIC'];
-
-const PaymentProviderList = ({
+const ProviderList = ({
   providers,
   onRemove,
   onProviderFilterChange,
+  providerType = [],
+  providerPath,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -41,12 +41,12 @@ const PaymentProviderList = ({
                             defaultMessage: 'Filter by type',
                           })}
                         </option>
-                        {PaymentProviderType.map((type) => (
+                        {providerType.map((type) => (
                           <option value={type}>
                             {formatMessage({
                               id: type,
                               defaultMessage: type,
-                              description: 'Payment provider type',
+                              description: 'Delivery provider type',
                             })}
                           </option>
                         ))}
@@ -56,7 +56,7 @@ const PaymentProviderList = ({
                 </div>
 
                 <div className="ml-4 mt-2 flex-shrink-0">
-                  <Link href="/payment-provider/add">
+                  <Link href={`${providerPath}/add`}>
                     <a
                       type="button"
                       className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -126,7 +126,8 @@ const PaymentProviderList = ({
               </thead>
               <tbody>
                 {providers?.map((provider) => (
-                  <PaymentProviderListItem
+                  <ProviderListItem
+                    editPath={providerPath}
                     key={provider._id}
                     provider={provider}
                     onRemove={onRemove}
@@ -141,4 +142,4 @@ const PaymentProviderList = ({
   );
 };
 
-export default PaymentProviderList;
+export default ProviderList;
