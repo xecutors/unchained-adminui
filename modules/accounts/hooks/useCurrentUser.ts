@@ -6,9 +6,17 @@ export const CurrentUserQuery = gql`
       _id
       name
       isGuest
+      username
+      avatar {
+        _id
+        url
+      }
       primaryEmail {
         address
         verified
+      }
+      profile {
+        displayName
       }
       roles
     }

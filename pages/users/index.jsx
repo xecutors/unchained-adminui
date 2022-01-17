@@ -4,7 +4,7 @@ import useUsers from '../../modules/accounts/hooks/useUsers';
 import Layout from '../../modules/common/components/Layout';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-const user = ({ ...pageProps }) => {
+const User = ({ ...pageProps }) => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [queryString, setQueryString] = useState('');
   const [includeGuests, setShowGuests] = useState(false);
@@ -31,4 +31,4 @@ const user = ({ ...pageProps }) => {
   );
 };
 
-export default user;
+export default User;

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import logOut from '../../accounts/hooks/logOut';
+import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 
 const Icons = ({ url }) => {
   return (
@@ -22,7 +23,47 @@ const Icons = ({ url }) => {
   );
 };
 
-const sidenavItems = [
+const UserAvatar = ({ avatar, username, onLogout }) => {
+  const { formatMessage } = useIntl();
+  return (
+    <a onClick={onLogout} className="flex-shrink-0 group block">
+      <div className="flex items-center">
+        <div>
+          {avatar ? (
+            <img
+              className="inline-block h-9 w-9 rounded-full"
+              src={avatar?.url}
+              alt=""
+            />
+          ) : (
+            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+              <svg
+                className="h-full w-full text-gray-300"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </span>
+          )}
+        </div>
+        <div className="ml-3">
+          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
+            {username}
+          </p>
+          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+            {formatMessage({
+              id: 'log_out',
+              defaultMessage: 'Log out',
+            })}
+          </p>
+        </div>
+      </div>
+    </a>
+  );
+};
+
+const sideNavItems = [
   {
     title: 'Sync Status',
     icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
@@ -71,6 +112,8 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
     await logOut(apollo);
     router.replace('/');
   };
+
+  const { currentUser } = useCurrentUser();
 
   return (
     <div>
@@ -124,7 +167,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
               />
             </div>
             <nav className="mt-5 px-2 space-y-1">
-              {sidenavItems.map(({ title, path, icon }) => (
+              {sideNavItems.map(({ title, path, icon }) => (
                 <Link href={path} key={title}>
                   <a
                     href="#"
@@ -138,28 +181,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
             </nav>
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <a href="#" className="flex-shrink-0 group block">
-              <div className="flex items-center">
-                <div>
-                  <img
-                    className="inline-block h-10 w-10 rounded-full"
-                    src="https://media-exp1.licdn.com/dms/image/C4D03AQGd5mqmAIm8jQ/profile-displayphoto-shrink_400_400/0/1629440843346?e=1647475200&v=beta&t=29RZb5jSBQwZXvbVgMIT5FZWxXfjp4SqZkaE1LsxR60"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3">
-                  <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                    Tom Cook
-                  </p>
-                  <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-                    {formatMessage({
-                      id: 'view_profile',
-                      defaultMessage: 'View profile',
-                    })}
-                  </p>
-                </div>
-              </div>
-            </a>
+            <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
 
@@ -177,7 +199,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
               />
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
-              {sidenavItems.map(({ title, path, icon }) => (
+              {sideNavItems.map(({ title, path, icon }) => (
                 <Link href={path} key={`${title}-`}>
                   <a
                     href="#"
@@ -191,35 +213,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
             </nav>
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <a
-              href="#"
-              className="flex-shrink-0 w-full group block"
-              onClick={onLogout}
-            >
-              <div className="flex items-center">
-                <div>
-                  <img
-                    className="inline-block h-9 w-9 rounded-full"
-                    src="https://media-exp1.licdn.com/dms/image/C4D03AQGd5mqmAIm8jQ/profile-displayphoto-shrink_400_400/0/1629440843346?e=1647475200&v=beta&t=29RZb5jSBQwZXvbVgMIT5FZWxXfjp4SqZkaE1LsxR60"
-                    alt=""
-                  />
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                    {formatMessage({
-                      id: 'niki_repasi',
-                      defaultMessage: 'Niki Repasi',
-                    })}
-                  </p>
-                  <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    {formatMessage({
-                      id: 'view_profile',
-                      defaultMessage: 'View profile',
-                    })}
-                  </p>
-                </div>
-              </div>
-            </a>
+            <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
       </div>
