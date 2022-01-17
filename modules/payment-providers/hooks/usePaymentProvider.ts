@@ -16,7 +16,7 @@ const usePaymentProvider = ({ paymentProviderId = null } = {}) => {
   });
 
   return {
-    deliveryProvider: data?.deliveryProvider,
+    paymentProvider: data?.paymentProvider,
     loading,
     error,
   };
