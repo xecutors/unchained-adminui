@@ -19,11 +19,13 @@ const AddCurrency = ({ ...pageProps }) => {
   };
   return (
     <Layout {...pageProps}>
-      <div className="m-10  bg-white shadow-md rounded px-10 pt-8 pb-10 mb-8 ">
-        <FormHeader
-          headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-        />
-        <CurrencyForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+      <div className="mt-6  sm:max-w-lg">
+        <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
+          <FormHeader
+            headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
+          />
+          <CurrencyForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </div>
       </div>
     </Layout>
   );

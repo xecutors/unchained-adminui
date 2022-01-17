@@ -14,10 +14,10 @@ const CountryList = ({
 }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="m-8 flex flex-col">
+    <div className="bg-white m-8 flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div className="shadow overflow-hidden border-b border-gray-200 ">
             <ListHeader addPath="/country/new">
               <div className="flex items-center h-5">
                 <input
@@ -41,7 +41,7 @@ const CountryList = ({
               </div>
             </ListHeader>
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-white">
                 <tr>
                   <th
                     scope="col"

@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import getStatusClasses from '../../common/util/getStatusClasses';
 
+const STATUS = {
+  true: 'Active',
+  false: 'In-Active',
+};
 const CountryListItem = ({ country, onRemove }) => {
   const { locale } = useIntl();
   return (
     <tr>
-      <td className="flex px-6 py-4 whitespace-nowrap">
+      <td className=" flex px-6 py-4 whitespace-nowrap">
         {country?.flagEmoji}
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {country.isoCode}
@@ -21,8 +26,12 @@ const CountryListItem = ({ country, onRemove }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-          {country.isActive && 'Active'}
+        <span
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
+            country.isActive,
+          )}`}
+        >
+          {STATUS[country.isActive]}
         </span>
       </td>
 

@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 const ListHeader = ({ addPath, children }) => {
   return (
-    <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
-      <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-        <div className="ml-4 mt-2">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+    <div className=" bg-white px-4 py-3 border-b border-gray-200 sm:px-6">
+      <div className="-ml-2 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+        <div className=" mt-2">
+          <h3 className="text-xs leading-6 font-sm text-gray-900">
             {children}
           </h3>
         </div>
@@ -16,7 +16,7 @@ const ListHeader = ({ addPath, children }) => {
               className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <svg
-                className="h-5 w-5"
+                className="h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"

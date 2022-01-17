@@ -44,13 +44,16 @@ const DeliveryProviderUpdate = ({ ...pageProps }) => {
         defaultMessage: 'Delivery Provider',
       })}
     >
+
       <FormHeader
         onDelete={onRemoveDeliveryProvider}
         headerText={formatMessage({
           id: 'update_configuration',
           defaultMessage: 'Update configuration',
+          
         })}
       />
+  
       <ProviderConfigurationForm
         onSubmit={onSubmit}
         onSubmitSuccess={onSubmitSuccess}

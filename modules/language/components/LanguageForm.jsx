@@ -31,7 +31,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
             })}
             autoComplete="on"
             required
-            className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+            className="m-3 block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
           />
         </div>
         {isEdit && (
@@ -51,7 +51,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
       <SubmitButton
         label="Add"
-        className="mt-3 ml-2 mr-2  items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+        className="mt-3 ml-3 mr-2  items-center px-4 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
   );

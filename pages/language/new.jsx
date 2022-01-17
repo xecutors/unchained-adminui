@@ -22,11 +22,13 @@ const AddLanguage = ({ ...pageProps }) => {
 
   return (
     <Layout {...pageProps}>
-      <div className="m-10  bg-white shadow-md rounded px-10  ">
-        <FormHeader
-          headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-        />
-        <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+      <div className="mt-6  sm:max-w-lg">
+        <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
+          <FormHeader
+            headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
+          />
+          <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </div>
       </div>
     </Layout>
   );

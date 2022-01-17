@@ -25,7 +25,9 @@ const ProviderConfigurationForm = ({
   const { values } = form.formik;
 
   return (
+   
     <Form form={form}>
+      
       <FieldArray name="configuration">
         {({ push, remove: removeConfig }) => (
           <div>
@@ -45,6 +47,8 @@ const ProviderConfigurationForm = ({
                     })}
                     name={`configuration[${index}].key`}
                     id={`configuration[${index}].key`}
+                    required
+                    className="w-20"
                   />
                   <TextField
                     label={formatMessage({
@@ -56,6 +60,7 @@ const ProviderConfigurationForm = ({
                     name={`configuration[${index}].value`}
                     id={`configuration[${index}].value`}
                     required
+                    className="w-100"
                   />
                   <button type="button" onClick={() => removeConfig(index)}>
                     x

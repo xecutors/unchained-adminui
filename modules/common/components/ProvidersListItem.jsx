@@ -5,12 +5,12 @@ const getInterfaceLabel = ({ label, version }) => {
 };
 
 const PROVIDER_TYPE_CLASSES = {
-  PHYSICAL: ' bg-green-100 text-green-800',
-  CARD: ' bg-green-100 text-green-800',
-  INVOICE: ' bg-green-100 text-green-800',
-  GENERIC: ' bg-green-100 text-green-800',
-  PICKUP: ' bg-green-100 text-green-800',
-  SHIPPING: ' bg-green-100 text-green-800',
+  PHYSICAL: 'bg-green-100 text-green-800',
+  CARD: ' bg-blue-100 text-blue-500',
+  INVOICE: ' bg-lime-100 text-lime-800',
+  GENERIC: ' bg-purple-100 text-purple-800',
+  PICKUP: ' bg-yellow-100 text-yellow-800',
+  SHIPPING: ' bg-blue-100 text-blue-800',
 };
 
 const ProviderListItem = ({ provider, onRemove, editPath }) => {

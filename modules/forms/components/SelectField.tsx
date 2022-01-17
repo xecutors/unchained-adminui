@@ -19,9 +19,12 @@ const SelectField = (props: SelectFieldProps) => {
     <FieldWrapper {...field}>
       <div className="select-wrap">
         <select
-          className={classnames('form-field', {
-            'form-field--error': !!field.error,
-          })}
+          className={classnames(
+            'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md form-field',
+            {
+              'form-field--error': !!field.error,
+            },
+          )}
           disabled={field.disabled}
           id={field.name}
           name={field.name}
