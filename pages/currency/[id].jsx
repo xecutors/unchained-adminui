@@ -39,6 +39,7 @@ const UpdateCurrency = ({ ...pageProps }) => {
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}
           defaultValue={currency}
+          isEdit
         />
       </div>
     </Layout>

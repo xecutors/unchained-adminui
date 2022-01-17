@@ -123,7 +123,8 @@ export default function LogInForm() {
                 <Link href="">
                   <a
                     href=""
-                    className="font-medium text-indigo-600 hover:text-indigo-500">
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
                     {formatMessage({
                       id: 'forget_password',
                       defaultMessage: 'Forgot your password?',

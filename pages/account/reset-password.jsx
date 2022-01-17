@@ -1,4 +1,4 @@
-import ResetPassword from '../FormResetPassword';
+import ResetPassword from '../../modules/accounts/components/ResetPassword';
 
 const PasswordReset = () => {
   return <ResetPassword />;
