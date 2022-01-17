@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -113,12 +114,16 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
     router.replace('/');
   };
 
+  const [hideNav, setHideNav] = useState(true);
+
   const { currentUser } = useCurrentUser();
 
   return (
     <div>
       <div
-        className="fixed inset-0 flex z-40 md:hidden"
+        className={`fixed inset-0 flex z-40 md:hidden  ${
+          hideNav ? 'hidden' : ''
+        } `}
         role="dialog"
         aria-modal="true"
       >
@@ -131,6 +136,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               type="button"
+              onClick={() => setHideNav(!hideNav)}
               className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             >
               <span className="sr-only">
@@ -221,6 +227,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
         <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
           <button
             type="button"
+            onClick={() => setHideNav(!hideNav)}
             className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
             <span className="sr-only">
