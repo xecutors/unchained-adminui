@@ -7,29 +7,66 @@ import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 
-const navigation = [
-  { name: 'Dashboard', icon: HomeIcon, current: true, href: '/' },
-  {
-    name: 'System',
-    icon: CogIcon,
-    current: false,
-    children: [
-      { name: 'Currencies', href: '/currency' },
-      { name: 'Countries', href: '/country' },
-      { name: 'Languages', href: '/language' },
-      { name: 'Delivery Provider', href: '/delivery-provider' },
-      { name: 'Payment Provider', href: '/payment-provider' },
-      { name: 'Warehousing Provider', href: '/warehousing-provider' },
-    ],
-  },
-  {
-    name: 'Accounts',
-    icon: UserIcon,
-    current: false,
-  },
-];
-
 const SideNav = () => {
+  const { formatMessage } = useIntl();
+
+  const navigation = [
+    {
+      name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
+      icon: HomeIcon,
+      current: true,
+      href: '/',
+    },
+    {
+      name: 'System',
+      icon: CogIcon,
+      current: false,
+      children: [
+        {
+          name: formatMessage({
+            id: 'currencies',
+            defaultMessage: 'Currencies',
+          }),
+          href: '/currency',
+        },
+        {
+          name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
+          href: '/country',
+        },
+        {
+          name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
+          href: '/language',
+        },
+        {
+          name: formatMessage({
+            id: 'delivery_providers',
+            defaultMessage: 'Delivery providers',
+          }),
+          href: '/delivery-provider',
+        },
+        {
+          name: formatMessage({
+            id: 'payment_provider',
+            defaultMessage: 'Payment providers',
+          }),
+          href: '/payment-provider',
+        },
+        {
+          name: formatMessage({
+            id: 'warehousing_provider',
+            defaultMessage: 'Warehousing provider',
+          }),
+          href: '/warehousing-provider',
+        },
+      ],
+    },
+    {
+      name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
+      icon: UserIcon,
+      current: false,
+      href: '/users',
+    },
+  ];
   return (
     <div className="mt-5 flex-grow flex flex-col">
       <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
