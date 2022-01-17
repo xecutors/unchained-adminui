@@ -22,12 +22,12 @@ const useUpdatePaymentProvider = () => {
   );
 
   const updatePaymentProvider = async ({
-    paymentProvider,
+    configuration,
     paymentProviderId,
   }) => {
     return updatePaymentProviderMutation({
       variables: {
-        paymentProvider,
+        paymentProvider: { configuration },
         paymentProviderId,
       },
       refetchQueries: ['PaymentProvider', 'PaymentProviders'],

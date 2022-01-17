@@ -22,12 +22,12 @@ const useUpdateDeliveryProvider = () => {
   );
 
   const updateDeliveryProvider = async ({
-    deliveryProvider,
+    configuration,
     deliveryProviderId,
   }) => {
     return updateDeliveryProviderMutation({
       variables: {
-        deliveryProvider,
+        deliveryProvider: { configuration },
         deliveryProviderId,
       },
       refetchQueries: ['DeliveryProvider', 'DeliveryProviders'],

@@ -22,12 +22,12 @@ const useUpdateWarehousingProvider = () => {
   );
 
   const updateWarehousingProvider = async ({
-    warehousingProvider,
+    configuration,
     warehousingProviderId,
   }) => {
     return updateWarehousingProviderMutation({
       variables: {
-        warehousingProvider,
+        warehousingProvider: { configuration },
         warehousingProviderId,
       },
       refetchQueries: ['WarehousingProvider', 'WarehousingProviders'],

@@ -1,0 +1,63 @@
+import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
+
+import FormHeader from '../../modules/common/components/FormHeader';
+import Layout from '../../modules/common/components/Layout';
+import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
+import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
+import useUpdateWarehousingProvider from '../../modules/warehousing-providers/hooks/useUpdateWarehousingProvider';
+import useWarehousingProvider from '../../modules/warehousing-providers/hooks/useWarehousingProvider';
+
+const WarehousingProviderUpdate = ({ ...pageProps }) => {
+  const { push: routerPush, query } = useRouter();
+  const { formatMessage } = useIntl();
+  const { id } = query;
+
+  const { updateWarehousingProvider } = useUpdateWarehousingProvider();
+  const { removeWarehousingProvider } = useRemoveWarehousingProvider();
+  const { warehousingProvider } = useWarehousingProvider({
+    warehousingProviderId: id,
+  });
+
+  const onSubmit = async ({ configuration }) => {
+    await updateWarehousingProvider({
+      configuration,
+      warehousingProviderId: id,
+    });
+    return true;
+  };
+
+  const onSubmitSuccess = () => {
+    routerPush('/warehousing-provider');
+  };
+
+  const onRemoveWarehousingProvider = async () => {
+    await removeWarehousingProvider({ warehousingProviderId: id });
+    routerPush('/warehousing-provider');
+  };
+
+  return (
+    <Layout
+      {...pageProps}
+      pageHeader={formatMessage({
+        id: 'warehousing_provider_header',
+        defaultMessage: 'Warehousing Provider',
+      })}
+    >
+      <FormHeader
+        onDelete={onRemoveWarehousingProvider}
+        headerText={formatMessage({
+          id: 'update_configuration',
+          defaultMessage: 'Update configuration',
+        })}
+      />
+      <ProviderConfigurationForm
+        onSubmit={onSubmit}
+        onSubmitSuccess={onSubmitSuccess}
+        defaultValue={warehousingProvider?.configuration || []}
+      />
+    </Layout>
+  );
+};
+
+export default WarehousingProviderUpdate;
