@@ -26,7 +26,7 @@ const flatten = (obj, path = '') => {
 
 export const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   return (
-    <div className="error-message ml-4">
+    <div className="text-red-600 ml-4">
       <ul>
         {submitError && (
           <li key="submitError" className="disabled">

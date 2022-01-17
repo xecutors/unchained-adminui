@@ -24,7 +24,7 @@ const CreateUserMutation = gql`
 `;
 
 const useCreateUser = () => {
-  const [createUserMutation] = useMutation(CreateUserMutation);
+  const [createUserMutation, { data, error }] = useMutation(CreateUserMutation);
 
   const createUser = async ({
     username,
@@ -52,6 +52,8 @@ const useCreateUser = () => {
 
   return {
     createUser,
+    data,
+    error,
   };
 };
 

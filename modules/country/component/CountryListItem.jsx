@@ -30,7 +30,7 @@ const CountryListItem = ({ country, onRemove }) => {
 
       <td className="px-6 py-4 whitespace-nowrap">
         <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
+          className={`px-2 inline-flex flex-col text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
             country.isActive,
           )}`}
         >
