@@ -66,7 +66,10 @@ export default function LogInForm() {
               })}
             </h2>
           </div>
-          <Form form={form} className="mt-8 space-y-6">
+          <Form
+            form={form}
+            className="mt-8 space-y-6 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10"
+          >
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -80,8 +83,8 @@ export default function LogInForm() {
                     id: 'email',
                     defaultMessage: 'E-mail',
                   })}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2  placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
+                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-5 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="sam@example.com"
                 />
               </div>
               <div>
@@ -95,13 +98,13 @@ export default function LogInForm() {
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2  placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
+                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="********"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="m-2 flex items-center justify-between">
               <div className="flex items-center">
                 <CheckboxField
                   id="remember-me"
@@ -109,15 +112,14 @@ export default function LogInForm() {
                   type="checkbox"
                   label={formatMessage({
                     id: 'remember_password',
-                    defaultMessage: 'Remember me',
+                    defaultMessage: ' Remember me',
                   })}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
               </div>
 
               <div className="text-sm">
                 <a
-                  href="#"
+                  href="/FormResetPassword"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {formatMessage({
@@ -128,7 +130,7 @@ export default function LogInForm() {
               </div>
             </div>
 
-            <div>
+            <div className="m-2">
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -150,6 +152,18 @@ export default function LogInForm() {
                 </span>
                 {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
               </button>
+            </div>
+            <div className=" text-sm">
+              Create new Account?
+              <a
+                href="/sign-up"
+                className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                {intl.formatMessage({
+                  id: 'sign_up',
+                  defaultMessage: 'Sign up',
+                })}
+              </a>
             </div>
           </Form>
         </div>

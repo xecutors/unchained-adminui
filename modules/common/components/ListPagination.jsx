@@ -22,7 +22,15 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
             }}
           />
         </div>
-        <div className="flex-1 flex justify-between sm:justify-end">
+        <button
+          onClick={onLoadMore}
+          type="button"
+          className=" p-1 mt-3 mr-10 justify-center items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          {formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
+        </button>
+
+        <div className="pr-12 flex justify-between sm:justify-end">
           <div>
             <select
               onChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
