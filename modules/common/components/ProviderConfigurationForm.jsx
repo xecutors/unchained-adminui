@@ -25,9 +25,7 @@ const ProviderConfigurationForm = ({
   const { values } = form.formik;
 
   return (
-   
     <Form form={form}>
-      
       <FieldArray name="configuration">
         {({ push, remove: removeConfig }) => (
           <div>

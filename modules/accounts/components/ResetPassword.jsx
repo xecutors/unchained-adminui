@@ -3,7 +3,7 @@ import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
 
-export default function FormResetPassword() {
+export default function ResetPassword() {
   const intl = useIntl();
   const form = useForm({
     getSubmitErrorMessage: (error) => {

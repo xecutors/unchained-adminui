@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import CheckboxField from '../../forms/components/CheckboxField';
@@ -10,6 +11,7 @@ import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import { storeLoginToken } from '../utils/store';
 
 export default function LogInForm() {
+  const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
   const { formatMessage } = useIntl();
@@ -118,15 +120,16 @@ export default function LogInForm() {
               </div>
 
               <div className="text-sm">
-                <a
-                  href="/FormResetPassword"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({
-                    id: 'forget_password',
-                    defaultMessage: 'Forgot your password?',
-                  })}
-                </a>
+                <Link href="">
+                  <a
+                    href=""
+                    className="font-medium text-indigo-600 hover:text-indigo-500">
+                    {formatMessage({
+                      id: 'forget_password',
+                      defaultMessage: 'Forgot your password?',
+                    })}
+                  </a>
+                </Link>
               </div>
             </div>
 

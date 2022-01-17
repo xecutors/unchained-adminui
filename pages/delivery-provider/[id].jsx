@@ -44,21 +44,23 @@ const DeliveryProviderUpdate = ({ ...pageProps }) => {
         defaultMessage: 'Delivery Provider',
       })}
     >
+      <div className="mt-6  sm:max-w-lg">
+        <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
+          <FormHeader
+            onDelete={onRemoveDeliveryProvider}
+            headerText={formatMessage({
+              id: 'update_configuration',
+              defaultMessage: 'Update configuration',
+            })}
+          />
 
-      <FormHeader
-        onDelete={onRemoveDeliveryProvider}
-        headerText={formatMessage({
-          id: 'update_configuration',
-          defaultMessage: 'Update configuration',
-          
-        })}
-      />
-  
-      <ProviderConfigurationForm
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        defaultValue={deliveryProvider?.configuration || []}
-      />
+          <ProviderConfigurationForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            defaultValue={deliveryProvider?.configuration || []}
+          />
+        </div>
+      </div>
     </Layout>
   );
 };
