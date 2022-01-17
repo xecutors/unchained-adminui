@@ -13,12 +13,12 @@ const ProviderList = ({
   const { formatMessage } = useIntl();
 
   return (
-    <div className="m-8 flex flex-col">
+    <div className="m-8 bg-white flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-              <div className=" -ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+            <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
+              <div className=" -ml-4  -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
                 <div className=" ml-2 mt-2 w-100">
                   <div className=" relative flex items-start ">
                     <div className="mt-1">
@@ -62,7 +62,7 @@ const ProviderList = ({
                       className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       <svg
-                        className="h-5 w-5"
+                        className="h-3 w-3"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -81,7 +81,7 @@ const ProviderList = ({
             </div>
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
-                <tr>
+                <tr className="bg-white">
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"

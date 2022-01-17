@@ -45,6 +45,8 @@ const ProviderConfigurationForm = ({
                     })}
                     name={`configuration[${index}].key`}
                     id={`configuration[${index}].key`}
+                    required
+                    className="w-20"
                   />
                   <TextField
                     label={formatMessage({
@@ -56,6 +58,7 @@ const ProviderConfigurationForm = ({
                     name={`configuration[${index}].value`}
                     id={`configuration[${index}].value`}
                     required
+                    className="w-100"
                   />
                   <button type="button" onClick={() => removeConfig(index)}>
                     x

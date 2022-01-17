@@ -29,7 +29,7 @@ const CheckboxField = (props) => {
       />
       <label
         htmlFor={field.name}
-        className={classnames('form-check-label', {
+        className={classnames('text-sm text-gray-900 form-check-label', {
           'text-danger': !!field.error,
         })}
       >

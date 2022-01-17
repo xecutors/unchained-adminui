@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import getStatusClasses from '../../common/util/getStatusClasses';
+
+const STATUS = {
+  true: 'Active',
+  false: 'In-Active',
+};
 
 const LanguageListItem = ({ language, onRemove }) => {
   const { locale } = useIntl();
@@ -19,8 +25,12 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-          {language.isActive && 'Active'}
+        <span
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
+            language.isActive,
+          )}`}
+        >
+          {STATUS[language.isActive]}
         </span>
       </td>
 
