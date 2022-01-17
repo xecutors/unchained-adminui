@@ -2,13 +2,12 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import FormHeader from '../../modules/common/components/FormHeader';
-import Layout from '../../modules/common/components/Layout';
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import usePaymentProvider from '../../modules/payment-providers/hooks/usePaymentProvider';
 import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
 import useUpdatePaymentProvider from '../../modules/payment-providers/hooks/useUpdatePaymentProvider';
 
-const PaymentProviderUpdate = ({ ...pageProps }) => {
+const PaymentProviderUpdate = () => {
   const { push: routerPush, query } = useRouter();
   const { formatMessage } = useIntl();
   const { id } = query;
@@ -37,13 +36,7 @@ const PaymentProviderUpdate = ({ ...pageProps }) => {
   };
 
   return (
-    <Layout
-      {...pageProps}
-      pageHeader={formatMessage({
-        id: 'payment_provider_header',
-        defaultMessage: 'Payment Provider',
-      })}
-    >
+    <>
       <FormHeader
         onDelete={onRemovePaymentProvider}
         headerText={formatMessage({
@@ -56,7 +49,7 @@ const PaymentProviderUpdate = ({ ...pageProps }) => {
         onSubmitSuccess={onSubmitSuccess}
         defaultValue={paymentProvider?.configuration || []}
       />
-    </Layout>
+    </>
   );
 };
 

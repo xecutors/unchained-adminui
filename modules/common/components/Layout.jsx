@@ -1,26 +1,107 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { Disclosure } from '@headlessui/react';
+import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
+import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 
-const Icons = ({ url }) => {
+const navigation = [
+  { name: 'Dashboard', icon: HomeIcon, current: true, href: '/' },
+  {
+    name: 'System',
+    icon: CogIcon,
+    current: false,
+    children: [
+      { name: 'Currencies', href: '/currency' },
+      { name: 'Countries', href: '/country' },
+      { name: 'Languages', href: '/language' },
+      { name: 'Delivery Provider', href: '/delivery-provider' },
+      { name: 'Payment Provider', href: '/payment-provider' },
+      { name: 'Warehousing Provider', href: '/warehousing-provider' },
+    ],
+  },
+  {
+    name: 'Accounts',
+    icon: UserIcon,
+    current: false,
+  },
+];
+
+const SideNav = () => {
   return (
-    <svg
-      className="text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d={url}
-      />
-    </svg>
+    <div className="mt-5 flex-grow flex flex-col">
+      <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
+        {navigation.map((item) =>
+          !item.children ? (
+            <div key={item.name}>
+              <Link href={item?.href || '#'}>
+                <a
+                  className={classNames(
+                    item.current
+                      ? 'bg-gray-100 text-gray-900'
+                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                    'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
+                  )}
+                >
+                  <item.icon
+                    className={classNames(
+                      item.current
+                        ? 'text-gray-500'
+                        : 'text-gray-400 group-hover:text-gray-500',
+                      'mr-3 flex-shrink-0 h-6 w-6',
+                    )}
+                    aria-hidden="true"
+                  />
+                  {item.name}
+                </a>
+              </Link>
+            </div>
+          ) : (
+            <Disclosure as="div" key={item.name} className="space-y-1">
+              {({ open }) => (
+                <>
+                  <Disclosure.Button
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-100 text-gray-900'
+                        : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
+                    )}
+                  >
+                    <item.icon
+                      className="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                    <span className="flex-1">{item.name}</span>
+                    <svg
+                      className={classNames(
+                        open ? 'text-gray-400 rotate-90' : 'text-gray-300',
+                        'ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150',
+                      )}
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 6L14 10L6 14V6Z" fill="currentColor" />
+                    </svg>
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="space-y-1">
+                    {item.children.map((subItem) => (
+                      <Link key={subItem.name} href={subItem.href}>
+                        <a className="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                          {subItem.name}
+                        </a>
+                      </Link>
+                    ))}
+                  </Disclosure.Panel>
+                </>
+              )}
+            </Disclosure>
+          ),
+        )}
+      </nav>
+    </div>
   );
 };
 
@@ -63,49 +144,6 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
     </a>
   );
 };
-
-const sideNavItems = [
-  {
-    title: 'Sync Status',
-    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
-    path: '/',
-  },
-  {
-    title: 'Users',
-    icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',
-    path: '/users',
-  },
-  {
-    title: 'Countries',
-    icon: 'M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9',
-    path: '/country',
-  },
-  {
-    title: 'Languages',
-    icon: 'M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129',
-    path: '/language',
-  },
-  {
-    title: 'Currencies',
-    icon: 'M14.121 15.536c-1.171 1.952-3.07 1.952-4.242 0-1.172-1.953-1.172-5.119 0-7.072 1.171-1.952 3.07-1.952 4.242 0M8 10.5h4m-4 3h4m9-1.5a9 9 0 11-18 0 9 9 0 0118 0z',
-    path: '/currency',
-  },
-  {
-    title: 'Payments',
-    icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
-    path: '/payment-provider',
-  },
-  {
-    title: 'Delivery',
-    icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z',
-    path: '/delivery-provider',
-  },
-  {
-    title: 'Warehousing',
-    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
-    path: '/warehousing-provider',
-  },
-];
 
 const Layout = ({ children, apollo, router, pageHeader = '' }) => {
   const { formatMessage } = useIntl();
@@ -172,26 +210,12 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
                 alt="Publicare"
               />
             </div>
-            <nav className="mt-5 px-2 space-y-1">
-              {sideNavItems.map(({ title, path, icon }) => (
-                <Link href={path} key={title}>
-                  <a
-                    href="#"
-                    className="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Icons url={icon} />
-                    {title}
-                  </a>
-                </Link>
-              ))}
-            </nav>
+            <SideNav />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
-
-        <div className="flex-shrink-0 w-14" />
       </div>
 
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -204,19 +228,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
                 alt="Workflow"
               />
             </div>
-            <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
-              {sideNavItems.map(({ title, path, icon }) => (
-                <Link href={path} key={`${title}-`}>
-                  <a
-                    href="#"
-                    className="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                  >
-                    <Icons url={icon} />
-                    {title}
-                  </a>
-                </Link>
-              ))}
-            </nav>
+            <SideNav />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />

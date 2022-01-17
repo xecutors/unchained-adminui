@@ -2,13 +2,12 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import FormHeader from '../../modules/common/components/FormHeader';
-import Layout from '../../modules/common/components/Layout';
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
 import useUpdateWarehousingProvider from '../../modules/warehousing-providers/hooks/useUpdateWarehousingProvider';
 import useWarehousingProvider from '../../modules/warehousing-providers/hooks/useWarehousingProvider';
 
-const WarehousingProviderUpdate = ({ ...pageProps }) => {
+const WarehousingProviderUpdate = () => {
   const { push: routerPush, query } = useRouter();
   const { formatMessage } = useIntl();
   const { id } = query;
@@ -37,13 +36,7 @@ const WarehousingProviderUpdate = ({ ...pageProps }) => {
   };
 
   return (
-    <Layout
-      {...pageProps}
-      pageHeader={formatMessage({
-        id: 'warehousing_provider_header',
-        defaultMessage: 'Warehousing Provider',
-      })}
-    >
+    <>
       <FormHeader
         onDelete={onRemoveWarehousingProvider}
         headerText={formatMessage({
@@ -56,7 +49,7 @@ const WarehousingProviderUpdate = ({ ...pageProps }) => {
         onSubmitSuccess={onSubmitSuccess}
         defaultValue={warehousingProvider?.configuration || []}
       />
-    </Layout>
+    </>
   );
 };
 

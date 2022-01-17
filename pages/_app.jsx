@@ -9,6 +9,7 @@ import '../styles/globals.css';
 
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
+import Layout from '../modules/common/components/Layout';
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -21,7 +22,7 @@ export function parseCookies(ctx = {}, options = {}) {
   );
 }
 
-const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
+const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
 
@@ -36,7 +37,13 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
         messages={messages}
         key="intl-provider"
       >
-        <Component {...pageProps} {...rest} apollo={apollo} />
+        {isLoggedIn ? (
+          <Layout apollo={apollo} {...rest}>
+            <Component {...pageProps} {...rest} apollo={apollo} />
+          </Layout>
+        ) : (
+          <Component {...pageProps} {...rest} apollo={apollo} />
+        )}
       </IntlWrapper>
     </ApolloProvider>
   );

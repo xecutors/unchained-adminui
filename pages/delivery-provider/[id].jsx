@@ -2,13 +2,13 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import FormHeader from '../../modules/common/components/FormHeader';
-import Layout from '../../modules/common/components/Layout';
+
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDeliveryProvider';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
 import useUpdateDeliveryProvider from '../../modules/delivery-provider/hooks/useUpdateDeliveryProvider';
 
-const DeliveryProviderUpdate = ({ ...pageProps }) => {
+const DeliveryProviderUpdate = () => {
   const { push: routerPush, query } = useRouter();
   const { formatMessage } = useIntl();
   const { id } = query;
@@ -37,31 +37,23 @@ const DeliveryProviderUpdate = ({ ...pageProps }) => {
   };
 
   return (
-    <Layout
-      {...pageProps}
-      pageHeader={formatMessage({
-        id: 'delivery_provider_header',
-        defaultMessage: 'Delivery Provider',
-      })}
-    >
-      <div className="mt-6  sm:max-w-lg">
-        <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
-          <FormHeader
-            onDelete={onRemoveDeliveryProvider}
-            headerText={formatMessage({
-              id: 'update_configuration',
-              defaultMessage: 'Update configuration',
-            })}
-          />
+    <div className="mt-6  sm:max-w-lg">
+      <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
+        <FormHeader
+          onDelete={onRemoveDeliveryProvider}
+          headerText={formatMessage({
+            id: 'update_configuration',
+            defaultMessage: 'Update configuration',
+          })}
+        />
 
-          <ProviderConfigurationForm
-            onSubmit={onSubmit}
-            onSubmitSuccess={onSubmitSuccess}
-            defaultValue={deliveryProvider?.configuration || []}
-          />
-        </div>
+        <ProviderConfigurationForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={deliveryProvider?.configuration || []}
+        />
       </div>
-    </Layout>
+    </div>
   );
 };
 

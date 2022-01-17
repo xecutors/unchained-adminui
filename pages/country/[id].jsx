@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../modules/common/components/FormHeader';
-import Layout from '../../modules/common/components/Layout';
+
 import CountryForm from '../../modules/country/component/CountryForm';
 import useCountry from '../../modules/country/hooks/useCountry';
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
@@ -15,7 +15,7 @@ const normalizeCountry = (country) => {
   };
 };
 
-const UpdateCountry = ({ ...pageProps }) => {
+const UpdateCountry = () => {
   const { push, query } = useRouter();
   const { id } = query;
 
@@ -40,7 +40,7 @@ const UpdateCountry = ({ ...pageProps }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <Layout {...pageProps}>
+    <>
       <FormHeader
         headerText={formatMessage({ id: 'Edit', defaultMessage: 'Edit' })}
         onDelete={removeCountry}
@@ -51,7 +51,7 @@ const UpdateCountry = ({ ...pageProps }) => {
         onSubmitSuccess={onSubmitSuccess}
         onSubmit={onSubmit}
       />
-    </Layout>
+    </>
   );
 };
 

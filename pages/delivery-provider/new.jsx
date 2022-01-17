@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import Layout from '../../modules/common/components/Layout';
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
 import useCreateDeliveryProvider from '../../modules/delivery-provider/hooks/useCreateDeliveryProvider';
 import useDeliveryInterfacesByType from '../../modules/delivery-provider/hooks/useDeliveryInterfacesByType';
 import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 
-const NewDeliveryProvider = ({ ...pageProps }) => {
+const NewDeliveryProvider = () => {
   const [selectedType, setSelectedType] = useState('SHIPPING');
 
   const { createDeliveryProvider } = useCreateDeliveryProvider();
@@ -28,7 +27,7 @@ const NewDeliveryProvider = ({ ...pageProps }) => {
   };
 
   return (
-    <Layout {...pageProps}>
+    <>
       <NewProviderForm
         providerInterfaces={convertArrayOfObjectToObject(
           deliveryInterfaces,
@@ -44,7 +43,7 @@ const NewDeliveryProvider = ({ ...pageProps }) => {
         onSubmitSuccess={onSubmitSuccess}
         onProviderChange={(current) => setSelectedType(current)}
       />
-    </Layout>
+    </>
   );
 };
 

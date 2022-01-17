@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import Layout from '../../modules/common/components/Layout';
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
 import useCreatePaymentProvider from '../../modules/payment-providers/hooks/useCreatePaymentProvider';
 import usePaymentInterfacesByType from '../../modules/payment-providers/hooks/usePaymentInterfacesByType';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
 
-const NewPaymentProvider = ({ ...pageProps }) => {
+const NewPaymentProvider = () => {
   const [selectedType, setSelectedType] = useState('INVOICE');
 
   const { createPaymentProvider } = useCreatePaymentProvider();
@@ -28,7 +27,7 @@ const NewPaymentProvider = ({ ...pageProps }) => {
   };
 
   return (
-    <Layout {...pageProps}>
+    <>
       <NewProviderForm
         providerInterfaces={convertArrayOfObjectToObject(
           paymentInterfaces,
@@ -44,7 +43,7 @@ const NewPaymentProvider = ({ ...pageProps }) => {
         onSubmitSuccess={onSubmitSuccess}
         onProviderChange={(current) => setSelectedType(current)}
       />
-    </Layout>
+    </>
   );
 };
 
