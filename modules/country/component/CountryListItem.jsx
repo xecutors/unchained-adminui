@@ -6,8 +6,11 @@ const STATUS = {
   true: 'Active',
   false: 'In-Active',
 };
+
 const CountryListItem = ({ country, onRemove }) => {
   const { locale } = useIntl();
+  const currencyISOcode =
+    country.defaultCurrency && country.defaultCurrency.isoCode;
   return (
     <tr>
       <td className=" flex px-6 py-4 whitespace-nowrap">
@@ -36,7 +39,12 @@ const CountryListItem = ({ country, onRemove }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-gray-900">{country.isoCode}</div>
+        <div className="text-sm text-gray-900">
+          {currencyISOcode &&
+            `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
+              currencyISOcode,
+            )}  (${currencyISOcode})`}
+        </div>
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">

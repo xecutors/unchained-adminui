@@ -46,6 +46,7 @@ const UpdateCountry = ({ ...pageProps }) => {
         onDelete={removeCountry}
       />
       <CountryForm
+        isEdit
         defaultValue={normalizeCountry(country)}
         onSubmitSuccess={onSubmitSuccess}
         onSubmit={onSubmit}
