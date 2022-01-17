@@ -87,28 +87,16 @@ const ProviderList = ({
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     {formatMessage({
-                      id: 'configuration',
-                      defaultMessage: 'Configuration',
+                      id: 'interface',
+                      defaultMessage: 'Interface',
                     })}
                   </th>
-
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     {formatMessage({ id: 'type', defaultMessage: 'Type' })}
                   </th>
-
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'interface',
-                      defaultMessage: 'Interface',
-                    })}
-                  </th>
-
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"

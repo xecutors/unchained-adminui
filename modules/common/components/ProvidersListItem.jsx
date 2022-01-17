@@ -4,25 +4,32 @@ const getInterfaceLabel = ({ label, version }) => {
   return `${label} ${version}`;
 };
 
+const PROVIDER_TYPE_CLASSES = {
+  PHYSICAL: ' bg-green-100 text-green-800',
+  CARD: ' bg-green-100 text-green-800',
+  INVOICE: ' bg-green-100 text-green-800',
+  GENERIC: ' bg-green-100 text-green-800',
+  PICKUP: ' bg-green-100 text-green-800',
+  SHIPPING: ' bg-green-100 text-green-800',
+};
+
 const ProviderListItem = ({ provider, onRemove, editPath }) => {
   return (
     <tr key={provider?._id}>
-      <td className="flex px-6 py-4 whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900 border-">
-          {provider?.configuration}
-        </div>
-      </td>
-
-      <td className="px-6 py-4 whitespace-nowrap">
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-          {provider?.type}
-        </span>
-      </td>
-
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">
           {getInterfaceLabel(provider?.interface)}
         </div>
+      </td>
+
+      <td className="px-6 py-4 whitespace-nowrap">
+        <span
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+            PROVIDER_TYPE_CLASSES[provider.type]
+          }`}
+        >
+          {provider?.type}
+        </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-red-900">

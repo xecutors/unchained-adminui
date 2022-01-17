@@ -1,30 +1,39 @@
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import Layout from '../../modules/common/components/Layout';
-import usePaymentProviders from '../../modules/payment-providers/hooks/usePaymentProviders';
-import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
-import ProviderList from '../../modules/common/components/ProvidersList';
+import ProvidersList from '../../modules/common/components/ProvidersList';
+import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
+import useWarehousingProviders from '../../modules/warehousing-providers/hooks/useWarehousingProviders';
 
-const PaymentProviders = ({ ...pageProps }) => {
+const WarehousingProviders = ({ ...pageProps }) => {
   const [type, setType] = useState(null);
-  const { paymentProviders } = usePaymentProviders({ type });
-  const { removePaymentProvider } = useRemovePaymentProvider();
+  const { formatMessage } = useIntl();
+  const { warehousingProviders } = useWarehousingProviders({ type });
+  const { removePaymentProvider } = useRemoveWarehousingProvider();
 
-  const onRemovePaymentProvider = async (paymentProviderId) => {
+  const onRemoveWarehousingProvider = async (paymentProviderId) => {
     await removePaymentProvider({ paymentProviderId });
+    return true;
   };
 
   return (
-    <Layout {...pageProps}>
-      <ProviderList
-        providerType={['CARD', 'INVOICE', 'GENERIC']}
-        providerPath="/payment-provider"
-        providers={paymentProviders}
-        onRemove={onRemovePaymentProvider}
+    <Layout
+      {...pageProps}
+      pageHeader={formatMessage({
+        id: 'warehousing_providers_header',
+        defaultMessage: 'Warehousing Providers',
+      })}
+    >
+      <ProvidersList
+        providerType={['PHYSICAL']}
+        providerPath="/warehousing-provider"
+        providers={warehousingProviders}
+        onRemove={onRemoveWarehousingProvider}
         onProviderFilterChange={setType}
       />
     </Layout>
   );
 };
 
-export default PaymentProviders;
+export default WarehousingProviders;

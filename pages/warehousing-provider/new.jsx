@@ -4,39 +4,39 @@ import { useState } from 'react';
 import Layout from '../../modules/common/components/Layout';
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
-import useCreatePaymentProvider from '../../modules/payment-providers/hooks/useCreatePaymentProvider';
-import usePaymentInterfacesByType from '../../modules/payment-providers/hooks/usePaymentInterfacesByType';
-import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
+import useCreateWarehousingProvider from '../../modules/warehousing-providers/hooks/useCreateWarehousingProvider';
+import useWarehousingInterfacesByType from '../../modules/warehousing-providers/hooks/useWarehousingInterfacesByType';
+import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
 
 const NewPaymentProvider = ({ ...pageProps }) => {
-  const [selectedType, setSelectedType] = useState('INVOICE');
+  const [selectedType, setSelectedType] = useState('PHYSICAL');
 
-  const { createPaymentProvider } = useCreatePaymentProvider();
-  const { paymentProviderType } = usePaymentProviderTypes();
-  const { paymentInterfaces } = usePaymentInterfacesByType({
+  const { createWarehousingProvider } = useCreateWarehousingProvider();
+  const { warehousingProviderType } = useWarehousingProviderTypes();
+  const { warehousingInterfaces } = useWarehousingInterfacesByType({
     type: selectedType,
   });
   const onSubmit = async ({ adapterKey, type }) => {
-    await createPaymentProvider({ adapterKey, type });
+    await createWarehousingProvider({ adapterKey, type });
     return true;
   };
 
   const { push } = useRouter();
 
   const onSubmitSuccess = () => {
-    push('/payment-provider');
+    push('/warehousing-provider');
   };
 
   return (
     <Layout {...pageProps}>
       <NewProviderForm
         providerInterfaces={convertArrayOfObjectToObject(
-          paymentInterfaces,
+          warehousingInterfaces,
           'label',
           'value',
         )}
         providerTypes={convertArrayOfObjectToObject(
-          paymentProviderType,
+          warehousingProviderType,
           'label',
           'value',
         )}
