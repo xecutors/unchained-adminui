@@ -6,11 +6,13 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
 const user = ({ ...pageProps }) => {
   const [limit, setLimit] = useState(DefaultLimit);
+  const [queryString, setQueryString] = useState('');
   const [includeGuests, setShowGuests] = useState(false);
 
   const { users, usersCount, loadMore } = useUsers({
     limit,
     includeGuests,
+    queryString,
   });
 
   return (
@@ -23,6 +25,7 @@ const user = ({ ...pageProps }) => {
         onLoadMore={loadMore}
         showGuests={includeGuests}
         onShowGuestChange={setShowGuests}
+        onSearch={setQueryString}
       />
     </Layout>
   );
