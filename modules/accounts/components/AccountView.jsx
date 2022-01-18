@@ -1,3 +1,4 @@
+import EmailAddresses from './EmailAddresses';
 import UserNameView from './UserNameView';
 
 const AccountView = ({ _id, emails, username, roles, tags }) => {
@@ -16,6 +17,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
         </div>
       </div>
       <UserNameView username={username} _id={_id} />
+      <EmailAddresses emails={emails} />
     </>
   );
 };
