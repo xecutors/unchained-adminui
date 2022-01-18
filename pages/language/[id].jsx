@@ -30,18 +30,17 @@ const UpdateLanguage = () => {
   };
 
   return (
-    <div className="m-10  bg-white shadow-md rounded px-10  ">
-      <FormHeader
-        headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-        onDelete={onDelete}
-      />
+    <FormHeader
+      headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+      onDelete={onDelete}
+    >
       <LanguageForm
         isEdit
         defaultValue={language}
         onSubmit={onSubmit}
         onSubmitSuccess={onSubmitSuccess}
       />
-    </div>
+    </FormHeader>
   );
 };
 

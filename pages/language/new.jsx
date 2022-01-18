@@ -21,12 +21,11 @@ const AddLanguage = () => {
 
   return (
     <div className="mt-6  sm:max-w-lg">
-      <div className="bg-white py-12 px-10 shadow sm:rounded-lg sm:px-15">
-        <FormHeader
-          headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-        />
+      <FormHeader
+        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
+      >
         <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-      </div>
+      </FormHeader>
     </div>
   );
 };

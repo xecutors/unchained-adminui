@@ -28,18 +28,17 @@ const UpdateCurrency = () => {
     push('/currency');
   };
   return (
-    <div className="m-10  bg-white shadow-md rounded px-10 pt-8 pb-10 mb-8 ">
-      <FormHeader
-        headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-        onDelete={onRemove}
-      />
+    <FormHeader
+      headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+      onDelete={onRemove}
+    >
       <CurrencyForm
         onSubmit={onSubmit}
         onSubmitSuccess={onSubmitSuccess}
         defaultValue={currency}
         isEdit
       />
-    </div>
+    </FormHeader>
   );
 };
 

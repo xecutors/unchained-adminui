@@ -36,20 +36,19 @@ const PaymentProviderUpdate = () => {
   };
 
   return (
-    <>
-      <FormHeader
-        onDelete={onRemovePaymentProvider}
-        headerText={formatMessage({
-          id: 'update_configuration',
-          defaultMessage: 'Update configuration',
-        })}
-      />
+    <FormHeader
+      onDelete={onRemovePaymentProvider}
+      headerText={formatMessage({
+        id: 'update_configuration',
+        defaultMessage: 'Update configuration',
+      })}
+    >
       <ProviderConfigurationForm
         onSubmit={onSubmit}
         onSubmitSuccess={onSubmitSuccess}
         defaultValue={paymentProvider?.configuration || []}
       />
-    </>
+    </FormHeader>
   );
 };
 
