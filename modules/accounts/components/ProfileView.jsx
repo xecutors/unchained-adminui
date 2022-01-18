@@ -60,15 +60,16 @@ const ProfileView = ({
     setIsEdit(false);
     return true;
   };
+  console.log(profile);
 
   const form = useForm({
     submit: onUpdateProfile,
-
     initialValues: {
       ...profile,
       ...profile?.address,
     },
   });
+  console.log(form.formik);
   return (
     <Form form={form}>
       <div className="px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md">
@@ -151,7 +152,7 @@ const ProfileView = ({
               <dd className="mt-1 py-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <TextField
-                    className="h-8 rounded-md  w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                    className="w-full mt-0"
                     name="displayName"
                     required
                   />
@@ -173,7 +174,7 @@ const ProfileView = ({
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <SelectField
-                    className="h-8 block w-full pl-1 py-0 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md form-field"
+                    className="w-full mt-0"
                     label=""
                     name="gender"
                     options={{
@@ -197,7 +198,7 @@ const ProfileView = ({
                 {isEdit ? (
                   <DatePickerField
                     label=""
-                    className="h-8 rounded-md relative block w-full border"
+                    className="w-full mt-0"
                     name="birthday"
                   />
                 ) : (
@@ -210,7 +211,7 @@ const ProfileView = ({
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <TextField
-                    className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                    className="w-full mt-0"
                     name="phoneMobile"
                     label=""
                   />
@@ -242,12 +243,12 @@ const ProfileView = ({
                 {isEdit ? (
                   <div className=" flex">
                     <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                      className="w-full mt-0"
                       name="firstName"
                       label=""
                     />{' '}
                     <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs "
+                      className="w-full mt-0"
                       name="lastName"
                       label=""
                     />
@@ -265,11 +266,7 @@ const ProfileView = ({
               </dt>
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
-                  <TextField
-                    className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
-                    name="company"
-                    label=""
-                  />
+                  <TextField className="w-full mt-0" name="company" label="" />
                 ) : (
                   <span className="flex-grow">{address?.company}</span>
                 )}
@@ -282,7 +279,7 @@ const ProfileView = ({
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <TextField
-                    className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                    className="w-full mt-0"
                     name="addressLine"
                     label=""
                   />
@@ -298,7 +295,7 @@ const ProfileView = ({
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <TextField
-                    className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                    className="w-full mt-0"
                     name="addressLine2"
                     label=""
                   />
@@ -317,7 +314,7 @@ const ProfileView = ({
                 <dd className="mt-1 text-sm text-gray-900">
                   {isEdit ? (
                     <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                      className="w-full mt-0"
                       name="regionCode"
                       label=""
                     />
@@ -333,7 +330,7 @@ const ProfileView = ({
                 <dd className="mt-1 text-sm text-gray-900">
                   {isEdit ? (
                     <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                      className="w-full mt-0"
                       name="postalCode"
                       label=""
                     />
@@ -346,11 +343,7 @@ const ProfileView = ({
                 <dt className="text-sm h-10 font-medium text-gray-500">City</dt>
                 <dd className="mt-1 text-sm text-gray-900">
                   {isEdit ? (
-                    <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
-                      name="city"
-                      label=""
-                    />
+                    <TextField className="w-full mt-0" name="city" label="" />
                   ) : (
                     address?.city
                   )}
@@ -363,7 +356,7 @@ const ProfileView = ({
                 <dd className="mt-1 text-sm text-gray-900">
                   {isEdit ? (
                     <TextField
-                      className="h-8 rounded-md relative block w-full border border-indigo-100 placeholder-gray-100 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs"
+                      className="w-full mt-0"
                       name="countryCode"
                       label=""
                     />

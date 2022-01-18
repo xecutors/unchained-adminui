@@ -61,7 +61,7 @@ const ProviderConfigurationForm = ({
                     name={`configuration[${index}].value`}
                     id={`configuration[${index}].value`}
                     required
-                    className="px-6 "
+                    className="px-6"
                   />
                   <button
                     className="mt-2 mr-2 items-center text-red-500 align-baseline"
