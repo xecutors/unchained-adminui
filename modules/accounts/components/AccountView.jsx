@@ -1,8 +1,8 @@
 import EmailAddresses from './EmailAddresses';
 import UserNameView from './UserNameView';
+import UserTagsView from './UserTagsView';
 
 const AccountView = ({ _id, emails, username, roles, tags }) => {
-  console.log(username);
   return (
     <>
       <div className="flex justify-between">
@@ -16,8 +16,15 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </p>
         </div>
       </div>
-      <UserNameView username={username} _id={_id} />
-      <EmailAddresses emails={emails} />
+      <div className="mt-6">
+        <UserNameView username={username} _id={_id} />
+      </div>
+      <div className="mt-6">
+        <EmailAddresses emails={emails} userId={_id} />
+      </div>
+      <div className="mt-6">
+        <UserTagsView tags={tags} userId={_id} />
+      </div>
     </>
   );
 };

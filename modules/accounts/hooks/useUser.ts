@@ -6,6 +6,10 @@ export const UsersQuery = gql`
     user(userId: $userId) {
       ...UserFragment
     }
+    shopInfo {
+      _id
+      userRoles
+    }
   }
   ${UserFragment}
 `;
