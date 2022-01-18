@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import AccountView from '../../modules/accounts/components/AccountView';
 import ProfileView from '../../modules/accounts/components/ProfileView';
+import UserLogs from '../../modules/accounts/components/UserLogs';
 import UserOrders from '../../modules/accounts/components/UserOrders';
 import useUser from '../../modules/accounts/hooks/useUser';
 
 const getCurrentTab = (current, user) => {
   if (current === 'profile') return <ProfileView {...user} />;
   if (current === 'orders') return <UserOrders {...user} />;
+  if (current === 'logs') return <UserLogs {...user} />;
   return <AccountView {...user} />;
 };
 
