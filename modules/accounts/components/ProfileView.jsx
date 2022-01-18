@@ -1,28 +1,20 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useUpdateUserAvatar from '../hooks/useUpdateUserAvatar';
 import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
 
-const ProfileView = ({
-  profile = {},
-  avatar,
-  username,
-  isEmailVerified,
-  isGuest,
-  isInitialPassword,
-  name,
-  onUpdate,
-
-  onUpdateAvatar,
-}) => {
+const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { address } = profile || {};
+  const fileInputRef = useRef();
   const { formatMessage } = useIntl();
   const { updateUserProfile } = useUpdateUserProfile();
+  const { updateUserAvatar } = useUpdateUserAvatar();
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
     const { displayName, phoneMobile, birthday, gender } = updatedProfile;
@@ -60,7 +52,17 @@ const ProfileView = ({
     setIsEdit(false);
     return true;
   };
-  console.log(profile);
+
+  const onUpdateAvatar = async ({ target }) => {
+    const [file] = target.files;
+
+    await updateUserAvatar({
+      userId: _id,
+      avatar: file,
+    });
+
+    return true;
+  };
 
   const form = useForm({
     submit: onUpdateProfile,
@@ -69,7 +71,7 @@ const ProfileView = ({
       ...profile?.address,
     },
   });
-  console.log(form.formik);
+
   return (
     <Form form={form}>
       <div className="px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md">
@@ -117,6 +119,13 @@ const ProfileView = ({
               <dt className="text-sm font-medium text-gray-500">Photo</dt>
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 <span className="flex-grow">
+                  <input
+                    onChange={onUpdateAvatar}
+                    multiple={false}
+                    ref={fileInputRef}
+                    type="file"
+                    hidden
+                  />
                   {avatar ? (
                     <img
                       className="inline-block h-9 w-9 rounded-full"
@@ -137,7 +146,7 @@ const ProfileView = ({
                 </span>
                 <span className="ml-4 flex-shrink-0 flex items-start space-x-4">
                   <button
-                    onClick={onUpdateAvatar}
+                    onClick={() => fileInputRef.current.click()}
                     type="button"
                     className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                   >

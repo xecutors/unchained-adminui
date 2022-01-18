@@ -1,8 +1,7 @@
 import { useIntl } from 'react-intl';
 import ListPagination from '../../common/components/ListPagination';
-import useUserLogs from '../hooks/useUserLogs';
+
 import UserLogListItem from './UserLogListItem';
-import UserOrderListItem from './UserOrderListItem';
 
 const logs = [
   {
@@ -199,35 +198,8 @@ const logs = [
   },
 ];
 
-const orders = [
-  {
-    _id: 'K894fcKtYxNLxua7s',
-    ordered: 1640261999598,
-    orderNumber: 'Q1J62EMV',
-    status: 'FULLFILLED',
-    total: { amount: 37380, currency: 'CHF', __typename: 'Price' },
-    __typename: 'Order',
-  },
-  {
-    _id: 'mKbmjLz2grSy9tdh4',
-    ordered: 1639991568090,
-    orderNumber: 'Q2V8K3PV',
-    status: 'FULLFILLED',
-    total: { amount: 3720, currency: 'CHF', __typename: 'Price' },
-    __typename: 'Order',
-  },
-  {
-    _id: 'CyocKfTDtdKFawXJr',
-    ordered: 1639064356417,
-    orderNumber: '6L203QK9',
-    status: 'FULLFILLED',
-    total: { amount: 28265, currency: 'CHF', __typename: 'Price' },
-    __typename: 'Order',
-  },
-];
-
 const UserLogs = ({ _id: userId }) => {
-  /* const { logs } = useUserLogs(); */
+  /* const { logs } = useUserLogs({userId}); */
 
   const { formatMessage } = useIntl();
 

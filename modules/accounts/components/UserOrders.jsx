@@ -4,7 +4,7 @@ import UserOrderListItem from './UserOrderListItem';
 /* import useUserOrders from '../hooks/useUserOrders'; */
 
 const UserOrders = ({ _id: userId }) => {
-  /* const { orders } = useUserOrders({ userId: _id }); */
+  /* const { orders } = useUserOrders({ userId }); */
   const { formatMessage } = useIntl();
 
   const orders = [
