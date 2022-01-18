@@ -36,20 +36,20 @@ const WarehousingProviderUpdate = () => {
   };
 
   return (
-    <>
+    
       <FormHeader
         onDelete={onRemoveWarehousingProvider}
         headerText={formatMessage({
           id: 'update_configuration',
           defaultMessage: 'Update configuration',
         })}
-      />
+      >
       <ProviderConfigurationForm
         onSubmit={onSubmit}
         onSubmitSuccess={onSubmitSuccess}
         defaultValue={warehousingProvider?.configuration || []}
       />
-    </>
+    </FormHeader>
   );
 };
 

@@ -43,34 +43,39 @@ const CountryForm = ({
           />
         </div>
         {isEdit && (
-          <div className="flex items-center h-5 justify-between">
-            <CheckboxField
-              id="isActive"
-              name="isActive"
-              type="checkbox"
-              label={formatMessage({ id: 'active', defaultMessage: 'Active' })}
-              className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-            />
-            <SelectField
-              name="defaultCurrencyId"
-              id="defaultCurrencyId"
-              label={formatMessage({
-                id: 'default_currency',
-                defaultMessage: 'Default currency',
-              })}
-              options={convertArrayOfObjectToObject(
-                currencies,
-                'isoCode',
-                '_id',
-              )}
-              required
-            />
+          <div className=" min-w-0 flex-1 sm:max-w-lg">
+            <div className="bg-white sm:rounded-b sm:px-15">
+              <SelectField
+                name="defaultCurrencyId"
+                id="defaultCurrencyId"
+                label={formatMessage({
+                  id: 'default_currency',
+                  defaultMessage: 'Default currency',
+                })}
+                options={convertArrayOfObjectToObject(
+                  currencies,
+                  'isoCode',
+                  '_id',
+                )}
+                required
+              />
+              <CheckboxField
+                id="isActive"
+                name="isActive"
+                type="checkbox"
+                label={formatMessage({
+                  id: 'active',
+                  defaultMessage: 'Active',
+                })}
+                className="mt-5 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded-md"
+              />
+            </div>
           </div>
         )}
       </div>
 
       <SubmitButton
-        className="w-16 mt-3 ml-2 mr-2  items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+        className="w-15 h-9 mb-10 mt-3 ml-2 mr-2 text-center items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
         label={formatMessage({ id: 'add', defaultMessage: 'Add' })}
       />
     </Form>

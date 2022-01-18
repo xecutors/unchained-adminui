@@ -46,7 +46,7 @@ const CurrencyForm = ({
               name="isActive"
               label={formatMessage({
                 id: 'active',
-                defaultMessage: 'Active',
+                defaultMessage: ' Active ',
               })}
               className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />
@@ -56,7 +56,7 @@ const CurrencyForm = ({
 
       <SubmitButton
         label={formatMessage({ id: 'add', defaultMessage: 'Add' })}
-        className="mt-3 ml-2 mr-2  items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+        className="mt-5 mb-5  mr-2  items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
   );

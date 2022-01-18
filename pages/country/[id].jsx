@@ -40,7 +40,8 @@ const UpdateCountry = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <>
+    <div className=" min-w-0 flex-1 sm:max-w-lg">
+        <div className=" mb-3 mt-10 bg-white px-10 shadow sm:rounded-b sm:px-15">
       <FormHeader
         headerText={formatMessage({ id: 'Edit', defaultMessage: 'Edit' })}
         onDelete={removeCountry}
@@ -51,7 +52,8 @@ const UpdateCountry = () => {
         onSubmitSuccess={onSubmitSuccess}
         onSubmit={onSubmit}
       />
-    </>
+</div>
+</div>
   );
 };
 
