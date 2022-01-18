@@ -38,11 +38,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
         <Link href={`/currency/${currency?._id}`}>
-          <a
-            type="button"
-            href="#"
-            className="flex text-indigo-600 hover:text-indigo-900"
-          >
+          <a className="flex text-indigo-600 hover:text-indigo-900">
             <svg
               className=" mt-2 mr-2 h-5 w-5 text-indigo-500"
               width="24"
