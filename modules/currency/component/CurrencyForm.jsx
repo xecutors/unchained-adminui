@@ -54,7 +54,11 @@ const CurrencyForm = ({
       </div>
 
       <SubmitButton
-        label={formatMessage({ id: 'add', defaultMessage: 'Add' })}
+        label={
+          isEdit
+            ? formatMessage({ id: 'update', defaultMessage: 'Update' })
+            : formatMessage({ id: 'add', defaultMessage: 'Add' })
+        }
         className="mt-5 mb-5  mr-2  items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>

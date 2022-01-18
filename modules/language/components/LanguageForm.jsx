@@ -16,7 +16,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
     },
   });
 
-  const intl = useIntl();
+  const { formatMessage } = useIntl();
 
   return (
     <Form form={form}>
@@ -24,7 +24,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
         <TextField
           name="isoCode"
           id="isoCode"
-          label={intl.formatMessage({
+          label={formatMessage({
             id: 'iso_code',
             defaultMessage: 'ISO code',
           })}
@@ -38,7 +38,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
             <CheckboxField
               id="isActive"
               name="isActive"
-              label={intl.formatMessage({
+              label={formatMessage({
                 id: 'active',
                 defaultMessage: ' Active ',
               })}
@@ -49,7 +49,11 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
       </div>
 
       <SubmitButton
-        label="Add"
+        label={
+          isEdit
+            ? formatMessage({ id: 'update', defaultMessage: 'Update' })
+            : formatMessage({ id: 'add', defaultMessage: 'Add' })
+        }
         className="mt-4 mb-4  mr-2  items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
