@@ -21,19 +21,18 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
   return (
     <Form form={form}>
       <div className="space-y-6 sm:space-y-5">
-        <div className="mt-1 sm:mt-0 sm:col-span-2">
-          <TextField
-            name="isoCode"
-            id="isoCode"
-            label={intl.formatMessage({
-              id: 'iso_code',
-              defaultMessage: 'ISO code',
-            })}
-            autoComplete="on"
-            required
-            className="m-3 block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-          />
-        </div>
+        <TextField
+          name="isoCode"
+          id="isoCode"
+          label={intl.formatMessage({
+            id: 'iso_code',
+            defaultMessage: 'ISO code',
+          })}
+          autoComplete="on"
+          required
+          className="text-sm mt-2 block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+        />
+
         {isEdit && (
           <div className="flex items-center h-5">
             <CheckboxField
@@ -51,7 +50,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
       <SubmitButton
         label="Add"
-        className="mt-5 mb-5  mr-2  items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+        className="mt-4 mb-4  mr-2  items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
   );

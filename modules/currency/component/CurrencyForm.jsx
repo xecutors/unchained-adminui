@@ -25,20 +25,19 @@ const CurrencyForm = ({
 
   return (
     <Form form={form}>
-      <div className="space-y-6 sm:space-y-5">
-        <div className="mt-1 sm:mt-0 sm:col-span-2">
-          <TextField
-            name="isoCode"
-            id="isoCode"
-            label={formatMessage({
-              id: 'iso_code',
-              defaultMessage: 'ISO code',
-            })}
-            autoComplete="on"
-            required
-            className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-          />
-        </div>
+      <div className=" space-y-6 sm:space-y-5">
+        <TextField
+          name="isoCode"
+          id="isoCode"
+          label={formatMessage({
+            id: 'iso_code',
+            defaultMessage: 'ISO code',
+          })}
+          autoComplete="on"
+          required
+          className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+        />
+
         {isEdit && (
           <div className="flex items-center h-5">
             <CheckboxField

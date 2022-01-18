@@ -1,7 +1,7 @@
-import { useIntl } from "react-intl";
+import { useIntl } from 'react-intl';
 
 const UserListItem = ({ user }) => {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
@@ -15,9 +15,16 @@ const UserListItem = ({ user }) => {
             <img className="h-10 w-10 rounded-full" src={user.image} alt="" />
           </div>
           <div className="ml-4">
-            <div className="text-sm font-medium text-gray-900">{user.name} {user.isGuest && <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-600 `}>
-          {formatMessage({id: 'guest', defaultMessage: 'Guest'})}
-        </span>} </div>
+            <div className="text-sm font-medium text-gray-900">
+              {user.name}{' '}
+              {user.isGuest && (
+                <span
+                  className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-600 `}
+                >
+                  {formatMessage({ id: 'guest', defaultMessage: 'Guest' })}
+                </span>
+              )}{' '}
+            </div>
             <div className="text-sm text-gray-500">{user.email}</div>
           </div>
         </div>

@@ -37,21 +37,19 @@ const DeliveryProviderUpdate = () => {
   };
 
   return (
-  
-        <FormHeader
-          onDelete={onRemoveDeliveryProvider}
-          headerText={formatMessage({
-            id: 'update_configuration',
-            defaultMessage: 'Update configuration',
-          })}
-        >
-
-        <ProviderConfigurationForm
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          defaultValue={deliveryProvider?.configuration || []}
-        />
-      </FormHeader>
+    <FormHeader
+      onDelete={onRemoveDeliveryProvider}
+      headerText={formatMessage({
+        id: 'update_configuration',
+        defaultMessage: 'Update configuration',
+      })}
+    >
+      <ProviderConfigurationForm
+        onSubmit={onSubmit}
+        onSubmitSuccess={onSubmitSuccess}
+        defaultValue={deliveryProvider?.configuration || []}
+      />
+    </FormHeader>
   );
 };
 
