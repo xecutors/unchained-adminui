@@ -1,8 +1,14 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import AccountView from '../../modules/accounts/components/AccountView';
 import ProfileView from '../../modules/accounts/components/ProfileView';
 import useUser from '../../modules/accounts/hooks/useUser';
+
+const getCurrentTab = (current, user) => {
+  if (current === 'profile') return <ProfileView {...user} />;
+  return <AccountView {...user} />;
+};
 
 const UserProfile = () => {
   const { formatMessage } = useIntl();
@@ -85,7 +91,7 @@ const UserProfile = () => {
                 </div>
               </div>
               <div className="mt-10 divide-y divide-gray-200">
-                {user && <ProfileView {...user} />}
+                {getCurrentTab(activeTab, user)}
               </div>
             </div>
           </div>

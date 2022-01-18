@@ -12,7 +12,6 @@ const ProfileView = ({
   profile = {},
   avatar,
   username,
-  displayName,
   isEmailVerified,
   isGuest,
   isInitialPassword,
@@ -21,7 +20,7 @@ const ProfileView = ({
 
   onUpdateAvatar,
 }) => {
-  const { address } = profile;
+  const { address } = profile || {};
   const { formatMessage } = useIntl();
   const { updateUserProfile } = useUpdateUserProfile();
   const [isEdit, setIsEdit] = useState(false);
@@ -68,7 +67,6 @@ const ProfileView = ({
     initialValues: {
       ...profile,
       ...profile?.address,
-      displayName: name,
     },
   });
   return (
