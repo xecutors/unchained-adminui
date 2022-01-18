@@ -13,11 +13,12 @@ const UserNameView = ({ _id: userId, username }) => {
 
   const onUpdateUserName = async ({ username: newUsername }) => {
     await setUserName({ username: newUsername, userId });
+    setIsEdit(false);
     return true;
   };
 
   const form = useForm({
-    onSubmit: onUpdateUserName,
+    submit: onUpdateUserName,
     initialValues: {
       username,
     },

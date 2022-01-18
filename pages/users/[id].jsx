@@ -78,7 +78,6 @@ const UserProfile = () => {
                       <a
                         onClick={() => setActiveTab(key)}
                         key={key}
-                        href="#"
                         className={` ${
                           activeTab === key &&
                           'border-purple-500 text-purple-600'
