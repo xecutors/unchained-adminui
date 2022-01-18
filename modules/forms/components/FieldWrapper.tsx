@@ -31,7 +31,7 @@ const FieldWrapper = ({
       <label
         aria-label={label}
         htmlFor={name}
-        className={classnames('form-label', {
+        className={classnames('sr-only', {
           'text-red-600': !!error,
         })}
       >

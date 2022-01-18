@@ -33,9 +33,12 @@ const DatePickerField = ({
         disabled={field.disabled}
         id={field.id}
         name={field.name}
-        className={classnames('form-field', {
-          'form-field--error': !!field.error,
-        })}
+        className={classnames(
+          !props.className ? 'form-field' : props.className,
+          {
+            'form-field--error': !!field.error,
+          },
+        )}
         onChange={(date) => field.setValue(parseDate(date))}
         onMonthChange={(date) => field.setValue(parseDate(date))}
         onYearChange={(date) => field.setValue(parseDate(date))}
