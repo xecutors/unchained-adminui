@@ -1,17 +1,78 @@
+import classNames from 'classnames';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import DatePickerField from '../../forms/components/DatePickerField';
+import Form from '../../forms/components/Form';
+import SelectField from '../../forms/components/SelectField';
+import TextField from '../../forms/components/TextField';
+import useForm from '../../forms/hooks/useForm';
+import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
+
 const ProfileView = ({
-  profile,
+  profile = {},
   avatar,
   username,
+  displayName,
   isEmailVerified,
   isGuest,
   isInitialPassword,
   name,
   onUpdate,
+
   onUpdateAvatar,
 }) => {
   const { address } = profile;
+  const { formatMessage } = useIntl();
+  const { updateUserProfile } = useUpdateUserProfile();
+  const [isEdit, setIsEdit] = useState(false);
+  const onUpdateProfile = async (updatedProfile) => {
+    const { displayName, phoneMobile, birthday, gender } = updatedProfile;
+    const {
+      firstName,
+      lastName,
+      company,
+      addressLine,
+      addressLine2,
+      postalCode,
+      regionCode,
+      countryCode,
+      city,
+    } = updatedProfile;
+
+    await updateUserProfile({
+      profile: {
+        displayName,
+        phoneMobile,
+        birthday,
+        gender,
+        address: {
+          firstName,
+          lastName,
+          company,
+          addressLine,
+          addressLine2,
+          postalCode,
+          regionCode,
+          countryCode,
+          city,
+        },
+      },
+    });
+    setIsEdit(false);
+    return true;
+  };
+
+  const form = useForm({
+    submit: onUpdateProfile,
+
+    initialValues: {
+      ...profile,
+      ...profile?.address,
+      displayName: name,
+    },
+  });
   return (
-    <>
+    <Form form={form}>
       <div className="flex justify-between">
         <div className="space-y-1">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -24,12 +85,30 @@ const ProfileView = ({
         </div>
         <span className="ml-4 flex-shrink-0 flex items-start space-x-4">
           <button
-            onClick={onUpdate}
+            onClick={() => setIsEdit(!isEdit)}
             type="button"
-            className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            className={classNames(
+              isEdit
+                ? 'text-red-600 hover:text-red-500  focus:ring-red-500'
+                : 'text-purple-600 hover:text-purple-500  focus:ring-purple-500',
+              'bg-white rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
+            )}
           >
-            Update
+            {isEdit ? 'Cancel' : 'update'}
           </button>
+          {isEdit && (
+            <>
+              <span className="text-gray-300" aria-hidden="true">
+                |
+              </span>
+              <button
+                type="submit"
+                className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+              >
+                Save
+              </button>
+            </>
+          )}
         </span>
       </div>
       <div className="mt-6">
@@ -70,7 +149,11 @@ const ProfileView = ({
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="text-sm font-medium text-gray-500">Name</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{name}</span>
+              {isEdit ? (
+                <TextField label="" name="displayName" required />
+              ) : (
+                <span className="flex-grow">{name}</span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -82,13 +165,28 @@ const ProfileView = ({
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="text-sm font-medium text-gray-500">Gender</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{profile?.gender}</span>
+              {isEdit ? (
+                <SelectField
+                  label=""
+                  name="gender"
+                  options={{
+                    m: formatMessage({ id: 'male', defaultMessage: 'Male' }),
+                    f: formatMessage({ id: 'male', defaultMessage: 'Male' }),
+                  }}
+                />
+              ) : (
+                <span className="flex-grow">{profile?.gender}</span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="text-sm font-medium text-gray-500">Birthday</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{profile?.birthday}</span>
+              {isEdit ? (
+                <DatePickerField label="" name="birthday" />
+              ) : (
+                <span className="flex-grow">{profile?.birthday}</span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -115,15 +213,26 @@ const ProfileView = ({
           <div className="py-4 sm:py-5 grid-cols-3">
             <dt className="text-sm font-medium text-gray-500">Full name</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">
-                {address?.firstName} {address?.lastName}{' '}
-              </span>
+              {isEdit ? (
+                <div className="flex">
+                  <TextField name="firstName" label="" />{' '}
+                  <TextField name="lastName" label="" />
+                </div>
+              ) : (
+                <span className="flex-grow">
+                  {address?.firstName} {address?.lastName}{' '}
+                </span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-2">
             <dt className="text-sm font-medium text-gray-500">Company</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{address?.company}</span>
+              {isEdit ? (
+                <TextField name="company" label="" />
+              ) : (
+                <span className="flex-grow">{address?.company}</span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:pt-5">
@@ -131,7 +240,11 @@ const ProfileView = ({
               Address line 1 (Street, House no)
             </dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{address?.addressLine}</span>
+              {isEdit ? (
+                <TextField name="addressLine" label="" />
+              ) : (
+                <span className="flex-grow">{address?.addressLine}</span>
+              )}
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:pt-5">
@@ -139,14 +252,23 @@ const ProfileView = ({
               Address line 2
             </dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <span className="flex-grow">{address?.addressLine}</span>
+              {isEdit ? (
+                <TextField name="addressLine2" label="" />
+              ) : (
+                <span className="flex-grow">{address?.addressLine2}</span>
+              )}
             </dd>
           </div>
 
           <div className="sm:col-span-1">
             <dt className="text-sm font-medium text-gray-500">Region</dt>
+
             <dd className="mt-1 text-sm text-gray-900">
-              {address?.regionCode}
+              {isEdit ? (
+                <TextField name="regionCode" label="" />
+              ) : (
+                address?.regionCode
+              )}
             </dd>
           </div>
           <div className="sm:col-span-1">
@@ -154,22 +276,32 @@ const ProfileView = ({
               Postal/ZIP code
             </dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {address?.postalCode}
+              {isEdit ? (
+                <TextField name="postalCode" label="" />
+              ) : (
+                address?.postalCode
+              )}
             </dd>
           </div>
           <div className="sm:col-span-1">
             <dt className="text-sm font-medium text-gray-500">City</dt>
-            <dd className="mt-1 text-sm text-gray-900">{address?.city}</dd>
+            <dd className="mt-1 text-sm text-gray-900">
+              {isEdit ? <TextField name="city" label="" /> : address?.city}
+            </dd>
           </div>
           <div className="sm:col-span-1">
             <dt className="text-sm font-medium text-gray-500">Country code</dt>
             <dd className="mt-1 text-sm text-gray-900">
-              {address?.countryCode}
+              {isEdit ? (
+                <TextField name="countryCode" label="" />
+              ) : (
+                address?.countryCode
+              )}
             </dd>
           </div>
         </dl>
       </div>
-    </>
+    </Form>
   );
 };
 

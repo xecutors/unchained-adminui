@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 
+import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';

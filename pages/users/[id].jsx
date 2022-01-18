@@ -85,7 +85,7 @@ const UserProfile = () => {
                 </div>
               </div>
               <div className="mt-10 divide-y divide-gray-200">
-                <ProfileView {...user} />
+                {user && <ProfileView {...user} />}
               </div>
             </div>
           </div>
