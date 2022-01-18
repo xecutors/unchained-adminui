@@ -8,7 +8,7 @@ import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
 
-const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
+const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
 
   const form = useForm({
@@ -52,7 +52,7 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               {formatMessage({
-                id: 'login_header',
+                id: 'sign_up_header',
                 defaultMessage: 'Create new Account',
               })}
             </h2>
@@ -154,4 +154,4 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

@@ -1,0 +1,188 @@
+{
+  "Edit": {
+    "defaultMessage": "Edit"
+  },
+  "account": {
+    "defaultMessage": "Account"
+  },
+  "active": {
+    "defaultMessage": "Active"
+  },
+  "adapter": {
+    "defaultMessage": "Adapter"
+  },
+  "add": {
+    "defaultMessage": "Add"
+  },
+  "all_users": {
+    "defaultMessage": "All Users"
+  },
+  "app.greeting": {
+    "defaultMessage": "<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
+  },
+  "auth_error": {
+    "defaultMessage": "Authentication error"
+  },
+  "close_sidebar": {
+    "defaultMessage": "Close sidebar"
+  },
+  "countries": {
+    "defaultMessage": "Countries"
+  },
+  "create_provider": {
+    "defaultMessage": "Create provider"
+  },
+  "currencies": {
+    "defaultMessage": "Currencies"
+  },
+  "dashboard": {
+    "defaultMessage": "Dashboard"
+  },
+  "default_currency": {
+    "defaultMessage": "Default currency"
+  },
+  "delivery_providers": {
+    "defaultMessage": "Delivery providers"
+  },
+  "edit": {
+    "defaultMessage": "Edit"
+  },
+  "email": {
+    "defaultMessage": "E-mail"
+  },
+  "email_exists_error": {
+    "defaultMessage": "Email already exists"
+  },
+  "enrollment": {
+    "defaultMessage": "Enrollment"
+  },
+  "error": {
+    "defaultMessage": "404 error"
+  },
+  "error_server": {
+    "defaultMessage": "There was a problem on the server ({details}). Please try again later."
+  },
+  "filter_by_type": {
+    "defaultMessage": "Filter by type"
+  },
+  "forget_password": {
+    "defaultMessage": "Forgot your password?"
+  },
+  "go_back_home": {
+    "defaultMessage": "Go back home"
+  },
+  "guest": {
+    "defaultMessage": "Guest"
+  },
+  "interface": {
+    "defaultMessage": "Interface"
+  },
+  "iso_code": {
+    "defaultMessage": "ISO code"
+  },
+  "languages": {
+    "defaultMessage": "Languages"
+  },
+  "load_more": {
+    "defaultMessage": "Load more"
+  },
+  "log_in": {
+    "defaultMessage": "Log in"
+  },
+  "log_out": {
+    "defaultMessage": "Log out"
+  },
+  "login_header": {
+    "defaultMessage": "Log in to your account"
+  },
+  "logs": {
+    "defaultMessage": "Logs"
+  },
+  "name": {
+    "defaultMessage": "Name"
+  },
+  "new": {
+    "defaultMessage": "New"
+  },
+  "not_found_message": {
+    "defaultMessage": "Sorry, we couldn’t find the page you’re looking for."
+  },
+  "open_sidebar": {
+    "defaultMessage": "Open sidebar"
+  },
+  "orders": {
+    "defaultMessage": "Orders"
+  },
+  "page_not_found": {
+    "defaultMessage": "Page not found."
+  },
+  "password": {
+    "defaultMessage": "Password"
+  },
+  "payment_credentials": {
+    "defaultMessage": "Payment credentials"
+  },
+  "payment_provider": {
+    "defaultMessage": "Payment providers"
+  },
+  "problems": {
+    "defaultMessage": "Problems"
+  },
+  "profile": {
+    "defaultMessage": "Profile"
+  },
+  "publicare": {
+    "defaultMessage": "Publicare"
+  },
+  "remember_password": {
+    "defaultMessage": "Remember me"
+  },
+  "reset_password": {
+    "defaultMessage": "Reset password"
+  },
+  "return_to_login": {
+    "defaultMessage": "Return to Login"
+  },
+  "show_guests": {
+    "defaultMessage": "Show Guests"
+  },
+  "show_inactive": {
+    "defaultMessage": "Show inactive"
+  },
+  "sign-up": {
+    "defaultMessage": "Sign Up"
+  },
+  "sign_up": {
+    "defaultMessage": "Sign up"
+  },
+  "sign_up_header": {
+    "defaultMessage": "Create new Account"
+  },
+  "switch_off": {
+    "defaultMessage": "off"
+  },
+  "switch_on": {
+    "defaultMessage": "on"
+  },
+  "type": {
+    "defaultMessage": "Type"
+  },
+  "update": {
+    "defaultMessage": "Update"
+  },
+  "update_configuration": {
+    "defaultMessage": "Update configuration"
+  },
+  "update_provider": {
+    "defaultMessage": "Update provider"
+  },
+  "username": {
+    "defaultMessage": "Username"
+  },
+  "username_exists_error": {
+    "defaultMessage": "Username already exists"
+  },
+  "warehousing_provider": {
+    "defaultMessage": "Warehousing provider"
+  }
+}
