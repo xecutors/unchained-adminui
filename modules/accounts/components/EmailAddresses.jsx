@@ -1,10 +1,26 @@
 import { useIntl } from 'react-intl';
+import Form from '../../forms/components/Form';
+import SubmitButton from '../../forms/components/SubmitButton';
+import TextField from '../../forms/components/TextField';
+import useForm from '../../forms/hooks/useForm';
+import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
 
 const EmailAddresses = ({ emails, userId }) => {
   const { removeEmail } = useRemoveEmail();
+  const { addEmail } = useAddEmail();
   const { formatMessage } = useIntl();
-
+  const onAddEmail = async ({ email }) => {
+    await addEmail({ email, userId });
+    return true;
+  };
+  const form = useForm({
+    submit: onAddEmail,
+    enableReinitialize: true,
+    initialValues: {
+      email: '',
+    },
+  });
   return (
     <div>
       <div className="pb-5 border-b border-gray-200">
@@ -38,6 +54,16 @@ const EmailAddresses = ({ emails, userId }) => {
             </li>
           ))}
         </ul>
+        <Form form={form}>
+          <TextField name="email" required label="" />
+          <SubmitButton
+            className="mt-3 ml-4  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+            label={formatMessage({
+              id: 'add_email',
+              defaultMessage: 'Add email',
+            })}
+          />
+        </Form>
       </div>
     </div>
   );
