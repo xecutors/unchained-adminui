@@ -2,7 +2,6 @@
 import isLength from 'validator/lib/isLength';
 import isEmail from 'validator/lib/isEmail';
 import matches from 'validator/lib/matches';
-import isInt from 'validator/lib/isInt';
 import { isValid as isValidDate, isAfter, isBefore, format } from 'date-fns';
 
 import { MessageDescriptor } from 'react-intl';
@@ -27,7 +26,10 @@ export const validateMaxLength = (max: number): Validator => ({
 
 export const validateEmail: Validator = {
   isValid: (value) => isEmail(value || ''),
-  intlMessageDescriptor: { id: 'error_email' },
+  intlMessageDescriptor: {
+    id: 'error_email',
+    defaultMessage: '{label} must be a valid email address',
+  },
 };
 
 export const validateRequired: Validator = {
@@ -43,12 +45,18 @@ export const validateRequired: Validator = {
     }
     return !!value;
   },
-  intlMessageDescriptor: { id: 'error_required' },
+  intlMessageDescriptor: {
+    id: 'error_required',
+    defaultMessage: '{label} is a required field',
+  },
 };
 
 export const validateDate: Validator = {
   isValid: isValidDate,
-  intlMessageDescriptor: { id: 'error_invalid_date' },
+  intlMessageDescriptor: {
+    id: 'error_invalid_date',
+    defaultMessage: '{label} is not a valid date',
+  },
 };
 
 export const validateDateInput: Validator = {
@@ -56,7 +64,10 @@ export const validateDateInput: Validator = {
     const parsed = parseDate(value);
     return isValidDate(parsed);
   },
-  intlMessageDescriptor: { id: 'error_invalid_date' },
+  intlMessageDescriptor: {
+    id: 'error_invalid_date',
+    defaultMessage: '{label} is not a valid date',
+  },
 };
 
 export const validateDateBefore = (dateToCompare): Validator => ({
@@ -65,7 +76,10 @@ export const validateDateBefore = (dateToCompare): Validator => ({
 
     return isBefore(parsed, dateToCompare);
   },
-  intlMessageDescriptor: { id: 'error_date_before' },
+  intlMessageDescriptor: {
+    id: 'error_date_before',
+    defaultMessage: '{label} must be before {dateToCompare}.',
+  },
   intlMessageValues: { dateToCompare: format(dateToCompare, DATE_FORMAT) },
 });
 
@@ -76,28 +90,18 @@ export const validateDateAfter = (dateToCompare): Validator => {
 
       return isAfter(parsed, dateToCompare);
     },
-    intlMessageDescriptor: { id: 'error_date_after' },
+    intlMessageDescriptor: {
+      id: 'error_date_after',
+      defaultMessage: '{label} must be after {dateToCompare}.',
+    },
     intlMessageValues: { dateToCompare: format(dateToCompare, DATE_FORMAT) },
   };
 };
 
-export const validateContactNumber: Validator = {
-  isValid: (value) => matches(value || '', /^[k]\d{6}$/gi),
-  intlMessageDescriptor: { id: 'error_contact_number_invalid' },
-};
-
-export const validateName: Validator = {
-  isValid: (value) => matches(value || '', /^[^0-9_$!?*%&/+:;.,<>¨^"'@#]*$/g),
-  intlMessageDescriptor: { id: 'error_name_invalid' },
-};
-
-export const validatePostalCode: Validator = {
-  isValid: (value) =>
-    isInt(value || '', { min: 1000, max: 9699, allow_leading_zeroes: false }),
-  intlMessageDescriptor: { id: 'error_postal_code_invalid' },
-};
-
 export const validatePhoneNumber: Validator = {
   isValid: (value) => matches(value || '', /^[0+]{1}[0-9() ]{9,25}$/g),
-  intlMessageDescriptor: { id: 'error_phone_number_invalid' },
+  intlMessageDescriptor: {
+    id: 'error_phone_number_invalid',
+    defaultMessage: 'Invalid phone number',
+  },
 };

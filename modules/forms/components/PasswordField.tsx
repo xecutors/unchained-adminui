@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Icon from '../../common/components/Icon';
 
 import TextField from './TextField';
 
