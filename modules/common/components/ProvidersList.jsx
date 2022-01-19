@@ -23,7 +23,9 @@ const ProviderList = ({
                   <div className=" relative flex items-start ">
                     <div className="mt-1">
                       <select
-                        onChange={(e) => onProviderFilterChange(e.target.value)}
+                        onChange={(e) =>
+                          onProviderFilterChange(e.target.value || null)
+                        }
                         defaultValue={null}
                         id="select-type"
                         name="select-type"

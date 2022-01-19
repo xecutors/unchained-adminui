@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import usePaymentProviders from '../../modules/payment-providers/hooks/usePaymentProviders';
 import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
-import ProviderList from '../../modules/common/components/ProvidersList';
+import ProvidersList from '../../modules/common/components/ProvidersList';
 
 const PaymentProviders = () => {
   const [type, setType] = useState(null);
@@ -14,7 +14,7 @@ const PaymentProviders = () => {
   };
 
   return (
-    <ProviderList
+    <ProvidersList
       providerType={['CARD', 'INVOICE', 'GENERIC']}
       providerPath="/payment-provider"
       providers={paymentProviders}
