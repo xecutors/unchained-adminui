@@ -24,7 +24,7 @@ const ProviderListItem = ({ provider, onRemove, editPath }) => {
 
       <td className="px-6 py-4 whitespace-nowrap">
         <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-md ${
             PROVIDER_TYPE_CLASSES[provider.type]
           }`}
         >

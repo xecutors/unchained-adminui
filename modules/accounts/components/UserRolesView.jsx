@@ -29,7 +29,7 @@ const UserRolesView = ({ roles, userId }) => {
         key="user-roles"
         name="updatedRoles"
         options={Object.fromEntries(userRoles.map((role) => [role, role]))}
-        label="roles"
+        label="Roles"
         multiple
       />
       <SubmitButton

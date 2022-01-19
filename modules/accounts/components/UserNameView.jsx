@@ -32,7 +32,7 @@ const UserNameView = ({ _id: userId, username }) => {
           </dt>
           <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <span className="flex-grow">
-              {isEdit ? <TextField name="username" label="" /> : username}
+              {isEdit ? <TextField className="w-full mt-0" name="username" label="" /> : username}
             </span>
 
             <span className="ml-4 flex-shrink-0 flex items-start space-x-4">

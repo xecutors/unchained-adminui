@@ -29,11 +29,11 @@ const EmailAddresses = ({ emails, userId }) => {
         </h3>
       </div>
 
-      <div className="flow-root mt-6">
+      <div className=" flow-root mt-6">
         <ul className="-my-5 divide-y divide-gray-200">
           {(emails || []).map(({ address, verified }) => (
             <li className="py-4" key={address}>
-              <div className="flex items-center space-x-4">
+              <div className=" flex items-center space-x-4">
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {address}
@@ -55,14 +55,19 @@ const EmailAddresses = ({ emails, userId }) => {
           ))}
         </ul>
         <Form form={form}>
-          <TextField name="email" required label="" />
+        <div className="mt-7 border-t"> 
+
+        
+          <TextField className="mt-7  mr-24" name="email" required label="" />
           <SubmitButton
-            className="mt-3 ml-4  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+            className="mt-3 mb-4  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
             label={formatMessage({
               id: 'add_email',
               defaultMessage: 'Add email',
             })}
           />
+        
+          </div>
         </Form>
       </div>
     </div>

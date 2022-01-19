@@ -38,7 +38,7 @@ const UserTagsView = ({ tags = [], userId }) => {
           <button
             type="button"
             onClick={updateUserTags}
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className=" inline-flex items-center px-4 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {formatMessage({
               id: 'update_tags',
@@ -51,7 +51,7 @@ const UserTagsView = ({ tags = [], userId }) => {
       <div className="flow-root mt-6">
         {tagList.map((tag) => (
           <span
-            className="inline-flex rounded-full h-8  items-center py-0.5 pl-2.5 pr-1 text-sm font-medium bg-indigo-100 text-indigo-700"
+            className="inline-flex rounded-full h-6 m-2 mb-4  items-center py-0.5 pl-2.5 pr-1 text-sm font-medium bg-indigo-100 text-indigo-700"
             key={tag}
           >
             {tag}
@@ -76,7 +76,7 @@ const UserTagsView = ({ tags = [], userId }) => {
           </span>
         ))}
         <div>
-          <div className="mt-1 flex rounded-md shadow-sm">
+          <div className="mt-1 h-9 max-w-md flex rounded-md shadow-sm">
             <div className="relative flex items-stretch flex-grow focus-within:z-10">
               <input
                 type="text"
@@ -87,7 +87,7 @@ const UserTagsView = ({ tags = [], userId }) => {
                   }
                 }}
                 onChange={(e) => setNewTag(e.target.value)}
-                className="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
+                className="focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-l-white border-gray-300"
                 placeholder="New tag"
                 value={newTag}
               />
@@ -95,7 +95,7 @@ const UserTagsView = ({ tags = [], userId }) => {
             <button
               type="button"
               onClick={addTag}
-              className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              className=" -ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-indigo-500 text-sm font-medium rounded-r-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
             >
               <span>{formatMessage({ id: 'add', defaultMessage: 'Add' })}</span>
             </button>

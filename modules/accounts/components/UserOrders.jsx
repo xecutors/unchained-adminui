@@ -61,13 +61,13 @@ const UserOrders = ({ _id: userId }) => {
                       defaultMessage: 'Order number',
                     })}
                   </th>
-                  <th scope="col" className="relative px-6 py-3">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {formatMessage({
                       id: 'total',
                       defaultMessage: 'Total',
                     })}
                   </th>
-                  <th scope="col" className="relative px-6 py-3">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {formatMessage({
                       id: 'status',
                       defaultMessage: 'Status',
