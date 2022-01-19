@@ -11,6 +11,20 @@ const UserFragment = gql`
       type
       url
     }
+    paymentCredentials {
+      _id
+      isValid
+      isPreferred
+      paymentProvider {
+        _id
+        type
+        interface {
+          _id
+          label
+          version
+        }
+      }
+    }
     primaryEmail {
       address
       verified

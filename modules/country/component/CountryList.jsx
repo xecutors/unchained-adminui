@@ -64,26 +64,17 @@ const CountryList = ({
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    {formatMessage({ id: 'active', defaultMessage: 'Active' })}
-                  </th>
-
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
                     {formatMessage({
                       id: 'default_currency',
                       defaultMessage: 'Default currency',
                     })}
                   </th>
-
                   <th
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
                     &nbsp;
                   </th>
-
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">
                       {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}

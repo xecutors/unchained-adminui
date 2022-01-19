@@ -19,6 +19,7 @@ export interface CommonFieldProps {
   placeholder?: string;
   half?: boolean;
   third?: boolean;
+  hideLabel?: boolean;
   /**
    * A second change handler without the possibility to change the value.
    */

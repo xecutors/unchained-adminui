@@ -7,10 +7,6 @@ const PROVIDER_TYPE_CLASSES = {
   FULLFILLED: 'bg-green-100 text-green-800 ',
 };
 
-const formatDate = (date) => {
-  const newDate = new Date(date).getTime;
-  return newDate / 1000;
-};
 const formatCurrency = ({ amount, currency }) => {
   return `${currency} ${amount}`;
 };
