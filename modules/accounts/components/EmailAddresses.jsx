@@ -6,6 +6,12 @@ import useForm from '../../forms/hooks/useForm';
 import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
 import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
+import getStatusClasses from '../../common/util/getStatusClasses';
+
+const STATUS = {
+  true: 'Verified',
+  false: 'Not Verified',
+};
 
 const EmailAddresses = ({ emails, userId, enableVerification }) => {
   const { removeEmail } = useRemoveEmail();
@@ -40,15 +46,19 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {address}
                   </p>
-                  <p className="text-sm text-gray-500 truncate">
-                    {verified ? 'Verified' : 'Not Verified'}
+                  <p
+                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
+                      verified,
+                    )}`}
+                  >
+                    {STATUS[verified]}
                   </p>
                 </div>
                 <div>
-                  {enableVerification && (
+                  {!enableVerification && (
                     <a
                       onClick={() => sendVerificationEmail({ email: address })}
-                      className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-red-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-red-50"
+                      className="mr-2 inline-flex items-center shadow-sm px-2.5 py-0.5 border border-blue-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-blue-50"
                     >
                       {formatMessage({
                         id: 'send_verification_mail',
@@ -58,9 +68,23 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                   )}
                   <a
                     onClick={() => removeEmail({ email: address, userId })}
-                    className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-red-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-red-50"
+                    className="inline-flex items-center shadow-sm   rounded-full bg-white hover:bg-red-50"
                   >
-                    {formatMessage({ id: 'remove', defaultMessage: 'Remove' })}
+                    <svg
+                      className="m-2 h-4 w-4 text-red-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {' '}
+                      <polyline points="3 6 5 6 21 6" />{' '}
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
+                      <line x1="10" y1="11" x2="10" y2="17" />{' '}
+                      <line x1="14" y1="11" x2="14" y2="17" />
+                    </svg>
                   </a>
                 </div>
               </div>

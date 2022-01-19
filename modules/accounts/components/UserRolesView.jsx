@@ -28,9 +28,14 @@ const UserRolesView = ({ roles, userId }) => {
       <ChoicesField
         key="user-roles"
         name="updatedRoles"
-        options={Object.fromEntries(userRoles.map((role) => [role, role]))}
+        options={Object.fromEntries(
+          ['marketing', 'accountant', ...userRoles].map((role) => [role, role]),
+        )}
         label="Roles"
         multiple
+        choiceContainerClassName="flex items-baseline"
+        choiceClassName="flex items-center"
+        className="flex items-baseline "
       />
       <SubmitButton
         className="mb-5 mt-5 mr-2 text-center items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"

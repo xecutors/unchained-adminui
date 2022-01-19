@@ -231,8 +231,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             </div>
           </dl>
         </div>
-        <div className="flex justify-between">
-          <div className="space-y-1">
+        <div className="mt-7 pt-3 border-t flex justify-between">
+          <div className="space-y-1 ">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               Address
             </h3>
@@ -358,7 +358,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </dd>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+              <div className="pt-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt className="text-sm font-medium text-gray-500">
                   Country code
                 </dt>

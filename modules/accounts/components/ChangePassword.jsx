@@ -26,9 +26,12 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
+      <div className="mt-7 border-t pb-3 pt-4 border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
-          {formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+          {formatMessage({
+            id: 'change_password',
+            defaultMessage: 'Change Password',
+          })}
         </h3>
       </div>
       <Form form={form}>
