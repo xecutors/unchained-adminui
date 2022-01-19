@@ -1,26 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 export const CurrentUserQuery = gql`
   query CurrentUser {
     me {
-      _id
-      name
-      isGuest
-      username
-      avatar {
-        _id
-        url
-      }
-      primaryEmail {
-        address
-        verified
-      }
-      profile {
-        displayName
-      }
-      roles
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useCurrentUser = () => {

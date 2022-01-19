@@ -5,9 +5,11 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
+import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
 
-const EmailAddresses = ({ emails, userId }) => {
+const EmailAddresses = ({ emails, userId, enableVerification }) => {
   const { removeEmail } = useRemoveEmail();
+  const { sendVerificationEmail } = useSendVerificationEmail();
   const { addEmail } = useAddEmail();
   const { formatMessage } = useIntl();
   const onAddEmail = async ({ email }) => {
@@ -43,11 +45,22 @@ const EmailAddresses = ({ emails, userId }) => {
                   </p>
                 </div>
                 <div>
+                  {enableVerification && (
+                    <a
+                      onClick={() => sendVerificationEmail({ email: address })}
+                      className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-red-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-red-50"
+                    >
+                      {formatMessage({
+                        id: 'send_verification_mail',
+                        defaultMessage: 'Send verification mail',
+                      })}
+                    </a>
+                  )}
                   <a
                     onClick={() => removeEmail({ email: address, userId })}
                     className="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-red-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-red-50"
                   >
-                    Remove
+                    {formatMessage({ id: 'remove', defaultMessage: 'Remove' })}
                   </a>
                 </div>
               </div>
@@ -55,18 +68,15 @@ const EmailAddresses = ({ emails, userId }) => {
           ))}
         </ul>
         <Form form={form}>
-        <div className="mt-7 border-t"> 
-
-        
-          <TextField className="mt-7  mr-24" name="email" required label="" />
-          <SubmitButton
-            className="mt-3 mb-4  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
-            label={formatMessage({
-              id: 'add_email',
-              defaultMessage: 'Add email',
-            })}
-          />
-        
+          <div className="mt-7 border-t">
+            <TextField className="mt-7  mr-24" name="email" required label="" />
+            <SubmitButton
+              className="mt-3 mb-4  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+              label={formatMessage({
+                id: 'add_email',
+                defaultMessage: 'Add email',
+              })}
+            />
           </div>
         </Form>
       </div>

@@ -21,7 +21,7 @@ const UserProfile = () => {
   const { id } = query;
 
   const [activeTab, setActiveTab] = useState('profile');
-  const { user, shopInfo } = useUser({ userId: id });
+  const { user } = useUser({ userId: id });
 
   const userProfileSettingOptions = {
     profile: formatMessage({ id: 'profile', defaultMessage: 'Profile' }),
