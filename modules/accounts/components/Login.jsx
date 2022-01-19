@@ -93,7 +93,6 @@ export default function LogInForm() {
                 <PasswordField
                   id="password"
                   name="password"
-                  type="password"
                   autoComplete="current-password"
                   required
                   label={formatMessage({

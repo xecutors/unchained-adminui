@@ -94,7 +94,6 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
                 <PasswordField
                   id="password"
                   name="password"
-                  type="password"
                   autoComplete="current-password"
                   required
                   label={formatMessage({
