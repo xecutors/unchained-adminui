@@ -6,10 +6,6 @@ export const UsersQuery = gql`
     user(userId: $userId) {
       ...UserFragment
     }
-    shopInfo {
-      _id
-      userRoles
-    }
   }
   ${UserFragment}
 `;
@@ -23,6 +19,7 @@ const useUser = ({ userId = null } = {}) => {
 
   return {
     user,
+    shopInfo: data?.shopInfo,
     loading,
     error,
   };

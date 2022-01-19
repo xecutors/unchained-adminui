@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
 import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
@@ -184,6 +184,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
 
 const Layout = ({ children, apollo, router, pageHeader = '' }) => {
   const { formatMessage } = useIntl();
+
   const onLogout = async () => {
     await logOut(apollo);
     router.replace('/');

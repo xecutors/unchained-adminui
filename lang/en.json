@@ -2,6 +2,9 @@
   "Edit": {
     "defaultMessage": "Edit"
   },
+  "Update": {
+    "defaultMessage": "Update role"
+  },
   "account": {
     "defaultMessage": "Account"
   },
@@ -13,6 +16,9 @@
   },
   "add": {
     "defaultMessage": "Add"
+  },
+  "add_email": {
+    "defaultMessage": "Add email"
   },
   "all_users": {
     "defaultMessage": "All Users"
@@ -26,6 +32,9 @@
   "close_sidebar": {
     "defaultMessage": "Close sidebar"
   },
+  "context": {
+    "defaultMessage": "Context"
+  },
   "countries": {
     "defaultMessage": "Countries"
   },
@@ -37,6 +46,9 @@
   },
   "dashboard": {
     "defaultMessage": "Dashboard"
+  },
+  "date": {
+    "defaultMessage": "Date"
   },
   "default_currency": {
     "defaultMessage": "Default currency"
@@ -53,6 +65,9 @@
   "email_exists_error": {
     "defaultMessage": "Email already exists"
   },
+  "emails": {
+    "defaultMessage": "Emails"
+  },
   "enrollment": {
     "defaultMessage": "Enrollment"
   },
@@ -61,6 +76,9 @@
   },
   "error_server": {
     "defaultMessage": "There was a problem on the server ({details}). Please try again later."
+  },
+  "female": {
+    "defaultMessage": "Female"
   },
   "filter_by_type": {
     "defaultMessage": "Filter by type"
@@ -83,6 +101,9 @@
   "languages": {
     "defaultMessage": "Languages"
   },
+  "level": {
+    "defaultMessage": "Level"
+  },
   "load_more": {
     "defaultMessage": "Load more"
   },
@@ -98,6 +119,12 @@
   "logs": {
     "defaultMessage": "Logs"
   },
+  "male": {
+    "defaultMessage": "Male"
+  },
+  "message": {
+    "defaultMessage": "Message"
+  },
   "name": {
     "defaultMessage": "Name"
   },
@@ -109,6 +136,12 @@
   },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
+  },
+  "order_date": {
+    "defaultMessage": "Order date"
+  },
+  "order_number": {
+    "defaultMessage": "Order number"
   },
   "orders": {
     "defaultMessage": "Orders"
@@ -143,6 +176,9 @@
   "return_to_login": {
     "defaultMessage": "Return to Login"
   },
+  "select_tab": {
+    "defaultMessage": "Select a tab"
+  },
   "show_guests": {
     "defaultMessage": "Show Guests"
   },
@@ -158,11 +194,20 @@
   "sign_up_header": {
     "defaultMessage": "Create new Account"
   },
+  "status": {
+    "defaultMessage": "Status"
+  },
   "switch_off": {
     "defaultMessage": "off"
   },
   "switch_on": {
     "defaultMessage": "on"
+  },
+  "tags": {
+    "defaultMessage": "Tags"
+  },
+  "total": {
+    "defaultMessage": "Total"
   },
   "type": {
     "defaultMessage": "Type"
@@ -175,6 +220,9 @@
   },
   "update_provider": {
     "defaultMessage": "Update provider"
+  },
+  "update_tags": {
+    "defaultMessage": "Update tags"
   },
   "username": {
     "defaultMessage": "Username"

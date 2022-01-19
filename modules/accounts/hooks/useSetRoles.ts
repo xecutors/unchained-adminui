@@ -17,6 +17,7 @@ const useSetRoles = () => {
         roles,
         userId,
       },
+      refetchQueries: ['User'],
     });
   };
 
