@@ -248,16 +248,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               <dt className="text-sm h-10 font-medium text-gray-500">
                 Full name
               </dt>
-              <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd className="mt-1  flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
                   <div className=" flex">
                     <TextField
-                      className="w-full mt-0"
+                      className="ml-2 w-full mt-0"
                       name="firstName"
                       label=""
                     />{' '}
                     <TextField
-                      className="w-full mt-0"
+                      className="ml-2 w-full mt-0"
                       name="lastName"
                       label=""
                     />
