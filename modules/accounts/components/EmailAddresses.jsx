@@ -6,7 +6,7 @@ import useForm from '../../forms/hooks/useForm';
 import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
 import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
-import getStatusClasses from '../../common/util/getStatusClasses';
+import Badge from '../../common/components/Badge';
 
 const STATUS = {
   true: 'Verified',
@@ -46,13 +46,10 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {address}
                   </p>
-                  <p
-                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
-                      verified,
-                    )}`}
-                  >
-                    {STATUS[verified]}
-                  </p>
+                  <Badge
+                    text={STATUS[verified]}
+                    color={verified ? 'green' : 'red'}
+                  />
                 </div>
                 <div>
                   {!enableVerification && (

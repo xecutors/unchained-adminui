@@ -18,9 +18,10 @@ const ChoicesField = (props: ChoicesFieldProps) => {
 
   const mappableValue =
     typeof field.value === 'string' ? [field.value] : field.value;
+  const { className } = props;
   return (
     <div
-      className={classnames('field-container', props.className, {
+      className={classnames('field-container', className, {
         'is-invalid': !!field.error,
         'field-container--half': field.half,
         'field-container--third': field.third,
@@ -29,22 +30,17 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       })}
     >
       <label
-        className={classnames('form-label', props.className, {
+        className={classnames('form-label', className, {
           'text-danger': !!field.error,
         })}
       >
         {field.label}
       </label>
 
-      <div
-        className={classnames(
-          `row ${choiceContainerClassName}`,
-          props.className,
-        )}
-      >
+      <div className={classnames(`row ${choiceContainerClassName}`, className)}>
         {Object.entries(field.options).map(([value, display]) => (
           <div
-            className={classnames(`m-1 ${choiceClassName}`, props.className)}
+            className={classnames(`m-1 ${choiceClassName}`, className)}
             key={value}
           >
             <label

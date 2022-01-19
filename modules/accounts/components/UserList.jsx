@@ -69,7 +69,7 @@ const UserList = ({
                 />
                 <label
                   htmlFor="show-guests"
-                  className="ml-3 font-sm text-xs text-gray-700"
+                  className="ml-3  text-xs text-gray-700"
                 >
                   {formatMessage({
                     id: 'show_guests',

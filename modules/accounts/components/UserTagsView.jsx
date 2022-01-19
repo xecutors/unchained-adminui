@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import Badge from '../../common/components/Badge';
 import userSetUserTags from '../hooks/useSetUserTags';
 
 const UserTagsView = ({ tags = [], userId }) => {
@@ -50,30 +51,12 @@ const UserTagsView = ({ tags = [], userId }) => {
 
       <div className="flow-root mt-6">
         {tagList.map((tag) => (
-          <span
-            className="inline-flex rounded-full h-6 m-2 mb-4  items-center py-0.5 pl-2.5 pr-1 text-sm font-medium bg-indigo-100 text-indigo-700"
-            key={tag}
-          >
-            {tag}
-            <button
-              onClick={() => onRemoveTag(tag)}
-              type="button"
-              className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
-            >
-              <svg
-                className="h-2 w-2"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 8 8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeWidth="1.5"
-                  d="M1 1l6 6m0-6L1 7"
-                />
-              </svg>
-            </button>
-          </span>
+          <Badge
+            text={tag}
+            color="indigo"
+            onClick={() => onRemoveTag(tag)}
+            className="ml-2 mb-2"
+          />
         ))}
         <div>
           <div className="mt-1 h-9 max-w-md flex rounded-md shadow-sm">

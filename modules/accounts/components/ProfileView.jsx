@@ -222,7 +222,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   <TextField
                     className="w-full mt-0"
                     name="phoneMobile"
-                    label=""
+                    label="Mobile"
+                    hideLabel
                   />
                 ) : (
                   <span className="flex-grow">{profile?.phoneMobile}</span>
@@ -254,12 +255,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     <TextField
                       className="ml-2 w-full mt-0"
                       name="firstName"
-                      label=""
+                      label="First name"
+                      hideLabel
                     />{' '}
                     <TextField
                       className="ml-2 w-full mt-0"
                       name="lastName"
-                      label=""
+                      label="Last name"
                     />
                   </div>
                 ) : (

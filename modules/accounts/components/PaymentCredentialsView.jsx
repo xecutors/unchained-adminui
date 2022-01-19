@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import Badge from '../../common/components/Badge';
 
 const PaymentCredentialsView = ({ paymentCredentials }) => {
   const { formatMessage } = useIntl();
@@ -26,34 +27,58 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                     </p>
                     {isPreferred && (
                       <p className="text-sm text-gray-500 truncate">
-                        {formatMessage({
-                          id: 'preferred',
-                          defaultMessage: 'Preferred',
-                        })}
+                        <Badge
+                          text={formatMessage({
+                            id: 'preferred',
+                            defaultMessage: 'Preferred',
+                          })}
+                          color="green"
+                          square
+                        />
                       </p>
                     )}
                   </div>
                   <div>
-                    {isActive
-                      ? formatMessage({
+                    {isActive ? (
+                      <Badge
+                        text={formatMessage({
                           id: 'active',
                           defaultMessage: 'Active',
-                        })
-                      : formatMessage({
+                        })}
+                        color="green"
+                        square
+                      />
+                    ) : (
+                      <Badge
+                        text={formatMessage({
                           id: 'in_active',
                           defaultMessage: 'In-Active',
                         })}
+                        color="red"
+                        square
+                      />
+                    )}
                   </div>
                   <div>
-                    {isValid
-                      ? formatMessage({
+                    {isValid ? (
+                      <Badge
+                        text={formatMessage({
                           id: 'valid',
                           defaultMessage: 'Valid',
-                        })
-                      : formatMessage({
+                        })}
+                        color="green"
+                        square
+                      />
+                    ) : (
+                      <Badge
+                        text={formatMessage({
                           id: 'in_valid',
                           defaultMessage: 'InValid',
                         })}
+                        color="red"
+                        square
+                      />
+                    )}
                   </div>
                 </div>
               </li>

@@ -6,8 +6,8 @@
 
 .hide-show {
     position: absolute;
-    bottom: 1rem;
-    right: 1em;
+    bottom: .4rem;
+    right: .5em;
     outline: none;
     z-index: 9999;
   }

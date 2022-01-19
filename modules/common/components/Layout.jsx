@@ -2,12 +2,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
-import {
-  AdjustmentsIcon,
-  CogIcon,
-  HomeIcon,
-  UserIcon,
-} from '@heroicons/react/outline';
+import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -28,21 +23,30 @@ const SideNav = () => {
       current: false,
       children: [
         {
+          name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
+          current: false,
+          href: '/users',
+        },
+        {
           name: formatMessage({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
           href: '/currency',
+          current: false,
         },
         {
+          current: false,
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
         },
         {
+          current: false,
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
@@ -50,6 +54,7 @@ const SideNav = () => {
           href: '/delivery-provider',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'payment_provider',
             defaultMessage: 'Payment providers',
@@ -57,6 +62,7 @@ const SideNav = () => {
           href: '/payment-provider',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
@@ -66,14 +72,8 @@ const SideNav = () => {
       ],
     },
     {
-      name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
-      icon: UserIcon,
-      current: false,
-      href: '/users',
-    },
-    {
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
-      icon: AdjustmentsIcon,
+      icon: UserIcon,
       current: false,
       href: '/account',
     },
