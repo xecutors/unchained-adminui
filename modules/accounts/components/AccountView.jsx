@@ -29,12 +29,10 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             <UserTagsView tags={tags} userId={_id} />
           </div>
           <div className="mt-6">
-        <UserRolesView roles={roles} userId={_id} />
+            <UserRolesView roles={roles} userId={_id} />
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
-     
-      
     </>
   );
 };

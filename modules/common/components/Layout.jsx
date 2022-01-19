@@ -2,7 +2,12 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
-import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
+import {
+  AdjustmentsIcon,
+  CogIcon,
+  HomeIcon,
+  UserIcon,
+} from '@heroicons/react/outline';
 import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -61,10 +66,16 @@ const SideNav = () => {
       ],
     },
     {
-      name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
+      name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserIcon,
       current: false,
       href: '/users',
+    },
+    {
+      name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
+      icon: AdjustmentsIcon,
+      current: false,
+      href: '/account',
     },
   ];
   return (
