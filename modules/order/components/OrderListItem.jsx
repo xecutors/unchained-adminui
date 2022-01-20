@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 
-const PROVIDER_TYPE_CLASSES = {
+const ORDER_STATUSES = {
   OPEN: 'purple',
   PENDING: 'blue',
   CONFIRMED: 'lime',
@@ -16,12 +16,12 @@ const formatCurrency = ({ amount, currency }) => {
 const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
   return (
-    <tr key={order.email}>
+    <tr key={order._id}>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/orders/${order._id}`}>
             <a className="text-blue-600">
-              {!order?.orderNumber || (
+              {order?.orderNumber || (
                 <>
                   {order._id}{' '}
                   <Badge
@@ -72,7 +72,7 @@ const OrderListItem = ({ order, showUser }) => {
       <td className="px-6 py-4 whitespace-nowrap">
         <Badge
           text={order?.status}
-          color={PROVIDER_TYPE_CLASSES[order.status]}
+          color={ORDER_STATUSES[order.status]}
           square
         />
       </td>

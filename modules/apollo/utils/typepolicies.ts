@@ -16,6 +16,12 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
+      enrollments: {
+        keyArgs: ['limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
       languages: {
         keyArgs: ['limit', 'includeInactive'],
         merge(existing = [], incoming) {
