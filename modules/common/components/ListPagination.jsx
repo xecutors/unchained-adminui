@@ -10,17 +10,26 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
         aria-label="Pagination"
       >
         <div className="hidden sm:block">
-          <FormattedMessage
-            id="app.greeting"
-            defaultMessage="<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
-            values={{
-              p: (chunks) => <p className="text-sm text-gray-700">{chunks}</p>,
-              span: (chunks) => <span className="font-medium">{chunks}</span>,
-              icon: <svg />,
-              current: data?.length,
-              total,
-            }}
-          />
+          {!total ? (
+            formatMessage({
+              id: 'no_result_found',
+              defaultMessage: 'No result found',
+            })
+          ) : (
+            <FormattedMessage
+              id="app.greeting"
+              defaultMessage="<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
+              values={{
+                p: (chunks) => (
+                  <p className="text-sm text-gray-700">{chunks}</p>
+                ),
+                span: (chunks) => <span className="font-medium">{chunks}</span>,
+                icon: <svg />,
+                current: data?.length,
+                total,
+              }}
+            />
+          )}
         </div>
 
         {data?.length < total && (

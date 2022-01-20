@@ -2,8 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import OrderFragment from '../fragment/OrderFragment';
 
 export const OrdersQuery = gql`
-  query UserOrder($userId: ID) {
-    user(userId: $userId) {
+  query UserOrder($userId: ID, $includeCarts: Boolean) {
+    user(userId: $userId, includeCarts: $includeCarts) {
       orders {
         ...OrderFragment
       }

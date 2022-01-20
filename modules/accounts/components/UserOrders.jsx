@@ -1,11 +1,12 @@
-import { useIntl } from 'react-intl';
+import { useState } from 'react';
 import ListPagination from '../../common/components/ListPagination';
-import UserOrderListItem from './UserOrderListItem';
+import OrderList from '../../order/components/OrderList';
+
 /* import useUserOrders from '../hooks/useUserOrders'; */
 
 const UserOrders = ({ _id: userId }) => {
-  /* const { orders } = useUserOrders({ userId }); */
-  const { formatMessage } = useIntl();
+  const [includeCarts, setIncludeCarts] = useState(false);
+  /* const { orders } = useUserOrders({ userId, includeCarts }); */
 
   const orders = [
     {
@@ -36,60 +37,11 @@ const UserOrders = ({ _id: userId }) => {
 
   return (
     <div className="m-5 flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 ">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-white">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'order_date',
-                      defaultMessage: 'Order date',
-                    })}
-                  </th>
-
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'order_number',
-                      defaultMessage: 'Order number',
-                    })}
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'total',
-                      defaultMessage: 'Total',
-                    })}
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'status',
-                      defaultMessage: 'Status',
-                    })}
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {orders?.map((order) => (
-                  <UserOrderListItem key={order?._id} order={order} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <OrderList
+        orders={orders}
+        includeCarts={includeCarts}
+        onIncludeCartsChange={setIncludeCarts}
+      />
       <ListPagination
         onLoadMore={() => {}}
         data={orders}
