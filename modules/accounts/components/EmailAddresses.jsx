@@ -31,7 +31,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
   });
   return (
     <div>
-      <div className="pb-5 border-b border-gray-200">
+      <div className=" pb-3 border-b border-gray-200">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {formatMessage({ id: 'emails', defaultMessage: 'Emails' })}
         </h3>
@@ -89,9 +89,9 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
           ))}
         </ul>
         <Form form={form}>
-          <div className="mt-7 border-t">
+          <div className="mt-5 border-t">
             <TextField
-              className="mt-7  mr-24"
+              className="mt-7"
               name="email"
               required
               label={formatMessage({

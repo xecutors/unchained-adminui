@@ -25,8 +25,8 @@ const ChangePassword = () => {
   });
 
   return (
-    <div>
-      <div className="mt-7 border-t pb-3 pt-4 border-gray-200 sm:flex sm:items-center sm:justify-between">
+    <div className="rounded-md px-4 py-5 bg-white shadow overflow-hidden border-b border-gray-200">
+      <div className="border-b pb-2 pt-4 mb-7 border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {formatMessage({
             id: 'change_password',
@@ -47,6 +47,7 @@ const ChangePassword = () => {
           name="oldPassword"
           id="oldPassword"
           required
+          className="mb-4 text-sm"
         />
         <PasswordField
           label={formatMessage({
@@ -60,6 +61,7 @@ const ChangePassword = () => {
           name="newPassword"
           id="newPassword"
           required
+          className="mb-4 text-sm"
         />
         <SubmitButton
           label={formatMessage({

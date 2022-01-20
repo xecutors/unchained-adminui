@@ -8,8 +8,8 @@ const Profile = () => {
   return (
     <div className="px-4 py-5 space-y-6 sm:p-6 rounded-md relative max-w-4xl ">
       <ProfileView {...currentUser} />
-      <div className="px-4 py-5 bg-white shadow overflow-hidden border-b border-gray-200">
       <ChangePassword />
+       <div className="rounded-md px-4 py-5 bg-white shadow overflow-hidden border-b border-gray-200">
       <EmailAddresses emails={currentUser?.emails} enableVerification />
       </div>
     </div>

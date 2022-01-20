@@ -33,7 +33,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
         <div className=" mt-6">
           <UserTagsView tags={tags} userId={_id} />
         </div>
-        <div className="border-t pt-3">
+        <div className="pt-2">
           <UserRolesView roles={roles} userId={_id} />
         </div>
       </div>
