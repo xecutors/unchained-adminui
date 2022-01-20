@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { format } from 'date-fns';
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -124,8 +125,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
         </div>
         <div className="mt-6">
           <dl className="py-4 divide-y divide-gray-200">
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
-              <dt className="text-sm font-medium text-gray-500">Photo</dt>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-1 sm:gap- sm:pt-5">
+              <dt className="text-sm font-medium text-gray-500">
+                {formatMessage({
+                  id: 'photo',
+                  defaultMessage: 'Photo',
+                })}
+              </dt>
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 <span className="flex-grow">
                   <input
@@ -168,7 +174,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               </dd>
             </div>
 
-            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'name',
@@ -192,7 +198,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 )}
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'username',
@@ -203,7 +209,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 <span className="flex-grow">{username}</span>
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'gender',
@@ -233,7 +239,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 )}
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'birthday',
@@ -252,11 +258,15 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     name="birthday"
                   />
                 ) : (
-                  <span className="flex-grow">{profile?.birthday}</span>
+                  <span className="flex-grow">
+                    {profile.birthday
+                      ? format(new Date(profile.birthday), 'P')
+                      : 'n/a'}
+                  </span>
                 )}
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">Phone</dt>
               <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {isEdit ? (
@@ -295,7 +305,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
         </div>
         <div className="mt-6">
           <dl className="divide-y divide-gray-200">
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'full_name',
@@ -333,7 +343,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 )}
               </dd>
             </div>
-            <div className=" py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className=" py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'company',
@@ -356,7 +366,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 )}
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'address_line_1',
@@ -379,7 +389,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 )}
               </dd>
             </div>
-            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
               <dt className="text-sm h-10 font-medium text-gray-500">
                 {formatMessage({
                   id: 'address_line_2',
