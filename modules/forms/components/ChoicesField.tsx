@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import useField, { FieldHookProps } from '../hooks/useField';
 import { SelectFieldOptions } from './SelectField';
@@ -9,19 +9,23 @@ interface ChoicesFieldProps extends FieldHookProps {
   options: SelectFieldOptions;
   choiceClassName?: string;
   choiceContainerClassName?: string;
+  labelClassName?: string;
 }
 
 const ChoicesField = (props: ChoicesFieldProps) => {
   const field = useField(props);
-  const { choiceClassName = 'col-md-6 col-lg-4', choiceContainerClassName } =
-    props;
+  const {
+    choiceClassName = 'col-md-6 col-lg-4',
+    choiceContainerClassName,
+    labelClassName,
+  } = props;
 
   const mappableValue =
     typeof field.value === 'string' ? [field.value] : field.value;
-  const { className } = props;
+  const { className, hideLabel } = props;
   return (
     <div
-      className={classnames('field-container', className, {
+      className={classNames('field-container', className, {
         'is-invalid': !!field.error,
         'field-container--half': field.half,
         'field-container--third': field.third,
@@ -30,26 +34,25 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       })}
     >
       <label
-        className={classnames('form-label', className, {
-          'text-danger': !!field.error,
+        className={classNames('', className, {
+          'text-red-600': !!field.error,
+          'sr-only': hideLabel,
         })}
       >
         {field.label}
       </label>
 
-      <div className={classnames(`row ${choiceContainerClassName}`, className)}>
+      <div className={classNames(`row ${choiceContainerClassName}`, className)}>
         {Object.entries(field.options).map(([value, display]) => (
           <div
-            className={classnames(`m-1 ${choiceClassName}`, className)}
+            className={classNames(`m-1 ${choiceClassName}`, className)}
             key={value}
           >
             <label
               htmlFor={`${field.name}-${value}`}
-              className="form-check-label"
+              className={classNames(' ml-3', labelClassName)}
             >
-              <div className="radio-and-checkbox-content text-center ml-3">
-                {display}
-              </div>
+              <div>{display}</div>
               <input
                 value={value}
                 checked={mappableValue.includes(value)}

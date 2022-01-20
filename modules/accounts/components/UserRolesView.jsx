@@ -34,25 +34,18 @@ const UserRolesView = ({ roles, userId }) => {
         <ChoicesField
           key="user-roles"
           name="updatedRoles"
-          options={Object.fromEntries(
-            ['marketing', 'accountant', ...userRoles].map((role) => [
-              role,
-              role,
-            ]),
-          )}
+          labelClassName="flex flex-col items-center "
+          options={Object.fromEntries(userRoles.map((role) => [role, role]))}
           label={formatMessage({
-            id: 'update_role',
-            defaultMessage: 'Update role',
+            id: 'select_role',
+            defaultMessage: 'Select role',
           })}
+          className="flex flex-wrap"
           hideLabel
           multiple
-          className="flex flex-end"
-          choiceContainerClassName="flex"
-          choiceClassName="flex flex-start"
-          
         />
         <SubmitButton
-          className="mb-5 mt-5 mr-2 text-center items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+          className="mb-5 mt-5 mr-2  px-3 py-1  border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
           label={formatMessage({ id: 'Update', defaultMessage: 'Update role' })}
         />
       </Form>

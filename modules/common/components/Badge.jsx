@@ -9,6 +9,7 @@ const Badge = ({
   onClick,
 }) => {
   const normalizedColor = color?.trim();
+
   return (
     <span
       className={classNames(
