@@ -24,7 +24,7 @@ const TextAreaField = ({
     <FieldWrapper {...field}>
       <textarea
         className={classnames('form-field p-1', {
-          'form-field--error': !!field.error,
+          'text-red-600 border-red-600': !!field.error,
         })}
         disabled={field.disabled}
         id={field.name}

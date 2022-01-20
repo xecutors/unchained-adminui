@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 
 const ENROLLMENT_STATUS = {
-  INITIAL: 'purple',
+  INITIAL: 'orange',
   PAUSED: 'yellow',
   TERMINATED: 'red',
   ACTIVE: 'green',

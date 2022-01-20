@@ -37,12 +37,6 @@ const ProviderConfigurationForm = ({
                   className="flex justify-between align-baseline"
                 >
                   <TextField
-                    // label={formatMessage({
-                    //   id: 'key',
-                    //   defaultMessage: 'Key',
-                    //   description:
-                    //     'Providers configuration setting key field label',
-                    // })}
                     placeholder="Key"
                     name={`configuration[${index}].key`}
                     id={`configuration[${index}].key`}
@@ -54,12 +48,6 @@ const ProviderConfigurationForm = ({
                     hideLabel
                   />
                   <TextField
-                    // label={formatMessage({
-                    //   id: 'value',
-                    //   defaultMessage: 'Value',
-                    //   description:
-                    //     'Providers configuration setting value field label',
-                    // })}
                     placeholder="Value"
                     name={`configuration[${index}].value`}
                     id={`configuration[${index}].value`}
@@ -133,7 +121,6 @@ const ProviderConfigurationForm = ({
           id: 'update_provider',
           defaultMessage: 'Update provider',
         })}
-        className="mb-5 mt-5 ml-2 mr-2  items-center px-2 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
       />
     </Form>
   );

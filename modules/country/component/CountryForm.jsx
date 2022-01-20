@@ -81,7 +81,6 @@ const CountryForm = ({
       </div>
 
       <SubmitButton
-        className="mb-5 mt-5 mr-2 text-center items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
         label={
           isEdit
             ? formatMessage({ id: 'update', defaultMessage: 'Update' })

@@ -6,7 +6,7 @@ import useFormContext from '../hooks/useFormContext';
 const SubmitButton = ({
   label,
   disabled: disabledProp = false,
-  className = 'button button--primary button--wider mt-1',
+  className,
   ...props
 }) => {
   const formik = useFormikContext();
@@ -29,12 +29,18 @@ const SubmitButton = ({
 
   const disabled =
     disabledProp || contextDisabled || formik.isSubmitting || hasError;
-
   return (
     <input
       className={classNames(
-        'mb-5 mt-5 mr-2 text-center items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500',
-        className,
+        'mb-5 mt-5 mr-2  text-center items-center px-3 py-1 border border-transparent  shadow-sm text-sm leading-5 font-medium rounded-md text-white focus:ring-indigo-500',
+        {
+          'bg-red-600  ': disabled,
+          ' bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 ':
+            !disabled,
+          'w-1/2': props?.half,
+          'w-1/3': props?.third,
+          'w-full': props?.full,
+        },
       )}
       aria-label={label}
       type="submit"
