@@ -52,6 +52,7 @@ const UserTagsView = ({ tags = [], userId }) => {
       <div className="flow-root mt-6">
         {tagList.map((tag) => (
           <Badge
+            key={tag}
             text={tag}
             color="indigo"
             onClick={() => onRemoveTag(tag)}
