@@ -1,16 +1,17 @@
 import Link from 'next/link';
+import Badge from './Badge';
 
 const getInterfaceLabel = ({ label, version }) => {
   return `${label} ${version}`;
 };
 
 const PROVIDER_TYPE_CLASSES = {
-  PHYSICAL: 'bg-green-100 text-green-800',
-  CARD: ' bg-blue-100 text-blue-500',
-  INVOICE: ' bg-lime-100 text-lime-800',
-  GENERIC: ' bg-purple-100 text-purple-800',
-  PICKUP: ' bg-yellow-100 text-yellow-800',
-  SHIPPING: ' bg-blue-100 text-blue-800',
+  PHYSICAL: 'green',
+  CARD: 'blue',
+  INVOICE: 'lime',
+  GENERIC: 'purple',
+  PICKUP: 'yellow',
+  SHIPPING: 'blue',
 };
 
 const ProviderListItem = ({ provider, onRemove, editPath }) => {
@@ -23,12 +24,12 @@ const ProviderListItem = ({ provider, onRemove, editPath }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-            PROVIDER_TYPE_CLASSES[provider.type]
-          }`}
-        >
-          {provider?.type}
+        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
+          <Badge
+            text={provider?.type}
+            color={PROVIDER_TYPE_CLASSES[provider.type]}
+            square
+          />
         </span>
       </td>
       <td className="px-6 py-4 whitespace-nowrap">

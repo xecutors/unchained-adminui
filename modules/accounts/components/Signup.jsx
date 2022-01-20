@@ -136,7 +136,10 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
 
             <div className=" text-sm">
-              Already got a user?
+              {formatMessage({
+                id: 'already_got_a_user',
+                defaultMessage: 'Already got a user?',
+              })}
               <a
                 href="/log-in"
                 className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"

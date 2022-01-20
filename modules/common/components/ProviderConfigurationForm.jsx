@@ -44,10 +44,14 @@ const ProviderConfigurationForm = ({
                     //     'Providers configuration setting key field label',
                     // })}
                     placeholder="Key"
-                    label=""
                     name={`configuration[${index}].key`}
                     id={`configuration[${index}].key`}
                     required
+                    label={formatMessage({
+                      id: 'configuration_key',
+                      defaultMessage: 'Configuration key',
+                    })}
+                    hideLabel
                   />
                   <TextField
                     // label={formatMessage({
@@ -57,11 +61,15 @@ const ProviderConfigurationForm = ({
                     //     'Providers configuration setting value field label',
                     // })}
                     placeholder="Value"
-                    label=""
                     name={`configuration[${index}].value`}
                     id={`configuration[${index}].value`}
                     required
                     className="px-6"
+                    label={formatMessage({
+                      id: 'configuration_value',
+                      defaultMessage: 'Configuration value',
+                    })}
+                    hideLabel
                   />
                   <button
                     className="mt-2 mr-2 items-center text-red-500 align-baseline"

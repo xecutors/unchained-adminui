@@ -40,9 +40,16 @@ const UserRolesView = ({ roles, userId }) => {
               role,
             ]),
           )}
-          label=""
+          label={formatMessage({
+            id: 'update_role',
+            defaultMessage: 'Update role',
+          })}
+          hideLabel
           multiple
-          className="flex items-baseline "
+          className="flex flex-end"
+          choiceContainerClassName="flex"
+          choiceClassName="flex flex-start"
+          
         />
         <SubmitButton
           className="mb-5 mt-5 mr-2 text-center items-center px-3 py-1 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
@@ -54,3 +61,9 @@ const UserRolesView = ({ roles, userId }) => {
 };
 
 export default UserRolesView;
+
+// items-start	align-items: flex-start;
+// items-end	align-items: flex-end;
+// items-center	align-items: center;
+// items-baseline	align-items: baseline;
+// items-stretch	align-items: stretch;

@@ -47,7 +47,7 @@ const ChoicesField = (props: ChoicesFieldProps) => {
               htmlFor={`${field.name}-${value}`}
               className="form-check-label"
             >
-              <div className="radio-and-checkbox-content text-center ml-3 mr-3">
+              <div className="radio-and-checkbox-content text-center ml-3">
                 {display}
               </div>
               <input

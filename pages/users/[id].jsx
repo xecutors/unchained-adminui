@@ -59,6 +59,7 @@ const UserProfile = () => {
                   defaultMessage: 'Select a tab',
                 })}
               </label>
+
               <select
                 onChange={(e) => setActiveTab(e.target.value)}
                 id="selected-tab"

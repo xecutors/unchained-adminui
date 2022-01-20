@@ -34,7 +34,15 @@ const UserNameView = ({ _id: userId, username }) => {
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <span className="flex-grow">
                 {isEdit ? (
-                  <TextField className="w-full mt-0" name="username" label="" />
+                  <TextField
+                    className="w-full mt-0"
+                    name="username"
+                    label={formatMessage({
+                      id: 'User name',
+                      defaultMessage: 'User name',
+                    })}
+                    hideLabel
+                  />
                 ) : (
                   username
                 )}
@@ -62,7 +70,10 @@ const UserNameView = ({ _id: userId, username }) => {
                       type="submit"
                       className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                     >
-                      Save
+                      {formatMessage({
+                        id: 'save',
+                        defaultMessage: 'Save',
+                      })}
                     </button>
                   </>
                 )}

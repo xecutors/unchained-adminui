@@ -157,7 +157,10 @@ export default function LogInForm() {
               </button>
             </div>
             <div className=" text-sm">
-              Create new Account?
+              {formatMessage({
+                id: 'create_new_account',
+                defaultMessage: 'Create new Account?',
+              })}
               <a
                 href="/sign-up"
                 className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"
