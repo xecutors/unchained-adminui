@@ -17,10 +17,11 @@ const FieldWrapper = ({
   required,
   name,
   label,
+  hideLabel,
 }: FieldWrapperProps) => {
   return (
     <div
-      className={classnames(className, 'field-container', {
+      className={classnames(className, {
         'is-invalid': !!error,
         'field-container--half': half,
         'field-container--third': third,
@@ -31,8 +32,9 @@ const FieldWrapper = ({
       <label
         aria-label={label}
         htmlFor={name}
-        className={classnames('form-label', {
+        className={classnames('', {
           'text-red-600': !!error,
+          'sr-only': hideLabel,
         })}
       >
         {error || label}

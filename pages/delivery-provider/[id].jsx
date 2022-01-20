@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import FormHeader from '../../modules/common/components/FormHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDeliveryProvider';
@@ -37,19 +39,22 @@ const DeliveryProviderUpdate = () => {
   };
 
   return (
-    <FormHeader
-      onDelete={onRemoveDeliveryProvider}
-      headerText={formatMessage({
-        id: 'update_configuration',
-        defaultMessage: 'Update configuration',
-      })}
-    >
-      <ProviderConfigurationForm
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        defaultValue={deliveryProvider?.configuration || []}
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'update_delivery_configuration',
+          defaultMessage: 'Update delivery provider',
+        })}
       />
-    </FormHeader>
+      <FormHeader onDelete={onRemoveDeliveryProvider}>
+        <ProviderConfigurationForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={deliveryProvider?.configuration || []}
+        />
+      </FormHeader>
+    </>
   );
 };
 

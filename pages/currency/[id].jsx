@@ -5,6 +5,8 @@ import CurrencyForm from '../../modules/currency/component/CurrencyForm';
 import useCurrency from '../../modules/currency/hooks/useCurrency';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
 import useUpdateCurrency from '../../modules/currency/hooks/useUpdateCountry';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
@@ -28,17 +30,23 @@ const UpdateCurrency = () => {
     push('/currency');
   };
   return (
-    <FormHeader
-      headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-      onDelete={onRemove}
-    >
-      <CurrencyForm
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        defaultValue={currency}
-        isEdit
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'update_currency_header',
+          defaultMessage: 'Update currency',
+        })}
       />
-    </FormHeader>
+      <FormHeader onDelete={onRemove}>
+        <CurrencyForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={currency}
+          isEdit
+        />
+      </FormHeader>
+    </>
   );
 };
 

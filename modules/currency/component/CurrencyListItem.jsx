@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import getStatusClasses from '../../common/util/getStatusClasses';
-
-const STATUS = {
-  true: 'Active',
-  false: 'In-Active',
-};
+import Badge from '../../common/components/Badge';
 
 const CurrencyListItem = ({ currency, onRemove }) => {
-  const { locale } = useIntl();
+  const { locale, formatMessage } = useIntl();
+  const STATUS = {
+    true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
+    false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
+  };
 
   return (
     <tr>
@@ -27,13 +26,11 @@ const CurrencyListItem = ({ currency, onRemove }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClasses(
-            currency.isActive,
-          )}`}
-        >
-          {STATUS[currency.isActive]}
-        </span>
+        <Badge
+          text={STATUS[currency.isActive]}
+          color={currency.isActive ? 'green' : 'red'}
+          square
+        />
       </td>
 
       <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

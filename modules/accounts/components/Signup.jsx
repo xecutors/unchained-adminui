@@ -8,7 +8,7 @@ import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
 
-const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
+const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
 
   const form = useForm({
@@ -52,7 +52,7 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               {formatMessage({
-                id: 'login_header',
+                id: 'sign_up_header',
                 defaultMessage: 'Create new Account',
               })}
             </h2>
@@ -73,8 +73,9 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'email',
                     defaultMessage: 'E-mail',
                   })}
-                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-5 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="sam@example.com"
+                  className=""
+                  placeholder="Email"
+                  hideLabel
                 />
               </div>
               <div>
@@ -87,7 +88,9 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
-                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-5 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className=""
+                  hideLabel
+                  placeholder="User name"
                 />
               </div>
               <div>
@@ -100,8 +103,9 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
-                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="********"
+                  className=""
+                  placeholder="password"
+                  hideLabel
                 />
               </div>
             </div>
@@ -136,7 +140,10 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
 
             <div className=" text-sm">
-              Already got a user?
+              {formatMessage({
+                id: 'already_got_a_user',
+                defaultMessage: 'Already got a user?',
+              })}
               <a
                 href="/log-in"
                 className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"
@@ -154,4 +161,4 @@ const SignupForm = ({ onSubmit, onSubmitSuccess }) => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;

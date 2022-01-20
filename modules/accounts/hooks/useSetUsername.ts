@@ -17,6 +17,7 @@ const useSetUserName = () => {
         username,
         userId,
       },
+      refetchQueries: ['User'],
     });
   };
 

@@ -25,6 +25,7 @@ const TextField = ({
       <input
         className={classnames(
           'appearance-none mt-3 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-xs',
+          props.className,
           {
             'border-red-600': !!field.error,
           },

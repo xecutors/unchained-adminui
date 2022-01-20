@@ -85,7 +85,7 @@ export default function LogInForm() {
                     id: 'email',
                     defaultMessage: 'E-mail',
                   })}
-                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-5 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  hideLabel
                   placeholder="samuel@example.com"
                 />
               </div>
@@ -99,8 +99,8 @@ export default function LogInForm() {
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
-                  className="appearance-none mb-2 relative block w-full px-3 py-2  border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="********"
+                  hideLabel
+                  placeholder="password"
                 />
               </div>
             </div>
@@ -157,7 +157,10 @@ export default function LogInForm() {
               </button>
             </div>
             <div className=" text-sm">
-              Create new Account?
+              {formatMessage({
+                id: 'create_new_account',
+                defaultMessage: 'Create new Account?',
+              })}
               <a
                 href="/sign-up"
                 className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"

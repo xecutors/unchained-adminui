@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
 import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
@@ -23,21 +23,30 @@ const SideNav = () => {
       current: false,
       children: [
         {
+          name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
+          current: false,
+          href: '/users',
+        },
+        {
           name: formatMessage({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
           href: '/currency',
+          current: false,
         },
         {
+          current: false,
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
         },
         {
+          current: false,
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
@@ -45,6 +54,7 @@ const SideNav = () => {
           href: '/delivery-provider',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'payment_provider',
             defaultMessage: 'Payment providers',
@@ -52,6 +62,7 @@ const SideNav = () => {
           href: '/payment-provider',
         },
         {
+          current: false,
           name: formatMessage({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
@@ -64,7 +75,7 @@ const SideNav = () => {
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
       icon: UserIcon,
       current: false,
-      href: '/users',
+      href: '/account',
     },
   ];
   return (
@@ -184,6 +195,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
 
 const Layout = ({ children, apollo, router, pageHeader = '' }) => {
   const { formatMessage } = useIntl();
+
   const onLogout = async () => {
     await logOut(apollo);
     router.replace('/');

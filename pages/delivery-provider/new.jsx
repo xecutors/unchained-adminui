@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
+import PageHeader from '../../modules/common/components/PageHeader';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
 import useCreateDeliveryProvider from '../../modules/delivery-provider/hooks/useCreateDeliveryProvider';
 import useDeliveryInterfacesByType from '../../modules/delivery-provider/hooks/useDeliveryInterfacesByType';
@@ -9,7 +12,7 @@ import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useD
 
 const NewDeliveryProvider = () => {
   const [selectedType, setSelectedType] = useState('SHIPPING');
-
+  const { formatMessage } = useIntl();
   const { createDeliveryProvider } = useCreateDeliveryProvider();
   const { deliveryProviderType } = useDeliveryProviderTypes();
   const { deliveryInterfaces } = useDeliveryInterfacesByType({
@@ -28,6 +31,13 @@ const NewDeliveryProvider = () => {
 
   return (
     <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_delivery_provider',
+          defaultMessage: 'New delivery provider',
+        })}
+      />
       <NewProviderForm
         providerInterfaces={convertArrayOfObjectToObject(
           deliveryInterfaces,

@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import FormHeader from '../../modules/common/components/FormHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import usePaymentProvider from '../../modules/payment-providers/hooks/usePaymentProvider';
 import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
@@ -36,19 +38,22 @@ const PaymentProviderUpdate = () => {
   };
 
   return (
-    <FormHeader
-      onDelete={onRemovePaymentProvider}
-      headerText={formatMessage({
-        id: 'update_configuration',
-        defaultMessage: 'Update configuration',
-      })}
-    >
-      <ProviderConfigurationForm
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        defaultValue={paymentProvider?.configuration || []}
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'update_payment_provider_header',
+          defaultMessage: 'Update payment provider',
+        })}
       />
-    </FormHeader>
+      <FormHeader onDelete={onRemovePaymentProvider}>
+        <ProviderConfigurationForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={paymentProvider?.configuration || []}
+        />
+      </FormHeader>
+    </>
   );
 };
 
