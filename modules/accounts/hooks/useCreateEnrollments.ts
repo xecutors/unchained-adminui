@@ -67,21 +67,21 @@ const useCreateEnrollment = () => {
     CreateEnrollmentMutation,
   );
 
-  const createEnrollment = async ({ plan = null } = {}) => {
+  const createEnrollment = async ({
+    plan = null,
+    paymentProviderId = null,
+    deliveryProviderId = null,
+    contact = null,
+  } = {}) => {
     const variables = {
-      plan: {
-        productId: 'GXEbAby2QuLtuGwiC',
-      },
+      plan,
       payment: {
-        paymentProviderId: 'y3n9JaQKqs8yeAW8p',
+        paymentProviderId,
       },
       delivery: {
-        deliveryProviderId: 'wCrH2SSk53nYgcmbf',
+        deliveryProviderId,
       },
-      contact: {
-        emailAddress: 'mikaelaraya12@gmail.com',
-        telNumber: '0912669988',
-      },
+      contact,
     };
 
     return createEnrollmentMutation({

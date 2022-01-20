@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const Badge = ({
   text,
-  className,
+  className = '',
   dotted,
   color = 'green',
   square,

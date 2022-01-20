@@ -1,20 +1,15 @@
-const FormHeader = ({ headerText, onDelete, children }) => {
+const FormHeader = ({ onDelete, children }) => {
   return (
     <div className="mt-5 sm:max-w-lg">
       <div className="bg-white   px-5 shadow sm:rounded-t sm:px-15">
         <div className=" bg-white border-b border-gray-50">
           <div className=" -mt-2 mb-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-            <div className=" ">
-              <h3 className="text-md mt-3 leading-6 font-medium text-gray-900">
-                {headerText}
-              </h3>
-            </div>
             {onDelete && (
-              <div className=" mt-2 mb-1 flex-shrink-0">
+              <div className=" mt-2 mb-1 flex-shrink-0 items-end">
                 <button
                   onClick={onDelete}
                   type="button"
-                  className="mb-3 items-center px-2 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                  className="mb-3  px-2 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                 >
                   <svg
                     className="h-4 w-4 text-white-500"

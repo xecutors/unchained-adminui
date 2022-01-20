@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 import ProviderList from '../../modules/common/components/ProvidersList';
 
@@ -7,6 +10,7 @@ import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/use
 
 const DeliveryProviders = () => {
   const [type, setType] = useState(null);
+  const { formatMessage } = useIntl();
 
   const { deliveryProviders } = useDeliveryProviders({ type });
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
@@ -16,13 +20,22 @@ const DeliveryProviders = () => {
   };
 
   return (
-    <ProviderList
-      providerPath="/delivery-provider"
-      providerType={['PICKUP', 'SHIPPING']}
-      providers={deliveryProviders}
-      onRemove={onRemoveDeliveryProvider}
-      onProviderFilterChange={setType}
-    />
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'delivery_providers_header',
+          defaultMessage: 'Delivery providers',
+        })}
+      />
+      <ProviderList
+        providerPath="/delivery-provider"
+        providerType={['PICKUP', 'SHIPPING']}
+        providers={deliveryProviders}
+        onRemove={onRemoveDeliveryProvider}
+        onProviderFilterChange={setType}
+      />
+    </>
   );
 };
 

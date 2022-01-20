@@ -49,7 +49,6 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
 
       {showUser && enrollment.user && (
         <td className="px-6 py-4 whitespace-nowrap">
-
           <Link href={`/order/${enrollment.user._id}`}>
             <a>
               <svg
@@ -69,7 +68,6 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
               {enrollment.user?.name}
             </a>
           </Link>
-          
         </td>
       )}
 
@@ -77,8 +75,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/products/${enrollment.plan.product._id}`}>
             <a className="text-blue-600">
-              {enrollment?.plan.product.texts.title
-                }
+              {enrollment?.plan.product.texts.title}
             </a>
           </Link>
         </div>

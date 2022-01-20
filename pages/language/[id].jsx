@@ -6,6 +6,8 @@ import LanguageForm from '../../modules/language/components/LanguageForm';
 import useLanguage from '../../modules/language/hooks/useLanguage';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import useUpdateLanguage from '../../modules/language/hooks/useUpdateLanguage';
+import PageHeader from '../../modules/common/components/PageHeader';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
@@ -30,17 +32,23 @@ const UpdateLanguage = () => {
   };
 
   return (
-    <FormHeader
-      headerText={formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-      onDelete={onDelete}
-    >
-      <LanguageForm
-        isEdit
-        defaultValue={language}
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'update_language_header',
+          defaultMessage: 'Update languages',
+        })}
       />
-    </FormHeader>
+      <FormHeader onDelete={onDelete}>
+        <LanguageForm
+          isEdit
+          defaultValue={language}
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+        />
+      </FormHeader>
+    </>
   );
 };
 

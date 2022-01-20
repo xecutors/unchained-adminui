@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import SignupForm from '../modules/accounts/components/Signup';
+import SignUpForm from '../modules/accounts/components/Signup';
 import useCreateUser from '../modules/accounts/hooks/useCreateUser';
 import { storeLoginToken } from '../modules/accounts/utils/store';
 
@@ -22,7 +22,7 @@ const SignUpPage = () => {
   const onSubmitSuccess = () => {
     push('/');
   };
-  return <SignupForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />;
+  return <SignUpForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />;
 };
 
 export default SignUpPage;

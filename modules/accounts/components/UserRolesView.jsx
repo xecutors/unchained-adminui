@@ -54,5 +54,3 @@ const UserRolesView = ({ roles, userId }) => {
 };
 
 export default UserRolesView;
-
-

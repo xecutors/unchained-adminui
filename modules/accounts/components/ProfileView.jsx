@@ -404,7 +404,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2 divide-y divide-gray-200">
-             
               <div className="pt-2 pb-2 sm:grid sm:grid-cols-2 ">
                 <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
@@ -429,7 +428,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </dd>
               </div>
-             
+
               <div className="pt-2 sm:grid sm:grid-cols-2">
                 <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
@@ -438,7 +437,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   })}
                 </dt>
                 <dd className="mt-1 w-full text-sm text-gray-900">
-
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -452,9 +450,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     address?.postalCode
                   )}
-                 
                 </dd>
-                
               </div>
               <div className="pt-2 sm:grid sm:grid-cols-2">
                 <dt className="mt-3 text-sm font-medium text-gray-500">

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { useIntl } from 'react-intl';
 import FormHeader from '../../modules/common/components/FormHeader';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 import CountryForm from '../../modules/country/component/CountryForm';
 import useCountry from '../../modules/country/hooks/useCountry';
@@ -37,20 +38,20 @@ const UpdateCountry = () => {
   const onSubmitSuccess = () => {
     push('/country');
   };
-  const { formatMessage } = useIntl();
 
   return (
-    <FormHeader
-      headerText={formatMessage({ id: 'Edit', defaultMessage: 'Edit' })}
-      onDelete={removeCountry}
-    >
-      <CountryForm
-        isEdit
-        defaultValue={normalizeCountry(country)}
-        onSubmitSuccess={onSubmitSuccess}
-        onSubmit={onSubmit}
-      />
-    </FormHeader>
+    <>
+      <BreadCrumbs />
+      <PageHeader headerText={country?.isoCode} />
+      <FormHeader headerText="" onDelete={removeCountry}>
+        <CountryForm
+          isEdit
+          defaultValue={normalizeCountry(country)}
+          onSubmitSuccess={onSubmitSuccess}
+          onSubmit={onSubmit}
+        />
+      </FormHeader>
+    </>
   );
 };
 

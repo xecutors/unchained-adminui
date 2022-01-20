@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 import LanguageForm from '../../modules/language/components/LanguageForm';
 import useCreateLanguage from '../../modules/language/hooks/useCreateLanguage';
@@ -21,9 +23,14 @@ const AddLanguage = () => {
 
   return (
     <div className="mt-6  sm:max-w-lg">
-      <FormHeader
-        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-      >
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_language_header',
+          defaultMessage: 'New language',
+        })}
+      />
+      <FormHeader>
         <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </FormHeader>
     </div>

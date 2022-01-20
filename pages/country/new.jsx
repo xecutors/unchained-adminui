@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 import CountryForm from '../../modules/country/component/CountryForm';
 import useCreateCountry from '../../modules/country/hooks/useCreateCountry';
 
@@ -20,9 +22,14 @@ const AddCountries = () => {
 
   return (
     <div className="mt-6  sm:max-w-lg">
-      <FormHeader
-        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-      >
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_country_header',
+          defaultMessage: 'New country',
+        })}
+      />
+      <FormHeader>
         <CountryForm
           onSubmitSuccess={onSubmitSuccess}
           onSubmit={onCreateCountry}

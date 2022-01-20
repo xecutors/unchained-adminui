@@ -27,7 +27,7 @@ const ProviderListItem = ({ provider, onRemove, editPath }) => {
         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
           <Badge
             text={provider?.type}
-            color={PROVIDER_TYPE_CLASSES[provider.type]}
+            color={PROVIDER_TYPE_CLASSES[provider?.type]}
             square
           />
         </span>

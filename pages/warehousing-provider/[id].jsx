@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import FormHeader from '../../modules/common/components/FormHeader';
+import PageHeader from '../../modules/common/components/PageHeader';
 import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
 import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
 import useUpdateWarehousingProvider from '../../modules/warehousing-providers/hooks/useUpdateWarehousingProvider';
@@ -36,19 +38,22 @@ const WarehousingProviderUpdate = () => {
   };
 
   return (
-    <FormHeader
-      onDelete={onRemoveWarehousingProvider}
-      headerText={formatMessage({
-        id: 'update_configuration',
-        defaultMessage: 'Update configuration',
-      })}
-    >
-      <ProviderConfigurationForm
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        defaultValue={warehousingProvider?.configuration || []}
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'update_warehousing_provider_header',
+          defaultMessage: 'Update warehousing provider',
+        })}
       />
-    </FormHeader>
+      <FormHeader onDelete={onRemoveWarehousingProvider}>
+        <ProviderConfigurationForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={warehousingProvider?.configuration || []}
+        />
+      </FormHeader>
+    </>
   );
 };
 
