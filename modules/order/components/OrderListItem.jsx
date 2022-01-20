@@ -69,7 +69,7 @@ const OrderListItem = ({ order, showUser }) => {
         </td>
       )}
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <td className="whitespace-nowrap">
         <Badge
           text={order?.status}
           color={ORDER_STATUSES[order.status]}

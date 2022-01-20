@@ -42,12 +42,6 @@ const UserOrders = ({ _id: userId }) => {
         includeCarts={includeCarts}
         onIncludeCartsChange={setIncludeCarts}
       />
-      <ListPagination
-        onLoadMore={() => {}}
-        data={orders}
-        total={orders?.length}
-        onLimitChange={() => {}}
-      />
     </div>
   );
 };

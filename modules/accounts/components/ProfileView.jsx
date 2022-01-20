@@ -404,22 +404,23 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2 divide-y divide-gray-200">
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 ">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+             
+              <div className="pt-2 pb-2 sm:grid sm:grid-cols-2 ">
+                <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'region',
                     defaultMessage: 'Region',
                   })}
                 </dt>
 
-                <dd className="mt-1 text-sm text-gray-900">
+                <dd className="mt-1 flex text-sm text-gray-900">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
                       name="regionCode"
                       label={formatMessage({
                         id: 'region_Code',
-                        defaultMessage: 'Region Code',
+                        defaultMessage: 'Region',
                       })}
                       hideLabel
                     />
@@ -428,14 +429,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </dd>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
+             
+              <div className="pt-2 sm:grid sm:grid-cols-2">
+                <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'postal_code',
                     defaultMessage: 'Postal/ZIP code',
                   })}
                 </dt>
-                <dd className="mt-1 text-sm text-gray-900">
+                <dd className="mt-1 w-full text-sm text-gray-900">
+
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -449,10 +452,12 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     address?.postalCode
                   )}
+                 
                 </dd>
+                
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+              <div className="pt-2 sm:grid sm:grid-cols-2">
+                <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'city',
                     defaultMessage: 'City',
@@ -474,8 +479,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </dd>
               </div>
-              <div className="pt-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
+              <div className="pt-2 sm:grid sm:grid-cols-2">
+                <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'country_code',
                     defaultMessage: 'Country code',

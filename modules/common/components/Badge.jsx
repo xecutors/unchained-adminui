@@ -13,7 +13,7 @@ const Badge = ({
   return (
     <span
       className={classNames(
-        `inline-flex items-center px-2.5 py-0.5  text-sm font-medium  bg-${normalizedColor}-100 text-${normalizedColor}-800`,
+        `inline-flex items-center px-3.5   text-sm font-sm  bg-${normalizedColor}-100 text-${normalizedColor}-800`,
         className,
         {
           'rounded-full': !square,

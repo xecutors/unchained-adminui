@@ -21,6 +21,10 @@ const EnrollmentFragment = gql`
     plan {
       product {
         _id
+        texts {
+          _id
+          title
+        }
       }
       quantity
     }
