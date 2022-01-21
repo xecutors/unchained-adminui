@@ -439,7 +439,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </dd>
               </div>
 
-              <div className="pt-2 sm:grid sm:grid-cols-2">
+              <div className="pt-2 pl-4 sm:grid sm:grid-cols-2">
                 <dt className="mt-3 text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'postal_code',

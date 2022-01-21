@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 
 import TextField from './TextField';
@@ -11,7 +12,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
   };
 
   return (
-    <div className="relative">
+    <div className={classNames('relative', props.className)}>
       <TextField
         {...{
           autoComplete: autoComplete || 'on',
