@@ -3,7 +3,7 @@ import WorkList from '../../modules/work/WorkList';
 
 const index = () => {
   const { workQueue } = useWorkQueue();
-  console.log(workQueue);
+  // console.log(workQueue);
   return <div>{workQueue && <WorkList works={workQueue} />}</div>;
 };
 
