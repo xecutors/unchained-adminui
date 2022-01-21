@@ -1,8 +1,6 @@
 import cookie from 'cookie';
 import { ApolloClient, ApolloLink } from '@apollo/client';
-
 import { createUploadLink } from 'apollo-upload-client';
-
 import getConfig from 'next/config';
 import { onError } from '@apollo/client/link/error';
 import { onTokenChange } from '../../accounts/utils/store';
@@ -31,9 +29,11 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
     if (headersOverride && headersOverride['accept-language']) {
       headers['accept-language'] = headersOverride['accept-language'];
     }
-    headers.authorization = parseCookies({}).token
-      ? `Bearer ${parseCookies({}).token}`
-      : null;
+    const foundToken = parseCookies({}).token;
+    if (foundToken) {
+      headers.authorization = `Bearer ${foundToken}`;
+    }
+
     operation.setContext({ headers });
     return forward(operation);
   });
@@ -44,7 +44,8 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
       : browserFallback;
   const httpLink = createUploadLink({
     uri: publicRuntimeConfig.GRAPHQL_ENDPOINT || fallback,
-    credentials: 'same-origin',
+    credentials: 'include',
+    includeExtensions: true,
   });
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
