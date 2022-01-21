@@ -20,6 +20,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                     defaultMessage: 'Enrollment number',
                   })}
                 </th>
+
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -39,6 +40,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                     defaultMessage: 'Expires',
                   })}
                 </th>
+ 
                 {showUser && (
                   <th
                     scope="col"
@@ -49,7 +51,11 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                       defaultMessage: 'User',
                     })}
                   </th>
+
+                  
+
                 )}
+                
                 <th
                   scope="col"
                   className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -73,6 +79,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             <tbody className="bg-white divide-y divide-gray-200">
               {enrollments?.map((enrollment) => (
                 <EnrollmentListItem
+                showUser
                   key={enrollment?._id}
                   enrollment={enrollment}
                 />
