@@ -55,7 +55,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
 
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {formatMessage({
                     id: 'product',
