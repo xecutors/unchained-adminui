@@ -1,4 +1,4 @@
-import classNames from 'className';
+import classNames from 'classnames';
 
 const Button = ({ text, onClick, className }) => {
   return (

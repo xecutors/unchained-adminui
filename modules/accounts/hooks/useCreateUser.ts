@@ -47,6 +47,7 @@ const useCreateUser = () => {
     }
     return createUserMutation({
       variables,
+      refetchQueries: ['Users'],
     });
   };
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import userSetUserTags from '../hooks/useSetUserTags';
+import Button from '../../common/components/Button';
 
 const UserTagsView = ({ tags = [], userId }) => {
   const { formatMessage } = useIntl();
@@ -36,7 +37,15 @@ const UserTagsView = ({ tags = [], userId }) => {
           {formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
         </h3>
         <div className="mt-3 sm:mt-0 sm:ml-4">
-          <button
+          <Button
+            onClick={updateUserTags}
+            text={formatMessage({
+              id: 'update_tags',
+              defaultMessage: 'Update tags',
+            })}
+          />
+
+          {/* <button
             type="button"
             onClick={updateUserTags}
             className=" inline-flex items-center px-4 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -45,7 +54,7 @@ const UserTagsView = ({ tags = [], userId }) => {
               id: 'update_tags',
               defaultMessage: 'Update tags',
             })}
-          </button>
+          </button> */}
         </div>
       </div>
 
