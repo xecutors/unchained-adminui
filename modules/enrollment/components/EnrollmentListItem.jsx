@@ -11,7 +11,7 @@ const ENROLLMENT_STATUS = {
 };
 
 const EnrollmentListItem = ({ enrollment, showUser }) => {
-  console.log(showUser, enrollment)
+  console.log(showUser, enrollment);
   const { formatMessage } = useIntl();
   return (
     <tr key={enrollment._id}>

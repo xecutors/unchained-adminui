@@ -5,10 +5,9 @@ const index = () => {
   const { enrollments } = useEnrollments();
   return (
     <div>
-       <EnrollmentList enrollments={enrollments} showUser />
+      <EnrollmentList enrollments={enrollments} showUser />
     </div>
   );
 };
 
 export default index;
-
