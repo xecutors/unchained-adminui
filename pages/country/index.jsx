@@ -18,7 +18,6 @@ const Country = () => {
     includeInactive,
   });
   const { removeCountry } = useRemoveCountry();
-
   return (
     <>
       <BreadCrumbs />

@@ -402,17 +402,16 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
           <FormErrors />
 
-          <div className="mx-auto sm:w-1/2 " >
+          <div className="mx-auto sm:w-1/2 ">
             <SubmitButton
               full
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',
-              })}/>
+              })}
+            />
           </div>
-
         </div>
-        
       </Form>
     </>
   );
