@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
-import Badge from '../common/components/Badge';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import Badge from '../common/components/Badge';
 
 const WORK_STATUSES = {
   NEW: 'purple',
