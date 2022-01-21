@@ -25,7 +25,7 @@ export const WorkQueueQuery = gql`
 const useWorkQueue = ({
   offset = 0,
   limit = 50,
-  status = ['NEW'],
+  status = ['NEW', 'ALLOCATED', 'FAILED', 'SUCCESS'],
   selectTypes = [],
   created = null,
 } = {}) => {
