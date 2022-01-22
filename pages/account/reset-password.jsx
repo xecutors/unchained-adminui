@@ -20,3 +20,5 @@ const PasswordReset = () => {
 };
 
 export default PasswordReset;
+
+PasswordReset.getLayout = (page) => page;

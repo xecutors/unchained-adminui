@@ -58,3 +58,5 @@ const NotFound = () => {
 };
 
 export default NotFound;
+
+NotFound.getLayout = (page) => page;

@@ -29,6 +29,14 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
 
   const apollo = useApollo(pageProps, { locale });
 
+  const getLayout =
+    Component.getLayout ||
+    ((page) => (
+      <Layout apollo={apollo} {...rest}>
+        {page}
+      </Layout>
+    ));
+
   const messages = getMessages(router.locale);
 
   return (
@@ -38,13 +46,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
         messages={messages}
         key="intl-provider"
       >
-        {isLoggedIn ? (
-          <Layout apollo={apollo} {...rest}>
-            <Component {...pageProps} {...rest} apollo={apollo} />
-          </Layout>
-        ) : (
-          <Component {...pageProps} {...rest} apollo={apollo} />
-        )}
+        {getLayout(<Component {...pageProps} />)}
       </IntlWrapper>
     </ApolloProvider>
   );

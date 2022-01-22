@@ -31,6 +31,11 @@ const EnrollmentFragment = gql`
     user {
       _id
       username
+      name
+      avatar {
+        _id
+        url
+      }
     }
   }
 `;

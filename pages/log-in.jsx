@@ -5,3 +5,5 @@ const LogInPage = () => {
 };
 
 export default LogInPage;
+
+LogInPage.getLayout = (page) => page;

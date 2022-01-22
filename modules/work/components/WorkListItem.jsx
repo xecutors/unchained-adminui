@@ -6,9 +6,9 @@ import Badge from '../../common/components/Badge';
 const WORK_STATUSES = {
   NEW: 'purple',
   ALLOCATED: 'blue',
-  SUCCESS: 'lime',
-  FAILED: 'green',
-  DELETED: 'red',
+  SUCCESS: 'green',
+  FAILED: 'red',
+  DELETED: 'orange',
 };
 
 const WorkListItem = ({ work }) => {

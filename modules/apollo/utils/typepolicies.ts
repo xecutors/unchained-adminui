@@ -52,6 +52,12 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
+      events: {
+        keyArgs: ['limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
       users: {
         keyArgs: ['limit', 'includeGuests', 'queryString'],
         merge(existing = [], incoming) {

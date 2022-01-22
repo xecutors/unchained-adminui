@@ -11,7 +11,6 @@ const UserLogListItem = ({ log }) => {
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        F
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {log.level}
         </div>
