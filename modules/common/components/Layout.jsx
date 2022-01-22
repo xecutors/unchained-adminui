@@ -77,6 +77,34 @@ const SideNav = () => {
       ],
     },
     {
+      name: 'Master Data',
+      icon: OfficeBuildingIcon,
+      current: false,
+      children: [
+        {
+          name: formatMessage({
+            id: 'assortments',
+            defaultMessage: 'Assortments',
+          }),
+          current: false,
+          href: '/assortments',
+        },
+        {
+          name: formatMessage({
+            id: 'products',
+            defaultMessage: 'products',
+          }),
+          current: false,
+          href: '/products',
+        },
+        {
+          name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
+          current: false,
+          href: '/filters',
+        },
+      ],
+    },
+    {
       name: 'Activities',
       icon: OfficeBuildingIcon,
       current: false,

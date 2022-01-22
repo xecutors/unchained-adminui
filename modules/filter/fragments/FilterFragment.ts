@@ -5,6 +5,7 @@ const FilterFragment = gql`
     _id
     updated
     created
+    key
     isActive
     texts {
       _id

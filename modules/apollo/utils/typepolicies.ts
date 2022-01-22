@@ -64,6 +64,12 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
+      filters: {
+        keyArgs: ['limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
       Log: offsetLimitPagination(),
     },
     orders: {

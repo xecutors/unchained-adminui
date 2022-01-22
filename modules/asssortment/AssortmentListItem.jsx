@@ -4,6 +4,7 @@ import Badge from '../common/components/Badge';
 
 const AssortmentListItem = ({ assortment }) => {
   const { formatMessage } = useIntl();
+
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -13,32 +14,26 @@ const AssortmentListItem = ({ assortment }) => {
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/assortment/${assortment._id}`}>
-            <a className="text-blue-600">
-              {assortment?.name || (
-                <>
-                  {assortment._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'name' })}
-                  />
-                </>
-              )}
-            </a>
+            <a className="text-blue-600">{assortment.texts?.title}</a>
           </Link>
         </div>
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
         <Badge
-          text={STATUS[assortment.active]}
-          color={assortment.active ? 'green' : 'red'}
+          text={STATUS[assortment?.isActive]}
+          color={assortment.isActive ? 'green' : 'red'}
           square
         />
       </td>
 
       <td className="flex px-6 py-4 border-1 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Badge text={assortment.base} color="indigo" />
+          <Badge
+            text={STATUS[assortment?.isBase]}
+            color={assortment.isBase ? 'green' : 'red'}
+            square
+          />
         </div>
       </td>
     </tr>

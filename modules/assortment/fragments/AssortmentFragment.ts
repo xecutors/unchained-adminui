@@ -3,7 +3,8 @@ import { gql } from '@apollo/client';
 const AssortmentFragment = gql`
   fragment AssortmentFragment on Assortment {
     _id
-    texts(forceLocale: $forceLocale) {
+    isActive
+    texts {
       _id
       slug
       title
@@ -16,7 +17,10 @@ const AssortmentFragment = gql`
     media {
       _id
       tags
-      file
+      file {
+        _id
+        url
+      }
     }
   }
 `;
