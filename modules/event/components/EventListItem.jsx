@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { useIntl } from 'react-intl';
-import Badge from '../common/components/Badge';
+import Badge from '../../common/components/Badge';
 
 const EventListItem = ({ event }) => {
   const { formatMessage } = useIntl();

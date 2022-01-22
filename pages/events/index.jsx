@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import EventList from '../../modules/event/EventList';
+import EventList from '../../modules/event/components/EventList';
 import useEvents from '../../modules/event/hooks/useEvents';
 
 const index = () => {

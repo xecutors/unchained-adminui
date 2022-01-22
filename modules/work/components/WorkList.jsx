@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
-import ListHeader from '../common/components/ListHeader';
-import ListPagination from '../common/components/ListPagination';
+import ListHeader from '../../common/components/ListHeader';
+import ListPagination from '../../common/components/ListPagination';
 import WorkListItem from './WorkListItem';
 
 const WorkList = ({ workQueue, onLoadMore, onLimitChange }) => {
@@ -12,7 +12,6 @@ const WorkList = ({ workQueue, onLoadMore, onLimitChange }) => {
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 ">
             <ListHeader addPath="/work/new" />
-
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-white">
                 <tr>

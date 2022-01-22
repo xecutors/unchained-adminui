@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl';
 
-import ListHeader from '../common/components/ListHeader';
-import ListPagination from '../common/components/ListPagination';
-import SearchField from '../common/components/SearchField';
+import ListHeader from '../../common/components/ListHeader';
+import ListPagination from '../../common/components/ListPagination';
+import SearchField from '../../common/components/SearchField';
 import EventListItem from './EventListItem';
 
 const EventList = ({ events, onSearch, total, onLoadMore, onLimitChange }) => {
