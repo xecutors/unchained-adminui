@@ -1,12 +1,9 @@
 import cookie from 'cookie';
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
-import getConfig from 'next/config';
 import { onError } from '@apollo/client/link/error';
 import { onTokenChange } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
-
-const { publicRuntimeConfig } = getConfig() || {};
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -20,9 +17,6 @@ export function parseCookies(ctx = {}, options = {}) {
 }
 
 const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
-  const browserFallback =
-    process.browser && `${window.location.origin}/graphql`;
-
   const middlewareLink = new ApolloLink((operation, forward) => {
     // add the authorization to the headers
     const headers = {};
@@ -38,12 +32,12 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
     return forward(operation);
   });
 
-  const fallback =
-    headersOverride && headersOverride.host
-      ? `http://${headersOverride.host}/graphql`
-      : browserFallback;
+  const uri = process.browser
+    ? `${window.location.origin}/api/graphql`
+    : process.env.GRAPHQL_ENDPOINT;
+
   const httpLink = createUploadLink({
-    uri: publicRuntimeConfig.GRAPHQL_ENDPOINT || fallback,
+    uri,
     credentials: 'same-origin',
     includeExtensions: true,
   });

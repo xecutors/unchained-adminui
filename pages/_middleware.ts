@@ -5,6 +5,10 @@ const UnrestrictedPages = ['/log-in', '/sign-up', '/forgot-password'];
 const middleware = async (req: NextRequest) => {
   const { pathname } = req.nextUrl;
 
+  if (req.page?.name === '/api/graphql/[[...slug]]') {
+    return NextResponse.next();
+  }
+
   const { token } = req.cookies;
   if (!token && !UnrestrictedPages.includes(pathname)) {
     return NextResponse.redirect(`/log-in?next=${pathname || '/'}`);
