@@ -8,7 +8,7 @@ const ProductList = ({
   total,
   onLimitChange,
   onLoadMore,
-  onSearch, 
+  onSearch,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -96,7 +96,7 @@ const ProductList = ({
         onLimitChange={onLimitChange}
       />
     </div>
-  ); 
+  );
 };
 
 export default ProductList;
