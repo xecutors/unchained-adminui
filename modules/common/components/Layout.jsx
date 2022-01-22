@@ -2,7 +2,12 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
-import { CogIcon, HomeIcon, UserIcon } from '@heroicons/react/outline';
+import {
+  CogIcon,
+  HomeIcon,
+  OfficeBuildingIcon,
+  UserIcon,
+} from '@heroicons/react/outline';
 import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -68,6 +73,31 @@ const SideNav = () => {
             defaultMessage: 'Warehousing provider',
           }),
           href: '/warehousing-provider',
+        },
+      ],
+    },
+    {
+      name: 'Activities',
+      icon: OfficeBuildingIcon,
+      current: false,
+      children: [
+        {
+          name: formatMessage({ id: 'Work', defaultMessage: 'Work queue' }),
+          current: false,
+          href: '/works',
+        },
+        {
+          name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
+          current: false,
+          href: '/events',
+        },
+        {
+          name: formatMessage({
+            id: 'enrollments',
+            defaultMessage: 'enrollments',
+          }),
+          current: false,
+          href: '/enrollments',
         },
       ],
     },

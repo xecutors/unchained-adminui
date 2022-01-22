@@ -1,8 +1,15 @@
 import { useIntl } from 'react-intl';
+import ListPagination from '../../common/components/ListPagination';
 
 import EnrollmentListItem from './EnrollmentListItem';
 
-const EnrollmentList = ({ enrollments, showUser }) => {
+const EnrollmentList = ({
+  enrollments,
+  showUser,
+  onLoadMore,
+  onLimitChange,
+  total,
+}) => {
   const { formatMessage } = useIntl();
   return (
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -20,6 +27,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                     defaultMessage: 'Enrollment number',
                   })}
                 </th>
+
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -39,6 +47,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                     defaultMessage: 'Expires',
                   })}
                 </th>
+
                 {showUser && (
                   <th
                     scope="col"
@@ -50,9 +59,10 @@ const EnrollmentList = ({ enrollments, showUser }) => {
                     })}
                   </th>
                 )}
+
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {formatMessage({
                     id: 'product',
@@ -73,6 +83,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             <tbody className="bg-white divide-y divide-gray-200">
               {enrollments?.map((enrollment) => (
                 <EnrollmentListItem
+                  showUser
                   key={enrollment?._id}
                   enrollment={enrollment}
                 />
@@ -81,6 +92,12 @@ const EnrollmentList = ({ enrollments, showUser }) => {
           </table>
         </div>
       </div>
+      <ListPagination
+        onLoadMore={onLoadMore}
+        data={enrollments}
+        total={total}
+        onLimitChange={onLimitChange}
+      />
     </div>
   );
 };

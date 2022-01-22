@@ -24,7 +24,6 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
                   <p className="text-sm text-gray-700">{chunks}</p>
                 ),
                 span: (chunks) => <span className="font-medium">{chunks}</span>,
-                icon: <svg />,
                 current: data?.length,
                 total,
               }}

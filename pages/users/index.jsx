@@ -6,7 +6,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-const User = () => {
+const Users = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [queryString, setQueryString] = useState('');
@@ -41,4 +41,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Users;

@@ -18,6 +18,7 @@ export const WorkQueueQuery = gql`
     ) {
       ...WorkFragment
     }
+    activeWorkTypes
   }
   ${WorkFragment}
 `;
@@ -25,7 +26,7 @@ export const WorkQueueQuery = gql`
 const useWorkQueue = ({
   offset = 0,
   limit = 50,
-  status = ['NEW'],
+  status = ['NEW', 'ALLOCATED', 'FAILED', 'SUCCESS'],
   selectTypes = [],
   created = null,
 } = {}) => {
@@ -33,20 +34,15 @@ const useWorkQueue = ({
     variables: { offset, limit, status, selectTypes, created },
   });
   const workQueue = data?.workQueue || [];
+  const activeWorkTypes = data?.activeWorkTypes;
   const loadMore = () =>
     fetchMore({
       variables: { offset: workQueue.length },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          workQueue: [...prev.workQueue, ...fetchMoreResult.workQueue],
-        };
-      },
     });
 
   return {
     workQueue,
+    activeWorkTypes,
     loading,
     error,
     loadMore,

@@ -85,13 +85,21 @@ const UserTagsView = ({ tags = [], userId }) => {
                 value={newTag}
               />
             </div>
-            <button
+            {/* <button
               type="button"
               onClick={addTag}
               className=" -ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-indigo-500 text-sm font-medium rounded-r-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
             >
               <span>{formatMessage({ id: 'add', defaultMessage: 'Add' })}</span>
-            </button>
+            </button> */}
+
+            <Button
+              onClick={addTag}
+              text={formatMessage({
+                id: 'add',
+                defaultMessage: 'Add',
+              })}
+            />
           </div>
         </div>
       </div>
