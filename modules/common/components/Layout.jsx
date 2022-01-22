@@ -23,7 +23,7 @@ const SideNav = () => {
       href: '/',
     },
     {
-      name: 'System',
+      name: formatMessage({ id: 'system', defaultMessage: 'System' }),
       icon: CogIcon,
       current: false,
       children: [
@@ -77,7 +77,7 @@ const SideNav = () => {
       ],
     },
     {
-      name: 'Master Data',
+      name: formatMessage({ id: 'master_data', defaultMessage: 'Master Data' }),
       icon: OfficeBuildingIcon,
       current: false,
       children: [
@@ -92,7 +92,7 @@ const SideNav = () => {
         {
           name: formatMessage({
             id: 'products',
-            defaultMessage: 'products',
+            defaultMessage: 'Products',
           }),
           current: false,
           href: '/products',
@@ -105,7 +105,7 @@ const SideNav = () => {
       ],
     },
     {
-      name: 'Activities',
+      name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
       icon: OfficeBuildingIcon,
       current: false,
       children: [

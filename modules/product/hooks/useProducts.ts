@@ -26,12 +26,12 @@ export const ProductsQuery = gql`
 const useProducts = ({
   limit = 20,
   offset = 0,
-  tags = [],
+  tags = null,
   includeDrafts = false,
-  slugs = '',
+  slugs = null,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(ProductsQuery, {
-    variables: { limit, offset, includeDrafts, slugs, tags },
+    variables: { limit, offset, includeDrafts, tags, slugs },
   });
   const products = data?.products || [];
   const productsCount = data?.productsCount;

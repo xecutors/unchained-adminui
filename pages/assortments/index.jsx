@@ -31,6 +31,7 @@ const index = () => {
         includeInactive={includeInactive}
         onIncludeInactiveChange={setIncludeInactive}
         onIncludeLeavesChange={setIncludeLeaves}
+        includeLeaves={includeLeaves}
         assortments={assortments}
         onLoadMore={loadMore}
         total={assortmentsCount}

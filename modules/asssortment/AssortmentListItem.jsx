@@ -29,11 +29,16 @@ const AssortmentListItem = ({ assortment }) => {
 
       <td className="flex px-6 py-4 border-1 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Badge
-            text={STATUS[assortment?.isBase]}
-            color={assortment.isBase ? 'green' : 'red'}
-            square
-          />
+          {assortment.isBase && (
+            <Badge
+              text={formatMessage({
+                id: 'assortment_base',
+                defaultMessage: 'Base',
+              })}
+              color="green"
+              square
+            />
+          )}
         </div>
       </td>
     </tr>
