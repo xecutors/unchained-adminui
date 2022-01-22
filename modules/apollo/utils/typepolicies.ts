@@ -4,6 +4,18 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 export const keyMappings: any = {
   Query: {
     fields: {
+      assortments: {
+        keyArgs: ['limit', 'includeLeaves', 'includeInactive'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      products: {
+        keyArgs: ['limit', 'includeDrafts'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
       countries: {
         keyArgs: ['limit', 'includeInactive'],
         merge(existing = [], incoming) {
@@ -17,6 +29,18 @@ export const keyMappings: any = {
         },
       },
       enrollments: {
+        keyArgs: ['limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      quotations: {
+        keyArgs: ['limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      workQueue: {
         keyArgs: ['limit'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
