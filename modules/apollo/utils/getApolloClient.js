@@ -44,7 +44,7 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
       : browserFallback;
   const httpLink = createUploadLink({
     uri: publicRuntimeConfig.GRAPHQL_ENDPOINT || fallback,
-    credentials: 'include',
+    credentials: 'same-origin',
     includeExtensions: true,
   });
 

@@ -1,8 +1,15 @@
 import { useIntl } from 'react-intl';
+import ListPagination from '../../common/components/ListPagination';
 
 import EnrollmentListItem from './EnrollmentListItem';
 
-const EnrollmentList = ({ enrollments, showUser }) => {
+const EnrollmentList = ({
+  enrollments,
+  showUser,
+  onLoadMore,
+  onLimitChange,
+  total,
+}) => {
   const { formatMessage } = useIntl();
   return (
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -85,6 +92,12 @@ const EnrollmentList = ({ enrollments, showUser }) => {
           </table>
         </div>
       </div>
+      <ListPagination
+        onLoadMore={onLoadMore}
+        data={enrollments}
+        total={total}
+        onLimitChange={onLimitChange}
+      />
     </div>
   );
 };

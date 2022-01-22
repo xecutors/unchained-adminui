@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import ListPagination from '../../common/components/ListPagination';
+import SearchField from '../../common/components/SearchField';
 import UserListItem from './UserListItem';
 
 const UserList = ({
@@ -15,50 +16,16 @@ const UserList = ({
   const { formatMessage } = useIntl();
   return (
     <div className="flex flex-col">
-      <div className="mt-1">
-        <div className="flex items-center  py-4 md:max-w-3xl md:mx-auto lg:max-w-none mx-0 px-0">
-          <div className="w-full">
-            <label htmlFor="search" className="sr-only">
-              {formatMessage({ id: 'search', defaultMessage: 'Search' })}
-            </label>
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                <svg
-                  className="h-5 w-5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <input
-                onChange={(e) => onSearch(e.target.value)}
-                id="search"
-                name="search"
-                className="block w-full bg-white border border-gray-300 text-sm rounded-md py-2 pl-10 pr-3 "
-                placeholder="Search"
-                type="search"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <SearchField onInputChange={onSearch} />
       <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div className=" ">
             <div className=" relative flex items-start">
               <div className="flex items-center h-5">
                 <input
-                  id="shoe-guests"
+                  id="show-guests"
                   aria-describedby="shoe-guests"
-                  name="shoe-guests"
+                  name="show-guests"
                   type="checkbox"
                   checked={showGuests}
                   onChange={() => onShowGuestChange(!showGuests)}

@@ -1,8 +1,9 @@
 import { useIntl } from 'react-intl';
 import ListHeader from '../common/components/ListHeader';
+import ListPagination from '../common/components/ListPagination';
 import WorkListItem from './WorkListItem';
 
-const WorkList = ({ works }) => {
+const WorkList = ({ workQueue, onLoadMore, onLimitChange }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -75,7 +76,7 @@ const WorkList = ({ works }) => {
               </thead>
 
               <tbody>
-                {works?.map((work) => (
+                {workQueue?.map((work) => (
                   <WorkListItem key={work?._id} work={work} />
                 ))}
               </tbody>
@@ -83,6 +84,12 @@ const WorkList = ({ works }) => {
           </div>
         </div>
       </div>
+      <ListPagination
+        data={workQueue}
+        onLimitChange={onLimitChange}
+        total={(workQueue || []).length}
+        onLoadMore={onLoadMore}
+      />
     </div>
   );
 };

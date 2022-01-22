@@ -29,15 +29,9 @@ const useCurrencies = ({
   const hasMore = currencies?.length < currenciesCount;
   const loadMore = () =>
     fetchMore({
-      variables: { offset: currencies.length || 0 },
-      updateQuery: (prev: any, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev;
-        return {
-          ...prev,
-          currencies: [...prev.currencies, ...fetchMoreResult.currencies],
-        };
-      },
+      variables: { offset: currencies.length },
     });
+
   return {
     currencies,
     currenciesCount,

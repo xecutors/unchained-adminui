@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { useIntl } from 'react-intl';
 import Badge from '../common/components/Badge';
 
-const EventListItem = (event) => {
+const EventListItem = ({ event }) => {
   const { formatMessage } = useIntl();
   return (
     <tr key={event._id}>
@@ -11,7 +11,7 @@ const EventListItem = (event) => {
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/event/${event._id}`}>
             <a className="text-blue-600">
-              {event?.created || (
+              {event?.type || (
                 <>
                   {event._id}{' '}
                   <Badge
@@ -30,7 +30,7 @@ const EventListItem = (event) => {
 
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {event.type ? format(new Date(event.type), 'Pp') : 'n/a'}
+          {event.type ? format(new Date(event.created), 'Pp') : 'n/a'}
         </div>
       </td>
     </tr>
