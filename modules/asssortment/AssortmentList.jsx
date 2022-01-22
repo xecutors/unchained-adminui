@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
 import ListHeader from '../common/components/ListHeader';
 import ListPagination from '../common/components/ListPagination';
-import AsssortmentListItem from './AsssortmentListItem';
+import AsssortmentListItem from './AssortmentListItem';
 
-const AsssortmentList = ({
-  asssortments,
+const AssortmentList = ({
+  assortments,
   total,
   onLimitChange,
   onLoadMore,
@@ -104,10 +104,10 @@ const AsssortmentList = ({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {asssortments?.map((asssortment) => (
+              {assortments?.map((assortment) => (
                 <AsssortmentListItem
-                  key={asssortment?._id}
-                  asssortment={asssortment}
+                  key={assortment?._id}
+                  asssortment={assortment}
                 />
               ))}
             </tbody>
@@ -116,7 +116,7 @@ const AsssortmentList = ({
       </div>
       <ListPagination
         onLoadMore={onLoadMore}
-        data={asssortments}
+        data={assortments}
         total={total}
         onLimitChange={onLimitChange}
       />
@@ -124,4 +124,4 @@ const AsssortmentList = ({
   );
 };
 
-export default AsssortmentList;
+export default AssortmentList;
