@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const ProductBriefFragment = gql`
-  fragment ProductBrifeFragment on Product {
-    __id
+  fragment ProductBriefFragment on Product {
+    _id
     sequence
     status
     tags

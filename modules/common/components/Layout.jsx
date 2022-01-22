@@ -23,7 +23,7 @@ const SideNav = () => {
       href: '/',
     },
     {
-      name: 'System',
+      name: formatMessage({ id: 'system', defaultMessage: 'System' }),
       icon: CogIcon,
       current: false,
       children: [
@@ -77,7 +77,35 @@ const SideNav = () => {
       ],
     },
     {
-      name: 'Activities',
+      name: formatMessage({ id: 'master_data', defaultMessage: 'Master Data' }),
+      icon: OfficeBuildingIcon,
+      current: false,
+      children: [
+        {
+          name: formatMessage({
+            id: 'assortments',
+            defaultMessage: 'Assortments',
+          }),
+          current: false,
+          href: '/assortments',
+        },
+        {
+          name: formatMessage({
+            id: 'products',
+            defaultMessage: 'Products',
+          }),
+          current: false,
+          href: '/products',
+        },
+        {
+          name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
+          current: false,
+          href: '/filters',
+        },
+      ],
+    },
+    {
+      name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
       icon: OfficeBuildingIcon,
       current: false,
       children: [

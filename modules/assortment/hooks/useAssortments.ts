@@ -21,7 +21,12 @@ export const AssortmentsQuery = gql`
     ) {
       ...AssortmentFragment
     }
-    assortmentsCount
+    assortmentsCount(
+      tags: $tags
+      slugs: $slugs
+      includeInactive: $includeInactive
+      includeLeaves: $includeLeaves
+    )
   }
   ${AssortmentFragment}
 `;
