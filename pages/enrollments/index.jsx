@@ -22,6 +22,7 @@ const index = () => {
       <EnrollmentList
         enrollments={enrollments}
         showUser
+        showPagination
         onLimitChange={setLimit}
         onLoadMore={loadMore}
         total={enrollmentsCount}

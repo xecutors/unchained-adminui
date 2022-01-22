@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import ListHeader from '../../common/components/ListHeader';
+import ListPagination from '../../common/components/ListPagination';
 import OrderListItem from './OrderListItem';
 
 const OrderList = ({
@@ -7,13 +8,17 @@ const OrderList = ({
   showUser,
   includeCarts,
   onIncludeCartsChange,
+  onLoadMore,
+  showPagination,
+  onLimitChange,
+  total,
 }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div className="shadow overflow-hidden border-b border-gray-200 ">
-          <ListHeader addPath="/currency/new">
+          <ListHeader>
             <div className="flex items-center h-5">
               <input
                 id="include-carts"
@@ -96,6 +101,14 @@ const OrderList = ({
           </table>
         </div>
       </div>
+      {showPagination && (
+        <ListPagination
+          onLoadMore={onLoadMore}
+          data={orders}
+          total={total}
+          onLimitChange={onLimitChange}
+        />
+      )}
     </div>
   );
 };

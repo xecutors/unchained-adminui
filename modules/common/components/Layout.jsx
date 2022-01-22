@@ -93,8 +93,24 @@ const SideNav = () => {
         },
         {
           name: formatMessage({
+            id: 'quotations',
+            defaultMessage: 'Quotations',
+          }),
+          current: false,
+          href: '/quotations',
+        },
+        {
+          name: formatMessage({
+            id: 'orders',
+            defaultMessage: 'Orders',
+          }),
+          current: false,
+          href: '/orders',
+        },
+        {
+          name: formatMessage({
             id: 'enrollments',
-            defaultMessage: 'enrollments',
+            defaultMessage: 'Enrollments',
           }),
           current: false,
           href: '/enrollments',

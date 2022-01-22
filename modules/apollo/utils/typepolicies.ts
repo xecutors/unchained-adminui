@@ -36,6 +36,12 @@ export const keyMappings: any = {
       },
       Log: offsetLimitPagination(),
     },
+    orders: {
+      keyArgs: ['limit', 'includeCarts'],
+      merge(existing = [], incoming) {
+        return [...existing, ...incoming];
+      },
+    },
   },
 
   SearchResult: {

@@ -9,6 +9,7 @@ const EnrollmentList = ({
   onLoadMore,
   onLimitChange,
   total,
+  showPagination,
 }) => {
   const { formatMessage } = useIntl();
   return (
@@ -92,12 +93,14 @@ const EnrollmentList = ({
           </table>
         </div>
       </div>
-      <ListPagination
-        onLoadMore={onLoadMore}
-        data={enrollments}
-        total={total}
-        onLimitChange={onLimitChange}
-      />
+      {showPagination && (
+        <ListPagination
+          onLoadMore={onLoadMore}
+          data={enrollments}
+          total={total}
+          onLimitChange={onLimitChange}
+        />
+      )}
     </div>
   );
 };

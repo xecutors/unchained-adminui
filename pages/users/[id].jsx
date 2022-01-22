@@ -7,6 +7,7 @@ import ProfileView from '../../modules/accounts/components/ProfileView';
 import UserEnrollments from '../../modules/accounts/components/UserEnrollments';
 import UserLogs from '../../modules/accounts/components/UserLogs';
 import UserOrders from '../../modules/accounts/components/UserOrders';
+import UserQuotations from '../../modules/accounts/components/UserQuotations';
 import useUser from '../../modules/accounts/hooks/useUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
@@ -15,6 +16,7 @@ const getCurrentTab = (current, user) => {
   if (!user) return 'loading';
   if (current === 'profile') return <ProfileView {...user} />;
   if (current === 'orders') return <UserOrders {...user} />;
+  if (current === 'quotations') return <UserQuotations {...user} />;
   if (current === 'enrollments') return <UserEnrollments {...user} />;
   if (current === 'payment_credentials')
     return <PaymentCredentialsView {...user} />;
@@ -34,6 +36,10 @@ const UserProfile = () => {
     profile: formatMessage({ id: 'profile', defaultMessage: 'Profile' }),
     account: formatMessage({ id: 'account', defaultMessage: 'Account' }),
     orders: formatMessage({ id: 'orders', defaultMessage: 'Orders' }),
+    quotations: formatMessage({
+      id: 'quotations',
+      defaultMessage: 'Quotations',
+    }),
     enrollments: formatMessage({
       id: 'enrollments',
       defaultMessage: 'Enrollments',
@@ -50,7 +56,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="relative max-w-4xl md:px-8 xl:px-0">
+    <div className=" max-w-4xl">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -58,7 +64,7 @@ const UserProfile = () => {
           defaultMessage: 'Users setting',
         })}
       />
-      <div className="px-4 sm:px-6 md:px-0">
+      <div className=" sm:px-6 md:px-0">
         <div className="py-6">
           <div className="lg:hidden">
             <label htmlFor="selected-tab" className="sr-only">
@@ -101,9 +107,7 @@ const UserProfile = () => {
               </nav>
             </div>
           </div>
-          <div className="mt-10 divide-y divide-gray-200">
-            {getCurrentTab(activeTab, user)}
-          </div>
+          <div className="mt-5">{getCurrentTab(activeTab, user)}</div>
         </div>
       </div>
     </div>
