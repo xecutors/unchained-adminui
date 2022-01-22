@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import ProductDetailFragment from '../fragments/ProductDetailFragment';
+import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const ProductsQuery = gql`
   query products(
@@ -16,11 +16,11 @@ export const ProductsQuery = gql`
       offset: $offset
       includeDrafts: $includeDrafts
     ) {
-      ...ProductDetailFragment
+      ...ProductBriefFragment
     }
     productsCount(tags: $tags, slugs: $slugs, includeDrafts: $includeDrafts)
   }
-  ${ProductDetailFragment}
+  ${ProductBriefFragment}
 `;
 
 const useProducts = ({
