@@ -32,6 +32,7 @@ const useProducts = ({
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(ProductsQuery, {
     variables: { limit, offset, includeDrafts, tags, slugs },
+    notifyOnNetworkStatusChange: true,
   });
   const products = data?.products || [];
   const productsCount = data?.productsCount;

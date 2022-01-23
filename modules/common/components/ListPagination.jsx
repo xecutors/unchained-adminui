@@ -1,8 +1,16 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
+import Loading from './Loading';
 
-const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
+const ListPagination = ({
+  data,
+  onLoadMore,
+  total,
+  onLimitChange,
+  isLoading,
+}) => {
   const { formatMessage } = useIntl();
+  if (isLoading) return <Loading />;
   return (
     <div>
       <nav
@@ -40,7 +48,11 @@ const ListPagination = ({ data, onLoadMore, total, onLimitChange }) => {
             type="button"
             className=" p-1 mt-3 mr-10 justify-center items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            {formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
+            {isLoading ? (
+              <Loading />
+            ) : (
+              formatMessage({ id: 'load_more', defaultMessage: 'Load more' })
+            )}
           </button>
         )}
         <div className=" flex justify-between sm:justify-end">

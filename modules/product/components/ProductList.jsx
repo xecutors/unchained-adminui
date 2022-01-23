@@ -11,6 +11,7 @@ const ProductList = ({
   onLoadMore,
   onIncludeDraftsChange,
   includeDrafts,
+  isLoading,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -70,6 +71,7 @@ const ProductList = ({
         </div>
       </div>
       <ListPagination
+        isLoading={isLoading}
         onLoadMore={onLoadMore}
         data={products}
         total={total}

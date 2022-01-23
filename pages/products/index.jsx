@@ -12,7 +12,7 @@ const index = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeDrafts, setIncludeDrafts] = useState(false);
 
-  const { products, productsCount, loadMore } = useProducts({
+  const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,
   });
@@ -26,7 +26,9 @@ const index = () => {
           defaultMessage: 'Products',
         })}
       />
+
       <ProductList
+        isLoading={loading}
         onLimitChange={setLimit}
         includeDrafts={includeDrafts}
         onIncludeDraftsChange={setIncludeDrafts}
