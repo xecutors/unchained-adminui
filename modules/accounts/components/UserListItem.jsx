@@ -47,7 +47,7 @@ const UserListItem = ({ user }) => {
                 <div className="hidden md:block">
                   <div>
                     <p className="text-sm text-gray-900">
-                      {!user.isGuest && (
+                      {user.isGuest && (
                         <Badge
                           text={formatMessage({
                             id: 'guest',
