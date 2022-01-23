@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import Table from '../../common/components/Table';
 
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
@@ -12,8 +13,8 @@ const ProductListItem = ({ product }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <tr>
-      <td className="px-6 py-4 whitespace-nowrap">
+    <Table.Row>
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/product/${product._id}`}>
             <a className="text-blue-600">
@@ -29,24 +30,24 @@ const ProductListItem = ({ product }) => {
             </a>
           </Link>
         </div>
-      </td>
+      </Table.Cell>
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap">
         <Badge
           text={product.status}
           color={PRODUCT_STATUS[product.status]}
           square
         />
-      </td>
+      </Table.Cell>
 
-      <td className="flex px-6 py-4 border-1 whitespace-nowrap">
+      <Table.Cell className="flex px-6   whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {product.tags?.map((t) => (
             <Badge key={t} text={t} color="indigo" />
           ))}
         </div>
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 

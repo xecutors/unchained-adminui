@@ -6,9 +6,9 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
   return (
     <Td
       className={classNames(
-        header === 'th'
-          ? 'p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-          : 'border-grey-light border p-3 px-6 py-4 whitespace-nowrap',
+        header
+          ? 'border-grey-light border p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider  min-h-[40px] max-h-[30px]'
+          : 'border-grey-light border sm:p-3 px-6  whitespace-nowrap min-h-[40px] max-h-[30px]',
         className,
       )}
       {...props}

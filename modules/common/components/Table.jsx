@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import Cell from './TableCell';
@@ -23,17 +23,22 @@ const buildRows = (props) => {
 };
 
 const Table = ({ className, ...props }) => {
-  const [rows] = useState(buildRows(props));
+  const [rows, setRows] = useState(buildRows(props));
 
   const rowsWithSort = {
     ...rows,
     header: React.Children.map(rows.header, (c) => React.cloneElement(c)),
   };
 
+  useEffect(() => {
+    setRows(buildRows(props));
+  }, [props.children]);
+
   return (
     <table
+      key={rows.length}
       className={classNames(
-        'w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5 divide-y divide-gray-200',
+        'w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden divide-y divide-gray-200',
         className,
       )}
       {...props}
