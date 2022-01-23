@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import ListPagination from '../../modules/common/components/ListPagination';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ProductList from '../../modules/product/components/ProductList';
@@ -26,16 +27,24 @@ const index = () => {
           defaultMessage: 'Products',
         })}
       />
-
-      <ProductList
-        isLoading={loading}
-        onLimitChange={setLimit}
-        includeDrafts={includeDrafts}
-        onIncludeDraftsChange={setIncludeDrafts}
-        products={products}
-        onLoadMore={loadMore}
-        total={productsCount}
-      />
+      <div className=" inline-block min-w-full    shadow overflow-hidden border-b border-gray-200  ">
+        <ProductList
+          isLoading={loading}
+          onLimitChange={setLimit}
+          includeDrafts={includeDrafts}
+          onIncludeDraftsChange={setIncludeDrafts}
+          products={products}
+          onLoadMore={loadMore}
+          total={productsCount}
+        />
+        <ListPagination
+          isLoading={loading}
+          onLoadMore={loadMore}
+          data={products}
+          total={productsCount}
+          onLimitChange={setLimit}
+        />
+      </div>
     </>
   );
 };
