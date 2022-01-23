@@ -13,7 +13,6 @@ const CountryListItem = ({ country, onRemove }) => {
   return (
     <tr>
       <td className=" flex px-6 py-4 whitespace-nowrap">
-        {country?.flagEmoji}
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {country.isoCode}{' '}
         </div>

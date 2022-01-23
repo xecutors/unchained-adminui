@@ -11,6 +11,7 @@ import {
 import classNames from 'classnames';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
+import MiniUserAvatar from './MiniUserAvatar';
 
 const SideNav = () => {
   const { formatMessage } = useIntl();
@@ -336,7 +337,12 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
             <SideNav />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <UserAvatar {...currentUser} onLogout={onLogout} />
+            <MiniUserAvatar
+              {...currentUser}
+              showName
+              url={currentUser?.avatar?.file.url}
+              onLogout={onLogout}
+            />
           </div>
         </div>
       </div>

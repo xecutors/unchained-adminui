@@ -19,9 +19,10 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], { type: 'currency' })?.of(
-            currency.isoCode,
-          )}
+          {new Intl.DisplayNames([locale], {
+            type: 'currency',
+            fallback: 'none',
+          })?.of(currency.isoCode)}
         </div>
       </td>
 

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 
 const PRODUCT_STATUS = {
-  DRAFT: 'yello',
+  DRAFT: 'yellow',
   ACTIVE: 'green',
   DELETED: 'red',
 };
@@ -42,7 +42,7 @@ const ProductListItem = ({ product }) => {
       <td className="flex px-6 py-4 border-1 whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {product.tags?.map((t) => (
-            <Badge text={t} color="indigo" />
+            <Badge key={t} text={t} color="indigo" />
           ))}
         </div>
       </td>

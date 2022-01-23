@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import CheckboxField from '../../forms/components/CheckboxField';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
 
 import useForm from '../../forms/hooks/useForm';
@@ -40,10 +41,24 @@ export default function LogInForm() {
     submit: onSubmit,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
-      if (error?.message?.includes('auth failed')) {
-        return 'error';
-      }
-      return '';
+      if (error?.message?.includes('auth failed'))
+        return formatMessage({
+          id: 'auth_error',
+          defaultMessage: 'Authentication error',
+        });
+      if (error?.message?.includes('Invalid credentials'))
+        return formatMessage({
+          id: 'invalid_credential_error',
+          defaultMessage: 'Invalid credential error',
+        });
+
+      if (error?.message?.includes('Email already exists'))
+        return formatMessage({
+          id: 'email_exists_error',
+          defaultMessage: 'Email already exists',
+        });
+
+      return error?.message || '';
     },
     initialValues: {
       email: null,
@@ -132,7 +147,7 @@ export default function LogInForm() {
                 </Link>
               </div>
             </div>
-
+            <FormErrors />
             <div className="m-2">
               <button
                 type="submit"

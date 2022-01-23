@@ -4,6 +4,7 @@ import cookie from 'cookie';
 import App from 'next/app';
 
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 
@@ -11,6 +12,14 @@ import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
+import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
+
+const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/forgot-password',
+  '/account/reset-password',
+];
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -25,9 +34,22 @@ export function parseCookies(ctx = {}, options = {}) {
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
+
   const { locale } = router;
 
   const apollo = useApollo(pageProps, { locale });
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await apollo.query({
+        query: CurrentUserQuery,
+        errorPolicy: 'none',
+        fetchPolicy: 'network-only',
+      });
+      if (!data?.me && !UnrestrictedPages.includes(router.pathname))
+        router.push('/log-in');
+    })();
+  }, [router.pathname]);
 
   const getLayout =
     Component.getLayout ||
@@ -54,7 +76,6 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
 UnchainedAdmin.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
-
-  return { ...appProps, isLoggedIn: !!parseCookies(appContext.ctx).token };
+  return { ...appProps };
 };
 export default UnchainedAdmin;

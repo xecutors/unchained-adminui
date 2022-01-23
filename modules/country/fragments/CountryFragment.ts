@@ -6,7 +6,7 @@ const CountryFragment = gql`
     isoCode
     isActive
     isBase
-    flagEmoji
+
     defaultCurrency {
       _id
       isoCode
