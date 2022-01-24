@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
-import CountryForm from '../../modules/country/component/CountryForm';
+import CountryForm from '../../modules/country/components/CountryForm';
 import useCreateCountry from '../../modules/country/hooks/useCreateCountry';
 
 const AddCountries = () => {

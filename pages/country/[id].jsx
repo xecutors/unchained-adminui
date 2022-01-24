@@ -3,7 +3,7 @@ import FormHeader from '../../modules/common/components/FormHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
-import CountryForm from '../../modules/country/component/CountryForm';
+import CountryForm from '../../modules/country/components/CountryForm';
 import useCountry from '../../modules/country/hooks/useCountry';
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import useUpdateCountry from '../../modules/country/hooks/useUpdateCountry';

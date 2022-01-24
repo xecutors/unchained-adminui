@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const TableCell = ({ className = '', header = false, children, ...props }) => {
+const TableCell = ({ className = ' ', header = false, children, ...props }) => {
   const Td = header ? 'th' : 'td';
   return (
     <Td

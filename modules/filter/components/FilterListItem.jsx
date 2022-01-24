@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import Badge from '../common/components/Badge';
-import Table from '../common/components/Table';
+import Badge from '../../common/components/Badge';
+import Table from '../../common/components/Table';
 
 const FILTER_TYPES = {
   SWITCH: 'blue',
