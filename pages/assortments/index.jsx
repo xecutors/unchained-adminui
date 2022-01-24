@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
-import AssortmentList from '../../modules/asssortment/AssortmentList';
+import AssortmentList from '../../modules/assortment/components/AssortmentList';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';

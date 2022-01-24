@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import Table from '../common/components/Table';
+import Table from '../../common/components/Table';
 import AssortmentListItem from './AssortmentListItem';
 
 const AssortmentList = ({ assortments }) => {
@@ -21,12 +21,11 @@ const AssortmentList = ({ assortments }) => {
               defaultMessage: 'Active',
             })}
           </Table.Cell>
-            
+
           <Table.Cell className=" text-left text-xs font-medium text-gray-500  uppercase tracking-wider">
             {formatMessage({
               id: 'root',
               defaultMessage: ' ',
-             
             })}
           </Table.Cell>
 
@@ -36,7 +35,6 @@ const AssortmentList = ({ assortments }) => {
               defaultMessage: 'Base',
             })}
           </Table.Cell>
-
         </Table.Row>
       ))}
       {assortments?.map((assortment) => (
