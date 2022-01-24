@@ -41,20 +41,6 @@ const AssortmentListItem = ({ assortment }) => {
 
       <Table.Cell className="px-6  whitespace-nowrap">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {assortment.isBase && (
-            <Badge
-              text={formatMessage({
-                id: 'assortment_base',
-                defaultMessage: 'Base',
-              })}
-              color="green"
-            />
-          )}
-        </div>
-      </Table.Cell>
-
-      <Table.Cell className="px-6  whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
           {assortment.isRoot && (
             <Badge
               text={formatMessage({
@@ -62,7 +48,21 @@ const AssortmentListItem = ({ assortment }) => {
                 defaultMessage: 'Root',
               })}
               color="green"
-              square
+              square 
+            />
+          )}
+        </div>
+      </Table.Cell>
+
+      <Table.Cell className="px-6  whitespace-nowrap">
+        <div className="pl-2 flex items-center text-sm text-gray-900">
+          {assortment.isBase && (
+            <Badge
+              text={formatMessage({
+                id: 'assortment_base',
+                defaultMessage: 'Base',
+              })}
+              color="green"
             />
           )}
         </div>

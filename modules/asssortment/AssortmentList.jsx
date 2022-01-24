@@ -21,6 +21,15 @@ const AssortmentList = ({ assortments }) => {
               defaultMessage: 'Active',
             })}
           </Table.Cell>
+            
+          <Table.Cell className=" text-left text-xs font-medium text-gray-500  uppercase tracking-wider">
+            {formatMessage({
+              id: 'root',
+              defaultMessage: ' ',
+             
+            })}
+          </Table.Cell>
+
           <Table.Cell className="pr-6  text-left text-xs font-medium sm:py-1text-gray-500 uppercase tracking-wider">
             {formatMessage({
               id: 'base',
@@ -28,12 +37,6 @@ const AssortmentList = ({ assortments }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell className=" text-left text-xs font-medium text-gray-500  uppercase tracking-wider">
-            {formatMessage({
-              id: 'root',
-              defaultMessage: 'Root',
-            })}
-          </Table.Cell>
         </Table.Row>
       ))}
       {assortments?.map((assortment) => (
