@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import Filter from '../../modules/common/components/Filter';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
 import Loading from '../../modules/common/components/Loading';
