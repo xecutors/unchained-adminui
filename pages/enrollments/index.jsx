@@ -43,16 +43,13 @@ const index = () => {
           onLoadMore={loadMore}
           total={enrollmentsCount}
         />
-
-        {showPagination && (
-          <ListPagination
-            isLoading={loading}
-            onLoadMore={loadMore}
-            data={enrollments}
-            total={enrollmentsCount}
-            onLimitChange={setLimit}
-          />
-        )}
+        <ListPagination
+          isLoading={loading}
+          onLoadMore={loadMore}
+          data={enrollments}
+          total={enrollmentsCount}
+          onLimitChange={setLimit}
+        />
       </div>
     </>
   );
