@@ -1,95 +1,59 @@
 import { useIntl } from 'react-intl';
-import ListHeader from '../../common/components/ListHeader';
-import ListPagination from '../../common/components/ListPagination';
+import Table from '../../common/components/Table';
 import WorkListItem from './WorkListItem';
 
-const WorkList = ({ workQueue, onLoadMore, onLimitChange }) => {
+const WorkList = ({ workQueue }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="bg-white m-2 flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 ">
-            <ListHeader addPath="/work/new" />
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-white">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'type',
-                      defaultMessage: 'Work#',
-                    })}
-                  </th>
+    <Table className="min-w-full ">
+      {workQueue?.map((work) => (
+        <Table.Row key={work._id} className="bg-white " header>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({
+              id: 'type',
+              defaultMessage: 'Work#',
+            })}
+          </Table.Cell>
 
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({ id: 'status', defaultMessage: 'Status' })}
-                  </th>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
+          </Table.Cell>
 
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'created',
-                      defaultMessage: 'Created',
-                    })}
-                  </th>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({
+              id: 'created',
+              defaultMessage: 'Created',
+            })}
+          </Table.Cell>
 
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'scheduled',
-                      defaultMessage: 'Scheduled',
-                    })}
-                  </th>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({
+              id: 'scheduled',
+              defaultMessage: 'Scheduled',
+            })}
+          </Table.Cell>
 
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'started',
-                      defaultMessage: 'Started',
-                    })}
-                  </th>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({
+              id: 'started',
+              defaultMessage: 'Started',
+            })}
+          </Table.Cell>
 
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    {formatMessage({
-                      id: 'finished',
-                      defaultMessage: 'Finished',
-                    })}
-                  </th>
-                </tr>
-              </thead>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            {formatMessage({
+              id: 'finished',
+              defaultMessage: 'Finished',
+            })}
+          </Table.Cell>
+        </Table.Row>
+      ))}
 
-              <tbody>
-                {workQueue?.map((work) => (
-                  <WorkListItem key={work?._id} work={work} />
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <ListPagination
-        data={workQueue}
-        onLimitChange={onLimitChange}
-        total={(workQueue || []).length}
-        onLoadMore={onLoadMore}
-      />
-    </div>
+      {workQueue?.map((work) => (
+        <WorkListItem key={`${work?._id}111`} work={work} />
+      ))}
+    </Table>
   );
 };
 
