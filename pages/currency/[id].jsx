@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../modules/common/components/FormHeader';
-import CurrencyForm from '../../modules/currency/component/CurrencyForm';
+import CurrencyForm from '../../modules/currency/components/CurrencyForm';
 import useCurrency from '../../modules/currency/hooks/useCurrency';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
 import useUpdateCurrency from '../../modules/currency/hooks/useUpdateCountry';
