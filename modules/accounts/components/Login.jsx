@@ -134,7 +134,7 @@ export default function LogInForm() {
               </div>
 
               <div className="text-sm">
-                <Link href="/forget-password">
+                <Link href="/account/forget-password">
                   <a
                     href=""
                     className="font-medium text-indigo-600 hover:text-indigo-500"
