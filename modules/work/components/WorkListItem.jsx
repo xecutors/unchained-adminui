@@ -26,7 +26,7 @@ const WorkListItem = ({ work }) => {
                   {work._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'type', defaultMessage: 'type' })}
+                    text={formatMessage({ id: 'type', defaultMessage: 'Type' })}
                   />
                 </>
               )}

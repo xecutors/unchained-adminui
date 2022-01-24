@@ -28,7 +28,7 @@ const CountryList = ({ countries }) => {
 
           <Table.Cell className="pr-6  text-left text-xs font-medium sm:py-1text-gray-500 uppercase tracking-wider">
             <span className="sr-only">
-              {formatMessage({ id: 'active', defaultMessage: ' ' })}
+              {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </Table.Cell>
 

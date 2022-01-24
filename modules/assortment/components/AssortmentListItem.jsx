@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
 const AssortmentListItem = ({ assortment }) => {
@@ -15,6 +16,10 @@ const AssortmentListItem = ({ assortment }) => {
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
+          <MediaAvatar
+            file={assortment?.media?.length && assortment.media[0].file}
+            className="mr-2"
+          />
           <Link href={`/assortment/${assortment._id}`}>
             <a className="text-blue-600">
               {assortment?.texts.title || (
@@ -22,7 +27,7 @@ const AssortmentListItem = ({ assortment }) => {
                   {assortment._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'name' })}
+                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   />
                 </>
               )}

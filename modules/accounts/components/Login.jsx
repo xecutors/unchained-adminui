@@ -98,7 +98,7 @@ export default function LogInForm() {
                   required
                   label={formatMessage({
                     id: 'email',
-                    defaultMessage: 'E-mail',
+                    defaultMessage: 'Email',
                   })}
                   hideLabel
                   placeholder="samuel@example.com"

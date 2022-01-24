@@ -25,7 +25,7 @@ const FilterListItem = ({ filter }) => {
                   {filter._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'name' })}
+                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   />
                 </>
               )}

@@ -37,7 +37,7 @@ const Languages = () => {
         })}
       />
 
-      <div className="inline-block min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/country/new">
           <Toggle
             toggleText={formatMessage({

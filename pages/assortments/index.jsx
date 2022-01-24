@@ -30,7 +30,7 @@ const index = () => {
           defaultMessage: 'Assortments',
         })}
       />
-      <div className="inline-block min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/assortments/new">
           <Toggle
             toggleState={includeInactive}
@@ -43,8 +43,9 @@ const index = () => {
           <Toggle
             toggleState={includeLeaves}
             toggleText={formatMessage({
-              id: 'include_inactive',
-              defaultMessage: 'Include Leaves',
+              id: 'include_leaf',
+              defaultMessage: 'Include leafs',
+              description: 'Assortment children',
             })}
             onToggle={setIncludeLeaves}
           />

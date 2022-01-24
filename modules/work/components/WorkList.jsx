@@ -11,8 +11,8 @@ const WorkList = ({ workQueue }) => {
         <Table.Row key={work._id} className="bg-white " header>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
-              id: 'type',
-              defaultMessage: 'Work#',
+              id: 'work_number',
+              defaultMessage: 'Work #',
             })}
           </Table.Cell>
 

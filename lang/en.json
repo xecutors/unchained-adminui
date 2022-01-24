@@ -1,15 +1,24 @@
 {
-  "Edit": {
-    "defaultMessage": "Edit"
-  },
   "Update": {
     "defaultMessage": "Update role"
+  },
+  "User name": {
+    "defaultMessage": "User name"
+  },
+  "Work": {
+    "defaultMessage": "Work queue"
   },
   "account": {
     "defaultMessage": "Account"
   },
+  "account_notice": {
+    "defaultMessage": "This information will be displayed publicly so be careful what you share."
+  },
   "active": {
     "defaultMessage": "Active"
+  },
+  "activities": {
+    "defaultMessage": "Activities"
   },
   "adapter": {
     "defaultMessage": "Adapter"
@@ -20,17 +29,73 @@
   "add_email": {
     "defaultMessage": "Add email"
   },
-  "all_users": {
-    "defaultMessage": "All Users"
+  "address": {
+    "defaultMessage": "Address"
+  },
+  "address_line_1": {
+    "defaultMessage": "Address line 1 (Street, House no)"
+  },
+  "address_line_2": {
+    "defaultMessage": "Address line 2"
+  },
+  "address_notice": {
+    "defaultMessage": "This information will be displayed publicly so be careful what you share."
+  },
+  "already_got_a_user": {
+    "defaultMessage": "Already got a user?"
   },
   "app.greeting": {
     "defaultMessage": "<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
   },
+  "assortment_base": {
+    "defaultMessage": "Base"
+  },
+  "assortment_root": {
+    "defaultMessage": "Root"
+  },
+  "assortments": {
+    "defaultMessage": "Assortments"
+  },
+  "assortments_list_header": {
+    "defaultMessage": "Assortments"
+  },
   "auth_error": {
     "defaultMessage": "Authentication error"
   },
+  "base": {
+    "defaultMessage": "Base"
+  },
+  "base_country": {
+    "defaultMessage": "Base"
+  },
+  "birthday": {
+    "defaultMessage": "Birthday"
+  },
+  "cart": {
+    "defaultMessage": "Cart"
+  },
+  "change_password": {
+    "defaultMessage": "Change password"
+  },
+  "city": {
+    "defaultMessage": "City"
+  },
+  "close": {
+  },
   "close_sidebar": {
     "defaultMessage": "Close sidebar"
+  },
+  "company": {
+    "defaultMessage": "Company"
+  },
+  "configuration_key": {
+    "defaultMessage": "Configuration key"
+  },
+  "configuration_value": {
+    "defaultMessage": "Configuration value"
+  },
+  "confirm_password": {
+    "defaultMessage": "Confirm password"
   },
   "context": {
     "defaultMessage": "Context"
@@ -38,11 +103,26 @@
   "countries": {
     "defaultMessage": "Countries"
   },
+  "country_code": {
+    "defaultMessage": "Country code"
+  },
+  "create_new_account": {
+    "defaultMessage": "Create new Account?"
+  },
   "create_provider": {
     "defaultMessage": "Create provider"
   },
+  "created": {
+    "defaultMessage": "Created"
+  },
   "currencies": {
     "defaultMessage": "Currencies"
+  },
+  "currencies_list_header": {
+    "defaultMessage": "Currencies"
+  },
+  "current_password": {
+    "defaultMessage": "Current password"
   },
   "dashboard": {
     "defaultMessage": "Dashboard"
@@ -53,14 +133,32 @@
   "default_currency": {
     "defaultMessage": "Default currency"
   },
+  "delete": {
+    "defaultMessage": "Delete"
+  },
   "delivery_providers": {
     "defaultMessage": "Delivery providers"
+  },
+  "delivery_providers_header": {
+    "defaultMessage": "Delivery providers"
+  },
+  "displayName": {
+    "defaultMessage": "Display Name"
+  },
+  "display_name": {
+    "defaultMessage": "Display Name"
+  },
+  "dont_have_account": {
+    "defaultMessage": "Don't have an account yet?"
   },
   "edit": {
     "defaultMessage": "Edit"
   },
   "email": {
-    "defaultMessage": "E-mail"
+    "defaultMessage": "Email"
+  },
+  "email_address": {
+    "defaultMessage": "Email Address"
   },
   "email_exists_error": {
     "defaultMessage": "Email already exists"
@@ -68,8 +166,14 @@
   "emails": {
     "defaultMessage": "Emails"
   },
-  "enrollment": {
-    "defaultMessage": "Enrollment"
+  "enrollment_number": {
+    "defaultMessage": "Enrollment number"
+  },
+  "enrollments": {
+    "defaultMessage": "Enrollments"
+  },
+  "enrollments_list_header": {
+    "defaultMessage": "Enrollments"
   },
   "error": {
     "defaultMessage": "404 error"
@@ -77,14 +181,50 @@
   "error_server": {
     "defaultMessage": "There was a problem on the server ({details}). Please try again later."
   },
+  "event": {
+    "defaultMessage": "Events"
+  },
+  "events_list_header": {
+    "defaultMessage": "Events"
+  },
+  "expired": {
+    "defaultMessage": "Expired"
+  },
+  "expires": {
+    "defaultMessage": "Expires"
+  },
   "female": {
     "defaultMessage": "Female"
   },
   "filter_by_type": {
     "defaultMessage": "Filter by type"
   },
+  "filters": {
+    "defaultMessage": "Filters"
+  },
+  "filters_list_header": {
+    "defaultMessage": "Filters"
+  },
+  "finished": {
+    "defaultMessage": "Finished"
+  },
+  "first_name": {
+    "defaultMessage": "First name"
+  },
   "forget_password": {
     "defaultMessage": "Forgot your password?"
+  },
+  "forgot_password": {
+    "defaultMessage": "Forgot your password?"
+  },
+  "forgot_password_header_description": {
+    "defaultMessage": "Enter your email address below and we'll send you a link to reset your password!"
+  },
+  "full_name": {
+    "defaultMessage": "Full name"
+  },
+  "gender": {
+    "defaultMessage": "Gender"
   },
   "go_back_home": {
     "defaultMessage": "Go back home"
@@ -92,14 +232,49 @@
   "guest": {
     "defaultMessage": "Guest"
   },
+  "home": {
+    "defaultMessage": "Home"
+  },
+  "image_not_available": {
+    "defaultMessage": "Image not available"
+  },
+  "in_active": {
+    "defaultMessage": "In-Active"
+  },
+  "in_valid": {
+    "defaultMessage": "InValid"
+  },
+  "include_drafts": {
+    "defaultMessage": "Include drafts"
+  },
+  "include_inactive": {
+    "defaultMessage": "Include inactive"
+  },
+  "include_leaf": {
+    "defaultMessage": "Include leafs",
+    "description": "Assortment children"
+  },
   "interface": {
     "defaultMessage": "Interface"
+  },
+  "invalid_credential_error": {
+    "defaultMessage": "Invalid credential error"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
   },
+  "key": {
+    "defaultMessage": "Key",
+    "description": "Filter key"
+  },
+  "language_header": {
+    "defaultMessage": "Languages"
+  },
   "languages": {
     "defaultMessage": "Languages"
+  },
+  "last_Name": {
+    "defaultMessage": "Last name"
   },
   "level": {
     "defaultMessage": "Level"
@@ -122,8 +297,14 @@
   "male": {
     "defaultMessage": "Male"
   },
+  "master_data": {
+    "defaultMessage": "Master Data"
+  },
   "message": {
     "defaultMessage": "Message"
+  },
+  "mobile": {
+    "defaultMessage": "Mobile"
   },
   "name": {
     "defaultMessage": "Name"
@@ -131,11 +312,38 @@
   "new": {
     "defaultMessage": "New"
   },
+  "new_country_header": {
+    "defaultMessage": "New country"
+  },
+  "new_currency_header": {
+    "defaultMessage": "New currency"
+  },
+  "new_delivery_provider": {
+    "defaultMessage": "New delivery provider"
+  },
+  "new_language_header": {
+    "defaultMessage": "New language"
+  },
+  "new_password": {
+    "defaultMessage": "New password"
+  },
+  "new_payment_provider_header": {
+    "defaultMessage": "New payment provider"
+  },
+  "new_warehousing_provider_header": {
+    "defaultMessage": "New warehousing provider"
+  },
+  "no_result_found": {
+    "defaultMessage": "No result found"
+  },
   "not_found_message": {
     "defaultMessage": "Sorry, we couldn’t find the page you’re looking for."
   },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
+  },
+  "options": {
+    "defaultMessage": "Options"
   },
   "order_date": {
     "defaultMessage": "Order date"
@@ -146,11 +354,17 @@
   "orders": {
     "defaultMessage": "Orders"
   },
+  "orders_list_header": {
+    "defaultMessage": "Orders"
+  },
   "page_not_found": {
     "defaultMessage": "Page not found."
   },
   "password": {
     "defaultMessage": "Password"
+  },
+  "password_mismatch": {
+    "defaultMessage": "Password fields don't match"
   },
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
@@ -158,14 +372,53 @@
   "payment_provider": {
     "defaultMessage": "Payment providers"
   },
+  "payment_providers_header": {
+    "defaultMessage": "Payment providers"
+  },
+  "photo": {
+    "defaultMessage": "Photo"
+  },
+  "postal_code": {
+    "defaultMessage": "Postal/ZIP code"
+  },
+  "preferred": {
+    "defaultMessage": "Preferred"
+  },
   "problems": {
     "defaultMessage": "Problems"
+  },
+  "product": {
+    "defaultMessage": "Product"
+  },
+  "products": {
+    "defaultMessage": "Products"
+  },
+  "products_list_header": {
+    "defaultMessage": "Products"
   },
   "profile": {
     "defaultMessage": "Profile"
   },
+  "profile_notice": {
+    "defaultMessage": "This information will be displayed publicly so be careful what you share."
+  },
   "publicare": {
     "defaultMessage": "Publicare"
+  },
+  "quotation_list_header": {
+    "defaultMessage": "Quotations"
+  },
+  "quotation_number": {
+    "defaultMessage": "Quotation number"
+  },
+  "quotations": {
+    "defaultMessage": "Quotations"
+  },
+  "region": {
+    "defaultMessage": "Region"
+  },
+  "region_Code": {
+    "defaultMessage": "Region"
   },
   "remember_password": {
     "defaultMessage": "Remember me"
@@ -173,17 +426,47 @@
   "reset_password": {
     "defaultMessage": "Reset password"
   },
-  "return_to_login": {
-    "defaultMessage": "Return to Login"
+  "reset_password_header_description": {
+    "defaultMessage": "Enter your new password and make sure you don't forget it this time."
+  },
+  "rest_password": {
+    "defaultMessage": "Reset password"
+  },
+  "roles": {
+    "defaultMessage": "Roles"
+  },
+  "root": {
+    "defaultMessage": ""
+  },
+  "save": {
+    "defaultMessage": "Save"
+  },
+  "scheduled": {
+    "defaultMessage": "Scheduled"
+  },
+  "search": {
+    "defaultMessage": "Search"
+  },
+  "select_role": {
+    "defaultMessage": "Select role"
   },
   "select_tab": {
     "defaultMessage": "Select a tab"
+  },
+  "send_rest_link": {
+    "defaultMessage": "Send reset link"
+  },
+  "send_verification_mail": {
+    "defaultMessage": "Send verification mail"
+  },
+  "show_carts": {
+    "defaultMessage": "Show carts"
   },
   "show_guests": {
     "defaultMessage": "Show Guests"
   },
   "show_inactive": {
-    "defaultMessage": "Show inactive"
+    "defaultMessage": "Show Inactive"
   },
   "sign-up": {
     "defaultMessage": "Sign Up"
@@ -194,6 +477,9 @@
   "sign_up_header": {
     "defaultMessage": "Create new Account"
   },
+  "started": {
+    "defaultMessage": "Started"
+  },
   "status": {
     "defaultMessage": "Status"
   },
@@ -202,6 +488,9 @@
   },
   "switch_on": {
     "defaultMessage": "on"
+  },
+  "system": {
+    "defaultMessage": "System"
   },
   "tags": {
     "defaultMessage": "Tags"
@@ -215,8 +504,17 @@
   "update": {
     "defaultMessage": "Update"
   },
-  "update_configuration": {
-    "defaultMessage": "Update configuration"
+  "update_currency_header": {
+    "defaultMessage": "Update currency"
+  },
+  "update_delivery_configuration": {
+    "defaultMessage": "Update delivery provider"
+  },
+  "update_language_header": {
+    "defaultMessage": "Update languages"
+  },
+  "update_payment_provider_header": {
+    "defaultMessage": "Update payment provider"
   },
   "update_provider": {
     "defaultMessage": "Update provider"
@@ -224,13 +522,40 @@
   "update_tags": {
     "defaultMessage": "Update tags"
   },
+  "update_warehousing_provider_header": {
+    "defaultMessage": "Update warehousing provider"
+  },
+  "user": {
+    "defaultMessage": "User"
+  },
   "username": {
     "defaultMessage": "Username"
   },
   "username_exists_error": {
     "defaultMessage": "Username already exists"
   },
+  "users": {
+    "defaultMessage": "Users"
+  },
+  "users_list_header": {
+    "defaultMessage": "Users"
+  },
+  "users_setting_list_header": {
+    "defaultMessage": "Users setting"
+  },
+  "valid": {
+    "defaultMessage": "Valid"
+  },
   "warehousing_provider": {
     "defaultMessage": "Warehousing provider"
+  },
+  "warehousing_providers_header": {
+    "defaultMessage": "Warehousing providers"
+  },
+  "work_number": {
+    "defaultMessage": "Work #"
+  },
+  "work_queue_header": {
+    "defaultMessage": "Work queue"
   }
 }

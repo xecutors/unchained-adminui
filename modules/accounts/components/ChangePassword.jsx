@@ -30,7 +30,7 @@ const ChangePassword = () => {
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {formatMessage({
             id: 'change_password',
-            defaultMessage: 'Change Password',
+            defaultMessage: 'Change password',
           })}
         </h3>
       </div>
