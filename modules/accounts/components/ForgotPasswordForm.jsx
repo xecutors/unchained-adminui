@@ -16,67 +16,47 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
     },
   });
   return (
-    <div className="container sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
-      <div className="text-center m-6">
-        <h1 className="text-3xl font-semibold text-gray-700">
-          {formatMessage({
-            id: 'forgot_password',
-            defaultMessage: 'Forgot your password?',
+    <Form form={form}>
+      <div>
+        <EmailField
+          name="email"
+          id="email-address"
+          label={formatMessage({
+            id: 'email_address',
+            defaultMessage: 'Email Address',
           })}
-        </h1>
-        <p className="text-gray-500">
-          {formatMessage({
-            id: 'forgot_password_header_description',
-            defaultMessage:
-              "Just enter your email address below and we'll send you a link to reset your password!",
+          placeholder={formatMessage({
+            id: 'email_address',
+            defaultMessage: 'Email Address',
           })}
-        </p>
+          required
+          hideLabel
+        />
       </div>
 
-      <div className="p-2">
-        <Form form={form}>
-          <div>
-            <EmailField
-              name="email"
-              id="email-address"
-              label={formatMessage({
-                id: 'email_address',
-                defaultMessage: 'Email Address',
-              })}
-              placeholder={formatMessage({
-                id: 'email_address',
-                defaultMessage: 'Email Address',
-              })}
-              required
-              hideLabel
-            />
-          </div>
-
-          <div className="mb-6">
-            <SubmitButton
-              className="w-full "
-              label={formatMessage({
-                id: 'send_rest_link',
-                defaultMessage: 'Send reset link',
-              })}
-            />
-          </div>
-          <p className="text-sm text-center text-gray-400">
-            {formatMessage({
-              id: 'dont_have_account',
-              defaultMessage: "Don't have an account yet?",
-            })}
-            {'  '}
-            <Link href="/sign-up">
-              <a className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline">
-                {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
-              </a>
-            </Link>
-            .
-          </p>
-        </Form>
+      <div className="mb-6">
+        <SubmitButton
+          className="w-full "
+          label={formatMessage({
+            id: 'send_rest_link',
+            defaultMessage: 'Send reset link',
+          })}
+        />
       </div>
-    </div>
+      <p className="text-sm text-center text-gray-400">
+        {formatMessage({
+          id: 'dont_have_account',
+          defaultMessage: "Don't have an account yet?",
+        })}
+        {'  '}
+        <Link href="/sign-up">
+          <a className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline">
+            {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
+          </a>
+        </Link>
+        .
+      </p>
+    </Form>
   );
 };
 

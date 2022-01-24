@@ -17,7 +17,7 @@ import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 const UnrestrictedPages = [
   '/log-in',
   '/sign-up',
-  '/forgot-password',
+  '/account/forgot-password',
   '/account/reset-password',
 ];
 
