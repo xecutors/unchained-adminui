@@ -20,7 +20,8 @@ const CountryListItem = ({ country, onRemove }) => {
         {country.isBase && (
           <Badge
             text={formatMessage({ id: 'base_country', defaultMessage: 'Base' })}
-            className="ml-2 text-xs"
+            className="ml-2 text-sm"
+            square
           />
         )}
       </Table.Cell>

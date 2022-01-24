@@ -1,40 +1,42 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import Table from '../../common/components/Table';
 
 const CurrencyListItem = ({ currency, onRemove }) => {
-  const { locale, formatMessage } = useIntl();
+  const { formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
   };
 
   return (
-    <tr>
-      <td className="flex px-6 py-4 border-1 whitespace-nowrap">
+    <Table.Row>
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {currency.isoCode}
         </div>
-      </td>
+      </Table.Cell>
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], {
+          {/* {new Intl.DisplayNames([locale], {
             type: 'currency',
             fallback: 'none',
-          })?.of(currency.isoCode)}
+          })?.of(currency.isoCode)} */}
+          {currency.isoCode}
         </div>
-      </td>
+      </Table.Cell>
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <Badge
           text={STATUS[currency.isActive]}
           color={currency.isActive ? 'green' : 'red'}
           square
         />
-      </td>
+      </Table.Cell>
 
-      <td className="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <Table.Cell className="px-6 flex whitespace-nowrap ">
         <Link href={`/currency/${currency?._id}`}>
           <a className="flex text-indigo-600 hover:text-indigo-900">
             <svg
@@ -75,8 +77,8 @@ const CurrencyListItem = ({ currency, onRemove }) => {
             <line x1="14" y1="11" x2="14" y2="17" />
           </svg>
         </a>
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
