@@ -2,7 +2,8 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
-import MiniUserAvatar from '../../common/components/MiniUserAvatar';
+// import MiniUserAvatar from '../../common/components/MiniUserAvatar';
+import Table from '../../common/components/Table';
 
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
@@ -11,11 +12,11 @@ const ENROLLMENT_STATUS = {
   ACTIVE: 'green',
 };
 
-const EnrollmentListItem = ({ enrollment, showUser }) => {
+const EnrollmentListItem = ({ enrollment }) => {
   const { formatMessage } = useIntl();
   return (
-    <tr key={enrollment._id}>
-      <td className="px-6  py-4 whitespace-nowrap">
+    <Table.Row>
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/enrollments/${enrollment._id}`}>
             <a className="text-blue-600">
@@ -23,13 +24,15 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             </a>
           </Link>
         </div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      </Table.Cell>
+
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {format(new Date(enrollment.created), 'P')}
         </div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      </Table.Cell>
+
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {enrollment.expires
             ? format(new Date(enrollment.expires), 'P')
@@ -46,11 +49,11 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             />
           )}
         </div>
-      </td>
+      </Table.Cell>
 
-      {showUser && enrollment.user && (
-        <td className="px-6 py-4 whitespace-nowrap">
-          <Link href={`/users/${enrollment.user._id}`}>
+      {/* {showUser && enrollment.user && ( */}
+      <Table.Cell className="px-6  whitespace-nowrap ">
+        {/* <Link href={`/users/${enrollment.user._id}`}>
             <a className="flex text-blue-500">
               <MiniUserAvatar
                 {...enrollment?.user?.avatar}
@@ -58,11 +61,11 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
               />
               {enrollment.user?.username}
             </a>
-          </Link>
-        </td>
-      )}
+          </Link> */}
+      </Table.Cell>
+      {/* )} */}
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/products/${enrollment.plan.product._id}`}>
             <a className="text-blue-600">
@@ -70,16 +73,16 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             </a>
           </Link>
         </div>
-      </td>
+      </Table.Cell>
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <Badge
           text={enrollment?.status}
           color={ENROLLMENT_STATUS[enrollment.status]}
           square
         />
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 
