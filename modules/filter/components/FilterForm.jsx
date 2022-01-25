@@ -16,9 +16,10 @@ const FilterForm = ({
     onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
-      adapterKey: '',
+      title: '',
       type: '',
-      option: [],
+      key: '',
+      options: [''],
     },
   });
 
@@ -33,19 +34,18 @@ const FilterForm = ({
     <Form form={form}>
       <div className="space-y-6 sm:space-y-5">
         <TextField
-          name="name"
-          id="name"
+          name="title"
+          id="title"
           label={formatMessage({
-            id: 'name',
-            defaultMessage: 'Name',
+            id: 'title',
+            defaultMessage: 'Title',
           })}
           hideLabel
           placeholder={formatMessage({
-            id: 'name',
-            defaultMessage: 'Name',
+            id: 'title',
+            defaultMessage: 'Title',
           })}
           required
-          autoComplete="on"
           className="text-sm block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
@@ -70,14 +70,15 @@ const FilterForm = ({
           className="w-full mt-0"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           hideLabel
+          required
           name="type"
           options={FilterTypes}
         />
 
-        <FieldArray name="option">
+        <FieldArray name="options">
           {({ push, remove: removeConfig }) => (
             <div>
-              {values.option.map((p, index) => {
+              {values.options.map((p, index) => {
                 return (
                   <div
                     // eslint-disable-next-line react/no-array-index-key
@@ -89,8 +90,8 @@ const FilterForm = ({
                         id: 'option',
                         defaultMessage: 'Option',
                       })}
-                      name={`option[${index}]`}
-                      id={`option[${index}]`}
+                      name={`options[${index}]`}
+                      id={`options[${index}]`}
                       required
                       label={formatMessage({
                         id: 'option',
