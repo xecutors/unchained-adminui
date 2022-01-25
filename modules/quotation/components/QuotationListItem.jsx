@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import Table from '../../common/components/Table';
 
 const QUOTATION_STATUS = {
   REQUESTED: 'orange',
@@ -11,11 +12,11 @@ const QUOTATION_STATUS = {
   FULLFILLED: 'green',
 };
 
-const QuotationListItem = ({ quotation, showUser }) => {
+const QuotationListItem = ({ quotation }) => {
   const { formatMessage } = useIntl();
   return (
-    <tr key={quotation._id}>
-      <td className="px-6  py-4 whitespace-nowrap">
+    <Table.Row>
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/quotations/${quotation._id}`}>
             <a className="text-blue-600">
@@ -23,13 +24,15 @@ const QuotationListItem = ({ quotation, showUser }) => {
             </a>
           </Link>
         </div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      </Table.Cell>
+
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {format(new Date(quotation.created), 'P')}
         </div>
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap">
+      </Table.Cell>
+
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {quotation.expires ? format(new Date(quotation.expires), 'P') : 'n/a'}
 
@@ -44,33 +47,33 @@ const QuotationListItem = ({ quotation, showUser }) => {
             />
           )}
         </div>
-      </td>
+      </Table.Cell>
 
-      {showUser && quotation.user && (
-        <td className="px-6 py-4 whitespace-nowrap">
-          <Link href={`/users/${quotation.user._id}`}>
-            <a className="flex text-blue-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>{' '}
-              {quotation.user?.username}
-            </a>
-          </Link>
-        </td>
-      )}
+      {/* {showUser && quotation.user && ( */}
+      <Table.Cell className="px-6  whitespace-nowrap ">
+        {/* <Link href={`/users/${quotation.user._id}`}>
+          <a className="flex text-blue-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>{' '}
+            {quotation.user?.username}
+          </a>
+        </Link> */}
+      </Table.Cell>
+      {/* )} */}
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           <Link href={`/products/${quotation.plan.product._id}`}>
             <a className="text-blue-600">
@@ -78,16 +81,16 @@ const QuotationListItem = ({ quotation, showUser }) => {
             </a>
           </Link>
         </div>
-      </td>
+      </Table.Cell>
 
-      <td className="px-6 py-4 whitespace-nowrap">
+      <Table.Cell className="px-6  whitespace-nowrap ">
         <Badge
           text={quotation?.status}
           color={QUOTATION_STATUS[quotation.status]}
           square
         />
-      </td>
-    </tr>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 

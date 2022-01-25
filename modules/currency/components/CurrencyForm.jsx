@@ -42,11 +42,11 @@ const CurrencyForm = ({
         {isEdit && (
           <div className="flex items-center h-5">
             <CheckboxField
-              id="isActive"
+              id="is-active"
               name="isActive"
               label={formatMessage({
                 id: 'active',
-                defaultMessage: ' Active ',
+                defaultMessage: 'Active',
               })}
               className="m-3 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
             />

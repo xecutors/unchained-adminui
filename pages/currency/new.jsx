@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
-import CurrencyForm from '../../modules/currency/component/CurrencyForm';
+import CurrencyForm from '../../modules/currency/components/CurrencyForm';
 import useCreateCurrency from '../../modules/currency/hooks/useCreateCurrency';
 
 const AddCurrency = () => {

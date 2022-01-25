@@ -25,7 +25,7 @@ const PasswordReset = () => {
           </h1>
           <p className="text-gray-500">
             {formatMessage({
-              id: 'forgot_password_header_description',
+              id: 'reset_password_header_description',
               defaultMessage:
                 "Enter your new password and make sure you don't forget it this time.",
             })}

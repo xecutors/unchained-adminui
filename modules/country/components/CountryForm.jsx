@@ -72,7 +72,7 @@ const CountryForm = ({
               type="checkbox"
               label={formatMessage({
                 id: 'active',
-                defaultMessage: ' Active ',
+                defaultMessage: ' Active',
               })}
               className=" focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded-md"
             />

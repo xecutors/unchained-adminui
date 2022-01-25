@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
 const PRODUCT_STATUS = {
@@ -16,6 +17,10 @@ const ProductListItem = ({ product }) => {
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
+          <MediaAvatar
+            file={product?.media?.length && product.media[0].file}
+            className="mr-2"
+          />
           <Link href={`/product/${product._id}`}>
             <a className="text-blue-600">
               {product?.texts.title || (
@@ -23,7 +28,7 @@ const ProductListItem = ({ product }) => {
                   {product._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'name' })}
+                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
                   />
                 </>
               )}
@@ -40,11 +45,13 @@ const ProductListItem = ({ product }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="flex px-6   whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
-          {product.tags?.map((t) => (
-            <Badge key={t} text={t} color="indigo" />
-          ))}
+      <Table.Cell className=" px-6   whitespace-nowrap">
+        <div className="flex">
+          <div className="pl-2 flex items-center text-sm text-gray-900">
+            {product.tags?.map((t) => (
+              <Badge key={t} text={t} color="indigo" />
+            ))}
+          </div>
         </div>
       </Table.Cell>
     </Table.Row>

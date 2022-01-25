@@ -7,6 +7,9 @@ import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import PageHeaders from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import ListHeader from '../../modules/common/components/ListHeader';
+import Toggle from '../../modules/common/components/Toggle';
+import ListPagination from '../../modules/common/components/ListPagination';
 
 const Languages = () => {
   const [limit, setLimit] = useState(DefaultLimit);
@@ -14,7 +17,7 @@ const Languages = () => {
 
   const [includeInactive, setIncludeInactive] = useState(false);
 
-  const { languages, languagesCount, loadMore } = useLanguages({
+  const { languages, languagesCount, loadMore, loading } = useLanguages({
     limit,
     includeInactive,
   });
@@ -33,15 +36,36 @@ const Languages = () => {
           defaultMessage: 'Languages',
         })}
       />
-      <LanguageList
-        languages={languages}
-        onRemove={onRemoveLanguage}
-        total={languagesCount}
-        onLimitChange={setLimit}
-        onLoadMore={loadMore}
-        onIncludeInactiveChange={setIncludeInactive}
-        includeInactive={includeInactive}
-      />
+
+      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+        <ListHeader addPath="/country/new">
+          <Toggle
+            toggleText={formatMessage({
+              id: 'show_inactive',
+              defaultMessage: 'Show Inactive',
+            })}
+            toggleState={includeInactive}
+            onToggle={setIncludeInactive}
+          />
+        </ListHeader>
+        <LanguageList
+          isLoading={loading}
+          languages={languages}
+          onRemove={onRemoveLanguage}
+          total={languagesCount}
+          onLimitChange={setLimit}
+          onLoadMore={loadMore}
+          onIncludeInactiveChange={setIncludeInactive}
+          includeInactive={includeInactive}
+        />
+        <ListPagination
+          isLoading={loading}
+          onLoadMore={loadMore}
+          data={languages}
+          total={languagesCount}
+          onLimitChange={setLimit}
+        />
+      </div>
     </>
   );
 };

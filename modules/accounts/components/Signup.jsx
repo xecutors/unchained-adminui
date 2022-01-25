@@ -71,7 +71,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                   required
                   label={formatMessage({
                     id: 'email',
-                    defaultMessage: 'E-mail',
+                    defaultMessage: 'Email',
                   })}
                   className=""
                   placeholder="Email"
