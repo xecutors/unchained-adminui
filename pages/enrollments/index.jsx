@@ -35,7 +35,6 @@ const index = () => {
           onLoadMore={loadMore}
           total={enrollmentsCount}
         />
-
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

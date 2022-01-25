@@ -45,11 +45,13 @@ const ProductListItem = ({ product }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="flex px-6   whitespace-nowrap">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
-          {product.tags?.map((t) => (
-            <Badge key={t} text={t} color="indigo" />
-          ))}
+      <Table.Cell className=" px-6   whitespace-nowrap">
+        <div className="flex">
+          <div className="pl-2 flex items-center text-sm text-gray-900">
+            {product.tags?.map((t) => (
+              <Badge key={t} text={t} color="indigo" />
+            ))}
+          </div>
         </div>
       </Table.Cell>
     </Table.Row>
