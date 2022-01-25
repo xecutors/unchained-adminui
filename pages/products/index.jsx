@@ -40,15 +40,7 @@ const index = () => {
             onToggle={setIncludeDrafts}
           />
         </ListHeader>
-        <ProductList
-          isLoading={loading}
-          onLimitChange={setLimit}
-          includeDrafts={includeDrafts}
-          onIncludeDraftsChange={setIncludeDrafts}
-          products={products}
-          onLoadMore={loadMore}
-          total={productsCount}
-        />
+        <ProductList products={products} />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

@@ -46,15 +46,7 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        <CurrencyList
-          currencies={currencies}
-          onRemoveCurrency={onRemove}
-          total={currenciesCount}
-          onLimitChange={setLimit}
-          onLoadMore={loadMore}
-          onIncludeInactiveChange={setIncludeInactive}
-          includeInactive={includeInactive}
-        />
+        <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

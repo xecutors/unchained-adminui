@@ -21,6 +21,9 @@ const Country = () => {
     includeInactive,
   });
   const { removeCountry } = useRemoveCountry();
+  const onRemoveCountry = async (countryId) => {
+    await removeCountry({ countryId });
+  };
   return (
     <>
       <BreadCrumbs />
@@ -42,16 +45,7 @@ const Country = () => {
           />
         </ListHeader>
 
-        <CountryList
-          isLoading={loading}
-          countries={countries}
-          onLoadMore={loadMore}
-          onLimitChange={setLimit}
-          total={countriesCount}
-          onRemoveCountry={removeCountry}
-          onIncludeInactiveChange={setIncludeInactive}
-          includeInactive={includeInactive}
-        />
+        <CountryList countries={countries} onRemoveCountry={onRemoveCountry} />
 
         <ListPagination
           isLoading={loading}

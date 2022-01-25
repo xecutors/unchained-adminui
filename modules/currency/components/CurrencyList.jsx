@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import CurrencyListItem from './CurrencyListItem';
 
-const CurrencyList = ({ currencies }) => {
+const CurrencyList = ({ currencies, onRemoveCurrency }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full ">
@@ -30,7 +30,11 @@ const CurrencyList = ({ currencies }) => {
       ))}
 
       {currencies?.map((currency) => (
-        <CurrencyListItem key={`${currency?._id}111`} currency={currency} />
+        <CurrencyListItem
+          key={`${currency?._id}-body`}
+          currency={currency}
+          onRemove={onRemoveCurrency}
+        />
       ))}
     </Table>
   );

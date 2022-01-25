@@ -51,17 +51,7 @@ const index = () => {
           />
         </ListHeader>
 
-        <AssortmentList
-          isLoading={loading}
-          onLimitChange={setLimit}
-          includeInactive={includeInactive}
-          onIncludeInactiveChange={setIncludeInactive}
-          onIncludeLeavesChange={setIncludeLeaves}
-          includeLeaves={includeLeaves}
-          assortments={assortments}
-          onLoadMore={loadMore}
-          total={assortmentsCount}
-        />
+        <AssortmentList assortments={assortments} />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

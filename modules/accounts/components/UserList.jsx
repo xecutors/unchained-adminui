@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import ListPagination from '../../common/components/ListPagination';
 import SearchField from '../../common/components/SearchField';
+import Toggle from '../../common/components/Toggle';
 import UserListItem from './UserListItem';
 
 const UserList = ({
@@ -19,29 +20,15 @@ const UserList = ({
       <SearchField onInputChange={onSearch} />
       <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
-          <div className=" ">
-            <div className=" relative flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="show-guests"
-                  aria-describedby="shoe-guests"
-                  name="show-guests"
-                  type="checkbox"
-                  checked={showGuests}
-                  onChange={() => onShowGuestChange(!showGuests)}
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                />
-                <label
-                  htmlFor="show-guests"
-                  className="ml-3  text-xs text-gray-700"
-                >
-                  {formatMessage({
-                    id: 'show_guests',
-                    defaultMessage: 'Show Guests',
-                  })}
-                </label>
-              </div>
-            </div>
+          <div>
+            <Toggle
+              onToggle={onShowGuestChange}
+              toggleState={showGuests}
+              toggleText={formatMessage({
+                id: 'show_guests',
+                defaultMessage: 'Show Guests',
+              })}
+            />
           </div>
 
           <div className=" flex-shrink-0">

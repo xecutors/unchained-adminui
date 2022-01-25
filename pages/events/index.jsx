@@ -29,16 +29,9 @@ const index = () => {
       />
 
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/event/new" />
+        <ListHeader />
 
-        <EventList
-          isLoading={loading}
-          events={events}
-          onLimitChange={setLimit}
-          onLoadMore={loadMore}
-          total={eventsCount}
-          onSearch={setQueryString}
-        />
+        <EventList events={events} onSearch={setQueryString} />
 
         <ListPagination
           isLoading={loading}

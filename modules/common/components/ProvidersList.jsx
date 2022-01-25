@@ -106,7 +106,7 @@ const ProviderList = ({
           </Table.Row>
         ))}
         {providers?.map((provider) => (
-          <ProviderListItem key={`${provider?._id}111`} provider={provider} />
+          <ProviderListItem key={`${provider?._id}-body`} provider={provider} />
         ))}
       </Table>
     </>

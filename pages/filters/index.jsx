@@ -39,14 +39,7 @@ const index = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-        <FilterList
-          onLimitChange={setLimit}
-          onIncludeInactiveChange={setIncludeInactive}
-          onLoadMore={loadMore}
-          includeInactive={includeInactive}
-          total={filtersCount}
-          filters={filters}
-        />
+        <FilterList filters={filters} />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

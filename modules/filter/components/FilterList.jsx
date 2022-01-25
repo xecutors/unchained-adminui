@@ -39,7 +39,7 @@ const FilterList = ({ filters }) => {
         </Table.Row>
       ))}
       {filters?.map((filter) => (
-        <FilterListItem key={`${filter?._id}111`} filter={filter} />
+        <FilterListItem key={`${filter?._id}-body`} filter={filter} />
       ))}
     </Table>
   );

@@ -24,17 +24,9 @@ const index = () => {
         })}
       />
       <div className=" inline-block min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/enrollments/new" />
+        <ListHeader />
 
-        <EnrollmentList
-          isLoading={loading}
-          enrollments={enrollments}
-          showUser
-          showPagination
-          onLimitChange={setLimit}
-          onLoadMore={loadMore}
-          total={enrollmentsCount}
-        />
+        <EnrollmentList enrollments={enrollments} showUser />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

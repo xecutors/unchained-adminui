@@ -39,7 +39,7 @@ const AssortmentList = ({ assortments }) => {
       ))}
       {assortments?.map((assortment) => (
         <AssortmentListItem
-          key={`${assortment?._id}111`}
+          key={`${assortment?._id}-body`}
           assortment={assortment}
         />
       ))}

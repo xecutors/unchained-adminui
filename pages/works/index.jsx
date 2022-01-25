@@ -22,13 +22,8 @@ const index = () => {
         })}
       />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/work/new" />
-        <WorkList
-          isLoading={loading}
-          workQueue={workQueue}
-          onLoadMore={loadMore}
-          onLimitChange={setLimit}
-        />
+        <ListHeader addPath="/works/new" />
+        <WorkList workQueue={workQueue} />
 
         <ListPagination
           isLoading={loading}

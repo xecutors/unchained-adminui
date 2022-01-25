@@ -33,18 +33,21 @@ const CountryListItem = ({ country, onRemove }) => {
 
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], { type: 'region' }).of(
+          {country.isoCode}
+          {/* {new Intl.DisplayNames([locale], { type: 'region' }).of(
             country.isoCode,
-          )}
+          )} */}
         </div>
       </Table.Cell>
 
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="text-sm text-gray-900">
-          {currencyISOcode &&
+          {currencyISOcode}
+
+          {/* &&
             `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
               currencyISOcode,
-            )}  (${currencyISOcode})`}
+            )}  (${currencyISOcode})`} */}
         </div>
       </Table.Cell>
       <Table.Cell className="px-6  whitespace-nowrap ">

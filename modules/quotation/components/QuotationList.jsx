@@ -53,7 +53,10 @@ const QuotationList = ({ quotations }) => {
       ))}
 
       {quotations?.map((quotation) => (
-        <QuotationListItem key={`${quotation?._id}111`} quotation={quotation} />
+        <QuotationListItem
+          key={`${quotation?._id}-body`}
+          quotation={quotation}
+        />
       ))}
     </Table>
   );

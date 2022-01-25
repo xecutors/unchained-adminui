@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import CountryListItem from './CountryListItem';
 
-const CountryList = ({ countries }) => {
+const CountryList = ({ countries, onRemoveCountry }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full ">
@@ -41,7 +41,11 @@ const CountryList = ({ countries }) => {
       ))}
 
       {countries?.map((country) => (
-        <CountryListItem key={`${country?._id}111`} country={country} />
+        <CountryListItem
+          key={`${country?._id}-body`}
+          country={country}
+          onRemove={onRemoveCountry}
+        />
       ))}
     </Table>
   );

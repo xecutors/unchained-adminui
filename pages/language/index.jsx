@@ -38,7 +38,7 @@ const Languages = () => {
       />
 
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/country/new">
+        <ListHeader addPath="/language/new">
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',
@@ -48,16 +48,7 @@ const Languages = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-        <LanguageList
-          isLoading={loading}
-          languages={languages}
-          onRemove={onRemoveLanguage}
-          total={languagesCount}
-          onLimitChange={setLimit}
-          onLoadMore={loadMore}
-          onIncludeInactiveChange={setIncludeInactive}
-          includeInactive={includeInactive}
-        />
+        <LanguageList languages={languages} onRemove={onRemoveLanguage} />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

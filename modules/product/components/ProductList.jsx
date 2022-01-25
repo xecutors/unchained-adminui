@@ -31,7 +31,7 @@ const ProductList = ({ products }) => {
       ))}
 
       {products?.map((product) => (
-        <ProductListItem key={`${product?._id}111`} product={product} />
+        <ProductListItem key={`${product?._id}-body`} product={product} />
       ))}
     </Table>
   );
