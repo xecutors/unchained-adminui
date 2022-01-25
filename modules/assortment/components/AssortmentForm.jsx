@@ -1,11 +1,12 @@
 import { useIntl } from 'react-intl';
+import UserTagsView from '../../accounts/components/UserTagsView';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const AssortmentForm = ({ onSubmit, onSubmitSuccess, defaultValue = {} }) => {
+const AssortmentForm = ({tags, _id, onSubmit, onSubmitSuccess, defaultValue = {} }) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
@@ -42,6 +43,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess, defaultValue = {} }) => {
             required
           />
         </div>
+         <UserTagsView tags={tags} productId={_id} />
       </div>
 
       <SubmitButton

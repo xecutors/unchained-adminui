@@ -1,6 +1,6 @@
 const FormHeader = ({ onDelete, children }) => {
   return (
-    <div className="mt-5 sm:max-w-lg">
+    <div className="mt-5  sm:max-w-lg">
       <div className="bg-white   px-5 shadow sm:rounded-t sm:px-15">
         <div className=" bg-white border-b border-gray-50">
           <div className=" -mt-2 mb-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
