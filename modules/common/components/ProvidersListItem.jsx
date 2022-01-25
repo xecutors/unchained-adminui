@@ -15,7 +15,7 @@ const PROVIDER_TYPE_CLASSES = {
   SHIPPING: 'blue',
 };
 
-const ProviderListItem = ({ provider, onRemove, editPath }) => {
+const ProviderListItem = ({ provider, onRemove, providerPath }) => {
   return (
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
@@ -42,7 +42,7 @@ const ProviderListItem = ({ provider, onRemove, editPath }) => {
 
       <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="flex">
-          <Link href={`${editPath}/${provider?._id}`}>
+          <Link href={`${providerPath}/${provider?._id}`}>
             <a
               type="button"
               className="flex text-indigo-500 hover:text-indigo-500"
