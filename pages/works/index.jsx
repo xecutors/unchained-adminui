@@ -22,41 +22,7 @@ const index = () => {
         })}
       />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/work/new">
-          {/* <Toggle
-            toggleState={success}
-            onToggle={setSuccess}
-            toggleText={formatMessage({
-              id: 'success',
-              defaultMessage: 'Success',
-            })}
-          />
-
-          <Toggle
-            toggleState={neww}
-            toggleText={formatMessage({
-              id: 'new',
-              defaultMessage: 'New',
-            })}
-            onToggle={setNew}
-          /> 
-          <Toggle
-            toggleState={neww}
-            toggleText={formatMessage({
-              id: 'new',
-              defaultMessage: 'New',
-            })}
-            onToggle={setNew}
-          /> 
-          <Toggle
-            toggleState={neww}
-            toggleText={formatMessage({
-              id: 'new',
-              defaultMessage: 'New',
-            })}
-            onToggle={setNew}
-          />  */}
-        </ListHeader>
+        <ListHeader addPath="/work/new" />
         <WorkList
           isLoading={loading}
           workQueue={workQueue}
