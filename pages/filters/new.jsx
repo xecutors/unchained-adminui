@@ -11,8 +11,8 @@ const AddFilter = () => {
   const { formatMessage } = useIntl();
   const { id } = query;
 
-  //const { createFilter } = useCreateFilter();
-  //const { removeFilter } = useRemoveFilter();
+  // const { createFilter } = useCreateFilter();
+  // const { removeFilter } = useRemoveFilter();
   const { filter } = useFilters({
     filterId: id,
   });

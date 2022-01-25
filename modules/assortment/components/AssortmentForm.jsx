@@ -1,55 +1,55 @@
 import { useIntl } from 'react-intl';
-import UserTagsView from '../../accounts/components/UserTagsView';
+import TagInput from '../../common/components/TagInput';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const AssortmentForm = ({
-  tags,
-  _id,
-  onSubmit,
-  onSubmitSuccess,
-  defaultValue = {},
-}) => {
+const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
-      type: '',
-      ...defaultValue,
+      isRoot: false,
+      title: '',
+      tags: [],
     },
   });
   const { formatMessage } = useIntl();
+
   return (
     <Form form={form}>
       <div className=" space-y-6 sm:space-y-5">
         <TextField
-          name="type"
-          id="type"
+          name="title"
+          id="title"
           label={formatMessage({
-            id: 'type',
-            defaultMessage: 'Type',
+            id: 'title',
+            defaultMessage: 'Title',
           })}
-          autoComplete="on"
+          autoComplete="off"
           required
           className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
         <div className="flex items-center h-5">
           <CheckboxField
-            id="root-node"
-            name="rootnode"
+            id="isRoot"
+            name="isRoot"
+            type="checkbox"
             label={formatMessage({
               id: 'root_node',
               defaultMessage: 'Root node',
             })}
             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-            required
           />
         </div>
-        <UserTagsView tags={tags} productId={_id} />
+        <TagInput
+          onChange={async (value) => {
+            await form.formik.setValues({ ...form.formik.values, tags: value });
+          }}
+        />
       </div>
 
       <SubmitButton

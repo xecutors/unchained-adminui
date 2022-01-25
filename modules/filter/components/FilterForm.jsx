@@ -6,7 +6,10 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const FilterForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
+const FilterForm = ({
+  onSubmit = () => true,
+  onSubmitSuccess = () => true,
+}) => {
   const { formatMessage } = useIntl();
   const form = useForm({
     submit: onSubmit,
@@ -19,11 +22,11 @@ const FilterForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => 
     },
   });
 
-  const FilterTypes =  {
+  const FilterTypes = {
     SWITCH: 'SWITCH',
     SINGLE_CHOICE: 'SINGLE_CHOICE',
-    MULTIPLE_CHOICE: 'MULTIPLE_CHOICE'
-  }
+    MULTIPLE_CHOICE: 'MULTIPLE_CHOICE',
+  };
   const { values } = form.formik;
 
   return (
@@ -66,7 +69,6 @@ const FilterForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => 
         <SelectField
           className="w-full mt-0"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-
           hideLabel
           name="type"
           options={FilterTypes}
