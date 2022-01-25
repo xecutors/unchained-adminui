@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Disclosure } from '@headlessui/react';
 import {
+  ChartPieIcon,
   CogIcon,
   HomeIcon,
   OfficeBuildingIcon,
@@ -151,6 +152,16 @@ const SideNav = () => {
       icon: UserIcon,
       current: false,
       href: '/account',
+    },
+
+    {
+      name: formatMessage({
+        id: 'sync_reports',
+        defaultMessage: 'Sync reports',
+      }),
+      icon: ChartPieIcon,
+      current: false,
+      href: '/sync-reports',
     },
   ];
   return (
