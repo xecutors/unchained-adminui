@@ -4,13 +4,14 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ProductForm from '../../modules/product/components/ProductForm';
+import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
 
 const AddProduct = () => {
-  //   const { createProduct } = useCreateProduct();
+  const { createProduct } = useCreateProduct();
   const router = useRouter();
   const { formatMessage } = useIntl();
   const onSubmitSuccess = () => {
-    router.push('/product');
+    router.push('/products');
   };
 
   const onSubmit = async ({ title, type, tags }) => {
@@ -26,9 +27,7 @@ const AddProduct = () => {
           defaultMessage: 'New product',
         })}
       />
-      <FormHeader
-        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-      >
+      <FormHeader>
         <ProductForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </FormHeader>
     </div>

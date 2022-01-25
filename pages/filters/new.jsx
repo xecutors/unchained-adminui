@@ -35,12 +35,7 @@ const AddFilter = () => {
           defaultMessage: 'New filter',
         })}
       />
-      <FormHeader
-        headerText={formatMessage({
-          id: 'new_filter',
-          defaultMessage: 'New filter',
-        })}
-      >
+      <FormHeader>
         <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </FormHeader>
     </div>

@@ -47,6 +47,7 @@ const TagInput = ({ tagList: tags, onChange }) => {
               type="text"
               id="tag-input"
               onKeyUp={(e) => {
+                e.stopPropagation();
                 if (e.key === 'Enter') {
                   addTag();
                 }
