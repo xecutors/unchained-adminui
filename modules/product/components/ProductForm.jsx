@@ -38,7 +38,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess, tags, _id }) => {
           className="text-sm block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
-       <TextField
+        <TextField
           name="type"
           id="type"
           label={formatMessage({

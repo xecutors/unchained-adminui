@@ -6,7 +6,13 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const AssortmentForm = ({tags, _id, onSubmit, onSubmitSuccess, defaultValue = {} }) => {
+const AssortmentForm = ({
+  tags,
+  _id,
+  onSubmit,
+  onSubmitSuccess,
+  defaultValue = {},
+}) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
@@ -43,7 +49,7 @@ const AssortmentForm = ({tags, _id, onSubmit, onSubmitSuccess, defaultValue = {}
             required
           />
         </div>
-         <UserTagsView tags={tags} productId={_id} />
+        <UserTagsView tags={tags} productId={_id} />
       </div>
 
       <SubmitButton

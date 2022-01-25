@@ -4,19 +4,31 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
 import FilterForm from '../../modules/filter/components/FilterForm';
+import useFilters from '../../modules/filter/hooks/useFilters';
 
 const AddFilter = () => {
-  //   const { createFilter } = useCreateFilter();
-  const router = useRouter();
+  const { push: routerPush, query } = useRouter();
   const { formatMessage } = useIntl();
-  const onSubmitSuccess = () => {
-    router.push('/filter');
-  };
+  const { id } = query;
 
-  const onSubmit = async ({ name, key, type }) => {
-    await createFilter({ name, key, type });
+  //const { createFilter } = useCreateFilter();
+  //const { removeFilter } = useRemoveFilter();
+  const { filter } = useFilters({
+    filterId: id,
+  });
+
+  const onSubmit = async ({ option }) => {
+    // await createFilter({
+    //   option,
+    //   filterId: id,
+    // });
     return true;
   };
+
+  const onSubmitSuccess = () => {
+    routerPush('/filter');
+  };
+
   return (
     <div className="mt-6  sm:max-w-lg">
       <BreadCrumbs />
@@ -29,7 +41,11 @@ const AddFilter = () => {
       <FormHeader
         headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
       >
-        <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        <FilterForm
+          // onSubmit={onSubmit}
+          // onSubmitSuccess={onSubmitSuccess}
+          defaultValue={filter?.option || []}
+        />
       </FormHeader>
     </div>
   );
