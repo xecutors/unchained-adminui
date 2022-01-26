@@ -1,5 +1,5 @@
 import TextField from './TextField';
-import { validateContactNumber } from '../lib/validators';
+import { validatePhoneNumber } from '../lib/validators';
 
 const ContactNumberField = ({ validators = [], ...props }) => {
   return (
@@ -7,7 +7,7 @@ const ContactNumberField = ({ validators = [], ...props }) => {
       {...{
         autoComplete: 'off',
         name: 'contactNumber',
-        validators: [...validators, validateContactNumber],
+        validators: [...validators, validatePhoneNumber],
         ...props,
       }}
     />

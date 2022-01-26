@@ -1,5 +1,4 @@
 import TextField, { TextFieldProps } from './TextField';
-import { validateName } from '../lib/validators';
 
 const NameField = ({ validators = [], ...props }: TextFieldProps) => {
   return (
@@ -7,7 +6,7 @@ const NameField = ({ validators = [], ...props }: TextFieldProps) => {
       {...{
         autoComplete: 'on',
         type: 'text',
-        validators: [...validators, validateName],
+        validators: [...validators],
         maxLength: 30,
         ...props,
       }}
