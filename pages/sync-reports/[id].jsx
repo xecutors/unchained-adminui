@@ -33,28 +33,28 @@ const SyncDetail = () => {
   };
 
   return (
-    <>
+    <div className="p-5">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'home',
-          defaultMessage: 'Home',
+          id: 'sync_status',
+          defaultMessage: 'Sync status',
         })}
       />
       <div className="container pt-5 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex justify-between items-center">
-          <h3 className="text-2xl leading-6 font-medium text-gray-900">
-            {formatMessage({
-              id: 'sync_status',
-              defaultMessage: 'Sync status',
-            })}
-          </h3>
+          <div>
+            <Link href={`/sync-reports/${id}/jobs`}>
+              <a>
+                {formatMessage({
+                  id: 'sync_status',
+                  defaultMessage: 'Sync status',
+                })}
+              </a>
+            </Link>
+          </div>
           <div className="text-sm">
-            <div className="">
-              <Link href={`/sync-reports/${id}/jobs`}>
-                <a>Show Sync details</a>
-              </Link>
-            </div>
+            <div className="" />
             <h6 className="text-gray-900">
               {formatMessage({
                 id: 'started',
@@ -158,7 +158,7 @@ const SyncDetail = () => {
           statistics={stats.filters}
         />
       </div>
-    </>
+    </div>
   );
 };
 

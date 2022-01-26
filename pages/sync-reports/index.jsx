@@ -9,11 +9,11 @@ const SyncReport = () => {
   });
 
   return (
-    <>
+    <div className="p-5">
       <BreadCrumbs />
       <PageHeader headerText="Sync report" />
       <SyncReportList data={dailySync} />
-    </>
+    </div>
   );
 };
 

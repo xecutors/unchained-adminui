@@ -1,8 +1,10 @@
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 const SyncReportListItem = ({ data }) => {
   const { success } = data;
+  const { formatMessage } = useIntl();
   return (
     <li>
       <Link href={`/sync-reports/${data._id}`}>
@@ -62,17 +64,27 @@ const SyncReportListItem = ({ data }) => {
                 <div className="hidden md:block">
                   <div>
                     <p className="text-sm text-gray-900">
-                      Started &nbsp;
-                      <time dateTime="2020-01-07">
-                        {format(new Date(data?.started), 'P')}
-                      </time>
+                      {formatMessage(
+                        {
+                          id: 'started_at',
+                          defaultMessage: 'Started: {time}',
+                        },
+                        {
+                          time: format(new Date(data.started), 'Pp'),
+                        },
+                      )}
                     </p>
                     <p className="mt-2 flex items-center text-sm text-gray-500" />
                     <p className="mt-2 flex items-center text-sm text-gray-500">
-                      Finished &nbsp;
-                      <time dateTime="2020-01-07">
-                        {format(new Date(data?.finished), 'P')}
-                      </time>
+                      {formatMessage(
+                        {
+                          id: 'finished_at',
+                          defaultMessage: 'Finished: {time}',
+                        },
+                        {
+                          time: format(new Date(data.finished), 'Pp'),
+                        },
+                      )}
                     </p>
                   </div>
                 </div>

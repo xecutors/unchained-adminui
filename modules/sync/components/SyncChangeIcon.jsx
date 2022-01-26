@@ -1,3 +1,4 @@
+import { ArrowDownIcon } from '@heroicons/react/outline';
 import { useIntl } from 'react-intl';
 
 const SyncChangeIcon = ({ new: added, removed, diff }) => {
@@ -6,19 +7,13 @@ const SyncChangeIcon = ({ new: added, removed, diff }) => {
   if (added < removed) {
     return (
       <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
-        <svg
+        <ArrowDownIcon
           className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
           aria-hidden="true"
-        >
-          <path
-            fillRule="evenodd"
-            d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
+        />
         <span className="sr-only">
           {formatMessage({
             id: 'decreased',
