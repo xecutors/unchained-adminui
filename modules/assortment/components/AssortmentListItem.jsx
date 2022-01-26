@@ -20,7 +20,7 @@ const AssortmentListItem = ({ assortment }) => {
             file={assortment?.media?.length && assortment.media[0].file}
             className="mr-2"
           />
-          <Link href={`/assortment/${assortment._id}`}>
+          <Link href={`/assortments/${assortment._id}`}>
             <a className="text-blue-600">
               {assortment?.texts.title || (
                 <>
