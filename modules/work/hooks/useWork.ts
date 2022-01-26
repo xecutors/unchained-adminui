@@ -16,7 +16,7 @@ const useWork = ({ workId = null } = {}) => {
   });
 
   return {
-    language: data?.language,
+    work: data?.work,
     loading,
     error,
   };

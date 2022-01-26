@@ -7,6 +7,7 @@ const WorkFragment = gql`
     scheduled
     status
     started
+    success
     finished
     created
     deleted

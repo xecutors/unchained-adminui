@@ -18,7 +18,7 @@ const UnrestrictedPages = [
   '/log-in',
   '/sign-up',
   '/account/forgot-password',
-  '/account/reset-password',
+  '/reset-password',
 ];
 
 export function parseCookies(ctx = {}, options = {}) {
@@ -53,11 +53,15 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
 
   const getLayout =
     Component.getLayout ||
-    ((page) => (
-      <Layout apollo={apollo} {...rest}>
-        {page}
-      </Layout>
-    ));
+    ((page) => {
+      return parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10) ? (
+        <Layout apollo={apollo} {...rest}>
+          {page}
+        </Layout>
+      ) : (
+        page
+      );
+    });
 
   const messages = getMessages(router.locale);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, useIntl } from 'react-intl';
 import ReactDOM from 'react-dom';
 
 class ModalInner extends React.Component {
@@ -26,10 +26,10 @@ const Modal = ({
   onClose,
   children,
   visible,
-  intl,
   disableOkButton = false,
   closeOnOutsideClick = false,
 }) => {
+  const { formatMessage } = useIntl();
   const onOverlayClick = () => {
     if (closeOnOutsideClick && visible) onClose();
   };
@@ -57,11 +57,14 @@ const Modal = ({
           <button
             className="no-button popup-close"
             type="button"
-            aria-label={intl.formatMessage({ id: 'close' })}
+            aria-label={formatMessage({
+              id: 'close',
+              defaultMessage: 'Close',
+            })}
             onClick={onClose}
           >
             <span className="ml-3 hide-on-not-mobile">
-              {intl.formatMessage({ id: 'close' })}
+              {formatMessage({ id: 'close', defaultMessage: 'Close' })}
             </span>
           </button>
           <div>{children}</div>

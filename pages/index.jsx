@@ -4,6 +4,7 @@ import PageHeader from '../modules/common/components/PageHeader';
 
 const Home = () => {
   const { formatMessage } = useIntl();
+
   return (
     <>
       <BreadCrumbs />
