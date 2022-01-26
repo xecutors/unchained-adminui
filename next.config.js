@@ -1,7 +1,5 @@
 require('./node_env');
 
-const { UNCHAINED_LANG, DEBUG = false } = process.env;
-
 module.exports = {
   typescript: {
     ignoreBuildErrors: false,
@@ -15,10 +13,5 @@ module.exports = {
     domains: ['localhost'],
     deviceSizes: [320, 480, 820, 1200, 1600],
     imageSizes: [32, 48, 96, 256],
-  },
-  publicRuntimeConfig: {
-    // Will be available on both server and client
-    UNCHAINED_LANG,
-    DEBUG,
   },
 };
