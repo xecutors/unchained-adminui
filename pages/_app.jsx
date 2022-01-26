@@ -1,5 +1,4 @@
 import { ApolloProvider } from '@apollo/client';
-import cookie from 'cookie';
 
 import App from 'next/app';
 
@@ -15,16 +14,7 @@ import Layout from '../modules/common/components/Layout';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 
-export function parseCookies(ctx = {}, options = {}) {
-  return cookie.parse(
-    ctx.req && ctx.req.headers && ctx.req.headers.cookie // eslint-disable-line
-      ? ctx.req.headers.cookie
-      : process.browser
-      ? document.cookie
-      : '',
-    options,
-  );
-}
+const isReportUI = parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
@@ -48,7 +38,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   let getLayout;
 
   if (Component.getLayout) getLayout = Component.getLayout;
-  else if (!parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10))
+  else if (!isReportUI)
     getLayout = (page) => (
       <Layout apollo={apollo} {...rest} navigationType="report">
         {page}
