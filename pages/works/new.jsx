@@ -4,22 +4,20 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormHeader from '../../modules/common/components/FormHeader';
 import PageHeader from '../../modules/common/components/PageHeader';
 import WorkForm from '../../modules/work/components/WorkForm';
-import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
+import useAddWork from '../../modules/work/hooks/useAddWork';
 
 const AddWork = () => {
   const { push: routerPush, query } = useRouter();
   const { formatMessage } = useIntl();
   const { id } = query;
 
-  const { workQueue } = useWorkQueue({
-    workQueueId: id,
-  });
+  const { addWork } = useAddWork();
 
   const onSubmit = async ({ input }) => {
-    // await ({
-    // input,
-    // workQueueId: id,
-    // });
+    await addWork({
+      input,
+      workQueueId: id,
+    });
     return true;
   };
 
@@ -31,18 +29,12 @@ const AddWork = () => {
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'new_filter_header',
-          defaultMessage: 'New Work',
+          id: 'add_work_header',
+          defaultMessage: 'Add Work',
         })}
       />
-      <FormHeader
-        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-      >
-        <WorkForm
-          // onSubmit={onSubmit}
-          // onSubmitSuccess={onSubmitSuccess}
-          defaultValue={workQueue?.input || []}
-        />
+      <FormHeader>
+        <WorkForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </FormHeader>
     </div>
   );

@@ -1,15 +1,15 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useFilterTypes from '../hooks/useFilterTypes';
 
-const FilterForm = ({
-  onSubmit = () => true,
-  onSubmitSuccess = () => true,
-}) => {
+const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
+  const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
   const form = useForm({
     submit: onSubmit,
@@ -23,11 +23,6 @@ const FilterForm = ({
     },
   });
 
-  const FilterTypes = {
-    SWITCH: 'SWITCH',
-    SINGLE_CHOICE: 'SINGLE_CHOICE',
-    MULTIPLE_CHOICE: 'MULTIPLE_CHOICE',
-  };
   const { values } = form.formik;
 
   return (
@@ -62,17 +57,17 @@ const FilterForm = ({
             defaultMessage: 'Key',
           })}
           required
-          autoComplete="on"
           className="text-sm block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         <SelectField
           className="w-full mt-0"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           hideLabel
           required
           name="type"
-          options={FilterTypes}
+          options={convertArrayOfObjectToObject(filterTypes, 'label', 'value')}
         />
 
         <FieldArray name="options">
@@ -156,7 +151,10 @@ const FilterForm = ({
       </div>
 
       <SubmitButton
-        label={formatMessage({ id: 'add', defaultMessage: 'Add' })}
+        label={formatMessage({
+          id: 'create_filter',
+          defaultMessage: 'Create Filter',
+        })}
       />
     </Form>
   );

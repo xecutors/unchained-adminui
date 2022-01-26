@@ -1,14 +1,19 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
 const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
   const { formatMessage } = useIntl();
+  const { workTypes } = useRegisteredWorkTypes();
+
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
@@ -20,12 +25,6 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
     },
   });
 
-  const WorkTypes = {
-    EXTERNAL: 'EXTERNAL',
-    BULK_IMPORT: 'BULK_IMPORT',
-    PUBLICARE_SYNC: 'PUBLICARE_SYNC',
-    HTTP_REQUEST: 'HTTP_REQUEST',
-  };
   const { values } = form.formik;
   return (
     <Form form={form}>
@@ -42,7 +41,7 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
             hideLabel
             name="type"
             required
-            options={WorkTypes}
+            options={convertArrayOfObjectToObject(workTypes, 'label', 'value')}
           />
         </div>
         <div className="sm:flex max-w-4xl  justify-between align-baseline">
