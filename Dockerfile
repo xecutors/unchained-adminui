@@ -14,9 +14,12 @@ RUN NODE_ENV=development npm install
 # Build app
 COPY . /usr/src/app/
 
+ARG NEXT_PUBLIC_SHOW_CONTROL_PANEL=1
+
 ENV NEXT_TELEMETRY_DISABLED="1"
 ENV TZ="Europe/Amsterdam"
 ENV NODE_ENV production
+ENV NEXT_PUBLIC_SHOW_CONTROL_PANEL=$NEXT_PUBLIC_SHOW_CONTROL_PANEL
 
 RUN npm run lint && npm run test
 RUN npm run build && npm prune --production
