@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
-import Loading from '../../../modules/common/components/Loading';
-import PageHeader from '../../../modules/common/components/PageHeader';
-import useWork from '../../../modules/work/hooks/useWork';
+import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
+import Loading from '../../../../modules/common/components/Loading';
+import PageHeader from '../../../../modules/common/components/PageHeader';
+import useWork from '../../../../modules/work/hooks/useWork';
 
 const convertJobSignalToNumber = (signal) => {
   if (signal === '🙌') {

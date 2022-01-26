@@ -45,17 +45,21 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
     })();
   }, [router.pathname]);
 
-  const getLayout =
-    Component.getLayout ||
-    ((page) => {
-      return parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10) ? (
-        <Layout apollo={apollo} {...rest}>
-          {page}
-        </Layout>
-      ) : (
-        page
-      );
-    });
+  let getLayout;
+
+  if (Component.getLayout) getLayout = Component.getLayout;
+  else if (!parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10))
+    getLayout = (page) => (
+      <Layout apollo={apollo} {...rest} navigationType="report">
+        {page}
+      </Layout>
+    );
+  else
+    getLayout = (page) => (
+      <Layout apollo={apollo} {...rest} navigationType="default">
+        {page}
+      </Layout>
+    );
 
   const messages = getMessages(router.locale);
 

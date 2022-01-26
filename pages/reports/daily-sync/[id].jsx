@@ -3,13 +3,13 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import Link from 'next/link';
-import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import Loading from '../../modules/common/components/Loading';
-import PageHeader from '../../modules/common/components/PageHeader';
-import useProductsCount from '../../modules/product/hooks/useProductsCount';
-import useWork from '../../modules/work/hooks/useWork';
-import SyncCategorySummary from '../../modules/sync/components/SyncCategorySummary';
-import SyncChangeIcon from '../../modules/sync/components/SyncChangeIcon';
+import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
+import Loading from '../../../modules/common/components/Loading';
+import PageHeader from '../../../modules/common/components/PageHeader';
+import useProductsCount from '../../../modules/product/hooks/useProductsCount';
+import useWork from '../../../modules/work/hooks/useWork';
+import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
+import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
 
 const SyncDetail = () => {
   const { query } = useRouter();
@@ -44,11 +44,11 @@ const SyncDetail = () => {
       <div className="container pt-5 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex justify-between items-center">
           <div>
-            <Link href={`/sync-reports/${id}/jobs`}>
-              <a>
+            <Link href={`/reports/daily-sync/${id}/jobs`}>
+              <a className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 {formatMessage({
-                  id: 'sync_status',
-                  defaultMessage: 'Sync status',
+                  id: 'sync_jobs_detail',
+                  defaultMessage: 'Sync Jobs detail',
                 })}
               </a>
             </Link>

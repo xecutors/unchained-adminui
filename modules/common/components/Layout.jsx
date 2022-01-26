@@ -1,23 +1,29 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
-import { Disclosure } from '@headlessui/react';
 import {
-  ChartPieIcon,
+  BriefcaseIcon,
   CogIcon,
   HomeIcon,
   OfficeBuildingIcon,
   UserIcon,
 } from '@heroicons/react/outline';
-import classNames from 'classnames';
+import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import MiniUserAvatar from './MiniUserAvatar';
+import SideNav from './SideNav';
+import UserAvatar from './UserAvatar';
 
-const SideNav = () => {
+const Layout = ({
+  children,
+  apollo,
+  router,
+  pageHeader = '',
+  navigationType = 'default',
+}) => {
   const { formatMessage } = useIntl();
 
-  const navigation = [
+  const defaultNavigation = [
     {
       name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
       icon: HomeIcon,
@@ -153,134 +159,27 @@ const SideNav = () => {
       current: false,
       href: '/account',
     },
+  ];
 
+  const reportNavigation = [
     {
-      name: formatMessage({
-        id: 'sync_reports',
-        defaultMessage: 'Sync reports',
-      }),
-      icon: ChartPieIcon,
+      name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
+      icon: BriefcaseIcon,
       current: false,
-      href: '/sync-reports',
+      children: [
+        {
+          name: formatMessage({
+            id: 'daily_sync',
+            defaultMessage: 'Daily sync',
+          }),
+          current: false,
+          href: '/reports/daily-sync',
+        },
+      ],
     },
   ];
-  return (
-    <div className="mt-5 flex-grow flex flex-col">
-      <nav className="flex-1 px-2 space-y-1 bg-white" aria-label="Sidebar">
-        {navigation.map((item) =>
-          !item.children ? (
-            <div key={item.name}>
-              <Link href={item?.href || '#'}>
-                <a
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                    'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
-                  )}
-                >
-                  <item.icon
-                    className={classNames(
-                      item.current
-                        ? 'text-gray-500'
-                        : 'text-gray-400 group-hover:text-gray-500',
-                      'mr-3 flex-shrink-0 h-6 w-6',
-                    )}
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </a>
-              </Link>
-            </div>
-          ) : (
-            <Disclosure as="div" key={item.name} className="space-y-1">
-              {({ open }) => (
-                <>
-                  <Disclosure.Button
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
-                    )}
-                  >
-                    <item.icon
-                      className="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="flex-1">{item.name}</span>
-                    <svg
-                      className={classNames(
-                        open ? 'text-gray-400 rotate-90' : 'text-gray-300',
-                        'ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150',
-                      )}
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                    >
-                      <path d="M6 6L14 10L6 14V6Z" fill="currentColor" />
-                    </svg>
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="space-y-1">
-                    {item.children.map((subItem) => (
-                      <Link key={subItem.name} href={subItem.href}>
-                        <a className="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
-                          {subItem.name}
-                        </a>
-                      </Link>
-                    ))}
-                  </Disclosure.Panel>
-                </>
-              )}
-            </Disclosure>
-          ),
-        )}
-      </nav>
-    </div>
-  );
-};
 
-const UserAvatar = ({ avatar, username, onLogout }) => {
-  const { formatMessage } = useIntl();
-  return (
-    <a onClick={onLogout} className="flex-shrink-0 group block">
-      <div className="flex items-center">
-        <div>
-          {avatar ? (
-            <img
-              className="inline-block h-9 w-9 rounded-full"
-              src={avatar?.url}
-              alt=""
-            />
-          ) : (
-            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-              <svg
-                className="h-full w-full text-gray-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </span>
-          )}
-        </div>
-        <div className="ml-3">
-          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-            {username}
-          </p>
-          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
-            {formatMessage({
-              id: 'log_out',
-              defaultMessage: 'Log out',
-            })}
-          </p>
-        </div>
-      </div>
-    </a>
-  );
-};
-
-const Layout = ({ children, apollo, router, pageHeader = '' }) => {
-  const { formatMessage } = useIntl();
+  const navigations = { default: defaultNavigation, report: reportNavigation };
 
   const onLogout = async () => {
     await logOut(apollo);
@@ -345,7 +244,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
                 alt="Publicare"
               />
             </div>
-            <SideNav />
+            <SideNav navigation={navigations[navigationType]} />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
             <MiniUserAvatar
@@ -368,7 +267,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
                 alt="Workflow"
               />
             </div>
-            <SideNav />
+            <SideNav navigation={navigations[navigationType]} />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />

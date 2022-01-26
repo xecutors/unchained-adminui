@@ -7,14 +7,14 @@ const middleware = async (req: NextRequest) => {
 
   if (
     !UnrestrictedPages.includes(pathname) &&
-    !pathname.match(/^\/sync-reports/) &&
+    !pathname.match(/^\/reports/) &&
     !isSyncUI
   ) {
     return NextResponse.rewrite(`/404`);
   }
 
   if (pathname === '/' && !isSyncUI) {
-    return NextResponse.rewrite(`/sync-reports`);
+    return NextResponse.rewrite(`/reports/daily-sync`);
   }
 
   return NextResponse.next();
