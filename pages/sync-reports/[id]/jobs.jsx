@@ -8,9 +8,8 @@ const convertJobSignalToNumber = (signal) => {
   if (signal === '🙌') {
     return true;
   }
-  if (signal === '⚠️') {
-    return false;
-  }
+
+  return false;
 };
 
 const SyncJobs = () => {

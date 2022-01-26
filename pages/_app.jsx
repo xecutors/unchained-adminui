@@ -50,14 +50,21 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
         router.push('/log-in');
     })();
   }, [router.pathname]);
-
+  console.log(
+    parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10),
+    ' process.env.NEXT_PUBLIC_HIDE_CONTROL_PANEL ',
+  );
   const getLayout =
     Component.getLayout ||
-    ((page) => (
-      <Layout apollo={apollo} {...rest}>
-        {page}
-      </Layout>
-    ));
+    ((page) => {
+      return parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10) ? (
+        <Layout apollo={apollo} {...rest}>
+          {page}
+        </Layout>
+      ) : (
+        page
+      );
+    });
 
   const messages = getMessages(router.locale);
 
