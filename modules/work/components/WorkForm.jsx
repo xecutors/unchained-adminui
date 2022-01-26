@@ -14,7 +14,7 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
     onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
-      adapterKey: '',
+      Key: '',
       type: '',
       input: [],
     },
@@ -29,24 +29,32 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
   const { values } = form.formik;
   return (
     <Form form={form}>
-      <div className="space-y-6 sm:p-6 rounded-md relative max-w-4xl">
-        <div className="flex max-w-4xl justify-between align-baseline">
-          <TextField
-            name="originalWorkId"
-            id="original_work_id"
-            label={formatMessage({
-              id: 'original_work_id',
-              defaultMessage: 'Work Id',
-            })}
+      <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
+        <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="py-3">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({ id: 'type', defaultMessage: 'Type' })}
+            </div>
+          </div>
+          <SelectField
+            className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
+            label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             hideLabel
-            placeholder={formatMessage({
-              id: 'original_work_id',
-              defaultMessage: 'Work Id',
-            })}
+            name="type"
             required
-            autoComplete="on"
-            className="mr-2 text-sm block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+            options={WorkTypes}
           />
+        </div>
+        <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="sm:py-3">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({
+                id: 'priority',
+                defaultMessage: 'Priority',
+              })}
+            </div>
+          </div>
+
           <TextField
             name="priority"
             id="priority"
@@ -61,11 +69,17 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
             })}
             required
             autoComplete="on"
-            className="text-sm block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+            className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
           />
-        </div>
 
-        <div className="flex">
+          <div className="sm:py-3 sm:ml-4 ">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({
+                id: 'retries',
+                defaultMessage: 'Retries',
+              })}
+            </div>
+          </div>
           <TextField
             name="retries"
             id="retries"
@@ -80,8 +94,43 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
             })}
             required
             autoComplete="on"
-            className="mr-2 text-sm block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+            className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
           />
+        </div>
+
+        <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="sm:py-3">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({
+                id: 'original_work_id',
+                defaultMessage: 'Original Work Id',
+              })}
+            </div>
+          </div>
+          <TextField
+            name="originalWorkId"
+            id="original_work_id"
+            label={formatMessage({
+              id: 'original_work_id',
+              defaultMessage: 'Original Work Id',
+            })}
+            hideLabel
+            placeholder={formatMessage({
+              id: 'original_work_id',
+              defaultMessage: 'Original Work Id',
+            })}
+            required
+            autoComplete="on"
+            className="py-2 sm:ml-1 sm:pr-4 text-sm text-gray-900 sm:mt-0 w-full"
+          />
+          <div className="sm:py-3">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({
+                id: 'scheduled',
+                defaultMessage: 'Scheduled',
+              })}
+            </div>
+          </div>
 
           <DatePickerField
             label={formatMessage({
@@ -89,7 +138,7 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
               defaultMessage: 'Scheduled',
             })}
             hideLabel
-            className="w-full mt-0"
+            className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full "
             name="scheduled"
             placeholder={formatMessage({
               id: 'scheduled',
@@ -97,17 +146,15 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
             })}
           />
         </div>
-        <div className="flex w-full">
-          <SelectField
-            className="w-full mt-0"
-            label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            hideLabel
-            name="type"
-            options={WorkTypes}
-          />
-          <div className="w-full" />
-        </div>
 
+        <div className="sm:grid-cols-4 sm:gap-4">
+          <div className=" text-xl font-sm text-gray-500">
+            {formatMessage({
+              id: 'input',
+              defaultMessage: 'Input',
+            })}
+          </div>
+        </div>
         <FieldArray name="input">
           {({ push, remove: removeConfig }) => (
             <div>
@@ -204,10 +251,13 @@ const WorkForm = ({ onSubmit = () => true, onSubmitSuccess = () => true }) => {
         </FieldArray>
       </div>
 
-      <SubmitButton
-        label={formatMessage({ id: 'add_work', defaultMessage: 'Add Work' })}
-        className="ml-6"
-      />
+      <div className="mx-auto sm:w-1/2 ">
+        <SubmitButton
+          label={formatMessage({ id: 'add_work', defaultMessage: 'Add Work' })}
+          className="py-6 h-9 "
+          full
+        />
+      </div>
     </Form>
   );
 };
