@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../modules/common/components/BreadCrumbs';
 import PageHeader from '../modules/common/components/PageHeader';
-import useDailySyncs from '../modules/sync/hooks/useDailySyncs';
 
 const Home = () => {
   const { formatMessage } = useIntl();

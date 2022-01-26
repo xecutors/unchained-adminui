@@ -69,7 +69,10 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
       </div>
 
       <SubmitButton
-        label={formatMessage({ id: 'add', defaultMessage: 'Add Product' })}
+        label={formatMessage({
+          id: 'add_product',
+          defaultMessage: 'Add product',
+        })}
       />
     </Form>
   );

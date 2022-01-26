@@ -29,6 +29,9 @@
   "add_email": {
     "defaultMessage": "Add email"
   },
+  "add_product": {
+    "defaultMessage": "Add product"
+  },
   "address": {
     "defaultMessage": "Address"
   },
@@ -62,6 +65,9 @@
   "auth_error": {
     "defaultMessage": "Authentication error"
   },
+  "average_stat": {
+    "defaultMessage": "Avg. Open Rate stats"
+  },
   "base": {
     "defaultMessage": "Base"
   },
@@ -74,6 +80,9 @@
   "cart": {
     "defaultMessage": "Cart"
   },
+  "categories": {
+    "defaultMessage": "Categories"
+  },
   "change_password": {
     "defaultMessage": "Change password"
   },
@@ -81,6 +90,7 @@
     "defaultMessage": "City"
   },
   "close": {
+    "defaultMessage": "Close"
   },
   "close_sidebar": {
     "defaultMessage": "Close sidebar"
@@ -129,6 +139,12 @@
   },
   "date": {
     "defaultMessage": "Date"
+  },
+  "decreased": {
+    "defaultMessage": "Decreased by"
+  },
+  "decreased_by": {
+    "defaultMessage": "Increased by"
   },
   "default_currency": {
     "defaultMessage": "Default currency"
@@ -199,6 +215,10 @@
   "filter_by_type": {
     "defaultMessage": "Filter by type"
   },
+  "filter_key": {
+    "defaultMessage": "Key",
+    "description": "Filter form key"
+  },
   "filters": {
     "defaultMessage": "Filters"
   },
@@ -220,6 +240,9 @@
   "forgot_password_header_description": {
     "defaultMessage": "Enter your email address below and we'll send you a link to reset your password!"
   },
+  "from": {
+    "defaultMessage": "From"
+  },
   "full_name": {
     "defaultMessage": "Full name"
   },
@@ -238,6 +261,9 @@
   "image_not_available": {
     "defaultMessage": "Image not available"
   },
+  "import_duration": {
+    "defaultMessage": "Duration of import"
+  },
   "in_active": {
     "defaultMessage": "In-Active"
   },
@@ -254,6 +280,9 @@
     "defaultMessage": "Include leafs",
     "description": "Assortment children"
   },
+  "increased_by": {
+    "defaultMessage": "Increased by"
+  },
   "interface": {
     "defaultMessage": "Interface"
   },
@@ -264,8 +293,7 @@
     "defaultMessage": "ISO code"
   },
   "key": {
-    "defaultMessage": "Key",
-    "description": "Filter key"
+    "defaultMessage": "Key"
   },
   "language_header": {
     "defaultMessage": "Languages"
@@ -278,9 +306,6 @@
   },
   "level": {
     "defaultMessage": "Level"
-  },
-  "load_more": {
-    "defaultMessage": "Load more"
   },
   "log_in": {
     "defaultMessage": "Log in"
@@ -312,6 +337,9 @@
   "new": {
     "defaultMessage": "New"
   },
+  "new_assortment_header": {
+    "defaultMessage": "New Assortment"
+  },
   "new_country_header": {
     "defaultMessage": "New country"
   },
@@ -321,6 +349,9 @@
   "new_delivery_provider": {
     "defaultMessage": "New delivery provider"
   },
+  "new_filter_header": {
+    "defaultMessage": "New filter"
+  },
   "new_language_header": {
     "defaultMessage": "New language"
   },
@@ -329,6 +360,9 @@
   },
   "new_payment_provider_header": {
     "defaultMessage": "New payment provider"
+  },
+  "new_product_header": {
+    "defaultMessage": "New product"
   },
   "new_warehousing_provider_header": {
     "defaultMessage": "New warehousing provider"
@@ -341,6 +375,9 @@
   },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
+  },
+  "option": {
+    "defaultMessage": "Option"
   },
   "options": {
     "defaultMessage": "Options"
@@ -438,6 +475,9 @@
   "root": {
     "defaultMessage": ""
   },
+  "root_node": {
+    "defaultMessage": "Root node"
+  },
   "save": {
     "defaultMessage": "Save"
   },
@@ -489,11 +529,29 @@
   "switch_on": {
     "defaultMessage": "on"
   },
+  "sync_added": {
+    "defaultMessage": "Added { categoryName }"
+  },
+  "sync_removed": {
+    "defaultMessage": "Removed { categoryName }"
+  },
+  "sync_reports": {
+    "defaultMessage": "Sync reports"
+  },
+  "sync_status": {
+    "defaultMessage": "Sync status"
+  },
+  "sync_updated": {
+    "defaultMessage": "Updated { categoryName }"
+  },
   "system": {
     "defaultMessage": "System"
   },
   "tags": {
     "defaultMessage": "Tags"
+  },
+  "title": {
+    "defaultMessage": "Title"
   },
   "total": {
     "defaultMessage": "Total"
@@ -545,6 +603,9 @@
   },
   "valid": {
     "defaultMessage": "Valid"
+  },
+  "view_all": {
+    "defaultMessage": "View all"
   },
   "warehousing_provider": {
     "defaultMessage": "Warehousing provider"

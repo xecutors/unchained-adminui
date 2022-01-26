@@ -7,7 +7,7 @@ const SyncReport = () => {
   const { dailySync } = useDailySyncs({
     start: 1544475600000,
   });
-  console.log(dailySync);
+
   return (
     <>
       <BreadCrumbs />
