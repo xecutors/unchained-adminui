@@ -14,7 +14,7 @@ import Layout from '../modules/common/components/Layout';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 
-const isReportUI = parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
+const isReportUI = !parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
@@ -35,21 +35,15 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
     })();
   }, [router.pathname]);
 
-  let getLayout;
+  const usedNavigation = isReportUI ? 'report' : 'default';
 
-  if (Component.getLayout) getLayout = Component.getLayout;
-  else if (!isReportUI)
-    getLayout = (page) => (
-      <Layout apollo={apollo} {...rest} navigationType="report">
+  const getLayout =
+    Component.getLayout ||
+    ((page) => (
+      <Layout apollo={apollo} {...rest} navigationType={usedNavigation}>
         {page}
       </Layout>
-    );
-  else
-    getLayout = (page) => (
-      <Layout apollo={apollo} {...rest} navigationType="default">
-        {page}
-      </Layout>
-    );
+    ));
 
   const messages = getMessages(router.locale);
 
