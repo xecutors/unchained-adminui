@@ -1,34 +1,32 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useDoWork from '../hooks/useDoWork';
+import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
-const DoWorkForm = ({
-  onSubmit = () => true,
-  onSubmitSuccess = () => true,
-}) => {
+const DoWorkForm = () => {
   const { formatMessage } = useIntl();
+  const { doWork } = useDoWork();
+  const onSubmit = async ({ type, input }) => {
+    await doWork({ type, input });
+    return true;
+  };
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
-      Key: '',
       type: '',
       input: [],
     },
   });
 
-  const WorkTypes = {
-    EXTERNAL: 'EXTERNAL',
-    BULK_IMPORT: 'BULK_IMPORT',
-    PUBLICARE_SYNC: 'PUBLICARE_SYNC',
-    HTTP_REQUEST: 'HTTP_REQUEST',
-  };
+  const { workTypes } = useRegisteredWorkTypes();
   const { values } = form.formik;
   return (
     <FormHeader>
@@ -43,10 +41,18 @@ const DoWorkForm = ({
             <SelectField
               className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+              placeholder={formatMessage({
+                id: 'type',
+                defaultMessage: 'Type',
+              })}
               hideLabel
               name="type"
               required
-              options={WorkTypes}
+              options={convertArrayOfObjectToObject(
+                workTypes,
+                'label',
+                'value',
+              )}
             />
           </div>
           <div className="sm:grid-cols-4 sm:gap-4">

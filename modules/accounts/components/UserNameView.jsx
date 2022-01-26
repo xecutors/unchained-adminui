@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Button from '../../common/components/Button';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';

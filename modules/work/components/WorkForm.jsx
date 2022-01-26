@@ -10,14 +10,8 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
-import useWorkQueue from '../hooks/useWorkQueue';
 
-const WorkForm = ({
-  _id: workQueueId,
-  onSubmit = () => true,
-  onSubmitSuccess = () => true,
-}) => {
-  const { workQueue } = useWorkQueue({ workQueueId });
+const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
 

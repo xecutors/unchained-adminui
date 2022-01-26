@@ -10,6 +10,7 @@ const getCurrentTab = (current) => {
   if (current === 'add_work') return <WorkForm />;
   if (current === 'do_work') return <DoWorkForm />;
   if (current === 'allocate_work') return <AllocateWorkForm />;
+  return <></>;
 };
 const WorkManagement = () => {
   const { formatMessage } = useIntl();
