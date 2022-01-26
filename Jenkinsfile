@@ -21,7 +21,7 @@ pipeline {
         stage('Building') {
           steps{
             script {
-              adminui = docker.build("registry.ucc.dev/unchained/adminui","-f ./examples/adminui/Dockerfile ./examples/adminui")
+              adminui = docker.build("registry.ucc.dev/unchained/adminui","-f ./Dockerfile .")
             }
           }
         }
