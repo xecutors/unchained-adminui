@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
+import Link from 'next/link';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
@@ -49,6 +50,11 @@ const SyncDetail = () => {
             })}
           </h3>
           <div className="text-sm">
+            <div className="">
+              <Link href={`/sync-reports/${id}/jobs`}>
+                <a>Show Sync details</a>
+              </Link>
+            </div>
             <h6 className="text-gray-900">
               {formatMessage({
                 id: 'started',

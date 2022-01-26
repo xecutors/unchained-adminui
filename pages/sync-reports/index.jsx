@@ -12,7 +12,6 @@ const SyncReport = () => {
     <>
       <BreadCrumbs />
       <PageHeader headerText="Sync report" />
-
       <SyncReportList data={dailySync} />
     </>
   );
