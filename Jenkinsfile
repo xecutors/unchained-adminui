@@ -5,7 +5,7 @@ pipeline {
   environment {
     REGISTRY_AUTH = credentials('eec0f0c2-9b9d-4b26-8da5-58222499d901')
     DOTENV_PATH = credentials('unchained-dotenv')
-    NEXT_PUBLIC_SHOW_CONTROL_PANEL = '1'
+    NEXT_PUBLIC_SHOW_CONTROL_PANEL = '0'
     adminui = ''
   }
   tools { dockerTool "docker" }
