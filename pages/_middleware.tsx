@@ -1,14 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-
-const UnrestrictedPages = [
-  '/log-in',
-  '/sign-up',
-  '/account/forgot-password',
-  '/reset-password',
-  '/api/graphql',
-  '/404',
-  '/',
-];
+import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 
 const isSyncUI = parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
 const middleware = async (req: NextRequest) => {

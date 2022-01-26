@@ -13,13 +13,7 @@ import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-
-const UnrestrictedPages = [
-  '/log-in',
-  '/sign-up',
-  '/account/forgot-password',
-  '/reset-password',
-];
+import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(

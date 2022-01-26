@@ -510,3 +510,13 @@ export const getColor = (type, color, hue) => {
   return `${ColorLookupTable[color][type][hue]}`;
 };
 export default { LimitSteps, DefaultLimit };
+
+export const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/account/forgot-password',
+  '/reset-password',
+  '/api/graphql',
+  '/404',
+  '/',
+];
