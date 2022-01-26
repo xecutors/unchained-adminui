@@ -19,7 +19,7 @@ const TagInput = ({ tagList: tags, onChange }) => {
   };
 
   const addTag = () => {
-    if (!tagList.includes(newTag)) {
+    if (!tagList.includes(newTag) && newTag) {
       setTagList([...tagList, newTag]);
       setNewTag('');
     }
