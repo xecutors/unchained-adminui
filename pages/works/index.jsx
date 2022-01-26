@@ -22,7 +22,7 @@ const index = () => {
         })}
       />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
-        <ListHeader addPath="/works/new" />
+        <ListHeader addPath="/works/[eKvNOa3FbQfK4T2Dn]" />
         <WorkList workQueue={workQueue} />
 
         <ListPagination
