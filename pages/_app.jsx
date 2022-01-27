@@ -14,6 +14,7 @@ import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
+import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
 const isReportUI = !parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
 
@@ -64,7 +65,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
           draggable
           pauseOnHover
         />
-        {getLayout(<Component {...pageProps} />)}
+        <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
       </IntlWrapper>
     </ApolloProvider>
   );
