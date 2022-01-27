@@ -6,17 +6,25 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
 const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
+  const { formatMessage } = useIntl();
+  const languageAddedMessage = formatMessage({
+    id: 'language_added',
+    defaultMessage: 'Language added successfully!',
+  });
+  const languageUpdatedMessage = formatMessage({
+    id: 'language_updated',
+    defaultMessage: 'Language updated successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: isEdit ? languageUpdatedMessage : languageAddedMessage,
     enableReinitialize: true,
     initialValues: {
       isoCode: '',
       ...defaultValue,
     },
   });
-
-  const { formatMessage } = useIntl();
 
   return (
     <Form form={form}>

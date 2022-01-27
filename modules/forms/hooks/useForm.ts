@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik, FormikValues, FormikErrors, FormikTouched } from 'formik';
 import { useIntl } from 'react-intl';
-
+import { toast } from 'react-toastify';
 import clean from '../lib/clean';
 
 /**
@@ -14,6 +14,7 @@ const useForm = ({
   initialValues,
   initialErrors,
   initialTouched,
+  successMessage,
   enableReinitialize,
   validate,
 }: {
@@ -30,6 +31,7 @@ const useForm = ({
   initialTouched?: FormikTouched<FormikValues>;
   initialErrors?: FormikErrors<FormikValues>;
   enableReinitialize?: boolean;
+  successMessage?: string;
   validate?: (
     values: FormikValues,
     // eslint-disable-next-line no-undef
@@ -48,6 +50,7 @@ const useForm = ({
         (typeof result === 'boolean' ? result : result?.success) ?? false;
 
       if (success) {
+        if (successMessage) toast.success(successMessage);
         await onSubmitSuccess(success, values);
       } else {
         const error = typeof result === 'boolean' ? !result : result?.error;
@@ -64,7 +67,6 @@ const useForm = ({
         );
       }
     } catch (error) {
-      // Do not use errors as control flow: Catch known/expected errors and only throw unexpected errors
       console.error(error); // eslint-disable-line
       setSubmitError(
         (await getSubmitErrorMessage(error)) ||
