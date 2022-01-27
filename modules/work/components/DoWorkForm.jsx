@@ -32,14 +32,14 @@ const DoWorkForm = () => {
     <FormHeader>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className=" max-w-4xl  justify-between align-baseline">
             <div className="py-3">
               <div className="text-sm  font-medium text-gray-500">
                 {formatMessage({ id: 'type', defaultMessage: 'Type' })}
               </div>
             </div>
             <SelectField
-              className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
+              className="py-2 text-sm text-gray-900 sm:mt-0 w-full"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
               placeholder={formatMessage({
                 id: 'type',
@@ -55,14 +55,14 @@ const DoWorkForm = () => {
               )}
             />
           </div>
-          <div className="sm:grid-cols-4 sm:gap-4">
+          
             <div className=" text-lg font-sm text-gray-900">
               {formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
               })}
             </div>
-          </div>
+        
           <FieldArray name="input">
             {({ push, remove: removeConfig }) => (
               <div>

@@ -152,7 +152,7 @@ const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
             />
           </div>
 
-          <div className="sm:grid-cols-4 sm:gap-4">
+          <div>
             <div className=" text-lg font-sm text-gray-900">
               {formatMessage({
                 id: 'input',

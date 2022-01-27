@@ -17,7 +17,7 @@ const ProviderConfigurationForm = ({
     onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
-      configuration: [...defaultValue],
+      configuration: [{key: '', value: '', ...defaultValue}],
     },
   });
 

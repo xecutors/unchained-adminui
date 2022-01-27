@@ -10,7 +10,7 @@ const FormHeader = ({ onDelete, children }) => {
                 <button
                   onClick={onDelete}
                   type="button"
-                  className="mb-3 relative inline-flex items-center  px-1.5 py-1.5 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                  className="mb-3 relative inline-flex items-center  px-1.5 py-1.5 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-white bg-red-500  hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                 >
                   <svg
                     className="h-4 w-4 text-white-500"
