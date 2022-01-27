@@ -26,7 +26,7 @@ const SyncReport = () => {
         })}
       />
       <div className="border mt-4 border-gray-50 shadow bg-white rounded-md ">
-        <div className="mb-2 flex py-5 max-w-sm justify-between">
+        <div className="mb-2 flex py-5 max-w-sm justify-between ">
           <label className="ml-4 mr-2" htmlFor="report-start">
             {formatMessage({ id: 'from', defaultMessage: 'From' })}
           </label>
@@ -62,6 +62,7 @@ const SyncReport = () => {
             className="sm:ml-1 text-sm hover:border-indigo-500 sm:mt-0 w-full border-gray-200 rounded-md py-1"
           />
         </div>
+        <hr />
         <SyncReportList data={dailySync} />
       </div>
     </div>

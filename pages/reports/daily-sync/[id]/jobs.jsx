@@ -1,4 +1,10 @@
-import { ClockIcon } from '@heroicons/react/outline';
+import {
+  ClockIcon,
+  DatabaseIcon,
+  PlusIcon,
+  RefreshIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -20,22 +26,56 @@ const convertJobSignalToNumber = (signal) => {
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
     <>
-      <span className="mr-2 relative inline-block">
-        <svg
-          className="w-7 h-7 rounded-full text-white bg-indigo-600 fill-current"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-            clipRule="evenodd"
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-indigo-500 rounded-md p-3 ">
+          <PlusIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="currentColor"
           />
-        </svg>
+        </div>
         <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-          9
+          {added}
         </span>
       </span>
-      new {added} removed {removed} diff {diff} total {total}{' '}
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-green-500 rounded-md p-3 ">
+          <RefreshIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="none"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {diff}
+        </span>
+      </span>
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-red-500 rounded-md p-3 ">
+          <TrashIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="currentColor"
+            stroke="red"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {removed}
+        </span>
+      </span>
+
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-green-500 rounded-md p-3 ">
+          <DatabaseIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="none"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {total}
+        </span>
+      </span>
     </>
   );
 };
