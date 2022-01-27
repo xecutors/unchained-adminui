@@ -147,31 +147,6 @@ const AllocateWorkForm = () => {
             </div>
           )}
         </FieldArray>
-        <div className="sm:flex max-w-4xl  justify-between align-baseline">
-          <div className="sm:py-3">
-            <div className="text-sm  font-medium text-gray-500">
-              {formatMessage({
-                id: 'worker',
-                defaultMessage: 'Worker',
-              })}
-            </div>
-          </div>
-
-          <TextField
-            name="worker"
-            id="worker"
-            label={formatMessage({
-              id: 'worker',
-              defaultMessage: 'Worker',
-            })}
-            hideLabel
-            placeholder={formatMessage({
-              id: 'worker',
-              defaultMessage: 'Worker',
-            })}
-            className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
-          />
-        </div>
         <div className="mx-auto sm:w-1/2 ">
           <SubmitButton
             label={formatMessage({
