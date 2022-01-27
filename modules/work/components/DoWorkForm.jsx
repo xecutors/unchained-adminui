@@ -32,7 +32,7 @@ const DoWorkForm = () => {
     <FormHeader>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className=" max-w-4xl  justify-between align-baseline">
+          <div className=" max-w-4xl sm:mr-10 justify-between align-baseline">
             <div className="py-3">
               <div className="text-sm  font-medium text-gray-500">
                 {formatMessage({ id: 'type', defaultMessage: 'Type' })}
@@ -164,8 +164,8 @@ const DoWorkForm = () => {
         <div className="mx-auto sm:w-1/2 ">
           <SubmitButton
             label={formatMessage({
-              id: 'add_do_work',
-              defaultMessage: 'Add Do Work',
+              id: 'do_work',
+              defaultMessage: 'Do Work',
             })}
             className="py-6 h-9 "
             full

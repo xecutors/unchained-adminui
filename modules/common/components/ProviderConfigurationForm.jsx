@@ -60,7 +60,7 @@ const ProviderConfigurationForm = ({
                     hideLabel
                     className="w-full mr-2"
                   />
-                  <div className="flex-shrink-0 sm:mt-4 mt-5">
+                  <div className="flex-shrink-0 sm:mt-4 mt-5 mr-1">
                     <button
                       className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                       type="button"

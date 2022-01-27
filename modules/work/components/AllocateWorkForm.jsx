@@ -33,7 +33,7 @@ const AllocateWorkForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
-        <div className="max-w-4xl  justify-between align-baseline">
+        <div className="max-w-4xl sm:mr-11 mr-8 justify-between align-baseline">
           <div className="sm:py-3">
             <div className="text-sm  font-medium text-gray-500">
               {formatMessage({
@@ -55,8 +55,9 @@ const AllocateWorkForm = () => {
               id: 'worker',
               defaultMessage: 'Worker',
             })}
-            className="py-2 text-sm text-gray-900 sm:mt-0 w-full"
+            className=" text-sm text-gray-900 sm:mt-0 max-w-full"
           />
+       
         </div>
         <FieldArray name="types">
           {({ push, remove: removeConfig }) => (
@@ -175,8 +176,8 @@ const AllocateWorkForm = () => {
         <div className="mx-auto sm:w-1/2 ">
           <SubmitButton
             label={formatMessage({
-              id: 'add_allocate_work',
-              defaultMessage: 'Add Allocate Work',
+              id: 'allocate_work',
+              defaultMessage: 'Allocate Work',
             })}
             className="py-6 h-9 "
             full

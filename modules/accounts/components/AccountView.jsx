@@ -30,7 +30,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
         <div className="mt-6">
           <EmailAddresses emails={emails} userId={_id} />
         </div>
-        <div className="sm:mt-6 max-w-full " >
+        <div className="mt-6">
           <UserTagsView tags={tags} userId={_id} />
         </div>
         <div className="pt-2">
