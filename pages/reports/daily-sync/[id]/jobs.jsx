@@ -20,6 +20,21 @@ const convertJobSignalToNumber = (signal) => {
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
     <>
+      <span className="mr-2 relative inline-block">
+        <svg
+          className="w-7 h-7 rounded-full text-white bg-indigo-600 fill-current"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          9
+        </span>
+      </span>
       new {added} removed {removed} diff {diff} total {total}{' '}
     </>
   );
@@ -166,26 +181,7 @@ const JobBody = ({ job }) => {
               })}
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-               <JobSyncStat {...job.categories} />
-                 
-              <svg
-                  className="bg-indigo-500 text-white h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                    clipRule="evenodd"
-                  />
-                   {job.categories}
-                </svg>
-
-               
-               
-              
+              <JobSyncStat {...job.categories} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
