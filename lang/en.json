@@ -26,14 +26,20 @@
   "add": {
     "defaultMessage": "Add"
   },
-  "add_allocate_work": {
-    "defaultMessage": "Add Allocate Work"
+  "add_assortment": {
+    "defaultMessage": "Add Assortment"
   },
-  "add_do_work": {
-    "defaultMessage": "Add Do Work"
+  "add_country": {
+    "defaultMessage": "Add Country"
+  },
+  "add_currency": {
+    "defaultMessage": "Add Currency"
   },
   "add_email": {
     "defaultMessage": "Add email"
+  },
+  "add_language": {
+    "defaultMessage": "Add Language"
   },
   "add_product": {
     "defaultMessage": "Add product"
@@ -62,6 +68,9 @@
   "app.greeting": {
     "defaultMessage": "<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
   },
+  "are_you_sure": {
+    "defaultMessage": "Are you sure?"
+  },
   "assortment_base": {
     "defaultMessage": "Base"
   },
@@ -86,8 +95,14 @@
   "base_country": {
     "defaultMessage": "Base"
   },
+  "base_language": {
+    "defaultMessage": "Base"
+  },
   "birthday": {
     "defaultMessage": "Birthday"
+  },
+  "cancel": {
+    "defaultMessage": "Cancel"
   },
   "cart": {
     "defaultMessage": "Cart"
@@ -122,11 +137,17 @@
   "context": {
     "defaultMessage": "Context"
   },
+  "continue": {
+    "defaultMessage": "Continue"
+  },
   "countries": {
     "defaultMessage": "Countries"
   },
   "country_code": {
     "defaultMessage": "Country code"
+  },
+  "country_deleted": {
+    "defaultMessage": "Country {id} deleted successfully"
   },
   "create_filter": {
     "defaultMessage": "Create Filter"
@@ -173,6 +194,12 @@
   },
   "delete": {
     "defaultMessage": "Delete"
+  },
+  "delete_country": {
+    "defaultMessage": "Delete country"
+  },
+  "delete_country_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this country?"
   },
   "delivery_providers": {
     "defaultMessage": "Delivery providers"
@@ -358,9 +385,6 @@
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
-  },
-  "logs": {
-    "defaultMessage": "Logs"
   },
   "male": {
     "defaultMessage": "Male"
@@ -634,11 +658,20 @@
   "update": {
     "defaultMessage": "Update"
   },
+  "update_country": {
+    "defaultMessage": "Update Country"
+  },
+  "update_currency": {
+    "defaultMessage": "Update Currency"
+  },
   "update_currency_header": {
     "defaultMessage": "Update currency"
   },
   "update_delivery_configuration": {
     "defaultMessage": "Update delivery provider"
+  },
+  "update_language": {
+    "defaultMessage": "Update Language"
   },
   "update_language_header": {
     "defaultMessage": "Update languages"
@@ -687,6 +720,9 @@
   },
   "warehousing_providers_header": {
     "defaultMessage": "Warehousing providers"
+  },
+  "warning": {
+    "defaultMessage": "Warning!"
   },
   "work_management_setting_list_header": {
     "defaultMessage": "Work Management setting"

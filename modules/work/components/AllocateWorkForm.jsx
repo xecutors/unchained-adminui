@@ -38,7 +38,7 @@ const AllocateWorkForm = () => {
             <div className="text-sm  font-medium text-gray-500">
               {formatMessage({
                 id: 'worker',
-                defaultMessage: 'worker',
+                defaultMessage: 'Worker',
               })}
             </div>
           </div>

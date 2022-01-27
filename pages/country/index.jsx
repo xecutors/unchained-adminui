@@ -29,7 +29,6 @@ const Country = () => {
   const onRemoveCountry = async (countryId) => {
     await setModal(
       <DangerMessage
-        headerText={formatMessage({ id: 'danger', defaultMessage: 'Danger' })}
         message={formatMessage({
           id: 'delete_country_confirmation',
           defaultMessage:
