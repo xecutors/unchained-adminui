@@ -55,9 +55,11 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       </div>
 
       {show ? (
-        <p className={classNames('text-2xl text-gray-400 rounded-lg', bodyCSS)}>
+        <div
+          className={classNames('text-2xl text-gray-400 rounded-lg', bodyCSS)}
+        >
           {body}
-        </p>
+        </div>
       ) : (
         ''
       )}

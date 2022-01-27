@@ -26,11 +26,20 @@
   "add": {
     "defaultMessage": "Add"
   },
+  "add_allocate_work": {
+    "defaultMessage": "Add Allocate Work"
+  },
+  "add_do_work": {
+    "defaultMessage": "Add Do Work"
+  },
   "add_email": {
     "defaultMessage": "Add email"
   },
   "add_product": {
     "defaultMessage": "Add product"
+  },
+  "add_work": {
+    "defaultMessage": "Add Work"
   },
   "address": {
     "defaultMessage": "Address"
@@ -43,6 +52,9 @@
   },
   "address_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
+  },
+  "allocate_work": {
+    "defaultMessage": "Allocate Work"
   },
   "already_got_a_user": {
     "defaultMessage": "Already got a user?"
@@ -116,6 +128,9 @@
   "country_code": {
     "defaultMessage": "Country code"
   },
+  "create_filter": {
+    "defaultMessage": "Create Filter"
+  },
   "create_new_account": {
     "defaultMessage": "Create new Account?"
   },
@@ -125,6 +140,10 @@
   "created": {
     "defaultMessage": "Created"
   },
+  "crossbase": {
+    "defaultMessage": "Crossbase",
+    "description": "Name"
+  },
   "currencies": {
     "defaultMessage": "Currencies"
   },
@@ -133,6 +152,9 @@
   },
   "current_password": {
     "defaultMessage": "Current password"
+  },
+  "daily_sync": {
+    "defaultMessage": "Daily sync"
   },
   "dashboard": {
     "defaultMessage": "Dashboard"
@@ -163,6 +185,9 @@
   },
   "display_name": {
     "defaultMessage": "Display Name"
+  },
+  "do_work": {
+    "defaultMessage": "Do Work"
   },
   "dont_have_account": {
     "defaultMessage": "Don't have an account yet?"
@@ -228,6 +253,9 @@
   "finished": {
     "defaultMessage": "Finished"
   },
+  "finished_at": {
+    "defaultMessage": "Finished: {time}"
+  },
   "first_name": {
     "defaultMessage": "First name"
   },
@@ -283,6 +311,15 @@
   "increased_by": {
     "defaultMessage": "Increased by"
   },
+  "input": {
+    "defaultMessage": "Input"
+  },
+  "input_key": {
+    "defaultMessage": "Input Key"
+  },
+  "input_value": {
+    "defaultMessage": "Input value"
+  },
   "interface": {
     "defaultMessage": "Interface"
   },
@@ -333,6 +370,10 @@
   },
   "name": {
     "defaultMessage": "Name"
+  },
+  "navision": {
+    "defaultMessage": "Navision",
+    "description": "Name"
   },
   "new": {
     "defaultMessage": "New"
@@ -394,6 +435,9 @@
   "orders_list_header": {
     "defaultMessage": "Orders"
   },
+  "original_work_id": {
+    "defaultMessage": "Original Work Id"
+  },
   "page_not_found": {
     "defaultMessage": "Page not found."
   },
@@ -420,6 +464,9 @@
   },
   "preferred": {
     "defaultMessage": "Preferred"
+  },
+  "priority": {
+    "defaultMessage": "Priority"
   },
   "problems": {
     "defaultMessage": "Problems"
@@ -460,6 +507,9 @@
   "remember_password": {
     "defaultMessage": "Remember me"
   },
+  "reports": {
+    "defaultMessage": "Reports"
+  },
   "reset_password": {
     "defaultMessage": "Reset password"
   },
@@ -468,6 +518,9 @@
   },
   "rest_password": {
     "defaultMessage": "Reset password"
+  },
+  "retries": {
+    "defaultMessage": "Retries"
   },
   "roles": {
     "defaultMessage": "Roles"
@@ -517,8 +570,15 @@
   "sign_up_header": {
     "defaultMessage": "Create new Account"
   },
+  "solr": {
+    "defaultMessage": "Solr",
+    "description": "Name"
+  },
   "started": {
     "defaultMessage": "Started"
+  },
+  "started_at": {
+    "defaultMessage": "Started: {time}"
   },
   "status": {
     "defaultMessage": "Status"
@@ -532,11 +592,14 @@
   "sync_added": {
     "defaultMessage": "Added { categoryName }"
   },
+  "sync_jobs": {
+    "defaultMessage": "Sync jobs"
+  },
+  "sync_jobs_detail": {
+    "defaultMessage": "Sync Jobs detail"
+  },
   "sync_removed": {
     "defaultMessage": "Removed { categoryName }"
-  },
-  "sync_reports": {
-    "defaultMessage": "Sync reports"
   },
   "sync_status": {
     "defaultMessage": "Sync status"
@@ -552,6 +615,9 @@
   },
   "title": {
     "defaultMessage": "Title"
+  },
+  "to": {
+    "defaultMessage": "To"
   },
   "total": {
     "defaultMessage": "Total"
@@ -604,6 +670,9 @@
   "valid": {
     "defaultMessage": "Valid"
   },
+  "value": {
+    "defaultMessage": "Value"
+  },
   "view_all": {
     "defaultMessage": "View all"
   },
@@ -613,10 +682,16 @@
   "warehousing_providers_header": {
     "defaultMessage": "Warehousing providers"
   },
+  "work_management_setting_list_header": {
+    "defaultMessage": "Work Management setting"
+  },
   "work_number": {
     "defaultMessage": "Work #"
   },
   "work_queue_header": {
     "defaultMessage": "Work queue"
+  },
+  "worker": {
+    "defaultMessage": "Worker"
   }
 }

@@ -37,9 +37,11 @@ const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="flex items-center justify-between">
-      <p className="text-sm font-medium text-indigo-600 truncate">{job._id}</p>
+      <div className="text-sm font-medium text-indigo-600 truncate">
+        {job._id}
+      </div>
       <div className=" items-end flex-col">
-        <p
+        <div
           className={classNames(
             'text-xs leading-5 font-semibold rounded-full  text-gray-800',
           )}
@@ -53,8 +55,8 @@ const JobHeader = ({ job }) => {
               time: format(new Date(job.started), 'Pp'),
             },
           )}
-        </p>
-        <p
+        </div>
+        <div
           className={classNames(
             'mt-2  text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800',
             {
@@ -73,7 +75,7 @@ const JobHeader = ({ job }) => {
               time: format(new Date(job.finished), 'Pp'),
             },
           )}
-        </p>
+        </div>
         <div className="mt-2 inline-flex justify-between items-center text-sm text-gray-500 sm:mt-0">
           <ClockIcon className="h-5 w-5 mr-2" viewBox="0 0 22 22" />
 
@@ -225,7 +227,11 @@ const SyncJobs = () => {
         })}
       />
       <div className=" p-2 bg-white  overflow-hidden sm:rounded-md">
-        <Accordion containerCSS="p-3" data={accordionData} />
+        {!jobs?.length ? (
+          <p>No sync report found</p>
+        ) : (
+          <Accordion containerCSS="p-3" data={accordionData} />
+        )}
       </div>
     </div>
   );
