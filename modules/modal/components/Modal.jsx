@@ -22,10 +22,15 @@ class ModalInner extends React.Component {
   }
 }
 
-const Modal = ({ onClose, children, visible, closeOnOutsideClick = false }) => {
+const Modal = ({
+  onClose: close,
+  children,
+  visible,
+  closeOnOutsideClick = false,
+}) => {
   const { formatMessage } = useIntl();
   const onOverlayClick = () => {
-    if (closeOnOutsideClick && visible) onClose();
+    if (closeOnOutsideClick && visible) close();
   };
 
   const stopEventPropagation = (e) => {
@@ -60,7 +65,7 @@ const Modal = ({ onClose, children, visible, closeOnOutsideClick = false }) => {
             <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
               <button
                 type="button"
-                onClick={onClose}
+                onClick={close}
                 className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span className="sr-only">
@@ -84,7 +89,7 @@ const Modal = ({ onClose, children, visible, closeOnOutsideClick = false }) => {
                 </svg>
               </button>
             </div>
-            {children}
+            {React.cloneElement(children, { close })}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
@@ -11,6 +12,8 @@ import CountryList from '../../modules/country/components/CountryList';
 import useCountries from '../../modules/country/hooks/useCountries';
 
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
+import DangerMessage from '../../modules/modal/components/DangerMessage';
+import useModal from '../../modules/modal/hooks/useModal';
 
 const Country = () => {
   const [limit, setLimit] = useState(DefaultLimit);
@@ -20,9 +23,39 @@ const Country = () => {
     limit,
     includeInactive,
   });
+
+  const { setModal } = useModal();
   const { removeCountry } = useRemoveCountry();
   const onRemoveCountry = async (countryId) => {
-    await removeCountry({ countryId });
+    await setModal(
+      <DangerMessage
+        headerText={formatMessage({ id: 'danger', defaultMessage: 'Danger' })}
+        message={formatMessage({
+          id: 'delete_country_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this country? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeCountry({ countryId });
+          toast.success(
+            formatMessage(
+              {
+                id: 'country_deleted',
+                defaultMessage: 'Country {id} deleted successfully',
+              },
+              {
+                id: countryId,
+              },
+            ),
+          );
+        }}
+        okText={formatMessage({
+          id: 'delete_country',
+          defaultMessage: 'Delete country',
+        })}
+      />,
+    );
   };
   return (
     <>
