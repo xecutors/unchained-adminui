@@ -28,10 +28,10 @@ const AddProduct = () => {
         })}
       />
       <div className="mt-6  sm:max-w-2xl">
-      <FormHeader>
-        <ProductForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-      </FormHeader>
-    </div>
+        <FormHeader>
+          <ProductForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </FormHeader>
+      </div>
     </>
   );
 };

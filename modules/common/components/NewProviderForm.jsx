@@ -41,7 +41,10 @@ const NewProviderForm = ({
             required
             options={providerInterfaces}
             label={formatMessage({ id: 'adapter', defaultMessage: 'Adapter' })}
-      placeholder={formatMessage({ id: 'adapter', defaultMessage: 'Adapter' })}
+            placeholder={formatMessage({
+              id: 'adapter',
+              defaultMessage: 'Adapter',
+            })}
             className="mt-2"
           />
           <SubmitButton

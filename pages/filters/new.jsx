@@ -36,9 +36,9 @@ const AddFilter = () => {
         })}
       />
       <div className="mt-6  sm:max-w-2xl">
-      <FormHeader>
-        <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-      </FormHeader>
+        <FormHeader>
+          <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </FormHeader>
       </div>
     </>
   );

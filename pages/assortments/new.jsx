@@ -21,7 +21,7 @@ const AddAssortments = () => {
   };
 
   return (
-   <>
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -29,14 +29,14 @@ const AddAssortments = () => {
           defaultMessage: 'New Assortment',
         })}
       />
-       <div className="mt-6  sm:max-w-2xl">
-      <FormHeader>
-        <AssortmentForm
-          onSubmitSuccess={onSubmitSuccess}
-          onSubmit={onCreateAssortment}
-        />
-      </FormHeader>
-    </div>
+      <div className="mt-6  sm:max-w-2xl">
+        <FormHeader>
+          <AssortmentForm
+            onSubmitSuccess={onSubmitSuccess}
+            onSubmit={onCreateAssortment}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };
