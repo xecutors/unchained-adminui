@@ -39,21 +39,23 @@ const NewPaymentProvider = () => {
           defaultMessage: 'New payment provider',
         })}
       />
-      <NewProviderForm
-        providerInterfaces={convertArrayOfObjectToObject(
-          paymentInterfaces,
-          'label',
-          'value',
-        )}
-        providerTypes={convertArrayOfObjectToObject(
-          paymentProviderType,
-          'label',
-          'value',
-        )}
-        onSubmit={onSubmit}
-        onSubmitSuccess={onSubmitSuccess}
-        onProviderChange={(current) => setSelectedType(current)}
-      />
+      <div className="mt-6  sm:max-w-2xl">
+        <NewProviderForm
+          providerInterfaces={convertArrayOfObjectToObject(
+            paymentInterfaces,
+            'label',
+            'value',
+          )}
+          providerTypes={convertArrayOfObjectToObject(
+            paymentProviderType,
+            'label',
+            'value',
+          )}
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          onProviderChange={(current) => setSelectedType(current)}
+        />
+      </div>
     </>
   );
 };

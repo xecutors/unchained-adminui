@@ -5,7 +5,6 @@ import AccountView from '../../modules/accounts/components/AccountView';
 import PaymentCredentialsView from '../../modules/accounts/components/PaymentCredentialsView';
 import ProfileView from '../../modules/accounts/components/ProfileView';
 import UserEnrollments from '../../modules/accounts/components/UserEnrollments';
-import UserLogs from '../../modules/accounts/components/UserLogs';
 import UserOrders from '../../modules/accounts/components/UserOrders';
 import UserQuotations from '../../modules/accounts/components/UserQuotations';
 import useUser from '../../modules/accounts/hooks/useUser';
@@ -20,7 +19,6 @@ const getCurrentTab = (current, user) => {
   if (current === 'enrollments') return <UserEnrollments {...user} />;
   if (current === 'payment_credentials')
     return <PaymentCredentialsView {...user} />;
-  if (current === 'logs') return <UserLogs {...user} />;
   return <AccountView {...user} />;
 };
 
@@ -47,11 +45,6 @@ const UserProfile = () => {
     payment_credentials: formatMessage({
       id: 'payment_credentials',
       defaultMessage: 'Payment credentials',
-    }),
-
-    logs: formatMessage({
-      id: 'logs',
-      defaultMessage: 'Logs',
     }),
   };
 

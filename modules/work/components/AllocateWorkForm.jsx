@@ -33,6 +33,31 @@ const AllocateWorkForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
+        <div className="max-w-4xl sm:mr-11 mr-8 mb-3 justify-between align-baseline">
+          <div className="sm:py-3">
+            <div className="text-sm  font-medium text-gray-500">
+              {formatMessage({
+                id: 'worker',
+                defaultMessage: 'worker',
+              })}
+            </div>
+          </div>
+
+          <TextField
+            name="worker"
+            id="worker"
+            label={formatMessage({
+              id: 'worker',
+              defaultMessage: 'Worker',
+            })}
+            hideLabel
+            placeholder={formatMessage({
+              id: 'worker',
+              defaultMessage: 'Worker',
+            })}
+            className=" text-sm text-gray-900 sm:mt-0 max-w-full"
+          />
+        </div>
         <FieldArray name="types">
           {({ push, remove: removeConfig }) => (
             <div>
@@ -45,16 +70,8 @@ const AllocateWorkForm = () => {
                   >
                     <div className="space-y-3 w-100 sm:pr-2 rounded-md relative w-full">
                       <div className="sm:flex max-w-4xl  justify-between align-baseline">
-                        <div className="py-3">
-                          <div className="text-sm  font-medium text-gray-500">
-                            {formatMessage({
-                              id: 'type',
-                              defaultMessage: 'Type',
-                            })}
-                          </div>
-                        </div>
                         <SelectField
-                          className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
+                          className="py-2 text-sm text-gray-500 sm:mt-0 w-full"
                           label={formatMessage({
                             id: 'type',
                             defaultMessage: 'Type',
@@ -74,27 +91,29 @@ const AllocateWorkForm = () => {
                         />
                       </div>
                     </div>
-                    <button
-                      className="mt-2 mr-2 items-center text-red-500 align-baseline"
-                      type="button"
-                      onClick={() => removeConfig(index)}
-                    >
-                      <svg
-                        className="mt-1 h-4 w-4 text-red-500"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                    <div className="flex-shrink-0 ml-2  sm:mt-4 mt-5">
+                      <button
+                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                        type="button"
+                        onClick={() => removeConfig(index)}
                       >
-                        {' '}
-                        <polyline points="3 6 5 6 21 6" />{' '}
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
-                        <line x1="10" y1="11" x2="10" y2="17" />{' '}
-                        <line x1="14" y1="11" x2="14" y2="17" />
-                      </svg>
-                    </button>
+                        <svg
+                          className="h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          {' '}
+                          <polyline points="3 6 5 6 21 6" />{' '}
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
+                          <line x1="10" y1="11" x2="10" y2="17" />{' '}
+                          <line x1="14" y1="11" x2="14" y2="17" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 );
               })}
@@ -128,36 +147,11 @@ const AllocateWorkForm = () => {
             </div>
           )}
         </FieldArray>
-        <div className="sm:flex max-w-4xl  justify-between align-baseline">
-          <div className="sm:py-3">
-            <div className="text-sm  font-medium text-gray-500">
-              {formatMessage({
-                id: 'worker',
-                defaultMessage: 'Worker',
-              })}
-            </div>
-          </div>
-
-          <TextField
-            name="worker"
-            id="worker"
-            label={formatMessage({
-              id: 'worker',
-              defaultMessage: 'Worker',
-            })}
-            hideLabel
-            placeholder={formatMessage({
-              id: 'worker',
-              defaultMessage: 'Worker',
-            })}
-            className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
-          />
-        </div>
         <div className="mx-auto sm:w-1/2 ">
           <SubmitButton
             label={formatMessage({
-              id: 'add_allocate_work',
-              defaultMessage: 'Add Allocate Work',
+              id: 'allocate_work',
+              defaultMessage: 'Allocate Work',
             })}
             className="py-6 h-9 "
             full

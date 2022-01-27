@@ -83,9 +83,16 @@ const CountryForm = ({
       <SubmitButton
         label={
           isEdit
-            ? formatMessage({ id: 'update', defaultMessage: 'Update' })
-            : formatMessage({ id: 'add', defaultMessage: 'Add' })
+            ? formatMessage({
+                id: 'update_country',
+                defaultMessage: 'Update Country',
+              })
+            : formatMessage({
+                id: 'add_country',
+                defaultMessage: 'Add Country',
+              })
         }
+        third
       />
     </Form>
   );

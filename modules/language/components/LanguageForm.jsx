@@ -51,9 +51,16 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
       <SubmitButton
         label={
           isEdit
-            ? formatMessage({ id: 'update', defaultMessage: 'Update' })
-            : formatMessage({ id: 'add', defaultMessage: 'Add' })
+            ? formatMessage({
+                id: 'update_language',
+                defaultMessage: 'Update Language',
+              })
+            : formatMessage({
+                id: 'add_language',
+                defaultMessage: 'Add Language',
+              })
         }
+        third
       />
     </Form>
   );

@@ -21,7 +21,7 @@ const AddCountries = () => {
   };
 
   return (
-    <div className="mt-6  sm:max-w-lg">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -29,13 +29,15 @@ const AddCountries = () => {
           defaultMessage: 'New country',
         })}
       />
-      <FormHeader>
-        <CountryForm
-          onSubmitSuccess={onSubmitSuccess}
-          onSubmit={onCreateCountry}
-        />
-      </FormHeader>
-    </div>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader>
+          <CountryForm
+            onSubmitSuccess={onSubmitSuccess}
+            onSubmit={onCreateCountry}
+          />
+        </FormHeader>
+      </div>
+    </>
   );
 };
 

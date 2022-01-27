@@ -89,22 +89,25 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
           ))}
         </ul>
         <Form form={form}>
-          <div className="mt-5 border-t">
-            <TextField
-              className="mt-7"
-              name="email"
-              required
-              label={formatMessage({
-                id: 'email',
-                defaultMessage: 'Email',
-              })}
-            />
-            <SubmitButton
-              label={formatMessage({
-                id: 'add_email',
-                defaultMessage: 'Add email',
-              })}
-            />
+          <div className="border-t mt-4">
+            <div className="mt-5 max-w-md ">
+              <TextField
+                className="mt-7"
+                name="email"
+                required
+                label={formatMessage({
+                  id: 'email',
+                  defaultMessage: 'Email',
+                })}
+              />
+              <SubmitButton
+                label={formatMessage({
+                  id: 'add_email',
+                  defaultMessage: 'Add email',
+                })}
+                third
+              />
+            </div>
           </div>
         </Form>
       </div>

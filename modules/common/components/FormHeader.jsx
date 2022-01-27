@@ -1,17 +1,16 @@
-import Button from './Button';
-
 const FormHeader = ({ onDelete, children }) => {
   return (
-    <div className="mt-5 sm:max-w-full">
-      <div className="bg-white px-5 shadow sm:rounded-t sm:px-15">
+    <div className=" mt-5 sm:max-w-full">
+      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
         <div className="  border-gray-50">
-          <div className=" -mt-2 mb-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+          <div className="mt-3 mr-1 flex items-center justify-between flex-wrap sm:flex-nowrap">
+            <div />
             {onDelete && (
-              <div className=" mt-2 mb-1 flex-shrink-0 items-end">
-                <Button
+              <div className="flex-shrink-1">
+                <button
                   onClick={onDelete}
                   type="button"
-                  className="mb-3  px-2 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                  className="mb-3 relative inline-flex items-center  px-1.5 py-1.5 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-full text-white bg-red-500  hover:bg-white hover:text-red-500 hover:border-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                 >
                   <svg
                     className="h-4 w-4 text-white-500"
@@ -28,7 +27,7 @@ const FormHeader = ({ onDelete, children }) => {
                     <line x1="10" y1="11" x2="10" y2="17" />{' '}
                     <line x1="14" y1="11" x2="14" y2="17" />
                   </svg>
-                </Button>
+                </button>
               </div>
             )}
           </div>

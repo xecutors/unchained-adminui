@@ -14,6 +14,16 @@ const LanguageListItem = ({ language, onRemove }) => {
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900 border-">
           {language.isoCode}
+          {language.isBase && (
+            <Badge
+              text={formatMessage({
+                id: 'base_language',
+                defaultMessage: 'Base',
+              })}
+              className="ml-2 text-sm"
+              square
+            />
+          )}
         </div>
       </Table.Cell>
 
@@ -31,12 +41,6 @@ const LanguageListItem = ({ language, onRemove }) => {
           color={language.isActive ? 'green' : 'red'}
           square
         />
-      </Table.Cell>
-
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="text-sm text-gray-900">
-          {language.isBase && 'Base language'}
-        </div>
       </Table.Cell>
 
       <Table.Cell className="px-6  whitespace-nowrap ">

@@ -46,13 +46,15 @@ const PaymentProviderUpdate = () => {
           defaultMessage: 'Update payment provider',
         })}
       />
-      <FormHeader onDelete={onRemovePaymentProvider}>
-        <ProviderConfigurationForm
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          defaultValue={paymentProvider?.configuration || []}
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-2xl">
+        <FormHeader onDelete={onRemovePaymentProvider}>
+          <ProviderConfigurationForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            defaultValue={paymentProvider?.configuration || []}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

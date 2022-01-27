@@ -36,7 +36,7 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           required
-          className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="block mt-3 max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         {isEdit && (
@@ -57,9 +57,16 @@ const CurrencyForm = ({
       <SubmitButton
         label={
           isEdit
-            ? formatMessage({ id: 'update', defaultMessage: 'Update' })
-            : formatMessage({ id: 'add', defaultMessage: 'Add' })
+            ? formatMessage({
+                id: 'update_currency',
+                defaultMessage: 'Update Currency',
+              })
+            : formatMessage({
+                id: 'add_currency',
+                defaultMessage: 'Add Currency',
+              })
         }
+        third
       />
     </Form>
   );

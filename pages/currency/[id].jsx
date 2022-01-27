@@ -38,14 +38,16 @@ const UpdateCurrency = () => {
           defaultMessage: 'Update currency',
         })}
       />
-      <FormHeader onDelete={onRemove}>
-        <CurrencyForm
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          defaultValue={currency}
-          isEdit
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader onDelete={onRemove}>
+          <CurrencyForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            defaultValue={currency}
+            isEdit
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

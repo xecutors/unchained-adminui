@@ -31,7 +31,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="space-y-6 sm:space-y-5">
+      <div className="mt-6 sm:max-w-full space-y-6 sm:space-y-5">
         <TextField
           name="title"
           id="name"
@@ -45,7 +45,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
           })}
           required
           autoComplete="on"
-          className="text-sm block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         <div className="flex items-center h-5">
@@ -73,6 +73,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
           id: 'add_product',
           defaultMessage: 'Add product',
         })}
+        third
       />
     </Form>
   );

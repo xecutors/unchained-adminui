@@ -29,8 +29,9 @@ const UserTagsView = ({ tags = [], userId }) => {
           />
         </div>
       </div>
-
-      <TagInput onChange={(values) => setTagList(values)} />
+      <div className="max-w-md">
+        <TagInput onChange={(values) => setTagList(values)} />
+      </div>
     </div>
   );
 };
