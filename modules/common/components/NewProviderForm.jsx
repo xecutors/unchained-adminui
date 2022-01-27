@@ -25,7 +25,7 @@ const NewProviderForm = ({
 
   return (
     <Form form={form}>
-      <div className="mt-6  sm:max-w-md">
+      <div className="mt-6 sm:max-w-full">
         <div className="bg-white py-4 px-4 shadow sm:rounded-lg sm:px-15">
           <SelectField
             onChange={(e) => onProviderChange(e.target.value)}
@@ -33,18 +33,21 @@ const NewProviderForm = ({
             required
             label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             options={providerTypes}
+            className="mb-2"
           />
           <SelectField
             name="adapterKey"
             required
             options={providerInterfaces}
             label={formatMessage({ id: 'adapter', defaultMessage: 'Adapter' })}
+            className="mt-2"
           />
           <SubmitButton
             label={formatMessage({
               id: 'create_provider',
               defaultMessage: 'Create provider',
             })}
+            third
           />
         </div>
       </div>

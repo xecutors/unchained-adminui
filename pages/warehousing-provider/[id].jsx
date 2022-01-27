@@ -46,13 +46,15 @@ const WarehousingProviderUpdate = () => {
           defaultMessage: 'Update warehousing provider',
         })}
       />
-      <FormHeader onDelete={onRemoveWarehousingProvider}>
-        <ProviderConfigurationForm
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          defaultValue={warehousingProvider?.configuration || []}
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-2xl">
+        <FormHeader onDelete={onRemoveWarehousingProvider}>
+          <ProviderConfigurationForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            defaultValue={warehousingProvider?.configuration || []}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

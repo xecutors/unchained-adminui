@@ -40,14 +40,16 @@ const UpdateLanguage = () => {
           defaultMessage: 'Update languages',
         })}
       />
-      <FormHeader onDelete={onDelete}>
-        <LanguageForm
-          isEdit
-          defaultValue={language}
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader onDelete={onDelete}>
+          <LanguageForm
+            isEdit
+            defaultValue={language}
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

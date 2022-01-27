@@ -19,7 +19,7 @@ const AddCurrency = () => {
     return true;
   };
   return (
-    <div className="mt-6  sm:max-w-lg">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -27,12 +27,14 @@ const AddCurrency = () => {
           defaultMessage: 'New currency',
         })}
       />
-      <FormHeader
-        headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
-      >
-        <CurrencyForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-      </FormHeader>
-    </div>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader
+          headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
+        >
+          <CurrencyForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </FormHeader>
+      </div>
+    </>
   );
 };
 

@@ -47,13 +47,15 @@ const DeliveryProviderUpdate = () => {
           defaultMessage: 'Update delivery provider',
         })}
       />
-      <FormHeader onDelete={onRemoveDeliveryProvider}>
-        <ProviderConfigurationForm
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          defaultValue={deliveryProvider?.configuration || []}
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-2xl">
+        <FormHeader onDelete={onRemoveDeliveryProvider}>
+          <ProviderConfigurationForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            defaultValue={deliveryProvider?.configuration || []}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

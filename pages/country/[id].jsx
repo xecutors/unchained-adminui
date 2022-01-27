@@ -43,14 +43,16 @@ const UpdateCountry = () => {
     <>
       <BreadCrumbs />
       <PageHeader headerText={country?.isoCode} />
-      <FormHeader headerText="" onDelete={removeCountry}>
-        <CountryForm
-          isEdit
-          defaultValue={normalizeCountry(country)}
-          onSubmitSuccess={onSubmitSuccess}
-          onSubmit={onSubmit}
-        />
-      </FormHeader>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader headerText="" onDelete={removeCountry}>
+          <CountryForm
+            isEdit
+            defaultValue={normalizeCountry(country)}
+            onSubmitSuccess={onSubmitSuccess}
+            onSubmit={onSubmit}
+          />
+        </FormHeader>
+      </div>
     </>
   );
 };

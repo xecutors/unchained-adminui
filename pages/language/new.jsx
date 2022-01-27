@@ -22,7 +22,7 @@ const AddLanguage = () => {
   };
 
   return (
-    <div className="mt-6  sm:max-w-lg">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -30,10 +30,12 @@ const AddLanguage = () => {
           defaultMessage: 'New language',
         })}
       />
-      <FormHeader>
-        <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-      </FormHeader>
-    </div>
+      <div className="mt-6  sm:max-w-xl">
+        <FormHeader>
+          <LanguageForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+        </FormHeader>
+      </div>
+    </>
   );
 };
 
