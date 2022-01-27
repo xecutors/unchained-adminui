@@ -48,7 +48,10 @@ const Languages = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-        <LanguageList languages={languages} onRemove={onRemoveLanguage} />
+        <LanguageList
+          languages={languages}
+          onRemoveLanguage={onRemoveLanguage}
+        />
         <ListPagination
           isLoading={loading}
           onLoadMore={loadMore}

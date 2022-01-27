@@ -332,8 +332,14 @@
   "key": {
     "defaultMessage": "Key"
   },
+  "language_added": {
+    "defaultMessage": "Language added successfully!"
+  },
   "language_header": {
     "defaultMessage": "Languages"
+  },
+  "language_updated": {
+    "defaultMessage": "Language updated successfully!"
   },
   "languages": {
     "defaultMessage": "Languages"

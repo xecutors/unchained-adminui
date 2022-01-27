@@ -4,9 +4,10 @@ import App from 'next/app';
 
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
-
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
@@ -54,6 +55,15 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
         messages={messages}
         key="intl-provider"
       >
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {getLayout(<Component {...pageProps} />)}
       </IntlWrapper>
     </ApolloProvider>
