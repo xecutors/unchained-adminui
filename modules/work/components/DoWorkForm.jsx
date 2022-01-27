@@ -56,7 +56,7 @@ const DoWorkForm = () => {
             />
           </div>
           <div className="sm:grid-cols-4 sm:gap-4">
-            <div className=" text-xl font-sm text-gray-500">
+            <div className=" text-lg font-sm text-gray-900">
               {formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
@@ -103,13 +103,14 @@ const DoWorkForm = () => {
                         })}
                         hideLabel
                       />
+                        <div className="flex-shrink-0  sm:mt-4 mt-5">
                       <button
-                        className="mt-2 mr-2 items-center text-red-500 align-baseline"
+                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >
                         <svg
-                          className="mt-1 h-4 w-4 text-red-500"
+                          className="h-4 w-4"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
@@ -124,6 +125,7 @@ const DoWorkForm = () => {
                           <line x1="14" y1="11" x2="14" y2="17" />
                         </svg>
                       </button>
+                      </div>
                     </div>
                   );
                 })}

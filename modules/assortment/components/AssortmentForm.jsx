@@ -31,9 +31,16 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           })}
           autoComplete="off"
           required
-          className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
-        <div className="flex items-center h-5">
+       
+        <TagInput
+          onChange={async (value) => {
+            await form.formik.setValues({ ...form.formik.values, tags: value });
+          }}
+        />
+      </div>
+ <div className="mt-4 flex items-center h-5">
           <CheckboxField
             id="isRoot"
             name="isRoot"
@@ -45,15 +52,9 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
             className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
           />
         </div>
-        <TagInput
-          onChange={async (value) => {
-            await form.formik.setValues({ ...form.formik.values, tags: value });
-          }}
-        />
-      </div>
-
       <SubmitButton
-        label={formatMessage({ id: 'add', defaultMessage: 'Add' })}
+        label={formatMessage({ id: 'add_assortment', defaultMessage: 'Add Assortment' })}
+        third
       />
     </Form>
   );

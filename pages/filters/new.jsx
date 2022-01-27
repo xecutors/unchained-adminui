@@ -27,7 +27,7 @@ const AddFilter = () => {
   };
 
   return (
-    <div className="mt-6  sm:max-w-lg">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -35,10 +35,12 @@ const AddFilter = () => {
           defaultMessage: 'New filter',
         })}
       />
+      <div className="mt-6  sm:max-w-2xl">
       <FormHeader>
         <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
       </FormHeader>
-    </div>
+      </div>
+    </>
   );
 };
 
