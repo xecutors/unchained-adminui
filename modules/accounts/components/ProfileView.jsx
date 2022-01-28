@@ -17,7 +17,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
 
-
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
     const { displayName, phoneMobile, birthday, gender } = updatedProfile;
@@ -55,13 +54,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     setIsEdit(false);
     return true;
   };
-
+const updateProfilePhotoMessage = formatMessage({
+    id: 'photo_updated',
+    defaultMessage: 'Profile Photo updated successfully!',
+  });
   const onUpdateAvatar = async ({ target }) => {
     const [file] = target.files;
-
     await updateUserAvatar({
       userId: _id,
       avatar: file,
+      successMessage: updateProfilePhotoMessage,
     });
 
     return true;
