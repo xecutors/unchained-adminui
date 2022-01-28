@@ -1,4 +1,10 @@
-import { ClockIcon } from '@heroicons/react/outline';
+import {
+  ClockIcon,
+  DatabaseIcon,
+  PlusIcon,
+  RefreshIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -20,7 +26,56 @@ const convertJobSignalToNumber = (signal) => {
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
     <>
-      new {added} removed {removed} diff {diff} total {total}{' '}
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-indigo-500 rounded-md p-3 ">
+          <PlusIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="currentColor"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {added}
+        </span>
+      </span>
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-green-500 rounded-md p-3 ">
+          <RefreshIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="none"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {diff}
+        </span>
+      </span>
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-red-500 rounded-md p-3 ">
+          <TrashIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="currentColor"
+            stroke="red"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {removed}
+        </span>
+      </span>
+
+      <span className="mr-4 relative inline-block  rounded-lg ">
+        <div className="relative bg-green-500 rounded-md p-3 ">
+          <DatabaseIcon
+            className="h-5 w-5 text-white"
+            viewBox="0 0 22 22"
+            fill="none"
+          />
+        </div>
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+          {total}
+        </span>
+      </span>
     </>
   );
 };
@@ -36,14 +91,14 @@ const JobSyncHealth = ({ signal, duration }) => {
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="flex items-center justify-between">
-      <div className="text-sm font-medium text-indigo-600 truncate">
+    <div className="pr-4 pt-3 flex items-center justify-between">
+      <div className=" text-sm font-medium text-indigo-600 truncate">
         {job._id}
       </div>
-      <div className=" items-end flex-col">
+      <div className="ml-6  items-end flex-col">
         <div
           className={classNames(
-            'text-xs leading-5 font-semibold rounded-full  text-gray-800',
+            'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
           )}
         >
           {formatMessage(
@@ -58,7 +113,7 @@ const JobHeader = ({ job }) => {
         </div>
         <div
           className={classNames(
-            'mt-2  text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800',
+            'mt-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800',
             {
               'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
                 job.sync.signal,
@@ -77,13 +132,13 @@ const JobHeader = ({ job }) => {
           )}
         </div>
         <div className="mt-2 inline-flex justify-between items-center text-sm text-gray-500 sm:mt-0">
-          <ClockIcon className="h-5 w-5 mr-2" viewBox="0 0 22 22" />
+          <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
 
           {job.sync.duration}
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12 rounded-full"
+              className="h-12 w-12  rounded-full"
               viewBox="0 0 20 20"
               fill="green"
             >
@@ -96,7 +151,7 @@ const JobHeader = ({ job }) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12"
+              className="h-24 w-24"
               fill="none"
               viewBox="0 0 24 24"
               stroke="yellow"
@@ -122,7 +177,7 @@ const JobBody = ({ job }) => {
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl className="sm:divide-y sm:divide-gray-200">
-          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3  sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500">
               {formatMessage({
                 id: 'solr',
