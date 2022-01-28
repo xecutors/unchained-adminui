@@ -69,13 +69,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     return true;
   };
 
-  const updateProfileMessage = formatMessage({
+  const successMessage = formatMessage({
     id: 'profile_updated',
     defaultMessage: 'Profile updated successfully!',
   });
   const form = useForm({
     submit: onUpdateProfile,
-    successMessage: updateProfileMessage,
+    successMessage,
     initialValues: {
       ...profile,
       ...profile?.address,

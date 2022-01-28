@@ -17,13 +17,13 @@ const DoWorkForm = () => {
     await doWork({ type, input });
     return true;
   };
-  const doWorkMessage = formatMessage({
+  const successMessage = formatMessage({
     id: 'do_work',
     defaultMessage: 'Do work successfully!',
   });
   const form = useForm({
     submit: onSubmit,
-    successMessage: doWorkMessage,
+    successMessage,
     enableReinitialize: true,
     initialValues: {
       type: '',

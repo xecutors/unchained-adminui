@@ -8,14 +8,14 @@ import useForm from '../../forms/hooks/useForm';
 
 const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
-  const assortmentAddedMessage = formatMessage({
+  const successMessage = formatMessage({
     id: 'assortment_added',
     defaultMessage: 'Assortment added successfully!',
   });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
-    successMessage: assortmentAddedMessage,
+    successMessage,
     enableReinitialize: true,
     initialValues: {
       isRoot: false,

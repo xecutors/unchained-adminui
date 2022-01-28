@@ -3,6 +3,7 @@ const normalize = (assortment = [], isActive) =>
     ({ _id, created, slug, title, updated, authorId, locale }) => ({
       _id,
       authorId,
+      status: isActive ? 'ACTIVE' : 'DELETED',
       isActive,
       texts: {
         title,

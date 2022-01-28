@@ -17,7 +17,7 @@ const WorkForm = () => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
   const { addWork } = useAddWork();
-  const workAddedMessage = formatMessage({
+  const successMessage = formatMessage({
     id: 'work_added',
     defaultMessage: 'Work added successfully!',
   });
@@ -43,7 +43,7 @@ const WorkForm = () => {
 
   const form = useForm({
     submit: onSubmit,
-    successMessage: workAddedMessage,
+    successMessage,
     enableReinitialize: true,
     initialValues: {
       priority: '',
