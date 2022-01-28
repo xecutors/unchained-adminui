@@ -26,7 +26,7 @@ const SyncReport = () => {
         })}
       />
       <div className="border mt-4 border-gray-50 shadow bg-white rounded-md ">
-        <div className="mb-2 flex py-5 max-w-sm justify-between items-center">
+        <div className="flex py-5 max-w-sm justify-between items-center">
           <label className="ml-4 mr-2" htmlFor="report-start">
             {formatMessage({ id: 'from', defaultMessage: 'From' })}
           </label>
