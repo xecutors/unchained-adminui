@@ -9,6 +9,7 @@ const ProviderList = ({
   onProviderFilterChange,
   providerType = [],
   providerPath,
+  onRemove,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -110,6 +111,7 @@ const ProviderList = ({
             key={`${provider?._id}-body`}
             provider={provider}
             providerPath={providerPath}
+            onRemove={onRemove}
           />
         ))}
       </Table>

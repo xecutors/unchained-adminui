@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
@@ -7,16 +8,47 @@ import ProviderList from '../../modules/common/components/ProvidersList';
 
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
+import DangerMessage from '../../modules/modal/components/DangerMessage';
+import useModal from '../../modules/modal/hooks/useModal';
 
 const DeliveryProviders = () => {
   const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
 
   const { deliveryProviders } = useDeliveryProviders({ type });
+  const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
 
   const onRemoveDeliveryProvider = async (deliveryProviderId) => {
-    await removeDeliveryProvider({ deliveryProviderId });
+  
+    await setModal(
+      <DangerMessage
+        message={formatMessage({
+          id: 'delete_delivery_providers_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Delivery Providers? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeDeliveryProvider({ deliveryProviderId });
+          toast.success(
+            formatMessage(
+              {
+                id: 'deliveryProviders_deleted',
+                defaultMessage: 'deliveryProviders {id} deleted successfully',
+              },
+              {
+                id: deliveryProviderId,
+              },
+            ),
+          );
+        }}
+        okText={formatMessage({
+          id: 'delete_delivery_providers',
+          defaultMessage: 'Delete delivery providers',
+        })}
+      />,
+    );
   };
 
   return (
