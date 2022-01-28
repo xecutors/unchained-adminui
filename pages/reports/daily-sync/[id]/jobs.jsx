@@ -315,7 +315,7 @@ const SyncJobs = () => {
   });
 
   return (
-    <div className="px-4 sm:px-6 md:px-8">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -330,7 +330,7 @@ const SyncJobs = () => {
           <Accordion containerCSS="p-3" data={accordionData} />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

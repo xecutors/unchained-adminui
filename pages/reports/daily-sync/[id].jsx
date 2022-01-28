@@ -33,7 +33,7 @@ const SyncDetail = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 md:px-8">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -161,7 +161,7 @@ const SyncDetail = () => {
         })}
         statistics={stats.filters}
       />
-    </div>
+    </>
   );
 };
 
