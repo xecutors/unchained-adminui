@@ -92,10 +92,10 @@ const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="pr-4 pt-3 flex items-center justify-between">
-      <div className=" text-sm font-medium text-indigo-600 truncate">
+      <div className="text-sm font-medium text-indigo-600 truncate">
         {job._id}
       </div>
-      <div className="ml-6  items-end flex-col">
+      <div className="ml-6 items-end flex-col">
         <div
           className={classNames(
             'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
@@ -113,7 +113,7 @@ const JobHeader = ({ job }) => {
         </div>
         <div
           className={classNames(
-            'mt-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800',
+            'mt-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 py-1 px-2',
             {
               'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
                 job.sync.signal,

@@ -305,15 +305,11 @@ const Layout = ({
             </svg>
           </button>
         </div>
-        <main className="flex-1">
-          <div className="py-2">
-            <div className=" px-4 py-5 border-gray-200 sm:px-6">
-              <h3 className="ml-8 text-lg leading-6 font-medium text-gray-900">
-                {pageHeader}
-              </h3>
-              {children}
-            </div>
-          </div>
+        <main className="container pt-5 max-w-7xl mx-auto flex-1">
+          <h3 className="ml-8 text-lg leading-6 font-medium text-gray-900">
+            {pageHeader}
+          </h3>
+          {children}
         </main>
       </div>
     </div>
