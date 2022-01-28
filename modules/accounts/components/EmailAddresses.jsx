@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -7,6 +8,8 @@ import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
 import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
 import Badge from '../../common/components/Badge';
+import useModal from '../../modal/hooks/useModal';
+import DangerMessage from '../../modal/components/DangerMessage';
 
 const STATUS = {
   true: 'Verified',
@@ -18,10 +21,43 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
   const { sendVerificationEmail } = useSendVerificationEmail();
   const { addEmail } = useAddEmail();
   const { formatMessage } = useIntl();
+  const { setModal } = useModal();
   const onAddEmail = async ({ email }) => {
     await addEmail({ email, userId });
     return true;
   };
+
+  const onRemoveEmail = async ({ email }) => {
+    await setModal(
+      <DangerMessage
+        message={formatMessage({
+          id: 'delete_email_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this email? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeEmail({ email, userId });
+          toast.success(
+            formatMessage(
+              {
+                id: 'email_deleted',
+                defaultMessage: 'email {id} deleted successfully',
+              },
+              {
+                id: userId,
+              },
+            ),
+          );
+        }}
+        okText={formatMessage({
+          id: 'delete_email',
+          defaultMessage: 'Delete email',
+        })}
+      />,
+    );
+  };
+
   const form = useForm({
     submit: onAddEmail,
     enableReinitialize: true,
@@ -64,7 +100,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                     </a>
                   )}
                   <a
-                    onClick={() => removeEmail({ email: address, userId })}
+                    onClick={() => onRemoveEmail({ email: address, userId })}
                     className="inline-flex items-center shadow-sm   rounded-full bg-white hover:bg-red-50"
                   >
                     <svg

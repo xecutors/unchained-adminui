@@ -168,8 +168,10 @@ const SyncCategorySummary = ({
             <p className="ml-16 text-sm font-medium text-gray-500 truncate">
               {formatMessage(
                 {
-                  id: 'total',
+                  id: 'total_variable_category',
                   defaultMessage: 'Total { categoryName } ',
+                  description:
+                    'Used in report where category is swapped with product, filter or assortment ',
                 },
                 {
                   categoryName,

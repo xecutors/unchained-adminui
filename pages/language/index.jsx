@@ -1,6 +1,6 @@
 import { useState } from 'react';
-
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
@@ -10,6 +10,8 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import ListPagination from '../../modules/common/components/ListPagination';
+import useModal from '../../modules/modal/hooks/useModal';
+import DangerMessage from '../../modules/modal/components/DangerMessage';
 
 const Languages = () => {
   const [limit, setLimit] = useState(DefaultLimit);
@@ -21,10 +23,38 @@ const Languages = () => {
     limit,
     includeInactive,
   });
+  const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
 
   const onRemoveLanguage = async (languageId) => {
-    await removeLanguage({ languageId });
+    await setModal(
+      <DangerMessage
+        message={formatMessage({
+          id: 'delete_language_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeLanguage({ languageId });
+          toast.success(
+            formatMessage(
+              {
+                id: 'language_deleted',
+                defaultMessage: 'language {id} deleted successfully',
+              },
+              {
+                id: languageId,
+              },
+            ),
+          );
+        }}
+        okText={formatMessage({
+          id: 'delete_language',
+          defaultMessage: 'Delete language',
+        })}
+      />,
+    );
   };
 
   return (
