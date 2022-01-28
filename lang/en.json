@@ -1,13 +1,4 @@
 {
-  "Update": {
-    "defaultMessage": "Update role"
-  },
-  "User name": {
-    "defaultMessage": "User name"
-  },
-  "Work": {
-    "defaultMessage": "Work queue"
-  },
   "account": {
     "defaultMessage": "Account"
   },
@@ -782,6 +773,9 @@
   "update_provider": {
     "defaultMessage": "Update provider"
   },
+  "update_role": {
+    "defaultMessage": "Update role"
+  },
   "update_tags": {
     "defaultMessage": "Update tags"
   },
@@ -847,6 +841,9 @@
   },
   "work_number": {
     "defaultMessage": "Work #"
+  },
+  "work_queue": {
+    "defaultMessage": "Work queue"
   },
   "work_queue_header": {
     "defaultMessage": "Work queue"

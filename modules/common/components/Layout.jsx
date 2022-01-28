@@ -118,7 +118,10 @@ const Layout = ({
       current: false,
       children: [
         {
-          name: formatMessage({ id: 'Work', defaultMessage: 'Work queue' }),
+          name: formatMessage({
+            id: 'work_queue',
+            defaultMessage: 'Work queue',
+          }),
           current: false,
           href: '/works',
         },

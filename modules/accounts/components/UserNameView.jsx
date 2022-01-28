@@ -43,8 +43,8 @@ const UserNameView = ({ _id: userId, username }) => {
                     className="w-full mt-0"
                     name="username"
                     label={formatMessage({
-                      id: 'User name',
-                      defaultMessage: 'User name',
+                      id: 'username',
+                      defaultMessage: 'Username',
                     })}
                     hideLabel
                   />

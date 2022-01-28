@@ -50,7 +50,10 @@ const UserRolesView = ({ roles, userId }) => {
           multiple
         />
         <SubmitButton
-          label={formatMessage({ id: 'Update', defaultMessage: 'Update role' })}
+          label={formatMessage({
+            id: 'update_role',
+            defaultMessage: 'Update role',
+          })}
         />
       </Form>
     </div>
