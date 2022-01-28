@@ -91,50 +91,9 @@ const JobSyncHealth = ({ signal, duration }) => {
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="pr-4 pt-3 flex items-center justify-between">
-      <div className="text-sm font-medium text-indigo-600 truncate">
-        {job._id}
-      </div>
-      <div className="ml-6 items-end flex-col">
-        <div
-          className={classNames(
-            'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
-          )}
-        >
-          {formatMessage(
-            {
-              id: 'started_at',
-              defaultMessage: 'Started: {time}',
-            },
-            {
-              time: format(new Date(job.started), 'Pp'),
-            },
-          )}
-        </div>
-        <div
-          className={classNames(
-            'mt-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 py-1 px-2',
-            {
-              'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
-                job.sync.signal,
-              ),
-            },
-          )}
-        >
-          {formatMessage(
-            {
-              id: 'finished_at',
-              defaultMessage: 'Finished: {time}',
-            },
-            {
-              time: format(new Date(job.finished), 'Pp'),
-            },
-          )}
-        </div>
-        <div className="mt-2 inline-flex justify-between items-center text-sm text-gray-500 sm:mt-0">
-          <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
-
-          {job.sync.duration}
+    <>
+      <div className="pt-1 flex item-start">
+        <div className="mr-2">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +167,7 @@ const JobHeader = ({ job }) => {
         <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
         {job.sync.duration}
       </div>
-    </div>
+    </>
   );
 };
 
