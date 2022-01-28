@@ -15,14 +15,14 @@ const SyncReportListItem = ({ data }) => {
               <div className="flex-shrink-0">
                 {success ? (
                   <CheckIcon
-                    className="w-5 h-5 bg-green-500"
+                    className="w-5 h-5 bg-green-500 rounded-full"
                     fill="none"
                     stroke="white"
                     viewBox="0 0 24 24"
                   />
                 ) : (
                   <XIcon
-                    className="w-5 h-5 bg-red-500"
+                    className="w-5 h-5 bg-red-500 rounded-full"
                     fill="none"
                     stroke="white"
                     viewBox="0 0 24 24"
