@@ -5,7 +5,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
   return (
     <a onClick={onLogout} className="flex-shrink-0 group block">
       <div className="flex items-center">
-        <div>
+        <>
           {avatar ? (
             <img
               className="inline-block h-9 w-9 rounded-full"
@@ -23,7 +23,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
               </svg>
             </span>
           )}
-        </div>
+        </>
         <div className="ml-3">
           <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
             {username}
