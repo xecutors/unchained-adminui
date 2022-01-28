@@ -27,9 +27,9 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
     <>
       <span className="mr-4 relative inline-block  rounded-lg ">
-        <div className="relative bg-indigo-500 rounded-md p-3 ">
+        <div className="relative bg-indigo-500 rounded-md p-2 ">
           <PlusIcon
-            className="h-5 w-5 text-white"
+            className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="currentColor"
           />
@@ -39,9 +39,9 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
         </span>
       </span>
       <span className="mr-4 relative inline-block  rounded-lg ">
-        <div className="relative bg-green-500 rounded-md p-3 ">
+        <div className="relative bg-green-500 rounded-md p-2 ">
           <RefreshIcon
-            className="h-5 w-5 text-white"
+            className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
           />
@@ -51,9 +51,9 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
         </span>
       </span>
       <span className="mr-4 relative inline-block  rounded-lg ">
-        <div className="relative bg-red-500 rounded-md p-3 ">
+        <div className="relative bg-red-500 rounded-md p-2 ">
           <TrashIcon
-            className="h-5 w-5 text-white"
+            className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="currentColor"
             stroke="red"
@@ -65,9 +65,9 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
       </span>
 
       <span className="mr-4 relative inline-block  rounded-lg ">
-        <div className="relative bg-green-500 rounded-md p-3 ">
+        <div className="relative bg-green-500 rounded-md p-2 ">
           <DatabaseIcon
-            className="h-5 w-5 text-white"
+            className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
           />
@@ -91,54 +91,13 @@ const JobSyncHealth = ({ signal, duration }) => {
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="pr-4 pt-3 flex items-center justify-between">
-      <div className=" text-sm font-medium text-indigo-600 truncate">
-        {job._id}
-      </div>
-      <div className="ml-6  items-end flex-col">
-        <div
-          className={classNames(
-            'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
-          )}
-        >
-          {formatMessage(
-            {
-              id: 'started_at',
-              defaultMessage: 'Started: {time}',
-            },
-            {
-              time: format(new Date(job.started), 'Pp'),
-            },
-          )}
-        </div>
-        <div
-          className={classNames(
-            'mt-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800',
-            {
-              'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
-                job.sync.signal,
-              ),
-            },
-          )}
-        >
-          {formatMessage(
-            {
-              id: 'finished_at',
-              defaultMessage: 'Finished: {time}',
-            },
-            {
-              time: format(new Date(job.finished), 'Pp'),
-            },
-          )}
-        </div>
-        <div className="mt-2 inline-flex justify-between items-center text-sm text-gray-500 sm:mt-0">
-          <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
-
-          {job.sync.duration}
+    <>
+      <div className="pt-1 flex item-start">
+        <div className="mr-2">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-12  rounded-full"
+              className="h-7 w-7  rounded-md"
               viewBox="0 0 20 20"
               fill="green"
             >
@@ -151,9 +110,9 @@ const JobHeader = ({ job }) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-24 w-24"
+              className="h-15 w-15"
               fill="none"
-              viewBox="0 0 24 24"
+              viewBox="0 0 15 15"
               stroke="yellow"
             >
               <path
@@ -165,8 +124,50 @@ const JobHeader = ({ job }) => {
             </svg>
           )}
         </div>
+        <div className=" items-start">
+          <div
+            className={classNames(
+              'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
+            )}
+          >
+            {formatMessage(
+              {
+                id: 'started_at',
+                defaultMessage: 'Started: {time}',
+              },
+              {
+                time: format(new Date(job.started), 'Pp'),
+              },
+            )}
+          </div>
+          <div
+            className={classNames(
+              'mt-2 text-xs  leading-5 font-semibold rounded-full  text-gray-800',
+              {
+                'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
+                  job.sync.signal,
+                ),
+              },
+            )}
+          >
+            {formatMessage(
+              {
+                id: 'finished_at',
+                defaultMessage: 'Finished: {time}',
+              },
+              {
+                time: format(new Date(job.finished), 'Pp'),
+              },
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+
+      <div className=" mb-4 mr-4 flex float-right text-sm text-gray-500 sm:mt-0">
+        <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
+        {job.sync.duration}
+      </div>
+    </>
   );
 };
 
