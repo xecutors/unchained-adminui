@@ -11,9 +11,14 @@ import useFilterTypes from '../hooks/useFilterTypes';
 const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
+  const filterCreatedMessage = formatMessage({
+    id: 'filter_created',
+    defaultMessage: 'Filter created successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: filterCreatedMessage,
     enableReinitialize: true,
     initialValues: {
       title: '',

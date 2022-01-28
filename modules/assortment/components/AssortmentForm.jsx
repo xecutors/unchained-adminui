@@ -7,9 +7,15 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
 const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
+  const { formatMessage } = useIntl();
+  const assortmentAddedMessage = formatMessage({
+    id: 'assortment_added',
+    defaultMessage: 'Assortment added successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: assortmentAddedMessage,
     enableReinitialize: true,
     initialValues: {
       isRoot: false,
@@ -17,7 +23,6 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
       tags: [],
     },
   });
-  const { formatMessage } = useIntl();
 
   return (
     <Form form={form}>

@@ -12,18 +12,27 @@ const CurrencyForm = ({
   defaultValue = {},
   isEdit,
 }) => {
+  const { formatMessage } = useIntl();
+
+  const currencyAddedMessage = formatMessage({
+    id: 'currency_added',
+    defaultMessage: 'Currency added successfully!',
+  });
+  const currencyUpdatedMessage = formatMessage({
+    id: 'currency_updated',
+    defaultMessage: 'Currency updated successfully!',
+  });
+
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: isEdit ? currencyUpdatedMessage : currencyAddedMessage,
     enableReinitialize: true,
     initialValues: {
       isoCode: '',
       ...defaultValue,
     },
   });
-
-  const { formatMessage } = useIntl();
-
   return (
     <Form form={form}>
       <div className=" space-y-6 sm:space-y-5">

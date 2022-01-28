@@ -15,10 +15,21 @@ const CountryForm = ({
   isEdit,
 }) => {
   const { formatMessage } = useIntl();
+
+  const countryAddedMessage = formatMessage({
+    id: 'country_added',
+    defaultMessage: 'Country added successfully!',
+  });
+  const countryUpdatedMessage = formatMessage({
+    id: 'country_updated',
+    defaultMessage: 'Country updated successfully!',
+  });
+
   const { currencies } = useCurrencies();
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: isEdit ? countryUpdatedMessage : countryAddedMessage,
     enableReinitialize: true,
     initialValues: {
       isoCode: '',

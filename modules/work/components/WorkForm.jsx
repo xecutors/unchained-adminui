@@ -14,14 +14,19 @@ import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
+  const workAddedMessage = formatMessage({
+    id: 'work_added',
+    defaultMessage: 'Work added successfully!',
+  });
 
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: workAddedMessage,
     enableReinitialize: true,
     initialValues: {
       Key: '',
-      type: '',
+      type: [''],
       input: [],
     },
   });

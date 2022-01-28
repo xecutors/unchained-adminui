@@ -18,8 +18,13 @@ const AllocateWorkForm = () => {
     await allocateWork({ types, worker });
     return true;
   };
+  const allocateWorkMessage = formatMessage({
+    id: 'allocate_work',
+    defaultMessage: 'Allocate work successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
+    successMessage: allocateWorkMessage,
     enableReinitialize: true,
     initialValues: {
       types: [''],

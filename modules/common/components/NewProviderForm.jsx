@@ -13,9 +13,15 @@ const NewProviderForm = ({
 }) => {
   const { formatMessage } = useIntl();
 
+  const createProviderMessage = formatMessage({
+    id: 'create_provider',
+    defaultMessage: 'Provider created successfully!',
+  });
+
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: createProviderMessage,
     enableReinitialize: true,
     initialValues: {
       adapterKey: '',
