@@ -18,8 +18,8 @@ const DoWorkForm = () => {
     return true;
   };
   const successMessage = formatMessage({
-    id: 'do_work',
-    defaultMessage: 'Do work successfully!',
+    id: 'work_started_success',
+    defaultMessage: 'Work started successfully!',
   });
   const form = useForm({
     submit: onSubmit,

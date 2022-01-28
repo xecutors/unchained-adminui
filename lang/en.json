@@ -71,6 +71,9 @@
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
   },
+  "assortment_added": {
+    "defaultMessage": "Assortment added successfully!"
+  },
   "assortment_base": {
     "defaultMessage": "Base"
   },
@@ -143,11 +146,17 @@
   "countries": {
     "defaultMessage": "Countries"
   },
+  "country_added": {
+    "defaultMessage": "Country added successfully!"
+  },
   "country_code": {
     "defaultMessage": "Country code"
   },
   "country_deleted": {
     "defaultMessage": "Country {id} deleted successfully"
+  },
+  "country_updated": {
+    "defaultMessage": "Country updated successfully!"
   },
   "create_filter": {
     "defaultMessage": "Create Filter"
@@ -171,8 +180,14 @@
   "currencies_list_header": {
     "defaultMessage": "Currencies"
   },
+  "currency_added": {
+    "defaultMessage": "Currency added successfully!"
+  },
   "currency_deleted": {
     "defaultMessage": "currency {id} deleted successfully"
+  },
+  "currency_updated": {
+    "defaultMessage": "Currency updated successfully!"
   },
   "current_password": {
     "defaultMessage": "Current password"
@@ -267,6 +282,9 @@
   "email": {
     "defaultMessage": "Email"
   },
+  "email_added": {
+    "defaultMessage": "Email added successfully!"
+  },
   "email_address": {
     "defaultMessage": "Email Address"
   },
@@ -311,6 +329,9 @@
   },
   "filter_by_type": {
     "defaultMessage": "Filter by type"
+  },
+  "filter_created": {
+    "defaultMessage": "Filter created successfully!"
   },
   "filter_key": {
     "defaultMessage": "Key",
@@ -431,6 +452,9 @@
   "log_out": {
     "defaultMessage": "Log out"
   },
+  "logged_out": {
+    "defaultMessage": "Logged out"
+  },
   "login_header": {
     "defaultMessage": "Log in to your account"
   },
@@ -540,6 +564,9 @@
   "photo": {
     "defaultMessage": "Photo"
   },
+  "photo_updated": {
+    "defaultMessage": "Profile Photo updated successfully!"
+  },
   "postal_code": {
     "defaultMessage": "Postal/ZIP code"
   },
@@ -555,6 +582,9 @@
   "product": {
     "defaultMessage": "Product"
   },
+  "product_added": {
+    "defaultMessage": "Product added successfully!"
+  },
   "products": {
     "defaultMessage": "Products"
   },
@@ -566,6 +596,15 @@
   },
   "profile_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
+  },
+  "profile_updated": {
+    "defaultMessage": "Profile updated successfully!"
+  },
+  "provider_created_success": {
+    "defaultMessage": "Provider created successfully!"
+  },
+  "provider_updated": {
+    "defaultMessage": "Provider updated successfully!"
   },
   "publicare": {
     "defaultMessage": "Publicare"
@@ -602,6 +641,9 @@
   },
   "retries": {
     "defaultMessage": "Retries"
+  },
+  "role_updated": {
+    "defaultMessage": "Role updated successfully!"
   },
   "roles": {
     "defaultMessage": "Roles"
@@ -691,6 +733,9 @@
   "tags": {
     "defaultMessage": "Tags"
   },
+  "tags_updated": {
+    "defaultMessage": "Tags updated successfully!"
+  },
   "title": {
     "defaultMessage": "Title"
   },
@@ -746,11 +791,17 @@
   "user": {
     "defaultMessage": "User"
   },
+  "user_profile_created": {
+    "defaultMessage": "User profile created successfully!"
+  },
   "username": {
     "defaultMessage": "Username"
   },
   "username_exists_error": {
     "defaultMessage": "Username already exists"
+  },
+  "username_updated": {
+    "defaultMessage": "Username updated successfully!"
   },
   "users": {
     "defaultMessage": "Users"
@@ -782,6 +833,15 @@
   "warning": {
     "defaultMessage": "Warning!"
   },
+  "welcome": {
+    "defaultMessage": "Welcome!"
+  },
+  "work_added": {
+    "defaultMessage": "Work added successfully!"
+  },
+  "work_allocated_success": {
+    "defaultMessage": "Allocate work successfully!"
+  },
   "work_management_setting_list_header": {
     "defaultMessage": "Work Management setting"
   },
@@ -790,6 +850,9 @@
   },
   "work_queue_header": {
     "defaultMessage": "Work queue"
+  },
+  "work_started_success": {
+    "defaultMessage": "Work started successfully!"
   },
   "worker": {
     "defaultMessage": "Worker"

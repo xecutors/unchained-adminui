@@ -14,7 +14,7 @@ const NewProviderForm = ({
   const { formatMessage } = useIntl();
 
   const createProviderMessage = formatMessage({
-    id: 'create_provider',
+    id: 'provider_created_success',
     defaultMessage: 'Provider created successfully!',
   });
 

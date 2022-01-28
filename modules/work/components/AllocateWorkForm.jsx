@@ -19,7 +19,7 @@ const AllocateWorkForm = () => {
     return true;
   };
   const successMessage = formatMessage({
-    id: 'allocate_work',
+    id: 'work_allocated_success',
     defaultMessage: 'Allocate work successfully!',
   });
   const form = useForm({
