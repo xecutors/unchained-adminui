@@ -17,7 +17,7 @@ const SyncReport = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="p-5">
+    <>
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -65,7 +65,7 @@ const SyncReport = () => {
         <hr />
         <SyncReportList data={dailySync} />
       </div>
-    </div>
+    </>
   );
 };
 

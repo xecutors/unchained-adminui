@@ -305,7 +305,7 @@ const Layout = ({
             </svg>
           </button>
         </div>
-        <main className="container pt-5 max-w-7xl mx-auto flex-1">
+        <main className="container pt-5 max-w-7xl mx-auto flex-1 px-4 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg leading-6 font-medium text-gray-900">
             {pageHeader}
           </h3>
