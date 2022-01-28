@@ -25,8 +25,8 @@ const convertJobSignalToNumber = (signal) => {
 
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
-    <>
-      <span className="mr-4 relative inline-block  rounded-lg ">
+    <div className="sm:flex-initial ml-1 p-2 py-3">
+      <span className="mr-9 relative inline-block  rounded-lg ">
         <div className="relative bg-indigo-500 rounded-md p-2 ">
           <PlusIcon
             className="h-4 w-4 text-white"
@@ -34,11 +34,11 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="currentColor"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {added}
         </span>
       </span>
-      <span className="mr-4 relative inline-block  rounded-lg ">
+      <span className="mr-9 relative inline-block  rounded-lg ">
         <div className="relative bg-green-500 rounded-md p-2 ">
           <RefreshIcon
             className="h-4 w-4 text-white"
@@ -46,11 +46,11 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {diff}
         </span>
       </span>
-      <span className="mr-4 relative inline-block  rounded-lg ">
+      <span className="mr-9 relative inline-block  rounded-lg ">
         <div className="relative bg-red-500 rounded-md p-2 ">
           <TrashIcon
             className="h-4 w-4 text-white"
@@ -59,12 +59,12 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             stroke="red"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {removed}
         </span>
       </span>
 
-      <span className="mr-4 relative inline-block  rounded-lg ">
+      <span className="relative inline-block  rounded-lg ">
         <div className="relative bg-green-500 rounded-md p-2 ">
           <DatabaseIcon
             className="h-4 w-4 text-white"
@@ -72,11 +72,11 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="mb-6 absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
           {total}
         </span>
       </span>
-    </>
+    </div>
   );
 };
 
