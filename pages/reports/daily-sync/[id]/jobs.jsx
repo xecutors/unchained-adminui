@@ -315,7 +315,7 @@ const SyncJobs = () => {
   });
 
   return (
-    <div className="p-5">
+    <div className="px-4 sm:px-6 md:px-8">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
