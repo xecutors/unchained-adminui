@@ -1,0 +1,24 @@
+const normalize = (assortment = [], isActive) =>
+  assortment.map(
+    ({ _id, created, slug, title, updated, authorId, locale }) => ({
+      _id,
+      authorId,
+      isActive,
+      texts: {
+        title,
+        slug,
+        locale,
+      },
+      created,
+      updated,
+    }),
+  );
+
+const normalizeAssortmentSyncData = ({ published = [], removed = [] } = {}) => {
+  return {
+    published: normalize(published, true),
+    removed: normalize(removed, false),
+  };
+};
+
+export default normalizeAssortmentSyncData;

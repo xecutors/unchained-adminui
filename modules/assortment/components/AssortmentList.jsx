@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import AssortmentListItem from './AssortmentListItem';
 
-const AssortmentList = ({ assortments }) => {
+const AssortmentList = ({ assortments, showAvatar = true }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full">
@@ -39,6 +39,7 @@ const AssortmentList = ({ assortments }) => {
       ))}
       {assortments?.map((assortment) => (
         <AssortmentListItem
+          showAvatar={showAvatar}
           key={`${assortment?._id}-body`}
           assortment={assortment}
         />

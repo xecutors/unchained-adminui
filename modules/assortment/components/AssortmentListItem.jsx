@@ -4,7 +4,7 @@ import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
-const AssortmentListItem = ({ assortment }) => {
+const AssortmentListItem = ({ assortment, showAvatar }) => {
   const { formatMessage } = useIntl();
 
   const STATUS = {
@@ -16,13 +16,15 @@ const AssortmentListItem = ({ assortment }) => {
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <MediaAvatar
-            file={assortment?.media?.length && assortment.media[0].file}
-            className="mr-2"
-          />
+          {showAvatar && (
+            <MediaAvatar
+              file={assortment?.media?.length && assortment.media[0].file}
+              className="mr-2"
+            />
+          )}
           <Link href={`/assortments/${assortment._id}`}>
             <a className="text-blue-600">
-              {assortment?.texts.title || (
+              {assortment?.texts?.title || (
                 <>
                   {assortment._id}{' '}
                   <Badge

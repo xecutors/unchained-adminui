@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, formatDuration, intervalToDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
@@ -10,6 +10,9 @@ import useProductsCount from '../../../modules/product/hooks/useProductsCount';
 import useWork from '../../../modules/work/hooks/useWork';
 import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
 import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
+import ProductList from '../../../modules/product/components/ProductList';
+import AssortmentList from '../../../modules/assortment/components/AssortmentList';
+import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
 
 const SyncDetail = () => {
   const { query } = useRouter();
@@ -82,7 +85,10 @@ const SyncDetail = () => {
 
         <div className="px-4 py-5 sm:p-6">
           <dt className="text-base font-normal text-gray-900">
-            Total Products
+            {formatMessage({
+              id: 'total_products',
+              defaultMessage: 'Total products',
+            })}
           </dt>
           <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
@@ -90,14 +96,17 @@ const SyncDetail = () => {
               <span className="ml-2 text-sm font-medium text-gray-500">
                 {formatMessage({
                   id: 'from',
-                  defaultMessage: 'from',
+                  defaultMessage: 'From',
                 })}{' '}
                 {getPreviousValue(stats.products, productsCount)}
               </span>
             </div>
 
             <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium md:mt-2 lg:mt-0">
-              <SyncChangeIcon {...stats.products} />
+              <SyncChangeIcon
+                {...stats.products}
+                productsCount={productsCount}
+              />
             </div>
           </dd>
         </div>
@@ -111,28 +120,12 @@ const SyncDetail = () => {
           </dt>
           <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
-              ?h ?m ?s
-              <span className="ml-2 text-sm font-medium text-gray-500">
-                ?h ?m ?s
-              </span>
-            </div>
-
-            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
-              <svg
-                className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="sr-only">Increased by</span>
-              2.02%
+              {formatDuration(
+                intervalToDuration({
+                  start: new Date(result?.startedEnd || 0),
+                  end: new Date(result?.startedFrom || 0),
+                }),
+              )}
             </div>
           </dd>
         </div>
@@ -143,6 +136,23 @@ const SyncDetail = () => {
           id: 'categories',
           defaultMessage: 'Categories',
         })}
+        categories={result?.assortments || {}}
+        publishedList={
+          <AssortmentList
+            showAvatar={false}
+            assortments={
+              normalizeAssortmentSyncData(result?.assortments)?.published
+            }
+          />
+        }
+        removedList={
+          <AssortmentList
+            showAvatar={false}
+            assortments={
+              normalizeAssortmentSyncData(result?.assortments)?.removed
+            }
+          />
+        }
         statistics={stats.categories}
       />
 
@@ -151,7 +161,19 @@ const SyncDetail = () => {
           id: 'products',
           defaultMessage: 'Products',
         })}
-        statistics={stats.categories}
+        publishedList={
+          <ProductList
+            showAvatar={false}
+            products={normalizeAssortmentSyncData(result?.products)?.published}
+          />
+        }
+        removedList={
+          <ProductList
+            showAvatar={false}
+            products={normalizeAssortmentSyncData(result?.products)?.removed}
+          />
+        }
+        statistics={stats.products}
       />
 
       <SyncCategorySummary

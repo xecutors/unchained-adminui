@@ -10,17 +10,19 @@ const PRODUCT_STATUS = {
   DELETED: 'red',
 };
 
-const ProductListItem = ({ product }) => {
+const ProductListItem = ({ product, showAvatar }) => {
   const { formatMessage } = useIntl();
 
   return (
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <MediaAvatar
-            file={product?.media?.length && product.media[0].file}
-            className="mr-2"
-          />
+          {showAvatar && (
+            <MediaAvatar
+              file={product?.media?.length && product.media[0].file}
+              className="mr-2"
+            />
+          )}
           <Link href={`/product/${product._id}`}>
             <a className="text-blue-600">
               {product?.texts.title || (

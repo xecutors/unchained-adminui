@@ -1,7 +1,14 @@
 import { useIntl } from 'react-intl';
+import useModal from '../../modal/hooks/useModal';
 
-const SyncCategorySummary = ({ categoryName, statistics }) => {
+const SyncCategorySummary = ({
+  categoryName,
+  statistics,
+  removedList = [],
+  publishedList = [],
+}) => {
   const { formatMessage } = useIntl();
+  const { setModal } = useModal();
   return (
     <>
       <h3 className="mt-5 pt-5">{categoryName}</h3>
@@ -55,6 +62,9 @@ const SyncCategorySummary = ({ categoryName, statistics }) => {
               <div className="text-sm">
                 <a
                   href="#"
+                  onClick={async () => {
+                    await setModal(publishedList);
+                  }}
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {formatMessage({
@@ -116,6 +126,9 @@ const SyncCategorySummary = ({ categoryName, statistics }) => {
               <div className="text-sm">
                 <a
                   href="#"
+                  onClick={async () => {
+                    await setModal(removedList);
+                  }}
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {formatMessage({
@@ -139,22 +152,24 @@ const SyncCategorySummary = ({ categoryName, statistics }) => {
             <div className="absolute bg-indigo-500 rounded-md p-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-white"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="white"
               >
                 <path
-                  fillRule="evenodd"
-                  d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                  clipRule="evenodd"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
                 />
               </svg>
             </div>
             <p className="ml-16 text-sm font-medium text-gray-500 truncate">
               {formatMessage(
                 {
-                  id: 'sync_updated',
-                  defaultMessage: 'Updated { categoryName } ',
+                  id: 'total',
+                  defaultMessage: 'Total { categoryName } ',
                 },
                 {
                   categoryName,
@@ -163,19 +178,11 @@ const SyncCategorySummary = ({ categoryName, statistics }) => {
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900">n/a</p>
+            <p className="text-2xl font-semibold text-gray-900">
+              {statistics.total}
+            </p>
             <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({
-                    id: 'view_all',
-                    defaultMessage: 'View all',
-                  })}
-                </a>
-              </div>
+              &nbsp;
             </div>
           </dd>
         </div>
