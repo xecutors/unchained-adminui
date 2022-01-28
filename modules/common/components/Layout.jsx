@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/outline';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -179,16 +180,16 @@ const Layout = ({
   ];
 
   const navigations = { default: defaultNavigation, report: reportNavigation };
-  const successfullyLoginMessage = formatMessage({
+  const successfullyLoggedOutMessage = formatMessage({
     id: 'logged_out',
-    defaultMessage: 'logged out',
+    defaultMessage: 'Logged out',
   });
   const onLogout = async () => {
     await logOut(apollo);
-    successMessage: successfullyLoginMessage;
+    toast.success(successfullyLoggedOutMessage);
     router.replace('/');
   };
-  
+
   const [hideNav, setHideNav] = useState(true);
 
   const { currentUser } = useCurrentUser();

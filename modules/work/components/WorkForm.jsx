@@ -5,29 +5,53 @@ import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectT
 
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useAddWork from '../hooks/useAddWork';
 import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
-const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
+const WorkForm = () => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
+  const { addWork } = useAddWork();
   const workAddedMessage = formatMessage({
     id: 'work_added',
     defaultMessage: 'Work added successfully!',
   });
 
+  const onSubmit = async ({
+    type,
+    retries: inputRetry,
+    priority: inputPriority,
+    input: userInput,
+    scheduled,
+    originalWorkId,
+  }) => {
+    await addWork({
+      type,
+      retries: parseInt(inputRetry, 10),
+      priority: parseInt(inputPriority, 10),
+      input: convertArrayOfObjectToObject(userInput || [], 'value', 'key'),
+      scheduled,
+      originalWorkId,
+    });
+    return true;
+  };
+
   const form = useForm({
     submit: onSubmit,
-    onSubmitSuccess,
     successMessage: workAddedMessage,
     enableReinitialize: true,
     initialValues: {
-      Key: '',
-      type: [''],
-      input: [],
+      priority: '',
+      retries: '',
+      originalWorkId: null,
+      scheduled: null,
+      type: '',
+      input: [{ key: '', value: '' }],
     },
   });
 
@@ -129,7 +153,6 @@ const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
                 id: 'original_work_id',
                 defaultMessage: 'Original Work Id',
               })}
-              required
               autoComplete="on"
               className="py-2 sm:ml-1 sm:pr-4 text-sm text-gray-900 sm:mt-0 w-full"
             />
@@ -262,6 +285,7 @@ const WorkForm = ({ onSubmit, onSubmitSuccess }) => {
             )}
           </FieldArray>
         </div>
+        <FormErrors />
 
         <div className="mx-auto sm:w-1/2 ">
           <SubmitButton

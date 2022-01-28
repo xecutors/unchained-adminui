@@ -54,7 +54,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     setIsEdit(false);
     return true;
   };
-const updateProfilePhotoMessage = formatMessage({
+  const updateProfilePhotoMessage = formatMessage({
     id: 'photo_updated',
     defaultMessage: 'Profile Photo updated successfully!',
   });
