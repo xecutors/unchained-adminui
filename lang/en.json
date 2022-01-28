@@ -171,6 +171,9 @@
   "currencies_list_header": {
     "defaultMessage": "Currencies"
   },
+  "currency_deleted": {
+    "defaultMessage": "currency {id} deleted successfully"
+  },
   "current_password": {
     "defaultMessage": "Current password"
   },
@@ -201,6 +204,45 @@
   "delete_country_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this country?"
   },
+  "delete_currency": {
+    "defaultMessage": "Delete currency"
+  },
+  "delete_currency_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
+  },
+  "delete_delivery_providers": {
+    "defaultMessage": "Delete delivery providers"
+  },
+  "delete_delivery_providers_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Delivery Providers?"
+  },
+  "delete_email": {
+    "defaultMessage": "Delete email"
+  },
+  "delete_email_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this email?"
+  },
+  "delete_language": {
+    "defaultMessage": "Delete language"
+  },
+  "delete_language_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language?"
+  },
+  "delete_paymentProvider_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Payment provider?"
+  },
+  "delete_payment_provider": {
+    "defaultMessage": "Delete paymentProvider"
+  },
+  "delete_warehousing_provider": {
+    "defaultMessage": "Delete warehousing provider"
+  },
+  "delete_warehousing_provider_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this warehousing provider?"
+  },
+  "deliveryProviders_deleted": {
+    "defaultMessage": "deliveryProviders {id} deleted successfully"
+  },
   "delivery_providers": {
     "defaultMessage": "Delivery providers"
   },
@@ -227,6 +269,9 @@
   },
   "email_address": {
     "defaultMessage": "Email Address"
+  },
+  "email_deleted": {
+    "defaultMessage": "email {id} deleted successfully"
   },
   "email_exists_error": {
     "defaultMessage": "Email already exists"
@@ -362,6 +407,9 @@
   "language_added": {
     "defaultMessage": "Language added successfully!"
   },
+  "language_deleted": {
+    "defaultMessage": "language {id} deleted successfully"
+  },
   "language_header": {
     "defaultMessage": "Languages"
   },
@@ -482,6 +530,9 @@
   },
   "payment_provider": {
     "defaultMessage": "Payment providers"
+  },
+  "payment_provider_deleted": {
+    "defaultMessage": "Payment provider {id} deleted successfully"
   },
   "payment_providers_header": {
     "defaultMessage": "Payment providers"
@@ -634,9 +685,6 @@
   "sync_status": {
     "defaultMessage": "Sync status"
   },
-  "sync_updated": {
-    "defaultMessage": "Updated { categoryName }"
-  },
   "system": {
     "defaultMessage": "System"
   },
@@ -651,6 +699,13 @@
   },
   "total": {
     "defaultMessage": "Total"
+  },
+  "total_products": {
+    "defaultMessage": "Total products"
+  },
+  "total_variable_category": {
+    "defaultMessage": "Total { categoryName }",
+    "description": "Used in report where category is swapped with product, filter or assortment "
   },
   "type": {
     "defaultMessage": "Type"
@@ -717,6 +772,9 @@
   },
   "warehousing_provider": {
     "defaultMessage": "Warehousing provider"
+  },
+  "warehousing_provider_deleted": {
+    "defaultMessage": "warehousing provider {id} deleted successfully"
   },
   "warehousing_providers_header": {
     "defaultMessage": "Warehousing providers"
