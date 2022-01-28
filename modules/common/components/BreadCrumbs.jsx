@@ -32,14 +32,14 @@ const BreadCrumbs = ({ routeName }) => {
     };
   });
   return (
-    <nav className="hidden sm:flex" aria-label="Breadcrumb">
+    <nav className="hidden sm:flex mb-5" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
         {result.map((data, i) => (
           <li key={data.path}>
             <div className="flex items-center">
               {i !== 0 && (
                 <svg
-                  className="flex-shrink-0 h-5 w-5 text-gray-400"
+                  className="flex-shrink-0 h-5 w-5 text-gray-400 mr-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -53,7 +53,7 @@ const BreadCrumbs = ({ routeName }) => {
                 </svg>
               )}
               <Link href={data.path}>
-                <a className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+                <a className="text-sm font-medium text-gray-500 hover:text-gray-700">
                   {data.name}
                 </a>
               </Link>

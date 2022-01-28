@@ -34,14 +34,14 @@ const SyncDetail = () => {
 
   return (
     <div className="p-5">
-      <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'sync_status',
-          defaultMessage: 'Sync status',
-        })}
-      />
       <div className="container pt-5 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <BreadCrumbs />
+        <PageHeader
+          headerText={formatMessage({
+            id: 'sync_status',
+            defaultMessage: 'Sync status',
+          })}
+        />
         <div className="flex justify-between items-center">
           <div>
             <Link href={`/reports/daily-sync/${id}/jobs`}>
@@ -54,20 +54,25 @@ const SyncDetail = () => {
             </Link>
           </div>
           <div className="text-sm">
-            <div className="" />
-            <h6 className="text-gray-900">
-              {formatMessage({
-                id: 'started',
-                defaultMessage: 'Started',
-              })}
-              : <span>{format(new Date(result?.startedFrom), 'Pp')}</span>
+            <h6 className="text-gray-400 flex justify-between">
+              <span className="mr-2">
+                {formatMessage({
+                  id: 'started',
+                  defaultMessage: 'Started',
+                })}
+                :
+              </span>
+              <span>{format(new Date(result?.startedFrom), 'Pp')}</span>
             </h6>
-            <h6 className="text-gray-400">
-              {formatMessage({
-                id: 'finished',
-                defaultMessage: 'Finished',
-              })}
-              : <span>{format(new Date(result?.startedEnd), 'Pp')}</span>
+            <h6 className="text-gray-900 flex justify-between">
+              <span className="mr-2">
+                {formatMessage({
+                  id: 'finished',
+                  defaultMessage: 'Finished',
+                })}
+                :
+              </span>
+              <span>{format(new Date(result?.startedEnd), 'Pp')}</span>
             </h6>
           </div>
         </div>
