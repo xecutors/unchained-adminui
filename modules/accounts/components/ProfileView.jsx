@@ -73,10 +73,10 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   });
   const form = useForm({
     submit: onUpdateProfile,
+    successMessage: updateProfileMessage,
     initialValues: {
       ...profile,
       ...profile?.address,
-      successMessage: updateProfileMessage,
     },
   });
 

@@ -17,8 +17,8 @@ export default function LogInForm() {
   const router = useRouter();
   const { formatMessage } = useIntl();
   const successfullyLoginMessage = formatMessage({
-    id: 'successfully_login',
-    defaultMessage: 'Successfully Login.',
+    id: 'welcome',
+    defaultMessage: 'Welcome!',
   });
 
   const onSubmit = async ({ email, password }) => {

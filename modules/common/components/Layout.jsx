@@ -22,7 +22,6 @@ const Layout = ({
   navigationType = 'default',
 }) => {
   const { formatMessage } = useIntl();
-
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
@@ -180,12 +179,16 @@ const Layout = ({
   ];
 
   const navigations = { default: defaultNavigation, report: reportNavigation };
-
+  const successfullyLoginMessage = formatMessage({
+    id: 'logged_out',
+    defaultMessage: 'logged out',
+  });
   const onLogout = async () => {
     await logOut(apollo);
+    successMessage: successfullyLoginMessage;
     router.replace('/');
   };
-
+  
   const [hideNav, setHideNav] = useState(true);
 
   const { currentUser } = useCurrentUser();
