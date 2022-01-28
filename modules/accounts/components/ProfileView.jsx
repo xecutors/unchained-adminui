@@ -16,10 +16,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { formatMessage } = useIntl();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
-  // const onUpdateProfileMessage = formatMessage({
-  //   id: 'profile_updated',
-  //   defaultMessage: 'Profile updated successfully!',
-  // });
+
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
@@ -70,12 +67,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     return true;
   };
 
+  const updateProfileMessage = formatMessage({
+    id: 'profile_updated',
+    defaultMessage: 'Profile updated successfully!',
+  });
   const form = useForm({
     submit: onUpdateProfile,
     initialValues: {
       ...profile,
       ...profile?.address,
-      // successMessage: onUpdateProfileMessage,
+      successMessage: updateProfileMessage,
     },
   });
 

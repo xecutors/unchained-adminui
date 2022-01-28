@@ -44,6 +44,7 @@ export default function LogInForm() {
 
   const form = useForm({
     submit: onSubmit,
+    successMessage: successfullyLoginMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
       if (error?.message?.includes('auth failed'))
@@ -65,7 +66,6 @@ export default function LogInForm() {
 
       return error?.message || '';
     },
-    successMessage: successfullyLoginMessage,
     initialValues: {
       email: null,
       password: null,

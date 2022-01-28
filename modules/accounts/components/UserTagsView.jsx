@@ -9,6 +9,10 @@ const UserTagsView = ({ tags = [], userId }) => {
   const { setUserTags } = userSetUserTags();
   const [tagList, setTagList] = useState([...(tags || [])]);
 
+  // const tagsUpdatedMessage = formatMessage({
+  //   id: 'tags_updated',
+  //   defaultMessage: 'Tags updated successfully!',
+  // });
   const updateUserTags = async () => {
     await setUserTags({ tags: tagList, userId });
   };

@@ -27,7 +27,6 @@ const ProviderConfigurationForm = ({
     },
   });
 
- 
   const { values } = form.formik;
 
   return (
