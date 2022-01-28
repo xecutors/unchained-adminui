@@ -17,11 +17,15 @@ export const ProductTypes = {
 
 const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
-
+  const successMessage = formatMessage({
+    id: 'product_added',
+    defaultMessage: 'Product added successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
     enableReinitialize: true,
+    successMessage,
     initialValues: {
       title: '',
       type: '',

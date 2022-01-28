@@ -16,8 +16,13 @@ const UserRolesView = ({ roles, userId }) => {
     await setRoles({ roles: updatedRoles, userId });
     return true;
   };
+  const successMessage = formatMessage({
+    id: 'role_updated',
+    defaultMessage: 'Role updated successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
+    successMessage,
     initialValues: {
       updatedRoles: [...(roles || [])],
     },

@@ -58,8 +58,13 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
     );
   };
 
+  const successMessage = formatMessage({
+    id: 'email_added',
+    defaultMessage: 'Email added successfully!',
+  });
   const form = useForm({
     submit: onAddEmail,
+    successMessage,
     enableReinitialize: true,
     initialValues: {
       email: '',

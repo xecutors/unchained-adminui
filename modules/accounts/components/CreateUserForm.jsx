@@ -11,9 +11,14 @@ import SubmitButton from '../../forms/components/SubmitButton';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
+  const successMessage = formatMessage({
+    id: 'user_profile_created',
+    defaultMessage: 'User profile created successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage,
     initialValues: {
       displayName: '',
       gender: '',

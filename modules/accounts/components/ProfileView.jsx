@@ -16,6 +16,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { formatMessage } = useIntl();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
+
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
     const { displayName, phoneMobile, birthday, gender } = updatedProfile;
@@ -53,20 +54,28 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     setIsEdit(false);
     return true;
   };
-
+  const updateProfilePhotoMessage = formatMessage({
+    id: 'photo_updated',
+    defaultMessage: 'Profile Photo updated successfully!',
+  });
   const onUpdateAvatar = async ({ target }) => {
     const [file] = target.files;
-
     await updateUserAvatar({
       userId: _id,
       avatar: file,
+      successMessage: updateProfilePhotoMessage,
     });
 
     return true;
   };
 
+  const successMessage = formatMessage({
+    id: 'profile_updated',
+    defaultMessage: 'Profile updated successfully!',
+  });
   const form = useForm({
     submit: onUpdateProfile,
+    successMessage,
     initialValues: {
       ...profile,
       ...profile?.address,

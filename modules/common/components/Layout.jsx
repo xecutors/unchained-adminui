@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/outline';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
@@ -22,7 +23,6 @@ const Layout = ({
   navigationType = 'default',
 }) => {
   const { formatMessage } = useIntl();
-
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
@@ -180,9 +180,13 @@ const Layout = ({
   ];
 
   const navigations = { default: defaultNavigation, report: reportNavigation };
-
+  const successfullyLoggedOutMessage = formatMessage({
+    id: 'logged_out',
+    defaultMessage: 'Logged out',
+  });
   const onLogout = async () => {
     await logOut(apollo);
+    toast.success(successfullyLoggedOutMessage);
     router.replace('/');
   };
 

@@ -12,16 +12,21 @@ const ProviderConfigurationForm = ({
   onSubmitSuccess,
   defaultValue,
 }) => {
+  const { formatMessage } = useIntl();
+  const providerUpdatedMessage = formatMessage({
+    id: 'provider_updated',
+    defaultMessage: 'Provider updated successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    successMessage: providerUpdatedMessage,
     enableReinitialize: true,
     initialValues: {
       configuration: [{ key: '', value: '', ...defaultValue }],
     },
   });
 
-  const { formatMessage } = useIntl();
   const { values } = form.formik;
 
   return (

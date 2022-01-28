@@ -17,8 +17,13 @@ const UserNameView = ({ _id: userId, username }) => {
     return true;
   };
 
+  const successMessage = formatMessage({
+    id: 'username_updated',
+    defaultMessage: 'Username updated successfully!',
+  });
   const form = useForm({
     submit: onUpdateUserName,
+    successMessage,
     initialValues: {
       username,
     },
