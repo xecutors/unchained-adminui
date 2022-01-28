@@ -16,6 +16,11 @@ export default function LogInForm() {
   const { logInWithPassword } = useLoginWithPassword();
   const router = useRouter();
   const { formatMessage } = useIntl();
+  const successfullyLoginMessage = formatMessage({
+    id: 'successfully_login',
+    defaultMessage: 'Successfully Login.',
+  });
+
   const onSubmit = async ({ email, password }) => {
     try {
       const { data } = await logInWithPassword({
@@ -60,6 +65,7 @@ export default function LogInForm() {
 
       return error?.message || '';
     },
+    successMessage: successfullyLoginMessage,
     initialValues: {
       email: null,
       password: null,

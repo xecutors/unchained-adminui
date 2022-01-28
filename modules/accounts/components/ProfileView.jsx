@@ -16,6 +16,11 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { formatMessage } = useIntl();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
+  // const onUpdateProfileMessage = formatMessage({
+  //   id: 'profile_updated',
+  //   defaultMessage: 'Profile updated successfully!',
+  // });
+
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
     const { displayName, phoneMobile, birthday, gender } = updatedProfile;
@@ -70,6 +75,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     initialValues: {
       ...profile,
       ...profile?.address,
+      // successMessage: onUpdateProfileMessage,
     },
   });
 
