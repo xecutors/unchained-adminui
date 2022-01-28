@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -9,7 +10,6 @@ import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
 import Badge from '../../common/components/Badge';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
-import { toast } from 'react-toastify';
 
 const STATUS = {
   true: 'Verified',

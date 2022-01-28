@@ -32,7 +32,8 @@ const WarehousingProviders = () => {
             formatMessage(
               {
                 id: 'warehousing_provider_deleted',
-                defaultMessage: 'warehousing provider {id} deleted successfully',
+                defaultMessage:
+                  'warehousing provider {id} deleted successfully',
               },
               {
                 id: warehousingProviderId,

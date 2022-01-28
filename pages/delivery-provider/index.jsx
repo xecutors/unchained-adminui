@@ -20,7 +20,6 @@ const DeliveryProviders = () => {
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
 
   const onRemoveDeliveryProvider = async (deliveryProviderId) => {
-  
     await setModal(
       <DangerMessage
         message={formatMessage({
