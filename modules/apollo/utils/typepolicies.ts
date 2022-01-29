@@ -11,7 +11,7 @@ export const keyMappings: any = {
         },
       },
       products: {
-        keyArgs: ['limit', 'includeDrafts'],
+        keyArgs: ['limit', 'includeDrafts', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },

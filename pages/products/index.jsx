@@ -13,12 +13,19 @@ import useProducts from '../../modules/product/hooks/useProducts';
 const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
+  const [offset, setOffset] = useState(0);
   const [includeDrafts, setIncludeDrafts] = useState(false);
 
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,
+    offset,
   });
+
+  const onOffsetChange = (jj) => {
+    console.log(jj);
+    setOffset(jj);
+  };
 
   return (
     <>
@@ -46,7 +53,10 @@ const index = () => {
           onLoadMore={loadMore}
           data={products}
           total={productsCount}
+          limit={limit}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>
