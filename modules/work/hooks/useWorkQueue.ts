@@ -26,7 +26,7 @@ export const WorkQueueQuery = gql`
 const useWorkQueue = ({
   offset = 0,
   limit = 50,
-  status = ['NEW', 'ALLOCATED', 'FAILED', 'SUCCESS'],
+  status = [],
   selectTypes = [],
   created = null,
 } = {}) => {
@@ -34,7 +34,7 @@ const useWorkQueue = ({
     variables: { offset, limit, status, selectTypes, created },
   });
   const workQueue = data?.workQueue || [];
-  const activeWorkTypes = data?.activeWorkTypes;
+  const activeWorkTypes = data?.activeWorkTypes || [];
   const loadMore = () =>
     fetchMore({
       variables: { offset: workQueue.length },

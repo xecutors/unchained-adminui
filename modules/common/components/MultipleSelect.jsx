@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import Badge from './Badge';
 
-const MultipleSelect = ({ tagList: tags, onChange, options }) => {
+const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
   const { formatMessage } = useIntl();
   const [tagList, setTagList] = useState([...(tags || [])]);
 
@@ -44,7 +44,8 @@ const MultipleSelect = ({ tagList: tags, onChange, options }) => {
           <div className="relative flex items-stretch flex-grow focus-within:z-10">
             <select
               id="tag-input"
-              placeholder="select type"
+              placeholder={label}
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               onChange={(e) => addTag(e.target.value)}
             >
               <option>
