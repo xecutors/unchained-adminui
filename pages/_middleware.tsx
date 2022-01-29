@@ -12,8 +12,8 @@ const middleware = async (req: NextRequest) => {
   ) {
     return NextResponse.rewrite(`/404`);
   }
-
-  if (pathname === '/' && !isReportUI) {
+  // temporary until report has a general landing page
+  if (pathname === '/' || (pathname === '/reports' && !isReportUI)) {
     return NextResponse.rewrite(`/reports/daily-sync`);
   }
 
