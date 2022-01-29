@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Accordion = ({ data, containerCSS, headerCSS, bodyCSS }) => {
   return (
-    <div className={classNames('p-5', containerCSS)}>
+    <div className={classNames('', containerCSS)}>
       {data.map(({ header, body }, key) => (
         <AccordionItem
           header={header}
@@ -29,7 +29,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       <div
         onClick={() => setShow(!show)}
         className={classNames(
-          'border text-3xl text-gray-500 rounded-lg cursor-pointer pl-5  hover:bg-gray-100',
+          'border text-gray-500 rounded-lg cursor-pointer pl-5  hover:bg-gray-100',
           headerCSS,
         )}
       >
@@ -55,9 +55,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       </div>
 
       {show ? (
-        <div
-          className={classNames('text-2xl text-gray-400 rounded-lg', bodyCSS)}
-        >
+        <div className={classNames(' p-0 text-gray-400 rounded-lg', bodyCSS)}>
           {body}
         </div>
       ) : (
