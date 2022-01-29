@@ -18,6 +18,12 @@ const Currencies = () => {
   const { formatMessage } = useIntl();
   const [includeInactive, setIncludeInactive] = useState(false);
 
+  const [offset, setOffset] = useState(0);
+
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
+
   const { currencies, currenciesCount, loadMore, loading } = useCurrencies({
     limit,
     includeInactive,
@@ -76,13 +82,17 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
+        {loading && (
+          <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={currencies}
           total={currenciesCount}
           onLimitChange={setLimit}
+          limit={limit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>

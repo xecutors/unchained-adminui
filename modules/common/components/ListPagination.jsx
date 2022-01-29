@@ -2,7 +2,6 @@ import classNames from 'classnames';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
-import Loading from './Loading';
 
 const Step = ({ onClick, disabled, label }) => {
   return (
@@ -26,7 +25,6 @@ const Step = ({ onClick, disabled, label }) => {
 const ListPagination = ({
   total,
   onLimitChange,
-  isLoading,
   limit,
   offset,
   onOffsetChange,
@@ -34,98 +32,68 @@ const ListPagination = ({
   const { formatMessage } = useIntl();
 
   const currentPage = offset === 0 ? 1 : Math.floor(offset / limit);
+  const addStep = (number) => {
+    return (
+      <Step
+        key={`start-${number}`}
+        type="button"
+        onClick={() => onOffsetChange(limit * number)}
+        aria-current="page"
+        disabled={currentPage === number}
+        label={number}
+      />
+    );
+  };
 
   const Steps = () => {
     const steps = [];
-    const pages = total / limit;
-    if (pages > 5) {
-      // eslint-disable-next-line no-plusplus
-      for (let i = 1; i <= 6; i++) {
-        steps.push(
-          <Step
-            key={`start-${i}`}
-            type="button"
-            onClick={() => onOffsetChange(limit * i)}
-            aria-current="page"
-            disabled={currentPage === i}
-            label={i}
-          />,
-        );
-      }
+    const pages = total ? Math.ceil((total - limit) / limit) : 0;
+    const center = [
+      currentPage - 2,
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      currentPage + 2,
+    ];
+    const filteredCenter = center
+      .filter((p) => p > 1 && p < pages)
+      .map((a) => addStep(a));
+    const includeThreeLeft = currentPage === 5;
+    const includeThreeRight = currentPage === pages - 4;
+    const includeLeftDots = currentPage > 5;
+    const includeRightDots = currentPage < pages - 4;
 
-      if (currentPage > 5 && currentPage <= pages - 2) {
-        steps.push(
-          <Step
-            type="button"
-            onClick={() => onOffsetChange(limit * currentPage - 1)}
-            aria-current="page"
-            label={currentPage - 1}
-          />,
-        );
-        steps.push(
-          <Step
-            key="dash"
-            type="button"
-            aria-current="page"
-            disabled
-            label="..."
-          />,
-        );
-        steps.push(
-          <Step
-            type="button"
-            aria-current="page"
-            disabled
-            label={currentPage}
-          />,
-        );
-        steps.push(
-          <Step
-            type="button"
-            onClick={() => onOffsetChange(limit * currentPage + 1)}
-            aria-current="page"
-            label={currentPage + 1}
-          />,
-        );
-        steps.push(
-          <Step
-            key="dash"
-            type="button"
-            aria-current="page"
-            disabled
-            label="..."
-          />,
-        );
-      } else {
-        steps.push(
-          <Step
-            key="dash"
-            type="button"
-            aria-current="page"
-            disabled
-            label="..."
-          />,
-        );
-      }
-      // eslint-disable-next-line no-plusplus
-      for (let i = pages - 2; i < pages; i++) {
-        steps.push(
-          <Step
-            key={`start-${i}`}
-            type="button"
-            onClick={() => onOffsetChange(limit * i)}
-            aria-current="page"
-            disabled={currentPage === i}
-            label={i}
-          />,
-        );
-      }
+    if (includeThreeLeft) filteredCenter.unshift(addStep(2));
+    if (includeThreeRight) filteredCenter.push(addStep(pages - 1));
+
+    if (includeLeftDots)
+      filteredCenter.unshift(
+        <Step
+          key="dash-1"
+          type="button"
+          aria-current="page"
+          disabled
+          label="..."
+        />,
+      );
+    if (includeRightDots)
+      filteredCenter.push(
+        <Step
+          key="dash-2"
+          type="button"
+          aria-current="page"
+          disabled
+          label="..."
+        />,
+      );
+    steps.push(addStep(1));
+    steps.push(...filteredCenter);
+    if (pages > 0) {
+      steps.push(addStep(pages));
     }
-
     return steps;
   };
 
-  if (isLoading) return <Loading />;
   return (
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-">
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
@@ -259,7 +227,7 @@ const ListPagination = ({
           <select
             onChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
             id="location"
-            defaultValue={DefaultLimit}
+            defaultValue={limit}
             name="location"
             className=" h-8 block w-full   py-0 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
           >
