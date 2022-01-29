@@ -11,9 +11,11 @@ import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 
 const index = () => {
   const [limit, setLimit] = useState();
-  const [offset, setOffset] = useState(0);
-
-  const { workQueue, loadMore, loading } = useWorkQueue({ limit, offset });
+  const [filter, setFilter] = useState({});
+  const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
+    limit,
+    ...filter,
+  });
   const { formatMessage } = useIntl();
 
   return (
@@ -25,6 +27,16 @@ const index = () => {
           defaultMessage: 'Work queue',
         })}
       />
+      <Filter
+        wortkTypes={activeWorkTypes}
+        onFilterApplied={({ types, dateRange, status }) => {
+          setFilter({
+            selectTypes: types,
+            status,
+            created: dateRange,
+          });
+        }}
+      />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/works/management" />
 
@@ -35,8 +47,6 @@ const index = () => {
           total={(workQueue || []).length}
           onLoadMore={loadMore}
           limit={limit}
-          offset={offset}
-          onOffsetChange={setOffset}
         />
       </div>
     </>
