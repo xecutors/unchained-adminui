@@ -12,6 +12,7 @@ import Toggle from '../../modules/common/components/Toggle';
 import ListPagination from '../../modules/common/components/ListPagination';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import Loading from '../../modules/common/components/Loading';
 
 const Currencies = () => {
   const [limit, setLimit] = useState(DefaultLimit);
@@ -82,7 +83,9 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        {loading && (
+        {loading ? (
+          <Loading />
+        ) : (
           <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
         )}
         <ListPagination

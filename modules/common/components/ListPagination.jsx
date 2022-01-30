@@ -1,7 +1,12 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage, useIntl } from 'react-intl';
-import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
+import {
+  DefaultLimit,
+  LimitSteps,
+  stopPropagation,
+} from '../data/miscellaneous';
 
 const Step = ({ onClick, disabled, label }) => {
   return (
@@ -23,7 +28,8 @@ const Step = ({ onClick, disabled, label }) => {
 };
 
 const ListPagination = ({
-  total,
+  total = 0,
+  data = [],
   onLimitChange,
   limit,
   offset,
@@ -31,13 +37,15 @@ const ListPagination = ({
 }) => {
   const { formatMessage } = useIntl();
 
-  const currentPage = offset === 0 ? 1 : Math.floor(offset / limit);
+  const currentPage = offset === 0 ? 1 : Math.ceil((offset + 1) / limit);
+
   const addStep = (number) => {
+    const stepOffset = number - 1;
     return (
       <Step
-        key={`start-${number}`}
+        key={`start-${stepOffset}`}
         type="button"
-        onClick={() => onOffsetChange(limit * number)}
+        onClick={() => onOffsetChange(limit * stepOffset)}
         aria-current="page"
         disabled={currentPage === number}
         label={number}
@@ -47,7 +55,7 @@ const ListPagination = ({
 
   const Steps = () => {
     const steps = [];
-    const pages = total ? Math.ceil((total - limit) / limit) : 0;
+    const pages = total ? Math.floor(total / limit) : 0;
     const center = [
       currentPage - 2,
       currentPage - 1,
@@ -55,9 +63,11 @@ const ListPagination = ({
       currentPage + 1,
       currentPage + 2,
     ];
+
     const filteredCenter = center
       .filter((p) => p > 1 && p < pages)
       .map((a) => addStep(a));
+
     const includeThreeLeft = currentPage === 5;
     const includeThreeRight = currentPage === pages - 4;
     const includeLeftDots = currentPage > 5;
@@ -72,7 +82,7 @@ const ListPagination = ({
           key="dash-1"
           type="button"
           aria-current="page"
-          disabled
+          onClick={stopPropagation}
           label="..."
         />,
       );
@@ -82,12 +92,13 @@ const ListPagination = ({
           key="dash-2"
           type="button"
           aria-current="page"
-          disabled
+          onClick={stopPropagation}
           label="..."
         />,
       );
     steps.push(addStep(1));
     steps.push(...filteredCenter);
+
     if (pages > 0) {
       steps.push(addStep(pages));
     }
@@ -105,15 +116,15 @@ const ListPagination = ({
             })
           ) : (
             <FormattedMessage
-              id="app.greeting"
+              id="paginated-data"
               defaultMessage="<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
               values={{
                 p: (chunks) => (
                   <p className="text-sm text-gray-700">{chunks}</p>
                 ),
                 span: (chunks) => <span className="font-medium">{chunks}</span>,
-                to: offset + limit,
-                from: offset,
+                to: offset + 1 + data.length,
+                from: offset + 1,
                 total,
               }}
             />
@@ -241,6 +252,19 @@ const ListPagination = ({
       </div>
     </div>
   );
+};
+ListPagination.defaultProps = {
+  data: [],
+  total: 0,
+};
+
+ListPagination.propTypes = {
+  total: PropTypes.number,
+  data: PropTypes.arrayOf(PropTypes.object),
+  onLimitChange: PropTypes.func.isRequired,
+  limit: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired,
+  onOffsetChange: PropTypes.func.isRequired,
 };
 
 export default ListPagination;
