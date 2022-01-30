@@ -511,6 +511,10 @@ export const getColor = (type, color, hue) => {
 };
 export default { LimitSteps, DefaultLimit };
 
+export const stopPropagation = (e) => {
+  e.stopPropagation();
+};
+
 export const UnrestrictedPages = [
   '/log-in',
   '/sign-up',

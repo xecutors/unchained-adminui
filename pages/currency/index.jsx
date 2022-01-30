@@ -12,11 +12,18 @@ import Toggle from '../../modules/common/components/Toggle';
 import ListPagination from '../../modules/common/components/ListPagination';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import Loading from '../../modules/common/components/Loading';
 
 const Currencies = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
   const [includeInactive, setIncludeInactive] = useState(false);
+
+  const [offset, setOffset] = useState(0);
+
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
 
   const { currencies, currenciesCount, loadMore, loading } = useCurrencies({
     limit,
@@ -76,13 +83,19 @@ const Currencies = () => {
           />
         </ListHeader>
 
-        <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
+        {loading ? (
+          <Loading />
+        ) : (
+          <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={currencies}
           total={currenciesCount}
           onLimitChange={setLimit}
+          limit={limit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>

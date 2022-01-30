@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
@@ -13,12 +14,18 @@ import useProducts from '../../modules/product/hooks/useProducts';
 const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
+  const [offset, setOffset] = useState(0);
   const [includeDrafts, setIncludeDrafts] = useState(false);
 
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,
+    offset,
   });
+
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
 
   return (
     <>
@@ -40,13 +47,16 @@ const index = () => {
             onToggle={setIncludeDrafts}
           />
         </ListHeader>
-        <ProductList products={products} />
+        {loading ? <Loading /> : <ProductList products={products} />}
+
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={products}
           total={productsCount}
+          limit={limit}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>
