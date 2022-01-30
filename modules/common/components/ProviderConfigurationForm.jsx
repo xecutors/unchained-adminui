@@ -6,6 +6,7 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
+import DeleteButton from './DeleteButton';
 
 const ProviderConfigurationForm = ({
   onSubmit,
@@ -66,7 +67,7 @@ const ProviderConfigurationForm = ({
                     className="w-full mr-2"
                   />
                   <div className="flex-shrink-0 sm:mt-4 mt-5 mr-1">
-                    <button
+                    {/* <button
                       className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                       type="button"
                       onClick={() => removeConfig(index)}
@@ -86,7 +87,10 @@ const ProviderConfigurationForm = ({
                         <line x1="10" y1="11" x2="10" y2="17" />{' '}
                         <line x1="14" y1="11" x2="14" y2="17" />
                       </svg>
-                    </button>
+                    </button> */}
+                    <DeleteButton 
+                       onClick={() => removeConfig(index)}
+                    />
                   </div>
                 </div>
               );
