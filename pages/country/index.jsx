@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 
@@ -19,9 +20,12 @@ const Country = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
   const [includeInactive, setIncludeInactive] = useState(false);
+  const [offset, setOffset] = useState(0);
+
   const { countries, countriesCount, loadMore, loading } = useCountries({
     limit,
     includeInactive,
+    offset,
   });
 
   const { setModal } = useModal();
@@ -76,15 +80,22 @@ const Country = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-
-        <CountryList countries={countries} onRemoveCountry={onRemoveCountry} />
-
+        {loading ? (
+          <Loading />
+        ) : (
+          <CountryList
+            countries={countries}
+            onRemoveCountry={onRemoveCountry}
+          />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={countries}
           total={countriesCount}
           onLimitChange={setLimit}
+          limit={limit}
+          offset={offset}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

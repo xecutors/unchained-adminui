@@ -8,14 +8,17 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import useFilters from '../../modules/filter/hooks/useFilters';
 import FilterList from '../../modules/filter/components/FilterList';
+import Loading from '../../modules/common/components/Loading';
 
 const index = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeInactive, setIncludeInactive] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   const { filters, filtersCount, loadMore, loading } = useFilters({
     limit,
     includeInactive,
+    offset,
   });
   const { formatMessage } = useIntl();
 
@@ -39,13 +42,16 @@ const index = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-        <FilterList filters={filters} />
+
+        {loading ? <Loading /> : <FilterList filters={filters} />}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={filters}
           total={filtersCount}
+          limit={limit}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

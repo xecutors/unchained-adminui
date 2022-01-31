@@ -5,7 +5,7 @@ export const keyMappings: any = {
   Query: {
     fields: {
       assortments: {
-        keyArgs: ['limit', 'includeLeaves', 'includeInactive'],
+        keyArgs: ['limit', 'includeLeaves', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -17,55 +17,55 @@ export const keyMappings: any = {
         },
       },
       countries: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       currencies: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       enrollments: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       quotations: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       workQueue: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       languages: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       events: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       users: {
-        keyArgs: ['limit', 'includeGuests', 'queryString'],
+        keyArgs: ['limit', 'includeGuests', 'queryString', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       filters: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -73,7 +73,7 @@ export const keyMappings: any = {
       Log: offsetLimitPagination(),
     },
     orders: {
-      keyArgs: ['limit', 'includeCarts'],
+      keyArgs: ['limit', 'includeCarts', 'offset'],
       merge(existing = [], incoming) {
         return [...existing, ...incoming];
       },

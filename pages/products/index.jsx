@@ -23,10 +23,6 @@ const index = () => {
     offset,
   });
 
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -56,7 +52,7 @@ const index = () => {
           limit={limit}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

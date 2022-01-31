@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
 import Toggle from '../../modules/common/components/Toggle';
@@ -16,10 +17,13 @@ const Orders = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeCarts, setIncludeCarts] = useState(false);
   const [queryString, setQueryString] = useState('');
+  const [offset, setOffset] = useState(0);
+
   const { orders, loadMore, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
     queryString,
+    offset,
   });
   return (
     <>
@@ -42,24 +46,24 @@ const Orders = () => {
             onToggle={setIncludeCarts}
           />
         </ListHeader>
-        <OrderList
-          isLoading={loading}
-          orders={orders}
-          showUser
-          showPagination
-          includeCarts={includeCarts}
-          onIncludeCartsChange={setIncludeCarts}
-          onLimitChange={setLimit}
-          onLoadMore={loadMore}
-          total={ordersCount}
-        />
-
+        {loading ? (
+          <Loading />
+        ) : (
+          <OrderList
+            orders={orders}
+            showUser
+            includeCarts={includeCarts}
+            onIncludeCartsChange={setIncludeCarts}
+          />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={orders}
           total={ordersCount}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={setOffset}
+          limit={limit}
         />
       </div>
     </>

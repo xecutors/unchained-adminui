@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EnrollmentList from '../../modules/enrollment/components/EnrollmentList';
@@ -11,8 +12,11 @@ import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
 const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
+  const [offset, setOffset] = useState(0);
+
   const { enrollments, loadMore, enrollmentsCount, loading } = useEnrollments({
     limit,
+    offset,
   });
   return (
     <>
@@ -26,13 +30,20 @@ const index = () => {
       <div className=" inline-block min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader />
 
-        <EnrollmentList enrollments={enrollments} showUser />
+        {loading ? (
+          <Loading />
+        ) : (
+          <EnrollmentList enrollments={enrollments} showUser />
+        )}
+
         <ListPagination
-          isLoading={loading}
+          limit={limit}
           onLoadMore={loadMore}
           data={enrollments}
           total={enrollmentsCount}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={setOffset}
         />
       </div>
     </>
