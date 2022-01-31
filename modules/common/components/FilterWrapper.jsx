@@ -14,7 +14,7 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
   };
 
   return (
-    <div className="2xl:container 2xl:mx-auto">
+    <div className="w-full">
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
