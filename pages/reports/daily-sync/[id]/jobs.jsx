@@ -92,8 +92,8 @@ const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="pt-1 flex item-start">
-        <div className="mr-2">
+      <div className="flex relative item-start">
+        <div className="mr-2 mt-4">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,7 @@ const JobHeader = ({ job }) => {
             </svg>
           )}
         </div>
-        <div className=" items-start">
+        <div className="pt-2 text-black items-start">
           <div
             className={classNames(
               'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
@@ -142,7 +142,7 @@ const JobHeader = ({ job }) => {
           </div>
           <div
             className={classNames(
-              'mt-2 text-xs  leading-5 font-semibold rounded-full  text-gray-800',
+              'mt-1 text-xs  leading-5 font-semibold rounded-full  text-gray-800',
               {
                 'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
                   job.sync.signal,
@@ -175,9 +175,9 @@ const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="bg-white shadow overflow-hidden w-[100%]">
-      <div className="border-t border-gray-200  py-5 sm:p-0">
-        <dl className="sm:divide-y sm:divide-gray-200">
+    <div className="bg-white overflow-hidden w-[100%]">
+      <div className="border border-gray-200  py-5 sm:p-0">
+        <dl className="px-7 divide-y divide-gray-300">
           <div className="py-4 sm:py-5 ">
             <dt className="text-sm font-medium text-gray-500">
               {formatMessage({
@@ -221,7 +221,7 @@ const JobBody = ({ job }) => {
                 defaultMessage: 'Categories',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className=" mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <JobSyncStat {...job.categories} />
             </dd>
           </div>
@@ -282,7 +282,7 @@ const SyncJobs = () => {
           defaultMessage: 'Sync jobs',
         })}
       />
-      <div className="bg-white  overflow-hidden sm:rounded-md w-full">
+      <div className="sticky overflow-hidden w-full">
         {!jobs?.length ? (
           <p>No sync report found</p>
         ) : (
