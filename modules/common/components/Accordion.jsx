@@ -29,7 +29,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       <div
         onClick={() => setShow(!show)}
         className={classNames(
-          'border text-gray-500 rounded-lg cursor-pointer pl-5  hover:bg-gray-100',
+          'bg-white  text-gray-500 border relative cursor-pointer pl-2 hover:bg-gray-50',
           headerCSS,
         )}
       >
@@ -38,7 +38,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
           {' '}
           {show ? (
             <ArrowCircleDownIcon
-              className="h-6 w-6"
+              className="mb-3 h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
