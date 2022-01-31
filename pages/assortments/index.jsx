@@ -9,16 +9,22 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
+import Loading from '../../modules/common/components/Loading';
 
 const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeInactive, setIncludeInactive] = useState(false);
   const [includeLeaves, setIncludeLeaves] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
   const { assortments, assortmentsCount, loadMore, loading } = useAssortments({
     includeInactive,
     includeLeaves,
     limit,
+    offset,
   });
 
   return (
@@ -50,14 +56,15 @@ const index = () => {
             onToggle={setIncludeLeaves}
           />
         </ListHeader>
-
-        <AssortmentList assortments={assortments} />
+        {loading ? <Loading /> : <AssortmentList assortments={assortments} />}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={assortments}
+          limit={limit}
           total={assortmentsCount}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>
