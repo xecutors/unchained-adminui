@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ListPagination from '../../modules/common/components/ListPagination';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import QuotationList from '../../modules/quotation/components/QuotationList';
@@ -11,8 +12,13 @@ import useQuotations from '../../modules/quotation/hooks/useQuotations';
 const Quotations = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
+  const [offset, setOffset] = useState(0);
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
   const { quotations, loadMore, quotationsCount, loading } = useQuotations({
     limit,
+    offset,
   });
   return (
     <>
@@ -25,13 +31,19 @@ const Quotations = () => {
       />
       <div className=" inline-block min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader />
-        <QuotationList quotations={quotations} showUser />
+        {loading ? (
+          <Loading />
+        ) : (
+          <QuotationList quotations={quotations} showUser />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={quotations}
           total={quotationsCount}
           onLimitChange={setLimit}
+          offset={offset}
+          limit={limit}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>

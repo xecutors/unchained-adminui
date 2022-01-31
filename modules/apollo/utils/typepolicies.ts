@@ -17,43 +17,43 @@ export const keyMappings: any = {
         },
       },
       countries: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       currencies: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       enrollments: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       quotations: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       workQueue: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       languages: {
-        keyArgs: ['limit', 'includeInactive'],
+        keyArgs: ['limit', 'includeInactive', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       events: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -65,7 +65,7 @@ export const keyMappings: any = {
         },
       },
       filters: {
-        keyArgs: ['limit'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -73,7 +73,7 @@ export const keyMappings: any = {
       Log: offsetLimitPagination(),
     },
     orders: {
-      keyArgs: ['limit', 'includeCarts'],
+      keyArgs: ['limit', 'includeCarts', 'offset'],
       merge(existing = [], incoming) {
         return [...existing, ...incoming];
       },
