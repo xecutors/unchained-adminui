@@ -17,9 +17,7 @@ const index = () => {
   const [includeInactive, setIncludeInactive] = useState(false);
   const [includeLeaves, setIncludeLeaves] = useState(false);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { assortments, assortmentsCount, loadMore, loading } = useAssortments({
     includeInactive,
     includeLeaves,
@@ -64,7 +62,7 @@ const index = () => {
           total={assortmentsCount}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

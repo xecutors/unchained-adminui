@@ -14,9 +14,6 @@ const index = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [queryString, setQueryString] = useState('');
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
 
   const { events, loadMore, eventsCount, loading } = useEvents({
     limit,
@@ -47,7 +44,7 @@ const index = () => {
           total={eventsCount}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
           limit={limit}
         />
       </div>

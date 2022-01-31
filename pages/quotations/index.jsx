@@ -13,9 +13,7 @@ const Quotations = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { quotations, loadMore, quotationsCount, loading } = useQuotations({
     limit,
     offset,
@@ -43,7 +41,7 @@ const Quotations = () => {
           onLimitChange={setLimit}
           offset={offset}
           limit={limit}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

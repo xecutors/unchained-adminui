@@ -17,9 +17,7 @@ const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
   const [queryString, setQueryString] = useState('');
   const [includeGuests, setShowGuests] = useState(false);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { users, usersCount, loadMore, loading } = useUsers({
     limit,
     includeGuests,
@@ -92,7 +90,7 @@ const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
         limit={limit}
         onLimitChange={setLimit}
         offset={offset}
-        onOffsetChange={onOffsetChange}
+        onOffsetChange={setOffset}
       />
     </>
   );

@@ -22,9 +22,6 @@ const Country = () => {
   const [includeInactive, setIncludeInactive] = useState(false);
   const [offset, setOffset] = useState(0);
 
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
   const { countries, countriesCount, loadMore, loading } = useCountries({
     limit,
     includeInactive,
@@ -98,7 +95,7 @@ const Country = () => {
           onLimitChange={setLimit}
           limit={limit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

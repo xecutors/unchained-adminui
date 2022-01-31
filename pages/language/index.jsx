@@ -20,9 +20,7 @@ const Languages = () => {
 
   const [includeInactive, setIncludeInactive] = useState(false);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { languages, languagesCount, loadMore, loading } = useLanguages({
     limit,
     includeInactive,
@@ -98,7 +96,7 @@ const Languages = () => {
           limit={limit}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

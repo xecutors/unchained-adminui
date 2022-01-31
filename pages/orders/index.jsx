@@ -18,9 +18,7 @@ const Orders = () => {
   const [includeCarts, setIncludeCarts] = useState(false);
   const [queryString, setQueryString] = useState('');
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { orders, loadMore, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
@@ -64,7 +62,7 @@ const Orders = () => {
           total={ordersCount}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
           limit={limit}
         />
       </div>

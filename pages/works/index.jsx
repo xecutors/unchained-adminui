@@ -11,9 +11,7 @@ import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 const index = () => {
   const [limit, setLimit] = useState();
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { workQueue, loadMore, loading } = useWorkQueue({ limit, offset });
   const { formatMessage } = useIntl();
 
@@ -37,7 +35,7 @@ const index = () => {
           onLoadMore={loadMore}
           limit={limit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

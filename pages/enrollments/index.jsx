@@ -13,9 +13,7 @@ const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
+
   const { enrollments, loadMore, enrollmentsCount, loading } = useEnrollments({
     limit,
     offset,
@@ -45,7 +43,7 @@ const index = () => {
           total={enrollmentsCount}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

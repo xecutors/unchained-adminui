@@ -21,10 +21,6 @@ const Currencies = () => {
 
   const [offset, setOffset] = useState(0);
 
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
-
   const { currencies, currenciesCount, loadMore, loading } = useCurrencies({
     limit,
     includeInactive,
@@ -95,7 +91,7 @@ const Currencies = () => {
           onLimitChange={setLimit}
           limit={limit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>

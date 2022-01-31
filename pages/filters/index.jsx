@@ -14,9 +14,6 @@ const index = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeInactive, setIncludeInactive] = useState(false);
   const [offset, setOffset] = useState(0);
-  const onOffsetChange = (value) => {
-    setOffset(value);
-  };
 
   const { filters, filtersCount, loadMore, loading } = useFilters({
     limit,
@@ -54,7 +51,7 @@ const index = () => {
           limit={limit}
           onLimitChange={setLimit}
           offset={offset}
-          onOffsetChange={onOffsetChange}
+          onOffsetChange={setOffset}
         />
       </div>
     </>
