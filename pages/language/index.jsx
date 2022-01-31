@@ -12,16 +12,21 @@ import Toggle from '../../modules/common/components/Toggle';
 import ListPagination from '../../modules/common/components/ListPagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
+import Loading from '../../modules/common/components/Loading';
 
 const Languages = () => {
   const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
 
   const [includeInactive, setIncludeInactive] = useState(false);
-
+  const [offset, setOffset] = useState(0);
+  const onOffsetChange = (value) => {
+    setOffset(value);
+  };
   const { languages, languagesCount, loadMore, loading } = useLanguages({
     limit,
     includeInactive,
+    offset,
   });
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
@@ -78,16 +83,22 @@ const Languages = () => {
             onToggle={setIncludeInactive}
           />
         </ListHeader>
-        <LanguageList
-          languages={languages}
-          onRemoveLanguage={onRemoveLanguage}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <LanguageList
+            languages={languages}
+            onRemoveLanguage={onRemoveLanguage}
+          />
+        )}
         <ListPagination
-          isLoading={loading}
           onLoadMore={loadMore}
           data={languages}
           total={languagesCount}
+          limit={limit}
           onLimitChange={setLimit}
+          offset={offset}
+          onOffsetChange={onOffsetChange}
         />
       </div>
     </>
