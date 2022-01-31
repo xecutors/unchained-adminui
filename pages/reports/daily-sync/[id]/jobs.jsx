@@ -93,7 +93,7 @@ const JobHeader = ({ job }) => {
   return (
     <>
       <div className="flex relative item-start">
-        <div className="mr-2 mt-4">
+        <div className="mr-2 mt-3">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
