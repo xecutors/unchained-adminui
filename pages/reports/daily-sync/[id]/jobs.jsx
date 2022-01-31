@@ -124,10 +124,10 @@ const JobHeader = ({ job }) => {
             </svg>
           )}
         </div>
-        <div className="pt-2 text-black items-start">
+        <div className="pt-2 items-start">
           <div
             className={classNames(
-              'text-xs  leading-5 font-semibold rounded-full  text-gray-800',
+              'text-sm  leading-5  rounded-full  text-black ',
             )}
           >
             {formatMessage(
@@ -142,7 +142,7 @@ const JobHeader = ({ job }) => {
           </div>
           <div
             className={classNames(
-              'mt-1 text-xs  leading-5 font-semibold rounded-full  text-gray-800',
+              'mt-1 text-sm  leading-5 rounded-full  text-black ',
               {
                 'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
                   job.sync.signal,
