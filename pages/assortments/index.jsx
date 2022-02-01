@@ -10,12 +10,14 @@ import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import Loading from '../../modules/common/components/Loading';
+import AssortmentFilter from '../../modules/assortment/components/AssortmentFilter';
 
 const index = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [includeInactive, setIncludeInactive] = useState(false);
   const [includeLeaves, setIncludeLeaves] = useState(false);
+  const [filter, setFilter] = useState({});
   const [offset, setOffset] = useState(0);
 
   const { assortments, assortmentsCount, loadMore, loading } = useAssortments({
@@ -23,6 +25,7 @@ const index = () => {
     includeLeaves,
     limit,
     offset,
+    ...filter,
   });
 
   return (
@@ -33,6 +36,15 @@ const index = () => {
           id: 'assortments_list_header',
           defaultMessage: 'Assortments',
         })}
+      />
+      <AssortmentFilter
+        onFilter={({ types, dateRange, status }) => {
+          setFilter({
+            selectTypes: types,
+            status,
+            created: dateRange,
+          });
+        }}
       />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/assortments/new">
