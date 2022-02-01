@@ -88,9 +88,7 @@ const ProviderConfigurationForm = ({
                         <line x1="14" y1="11" x2="14" y2="17" />
                       </svg>
                     </button> */}
-                    <DeleteButton 
-                       onClick={() => removeConfig(index)}
-                    />
+                    <DeleteButton onClick={() => removeConfig(index)} />
                   </div>
                 </div>
               );

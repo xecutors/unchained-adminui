@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const CurrencyListItem = ({ currency, onRemove }) => {
@@ -58,7 +59,11 @@ const CurrencyListItem = ({ currency, onRemove }) => {
               </svg>
             </a>
           </Link>
-          <a className="m-2 mr-1" onClick={() => onRemove(currency?._id)}>
+          <DeleteButton
+            className="ml-1 mr-1  border-white text-red-600 hover:text-red-900 cursor-pointer"
+            onClick={() => onRemove(currency?._id)}
+          />
+          {/* <a className="m-2 mr-1" onClick={() => onRemove(currency?._id)}>
             <svg
               className=" h-5 w-5 text-red-500"
               viewBox="0 0 24 24"
@@ -74,7 +79,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
               <line x1="10" y1="11" x2="10" y2="17" />{' '}
               <line x1="14" y1="11" x2="14" y2="17" />
             </svg>
-          </a>
+          </a> */}
         </div>
       </Table.Cell>
     </Table.Row>
