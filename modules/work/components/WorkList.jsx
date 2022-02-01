@@ -8,7 +8,7 @@ const WorkList = ({ workQueue }) => {
   return (
     <Table className="min-w-full ">
       {workQueue?.map((work) => (
-        <Table.Row key={work._id} className="bg-white " header>
+        <Table.Row key={`${work._id}-header`} className="bg-white " header>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
               id: 'work_number',

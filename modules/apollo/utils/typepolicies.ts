@@ -41,7 +41,7 @@ export const keyMappings: any = {
         },
       },
       workQueue: {
-        keyArgs: ['limit', 'offset'],
+        keyArgs: ['limit', 'status', 'selectTypes', 'created'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
