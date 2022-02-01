@@ -34,10 +34,10 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
   };
   return (
     <FilterWrapper
-      className="flex-col  bg-white shadow mb-2 p-6"
+      className="bg-white shadow mb-2 p-6 w-full"
       onApplyFilter={onApplyFilter}
     >
-      <div className="sm:flex">
+      <div className="sm:flex w-full">
         <div className="sm:mr-6">
           <div className=" flex space-x-2">
             <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
@@ -47,7 +47,7 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
               })}
             </p>
           </div>
-          <div className="flex mt-5 max:mb-3 ">
+          <div className="mt-5 max:mb-3 ">
             <div className=" flex justify-center items-center">
               <label className="ml-1 mr-2" htmlFor="work-start">
                 {formatMessage({ id: 'from', defaultMessage: 'From' })}
@@ -88,15 +88,15 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
           </div>
         </div>
 
-        <div className="">
-          <p className=" sm:mt-0 mt-3 lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+        <div className="grid">
+          <p className=" sm:mt-0 mt-3 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
             {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </p>
-          <div className=" grid md:grid-cols-2 gird-cols-2 sm:grid lg:grid-cols-4 mt-3 m-2 ">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:pr-5 mt-3 m-2 ">
             {WORK_STATUSES.map((status) => (
-              <div className="flex justify-start m-2 lg:ml-2 ">
+              <div className="flex justify-start m-2">
                 <input
-                  className="w-4 h-4 mr-2"
+                  className="w-4 h-4 mr-2 "
                   type="checkbox"
                   id={status}
                   name={status}
@@ -104,12 +104,9 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
                   checked={selectedStatuses[status]}
                   onChange={statusChangeHandler}
                 />
-                <div className=" ">
-                  <div className="flex pr-5 justify-start">
-                    <label
-                      className=" mr-2 pr-3 text-sm leading-3 font-normal text-gray-600"
-                      htmlFor={status}
-                    >
+                <div className="mr-2">
+                  <div className="flex">
+                    <label className="text-sm text-gray-600" htmlFor={status}>
                       {status}
                     </label>
                   </div>
@@ -134,10 +131,10 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
           </p>
         </div>
         <div>
-            <div className="sm:flex max-w-2xl justify-between align-baseline">
-            <div className="py-3">
+          <div className="sm:flex w-full justify-between align-baseline">
+            <div className="py-3 w-md sm:full">
               <MultipleSelect
-                className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
+                className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-md"
                 label={formatMessage({
                   id: 'select_type',
                   defaultMessage: 'Select type',
