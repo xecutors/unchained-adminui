@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../common/components/BreadCrumbs';
 import PageHeader from '../../common/components/PageHeader';
+import ProductDetailHeader from '../../common/components/ProductDetailHeader';
 import GeneralTextForm from './GeneralTextForm';
+import SupplyForm from './SupplyForm';
 
 const getCurrentTab = (current) => {
   if (current === 'general_text') return <GeneralTextForm />;
   if (current === 'media') return <GeneralTextForm />;
   if (current === 'commerce') return <GeneralTextForm />;
-  if (current === 'supply') return <GeneralTextForm />;
+  if (current === 'supply') return <SupplyForm/>;
   if (current === 'warehousing') return <GeneralTextForm />;
   if (current === 'variations') return <GeneralTextForm />;
   if (current === 'bundled_products') return <GeneralTextForm />;
@@ -58,6 +60,7 @@ const ProductDetail = () => {
           defaultMessage: 'Product Detail',
         })}
       />
+      <ProductDetailHeader />
       <div className=" sm:px-6 md:px-0">
         <div className="py-6">
           <div className="lg:hidden">

@@ -1,11 +1,17 @@
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
 import Form from '../../forms/components/Form';
+import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
+export const languageTypes = {
+  base: 'de(Base)',
+  fr: 'Fr',
+  et: 'Et',
+};
 const GeneralTextForm = () => {
   const { formatMessage } = useIntl();
   // const { GeneralText } = useProducts();
@@ -43,6 +49,33 @@ const GeneralTextForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
+        <div className="flex">
+          <svg
+            className="w-6 h-6 mt-2 ml-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+            />
+          </svg>
+          <SelectField
+            className="ml-1 w-48"
+            label={formatMessage({
+              id: 'language',
+              defaultMessage: 'language',
+            })}
+            hideLabel
+            name="language"
+            options={languageTypes}
+          />
+        </div>
+
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
           <div className="sm:flex w-full  justify-between align-baseline">
             <TextField
