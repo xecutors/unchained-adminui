@@ -6,10 +6,10 @@ const AssortmentFilter = ({ onFilter }) => {
   const onApplyFilter = () => {
     onFilter({});
   };
-  const onSearch= ()=>{
-  onSearch({});
+  const onSearch = () => {
+    onSearch({});
   };
-   
+
   return (
     <FilterWrapper
       className="bg-white shadow mb-2 p-6 "
