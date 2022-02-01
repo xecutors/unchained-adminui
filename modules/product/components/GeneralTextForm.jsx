@@ -49,31 +49,38 @@ const GeneralTextForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
-        <div className="flex">
-          <svg
-            className="w-6 h-6 mt-2 ml-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+        <div className="pl-3 grid grid-col-2 ">
+          <div className="mt-1 relative rounded-md shadow-sm">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg
+                className="w-6 h-6"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                />
+              </svg>
+            </div>
+            <SelectField
+              label={formatMessage({
+                id: 'language',
+                defaultMessage: 'language',
+              })}
+              hideLabel
+              name="language"
+              placeholder=" "
+              options={languageTypes}
+              className="mt-1 pl-10 pr-3 py-4  focus:ring-indigo-500 focus:border-indigo-500 block w-48 sm:text-sm border-gray-300 rounded-md"
+              placeholder=" "
             />
-          </svg>
-          <SelectField
-            className="ml-1 w-48"
-            label={formatMessage({
-              id: 'language',
-              defaultMessage: 'language',
-            })}
-            hideLabel
-            name="language"
-            options={languageTypes}
-          />
+          </div>
         </div>
 
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">

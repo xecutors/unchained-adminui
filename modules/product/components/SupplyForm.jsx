@@ -1,12 +1,9 @@
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
 import Form from '../../forms/components/Form';
-import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
-import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-
 
 const SupplyForm = () => {
   const { formatMessage } = useIntl();
@@ -15,12 +12,7 @@ const SupplyForm = () => {
     defaultMessage: 'Saved...',
   });
 
-  const onSubmit = async ({
-    weight,
-    length,
-    width,
-    height,
-  }) => {
+  const onSubmit = async ({ weight, length, width, height }) => {
     return true;
   };
 
@@ -91,7 +83,6 @@ const SupplyForm = () => {
             />
           </div>
 
-        
           <div className="mx-auto sm:w-1/2 ">
             <SubmitButton
               label={formatMessage({
@@ -108,4 +99,4 @@ const SupplyForm = () => {
   );
 };
 
-export default SupplyForm
+export default SupplyForm;
