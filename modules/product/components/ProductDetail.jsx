@@ -50,7 +50,7 @@ const ProductDetail = () => {
     }),
   };
   return (
-    <div className="mt-6 max-w-4xl">
+    <div className="mt-6 max-w-full">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -83,23 +83,22 @@ const ProductDetail = () => {
             </select>
           </div>
           <div className="hidden lg:block">
-            <div className="border-b border-gray-200 al">
-              <nav className="-mb-px flex space-x-8">
-                {Object.entries(productOptions).map(([key, value]) => (
-                  <a
-                    onClick={() => setActiveTab(key)}
-                    key={key}
-                    className={` ${
-                      activeTab === key && 'border-purple-500 text-purple-600'
-                    }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
-                  >
-                    {value}
-                  </a>
-                ))}
-              </nav>
-            </div>
+            <nav className="relative z-0 rounded-md shadow flex divide-x divide-gray-200">
+              {Object.entries(productOptions).map(([key, value]) => (
+                <a
+                  onClick={() => setActiveTab(key)}
+                  key={key}
+                  className={` ${
+                    activeTab === key &&
+                    ' bg-transparent rounded-md text-gray-500 hover:text-indigo-700'
+                  }  group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10`}
+                >
+                  {value}
+                </a>
+              ))}
+            </nav>
           </div>
-          <div className="mt-5">{getCurrentTab(activeTab)}</div>
+          <div className="text-indigo-500">{getCurrentTab(activeTab)}</div>
         </div>
       </div>
     </div>

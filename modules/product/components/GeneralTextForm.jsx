@@ -54,7 +54,7 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
             />
 
             <TextField
@@ -66,11 +66,11 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
           </div>
 
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="sm:flex max-w-full  justify-between align-baseline">
             <TextField
               name="subtitle"
               id="subtitle"
@@ -80,7 +80,7 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
 
             <TextField
@@ -92,11 +92,11 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
           </div>
 
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="sm:flex max-w-full  justify-between align-baseline">
             <TextField
               name="brand"
               id="brand"
@@ -106,7 +106,7 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
 
             <TextField
@@ -118,7 +118,7 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm  font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
           </div>
 
@@ -132,7 +132,7 @@ const GeneralTextForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   sm:mt-0 w-full"
+              className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
           </div>
           <div className="mx-auto sm:w-1/2 ">
