@@ -1,9 +1,5 @@
 const MediaForm = () => {
-    return (
-        <div>
-            MediaForm
-        </div>
-    )
-}
+  return <div>MediaForm</div>;
+};
 
-export default MediaForm
+export default MediaForm;

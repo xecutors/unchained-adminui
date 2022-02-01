@@ -5,13 +5,14 @@ import PageHeader from '../../common/components/PageHeader';
 import ProductDetailHeader from '../../common/components/ProductDetailHeader';
 import GeneralTextForm from './GeneralTextForm';
 import SupplyForm from './SupplyForm';
+import WarehousingForm from './WarehousingForm';
 
 const getCurrentTab = (current) => {
   if (current === 'general_text') return <GeneralTextForm />;
   if (current === 'media') return <GeneralTextForm />;
   if (current === 'commerce') return <GeneralTextForm />;
-  if (current === 'supply') return <SupplyForm/>;
-  if (current === 'warehousing') return <GeneralTextForm />;
+  if (current === 'supply') return <SupplyForm />;
+  if (current === 'warehousing') return <WarehousingForm />;
   if (current === 'variations') return <GeneralTextForm />;
   if (current === 'bundled_products') return <GeneralTextForm />;
   if (current === 'subscription') return <GeneralTextForm />;
