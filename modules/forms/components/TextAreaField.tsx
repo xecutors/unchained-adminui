@@ -23,9 +23,12 @@ const TextAreaField = ({
   return (
     <FieldWrapper {...field}>
       <textarea
-        className={classnames('form-field p-1', {
-          'text-red-600 border-red-600': !!field.error,
-        })}
+        className={classnames(
+          'max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
+          {
+            'text-red-600 border-red-600': !!field.error,
+          },
+        )}
         disabled={field.disabled}
         id={field.name}
         name={field.name}
