@@ -34,10 +34,10 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
   };
   return (
     <FilterWrapper
-      className="bg-white shadow mb-2 p-6 w-full"
+      className="bg-white shadow mb-2 p-6 "
       onApplyFilter={onApplyFilter}
     >
-      <div className="sm:flex w-full">
+      <div className="lg:flex">
         <div className="sm:mr-6">
           <div className=" flex space-x-2">
             <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
@@ -48,7 +48,7 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
             </p>
           </div>
           <div className="mt-5 max:mb-3 ">
-            <div className=" flex justify-center items-center">
+            <div className="flex justify-center items-center">
               <label className="ml-1 mr-2" htmlFor="work-start">
                 {formatMessage({ id: 'from', defaultMessage: 'From' })}
               </label>
@@ -88,66 +88,66 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
           </div>
         </div>
 
-        <div className="grid">
-          <p className=" sm:mt-0 mt-3 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
-            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:pr-5 mt-3 m-2 ">
-            {WORK_STATUSES.map((status) => (
-              <div className="flex justify-start m-2">
-                <input
-                  className="w-4 h-4 mr-2 "
-                  type="checkbox"
-                  id={status}
-                  name={status}
-                  value={status}
-                  checked={selectedStatuses[status]}
-                  onChange={statusChangeHandler}
+        <div className="flex-1 w-md">
+          <div className="mt-4 sm:mt-1 lg:mt-1 md:mt-5 flex space-x-2">
+            <VariableIcon
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            />
+            <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+              {formatMessage({ id: 'type', defaultMessage: 'Type' })}
+            </p>
+          </div>
+          <div>
+            <>
+              <div className="py-1  ">
+                <MultipleSelect
+                  className="text-sm text-gray-900  "
+                  label={formatMessage({
+                    id: 'select_type',
+                    defaultMessage: 'Select type',
+                  })}
+                  tagList={selectedTypes}
+                  onChange={setSelectedTypes}
+                  options={workTypes.map((type) => ({
+                    label: type,
+                    value: type,
+                  }))}
                 />
-                <div className="mr-2">
-                  <div className="flex">
-                    <label className="text-sm text-gray-600" htmlFor={status}>
-                      {status}
-                    </label>
-                  </div>
-                </div>
               </div>
-            ))}
+            </>
           </div>
         </div>
       </div>
-
       <hr className=" bg-gray-200  w-full  my-8" />
-      <div>
-        <div className=" flex space-x-2">
-          <VariableIcon
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          />
-          <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
-            {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-          </p>
-        </div>
-        <div>
-          <div className="sm:flex w-full justify-between align-baseline">
-            <div className="py-3 w-md sm:full">
-              <MultipleSelect
-                className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-md"
-                label={formatMessage({
-                  id: 'select_type',
-                  defaultMessage: 'Select type',
-                })}
-                tagList={selectedTypes}
-                onChange={setSelectedTypes}
-                options={workTypes.map((type) => ({
-                  label: type,
-                  value: type,
-                }))}
+
+      <div className="">
+        <p className=" sm:mt-0 mt-3 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
+          {formatMessage({ id: 'status', defaultMessage: 'Status' })}
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:pr-5 mt-3 m-1 ">
+          {WORK_STATUSES.map((status) => (
+            <div className="flex justify-start m-2">
+              <input
+                className="w-4 h-4 mr-2 "
+                type="checkbox"
+                id={status}
+                name={status}
+                value={status}
+                checked={selectedStatuses[status]}
+                onChange={statusChangeHandler}
               />
+              <div className="mr-2">
+                <div className="flex">
+                  <label className=" text-sm text-gray-600" htmlFor={status}>
+                    {status}
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </FilterWrapper>
