@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
-import MiniUserAvatar from './MiniUserAvatar';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 
@@ -253,13 +252,8 @@ const Layout = ({
             </div>
             <SideNav navigation={navigations[navigationType]} />
           </div>
-          <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-            <MiniUserAvatar
-              {...currentUser}
-              showName
-              url={currentUser?.avatar?.file.url}
-              onLogout={onLogout}
-            />
+          <div className=" flex-shrink-0 flex border-t border-gray-200 p-4">
+            <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
       </div>

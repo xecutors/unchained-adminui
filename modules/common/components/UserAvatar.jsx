@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const UserAvatar = ({ avatar, username, onLogout }) => {
   const { formatMessage } = useIntl();
   return (
-    <a onClick={onLogout} className="flex-shrink-0 group block">
+    <a href="#" onClick={onLogout} className="flex-shrink-0 group block">
       <div className="flex items-center">
         <>
           {avatar ? (

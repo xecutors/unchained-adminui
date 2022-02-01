@@ -2,10 +2,14 @@ import FilterWrapper from '../../common/components/FilterWrapper';
 import SearchField from '../../common/components/SearchField';
 import TagInput from '../../common/components/TagInput';
 
-const AssortmentFilter = ({ onSearch, onFilter }) => {
+const AssortmentFilter = ({ onFilter }) => {
   const onApplyFilter = () => {
     onFilter({});
   };
+  const onSearch= ()=>{
+  onSearch({});
+  };
+   
   return (
     <FilterWrapper
       className="bg-white shadow mb-2 p-6 "

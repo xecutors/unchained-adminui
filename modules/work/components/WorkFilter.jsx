@@ -37,7 +37,7 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
       className="bg-white shadow mb-2 p-6 "
       onApplyFilter={onApplyFilter}
     >
-      <div className="lg:flex">
+      <div className="lg:flex mb-2 sm:mb-0 justify-between">
         <div className="sm:mr-6">
           <div className=" flex space-x-2">
             <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
@@ -121,10 +121,10 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
           </div>
         </div>
       </div>
-      <hr className=" bg-gray-200  w-full  my-8" />
+      <hr className=" bg-gray-200  w-full hidden sm:block  my-4" />
 
-      <div className="">
-        <p className=" sm:mt-0 mt-3 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
+      <div>
+        <p className=" mt-0 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:pr-5 mt-3 m-1 ">
