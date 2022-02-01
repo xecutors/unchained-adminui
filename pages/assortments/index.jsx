@@ -38,11 +38,10 @@ const index = () => {
         })}
       />
       <AssortmentFilter
-        onFilter={({ types, dateRange, status }) => {
+        onFilter={({ onSearch, tag }) => {
           setFilter({
-            selectTypes: types,
-            status,
-            created: dateRange,
+            tag,
+            onSearch,
           });
         }}
       />
