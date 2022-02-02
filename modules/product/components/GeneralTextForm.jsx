@@ -1,34 +1,46 @@
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
+
 import Form from '../../forms/components/Form';
-import SelectField from '../../forms/components/SelectField';
+
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
 
-export const languageTypes = {
-  base: 'de(Base)',
-  fr: 'Fr',
-  et: 'Et',
-};
-const GeneralTextForm = () => {
+const GeneralTextForm = ({ _id: productId, selectedLocale, texts }) => {
   const { formatMessage } = useIntl();
-  // const { GeneralText } = useProducts();
+
   const successMessage = formatMessage({
-    id: 'saved',
+    id: 'saved_with_dot_suffix',
     defaultMessage: 'Saved...',
   });
+
+  const { updateProductTexts } = useUpdateProductTexts();
 
   const onSubmit = async ({
     slug,
     title,
     subtitle,
     vendor,
-    productDescription,
+    description,
     brand,
     labels,
   }) => {
+    await updateProductTexts({
+      productId,
+      texts: {
+        locale: selectedLocale?.isoCode,
+        slug,
+        title,
+        subtitle,
+        vendor,
+        description,
+        brand,
+        labels,
+      },
+    });
     return true;
   };
 
@@ -40,12 +52,13 @@ const GeneralTextForm = () => {
       title: '',
       subtitle: '',
       vendor: '',
-      productDescription: '',
+      description: '',
       brand: '',
       labels: '',
+      ...(texts || {}),
     },
   });
-  const { values } = form.formik;
+
   return (
     <FormHeader>
       <Form form={form}>
@@ -68,18 +81,6 @@ const GeneralTextForm = () => {
                 />
               </svg>
             </div>
-            <SelectField
-              label={formatMessage({
-                id: 'language',
-                defaultMessage: 'language',
-              })}
-              hideLabel
-              name="language"
-              placeholder=" "
-              options={languageTypes}
-              className="mt-1 pl-10 pr-3 py-4  focus:ring-indigo-500 focus:border-indigo-500 block w-32 sm:text-sm border-gray-300 rounded-md"
-              placeholder=" "
-            />
           </div>
         </div>
 
@@ -92,7 +93,6 @@ const GeneralTextForm = () => {
                 id: 'slug',
                 defaultMessage: 'Slug',
               })}
-              required
               autoComplete="on"
               className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
             />
@@ -104,7 +104,6 @@ const GeneralTextForm = () => {
                 id: 'title',
                 defaultMessage: 'Title',
               })}
-              required
               autoComplete="on"
               className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
@@ -118,7 +117,6 @@ const GeneralTextForm = () => {
                 id: 'subtitle',
                 defaultMessage: 'Subtitle',
               })}
-              required
               autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
@@ -130,7 +128,6 @@ const GeneralTextForm = () => {
                 id: 'vendor',
                 defaultMessage: 'Vendor',
               })}
-              required
               autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
@@ -144,7 +141,6 @@ const GeneralTextForm = () => {
                 id: 'brand',
                 defaultMessage: 'Brand',
               })}
-              required
               autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
@@ -156,7 +152,6 @@ const GeneralTextForm = () => {
                 id: 'labels',
                 defaultMessage: 'Labels',
               })}
-              required
               autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
@@ -164,13 +159,12 @@ const GeneralTextForm = () => {
 
           <div className="w-full">
             <TextAreaField
-              name="productDescription"
-              id="productDescription"
+              name="description"
+              id="description"
               label={formatMessage({
-                id: 'product_description',
-                defaultMessage: 'product Description',
+                id: 'description',
+                defaultMessage: 'Description',
               })}
-              required
               autoComplete="on"
               className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
