@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
-import Badge from './Badge';
 
 const PROVIDER_TYPE_CLASSES = {
   Published: 'green',
