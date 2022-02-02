@@ -522,5 +522,4 @@ export const UnrestrictedPages = [
   '/reset-password',
   '/api/graphql',
   '/404',
-  '/',
 ];

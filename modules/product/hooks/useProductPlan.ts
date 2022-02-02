@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import ProductPlanConfigurationFragment from '../fragments/ProductPlanConfigurationFragment';
 
 export const ProductPlanQuery = gql`
-  query ProductSupply(
+  query ProductPlan(
     $productId: ID
     $slug: String
     $weightUnit: MassUnit = GRAM

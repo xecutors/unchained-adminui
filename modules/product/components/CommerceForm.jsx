@@ -1,13 +1,13 @@
 import { FieldArray } from 'formik';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
-import FormHeader from '../../common/components/FormHeader';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import useCountries from '../../country/hooks/useCountries';
 import useCurrencies from '../../currency/hooks/useCurrencies';
+
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -26,16 +26,16 @@ const normalizeCatalogPrices = (prices = []) => {
   }));
 };
 
-const CommerceForm = ({ _id: productId }) => {
+const CommerceForm = ({ productId }) => {
   const { formatMessage } = useIntl();
-  const { currencies } = useCurrencies();
-  const { countries } = useCountries();
-  const { catalogPrices, loading } = useProductCatalogPrices({ productId });
+  const { catalogPrices } = useProductCatalogPrices({ productId });
+
   const { updateProductCommerce } = useUpdateProductCommerce();
+  const { countries } = useCountries();
+  const { currencies } = useCurrencies();
 
   const onSubmit = async ({ pricing }) => {
     await updateProductCommerce({ productId, pricing });
-
     return true;
   };
   const successMessage = formatMessage({
@@ -48,12 +48,23 @@ const CommerceForm = ({ _id: productId }) => {
     enableReinitialize: true,
     initialValues: {
       pricing: [
-        ...(normalizeCatalogPrices(catalogPrices) || [
-          { max: '', amount: '', vat: '', net: '', country: '' },
+        ...(catalogPrices || [
+          {
+            maxQuantity: '',
+            amount: '',
+            isTaxable: '',
+            isNetPrice: '',
+            currencyCode: '',
+            countryCode: '',
+          },
         ]),
       ],
     },
   });
+
+  useEffect(() => {
+    if (catalogPrices.length) form.formik.setValues('pricing', catalogPrices);
+  }, [catalogPrices]);
 
   const { values } = form.formik;
 
@@ -62,245 +73,256 @@ const CommerceForm = ({ _id: productId }) => {
       form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
   }, [catalogPrices]);
   return (
-    <FormHeader>
-      <Form form={form}>
-        <div className="sm:p-3 rounded-md relative max-w-full">
-          <div className=" max-w-full justify-between align-baseline" />
+    <Form form={form}>
+      <div className="sm:p-3 rounded-md relative max-w-full">
+        <div className=" max-w-full justify-between align-baseline" />
 
-          <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
-            <span className="flex w-full">
-              <samp className="w-full  ">
-                {' '}
-                {formatMessage({
-                  id: 'max_quantity',
-                  defaultMessage: 'Max Quantity',
-                })}{' '}
-              </samp>
-              <samp className="w-full">
-                {formatMessage({
-                  id: 'amount',
-                  defaultMessage: 'Amount',
-                })}{' '}
-              </samp>
+        <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
+          <span className="flex w-full">
+            <samp className="w-full  ">
+              {' '}
+              {formatMessage({
+                id: 'max_quantity',
+                defaultMessage: 'Max Quantity',
+              })}{' '}
+            </samp>
+            <samp className="w-full">
+              {formatMessage({
+                id: 'amount',
+                defaultMessage: 'Amount',
+              })}{' '}
+            </samp>
+          </span>
+          <span className="flex w-full ml-3">
+            <samp className="w-full">
+              {' '}
+              {formatMessage({
+                id: 'vat_suspect',
+                defaultMessage: 'Vat Suspect',
+              })}
+            </samp>
+            <samp className="w-full">
+              {formatMessage({
+                id: 'net_price',
+                defaultMessage: 'Net Price',
+              })}
+            </samp>
+          </span>
+          <span className="flex w-full mr-5">
+            <span className="w-full ml-10">
+              {formatMessage({
+                id: 'country',
+                defaultMessage: 'Country',
+              })}
             </span>
-            <span className="flex w-full ml-3">
-              <samp className="w-full">
-                {' '}
-                {formatMessage({
-                  id: 'vat_suspect',
-                  defaultMessage: 'Vat Suspect',
-                })}
-              </samp>
-              <samp className="w-full">
-                {formatMessage({
-                  id: 'net_price',
-                  defaultMessage: 'Net Price',
-                })}
-              </samp>
+            <span className="w-full">
+              {formatMessage({
+                id: 'currency',
+                defaultMessage: 'Currency',
+              })}
             </span>
-            <span className="flex w-full mr-5">
-              <span className="w-full ml-10">
-                {formatMessage({
-                  id: 'country',
-                  defaultMessage: 'Country',
-                })}
-              </span>
-              <span className="w-full">
-                {formatMessage({
-                  id: 'currency',
-                  defaultMessage: 'Currency',
-                })}
-              </span>
-            </span>
-          </label>
+          </span>
+        </label>
 
-          <FieldArray name="pricing">
-            {({ push, remove: removeConfig }) => (
-              <div>
-                {values.pricing.map((p, index) => {
-                  return (
-                    <div
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={index}
-                      className="shadow mt-2 p-6  lg:p-0 md:p-6 md:shadow lg:shadow-none lg:flex max-w-full align-baseline relative"
-                    >
-                      <div className="flex w-full">
-                        <TextField
-                          className="w-full mr-2"
-                          name={`pricing[${index}].maxQuantity`}
-                          id={`pricing[${index}].maxQuantity`}
-                          required
-                          hideLabel
-                          number
+        <FieldArray name="pricing">
+          {({ push, remove: removeConfig }) => (
+            <div>
+              {values.pricing.map((p, index) => {
+                return (
+                  <div
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
+                    className="shadow mt-2 p-6  lg:p-0 md:p-6 md:shadow lg:shadow-none lg:flex max-w-full align-baseline relative"
+                  >
+                    <div className="flex w-full">
+                      <TextField
+                        className="w-full mr-2"
+                        name={`pricing[${index}].maxQuantity`}
+                        id={`pricing[${index}].maxQuantity`}
+                        required
+                        type="number"
+                        hideLabel
+                        label={formatMessage({
+                          id: 'max_quantity',
+                          defaultMessage: 'Max Quantity',
+                        })}
+                        placeholder={formatMessage({
+                          id: 'max_quantity',
+                          defaultMessage: 'Max Quantity',
+                        })}
+                      />
+                      <TextField
+                        type="number"
+                        className="w-full mr-3"
+                        name={`pricing[${index}].amount`}
+                        id={`pricing[${index}].amount`}
+                        required
+                        hideLabel
+                        label={formatMessage({
+                          id: 'amount',
+                          defaultMessage: 'Amount',
+                        })}
+                        placeholder={formatMessage({
+                          id: 'amount',
+                          defaultMessage: 'Amount',
+                        })}
+                      />
+                    </div>
+
+                    <div className=" p-2 flex w-full ">
+                      <div className="w-full lg:ml-8 lg:items-center">
+                        <CheckboxField
+                          name={`pricing[${index}].isTaxable`}
+                          labelClassNames="lg:sr-only items-center "
                           label={formatMessage({
-                            id: 'max_quantity',
-                            defaultMessage: 'Max Quantity',
+                            id: 'vat_suspect',
+                            defaultMessage: 'Vat Suspect',
                           })}
-                          placeholder={formatMessage({
-                            id: 'max_quantity',
-                            defaultMessage: 'Max Quantity',
-                          })}
-                        />
-                        <TextField
-                          className="w-full mr-3"
-                          name={`pricing[${index}].amount`}
-                          id={`pricing[${index}].amount`}
-                          required
-                          hideLabel
-                          label={formatMessage({
-                            id: 'amount',
-                            defaultMessage: 'Amount',
-                          })}
-                          placeholder={formatMessage({
-                            id: 'amount',
-                            defaultMessage: 'Amount',
-                          })}
+                          onChange={async (e) => {
+                            await form.formik.setFieldValue(
+                              `pricing[${index}].isTaxable`,
+                              e.target.checked,
+                            );
+                          }}
+                          className="lg:items-center ml-1 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          type="checkbox"
                         />
                       </div>
 
-                      <div className=" p-2 flex w-full ">
-                        <div className="w-full lg:ml-8 lg:items-center">
-                          <CheckboxField
-                            id={`pricing[${index}].isTaxable`}
-                            name={`pricing[${index}].isTaxable`}
-                            labelClassNames="lg:sr-only items-center "
-                            label={formatMessage({
-                              id: 'vat_suspect',
-                              defaultMessage: 'Vat Suspect',
-                            })}
-                            className="lg:items-center ml-1 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                          />
-                        </div>
-
-                        <div className="w-full lg:ml-8">
-                          <CheckboxField
-                            id={`pricing[${index}].isNetPrice`}
-                            name={`pricing[${index}].isNetPrice`}
-                            labelClassNames="lg:sr-only items-center"
-                            label={formatMessage({
-                              id: 'net_price',
-                              defaultMessage: 'Net Price',
-                            })}
-                            hideLabel
-                            className="lg:items-center mr-2 justify-between focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                          />
-                        </div>
-                      </div>
-
-                      <div className=" flex w-full ">
-                        <SelectField
-                          className=" text-black w-full py-1.5 lg:ml-4  mr-2 lg:mr-5  "
+                      <div className="w-full lg:ml-8">
+                        <CheckboxField
+                          name={`pricing[${index}].isNetPrice`}
+                          labelClassNames="lg:sr-only items-center"
                           label={formatMessage({
-                            id: 'country',
-                            defaultMessage: 'Country',
+                            id: 'net_price',
+                            defaultMessage: 'Net Price',
                           })}
-                          name={`pricing[${index}].countryCode`}
-                          id={`pricing[${index}].countryCode`}
-                          required
-                          options={convertArrayOfObjectToObject(
-                            countries,
-                            'isoCode',
-                            'isoCode',
-                          )}
+                          onChange={async (e) => {
+                            await form.formik.setFieldValue(
+                              `pricing[${index}].isNetPrice`,
+                              e.target.checked,
+                            );
+                          }}
                           hideLabel
-                          placeholder={formatMessage({
-                            id: 'country',
-                            defaultMessage: 'Country',
-                          })}
+                          className="lg:items-center mr-2 justify-between focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          type="checkbox"
                         />
-
-                        <SelectField
-                          className="text-black w-full  py-1.5 mr-2 lg:mr-8 "
-                          label={formatMessage({
-                            id: 'currency',
-                            defaultMessage: 'Currency',
-                          })}
-                          name={`pricing[${index}].currencyCode`}
-                          id={`pricing[${index}].currencyCode`}
-                          required
-                          options={convertArrayOfObjectToObject(
-                            currencies,
-                            'isoCode',
-                            'isoCode',
-                          )}
-                          hideLabel
-                          placeholder={formatMessage({
-                            id: 'currency',
-                            defaultMessage: 'Currency',
-                          })}
-                        />
-                      </div>
-
-                      <div className="absolute top-0 mt-0 right-0 mr-0 md:mr-0  pb-1 lg:py-0 lg:px-0 flex-shrink-0  lg:mt-4 ">
-                        <button
-                          className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
-                          type="button"
-                          onClick={() => removeConfig(index)}
-                        >
-                          <svg
-                            className="h-4 w-4"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            {' '}
-                            <polyline points="3 6 5 6 21 6" />{' '}
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
-                            <line x1="10" y1="11" x2="10" y2="17" />{' '}
-                            <line x1="14" y1="11" x2="14" y2="17" />
-                          </svg>
-                        </button>
                       </div>
                     </div>
-                  );
-                })}
-                <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                  <div className=" " />
-                  <div className=" mt-2 flex-shrink-0">
-                    <div className="flex-shrink-0">
+
+                    <div className=" flex w-full justify-center ">
+                      <SelectField
+                        className=" text-black w-full py-1.5 lg:ml-4  mr-2 lg:mr-5  "
+                        label={formatMessage({
+                          id: 'country',
+                          defaultMessage: 'Country',
+                        })}
+                        name={`pricing[${index}].countryCode`}
+                        id={`pricing[${index}].countryCode`}
+                        required
+                        options={convertArrayOfObjectToObject(
+                          countries,
+                          'isoCode',
+                          'isoCode',
+                        )}
+                        hideLabel
+                        placeholder={formatMessage({
+                          id: 'country',
+                          defaultMessage: 'Country',
+                        })}
+                      />
+
+                      <SelectField
+                        className="text-black w-full  py-1.5 mr-2 lg:mr-8 "
+                        label={formatMessage({
+                          id: 'currency',
+                          defaultMessage: 'Currency',
+                        })}
+                        name={`pricing[${index}].currencyCode`}
+                        id={`pricing[${index}].currencyCode`}
+                        required
+                        options={convertArrayOfObjectToObject(
+                          currencies,
+                          'isoCode',
+                          'isoCode',
+                        )}
+                        hideLabel
+                        placeholder={formatMessage({
+                          id: 'country_currency',
+                          defaultMessage: 'Currency',
+                        })}
+                      />
+                    </div>
+
+                    <div className="absolute top-0 mt-0 right-0 mr-0 md:mr-0  pb-1 lg:py-0 lg:px-0 flex-shrink-0  lg:mt-4 ">
                       <button
+                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                         type="button"
-                        className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        variant="outlined"
-                        onClick={() => push('')}
+                        onClick={() => removeConfig(index)}
                       >
                         <svg
                           className="h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clipRule="evenodd"
-                          />
+                          {' '}
+                          <polyline points="3 6 5 6 21 6" />{' '}
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
+                          <line x1="10" y1="11" x2="10" y2="17" />{' '}
+                          <line x1="14" y1="11" x2="14" y2="17" />
                         </svg>
                       </button>
                     </div>
                   </div>
+                );
+              })}
+              <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                <div className=" " />
+                <div className=" mt-2 flex-shrink-0">
+                  <div className="flex-shrink-0">
+                    <button
+                      type="button"
+                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      variant="outlined"
+                      onClick={() => push('')}
+                    >
+                      <svg
+                        className="h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-            )}
-          </FieldArray>
-        </div>
-
-        <div className="mx-auto sm:w-1/2 ">
-          <SubmitButton
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-            className="py-6 h-9 "
-            full
-          />
-        </div>
-      </Form>
-    </FormHeader>
+            </div>
+          )}
+        </FieldArray>
+      </div>
+      <FormErrors />
+      <div className="mx-auto sm:w-1/2 ">
+        <SubmitButton
+          label={formatMessage({
+            id: 'save',
+            defaultMessage: 'Save',
+          })}
+          className="py-6 h-9 "
+          full
+        />
+      </div>
+    </Form>
   );
 };
 
