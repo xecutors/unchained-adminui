@@ -4,6 +4,7 @@ import ProductDetailHeader from '../../common/components/ProductDetailHeader';
 import CommerceForm from './CommerceForm';
 import GeneralTextForm from './GeneralTextForm';
 import MediaForm from './MediaForm';
+import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import WarehousingForm from './WarehousingForm';
 
@@ -15,7 +16,7 @@ const getCurrentTab = (current) => {
   if (current === 'warehousing') return <WarehousingForm />;
   if (current === 'variations') return <GeneralTextForm />;
   if (current === 'bundled_products') return <GeneralTextForm />;
-  if (current === 'subscription') return <GeneralTextForm />;
+  if (current === 'subscription') return <SubscriptionForm />;
   return <></>;
 };
 const ProductDetail = ({ product }) => {
