@@ -53,7 +53,7 @@ const CommerceForm = () => {
                 })}{' '}
               </samp>
             </span>
-            <span className="flex w-full">
+            <span className="flex w-full ml-3">
               <samp className="w-full">
                 {' '}
                 {formatMessage({
@@ -68,11 +68,19 @@ const CommerceForm = () => {
                 })}
               </samp>
             </span>
-            <span className="w-full">
-              {formatMessage({
-                id: 'country_currency',
-                defaultMessage: 'Country/ Currency',
-              })}
+            <span className="flex w-full mr-5">
+              <span className="w-full ml-10">
+                {formatMessage({
+                  id: 'country',
+                  defaultMessage: 'Country',
+                })}
+              </span>
+              <span className="w-full">
+                {formatMessage({
+                  id: 'currency',
+                  defaultMessage: 'Currency',
+                })}
+              </span>
             </span>
           </label>
 
@@ -120,7 +128,7 @@ const CommerceForm = () => {
                       </div>
 
                       <div className=" p-2 flex w-full ">
-                        <div className="w-full lg:ml-14 lg:items-center">
+                        <div className="w-full lg:ml-8 lg:items-center">
                           <CheckboxField
                             id={`commerce[${index}].vat`}
                             name={`commerce[${index}].vat`}
@@ -129,11 +137,11 @@ const CommerceForm = () => {
                               id: 'vat_suspect',
                               defaultMessage: 'Vat Suspect',
                             })}
-                            className="lg:items-center ml-2 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            className="lg:items-center ml-1 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
 
-                        <div className="w-full lg:ml-14">
+                        <div className="w-full lg:ml-8">
                           <CheckboxField
                             id={`commerce[${index}].net`}
                             name={`commerce[${index}].net`}
@@ -148,22 +156,42 @@ const CommerceForm = () => {
                         </div>
                       </div>
 
-                      <SelectField
-                        className="text-black w-full py-1.5 lg:ml-4 sm:mr-12"
-                        label={formatMessage({
-                          id: 'country_currency',
-                          defaultMessage: 'Country/Currency',
-                        })}
-                        name={`commerce[${index}].country`}
-                        id={`commerce[${index}].country`}
-                        required
-                        options={country}
-                        hideLabel
-                        placeholder={formatMessage({
-                          id: 'country_currency',
-                          defaultMessage: 'Country/Currency',
-                        })}
-                      />
+                      <div className=" flex w-full ">
+                        <SelectField
+                          className=" text-black w-full py-1.5 lg:ml-4  mr-2 lg:mr-5  "
+                          label={formatMessage({
+                            id: 'country',
+                            defaultMessage: 'Country',
+                          })}
+                          name={`commerce[${index}].country`}
+                          id={`commerce[${index}].country`}
+                          required
+                          options={country}
+                          hideLabel
+                          placeholder={formatMessage({
+                            id: 'country',
+                            defaultMessage: 'Country',
+                          })}
+                        />
+
+                        <SelectField
+                          className="text-black w-full  py-1.5 mr-2 lg:mr-8 "
+                          label={formatMessage({
+                            id: 'currency',
+                            defaultMessage: 'Currency',
+                          })}
+                          name={`commerce[${index}].currency`}
+                          id={`commerce[${index}].currency`}
+                          required
+                          options={country}
+                          hideLabel
+                          placeholder={formatMessage({
+                            id: 'country_currency',
+                            defaultMessage: 'Currency',
+                          })}
+                        />
+                      </div>
+
                       <div className="absolute top-0 mt-0 right-0 mr-0 md:mr-0  pb-1 lg:py-0 lg:px-0 flex-shrink-0  lg:mt-4 ">
                         <button
                           className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
