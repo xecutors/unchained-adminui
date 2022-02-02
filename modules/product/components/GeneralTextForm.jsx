@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import LocaleSelector from '../../common/components/LocaleSelector';
@@ -12,18 +12,12 @@ import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
 
-const { NEXT_PUBLIC_DEFAULT_LOCALE } = process.env;
-
-const GeneralTextForm = ({ _id: productId, texts }) => {
+const GeneralTextForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
-  const { translatedTexts } = useTranslatedProductTexts({ productId });
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    NEXT_PUBLIC_DEFAULT_LOCALE,
-  );
-
+  const { translatedTexts, loading } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
-    id: 'saved_with_dot_suffix',
-    defaultMessage: 'Saved...',
+    id: 'saved',
+    defaultMessage: 'Saved',
   });
 
   const { updateProductTexts } = useUpdateProductTexts();
@@ -40,7 +34,7 @@ const GeneralTextForm = ({ _id: productId, texts }) => {
     await updateProductTexts({
       productId,
       texts: {
-        locale: selectedLanguage,
+        locale: selectedLocale,
         slug,
         title,
         subtitle,
@@ -64,18 +58,18 @@ const GeneralTextForm = ({ _id: productId, texts }) => {
       description: '',
       brand: '',
       labels: '',
-      ...(texts || {}),
+      ...((!loading &&
+        translatedTexts?.find((text) => text.locale === selectedLocale)) ||
+        {}),
     },
   });
 
   useEffect(() => {
-    if (translatedTexts?.length) {
-      const x = translatedTexts.find(
-        ({ locale }) => locale === selectedLanguage,
+    if (translatedTexts?.length)
+      form.formik.setValues(
+        translatedTexts?.find((text) => text.locale === selectedLocale),
       );
-      form.formik.setValues(x);
-    }
-  }, [selectedLanguage]);
+  }, [translatedTexts, selectedLocale]);
 
   return (
     <div className=" mt-5 sm:max-w-full">

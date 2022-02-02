@@ -10,11 +10,11 @@ import SupplyForm from './SupplyForm';
 import VariationForm from './VariationForm';
 import WarehousingForm from './WarehousingForm';
 
-const getCurrentTab = (currentTag, product) => {
+const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'general_text')
     return (
       <LocaleWrapper>
-        <GeneralTextForm {...product} />
+        <GeneralTextForm productId={id} />
       </LocaleWrapper>
     );
   if (currentTag === 'media')
@@ -23,12 +23,13 @@ const getCurrentTab = (currentTag, product) => {
         <MediaForm />
       </LocaleWrapper>
     );
-  if (currentTag === 'commerce') return <CommerceForm {...product} />;
-  if (currentTag === 'supply') return <SupplyForm {...product} />;
-  if (currentTag === 'warehousing') return <WarehousingForm />;
-  if (currentTag === 'variations') return <GeneralTextForm />;
-  if (currentTag === 'bundled_products') return <GeneralTextForm />;
-  if (currentTag === 'subscription') return <GeneralTextForm />;
+  if (currentTag === 'commerce') return <CommerceForm productId={id} />;
+  if (currentTag === 'supply') return <SupplyForm productId={id} />;
+  if (currentTag === 'warehousing') return <WarehousingForm productId={id} />;
+  if (currentTag === 'variations') return <VariationForm productId={id} />;
+  if (currentTag === 'bundled_products')
+    return <GeneralTextForm productId={id} />;
+  if (currentTag === 'subscription') return <SubscriptionForm productId={id} />;
   return <></>;
 };
 const ProductDetail = ({ product }) => {
@@ -108,178 +109,7 @@ const ProductDetail = ({ product }) => {
           </nav>
         </div>
         <div className="text-indigo-500">
-          <div>
-            <div className="md:grid md:grid-cols-4 " id="general_text">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'product_texts',
-                      defaultMessage: 'Product texts',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    This information will be displayed publicly so be careful
-                    what you share.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-3">
-                <GeneralTextForm {...product} />
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
-            </div>
-          </div>
-
-          <div className="mt-10 sm:mt-0" id="media">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({ id: 'media', defaultMessage: 'Media' })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Use a permanent address where you can receive mail.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <MediaForm {...product} />
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
-            </div>
-          </div>
-
-          <div className="mt-10 sm:mt-0" id="commerce">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'product_pricing',
-                      defaultMessage: 'Product pricing',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <CommerceForm {...product} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 sm:mt-0" id="supply">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'supply',
-                      defaultMessage: 'Supply',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <SupplyForm {...product} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 sm:mt-0" id="warehousing">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'warehousing',
-                      defaultMessage: 'Warehousing',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <WarehousingForm {...product} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 sm:mt-0" id="bundled_products">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'bundle_product',
-                      defaultMessage: 'Bundle product',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <h3>Comming soon</h3>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 sm:mt-0" id="variations">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'variations',
-                      defaultMessage: 'Variations',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <VariationForm {...product} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 sm:mt-0" id="subscriptions">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-              <div className="md:col-span-1">
-                <div className="px-4 sm:px-0">
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    {formatMessage({
-                      id: 'subscriptions',
-                      defaultMessage: 'Subscriptions',
-                    })}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Decide which communications you like to receive and how.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-5 md:mt-0 md:col-span-2">
-                <SubscriptionForm {...product} />
-              </div>
-            </div>
-          </div>
+          {getCurrentTab(activeTab, product?._id)}
         </div>
       </div>
     </>

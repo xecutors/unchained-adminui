@@ -1,35 +1,8 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
-
-const CHANGE_BUTTON_COLOR = {
-  Published: 'green',
-  Draft: 'yellow',
-  Delete: 'red',
-};
-
-const publishingOptions = [
-  {
-    title: 'Published',
-    current: false,
-  },
-  {
-    title: 'Draft',
-    current: true,
-  },
-  {
-    title: 'Delete',
-    current: false,
-  },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const ProductDetailHeader = () => {
   const { formatMessage } = useIntl();
 
-  const [selected, setSelected] = useState(publishingOptions[0]);
   return (
     <div>
       <label id="listbox-label" className="sr-only">

@@ -9,6 +9,7 @@ const SubmitButton = ({
   className,
   ...props
 }) => {
+  const { half, third, full, ...rest } = props;
   const formik = useFormikContext();
   const { half, full, third, ...restProps } = props;
 
