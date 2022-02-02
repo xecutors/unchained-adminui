@@ -33,7 +33,13 @@ const SubscriptionForm = () => {
     defaultMessage: 'Saved...',
   });
 
-  const onSubmit = async ({ trialInterval, trialUnit, billingInterval, billingUunit,userCalculation }) => {
+  const onSubmit = async ({
+    trialInterval,
+    trialUnit,
+    billingInterval,
+    billingUunit,
+    userCalculation,
+  }) => {
     return true;
   };
 
@@ -42,12 +48,10 @@ const SubscriptionForm = () => {
     successMessage,
     initialValues: {
       trialInterval: '',
-      trialUnit:'',
-      billingInterval:'',
-      billingUunit:'',
-      userCalculation:'',
-
-     
+      trialUnit: '',
+      billingInterval: '',
+      billingUunit: '',
+      userCalculation: '',
     },
   });
   const { values } = form.formik;

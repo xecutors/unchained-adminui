@@ -1,8 +1,7 @@
-import { Fragment, useState } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
-const PROVIDER_TYPE_CLASSES = {
+const CHANGE_BUTTON_COLOR = {
   Published: 'green',
   Draft: 'yellow',
   Delete: 'red',
@@ -28,105 +27,112 @@ function classNames(...classes) {
 }
 
 const ProductDetailHeader = () => {
+  const { formatMessage } = useIntl();
+
   const [selected, setSelected] = useState(publishingOptions[0]);
   return (
-    <div className=" mt-5 max-w-full">
-      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
-        <div className="  border-gray-50">
-          <div className="mt-3 mr-1 flex items-center justify-between flex-wrap sm:flex-nowrap">
-            <Listbox value={selected} onChange={setSelected}>
-              {({ open }) => (
-                <>
-                  <Listbox.Label className="sr-only">
-                    Change published status
-                  </Listbox.Label>
-                  <div className="relative">
-                    <div className="inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-                      <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-                        <div className="relative inline-flex items-center bg-indigo-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
-                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                          <p className="ml-2.5 text-sm font-medium">
-                            {selected.title}
-                          </p>
-                        </div>
-                        <Listbox.Button className="relative inline-flex items-center bg-indigo-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-indigo-600 focus:outline-none focus:z-10  focus:ring-offset-2 focus:ring-offset-gray-50 ">
-                          <span className="sr-only">
-                            Change published status
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5 text-white"
-                            aria-hidden="true"
-                          />
-                        </Listbox.Button>
-                      </div>
-                    </div>
+    <div>
+      <label id="listbox-label" className="sr-only">
+        {formatMessage({
+          id: 'change_published_status',
+          defaultMessage: 'Change published status',
+        })}
+      </label>
+      <div className="relative">
+        <div className="inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
+          <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
+            <div className="relative inline-flex items-center bg-indigo-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
+              <svg
+                className="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <p className="ml-2.5 text-sm font-medium">
+                {formatMessage({
+                  id: 'published',
+                  defaultMessage: 'Published',
+                })}
+              </p>
+            </div>
+            <button
+              type="button"
+              className="relative inline-flex items-center bg-indigo-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-indigo-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+              aria-haspopup="listbox"
+              aria-expanded="true"
+              aria-labelledby="listbox-label"
+            >
+              <span className="sr-only">
+                {formatMessage({
+                  id: 'change_published_status',
+                  defaultMessage: 'Change published status',
+                })}
+              </span>
 
-                    <Transition
-                      show={open}
-                      as={Fragment}
-                      leave="transition ease-in duration-100"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <Listbox.Options className="origin-top-right absolute z-10 right-0 mt-2 w-36 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200  ring-black ring-opacity-5 focus:outline-none">
-                        {publishingOptions.map((option) => (
-                          <Listbox.Option
-                            key={option.title}
-                            className={({ active }) =>
-                              classNames(
-                                active
-                                  ? 'text-white bg-indigo-500'
-                                  : 'text-gray-900',
-                                'cursor-default select-none relative p-4 text-sm',
-                              )
-                            }
-                            value={option}
-                          >
-                            {({ selected, active }) => (
-                              <div className="flex flex-col">
-                                <div className="flex ">
-                                  <p
-                                    className={
-                                      selected ? 'font-semibold' : 'font-normal'
-                                    }
-                                  >
-                                    {option.title}
-                                  </p>
-                                  {selected ? (
-                                    <span
-                                      className={
-                                        active
-                                          ? 'text-white'
-                                          : 'text-indigo-500'
-                                      }
-                                    >
-                                      <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  ) : null}
-                                </div>
-                                <p
-                                  className={classNames(
-                                    active
-                                      ? 'text-indigo-200'
-                                      : 'text-gray-500',
-                                    'mt-2',
-                                  )}
-                                />
-                              </div>
-                            )}
-                          </Listbox.Option>
-                        ))}
-                      </Listbox.Options>
-                    </Transition>
-                  </div>
-                </>
-              )}
-            </Listbox>
+              <svg
+                className="h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
           </div>
         </div>
+
+        <ul
+          className="origin-top-right hidden  z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+          tabIndex="-1"
+          role="listbox"
+          aria-labelledby="listbox-label"
+          aria-activedescendant="listbox-option-0"
+        >
+          <li
+            className="text-gray-900 cursor-default select-none relative p-4 text-sm"
+            id="listbox-option-0"
+            role="option"
+          >
+            <div className="flex flex-col">
+              <div className="flex justify-between">
+                <p className="font-normal">
+                  {formatMessage({
+                    id: 'published',
+                    defaultMessage: 'Published',
+                  })}
+                </p>
+
+                <span className="text-indigo-500">
+                  <svg
+                    className="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
