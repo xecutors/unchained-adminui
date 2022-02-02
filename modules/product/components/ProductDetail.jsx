@@ -3,14 +3,16 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../common/components/BreadCrumbs';
 import PageHeader from '../../common/components/PageHeader';
 import ProductDetailHeader from '../../common/components/ProductDetailHeader';
+import CommerceForm from './CommerceForm';
 import GeneralTextForm from './GeneralTextForm';
+import MediaForm from './MediaForm';
 import SupplyForm from './SupplyForm';
 import WarehousingForm from './WarehousingForm';
 
 const getCurrentTab = (current) => {
   if (current === 'general_text') return <GeneralTextForm />;
-  if (current === 'media') return <GeneralTextForm />;
-  if (current === 'commerce') return <GeneralTextForm />;
+  if (current === 'media') return <MediaForm />;
+  if (current === 'commerce') return <CommerceForm />;
   if (current === 'supply') return <SupplyForm />;
   if (current === 'warehousing') return <WarehousingForm />;
   if (current === 'variations') return <GeneralTextForm />;
@@ -61,8 +63,9 @@ const ProductDetail = () => {
           defaultMessage: 'Product Detail',
         })}
       />
-      <ProductDetailHeader />
-      <div className=" sm:px-6 md:px-0">
+      <div className=" ">
+        <ProductDetailHeader />
+        <div className=" sm:px-6 md:px-0" />
         <div className="py-6">
           <div className="lg:hidden">
             <label htmlFor="selected-tab" className="sr-only">
