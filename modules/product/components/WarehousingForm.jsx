@@ -12,10 +12,7 @@ const WarehousingForm = () => {
     defaultMessage: 'Saved...',
   });
 
-  const onSubmit = async ({
-    sku,
-    base_unit,
-  }) => {
+  const onSubmit = async ({ sku, base_unit }) => {
     return true;
   };
 
@@ -31,7 +28,6 @@ const WarehousingForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
-      
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
           <div className=" w-full  justify-between align-baseline">
             <TextField

@@ -77,7 +77,7 @@ const GeneralTextForm = () => {
               name="language"
               placeholder=" "
               options={languageTypes}
-              className="mt-1 pl-10 pr-3 py-4  focus:ring-indigo-500 focus:border-indigo-500 block w-48 sm:text-sm border-gray-300 rounded-md"
+              className="mt-1 pl-10 pr-3 py-4  focus:ring-indigo-500 focus:border-indigo-500 block w-32 sm:text-sm border-gray-300 rounded-md"
               placeholder=" "
             />
           </div>
