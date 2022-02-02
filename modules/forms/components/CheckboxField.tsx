@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import useField from '../hooks/useField';
 
 const CheckboxField = (props) => {
-  const { disabled } = props;
+  const { disabled, labelClassNames } = props;
   const field = useField(props);
 
   return (
@@ -29,9 +29,13 @@ const CheckboxField = (props) => {
       />
       <label
         htmlFor={field.name}
-        className={classnames('text-sm text-gray-900 ml-2 form-check-label', {
-          'text-danger': !!field.error,
-        })}
+        className={classnames(
+          'text-sm text-gray-900 ml-2 form-check-label',
+          labelClassNames,
+          {
+            'text-danger': !!field.error,
+          },
+        )}
       >
         {field.label}
       </label>
