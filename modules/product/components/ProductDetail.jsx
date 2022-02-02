@@ -10,6 +10,27 @@ import SupplyForm from './SupplyForm';
 import VariationForm from './VariationForm';
 import WarehousingForm from './WarehousingForm';
 
+const getCurrentTab = (currentTag, product) => {
+  if (currentTag === 'general_text')
+    return (
+      <LocaleWrapper>
+        <GeneralTextForm {...product} />
+      </LocaleWrapper>
+    );
+  if (currentTag === 'media')
+    return (
+      <LocaleWrapper>
+        <MediaForm />
+      </LocaleWrapper>
+    );
+  if (currentTag === 'commerce') return <CommerceForm {...product} />;
+  if (currentTag === 'supply') return <SupplyForm {...product} />;
+  if (currentTag === 'warehousing') return <WarehousingForm />;
+  if (currentTag === 'variations') return <GeneralTextForm />;
+  if (currentTag === 'bundled_products') return <GeneralTextForm />;
+  if (currentTag === 'subscription') return <GeneralTextForm />;
+  return <></>;
+};
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
   const [activeTab, setActiveTab] = useState('general_text');

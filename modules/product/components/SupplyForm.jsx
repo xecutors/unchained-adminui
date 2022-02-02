@@ -4,7 +4,6 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import useProductSupply from '../hooks/useProductSupply';
 import useUpdateProductSupply from '../hooks/useUpdateProductSupply';
 
 const SupplyForm = ({ _id: productId }) => {
@@ -14,8 +13,6 @@ const SupplyForm = ({ _id: productId }) => {
     defaultMessage: 'Saved',
   });
   const { updateProductSupply } = useUpdateProductSupply();
-  const { dimensions, loading } = useProductSupply({ productId });
-  console.log(dimensions);
   const onSubmit = async ({ weight, length, width, height }) => {
     await updateProductSupply({
       productId,
