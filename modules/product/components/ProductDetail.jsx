@@ -21,8 +21,8 @@ const getCurrentTab = (currentTag, product) => {
         <MediaForm />
       </LocaleWrapper>
     );
-  if (currentTag === 'commerce') return <CommerceForm />;
-  if (currentTag === 'supply') return <SupplyForm />;
+  if (currentTag === 'commerce') return <CommerceForm {...product} />;
+  if (currentTag === 'supply') return <SupplyForm {...product} />;
   if (currentTag === 'warehousing') return <WarehousingForm />;
   if (currentTag === 'variations') return <GeneralTextForm />;
   if (currentTag === 'bundled_products') return <GeneralTextForm />;
