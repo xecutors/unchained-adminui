@@ -33,7 +33,7 @@ const SubscriptionForm = () => {
     defaultMessage: 'Saved...',
   });
 
-  const onSubmit = async ({ weight, length, width, billingUunit }) => {
+  const onSubmit = async ({ trialInterval, trialUnit, billingInterval, billingUunit,userCalculation }) => {
     return true;
   };
 
@@ -41,10 +41,13 @@ const SubscriptionForm = () => {
     submit: onSubmit,
     successMessage,
     initialValues: {
-      weight: '',
-      length: '',
-      width: '',
-      height: '',
+      trialInterval: '',
+      trialUnit:'',
+      billingInterval:'',
+      billingUunit:'',
+      userCalculation:'',
+
+     
     },
   });
   const { values } = form.formik;
@@ -76,7 +79,7 @@ const SubscriptionForm = () => {
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
+              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1 mt-1 w-full"
             />
           </div>
 
@@ -87,38 +90,30 @@ const SubscriptionForm = () => {
                 id: 'trial_interval',
                 defaultMessage: 'Trial Interval',
               })}
-              placeholder={formatMessage({
-                id: 'trial_interval',
-                defaultMessage: 'Trial Interval',
-              })}
               name="trial-interval"
               options={trialInterval}
             />
             <TextField
-              name="width"
-              id="width "
+              name="trial-unit"
+              id="trial-unit "
               label={formatMessage({
-                id: 'width',
-                defaultMessage: 'Width (Millimeter)',
+                id: 'trial_unit',
+                defaultMessage: 'Trial Unit',
               })}
               required
               autoComplete="on"
-              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
+              className="text-sm  font-medium text-gray-500 py-2  sm:ml-1 mt-1 w-full"
             />
           </div>
-            <SelectField
-              className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
-              label={formatMessage({
-                id: 'usage_calculation_type',
-                defaultMessage: 'Usage calculation type',
-              })}
-              placeholder={formatMessage({
-                id: 'usage_calculation_type',
-                defaultMessage: 'Usage calculation type',
-              })}
-              name="usage-calculation-type"
-              options={userCalculation}
-            />
+          <SelectField
+            className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+            label={formatMessage({
+              id: 'usage_calculation_type',
+              defaultMessage: 'Usage calculation type',
+            })}
+            name="usage-calculation-type"
+            options={userCalculation}
+          />
           <div className="mx-auto sm:w-1/2 ">
             <SubmitButton
               label={formatMessage({
