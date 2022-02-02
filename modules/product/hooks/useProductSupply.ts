@@ -1,44 +1,26 @@
 import { useQuery, gql } from '@apollo/client';
 
-import ProductDimensionsFragment from '../fragments/ProductDimensionFragment';
+import ProductDimensionFragment from '../fragments/ProductDimensionFragment';
 
 export const ProductSupplyQuery = gql`
-  query ProductSupply(
-    $productId: ID
-    $slug: String
-    $weightUnit: MassUnit = GRAM
-    $lengthUnit: LengthUnit = MILLIMETERS
-    $widthUnit: LengthUnit = MILLIMETERS
-    $heightUnit: LengthUnit = MILLIMETERS
-  ) {
+  query ProductSupply($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on SimpleProduct {
         dimensions {
-          ...ProductDimensionsFragment
+          ...ProductDimensionFragment
         }
       }
     }
   }
-  ${ProductDimensionsFragment}
+  ${ProductDimensionFragment}
 `;
 
-const useProductSupply = ({
-  productId = null,
-  slug = null,
-  weightUnit = null,
-  lengthUnit = null,
-  widthUnit = null,
-  heightUnit = null,
-} = {}) => {
+const useProductSupply = ({ productId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(ProductSupplyQuery, {
     variables: {
       productId,
       slug,
-      heightUnit,
-      widthUnit,
-      lengthUnit,
-      weightUnit,
     },
   });
 

@@ -1,25 +1,29 @@
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useProductSupply from '../hooks/useProductSupply';
 import useUpdateProductSupply from '../hooks/useUpdateProductSupply';
 
-const SupplyForm = ({ _id: productId }) => {
+const SupplyForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
   const { updateProductSupply } = useUpdateProductSupply();
+  const { dimensions } = useProductSupply({ productId });
+
   const onSubmit = async ({ weight, length, width, height }) => {
     await updateProductSupply({
       productId,
-      weightInGram: parseInt(weight, 10),
-      lengthInMillimeters: parseInt(length, 10),
-      heightInMillimeters: parseInt(height, 10),
-      widthInMillimeters: parseInt(width, 10),
+      weightInGram: parseFloat(weight, 10),
+      lengthInMillimeters: parseFloat(length, 10),
+      heightInMillimeters: parseFloat(height, 10),
+      widthInMillimeters: parseFloat(width, 10),
     });
     return true;
   };
@@ -35,6 +39,9 @@ const SupplyForm = ({ _id: productId }) => {
     },
   });
 
+  useEffect(() => {
+    if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
+  }, [dimensions]);
   return (
     <FormHeader>
       <Form form={form}>
