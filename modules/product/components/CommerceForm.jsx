@@ -1,7 +1,6 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -27,7 +26,7 @@ const CommerceForm = () => {
     successMessage,
     enableReinitialize: true,
     initialValues: {
-      commerce: [],
+      commerce: [{ max: '', amount: '', vat: '', net: '', country: '' }],
     },
   });
 
@@ -35,8 +34,47 @@ const CommerceForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
-        <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className=" max-w-full sm:mr-10 justify-between align-baseline" />
+        <div className="sm:p-3 rounded-md relative max-w-full">
+          <div className=" max-w-full justify-between align-baseline" />
+
+          <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
+            <span className="flex w-full">
+              <samp className="w-full  ">
+                {' '}
+                {formatMessage({
+                  id: 'max_quantity',
+                  defaultMessage: 'Max Quantity',
+                })}{' '}
+              </samp>
+              <samp className="w-full">
+                {formatMessage({
+                  id: 'amount',
+                  defaultMessage: 'Amount',
+                })}{' '}
+              </samp>
+            </span>
+            <span className="flex w-full">
+              <samp className="w-full">
+                {' '}
+                {formatMessage({
+                  id: 'vat_suspect',
+                  defaultMessage: 'Vat Suspect',
+                })}
+              </samp>
+              <samp className="w-full">
+                {formatMessage({
+                  id: 'net_price',
+                  defaultMessage: 'Net Price',
+                })}
+              </samp>
+            </span>
+            <span className="w-full">
+              {formatMessage({
+                id: 'country_currency',
+                defaultMessage: 'Country/ Currency',
+              })}
+            </span>
+          </label>
 
           <FieldArray name="commerce">
             {({ push, remove: removeConfig }) => (
@@ -46,7 +84,7 @@ const CommerceForm = () => {
                     <div
                       // eslint-disable-next-line react/no-array-index-key
                       key={index}
-                      className="lg:flex max-w-full align-baseline relative"
+                      className="shadow mt-2 p-6  lg:p-0 md:p-6 md:shadow lg:shadow-none lg:flex max-w-full align-baseline relative"
                     >
                       <div className="flex w-full">
                         <TextField
@@ -81,33 +119,37 @@ const CommerceForm = () => {
                         />
                       </div>
 
-                      <div className="p-2 flex  w-full ml-5 mr-2">
-                        <CheckboxField
-                          id={`commerce[${index}].vat`}
-                          name={`commerce[${index}].vat`}
-                          labelClassName="flex flex-col items-center "
-                          label={formatMessage({
-                            id: 'vat_suspect',
-                            defaultMessage: 'Vat Suspect',
-                          })}
-                          className="ml-2 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        />
-                        <div className="ml-4">
+                      <div className=" p-2 flex w-full ">
+                        <div className="w-full lg:ml-14 lg:items-center">
+                          <CheckboxField
+                            id={`commerce[${index}].vat`}
+                            name={`commerce[${index}].vat`}
+                            labelClassNames="lg:sr-only items-center "
+                            label={formatMessage({
+                              id: 'vat_suspect',
+                              defaultMessage: 'Vat Suspect',
+                            })}
+                            className="lg:items-center ml-2 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          />
+                        </div>
+
+                        <div className="w-full lg:ml-14">
                           <CheckboxField
                             id={`commerce[${index}].net`}
                             name={`commerce[${index}].net`}
-                            labelClassName="flex flex-col items-center "
+                            labelClassNames="lg:sr-only items-center"
                             label={formatMessage({
                               id: 'net_price',
                               defaultMessage: 'Net Price',
                             })}
-                            className="mr-2 justify-between focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            hideLabel
+                            className="lg:items-center mr-2 justify-between focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                           />
                         </div>
                       </div>
 
                       <SelectField
-                        className="text-black w-full py-1.5 sm:mr-10"
+                        className="text-black w-full py-1.5 lg:ml-4 sm:mr-12"
                         label={formatMessage({
                           id: 'country_currency',
                           defaultMessage: 'Country/Currency',
@@ -122,7 +164,7 @@ const CommerceForm = () => {
                           defaultMessage: 'Country/Currency',
                         })}
                       />
-                      <div className="absolute top-0 right-0 flex-shrink-0  sm:mt-4 mt-5">
+                      <div className="absolute top-0 mt-0 right-0 mr-0 md:mr-0  pb-1 lg:py-0 lg:px-0 flex-shrink-0  lg:mt-4 ">
                         <button
                           className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
                           type="button"
