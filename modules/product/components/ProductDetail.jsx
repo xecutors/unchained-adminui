@@ -1,22 +1,32 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
 import ProductDetailHeader from '../../common/components/ProductDetailHeader';
 import CommerceForm from './CommerceForm';
 import GeneralTextForm from './GeneralTextForm';
 import MediaForm from './MediaForm';
-import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import WarehousingForm from './WarehousingForm';
 
-const getCurrentTab = (current) => {
-  if (current === 'general_text') return <GeneralTextForm />;
-  if (current === 'media') return <MediaForm />;
-  if (current === 'commerce') return <CommerceForm />;
-  if (current === 'supply') return <SupplyForm />;
-  if (current === 'warehousing') return <WarehousingForm />;
-  if (current === 'variations') return <GeneralTextForm />;
-  if (current === 'bundled_products') return <GeneralTextForm />;
-  if (current === 'subscription') return <SubscriptionForm />;
+const getCurrentTab = (currentTag, product) => {
+  if (currentTag === 'general_text')
+    return (
+      <LocaleWrapper>
+        <GeneralTextForm {...product} />
+      </LocaleWrapper>
+    );
+  if (currentTag === 'media')
+    return (
+      <LocaleWrapper>
+        <MediaForm />
+      </LocaleWrapper>
+    );
+  if (currentTag === 'commerce') return <CommerceForm />;
+  if (currentTag === 'supply') return <SupplyForm />;
+  if (currentTag === 'warehousing') return <WarehousingForm />;
+  if (currentTag === 'variations') return <GeneralTextForm />;
+  if (currentTag === 'bundled_products') return <GeneralTextForm />;
+  if (currentTag === 'subscription') return <GeneralTextForm />;
   return <></>;
 };
 const ProductDetail = ({ product }) => {
@@ -96,7 +106,9 @@ const ProductDetail = ({ product }) => {
             ))}
           </nav>
         </div>
-        <div className="text-indigo-500">{getCurrentTab(activeTab)}</div>
+        <div className="text-indigo-500">
+          {getCurrentTab(activeTab, product)}
+        </div>
       </div>
     </>
   );
