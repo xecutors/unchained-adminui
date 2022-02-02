@@ -53,7 +53,7 @@ export const keyMappings: any = {
         },
       },
       events: {
-        keyArgs: ['limit', 'offset', 'type'],
+        keyArgs: ['limit', 'offset'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
