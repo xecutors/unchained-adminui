@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const LanguageListItem = ({ language, onRemove }) => {
@@ -65,7 +66,13 @@ const LanguageListItem = ({ language, onRemove }) => {
               </svg>
             </a>
           </Link>
-          <a
+          <DeleteButton
+            className="ml-1 mr-1  border-white text-red-600 hover:text-red-900 cursor-pointer"
+            onClick={async () => {
+              await onRemove(language?._id);
+            }}
+          />
+          {/* <a
             className="ml-1 mr-1 cursor-pointer"
             onClick={async () => {
               await onRemove(language?._id);
@@ -86,7 +93,7 @@ const LanguageListItem = ({ language, onRemove }) => {
               <line x1="10" y1="11" x2="10" y2="17" />{' '}
               <line x1="14" y1="11" x2="14" y2="17" />
             </svg>
-          </a>
+          </a> */}
         </div>
       </Table.Cell>
     </Table.Row>
