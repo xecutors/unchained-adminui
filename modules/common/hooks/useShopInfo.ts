@@ -8,10 +8,17 @@ export const ShopInfoQuery = gql`
       language {
         _id
         isoCode
+        name
       }
       country {
         _id
         isoCode
+        flagEmoji
+        name
+        defaultCurrency {
+          _id
+          isoCode
+        }
       }
       userRoles
       externalLinks {
