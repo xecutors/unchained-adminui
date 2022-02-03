@@ -16,42 +16,38 @@ const ProviderList = ({
   return (
     <>
       <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
-        <div className=" -ml-4  -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-          <div className=" ml-2 mt-2 w-100">
-            <div className=" relative flex items-start ">
-              <div className="mt-1">
-                <select
-                  onChange={(e) =>
-                    onProviderFilterChange(e.target.value || null)
-                  }
-                  defaultValue={null}
-                  id="select-type"
-                  name="select-type"
-                  placeholder={formatMessage({
+        <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+          <div className="ml-2 mt-2 w-100">
+            <div className="relative flex items-start my-2">
+              <select
+                onChange={(e) => onProviderFilterChange(e.target.value || null)}
+                defaultValue={null}
+                id="select-type"
+                name="select-type"
+                placeholder={formatMessage({
+                  id: 'filter_by_type',
+                  defaultMessage: 'Filter by type',
+                })}
+                input-hint="Filter provider by type"
+                autoComplete="off"
+                className="shadow-sm w-50 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              >
+                <option value="">
+                  {formatMessage({
                     id: 'filter_by_type',
                     defaultMessage: 'Filter by type',
                   })}
-                  input-hint="Filter provider by type"
-                  autoComplete="off"
-                  className="shadow-sm w-50 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                >
-                  <option value="">
+                </option>
+                {providerType.map((type) => (
+                  <option key={type} value={type}>
                     {formatMessage({
-                      id: 'filter_by_type',
-                      defaultMessage: 'Filter by type',
+                      id: type,
+                      defaultMessage: type,
+                      description: 'Delivery provider type',
                     })}
                   </option>
-                  {providerType.map((type) => (
-                    <option key={type} value={type}>
-                      {formatMessage({
-                        id: type,
-                        defaultMessage: type,
-                        description: 'Delivery provider type',
-                      })}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                ))}
+              </select>
             </div>
           </div>
 

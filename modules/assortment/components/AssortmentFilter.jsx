@@ -12,7 +12,7 @@ const AssortmentFilter = ({ onFilter }) => {
 
   return (
     <FilterWrapper
-      className="bg-white shadow mb-2 p-6 "
+      className="bg-white shadow my-2 p-6"
       onApplyFilter={onApplyFilter}
     >
       <div className="lg:flex">

@@ -12,7 +12,7 @@ const LanguageListItem = ({ language, onRemove }) => {
   };
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900 border-">
           {language.isoCode}
           {language.isBase && (
@@ -28,7 +28,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className=" text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'language' }).of(
             language.isoCode,
@@ -36,7 +36,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <Badge
           text={STATUS[language.isActive]}
           color={language.isActive ? 'green' : 'red'}
@@ -44,12 +44,12 @@ const LanguageListItem = ({ language, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="flex">
+      <Table.Cell className="px-6 whitespace-nowrap ">
+        <div className="flex items-center">
           <Link href={`/language/${language?._id}`}>
             <a type="button" href="#" className="flex">
               <svg
-                className=" mt-2  h-5 w-5 text-indigo-500"
+                className="h-5 w-5 text-indigo-500"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ const LanguageListItem = ({ language, onRemove }) => {
             </a>
           </Link>
           <DeleteButton
-            className="ml-1 mr-1  border-white text-red-600 hover:text-red-900 cursor-pointer"
+            className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
             onClick={async () => {
               await onRemove(language?._id);
             }}

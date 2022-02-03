@@ -13,13 +13,13 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {currency.isoCode}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {/* {new Intl.DisplayNames([locale], {
             type: 'currency',
@@ -38,11 +38,11 @@ const CurrencyListItem = ({ currency, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="flex">
+        <div className="flex items-center">
           <Link href={`/currency/${currency?._id}`}>
             <a className="flex">
               <svg
-                className=" mt-2 mr-2 h-5 w-5 text-indigo-500"
+                className="mr-2 h-5 w-5 text-indigo-500"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"

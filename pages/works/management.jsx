@@ -31,7 +31,7 @@ const WorkManagement = () => {
       <PageHeader
         headerText={formatMessage({
           id: 'work_management_setting_list_header',
-          defaultMessage: 'Work Management setting',
+          defaultMessage: 'Work Management Settings',
         })}
       />
       <div className=" sm:px-6 md:px-0">
@@ -66,8 +66,9 @@ const WorkManagement = () => {
                     onClick={() => setActiveTab(key)}
                     key={key}
                     className={` ${
-                      activeTab === key && 'border-purple-500 text-purple-600'
-                    }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                      activeTab === key &&
+                      'border-purple-500 text-purple-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm'
+                    }  whitespace-nowrap py-4 px-1 text-gray-500 hover:border-gray-300 border-b-2 border-transparent text-sm cursor-pointer`}
                   >
                     {value}
                   </a>

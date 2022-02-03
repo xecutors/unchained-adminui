@@ -16,9 +16,9 @@ const Step = ({ onClick, disabled, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'bg-white border-gray-300 text-gray-500 hover:bg-gray-50  z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
+        'bg-white border-gray-300 text-gray-500 hover:bg-gray-50 z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
         {
-          ' bg-indigo-50 border-indigo-500 text-indigo-600 ': disabled,
+          'bg-indigo-50 border-indigo-500 text-indigo-600 ': disabled,
         },
       )}
     >
@@ -150,7 +150,7 @@ const ListPagination = ({
                 {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
               </span>
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -181,7 +181,7 @@ const ListPagination = ({
                 {formatMessage({ id: 'next', defaultMessage: 'Next' })}
               </span>
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

@@ -32,7 +32,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="text-sm text-gray-900">
           {country.isoCode}
           {/* {new Intl.DisplayNames([locale], { type: 'region' }).of(
@@ -41,7 +41,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="text-sm text-gray-900">
           {currencyISOcode}
 
@@ -51,19 +51,19 @@ const CountryListItem = ({ country, onRemove }) => {
             )}  (${currencyISOcode})`} */}
         </div>
       </Table.Cell>
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="px-6 whitespace-nowrap ">
         <Badge
           text={STATUS[country.isActive]}
           color={country.isActive ? 'green' : 'red'}
           square
         />
       </Table.Cell>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="flex">
+      <Table.Cell className="px-6 whitespace-nowrap ">
+        <div className="flex items-center">
           <Link href={`/country/${country._id}`}>
             <a className="flex border-white text-indigo-600 hover:text-indigo-900">
               <svg
-                className=" mt-2 mr-2 h-5 w-5 text-indigo-500"
+                className="mr-2 h-5 w-5 text-indigo-500"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"

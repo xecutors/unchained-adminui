@@ -14,11 +14,11 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-5">
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
-        className=" cursor-pointer sm:flex hidden hover:bg-indigo-700 rounded-md  py-2 px-10 bg-indigo-800 flex text-base leading-4 font-normal text-white justify-center items-center "
+        className="cursor-pointer sm:flex hidden hover:bg-indigo-700 rounded-md py-2 px-10 bg-indigo-500 flex text-base leading-4 font-normal text-white justify-center items-center"
       >
         <AdjustmentsIcon
           className=" lg:w-6 lg:h-6 w-4 h-4"
@@ -32,10 +32,10 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
-        className="cursor-pointer mt-6 block sm:hidden rounded-md hover:bg-indigo-700  focus:ring-offset-2 py-2 w-full bg-indigo-800 flex text-base leading-4 font-normal text-white justify-center items-center"
+        className="cursor-pointer mt-6 block sm:hidden rounded-md hover:bg-indigo-700 focus:ring-offset-2 py-2 w-full bg-indigo-800 flex text-base leading-4 font-normal text-white justify-center items-center"
       >
         <AdjustmentsIcon
-          className=" lg:w-6 lg:h-6 w-4 h-4"
+          className="lg:w-6 lg:h-6 w-4 h-4"
           viewBox="0 0 26 26"
           fill="white"
           stroke="white"
@@ -49,7 +49,7 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
         })}
       >
         {children}
-        <hr className=" bg-gray-200 w-full" />
+        <hr className="bg-gray-200 w-full" />
 
         <div className="relative px-0 mt-2 md:w-auto md:mt-0  md:bottom-0 md:py-10 lg:px-20 md:px-6">
           <button

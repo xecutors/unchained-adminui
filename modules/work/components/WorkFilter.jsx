@@ -34,7 +34,7 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
   };
   return (
     <FilterWrapper
-      className="bg-white shadow mb-2 p-6 "
+      className="bg-white shadow my-2 p-6 "
       onApplyFilter={onApplyFilter}
     >
       <div className="lg:flex mb-2 sm:mb-0 justify-between">
