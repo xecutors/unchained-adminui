@@ -1,18 +1,25 @@
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useProductWarehousing from '../hooks/useProductWarehousing';
+import useUpdateProductWarehousing from '../hooks/useUpdateProductWarehousing';
 
-const WarehousingForm = () => {
+const WarehousingForm = ({ _id: productId }) => {
   const { formatMessage } = useIntl();
+  const { updateProductWarehousing } = useUpdateProductWarehousing();
+  const { product, loading } = useProductWarehousing({ productId });
+  console.log(product);
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved...',
   });
 
-  const onSubmit = async ({ sku, base_unit }) => {
+  const onSubmit = async ({ sku, baseUnit }) => {
+    await updateProductWarehousing({ productId, sku, baseUnit });
     return true;
   };
 
@@ -20,37 +27,38 @@ const WarehousingForm = () => {
     submit: onSubmit,
     successMessage,
     initialValues: {
-      suk: '',
-      base_unit: '',
+      sku: '',
+      baseUnit: '',
     },
   });
-  const { values } = form.formik;
+  useEffect(() => {
+    if (product && !loading) form.formik.setValues(product);
+  }, [product]);
+
   return (
     <FormHeader>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
           <div className=" w-full  justify-between align-baseline">
             <TextField
-              name="suk"
-              id="suk"
+              name="sku"
+              id="sku"
               label={formatMessage({
-                id: 'suk',
-                defaultMessage: 'SUK',
+                id: 'sku',
+                defaultMessage: 'SKU',
               })}
               required
-              autoComplete="on"
               className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
             />
 
             <TextField
-              name="base_unit"
-              id="base_unit"
+              name="baseUnit"
+              id="baseUnit"
               label={formatMessage({
-                id: 'base_unit',
+                id: 'baseUnit',
                 defaultMessage: 'Base Unit',
               })}
               required
-              autoComplete="on"
               className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
             />
           </div>
