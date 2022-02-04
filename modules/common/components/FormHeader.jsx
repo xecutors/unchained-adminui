@@ -4,6 +4,7 @@ const FormHeader = ({ onDelete, children }) => {
       <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
         <div className="  border-gray-50">
           <div className="mt-3 mr-1 flex items-center justify-between flex-wrap sm:flex-nowrap">
+            <div />
             {onDelete && (
               <div className="flex-shrink-1">
                 <button

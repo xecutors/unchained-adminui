@@ -1,20 +1,41 @@
 import { FieldArray } from 'formik';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import FormHeader from '../../common/components/FormHeader';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import useCountries from '../../country/hooks/useCountries';
+import useCurrencies from '../../currency/hooks/useCurrencies';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useProductCatalogPrices from '../hooks/useProductCatalogPrices';
+import useUpdateProductCommerce from '../hooks/useUpdateProductCommerce';
 
-export const country = {
-  ch: 'CH/CHF',
-  fr: 'FR/CHF',
+const normalizeCatalogPrices = (prices = []) => {
+  return prices.map((price) => ({
+    countryCode: price.country.isoCode,
+    currencyCode: price.currency.isoCode,
+    isTaxable: !!price.isTaxable,
+    isNetPrice: !!price.isNetPrice,
+    amount: price.amount,
+    maxQuantity: price.maxQuantity,
+  }));
 };
-const CommerceForm = () => {
+
+const CommerceForm = ({ _id: productId }) => {
   const { formatMessage } = useIntl();
-  const onSubmit = async () => {
+  const { currencies } = useCurrencies();
+  const { countries } = useCountries();
+  const { catalogPrices, loading } = useProductCatalogPrices({ productId });
+  const { updateProductCommerce } = useUpdateProductCommerce();
+
+  const onSubmit = async ({ pricing }) => {
+    await updateProductCommerce({ productId, pricing });
+
     return true;
   };
   const successMessage = formatMessage({
@@ -26,11 +47,20 @@ const CommerceForm = () => {
     successMessage,
     enableReinitialize: true,
     initialValues: {
-      commerce: [{ max: '', amount: '', vat: '', net: '', country: '' }],
+      pricing: [
+        ...(normalizeCatalogPrices(catalogPrices) || [
+          { max: '', amount: '', vat: '', net: '', country: '' },
+        ]),
+      ],
     },
   });
 
   const { values } = form.formik;
+
+  useEffect(() => {
+    if (!loading)
+      form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
+  }, [catalogPrices]);
   return (
     <FormHeader>
       <Form form={form}>
@@ -84,10 +114,10 @@ const CommerceForm = () => {
             </span>
           </label>
 
-          <FieldArray name="commerce">
+          <FieldArray name="pricing">
             {({ push, remove: removeConfig }) => (
               <div>
-                {values.commerce.map((p, index) => {
+                {values.pricing.map((p, index) => {
                   return (
                     <div
                       // eslint-disable-next-line react/no-array-index-key
@@ -97,10 +127,11 @@ const CommerceForm = () => {
                       <div className="flex w-full">
                         <TextField
                           className="w-full mr-2"
-                          name={`commerce[${index}].max`}
-                          id={`commerce[${index}].max`}
+                          name={`pricing[${index}].maxQuantity`}
+                          id={`pricing[${index}].maxQuantity`}
                           required
                           hideLabel
+                          number
                           label={formatMessage({
                             id: 'max_quantity',
                             defaultMessage: 'Max Quantity',
@@ -112,8 +143,8 @@ const CommerceForm = () => {
                         />
                         <TextField
                           className="w-full mr-3"
-                          name={`commerce[${index}].amount`}
-                          id={`commerce[${index}].amount`}
+                          name={`pricing[${index}].amount`}
+                          id={`pricing[${index}].amount`}
                           required
                           hideLabel
                           label={formatMessage({
@@ -130,8 +161,8 @@ const CommerceForm = () => {
                       <div className=" p-2 flex w-full ">
                         <div className="w-full lg:ml-8 lg:items-center">
                           <CheckboxField
-                            id={`commerce[${index}].vat`}
-                            name={`commerce[${index}].vat`}
+                            id={`pricing[${index}].isTaxable`}
+                            name={`pricing[${index}].isTaxable`}
                             labelClassNames="lg:sr-only items-center "
                             label={formatMessage({
                               id: 'vat_suspect',
@@ -143,8 +174,8 @@ const CommerceForm = () => {
 
                         <div className="w-full lg:ml-8">
                           <CheckboxField
-                            id={`commerce[${index}].net`}
-                            name={`commerce[${index}].net`}
+                            id={`pricing[${index}].isNetPrice`}
+                            name={`pricing[${index}].isNetPrice`}
                             labelClassNames="lg:sr-only items-center"
                             label={formatMessage({
                               id: 'net_price',
@@ -163,10 +194,14 @@ const CommerceForm = () => {
                             id: 'country',
                             defaultMessage: 'Country',
                           })}
-                          name={`commerce[${index}].country`}
-                          id={`commerce[${index}].country`}
+                          name={`pricing[${index}].countryCode`}
+                          id={`pricing[${index}].countryCode`}
                           required
-                          options={country}
+                          options={convertArrayOfObjectToObject(
+                            countries,
+                            'isoCode',
+                            'isoCode',
+                          )}
                           hideLabel
                           placeholder={formatMessage({
                             id: 'country',
@@ -180,13 +215,17 @@ const CommerceForm = () => {
                             id: 'currency',
                             defaultMessage: 'Currency',
                           })}
-                          name={`commerce[${index}].currency`}
-                          id={`commerce[${index}].currency`}
+                          name={`pricing[${index}].currencyCode`}
+                          id={`pricing[${index}].currencyCode`}
                           required
-                          options={country}
+                          options={convertArrayOfObjectToObject(
+                            currencies,
+                            'isoCode',
+                            'isoCode',
+                          )}
                           hideLabel
                           placeholder={formatMessage({
-                            id: 'country_currency',
+                            id: 'currency',
                             defaultMessage: 'Currency',
                           })}
                         />

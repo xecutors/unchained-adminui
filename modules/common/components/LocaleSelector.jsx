@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
