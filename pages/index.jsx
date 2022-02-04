@@ -46,12 +46,12 @@ const Home = ({ shopInfo }) => {
                     })}
                   </div>
                   <div className="flex-1 min-w-0">
-                    {shopInfo?.language?.isoCode}{' '}
                     {(shopInfo?.language?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'language' }).of(
                         shopInfo?.language?.isoCode,
                       )) ||
-                      shopInfo?.language?.name}
+                      shopInfo?.language?.name}{' '}
+                    ({shopInfo?.language?.isoCode})
                   </div>
                 </div>
               </li>
@@ -64,12 +64,13 @@ const Home = ({ shopInfo }) => {
                     })}
                   </div>
                   <div className="flex-1 min-w-0">
-                    {shopInfo?.country?.isoCode} {shopInfo?.country?.flagEmoji}
+                    {shopInfo?.country?.flagEmoji}
                     {(shopInfo?.country?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'region' }).of(
                         shopInfo?.country?.isoCode,
                       )) ||
-                      shopInfo?.country?.name}
+                      shopInfo?.country?.name}{' '}
+                    ({shopInfo?.country?.isoCode})
                   </div>
                 </div>
               </li>
@@ -82,12 +83,12 @@ const Home = ({ shopInfo }) => {
                     })}
                   </div>
                   <div className="flex-1 min-w-0">
-                    {shopInfo?.country?.defaultCurrency?.isoCode}{' '}
                     {(shopInfo?.country?.defaultCurrency?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'currency' }).of(
                         shopInfo?.country?.defaultCurrency?.isoCode,
                       )) ||
-                      shopInfo?.country?.defaultCurrency?.name}
+                      shopInfo?.country?.defaultCurrency?.name}{' '}
+                    ({shopInfo?.country?.defaultCurrency?.isoCode})
                   </div>
                 </div>
               </li>
@@ -95,8 +96,8 @@ const Home = ({ shopInfo }) => {
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     {formatMessage({
-                      id: 'user_roles',
-                      defaultMessage: 'User roles',
+                      id: 'your_roles',
+                      defaultMessage: 'Your roles',
                     })}
                   </div>
                   <div className="flex-1 min-w-0">

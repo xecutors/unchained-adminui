@@ -10,6 +10,7 @@ const SubmitButton = ({
   ...props
 }) => {
   const formik = useFormikContext();
+  const { half, full, third, ...restProps } = props;
 
   const fieldsMetaProps = Object.fromEntries(
     Object.keys(formik.initialValues).map((fieldName) => [
@@ -38,16 +39,16 @@ const SubmitButton = ({
           'bg-red-600  ': disabled,
           ' bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 ':
             !disabled,
-          'w-1/2': props?.half,
-          'w-1/3': props?.third,
-          'w-full': props?.full,
+          'w-1/2': half,
+          'w-1/3': third,
+          'w-full': full,
         },
       )}
       aria-label={label}
       type="submit"
       value={label}
       disabled={disabled}
-      {...props}
+      {...restProps}
     />
   );
 };

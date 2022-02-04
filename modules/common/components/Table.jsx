@@ -36,7 +36,6 @@ const Table = ({ className, ...props }) => {
 
   return (
     <table
-      key={rows.length}
       className={classNames(
         'w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden divide-y divide-gray-200',
         className,
@@ -45,7 +44,9 @@ const Table = ({ className, ...props }) => {
     >
       {rowsWithSort.header.length ? (
         <thead className="bg-white">{rowsWithSort.header}</thead>
-      ) : null}
+      ) : (
+        <caption className="text-center">No Data found</caption>
+      )}
       {rowsWithSort.body.length ? (
         <tbody className="flex-1 sm:flex-none">{rowsWithSort.body}</tbody>
       ) : null}

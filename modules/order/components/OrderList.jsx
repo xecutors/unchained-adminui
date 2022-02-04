@@ -4,9 +4,10 @@ import OrderListItem from './OrderListItem';
 
 const OrderList = ({ orders, showUser }) => {
   const { formatMessage } = useIntl();
+
   return (
     <Table className="min-w-full ">
-      {orders?.map((order) => (
+      {(orders || [])?.map((order) => (
         <Table.Row key={order._id} className="bg-white " header>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
@@ -46,7 +47,7 @@ const OrderList = ({ orders, showUser }) => {
           </Table.Cell>
         </Table.Row>
       ))}
-      {orders?.map((order) => (
+      {(orders || [])?.map((order) => (
         <OrderListItem key={`${order?._id}-body`} order={order} />
       ))}
     </Table>
