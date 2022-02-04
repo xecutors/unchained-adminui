@@ -12,7 +12,7 @@ const WarehousingForm = ({ _id: productId }) => {
   const { formatMessage } = useIntl();
   const { updateProductWarehousing } = useUpdateProductWarehousing();
   const { product, loading } = useProductWarehousing({ productId });
-  console.log(product);
+
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved...',

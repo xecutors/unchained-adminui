@@ -2,10 +2,11 @@ import { useQuery, gql } from '@apollo/client';
 
 export const ProductWarehousingQuery = gql`
   query ProductWarehousing($productId: ID, $slug: String) {
-    deliveryProviderType: __type(name: "DeliveryProviderType") {
-      options: enumValues {
-        value: name
-        label: description
+    product(productId: $productId, slug: $slug) {
+      _id
+      ... on SimpleProduct {
+        sku
+        baseUnit
       }
     }
   }

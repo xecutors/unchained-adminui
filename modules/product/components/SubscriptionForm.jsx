@@ -1,33 +1,21 @@
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useProductPlanConfigurationOptions from '../hooks/useProductPlanConfigurationOptions';
+import useUpdateProductPlan from '../hooks/useUpdateProductPlan';
 
-export const billingInterval = {
-  hour: 'HOUR',
-  day: 'DAY',
-  week: 'WEEK',
-  month: 'MONTH',
-  year: 'YEAR',
-};
-
-export const trialInterval = {
-  hour: 'HOUR',
-  day: 'DAY',
-  week: 'WEEK',
-  month: 'MONTH',
-  year: 'YEAR',
-};
-
-export const userCalculation = {
-  licensed: 'LICENSED',
-  metered: 'METERED',
-};
-const SubscriptionForm = () => {
+const SubscriptionForm = ({ _id: productId }) => {
   const { formatMessage } = useIntl();
+  const { configurationIntervals, usageCalculationTypes } =
+    useProductPlanConfigurationOptions();
+
+  const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved...',
@@ -35,11 +23,19 @@ const SubscriptionForm = () => {
 
   const onSubmit = async ({
     trialInterval,
-    trialUnit,
+    trialIntervalCount,
     billingInterval,
-    billingUunit,
-    userCalculation,
+    billingIntervalCount,
+    usageCalculationType,
   }) => {
+    await updateProductPlan({
+      productId,
+      billingInterval,
+      usageCalculationType,
+      billingIntervalCount,
+      trialInterval,
+      trialIntervalCount,
+    });
     return true;
   };
 
@@ -48,13 +44,12 @@ const SubscriptionForm = () => {
     successMessage,
     initialValues: {
       trialInterval: '',
-      trialUnit: '',
+      trialIntervalCount: '',
       billingInterval: '',
-      billingUunit: '',
-      userCalculation: '',
+      billingIntervalCount: '',
+      usageCalculationType: '',
     },
   });
-  const { values } = form.formik;
 
   return (
     <FormHeader>
@@ -71,18 +66,22 @@ const SubscriptionForm = () => {
                 id: 'billing_interval',
                 defaultMessage: 'Billing Interval',
               })}
-              name="billing-interval"
-              options={billingInterval}
+              name="billingInterval"
+              options={convertArrayOfObjectToObject(
+                configurationIntervals,
+                'value',
+                'value',
+              )}
             />
             <TextField
-              name="billing_unit"
+              name="billingIntervalCount"
               id="billing_unit"
+              type="number"
               label={formatMessage({
                 id: 'billing_unit',
                 defaultMessage: 'Billing Unit',
               })}
               required
-              autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2 sm:ml-1 mt-1 w-full"
             />
           </div>
@@ -94,18 +93,22 @@ const SubscriptionForm = () => {
                 id: 'trial_interval',
                 defaultMessage: 'Trial Interval',
               })}
-              name="trial-interval"
-              options={trialInterval}
+              name="trialInterval"
+              options={convertArrayOfObjectToObject(
+                configurationIntervals,
+                'value',
+                'value',
+              )}
             />
             <TextField
-              name="trial-unit"
-              id="trial-unit "
+              type="number"
+              name="trialIntervalCount"
+              id="trialIntervalCount "
               label={formatMessage({
                 id: 'trial_unit',
                 defaultMessage: 'Trial Unit',
               })}
               required
-              autoComplete="on"
               className="text-sm  font-medium text-gray-500 py-2  sm:ml-1 mt-1 w-full"
             />
           </div>
@@ -115,9 +118,14 @@ const SubscriptionForm = () => {
               id: 'usage_calculation_type',
               defaultMessage: 'Usage calculation type',
             })}
-            name="usage-calculation-type"
-            options={userCalculation}
+            name="usageCalculationType"
+            options={convertArrayOfObjectToObject(
+              usageCalculationTypes,
+              'value',
+              'value',
+            )}
           />
+          <FormErrors />
           <div className="mx-auto sm:w-1/2 ">
             <SubmitButton
               label={formatMessage({
