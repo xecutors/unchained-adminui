@@ -1,5 +1,5 @@
-export const LimitSteps = [2, 4, 6, 8, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-export const DefaultLimit = 20;
+export const LimitSteps = [10, 25, 50, 100, 200, 400, 800, 1000];
+export const DefaultLimit = 50;
 
 export const ColorLookupTable = {
   red: {

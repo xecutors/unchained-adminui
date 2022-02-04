@@ -14,7 +14,7 @@ export const country = {
 };
 const CommerceForm = () => {
   const { formatMessage } = useIntl();
-  const onSubmit = async ({ commerce }) => {
+  const onSubmit = async () => {
     return true;
   };
   const successMessage = formatMessage({

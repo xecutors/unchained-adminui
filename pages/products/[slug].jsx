@@ -17,7 +17,7 @@ const ProductDetailPage = () => {
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'prodcut_detail',
+          id: 'product_detail',
           defaultMessage: 'Product Detail',
         })}
       />
