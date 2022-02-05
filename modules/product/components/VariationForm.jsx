@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
-import Table from '../../common/components/Table';
+
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+/* import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts'; */
 import ProductAssignmentListItem from './ProductAssignmentListItem';
-import ProductAssignment from './ProductAssignmentListItem';
 
 export const userCalculation = {
   color_picker: 'Color Picker',
@@ -16,17 +16,14 @@ export const userCalculation = {
 
 const VariationForm = ({ products }) => {
   const { formatMessage } = useIntl();
+  /*   const { updateProductVariationTexts } = useUpdateProductVariationTexts(); */
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
 
-  const onSubmit = async ({ title, key, type }) => {
-    return true;
-  };
-
   const form = useForm({
-    submit: onSubmit,
+    submit: () => true,
     successMessage,
     initialValues: {
       title: '',
@@ -34,7 +31,6 @@ const VariationForm = ({ products }) => {
       type: '',
     },
   });
-  const { values } = form.formik;
 
   return (
     <div className=" bg-white">

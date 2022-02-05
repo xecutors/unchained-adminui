@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 import ProductDetailHeader from '../../common/components/ProductDetailHeader';
 import CommerceForm from './CommerceForm';
@@ -30,7 +31,7 @@ const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'bundled_products')
     return <GeneralTextForm productId={id} />;
   if (currentTag === 'subscription') return <SubscriptionForm productId={id} />;
-  return <></>;
+  return <GeneralTextForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
@@ -96,7 +97,7 @@ const ProductDetail = ({ product }) => {
           <nav className="relative z-0 rounded-md shadow flex divide-x divide-gray-200">
             {Object.entries(productOptions).map(([key, value]) => (
               <a
-                href={`#${key}`}
+                onClick={() => setActiveTab(key)}
                 key={key}
                 className={` ${
                   activeTab === key &&

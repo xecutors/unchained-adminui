@@ -76,7 +76,6 @@ const ProductDetailHeader = () => {
           <li
             className="text-gray-900 cursor-default select-none relative p-4 text-sm"
             id="listbox-option-0"
-            role="option"
           >
             <div className="flex flex-col">
               <div className="flex justify-between">

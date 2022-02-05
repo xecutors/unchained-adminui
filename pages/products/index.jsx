@@ -12,7 +12,7 @@ import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
 import useProducts from '../../modules/product/hooks/useProducts';
 
-const index = () => {
+const Products = () => {
   const { formatMessage } = useIntl();
   const [limit, setLimit] = useState(DefaultLimit);
   const [offset, setOffset] = useState(0);
@@ -36,10 +36,10 @@ const index = () => {
         })}
       />
       <ProductFilter
-        onFilter={({ onSearch, tag }) => {
+        onFilter={({ queryString, tags }) => {
           setFilter({
-            tag,
-            onSearch,
+            tags,
+            queryString,
           });
         }}
       />
@@ -70,4 +70,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Products;

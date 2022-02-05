@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
-import LocaleSelector from '../../common/components/LocaleSelector';
-
 import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -74,10 +72,6 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
   return (
     <div className=" mt-5 sm:max-w-full">
       <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
-        <LocaleSelector
-          defaultLocale={selectedLanguage}
-          onChange={setSelectedLanguage}
-        />
         <Form form={form}>
           <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
             <div className="sm:flex w-full  justify-between align-baseline">

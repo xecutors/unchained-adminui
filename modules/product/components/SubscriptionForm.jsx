@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import FormHeader from '../../common/components/FormHeader';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
@@ -7,13 +8,15 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useProductPlan from '../hooks/useProductPlan';
 import useProductPlanConfigurationOptions from '../hooks/useProductPlanConfigurationOptions';
 import useUpdateProductPlan from '../hooks/useUpdateProductPlan';
 
-const SubscriptionForm = ({ _id: productId }) => {
+const SubscriptionForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { configurationIntervals, usageCalculationTypes } =
     useProductPlanConfigurationOptions();
+  const { plan, loading } = useProductPlan({ productId });
 
   const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
@@ -48,8 +51,26 @@ const SubscriptionForm = ({ _id: productId }) => {
       billingInterval: '',
       billingIntervalCount: '',
       usageCalculationType: '',
+      ...plan,
+    },
+    getSubmitErrorMessage: (error) => {
+      if (
+        error?.message?.includes(
+          'Status of the product does not allow this operation',
+        )
+      )
+        return formatMessage({
+          id: 'subscription_product_type_not_valid',
+          defaultMessage: 'Status of the product does not allow this operation',
+        });
+
+      return error?.message || '';
     },
   });
+
+  useEffect(() => {
+    if (plan && !loading) form.formik.setValues(plan);
+  }, [plan]);
 
   return (
     <FormHeader>
@@ -58,6 +79,7 @@ const SubscriptionForm = ({ _id: productId }) => {
           <div className="sm:flex w-full  justify-between align-baseline">
             <SelectField
               className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+              required
               label={formatMessage({
                 id: 'billing_interval',
                 defaultMessage: 'Billing Interval',
@@ -77,11 +99,11 @@ const SubscriptionForm = ({ _id: productId }) => {
               name="billingIntervalCount"
               id="billing_unit"
               type="number"
+              required
               label={formatMessage({
                 id: 'billing_unit',
                 defaultMessage: 'Billing Unit',
               })}
-              required
               className="text-sm  font-medium text-gray-500 py-2 sm:ml-1 mt-1 w-full"
             />
           </div>
@@ -113,6 +135,7 @@ const SubscriptionForm = ({ _id: productId }) => {
             />
           </div>
           <SelectField
+            required
             className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
             label={formatMessage({
               id: 'usage_calculation_type',
