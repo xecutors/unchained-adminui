@@ -11,16 +11,24 @@ export const GetWorkMetricQuery = gql`
 `;
 
 const useDailySyncs = ({ start = null, end = null } = {}) => {
-  const { data, loading, error }: any = useQuery(GetWorkMetricQuery, {
-    variables: { range: { start, end } },
-  });
+  const { data, loading, error, fetchMore }: any = useQuery(
+    GetWorkMetricQuery,
+    {
+      variables: { range: { start, end } },
+    },
+  );
 
   const dailySync = data?.getWorkMetrics || [];
+  const loadMore = () =>
+    fetchMore({
+      variables: { offset: dailySync.length },
+    });
 
   return {
     dailySync,
     loading,
     error,
+    loadMore,
   };
 };
 
