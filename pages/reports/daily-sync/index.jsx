@@ -4,15 +4,20 @@ import { useState } from 'react';
 import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../../modules/common/components/PageHeader';
 import SyncReportList from '../../../modules/sync/components/SyncReportList';
-import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
+import useWorkQueue from '../../../modules/work/hooks/useWorkQueue';
+import ListPagination from '../../../modules/common/components/ListPagination';
+import { DefaultLimit } from '../../../modules/common/data/miscellaneous';
 
 const SyncReport = () => {
   const [start, setStartDate] = useState(new Date(0));
   const [end, setEndDate] = useState(new Date());
+  const [limit, setLimit] = useState(DefaultLimit);
 
-  const { dailySync } = useDailySyncs({
-    start,
-    end,
+  const { workQueue, loadMore } = useWorkQueue({
+    selectTypes: ['PUBLICARE_DAILY_ANALYTICS'],
+    status: ['SUCCESS', 'FAILED'],
+    created: { start, end },
+    limit,
   });
   const { formatMessage } = useIntl();
 
@@ -63,7 +68,13 @@ const SyncReport = () => {
           />
         </div>
         <hr />
-        <SyncReportList data={dailySync} />
+        <SyncReportList data={workQueue} />
+        <ListPagination
+          data={workQueue}
+          limit={limit}
+          onLimitChange={setLimit}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );
