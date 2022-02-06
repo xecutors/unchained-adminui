@@ -9,10 +9,11 @@ import UserOrders from '../../modules/accounts/components/UserOrders';
 import UserQuotations from '../../modules/accounts/components/UserQuotations';
 import useUser from '../../modules/accounts/hooks/useUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 
 const getCurrentTab = (current, user) => {
-  if (!user) return 'loading';
+  if (!user) return <Loading />;
   if (current === 'profile') return <ProfileView {...user} />;
   if (current === 'orders') return <UserOrders {...user} />;
   if (current === 'quotations') return <UserQuotations {...user} />;
@@ -49,7 +50,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className=" max-w-4xl">
+    <div className=" max-w-6xl">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({

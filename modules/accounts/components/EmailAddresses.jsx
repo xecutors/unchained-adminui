@@ -72,13 +72,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
   });
   return (
     <div>
-      <div className=" pb-3 border-b border-gray-200">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
-          {formatMessage({ id: 'emails', defaultMessage: 'Emails' })}
-        </h3>
-      </div>
-
-      <div className=" flow-root mt-6">
+      <div className=" flow-root">
         <ul className="-my-5 divide-y divide-gray-200">
           {(emails || []).map(({ address, verified }) => (
             <li className="py-4" key={address}>

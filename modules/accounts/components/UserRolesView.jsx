@@ -29,34 +29,27 @@ const UserRolesView = ({ roles, userId }) => {
   });
 
   return (
-    <div>
-      <div className="pb-3 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
-          {formatMessage({ id: 'roles', defaultMessage: 'Roles' })}
-        </h3>
-      </div>
-      <Form form={form}>
-        <ChoicesField
-          key="user-roles"
-          name="updatedRoles"
-          labelClassName="flex flex-col items-center "
-          options={Object.fromEntries(userRoles.map((role) => [role, role]))}
-          label={formatMessage({
-            id: 'select_role',
-            defaultMessage: 'Select role',
-          })}
-          className="flex flex-wrap"
-          hideLabel
-          multiple
-        />
-        <SubmitButton
-          label={formatMessage({
-            id: 'update_role',
-            defaultMessage: 'Update role',
-          })}
-        />
-      </Form>
-    </div>
+    <Form form={form}>
+      <ChoicesField
+        key="user-roles"
+        name="updatedRoles"
+        labelClassName="flex flex-col items-center "
+        options={Object.fromEntries(userRoles.map((role) => [role, role]))}
+        label={formatMessage({
+          id: 'select_role',
+          defaultMessage: 'Select role',
+        })}
+        className="flex flex-wrap"
+        hideLabel
+        multiple
+      />
+      <SubmitButton
+        label={formatMessage({
+          id: 'update_role',
+          defaultMessage: 'Update role',
+        })}
+      />
+    </Form>
   );
 };
 
