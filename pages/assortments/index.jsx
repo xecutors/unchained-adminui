@@ -4,7 +4,7 @@ import useAssortments from '../../modules/assortment/hooks/useAssortments';
 import AssortmentList from '../../modules/assortment/components/AssortmentList';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 
@@ -66,7 +66,7 @@ const index = () => {
           />
         </ListHeader>
         {loading ? <Loading /> : <AssortmentList assortments={assortments} />}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={assortments}
           limit={limit}

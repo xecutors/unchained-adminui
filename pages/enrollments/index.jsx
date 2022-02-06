@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
@@ -36,7 +36,7 @@ const index = () => {
           <EnrollmentList enrollments={enrollments} showUser />
         )}
 
-        <ListPagination
+        <Pagination
           limit={limit}
           onLoadMore={loadMore}
           data={enrollments}

@@ -5,7 +5,7 @@ import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../../modules/common/components/PageHeader';
 import SyncReportList from '../../../modules/sync/components/SyncReportList';
 import useWorkQueue from '../../../modules/work/hooks/useWorkQueue';
-import ListPagination from '../../../modules/common/components/ListPagination';
+import Pagination from '../../../modules/common/components/Pagination';
 import { DefaultLimit } from '../../../modules/common/data/miscellaneous';
 
 const SyncReport = () => {
@@ -69,7 +69,7 @@ const SyncReport = () => {
         </div>
         <hr />
         <SyncReportList data={workQueue} />
-        <ListPagination
+        <Pagination
           data={workQueue}
           limit={limit}
           onLimitChange={setLimit}

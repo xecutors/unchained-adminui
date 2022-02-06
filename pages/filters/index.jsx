@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
@@ -44,7 +44,7 @@ const index = () => {
         </ListHeader>
 
         {loading ? <Loading /> : <FilterList filters={filters} />}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={filters}
           total={filtersCount}

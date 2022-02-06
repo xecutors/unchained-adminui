@@ -28,7 +28,7 @@ const Step = ({ onClick, disabled, label }) => {
   );
 };
 
-const ListPagination = ({
+const Pagination = ({
   total = 0,
   data = [],
   onLimitChange,
@@ -270,14 +270,14 @@ const ListPagination = ({
     </div>
   );
 };
-ListPagination.defaultProps = {
+Pagination.defaultProps = {
   data: [],
   total: 0,
   offset: 0,
   onOffsetChange: () => true,
 };
 
-ListPagination.propTypes = {
+Pagination.propTypes = {
   total: PropTypes.number,
   data: PropTypes.arrayOf(PropTypes.object),
   onLimitChange: PropTypes.func.isRequired,
@@ -286,4 +286,4 @@ ListPagination.propTypes = {
   onOffsetChange: PropTypes.func,
 };
 
-export default ListPagination;
+export default Pagination;

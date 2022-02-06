@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -39,7 +39,7 @@ const Events = () => {
         ) : (
           <EventList events={events} onSearch={setQueryString} />
         )}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={events}
           total={eventsCount}

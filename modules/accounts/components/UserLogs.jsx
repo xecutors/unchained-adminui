@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import ListPagination from '../../common/components/ListPagination';
+import Pagination from '../../common/components/Pagination';
 import useUserLogs from '../hooks/useUserLogs';
 
 import UserLogListItem from './UserLogListItem';
@@ -64,7 +64,7 @@ const UserLogs = ({ _id: userId }) => {
           </div>
         </div>
       </div>
-      <ListPagination
+      <Pagination
         onLoadMore={() => {}}
         data={logs}
         total={logs?.length}

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import UserList from '../../modules/accounts/components/UserList';
 import useUsers from '../../modules/accounts/hooks/useUsers';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -83,7 +83,7 @@ const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
           onSearch={setQueryString}
         />
       )}
-      <ListPagination
+      <Pagination
         onLoadMore={loadMore}
         data={users}
         total={usersCount}

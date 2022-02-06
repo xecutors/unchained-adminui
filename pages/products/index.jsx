@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
@@ -56,7 +56,7 @@ const index = () => {
         </ListHeader>
         {loading ? <Loading /> : <ProductList products={products} />}
 
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={products}
           total={productsCount}

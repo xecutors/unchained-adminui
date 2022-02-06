@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import SearchField from '../../modules/common/components/SearchField';
@@ -56,7 +56,7 @@ const Orders = () => {
             onIncludeCartsChange={setIncludeCarts}
           />
         )}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={orders}
           total={ordersCount}

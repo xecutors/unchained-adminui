@@ -9,7 +9,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
@@ -84,7 +84,7 @@ const Currencies = () => {
         ) : (
           <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
         )}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={currencies}
           total={currenciesCount}

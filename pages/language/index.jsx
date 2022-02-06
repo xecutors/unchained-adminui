@@ -9,7 +9,7 @@ import PageHeaders from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Toggle from '../../modules/common/components/Toggle';
-import ListPagination from '../../modules/common/components/ListPagination';
+import Pagination from '../../modules/common/components/Pagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
@@ -89,7 +89,7 @@ const Languages = () => {
             onRemoveLanguage={onRemoveLanguage}
           />
         )}
-        <ListPagination
+        <Pagination
           onLoadMore={loadMore}
           data={languages}
           total={languagesCount}
