@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { format, formatDuration, intervalToDuration } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -21,16 +21,16 @@ import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
 
 const SyncDetail = () => {
-  const[today, setToday]=useState(new Date());
+  const [today, setToday] = useState(new Date());
   const { query } = useRouter();
   const { formatMessage } = useIntl();
 
- useEffect(()=>{
-  setToday(new Date());
- },[])
-const { dailySync } = useDailySyncs({
-  start:subDays(today, 10),
-});
+  useEffect(() => {
+    setToday(new Date());
+  }, []);
+  const { dailySync } = useDailySyncs({
+    start: subDays(today, 10),
+  });
 
   const { id } = query;
 
@@ -93,8 +93,8 @@ const { dailySync } = useDailySyncs({
         </div>
       </div>
       <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow-lg divide-y divide-gray-200 2xl:divide xl:grid-cols-3 md:divide-x">
-        <div className="px-4 py-5 sm:p-6 col-span-2 xl:col-span-1 mx-auto 2xl: max-w-none">
-          <GraphSync dailySync={dailySync}/>
+        <div className="px-4 py-2 sm:p-2 col-span-2 xl:col-span-1 mx-auto 2xl: max-w-none">
+          <GraphSync dailySync={dailySync} />
         </div>
         <div className="px-4 py-5 sm:p-6">
           <dt className="text-base font-normal text-gray-900">
@@ -141,7 +141,7 @@ const { dailySync } = useDailySyncs({
               )}
             </div>
           </dd>
-        </div>  
+        </div>
       </dl>
 
       <SyncCategorySummary
