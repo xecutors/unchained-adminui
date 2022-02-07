@@ -19,7 +19,6 @@ import ProductList from '../../../modules/product/components/ProductList';
 import AssortmentList from '../../../modules/assortment/components/AssortmentList';
 import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
-import useWorkQueue from '../../../modules/work/hooks/useWorkQueue';
 
 const SyncDetail = () => {
   const[today, setToday]=useState(new Date());
@@ -32,15 +31,7 @@ const SyncDetail = () => {
 const { dailySync } = useDailySyncs({
   start:subDays(today, 10),
 });
- console.log(dailySync);
 
-//  const { workQueue, loadMore, activeWorkTypes } = useWorkQueue({
-//    created:{
-//     start:new Date("2022-02-04").getTime(),
-//     end: new Date("2022-02-14").getTime()
-//    }
-// });
-// console.log("wor);
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
