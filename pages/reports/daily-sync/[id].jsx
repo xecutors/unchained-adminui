@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import { format, formatDuration, intervalToDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import subDays from 'date-fns/subDays';
 
 import Link from 'next/link';
 import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
+import GraphSync from '../../../modules/common/components/GraphSync';
+
 import Loading from '../../../modules/common/components/Loading';
 import PageHeader from '../../../modules/common/components/PageHeader';
 import useProductsCount from '../../../modules/product/hooks/useProductsCount';
@@ -13,10 +18,19 @@ import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
 import ProductList from '../../../modules/product/components/ProductList';
 import AssortmentList from '../../../modules/assortment/components/AssortmentList';
 import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
+import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
 
 const SyncDetail = () => {
+  const [today, setToday] = useState(new Date());
   const { query } = useRouter();
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    setToday(new Date());
+  }, []);
+  const { dailySync } = useDailySyncs({
+    start: subDays(today, 10),
+  });
 
   const { id } = query;
 
@@ -78,11 +92,10 @@ const SyncDetail = () => {
           </h6>
         </div>
       </div>
-      <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow-lg divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
-        <div className="px-4 py-5 sm:p-6">
-          (add a graph here for the last 10 syncs)
+      <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow-lg divide-y divide-gray-200 2xl:divide xl:grid-cols-3 md:divide-x">
+        <div className="px-4 py-2 sm:p-2 col-span-2 xl:col-span-1 mx-auto 2xl: max-w-none">
+          <GraphSync dailySync={dailySync} />
         </div>
-
         <div className="px-4 py-5 sm:p-6">
           <dt className="text-base font-normal text-gray-900">
             {formatMessage({
@@ -90,7 +103,7 @@ const SyncDetail = () => {
               defaultMessage: 'Total products',
             })}
           </dt>
-          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+          <dd className="mt-1 flex xl:space-x-7 items-baseline md:block lg:flex">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
               {productsCount}
               <span className="ml-2 text-sm font-medium text-gray-500">

@@ -1,5 +1,5 @@
-const subtractDay = (from = new Date(), daysInNumber) => {
-  const fromDate = new Date(from);
+const subtractDay = (daysInNumber) => {
+  const fromDate = new Date();
   fromDate.setDate(fromDate.getDate() - daysInNumber);
   return fromDate.getTime();
 };

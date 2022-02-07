@@ -9,6 +9,16 @@ const PublicareDailySyncFragment = gql`
     success
     retries
     deleted
+    result {
+      sync {
+        stats {
+          products {
+            new
+            removed
+          }
+        }
+      }
+    }
     worker
   }
 `;
