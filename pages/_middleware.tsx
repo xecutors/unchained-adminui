@@ -8,7 +8,8 @@ const middleware = async (req: NextRequest) => {
   if (
     !UnrestrictedPages.includes(pathname) &&
     !pathname.match(/^\/reports/) &&
-    isReportUI
+    isReportUI &&
+    pathname !== '/'
   ) {
     return NextResponse.rewrite(`/404`);
   }
