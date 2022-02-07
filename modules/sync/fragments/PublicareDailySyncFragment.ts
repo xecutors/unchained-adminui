@@ -9,12 +9,6 @@ const PublicareDailySyncFragment = gql`
     success
     retries
     deleted
-    # result {
-    #   products {
-    #     published
-    #     removed
-    #   }
-    # }
     result {
       sync {
         stats {
