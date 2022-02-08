@@ -25,8 +25,8 @@ const ChangePassword = () => {
   });
 
   return (
-    <div className="rounded-md px-4 py-5 bg-white shadow overflow-hidden border-b border-gray-200">
-      <div className="border-b pb-2 pt-4 mb-7 border-gray-200 sm:flex sm:items-center sm:justify-between">
+    <div className="rounded-md py-5 overflow-hidden lg:flex">
+      <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {formatMessage({
             id: 'change_password',
@@ -34,42 +34,44 @@ const ChangePassword = () => {
           })}
         </h3>
       </div>
-      <Form form={form}>
-        <PasswordField
-          label={formatMessage({
-            id: 'current_password',
-            defaultMessage: 'Current password',
-          })}
-          placeholder={formatMessage({
-            id: 'current_password',
-            defaultMessage: 'Current password',
-          })}
-          name="oldPassword"
-          id="oldPassword"
-          required
-          className="mb-4 text-sm"
-        />
-        <PasswordField
-          label={formatMessage({
-            id: 'new_password',
-            defaultMessage: 'New password',
-          })}
-          placeholder={formatMessage({
-            id: 'new_password',
-            defaultMessage: 'New password',
-          })}
-          name="newPassword"
-          id="newPassword"
-          required
-          className="mb-4 text-sm"
-        />
-        <SubmitButton
-          label={formatMessage({
-            id: 'change_password',
-            defaultMessage: 'Change password',
-          })}
-        />
-      </Form>
+      <div className="bg-white shadow-md border-b border-gray-200 w-full px-8 py-4 lg:w-4/6 lg:ml-auto">
+        <Form form={form}>
+          <PasswordField
+            label={formatMessage({
+              id: 'current_password',
+              defaultMessage: 'Current password',
+            })}
+            placeholder={formatMessage({
+              id: 'current_password',
+              defaultMessage: 'Current password',
+            })}
+            name="oldPassword"
+            id="oldPassword"
+            required
+            className="mb-4 text-sm"
+          />
+          <PasswordField
+            label={formatMessage({
+              id: 'new_password',
+              defaultMessage: 'New password',
+            })}
+            placeholder={formatMessage({
+              id: 'new_password',
+              defaultMessage: 'New password',
+            })}
+            name="newPassword"
+            id="newPassword"
+            required
+            className="mb-4 text-sm"
+          />
+          <SubmitButton
+            label={formatMessage({
+              id: 'change_password',
+              defaultMessage: 'Change password',
+            })}
+          />
+        </Form>
+      </div>
     </div>
   );
 };

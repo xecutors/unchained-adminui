@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import AccountView from '../../modules/accounts/components/AccountView';
 import PaymentCredentialsView from '../../modules/accounts/components/PaymentCredentialsView';
 import ProfileView from '../../modules/accounts/components/ProfileView';
+
 import UserEnrollments from '../../modules/accounts/components/UserEnrollments';
 import UserOrders from '../../modules/accounts/components/UserOrders';
 import UserQuotations from '../../modules/accounts/components/UserQuotations';

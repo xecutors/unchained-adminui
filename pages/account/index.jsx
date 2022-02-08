@@ -18,10 +18,10 @@ const Profile = () => {
           defaultMessage: 'Account',
         })}
       />
-      <div className="py-4 space-y-6 sm:p-6 rounded-md relative max-w-4xl">
+      <div className="py-4 space-y-6 sm:p-6 rounded-md relative max-w-7xl">
         <ProfileView {...currentUser} />
-        <ChangePassword />
-        <div className="rounded-md px-4 py-5 bg-white shadow overflow-hidden border-b border-gray-200">
+        <div className="py-5 shadow overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
+          <ChangePassword />
           <EmailAddresses emails={currentUser?.emails} enableVerification />
         </div>
       </div>
