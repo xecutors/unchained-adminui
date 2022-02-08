@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import AccountView from '../../modules/accounts/components/AccountView';
 import PaymentCredentialsView from '../../modules/accounts/components/PaymentCredentialsView';
-import ProfileView from '../../modules/accounts/components/ProfileView';
+// import ProfileView from '../../modules/accounts/components/ProfileView';
+import ProfileNew from '../../modules/accounts/components/ProfileNew';
+
 import UserEnrollments from '../../modules/accounts/components/UserEnrollments';
 import UserOrders from '../../modules/accounts/components/UserOrders';
 import UserQuotations from '../../modules/accounts/components/UserQuotations';
@@ -14,7 +16,7 @@ import PageHeader from '../../modules/common/components/PageHeader';
 
 const getCurrentTab = (current, user) => {
   if (!user) return <Loading />;
-  if (current === 'profile') return <ProfileView {...user} />;
+  if (current === 'profile') return <ProfileNew {...user} />;
   if (current === 'orders') return <UserOrders {...user} />;
   if (current === 'quotations') return <UserQuotations {...user} />;
   if (current === 'enrollments') return <UserEnrollments {...user} />;
