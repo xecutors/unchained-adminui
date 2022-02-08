@@ -56,8 +56,8 @@
   "already_got_a_user": {
     "defaultMessage": "Already got a user?"
   },
-  "app.greeting": {
-    "defaultMessage": "<p> Showing <span>1</span> to <span>{current}</span> of <span>{total}</span> results </p>"
+  "apply_filter": {
+    "defaultMessage": "Apply Filter"
   },
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
@@ -103,6 +103,9 @@
   },
   "categories": {
     "defaultMessage": "Categories"
+  },
+  "change": {
+    "defaultMessage": "Change"
   },
   "change_password": {
     "defaultMessage": "Change password"
@@ -192,6 +195,9 @@
   "date": {
     "defaultMessage": "Date"
   },
+  "date_range": {
+    "defaultMessage": "Date range"
+  },
   "decreased": {
     "defaultMessage": "Decreased by"
   },
@@ -279,14 +285,17 @@
   "email_address": {
     "defaultMessage": "Email Address"
   },
+  "email_addresses": {
+    "defaultMessage": "Email addresses"
+  },
   "email_deleted": {
     "defaultMessage": "email {id} deleted successfully"
   },
   "email_exists_error": {
     "defaultMessage": "Email already exists"
   },
-  "emails": {
-    "defaultMessage": "Emails"
+  "engine_version": {
+    "defaultMessage": "Engine Version"
   },
   "enrollment_number": {
     "defaultMessage": "Enrollment number"
@@ -367,9 +376,6 @@
   "guest": {
     "defaultMessage": "Guest"
   },
-  "home": {
-    "defaultMessage": "Home"
-  },
   "image_not_available": {
     "defaultMessage": "Image not available"
   },
@@ -437,6 +443,9 @@
   "level": {
     "defaultMessage": "Level"
   },
+  "load_more": {
+    "defaultMessage": "Load more"
+  },
   "log_in": {
     "defaultMessage": "Log in"
   },
@@ -501,6 +510,9 @@
   "new_warehousing_provider_header": {
     "defaultMessage": "New warehousing provider"
   },
+  "next": {
+    "defaultMessage": "Next"
+  },
   "no_result_found": {
     "defaultMessage": "No result found"
   },
@@ -534,6 +546,9 @@
   "page_not_found": {
     "defaultMessage": "Page not found."
   },
+  "paginated-data": {
+    "defaultMessage": "<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
+  },
   "password": {
     "defaultMessage": "Password"
   },
@@ -563,6 +578,9 @@
   },
   "preferred": {
     "defaultMessage": "Preferred"
+  },
+  "previous": {
+    "defaultMessage": "Previous"
   },
   "priority": {
     "defaultMessage": "Priority"
@@ -627,6 +645,12 @@
   "reset_password_header_description": {
     "defaultMessage": "Enter your new password and make sure you don't forget it this time."
   },
+  "resolved_country": {
+    "defaultMessage": "Resolved country"
+  },
+  "resolved_language": {
+    "defaultMessage": "Resolved language"
+  },
   "rest_password": {
     "defaultMessage": "Reset password"
   },
@@ -659,6 +683,9 @@
   },
   "select_tab": {
     "defaultMessage": "Select a tab"
+  },
+  "select_type": {
+    "defaultMessage": "Select type"
   },
   "send_rest_link": {
     "defaultMessage": "Send reset link"
@@ -720,6 +747,9 @@
   },
   "system": {
     "defaultMessage": "System"
+  },
+  "system_information": {
+    "defaultMessage": "System Information"
   },
   "tags": {
     "defaultMessage": "Tags"
@@ -851,7 +881,13 @@
   "work_started_success": {
     "defaultMessage": "Work started successfully!"
   },
+  "work_type": {
+    "defaultMessage": "Work type"
+  },
   "worker": {
     "defaultMessage": "Worker"
+  },
+  "your_roles": {
+    "defaultMessage": "Your roles"
   }
 }
