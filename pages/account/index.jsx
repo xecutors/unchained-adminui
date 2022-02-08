@@ -22,9 +22,7 @@ const Profile = () => {
         <ProfileView {...currentUser} />
         <div className="py-5 shadow overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
           <ChangePassword />
-          <div className="rounded-md px-4 py-5 w-full lg:w-3/5 lg:ml-auto overflow-hidden bg-white shadow-md border-b border-gray-200">
-            <EmailAddresses emails={currentUser?.emails} enableVerification />
-          </div>
+          <EmailAddresses emails={currentUser?.emails} enableVerification />
         </div>
       </div>
     </>

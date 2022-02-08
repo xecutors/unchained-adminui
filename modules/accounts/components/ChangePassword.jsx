@@ -34,7 +34,7 @@ const ChangePassword = () => {
           })}
         </h3>
       </div>
-      <div className="bg-white shadow-md border-b border-gray-200 w-full px-8 py-4 lg:w-3/5 lg:ml-auto">
+      <div className="bg-white shadow-md border-b border-gray-200 w-full px-8 py-4 lg:w-4/6 lg:ml-auto">
         <Form form={form}>
           <PasswordField
             label={formatMessage({
