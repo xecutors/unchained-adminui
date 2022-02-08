@@ -3,18 +3,11 @@ import { useQuery, gql } from '@apollo/client';
 import ProductPlanConfigurationFragment from '../fragments/ProductPlanConfigurationFragment';
 
 export const ProductPlanQuery = gql`
-  query ProductSupply(
-    $productId: ID
-    $slug: String
-    $weightUnit: MassUnit = GRAM
-    $lengthUnit: LengthUnit = MILLIMETERS
-    $widthUnit: LengthUnit = MILLIMETERS
-    $heightUnit: LengthUnit = MILLIMETERS
-  ) {
+  query ProductPlan($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on PlanProduct {
-        dimensions {
+        plan {
           ...ProductPlanConfigurationFragment
         }
       }

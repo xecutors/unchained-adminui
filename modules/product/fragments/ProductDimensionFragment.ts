@@ -1,12 +1,12 @@
 import { gql } from '@apollo/client';
 
-const ProductDimensionsFragment = gql`
-  fragment ProductDimensionsFragment on Dimensions {
-    weight(unit: $widthUnit)
-    length(unit: $lengthUnit)
-    width(unit: $widthUnit)
-    height(unit: $heightUnit)
+const ProductDimensionFragment = gql`
+  fragment ProductDimensionFragment on Dimensions {
+    weight
+    length
+    width
+    height
   }
 `;
 
-export default ProductDimensionsFragment;
+export default ProductDimensionFragment;

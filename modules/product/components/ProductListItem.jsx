@@ -12,7 +12,7 @@ const PRODUCT_STATUS = {
 
 const ProductListItem = ({ product, showAvatar }) => {
   const { formatMessage } = useIntl();
-
+  const { slug = '' } = product?.texts || {};
   return (
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
@@ -23,7 +23,7 @@ const ProductListItem = ({ product, showAvatar }) => {
               className="mr-2"
             />
           )}
-          <Link href={`/product/${product._id}`}>
+          <Link href={`/products/${slug}`}>
             <a className="text-blue-600">
               {product?.texts.title || (
                 <>

@@ -18,27 +18,19 @@ export const LanguagesQuery = gql`
 const useLanguages = ({
   limit = 20,
   offset = 0,
-  includeInactive = true,
+  includeInactive = false,
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(LanguagesQuery, {
+  const { data, loading, error } = useQuery(LanguagesQuery, {
     variables: { limit, offset, includeInactive },
   });
   const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;
-  const hasMore = languages?.length < languagesCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: languages.length },
-    });
-  };
 
   return {
     languages,
     languagesCount,
-    hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

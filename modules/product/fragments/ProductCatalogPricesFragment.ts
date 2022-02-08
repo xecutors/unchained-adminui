@@ -1,16 +1,21 @@
 import { gql } from '@apollo/client';
 
 const ProductCatalogPricesFragment = gql`
-  fragment ProductCatalogPricesFragment on ProductTexts {
+  fragment ProductCatalogPricesFragment on ProductCatalogPrice {
     _id
-    locale
-    slug
-    title
-    subtitle
-    description
-    vendor
-    brand
-    labels
+    isTaxable
+    isNetPrice
+    country {
+      _id
+      isoCode
+      name
+    }
+    currency {
+      _id
+      isoCode
+    }
+    amount
+    maxQuantity
   }
 `;
 
