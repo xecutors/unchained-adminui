@@ -26,7 +26,7 @@ const ChangePassword = () => {
 
   return (
     <div className="rounded-md py-5 overflow-hidden lg:flex">
-      <div className="border-b pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
+      <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
           {formatMessage({
             id: 'change_password',

@@ -73,7 +73,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
   return (
     <div>
       <div className="lg:flex border-t pt-5">
-        <div className="border-b pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
+        <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             {formatMessage({
               id: 'email_addresses',
