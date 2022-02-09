@@ -11,7 +11,7 @@ export const TranslatedAssortmentMediaTextsQuery = gql`
   ${AssortmentMediaTextsFragment}
 `;
 
-const useTranslatesAssortmentMediaTexts = ({
+const useTranslatedAssortmentMediaTexts = ({
   assortmentMediaId = null,
 } = {}) => {
   const { data, loading, error } = useQuery(
@@ -32,4 +32,4 @@ const useTranslatesAssortmentMediaTexts = ({
   };
 };
 
-export default useTranslatesAssortmentMediaTexts;
+export default useTranslatedAssortmentMediaTexts;
