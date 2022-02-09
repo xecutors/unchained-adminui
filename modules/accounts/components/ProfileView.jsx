@@ -141,7 +141,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               )}
             </span>
           </div>
-          <div className="col-span-2 lg:w-[100%] ml-auto shadow-md border-gray-200  bg-white px-8">
+          <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200  bg-white px-8">
             <dl className="py-4 divide-y divide-gray-200">
               <div className="py-4 sm:py-2 sm:grid sm:grid-cols-1">
                 <dt className="text-sm font-medium text-gray-500">
@@ -328,7 +328,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             </p>
           </div>
 
-          <div className="col-span-2 w-full lg:w-[100%] lg:ml-auto shadow-md border-gray-200  bg-white px-8 py-6">
+          <div className="col-span-2 w-full lg:w-full lg:ml-auto shadow-md border-gray-200  bg-white px-8 py-6">
             <dl className="divide-y divide-gray-200">
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
                 <dt className="text-sm h-10 font-medium text-gray-500">
