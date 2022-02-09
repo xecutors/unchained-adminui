@@ -91,7 +91,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
 
   return (
     <div className=" mt-5 sm:max-w-full">
-      <div className="py-4 px-2 lg:px-5 shadow sm:rounded-t sm:px-15">
+      <div className="px-2 lg:px-6 shadow sm:rounded-t sm:px-15">
         <div className="lg:grid lg:grid-cols-3 px-6 border-gray-200 border-b pb-8">
           <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  col-span-1">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
