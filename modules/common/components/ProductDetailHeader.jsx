@@ -1,8 +1,12 @@
 import { useIntl } from 'react-intl';
+import { useState } from 'react';
 
 const ProductDetailHeader = () => {
   const { formatMessage } = useIntl();
-
+  // const [open, setOpen] = useState(false);
+  // const handleOpenButton = () => {
+  //   setOpen(true);
+  // };
   return (
     <div>
       <label id="listbox-label" className="sr-only">
