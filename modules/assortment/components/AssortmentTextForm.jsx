@@ -59,7 +59,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
     <div className="mt-4 sm:max-w-full">
       <div className="px-5 shadow sm:rounded-t sm:px-15">
         <Form form={form}>
-          <div className="space-y-2 sm:p-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
+          <div className="sm:px-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
             <div className="pb-2 mb-7 border-gray-200 sm:flex  col-span-1">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({
