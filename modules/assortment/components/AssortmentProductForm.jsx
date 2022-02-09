@@ -113,13 +113,13 @@ const AssortmentProductForm = ({ assortmentId }) => {
                 key={product.id}
               >
                 <div className="flex items-center space-x-6 py-4">
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      width={80}
-                      height={40}
-                      className="object-contain"
-                    />
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={80}
+                    height={40}
+                    className="object-contain"
+                  />
                   <div className="">
                     <h3 className="text-lg text-gray-800">{product.title}</h3>
                     <p className="text-xs text-gray-600">{product.desc}</p>
