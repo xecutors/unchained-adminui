@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const ProductDetailHeader = () => {
   const { formatMessage } = useIntl();
