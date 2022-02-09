@@ -17,12 +17,8 @@ const getCurrentTab = (currentTag, id) => {
         <AssortmentTextForm assortmentId={id} />
       </LocaleWrapper>
     );
-  if (currentTag === 'links')
-    return (
-      <LocaleWrapper>
-        <AssortmentLinkForm assortmentId={id} />
-      </LocaleWrapper>
-    );
+  if (currentTag === 'links') return <AssortmentLinkForm assortmentId={id} />;
+
   if (currentTag === 'media')
     return (
       <LocaleWrapper>
@@ -30,17 +26,9 @@ const getCurrentTab = (currentTag, id) => {
       </LocaleWrapper>
     );
   if (currentTag === 'products')
-    return (
-      <LocaleWrapper>
-        <AssortmentProductForm assortmentId={id} />
-      </LocaleWrapper>
-    );
+    return <AssortmentProductForm assortmentId={id} />;
   if (currentTag === 'filters')
-    return (
-      <LocaleWrapper>
-        <AssortmentFiltersForm assortmentId={id} />
-      </LocaleWrapper>
-    );
+    return <AssortmentFiltersForm assortmentId={id} />;
   return (
     <LocaleWrapper>
       <AssortmentTextForm assortmentId={id} />
@@ -69,47 +57,50 @@ const AssortmentDetail = ({ assortment }) => {
       <div className="flex justify-end">
         <ProductDetailHeader />
       </div>
-      <div className="py-6">
-        <div className="lg:hidden">
-          <label htmlFor="selected-tab" className="sr-only">
-            {formatMessage({
-              id: 'select_tab',
-              defaultMessage: 'Select a tab',
-            })}
-          </label>
+      <div className=" sm:px-6 md:px-0">
+        <div className="py-6">
+          <div className="lg:hidden">
+            <label htmlFor="selected-tab" className="sr-only">
+              {formatMessage({
+                id: 'select_tab',
+                defaultMessage: 'Select a tab',
+              })}
+            </label>
 
-          <select
-            onChange={(e) => setActiveTab(e.target.value)}
-            id="selected-tab"
-            name="selected-tab"
-            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
-            value={activeTab}
-          >
-            {Object.entries(assortmentOptions).map(([key, value]) => (
-              <option key={`mobile-${key}`} value={key}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="hidden lg:block">
-          <nav className="relative z-0 rounded-md shadow flex divide-x divide-gray-200">
-            {Object.entries(assortmentOptions).map(([key, value]) => (
-              <a
-                onClick={() => setActiveTab(key)}
-                key={key}
-                className={` ${
-                  activeTab === key &&
-                  ' bg-transparent rounded-md text-gray-500 hover:text-indigo-700'
-                }  group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10`}
-              >
-                {value}
-              </a>
-            ))}
-          </nav>
-        </div>
-        <div className="text-indigo-500">
-          {getCurrentTab(activeTab, assortment?._id)}
+            <select
+              onChange={(e) => setActiveTab(e.target.value)}
+              id="selected-tab"
+              name="selected-tab"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
+              value={activeTab}
+            >
+              {Object.entries(assortmentOptions).map(([key, value]) => (
+                <option key={`mobile-${key}`} value={key}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="hidden lg:block">
+            <div className="border-b border-gray-200 al">
+              <nav className="-mb-px flex space-x-8">
+                {Object.entries(assortmentOptions).map(([key, value]) => (
+                  <a
+                    onClick={() => setActiveTab(key)}
+                    key={key}
+                    className={` ${
+                      activeTab === key && 'border-purple-500 text-purple-600 cursor-pointer'
+                    }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
+                  >
+                    {value}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
+          <div className="text-indigo-500">
+            {getCurrentTab(activeTab, assortment?._id)}
+          </div>
         </div>
       </div>
     </>
