@@ -1,8 +1,18 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import {
+  DocumentTextIcon,
+  FilmIcon,
+  ShoppingBagIcon,
+  ChartPieIcon,
+  ArchiveIcon,
+  ColorSwatchIcon,
+  PresentationChartLineIcon,
+  UsersIcon,
+} from '@heroicons/react/solid';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
-
-import ProductDetailHeader from '../../common/components/ProductDetailHeader';
+import { stopPropagation } from '../../common/data/miscellaneous';
+import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
 import GeneralTextForm from './GeneralTextForm';
 import MediaForm from './MediaForm';
@@ -12,7 +22,7 @@ import VariationForm from './VariationForm';
 import WarehousingForm from './WarehousingForm';
 
 const getCurrentTab = (currentTag, id) => {
-  if (currentTag === 'general_text')
+  if (currentTag === 'text')
     return (
       <LocaleWrapper>
         <GeneralTextForm productId={id} />
@@ -35,82 +45,166 @@ const getCurrentTab = (currentTag, id) => {
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
-  const [activeTab, setActiveTab] = useState('general_text');
+  const { status } = product;
 
-  const productOptions = {
-    general_text: formatMessage({
-      id: 'general_text',
-      defaultMessage: 'General Text',
-    }),
-    media: formatMessage({ id: 'media', defaultMessage: 'media' }),
-    commerce: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
-    supply: formatMessage({
+  const [activeTab, setActiveTab] = useState('text');
+  const [statusButtonOptions, setStatusButtonOptions] = useState('');
+
+  const productOptions = [
+    {
+      id: 'text',
+      general_text: formatMessage({
+        id: 'general_text',
+        defaultMessage: 'Text',
+      }),
+      Icon: <DocumentTextIcon className="h-4 w-5" />,
+    },
+    {
+      id: 'media',
+      media: formatMessage({ id: 'media', defaultMessage: 'media' }),
+      Icon: <FilmIcon className="h-4 w-5" />,
+    },
+    {
+      id: 'commerce',
+      commerce: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
+      Icon: <ShoppingBagIcon className="h-4 w-5" />,
+    },
+    {
       id: 'supply',
-      defaultMessage: 'Supply',
-    }),
-    warehousing: formatMessage({
+      supply: formatMessage({
+        id: 'supply',
+        defaultMessage: 'Supply',
+      }),
+      Icon: <ChartPieIcon className="h-4 w-5" />,
+    },
+    {
       id: 'warehousing',
-      defaultMessage: 'Warehousing',
-    }),
-    variations: formatMessage({
+      warehousing: formatMessage({
+        id: 'warehousing',
+        defaultMessage: 'Warehousing',
+      }),
+      Icon: <ArchiveIcon className="h-4 w-5" />,
+    },
+    {
       id: 'variations',
-      defaultMessage: 'Variations',
-    }),
-
-    bundled_products: formatMessage({
-      id: 'bundled_products',
-      defaultMessage: 'Bundled Products',
-    }),
-
-    subscription: formatMessage({
+      variations: formatMessage({
+        id: 'variations',
+        defaultMessage: 'Variations',
+      }),
+      Icon: <ColorSwatchIcon className="h-4 w-5" />,
+    },
+    {
+      id: 'bundles',
+      bundled_products: formatMessage({
+        id: 'bundled_products',
+        defaultMessage: 'Bundles',
+      }),
+      Icon: <PresentationChartLineIcon className="h-4 w-5" />,
+    },
+    {
       id: 'subscriptions',
-      defaultMessage: 'Subscriptions',
-    }),
+      subscription: formatMessage({
+        id: 'subscriptions',
+        defaultMessage: 'Subscriptions',
+      }),
+      Icon: <UsersIcon className="h-4 w-5" />,
+    },
+  ];
+
+  const activeOptions = [
+    {
+      id: 'active',
+      title: formatMessage({
+        id: 'active',
+        defaultMessage: 'Active',
+      }),
+      description: '',
+      current: status === 'ACTIVE',
+      bgColor: 'green',
+    },
+    {
+      id: 'draft',
+      title: formatMessage({
+        id: 'draft',
+        defaultMessage: 'Draft',
+      }),
+      description: '',
+      current: status === 'DRAFT',
+      bgColor: 'gray',
+    },
+    {
+      id: 'deleted',
+      title: formatMessage({
+        id: 'deleted',
+        defaultMessage: 'Deleted',
+      }),
+      description: '',
+      current: status === 'DELETED',
+      bgColor: 'red',
+    },
+  ];
+
+  const handlePublishOptions = (event) => {
+    stopPropagation(event);
+    setStatusButtonOptions(event.target.value);
   };
+
   return (
     <>
-      <ProductDetailHeader />
-      <div className="py-6">
-        <div className="lg:hidden">
-          <label htmlFor="selected-tab" className="sr-only">
-            {formatMessage({
-              id: 'select_tab',
-              defaultMessage: 'Select a tab',
-            })}
-          </label>
+      <div className="flex justify-end">
+        <SelectOptions
+          publishingOptions={activeOptions}
+          onChange={handlePublishOptions}
+        />
+      </div>
+      <div className=" sm:px-6 md:px-0">
+        <div className="py-6">
+          <div className="lg:hidden">
+            <label htmlFor="selected-tab" className="sr-only">
+              {formatMessage({
+                id: 'select_tab',
+                defaultMessage: 'Select a tab',
+              })}
+            </label>
 
-          <select
-            onChange={(e) => setActiveTab(e.target.value)}
-            id="selected-tab"
-            name="selected-tab"
-            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
-            value={activeTab}
-          >
-            {Object.entries(productOptions).map(([key, value]) => (
-              <option key={`mobile-${key}`} value={key}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="hidden lg:block">
-          <nav className="relative z-0 rounded-md shadow flex divide-x divide-gray-200">
-            {Object.entries(productOptions).map(([key, value]) => (
-              <a
-                onClick={() => setActiveTab(key)}
-                key={key}
-                className={` ${
-                  activeTab === key &&
-                  ' bg-transparent rounded-md text-gray-500 hover:text-indigo-700'
-                }  group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10`}
-              >
-                {value}
-              </a>
-            ))}
-          </nav>
-        </div>
-        <div className="text-indigo-500">
-          {getCurrentTab(activeTab, product?._id)}
+            <select
+              onChange={(e) => setActiveTab(e.target.value)}
+              id="selected-tab"
+              name="selected-tab"
+              className="mt-1 capitalize block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
+              value={activeTab}
+            >
+              {productOptions.map((value) => (
+                <option key={value.id} value={value.id}>
+                  {value.id}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="hidden lg:block">
+            <div className="border-b border-gray-200 al">
+              <nav className="-mb-px flex space-x-6">
+                {productOptions.map((option) => (
+                  <a
+                    onClick={() => setActiveTab(option.id)}
+                    key={option.id}
+                    className={` ${
+                      activeTab === option.id &&
+                      'border-purple-500 text-purple-600 cursor-pointer'
+                    }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
+                  >
+                    <div className="flex space-x-1 items-center">
+                      <div>{option.Icon}</div>
+                      <div className="capitalize"> {option.id}</div>
+                    </div>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
+          <div className="text-indigo-500">
+            {getCurrentTab(activeTab, product?._id)}
+          </div>
         </div>
       </div>
     </>
