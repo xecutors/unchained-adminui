@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TranslateIcon } from '@heroicons/react/outline';
-
 import { useIntl } from 'react-intl';
+
 import useLanguages from '../../language/hooks/useLanguages';
 import { stopPropagation } from '../data/miscellaneous';
 
@@ -13,10 +13,10 @@ const LocaleWrapper = ({ children }) => {
   return (
     <div className="mt-2">
       <div className="relative ">
-        <div className="flex items-center absolute bottom-5 right-2">
-          <TranslateIcon className="h-6 w-6 z-10 absolute left-3 cursor-pointer" />
+        <div className="flex items-center absolute bottom-32 right-0 lg:bottom-5">
+          <TranslateIcon className="w-5 h-5 lg:h-6 lg:w-6 z-5 absolute left-3 cursor-pointer" />
           <select
-            className="px-10 cursor-pointer py-1 border-2 border-indigo-500 rounded-md"
+            className="px-8 text-sm lg:px-10 cursor-pointer py-[0.25rem] lg:py-1 border-2 border-indigo-500 rounded-md"
             placeholder={formatMessage({
               id: 'select_language',
               defaultMessage: 'Select language',
