@@ -22,7 +22,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
               className="mr-2"
             />
           )}
-          <Link href={`/assortments/${assortment._id}`}>
+          <Link href={`/assortments/${assortment?.texts?.slug}`}>
             <a className="text-blue-600">
               {assortment?.texts?.title || (
                 <>
