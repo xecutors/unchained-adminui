@@ -92,8 +92,9 @@ const UserProfile = () => {
                       onClick={() => setActiveTab(key)}
                       key={key}
                       className={` ${
-                        activeTab === key && 'border-purple-500 text-purple-600'
-                      }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                        activeTab === key &&
+                        'border-purple-500 text-purple-600 cursor-pointer'
+                      }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
                     >
                       {value}
                     </a>
