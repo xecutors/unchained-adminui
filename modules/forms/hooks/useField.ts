@@ -50,7 +50,12 @@ const useField = (props: FieldHookProps): ComputedProps => {
     errorMessage,
     disabled = form.disabled || formik.isSubmitting,
     // By default, the label is the translated field name
-    label = intl.formatMessage({ id: name }),
+    label = intl.formatMessage({
+      id: name,
+      defaultMessage: 'default_input_name',
+      description:
+        "DO not translate Skip this as it's the default given label when a component is not provided explicit label",
+    }),
     validators = [],
   } = props;
 
