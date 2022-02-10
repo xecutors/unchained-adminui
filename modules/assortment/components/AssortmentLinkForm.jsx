@@ -40,12 +40,12 @@ const AssortmentLinkForm = ({ assortmentId }) => {
             <div className="pb-2 mb-7 border-gray-200 sm:flex  col-span-1">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({
-                  id: 'product',
-                  defaultMessage: 'Product',
+                  id: 'links',
+                  defaultMessage: 'Links',
                 })}
               </h3>
             </div>
-            <div className="col-span-2 w-full ml-auto shadow-md border-gray-200  bg-white px-8">
+            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
               <div className="w-full  justify-between1 1align-baseline">
                 <TagInput
                   name="tags"
@@ -68,7 +68,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                   })}
                   autoComplete="on"
                   options={{}}
-                  className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+                  className="text-sm font-medium text-gray-500 py-2   mt-1 w-full"
                 />
               </div>
               <div className="w-fit">

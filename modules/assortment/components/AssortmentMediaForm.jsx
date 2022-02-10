@@ -53,7 +53,12 @@ const AssortmentMediaForm = () => {
                   htmlFor="file-upload"
                   className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                 >
-                  <span>Upload a file</span>
+                  <span>
+                    {formatMessage({
+                      id: 'upload_file',
+                      defaultMessage: 'Upload a file',
+                    })}
+                  </span>
                   <input
                     id="file-upload"
                     name="file-upload"
@@ -61,7 +66,12 @@ const AssortmentMediaForm = () => {
                     className="sr-only"
                   />
                 </label>
-                <p className="pl-1">or drag and drop</p>
+                <p className="pl-1">
+                  {formatMessage({
+                    id: 'drag_and_drop',
+                    defaultMessage: 'or drag and drop',
+                  })}
+                </p>
               </div>
               <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
             </div>
