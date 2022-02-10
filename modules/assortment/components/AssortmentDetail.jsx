@@ -47,7 +47,6 @@ const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
   const { formatMessage } = useIntl();
   const [activeTab, setActiveTab] = useState('texts');
-  const [statusButtonOptions, setStatusButtonOptions] = useState('');
 
   const assortmentOptions = [
     {
@@ -105,10 +104,10 @@ const AssortmentDetail = ({ assortment }) => {
       bgColor: 'green',
     },
     {
-      id: 'root',
+      id: 'in-active',
       title: formatMessage({
-        id: 'root',
-        defaultMessage: 'Root',
+        id: 'in-active',
+        defaultMessage: 'In-Active',
       }),
       description: '',
       current: !isActive,
@@ -151,10 +150,10 @@ const AssortmentDetail = ({ assortment }) => {
       bgColor: 'green',
     },
     {
-      id: 'child',
+      id: 'leaf',
       title: formatMessage({
-        id: 'child',
-        defaultMessage: 'Child',
+        id: 'leaf',
+        defaultMessage: 'Leaf',
       }),
       description: '',
       current: !isRoot,
@@ -164,7 +163,6 @@ const AssortmentDetail = ({ assortment }) => {
 
   const handlePublishOptions = (event) => {
     stopPropagation(event);
-    setStatusButtonOptions(event.target.value);
   };
 
   return (

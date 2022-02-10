@@ -48,7 +48,6 @@ const ProductDetail = ({ product }) => {
   const { status } = product;
 
   const [activeTab, setActiveTab] = useState('text');
-  const [statusButtonOptions, setStatusButtonOptions] = useState('');
 
   const productOptions = [
     {
@@ -146,7 +145,6 @@ const ProductDetail = ({ product }) => {
 
   const handlePublishOptions = (event) => {
     stopPropagation(event);
-    setStatusButtonOptions(event.target.value);
   };
 
   return (
