@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import LocaleWrapper from '../../common/components/LocaleWrapper';
+import {
+  DocumentTextIcon,
+  LinkIcon,
+  FilmIcon,
+  ViewGridIcon,
+  FilterIcon,
+} from '@heroicons/react/solid';
 
-import ProductDetailHeader from '../../common/components/ProductDetailHeader';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
+import ProductStatus from '../../common/components/ProductStatus';
+
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentTextForm from './AssortmentTextForm';
-
 import AssortmentMediaForm from './AssortmentMediaForm';
 import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentFiltersForm from './AssotmentFiltersForm';
+import { stopPropagation } from '../../common/data/miscellaneous';
 
 const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'texts')
@@ -36,26 +44,146 @@ const getCurrentTab = (currentTag, id) => {
   );
 };
 const AssortmentDetail = ({ assortment }) => {
+  const { isActive, isBase, isRoot } = assortment;
   const { formatMessage } = useIntl();
   const [activeTab, setActiveTab] = useState('texts');
+  const [statusButtonOptions, setStatusButtonOptions] = useState('');
 
-  const assortmentOptions = {
-    texts: formatMessage({
+  // console.log('assort', assortment);
+
+  const assortmentOptions = [
+    {
       id: 'texts',
-      defaultMessage: 'Texts',
-    }),
-    links: formatMessage({ id: 'links', defaultMessage: 'Links' }),
-    media: formatMessage({ id: 'media', defaultMessage: 'Media' }),
-    products: formatMessage({ id: 'products', defaultMessage: 'Products' }),
-    filters: formatMessage({
+      texts: formatMessage({
+        id: 'texts',
+        defaultMessage: 'Texts',
+      }),
+      Icon: <DocumentTextIcon className="h-4 w-5" />,
+    },
+
+    {
+      id: 'links',
+      links: formatMessage({
+        id: 'links',
+        defaultMessage: 'Links',
+      }),
+      Icon: <LinkIcon className="h-4 w-5" />,
+    },
+    {
+      id: 'media',
+      media: formatMessage({
+        id: 'media',
+        defaultMessage: 'Media',
+      }),
+      Icon: <FilmIcon className="h-4 w-5" />,
+    },
+    {
+      id: 'products',
+      products: formatMessage({
+        id: 'products',
+        defaultMessage: 'Products',
+      }),
+      Icon: <ViewGridIcon className="h-4 w-5" />,
+    },
+    {
       id: 'filters',
-      defaultMessage: 'Filters',
-    }),
+      filters: formatMessage({
+        id: 'filters',
+        defaultMessage: 'Filters',
+      }),
+      Icon: <FilterIcon className="h-4 w-5" />,
+    },
+  ];
+
+  const activeOptions = [
+    {
+      id: 'active',
+      title: formatMessage({
+        id: 'active',
+        defaultMessage: 'Active',
+      }),
+      description: '',
+      current: isActive,
+      bgColor: 'green',
+    },
+    {
+      id: 'root',
+      title: formatMessage({
+        id: 'root',
+        defaultMessage: 'Root',
+      }),
+      description: '',
+      current: !isActive,
+      bgColor: 'gray',
+    },
+  ];
+
+  const baseOptions = [
+    {
+      id: 'base',
+      title: formatMessage({
+        id: 'base',
+        defaultMessage: 'Base',
+      }),
+      description: '',
+      current: isBase,
+      bgColor: 'green',
+    },
+    {
+      id: 'not_base',
+      title: formatMessage({
+        id: 'root',
+        defaultMessage: 'Not Base',
+      }),
+      description: '',
+      current: !isBase,
+      bgColor: 'gray',
+    },
+  ];
+
+  const rootOptions = [
+    {
+      id: 'root',
+      title: formatMessage({
+        id: 'root',
+        defaultMessage: 'Root',
+      }),
+      description: '',
+      current: isRoot,
+      bgColor: 'green',
+    },
+    {
+      id: 'child',
+      title: formatMessage({
+        id: 'child',
+        defaultMessage: 'Child',
+      }),
+      description: '',
+      current: !isRoot,
+      bgColor: 'gray',
+    },
+  ];
+
+  const handlePublishOptions = (event) => {
+    stopPropagation(event);
+    setStatusButtonOptions(event.target.value);
   };
+
   return (
     <>
-      <div className="flex justify-end">
-        <ProductDetailHeader />
+      <div className="flex space-x-2 justify-end">
+        <ProductStatus
+          publishingOptions={baseOptions}
+          onChange={handlePublishOptions}
+        />
+        <ProductStatus
+          publishingOptions={rootOptions}
+          onChange={handlePublishOptions}
+        />
+        <ProductStatus
+          publishingOptions={activeOptions}
+          onChange={handlePublishOptions}
+        />
       </div>
       <div className=" sm:px-6 md:px-0">
         <div className="py-6">
@@ -71,12 +199,12 @@ const AssortmentDetail = ({ assortment }) => {
               onChange={(e) => setActiveTab(e.target.value)}
               id="selected-tab"
               name="selected-tab"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
+              className="mt-1 capitalize block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
               value={activeTab}
             >
-              {Object.entries(assortmentOptions).map(([key, value]) => (
-                <option key={`mobile-${key}`} value={key}>
-                  {value}
+              {assortmentOptions.map((value) => (
+                <option key={value.id} value={value.id}>
+                  {value.id}
                 </option>
               ))}
             </select>
@@ -84,16 +212,19 @@ const AssortmentDetail = ({ assortment }) => {
           <div className="hidden lg:block">
             <div className="border-b border-gray-200 al">
               <nav className="-mb-px flex space-x-8">
-                {Object.entries(assortmentOptions).map(([key, value]) => (
+                {assortmentOptions.map((option) => (
                   <a
-                    onClick={() => setActiveTab(key)}
-                    key={key}
+                    onClick={() => setActiveTab(option.id)}
+                    key={option.id}
                     className={` ${
-                      activeTab === key &&
+                      activeTab === option.id &&
                       'border-purple-500 text-purple-600 cursor-pointer'
                     }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
                   >
-                    {value}
+                    <div className="flex space-x-1 items-center">
+                      <div>{option.Icon}</div>
+                      <div className="capitalize"> {option.id}</div>
+                    </div>
                   </a>
                 ))}
               </nav>
