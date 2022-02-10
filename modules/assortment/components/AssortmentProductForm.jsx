@@ -9,8 +9,7 @@ import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
 import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
-// import useProduct from '../../product/hooks/useProduct';
-// import useProducts from '../../product/hooks/useProducts';
+
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
