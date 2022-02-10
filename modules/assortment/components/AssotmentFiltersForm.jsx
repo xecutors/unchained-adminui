@@ -128,7 +128,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 py-2 w-full ml-auto shadow-md border-gray-200  bg-white px-8">
+            <div className="col-span-2 py-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
               <div className="w-full  justify-between1 1align-baseline">
                 <TagInput
                   name="tags"
