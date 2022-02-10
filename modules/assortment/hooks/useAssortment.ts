@@ -11,7 +11,7 @@ export const AssortmentQuery = gql`
   ${AssortmentFragment}
 `;
 
-const useAssortments = ({ assortmentId = null, slug = null } = {}) => {
+const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(AssortmentQuery, {
     variables: {
       slug,
@@ -22,8 +22,8 @@ const useAssortments = ({ assortmentId = null, slug = null } = {}) => {
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    assortment: data?.assortment,
   };
 };
 
-export default useAssortments;
+export default useAssortment;
