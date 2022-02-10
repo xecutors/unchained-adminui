@@ -68,8 +68,8 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 w-full ml-auto shadow-md border-gray-200  bg-white px-8">
-              <div className="w-full  justify-between1 1align-baseline">
+            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
+              <div>
                 <TextField
                   name="slug"
                   id="slug"
@@ -80,7 +80,8 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                   autoComplete="on"
                   className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
                 />
-
+              </div>
+              <div>
                 <TextField
                   name="title"
                   id="title"
@@ -89,11 +90,11 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
                 />
               </div>
 
-              <div className="max-w-full  justify-between align-baseline">
+              <div>
                 <TextField
                   name="subtitle"
                   id="subtitle"
@@ -102,10 +103,10 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
+                  className="text-sm  font-medium text-gray-500 py-2 sm:ml-1  mt-1 w-full"
                 />
               </div>
-              <div className="w-full">
+              <div>
                 <TextAreaField
                   name="description"
                   id="description"
@@ -114,7 +115,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Description',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1  sm:mt-1 w-full"
                 />
               </div>
               <div className="w-fit">
