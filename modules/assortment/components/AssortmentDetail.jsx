@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/solid';
 
 import LocaleWrapper from '../../common/components/LocaleWrapper';
-import ProductStatus from '../../common/components/ProductStatus';
+import SelectOptions from '../../common/components/SelectOptions';
 
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentTextForm from './AssortmentTextForm';
@@ -172,15 +172,15 @@ const AssortmentDetail = ({ assortment }) => {
   return (
     <>
       <div className="flex space-x-2 justify-end">
-        <ProductStatus
+        <SelectOptions
           publishingOptions={baseOptions}
           onChange={handlePublishOptions}
         />
-        <ProductStatus
+        <SelectOptions
           publishingOptions={rootOptions}
           onChange={handlePublishOptions}
         />
-        <ProductStatus
+        <SelectOptions
           publishingOptions={activeOptions}
           onChange={handlePublishOptions}
         />
