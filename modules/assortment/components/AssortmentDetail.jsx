@@ -49,8 +49,6 @@ const AssortmentDetail = ({ assortment }) => {
   const [activeTab, setActiveTab] = useState('texts');
   const [statusButtonOptions, setStatusButtonOptions] = useState('');
 
-  // console.log('assort', assortment);
-
   const assortmentOptions = [
     {
       id: 'texts',
