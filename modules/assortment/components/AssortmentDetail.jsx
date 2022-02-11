@@ -18,6 +18,7 @@ import { stopPropagation } from '../../common/data/miscellaneous';
 import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
+import useUpdateAssortment from '../hooks/useUpdateAssortment';
 
 const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'texts')
@@ -46,6 +47,7 @@ const getCurrentTab = (currentTag, id) => {
 const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
   const { formatMessage } = useIntl();
+  const { updateAssortment } = useUpdateAssortment();
   const [activeTab, setActiveTab] = useState('texts');
 
   const assortmentOptions = [
@@ -92,6 +94,20 @@ const AssortmentDetail = ({ assortment }) => {
     },
   ];
 
+  const setIsRoot = async (value) => {
+    await updateAssortment({
+      assortmentId: assortment?._id,
+      assortment: { isRoot: value },
+    });
+  };
+
+  const setActive = async (value) => {
+    await updateAssortment({
+      assortmentId: assortment?._id,
+      assortment: { isActive: value },
+    });
+  };
+
   const activeOptions = [
     {
       id: 'active',
@@ -102,16 +118,18 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: isActive,
       bgColor: 'green',
+      onClick: async () => setActive(true),
     },
     {
       id: 'in-active',
       title: formatMessage({
         id: 'in-active',
-        defaultMessage: 'In-Active',
+        defaultMessage: 'Deactivated',
       }),
       description: '',
       current: !isActive,
       bgColor: 'gray',
+      onClick: async () => setActive(false),
     },
   ];
 
@@ -148,6 +166,7 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: isRoot,
       bgColor: 'green',
+      onClick: async () => setIsRoot(true),
     },
     {
       id: 'leaf',
@@ -158,6 +177,7 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: !isRoot,
       bgColor: 'gray',
+      onClick: async () => setIsRoot(false),
     },
   ];
 
