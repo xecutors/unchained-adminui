@@ -86,7 +86,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     <Form form={form}>
       <div className="px-4 py-5 shadow overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
         <div className="lg:grid lg:grid-cols-3">
-          <div className="">
+          <div>
             <div className="space-y-1">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({
