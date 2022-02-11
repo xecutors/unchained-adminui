@@ -18,7 +18,7 @@ const FilterListItem = ({ filter }) => {
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`/filter/${filter._id}`}>
+          <Link href={`/filters/${filter._id}`}>
             <a className="text-blue-600">
               {filter?.texts.title || (
                 <>
