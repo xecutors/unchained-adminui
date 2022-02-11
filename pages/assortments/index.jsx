@@ -10,7 +10,8 @@ import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import Loading from '../../modules/common/components/Loading';
-import AssortmentFilter from '../../modules/assortment/components/AssortmentFilter';
+
+import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 
 const index = () => {
   const { formatMessage } = useIntl();
@@ -37,7 +38,7 @@ const index = () => {
           defaultMessage: 'Assortments',
         })}
       />
-      <AssortmentFilter
+      <AssortmentSearchFilter
         onFilter={({ onSearch, tag }) => {
           setFilter({
             tag,

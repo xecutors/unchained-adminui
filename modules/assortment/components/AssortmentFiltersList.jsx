@@ -4,7 +4,7 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
   return filters.map((filter) => (
     <AssortmentFiltersListItem
       key={filter._id}
-      filter={filter}
+      link={filter}
       onDelete={onRemoveFilter}
     />
   ));

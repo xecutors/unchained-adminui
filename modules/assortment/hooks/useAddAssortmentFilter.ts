@@ -21,13 +21,9 @@ const useAddAssortmentFilter = () => {
     AddAssortmentFilterMutation,
   );
 
-  const addAssortmentFilter = async ({
-    parentAssortmentId,
-    childAssortmentId,
-    tags,
-  }) => {
+  const addAssortmentFilter = async ({ assortmentId, filterId, tags }) => {
     return addAssortmentFilterMutation({
-      variables: { parentAssortmentId, childAssortmentId, tags },
+      variables: { assortmentId, filterId, tags },
       refetchQueries: ['Assortments'],
     });
   };

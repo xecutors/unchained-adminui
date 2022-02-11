@@ -7,7 +7,9 @@ function classNames(...classes) {
 }
 
 export default function SelectOptions({ publishingOptions, onChange }) {
-  const [select, setSelected] = useState(publishingOptions[0]);
+  const [select, setSelected] = useState(
+    publishingOptions?.filter(({ current }) => current)[0],
+  );
 
   return (
     <Listbox value={select} onChange={setSelected} as="div">
@@ -31,7 +33,7 @@ export default function SelectOptions({ publishingOptions, onChange }) {
                     aria-hidden="true"
                   />
                   <p className="ml-2.5 text-xs lg:text-sm font-medium">
-                    {select.title}
+                    {select?.selectedTitle || select.title}
                   </p>
                 </div>
                 <Listbox.Button
@@ -70,7 +72,10 @@ export default function SelectOptions({ publishingOptions, onChange }) {
                     onChange={onChange}
                   >
                     {({ selected, active }) => (
-                      <div className={`flex flex-col `}>
+                      <div
+                        className={`flex flex-col `}
+                        onClick={option?.onClick}
+                      >
                         <div className="flex justify-between cursor-pointer">
                           <p
                             className={

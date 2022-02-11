@@ -6,7 +6,12 @@ export const AssortmentProductsQuery = gql`
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       productAssignments {
-        ...ProductBriefFragment
+        _id
+        sortKey
+        tags
+        product {
+          ...ProductBriefFragment
+        }
       }
     }
   }
@@ -20,11 +25,12 @@ const useAssortmentProducts = ({ assortmentId = null, slug = null } = {}) => {
       assortmentId,
     },
   });
-
+  const assortment = data?.assortment || {};
+  const linkedProducts = assortment?.productAssignments || [];
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    linkedProducts,
   };
 };
 
