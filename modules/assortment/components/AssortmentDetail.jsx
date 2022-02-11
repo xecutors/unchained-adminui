@@ -17,6 +17,7 @@ import AssortmentMediaForm from './AssortmentMediaForm';
 import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentFiltersForm from './AssotmentFiltersForm';
 import { stopPropagation } from '../../common/data/miscellaneous';
+import AssortmentLinks from './AssortmentLinks';
 
 const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'texts')
@@ -25,7 +26,7 @@ const getCurrentTab = (currentTag, id) => {
         <AssortmentTextForm assortmentId={id} />
       </LocaleWrapper>
     );
-  if (currentTag === 'links') return <AssortmentLinkForm assortmentId={id} />;
+  if (currentTag === 'links') return <AssortmentLinks assortmentId={id} />;
 
   if (currentTag === 'media')
     return (
