@@ -112,8 +112,12 @@ const AssortmentDetail = ({ assortment }) => {
     {
       id: 'active',
       title: formatMessage({
-        id: 'active',
-        defaultMessage: 'Active',
+        id: 'activate',
+        defaultMessage: 'Activate',
+      }),
+      selectedTitle: formatMessage({
+        id: 'activated',
+        defaultMessage: 'Activated',
       }),
       description: '',
       current: isActive,
@@ -123,7 +127,11 @@ const AssortmentDetail = ({ assortment }) => {
     {
       id: 'in-active',
       title: formatMessage({
-        id: 'in-active',
+        id: 'deactivate',
+        defaultMessage: 'Deactivate',
+      }),
+      selectedTitle: formatMessage({
+        id: 'deactivated',
         defaultMessage: 'Deactivated',
       }),
       description: '',
@@ -160,6 +168,10 @@ const AssortmentDetail = ({ assortment }) => {
     {
       id: 'root',
       title: formatMessage({
+        id: 'make_root',
+        defaultMessage: 'Make root',
+      }),
+      selectedTitle: formatMessage({
         id: 'root',
         defaultMessage: 'Root',
       }),
@@ -170,9 +182,13 @@ const AssortmentDetail = ({ assortment }) => {
     },
     {
       id: 'leaf',
-      title: formatMessage({
+      selectedTitle: formatMessage({
         id: 'leaf',
         defaultMessage: 'Leaf',
+      }),
+      title: formatMessage({
+        id: 'make_leaf',
+        defaultMessage: 'Make leaf',
       }),
       description: '',
       current: !isRoot,

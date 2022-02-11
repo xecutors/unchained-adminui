@@ -33,7 +33,7 @@ export default function SelectOptions({ publishingOptions, onChange }) {
                     aria-hidden="true"
                   />
                   <p className="ml-2.5 text-xs lg:text-sm font-medium">
-                    {select.title}
+                    {select?.selectedTitle || select.title}
                   </p>
                 </div>
                 <Listbox.Button

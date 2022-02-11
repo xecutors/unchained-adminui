@@ -121,8 +121,12 @@ const ProductDetail = ({ product }) => {
     {
       id: 'active',
       title: formatMessage({
-        id: 'active',
-        defaultMessage: 'Active',
+        id: 'publish',
+        defaultMessage: 'Publish',
+      }),
+      selectedTitle: formatMessage({
+        id: 'published',
+        defaultMessage: 'Published',
       }),
       description: '',
       current: status === 'ACTIVE',
@@ -139,6 +143,10 @@ const ProductDetail = ({ product }) => {
       }),
       description: '',
       current: status === 'DRAFT',
+      selectedTitle: formatMessage({
+        id: 'not_published',
+        defaultMessage: 'Not published',
+      }),
       bgColor: 'gray',
       onClick: async () => {
         await unPublishProduct({ productId: product?._id });
@@ -147,6 +155,10 @@ const ProductDetail = ({ product }) => {
     {
       id: 'deleted',
       title: formatMessage({
+        id: 'delete',
+        defaultMessage: 'Delete',
+      }),
+      selectedTitle: formatMessage({
         id: 'deleted',
         defaultMessage: 'Deleted',
       }),
