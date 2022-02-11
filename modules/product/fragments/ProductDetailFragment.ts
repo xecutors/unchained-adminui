@@ -7,6 +7,7 @@ const ProductDetailFragment = gql`
     status
     tags
     updated
+    __typename
     published
     texts {
       _id

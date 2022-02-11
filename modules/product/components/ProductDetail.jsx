@@ -20,6 +20,9 @@ import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import VariationForm from './VariationForm';
 import WarehousingForm from './WarehousingForm';
+import useRemoveProduct from '../hooks/useRemoveProduct';
+import usePublishProduct from '../hooks/usePublishProduct';
+import useUnPublishProduct from '../hooks/useUnPublishProduct';
 
 const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'text')
@@ -45,7 +48,11 @@ const getCurrentTab = (currentTag, id) => {
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
-  const { status } = product;
+  const { removeProduct } = useRemoveProduct();
+  const { publishProduct } = usePublishProduct();
+  const { unPublishProduct } = useUnPublishProduct();
+
+  const { status, __typename } = product;
 
   const [activeTab, setActiveTab] = useState('text');
 
@@ -63,12 +70,12 @@ const ProductDetail = ({ product }) => {
       media: formatMessage({ id: 'media', defaultMessage: 'media' }),
       Icon: <FilmIcon className="h-4 w-5" />,
     },
-    {
+    __typename !== 'ConfigurableProduct' && {
       id: 'commerce',
       commerce: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
       Icon: <ShoppingBagIcon className="h-4 w-5" />,
     },
-    {
+    __typename === 'SimpleProduct' && {
       id: 'supply',
       supply: formatMessage({
         id: 'supply',
@@ -76,7 +83,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ChartPieIcon className="h-4 w-5" />,
     },
-    {
+    __typename === 'SimpleProduct' && {
       id: 'warehousing',
       warehousing: formatMessage({
         id: 'warehousing',
@@ -84,7 +91,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ArchiveIcon className="h-4 w-5" />,
     },
-    {
+    __typename === 'ConfigurableProduct' && {
       id: 'variations',
       variations: formatMessage({
         id: 'variations',
@@ -92,7 +99,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ColorSwatchIcon className="h-4 w-5" />,
     },
-    {
+    __typename === 'BundleProduct' && {
       id: 'bundles',
       bundled_products: formatMessage({
         id: 'bundled_products',
@@ -100,7 +107,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
     },
-    {
+    __typename === 'PlanProduct' && {
       id: 'subscriptions',
       subscription: formatMessage({
         id: 'subscriptions',
@@ -119,6 +126,9 @@ const ProductDetail = ({ product }) => {
       }),
       description: '',
       current: status === 'ACTIVE',
+      onClick: async () => {
+        await publishProduct({ productId: product?._id });
+      },
       bgColor: 'green',
     },
     {
@@ -130,6 +140,9 @@ const ProductDetail = ({ product }) => {
       description: '',
       current: status === 'DRAFT',
       bgColor: 'gray',
+      onClick: async () => {
+        await unPublishProduct({ productId: product?._id });
+      },
     },
     {
       id: 'deleted',
@@ -140,6 +153,9 @@ const ProductDetail = ({ product }) => {
       description: '',
       current: status === 'DELETED',
       bgColor: 'red',
+      onClick: async () => {
+        await removeProduct({ productId: product?._id });
+      },
     },
   ];
 
