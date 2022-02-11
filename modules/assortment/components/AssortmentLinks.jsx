@@ -5,7 +5,6 @@ import useModal from '../../modal/hooks/useModal';
 import useAssortmentLinks from '../hooks/useAssortmentLinks';
 import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
 import AssortmentLinkForm from './AssortmentLinkForm';
-
 import AssortmentLinksList from './AssortmentLinksList';
 
 const AssortmentLinks = ({ assortmentId }) => {
