@@ -2,16 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const AssortmentLinksQuery = gql`
-  query AssortmentLinks(
-    $assortmentId: ID
-    $slug: String
-    $isShowLeafNodes: Boolean
-  ) {
-    assortment(
-      assortmentId: $assortmentId
-      slug: $slug
-      includeLeafNodes: $includeLeafNodes
-    ) {
+  query AssortmentLinks($assortmentId: ID, $slug: String) {
+    assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       linkedAssortments {
         _id
@@ -27,23 +19,20 @@ export const AssortmentLinksQuery = gql`
   ${AssortmentFragment}
 `;
 
-const useAssortmentLinks = ({
-  assortmentId = null,
-  slug = null,
-  includeLeafNodes = true,
-} = {}) => {
+const useAssortmentLinks = ({ assortmentId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(AssortmentLinksQuery, {
     variables: {
       slug,
       assortmentId,
-      includeLeafNodes,
     },
   });
+  const assortment = data?.assortment || {};
+  const linkedAssortments = assortment?.linkedAssortments || [];
 
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    linkedAssortments,
   };
 };
 

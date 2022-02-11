@@ -2,34 +2,16 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
+import useAssortmentLinks from '../hooks/useAssortmentLinks';
 import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentLinksList from './AssortmentLinksList';
 
-const linksSampleData = [
-  {
-    id: 1,
-    image: '/publicare-logo.png',
-    title: 'link title',
-    desc: 'link description placeholder',
-  },
-  {
-    id: 2,
-    image: '/publicare-logo.png',
-    title: 'link title',
-    desc: 'link description placeholder',
-  },
-  {
-    id: 2,
-    image: '/publicare-logo.png',
-    title: 'link title',
-    desc: 'link description placeholder',
-  },
-];
-
 const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
+  const { linkedAssortments } = useAssortmentLinks({ assortmentId });
+
   const { removeAssortmentLink } = useRemoveAssortmentLink();
 
   const onRemoveLink = async ({ assortmentLinkId }) => {
@@ -92,7 +74,8 @@ const AssortmentLinks = ({ assortmentId }) => {
           </div>
           <div className="col-span-2 w-full py-2 ml-auto shadow-md px-6">
             <AssortmentLinksList
-              links={linksSampleData}
+              currentAssortmentId={assortmentId}
+              links={linkedAssortments || []}
               onRemoveLink={onRemoveLink}
             />
           </div>
