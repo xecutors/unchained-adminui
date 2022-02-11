@@ -18,10 +18,7 @@ import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
-<<<<<<< HEAD
 import TabComponent from '../../common/components/TabComponent';
-=======
->>>>>>> Active top level buttons/indicators
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -52,10 +49,6 @@ const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
-<<<<<<< HEAD
-=======
-  const [activeTab, setActiveTab] = useState('texts');
->>>>>>> Active top level buttons/indicators
 
   const assortmentOptions = [
     {
