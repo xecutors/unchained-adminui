@@ -13,10 +13,11 @@ import SelectOptions from '../../common/components/SelectOptions';
 
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
-import AssortmentFiltersForm from './AssotmentFiltersForm';
+
 import { stopPropagation } from '../../common/data/miscellaneous';
 import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
+import AssortmentFilters from './AssortmentFilters';
 
 const getCurrentTab = (currentTag, id) => {
   if (currentTag === 'texts')
@@ -35,8 +36,7 @@ const getCurrentTab = (currentTag, id) => {
     );
   if (currentTag === 'products')
     return <AssortmentProducts assortmentId={id} />;
-  if (currentTag === 'filters')
-    return <AssortmentFiltersForm assortmentId={id} />;
+  if (currentTag === 'filters') return <AssortmentFilters assortmentId={id} />;
   return (
     <LocaleWrapper>
       <AssortmentTextForm assortmentId={id} />

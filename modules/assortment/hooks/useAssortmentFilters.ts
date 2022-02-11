@@ -6,7 +6,12 @@ export const AssortmentFiltersQuery = gql`
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       filterAssignments {
-        ...FilterFragment
+        _id
+        sortKey
+        tags
+        filter {
+          ...FilterFragment
+        }
       }
     }
   }
@@ -21,10 +26,12 @@ const useAssortmentFilters = ({ assortmentId = null, slug = null } = {}) => {
     },
   });
 
+  const assortment = data?.assortment || {};
+  const assortmentFilters = assortment?.filterAssignments || [];
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    assortmentFilters,
   };
 };
 
