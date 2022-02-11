@@ -4,7 +4,7 @@ import Badge from '../../common/components/Badge';
 
 const AssortmentProductListItem = ({ link, onDelete }) => {
   const { _id, product, tags } = link;
-  console.log(product);
+
   return (
     <div className="flex justify-between items-center  border-gray-200 border-b last:border-none">
       <div className="flex items-center space-x-6 py-4">

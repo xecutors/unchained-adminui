@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
   DocumentTextIcon,
@@ -10,6 +9,7 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
 } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import { stopPropagation } from '../../common/data/miscellaneous';
 import SelectOptions from '../../common/components/SelectOptions';
@@ -23,27 +23,29 @@ import WarehousingForm from './WarehousingForm';
 import useRemoveProduct from '../hooks/useRemoveProduct';
 import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
+import TabComponent from '../../common/components/TabComponent';
 
-const getCurrentTab = (currentTag, id) => {
-  if (currentTag === 'text')
+const getCurrentTab = (selectedView, id) => {
+  if (selectedView === 'text')
     return (
       <LocaleWrapper>
         <GeneralTextForm productId={id} />
       </LocaleWrapper>
     );
-  if (currentTag === 'media')
+  if (selectedView === 'media')
     return (
       <LocaleWrapper>
         <MediaForm />
       </LocaleWrapper>
     );
-  if (currentTag === 'commerce') return <CommerceForm productId={id} />;
-  if (currentTag === 'supply') return <SupplyForm productId={id} />;
-  if (currentTag === 'warehousing') return <WarehousingForm productId={id} />;
-  if (currentTag === 'variations') return <VariationForm productId={id} />;
-  if (currentTag === 'bundled_products')
+  if (selectedView === 'commerce') return <CommerceForm productId={id} />;
+  if (selectedView === 'supply') return <SupplyForm productId={id} />;
+  if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
+  if (selectedView === 'variations') return <VariationForm productId={id} />;
+  if (selectedView === 'bundled_products')
     return <GeneralTextForm productId={id} />;
-  if (currentTag === 'subscription') return <SubscriptionForm productId={id} />;
+  if (selectedView === 'subscription')
+    return <SubscriptionForm productId={id} />;
   return <GeneralTextForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
@@ -51,10 +53,9 @@ const ProductDetail = ({ product }) => {
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
+  const router = useRouter();
 
   const { status, __typename } = product;
-
-  const [activeTab, setActiveTab] = useState('text');
 
   const productOptions = [
     {
@@ -183,56 +184,9 @@ const ProductDetail = ({ product }) => {
           onChange={handlePublishOptions}
         />
       </div>
-      <div className=" sm:px-6 md:px-0">
-        <div className="py-6">
-          <div className="lg:hidden">
-            <label htmlFor="selected-tab" className="sr-only">
-              {formatMessage({
-                id: 'select_tab',
-                defaultMessage: 'Select a tab',
-              })}
-            </label>
-
-            <select
-              onChange={(e) => setActiveTab(e.target.value)}
-              id="selected-tab"
-              name="selected-tab"
-              className="mt-1 capitalize block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md"
-              value={activeTab}
-            >
-              {productOptions.map((value) => (
-                <option key={value.id} value={value.id}>
-                  {value.id}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="hidden lg:block">
-            <div className="border-b border-gray-200 al">
-              <nav className="-mb-px flex space-x-6">
-                {productOptions.map((option) => (
-                  <a
-                    onClick={() => setActiveTab(option.id)}
-                    key={option.id}
-                    className={` ${
-                      activeTab === option.id &&
-                      'border-purple-500 text-purple-600 cursor-pointer'
-                    }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
-                  >
-                    <div className="flex space-x-1 items-center">
-                      <div>{option.Icon}</div>
-                      <div className="capitalize"> {option.id}</div>
-                    </div>
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </div>
-          <div className="text-indigo-500">
-            {getCurrentTab(activeTab, product?._id)}
-          </div>
-        </div>
-      </div>
+      <TabComponent tabItems={productOptions} defaultTab="texts">
+        {getCurrentTab(router?.query.tab, product?._id)}
+      </TabComponent>
     </>
   );
 };
