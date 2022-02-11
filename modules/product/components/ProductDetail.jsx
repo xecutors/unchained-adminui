@@ -9,7 +9,6 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
 } from '@heroicons/react/solid';
-
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import { stopPropagation } from '../../common/data/miscellaneous';
 import SelectOptions from '../../common/components/SelectOptions';
