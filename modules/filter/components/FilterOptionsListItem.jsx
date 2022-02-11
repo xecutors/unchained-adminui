@@ -138,7 +138,7 @@ const FilterOptionsListItem = ({ filter, onDelete, selectedLocale }) => {
       </Form>
       <div className="pt-4 flex-shrink2-0 flex items-start space-x-4 relative">
         {isEdit ? (
-          <div className='absolute right-2 top-5 flex space-x-2'>
+          <div className="absolute right-2 top-5 flex space-x-2">
             <button
               onClick={() => setIsEdit(!isEdit)}
               type="button"
