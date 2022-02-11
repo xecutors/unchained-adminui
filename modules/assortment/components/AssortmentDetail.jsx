@@ -11,7 +11,6 @@ import {
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 
-import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
 import AssortmentProductForm from './AssortmentProductForm';
