@@ -2,34 +2,39 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import useTranslatedProductTexts from '../../product/hooks/useTranslatedProductTexts';
+
+import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
-  const { translatedTexts, loading } = useTranslatedProductTexts({
+
+  const { translatedAssortmentTexts, loading } = useTranslatedAssortmentTexts({
     assortmentId,
   });
+
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
 
-  const { updateProductTexts } = useUpdateAssortmentTexts();
+  const { updateAssortmentTexts } = useUpdateAssortmentTexts({ assortmentId });
 
-  const onSubmit = async ({ slug, title, subtitle }) => {
-    await updateProductTexts({
+  const onSubmit = async ({ slug, title, subtitle, description }) => {
+    await updateAssortmentTexts({
       assortmentId,
       texts: {
         locale: selectedLocale,
         slug,
         title,
         subtitle,
+        description,
       },
     });
     return true;
@@ -43,35 +48,47 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
       title: '',
       subtitle: '',
       ...((!loading &&
-        translatedTexts?.find((text) => text.locale === selectedLocale)) ||
+        translatedAssortmentTexts?.find(
+          (text) => text.locale === selectedLocale,
+        )) ||
         {}),
     },
   });
 
   useEffect(() => {
-    if (translatedTexts?.length)
+    if (translatedAssortmentTexts?.length)
       form.formik.setValues(
-        translatedTexts?.find((text) => text.locale === selectedLocale),
+        translatedAssortmentTexts?.find(
+          (text) => text.locale === selectedLocale,
+        ),
       );
-  }, [translatedTexts, selectedLocale]);
+  }, [translatedAssortmentTexts, selectedLocale]);
 
   return (
     <div className="mt-4 sm:max-w-full">
       <div className="px-5 shadow sm:rounded-t sm:px-15">
         <Form form={form}>
           <div className="sm:px-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
-            <div className="pb-2 mb-7 border-gray-200 sm:flex  col-span-1">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                {formatMessage({
-                  id: 'texts',
-                  defaultMessage: 'Texts',
-                })}
-              </h3>
+            <div className="md:col-span-1">
+              <div className="px-4 sm:px-0">
+                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                  {formatMessage({
+                    id: 'texts',
+                    defaultMessage: 'Texts',
+                  })}
+                </h3>
+                <p className="mt-1 text-sm text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                </p>
+              </div>
             </div>
             <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
               <div>
                 <TextField
                   name="slug"
+                  required
                   id="slug"
                   label={formatMessage({
                     id: 'slug',
@@ -89,6 +106,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     id: 'title',
                     defaultMessage: 'Title',
                   })}
+                  required
                   autoComplete="on"
                   className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
                 />
@@ -128,6 +146,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                   full
                 />
               </div>
+              <FormErrors />
             </div>
           </div>
         </Form>
