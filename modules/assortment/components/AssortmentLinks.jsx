@@ -48,14 +48,21 @@ const AssortmentLinks = ({ assortmentId }) => {
   return (
     <div className="mt-4 sm:max-w-full">
       <div className="py-2 px-5 shadow sm:rounded-t sm:px-15">
-        <div className="space-y-2 sm:p-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
-          <div className="pb-2 mb-7 border-gray-200 sm:flex  col-span-1">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              {formatMessage({
-                id: 'links',
-                defaultMessage: 'Links',
-              })}
-            </h3>
+        <div className=" rounded-md relative max-w-full lg:grid lg:grid-cols-3 border-b pb-8">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                {formatMessage({
+                  id: 'assortment_links',
+                  defaultMessage: 'Links',
+                })}
+              </h3>
+              <p className="mt-1 text-sm text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco
+              </p>
+            </div>
           </div>
 
           <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
@@ -63,7 +70,7 @@ const AssortmentLinks = ({ assortmentId }) => {
           </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-3 px-6 border-gray-200 border-b pb-8">
+        <div className="lg:grid lg:grid-cols-3 px-6 border-gray-200 space-y-2 sm:p-6">
           <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  col-span-1">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               {formatMessage({

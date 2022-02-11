@@ -20,11 +20,12 @@ const useAssortmentProducts = ({ assortmentId = null, slug = null } = {}) => {
       assortmentId,
     },
   });
-
+  const assortment = data?.assortment || {};
+  const assortmentProducts = assortment?.productAssignments || [];
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    assortmentProducts,
   };
 };
 
