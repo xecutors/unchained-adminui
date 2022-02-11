@@ -287,16 +287,12 @@ const WorkForm = () => {
         </div>
         <FormErrors />
 
-        <div className="mx-auto sm:w-1/2 ">
-          <SubmitButton
-            label={formatMessage({
-              id: 'add_work',
-              defaultMessage: 'Add Work',
-            })}
-            className="py-6 h-9 "
-            full
-          />
-        </div>
+        <SubmitButton
+          label={formatMessage({
+            id: 'add_work',
+            defaultMessage: 'Add Work',
+          })}
+        />
       </Form>
     </FormHeader>
   );

@@ -48,8 +48,8 @@ const AssortmentProducts = ({ assortmentId }) => {
     );
   };
   return (
-    <div className="mt-4 sm:max-w-full">
-      <div className="py-2 px-5 shadow sm:rounded-t sm:px-15">
+    <div className=" sm:max-w-full">
+      <div className="py-2 shadow sm:rounded-t sm:px-15">
         <div className=" sm:p-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3 border-b pb-8">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">

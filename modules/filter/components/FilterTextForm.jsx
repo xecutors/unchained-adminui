@@ -7,11 +7,11 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
-import useTranslatedProductTexts from '../../product/hooks/useTranslatedProductTexts';
+import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 
 const FilterTextForm = ({ filterId, selectedLocale }) => {
   const { formatMessage } = useIntl();
-  const { translatedTexts, loading } = useTranslatedProductTexts({
+  const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
   });
   const successMessage = formatMessage({
@@ -19,10 +19,10 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
     defaultMessage: 'Saved',
   });
 
-  const { updateProductTexts } = useUpdateFilterTexts();
+  const { updateFilterTexts } = useUpdateFilterTexts();
 
   const onSubmit = async ({ title, subtitle }) => {
-    await updateProductTexts({
+    await updateFilterTexts({
       filterId,
       texts: {
         locale: selectedLocale,
@@ -40,17 +40,19 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
       title: '',
       subtitle: '',
       ...((!loading &&
-        translatedTexts?.find((text) => text.locale === selectedLocale)) ||
+        translatedFilterTexts?.find(
+          (text) => text.locale === selectedLocale,
+        )) ||
         {}),
     },
   });
 
   useEffect(() => {
-    if (translatedTexts?.length)
+    if (translatedFilterTexts?.length)
       form.formik.setValues(
-        translatedTexts?.find((text) => text.locale === selectedLocale),
+        translatedFilterTexts?.find((text) => text.locale === selectedLocale),
       );
-  }, [translatedTexts, selectedLocale]);
+  }, [translatedFilterTexts, selectedLocale]);
 
   return (
     <div className="mt-4 sm:max-w-full">
@@ -92,16 +94,12 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                 />
               </div>
 
-              <div className="w-fit">
-                <SubmitButton
-                  label={formatMessage({
-                    id: 'add_option',
-                    defaultMessage: 'Add option',
-                  })}
-                  className="py-6 h-9 "
-                  full
-                />
-              </div>
+              <SubmitButton
+                label={formatMessage({
+                  id: 'update_filter',
+                  defaultMessage: 'Update filter',
+                })}
+              />
             </div>
           </div>
         </Form>

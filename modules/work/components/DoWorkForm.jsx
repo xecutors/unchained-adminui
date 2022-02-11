@@ -166,16 +166,13 @@ const DoWorkForm = () => {
           </FieldArray>
         </div>
 
-        <div className="mx-auto sm:w-1/2 ">
-          <SubmitButton
-            label={formatMessage({
-              id: 'do_work',
-              defaultMessage: 'Do Work',
-            })}
-            className="py-6 h-9 "
-            full
-          />
-        </div>
+        <SubmitButton
+          label={formatMessage({
+            id: 'do_work',
+            defaultMessage: 'Do Work',
+          })}
+          full
+        />
       </Form>
     </FormHeader>
   );

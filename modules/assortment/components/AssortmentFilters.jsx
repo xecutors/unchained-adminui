@@ -48,7 +48,7 @@ const AssortmentFilters = ({ assortmentId }) => {
   return (
     <div className=" mt-5 sm:max-w-full">
       <div className="px-2 lg:px-6 shadow sm:rounded-t sm:px-15">
-        <div className=" rounded-md relative max-w-full lg:grid lg:grid-cols-3 px-8 pb-8">
+        <div className=" rounded-md relative max-w-full lg:grid lg:grid-cols-3  pb-8">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">

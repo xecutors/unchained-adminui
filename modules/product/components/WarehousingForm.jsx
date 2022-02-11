@@ -63,16 +63,13 @@ const WarehousingForm = ({ productId }) => {
             className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
           />
         </div>
-        <div className="mx-auto sm:w-1/2 ">
-          <SubmitButton
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-            className="py-6 h-9 "
-            full
-          />
-        </div>
+
+        <SubmitButton
+          label={formatMessage({
+            id: 'save',
+            defaultMessage: 'Save',
+          })}
+        />
       </div>
     </Form>
   );

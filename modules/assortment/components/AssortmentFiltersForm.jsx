@@ -76,16 +76,13 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
         />
       </div>
       <FormErrors />
-      <div className="w-fit">
-        <SubmitButton
-          label={formatMessage({
-            id: 'save',
-            defaultMessage: 'Save',
-          })}
-          className="py-6 h-9 "
-          full
-        />
-      </div>
+
+      <SubmitButton
+        label={formatMessage({
+          id: 'save',
+          defaultMessage: 'Save',
+        })}
+      />
     </Form>
   );
 };

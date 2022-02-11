@@ -49,7 +49,6 @@ function FilterListView({ filtersId, options, selectedLocale }) {
           options={options}
           selectedLocale={selectedLocale}
           onRemoveFilter={onRemoveFilter}
-          //   form={form }
         />
       </div>
     </div>
