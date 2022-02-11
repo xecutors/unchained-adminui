@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-const TabComponent = ({ children, tabItems }) => {
+const TabComponent = ({ children, tabItems, defaultTab }) => {
   const router = useRouter();
 
-  const { tab = 'texts' } = router?.query || {};
+  const { tab = defaultTab } = router?.query || {};
   const { formatMessage } = useIntl();
   const onTabSelected = (selectedTab) => {
     router.push({
@@ -32,7 +32,7 @@ const TabComponent = ({ children, tabItems }) => {
         >
           {tabItems.map((value) => (
             <option key={value.id} value={value.id}>
-              {value.id}
+              {value?.title || value?.id}
             </option>
           ))}
         </select>
@@ -51,7 +51,10 @@ const TabComponent = ({ children, tabItems }) => {
               >
                 <div className="flex space-x-1 items-center">
                   <div>{option.Icon}</div>
-                  <div className="capitalize"> {option.id}</div>
+                  <div className="capitalize">
+                    {' '}
+                    {option?.title || option?.id}
+                  </div>
                 </div>
               </a>
             ))}

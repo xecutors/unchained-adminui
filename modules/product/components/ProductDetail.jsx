@@ -9,7 +9,7 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
 } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
+
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import { stopPropagation } from '../../common/data/miscellaneous';
 import SelectOptions from '../../common/components/SelectOptions';
@@ -25,7 +25,7 @@ import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 
-const getCurrentTab = (selectedView, id) => {
+const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'text')
     return (
       <LocaleWrapper>
@@ -53,14 +53,13 @@ const ProductDetail = ({ product }) => {
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
-  const router = useRouter();
 
   const { status, __typename } = product;
 
   const productOptions = [
     {
       id: 'text',
-      general_text: formatMessage({
+      title: formatMessage({
         id: 'general_text',
         defaultMessage: 'Text',
       }),
@@ -68,17 +67,17 @@ const ProductDetail = ({ product }) => {
     },
     {
       id: 'media',
-      media: formatMessage({ id: 'media', defaultMessage: 'media' }),
+      title: formatMessage({ id: 'media', defaultMessage: 'media' }),
       Icon: <FilmIcon className="h-4 w-5" />,
     },
     __typename !== 'ConfigurableProduct' && {
       id: 'commerce',
-      commerce: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
+      title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
       Icon: <ShoppingBagIcon className="h-4 w-5" />,
     },
     __typename === 'SimpleProduct' && {
       id: 'supply',
-      supply: formatMessage({
+      title: formatMessage({
         id: 'supply',
         defaultMessage: 'Supply',
       }),
@@ -86,7 +85,7 @@ const ProductDetail = ({ product }) => {
     },
     __typename === 'SimpleProduct' && {
       id: 'warehousing',
-      warehousing: formatMessage({
+      title: formatMessage({
         id: 'warehousing',
         defaultMessage: 'Warehousing',
       }),
@@ -94,7 +93,7 @@ const ProductDetail = ({ product }) => {
     },
     __typename === 'ConfigurableProduct' && {
       id: 'variations',
-      variations: formatMessage({
+      title: formatMessage({
         id: 'variations',
         defaultMessage: 'Variations',
       }),
@@ -102,7 +101,7 @@ const ProductDetail = ({ product }) => {
     },
     __typename === 'BundleProduct' && {
       id: 'bundles',
-      bundled_products: formatMessage({
+      title: formatMessage({
         id: 'bundled_products',
         defaultMessage: 'Bundles',
       }),
@@ -110,7 +109,7 @@ const ProductDetail = ({ product }) => {
     },
     __typename === 'PlanProduct' && {
       id: 'subscriptions',
-      subscription: formatMessage({
+      title: formatMessage({
         id: 'subscriptions',
         defaultMessage: 'Subscriptions',
       }),
@@ -185,7 +184,7 @@ const ProductDetail = ({ product }) => {
         />
       </div>
       <TabComponent tabItems={productOptions} defaultTab="texts">
-        {getCurrentTab(router?.query.tab, product?._id)}
+        <GetCurrentTab id={product?._id} />
       </TabComponent>
     </>
   );
