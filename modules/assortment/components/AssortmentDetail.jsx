@@ -9,10 +9,8 @@ import {
 
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
-
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
-
 import { stopPropagation } from '../../common/data/miscellaneous';
 import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
