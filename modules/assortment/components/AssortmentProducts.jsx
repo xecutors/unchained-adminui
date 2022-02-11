@@ -5,12 +5,13 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import useAssortmentProducts from '../hooks/useAssortmentProducts';
 import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
 import AssortmentProductForm from './AssortmentProductForm';
-import AssortmentProductsList from './AssortmentProductsList';
+import AssortmentProductList from './AssortmentProductList';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
-  const { assortmentProducts } = useAssortmentProducts({ assortmentId });
+  const { linkedProducts } = useAssortmentProducts({ assortmentId });
   const { setModal } = useIntl();
+
   const { removeAssortmentProduct } = useRemoveAssortmentProduct();
 
   const onRemoveProduct = async (assortmentProductId) => {
@@ -83,8 +84,8 @@ const AssortmentProducts = ({ assortmentId }) => {
             </div>
           </div>
           <div className="col-span-2 w-full py-2 ml-auto shadow-md px-6">
-            <AssortmentProductsList
-              products={assortmentProducts}
+            <AssortmentProductList
+              products={linkedProducts}
               onRemoveProduct={onRemoveProduct}
             />
           </div>

@@ -8,11 +8,22 @@ import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
+import useProducts from '../../product/hooks/useProducts';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+
+const normalizeProducts = (productsList = []) => {
+  return productsList?.map(({ _id, texts }) => ({
+    _id,
+    title: texts?.title,
+    subtitle: texts?.subtitle,
+  }));
+};
 
 const AssortmentProductForm = ({ assortmentId }) => {
   const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentProduct } = useAddAssortmentProduct();
+  const { products } = useProducts();
 
   const successMessage = formatMessage({
     id: 'saved',
@@ -44,8 +55,6 @@ const AssortmentProductForm = ({ assortmentId }) => {
             defaultMessage: 'tags',
           })}
           onChange={(newTags) => setTags(newTags)}
-          autoComplete="on"
-          options={{}}
           className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
         />
 
@@ -55,8 +64,11 @@ const AssortmentProductForm = ({ assortmentId }) => {
             id: 'product',
             defaultMessage: 'Product',
           })}
-          autoComplete="on"
-          options={{}}
+          options={convertArrayOfObjectToObject(
+            normalizeProducts(products),
+            'title',
+            '_id',
+          )}
           className="text-sm font-medium text-gray-500 py-2  mt-1 w-full"
         />
       </div>
