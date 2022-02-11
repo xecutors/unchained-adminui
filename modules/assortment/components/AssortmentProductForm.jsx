@@ -10,6 +10,7 @@ import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
 import useProducts from '../../product/hooks/useProducts';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import FormErrors from '../../forms/components/FormErrors';
 
 const normalizeProducts = (productsList = []) => {
   return productsList?.map(({ _id, texts }) => ({
@@ -64,6 +65,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
             id: 'product',
             defaultMessage: 'Product',
           })}
+          required
           options={convertArrayOfObjectToObject(
             normalizeProducts(products),
             'title',
@@ -72,6 +74,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
           className="text-sm font-medium text-gray-500 py-2  mt-1 w-full"
         />
       </div>
+      <FormErrors />
       <div className="w-fit">
         <SubmitButton
           label={formatMessage({

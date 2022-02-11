@@ -5,15 +5,16 @@ import useModal from '../../modal/hooks/useModal';
 import useAssortmentFilters from '../hooks/useAssortmentFilters';
 import useRemoveAssortmentFilter from '../hooks/useRemoveAssortmentFilter';
 import AssortmentFiltersList from './AssortmentFiltersList';
-import AssortmentFiltersForm from './AssotmentFiltersForm';
+import AssortmentFiltersForm from './AssortmentFiltersForm';
+import Loading from '../../common/components/Loading';
 
 const AssortmentFilters = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
-  const { assortmentFilters } = useAssortmentFilters({ assortmentId });
+  const { assortmentFilters, loading } = useAssortmentFilters({ assortmentId });
   const { setModal } = useModal();
-  const { removeProduct } = useRemoveAssortmentFilter();
+  const { removeAssortmentFilter } = useRemoveAssortmentFilter();
 
-  const onRemoveFilter = async () => {
+  const onRemoveFilter = async (assortmentFilterId) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
@@ -23,7 +24,7 @@ const AssortmentFilters = ({ assortmentId }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeProduct({ assortmentId });
+          await removeAssortmentFilter({ assortmentFilterId });
           toast.success(
             formatMessage(
               {
@@ -64,7 +65,7 @@ const AssortmentFilters = ({ assortmentId }) => {
             </div>
           </div>
           <div className="col-span-2 py-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white sm:px-8">
-            <AssortmentFiltersForm />
+            <AssortmentFiltersForm assortmentId={assortmentId} />
           </div>
         </div>
 
@@ -85,10 +86,14 @@ const AssortmentFilters = ({ assortmentId }) => {
             </div>
           </div>
           <div className="space-y-4 col-span-2 w-full ml-auto shadow-md border-gray-200  bg-white py-6 px-6">
-            <AssortmentFiltersList
-              filters={assortmentFilters}
-              onRemoveFilter={onRemoveFilter}
-            />
+            {loading ? (
+              <Loading />
+            ) : (
+              <AssortmentFiltersList
+                filters={assortmentFilters}
+                onRemoveFilter={onRemoveFilter}
+              />
+            )}
           </div>
         </div>
       </div>

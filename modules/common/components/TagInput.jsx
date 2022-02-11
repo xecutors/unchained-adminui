@@ -52,6 +52,9 @@ const TagInput = ({ tagList: tags, onChange }) => {
                   addTag();
                 }
               }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+              }}
               onChange={(e) => setNewTag(e.target.value)}
               className="focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-l-white border-gray-300"
               placeholder="New tag"

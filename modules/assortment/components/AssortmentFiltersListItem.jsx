@@ -2,7 +2,7 @@ import { TrashIcon } from '@heroicons/react/solid';
 import Badge from '../../common/components/Badge';
 
 const AssortmentFiltersListItem = ({ link, onDelete }) => {
-  const { _id, filter } = link;
+  const { _id, filter, tags } = link;
 
   return (
     <div className="flex justify-between items-center border-gray-200 border-b last:border-none">
@@ -18,6 +18,11 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
           color={filter?.isActive ? 'green' : 'gray'}
           text={filter?.isActive ? 'Active' : 'In-Active'}
         />
+      </div>
+      <div className="space-y-1 ">
+        {tags?.map((tag) => (
+          <Badge color="indigo" text={tag} />
+        ))}
       </div>
       <div onClick={() => onDelete(_id)}>
         <TrashIcon className="h-5 w-5 cursor-pointer text-red-400" />
