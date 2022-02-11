@@ -7,14 +7,29 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import useAssortments from '../hooks/useAssortments';
+
+const normalizeAssortments = (assortmentList = []) => {
+  return assortmentList?.map(({ _id, texts }) => ({
+    _id,
+    title: texts?.title,
+    subtitle: texts?.subtitle,
+  }));
+};
 
 const AssortmentLinkForm = ({ assortmentId }) => {
   const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
+  const { assortments } = useAssortments({ includeLeaves: true });
 
-  const onSubmit = async ({ productId }) => {
-    await addAssortmentLink({ productId, assortmentId, tags });
+  const onSubmit = async ({ childAssortmentId }) => {
+    await addAssortmentLink({
+      childAssortmentId,
+      parentAssortmentId: assortmentId,
+      tags,
+    });
     return true;
   };
 
@@ -27,7 +42,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
     submit: onSubmit,
     successMessage,
     initialValues: {
-      productId: '',
+      childAssortmentId: '',
       tags: '',
     },
   });
@@ -49,13 +64,16 @@ const AssortmentLinkForm = ({ assortmentId }) => {
         />
 
         <SelectField
-          name="productId"
+          name="childAssortmentId"
           label={formatMessage({
-            id: 'product',
-            defaultMessage: 'Product',
+            id: 'child_assortment',
+            defaultMessage: 'Sub-Assortment',
           })}
-          autoComplete="on"
-          options={{}}
+          options={convertArrayOfObjectToObject(
+            normalizeAssortments(assortments),
+            'title',
+            '_id',
+          )}
           className="text-sm font-medium text-gray-500 py-2   mt-1 w-full"
         />
       </div>

@@ -19,6 +19,7 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
         <AssortmentLinksListItem
           key={child._id}
           link={child}
+          linkId={_id}
           isParent={child._id !== currentAssortmentId}
           onDelete={onRemoveLink}
         />,

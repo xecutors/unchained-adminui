@@ -14,7 +14,7 @@ const AssortmentLinks = ({ assortmentId }) => {
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
 
-  const onRemoveLink = async ({ assortmentLinkId }) => {
+  const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
