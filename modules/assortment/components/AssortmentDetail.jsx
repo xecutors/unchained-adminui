@@ -119,7 +119,7 @@ const AssortmentDetail = ({ assortment }) => {
         id: 'activated',
         defaultMessage: 'Activated',
       }),
-      description: '',
+      description: 'Some description',
       current: isActive,
       bgColor: 'green',
       onClick: async () => setActive(true),

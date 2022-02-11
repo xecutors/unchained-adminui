@@ -55,7 +55,7 @@ export default function SelectOptions({ publishingOptions, onChange }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="origin-top-right absolute z-10 right-0 mt-2 w-[8.5rem] rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="w-full origin-top-right absolute z-10 right-0 mt-2 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {publishingOptions.map((option) => (
                   <Listbox.Option
                     key={option.title}

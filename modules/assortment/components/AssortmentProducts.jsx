@@ -2,6 +2,8 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import DangerMessage from '../../modal/components/DangerMessage';
+import useModal from '../../modal/hooks/useModal';
+
 import useAssortmentProducts from '../hooks/useAssortmentProducts';
 import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
 import AssortmentProductForm from './AssortmentProductForm';
@@ -9,8 +11,9 @@ import AssortmentProductList from './AssortmentProductList';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
+
   const { linkedProducts } = useAssortmentProducts({ assortmentId });
-  const { setModal } = useIntl();
+  const { setModal } = useModal();
 
   const { removeAssortmentProduct } = useRemoveAssortmentProduct();
 
