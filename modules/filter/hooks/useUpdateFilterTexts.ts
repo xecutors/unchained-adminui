@@ -22,7 +22,7 @@ const useUpdateFilterTexts = () => {
   const updateFilterTexts = async ({ filterId, filterOptionValue, texts }) => {
     return updateFilterTextsMutation({
       variables: { filterOptionValue, filterId, texts },
-      refetchQueries: ['Filters'],
+      refetchQueries: ['Filters', 'Filter', 'TranslatedFilterTexts'],
     });
   };
 

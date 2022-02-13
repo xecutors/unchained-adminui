@@ -1,17 +1,27 @@
 import { useIntl } from 'react-intl';
 import { DocumentTextIcon, ClipboardListIcon } from '@heroicons/react/solid';
 
+import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
-import { stopPropagation } from '../../common/data/miscellaneous';
 import TabComponent from '../../common/components/TabComponent';
 import FilterTextForm from './FilterTextForm';
-import FilterFormView from './FilterFormView';
+import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
+import useUpdateFilter from '../hooks/useUpdateFilter';
 
 const FilterDetail = ({ filter }) => {
-  const { isActive, options, key, type, created, updated } = filter;
-  const { formatMessage } = useIntl();
+  const {
+    _id: filterId,
+    isActive,
+    options,
+    key,
+    type,
+    created,
+    updated,
+  } = filter;
+  const { formatMessage, formatDate } = useIntl();
+  const { updateFilter } = useUpdateFilter();
 
   const GetCurrentTab = ({ selectedView, id }) => {
     if (selectedView === 'text')
@@ -24,7 +34,7 @@ const FilterDetail = ({ filter }) => {
     if (selectedView === 'options')
       return (
         <LocaleWrapper>
-          <FilterFormView filterId={id} options={options} />
+          <FilterOptions filterId={id} options={options} />
         </LocaleWrapper>
       );
     return (
@@ -58,32 +68,58 @@ const FilterDetail = ({ filter }) => {
     {
       id: 'activate',
       title: formatMessage({
-        id: 'active',
+        id: 'activate',
         defaultMessage: 'Activate',
       }),
-      description: '',
+      selectedTitle: formatMessage({
+        id: 'active',
+        defaultMessage: 'Active',
+      }),
+      onClick: async () => {
+        await updateFilter({
+          filterId,
+          isActive: true,
+        });
+        toast.success(
+          formatMessage({
+            id: 'filter_activated',
+            defaultMessage: 'Filter activated!',
+            description: 'shown on successful toggle of filter status',
+          }),
+        );
+      },
+      description: 'some description',
       current: isActive,
       bgColor: 'green',
     },
     {
-      id: 'deactive',
+      id: 'deactivate',
       title: formatMessage({
-        id: 'deactive',
+        id: 'deactivate',
         defaultMessage: 'Deactivate',
       }),
-      description: '',
+      onClick: async () => {
+        await updateFilter({
+          filterId,
+          isActive: false,
+        });
+        toast.success(
+          formatMessage({
+            id: 'filter_deactivated',
+            defaultMessage: 'Filter deactivated!',
+            description: 'shown on successful toggle of filter status',
+          }),
+        );
+      },
+      selectedTitle: formatMessage({
+        id: 'deactivated',
+        defaultMessage: 'Deactivated',
+      }),
+      description: 'some description',
       current: !isActive,
       bgColor: 'gray',
     },
   ];
-
-  const handlePublishOptions = (event) => {
-    stopPropagation(event);
-  };
-  const formatTimeStamp = (timestamp) => {
-    const date = new Date(timestamp);
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  };
 
   return (
     <>
@@ -92,14 +128,14 @@ const FilterDetail = ({ filter }) => {
           <FilterSummary
             filterKey={key}
             filterType={type}
-            createdAt={formatTimeStamp(created)}
-            updatedAt={formatTimeStamp(updated)}
+            createdAt={formatDate(created)}
+            updatedAt={formatDate(updated)}
           />
         </div>
-        <div className="self-end1">
+        <div className="self-end">
           <SelectOptions
-            publishingOptions={activeOptions}
-            onChange={handlePublishOptions}
+            options={activeOptions}
+            type={formatMessage({ id: 'filter', defaultMessage: 'Filter' })}
           />
         </div>
       </div>

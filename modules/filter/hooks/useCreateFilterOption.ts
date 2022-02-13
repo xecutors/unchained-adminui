@@ -17,7 +17,7 @@ const useCreateFilterOption = () => {
   const createFilterOption = async ({ filterId, value, title }) => {
     return createFilterOptionMutation({
       variables: { filterId, option: { value, title } },
-      refetchQueries: ['Filters'],
+      refetchQueries: ['FilterOptions'],
     });
   };
 

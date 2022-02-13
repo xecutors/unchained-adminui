@@ -9,9 +9,9 @@ import FilterOptionsListItem from './FilterOptionsListItem';
 function FilterListView({ filterId, options, selectedLocale }) {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { removeFilter } = useRemoveFilterOption();
+  const { removeFilterOption } = useRemoveFilterOption();
 
-  const onRemoveFilter = async () => {
+  const onRemoveFilter = async (filterOptionValue) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
@@ -21,7 +21,7 @@ function FilterListView({ filterId, options, selectedLocale }) {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeFilter({ filterId });
+          await removeFilterOption({ filterId, filterOptionValue });
           toast.success(
             formatMessage(
               {
@@ -35,8 +35,8 @@ function FilterListView({ filterId, options, selectedLocale }) {
           );
         }}
         okText={formatMessage({
-          id: 'delete_product',
-          defaultMessage: 'Delete Product',
+          id: 'delete_filter_option',
+          defaultMessage: 'Delete option',
         })}
       />,
     );
@@ -44,7 +44,7 @@ function FilterListView({ filterId, options, selectedLocale }) {
 
   return (
     <div>
-      <ul className="-my-5 divide-y divide-gray-200">
+      <ul className="-my-5 divide-y divide-gray-200 pb-3">
         {options.map((option) => (
           <FilterOptionsListItem
             filterId={filterId}

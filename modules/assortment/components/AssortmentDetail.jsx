@@ -11,7 +11,6 @@ import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import AssortmentTextForm from './AssortmentTextForm';
 import AssortmentMediaForm from './AssortmentMediaForm';
-import { stopPropagation } from '../../common/data/miscellaneous';
 import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
@@ -195,24 +194,29 @@ const AssortmentDetail = ({ assortment }) => {
     },
   ];
 
-  const handlePublishOptions = (event) => {
-    stopPropagation(event);
-  };
-
   return (
     <>
       <div className="flex space-x-2 justify-end">
         <SelectOptions
-          publishingOptions={baseOptions}
-          onChange={handlePublishOptions}
+          options={baseOptions}
+          type={formatMessage({
+            id: 'assortment',
+            defaultMessage: 'Assortment',
+          })}
         />
         <SelectOptions
-          publishingOptions={rootOptions}
-          onChange={handlePublishOptions}
+          options={rootOptions}
+          type={formatMessage({
+            id: 'assortment',
+            defaultMessage: 'Assortment',
+          })}
         />
         <SelectOptions
-          publishingOptions={activeOptions}
-          onChange={handlePublishOptions}
+          options={activeOptions}
+          type={formatMessage({
+            id: 'assortment',
+            defaultMessage: 'Assortment',
+          })}
         />
       </div>
       <TabComponent tabItems={assortmentOptions} defaultTab="texts">

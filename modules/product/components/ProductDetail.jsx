@@ -11,7 +11,7 @@ import {
 } from '@heroicons/react/solid';
 
 import LocaleWrapper from '../../common/components/LocaleWrapper';
-import { stopPropagation } from '../../common/data/miscellaneous';
+
 import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
 import GeneralTextForm from './GeneralTextForm';
@@ -171,16 +171,12 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
-  const handlePublishOptions = (event) => {
-    stopPropagation(event);
-  };
-
   return (
     <>
       <div className="flex justify-end">
         <SelectOptions
           publishingOptions={activeOptions}
-          onChange={handlePublishOptions}
+          type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
       <TabComponent tabItems={productOptions} defaultTab="texts">

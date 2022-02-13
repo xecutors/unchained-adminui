@@ -1,18 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
 import FilterFragment from '../fragments/FilterFragment';
-import FilterOptionFragment from '../fragments/FilterOptionFragment';
 
 export const FilterQuery = gql`
-  query filter($filterId: ID) {
+  query Filter($filterId: ID) {
     filter(filterId: $filterId) {
       ...FilterFragment
-      options {
-        ...FilterOptionFragment
-      }
     }
   }
   ${FilterFragment}
-  ${FilterOptionFragment}
 `;
 
 const useFilter = ({ filterId = null } = {}) => {

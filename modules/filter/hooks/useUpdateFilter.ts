@@ -11,9 +11,9 @@ const UpdateFilterMutation = gql`
 const useUpdateFilter = () => {
   const [updateFilterMutation] = useMutation(UpdateFilterMutation);
 
-  const updateFilter = async ({ filterId, locale, title, subtitle }) => {
+  const updateFilter = async ({ filterId, isActive, key }) => {
     return updateFilterMutation({
-      variables: { filter: { locale, title, subtitle }, filterId },
+      variables: { filter: { isActive, key }, filterId },
       refetchQueries: ['Filters'],
     });
   };
