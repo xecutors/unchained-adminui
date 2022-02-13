@@ -5,14 +5,12 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import FilterDetail from '../../modules/filter/components/FilterDetail';
-import useFilters from '../../modules/filter/hooks/useFilters';
 import useFilter from '../../modules/filter/hooks/useFilter';
 
 const FilterDetailPage = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const { slug = '' } = query || {};
-  //   const { filters, loading } = useFilters();
   const { filter, loading } = useFilter({ filterId: slug });
 
   return (

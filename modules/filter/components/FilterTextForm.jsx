@@ -67,7 +67,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
+            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white">
               <div>
                 <TextField
                   name="title"
