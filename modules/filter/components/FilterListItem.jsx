@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const FILTER_TYPES = {
@@ -8,7 +9,7 @@ const FILTER_TYPES = {
   SINGLE_CHOICE: 'lime',
   MULTI_CHOICE: 'cyan',
 };
-const FilterListItem = ({ filter }) => {
+const FilterListItem = ({ filter, onRemove }) => {
   const { formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
@@ -48,6 +49,17 @@ const FilterListItem = ({ filter }) => {
 
       <Table.Cell className="px-6  whitespace-nowrap">
         {filter.options?.length}
+      </Table.Cell>
+
+      <Table.Cell className="whitespace-nowrap ">
+        <div className="flex items-center justify-center">
+          <DeleteButton
+            className="border-white text-red-600 hover:text-red-900 cursor-pointer"
+            onClick={async () => {
+              await onRemove(filter?._id);
+            }}
+          />
+        </div>
       </Table.Cell>
     </Table.Row>
   );

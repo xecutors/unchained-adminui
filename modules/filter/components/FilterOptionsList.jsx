@@ -11,7 +11,7 @@ function FilterListView({ filterId, options, selectedLocale }) {
   const { setModal } = useModal();
   const { removeFilterOption } = useRemoveFilterOption();
 
-  const onRemoveFilter = async (filterOptionValue) => {
+  const onRemoveFilterOption = async (filterOptionValue) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
@@ -50,7 +50,7 @@ function FilterListView({ filterId, options, selectedLocale }) {
             filterId={filterId}
             key={option._id}
             option={option}
-            onDelete={onRemoveFilter}
+            onDelete={onRemoveFilterOption}
             selectedLocale={selectedLocale}
           />
         ))}
