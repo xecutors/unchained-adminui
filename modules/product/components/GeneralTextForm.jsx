@@ -71,7 +71,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
 
   return (
     <div className=" mt-5 sm:max-w-full">
-      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
+      <div className="py-2 bg-white shadow sm:rounded-t ">
         <Form form={form}>
           <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
             <div className="sm:flex w-full  justify-between align-baseline">
@@ -158,16 +158,13 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                 className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
               />
             </div>
-            <div className="mx-auto sm:w-1/2 ">
-              <SubmitButton
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-                className="py-6 h-9 "
-                full
-              />
-            </div>
+
+            <SubmitButton
+              label={formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+            />
           </div>
         </Form>
       </div>

@@ -86,7 +86,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     <Form form={form}>
       <div className="px-4 py-5 shadow overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
         <div className="lg:grid lg:grid-cols-3">
-          <div className="">
+          <div>
             <div className="space-y-1">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({
@@ -109,7 +109,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 className={classNames(
                   isEdit
                     ? 'text-red-600 hover:text-red-500  focus:ring-red-500'
-                    : 'text-purple-600 focus:ring-purple-500',
+                    : 'text-white-600 focus:ring-purple-500',
                   'bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
                 )}
               >

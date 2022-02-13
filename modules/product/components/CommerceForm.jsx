@@ -309,16 +309,13 @@ const CommerceForm = ({ productId }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="mx-auto sm:w-1/2 ">
-        <SubmitButton
-          label={formatMessage({
-            id: 'save',
-            defaultMessage: 'Save',
-          })}
-          className="py-6 h-9 "
-          full
-        />
-      </div>
+
+      <SubmitButton
+        label={formatMessage({
+          id: 'save',
+          defaultMessage: 'Save',
+        })}
+      />
     </Form>
   );
 };

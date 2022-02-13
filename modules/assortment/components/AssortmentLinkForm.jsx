@@ -77,16 +77,14 @@ const AssortmentLinkForm = ({ assortmentId }) => {
           className="text-sm font-medium text-gray-500 py-2   mt-1 w-full"
         />
       </div>
-      <div className="w-fit">
-        <SubmitButton
-          label={formatMessage({
-            id: 'save',
-            defaultMessage: 'Save',
-          })}
-          className="py-6 h-9 "
-          full
-        />
-      </div>
+
+      <SubmitButton
+        label={formatMessage({
+          id: 'save',
+          defaultMessage: 'Save',
+        })}
+        full
+      />
     </Form>
   );
 };

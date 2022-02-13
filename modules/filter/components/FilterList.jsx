@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import FilterListItem from './FilterListItem';
 
-const FilterList = ({ filters }) => {
+const FilterList = ({ filters, onRemoveFilter }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full ">
@@ -36,10 +36,17 @@ const FilterList = ({ filters }) => {
               defaultMessage: 'Options',
             })}
           </Table.Cell>
+          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            &nbsp;
+          </Table.Cell>
         </Table.Row>
       ))}
       {filters?.map((filter) => (
-        <FilterListItem key={`${filter?._id}-body`} filter={filter} />
+        <FilterListItem
+          key={`${filter?._id}-body`}
+          filter={filter}
+          onRemove={onRemoveFilter}
+        />
       ))}
     </Table>
   );

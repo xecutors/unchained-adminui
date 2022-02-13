@@ -59,7 +59,7 @@ const Modal = ({
             onClick={stopPropagation}
             onKeyUp={stopPropagation}
           >
-            <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+            <div className=" sm:block absolute top-0 right-0 pt-4 pr-4">
               <button
                 type="button"
                 onClick={close}

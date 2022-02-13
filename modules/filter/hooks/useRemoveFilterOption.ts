@@ -17,7 +17,7 @@ const useRemoveFilterOption = () => {
   const removeFilterOption = async ({ filterId, filterOptionValue }) => {
     return removeFilterOptionMutation({
       variables: { filterOptionValue, filterId },
-      refetchQueries: ['Filters'],
+      refetchQueries: ['FilterOptions'],
     });
   };
 
