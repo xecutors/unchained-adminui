@@ -26,7 +26,7 @@ import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 
 const GetCurrentTab = ({ id, selectedView }) => {
-  if (selectedView === 'text')
+  if (selectedView === 'texts')
     return (
       <LocaleWrapper>
         <GeneralTextForm productId={id} />
@@ -58,7 +58,7 @@ const ProductDetail = ({ product }) => {
 
   const productOptions = [
     {
-      id: 'text',
+      id: 'texts',
       title: formatMessage({
         id: 'general_text',
         defaultMessage: 'Text',
