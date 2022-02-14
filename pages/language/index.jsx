@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
@@ -15,13 +15,13 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
 
 const Languages = () => {
-  const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeInactive = query?.includeInactive === 'true';
 
-  const [includeInactive, setIncludeInactive] = useState(false);
-  const [offset, setOffset] = useState(0);
-
-  const { languages, languagesCount, loadMore, loading } = useLanguages({
+  const { languages, languagesCount, loading } = useLanguages({
     limit,
     includeInactive,
     offset,
@@ -77,8 +77,7 @@ const Languages = () => {
               id: 'show_inactive',
               defaultMessage: 'Show Inactive',
             })}
-            toggleState={includeInactive}
-            onToggle={setIncludeInactive}
+            toggleKey="includeInactive"
           />
         </ListHeader>
         {loading ? (
@@ -89,15 +88,7 @@ const Languages = () => {
             onRemoveLanguage={onRemoveLanguage}
           />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={languages}
-          total={languagesCount}
-          limit={limit}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={languages} total={languagesCount} />
       </div>
     </>
   );

@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
-
 import ProviderList from '../../modules/common/components/ProvidersList';
-
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
 import DangerMessage from '../../modules/modal/components/DangerMessage';

@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import CurrencyList from '../../modules/currency/components/CurrencyList';
 import useCurrencies from '../../modules/currency/hooks/useCurrencies';
@@ -15,14 +16,15 @@ import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
 
 const Currencies = () => {
-  const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
-  const [includeInactive, setIncludeInactive] = useState(false);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeInactive = query?.includeInactive === 'true';
 
-  const [offset, setOffset] = useState(0);
-
-  const { currencies, currenciesCount, loadMore, loading } = useCurrencies({
+  const { currencies, currenciesCount, loading } = useCurrencies({
     limit,
+    offset,
     includeInactive,
   });
   const { setModal } = useModal();
@@ -74,8 +76,7 @@ const Currencies = () => {
               id: 'show_inactive',
               defaultMessage: 'Show Inactive',
             })}
-            toggleState={includeInactive}
-            onToggle={setIncludeInactive}
+            toggleKey="includeInactive"
           />
         </ListHeader>
 
@@ -84,15 +85,7 @@ const Currencies = () => {
         ) : (
           <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={currencies}
-          total={currenciesCount}
-          onLimitChange={setLimit}
-          limit={limit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={currencies} total={currenciesCount} />
       </div>
     </>
   );

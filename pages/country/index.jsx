@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -17,12 +17,13 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
 const Country = () => {
-  const [limit, setLimit] = useState(DefaultLimit);
   const { formatMessage } = useIntl();
-  const [includeInactive, setIncludeInactive] = useState(false);
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeInactive = query?.includeInactive === 'true';
 
-  const { countries, countriesCount, loadMore, loading } = useCountries({
+  const { countries, countriesCount, loading } = useCountries({
     limit,
     includeInactive,
     offset,
@@ -76,8 +77,7 @@ const Country = () => {
               id: 'show_inactive',
               defaultMessage: 'Show Inactive',
             })}
-            toggleState={includeInactive}
-            onToggle={setIncludeInactive}
+            toggleKey="includeInactive"
           />
         </ListHeader>
         {loading ? (
@@ -88,15 +88,7 @@ const Country = () => {
             onRemoveCountry={onRemoveCountry}
           />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={countries}
-          total={countriesCount}
-          onLimitChange={setLimit}
-          limit={limit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={countries} total={countriesCount} />
       </div>
     </>
   );

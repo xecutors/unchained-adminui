@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -11,10 +11,11 @@ import useQuotations from '../../modules/quotation/hooks/useQuotations';
 
 const Quotations = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
 
-  const { quotations, loadMore, quotationsCount, loading } = useQuotations({
+  const { quotations, quotationsCount, loading } = useQuotations({
     limit,
     offset,
   });
@@ -34,15 +35,7 @@ const Quotations = () => {
         ) : (
           <QuotationList quotations={quotations} showUser />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={quotations}
-          total={quotationsCount}
-          onLimitChange={setLimit}
-          offset={offset}
-          limit={limit}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={quotations} total={quotationsCount} />
       </div>
     </>
   );

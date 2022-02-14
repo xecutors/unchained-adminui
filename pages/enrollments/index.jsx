@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
+
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -11,10 +12,11 @@ import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
 
 const index = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
 
-  const { enrollments, loadMore, enrollmentsCount, loading } = useEnrollments({
+  const { enrollments, enrollmentsCount, loading } = useEnrollments({
     limit,
     offset,
   });
@@ -36,15 +38,7 @@ const index = () => {
           <EnrollmentList enrollments={enrollments} showUser />
         )}
 
-        <Pagination
-          limit={limit}
-          onLoadMore={loadMore}
-          data={enrollments}
-          total={enrollmentsCount}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={enrollments} total={enrollmentsCount} />
       </div>
     </>
   );

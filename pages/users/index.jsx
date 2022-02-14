@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import UserList from '../../modules/accounts/components/UserList';
 import useUsers from '../../modules/accounts/hooks/useUsers';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -11,14 +12,16 @@ import SearchField from '../../modules/common/components/SearchField';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
+const Users = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
+  const { query } = useRouter();
   const [queryString, setQueryString] = useState('');
-  const [includeGuests, setShowGuests] = useState(false);
-  const [offset, setOffset] = useState(0);
 
-  const { users, usersCount, loadMore, loading } = useUsers({
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeGuests = query?.includeGuests === 'true';
+
+  const { users, usersCount, loading } = useUsers({
     limit,
     includeGuests,
     queryString,
@@ -34,13 +37,12 @@ const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
           defaultMessage: 'Users',
         })}
       />
-      <SearchField onInputChange={onSearch} />
+      <SearchField onInputChange={setQueryString} />
       <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div>
             <Toggle
-              onToggle={onShowGuestChange}
-              toggleState={showGuests}
+              toggleKey="includeGuests"
               toggleText={formatMessage({
                 id: 'show_guests',
                 defaultMessage: 'Show Guests',
@@ -73,25 +75,8 @@ const Users = ({ showGuests, onShowGuestChange, onSearch }) => {
         </div>
       </div>
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <UserList
-          users={users}
-          showGuests={includeGuests}
-          onShowGuestChange={setShowGuests}
-          onSearch={setQueryString}
-        />
-      )}
-      <Pagination
-        onLoadMore={loadMore}
-        data={users}
-        total={usersCount}
-        limit={limit}
-        onLimitChange={setLimit}
-        offset={offset}
-        onOffsetChange={setOffset}
-      />
+      {loading ? <Loading /> : <UserList users={users} />}
+      <Pagination data={users} total={usersCount} />
     </>
   );
 };

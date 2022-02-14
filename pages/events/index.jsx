@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import Pagination from '../../modules/common/components/Pagination';
@@ -12,11 +13,13 @@ import useEvents from '../../modules/event/hooks/useEvents';
 
 const Events = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [queryString, setQueryString] = useState('');
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
 
-  const { events, loadMore, eventsCount, loading } = useEvents({
+  const [queryString, setQueryString] = useState('');
+
+  const { events, eventsCount, loading } = useEvents({
     limit,
     type: queryString,
     offset,
@@ -39,15 +42,7 @@ const Events = () => {
         ) : (
           <EventList events={events} onSearch={setQueryString} />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={events}
-          total={eventsCount}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-          limit={limit}
-        />
+        <Pagination data={events} total={eventsCount} />
       </div>
     </>
   );

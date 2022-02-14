@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
 import AssortmentList from '../../modules/assortment/components/AssortmentList';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -15,13 +16,14 @@ import AssortmentSearchFilter from '../../modules/assortment/components/Assortme
 
 const index = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [includeInactive, setIncludeInactive] = useState(false);
-  const [includeLeaves, setIncludeLeaves] = useState(false);
+  const { query } = useRouter();
   const [filter, setFilter] = useState({});
-  const [offset, setOffset] = useState(0);
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeInactive = query?.includeInactive === 'true';
+  const includeLeaves = query?.includeLeaves === 'true';
 
-  const { assortments, assortmentsCount, loadMore, loading } = useAssortments({
+  const { assortments, assortmentsCount, loading } = useAssortments({
     includeInactive,
     includeLeaves,
     limit,
@@ -49,33 +51,23 @@ const index = () => {
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/assortments/new">
           <Toggle
-            toggleState={includeInactive}
-            onToggle={setIncludeInactive}
+            toggleKey="includeInactive"
             toggleText={formatMessage({
               id: 'include_inactive',
               defaultMessage: 'Include inactive',
             })}
           />
           <Toggle
-            toggleState={includeLeaves}
+            toggleKey="includeLeaves"
             toggleText={formatMessage({
               id: 'include_leaf',
               defaultMessage: 'Include leafs',
               description: 'Assortment children',
             })}
-            onToggle={setIncludeLeaves}
           />
         </ListHeader>
         {loading ? <Loading /> : <AssortmentList assortments={assortments} />}
-        <Pagination
-          onLoadMore={loadMore}
-          data={assortments}
-          limit={limit}
-          total={assortmentsCount}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={assortments} total={assortmentsCount} />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -15,13 +15,14 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 
 const index = () => {
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [includeInactive, setIncludeInactive] = useState(false);
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeInactive = query?.includeInactive === 'true';
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
-  const { filters, filtersCount, loadMore, loading } = useFilters({
+  const { filters, filtersCount, loading } = useFilters({
     limit,
     includeInactive,
     offset,
@@ -75,8 +76,7 @@ const index = () => {
               id: 'include_inactive',
               defaultMessage: 'Include inactive',
             })}
-            toggleState={includeInactive}
-            onToggle={setIncludeInactive}
+            toggleKey="includeInactive"
           />
         </ListHeader>
 
@@ -85,15 +85,7 @@ const index = () => {
         ) : (
           <FilterList filters={filters} onRemoveFilter={onRemoveFilter} />
         )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={filters}
-          total={filtersCount}
-          limit={limit}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-        />
+        <Pagination data={filters} total={filtersCount} />
       </div>
     </>
   );

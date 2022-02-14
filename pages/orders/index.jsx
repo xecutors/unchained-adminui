@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -14,12 +15,15 @@ import useOrders from '../../modules/order/hooks/useOrders';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [includeCarts, setIncludeCarts] = useState(false);
-  const [queryString, setQueryString] = useState('');
-  const [offset, setOffset] = useState(0);
+  const { query } = useRouter();
 
-  const { orders, loadMore, ordersCount, loading } = useOrders({
+  const [queryString, setQueryString] = useState('');
+
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeCarts = query?.includeCarts === 'true';
+
+  const { orders, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
     queryString,
@@ -42,29 +46,11 @@ const Orders = () => {
               id: 'show_carts',
               defaultMessage: 'Show carts',
             })}
-            toggleState={includeCarts}
-            onToggle={setIncludeCarts}
+            toggleKey="includeCarts"
           />
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <OrderList
-            orders={orders}
-            showUser
-            includeCarts={includeCarts}
-            onIncludeCartsChange={setIncludeCarts}
-          />
-        )}
-        <Pagination
-          onLoadMore={loadMore}
-          data={orders}
-          total={ordersCount}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
-          limit={limit}
-        />
+        {loading ? <Loading /> : <OrderList orders={orders} showUser />}
+        <Pagination data={orders} total={ordersCount} />
       </div>
     </>
   );
