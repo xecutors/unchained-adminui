@@ -1,5 +1,7 @@
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
@@ -28,18 +30,28 @@ const Step = ({ onClick, disabled, label }) => {
   );
 };
 
-const Pagination = ({
-  total = 0,
-  data = [],
-  onLimitChange,
-  limit,
-  offset,
-  onOffsetChange,
-  onLoadMore = () => true,
-}) => {
+const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
+  const limit = parseInt(router.query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(router.query?.skip, 10) || 0;
 
-  const currentPage = offset === 0 ? 1 : Math.ceil((offset + 1) / limit);
+  const currentPage =
+    parseInt(offset, 10) === 0
+      ? 1
+      : Math.ceil((parseInt(offset, 10) + 1) / parseInt(limit, 10));
+
+  const changeOffset = (newOffset) => {
+    router.push({
+      query: { ...router.query, skip: newOffset },
+    });
+  };
+
+  const changeLimit = (newLimit) => {
+    router.push({
+      query: { ...router.query, limit: newLimit },
+    });
+  };
 
   const addStep = (number) => {
     const stepOffset = number - 1;
@@ -47,7 +59,7 @@ const Pagination = ({
       <Step
         key={`start-${stepOffset}`}
         type="button"
-        onClick={() => onOffsetChange(limit * stepOffset)}
+        onClick={() => changeOffset(limit * stepOffset)}
         aria-current="page"
         disabled={currentPage === number}
         label={number}
@@ -107,9 +119,17 @@ const Pagination = ({
     return steps;
   };
 
+  useEffect(() => {
+    if (!router.query?.limit && router?.query?.skip === undefined) {
+      router.push({
+        query: { ...router?.query, limit: DefaultLimit, skip: 0 },
+      });
+    }
+  }, []);
+
   return (
     <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-">
-      {!total && onLoadMore ? (
+      {!total && data?.length && onLoadMore ? (
         <Button
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
           type="button"
@@ -135,7 +155,7 @@ const Pagination = ({
                     span: (chunks) => (
                       <span className="font-medium">{chunks}</span>
                     ),
-                    to: offset + 1 + data.length,
+                    to: offset + data.length,
                     from: offset + 1,
                     total,
                   }}
@@ -150,7 +170,7 @@ const Pagination = ({
                 <button
                   type="button"
                   disabled={!offset}
-                  onClick={() => onOffsetChange(offset - limit)}
+                  onClick={() => changeOffset(offset - limit)}
                   className={classNames(
                     'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-600  hover:bg-gray-50',
                     {
@@ -183,7 +203,7 @@ const Pagination = ({
 
                 <button
                   type="button"
-                  onClick={() => onOffsetChange(offset + limit)}
+                  onClick={() => changeOffset(offset + limit)}
                   disabled={offset + limit >= total}
                   className={classNames(
                     'relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50',
@@ -218,7 +238,7 @@ const Pagination = ({
             <button
               type="button"
               disabled={!offset}
-              onClick={() => onOffsetChange(offset - limit)}
+              onClick={() => changeOffset(offset - limit)}
               className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
             >
               {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
@@ -226,7 +246,7 @@ const Pagination = ({
             <div className="flex justify-between sm:justify-end">
               <div>
                 <select
-                  onChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
+                  onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
                   id="location"
                   defaultValue={DefaultLimit}
                   name="location"
@@ -253,7 +273,7 @@ const Pagination = ({
       <div className="hidden sm:block ml-2 flex justify-between sm:justify-end">
         <div>
           <select
-            onChange={(e) => onLimitChange(parseInt(e.target.value, 10))}
+            onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
             id="location"
             defaultValue={limit}
             name="location"
@@ -273,17 +293,11 @@ const Pagination = ({
 Pagination.defaultProps = {
   data: [],
   total: 0,
-  offset: 0,
-  onOffsetChange: () => true,
 };
 
 Pagination.propTypes = {
   total: PropTypes.number,
   data: PropTypes.arrayOf(PropTypes.object),
-  onLimitChange: PropTypes.func.isRequired,
-  limit: PropTypes.number.isRequired,
-  offset: PropTypes.number,
-  onOffsetChange: PropTypes.func,
 };
 
 export default Pagination;

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -14,10 +15,11 @@ import useProducts from '../../modules/product/hooks/useProducts';
 
 const Products = () => {
   const { formatMessage } = useIntl();
-  const [limit, setLimit] = useState(DefaultLimit);
-  const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState({});
-  const [includeDrafts, setIncludeDrafts] = useState(false);
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeDrafts = query?.includeDrafts === 'true';
 
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
@@ -50,8 +52,7 @@ const Products = () => {
               id: 'include_drafts',
               defaultMessage: 'Include drafts',
             })}
-            toggleState={includeDrafts}
-            onToggle={setIncludeDrafts}
+            toggleKey="includeDrafts"
           />
         </ListHeader>
         {loading ? <Loading /> : <ProductList products={products} />}
@@ -60,10 +61,6 @@ const Products = () => {
           onLoadMore={loadMore}
           data={products}
           total={productsCount}
-          limit={limit}
-          onLimitChange={setLimit}
-          offset={offset}
-          onOffsetChange={setOffset}
         />
       </div>
     </>

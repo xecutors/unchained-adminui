@@ -1,6 +1,19 @@
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
-const Toggle = ({ toggleText = '', toggleState, onToggle }) => {
+const Toggle = ({ toggleText = '', toggleKey }) => {
+  const router = useRouter();
+
+  const toggleState = router?.query?.[toggleKey] === 'true';
+
+  const onToggle = () => {
+    router.push({
+      query: {
+        ...router.query,
+        [toggleKey]: !toggleState,
+      },
+    });
+  };
   return (
     <div className="ml-1">
       <button
@@ -13,7 +26,7 @@ const Toggle = ({ toggleText = '', toggleState, onToggle }) => {
           },
         )}
         role="switch"
-        onClick={() => onToggle(!toggleState)}
+        onClick={onToggle}
         aria-checked={toggleState ? 'true' : 'false'}
       >
         <span className="sr-only">{toggleText}</span>
