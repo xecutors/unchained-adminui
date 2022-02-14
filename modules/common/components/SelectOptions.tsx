@@ -46,13 +46,13 @@ export default function SelectOptions({
           </Listbox.Label>
           <div className="relative">
             <div
-              className={`inline-flex shadow-sm rounded-md divide-x divide-${select.bgColor}-600`}
+              className={`inline-flex shadow-sm rounded-md divide-x divide-${select?.bgColor}-600`}
             >
               <div
-                className={`relative z-0 inline-flex shadow-sm rounded-md divide-x divide-${select.bgColor}-600`}
+                className={`relative z-0 inline-flex shadow-sm rounded-md divide-x divide-${select?.bgColor}-600`}
               >
                 <div
-                  className={`relative inline-flex items-center hover:bg-${select.bgColor}-200 bg-${select.bgColor}-500 py-[0.3rem] lg:py-2 pl-2 lg:pl-3 pr-2 lg:pr-4 border border-transparent rounded-l-md shadow-sm text-white`}
+                  className={`relative inline-flex items-center hover:bg-${select?.bgColor}-200 bg-${select?.bgColor}-500 py-[0.3rem] lg:py-2 pl-2 lg:pl-3 pr-2 lg:pr-4 border border-transparent rounded-l-md shadow-sm text-white`}
                 >
                   <CheckIcon
                     className="h-4 w-4 lg:h-5 lg:w-5"
@@ -63,7 +63,7 @@ export default function SelectOptions({
                   </p>
                 </div>
                 <Listbox.Button
-                  className={`relative inline-flex items-center bg-${select.bgColor}-500  hover:bg-${select.bgColor}-900 p-1 lg:p-2 outline-none border-none rounded-l-none rounded-r-md text-sm font-medium text-white focus:outline-none focus:z-10`}
+                  className={`relative inline-flex items-center bg-${select?.bgColor}-500  hover:bg-${select?.bgColor}-900 p-1 lg:p-2 outline-none border-none rounded-l-none rounded-r-md text-sm font-medium text-white focus:outline-none focus:z-10`}
                 >
                   <span className="sr-only">
                     {formatMessage(

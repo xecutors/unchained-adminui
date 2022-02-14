@@ -147,7 +147,7 @@ const ProductDetail = ({ product }) => {
         id: 'not_published',
         defaultMessage: 'Not published',
       }),
-      bgColor: 'gray',
+      bgColor: 'grey',
       onClick: async () => {
         await unPublishProduct({ productId: product?._id });
       },
@@ -175,7 +175,7 @@ const ProductDetail = ({ product }) => {
     <>
       <div className="flex justify-end">
         <SelectOptions
-          publishingOptions={activeOptions}
+          options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
