@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -13,13 +12,21 @@ import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
 const index = () => {
-  const [filter, setFilter] = useState({});
   const { query } = useRouter();
+
+  const filter = {
+    dateRange: {
+      start: query?.start,
+      end: query?.end,
+    },
+    status: query?.status?.split(','),
+    types: query?.types?.split(','),
+  };
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
 
-  const { workQueue, loading, activeWorkTypes } = useWorkQueue({
+  const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
     limit,
     offset,
     ...filter,
@@ -36,21 +43,12 @@ const index = () => {
           defaultMessage: 'Work queue',
         })}
       />
-      <WorkFilter
-        workTypes={activeWorkTypes}
-        onFilter={({ types, dateRange, status }) => {
-          setFilter({
-            selectTypes: types,
-            status,
-            created: dateRange,
-          });
-        }}
-      />
+      <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/works/management" />
 
         {loading ? <Loading /> : <WorkList workQueue={workQueue} />}
-        <Pagination data={workQueue} total={(workQueue || []).length} />
+        <Pagination data={workQueue} onLoadMore={loadMore} />
       </div>
     </>
   );
