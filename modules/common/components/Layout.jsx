@@ -1,7 +1,9 @@
 import {
   BriefcaseIcon,
   CogIcon,
+  TagIcon,
   HomeIcon,
+  InboxIcon,
   OfficeBuildingIcon,
   UserIcon,
 } from '@heroicons/react/outline';
@@ -32,15 +34,34 @@ const Layout = ({
       href: '/',
     },
     {
+      name: formatMessage({
+        id: 'orders',
+        defaultMessage: 'Orders',
+      }),
+      icon: InboxIcon,
+      current: false,
+      href: '/orders',
+    },
+    {
+      name: formatMessage({
+        id: 'products',
+        defaultMessage: 'Products',
+      }),
+      icon: TagIcon,
+      current: false,
+      href: '/products',
+    },
+    {
+      name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
+      icon: UserIcon,
+      current: false,
+      href: '/users',
+    },
+    {
       name: formatMessage({ id: 'system', defaultMessage: 'System' }),
       icon: CogIcon,
       current: false,
       children: [
-        {
-          name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
-          current: false,
-          href: '/users',
-        },
         {
           name: formatMessage({
             id: 'currencies',
@@ -99,14 +120,6 @@ const Layout = ({
           href: '/assortments',
         },
         {
-          name: formatMessage({
-            id: 'products',
-            defaultMessage: 'Products',
-          }),
-          current: false,
-          href: '/products',
-        },
-        {
           name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
           current: false,
           href: '/filters',
@@ -138,14 +151,6 @@ const Layout = ({
           }),
           current: false,
           href: '/quotations',
-        },
-        {
-          name: formatMessage({
-            id: 'orders',
-            defaultMessage: 'Orders',
-          }),
-          current: false,
-          href: '/orders',
         },
         {
           name: formatMessage({
