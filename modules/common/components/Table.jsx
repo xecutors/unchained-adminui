@@ -45,7 +45,7 @@ const Table = ({ className, ...props }) => {
       {rowsWithSort.header.length ? (
         <thead className="bg-white">{rowsWithSort.header}</thead>
       ) : (
-        <caption className="text-center">No Data found</caption>
+        <caption className="text-center py-5 mt-1">No Data found</caption>
       )}
       {rowsWithSort.body.length ? (
         <tbody className="flex-1 sm:flex-none">{rowsWithSort.body}</tbody>

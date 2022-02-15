@@ -65,87 +65,90 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   }, [translatedAssortmentTexts, selectedLocale]);
 
   return (
-    <div className="mt-4 sm:max-w-full">
-      <div className="px-5 shadow sm:rounded-t sm:px-15">
-        <Form form={form}>
-          <div className="sm:px-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  {formatMessage({
-                    id: 'texts',
-                    defaultMessage: 'Texts',
-                  })}
-                </h3>
-                <p className="mt-1 text-sm text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                </p>
-              </div>
-            </div>
-            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white px-8">
-              <div>
-                <TextField
-                  name="slug"
-                  required
-                  id="slug"
-                  label={formatMessage({
-                    id: 'slug',
-                    defaultMessage: 'Slug',
-                  })}
-                  autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
-                />
-              </div>
-              <div>
-                <TextField
-                  name="title"
-                  id="title"
-                  label={formatMessage({
-                    id: 'title',
-                    defaultMessage: 'Title',
-                  })}
-                  required
-                  autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
-                />
-              </div>
-              <div>
-                <TextField
-                  name="subtitle"
-                  id="subtitle"
-                  label={formatMessage({
-                    id: 'subtitle',
-                    defaultMessage: 'Subtitle',
-                  })}
-                  autoComplete="on"
-                  className="text-sm  font-medium text-gray-500 py-2 sm:ml-1  mt-1 w-full"
-                />
-              </div>
-              <div>
-                <TextAreaField
-                  name="description"
-                  id="description"
-                  label={formatMessage({
-                    id: 'description',
-                    defaultMessage: 'Description',
-                  })}
-                  autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1  sm:mt-1 w-full"
-                />
-              </div>
-
-              <SubmitButton
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-              />
-              <FormErrors />
-            </div>
+    <div className="mt-10 sm:mt-0">
+      <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:px-0">
+            <h3 className="text-lg font-medium leading-6 text-gray-900">
+              {formatMessage({
+                id: 'texts',
+                defaultMessage: 'Texts',
+              })}
+            </h3>
+            <p className="mt-1 text-sm text-gray-600">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco
+            </p>
           </div>
-        </Form>
+        </div>
+        <div className="mt-5 md:mt-0 md:col-span-2">
+          <Form form={form}>
+            <div className="shadow overflow-hidden sm:rounded-md">
+              <div className="grid gap-6 px-4 py-5 bg-white sm:p-6">
+                <div className="col-span-12">
+                  <TextField
+                    name="slug"
+                    required
+                    id="slug"
+                    label={formatMessage({
+                      id: 'slug',
+                      defaultMessage: 'Slug',
+                    })}
+                    autoComplete="on"
+                    className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  />
+                </div>
+                <div className="col-span-12">
+                  <TextField
+                    name="title"
+                    id="title"
+                    label={formatMessage({
+                      id: 'title',
+                      defaultMessage: 'Title',
+                    })}
+                    required
+                    autoComplete="on"
+                    className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  />
+                </div>
+                <div className="col-span-12">
+                  <TextField
+                    name="subtitle"
+                    id="subtitle"
+                    label={formatMessage({
+                      id: 'subtitle',
+                      defaultMessage: 'Subtitle',
+                    })}
+                    autoComplete="on"
+                    className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  />
+                </div>
+                <div className="col-span-12">
+                  <TextAreaField
+                    name="description"
+                    id="description"
+                    label={formatMessage({
+                      id: 'description',
+                      defaultMessage: 'Description',
+                    })}
+                    autoComplete="on"
+                    className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  />
+                </div>
+              </div>
+              <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <SubmitButton
+                  label={formatMessage({
+                    id: 'save',
+                    defaultMessage: 'Save',
+                  })}
+                />
+                <FormErrors />
+              </div>
+            </div>
+          </Form>
+        </div>
       </div>
     </div>
   );

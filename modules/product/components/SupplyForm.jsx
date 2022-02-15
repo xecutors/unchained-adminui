@@ -94,12 +94,15 @@ const SupplyForm = ({ productId }) => {
             />
           </div>
 
-          <SubmitButton
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-          />
+          <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+            <SubmitButton
+              label={formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+              full
+            />
+          </div>
         </div>
       </Form>
     </FormHeader>

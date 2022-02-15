@@ -70,11 +70,11 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
   }, [translatedTexts, selectedLocale]);
 
   return (
-    <div className=" mt-5 sm:max-w-full">
-      <div className="py-2 bg-white shadow sm:rounded-t ">
+    <div className="mt-5 sm:max-w-full">
+      <div className="bg-white shadow sm:rounded-t">
         <Form form={form}>
-          <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-            <div className="sm:flex w-full  justify-between align-baseline">
+          <div className="px-5 sm:px-15 space-y-6 sm:p-6 rounded-md relative max-w-full">
+            <div className="sm:flex w-full justify-between align-baseline">
               <TextField
                 name="slug"
                 id="slug"
@@ -98,7 +98,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
               />
             </div>
 
-            <div className="sm:flex max-w-full  justify-between align-baseline">
+            <div className="sm:flex max-w-full justify-between align-baseline">
               <TextField
                 name="subtitle"
                 id="subtitle"
@@ -131,7 +131,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Brand',
                 })}
                 autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
+                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
               />
 
               <TextField
@@ -142,7 +142,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Labels',
                 })}
                 autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
               />
             </div>
 
@@ -155,16 +155,9 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Description',
                 })}
                 autoComplete="on"
-                className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+                className="text-sm font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
               />
             </div>
-
-            <SubmitButton
-              label={formatMessage({
-                id: 'save',
-                defaultMessage: 'Save',
-              })}
-            />
           </div>
         </Form>
       </div>

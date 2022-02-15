@@ -24,7 +24,7 @@ const TextAreaField = ({
     <FieldWrapper {...field}>
       <textarea
         className={classnames(
-          'max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
+          'mt-1 max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
           {
             'text-red-600 border-red-600': !!field.error,
           },
