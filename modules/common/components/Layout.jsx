@@ -28,9 +28,8 @@ const Layout = ({
   const { shopInfo } = useShopInfo();
   const defaultNavigation = [
     {
-      name: formatMessage({ id: 'dashboard', defaultMessage: 'Dashboard' }),
+      name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
       icon: HomeIcon,
-      current: true,
       href: '/',
     },
     {
@@ -39,7 +38,6 @@ const Layout = ({
         defaultMessage: 'Orders',
       }),
       icon: InboxIcon,
-      current: false,
       href: '/orders',
     },
     {
@@ -48,19 +46,16 @@ const Layout = ({
         defaultMessage: 'Products',
       }),
       icon: TagIcon,
-      current: false,
       href: '/products',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserIcon,
-      current: false,
       href: '/users',
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System' }),
       icon: CogIcon,
-      current: false,
       children: [
         {
           name: formatMessage({
@@ -68,20 +63,16 @@ const Layout = ({
             defaultMessage: 'Currencies',
           }),
           href: '/currency',
-          current: false,
         },
         {
-          current: false,
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
         },
         {
-          current: false,
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
         },
         {
-          current: false,
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
@@ -89,7 +80,6 @@ const Layout = ({
           href: '/delivery-provider',
         },
         {
-          current: false,
           name: formatMessage({
             id: 'payment_provider',
             defaultMessage: 'Payment providers',
@@ -97,7 +87,6 @@ const Layout = ({
           href: '/payment-provider',
         },
         {
-          current: false,
           name: formatMessage({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
@@ -109,19 +98,16 @@ const Layout = ({
     {
       name: formatMessage({ id: 'master_data', defaultMessage: 'Master Data' }),
       icon: OfficeBuildingIcon,
-      current: false,
       children: [
         {
           name: formatMessage({
             id: 'assortments',
             defaultMessage: 'Assortments',
           }),
-          current: false,
           href: '/assortments',
         },
         {
           name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
-          current: false,
           href: '/filters',
         },
       ],
@@ -129,19 +115,16 @@ const Layout = ({
     {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
       icon: OfficeBuildingIcon,
-      current: false,
       children: [
         {
           name: formatMessage({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
-          current: false,
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
-          current: false,
           href: '/events',
         },
         {
@@ -149,7 +132,6 @@ const Layout = ({
             id: 'quotations',
             defaultMessage: 'Quotations',
           }),
-          current: false,
           href: '/quotations',
         },
         {
@@ -157,7 +139,6 @@ const Layout = ({
             id: 'enrollments',
             defaultMessage: 'Enrollments',
           }),
-          current: false,
           href: '/enrollments',
         },
       ],
@@ -165,7 +146,6 @@ const Layout = ({
     {
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
       icon: UserIcon,
-      current: false,
       href: '/account',
     },
   ];
@@ -174,14 +154,12 @@ const Layout = ({
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
       icon: BriefcaseIcon,
-      current: false,
       children: [
         {
           name: formatMessage({
             id: 'daily_sync',
             defaultMessage: 'Daily sync',
           }),
-          current: false,
           href: '/reports/daily-sync',
         },
       ],
