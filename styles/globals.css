@@ -2,27 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .hide-show {
-    position: absolute;
-    bottom: .4rem;
-    right: .5em;
-    outline: none;
-    z-index: 9999;
-  }
-  
-
-  
-  @media (min-width: 640px) {
-    table {
-      display: inline-table !important;
-    }
-
-    thead tr:not(:first-child) {
-      display: none;
-    }
+  position: absolute;
+  bottom: .4rem;
+  right: .5em;
+  outline: none;
+  z-index: 9999;
+}
+    
+@media (min-width: 640px) {
+  table {
+    display: inline-table !important;
   }
 
-  
-  
+  thead tr:not(:first-child) {
+    display: none;
+  }
+}

@@ -3,13 +3,13 @@ import { useIntl } from 'react-intl';
 const AssortmentMediaForm = () => {
   const { formatMessage } = useIntl();
   return (
-    <div className=" mt-5 sm:max-w-full">
-      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
+    <div className="bg-white mt-5 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 shadow sm:rounded-t">
+      <div className="max-w-3xl mx-auto">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
-          </label>
-          <div className="mt-1 flex items-center">
+          </h3>
+          <div className="my-4 flex items-center">
             <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
               <svg
                 className="h-full w-full text-gray-300"

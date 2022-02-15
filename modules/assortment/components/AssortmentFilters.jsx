@@ -46,56 +46,49 @@ const AssortmentFilters = ({ assortmentId }) => {
   };
 
   return (
-    <div className=" mt-5 sm:max-w-full">
-      <div className="px-2 lg:px-6 shadow sm:rounded-t sm:px-15">
-        <div className=" rounded-md relative max-w-full lg:grid lg:grid-cols-3  pb-8">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                {formatMessage({
-                  id: 'add_assortment_filter',
-                  defaultMessage: 'Add Filters',
-                })}
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco
-              </p>
-            </div>
-          </div>
-          <div className="col-span-2 py-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white sm:px-8">
-            <AssortmentFiltersForm assortmentId={assortmentId} />
-          </div>
+    <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
+            {formatMessage({
+              id: 'add_assortment_filter',
+              defaultMessage: 'Add Filters',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco
+          </p>
         </div>
-
-        <div className="lg:grid lg:grid-cols-3 border-gray-200 space-y-2">
-          <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
-                {formatMessage({
-                  id: 'assigned_assortment_filters',
-                  defaultMessage: 'Assigned filters',
-                })}
-              </h3>
-              <p className="mt-1 text-sm text-gray-600">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco
-              </p>
-            </div>
-          </div>
-          <div className="space-y-4 col-span-2 w-full ml-auto shadow-md border-gray-200  bg-white py-6 px-6">
-            {loading ? (
-              <Loading />
-            ) : (
-              <AssortmentFiltersList
-                filters={assortmentFilters}
-                onRemoveFilter={onRemoveFilter}
-              />
-            )}
-          </div>
+      </div>
+      <div className="md:col-span-2">
+        <AssortmentFiltersForm assortmentId={assortmentId} />
+      </div>
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
+            {formatMessage({
+              id: 'assigned_assortment_filters',
+              defaultMessage: 'Assigned filters',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco
+          </p>
         </div>
+      </div>
+      <div className="md:col-span-2 w-full py-2 ml-auto shadow-md px-6">
+        {loading ? (
+          <Loading />
+        ) : (
+          <AssortmentFiltersList
+            filters={assortmentFilters}
+            onRemoveFilter={onRemoveFilter}
+          />
+        )}
       </div>
     </div>
   );

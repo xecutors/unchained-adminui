@@ -30,7 +30,7 @@ const TagInput = ({ tagList: tags, onChange }) => {
   }, [tagList]);
 
   return (
-    <div className="flow-root mt-6">
+    <div className="flow-root">
       {tagList.map((tag) => (
         <Badge
           key={tag}
