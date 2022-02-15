@@ -9,11 +9,11 @@ const Home = ({ shopInfo }) => {
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
-            className="mx-auto h-12 w-auto"
+            className="mx-auto h-24 w-auto"
             src="https://unchained.shop/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d34ce508.svg&w=256&q=75"
             alt="Workflow"
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-10 text-center text-2xl text-gray-700">
             {formatMessage({
               id: 'system_information',
               defaultMessage: 'System Information',
@@ -21,7 +21,7 @@ const Home = ({ shopInfo }) => {
           </h2>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md text-right">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <ul className="-my-5 divide-y divide-gray-200">
               <li className="py-4">
@@ -29,7 +29,7 @@ const Home = ({ shopInfo }) => {
                   <div className="flex-shrink-0">
                     {formatMessage({
                       id: 'engine_version',
-                      defaultMessage: 'Engine Version',
+                      defaultMessage: 'Engine version',
                     })}
                   </div>
                   <div className="flex-1 min-w-0">

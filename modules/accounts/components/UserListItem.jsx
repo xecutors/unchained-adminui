@@ -13,7 +13,7 @@ const UserListItem = ({ user }) => {
   return (
     <li>
       <Link href={`/users/${user._id}`}>
-        <a className="block hover:bg-gray-50">
+        <a className="block hover:bg-gray-50 border-b border-b-slate-200">
           <div className="flex items-center px-4 py-4 sm:px-6">
             <div className="min-w-0 flex-1 flex items-center">
               <div className="flex-shrink-0">
