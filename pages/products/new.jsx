@@ -27,7 +27,7 @@ const AddProduct = () => {
           defaultMessage: 'New product',
         })}
       />
-      <div className="mt-6  sm:max-w-2xl">
+      <div className="mt-6 sm:max-w-2xl">
         <FormHeader>
           <ProductForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
         </FormHeader>

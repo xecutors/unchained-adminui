@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 const ListHeader = ({ addPath, children }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="bg-white px-4 py-3 border-b border-gray-200 sm:px-6">
+    <div className="px-4 py-3 sm:px-6">
       <div className="-ml-2 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
         <div className="mt-2">
           <h3 className="text-xs leading-6 text-gray-900">{children}</h3>

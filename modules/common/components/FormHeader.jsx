@@ -1,8 +1,8 @@
 const FormHeader = ({ onDelete, children }) => {
   return (
-    <div className=" mt-5 sm:max-w-full">
-      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
-        <div className="  border-gray-50">
+    <div className="mt-5 sm:max-w-full">
+      <div className="bg-white shadow sm:rounded-t sm:px-15">
+        <div className="border-gray-50">
           <div className="mt-3 mr-1 flex items-center justify-between flex-wrap sm:flex-nowrap">
             <div />
             {onDelete && (
@@ -21,7 +21,6 @@ const FormHeader = ({ onDelete, children }) => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    {' '}
                     <polyline points="3 6 5 6 21 6" />{' '}
                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
                     <line x1="10" y1="11" x2="10" y2="17" />{' '}

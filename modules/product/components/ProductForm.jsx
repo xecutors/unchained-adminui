@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="mt-6 sm:max-w-full space-y-6 sm:space-y-5">
+      <div className="sm:max-w-full space-y-6 sm:space-y-5">
         <TextField
           name="title"
           id="name"
@@ -72,13 +72,15 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
         />
       </div>
 
-      <SubmitButton
-        label={formatMessage({
-          id: 'add_product',
-          defaultMessage: 'Add product',
-        })}
-        third
-      />
+      <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <SubmitButton
+          label={formatMessage({
+            id: 'add_product',
+            defaultMessage: 'Add product',
+          })}
+          third
+        />
+      </div>
     </Form>
   );
 };

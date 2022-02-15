@@ -38,9 +38,9 @@ const AllocateWorkForm = () => {
   return (
     <FormHeader>
       <Form form={form}>
-        <div className="max-w-4xl sm:mr-11 mr-8 mb-3 justify-between align-baseline">
+        <div className="px-4 max-w-4xl sm:mr-11 mr-8 mb-3 justify-between align-baseline">
           <div className="sm:py-3">
-            <div className="text-sm  font-medium text-gray-500">
+            <div className="text-sm font-medium text-gray-500">
               {formatMessage({
                 id: 'worker',
                 defaultMessage: 'Worker',
@@ -60,7 +60,7 @@ const AllocateWorkForm = () => {
               id: 'worker',
               defaultMessage: 'Worker',
             })}
-            className=" text-sm text-gray-900 sm:mt-0 max-w-full"
+            className="text-sm text-gray-900 sm:mt-0 max-w-full"
           />
         </div>
         <FieldArray name="types">

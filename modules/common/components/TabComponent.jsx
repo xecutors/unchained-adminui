@@ -47,7 +47,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 className={` ${
                   tab === option.id &&
                   'border-purple-500 text-purple-600 cursor-pointer'
-                }  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer`}
+                }  whitespace-nowrap py-4 px-1 border-transparent hover:border-b-slate-300 border-b-2 font-medium text-sm cursor-pointer`}
               >
                 <div className="flex space-x-1 items-center">
                   <div>{option.Icon}</div>

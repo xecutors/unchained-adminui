@@ -293,8 +293,6 @@ const WorkForm = () => {
               id: 'add_work',
               defaultMessage: 'Add Work',
             })}
-            className="py-6 h-9 "
-            full
           />
         </div>
       </Form>
