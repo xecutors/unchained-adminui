@@ -1,4 +1,5 @@
 import { VariableIcon } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
@@ -6,16 +7,29 @@ import FilterWrapper from '../../common/components/FilterWrapper';
 import MultipleSelect from '../../common/components/MultipleSelect';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED'];
+const extractQuery = (query) => {
+  return decodeURIComponent(query || [])
+    .split(',')
+    .filter(Boolean);
+};
 
-const WorkFilter = ({ workTypes = [], onFilter }) => {
-  const [selectedTypes, setSelectedTypes] = useState();
+const arrayToBooleanObject = (key, val) => ({ ...key, [val]: true });
+const WorkFilter = ({ workTypes = [] }) => {
+  const router = useRouter();
   const { formatMessage } = useIntl();
+
+  const [selectedTypes, setSelectedTypes] = useState(
+    extractQuery(router.query?.types),
+  );
 
   const [dateRange, setDateRange] = useState({
     start: new Date(0).getTime(),
-    end: null,
+    end: new Date().getTime(),
   });
-  const [selectedStatuses, setSelectedStatuses] = useState({});
+
+  const [selectedStatuses, setSelectedStatuses] = useState(
+    extractQuery(router.query?.status).reduce(arrayToBooleanObject, {}),
+  );
 
   const statusChangeHandler = (e) => {
     setSelectedStatuses({
@@ -24,14 +38,16 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
     });
   };
   const onApplyFilter = () => {
-    onFilter({
-      dateRange,
+    return {
+      ...dateRange,
       types: selectedTypes,
       status: Object.entries(selectedStatuses)
         .filter(([, isChecked]) => isChecked)
-        .map(([key]) => key),
-    });
+        .map(([key]) => key)
+        ?.filter(Boolean),
+    };
   };
+
   return (
     <FilterWrapper
       className="bg-white shadow my-2 p-6 "
@@ -136,7 +152,7 @@ const WorkFilter = ({ workTypes = [], onFilter }) => {
                 id={status}
                 name={status}
                 value={status}
-                checked={selectedStatuses[status]}
+                checked={selectedStatuses?.[status]}
                 onChange={statusChangeHandler}
               />
               <div className="mr-2">

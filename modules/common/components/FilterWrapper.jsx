@@ -1,15 +1,27 @@
 import { AdjustmentsIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 const FilterWrapper = ({ onApplyFilter, children, className }) => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
 
   const [showFilters, setShowFilters] = useState(false);
 
   const applyFilters = () => {
-    onApplyFilter();
+    const filters = onApplyFilter();
+
+    const output = Object.keys(filters)
+      .map((key) => {
+        const valueIsArray = Array.isArray(filters[key])
+          ? filters[key].join(',')
+          : filters[key];
+        return `${encodeURIComponent(key)}=${valueIsArray}`;
+      })
+      .join('&');
+    router.push(`${router.pathname}?${output}`);
     setShowFilters(false);
   };
 
