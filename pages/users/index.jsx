@@ -38,7 +38,7 @@ const Users = () => {
         })}
       />
       <SearchField onInputChange={setQueryString} />
-      <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
+      <div className="mt-5 shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div>
             <Toggle
@@ -50,14 +50,14 @@ const Users = () => {
             />
           </div>
 
-          <div className=" flex-shrink-0">
+          <div className="flex-shrink-0">
             <Link href="/users/new">
               <a
                 type="button"
-                className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <svg
-                  className="h-4 w-4"
+                  className="h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -69,6 +69,12 @@ const Users = () => {
                     clipRule="evenodd"
                   />
                 </svg>
+                <span className="ml-2">
+                  {formatMessage({
+                    id: 'add',
+                    defaultMessage: 'Add',
+                  })}
+                </span>
               </a>
             </Link>
           </div>

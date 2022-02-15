@@ -15,12 +15,12 @@ const AssortmentSearchFilter = ({ onFilter }) => {
       className="bg-white shadow my-2 p-6"
       onApplyFilter={onApplyFilter}
     >
-      <div className="lg:flex">
-        <div className="flex-1 ml-2 mt-2">
+      <div className="grid grid-cols-6 gap-6 mb-5">
+        <div className="col-span-6 sm:col-span-3">
           <SearchField onInputChange={onSearch} />
         </div>
 
-        <div className="flex-1 ml-2">
+        <div className="col-span-6 sm:col-span-3">
           <TagInput
             onChange={async (value) => {
               await { tags: value };

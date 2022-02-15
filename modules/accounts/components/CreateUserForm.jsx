@@ -42,8 +42,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   return (
     <>
       <Form form={form}>
-        <div className="px-4 py-5 shadow overflow-hidden border-b border-gray-200  bg-white space-y-4 rounded-md">
-          <div className=" flex justify-between">
+        <div className="px-4 py-5 shadow overflow-hidden border-b border-gray-200 bg-white space-y-4 rounded-md">
+          <div className="flex justify-between">
             <div className="space-y-1">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({

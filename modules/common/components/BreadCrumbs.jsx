@@ -53,7 +53,7 @@ const BreadCrumbs = ({ routeName }) => {
                 </svg>
               )}
               <Link href={data.path}>
-                <a className="text-sm font-medium text-gray-500 hover:text-gray-700">
+                <a className="capitalize text-sm font-medium text-gray-500 hover:text-gray-700">
                   {data.name}
                 </a>
               </Link>

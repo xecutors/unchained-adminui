@@ -31,20 +31,22 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'products_list_header',
-          defaultMessage: 'Products',
-        })}
-      />
-      <ProductFilter
-        onFilter={({ queryString, tags }) => {
-          setFilter({
-            tags,
-            queryString,
-          });
-        }}
-      />
+      <div className="flex align-center justify-between w-full">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'products_list_header',
+            defaultMessage: 'Products',
+          })}
+        />
+        <ProductFilter
+          onFilter={({ queryString, tags }) => {
+            setFilter({
+              tags,
+              queryString,
+            });
+          }}
+        />
+      </div>
       <div className=" min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
         <ListHeader addPath="/products/new">
           <Toggle
