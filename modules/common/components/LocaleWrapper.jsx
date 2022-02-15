@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TranslateIcon } from '@heroicons/react/outline';
+
 import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';

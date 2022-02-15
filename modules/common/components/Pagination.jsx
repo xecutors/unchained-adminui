@@ -260,12 +260,14 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                 </select>
               </div>
             </div>
-            <a
-              href="#"
+            <button
+              type="button"
+              disabled={offset + limit >= total}
+              onClick={() => changeOffset(offset + limit)}
               className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
             >
               {formatMessage({ id: 'next', defaultMessage: 'Next' })}{' '}
-            </a>
+            </button>
           </div>
         </>
       )}
