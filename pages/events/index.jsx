@@ -35,7 +35,7 @@ const Events = () => {
         })}
       />
 
-      <div className="min-w-full sm:shadow-lg shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full overflow-hidden">
         <div className="mb-5">
           <SearchField onInputChange={setQueryString} />
         </div>

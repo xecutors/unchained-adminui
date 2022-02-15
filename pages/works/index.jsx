@@ -44,7 +44,7 @@ const index = () => {
         })}
       />
       <WorkFilter workTypes={activeWorkTypes} />
-      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full overflow-hidden">
         <ListHeader addPath="/works/management" />
 
         {loading ? <Loading /> : <WorkList workQueue={workQueue} />}

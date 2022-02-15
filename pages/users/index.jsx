@@ -29,7 +29,7 @@ const Users = () => {
   });
 
   return (
-    <>
+    <div className="mb-10">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -38,7 +38,7 @@ const Users = () => {
         })}
       />
       <SearchField onInputChange={setQueryString} />
-      <div className="mt-5 shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
+      <div className="mt-5 overflow-hidden px-4 py-2 sm:px-6">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div>
             <Toggle
@@ -54,7 +54,7 @@ const Users = () => {
             <Link href="/users/new">
               <a
                 type="button"
-                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <svg
                   className="h-5 w-5"
@@ -80,10 +80,11 @@ const Users = () => {
           </div>
         </div>
       </div>
-
-      {loading ? <Loading /> : <UserList users={users} />}
+      <div className="shadow my-3">
+        {loading ? <Loading /> : <UserList users={users} />}
+      </div>
       <Pagination data={users} total={usersCount} />
-    </>
+    </div>
   );
 };
 

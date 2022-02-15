@@ -39,7 +39,7 @@ const Orders = () => {
         })}
       />
       <SearchField onInputChange={setQueryString} />
-      <div className="mt-5 inline-block min-w-full sm:shadow-lg shadow overflow-hidden border-b border-gray-200  ">
+      <div className="mt-5 inline-block min-w-full overflow-hidden">
         <ListHeader>
           <Toggle
             toggleText={formatMessage({

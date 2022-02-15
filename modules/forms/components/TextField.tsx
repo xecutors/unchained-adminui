@@ -27,7 +27,7 @@ const TextField = ({
           'shadow-sm appearance-none mt-1 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
           props.className,
           {
-            'border-red-600': !!field.error,
+            'border-red-300': !!field.error,
           },
         )}
         disabled={field.disabled}

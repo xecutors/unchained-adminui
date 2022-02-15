@@ -48,7 +48,7 @@ const index = () => {
           });
         }}
       />
-      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full overflow-hidden">
         <ListHeader addPath="/assortments/new">
           <Toggle
             toggleKey="includeInactive"

@@ -128,7 +128,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
   }, []);
 
   return (
-    <div className="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-">
+    <div className="px-4 py-3 flex items-center justify-between">
       {!total && data?.length && onLoadMore ? (
         <Button
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}

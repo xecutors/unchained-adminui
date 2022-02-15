@@ -32,7 +32,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="space-y-6 sm:space-y-5">
+      <div className="m-5">
         <TextField
           name="title"
           id="title"
@@ -46,7 +46,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Title',
           })}
           required
-          className="text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mb-5 text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         <TextField
@@ -62,11 +62,11 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Key',
           })}
           required
-          className="text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mb-5 text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         <SelectField
-          className="w-full mt-0"
+          className="shadow-sm w-full mb-5"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           hideLabel
@@ -98,7 +98,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                         defaultMessage: 'Option',
                       })}
                       hideLabel
-                      className="w-full"
+                      className="w-full shadow-sm"
                     />
                     <div className="flex-shrink-0 ml-2 sm:mt-4 mt-5">
                       <button
@@ -127,17 +127,16 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                 );
               })}
               <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                <div className=" " />
                 <div className=" mt-2 flex-shrink-0">
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       variant="outlined"
                       onClick={() => push('')}
                     >
                       <svg
-                        className="h-4 w-4"
+                        className="h-5 w-5"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -149,6 +148,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                           clipRule="evenodd"
                         />
                       </svg>
+                      <span className="ml-2">Add Option</span>
                     </button>
                   </div>
                 </div>
@@ -157,13 +157,14 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
           )}
         </FieldArray>
       </div>
-
-      <SubmitButton
-        label={formatMessage({
-          id: 'create_filter',
-          defaultMessage: 'Create Filter',
-        })}
-      />
+      <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <SubmitButton
+          label={formatMessage({
+            id: 'create_filter',
+            defaultMessage: 'Create Filter',
+          })}
+        />
+      </div>
     </Form>
   );
 };

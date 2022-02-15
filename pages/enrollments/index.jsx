@@ -29,7 +29,7 @@ const index = () => {
           defaultMessage: 'Enrollments',
         })}
       />
-      <div className="inline-block min-w-full sm:shadow-lg shadow overflow-hidden border-b border-gray-200 mb-5">
+      <div className="min-w-full overflow-hidden">
         <ListHeader />
 
         {loading ? (

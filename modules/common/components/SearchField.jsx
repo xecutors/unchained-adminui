@@ -29,7 +29,7 @@ const SearchField = ({ inputText, onInputChange }) => {
             onChange={(e) => onInputChange(e.target.value)}
             id="search"
             name="search"
-            className="block w-full bg-white border border-gray-300 text-sm rounded-md py-2 pl-10 pr-3 "
+            className="block max-w-lg w-full bg-white border border-gray-300 text-sm rounded-md py-2 pl-10 pr-3 "
             placeholder="Search"
             type="search"
           />

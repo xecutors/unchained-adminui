@@ -70,7 +70,7 @@ const Country = () => {
           defaultMessage: 'Countries',
         })}
       />
-      <div className="min-w-full  sm:shadow-lg   shadow overflow-hidden border-b border-gray-200  ">
+      <div className="min-w-full overflow-hidden">
         <ListHeader addPath="/country/new">
           <Toggle
             toggleText={formatMessage({

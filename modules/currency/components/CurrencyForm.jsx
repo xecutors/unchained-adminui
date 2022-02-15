@@ -35,7 +35,7 @@ const CurrencyForm = ({
   });
   return (
     <Form form={form}>
-      <div className=" space-y-6 sm:space-y-5">
+      <div className="px-5 py-2">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -45,7 +45,7 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           required
-          className="block mt-3 max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="block mt-3 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         {isEdit && (
@@ -63,20 +63,21 @@ const CurrencyForm = ({
         )}
       </div>
 
-      <SubmitButton
-        label={
-          isEdit
-            ? formatMessage({
-                id: 'update_currency',
-                defaultMessage: 'Update Currency',
-              })
-            : formatMessage({
-                id: 'add_currency',
-                defaultMessage: 'Add Currency',
-              })
-        }
-        third
-      />
+      <div className="mt-5 px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <SubmitButton
+          label={
+            isEdit
+              ? formatMessage({
+                  id: 'update_currency',
+                  defaultMessage: 'Update Currency',
+                })
+              : formatMessage({
+                  id: 'add_currency',
+                  defaultMessage: 'Add Currency',
+                })
+          }
+        />
+      </div>
     </Form>
   );
 };

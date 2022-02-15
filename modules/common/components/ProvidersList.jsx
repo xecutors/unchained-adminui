@@ -15,7 +15,7 @@ const ProviderList = ({
 
   return (
     <>
-      <div className="shadow overflow-hidden border-b border-gray-200 bg-white px-4 py-2 sm:px-6">
+      <div className="overflow-hidden px-4 py-2 sm:px-6">
         <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div className="ml-2 mt-2 w-100">
             <div className="relative flex items-start my-2">
@@ -55,10 +55,10 @@ const ProviderList = ({
             <Link href={`${providerPath}/new`}>
               <a
                 type="button"
-                className="rounded-full relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="rounded relative inline-flex items-center px-3 py-3 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <svg
-                  className="h-3 w-3"
+                  className="h-5 w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -70,6 +70,7 @@ const ProviderList = ({
                     clipRule="evenodd"
                   />
                 </svg>
+                <span className="ml-2">Add</span>
               </a>
             </Link>
           </div>

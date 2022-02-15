@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="sm:max-w-full space-y-6 sm:space-y-5">
+      <div className="sm:max-w-full p-4">
         <TextField
           name="title"
           id="name"
@@ -52,7 +52,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
           className="text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
-        <div className="flex items-center h-5">
+        <div className="flex items-center my-5">
           <SelectField
             className="w-full mt-0"
             label={formatMessage({ id: 'type', defaultMessage: 'Type' })}

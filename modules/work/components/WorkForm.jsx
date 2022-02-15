@@ -60,9 +60,9 @@ const WorkForm = () => {
     <FormHeader>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
+          <div className="sm:flex max-w-4xl justify-between align-baseline">
             <div className="py-3">
-              <div className="text-sm  font-medium text-gray-500">
+              <div className="text-sm font-medium text-gray-500">
                 {formatMessage({ id: 'type', defaultMessage: 'Type' })}
               </div>
             </div>

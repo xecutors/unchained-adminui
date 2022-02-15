@@ -18,7 +18,7 @@ const Profile = () => {
           defaultMessage: 'Account',
         })}
       />
-      <div className="py-4 space-y-6 sm:p-6 rounded-md relative max-w-7xl">
+      <div className="max-w-7xl">
         <ProfileView {...currentUser} />
         <div className="py-5 shadow overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
           <ChangePassword />
