@@ -61,7 +61,8 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
               options={{}}
               className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
             />
-
+          </div>
+          <div className="col-span-12">
             <SelectField
               name="filterId"
               required
