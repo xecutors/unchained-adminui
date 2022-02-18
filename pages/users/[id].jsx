@@ -1,5 +1,14 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import {
+  UserIcon,
+  LockClosedIcon,
+  ShoppingCartIcon,
+  CashIcon,
+  CreditCardIcon,
+  ClipboardListIcon,
+} from '@heroicons/react/solid';
+
 import AccountView from '../../modules/accounts/components/AccountView';
 import PaymentCredentialsView from '../../modules/accounts/components/PaymentCredentialsView';
 import ProfileView from '../../modules/accounts/components/ProfileView';
@@ -35,14 +44,17 @@ const UserProfile = () => {
     {
       id: 'profile',
       title: formatMessage({ id: 'profile', defaultMessage: 'Profile' }),
+      Icon: <UserIcon className="h-4 w-5" />,
     },
     {
       id: 'account',
       title: formatMessage({ id: 'account', defaultMessage: 'Account' }),
+      Icon: <LockClosedIcon className="h-4 w-5" />,
     },
     {
       id: 'orders',
       title: formatMessage({ id: 'orders', defaultMessage: 'Orders' }),
+      Icon: <ShoppingCartIcon className="h-4 w-5" />,
     },
     {
       id: 'quotations',
@@ -50,6 +62,7 @@ const UserProfile = () => {
         id: 'quotations',
         defaultMessage: 'Quotations',
       }),
+      Icon: <CashIcon className="h-4 w-5" />,
     },
     {
       id: 'enrollments',
@@ -57,6 +70,7 @@ const UserProfile = () => {
         id: 'enrollments',
         defaultMessage: 'Enrollments',
       }),
+      Icon: <ClipboardListIcon className="h-4 w-5" />,
     },
     {
       id: 'payment_credentials',
@@ -64,6 +78,7 @@ const UserProfile = () => {
         id: 'payment_credentials',
         defaultMessage: 'Payment credentials',
       }),
+      Icon: <CreditCardIcon className="h-4 w-5" />,
     },
   ];
 
