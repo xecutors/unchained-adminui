@@ -16,7 +16,6 @@ const WorkDetailPage = () => {
   return (
     <>
       <div className="mt-6 max-w-full">
-        {console.log(work)}
         <BreadCrumbs />
         <PageHeader
           headerText={formatMessage({
