@@ -17,7 +17,6 @@ const ProductBriefFragment = gql`
       vendor
       brand
       labels
-      categories
     }
     media {
       _id
