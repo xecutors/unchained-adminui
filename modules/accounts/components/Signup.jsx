@@ -47,8 +47,8 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
           <div>
             <img
               className="mx-auto h-12 w-auto"
-              src="https://publicare.ch/static/img/publicare-logo.png"
-              alt="Publicare Logo"
+              src="/logo.svg"
+              alt="Unchained Logo"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               {formatMessage({

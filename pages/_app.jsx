@@ -16,7 +16,7 @@ import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
-const isReportUI = !parseInt(process.env.NEXT_PUBLIC_SHOW_CONTROL_PANEL, 10);
+const isReportUI = false;
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();

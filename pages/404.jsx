@@ -10,15 +10,11 @@ const NotFound = () => {
           <a href="/" className="inline-flex">
             <span className="sr-only">
               {formatMessage({
-                id: 'publicare',
-                defaultMessage: 'Publicare',
+                id: 'unchained',
+                defaultMessage: 'Unchained Admin UI',
               })}{' '}
             </span>
-            <img
-              className="h-12 w-auto"
-              src="https://publicare.ch/static/img/publicare-logo.png"
-              alt="Publicare"
-            />
+            <img className="h-12 w-auto" src="/logo.svg" alt="Unchained Logo" />
           </a>
         </div>
         <div className="py-16">
