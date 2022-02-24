@@ -19,7 +19,9 @@ const WorkDetailPage = () => {
 
   const { setModal } = useModal();
   const { removeWork } = useRemoveWork();
-
+  const isDeletable = (status) => {
+    return status === 'NEW' || status === 'ALLOCATED';
+  };
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
@@ -62,8 +64,9 @@ const WorkDetailPage = () => {
               defaultMessage: 'Work Detail',
             })}
           />
-          {work?.status !== 'DELETED' ? (
+          {isDeletable(work?.status) ? (
             <button
+              type="button"
               onClick={handleOnClick}
               className="felx justify-center items-center bg-red-400 text-white my-auto h-full rounded items-center px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
             >
@@ -88,7 +91,9 @@ const WorkDetailPage = () => {
                 defaultMessage: 'Delete',
               })}
             </button>
-          ) : null}
+          ) : (
+            ''
+          )}
         </div>
         {loading ? <Loading /> : <WorkDetail work={work} />}
       </div>

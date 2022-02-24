@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import FilterWrapper from '../../common/components/FilterWrapper';
 import MultipleSelect from '../../common/components/MultipleSelect';
 
-const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED'];
+const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 const extractQuery = (query) => {
   return decodeURIComponent(query || [])
     .split(',')
@@ -143,7 +143,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         <p className=" mt-0 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:pr-5 mt-3 m-1 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5 mt-3 m-1 ">
           {WORK_STATUSES.map((status) => (
             <div className="flex justify-start m-2">
               <input
