@@ -8,11 +8,7 @@ const Home = ({ shopInfo }) => {
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img
-            className="mx-auto h-24 w-auto"
-            src="https://unchained.shop/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d34ce508.svg&w=256&q=75"
-            alt="Workflow"
-          />
+          <img className="mx-auto h-24 w-auto" src="/logo.svg" alt="Workflow" />
           <h2 className="mt-10 text-center text-2xl text-gray-700">
             {formatMessage({
               id: 'system_information',
