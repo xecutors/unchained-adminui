@@ -3,32 +3,40 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
 import Badge from '../../common/components/Badge';
+import formatDateTime from '../../common/utils/formatDateTime';
 
 const ReactJson = loadable(() => import('react-json-view'));
 
 const WorkDetail = ({ work }) => {
-  const { formatMessage, formatDate } = useIntl();
+  const { formatMessage } = useIntl();
 
   const options = {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
   };
 
   const shadowStyle = {
-    NEW: '#60a5fa',
-    ALLOCATED: '#B2B6F7',
-    SUCCESS: '#4ade80',
-    FAILED: '#f87171',
-    DELETED: '#facc15',
+    NEW: 'shadow-[inset_-5px_5px_5px_0px_#60a5fa,inset_5px_-5px_5px_0px_#60a5fa]',
+    ALLOCATED:
+      'shadow-[inset_-5px_5px_5px_0px_#facc15,inset_5px_-5px_5px_0px_#facc15]',
+    SUCCESS:
+      'shadow-[inset_-5px_5px_5px_0px_#4ade80,inset_5px_-5px_5px_0px_#4ade80]',
+    FAILED:
+      'shadow-[inset_-5px_5px_5px_0px_#f87171,inset_5px_-5px_5px_0px_#f87171]',
+    DELETED:
+      'shadow-[inset_-5px_5px_5px_0px_#f87171,inset_5px_-5px_5px_0px_#f87171]',
   };
 
   const typeStyle = {
     NEW: 'bg-slate-400',
-    ALLOCATED: 'bg-blue-400',
+    ALLOCATED: 'bg-yellow-400',
     SUCCESS: 'bg-green-400',
     FAILED: 'bg-red-400',
-    DELETED: 'bg-yellow-400',
+    DELETED: 'bg-red-400',
   };
 
   return (
@@ -36,16 +44,16 @@ const WorkDetail = ({ work }) => {
       <div className="w-full border-t border-gray-300" />
 
       <div
-        className={`my-4 p-2 sm:p-6 lg:p-8 flex justify-center items-center shadow-[inset_-5px_5px_5px_0px_${
+        className={`my-4 p-2 sm:p-6 lg:p-8 flex justify-center items-center ${
           shadowStyle[work?.status]
-        },inset_5px_-5px_5px_0px_${shadowStyle[work?.status]}]`}
+        }`}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-5 sm:grid-rows-3 gap-8 w-full">
           <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
             <div className="flex flex-wrap justify-between items-center mb-2">
               <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
                 {formatMessage({
-                  id: 'work_typel',
+                  id: 'work_type',
                   defaultMessage: 'Work Type',
                 })}
               </div>
@@ -107,6 +115,8 @@ const WorkDetail = ({ work }) => {
                     id: 'worker',
                     defaultMessage: `${work?.worker}`,
                   })}
+                  color="purple"
+                  className="bg-purple-200 font-bold"
                 />
               </div>
             </div>
@@ -117,56 +127,12 @@ const WorkDetail = ({ work }) => {
               <div className="sm:col-span-1 mb-2">
                 <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
                   {formatMessage({
-                    id: 'work_started',
-                    defaultMessage: 'Started',
-                  })}
-                </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.started, options)}
-                </div>
-              </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
-                  {formatMessage({
-                    id: 'work_finished',
-                    defaultMessage: 'Finished',
-                  })}
-                </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.finished, options)}
-                </div>
-              </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
-                  {formatMessage({
                     id: 'work_created',
                     defaultMessage: 'Created',
                   })}
                 </div>
                 <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.created, options)}
-                </div>
-              </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
-                  {formatMessage({
-                    id: 'work_updated',
-                    defaultMessage: 'Updated',
-                  })}
-                </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.updated, options)}
-                </div>
-              </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
-                  {formatMessage({
-                    id: 'work_deleted',
-                    defaultMessage: 'Deleted',
-                  })}
-                </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.deleted, options)}
+                  {formatDateTime(work?.created, options)}
                 </div>
               </div>
               <div className="sm:col-span-1 mb-2">
@@ -177,7 +143,51 @@ const WorkDetail = ({ work }) => {
                   })}
                 </div>
                 <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
-                  {formatDate(work?.scheduled, options)}
+                  {formatDateTime(work?.scheduled, options)}
+                </div>
+              </div>
+              <div className="sm:col-span-1 mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+                  {formatMessage({
+                    id: 'work_started',
+                    defaultMessage: 'Started',
+                  })}
+                </div>
+                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                  {formatDateTime(work?.started, options)}
+                </div>
+              </div>
+              <div className="sm:col-span-1 mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+                  {formatMessage({
+                    id: 'work_finished',
+                    defaultMessage: 'Finished',
+                  })}
+                </div>
+                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                  {formatDateTime(work?.finished, options)}
+                </div>
+              </div>
+              <div className="sm:col-span-1 mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+                  {formatMessage({
+                    id: 'work_updated',
+                    defaultMessage: 'Updated',
+                  })}
+                </div>
+                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                  {formatDateTime(work?.updated, options)}
+                </div>
+              </div>
+              <div className="sm:col-span-1 mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+                  {formatMessage({
+                    id: 'work_deleted',
+                    defaultMessage: 'Deleted',
+                  })}
+                </div>
+                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                  {formatDateTime(work?.deleted, options)}
                 </div>
               </div>
             </div>
