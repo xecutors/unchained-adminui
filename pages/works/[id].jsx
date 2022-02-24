@@ -40,7 +40,7 @@ const WorkDetailPage = () => {
                 defaultMessage: 'work {id} deleted successfully',
               },
               {
-                id: workId,
+                id,
               },
             ),
           );
