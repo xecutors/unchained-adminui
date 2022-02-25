@@ -4,6 +4,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import useOrder from '../../modules/order/hooks/useOrder';
+import OrderDetail from '../../modules/order/components/OrderDetail';
 
 const OrderDetailPage = () => {
   const { formatMessage } = useIntl();
@@ -20,7 +21,7 @@ const OrderDetailPage = () => {
           defaultMessage: 'Order Detail',
         })}
       />
-      {loading ? <Loading /> : <h2>check console :)</h2>}
+      {loading ? <Loading /> : <OrderDetail order={order} />}
     </div>
   );
 };
