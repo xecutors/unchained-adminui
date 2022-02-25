@@ -68,7 +68,7 @@ const WorkDetailPage = () => {
             <button
               type="button"
               onClick={handleOnClick}
-              className="felx justify-center items-center bg-red-400 text-white my-auto h-full rounded items-center px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+              className="felx justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
             >
               <span className="pr-1">
                 <svg
