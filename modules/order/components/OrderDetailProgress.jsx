@@ -3,26 +3,26 @@ import { CheckIcon } from '@heroicons/react/solid';
 
 import formatDateTime from '../../common/utils/formatDateTime';
 
-const timeline = [
+const progress = [
   {
     id: 1,
     content: 'Open',
-    datetime: '2020-09-20',
+    datetime: 'created',
   },
   {
     id: 2,
     content: 'Pending',
-    datetime: '2020-09-22',
+    datetime: 'ordered',
   },
   {
     id: 3,
     content: 'Confirmed',
-    datetime: '2020-09-28',
+    datetime: 'confirmed',
   },
   {
     id: 4,
     content: 'Fullfilled',
-    datetime: '2020-09-30',
+    datetime: 'fullfilled',
   },
 ];
 
@@ -44,26 +44,35 @@ const OrderDetailProgress = ({ order }) => {
     <>
       <div className="sm:hidden mt-1">
         <ul role="list" className="-mb-8 grid grid-cols-4">
-          {timeline.map((event, eventIdx) => (
+          {progress.map((event, eventIdx) => (
             <li key={event.id}>
               <div className="relative pb-8">
-                {eventIdx !== timeline.length - 1 ? (
+                {eventIdx !== progress.length - 1 ? (
                   <span
                     className="absolute top-4 left-4 -ml-px h-0.5 w-full bg-gray-200"
                     aria-hidden="true"
                   />
                 ) : null}
-                <div className="relative flex flex-col justify-start space-x-3">
-                  <span className="bg-blue-500 h-8 w-8 rounded-full flex items-center justify-center">
-                    <CheckIcon
+                <div className="relative flex flex-col justify-start space-y-3">
+                  <span className="bg-slate-100 h-8 w-8 rounded-full flex items-center justify-center">
+                    {/* <CheckIcon
                       className="h-5 w-5 text-white"
                       aria-hidden="true"
-                    />
+                    /> */}
                   </span>
-                  <div className="min-w-0 flex-1 pt-1.5 flex flex-col items-center space-x-4">
-                    <div className="text-sm text-gray-500">{order.status}</div>
-                    <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                      {event.datetime}
+                  <div className="min-w-0 flex-1 pt-1.5 flex flex-col justify-center items-start space-y-1">
+                    <div className="text-sm text-gray-500">
+                      {formatMessage({
+                        id: `order_${event.content.toLowerCase()}`,
+                        defaultMessage: `${event.content}`,
+                      })}
+                    </div>
+                    <div className="text-sm whitespace-nowrap text-gray-500">
+                      {formatDateTime(order[event.datetime], {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
                     </div>
                   </div>
                 </div>
@@ -84,7 +93,7 @@ const OrderDetailProgress = ({ order }) => {
           <time>
             {formatDateTime(order.fullfilled, {
               year: 'numeric',
-              month: 'long',
+              month: 'short',
               day: 'numeric',
             })}
           </time>

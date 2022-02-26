@@ -10,7 +10,7 @@ module.exports = {
     localeDetection: false,
   },
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'engine.dev.publicare.ch'],
     deviceSizes: [320, 480, 820, 1200, 1600],
     imageSizes: [32, 48, 96, 256],
   },

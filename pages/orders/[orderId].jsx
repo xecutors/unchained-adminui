@@ -11,7 +11,7 @@ const OrderDetailPage = () => {
   const { query } = useRouter();
   const { orderId } = query;
   const { order, loading } = useOrder({ orderId });
-  console.log(order);
+  // console.log(order);
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs />
