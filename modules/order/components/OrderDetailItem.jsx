@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const OrderDetailItem = ({ item }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage } = useIntl();160
 
   const src = `${item.originalProduct.media[0].file.url}`;
 
@@ -19,7 +19,7 @@ const OrderDetailItem = ({ item }) => {
           <div className="bg-white border border-gray-200 shadow-sm rounded-lg">
             <div className="py-6 px-4 sm:px-6 lg:p-8">
               <div className="flex flex-wrap">
-                <div className="flex-shrink-0 w-full rounded-lg overflow-hidden sm:w-40 sm:h-40">
+                <div className="flex-shrink-0 w-auto rounded-lg overflow-hidden sm:w-40 sm:h-40">
                   <Image
                     loader={() => src}
                     src={src}
@@ -33,7 +33,7 @@ const OrderDetailItem = ({ item }) => {
                   />
                 </div>
 
-                <div className="mt-6 sm:mt-0 sm:ml-6">
+                <div className="mt-6 sm:mt-0 sm:ml-6 sm:flex-auto">
                   <h3 className="text-base font-medium text-gray-900">
                     <Link href={`/products/${item.originalProduct.texts}`}>
                       <a className="text-blue-600">
