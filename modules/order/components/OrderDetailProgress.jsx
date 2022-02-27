@@ -4,11 +4,11 @@ import { CheckIcon } from '@heroicons/react/solid';
 import formatDateTime from '../../common/utils/formatDateTime';
 
 const progress = [
-  {
-    id: 1,
-    content: 'Open',
-    datetime: 'created',
-  },
+  // {
+  //   id: 1,
+  //   content: 'Open',
+  //   datetime: 'created',
+  // },
   {
     id: 2,
     content: 'Pending',
@@ -42,47 +42,7 @@ const OrderDetailProgress = ({ order }) => {
 
   return (
     <>
-      <div className="sm:hidden mt-1">
-        <ul role="list" className="-mb-8 grid grid-cols-4">
-          {progress.map((event, eventIdx) => (
-            <li key={event.id}>
-              <div className="relative pb-8">
-                {eventIdx !== progress.length - 1 ? (
-                  <span
-                    className="absolute top-4 left-4 -ml-px h-0.5 w-full bg-gray-200"
-                    aria-hidden="true"
-                  />
-                ) : null}
-                <div className="relative flex flex-col justify-start space-y-3">
-                  <span className="bg-slate-100 h-8 w-8 rounded-full flex items-center justify-center">
-                    {/* <CheckIcon
-                      className="h-5 w-5 text-white"
-                      aria-hidden="true"
-                    /> */}
-                  </span>
-                  <div className="min-w-0 flex-1 pt-1.5 flex flex-col justify-center items-start space-y-1">
-                    <div className="text-sm text-gray-500">
-                      {formatMessage({
-                        id: `order_${event.content.toLowerCase()}`,
-                        defaultMessage: `${event.content}`,
-                      })}
-                    </div>
-                    <div className="text-sm whitespace-nowrap text-gray-500">
-                      {formatDateTime(order[event.datetime], {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="hidden sm:block border-t border-gray-200 py-2 px-2 sm:px-2 lg:p-2">
+      <div className="border-t border-gray-200 py-2 px-2 sm:px-2 lg:p-2">
         <h4 className="sr-only">Status</h4>
         <p className="text-sm font-medium text-gray-900">
           {/* {product.status} on <time dateTime={product.datetime}>{product.date}</time> */}
@@ -114,7 +74,7 @@ const OrderDetailProgress = ({ order }) => {
                 id: 'order_open',
                 defaultMessage: 'Open',
               })}
-            </div>
+            </div> 
             <div
               className={classNames(
                 step[order.status] > 0 ? 'text-indigo-600' : '',
