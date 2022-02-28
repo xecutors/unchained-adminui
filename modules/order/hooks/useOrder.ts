@@ -15,6 +15,42 @@ export const OrderQuery = gql`
           url
         }
       }
+      payment {
+        _id
+        provider {
+          _id
+          type
+          interface {
+            _id
+            label
+            version
+          }
+        }
+        status
+        fee {
+          _id
+          currency
+          amount
+        }
+        paid
+      }
+      delivery {
+        _id
+        status
+        provider {
+          _id
+          type
+          interface {
+            _id
+            label
+            version
+          }
+        }
+        wrapping
+        deliveryType
+        deliveryDate
+      }
+
       orderNumber
       status
       created

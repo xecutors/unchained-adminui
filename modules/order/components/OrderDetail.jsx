@@ -10,6 +10,7 @@ import {
 import formatDateTime from '../../common/utils/formatDateTime';
 import OrderDetailItem from './OrderDetailItem';
 import OrderDetailProgress from './OrderDetailProgress';
+import Badge from '../../common/components/Badge';
 
 const FallbackAvatar = ({ username, name }) => {
   return (
@@ -108,9 +109,20 @@ const OrderDetail = ({ order }) => {
       </div>
 
       <div className="text-sm border-b border-gray-200 mt-2 pb-2 sm:flex sm:justify-between">
-        <dl className="flex">
-          <dt className="text-gray-500">Order &num; &nbsp;</dt>
-          <dd className="font-bold text-gray-900">{order.orderNumber}</dd>
+        <dl className="flex items-center">
+          <dt className="text-gray-500">
+            {formatMessage({
+              id: 'order',
+              defaultMessage: 'Order',
+            })}
+            &#35; &nbsp;
+          </dt>
+          <dd className="font-bold text-xl text-gray-900">
+            <Badge
+              text={order.orderNumber || `In the cart`}
+              className={'p-1 bg-blue-600'}
+            />
+          </dd>  
           <dt>
             <span className="sr-only">Date</span>
             <span className="text-gray-400 mx-2" aria-hidden="true">
@@ -119,19 +131,21 @@ const OrderDetail = ({ order }) => {
           </dt>
           <dd className="font-medium text-gray-900">
             <time dateTime="2021-03-22">
-              {formatDateTime(order.ordered, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
+              {order.ordered
+                ? formatDateTime(order.ordered, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })
+                : ``}
+            </time> 
           </dd>
         </dl>
       </div>
 
       <OrderDetailProgress order={order} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
         {order.items.map((item, index) => {
           return <OrderDetailItem key={index} item={item} />;
         })}
@@ -179,25 +193,10 @@ const OrderDetail = ({ order }) => {
               <dt className="font-medium text-gray-900">Payment information</dt>
               <div className="mt-3">
                 <dd className="-ml-4 -mt-4 flex flex-wrap">
-                  <div className="ml-4 mt-4 flex-shrink-0">
-                    <svg
-                      aria-hidden="true"
-                      width={36}
-                      height={24}
-                      viewBox="0 0 36 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-auto"
-                    >
-                      <rect width={36} height={24} rx={4} fill="#224DBA" />
-                      <path
-                        d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z"
-                        fill="#fff"
-                      />
-                    </svg>
-                    <p className="sr-only">Visa</p>
-                  </div>
                   <div className="ml-4 mt-4">
-                    <p className="text-gray-900">Ending with 4242</p>
+                    <p className="text-gray-900">
+                      <Badge text={order.payment.provider.interface.label} />
+                    </p>
                     <p className="text-gray-600">Expires 02 / 24</p>
                   </div>
                 </dd>

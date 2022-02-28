@@ -1,112 +1,247 @@
 import { useIntl } from 'react-intl';
-import { CheckIcon } from '@heroicons/react/solid';
+import { CheckIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid';
 
-import formatDateTime from '../../common/utils/formatDateTime';
-
-const progress = [
-  // {
-  //   id: 1,
-  //   content: 'Open',
-  //   datetime: 'created',
-  // },
+const timeline = [
+  {
+    id: 1,
+    content: 'created',
+    status: 'OPEN',
+  },
   {
     id: 2,
-    content: 'Pending',
-    datetime: 'ordered',
+    content: 'ordered',
+    status: 'PENDING',
   },
   {
     id: 3,
-    content: 'Confirmed',
-    datetime: 'confirmed',
+    content: 'confirmed',
+    status: 'CONFIRMED',
   },
   {
     id: 4,
-    content: 'Fullfilled',
-    datetime: 'fullfilled',
+    content: 'fullfilled',
+    status: 'FULLFILLED',
   },
 ];
+
+import formatDateTime from '../../common/utils/formatDateTime';
 
 const OrderDetailProgress = ({ order }) => {
   const { formatMessage } = useIntl();
 
   const step = {
-    OPEN: 3,
-    PENDING: 2,
-    CONFIRMED: 1,
-    FULLFILLED: 0,
+    OPEN: { id: 1, datetime: 'created' },
+    PENDING: { id: 2, datetime: 'ordered' },
+    CONFIRMED: { id: 3, datetime: 'confirmed' },
+    FULLFILLED: { id: 4, datetime: 'fullfilled' },
   };
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
+  const datetime = step[order.status].datetime;
+  console.log(order[datetime]);
 
   return (
     <>
-      <div className="border-t border-gray-200 py-2 px-2 sm:px-2 lg:p-2">
+      <div className="flow-root sm:hidden">
+        <ul role="list" className="my-4">
+          {timeline.map((event, id) => (
+            <li key={event.id}>
+              <div className="relative pb-8">
+                {id !== timeline.length - 1 ? (
+                  <span
+                    className={classNames(
+                      step[order.status].id > event.id - 0
+                        ? 'bg-indigo-600'
+                        : 'bg-gray-200',
+                      'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
+                    )}
+                    aria-hidden="true"
+                  />
+                ) : null}
+                <div className="relative flex items-center space-x-3">
+                  <div>
+                    <span
+                      className={classNames(
+                        step[order.status].id > event.id - 1
+                          ? 'bg-indigo-600'
+                          : 'bg-gray-600',
+                        'h-5 w-5 rounded-full flex items-center justify-center',
+                      )}
+                    >
+                      {step[order.status].id > event.id - 1 ? (
+                        <CheckIcon
+                          className="h-5 w-5 text-white"
+                          aria-hidden="true"
+                        />
+                      ) : null}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1 flex justify-between space-x-4">
+                    <div>
+                      <p className="text-sm text-gray-500">
+                        <span className="font-medium text-gray-900 capitalize">
+                          {event.status}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                      {order[event.content]
+                        ? formatDateTime(order[event.content], {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          })
+                        : null}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="hidden sm:block border-t border-gray-200 py-2 px-2 sm:px-2 lg:p-2">
         <h4 className="sr-only">Status</h4>
         <p className="text-sm font-medium text-gray-900">
-          {/* {product.status} on <time dateTime={product.datetime}>{product.date}</time> */}
           <span className="text-sm font-medium text-gray-900 capitalize">
-            {order.status.toLowerCase()}
+            {formatMessage({
+              id: 'order',
+              defaultMessage: `${order.status.toLowerCase()}`,
+            })}
           </span>
           &nbsp;on&nbsp;
-          <time>
-            {formatDateTime(order.fullfilled, {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </time>
+          <span>
+            {order[datetime]
+              ? formatDateTime(order[datetime], {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })
+              : `In the cart`}
+          </span>
         </p>
         <div className="mt-2" aria-hidden="true">
           <div className="bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-2 bg-indigo-600 rounded-full"
               style={{
-                width: `calc((${step[order.status]} * 2 + 1) / 8 * 100%)`,
+                width: `calc((${step[order.status].id} * 2) / 8 * 100%)`,
               }}
             />
           </div>
 
           <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-2">
-            <div className="text-indigo-600">
-              {formatMessage({
-                id: 'order_open',
-                defaultMessage: 'Open',
-              })}
-            </div> 
+            {timeline.map((event, id) => (
+              <div
+                key={id}
+                className={classNames(
+                  step[order.status].id > event.id - 1 ? 'text-indigo-600' : '',
+                  'text-center',
+                )}
+              >
+                {console.log(order[event.content], event.content)}
+                <span className="capitalize">
+                  {formatMessage({
+                    id: 'order_open',
+                    defaultMessage: `${event.status.toLowerCase()}`,
+                  })}
+                </span>
+                <span className="block">
+                  {order[event.content]
+                    ? formatDateTime(order[event.content], {
+                        month: 'short',
+                        day: 'numeric',
+                      })
+                    : null}
+                </span>
+              </div>
+            ))}
             <div
               className={classNames(
-                step[order.status] > 0 ? 'text-indigo-600' : '',
+                step[order.status].id > 0 ? 'text-indigo-600' : '',
                 'text-center',
               )}
             >
-              {formatMessage({
-                id: 'order_pending',
-                defaultMessage: 'Pending',
-              })}
+              <span>
+                {formatMessage({
+                  id: 'order_open',
+                  defaultMessage: 'Open',
+                })}
+              </span>
+              <span className="block">
+                {order['created']
+                  ? formatDateTime(order['created'], {
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : null}
+              </span>
             </div>
             <div
               className={classNames(
-                step[order.status] > 1 ? 'text-indigo-600' : '',
+                step[order.status].id > 1 ? 'text-indigo-600' : '',
                 'text-center',
               )}
             >
-              {formatMessage({
-                id: 'order_confirmed',
-                defaultMessage: 'Confirmed',
-              })}
+              <span>
+                {formatMessage({
+                  id: 'order_pending',
+                  defaultMessage: 'Pending',
+                })}
+              </span>
+              <span className="block">
+                {order['pending']
+                  ? formatDateTime(order['pending'], {
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : null}
+              </span>
             </div>
             <div
               className={classNames(
-                step[order.status] > 2 ? 'text-indigo-600' : '',
-                'text-right',
+                step[order.status].id > 2 ? 'text-indigo-600' : '',
+                'text-center',
               )}
             >
-              {formatMessage({
-                id: 'order_fullfilled',
-                defaultMessage: 'Fullfilled',
-              })}
+              <span>
+                {formatMessage({
+                  id: 'order_confirmed',
+                  defaultMessage: 'Confirmed',
+                })}
+              </span>
+              <span className="block">
+                {order['confirmed']
+                  ? formatDateTime(order['confirmed'], {
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : null}
+              </span>
+            </div>
+            <div
+              className={classNames(
+                step[order.status].id > 3 ? 'text-indigo-600' : '',
+                'text-center',
+              )}
+            >
+              <span>
+                {formatMessage({
+                  id: 'order_fullfilled',
+                  defaultMessage: 'Fullfilled',
+                })}
+              </span>
+              <span className="block">
+                {order['fullfilled']
+                  ? formatDateTime(order['fullfilled'], {
+                      month: 'short',
+                      day: 'numeric',
+                    })
+                  : null}
+              </span>
             </div>
           </div>
         </div>
