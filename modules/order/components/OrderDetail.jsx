@@ -1,151 +1,23 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
-import {
-  CheckCircleIcon,
-  AtSymbolIcon,
-  XCircleIcon,
-  DeviceMobileIcon,
-} from '@heroicons/react/solid';
 
 import formatDateTime from '../../common/utils/formatDateTime';
 import OrderDetailItem from './OrderDetailItem';
 import OrderDetailProgress from './OrderDetailProgress';
+import LogList from './LogList';
+import DiscountList from './DiscountList';
 import Badge from '../../common/components/Badge';
-
-const FallbackAvatar = ({ username }) => {
-  return (
-    <span className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gray-500">
-      <span className="text-4xl font-medium leading-none text-white">
-        {username.slice(0, 2)}
-      </span>
-    </span>
-  );
-};
+import OrderDetailHeader from './OrderDetailHeader';
+import OrderDetailBilling from './OrderDetailBilling';
+import DocumentList from './DocumentList';
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
 
+  console.log(order);
+
   return (
     <>
-      <div className="flex items-center">
-        <span className="hidden h-16 w-16 rounded-full sm:block">
-          {order.user.avatar ? (
-            <Image
-              src={order.user.avatar.url.baseUrl}
-              alt={order.user.name || order.user.username}
-              width={64}
-              height={64}
-            />
-          ) : (
-            <FallbackAvatar username={order.user.username} />
-          )}
-        </span>
-        <div>
-          <div className="flex items-center">
-            <span className="block h-16 w-16 rounded-full sm:hidden">
-              {order.user.avatar ? (
-                <Image
-                  src={order.user.avatar.url.baseUrl}
-                  alt={order.user.name || order.user.username}
-                  width={64}
-                  height={64}
-                />
-              ) : (
-                <FallbackAvatar username={order.user.username} />
-              )}
-            </span>
-            <span className="flex items-center">
-              <h3 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate capitalize">
-                {order.user.name ? order.user.name : order.user.username}
-              </h3>
-              <dl className="self-end">
-                <dt className="sr-only">Account status</dt>
-                <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
-                  {order.user.isEmailVerified ? (
-                    order.user.isEmailVerified
-                  ) : false ? (
-                    <CheckCircleIcon
-                      className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <XCircleIcon
-                      className="flex-shrink-0 mb-1.5 h-4 w-4 text-red-400"
-                      aria-hidden="true"
-                    />
-                  )}
-                </dd>
-              </dl>
-            </span>
-          </div>
-          <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-            <dt className="sr-only">Email</dt>
-            <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
-              <AtSymbolIcon
-                className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              {order.contact.emailAddress}
-            </dd>
-            {order.contact.telNumber ? (
-              <>
-                <dt className="sr-only">Phone</dt>
-                <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
-                  <DeviceMobileIcon
-                    className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                  {order.contact.telNumber}
-                </dd>
-              </>
-            ) : null}
-          </dl>
-        </div>
-      </div>
-
-      <div className="text-sm border-b border-gray-200 mt-2 pb-2 sm:flex sm:justify-between">
-        <dl className="flex items-center">
-          <dt className="text-gray-500">
-            {formatMessage({
-              id: 'order',
-              defaultMessage: 'Order',
-            })}
-            &#35; &nbsp;
-          </dt>
-          <dd className="font-bold text-xl text-gray-900">
-            {order.orderNumber ? (
-              <Badge
-                text={order.orderNumber}
-                className="p-1 bg-blue-600 font-bold text-xl"
-              />
-            ) : (
-              <Badge
-                text="Cart"
-                color="yellow"
-                className="p-1 font-bold text-xl"
-              />
-            )}
-          </dd>
-          <dt>
-            <span className="sr-only">Date</span>
-            <span className="text-gray-400 mx-2" aria-hidden="true">
-              &middot;
-            </span>
-          </dt>
-          <dd className="font-medium text-gray-900">
-            <time dateTime="2021-03-22">
-              {order.ordered
-                ? formatDateTime(order.ordered, {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })
-                : ``}
-            </time>
-          </dd>
-        </dl>
-      </div>
-
+      <OrderDetailHeader order={order} />
       <OrderDetailProgress order={order} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
@@ -156,7 +28,7 @@ const OrderDetail = ({ order }) => {
 
       <section aria-labelledby="summary-heading" className="mt-8">
         <h2 id="summary-heading" className="sr-only">
-          Billing Summary
+          Delivery Summary
         </h2>
 
         <div className="bg-gray-100 py-4 px-4 sm:rounded-lg lg:p-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
@@ -165,31 +37,13 @@ const OrderDetail = ({ order }) => {
               <dt className="font-medium text-gray-900">
                 {formatMessage({
                   id: 'billing_address',
-                  defaultMessage: 'Billing address',
+                  defaultMessage: 'Delivery summary',
                 })}
               </dt>
               <dd className="mt-3 text-gray-500">
-                <span className="block">
-                  {formatMessage({
-                    id: 'name',
-                    defaultMessage: `${
-                      order.billingAddress.firstName ||
-                      order.billingAddress.lastName
-                    }`,
-                  })}
-                </span>
+                <span className="block">{order.delivery.wrapping}</span>
                 <span className="inline-block">
-                  {formatMessage({
-                    id: 'postal_code',
-                    defaultMessage: `${order.billingAddress.postalCode},`,
-                  })}
-                </span>
-                &nbsp;
-                <span className="inline-block">
-                  {formatMessage({
-                    id: 'address',
-                    defaultMessage: `${order.billingAddress.addressLine}`,
-                  })}
+                  {order.delivery.deliveryType}
                 </span>
                 <span className="block">
                   {formatMessage({
@@ -198,10 +52,7 @@ const OrderDetail = ({ order }) => {
                   })}
                 </span>
                 <span className="inline-block">
-                  {formatMessage({
-                    id: 'country',
-                    defaultMessage: `${order.country.name}, ${order.country.flagEmoji}`,
-                  })}
+                  {order.delivery.fee ? order.delivery.fee.amount : null}
                 </span>
               </dd>
             </div>
@@ -231,66 +82,18 @@ const OrderDetail = ({ order }) => {
             </div>
           </dl>
 
-          <dl className="mt-8 divide-y divide-gray-200 text-sm lg:mt-0 lg:col-span-5">
-            <div className="pb-4 flex items-center justify-between">
-              <dt className="text-gray-600">
-                {formatMessage({
-                  id: 'subtotal',
-                  defaultMessage: 'Subtotal',
-                })}
-              </dt>
-              <dd className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'subtotal',
-                  defaultMessage: `${order.total.amount}`,
-                })}
-              </dd>
-            </div>
-            <div className="py-4 flex items-center justify-between">
-              <dt className="text-gray-600">
-                {formatMessage({
-                  id: 'shipping',
-                  defaultMessage: 'Shipping',
-                })}
-              </dt>
-              <dd className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'shipping',
-                  defaultMessage: `${order.delivery.amount || 0} `,
-                })}
-              </dd>
-            </div>
-            <div className="py-4 flex items-center justify-between">
-              <dt className="text-gray-600">
-                {formatMessage({
-                  id: 'tax',
-                  defaultMessage: 'Tax',
-                })}
-              </dt>
-              <dd className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'tax',
-                  defaultMessage: `${order.delivery.isTaxable || 0}`,
-                })}
-              </dd>
-            </div>
-            <div className="pt-4 flex items-center justify-between">
-              <dt className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'total',
-                  defaultMessage: 'Order total',
-                })}
-              </dt>
-              <dd className="font-medium text-indigo-600">
-                {formatMessage({
-                  id: 'subtotal',
-                  defaultMessage: `$}`,
-                })}
-              </dd>
-            </div>
-          </dl>
+          {order.discounts?.length ? (
+            <DiscountList discount={order.discounts} />
+          ) : null}
         </div>
       </section>
+
+      <OrderDetailBilling order={order} />
+
+      {order.logs?.length ? <LogList logs={order.logs} /> : null}
+      {order.documents?.length ? (
+        <DocumentList documents={order.documents} />
+      ) : null}
     </>
   );
 };

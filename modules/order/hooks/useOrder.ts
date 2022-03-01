@@ -15,6 +15,46 @@ export const OrderQuery = gql`
           url
         }
       }
+          discounts {
+      _id
+      trigger
+      code
+      interface {
+        _id
+        label
+        version
+        isManualRemovalAllowed
+        isManualRemovalAllowed
+      }
+      total {
+        _id
+        amount
+        currency
+        isTaxable
+        isNetPrice
+      }
+      discounted {
+        _id
+        orderDiscount {
+          _id
+          total {
+                    _id
+        amount
+        currency
+        isTaxable
+        isNetPrice
+          }
+        }
+        total {
+        _id
+        amount
+        currency
+        isTaxable
+        isNetPrice
+        }
+        
+      }
+    }
       payment {
         _id
         provider {
