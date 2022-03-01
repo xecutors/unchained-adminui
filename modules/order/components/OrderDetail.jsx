@@ -118,10 +118,18 @@ const OrderDetail = ({ order }) => {
             &#35; &nbsp;
           </dt>
           <dd className="font-bold text-xl text-gray-900">
-            <Badge
-              text={order.orderNumber || `In the cart`}
-              className="p-1 bg-blue-600"
-            />
+            {order.orderNumber ? (
+              <Badge
+                text={order.orderNumber}
+                className="p-1 bg-blue-600 font-bold text-xl"
+              />
+            ) : (
+              <Badge
+                text="Cart"
+                color="yellow"
+                className="p-1 font-bold text-xl"
+              />
+            )}
           </dd>
           <dt>
             <span className="sr-only">Date</span>
@@ -145,18 +153,18 @@ const OrderDetail = ({ order }) => {
 
       <OrderDetailProgress order={order} />
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {order.items.map((item, index) => {
           return <OrderDetailItem key={index} item={item} />;
         })}
       </div>
 
-      <section aria-labelledby="summary-heading" className="mt-16">
+      <section aria-labelledby="summary-heading" className="mt-8">
         <h2 id="summary-heading" className="sr-only">
           Billing Summary
         </h2>
 
-        <div className="bg-gray-100 py-6 px-4 sm:px-6 sm:rounded-lg lg:px-8 lg:py-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
+        <div className="bg-gray-100 py-4 px-4 sm:rounded-lg lg:p-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
           <dl className="grid grid-cols-2 gap-6 text-sm sm:grid-cols-2 md:gap-x-8 lg:col-span-7">
             <div>
               <dt className="font-medium text-gray-900">
@@ -175,13 +183,26 @@ const OrderDetail = ({ order }) => {
                     }`,
                   })}
                 </span>
-                <span className="block">
+                <span className="inline-block">
+                  {formatMessage({
+                    id: 'postal_code',
+                    defaultMessage: `${order.billingAddress.postalCode},`,
+                  })}
+                </span>
+                &nbsp;
+                <span className="inline-block">
                   {formatMessage({
                     id: 'address',
                     defaultMessage: `${order.billingAddress.addressLine}`,
                   })}
                 </span>
                 <span className="block">
+                  {formatMessage({
+                    id: 'city',
+                    defaultMessage: `${order.billingAddress.city}, `,
+                  })}
+                </span>
+                <span className="inline-block">
                   {formatMessage({
                     id: 'country',
                     defaultMessage: `${order.country.name}, ${order.country.flagEmoji}`,
@@ -190,14 +211,25 @@ const OrderDetail = ({ order }) => {
               </dd>
             </div>
             <div>
-              <dt className="font-medium text-gray-900">Payment information</dt>
+              <dt className="font-medium text-gray-900">
+                {' '}
+                {formatMessage({
+                  id: 'payment_information',
+                  defaultMessage: 'Payment information',
+                })}
+              </dt>
               <div className="mt-3">
                 <dd className="-ml-4 -mt-4 flex flex-wrap">
                   <div className="ml-4 mt-4">
-                    <p className="text-gray-900">
+                    <p className="text-gray-900 mb-2">
                       <Badge text={order.payment.provider.interface.label} />
                     </p>
-                    <p className="text-gray-600">Expires 02 / 24</p>
+                    <p className="text-gray-900 mb-2">
+                      <Badge text={order.payment.provider.type} />
+                    </p>
+                    <p className="text-gray-900 mb-2">
+                      <Badge text={order.payment.status} />
+                    </p>
                   </div>
                 </dd>
               </div>
@@ -227,10 +259,9 @@ const OrderDetail = ({ order }) => {
                 })}
               </dt>
               <dd className="font-medium text-gray-900">
-                {' '}
                 {formatMessage({
                   id: 'shipping',
-                  defaultMessage: `${order.total.amount}`,
+                  defaultMessage: `${order.delivery.amount || 0} `,
                 })}
               </dd>
             </div>
@@ -241,17 +272,26 @@ const OrderDetail = ({ order }) => {
                   defaultMessage: 'Tax',
                 })}
               </dt>
-              <dd className="font-medium text-gray-900" />
+              <dd className="font-medium text-gray-900">
+                {formatMessage({
+                  id: 'tax',
+                  defaultMessage: `${order.delivery.isTaxable || 0}`,
+                })}
+              </dd>
             </div>
             <div className="pt-4 flex items-center justify-between">
               <dt className="font-medium text-gray-900">
-                {' '}
                 {formatMessage({
                   id: 'total',
                   defaultMessage: 'Order total',
                 })}
               </dt>
-              <dd className="font-medium text-indigo-600">$83.16</dd>
+              <dd className="font-medium text-indigo-600">
+                {formatMessage({
+                  id: 'subtotal',
+                  defaultMessage: `${order.total.amount}`,
+                })}
+              </dd>
             </div>
           </dl>
         </div>

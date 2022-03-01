@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { CheckIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid';
+import { CheckIcon } from '@heroicons/react/solid';
 
 import formatDateTime from '../../common/utils/formatDateTime';
 
@@ -39,8 +39,7 @@ const OrderDetailProgress = ({ order }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
-  const { datetime } = step[order.status];
-  console.log(order[datetime]);
+  const datetime = step[order.status].datetime;
 
   return (
     <>
@@ -134,6 +133,7 @@ const OrderDetailProgress = ({ order }) => {
           </div>
 
           <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-2">
+
             {timeline.map((event, id) => (
               <div
                 key={id}
@@ -142,7 +142,6 @@ const OrderDetailProgress = ({ order }) => {
                   'text-center',
                 )}
               >
-                {console.log(order[event.content], event.content)}
                 <span className="capitalize">
                   {formatMessage({
                     id: 'order_open',
@@ -159,6 +158,7 @@ const OrderDetailProgress = ({ order }) => {
                 </span>
               </div>
             ))}
+<<<<<<< HEAD
             <div
               className={classNames(
                 step[order.status].id > 0 ? 'text-indigo-600' : '',
@@ -243,6 +243,9 @@ const OrderDetailProgress = ({ order }) => {
                   : null}
               </span>
             </div>
+=======
+
+>>>>>>> 16087d07829af7c60ea4dc21ad1a71ca4e5c58aa
           </div>
         </div>
       </div>
