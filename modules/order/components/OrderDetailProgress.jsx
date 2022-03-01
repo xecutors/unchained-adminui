@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { CheckIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid';
+import { CheckIcon } from '@heroicons/react/solid';
 
 const timeline = [
   {
@@ -40,7 +40,6 @@ const OrderDetailProgress = ({ order }) => {
     return classes.filter(Boolean).join(' ');
   }
   const datetime = step[order.status].datetime;
-  console.log(order[datetime]);
 
   return (
     <>
@@ -134,6 +133,7 @@ const OrderDetailProgress = ({ order }) => {
           </div>
 
           <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-2">
+
             {timeline.map((event, id) => (
               <div
                 key={id}
@@ -142,7 +142,6 @@ const OrderDetailProgress = ({ order }) => {
                   'text-center',
                 )}
               >
-                {console.log(order[event.content], event.content)}
                 <span className="capitalize">
                   {formatMessage({
                     id: 'order_open',
@@ -159,90 +158,7 @@ const OrderDetailProgress = ({ order }) => {
                 </span>
               </div>
             ))}
-            <div
-              className={classNames(
-                step[order.status].id > 0 ? 'text-indigo-600' : '',
-                'text-center',
-              )}
-            >
-              <span>
-                {formatMessage({
-                  id: 'order_open',
-                  defaultMessage: 'Open',
-                })}
-              </span>
-              <span className="block">
-                {order['created']
-                  ? formatDateTime(order['created'], {
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  : null}
-              </span>
-            </div>
-            <div
-              className={classNames(
-                step[order.status].id > 1 ? 'text-indigo-600' : '',
-                'text-center',
-              )}
-            >
-              <span>
-                {formatMessage({
-                  id: 'order_pending',
-                  defaultMessage: 'Pending',
-                })}
-              </span>
-              <span className="block">
-                {order['pending']
-                  ? formatDateTime(order['pending'], {
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  : null}
-              </span>
-            </div>
-            <div
-              className={classNames(
-                step[order.status].id > 2 ? 'text-indigo-600' : '',
-                'text-center',
-              )}
-            >
-              <span>
-                {formatMessage({
-                  id: 'order_confirmed',
-                  defaultMessage: 'Confirmed',
-                })}
-              </span>
-              <span className="block">
-                {order['confirmed']
-                  ? formatDateTime(order['confirmed'], {
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  : null}
-              </span>
-            </div>
-            <div
-              className={classNames(
-                step[order.status].id > 3 ? 'text-indigo-600' : '',
-                'text-center',
-              )}
-            >
-              <span>
-                {formatMessage({
-                  id: 'order_fullfilled',
-                  defaultMessage: 'Fullfilled',
-                })}
-              </span>
-              <span className="block">
-                {order['fullfilled']
-                  ? formatDateTime(order['fullfilled'], {
-                      month: 'short',
-                      day: 'numeric',
-                    })
-                  : null}
-              </span>
-            </div>
+
           </div>
         </div>
       </div>

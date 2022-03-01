@@ -10,8 +10,8 @@ const OrderDetailItem = ({ item }) => {
 
   return (
     <>
-      <Link href={`/product/${item.originalProduct.texts.slug}`}>
-        <a className="text-blue-600">
+      <Link href={`/products/${item.originalProduct.texts.slug}`}>
+        <a className="transition ease-in-out delay-150 duration-300 hover:scale-105 hover:border hover:border-solid hover:border-blue-600 hover:rounded-lg">
           <section aria-labelledby="products-heading">
             <h2 id="products-heading" className="sr-only">
               Products purchased
@@ -46,7 +46,7 @@ const OrderDetailItem = ({ item }) => {
                         })}
                       </h3>
                       <p className="mt-2 text-sm font-medium text-gray-900">
-                        ${item.unitPrice.amount}
+                        {item.unitPrice.amount}
                       </p>
                       <p className="mt-2 text-sm font-medium text-gray-900">
                         {formatMessage({
