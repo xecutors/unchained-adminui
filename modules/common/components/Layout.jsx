@@ -22,7 +22,7 @@ const Layout = ({
   apollo,
   router,
   pageHeader = '',
-  navigationType = 'default',
+  /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
   const { shopInfo } = useShopInfo();
@@ -148,9 +148,6 @@ const Layout = ({
       icon: UserIcon,
       href: '/account',
     },
-  ];
-
-  const reportNavigation = [
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
       icon: BriefcaseIcon,
@@ -166,7 +163,6 @@ const Layout = ({
     },
   ];
 
-  const navigations = { default: defaultNavigation, report: reportNavigation };
   const successfullyLoggedOutMessage = formatMessage({
     id: 'logged_out',
     defaultMessage: 'Logged out',
@@ -231,7 +227,7 @@ const Layout = ({
             <div className="flex-shrink-0 flex items-center px-4">
               <img className="h-12 w-auto" src="/logo.svg" />
             </div>
-            <SideNav navigation={navigations[navigationType]} />
+            <SideNav navigation={defaultNavigation} />
           </div>
           <div className=" flex-shrink-0 flex border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
@@ -245,7 +241,7 @@ const Layout = ({
             <div className="flex items-center flex-shrink-0 px-4">
               <img className="h-12 w-auto" src="/logo.svg" alt="Workflow" />
             </div>
-            <SideNav navigation={navigations[navigationType]} />
+            <SideNav navigation={defaultNavigation} />
           </div>
           <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />

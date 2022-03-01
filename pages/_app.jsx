@@ -16,8 +16,6 @@ import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
-const isReportUI = false;
-
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
 
@@ -37,12 +35,10 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
     })();
   }, [router.pathname]);
 
-  const usedNavigation = isReportUI ? 'report' : 'default';
-
   const getLayout =
     Component.getLayout ||
     ((page) => (
-      <Layout apollo={apollo} {...rest} navigationType={usedNavigation}>
+      <Layout apollo={apollo} {...rest}>
         {page}
       </Layout>
     ));
