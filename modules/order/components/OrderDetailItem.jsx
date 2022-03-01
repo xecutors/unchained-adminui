@@ -36,15 +36,15 @@ const OrderDetailItem = ({ item }) => {
                     </div>
 
                     <div className="mt-6 sm:mt-0 sm:ml-6 sm:flex-auto">
-                      <h3 className="text-base font-medium text-gray-900">
-                        {formatMessage({
-                          id: 'item_title',
-                          defaultMessage: `${
+                      <h3
+                        className="text-base font-medium text-gray-900"
+                        // eslint-disable-next-line react/no-danger
+                        dangerouslySetInnerHTML={{
+                          __html:
                             item.originalProduct.texts.title ||
-                            item.originalProduct.texts.subtitle
-                          }`,
-                        })}
-                      </h3>
+                            item.originalProduct.texts.subtitle,
+                        }}
+                      />
                       <p className="mt-2 text-sm font-medium text-gray-900">
                         {item.unitPrice.amount}
                       </p>

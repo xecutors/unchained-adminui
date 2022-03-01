@@ -12,7 +12,7 @@ import OrderDetailItem from './OrderDetailItem';
 import OrderDetailProgress from './OrderDetailProgress';
 import Badge from '../../common/components/Badge';
 
-const FallbackAvatar = ({ username, name }) => {
+const FallbackAvatar = ({ username }) => {
   return (
     <span className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gray-500">
       <span className="text-4xl font-medium leading-none text-white">
@@ -24,11 +24,6 @@ const FallbackAvatar = ({ username, name }) => {
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
-  }
-  console.log(order);
 
   return (
     <>
@@ -154,8 +149,8 @@ const OrderDetail = ({ order }) => {
       <OrderDetailProgress order={order} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {order.items.map((item, index) => {
-          return <OrderDetailItem key={index} item={item} />;
+        {order.items.map((item) => {
+          return <OrderDetailItem key={item._id} item={item} />;
         })}
       </div>
 
@@ -289,7 +284,7 @@ const OrderDetail = ({ order }) => {
               <dd className="font-medium text-indigo-600">
                 {formatMessage({
                   id: 'subtotal',
-                  defaultMessage: `${order.total.amount}`,
+                  defaultMessage: `$}`,
                 })}
               </dd>
             </div>
