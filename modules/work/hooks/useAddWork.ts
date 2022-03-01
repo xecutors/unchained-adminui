@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 
 const AddWorkMutation = gql`
-  mutation addWork(
+  mutation AddWork(
     $type: WorkType!
     $priority: Int!
     $input: JSON

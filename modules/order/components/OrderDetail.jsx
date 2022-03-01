@@ -120,9 +120,9 @@ const OrderDetail = ({ order }) => {
           <dd className="font-bold text-xl text-gray-900">
             <Badge
               text={order.orderNumber || `In the cart`}
-              className={'p-1 bg-blue-600'}
+              className="p-1 bg-blue-600"
             />
-          </dd>  
+          </dd>
           <dt>
             <span className="sr-only">Date</span>
             <span className="text-gray-400 mx-2" aria-hidden="true">
@@ -138,7 +138,7 @@ const OrderDetail = ({ order }) => {
                     day: 'numeric',
                   })
                 : ``}
-            </time> 
+            </time>
           </dd>
         </dl>
       </div>
@@ -241,7 +241,7 @@ const OrderDetail = ({ order }) => {
                   defaultMessage: 'Tax',
                 })}
               </dt>
-              <dd className="font-medium text-gray-900"></dd>
+              <dd className="font-medium text-gray-900" />
             </div>
             <div className="pt-4 flex items-center justify-between">
               <dt className="font-medium text-gray-900">

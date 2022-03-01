@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl';
 import { CheckIcon, ThumbUpIcon, UserIcon } from '@heroicons/react/solid';
 
+import formatDateTime from '../../common/utils/formatDateTime';
+
 const timeline = [
   {
     id: 1,
@@ -24,8 +26,6 @@ const timeline = [
   },
 ];
 
-import formatDateTime from '../../common/utils/formatDateTime';
-
 const OrderDetailProgress = ({ order }) => {
   const { formatMessage } = useIntl();
 
@@ -39,7 +39,7 @@ const OrderDetailProgress = ({ order }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
-  const datetime = step[order.status].datetime;
+  const { datetime } = step[order.status];
   console.log(order[datetime]);
 
   return (
@@ -172,8 +172,8 @@ const OrderDetailProgress = ({ order }) => {
                 })}
               </span>
               <span className="block">
-                {order['created']
-                  ? formatDateTime(order['created'], {
+                {order.created
+                  ? formatDateTime(order.created, {
                       month: 'short',
                       day: 'numeric',
                     })
@@ -193,8 +193,8 @@ const OrderDetailProgress = ({ order }) => {
                 })}
               </span>
               <span className="block">
-                {order['pending']
-                  ? formatDateTime(order['pending'], {
+                {order.pending
+                  ? formatDateTime(order.pending, {
                       month: 'short',
                       day: 'numeric',
                     })
@@ -214,8 +214,8 @@ const OrderDetailProgress = ({ order }) => {
                 })}
               </span>
               <span className="block">
-                {order['confirmed']
-                  ? formatDateTime(order['confirmed'], {
+                {order.confirmed
+                  ? formatDateTime(order.confirmed, {
                       month: 'short',
                       day: 'numeric',
                     })
@@ -235,8 +235,8 @@ const OrderDetailProgress = ({ order }) => {
                 })}
               </span>
               <span className="block">
-                {order['fullfilled']
-                  ? formatDateTime(order['fullfilled'], {
+                {order.fullfilled
+                  ? formatDateTime(order.fullfilled, {
                       month: 'short',
                       day: 'numeric',
                     })
