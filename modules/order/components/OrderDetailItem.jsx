@@ -1,7 +1,8 @@
 import { useIntl } from 'react-intl';
-
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { getCurrencyAndPrice } from '../../common/utils/utils';
 
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
@@ -46,7 +47,7 @@ const OrderDetailItem = ({ item }) => {
                         }}
                       />
                       <p className="mt-2 text-sm font-medium text-gray-900">
-                        {item.unitPrice.amount}
+                        {getCurrencyAndPrice(item.unitPrice)}
                       </p>
                       <p className="mt-2 text-sm font-medium text-gray-900">
                         {formatMessage({

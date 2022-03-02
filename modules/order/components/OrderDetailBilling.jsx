@@ -1,13 +1,12 @@
 import { useIntl } from 'react-intl';
 
-import Badge from '../../common/components/Badge';
+import {
+  getCurrencyAndPrice,
+  getTotalDiscount,
+} from '../../common/utils/utils';
 
 const OrderDetailBilling = ({ order }) => {
   const { formatMessage } = useIntl();
-
-  const totalDiscount = (discounts) => {
-    return 0;
-  };
 
   return (
     <section aria-labelledby="summary-heading" className="mt-4">
@@ -74,7 +73,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-medium text-gray-900">
               {formatMessage({
                 id: 'subtotal',
-                defaultMessage: `${order.total.amount}`,
+                defaultMessage: `${getCurrencyAndPrice(order.total)}`,
               })}
             </dd>
           </div>
@@ -86,7 +85,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {totalDiscount(order.discounts)}
+              {getTotalDiscount(order.discounts)}
             </dd>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -125,7 +124,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-indigo-600">
-              {order.total.amount}
+              {getCurrencyAndPrice(order.total)}
             </dd>
           </div>
         </dl>

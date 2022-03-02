@@ -1,5 +1,13 @@
 import { useIntl } from 'react-intl';
+
 import Table from '../../common/components/Table';
+import Badge from '../../common/components/Badge';
+import { getCurrencyAndPrice } from '../../common/utils/utils';
+
+const triggerColor = {
+  SYSTEM: 'teal',
+  USER: 'indigo',
+};
 
 const LogList = ({ discounts }) => {
   const { formatMessage } = useIntl();
@@ -30,12 +38,21 @@ const LogList = ({ discounts }) => {
               <Table.Cell className="px-6  whitespace-nowrap ">
                 <div className="pl-2 flex items-center text-sm text-gray-900">
                   {discount.code ? discount.code : 'n/a'}
+                  <span className="inline-block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                    <Badge
+                      text={discount.trigger}
+                      color={triggerColor[discount.trigger]}
+                      square
+                    />
+                  </span>
                 </div>
               </Table.Cell>
 
               <Table.Cell className="px-6  whitespace-nowrap ">
                 <div className="pl-2 flex items-center text-sm text-gray-900">
-                  {discount.total.amount ? discount.total.amount : ''}
+                  {discount.total.amount
+                    ? getCurrencyAndPrice(discount.total)
+                    : 'n/a'}
                 </div>
               </Table.Cell>
             </Table.Row>

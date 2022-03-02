@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import Link from 'next/link';
 
 import formatDateTime from '../../common/utils/formatDateTime';
 import OrderDetailItem from './OrderDetailItem';
@@ -9,6 +10,26 @@ import Badge from '../../common/components/Badge';
 import OrderDetailHeader from './OrderDetailHeader';
 import OrderDetailBilling from './OrderDetailBilling';
 import DocumentList from './DocumentList';
+
+import {
+  getCurrencyAndPrice,
+  getInterfaceLabel,
+} from '../../common/utils/utils';
+
+const deliveryHelper = {
+  OPEN: 'green',
+  DELIVERED: 'lime',
+  PAID: 'lime',
+  RETURNED: 'red',
+  REFUNDED: 'red',
+  PICKUP: 'yellow',
+  SHIPPING: 'purple',
+  NORMAL: 'indigo',
+  DISCRETE: 'blue',
+  CARD: 'teal',
+  INVOICE: 'amber',
+  GENERIC: 'brown',
+};
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -31,34 +52,71 @@ const OrderDetail = ({ order }) => {
           Delivery Summary
         </h2>
 
-        <div className="bg-gray-100 py-4 px-4 sm:rounded-lg lg:p-8 lg:grid lg:grid-cols-12 lg:gap-x-8">
+        <div className="bg-gray-100 p-4 sm:rounded-lg lg:grid lg:grid-cols-12 lg:gap-x-8">
           <dl className="grid grid-cols-2 gap-6 text-sm sm:grid-cols-2 md:gap-x-8 lg:col-span-7">
             <div>
               <dt className="font-medium text-gray-900">
                 {formatMessage({
                   id: 'billing_address',
-                  defaultMessage: 'Delivery summary',
+                  defaultMessage: 'Delivery Information',
                 })}
               </dt>
               <dd className="mt-3 text-gray-500">
-                <span className="block">{order.delivery.wrapping}</span>
-                <span className="inline-block">
-                  {order.delivery.deliveryType}
-                </span>
                 <span className="block">
-                  {formatMessage({
-                    id: 'city',
-                    defaultMessage: `${order.billingAddress.city}, `,
-                  })}
+                  <Link href="/delivery-provider">
+                    <a className="text-blue-600">
+                      {getInterfaceLabel(order.delivery?.provider?.interface)}
+                    </a>
+                  </Link>
                 </span>
-                <span className="inline-block">
-                  {order.delivery.fee ? order.delivery.fee.amount : null}
+                <span className="inline-block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                  <Badge
+                    text={order.delivery?.provider?.type}
+                    color={deliveryHelper[order.delivery?.provider?.type]}
+                    square
+                  />
                 </span>
+                <span className="inline-block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                  <Badge
+                    text={order.delivery?.wrapping}
+                    color={deliveryHelper[order.delivery?.wrapping]}
+                    square
+                  />
+                </span>
+                <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                  <Badge
+                    text={order.delivery?.status}
+                    color={deliveryHelper[order.delivery?.status]}
+                    square
+                  />
+                </span>
+                {order.delivery.fee ? (
+                  <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                    <Badge
+                      text={getCurrencyAndPrice(order.delivery.fee)}
+                      color="cyan"
+                      square
+                    />
+                  </span>
+                ) : null}
+                {order.delivery?.delivered ? (
+                  <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
+                    <Badge
+                      text={formatDateTime(order.delivery?.delivered, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                      color="orange"
+                      square
+                    />
+                  </span>
+                ) : null}
               </dd>
             </div>
+
             <div>
               <dt className="font-medium text-gray-900">
-                {' '}
                 {formatMessage({
                   id: 'payment_information',
                   defaultMessage: 'Payment information',
@@ -67,15 +125,52 @@ const OrderDetail = ({ order }) => {
               <div className="mt-3">
                 <dd className="-ml-4 -mt-4 flex flex-wrap">
                   <div className="ml-4 mt-4">
-                    <p className="text-gray-900 mb-2">
-                      <Badge text={order.payment.provider.interface.label} />
-                    </p>
-                    <p className="text-gray-900 mb-2">
-                      <Badge text={order.payment.provider.type} />
-                    </p>
-                    <p className="text-gray-900 mb-2">
-                      <Badge text={order.payment.status} />
-                    </p>
+                    <span className="block">
+                      <Link href="/payment-provider">
+                        <a className="text-blue-600">
+                          {getInterfaceLabel(
+                            order.payment?.provider?.interface,
+                          )}
+                        </a>
+                      </Link>
+                    </span>
+                    <span className="text-gray-900 inline-block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                      <Badge
+                        text={order.payment?.provider?.type}
+                        color={deliveryHelper[order.payment?.provider?.type]}
+                        square
+                      />
+                    </span>
+                    <span className="text-gray-900 block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                      <Badge
+                        text={order.payment.status}
+                        color={deliveryHelper[order.payment.status]}
+                        square
+                      />
+                    </span>
+                    {order.payment.fee ? (
+                      <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                        <Badge
+                          text={getCurrencyAndPrice(order.payment.fee)}
+                          color="cyan"
+                          square
+                        />
+                      </span>
+                    ) : null}
+
+                    {order.payment?.delivered ? (
+                      <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
+                        <Badge
+                          text={formatDateTime(order.payment?.delivered, {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                          color="orange"
+                          square
+                        />
+                      </span>
+                    ) : null}
                   </div>
                 </dd>
               </div>
@@ -90,7 +185,9 @@ const OrderDetail = ({ order }) => {
 
       <OrderDetailBilling order={order} />
 
-      {order.logs?.length ? <LogList logs={order.logs} /> : null}
+      {order.logs?.length ? (
+        <LogList logs={order.logs} user={order.user} />
+      ) : null}
       {order.documents?.length ? (
         <DocumentList documents={order.documents} />
       ) : null}
