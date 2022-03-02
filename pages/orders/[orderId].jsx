@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { XIcon } from '@heroicons/react/solid';
+import { toast } from 'react-toastify';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
@@ -68,7 +69,7 @@ const OrderDetailPage = () => {
           <button
             type="button"
             onClick={handleOnClick}
-            className="felx justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+            className="flex justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
           >
             <span className="pr-1">
               <XIcon className="inline-block h-4 w-4" />

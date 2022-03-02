@@ -1,5 +1,7 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
+import { PlusIcon } from '@heroicons/react/solid';
+import { toast } from 'react-toastify';
 
 import formatDateTime from '../../common/utils/formatDateTime';
 import OrderDetailItem from './OrderDetailItem';
@@ -10,7 +12,9 @@ import Badge from '../../common/components/Badge';
 import OrderDetailHeader from './OrderDetailHeader';
 import OrderDetailBilling from './OrderDetailBilling';
 import DocumentList from './DocumentList';
-
+import AlertMessage from '../../modal/components/AlertMessage';
+import useModal from '../../modal/hooks/useModal';
+import usePayOrder from '../hooks/usePayOrder';
 import {
   getCurrencyAndPrice,
   getInterfaceLabel,
@@ -33,6 +37,38 @@ const deliveryHelper = {
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
+  const { setModal } = useModal();
+  const { payOrder } = usePayOrder();
+
+  const handleOnClick = async () => {
+    await setModal(
+      <AlertMessage
+        buttonText={formatMessage({
+          id: 'order_payment_confirmation',
+          defaultMessage: 'PAY',
+        })}
+        headerText={formatMessage({
+          id: 'order_payment_confirmation',
+          defaultMessage: 'Payment',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await payOrder({ orderId: order._id });
+          toast.success(
+            formatMessage(
+              {
+                id: 'order_payed',
+                defaultMessage: 'Order {order._id} payed successfully',
+              },
+              {
+                id,
+              },
+            ),
+          );
+        }}
+      />,
+    );
+  };
 
   console.log(order);
 
@@ -141,12 +177,27 @@ const OrderDetail = ({ order }) => {
                         square
                       />
                     </span>
-                    <span className="text-gray-900 block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                    <span className="flex justify-center items-center text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
                       <Badge
                         text={order.payment.status}
                         color={deliveryHelper[order.payment.status]}
                         square
                       />
+                      {order.payment.status == 'OPEN' ? (
+                        <button
+                          type="button"
+                          onClick={handleOnClick}
+                          className="flex justify-center items-center ml-2 bg-blue-600 text-white my-auto h-full rounded p-1 px-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                        >
+                          <span className="mr-1">
+                            <PlusIcon className="inline-block h-3 w-3" />
+                          </span>
+                          {formatMessage({
+                            id: 'order_pay',
+                            defaultMessage: 'Pay',
+                          })}
+                        </button>
+                      ) : null}
                     </span>
                     {order.payment.fee ? (
                       <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
