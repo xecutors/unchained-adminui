@@ -2,8 +2,9 @@ import { Fragment } from 'react';
 import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import formatDateTime from '../../common/utils/formatDateTime';
+import Badge from '../../common/components/Badge';
 
-const LogList = ({ logs }) => {
+const LogList = ({ logs, user }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -57,13 +58,16 @@ const LogList = ({ logs }) => {
 
               <Table.Cell className="px-6  whitespace-nowrap ">
                 <div className="pl-2 flex items-center text-sm text-gray-900">
-                  {log.message ? log.message : ''}
+                  {log.message ? log.message : null}
+                  {user.username !== log.user?.username ? (
+                    <Badge
+                      text={log.user?.username}
+                      color="pink"
+                      className="py-1 ml-2 text-sm leading-5 font-semibold rounded-full"
+                      square
+                    />
+                  ) : null}
                 </div>
-                {/* <Badge
-          text={order?.status}
-          color={ORDER_STATUSES[order.status]}
-          square
-        /> */}
               </Table.Cell>
             </Table.Row>
           </Fragment>
