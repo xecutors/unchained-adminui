@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
-import formatDateTime from '../../common/utils/formatDateTime';
+import { formatDateTime } from '../../common/utils/utils';
 import Badge from '../../common/components/Badge';
 
 const LogList = ({ logs, user }) => {
@@ -41,11 +41,7 @@ const LogList = ({ logs, user }) => {
               <Table.Cell className="px-6  whitespace-nowrap ">
                 <div className="pl-2 flex items-center text-sm text-gray-900">
                   {log.created
-                    ? formatDateTime(log.created, {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })
+                    ? formatDateTime(log.created)
                     : 'n/a'}
                 </div>
               </Table.Cell>

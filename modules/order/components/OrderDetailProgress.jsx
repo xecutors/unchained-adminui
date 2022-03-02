@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { CheckIcon } from '@heroicons/react/solid';
 
-import formatDateTime from '../../common/utils/formatDateTime';
+import { formatDateTime } from '../../common/utils/utils';
 
 const OrderDetailProgress = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -74,11 +74,7 @@ const OrderDetailProgress = ({ order }) => {
                     </div>
                     <div className="text-right text-sm whitespace-nowrap text-gray-500">
                       {order[event.content]
-                        ? formatDateTime(order[event.content], {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                          })
+                        ? formatDateTime(order[event.content])
                         : null}
                     </div>
                   </div>
@@ -99,19 +95,12 @@ const OrderDetailProgress = ({ order }) => {
         </h4>
         <p className="text-sm font-medium text-gray-900">
           <span className="text-sm font-medium text-gray-900 capitalize">
-            {formatMessage({
-              id: 'order',
-              defaultMessage: `${order.status.toLowerCase()}`,
-            })}
+            {order.status.toLowerCase()}
           </span>
           &nbsp;on&nbsp;
           <span>
             {order[content]
-              ? formatDateTime(order[content], {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })
+              ? formatDateTime(order[content])
               : `In the cart`}
           </span>
         </p>

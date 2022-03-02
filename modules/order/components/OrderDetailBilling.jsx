@@ -25,38 +25,21 @@ const OrderDetailBilling = ({ order }) => {
             </dt>
             <dd className="mt-3 text-gray-500">
               <span className="block">
-                {formatMessage({
-                  id: 'name',
-                  defaultMessage: `${
-                    order.billingAddress.firstName ||
-                    order.billingAddress.lastName
-                  }`,
-                })}
+                {order.billingAddress.firstName ||
+                  order.billingAddress.lastName}
               </span>
               <span className="inline-block">
-                {formatMessage({
-                  id: 'postal_code',
-                  defaultMessage: `${order.billingAddress.postalCode},`,
-                })}
+                {order.billingAddress.postalCode}
               </span>
               &nbsp;
               <span className="inline-block">
-                {formatMessage({
-                  id: 'address',
-                  defaultMessage: `${order.billingAddress.addressLine}`,
-                })}
+                {order.billingAddress.addressLine}
               </span>
               <span className="block">
-                {formatMessage({
-                  id: 'city',
-                  defaultMessage: `${order.billingAddress.city}, `,
-                })}
+                {order.billingAddress.city}
               </span>
               <span className="inline-block">
-                {formatMessage({
-                  id: 'country',
-                  defaultMessage: `${order.country.name}, ${order.country.flagEmoji}`,
-                })}
+                {`${order.country.name}, ${order.country.flagEmoji}`}
               </span>
             </dd>
           </div>
@@ -71,10 +54,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {formatMessage({
-                id: 'subtotal',
-                defaultMessage: `${getCurrencyAndPrice(order.total)}`,
-              })}
+              {getCurrencyAndPrice(order.total)}
             </dd>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -96,10 +76,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {formatMessage({
-                id: 'shipping',
-                defaultMessage: `${order.delivery.amount || 0} `,
-              })}
+              {order.delivery.amount || 0}
             </dd>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -110,10 +87,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {formatMessage({
-                id: 'tax',
-                defaultMessage: `${order.delivery.isTaxable || 0}`,
-              })}
+              {order.delivery.isTaxable || 0}
             </dd>
           </div>
           <div className="pt-2 flex items-center justify-between">

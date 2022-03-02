@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { PlusIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 
-import formatDateTime from '../../common/utils/formatDateTime';
 import OrderDetailItem from './OrderDetailItem';
 import OrderDetailProgress from './OrderDetailProgress';
 import LogList from './LogList';
@@ -18,6 +17,7 @@ import usePayOrder from '../hooks/usePayOrder';
 import {
   getCurrencyAndPrice,
   getInterfaceLabel,
+  formatDateTime,
 } from '../../common/utils/utils';
 
 const deliveryHelper = {
@@ -138,11 +138,7 @@ const OrderDetail = ({ order }) => {
                 {order.delivery?.delivered ? (
                   <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
                     <Badge
-                      text={formatDateTime(order.delivery?.delivered, {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
+                      text={formatDateTime(order.delivery?.delivered)}
                       color="orange"
                       square
                     />
@@ -212,11 +208,7 @@ const OrderDetail = ({ order }) => {
                     {order.payment?.delivered ? (
                       <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
                         <Badge
-                          text={formatDateTime(order.payment?.delivered, {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
+                          text={formatDateTime(order.payment?.delivered)}
                           color="orange"
                           square
                         />
