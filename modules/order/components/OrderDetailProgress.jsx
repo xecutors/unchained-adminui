@@ -35,7 +35,7 @@ const OrderDetailProgress = ({ order }) => {
           {Object.entries(timeline).map(([status, event], index) => (
             <li key={status}>
               <div className="relative pb-8">
-                {index !== timeline.length - 1 ? (
+                {index !== Object.keys(timeline).length - 1 ? (
                   <span
                     className={classNames(
                       timeline[order.status].id > event.id - 0
@@ -99,9 +99,7 @@ const OrderDetailProgress = ({ order }) => {
           </span>
           &nbsp;on&nbsp;
           <span>
-            {order[content]
-              ? formatDateTime(order[content])
-              : `In the cart`}
+            {order[content] ? formatDateTime(order[content]) : `In the cart`}
           </span>
         </p>
         <div className="mt-2" aria-hidden="true">
