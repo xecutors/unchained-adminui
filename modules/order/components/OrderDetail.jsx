@@ -88,16 +88,16 @@ const OrderDetail = ({ order }) => {
           Delivery Summary
         </h2>
 
-        <div className="bg-gray-100 p-4 sm:rounded-lg lg:grid lg:grid-cols-12 lg:gap-x-8">
-          <dl className="grid grid-cols-2 gap-6 text-sm sm:grid-cols-2 md:gap-x-8 lg:col-span-7">
-            <div>
-              <dt className="font-medium text-gray-900">
+        <div className="bg-gray-100 p-4 sm:rounded-lg w-full">
+          <div className="grid sm:flex flex-wrap gap-6 text-sm md:gap-x-8 w-full">
+            <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 sm:basis-2/6">
+              <div className="font-medium text-gray-900">
                 {formatMessage({
                   id: 'billing_address',
                   defaultMessage: 'Delivery Information',
                 })}
-              </dt>
-              <dd className="mt-3 text-gray-500">
+              </div>
+              <div className="mt-3 text-gray-500">
                 <span className="block">
                   <Link href="/delivery-provider">
                     <a className="text-blue-600">
@@ -144,18 +144,18 @@ const OrderDetail = ({ order }) => {
                     />
                   </span>
                 ) : null}
-              </dd>
+              </div>
             </div>
 
-            <div>
-              <dt className="font-medium text-gray-900">
+            <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 sm:basis-2/6">
+              <div className="font-medium text-gray-900">
                 {formatMessage({
                   id: 'payment_information',
                   defaultMessage: 'Payment information',
                 })}
-              </dt>
+              </div>
               <div className="mt-3">
-                <dd className="-ml-4 -mt-4 flex flex-wrap">
+                <div className="-ml-4 -mt-4 flex flex-wrap">
                   <div className="ml-4 mt-4">
                     <span className="block">
                       <Link href="/payment-provider">
@@ -215,14 +215,16 @@ const OrderDetail = ({ order }) => {
                       </span>
                     ) : null}
                   </div>
-                </dd>
+                </div>
               </div>
             </div>
-          </dl>
 
-          {order.discounts?.length ? (
-            <DiscountList discount={order.discounts} />
-          ) : null}
+            <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200 sm:basis-2/6">
+              {order.discounts?.length ? (
+                <DiscountList discount={order.discounts} />
+              ) : null}
+            </div>
+          </div>
         </div>
       </section>
 
