@@ -33,6 +33,19 @@ const Layout = ({
       href: '/',
     },
     {
+      name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
+      icon: BriefcaseIcon,
+      children: [
+        {
+          name: formatMessage({
+            id: 'daily_sync',
+            defaultMessage: 'Daily sync',
+          }),
+          href: '/reports/daily-sync',
+        },
+      ],
+    },
+    {
       name: formatMessage({
         id: 'orders',
         defaultMessage: 'Orders',
@@ -147,19 +160,6 @@ const Layout = ({
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
       icon: UserIcon,
       href: '/account',
-    },
-    {
-      name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
-      icon: BriefcaseIcon,
-      children: [
-        {
-          name: formatMessage({
-            id: 'daily_sync',
-            defaultMessage: 'Daily sync',
-          }),
-          href: '/reports/daily-sync',
-        },
-      ],
     },
   ];
 

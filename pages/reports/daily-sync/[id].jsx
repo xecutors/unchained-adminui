@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { format, formatDuration, intervalToDuration } from 'date-fns';
+import { format, formatDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import subDays from 'date-fns/subDays';
@@ -35,12 +35,24 @@ const SyncDetail = () => {
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
+
   const { productsCount } = useProductsCount();
   if (loading || !work) return <Loading />;
+
+  const {
+    sync: { jobs },
+  } = work.result;
+
   const { result } = work;
   const {
     sync: { stats },
   } = result;
+
+  const durationInMilliSeconds = jobs.reduce(
+    (prev, { started, finished }) =>
+      prev + (new Date(finished).getTime() - new Date(started).getTime()),
+    0,
+  );
 
   const getPreviousValue = ({ new: added, removed, diff }, current) => {
     if (added > removed) {
@@ -96,7 +108,7 @@ const SyncDetail = () => {
         <div className="px-4 py-2 sm:p-2 col-span-2 xl:col-span-1 mx-auto 2xl: max-w-none">
           <GraphSync dailySync={dailySync} />
         </div>
-        <div className="px-4 py-5 sm:p-6">
+        <div className=" py-5 sm:p-6 sm:col-span-1 col-span-2 ">
           <dt className="text-base font-normal text-gray-900">
             {formatMessage({
               id: 'total_products',
@@ -124,21 +136,22 @@ const SyncDetail = () => {
           </dd>
         </div>
 
-        <div className="px-4 py-5 sm:p-6">
-          <dt className="text-base font-normal text-gray-900">
+        <div className=" py-5 sm:p-6 sm:col-span-1 col-span-2  flex-wrap">
+          <dt className="text-base flex-wrap font-normal text-gray-900">
             {formatMessage({
               id: 'import_duration',
               defaultMessage: 'Duration of import',
             })}
           </dt>
-          <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
-            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
-              {formatDuration(
-                intervalToDuration({
-                  start: new Date(result?.startedEnd || 0),
-                  end: new Date(result?.startedFrom || 0),
-                }),
-              )}
+          <dd className="mt-1 items-baseline  ">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600 flex-wrap">
+              {formatDuration({
+                hours: Math.floor(durationInMilliSeconds / 1000 / 60 / 60) % 24,
+                minutes: Number(
+                  Math.floor(durationInMilliSeconds / 1000 / 60) % 60,
+                ),
+                seconds: Math.floor(durationInMilliSeconds / 1000) % 60,
+              })}
             </div>
           </dd>
         </div>
