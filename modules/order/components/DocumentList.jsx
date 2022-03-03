@@ -59,7 +59,7 @@ const DocumentList = ({ documents }) => {
                   </dd>
                 </div>
               ) : (
-                <NoData message={'documents'} icon={ClipboardListIcon} />
+                <NoData message="documents" icon={ClipboardListIcon} />
               )}
             </Disclosure.Panel>
           </>

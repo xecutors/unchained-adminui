@@ -84,7 +84,7 @@ const LogList = ({ logs, user }) => {
                   ))}
                 </Table>
               ) : (
-                <NoData message={'logs'} />
+                <NoData message="logs" />
               )}
             </Disclosure.Panel>
           </>

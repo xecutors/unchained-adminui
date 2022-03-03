@@ -36,16 +36,16 @@ const OrderDetailPayment = ({ order }) => {
           defaultMessage: 'Payment',
         })}
         onOkClick={async () => {
-          // setModal('');
+          setModal('');
           await payOrder({ orderId: order._id });
           toast.success(
             formatMessage(
               {
                 id: 'order_payed',
-                defaultMessage: 'Order {order._id} payed successfully',
+                defaultMessage: 'Order {id} payed successfully',
               },
               {
-                id,
+                id: order?._id,
               },
             ),
           );
@@ -54,16 +54,18 @@ const OrderDetailPayment = ({ order }) => {
     );
   };
 
-  const StatusInformation = ({ enumType, currentType, label }) => {
+  const StatusInformation = ({ enumType, currentType, label, component }) => {
     return (
-      <span
-        title={label}
-        className={`${
-          currentType === enumType ? 'bg-teal-500 text-white' : ''
-        } inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-xs font-normal mr-2`}
-      >
-        {enumType}
-      </span>
+      component || (
+        <span
+          title={label}
+          className={`${
+            currentType === enumType ? 'bg-teal-500 text-white' : ''
+          } inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-xs font-normal mr-2`}
+        >
+          {enumType}
+        </span>
+      )
     );
   };
 
@@ -86,41 +88,42 @@ const OrderDetailPayment = ({ order }) => {
               </Link>
             </span>
             <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-              {paymentProviderType.map((type, index) => (
-                <Fragment key={index}>
-                  <StatusInformation
-                    enumType={type.value}
-                    currentType={order.payment?.provider?.type}
-                    label={type.label}
-                  />
-                </Fragment>
+              {paymentProviderType.map((type) => (
+                <StatusInformation
+                  key={type.value}
+                  enumType={type.value}
+                  currentType={order.payment?.provider?.type}
+                  label={type.label}
+                />
               ))}
             </span>
             <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-              {paymentStatusTypes.map((type, index) => (
-                <Fragment key={index}>
-                  <StatusInformation
-                    enumType={type.value}
-                    currentType={order.payment?.status}
-                    label={type.label}
-                  />
-                </Fragment>
+              {paymentStatusTypes.map((type) => (
+                <StatusInformation
+                  key={type.value}
+                  enumType={type.value}
+                  currentType={order.payment?.status}
+                  label={type.label}
+                  component={
+                    order.payment.status === 'OPEN' &&
+                    type.value === 'PAID' && (
+                      <button
+                        type="button"
+                        onClick={handleOnClick}
+                        className="inline-flex  border-gray-300  text-xs  mr-2  justify-center items-center  my-2 bg-blue-600 text-white h-full rounded py-1 px-2 border border-transparent shadow-sm  font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                      >
+                        <span className="mr-1">
+                          <PlusIcon className="inline-block h-3 w-3 text-white" />
+                        </span>
+                        {formatMessage({
+                          id: 'mark_as_paid',
+                          defaultMessage: 'Mark as Paid',
+                        })}
+                      </button>
+                    )
+                  }
+                />
               ))}
-              {order.payment.status == 'OPEN' ? (
-                <button
-                  type="button"
-                  onClick={handleOnClick}
-                  className="flex justify-center items-center ml-4 my-2 bg-blue-600 text-white h-full rounded py-1 px-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
-                >
-                  <span className="mr-1">
-                    <PlusIcon className="inline-block h-3 w-3 text-white" />
-                  </span>
-                  {formatMessage({
-                    id: 'order_pay',
-                    defaultMessage: 'Pay',
-                  })}
-                </button>
-              ) : null}
             </span>
             {order.payment.fee ? (
               <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">

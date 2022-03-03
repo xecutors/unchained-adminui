@@ -70,8 +70,8 @@ const LogList = ({ discounts }) => {
         </Table>
       ) : (
         <NoData
-          message={'discounts'}
-          className={'border-0 text-zinc-400'}
+          message="discounts"
+          className="border-0 text-zinc-400"
           icon={EmojiSadIcon}
         />
       )}

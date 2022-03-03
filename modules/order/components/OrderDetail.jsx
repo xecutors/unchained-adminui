@@ -13,7 +13,6 @@ import DiscountList from './DiscountList';
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
 
-
   return (
     <>
       <OrderDetailHeader order={order} />
@@ -44,9 +43,8 @@ const OrderDetail = ({ order }) => {
       </section>
 
       <OrderDetailBilling order={order} />
-
-      <LogList logs={order.logs} user={order.user} />
       <DocumentList documents={order.documents} />
+      <LogList logs={order.logs} user={order.user} />
     </>
   );
 };

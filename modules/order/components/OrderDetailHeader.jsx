@@ -20,7 +20,7 @@ const FallbackAvatar = ({ username }) => {
   );
 };
 
-const OrderDetailHeader = ({order}) => {
+const OrderDetailHeader = ({ order }) => {
   const { formatMessage } = useIntl();
 
   return (
