@@ -10,7 +10,7 @@ const EventListItem = ({ event }) => {
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`/event/${event._id}`}>
+          <Link href={`/events/${event._id}`}>
             <a className="text-blue-600">
               {event?.type || (
                 <>
