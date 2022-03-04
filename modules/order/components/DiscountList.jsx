@@ -71,7 +71,10 @@ const LogList = ({ discounts }) => {
         </Table>
       ) : (
         <NoData
-          message="discounts"
+          message={formatMessage({
+            id: 'discounts',
+            defaultMessage: 'Discounts',
+          })}
           className="border-0 text-zinc-400 flex-auto"
           icon={EmojiSadIcon}
         />

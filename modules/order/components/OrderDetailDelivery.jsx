@@ -48,7 +48,7 @@ const OrderDetailDelivery = ({ delivery }) => {
         </span>
         <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
           {formatMessage({
-            id: 'delivery_provider',
+            id: 'provider',
             defaultMessage: 'Provider',
           })}
         </div>
@@ -80,7 +80,7 @@ const OrderDetailDelivery = ({ delivery }) => {
         </span>
         <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
           {formatMessage({
-            id: 'delivery_status',
+            id: 'status',
             defaultMessage: 'Status',
           })}
         </div>
