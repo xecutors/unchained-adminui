@@ -38,7 +38,7 @@ const OrderDetailDelivery = ({ delivery }) => {
           defaultMessage: 'Delivery Information',
         })}
       </div>
-      <div className="mt-3 text-gray-500">
+      <div className="mt-3">
         <span className="block">
           <Link href={`/delivery-provider/${delivery.provider._id}`}>
             <a className="text-blue-600 text-base font-bold">

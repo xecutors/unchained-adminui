@@ -77,7 +77,7 @@ const OrderDetailPayment = ({ order }) => {
       </div>
       <div className="mt-3">
         <div className="-ml-4 -mt-4 flex flex-wrap">
-          <div className="ml-4 mt-4">
+          <div className="ml-4 mt-4 w-full">
             <span className="block">
               <Link href={`/payment-provider/${order.payment.provider._id}`}>
                 <a className="text-blue-600 text-base font-bold">
@@ -91,7 +91,7 @@ const OrderDetailPayment = ({ order }) => {
                 defaultMessage: 'Payment',
               })}
             </div>
-            <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+            <span className="block c py-1 text-xs leading-5 font-semibold rounded-full mr-2">
               {paymentProviderType.map((type) => (
                 <StatusInformation
                   key={type.value}
@@ -150,7 +150,7 @@ const OrderDetailPayment = ({ order }) => {
             ) : null}
 
             {order.payment.paid ? (
-              <span className="block py-2 text-sm leading-5 font-bold">
+              <span className="block  py-2 text-sm leading-5 font-bold">
                 {formatDateTime(order.payment?.delivered)}
               </span>
             ) : null}
