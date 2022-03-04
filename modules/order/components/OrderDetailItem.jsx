@@ -15,7 +15,10 @@ const OrderDetailItem = ({ item }) => {
         <Link href={`/products/${item.originalProduct.texts.slug}`}>
           <a>
             <h2 id="products-heading" className="sr-only">
-              Products purchased
+              {formatMessage({
+                id: 'purchased_products',
+                defaultMessage: 'Purchased products',
+              })}
             </h2>
 
             <div className="space-y-8">

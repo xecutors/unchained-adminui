@@ -1,7 +1,12 @@
 import { useIntl } from 'react-intl';
 
 const getCurrencyAndPrice = ({ amount, currency }) => {
-  return `${currency} ${amount}`;
+  const { locale } = useIntl();
+  if (!currency) return '0';
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency,
+  }).format(amount);
 };
 
 const getInterfaceLabel = ({ label, version }) => {

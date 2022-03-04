@@ -15,7 +15,16 @@ const DocumentList = ({ documents }) => {
         {({ open }) => (
           <>
             <Disclosure.Button className="inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-              <span>Documents</span>
+              <span className="flex">
+                <PaperClipIcon
+                  className="flex-shrink-0 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                {formatMessage({
+                  id: 'documents',
+                  defaultMessage: 'Documents',
+                })}
+              </span>
               <ChevronUpIcon
                 className={`${open ? 'transform rotate-180' : ''} w-5 h-5`}
                 aria-hidden="true"
@@ -56,7 +65,13 @@ const DocumentList = ({ documents }) => {
                   </dd>
                 </div>
               ) : (
-                <NoData message="documents" icon={ClipboardListIcon} />
+                <NoData
+                  message={formatMessage({
+                    id: 'documents',
+                    defaultMessage: 'Documents',
+                  })}
+                  icon={ClipboardListIcon}
+                />
               )}
             </Disclosure.Panel>
           </>

@@ -84,7 +84,12 @@ const LogList = ({ logs, user }) => {
                   ))}
                 </Table>
               ) : (
-                <NoData message="logs" />
+                <NoData
+                  message={formatMessage({
+                    id: 'logs',
+                    defaultMessage: 'Logs',
+                  })}
+                />
               )}
             </Disclosure.Panel>
           </>

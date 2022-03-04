@@ -14,7 +14,7 @@ const FallbackAvatar = ({ username }) => {
   return (
     <span className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gray-500">
       <span className="text-4xl font-medium leading-none text-white">
-        {username.slice(0, 2)}
+        {username?.slice(0, 2)}
       </span>
     </span>
   );
@@ -57,7 +57,12 @@ const OrderDetailHeader = ({ order }) => {
                 {order.user.name ? order.user.name : order.user.username}
               </h3>
               <dl className="self-end">
-                <dt className="sr-only">Account status</dt>
+                <dt className="sr-only">
+                  {formatMessage({
+                    id: 'account_status',
+                    defaultMessage: 'Account status',
+                  })}
+                </dt>
                 <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                   {order.user.isEmailVerified ? (
                     <CheckCircleIcon
@@ -75,7 +80,9 @@ const OrderDetailHeader = ({ order }) => {
             </span>
           </div>
           <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-            <dt className="sr-only">Email</dt>
+            <dt className="sr-only">
+              {formatMessage({ id: 'email', defaultMessage: 'Email' })}
+            </dt>
             <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
               <AtSymbolIcon
                 className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
@@ -85,7 +92,9 @@ const OrderDetailHeader = ({ order }) => {
             </dd>
             {order.contact.telNumber ? (
               <>
-                <dt className="sr-only">Phone</dt>
+                <dt className="sr-only">
+                  {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
+                </dt>
                 <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
                   <DeviceMobileIcon
                     className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
@@ -123,7 +132,9 @@ const OrderDetailHeader = ({ order }) => {
             )}
           </dd>
           <dt>
-            <span className="sr-only">Date</span>
+            <span className="sr-only">
+              {formatMessage({ id: 'date', defaultMessage: 'Date' })}
+            </span>
             <span className="text-gray-400 mx-2" aria-hidden="true">
               &middot;
             </span>
