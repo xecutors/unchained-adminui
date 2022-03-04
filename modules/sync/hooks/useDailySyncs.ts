@@ -1,24 +1,18 @@
-import { useQuery, gql } from '@apollo/client';
-import PublicareDailySyncFragment from '../fragments/PublicareDailySyncFragment';
-
-export const GetWorkMetricQuery = gql`
-  query GetWorkMetrics($range: DateFilterInput) {
-    getWorkMetrics(type: PUBLICARE_DAILY_ANALYTICS, range: $range) {
-      ...PublicareDailySyncFragment
-    }
-  }
-  ${PublicareDailySyncFragment}
-`;
+import { useQuery } from '@apollo/client';
+import { WorkQueueQuery } from '../../work/hooks/useWorkQueue';
 
 const useDailySyncs = ({ start = null, end = null } = {}) => {
-  const { data, loading, error, fetchMore }: any = useQuery(
-    GetWorkMetricQuery,
-    {
-      variables: { range: { start, end } },
+  const { data, loading, error, fetchMore }: any = useQuery(WorkQueueQuery, {
+    variables: {
+      range: { start, end },
+      status: ['SUCCESS', 'FAILED'],
+      selectTypes: ['PUBLICARE_DAILY_ANALYTICS'],
     },
-  );
+  });
 
-  const dailySync = data?.getWorkMetrics || [];
+  const dailySync = (data?.workQueue || [])?.filter(
+    (queue) => !!queue?.result?.sync,
+  );
   const loadMore = () =>
     fetchMore({
       variables: { offset: dailySync.length },

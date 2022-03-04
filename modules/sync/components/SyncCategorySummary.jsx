@@ -4,8 +4,8 @@ import useModal from '../../modal/hooks/useModal';
 const SyncCategorySummary = ({
   categoryName,
   statistics,
-  removedList = [],
-  publishedList = [],
+  removedList,
+  publishedList,
 }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -58,22 +58,24 @@ const SyncCategorySummary = ({
               </svg>
               {statistics.new}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
-              <div className="text-sm">
-                <a
-                  href="#"
-                  onClick={async () => {
-                    await setModal(publishedList);
-                  }}
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({
-                    id: 'view_all',
-                    defaultMessage: 'View all',
-                  })}
-                </a>
+            {publishedList && (
+              <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    onClick={async () => {
+                      await setModal(publishedList);
+                    }}
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    {formatMessage({
+                      id: 'view_all',
+                      defaultMessage: 'View all',
+                    })}
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
           </dd>
         </div>
 
@@ -122,28 +124,30 @@ const SyncCategorySummary = ({
               </svg>
               {statistics.removed}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
-              <div className="text-sm">
-                <a
-                  href="#"
-                  onClick={async () => {
-                    await setModal(removedList);
-                  }}
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({
-                    id: 'view_all',
-                    defaultMessage: 'View all',
-                  })}
-                  <span className="sr-only">
+            {removedList && (
+              <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    onClick={async () => {
+                      await setModal(removedList);
+                    }}
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
                     {formatMessage({
-                      id: 'average_stat',
-                      defaultMessage: 'Avg. Open Rate stats',
+                      id: 'view_all',
+                      defaultMessage: 'View all',
                     })}
-                  </span>
-                </a>
+                    <span className="sr-only">
+                      {formatMessage({
+                        id: 'average_stat',
+                        defaultMessage: 'Avg. Open Rate stats',
+                      })}
+                    </span>
+                  </a>
+                </div>
               </div>
-            </div>
+            )}
           </dd>
         </div>
 

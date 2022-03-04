@@ -98,7 +98,7 @@ const Home = ({ shopInfo }) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     {shopInfo?.userRoles?.map((role) => (
-                      <Badge text={role} color="green" />
+                      <Badge key={role} text={role} color="green" />
                     ))}
                   </div>
                 </div>
