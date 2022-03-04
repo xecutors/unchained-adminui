@@ -2,9 +2,7 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 import { PlusIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
-import { Fragment } from 'react';
 
-import Badge from '../../common/components/Badge';
 import AlertMessage from '../../modal/components/AlertMessage';
 import useModal from '../../modal/hooks/useModal';
 import usePayOrder from '../hooks/usePayOrder';
@@ -87,6 +85,12 @@ const OrderDetailPayment = ({ order }) => {
                 </a>
               </Link>
             </span>
+            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+              {formatMessage({
+                id: 'payment_provider',
+                defaultMessage: 'Payment',
+              })}
+            </div>
             <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
               {paymentProviderType.map((type) => (
                 <StatusInformation
@@ -97,6 +101,12 @@ const OrderDetailPayment = ({ order }) => {
                 />
               ))}
             </span>
+            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+              {formatMessage({
+                id: 'delivery_status',
+                defaultMessage: 'Status',
+              })}
+            </div>
             <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
               {paymentStatusTypes.map((type) => (
                 <StatusInformation
@@ -126,22 +136,22 @@ const OrderDetailPayment = ({ order }) => {
               ))}
             </span>
             {order.payment.fee ? (
-              <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-                <Badge
-                  text={getCurrencyAndPrice(order.payment.fee)}
-                  color="cyan"
-                  square
-                />
-              </span>
+              <>
+                <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+                  {formatMessage({
+                    id: 'payment_fee',
+                    defaultMessage: 'Fee',
+                  })}
+                </div>
+                <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                  {getCurrencyAndPrice(order.payment.fee)}
+                </span>
+              </>
             ) : null}
 
             {order.payment.paid ? (
-              <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
-                <Badge
-                  text={formatDateTime(order.payment?.delivered)}
-                  color="orange"
-                  square
-                />
+              <span className="block py-2 text-sm leading-5 font-bold">
+                {formatDateTime(order.payment?.delivered)}
               </span>
             ) : null}
           </div>

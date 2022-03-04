@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { EmojiSadIcon } from '@heroicons/react/solid';
+import { Fragment } from 'react';
 
 import Table from '../../common/components/Table';
 import Badge from '../../common/components/Badge';
@@ -15,7 +16,7 @@ const LogList = ({ discounts }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <section className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm flex-auto">
+    <section className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm flex-auto flex flex-col">
       <div className="font-medium text-gray-900 border-b pb-2 text-center">
         {formatMessage({
           id: 'discount_information',
@@ -71,7 +72,7 @@ const LogList = ({ discounts }) => {
       ) : (
         <NoData
           message="discounts"
-          className="border-0 text-zinc-400"
+          className="border-0 text-zinc-400 flex-auto"
           icon={EmojiSadIcon}
         />
       )}

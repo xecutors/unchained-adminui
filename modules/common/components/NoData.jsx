@@ -4,7 +4,12 @@ import classnames from 'classnames';
 const NoData = ({ message, className = '', icon }) => {
   const Icon = icon || ExclamationIcon;
   return (
-    <div className={classnames('w-full border-2', className)}>
+    <div
+      className={classnames(
+        'w-full border-2 flex flex-col justify-center items-center',
+        className,
+      )}
+    >
       <div className="grid justify-center items-center">
         <div className="flex justify-center items-center">
           <Icon className="h-10 w-10" />

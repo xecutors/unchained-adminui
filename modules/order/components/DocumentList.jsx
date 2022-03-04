@@ -31,10 +31,7 @@ const DocumentList = ({ documents }) => {
                     })}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <ul
-                      role="list"
-                      className="border border-gray-200 rounded-md divide-y divide-gray-200"
-                    >
+                    <ul className="border border-gray-200 rounded-md divide-y divide-gray-200">
                       {documents.map((document) => (
                         <li
                           key={document._id}

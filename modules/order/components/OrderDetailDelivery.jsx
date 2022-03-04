@@ -1,8 +1,6 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import { Fragment } from 'react';
 
-import Badge from '../../common/components/Badge';
 import {
   getCurrencyAndPrice,
   getInterfaceLabel,
@@ -48,55 +46,70 @@ const OrderDetailDelivery = ({ delivery }) => {
             </a>
           </Link>
         </span>
+        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+          {formatMessage({
+            id: 'delivery_provider',
+            defaultMessage: 'Provider',
+          })}
+        </div>
         <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-          {deliveryProviderType.map((type, index) => (
-            <Fragment key={index}>
-              <StatusInformation
-                enumType={type.value}
-                currentType={delivery?.provider?.type}
-                label={type.label}
-              />
-            </Fragment>
+          {deliveryProviderType.map((type) => (
+            <StatusInformation
+              key={type.value}
+              enumType={type.value}
+              currentType={delivery?.provider?.type}
+              label={type.label}
+            />
           ))}
         </span>
+        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+          {formatMessage({
+            id: 'wrapping_condition',
+            defaultMessage: 'Wrapping condition',
+          })}
+        </div>
         <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-          {deliveryWrappingType.map((type, index) => (
-            <Fragment key={index}>
-              <StatusInformation
-                enumType={type.value}
-                currentType={delivery?.wrapping}
-                label={type.label}
-              />
-            </Fragment>
+          {deliveryWrappingType.map((type) => (
+            <StatusInformation
+              key={type.value}
+              enumType={type.value}
+              currentType={delivery?.wrapping}
+              label={type.label}
+            />
           ))}
         </span>
+        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+          {formatMessage({
+            id: 'delivery_status',
+            defaultMessage: 'Status',
+          })}
+        </div>
         <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-          {deliveryStatusType.map((type, index) => (
-            <Fragment key={index}>
-              <StatusInformation
-                enumType={type.value}
-                currentType={delivery?.status}
-                label={type.label}
-              />
-            </Fragment>
+          {deliveryStatusType.map((type) => (
+            <StatusInformation
+              key={type.value}
+              enumType={type.value}
+              currentType={delivery?.status}
+              label={type.label}
+            />
           ))}
         </span>
         {delivery.fee ? (
-          <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-            <Badge
-              text={getCurrencyAndPrice(delivery.fee)}
-              color="cyan"
-              square
-            />
-          </span>
+          <>
+            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+              {formatMessage({
+                id: 'delivery_fee',
+                defaultMessage: 'Fee',
+              })}
+            </div>
+            <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+              {getCurrencyAndPrice(delivery.fee)}
+            </span>
+          </>
         ) : null}
         {delivery?.delivered ? (
-          <span className="block py-1 text-xs leading-5 font-semibold rounded-full">
-            <Badge
-              text={formatDateTime(delivery?.delivered)}
-              color="orange"
-              square
-            />
+          <span className="block py-2 text-sm leading-5 font-bold">
+            {formatDateTime(delivery?.delivered)}
           </span>
         ) : null}
       </div>

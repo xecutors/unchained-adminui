@@ -57,7 +57,7 @@ const OrderDetailProgress = ({ order }) => {
         <button
           onClick={onConfirmOrder}
           type="button"
-          className="-ml-px relative inline-flex items-center space-x-2 px-2 py-1 border border-indigo-500 text-sm font-medium rounded-r-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
+          className="-ml-px relative inline-flex items-center space-x-2 px-2 py-1 border border-indigo-500 text-sm font-medium rounded-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
         >
           {formatMessage({
             id: 'confirm_order',
@@ -113,18 +113,18 @@ const OrderDetailProgress = ({ order }) => {
                     </span>
                   </div>
                   <div className="min-w-0 flex-1 flex justify-between space-x-4">
-                    <div>
+                    <div className="flex-auto">
                       <p className="text-sm text-gray-500">
-                        <span className="font-medium text-gray-900 capitalize">
+                        <span className="w-full flex justify-between items-center font-medium text-gray-900 capitalize">
                           {status} {event?.Component && event.Component}
                         </span>
                       </p>
                     </div>
-                    <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                      {order[event.content]
-                        ? formatDateTime(order[event.content])
-                        : null}
-                    </div>
+                    {order[event.content] ? (
+                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                        {formatDateTime(order[event.content])}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@ const OrderDetailProgress = ({ order }) => {
                   'text-center',
                 )}
               >
-                <span className="capitalize">
+                <span className="capitalize flex flex-col justify-center items-center">
                   {status} {event?.Component && event.Component}{' '}
                 </span>
                 <span className="block">

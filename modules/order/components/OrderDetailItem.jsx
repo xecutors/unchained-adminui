@@ -11,15 +11,15 @@ const OrderDetailItem = ({ item }) => {
 
   return (
     <>
-      <Link href={`/products/${item.originalProduct.texts.slug}`}>
-        <a className="transition ease-in-out delay-150 duration-300 hover:scale-105 hover:border hover:border-solid hover:border-blue-600 hover:rounded-lg">
-          <section aria-labelledby="products-heading">
+      <section aria-labelledby="products-heading">
+        <Link href={`/products/${item.originalProduct.texts.slug}`}>
+          <a>
             <h2 id="products-heading" className="sr-only">
               Products purchased
             </h2>
 
             <div className="space-y-8">
-              <div className="bg-white border border-gray-200 shadow-sm rounded-lg">
+              <div className="bg-white border border-gray-200 shadow-sm rounded-lg hover:border hover:border-solid hover:border-blue-600">
                 <div className="p-3">
                   <div className="flex flex-wrap">
                     <div className="flex-shrink-0 w-auto rounded-lg overflow-hidden sm:w-10 sm:h-10">
@@ -61,9 +61,9 @@ const OrderDetailItem = ({ item }) => {
                 </div>
               </div>
             </div>
-          </section>
-        </a>
-      </Link>
+          </a>
+        </Link>
+      </section>
     </>
   );
 };

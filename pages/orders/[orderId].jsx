@@ -34,15 +34,15 @@ const OrderDetailPage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeOrder({ orderId: id });
+          await removeOrder({ orderId });
           toast.success(
             formatMessage(
               {
                 id: 'order_deleted',
-                defaultMessage: 'Order {id} deleted successfully',
+                defaultMessage: 'Order {orderId} deleted successfully',
               },
               {
-                id,
+                orderId,
               },
             ),
           );

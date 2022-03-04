@@ -60,8 +60,6 @@ const OrderDetailHeader = ({ order }) => {
                 <dt className="sr-only">Account status</dt>
                 <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                   {order.user.isEmailVerified ? (
-                    order.user.isEmailVerified
-                  ) : false ? (
                     <CheckCircleIcon
                       className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
                       aria-hidden="true"
@@ -132,13 +130,7 @@ const OrderDetailHeader = ({ order }) => {
           </dt>
           <dd className="font-medium text-gray-900">
             <time dateTime="2021-03-22">
-              {order.ordered
-                ? formatDateTime(order.ordered, {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })
-                : ``}
+              {order.ordered ? formatDateTime(order.ordered) : null}
             </time>
           </dd>
         </dl>

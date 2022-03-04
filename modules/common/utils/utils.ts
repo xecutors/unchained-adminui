@@ -19,11 +19,11 @@ const getTotalDiscount = (discounts) => {
 
 const formatDateTime = (
   date,
-  options = {
+  options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-  } as const,
+  },
 ) => {
   const { locale } = useIntl();
   return new Intl.DateTimeFormat(locale, options).format(date);
