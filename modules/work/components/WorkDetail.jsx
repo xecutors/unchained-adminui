@@ -110,16 +110,37 @@ const WorkDetail = ({ work }) => {
                 })}
               </div>
               <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
-                <Badge
-                  text={formatMessage({
-                    id: 'worker',
-                    defaultMessage: `${work?.worker}`,
-                  })}
-                  color="purple"
-                  className="bg-purple-200 font-bold"
-                />
+                {work?.worker ? (
+                  <Badge
+                    text={formatMessage({
+                      id: 'worker',
+                      defaultMessage: `${work?.worker}`,
+                    })}
+                    color="purple"
+                    className="bg-purple-200 font-bold"
+                  />
+                ) : (
+                  'N/A'
+                )}
               </div>
             </div>
+            {work?.retries ? (
+              <div className="flex flex-wrap justify-between items-center mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+                  {formatMessage({
+                    id: 'work_original',
+                    defaultMessage: 'Orginial Work',
+                  })}
+                </div>
+                <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+                  <Link href={`/works/${work?.work?._id}`}>
+                    <a className="text-blue-600">{work?.work?._id}</a>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
@@ -192,46 +213,12 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
           </div>
-
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
-            <div className="flex flex-col justify-between items-start min-h-full">
-              <div className="mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
-                  {formatMessage({
-                    id: 'work_result',
-                    defaultMessage: 'Work Result',
-                  })}
-                </div>
-
-                <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
-                  <ReactJson src={work?.result} collapsed />
-                </div>
-              </div>
-
-              {work?.retries ? (
-                <div className="mb-2">
-                  <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
-                    {formatMessage({
-                      id: 'work_original',
-                      defaultMessage: 'Orginial Work',
-                    })}
-                  </div>
-                  <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
-                    <Link href={`/works/${work?.work?._id}`}>
-                      <a className="text-blue-600">{work?.work.type}</a>
-                    </Link>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
             <div className="mb-2">
               <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
                 {formatMessage({
-                  id: 'work_input',
-                  defaultMessage: 'Work Input',
+                  id: 'input',
+                  defaultMessage: 'Input',
                 })}
               </div>
               <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
@@ -240,7 +227,24 @@ const WorkDetail = ({ work }) => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
+            <div className="flex flex-col justify-between items-start min-h-full">
+              <div className="mb-2">
+                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+                  {formatMessage({
+                    id: 'result',
+                    defaultMessage: 'Result',
+                  })}
+                </div>
+
+                <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+                  <ReactJson src={work?.result} collapsed />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
             <div className="mb-2">
               <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
                 {formatMessage({

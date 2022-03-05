@@ -11,7 +11,7 @@ import GraphSync from '../../../modules/common/components/GraphSync';
 
 import Loading from '../../../modules/common/components/Loading';
 import PageHeader from '../../../modules/common/components/PageHeader';
-import useProductsCount from '../../../modules/product/hooks/useProductsCount';
+
 import useWork from '../../../modules/work/hooks/useWork';
 import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
 import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
@@ -19,6 +19,7 @@ import ProductList from '../../../modules/product/components/ProductList';
 import AssortmentList from '../../../modules/assortment/components/AssortmentList';
 import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
+import normalizeProductSyncData from '../util/normalizeProductSyncData';
 
 const SyncDetail = () => {
   const [today, setToday] = useState(new Date());
@@ -36,7 +37,6 @@ const SyncDetail = () => {
 
   const { work, loading } = useWork({ workId: id });
 
-  const { productsCount } = useProductsCount();
   if (loading || !work) return <Loading />;
 
   const {
@@ -54,11 +54,11 @@ const SyncDetail = () => {
     0,
   );
 
-  const getPreviousValue = ({ new: added, removed, diff }, current) => {
+  const getPreviousValue = ({ new: added, removed, diff, total }) => {
     if (added > removed) {
-      return current - diff;
+      return total - diff;
     }
-    return current + diff;
+    return total + diff;
   };
 
   return (
@@ -117,20 +117,20 @@ const SyncDetail = () => {
           </dt>
           <dd className="mt-1 flex xl:space-x-7 items-baseline md:block lg:flex">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
-              {productsCount}
+              {stats.products?.total || 0}
               <span className="ml-2 text-sm font-medium text-gray-500">
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
                 })}{' '}
-                {getPreviousValue(stats.products, productsCount)}
+                {getPreviousValue(stats.products)}
               </span>
             </div>
 
             <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium md:mt-2 lg:mt-0">
               <SyncChangeIcon
                 {...stats.products}
-                productsCount={productsCount}
+                productsCount={stats.products?.total || 0}
               />
             </div>
           </dd>
@@ -162,13 +162,10 @@ const SyncDetail = () => {
           id: 'categories',
           defaultMessage: 'Categories',
         })}
-        categories={result?.assortments || {}}
         publishedList={
           <AssortmentList
             showAvatar={false}
-            assortments={
-              normalizeAssortmentSyncData(result?.assortments)?.published
-            }
+            assortments={normalizeAssortmentSyncData(result?.assortments)?.new}
           />
         }
         removedList={
@@ -190,13 +187,15 @@ const SyncDetail = () => {
         publishedList={
           <ProductList
             showAvatar={false}
-            products={normalizeAssortmentSyncData(result?.products)?.published}
+            products={[
+              ...(normalizeProductSyncData(result?.products)?.new || []),
+            ]}
           />
         }
         removedList={
           <ProductList
             showAvatar={false}
-            products={normalizeAssortmentSyncData(result?.products)?.removed}
+            products={normalizeProductSyncData(result?.products)?.removed}
           />
         }
         statistics={stats.products}
