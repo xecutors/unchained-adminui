@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { useIntl } from 'react-intl';
 // import FormHeader from './FormHeader';
-import ProviderConfigurationForm from './ProviderConfigurationForm';
 
 // import useRemoveDeliveryProvider from '../../delivery-provider/hooks/useRemoveDeliveryProvider';
 // import useUpdateDeliveryProvider from '../../delivery-provider/hooks/useUpdateDeliveryProvider';
@@ -11,37 +10,16 @@ import Badge from './Badge';
 
 import { getInterfaceLabel, formatDateTime } from '../utils/utils';
 import Form from '../../forms/components/Form';
-import TextAreaField from '../../forms/components/TextAreaField';
+
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import useForm from '../../forms/hooks/useForm';
 
 const ProviderDetail = ({ provider }) => {
-  // console.log(provider);
-  const [configuration, setConfiguration] = useState(
+  const [configuration] = useState(
     JSON.stringify(provider?.configuration, undefined, 2),
   );
 
   const { formatMessage } = useIntl();
-
-  // const { updateDeliveryProvider } = useUpdateDeliveryProvider();
-  // const { removeDeliveryProvider } = useRemoveDeliveryProvider();
-
-  // const onSubmit = async ({ configuration }) => {
-  //   await updateDeliveryProvider({
-  //     configuration,
-  //     deliveryProviderId: id,
-  //   });
-  //   return true;
-  // };
-
-  // const onSubmitSuccess = () => {
-  //   routerPush('/delivery-provider');
-  // };
-
-  // const onRemoveDeliveryProvider = async () => {
-  //   await removeDeliveryProvider({ deliveryProviderId: id });
-  //   routerPush('/delivery-provider');
-  // };
 
   const form = useForm({
     submit: () => {},
@@ -49,8 +27,6 @@ const ProviderDetail = ({ provider }) => {
       configuration,
     },
   });
-
-  console.log(form);
 
   return (
     <div className="my-6">
@@ -60,7 +36,7 @@ const ProviderDetail = ({ provider }) => {
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               {getInterfaceLabel(provider?.interface)}
             </h3>
-            {/* {console.log('active', !!provider?.isActive)} */}
+
             <Badge
               text={
                 provider?.isActive ||

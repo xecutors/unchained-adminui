@@ -20,9 +20,9 @@ const WarehousingProviderUpdate = () => {
     warehousingProviderId: id,
   });
 
-  const onSubmit = async ({ configuration }) => {
+  const onSubmit = async ({ configuration: config }) => {
     await updateWarehousingProvider({
-      configuration,
+      configuration: JSON.parse(config || '{}'),
       warehousingProviderId: id,
     });
     return true;

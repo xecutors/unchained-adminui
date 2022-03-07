@@ -36,6 +36,7 @@ export interface ComputedProps extends CommonFieldProps {
   onChange: FormikHandlers['handleChange'];
   onBlur: FormikHandlers['handleBlur'];
   setValue: FieldHelperProps<any>['setValue'];
+  setError: FieldHelperProps<any>['setError'];
   value: string; // | string[]
 }
 
@@ -89,7 +90,6 @@ const useField = (props: FieldHookProps): ComputedProps => {
     name,
     validate,
   });
-
   const error = meta.touched && meta.error;
 
   const onChange = (event) => {
@@ -110,6 +110,7 @@ const useField = (props: FieldHookProps): ComputedProps => {
     onBlur: field.onBlur,
     value: field.value || '',
     setValue: helpers.setValue,
+    ...helpers,
   };
 };
 

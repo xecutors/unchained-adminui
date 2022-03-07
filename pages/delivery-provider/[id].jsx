@@ -12,18 +12,31 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
 
 import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDeliveryProvider';
+import ProviderConfigurationForm from '../../modules/common/components/ProviderConfigurationForm';
+import useUpdateDeliveryProvider from '../../modules/delivery-provider/hooks/useUpdateDeliveryProvider';
 
 const DeliveryProviderUpdate = () => {
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
-  const { query } = useRouter();
+  const { query, ...router } = useRouter();
   const { formatMessage } = useIntl();
   const { id } = query;
 
   const { deliveryProvider, loading } = useDeliveryProvider({
     deliveryProviderId: id,
   });
+  const { updateDeliveryProvider } = useUpdateDeliveryProvider();
+  const onSubmit = async ({ configuration: config }) => {
+    await updateDeliveryProvider({
+      configuration: JSON.parse(config),
+      deliveryProviderId: id,
+    });
+    return true;
+  };
 
+  const onSubmitSuccess = () => {
+    router.push('/delivery-provider');
+  };
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
@@ -71,7 +84,15 @@ const DeliveryProviderUpdate = () => {
           className="flex justify-center items-center bg-red-400  rounded-md px-1 py-1 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 text-white"
         />
       </div>
-      {loading ? <Loading /> : <ProviderDetail provider={deliveryProvider} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProviderConfigurationForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+          defaultValue={deliveryProvider?.configuration || {}}
+        />
+      )}
     </>
   );
 };

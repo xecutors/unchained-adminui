@@ -1,23 +1,19 @@
 import classnames from 'classnames';
 
-import { useState } from 'react';
-import { validateMaxLength } from '../lib/validators';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
 
-interface TextAreaFieldProps extends FieldHookProps {
-  autoComplete?: 'on' | 'off';
+interface JSONAreaProps extends FieldHookProps {
   rows?: number;
 }
 
-const TextAreaField = ({
+const JSONAreaField = ({
   validators = [],
-
-  rows = 5,
+  rows = 20,
   ...props
-}: TextAreaFieldProps) => {
-  const [error, setError] = useState('');
+}: JSONAreaProps) => {
   const field = useField({
+    ...props,
     validators: [
       ...validators,
       {
@@ -25,64 +21,65 @@ const TextAreaField = ({
           try {
             JSON.parse(v);
             return true;
-          } catch (erro) {
-            return erro.message;
+          } catch (err) {
+            return false;
           }
         },
-        intlMessageDescriptor: { id: 'about' },
+        intlMessageDescriptor: {
+          id: 'invalid_json_input',
+          defaultMessage: 'Invalid JSON input',
+        },
       },
     ],
-    ...props,
   });
 
   const handleOnChange = (e) => {
     try {
-      field.setValue(JSON.stringify(JSON.parse(e.target.value || '{}')));
-      // JSON.parse(event.target.value);
-      setError('');
-    //   console.log(e.target.value);
+      JSON.parse(e.target.value || '{}');
     } catch (err) {
-      // setError(err);
-    //   console.log(err);
-      setError(err);
+      field.setError(err.message);
     } finally {
-      field.setValue(e.target.value);
+      field.setValue(e.target.value, true);
+      field.setTouched(true);
     }
   };
 
   const handleOnBlur = (e) => {
     try {
-      field.setValue(JSON.stringify(JSON.parse(e.target.value), undefined, 2));
-    //   console.log('try, onblur');
-      // setError('');
+      field.setValue(
+        JSON.stringify(JSON.parse(e.target.value), undefined, 2),
+        true,
+      );
     } catch (err) {
-      // field.setValuesetError(err);
-    //   console.log('catch, onblur', err);
+      field.setError(err.message);
     }
   };
 
   return (
     <FieldWrapper {...field}>
-      <textarea
-        className={classnames(
-          'mt-1 max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
-          {
-            'text-red-600 border-red-300': !!field.error,
-          },
-        )}
-        disabled={field.disabled}
-        id={field.name}
-        name={field.name}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        placeholder={field.placeholder}
-        autoComplete={field.autoComplete}
-        value={field.value}
-        rows={rows}
-      />
-      <p>{field.error}</p>
+      <>
+        <textarea
+          className={classnames(
+            'mt-1 max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
+            {
+              'text-red-600 border-red-300': !!field.error,
+            },
+          )}
+          disabled={field.disabled}
+          id={field.name}
+          cols={rows}
+          name={field.name}
+          onChange={handleOnChange}
+          onBlur={handleOnBlur}
+          placeholder={field.placeholder}
+          autoComplete={field.autoComplete}
+          value={field.value}
+          rows={rows}
+        />
+        <p>{field.error}</p>
+      </>
     </FieldWrapper>
   );
 };
 
-export default TextAreaField;
+export default JSONAreaField;

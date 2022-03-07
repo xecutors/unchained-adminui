@@ -20,9 +20,9 @@ const PaymentProviderUpdate = () => {
     paymentProviderId: id,
   });
 
-  const onSubmit = async ({ configuration }) => {
+  const onSubmit = async ({ configuration: config }) => {
     await updatePaymentProvider({
-      configuration,
+      configuration: JSON.parse(config || '{}'),
       paymentProviderId: id,
     });
     return true;
@@ -51,7 +51,7 @@ const PaymentProviderUpdate = () => {
           <ProviderConfigurationForm
             onSubmit={onSubmit}
             onSubmitSuccess={onSubmitSuccess}
-            defaultValue={paymentProvider?.configuration || []}
+            defaultValue={paymentProvider?.configuration || {}}
           />
         </FormHeader>
       </div>
