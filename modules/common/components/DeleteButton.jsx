@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 const DeleteButton = ({
   onClick,
-  className = '',
+  className: classes = '',
   icon = null,
   textRight = '',
   textLeft = '',
@@ -15,7 +15,7 @@ const DeleteButton = ({
         onClick={onClick}
         className={classNames(
           'items-center px-1 py-1 text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500',
-          className,
+          classes,
         )}
       >
         {textLeft || ''}
