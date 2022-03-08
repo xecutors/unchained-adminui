@@ -34,9 +34,14 @@ const formatDateTime = (
   return new Intl.DateTimeFormat(locale, options).format(date);
 };
 
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ');
+};
+
 export {
   getCurrencyAndPrice,
   getInterfaceLabel,
   getTotalDiscount,
   formatDateTime,
+  classNames,
 };
