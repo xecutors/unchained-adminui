@@ -15,11 +15,7 @@ import PageHeader from '../../../modules/common/components/PageHeader';
 import useWork from '../../../modules/work/hooks/useWork';
 import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
 import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
-import ProductList from '../../../modules/product/components/ProductList';
-import AssortmentList from '../../../modules/assortment/components/AssortmentList';
-import normalizeAssortmentSyncData from '../util/normalizeAssortmentSyncData';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
-import normalizeProductSyncData from '../util/normalizeProductSyncData';
 
 const SyncDetail = () => {
   const [today, setToday] = useState(new Date());
@@ -162,20 +158,8 @@ const SyncDetail = () => {
           id: 'categories',
           defaultMessage: 'Categories',
         })}
-        publishedList={
-          <AssortmentList
-            showAvatar={false}
-            assortments={normalizeAssortmentSyncData(result?.assortments)?.new}
-          />
-        }
-        removedList={
-          <AssortmentList
-            showAvatar={false}
-            assortments={
-              normalizeAssortmentSyncData(result?.assortments)?.removed
-            }
-          />
-        }
+        newItemsRoute="new-assortments"
+        updatedItemsRoute="updated-assortments"
         statistics={stats.categories}
       />
 
@@ -184,20 +168,9 @@ const SyncDetail = () => {
           id: 'products',
           defaultMessage: 'Products',
         })}
-        publishedList={
-          <ProductList
-            showAvatar={false}
-            products={[
-              ...(normalizeProductSyncData(result?.products)?.new || []),
-            ]}
-          />
-        }
-        removedList={
-          <ProductList
-            showAvatar={false}
-            products={normalizeProductSyncData(result?.products)?.removed}
-          />
-        }
+        newItemsRoute="new-products"
+        updatedItemsRoute="updated-products"
+        removedItemsRoute="removed-products"
         statistics={stats.products}
       />
 
@@ -206,6 +179,8 @@ const SyncDetail = () => {
           id: 'filters',
           defaultMessage: 'Filters',
         })}
+        newItemsRoute="new-filters"
+        updatedItemsRoute="updated-filters"
         statistics={stats.filters}
       />
     </>

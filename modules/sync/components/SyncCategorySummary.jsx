@@ -1,18 +1,22 @@
+import { RefreshIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import useModal from '../../modal/hooks/useModal';
 
 const SyncCategorySummary = ({
   categoryName,
   statistics,
-  removedList,
-  publishedList,
+  newItemsRoute,
+  updatedItemsRoute,
+  removedItemsRoute,
 }) => {
   const { formatMessage } = useIntl();
-  const { setModal } = useModal();
+  const router = useRouter();
+
   return (
     <>
       <h3 className="mt-5 pt-5">{categoryName}</h3>
-      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <dl className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-indigo-500 rounded-md p-3">
@@ -29,7 +33,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 ">
               {formatMessage(
                 {
                   id: 'sync_added',
@@ -58,24 +62,67 @@ const SyncCategorySummary = ({
               </svg>
               {statistics.new}
             </p>
-            {publishedList && (
-              <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    onClick={async () => {
-                      await setModal(publishedList);
-                    }}
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
+
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+              <div className="text-sm">
+                <Link href={`${router.asPath}/items-list?tab=${newItemsRoute}`}>
+                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
                     {formatMessage({
                       id: 'view_all',
                       defaultMessage: 'View all',
                     })}
                   </a>
-                </div>
+                </Link>
               </div>
-            )}
+            </div>
+          </dd>
+        </div>
+
+        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
+          <dt>
+            <div className="absolute bg-indigo-500 rounded-md p-3">
+              <RefreshIcon
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              />
+            </div>
+            <p className="ml-16 text-sm font-medium text-gray-500 ">
+              {formatMessage(
+                {
+                  id: 'sync_updated',
+                  defaultMessage: 'Updated { categoryName } ',
+                },
+                {
+                  categoryName,
+                },
+              )}
+            </p>
+          </dt>
+          <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
+            <p className="flex items-baseline text-2xl font-semibold text-green-600">
+              <RefreshIcon
+                className="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              />
+              {statistics.removed}
+            </p>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+              <div className="text-sm">
+                <Link
+                  href={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
+                >
+                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                    {formatMessage({
+                      id: 'view_all',
+                      defaultMessage: 'View all',
+                    })}
+                  </a>
+                </Link>
+              </div>
+            </div>
           </dd>
         </div>
 
@@ -95,7 +142,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 ">
               {formatMessage(
                 {
                   id: 'sync_removed',
@@ -124,27 +171,19 @@ const SyncCategorySummary = ({
               </svg>
               {statistics.removed}
             </p>
-            {removedList && (
+            {removedItemsRoute && (
               <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
-                  <a
-                    href="#"
-                    onClick={async () => {
-                      await setModal(removedList);
-                    }}
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  <Link
+                    href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
                   >
-                    {formatMessage({
-                      id: 'view_all',
-                      defaultMessage: 'View all',
-                    })}
-                    <span className="sr-only">
+                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
                       {formatMessage({
-                        id: 'average_stat',
-                        defaultMessage: 'Avg. Open Rate stats',
+                        id: 'view_all',
+                        defaultMessage: 'View all',
                       })}
-                    </span>
-                  </a>
+                    </a>
+                  </Link>
                 </div>
               </div>
             )}
@@ -169,7 +208,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 ">
               {formatMessage(
                 {
                   id: 'total_variable_category',
