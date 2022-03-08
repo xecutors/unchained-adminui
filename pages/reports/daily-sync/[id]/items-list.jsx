@@ -25,7 +25,7 @@ const GetCurrentTab = ({ list, selectedView }) => {
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'updated-assortment')
+  if (selectedView === 'updated-assortments')
     return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
@@ -38,7 +38,7 @@ const GetCurrentTab = ({ list, selectedView }) => {
   if (selectedView === 'updated-filter')
     return <FiltersAlphabeticalList dictionary={updatedFilters} />;
 
-  return <AssortmentAlphabeticalList dictionary={updatedFilters} />;
+  return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
 };
 
 const DailyAnalyticsReportList = () => {
