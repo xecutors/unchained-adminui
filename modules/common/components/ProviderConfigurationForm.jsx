@@ -6,7 +6,6 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
 
-
 const ProviderConfigurationForm = ({
   onSubmit,
   onSubmitSuccess,

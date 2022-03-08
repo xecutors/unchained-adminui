@@ -18,7 +18,7 @@ const WorkForm = () => {
   const { workTypes } = useRegisteredWorkTypes();
   const { addWork } = useAddWork();
   const successMessage = formatMessage({
-    id: 'work_added',
+    id: 'work_added_success',
     defaultMessage: 'Work added successfully!',
   });
 
@@ -34,7 +34,7 @@ const WorkForm = () => {
       type,
       retries: parseInt(inputRetry, 10),
       priority: parseInt(inputPriority, 10),
-      input: JSON.parse(userInput || []),
+      input: JSON.parse(userInput || '[]'),
       scheduled,
       originalWorkId,
     });

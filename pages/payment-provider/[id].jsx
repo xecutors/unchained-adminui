@@ -29,7 +29,7 @@ const PaymentProviderUpdate = () => {
 
   const onSubmit = async ({ configuration: config }) => {
     await updatePaymentProvider({
-      configuration: JSON.parse(config || '{}'),
+      configuration: JSON.parse(config || '[]'),
       paymentProviderId: id,
     });
     return true;

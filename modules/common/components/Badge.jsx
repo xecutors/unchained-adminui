@@ -3,7 +3,7 @@ import { bgColor, textColor } from '../data/miscellaneous';
 
 const Badge = ({
   text,
-  className = '',
+  className: classes = '',
   dotted,
   color = 'green',
   square,
@@ -18,7 +18,7 @@ const Badge = ({
           normalizedColor,
           100,
         )} ${textColor(normalizedColor, 800)}`,
-        className,
+        classes,
         {
           'rounded-full': !square,
           'rounded-md': square,

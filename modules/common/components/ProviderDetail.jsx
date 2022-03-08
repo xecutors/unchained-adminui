@@ -20,8 +20,6 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
     minute: '2-digit',
   };
 
-  const activeStatus = provider?.isActive || false;
-
   const form = useForm({
     initialValues: {
       configuration: JSON.stringify(provider?.configuration || {}, null, 2),
@@ -41,9 +39,9 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
 
             <Badge
               text={
-                activeStatus
+                provider?.isActive
                   ? formatMessage({
-                      id: 'not_active',
+                      id: 'active',
                       defaultMessage: 'Active',
                     })
                   : formatMessage({
@@ -51,15 +49,14 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                       defaultMessage: 'Not Active',
                     })
               }
-              className={`capitalize p-1 ml-4 text-xs font-medium text-slate-600 rounded-lg ${
-                activeStatus ? 'bg-green-500' : 'bg-red-500'
-              }`}
+              color={provider?.isActive ? 'green' : 'red'}
+              className="ml-3"
               square
             />
           </div>
           <div className="flex flex-col mt-6">
-            <div className="flex justify-between items-center">
-              <div className="flex justify-center items-center py-4 sm:py-5">
+            <div className="flex-col sm:flex  justify-between sm:items-center ">
+              <div className="flex justify-center  py-4 sm:py-5">
                 <dt className="inline-block text-sm font-medium text-gray-400">
                   {formatMessage({ id: 'type', defaultMessage: 'Type:' })}
                 </dt>
@@ -67,7 +64,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                   {provider?.type}
                 </dd>
               </div>
-              <div className="grid grid-cols-2 grid-rows-2 items-center">
+              <div className="grid grid-cols-2 grid-rows-2 ">
                 <dd className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({
                     id: 'created',
@@ -79,7 +76,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                 </dt>
                 <dd className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({
-                    id: 'created',
+                    id: 'last_updated',
                     defaultMessage: 'Last Updated:',
                   })}
                 </dd>
@@ -95,7 +92,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                 className="block text-sm font-medium text-gray-400 sm:mt-px sm:pt-2"
               >
                 {formatMessage({
-                  id: 'configuration_label',
+                  id: 'configuration',
                   defaultMessage: 'Configuration',
                 })}
               </label>
@@ -104,18 +101,28 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                   id="configuration"
                   name="configuration"
                   value={form.formik.values.configuration}
+                  label={formatMessage({
+                    id: 'configuration',
+                    defaultMessage: 'Configuration',
+                  })}
                   hideLabel
                 />
                 <FormErrors />
-                <SubmitButton label="Update configuration" className="my-2" />
+                <SubmitButton
+                  label={formatMessage({
+                    id: 'update_configuration',
+                    defaultMessage: 'Update configuration',
+                  })}
+                  className="my-2"
+                />
               </div>
             </Form>
 
             <div className="mt-6 mb-3">
               <dt className="inline-block text-sm font-normal text-gray-400">
                 {formatMessage({
-                  id: 'configurationerror',
-                  defaultMessage: 'Configuration Error:',
+                  id: 'configuration_error',
+                  defaultMessage: 'Configuration error',
                 })}
               </dt>
               {provider?.configurationError ? (
