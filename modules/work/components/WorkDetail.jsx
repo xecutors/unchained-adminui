@@ -43,13 +43,9 @@ const WorkDetail = ({ work }) => {
     <>
       <div className="w-full border-t border-gray-300" />
 
-      <div
-        className={`my-4 p-2 sm:p-6 lg:p-8 flex justify-center items-center ${
-          shadowStyle[work?.status]
-        }`}
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-5 sm:grid-rows-3 gap-8 w-full">
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+      <div className={`my-4 p-2 sm:p-6 lg:p-8  ${shadowStyle[work?.status]}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-4  gap-8 ">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 sm:col-span-1 col-span-2 ">
             <div className="flex flex-wrap justify-between items-center mb-2">
               <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
                 {formatMessage({
@@ -143,7 +139,7 @@ const WorkDetail = ({ work }) => {
             )}
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 sm:col-span-1 col-span-2">
             <div className="grid grid-cols-2 sm:justify-items-center">
               <div className="sm:col-span-1 mb-2">
                 <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
