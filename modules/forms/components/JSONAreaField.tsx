@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
 
@@ -9,7 +8,7 @@ interface JSONAreaProps extends FieldHookProps {
 
 const JSONAreaField = ({
   validators = [],
-  rows = 20,
+  rows = 10,
   ...props
 }: JSONAreaProps) => {
   const field = useField({
@@ -36,6 +35,7 @@ const JSONAreaField = ({
   const handleOnChange = (e) => {
     try {
       JSON.parse(e.target.value || '{}');
+      field.setError('');
     } catch (err) {
       field.setError(err.message);
     } finally {
@@ -50,6 +50,7 @@ const JSONAreaField = ({
         JSON.stringify(JSON.parse(e.target.value), undefined, 2),
         true,
       );
+      field.setError('');
     } catch (err) {
       field.setError(err.message);
     }
@@ -62,21 +63,20 @@ const JSONAreaField = ({
           className={classnames(
             'mt-1 max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
             {
-              'text-red-600 border-red-300': !!field.error,
+              'text-red-600 focus:ring-red-600 focus:border-red-600 border-red-300':
+                !!field.error,
             },
           )}
           disabled={field.disabled}
           id={field.name}
-          cols={rows}
           name={field.name}
           onChange={handleOnChange}
           onBlur={handleOnBlur}
           placeholder={field.placeholder}
           autoComplete={field.autoComplete}
           value={field.value}
-          rows={rows}
+          rows={Math.max(field.value.length / 6, rows)}
         />
-        <p>{field.error}</p>
       </>
     </FieldWrapper>
   );

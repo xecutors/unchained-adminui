@@ -6,6 +6,7 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
 
+
 const ProviderConfigurationForm = ({
   onSubmit,
   onSubmitSuccess,
@@ -13,7 +14,9 @@ const ProviderConfigurationForm = ({
 }) => {
   const { formatMessage } = useIntl();
   const form = useForm({
-    initialValues: { configuration: JSON.stringify(defaultValue || {}) },
+    initialValues: {
+      configuration: JSON.stringify(defaultValue || {}, null, 2),
+    },
     submit: onSubmit,
     onSubmitSuccess,
   });

@@ -1,36 +1,38 @@
-/* eslint-disable no-console */
-import { useState } from 'react';
-
+import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
-// import FormHeader from './FormHeader';
 
-// import useRemoveDeliveryProvider from '../../delivery-provider/hooks/useRemoveDeliveryProvider';
-// import useUpdateDeliveryProvider from '../../delivery-provider/hooks/useUpdateDeliveryProvider';
 import Badge from './Badge';
-
-import { getInterfaceLabel, formatDateTime } from '../utils/utils';
 import Form from '../../forms/components/Form';
-
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import useForm from '../../forms/hooks/useForm';
+import FormErrors from '../../forms/components/FormErrors';
+import SubmitButton from '../../forms/components/SubmitButton';
+import { getInterfaceLabel, formatDateTime } from '../utils/utils';
 
-const ProviderDetail = ({ provider }) => {
-  const [configuration] = useState(
-    JSON.stringify(provider?.configuration, undefined, 2),
-  );
-
+const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
 
+  const dateFormatOption = {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  };
+
+  const activeStatus = provider?.isActive || false;
+
   const form = useForm({
-    submit: () => {},
     initialValues: {
-      configuration,
+      configuration: JSON.stringify(provider?.configuration || {}, null, 2),
     },
+    submit: onSubmit,
+    onSubmitSuccess,
   });
 
   return (
     <div className="my-6">
-      <Form form={form} className="space-y-8 divide-y divide-gray-200">
+      <div className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div className="flex items-center">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -39,112 +41,92 @@ const ProviderDetail = ({ provider }) => {
 
             <Badge
               text={
-                provider?.isActive ||
-                formatMessage({
-                  id: 'not_active',
-                  defaultMessage: 'Not Active',
-                })
+                activeStatus
+                  ? formatMessage({
+                      id: 'not_active',
+                      defaultMessage: 'Active',
+                    })
+                  : formatMessage({
+                      id: 'not_active',
+                      defaultMessage: 'Not Active',
+                    })
               }
-              className="capitalize p-1 ml-4 text-xs font-medium text-slate-600 rounded-lg"
+              className={`capitalize p-1 ml-4 text-xs font-medium text-slate-600 rounded-lg ${
+                activeStatus ? 'bg-green-500' : 'bg-red-500'
+              }`}
               square
             />
           </div>
-
-          <div className="grid mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-              <label
-                htmlFor="type"
-                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-              >
-                {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              </label>
-              <div className="mt-1 sm:mt-0 sm:col-span-2">
-                <input
-                  type="text"
-                  name="type"
-                  id="type"
-                  disabled
-                  value={provider?.type}
-                  className="block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
+          <div className="flex flex-col mt-6">
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center items-center py-4 sm:py-5">
+                <dt className="inline-block text-sm font-medium text-gray-400">
+                  {formatMessage({ id: 'type', defaultMessage: 'Type:' })}
+                </dt>
+                <dd className="inline-block ml-4 text-lg font-bold border leading-4 rounded-lg shadow-lg p-2">
+                  {provider?.type}
+                </dd>
               </div>
-            </div>
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-              <label
-                htmlFor="created"
-                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-              >
-                {formatMessage({
-                  id: 'created',
-                  defaultMessage: 'Created Date',
-                })}
-              </label>
-              <div className="mt-1 sm:mt-0 sm:col-span-2">
-                <input
-                  type="text"
-                  name="created"
-                  id="created"
-                  disabled
-                  value={formatDateTime(provider?.created)}
-                  className="block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
-              </div>
-            </div>
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-              <label
-                htmlFor="created"
-                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-              >
-                {formatMessage({
-                  id: 'created',
-                  defaultMessage: 'Last Updated Date',
-                })}
-              </label>
-              <div className="mt-1 sm:mt-0 sm:col-span-2">
-                <input
-                  type="text"
-                  name="created"
-                  id="created"
-                  disabled
-                  value={formatDateTime(provider?.updated)}
-                  className="block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
-              </div>
-            </div>
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-              <label
-                htmlFor="configurationerror"
-                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-              >
-                {formatMessage({
-                  id: 'configurationerror',
-                  defaultMessage: 'Configuration Error',
-                })}
-              </label>
-              <div className="mt-1 sm:mt-0 sm:col-span-2">
-                <textarea
-                  type="text"
-                  name="configurationerror"
-                  id="configurationerror"
-                  disabled
-                  value={provider?.configurationError || ' '}
-                  className="block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
-                />
+              <div className="grid grid-cols-2 grid-rows-2 items-center">
+                <dd className="text-sm font-normal text-gray-400 justify-self-end">
+                  {formatMessage({
+                    id: 'created',
+                    defaultMessage: 'Created:',
+                  })}
+                </dd>
+                <dt className="text-base font-medium ml-2">
+                  {formatDateTime(provider?.created, dateFormatOption)}
+                </dt>
+                <dd className="text-sm font-normal text-gray-400 justify-self-end">
+                  {formatMessage({
+                    id: 'created',
+                    defaultMessage: 'Last Updated:',
+                  })}
+                </dd>
+                <dt className="text-base font-medium ml-2">
+                  {formatDateTime(provider?.updated, dateFormatOption)}
+                </dt>
               </div>
             </div>
 
-            <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-              <JSONAreaField
-                name="configuration"
-                label={formatMessage({
-                  id: 'configuration',
+            <Form form={form} className="mt-6">
+              <label
+                htmlFor="configuration"
+                className="block text-sm font-medium text-gray-400 sm:mt-px sm:pt-2"
+              >
+                {formatMessage({
+                  id: 'configuration_label',
                   defaultMessage: 'Configuration',
                 })}
-              />
+              </label>
+              <div className="mt-1 sm:mt-0">
+                <JSONAreaField
+                  id="configuration"
+                  name="configuration"
+                  value={form.formik.values.configuration}
+                  hideLabel
+                />
+                <FormErrors />
+                <SubmitButton label="Update configuration" className="my-2" />
+              </div>
+            </Form>
+
+            <div className="mt-6 mb-3">
+              <dt className="inline-block text-sm font-normal text-gray-400">
+                {formatMessage({
+                  id: 'configurationerror',
+                  defaultMessage: 'Configuration Error:',
+                })}
+              </dt>
+              {provider?.configurationError ? (
+                <dd className="block">{provider?.configurationError}</dd>
+              ) : (
+                <CheckCircleIcon className="h-6 w-6 text-green-500 inline-block ml-4" />
+              )}
             </div>
           </div>
         </div>
-      </Form>
+      </div>
     </div>
   );
 };
