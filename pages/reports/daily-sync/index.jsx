@@ -7,13 +7,14 @@ import SyncReportList from '../../../modules/sync/components/SyncReportList';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
 import Pagination from '../../../modules/common/components/Pagination';
 import { DefaultLimit } from '../../../modules/common/data/miscellaneous';
+import Loading from '../../../modules/common/components/Loading';
 
 const SyncReport = () => {
   const [start, setStartDate] = useState(new Date(0));
   const [end, setEndDate] = useState(new Date());
   const [limit, setLimit] = useState(DefaultLimit);
 
-  const { dailySync, loadMore } = useDailySyncs({
+  const { dailySync, loadMore, loading } = useDailySyncs({
     start,
     end,
   });
@@ -66,7 +67,7 @@ const SyncReport = () => {
           />
         </div>
         <hr />
-        <SyncReportList data={dailySync} />
+        {loading ? <Loading /> : <SyncReportList data={dailySync} />}
         <Pagination
           onLoadMore={loadMore}
           limit={limit}
