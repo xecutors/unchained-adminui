@@ -47,11 +47,11 @@ const Wrapper = ({ selectedView, list }) => {
   const { searchKey = '' } = router.query;
 
   const handleOnChange = (e) => {
+    const query = { ...router.query };
+    if (e.target.value) query.searchKey = e.target.value;
+    else delete query.searchKey;
     router.push({
-      query: {
-        ...router.query,
-        searchKey: e.target.value,
-      },
+      query,
     });
   };
 
