@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+
 import AssortmentAlphabeticalList from '../../../../modules/assortment/components/AssortmentAlphabeticalList';
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
-
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import TabComponent from '../../../../modules/common/components/TabComponent';
@@ -35,14 +35,52 @@ const GetCurrentTab = ({ list, selectedView }) => {
     return <ProductsAlphabeticalList dictionary={removedProducts} />;
   if (selectedView === 'new-filters')
     return <FiltersAlphabeticalList dictionary={newFilters} />;
-  if (selectedView === 'updated-filter')
+  if (selectedView === 'updated-filters')
     return <FiltersAlphabeticalList dictionary={updatedFilters} />;
 
   return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
 };
 
+const Wrapper = ({ selectedView, list }) => {
+  const router = useRouter();
+
+  const { searchKey = '' } = router.query;
+
+  const handleOnChange = (e) => {
+    const query = { ...router.query };
+    if (e.target.value) query.searchKey = e.target.value;
+    else delete query.searchKey;
+    router.push({
+      query,
+    });
+  };
+
+  return (
+    <div>
+      <div className="mt-4 mb-4">
+        <input
+          type="text"
+          name="search"
+          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          onChange={handleOnChange}
+          autoComplete="off"
+          value={searchKey}
+          id="search"
+          placeholder="Find anything..."
+        />
+      </div>
+      <GetCurrentTab
+        list={list}
+        selectedView={selectedView}
+        defaultTab="new-assortments"
+      />
+    </div>
+  );
+};
+
 const DailyAnalyticsReportList = () => {
   const { formatMessage } = useIntl();
+
   const dailySyncItemReportOptions = [
     {
       id: 'new-assortments',
@@ -141,7 +179,7 @@ const DailyAnalyticsReportList = () => {
         tabItems={dailySyncItemReportOptions}
         defaultTab="new-assortments"
       >
-        <GetCurrentTab
+        <Wrapper
           list={{
             newAssortments,
             newFilters,
