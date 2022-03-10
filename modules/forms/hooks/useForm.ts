@@ -60,7 +60,7 @@ const useForm = ({
               {
                 id: 'error_server',
                 defaultMessage:
-                  'There was a problem on the server ({details}). Please try again later.',
+                  'incorrect password or email.',
               },
               { details: error?.message || '' },
             ),
