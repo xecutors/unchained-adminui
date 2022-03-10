@@ -10,7 +10,7 @@ module.exports = {
     localeDetection: false,
   },
   images: {
-    domains: ['localhost', 'engine.dev.publicare.ch'],
+    domains: ['localhost', 'engine.dev.publicare.ch', 'robohash.org'],
     deviceSizes: [320, 480, 820, 1200, 1600],
     imageSizes: [32, 48, 96, 256],
   },
