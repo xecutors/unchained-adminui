@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const ProductsAlphabeticalList = ({ dictionary = {}, searchKey }) => {
+const ProductsAlphabeticalList = ({ dictionary = {} }) => {
+  const { query } = useRouter();
+
+  const { searchKey = '' } = query;
+
   const dictionaryKeys = Object.keys(dictionary);
 
   const filtered = dictionaryKeys.map((letter) => ({

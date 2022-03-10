@@ -1,13 +1,18 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const FiltersAlphabeticalList = ({ dictionary = {}, searchKey }) => {
+const FiltersAlphabeticalList = ({ dictionary = {} }) => {
+  const { query } = useRouter();
+
+  const { searchKey = '' } = query;
+
   const dictionaryKeys = Object.keys(dictionary);
 
   const filtered = dictionaryKeys.map((letter) => ({
     [letter]: dictionary[letter].filter(
       (item) =>
         item?.key?.toLowerCase().includes(searchKey.toLowerCase()) ||
-        item?.type?.toLowerCase().includes(searchKey.toLowerCase()),
+        item?.type === searchKey,
     ),
   }));
 

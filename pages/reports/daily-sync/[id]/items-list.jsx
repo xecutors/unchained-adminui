@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
+
 import AssortmentAlphabeticalList from '../../../../modules/assortment/components/AssortmentAlphabeticalList';
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
-
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import TabComponent from '../../../../modules/common/components/TabComponent';
@@ -12,7 +11,7 @@ import ProductsAlphabeticalList from '../../../../modules/product/components/Pro
 import useWork from '../../../../modules/work/hooks/useWork';
 import sortArrayAlphabetically from '../../util/sortArrayAlphabetically';
 
-const GetCurrentTab = ({ list, selectedView, searchKey }) => {
+const GetCurrentTab = ({ list, selectedView }) => {
   if (!list) return <Loading />;
   const {
     newProducts,
@@ -25,65 +24,35 @@ const GetCurrentTab = ({ list, selectedView, searchKey }) => {
   } = list;
 
   if (selectedView === 'new-assortments')
-    return (
-      <AssortmentAlphabeticalList
-        dictionary={newAssortments}
-        searchKey={searchKey}
-      />
-    );
+    return <AssortmentAlphabeticalList dictionary={newAssortments} />;
   if (selectedView === 'updated-assortments')
-    return (
-      <AssortmentAlphabeticalList
-        dictionary={updatedAssortments}
-        searchKey={searchKey}
-      />
-    );
+    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'new-products')
-    return (
-      <ProductsAlphabeticalList
-        dictionary={newProducts}
-        searchKey={searchKey}
-      />
-    );
+    return <ProductsAlphabeticalList dictionary={newProducts} />;
   if (selectedView === 'updated-products')
-    return (
-      <ProductsAlphabeticalList
-        dictionary={updatedProducts}
-        searchKey={searchKey}
-      />
-    );
+    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
   if (selectedView === 'removed-products')
-    return (
-      <ProductsAlphabeticalList
-        dictionary={removedProducts}
-        searchKey={searchKey}
-      />
-    );
+    return <ProductsAlphabeticalList dictionary={removedProducts} />;
   if (selectedView === 'new-filters')
-    return (
-      <FiltersAlphabeticalList dictionary={newFilters} searchKey={searchKey} />
-    );
+    return <FiltersAlphabeticalList dictionary={newFilters} />;
   if (selectedView === 'updated-filters')
-    return (
-      <FiltersAlphabeticalList
-        dictionary={updatedFilters}
-        searchKey={searchKey}
-      />
-    );
+    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
 
-  return (
-    <AssortmentAlphabeticalList
-      dictionary={updatedFilters}
-      searchKey={searchKey}
-    />
-  );
+  return <AssortmentAlphabeticalList dictionary={updatedFilters} />;
 };
 
 const Wrapper = ({ selectedView, list }) => {
-  const [searchKey, setSearchKey] = useState('');
+  const router = useRouter();
+
+  const { searchKey = '' } = router.query;
 
   const handleOnChange = (e) => {
-    setSearchKey(e.target.value);
+    router.push({
+      query: {
+        ...router.query,
+        searchKey: e.target.value,
+      },
+    });
   };
 
   return (
@@ -94,8 +63,8 @@ const Wrapper = ({ selectedView, list }) => {
           name="search"
           className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
           onChange={handleOnChange}
-          value={searchKey}
           autoComplete="off"
+          value={searchKey}
           id="search"
           placeholder="Find anything..."
         />
@@ -104,7 +73,6 @@ const Wrapper = ({ selectedView, list }) => {
         list={list}
         selectedView={selectedView}
         defaultTab="new-assortments"
-        searchKey={searchKey}
       />
     </div>
   );
