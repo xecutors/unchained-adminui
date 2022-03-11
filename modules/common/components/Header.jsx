@@ -20,7 +20,7 @@ const FallbackAvatar = ({ username }) => {
   );
 };
 
-const Header = ({ name, data }) => {
+const Header = ({ name, data, reject }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -153,6 +153,22 @@ const Header = ({ name, data }) => {
               {data?.ordered ? formatDateTime(data.ordered) : null}
             </time>
           </dd>
+          {reject ? (
+            <>
+              <dt>
+                <span className="sr-only">
+                  {formatMessage({
+                    id: 'reject_button',
+                    defaultMessage: 'Reject',
+                  })}
+                </span>
+                <span className="text-gray-400 mx-2" aria-hidden="true">
+                  &middot;
+                </span>
+              </dt>
+              <dd className="ml-6 font-medium text-gray-900">{reject}</dd>
+            </>
+          ) : null}
         </dl>
       </div>
     </section>

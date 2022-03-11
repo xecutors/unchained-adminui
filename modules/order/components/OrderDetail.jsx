@@ -57,6 +57,7 @@ const OrderDetail = ({ order }) => {
     OPEN: {
       id: 1,
       content: 'created',
+      visible: true,
     },
     PENDING: {
       id: 2,
@@ -73,14 +74,17 @@ const OrderDetail = ({ order }) => {
           })}{' '}
         </button>
       ),
+      visible: true,
     },
     CONFIRMED: {
       id: 3,
       content: 'confirmed',
+      visible: true,
     },
     FULLFILLED: {
       id: 4,
       content: 'fullfilled',
+      visible: true,
     },
   };
 

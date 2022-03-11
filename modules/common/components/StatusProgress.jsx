@@ -15,60 +15,62 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
     <>
       <div className="flow-root sm:hidden">
         <ul className="my-4">
-          {statusTypes.map(({ value, label }, index) => (
-            <li key={`${value}${label}`}>
-              <div className="relative pb-8">
-                {index !== statusTypes.length - 1 ? (
-                  <span
-                    className={classNames(
-                      timeline[data.status].id > index + 1
-                        ? 'bg-indigo-600'
-                        : 'bg-gray-200',
-                      'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
-                    )}
-                    aria-hidden="true"
-                  />
-                ) : null}
-                <div className="relative flex items-center space-x-3">
-                  <div>
+          {statusTypes
+            .filter(({ value }) => timeline[value].visible)
+            .map(({ value, label }, index) => (
+              <li key={`${value}${label}`}>
+                <div className="relative pb-8">
+                  {index !== statusTypes.length - 1 ? (
                     <span
                       className={classNames(
-                        timeline[data.status].id > index
+                        timeline[data.status].id > index + 1
                           ? 'bg-indigo-600'
-                          : 'bg-gray-600',
-                        'h-5 w-5 rounded-full flex items-center justify-center',
+                          : 'bg-gray-200',
+                        'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
                       )}
-                    >
-                      {timeline[data.status].id > index ? (
-                        <CheckIcon
-                          className="h-5 w-5 text-white"
-                          aria-hidden="true"
-                        />
-                      ) : null}
-                    </span>
-                  </div>
-                  <div className="min-w-0 flex-1 flex justify-between ml-4">
-                    <div className="flex-auto">
-                      <p className="text-sm text-gray-500">
-                        <span className="w-full flex justify-between items-center font-medium text-gray-900 capitalize">
-                          {value}
-                          {timeline[value]?.Component &&
-                            timeline[value].Component}
-                        </span>
-                      </p>
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                  <div className="relative flex items-center space-x-3">
+                    <div>
+                      <span
+                        className={classNames(
+                          timeline[data.status].id > index
+                            ? 'bg-indigo-600'
+                            : 'bg-gray-600',
+                          'h-5 w-5 rounded-full flex items-center justify-center',
+                        )}
+                      >
+                        {timeline[data.status].id > index ? (
+                          <CheckIcon
+                            className="h-5 w-5 text-white"
+                            aria-hidden="true"
+                          />
+                        ) : null}
+                      </span>
                     </div>
-                    {value ? (
-                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                        {data[timeline[value].content]
-                          ? formatDateTime(data[timeline[value].content])
-                          : null}
+                    <div className="min-w-0 flex-1 flex justify-between ml-4">
+                      <div className="flex-auto">
+                        <p className="text-sm text-gray-500">
+                          <span className="w-full flex justify-between items-center font-medium text-gray-900 capitalize">
+                            {value}
+                            {timeline[value]?.Component &&
+                              timeline[value].Component}
+                          </span>
+                        </p>
                       </div>
-                    ) : null}
+                      {value ? (
+                        <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                          {data[timeline[value].content]
+                            ? formatDateTime(data[timeline[value].content])
+                            : null}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
       </div>
 
@@ -91,40 +93,42 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </p>
         <div className="mt-2" aria-hidden="true">
           <div className="hidden sm:flex text-sm font-medium text-gray-600 mt-2">
-            {statusTypes.map(({ value, label }, index) => (
-              <div key={`${value}${label}`} className="sm:flex-auto">
-                <div className="relative mb-4">
-                  <span
+            {statusTypes
+              ?.filter(({ value }) => timeline[value].visible)
+              .map(({ value, label }, index) => (
+                <div key={`${value}${label}`} className="sm:flex-auto">
+                  <div className="relative mb-4">
+                    <span
+                      className={classNames(
+                        timeline[data.status].id > index
+                          ? 'bg-indigo-600'
+                          : 'bg-gray-200',
+                        'absolute top-0 left-0 -ml-px w-full h-2 first:rounded-tl-full first:rounded-bl-full',
+                      )}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div
                     className={classNames(
-                      timeline[data.status].id > index
-                        ? 'bg-indigo-600'
-                        : 'bg-gray-200',
-                      'absolute top-0 left-0 -ml-px w-full h-2 first:rounded-tl-full first:rounded-bl-full',
+                      timeline[data.status].id > index ? 'text-indigo-600' : '',
+                      'text-center',
                     )}
-                    aria-hidden="true"
-                  />
+                  >
+                    <span className="capitalize flex flex-col justify-center items-center">
+                      {value}{' '}
+                      {timeline[value]?.Component && timeline[value].Component}{' '}
+                    </span>
+                    <span className="block">
+                      {data[timeline[value].content]
+                        ? formatDateTime(data[timeline[value].content], {
+                            month: 'short',
+                            day: 'numeric',
+                          })
+                        : null}
+                    </span>
+                  </div>
                 </div>
-                <div
-                  className={classNames(
-                    timeline[data.status].id > index ? 'text-indigo-600' : '',
-                    'text-center',
-                  )}
-                >
-                  <span className="capitalize flex flex-col justify-center items-center">
-                    {value}{' '}
-                    {timeline[value]?.Component && timeline[value].Component}{' '}
-                  </span>
-                  <span className="block">
-                    {data[timeline[value].content]
-                      ? formatDateTime(data[timeline[value].content], {
-                          month: 'short',
-                          day: 'numeric',
-                        })
-                      : null}
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

@@ -1,13 +1,10 @@
-import {
-  ArrowCircleDownIcon,
-  ArrowCircleUpIcon,
-} from '@heroicons/react/outline';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { useState } from 'react';
 
 const Accordion = ({ data, containerCSS, headerCSS, bodyCSS }) => {
   return (
-    <div className={classNames('', containerCSS)}>
+    <div className={classNames('my-3', containerCSS)}>
       {data.map(({ header, body }, key) => (
         <AccordionItem
           header={header}
@@ -25,37 +22,37 @@ const Accordion = ({ data, containerCSS, headerCSS, bodyCSS }) => {
 const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
   const [show, setShow] = useState(false);
   return (
-    <div>
-      <div
+    <div className="mt-3">
+      <button
+        type="button"
         onClick={() => setShow(!show)}
         className={classNames(
-          'bg-white  text-gray-500 border relative cursor-pointer pl-2 hover:bg-gray-50',
+          'bg-white text-gray-500 border relative cursor-pointer pl-2 hover:bg-gray-50',
           headerCSS,
         )}
       >
         <div>{header}</div>
         <span>
-          {' '}
           {show ? (
-            <ArrowCircleDownIcon
-              className="mb-3 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            />
-          ) : (
-            <ArrowCircleUpIcon
+            <ChevronDownIcon
               className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={2}
             />
-          )}{' '}
+          ) : (
+            <ChevronUpIcon
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+            />
+          )}
         </span>
-      </div>
+      </button>
 
       {show ? (
-        <div className={classNames(' p-0 text-gray-400 rounded-lg', bodyCSS)}>
+        <div className={classNames('p-0 text-gray-400 rounded-lg', bodyCSS)}>
           {body}
         </div>
       ) : (
