@@ -90,9 +90,9 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           </span>
         </p>
         <div className="mt-2" aria-hidden="true">
-          <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-2">
+          <div className="hidden sm:flex text-sm font-medium text-gray-600 mt-2">
             {statusTypes.map(({ value, label }, index) => (
-              <div key={`${value}${label}`}>
+              <div key={`${value}${label}`} className="sm:flex-auto">
                 <div className="relative mb-4">
                   <span
                     className={classNames(

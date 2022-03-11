@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 import OrderDetailItem from './OrderDetailItem';
 import LogList from './LogList';
-import OrderDetailHeader from './OrderDetailHeader';
 import OrderDetailBilling from './OrderDetailBilling';
 import DocumentList from './DocumentList';
 import OrderDetailPayment from './OrderDetailPayment';
@@ -15,6 +14,7 @@ import useConfirmOrder from '../hooks/useConfirmOrder';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import StatusProgress from '../../common/components/StatusProgress';
+import Header from '../../common/components/Header';
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -86,7 +86,7 @@ const OrderDetail = ({ order }) => {
 
   return (
     <>
-      <OrderDetailHeader order={order} />
+      <Header name="order" data={order} />
 
       <StatusProgress
         data={order}

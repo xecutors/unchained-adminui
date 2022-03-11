@@ -7,8 +7,8 @@ import {
   DeviceMobileIcon,
 } from '@heroicons/react/solid';
 
-import formatDateTime from '../../common/utils/formatDateTime';
-import Badge from '../../common/components/Badge';
+import formatDateTime from '../utils/formatDateTime';
+import Badge from './Badge';
 
 const FallbackAvatar = ({ username }) => {
   return (
@@ -20,77 +20,86 @@ const FallbackAvatar = ({ username }) => {
   );
 };
 
-const OrderDetailHeader = ({ order }) => {
+const Header = ({ name, data }) => {
   const { formatMessage } = useIntl();
 
   return (
     <section>
       <div className="flex items-center">
         <span className="hidden h-16 w-16 rounded-full sm:block">
-          {order.user.avatar ? (
+          {data?.user?.avatar ? (
             <Image
-              src={order.user.avatar.url.baseUrl}
-              alt={order.user.name || order.user.username}
+              loader={() => data.user.avatar.url}
+              src={data.user.avatar.url}
+              alt={data.user.name || data.user.username}
               width={64}
               height={64}
             />
           ) : (
-            <FallbackAvatar username={order.user.username} />
+            <FallbackAvatar username={data?.user?.username} />
           )}
         </span>
         <div>
           <div className="flex items-center">
             <span className="block h-16 w-16 rounded-full sm:hidden">
-              {order.user.avatar ? (
+              {data?.user?.avatar ? (
                 <Image
-                  src={order.user.avatar.url.baseUrl}
-                  alt={order.user.name || order.user.username}
+                  loader={() => data.user.avatar.url}
+                  src={data.user.avatar.url}
+                  alt={data.user.name || data.user.username}
                   width={64}
                   height={64}
                 />
               ) : (
-                <FallbackAvatar username={order.user.username} />
+                <FallbackAvatar username={data?.user?.username} />
               )}
             </span>
             <span className="flex items-center">
               <h3 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate capitalize">
-                {order.user.name ? order.user.name : order.user.username}
+                {data?.user?.name ? data.user.name : data?.user?.username}
               </h3>
-              <dl className="self-end">
-                <dt className="sr-only">
-                  {formatMessage({
-                    id: 'account_status',
-                    defaultMessage: 'Account status',
-                  })}
-                </dt>
-                <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
-                  {order.user.isEmailVerified ? (
-                    <CheckCircleIcon
-                      className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <XCircleIcon
-                      className="flex-shrink-0 mb-1.5 h-4 w-4 text-red-400"
-                      aria-hidden="true"
-                    />
-                  )}
-                </dd>
-              </dl>
+              {data?.user?.isEmailVerified ? (
+                <dl className="self-end">
+                  <dt className="sr-only">
+                    {formatMessage({
+                      id: 'account_status',
+                      defaultMessage: 'Account status',
+                    })}
+                  </dt>
+                  <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
+                    {data.user.isEmailVerified ? (
+                      <CheckCircleIcon
+                        className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <XCircleIcon
+                        className="flex-shrink-0 mb-1.5 h-4 w-4 text-red-400"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </dd>
+                </dl>
+              ) : null}
             </span>
           </div>
           <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-            <dt className="sr-only">
-              {formatMessage({ id: 'email', defaultMessage: 'Email' })}
-            </dt>
-            <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
-              <AtSymbolIcon
-                className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              {order.contact.emailAddress}
-            </dd>
-            {order.contact.telNumber ? (
+            {data?.contact?.emailAddress ? (
+              <>
+                <dt className="sr-only">
+                  {formatMessage({ id: 'email', defaultMessage: 'Email' })}
+                </dt>
+                <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
+                  <AtSymbolIcon
+                    className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                  {data.contact.emailAddress}
+                </dd>
+              </>
+            ) : null}
+
+            {data?.contact?.telNumber ? (
               <>
                 <dt className="sr-only">
                   {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
@@ -100,7 +109,7 @@ const OrderDetailHeader = ({ order }) => {
                     className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                     aria-hidden="true"
                   />
-                  {order.contact.telNumber}
+                  {data.contact.telNumber}
                 </dd>
               </>
             ) : null}
@@ -110,17 +119,17 @@ const OrderDetailHeader = ({ order }) => {
 
       <div className="text-sm border-b border-gray-200 mt-2 pb-2 sm:flex sm:justify-between">
         <dl className="flex items-center">
-          <dt className="text-gray-500">
+          <dt className="text-gray-500 capitalize">
             {formatMessage({
-              id: 'order',
-              defaultMessage: 'Order',
+              id: `${name}`,
+              defaultMessage: `${name}`,
             })}
             &#35; &nbsp;
           </dt>
           <dd className="font-bold text-xl text-gray-900">
-            {order.orderNumber ? (
+            {data?.orderNumber ? (
               <Badge
-                text={order.orderNumber}
+                text={data.orderNumber}
                 className="p-1 bg-blue-600 font-bold text-xl"
               />
             ) : (
@@ -141,7 +150,7 @@ const OrderDetailHeader = ({ order }) => {
           </dt>
           <dd className="font-medium text-gray-900">
             <time dateTime="2021-03-22">
-              {order.ordered ? formatDateTime(order.ordered) : null}
+              {data?.ordered ? formatDateTime(data.ordered) : null}
             </time>
           </dd>
         </dl>
@@ -150,4 +159,4 @@ const OrderDetailHeader = ({ order }) => {
   );
 };
 
-export default OrderDetailHeader;
+export default Header;
