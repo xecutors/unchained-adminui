@@ -1,19 +1,16 @@
 import { useIntl } from 'react-intl';
 import { CheckIcon } from '@heroicons/react/solid';
-
-import { formatDateTime } from '../utils/utils';
+import useFormatDateTime from '../utils/useFormatDateTime';
+import { classNames } from '../utils/utils';
 
 const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ');
-  }
+  const { formatDateTime } = useFormatDateTime();
 
   const { content } = timeline[data.status];
 
   const status = statusTypes.filter(({ value }) => timeline[value].visible);
-  console.log(status);
+
   return (
     <>
       <div className="flow-root sm:hidden">
@@ -94,7 +91,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </p>
         <div className="mt-2" aria-hidden="true">
           <div className="hidden sm:flex text-sm font-medium text-gray-600 mt-2">
-            {status.map(({ value, label }, index) => (
+            {status.map(({ value, label }) => (
               <div key={`${value}${label}`} className="sm:flex-auto">
                 <div className="relative mb-4">
                   <span

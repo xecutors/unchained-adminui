@@ -6,17 +6,16 @@ import { toast } from 'react-toastify';
 import AlertMessage from '../../modal/components/AlertMessage';
 import useModal from '../../modal/hooks/useModal';
 import usePayOrder from '../hooks/usePayOrder';
-import {
-  getCurrencyAndPrice,
-  getInterfaceLabel,
-  formatDateTime,
-} from '../../common/utils/utils';
+import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import usePaymentProviderTypes from '../../payment-providers/hooks/usePaymentProviderTypes';
 import usePaymentStatusTypes from '../../payment-providers/hooks/usePaymentStatusTypes';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const OrderDetailPayment = ({ order }) => {
   const { paymentProviderType } = usePaymentProviderTypes();
   const { paymentStatusTypes } = usePaymentStatusTypes();
+  const { formatDateTime } = useFormatDateTime();
+  const { formatPrice } = useFormatPrice();
 
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -144,7 +143,7 @@ const OrderDetailPayment = ({ order }) => {
                   })}
                 </div>
                 <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-                  {getCurrencyAndPrice(order.payment.fee)}
+                  {formatPrice(order.payment.fee)}
                 </span>
               </>
             ) : null}

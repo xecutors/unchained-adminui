@@ -14,7 +14,7 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 
-const index = () => {
+const FiltersListView = () => {
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
@@ -91,4 +91,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default FiltersListView;

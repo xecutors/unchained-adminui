@@ -9,7 +9,7 @@ const SetUserTagsMutation = gql`
   }
 `;
 
-const userSetUserTags = () => {
+const useSetUserTags = () => {
   const [setUserTagsMutation] = useMutation(SetUserTagsMutation);
 
   const setUserTags = async ({ tags = [], userId = null } = {}) => {
@@ -26,4 +26,4 @@ const userSetUserTags = () => {
   };
 };
 
-export default userSetUserTags;
+export default useSetUserTags;

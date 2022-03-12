@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 
 import Table from '../../common/components/Table';
 import Badge from '../../common/components/Badge';
-import { getCurrencyAndPrice } from '../../common/utils/utils';
+import { useFormatPrice } from '../../common/utils/utils';
 import NoData from '../../common/components/NoData';
 
 const triggerColor = {
@@ -14,6 +14,7 @@ const triggerColor = {
 
 const LogList = ({ discounts }) => {
   const { formatMessage } = useIntl();
+  const { formatPrice } = useFormatPrice();
 
   return (
     <section className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm flex-auto flex flex-col">
@@ -61,7 +62,7 @@ const LogList = ({ discounts }) => {
                 <Table.Cell className="px-6  whitespace-nowrap ">
                   <div className="pl-2 flex items-center text-sm text-gray-900">
                     {discount.total.amount
-                      ? getCurrencyAndPrice(discount.total)
+                      ? formatPrice(discount.total)
                       : 'N/A'}
                   </div>
                 </Table.Cell>

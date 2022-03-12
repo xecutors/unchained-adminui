@@ -18,16 +18,15 @@ import useRejectQuotation from '../hooks/useRejectQuotation';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
-const QuotationDetail = ({ quotations }) => {
+const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
 
   const { quotationStatusTypes } = useQuotationStatusTypes();
   const { VerifyQuotation } = useVerifyQuotation();
   const { rejectQuotation } = useRejectQuotation();
-
-  console.log('quotationStatusTypes', quotationStatusTypes, quotations);
 
   const onVerify = async () => {
     await setModal(
@@ -42,7 +41,7 @@ const QuotationDetail = ({ quotations }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await VerifyQuotation({ id: quotations._id });
+          await VerifyQuotation({ id: quotation._id });
           toast.success(
             formatMessage(
               {
@@ -50,7 +49,7 @@ const QuotationDetail = ({ quotations }) => {
                 defaultMessage: 'Quotation {id} verified successfully',
               },
               {
-                id: quotations?._id,
+                id: quotation._id,
               },
             ),
           );
@@ -72,7 +71,7 @@ const QuotationDetail = ({ quotations }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await rejectQuotation({ id: quotations._id });
+          await rejectQuotation({ id: quotation._id });
           toast.success(
             formatMessage(
               {
@@ -80,7 +79,7 @@ const QuotationDetail = ({ quotations }) => {
                 defaultMessage: 'Reject {id} verified successfully',
               },
               {
-                id: quotations?._id,
+                id: quotation._id,
               },
             ),
           );
@@ -102,7 +101,7 @@ const QuotationDetail = ({ quotations }) => {
       id: 1,
       content: 'created',
       visible: true,
-      Component: quotations?.status === 'REQUESTED' && (
+      Component: quotation.status === 'REQUESTED' && (
         <Button
           text="Verify"
           onClick={onVerify}
@@ -113,17 +112,17 @@ const QuotationDetail = ({ quotations }) => {
     PROCESSING: {
       id: 2,
       content: 'updated',
-      visible: quotations.status === 'PROCESSING',
+      visible: quotation.status === 'PROCESSING',
     },
     PROPOSED: {
       id: 3,
       content: 'updated',
-      visible: quotations.status !== 'PROCESSING',
+      visible: true,
     },
     REJECTED: {
       id: 4,
       content: 'rejected',
-      visible: quotations.status !== 'FULLFILLED',
+      visible: quotation.status !== 'FULLFILLED',
     },
     FULLFILLED: {
       id: 5,
@@ -148,7 +147,7 @@ const QuotationDetail = ({ quotations }) => {
         })}
       </span>
     ),
-    body: <DocumentList documents={quotations?.documents} />,
+    body: <DocumentList documents={quotation.documents} />,
   };
 
   const logs = {
@@ -160,20 +159,20 @@ const QuotationDetail = ({ quotations }) => {
         })}
       </span>
     ),
-    body: <LogList logs={quotations?.logs} />,
+    body: <LogList logs={quotation.logs} />,
   };
 
   const form = useForm({
     initialValues: {
-      configuration: JSON.stringify(quotations?.configuration || {}, null, 2),
+      configuration: JSON.stringify(quotation.configuration || {}, null, 2),
     },
   });
 
   return (
     <>
-      <Header name="quotation" data={quotations} reject={rejectButton} />
+      <Header name="quotation" data={quotation} reject={rejectButton} />
       <StatusProgress
-        data={quotations}
+        data={quotation}
         statusTypes={quotationStatusTypes}
         timeline={timeline}
       />
@@ -183,22 +182,22 @@ const QuotationDetail = ({ quotations }) => {
             <div className="sm:col-span-4 md:col-span-5 md:row-end-2 md:row-span-2">
               <div className="m:col-span-4 md:col-span-5 md:row-end-2 md:row-span-2 bg-gray-50 rounded-lg">
                 <Image
-                  loader={() => quotations?.product?.media?.file.url}
-                  src={quotations?.product?.media?.file.url}
+                  loader={defaultNextImageLoader}
+                  src={quotation.product?.media?.file.url}
                   layout="responsive"
-                  width={100}
+                  width="100"
                   height={100}
                 />
               </div>
             </div>
             <div className="mt-6 sm:col-span-7 sm:mt-0 md:row-end-1 pl-4">
               <h3 className="text-lg font-medium text-gray-900">
-                <Link href={`/products/${quotations?.product._id}`}>
-                  <a href="#">{quotations?.product?.texts?.title}</a>
+                <Link href={`/products/${quotation.product._id}`}>
+                  <a href="#">{quotation.product?.texts?.title}</a>
                 </Link>
               </h3>
               <p className="text-gray-500 mt-3">
-                {quotations?.product?.description}
+                {quotation.product?.description}
               </p>
               <Form form={form} className="mr-4 pb-4">
                 <label

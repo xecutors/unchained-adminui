@@ -10,7 +10,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EnrollmentList from '../../modules/enrollment/components/EnrollmentList';
 import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
 
-const index = () => {
+const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
@@ -44,4 +44,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default EnrollmentListView;

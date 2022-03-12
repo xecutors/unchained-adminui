@@ -1,21 +1,19 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
-import {
-  getCurrencyAndPrice,
-  getInterfaceLabel,
-  formatDateTime,
-} from '../../common/utils/utils';
+import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import useDeliveryProviderTypes from '../../delivery-provider/hooks/useDeliveryProviderTypes';
 import useDeliveryWrappingTypes from '../../delivery-provider/hooks/useDeliveryWrappingTypes';
 import useDeliveryStatusTypes from '../../delivery-provider/hooks/useDeliveryStatusTypes';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const OrderDetailDelivery = ({ delivery }) => {
   const { deliveryProviderType } = useDeliveryProviderTypes();
   const { deliveryWrappingType } = useDeliveryWrappingTypes();
   const { deliveryStatusType } = useDeliveryStatusTypes();
-
+  const { formatPrice } = useFormatPrice();
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
 
   const StatusInformation = ({ enumType, currentType, label }) => {
     return (
@@ -103,7 +101,7 @@ const OrderDetailDelivery = ({ delivery }) => {
               })}
             </div>
             <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
-              {getCurrencyAndPrice(delivery.fee)}
+              {formatPrice(delivery.fee)}
             </span>
           </>
         ) : null}

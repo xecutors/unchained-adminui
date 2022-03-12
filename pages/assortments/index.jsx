@@ -14,7 +14,7 @@ import Loading from '../../modules/common/components/Loading';
 
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 
-const index = () => {
+const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const [filter, setFilter] = useState({});
@@ -73,4 +73,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AssortmentsListView;

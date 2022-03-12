@@ -4,10 +4,11 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import Badge from '../../common/components/Badge';
 import NoData from '../../common/components/NoData';
-import { formatDateTime } from '../../common/utils/utils';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const LogList = ({ logs, user }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
 
   return (
     <section className="my-3">

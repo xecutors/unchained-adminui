@@ -3,12 +3,13 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
 import Badge from '../../common/components/Badge';
-import formatDateTime from '../../common/utils/formatDateTime';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const ReactJson = loadable(() => import('react-json-view'));
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
 
   const options = {
     year: 'numeric',

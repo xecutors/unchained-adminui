@@ -7,8 +7,9 @@ import {
   DeviceMobileIcon,
 } from '@heroicons/react/solid';
 
-import formatDateTime from '../utils/formatDateTime';
+import useFormatDateTime from '../utils/useFormatDateTime';
 import Badge from './Badge';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const FallbackAvatar = ({ username }) => {
   return (
@@ -23,13 +24,15 @@ const FallbackAvatar = ({ username }) => {
 const Header = ({ name, data, reject }) => {
   const { formatMessage } = useIntl();
 
+  const { formatDateTime } = useFormatDateTime();
+
   return (
     <section>
       <div className="flex items-center">
         <span className="hidden h-16 w-16 rounded-full sm:block">
           {data?.user?.avatar ? (
             <Image
-              loader={() => data.user.avatar.url}
+              loader={defaultNextImageLoader}
               src={data.user.avatar.url}
               alt={data.user.name || data.user.username}
               width={64}
@@ -44,7 +47,7 @@ const Header = ({ name, data, reject }) => {
             <span className="block h-16 w-16 rounded-full sm:hidden">
               {data?.user?.avatar ? (
                 <Image
-                  loader={() => data.user.avatar.url}
+                  loader={defaultNextImageLoader}
                   src={data.user.avatar.url}
                   alt={data.user.name || data.user.username}
                   width={64}

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
-import { formatDateTime } from '../../common/utils/utils';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const QUOTATION_STATUS = {
   REQUESTED: 'orange',
@@ -15,6 +15,7 @@ const QUOTATION_STATUS = {
 
 const QuotationListItem = ({ quotation }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   return (
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
