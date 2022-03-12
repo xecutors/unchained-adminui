@@ -51,7 +51,10 @@ const UserFragment = gql`
       birthday
     }
     username
-    isEmailVerified
+    primaryEmail {
+      verified
+      address
+    }
     isGuest
     isInitialPassword
     name

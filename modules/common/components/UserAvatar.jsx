@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { useIntl } from 'react-intl';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const UserAvatar = ({ avatar, username, onLogout }) => {
   const { formatMessage } = useIntl();
@@ -7,10 +9,16 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
       <div className="flex items-center">
         <>
           {avatar ? (
-            <img
-              className="inline-block h-9 w-9 rounded-full"
+            <Image
+              className="mx-auto h-12 w-auto"
               src={avatar?.url}
-              alt=""
+              loader={defaultNextImageLoader}
+              width={100}
+              height={100}
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
             />
           ) : (
             <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">

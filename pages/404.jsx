@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
 
 const NotFound = () => {
   const { formatMessage } = useIntl();
@@ -14,7 +16,16 @@ const NotFound = () => {
                 defaultMessage: 'Unchained Admin UI',
               })}{' '}
             </span>
-            <img className="h-12 w-auto" src="/logo.svg" alt="Unchained Logo" />
+            <Image
+              src="/logo.svg"
+              loader={defaultNextImageLoader}
+              width={200}
+              height={100}
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
+            />
           </a>
         </div>
         <div className="py-16">

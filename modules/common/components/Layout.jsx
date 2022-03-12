@@ -7,6 +7,7 @@ import {
   OfficeBuildingIcon,
   UserIcon,
 } from '@heroicons/react/outline';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
@@ -14,6 +15,7 @@ import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 
@@ -225,7 +227,16 @@ const Layout = ({
 
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex-shrink-0 flex items-center px-4">
-              <img className="h-12 w-auto" src="/logo.svg" />
+              <Image
+                src="/logo.svg"
+                loader={defaultNextImageLoader}
+                width={125}
+                height={100}
+                alt={formatMessage({
+                  id: 'unchained_logo',
+                  defaultMessage: 'Unchained Logo',
+                })}
+              />
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
@@ -239,7 +250,16 @@ const Layout = ({
         <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img className="h-12 w-auto" src="/logo.svg" alt="Workflow" />
+              <Image
+                src="/logo.svg"
+                loader={defaultNextImageLoader}
+                width={125}
+                height={100}
+                alt={formatMessage({
+                  id: 'unchained_logo',
+                  defaultMessage: 'Unchained Logo',
+                })}
+              />
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { format } from 'date-fns';
+import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -9,6 +10,7 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useUpdateUserAvatar from '../hooks/useUpdateUserAvatar';
 import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
 const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { address } = profile || {};
@@ -160,10 +162,15 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       hidden
                     />
                     {avatar ? (
-                      <img
-                        className="inline-block h-9 w-9 rounded-full"
+                      <Image
                         src={avatar?.url}
-                        alt=""
+                        loader={defaultNextImageLoader}
+                        width={100}
+                        height={100}
+                        alt={formatMessage({
+                          id: 'unchained_logo',
+                          defaultMessage: 'Unchained Logo',
+                        })}
                       />
                     ) : (
                       <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">

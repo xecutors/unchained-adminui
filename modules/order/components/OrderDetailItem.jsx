@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useFormatPrice } from '../../common/utils/utils';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
@@ -26,7 +27,7 @@ const OrderDetailItem = ({ item }) => {
                   <div className="flex flex-wrap">
                     <div className="flex-shrink-0 w-auto rounded-lg overflow-hidden sm:w-10 sm:h-10">
                       <Image
-                        loader={() => src}
+                        loader={defaultNextImageLoader}
                         src={src}
                         alt={
                           item.originalProduct.texts.title ||

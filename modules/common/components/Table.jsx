@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import Cell from './TableCell';
 import Row from './TableRow';
+import NoData from './NoData';
 
 const buildRows = (props) => {
   const header = [];
@@ -24,6 +26,7 @@ const buildRows = (props) => {
 
 const Table = ({ className, ...props }) => {
   const [rows, setRows] = useState(buildRows(props));
+  const { formatMessage } = useIntl();
 
   const rowsWithSort = {
     ...rows,
@@ -45,7 +48,12 @@ const Table = ({ className, ...props }) => {
       {rowsWithSort.header.length ? (
         <thead className="bg-white">{rowsWithSort.header}</thead>
       ) : (
-        <caption className="text-center py-5 mt-1">No Data found</caption>
+        <NoData
+          message={formatMessage({
+            id: 'data',
+            defaultMessage: 'Data',
+          })}
+        />
       )}
       {rowsWithSort.body.length ? (
         <tbody className="flex-1 sm:flex-none">{rowsWithSort.body}</tbody>

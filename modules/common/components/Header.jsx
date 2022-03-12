@@ -61,7 +61,7 @@ const Header = ({ name, data, reject }) => {
               <h3 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate capitalize">
                 {data?.user?.name ? data.user.name : data?.user?.username}
               </h3>
-              {data?.user?.isEmailVerified ? (
+              {data?.user?.primaryEmail?.verified ? (
                 <dl className="self-end">
                   <dt className="sr-only">
                     {formatMessage({
@@ -70,7 +70,7 @@ const Header = ({ name, data, reject }) => {
                     })}
                   </dt>
                   <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
-                    {data.user.isEmailVerified ? (
+                    {data.user?.primaryEmail?.verified ? (
                       <CheckCircleIcon
                         className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
                         aria-hidden="true"

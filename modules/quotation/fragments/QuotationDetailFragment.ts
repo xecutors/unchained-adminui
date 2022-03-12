@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-const QuotationFragment = gql`
-  fragment QuotationFragment on Quotation {
+const QuotationDetailFragment = gql`
+  fragment QuotationDetailFragment on Quotation {
     _id
     user {
       _id
@@ -11,6 +11,22 @@ const QuotationFragment = gql`
         url
       }
       name
+      primaryEmail {
+        verified
+        address
+      }
+    }
+    configuration
+    country {
+      _id
+      isoCode
+      flagEmoji
+      name
+    }
+    currency {
+      _id
+      isoCode
+      isActive
     }
     product {
       _id
@@ -19,6 +35,40 @@ const QuotationFragment = gql`
         slug
         subtitle
         title
+        description
+      }
+      media {
+        _id
+        file {
+          _id
+          type
+          url
+        }
+      }
+    }
+
+    documents {
+      _id
+      name
+      type
+      size
+      url
+    }
+    logs {
+      _id
+      created
+      level
+      message
+      user {
+        _id
+        name
+        username
+        avatar {
+          _id
+          name
+          url
+        }
+        isGuest
       }
     }
     status
@@ -32,4 +82,4 @@ const QuotationFragment = gql`
   }
 `;
 
-export default QuotationFragment;
+export default QuotationDetailFragment;

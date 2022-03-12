@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import { useIntl } from 'react-intl';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
@@ -43,12 +45,18 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+        <div className="max-w-md w-full space-y-8 text-center">
           <div>
-            <img
+            <Image
               className="mx-auto h-12 w-auto"
               src="/logo.svg"
-              alt="Unchained Logo"
+              loader={defaultNextImageLoader}
+              width={100}
+              height={100}
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               {formatMessage({

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const QUOTATION_STATUS = {
@@ -51,12 +52,11 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      {/* {showUser && quotation.user && ( */}
       <Table.Cell className="px-6  whitespace-nowrap ">
         <Link href={`/users/${quotation.user._id}`}>
           <a className="flex text-blue-500">
             <Image
-              loader={() => quotation.user?.avatar?.url}
+              loader={defaultNextImageLoader}
               src={quotation.user?.avatar?.url}
               width={40}
               height={20}
@@ -71,7 +71,7 @@ const QuotationListItem = ({ quotation }) => {
           <Link href={`/products/${quotation.product._id}`}>
             <a className="flex text-blue-600">
               <Image
-                loader={() => quotation.product?.media?.file.url}
+                loader={defaultNextImageLoader}
                 src={quotation.product?.media?.file.url}
                 width={40}
                 height={20}

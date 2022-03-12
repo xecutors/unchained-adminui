@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import Badge from '../modules/common/components/Badge';
+import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
 
 const Home = ({ shopInfo }) => {
   const { formatMessage, locale } = useIntl();
@@ -7,8 +9,17 @@ const Home = ({ shopInfo }) => {
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img className="mx-auto h-24 w-auto" src="/logo.svg" alt="Workflow" />
+        <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
+          <Image
+            src="/logo.svg"
+            loader={defaultNextImageLoader}
+            width={200}
+            height={100}
+            alt={formatMessage({
+              id: 'unchained_logo',
+              defaultMessage: 'Unchained Logo',
+            })}
+          />
           <h2 className="mt-10 text-center text-2xl text-gray-700">
             {formatMessage({
               id: 'system_information',

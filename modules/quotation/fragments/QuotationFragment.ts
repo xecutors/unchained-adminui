@@ -11,6 +11,10 @@ const QuotationFragment = gql`
         url
       }
       name
+      primaryEmail {
+        verified
+        address
+      }
     }
     product {
       _id
@@ -19,6 +23,15 @@ const QuotationFragment = gql`
         slug
         subtitle
         title
+        description
+      }
+      media {
+        _id
+        file {
+          _id
+          type
+          url
+        }
       }
     }
     status
