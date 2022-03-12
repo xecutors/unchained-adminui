@@ -153,7 +153,9 @@ const Header = ({ name, data, reject }) => {
               {data?.ordered ? formatDateTime(data.ordered) : null}
             </time>
           </dd>
-          {reject ? (
+          {reject &&
+          data.status !== 'FULLFILLED' &&
+          data.status !== 'REJECTED' ? (
             <>
               <dt>
                 <span className="sr-only">

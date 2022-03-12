@@ -15,6 +15,9 @@ import AlertMessage from '../../modal/components/AlertMessage';
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useRejectQuotation from '../hooks/useRejectQuotation';
+import JSONAreaField from '../../forms/components/JSONAreaField';
+import Form from '../../forms/components/Form';
+import useForm from '../../forms/hooks/useForm';
 
 const QuotationDetail = ({ quotations }) => {
   const { formatMessage } = useIntl();
@@ -160,6 +163,12 @@ const QuotationDetail = ({ quotations }) => {
     body: <LogList logs={quotations?.logs} />,
   };
 
+  const form = useForm({
+    initialValues: {
+      configuration: JSON.stringify(quotations?.configuration || {}, null, 2),
+    },
+  });
+
   return (
     <>
       <Header name="quotation" data={quotations} reject={rejectButton} />
@@ -188,7 +197,32 @@ const QuotationDetail = ({ quotations }) => {
                   <a href="#">{quotations?.product?.texts?.title}</a>
                 </Link>
               </h3>
-              <p className="text-gray-500 mt-3">product.description</p>
+              <p className="text-gray-500 mt-3">
+                {quotations?.product?.description}
+              </p>
+              <Form form={form} className="mr-4 pb-4">
+                <label
+                  htmlFor="configuration"
+                  className="block text-lg font-medium text-gray-900 sm:mt-px sm:pt-2"
+                >
+                  {formatMessage({
+                    id: 'configuration',
+                    defaultMessage: 'Configuration',
+                  })}
+                </label>
+                <JSONAreaField
+                  disabled
+                  id="configuration"
+                  name="configuration"
+                  value={form.formik.values.configuration}
+                  rows={Math.max(form.formik.values.configuration.length, 5)}
+                  label={formatMessage({
+                    id: 'configuration',
+                    defaultMessage: 'Configuration',
+                  })}
+                  hideLabel
+                />
+              </Form>
             </div>
           </div>
         </div>

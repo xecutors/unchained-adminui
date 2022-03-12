@@ -171,7 +171,6 @@ const QuatationDetailPage = () => {
 
   // TODO: remove filter operation
   const [quotationss] = quotationsss.filter((quote) => quote._id === id);
-  console.log(quotationss);
 
   const isDeletable = (status) => {
     return (
@@ -223,7 +222,7 @@ const QuatationDetailPage = () => {
             defaultMessage: 'Quotation Detail',
           })}
         />
-        {isDeletable(quotations.status) ? (
+        {isDeletable(quotationss.status) ? (
           <button
             type="button"
             onClick={handleOnClick}
