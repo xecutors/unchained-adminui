@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import userSetUserTags from '../hooks/useSetUserTags';
+import useSetUserTags from '../hooks/useSetUserTags';
 import Button from '../../common/components/Button';
 import TagInput from '../../common/components/TagInput';
 
 const UserTagsView = ({ tags = [], userId }) => {
   const { formatMessage } = useIntl();
-  const { setUserTags } = userSetUserTags();
+  const { setUserTags } = useSetUserTags();
   const [tagList, setTagList] = useState([...(tags || [])]);
 
   const tagsUpdatedMessage = formatMessage({

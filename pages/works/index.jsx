@@ -11,8 +11,9 @@ import WorkList from '../../modules/work/components/WorkList';
 import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
-const index = () => {
+const WorkQueueView = () => {
   const { query } = useRouter();
+  const { formatMessage } = useIntl();
 
   const filter = {
     dateRange: {
@@ -31,8 +32,6 @@ const index = () => {
     offset,
     ...filter,
   });
-
-  const { formatMessage } = useIntl();
 
   return (
     <>
@@ -54,4 +53,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default WorkQueueView;

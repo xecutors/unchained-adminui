@@ -1,12 +1,9 @@
 import { useIntl } from 'react-intl';
-
-import {
-  getCurrencyAndPrice,
-  getTotalDiscount,
-} from '../../common/utils/utils';
+import { useFormatPrice } from '../../common/utils/utils';
 
 const OrderDetailBilling = ({ order }) => {
   const { formatMessage } = useIntl();
+  const { formatPrice, calculateTotalDiscount } = useFormatPrice();
 
   return (
     <section aria-labelledby="summary-heading" className="mt-4">
@@ -52,7 +49,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {getCurrencyAndPrice(order.total)}
+              {formatPrice(order.total)}
             </dd>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -63,7 +60,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {getTotalDiscount(order.discounts)}
+              {calculateTotalDiscount(order.discounts)}
             </dd>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -96,7 +93,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-indigo-600">
-              {getCurrencyAndPrice(order.total)}
+              {formatPrice(order.total)}
             </dd>
           </div>
         </dl>

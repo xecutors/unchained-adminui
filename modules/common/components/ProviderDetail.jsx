@@ -7,10 +7,12 @@ import JSONAreaField from '../../forms/components/JSONAreaField';
 import useForm from '../../forms/hooks/useForm';
 import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
-import { getInterfaceLabel, formatDateTime } from '../utils/utils';
+import { getInterfaceLabel } from '../utils/utils';
+import useFormatDateTime from '../utils/useFormatDateTime';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
 
   const dateFormatOption = {
     year: 'numeric',
