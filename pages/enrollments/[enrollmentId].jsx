@@ -549,7 +549,7 @@ const EnrollmentDetailPage = () => {
   const { enrollment, loading } = useEnrollment({ enrollmentId });
 
   //TODO remove mock data
-  const enrollemntt = enrollmentss.filter(
+  const [enrollemntt] = enrollmentss.filter(
     (enrollment) => enrollment._id === enrollmentId,
   );
 

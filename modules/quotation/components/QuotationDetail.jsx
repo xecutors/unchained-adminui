@@ -5,7 +5,7 @@ import { PaperClipIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
-import Header from '../../common/components/Header';
+import Header from '../../common/components/Header';  
 import LogList from '../../order/components/LogList';
 import DocumentList from '../../order/components/DocumentList';
 import Accordion from '../../common/components/Accordion';
