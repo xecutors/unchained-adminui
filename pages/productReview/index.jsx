@@ -19,14 +19,14 @@ const ProductReview = () => {
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
-  // const includeDrafts = query?.includeDrafts === 'true';
+   const includeDrafts = query?.includeDrafts === 'true';
 
-  // const { ProductReview,  error, loading } = useProductReview({
-  //   // includeDrafts,
-  //   limit,
-  //   offset,
-  //   // ...filter,
-  // });
+   const {  error, loading } = useProductReview({
+      includeDrafts,
+     limit,
+     offset,
+    // ...filter,
+   });
   const ProductReview = [{
 
     id:"1",
@@ -40,7 +40,14 @@ const ProductReview = () => {
     title:"Attends® Soft 1 Mini",
     author:"biniyam",
     rating:"4",
-  }
+  },
+  {
+  id:"3",
+  title:"Attends® Soft 1 Mini",
+  author:"biniyam",
+  rating:"4",
+},
+
 
 ]
   return (
@@ -63,21 +70,19 @@ const ProductReview = () => {
       /> */}
       </div>
       <div className="min-w-full overflow-hidden">
-        {/* <ListHeader addPath="/products/new"> */}
-          {/* <Toggle
+        {/* { <ListHeader addPath="/products/new"> }
+          { <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',
               defaultMessage: 'Include drafts',
             })}
             toggleKey="includeDrafts"
-          /> */}
-        {/* </ListHeader> */}
-        {
-        // loading ? <Loading /> : 
-        <ProductReviewList ProductReview={ProductReview} />}
+          /> }
+         </ListHeader> } */}
+        {loading ? <Loading /> :  <ProductReviewList ProductReview={ProductReview} />}
 
         <Pagination
-          // onLoadMore={loadMore}
+          //  onLoadMore={loadMore}
           data={ProductReview}
           // total={productsCount}
         />
