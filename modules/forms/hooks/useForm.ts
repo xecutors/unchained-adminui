@@ -40,7 +40,7 @@ const useForm = ({
   const intl = useIntl();
 
   const [submitError, setSubmitError] = useState('');
-
+  const { formatMessage } = useIntl();
   const onSubmit = async (values: FormikValues) => {
     setSubmitError('');
 
@@ -53,18 +53,55 @@ const useForm = ({
         if (successMessage) toast.success(successMessage);
         await onSubmitSuccess(success, values);
       } else {
+        //console.log(result)
         const error = typeof result === 'boolean' ? !result : result?.error;
+        // console.log( error)
+        if (error?.includes('auth failed')) {
+          // console.log('auth failed', error)
+
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'auth_error',
+                defaultMessage: 'Incorrect email,please try again',
+              }),
+          );
+        }
+       else if (error?.includes('Invalid credentials')) {
+          //  console.log('credentials failed', error)
+
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'invalid_credential_error',
+          defaultMessage: 'Incorrect password,please try again',
+              }),
+          );
+        }
+       else if (error?.includes('Email already exists')) {
+        
+
+         setSubmitError(
+           (await getSubmitErrorMessage(error)) ||
+             intl.formatMessage({
+               id: 'email_exists_error',
+         defaultMessage: 'Email already exists',
+             }),
+         );
+       }
+       else{
         setSubmitError(
           (await getSubmitErrorMessage(error)) ||
             intl.formatMessage(
               {
                 id: 'error_server',
                 defaultMessage:
-                  'incorrect password or email.',
+                  'There was a problem on the server ({details}). Please try again later..',
               },
               { details: error?.message || '' },
             ),
         );
+            }
       }
     } catch (error) {
       console.error(error); // eslint-disable-line

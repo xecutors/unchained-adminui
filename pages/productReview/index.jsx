@@ -11,7 +11,7 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 // import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductReviewList from '../../modules/product-review/components/productReviewList';
-import useProductReview from '../../modules/product-review/hooks/useProductReview';
+import useProductReviews from '../../modules/product/hooks/useProductReviews';
 
 const ProductReview = () => {
   const { formatMessage } = useIntl();
@@ -21,15 +21,15 @@ const ProductReview = () => {
   const offset = parseInt(query?.skip, 10) || 0;
    const includeDrafts = query?.includeDrafts === 'true';
 
-   const {  error, loading } = useProductReview({
+   const {reviews,  error, loading } = useProductReviews({
       includeDrafts,
      limit,
      offset,
     // ...filter,
    });
-  const ProductReview = [{
+  const ProductReviews = [{
 
-    id:"1",
+    _id:"1",
     title:"MoliCare® Premium Lady Pad 0.5",
     author:"jone",
     rating:"4",
@@ -79,7 +79,7 @@ const ProductReview = () => {
             toggleKey="includeDrafts"
           /> }
          </ListHeader> } */}
-        {loading ? <Loading /> :  <ProductReviewList ProductReview={ProductReview} />}
+        {loading ? <Loading /> :  <ProductReviewList productReviews={ProductReviews} />}
 
         <Pagination
           //  onLoadMore={loadMore}

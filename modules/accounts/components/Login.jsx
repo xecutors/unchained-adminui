@@ -34,7 +34,7 @@ export default function LogInForm() {
     } catch (e) {
       // eslint-disable-next-line no-console
        console.log(e);
-      return false;
+      return {error : e.message};
     }
   };
        
@@ -47,6 +47,7 @@ export default function LogInForm() {
     successMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
+      console.log('login in', error)
       
       if (error?.message?.includes('auth failed'))
         return formatMessage({
