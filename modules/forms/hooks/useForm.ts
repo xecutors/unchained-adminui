@@ -41,7 +41,7 @@ const useForm = ({
 
   const [submitError, setSubmitError] = useState('');
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: FormikValues) => {
     setSubmitError('');
 
     try {

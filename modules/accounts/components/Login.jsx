@@ -33,11 +33,11 @@ export default function LogInForm() {
       return true;
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+       console.log(e);
       return false;
     }
   };
-
+       
   const onSubmitSuccess = () => {
     router.replace('/');
   };
@@ -47,6 +47,7 @@ export default function LogInForm() {
     successMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
+      
       if (error?.message?.includes('auth failed'))
         return formatMessage({
           id: 'auth_error',
@@ -66,6 +67,7 @@ export default function LogInForm() {
 
       return error?.message || '';
     },
+    
     initialValues: {
       email: null,
       password: null,
@@ -150,7 +152,8 @@ export default function LogInForm() {
                 </Link>
               </div>
             </div>
-            <FormErrors />
+            
+            <FormErrors  />
             <div className="m-2">
               <button
                 type="submit"

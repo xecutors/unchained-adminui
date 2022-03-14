@@ -1,0 +1,72 @@
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
+import { useRouter } from 'next/router';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import ListHeader from '../../modules/common/components/ListHeader';
+import Pagination from '../../modules/common/components/Pagination';
+import Loading from '../../modules/common/components/Loading';
+import PageHeader from '../../modules/common/components/PageHeader';
+import Toggle from '../../modules/common/components/Toggle';
+import { DefaultLimit } from '../../modules/common/data/miscellaneous';
+import ProductFilter from '../../modules/product/components/ProductFilter';
+import ProductList from '../../modules/product/components/ProductList';
+import useProducts from '../../modules/product/hooks/useProducts';
+
+const Products = () => {
+  const { formatMessage } = useIntl();
+  const [filter, setFilter] = useState({});
+  const { query } = useRouter();
+  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip, 10) || 0;
+  const includeDrafts = query?.includeDrafts === 'true';
+
+  const { products, productsCount, loadMore, loading } = useProducts({
+    includeDrafts,
+    limit,
+    offset,
+    ...filter,
+  });
+
+  return (
+    <>
+      <BreadCrumbs />
+      <div className="malign-center block sm:inline justify-between w-full">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'products_list_header',
+            defaultMessage: 'Products',
+          })}
+        />
+        <ProductFilter
+          onFilter={({ queryString, tags }) => {
+            setFilter({
+              tags,
+              queryString,
+            });
+          }}
+        />
+      </div>
+      <div className="min-w-full overflow-hidden">
+        <ListHeader addPath="/products/new">
+          <Toggle
+            toggleText={formatMessage({
+              id: 'include_drafts',
+              defaultMessage: 'Include drafts',
+            })}
+            toggleKey="includeDrafts"
+          />
+        </ListHeader>
+        {loading ? <Loading /> : <ProductList products={products} />}
+
+        <Pagination
+          onLoadMore={loadMore}
+          data={products}
+          total={productsCount}
+        />
+      </div>
+    </>
+  );
+};
+
+export default Products;

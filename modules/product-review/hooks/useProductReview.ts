@@ -1,13 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
-import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
-
+// import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
+import productReview from '../fragments/ProductReviewFragment';
 export const ProductReviewQuery = gql`
   query ProductReview($productReviewId: ID!) {
     productReview(productReviewId: $productReviewId) {
       ...ProductReviewDetailFragment
     }
   }
-  ${ProductReviewDetailFragment}
+  ${productReview}
 `;
 
 const useProductReview = ({ productReviewId = null } = {}) => {
