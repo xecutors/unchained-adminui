@@ -21,7 +21,7 @@ const FallbackAvatar = ({ username }) => {
   );
 };
 
-const Header = ({ name, data, reject }) => {
+const Header = ({ name, data, button }) => {
   const { formatMessage } = useIntl();
 
   const { formatDateTime } = useFormatDateTime();
@@ -130,9 +130,9 @@ const Header = ({ name, data, reject }) => {
             &#35; &nbsp;
           </dt>
           <dd className="font-bold text-xl text-gray-900">
-            {data?.orderNumber ? (
+            {data[`${name}Number`] ? (
               <Badge
-                text={data.orderNumber}
+                text={data[`${name}Number`]}
                 className="p-1 bg-blue-600 font-bold text-xl"
               />
             ) : (
@@ -156,24 +156,22 @@ const Header = ({ name, data, reject }) => {
               {data?.ordered ? formatDateTime(data.ordered) : null}
             </time>
           </dd>
-          {reject &&
-          data.status !== 'FULLFILLED' &&
-          data.status !== 'REJECTED' ? (
+          {button && (
             <>
               <dt>
                 <span className="sr-only">
                   {formatMessage({
-                    id: 'reject_button',
-                    defaultMessage: 'Reject',
+                    id: 'button',
+                    defaultMessage: 'Button',
                   })}
                 </span>
                 <span className="text-gray-400 mx-2" aria-hidden="true">
                   &middot;
                 </span>
               </dt>
-              <dd className="ml-6 font-medium text-gray-900">{reject}</dd>
+              <dd className="ml-6 font-medium text-gray-900">{button}</dd>
             </>
-          ) : null}
+          )}
         </dl>
       </div>
     </section>

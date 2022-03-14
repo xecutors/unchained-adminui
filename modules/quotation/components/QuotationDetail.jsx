@@ -5,7 +5,7 @@ import { PaperClipIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
-import Header from '../../common/components/Header';  
+import Header from '../../common/components/Header';
 import LogList from '../../order/components/LogList';
 import DocumentList from '../../order/components/DocumentList';
 import Accordion from '../../common/components/Accordion';
@@ -88,13 +88,16 @@ const QuotationDetail = ({ quotation }) => {
     );
   };
 
-  const rejectButton = (
-    <Button
-      text="Reject"
-      onClick={onReject}
-      className="-ml-px relative inline-flex items-center space-x-2 px-2 py-1 border border-indigo-500 text-base font-medium rounded-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
-    />
-  );
+  const rejectButton =
+    quotation.status !== 'FULLFILLED' &&
+    quotation.status !==
+      'REJECTED'(
+        <Button
+          text="Reject"
+          onClick={onReject}
+          className="text-base rounded-md"
+        />,
+      );
 
   const timeline = {
     REQUESTED: {
@@ -170,7 +173,7 @@ const QuotationDetail = ({ quotation }) => {
 
   return (
     <>
-      <Header name="quotation" data={quotation} reject={rejectButton} />
+      <Header name="quotation" data={quotation} button={rejectButton} />
       <StatusProgress
         data={quotation}
         statusTypes={quotationStatusTypes}
