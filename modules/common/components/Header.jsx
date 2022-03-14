@@ -22,7 +22,7 @@ const FallbackAvatar = ({ username }) => {
 };
 
 const Header = ({ name, data, button }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   const { formatDateTime } = useFormatDateTime();
 
@@ -173,6 +173,12 @@ const Header = ({ name, data, button }) => {
             </>
           )}
         </dl>
+        <div className="pl-2 flex items-center text-sm text-gray-900">
+          {new Intl.DisplayNames([locale], {
+            type: 'currency',
+          }).of(data?.currency?.isoCode)}
+          {data?.currency?.isoCode}
+        </div>
       </div>
     </section>
   );
