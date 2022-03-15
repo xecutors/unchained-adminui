@@ -22,18 +22,18 @@ const OrderDetailItem = ({ item }) => {
             </h2>
 
             <div className="space-y-8">
-              <div className="bg-white border border-gray-200 shadow-sm rounded-lg hover:border hover:border-solid hover:border-blue-600">
+              <div className="rounded-lg border border-gray-200 bg-white shadow-sm hover:border hover:border-solid hover:border-blue-600">
                 <div className="p-3">
                   <div className="flex flex-wrap">
-                    <div className="flex-shrink-0 w-auto rounded-lg overflow-hidden sm:w-10 sm:h-10">
+                    <div className="w-auto flex-shrink-0 overflow-hidden rounded-lg sm:h-10 sm:w-10">
                       <Image
                         loader={defaultNextImageLoader}
                         src={src}
                         alt={
-                          item.originalProduct.texts.title ||
-                          item.originalProduct.texts.subtitle
+                          item?.originalProduct?.texts?.title ||
+                          item?.originalProduct?.texts?.subtitle
                         }
-                        className="w-full h-full object-center object-cover sm:w-full sm:h-full"
+                        className="h-full w-full object-cover object-center sm:h-full sm:w-full"
                         width={160}
                         height={160}
                       />
@@ -45,19 +45,19 @@ const OrderDetailItem = ({ item }) => {
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{
                           __html:
-                            item.originalProduct.texts.title ||
-                            item.originalProduct.texts.subtitle,
+                            item?.originalProduct?.texts?.title ||
+                            item?.originalProduct?.texts?.subtitle,
                         }}
                       />
                       <p className="mt-2 text-sm font-medium text-gray-900">
-                        {formatPrice(item.unitPrice)}
+                        {formatPrice(item?.unitPrice)}
                       </p>
                       <p className="mt-2 text-sm font-medium text-gray-900">
                         {formatMessage({
                           id: 'item_title',
                           defaultMessage: 'QTY',
                         })}
-                        <span className="pl-1">{item.quantity}</span>
+                        <span className="pl-1">{item?.quantity}</span>
                       </p>
                     </div>
                   </div>

@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { InboxIcon } from '@heroicons/react/solid';
 import LogList from '../../order/components/LogList';
 import useEnrollmentStatusTypes from '../hooks/useEnrollmentStatusTypes';
-import Header from '../../common/components/Header';
 import StatusProgress from '../../common/components/StatusProgress';
 import Accordion from '../../common/components/Accordion';
 import { getInterfaceLabel } from '../../common/utils/utils';
@@ -21,6 +20,7 @@ import AlertMessage from '../../modal/components/AlertMessage';
 import useTerminateEnrollment from '../hooks/useTerminateEnrollment';
 import useSendEnrollmentEmail from '../hooks/useSendEnrollmentEmail';
 import DangerMessage from '../../modal/components/DangerMessage';
+import EnrollmentDetailHeader from './EnrollmentDetailHeader';
 
 const EnrollmentDetail = ({ enrollment }) => {
   const { formatMessage } = useIntl();
@@ -203,8 +203,6 @@ const EnrollmentDetail = ({ enrollment }) => {
     body: <SubscriptionList periods={enrollment.periods} />,
   };
 
-  console.log(enrollment.plan.configuration);
-
   const form = useForm({
     initialValues: {
       configuration: JSON.stringify(
@@ -218,7 +216,7 @@ const EnrollmentDetail = ({ enrollment }) => {
 
   return (
     <>
-      <Header name="enrollment" data={enrollment} />
+      <EnrollmentDetailHeader enrollment={enrollment} />
       <StatusProgress
         data={enrollment}
         statusTypes={enrollmentStatusTypes}

@@ -1,10 +1,12 @@
 import { useIntl } from 'react-intl';
 
-const useFormatPrice = ({ amount, currency }) => {
+const useFormatPrice = (
+  { amount, currency } = { amount: null, currency: null },
+) => {
   const { locale } = useIntl();
 
   const formatPrice = () => {
-    if (!currency) return '0';
+    if (!currency || !amount) return '0';
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency,
