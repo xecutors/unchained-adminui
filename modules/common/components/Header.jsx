@@ -13,7 +13,7 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const FallbackAvatar = ({ username }) => {
   return (
-    <span className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-gray-500">
+    <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-500">
       <span className="text-4xl font-medium leading-none text-white">
         {username?.slice(0, 2)}
       </span>
@@ -21,8 +21,8 @@ const FallbackAvatar = ({ username }) => {
   );
 };
 
-const Header = ({ name, data, reject }) => {
-  const { formatMessage } = useIntl();
+const Header = ({ name, data, button }) => {
+  const { formatMessage, locale } = useIntl();
 
   const { formatDateTime } = useFormatDateTime();
 
@@ -58,7 +58,7 @@ const Header = ({ name, data, reject }) => {
               )}
             </span>
             <span className="flex items-center">
-              <h3 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate capitalize">
+              <h3 className="ml-3 text-2xl font-bold capitalize leading-7 text-gray-900 sm:truncate sm:leading-9">
                 {data?.user?.name ? data.user.name : data?.user?.username}
               </h3>
               {data?.user?.primaryEmail?.verified ? (
@@ -69,15 +69,20 @@ const Header = ({ name, data, reject }) => {
                       defaultMessage: 'Account status',
                     })}
                   </dt>
+<<<<<<< HEAD
                   <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                     {data.user?.primaryEmail?.verified ? (
+=======
+                  <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-gray-500 sm:mr-6 sm:mt-0">
+                    {data.user.isEmailVerified ? (
+>>>>>>> Fix minor things and add tailwind class prettier
                       <CheckCircleIcon
-                        className="flex-shrink-0 mb-1.5 h-4 w-4 text-green-400"
+                        className="mb-1.5 h-4 w-4 flex-shrink-0 text-green-400"
                         aria-hidden="true"
                       />
                     ) : (
                       <XCircleIcon
-                        className="flex-shrink-0 mb-1.5 h-4 w-4 text-red-400"
+                        className="mb-1.5 h-4 w-4 flex-shrink-0 text-red-400"
                         aria-hidden="true"
                       />
                     )}
@@ -92,9 +97,9 @@ const Header = ({ name, data, reject }) => {
                 <dt className="sr-only">
                   {formatMessage({ id: 'email', defaultMessage: 'Email' })}
                 </dt>
-                <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
+                <dd className="flex items-center text-sm font-medium capitalize text-gray-500 sm:mr-6">
                   <AtSymbolIcon
-                    className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                     aria-hidden="true"
                   />
                   {data.contact.emailAddress}
@@ -107,9 +112,9 @@ const Header = ({ name, data, reject }) => {
                 <dt className="sr-only">
                   {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
                 </dt>
-                <dd className="flex items-center text-sm text-gray-500 font-medium capitalize sm:mr-6">
+                <dd className="flex items-center text-sm font-medium capitalize text-gray-500 sm:mr-6">
                   <DeviceMobileIcon
-                    className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                    className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                     aria-hidden="true"
                   />
                   {data.contact.telNumber}
@@ -120,26 +125,26 @@ const Header = ({ name, data, reject }) => {
         </div>
       </div>
 
-      <div className="text-sm border-b border-gray-200 mt-2 pb-2 sm:flex sm:justify-between">
+      <div className="mt-2 border-b border-gray-200 pb-2 text-sm sm:flex sm:justify-between">
         <dl className="flex items-center">
-          <dt className="text-gray-500 capitalize">
+          <dt className="capitalize text-gray-500">
             {formatMessage({
               id: `${name}`,
               defaultMessage: `${name}`,
             })}
             &#35; &nbsp;
           </dt>
-          <dd className="font-bold text-xl text-gray-900">
-            {data?.orderNumber ? (
+          <dd className="text-xl font-bold text-gray-900">
+            {data[`${name}Number`] ? (
               <Badge
-                text={data.orderNumber}
-                className="p-1 bg-blue-600 font-bold text-xl"
+                text={data[`${name}Number`]}
+                className="bg-blue-600 p-1 text-xl font-bold"
               />
             ) : (
               <Badge
                 text="Cart"
                 color="yellow"
-                className="p-1 font-bold text-xl"
+                className="p-1 text-xl font-bold"
               />
             )}
           </dd>
@@ -147,7 +152,7 @@ const Header = ({ name, data, reject }) => {
             <span className="sr-only">
               {formatMessage({ id: 'date', defaultMessage: 'Date' })}
             </span>
-            <span className="text-gray-400 mx-2" aria-hidden="true">
+            <span className="mx-2 text-gray-400" aria-hidden="true">
               &middot;
             </span>
           </dt>
@@ -156,25 +161,41 @@ const Header = ({ name, data, reject }) => {
               {data?.ordered ? formatDateTime(data.ordered) : null}
             </time>
           </dd>
-          {reject &&
-          data.status !== 'FULLFILLED' &&
-          data.status !== 'REJECTED' ? (
+          {button && (
             <>
               <dt>
                 <span className="sr-only">
                   {formatMessage({
-                    id: 'reject_button',
-                    defaultMessage: 'Reject',
+                    id: 'button',
+                    defaultMessage: 'Button',
                   })}
                 </span>
-                <span className="text-gray-400 mx-2" aria-hidden="true">
+                <span className="mx-2 text-gray-400" aria-hidden="true">
                   &middot;
                 </span>
               </dt>
-              <dd className="ml-6 font-medium text-gray-900">{reject}</dd>
+              <dd className="ml-6 font-medium text-gray-900">{button}</dd>
             </>
-          ) : null}
+          )}
         </dl>
+        <div className="flex items-center pl-2 text-base text-gray-900">
+          <span>{data?.country?.flagEmoji}</span>
+          <span className="ml-2">
+            {new Intl.DisplayNames([locale], {
+              type: 'currency',
+            }).of(data?.currency?.isoCode)}
+          </span>
+          <span>
+            {data?.currency?.isoCode && (
+              <Badge
+                text={data?.currency?.isoCode}
+                color="amber"
+                className="ml-2 px-2 py-1"
+                square
+              />
+            )}
+          </span>
+        </div>
       </div>
     </section>
   );

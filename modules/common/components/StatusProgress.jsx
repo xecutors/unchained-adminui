@@ -47,7 +47,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ) : null}
                     </span>
                   </div>
-                  <div className="min-w-0 flex-1 flex justify-between ml-4">
+                  <div className="min-w-0 flex-1 flex justify-between items-center ml-4">
                     <div className="flex-auto">
                       <p className="text-sm text-gray-500">
                         <span className="w-full flex justify-between items-center font-medium text-gray-900 capitalize">
@@ -57,7 +57,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                         </span>
                       </p>
                     </div>
-                    {value ? (
+                    {timeline[data.status].id >= timeline[value].id ? (
                       <div className="text-right text-sm whitespace-nowrap text-gray-500">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
@@ -113,11 +113,12 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   )}
                 >
                   <span className="capitalize flex flex-col justify-center items-center">
-                    {value}
-                    {timeline[value]?.Component && timeline[value].Component}
+                    {timeline[value]?.Component
+                      ? timeline[value].Component
+                      : value}
                   </span>
                   <span className="block">
-                    {data[timeline[value].content]
+                    {timeline[data.status].id >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           month: 'short',
                           day: 'numeric',

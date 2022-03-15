@@ -30,7 +30,7 @@ const LogList = ({ logs, user }) => {
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 {formatMessage({
                   id: 'log_message',
                   defaultMessage: 'Message',
@@ -42,7 +42,7 @@ const LogList = ({ logs, user }) => {
           {(logs || [])?.map((log) => (
             <Fragment key={log._id}>
               <Table.Row>
-                <Table.Cell className="px-6  whitespace-nowrap ">
+                <Table.Cell className="px-6 whitespace-nowrap">
                   <div className="pl-2 flex items-center text-sm text-gray-900">
                     {log.created ? formatDateTime(log.created) : 'n/a'}
                     {user.username !== log.user?.username ? (
@@ -56,13 +56,13 @@ const LogList = ({ logs, user }) => {
                   </div>
                 </Table.Cell>
 
-                <Table.Cell className="px-6 whitespace-nowrap ">
+                <Table.Cell className="px-6 whitespace-normal">
                   <div className="pl-2 flex items-center text-sm text-gray-900">
                     {log.level ? log.level : 'N/A'}
                   </div>
                 </Table.Cell>
 
-                <Table.Cell className="px-6  whitespace-nowrap ">
+                <Table.Cell classes="px-6 whitespace-normal">
                   <div className="pl-2 flex items-center text-sm text-gray-900">
                     {log.message ? log.message : 'N/A'}
                   </div>
