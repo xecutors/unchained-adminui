@@ -69,13 +69,8 @@ const Header = ({ name, data, button }) => {
                       defaultMessage: 'Account status',
                     })}
                   </dt>
-<<<<<<< HEAD
                   <dd className="mt-3 flex items-center self-end text-sm text-gray-500 font-medium sm:mr-6 sm:mt-0 capitalize">
                     {data.user?.primaryEmail?.verified ? (
-=======
-                  <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-gray-500 sm:mr-6 sm:mt-0">
-                    {data.user.isEmailVerified ? (
->>>>>>> Fix minor things and add tailwind class prettier
                       <CheckCircleIcon
                         className="mb-1.5 h-4 w-4 flex-shrink-0 text-green-400"
                         aria-hidden="true"
