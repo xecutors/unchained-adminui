@@ -145,7 +145,7 @@ const Layout = ({
             id: 'product Review',
             defaultMessage: 'product Review',
           }),
-          href: '/productReview',
+          href: '/product-review',
         },
         {
           name: formatMessage({
