@@ -188,7 +188,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         })}
       </span>
     ),
-    body: <LogList logs={enrollment.logs} />,
+    body: <LogList logs={enrollment.logs} user={enrollment.user} />,
   };
 
   const periods = {
