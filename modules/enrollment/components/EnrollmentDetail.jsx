@@ -61,8 +61,8 @@ const EnrollmentDetail = ({ enrollment }) => {
   };
 
   const EmailIcon = (
-    <div className="flex justify-center items-center w-full">
-      <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+    <div className="flex w-full items-center justify-center">
+      <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
         <InboxIcon className="h-6 w-6 text-blue-600" aria-hidden="true" />
       </div>
     </div>
@@ -155,7 +155,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         <Button
           text="Activate"
           onClick={onActivateEnrollment}
-          className="text-base rounded-md"
+          className="rounded-md text-base"
         />
       ),
     },
@@ -170,7 +170,7 @@ const EnrollmentDetail = ({ enrollment }) => {
             defaultMessage: 'Terminate Enrollment',
           })}
           onClick={onTerminateEnrollment}
-          className="text-base rounded-md border-red-500 bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-0 focus:ring-red-500 focus:border-red-500"
+          className="rounded-md border-red-500 bg-red-500 text-base hover:bg-red-700 focus:border-red-500 focus:outline-none focus:ring-0 focus:ring-red-500"
         />
       ),
     },
@@ -203,6 +203,8 @@ const EnrollmentDetail = ({ enrollment }) => {
     body: <SubscriptionList periods={enrollment.periods} />,
   };
 
+  console.log(enrollment.plan.configuration);
+
   const form = useForm({
     initialValues: {
       configuration: JSON.stringify(
@@ -210,6 +212,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         null,
         2,
       ),
+      length: enrollment.plan.configuration,
     },
   });
 
@@ -222,26 +225,35 @@ const EnrollmentDetail = ({ enrollment }) => {
         timeline={timeline}
       />
 
-      <section className="bg-white rounded-md border border-gray-300">
-        <div className="-mt-12 max-w-7xl mx-auto pb-16 px-4 sm:pb-24 sm:px-6 lg:px-8">
-          <dl className="mt-16 max-w-2xl mx-auto grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
-            <div className="sm:col-span-2 lg:col-span-3 grid lg:grid-cols-12 gap-y-10 sm:gap-y-16">
-              <div className="pt-4 flex gap-x-12 lg:col-span-6">
-                <Image
-                  loader={defaultNextImageLoader}
-                  src={enrollment.plan.product.media.file.url}
-                  alt={enrollment?.plan?.product?.text?.title}
-                  width={200}
-                  height={200}
-                />
-                <div className="flex flex-col justify-evenly">
+      <section className="rounded-md border border-gray-300 bg-white">
+        <div className="mx-auto -mt-12 max-w-7xl px-4 pb-4 sm:px-6 sm:pb-16 lg:px-8">
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 sm:gap-y-8 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
+            <div className="w flex flex-auto flex-col gap-y-4 gap-x-8 sm:col-span-2 sm:gap-y-8 lg:col-span-3 lg:grid-cols-12 lg:flex-row">
+              <div className="flex flex-auto flex-col gap-y-8 pt-4 lg:col-span-6">
+                <span className="h relative h-48 w-full rounded-lg">
+                  {/* <Image
+                    loader={defaultNextImageLoader}
+                    src={enrollment.plan.product.media.file.url}
+                    alt={enrollment?.plan?.product?.text?.title}
+                    layout="fill"
+                    objectFit="contain"
+                  /> */}
+                  <Image
+                    loader={defaultNextImageLoader}
+                    src="https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg"
+                    alt={enrollment?.plan?.product?.text?.title}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </span>
+                <div className="flex flex-col">
                   <dt className="font-medium text-gray-900">
                     {formatMessage({
-                      id: 'payment_provider',
+                      id: 'product_title',
                       defaultMessage: 'Product',
                     })}
                   </dt>
-                  <dd className="mt-2 text-sm text-gray-500">
+                  <dd className="my-2 text-sm text-gray-500">
                     {enrollment.plan.product.texts.title}
                   </dd>
                   <dt className="font-medium text-gray-900">
@@ -250,13 +262,13 @@ const EnrollmentDetail = ({ enrollment }) => {
                       defaultMessage: 'Quantity',
                     })}
                   </dt>
-                  <dd className="mt-2 text-sm text-gray-500">
+                  <dd className="my-2 text-sm text-gray-500">
                     {enrollment?.plan?.quantity}
                   </dd>
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 lg:border-0 pt-4 lg:col-span-6">
+              <div className="flex-auto border-t border-gray-200 pt-4 lg:col-span-6 lg:border-0">
                 <Form form={form}>
                   <label
                     htmlFor="configuration"
@@ -273,7 +285,10 @@ const EnrollmentDetail = ({ enrollment }) => {
                     id="configuration"
                     name="configuration"
                     value={form.formik.values.configuration}
-                    rows={Math.max(form.formik.values.configuration.length, 5)}
+                    rows={Math.max(
+                      form.formik.values.configuration?.split(' ')?.length / 2,
+                      5,
+                    )}
                     label={formatMessage({
                       id: 'configuration',
                       defaultMessage: 'Configuration',
@@ -284,40 +299,69 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4">
-              <dt className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'payment_provider',
-                  defaultMessage: 'Payment Provider',
-                })}
-              </dt>
-              <dd className="mt-2 text-sm text-gray-500">
-                <Link
-                  href={`/payment-provider/${enrollment?.payment?.provider._id}`}
-                >
-                  <a className="text-blue-600">
-                    {getInterfaceLabel(enrollment.payment.provider.interface)}
-                  </a>
-                </Link>
-              </dd>
-            </div>
+            <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8">
+              <div className="border-t border-gray-200 pt-4">
+                <dt className="font-medium text-gray-900">
+                  {formatMessage({
+                    id: 'payment_provider',
+                    defaultMessage: 'Payment Provider',
+                  })}
+                </dt>
+                <dd className="mt-2 text-sm text-gray-500">
+                  <Link
+                    href={`/payment-provider/${enrollment?.payment?.provider._id}`}
+                  >
+                    <a className="text-blue-600">
+                      {getInterfaceLabel(enrollment.payment.provider.interface)}
+                    </a>
+                  </Link>
+                </dd>
+              </div>
 
-            <div className="border-t border-gray-200 pt-4">
-              <dt className="font-medium text-gray-900">
-                {formatMessage({
-                  id: 'delivery_provider',
-                  defaultMessage: 'Delivery Provider',
-                })}
-              </dt>
-              <dd className="mt-2 text-sm text-gray-500">
-                <Link
-                  href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
-                >
-                  <a className="text-blue-600">
-                    {getInterfaceLabel(enrollment.delivery.provider.interface)}
-                  </a>
-                </Link>
-              </dd>
+              <div className="border-t border-gray-200 pt-4">
+                <dt className="font-medium text-gray-900">
+                  {formatMessage({
+                    id: 'delivery_provider',
+                    defaultMessage: 'Delivery Provider',
+                  })}
+                </dt>
+                <dd className="mt-2 text-sm text-gray-500">
+                  <Link
+                    href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
+                  >
+                    <a className="text-blue-600">
+                      {getInterfaceLabel(
+                        enrollment.delivery.provider.interface,
+                      )}
+                    </a>
+                  </Link>
+                </dd>
+              </div>
+
+              <div className="col-span-1 border-t border-gray-200 pt-4">
+                <dt className="font-medium text-gray-900">
+                  {formatMessage({
+                    id: 'billing_address',
+                    defaultMessage: 'Contact',
+                  })}
+                </dt>
+                <dd className="mt-2 text-sm text-gray-500">
+                  {enrollment?.contact?.telNumber}
+                </dd>
+                <dd className="mt-2 text-sm text-gray-500">
+                  {enrollment?.contact?.emailAddress}
+                </dd>
+                <dd className="mt-2 text-sm text-gray-500">
+                  <Button
+                    text={formatMessage({
+                      id: 'send_email_button',
+                      defaultMessage: 'Send Email',
+                    })}
+                    className="rounded-md"
+                    onClick={onSendEnrollmentEmail}
+                  />
+                </dd>
+              </div>
             </div>
 
             <div className="border-t border-gray-200 pt-4">
@@ -349,49 +393,11 @@ const EnrollmentDetail = ({ enrollment }) => {
                 {enrollment?.billingAddress?.countryCode}
               </dd>
             </div>
-
-            <div className="border-t border-gray-200 pt-4  lg:w-full lg:col-span-3 grid lg:grid-cols-12">
-              <div className="lg:col-span-4">
-                <dt className="font-medium text-gray-900">
-                  {formatMessage({
-                    id: 'billing_address',
-                    defaultMessage: 'Contact',
-                  })}
-                </dt>
-                <dd className="mt-2 text-sm text-gray-500">
-                  {enrollment?.contact?.telNumber}
-                </dd>
-                <dd className="mt-2 text-sm text-gray-500">
-                  {enrollment?.contact?.emailAddress}
-                </dd>
-                <dd className="mt-2 text-sm text-gray-500">
-                  <Button
-                    text={formatMessage({
-                      id: 'send_email_button',
-                      defaultMessage: 'Send Email',
-                    })}
-                    className="rounded-md"
-                    onClick={onSendEnrollmentEmail}
-                  />
-                </dd>
-              </div>
-              <Accordion
-                data={[periods]}
-                headerCSS={headerCSS}
-                containerCSS="hidden lg:block lg:col-span-8 mt-3 lg:mt-0"
-              />
-            </div>
           </dl>
         </div>
       </section>
 
-      <Accordion
-        data={[periods]}
-        headerCSS={headerCSS}
-        containerCSS="lg:hidden lg:col-span-8 mt-0 lg:mt-3"
-      />
-
-      <Accordion data={[logs]} headerCSS={headerCSS} />
+      <Accordion data={[periods, logs]} headerCSS={headerCSS} />
     </>
   );
 };

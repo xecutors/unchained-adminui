@@ -29,7 +29,7 @@ const SubscriptionList = ({ periods }) => {
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 {formatMessage({
                   id: 'end',
                   defaultMessage: 'end',

@@ -61,9 +61,9 @@ const JSONAreaField = ({
       <>
         <textarea
           className={classnames(
-            'mt-1 max-w-full shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md',
+            'mt-1 block w-full max-w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
             {
-              'text-red-600 focus:ring-red-600 focus:border-red-600 border-red-300':
+              'border-red-300 text-red-600 focus:border-red-600 focus:ring-red-600':
                 !!field.error,
             },
           )}
@@ -75,7 +75,7 @@ const JSONAreaField = ({
           placeholder={field.placeholder}
           autoComplete={field.autoComplete}
           value={field.value}
-          rows={Math.max(field.value.length / 6, rows)}
+          rows={Math.max(field.value?.split(' ')?.length / 2, rows)}
         />
       </>
     </FieldWrapper>
