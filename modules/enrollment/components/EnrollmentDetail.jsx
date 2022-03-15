@@ -195,8 +195,8 @@ const EnrollmentDetail = ({ enrollment }) => {
     header: (
       <span className="flex">
         {formatMessage({
-          id: 'subscription',
-          defaultMessage: 'Subscription',
+          id: 'periods',
+          defaultMessage: 'Periods',
         })}
       </span>
     ),

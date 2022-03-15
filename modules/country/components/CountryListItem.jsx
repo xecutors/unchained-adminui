@@ -5,7 +5,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const CountryListItem = ({ country, onRemove }) => {
-  const { locale, formatMessage } = useIntl();
+  const { /* locale, */ formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),

@@ -917,7 +917,7 @@ const QuotationDetailPage = () => {
 
   const { query } = useRouter();
   const { quotationId } = query;
-  const { quotation, loading } = useQuotation({ quotationId });
+  const { /* quotation, */ loading } = useQuotation({ quotationId });
 
   // TODO remove mock data
   const [quotationn] = quotationss.filter((item) => item._id === quotationId);

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
-import MiniUserAvatar from '../../common/components/MiniUserAvatar';
+
 import Table from '../../common/components/Table';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';

@@ -2034,7 +2034,7 @@ const EnrollmentDetailPage = () => {
 
   const { query } = useRouter();
   const { enrollmentId } = query;
-  const { enrollment, loading } = useEnrollment({ enrollmentId });
+  const { /* enrollment, */ loading } = useEnrollment({ enrollmentId });
 
   // TODO remove mock data
   const [enrollemntt] = enrollmentss.filter(
