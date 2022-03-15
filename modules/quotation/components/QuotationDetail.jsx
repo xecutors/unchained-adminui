@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import { PaperClipIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
+
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
-import Header from '../../common/components/Header';
 import LogList from '../../order/components/LogList';
 import DocumentList from '../../order/components/DocumentList';
 import Accordion from '../../common/components/Accordion';
@@ -13,12 +13,11 @@ import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
-import DangerMessage from '../../modal/components/DangerMessage';
-import useRejectQuotation from '../hooks/useRejectQuotation';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import QuotationDetailHeader from './QuotationDetailHeader';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -26,7 +25,6 @@ const QuotationDetail = ({ quotation }) => {
 
   const { quotationStatusTypes } = useQuotationStatusTypes();
   const { VerifyQuotation } = useVerifyQuotation();
-  const { rejectQuotation } = useRejectQuotation();
 
   const onVerify = async () => {
     await setModal(
@@ -57,46 +55,6 @@ const QuotationDetail = ({ quotation }) => {
       />,
     );
   };
-
-  const onReject = async () => {
-    await setModal(
-      <DangerMessage
-        buttonText={formatMessage({
-          id: 'reject_alert_button',
-          defaultMessage: 'Reject',
-        })}
-        headerText={formatMessage({
-          id: 'Reject_alert_header',
-          defaultMessage: 'Reject quotation?',
-        })}
-        onOkClick={async () => {
-          setModal('');
-          await rejectQuotation({ id: quotation._id });
-          toast.success(
-            formatMessage(
-              {
-                id: 'reject_alert_success',
-                defaultMessage: 'Reject {id} verified successfully',
-              },
-              {
-                id: quotation._id,
-              },
-            ),
-          );
-        }}
-      />,
-    );
-  };
-
-  // quotation.status !== 'FULLFILLED' ||
-  const rejectButton = quotation.status !== 'FULLFILLED' &&
-    quotation.status !== 'REJECTED' && (
-      <Button
-        text="Reject"
-        onClick={onReject}
-        className="rounded-md text-base"
-      />
-    );
 
   const timeline = {
     REQUESTED: {
@@ -172,7 +130,7 @@ const QuotationDetail = ({ quotation }) => {
 
   return (
     <>
-      <Header name="quotation" data={quotation} button={rejectButton} />
+      <QuotationDetailHeader quotation={quotation} />
       <StatusProgress
         data={quotation}
         statusTypes={quotationStatusTypes}
@@ -217,7 +175,7 @@ const QuotationDetail = ({ quotation }) => {
                   name="configuration"
                   value={form.formik.values.configuration}
                   rows={Math.max(
-                    form.formik.values.configuration?.split(' ')?.length,
+                    form.formik.values.configuration?.split(' ')?.length / 2,
                     5,
                   )}
                   label={formatMessage({

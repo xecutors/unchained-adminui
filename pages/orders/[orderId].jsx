@@ -20,6 +20,8 @@ const OrderDetailPage = () => {
   const { orderId } = query;
   const { order, loading } = useOrder({ orderId });
 
+  console.log(order);
+
   const isDeletable = (status) => {
     return status === 'OPEN' || status === 'PENDING';
   };
@@ -58,18 +60,18 @@ const OrderDetailPage = () => {
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs />
-      <div className="flex align-center justify-between min-w-full">
+      <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'order_detail',
             defaultMessage: 'Order Detail',
           })}
         />
-        {isDeletable(order.status) ? (
+        {isDeletable('OPEN') ? (
           <button
             type="button"
             onClick={handleOnClick}
-            className="flex justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+            className="my-auto flex h-full items-center justify-center rounded border border-transparent bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
           >
             <span className="pr-1">
               <XIcon className="inline-block h-4 w-4" />

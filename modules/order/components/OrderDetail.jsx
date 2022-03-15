@@ -14,7 +14,7 @@ import useConfirmOrder from '../hooks/useConfirmOrder';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import StatusProgress from '../../common/components/StatusProgress';
-import Header from '../../common/components/Header';
+import OrderDetailHeader from './OrderDetailHeader';
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -66,7 +66,7 @@ const OrderDetail = ({ order }) => {
         <button
           onClick={onConfirmOrder}
           type="button"
-          className="-ml-px relative inline-flex items-center space-x-2 px-2 py-1 border border-indigo-500 text-sm font-medium rounded-md bg-indigo-500 text-white bg-white-300 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-500 focus:outline-none focus:ring-0 focus:ring-indigo-500"
         >
           {formatMessage({
             id: 'confirm_order',
@@ -90,7 +90,7 @@ const OrderDetail = ({ order }) => {
 
   return (
     <>
-      <Header name="order" data={order} />
+      <OrderDetailHeader order={order} />
 
       <StatusProgress
         data={order}
@@ -98,7 +98,7 @@ const OrderDetail = ({ order }) => {
         timeline={timeline}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {order.items.map((item) => {
           return <OrderDetailItem key={item._id} item={item} />;
         })}
@@ -112,7 +112,7 @@ const OrderDetail = ({ order }) => {
           })}
         </h2>
 
-        <div className="grid sm:flex gap-4 sm:flex-wrap text-sm w-full sm:rounded-lg">
+        <div className="grid w-full gap-4 text-sm sm:flex sm:flex-wrap sm:rounded-lg">
           <OrderDetailDelivery delivery={order.delivery} />
 
           <OrderDetailPayment order={order} />
