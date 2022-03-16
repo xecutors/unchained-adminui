@@ -2,6 +2,7 @@ import { StarIcon, ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 import DeleteButton from '../../common/components/DeleteButton';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
@@ -9,6 +10,7 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
+import Badge from '../../common/components/Badge';
 
 // TODO: remove mock data
 const productReviews = [
@@ -451,7 +453,7 @@ const ProductReviews = ({ productId }) => {
 
             <div className="mt-3 flex items-center">
               <div>
-                <div className="flex items-center">
+                <div title={`${averageVote}`} className="flex items-center">
                   {[1, 2, 3, 4, 5].map((rating) => (
                     <StarIcon
                       key={rating}
@@ -575,9 +577,14 @@ const ProductReviews = ({ productId }) => {
             </h3>
 
             <div className="flow-root">
-              <div className="-my-3 divide-y divide-gray-200">
+              <div className="-my-3">
                 {productReviews.map((review) => (
-                  <div key={review._id} className="py-4">
+                  <div
+                    key={review._id}
+                    className={classNames('mb-2 rounded-md py-4 px-2', {
+                      'border-2 border-solid border-red-200': review.deleted,
+                    })}
+                  >
                     <div className="flex items-center">
                       <Image
                         loader={defaultNextImageLoader}
@@ -603,10 +610,21 @@ const ProductReviews = ({ productId }) => {
                         <ThumbDownIcon className="h-7 w-7 text-gray-400" />
                         <span className="mx-2">{review.downVote}</span>
                       </div>
-                      <DeleteButton
-                        onClick={() => onRemove(review._id)}
-                        className="ml-auto hover:text-red-800"
-                      />
+                      {!review.deleted ? (
+                        <DeleteButton
+                          onClick={() => onRemove(review._id)}
+                          className="ml-auto hover:text-red-800"
+                        />
+                      ) : (
+                        <Badge
+                          text={formatMessage({
+                            id: 'deleted_text',
+                            defaultMessage: 'Deleted',
+                          })}
+                          color="red"
+                          className="ml-auto p-1"
+                        />
+                      )}
                     </div>
 
                     <div className="mt-4 space-y-2 text-base italic text-gray-600">
