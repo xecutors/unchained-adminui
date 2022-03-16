@@ -23,7 +23,7 @@ const productReviews = [
   {
     _id: 'bdaa8bd9-cebc-4f52-9f39-8c7c8aaf8e3a',
     created: '1646142170000',
-    deleted: '1628445661000',
+    deleted: null,
     updated: '1625505365000',
     author: {
       _id: '358a5be9-2f6d-46d6-a44b-2e9ecc0e9f40',
@@ -97,7 +97,7 @@ const productReviews = [
   {
     _id: '2a0c9e3a-c150-4593-807c-f668e07a1c89',
     created: '1638304671000',
-    deleted: '1630921782000',
+    deleted: null,
     updated: '1635386096000',
     author: {
       _id: 'e3ce8141-5973-4c31-b9ff-e1ae090877ba',
@@ -171,7 +171,7 @@ const productReviews = [
   {
     _id: '382fcb95-8e5b-46d4-8304-3548a6f62422',
     created: '1627911131000',
-    deleted: '1640492234000',
+    deleted: null,
     updated: '1642629986000',
     author: {
       _id: '047f53b9-1df3-43ae-9681-7c26c0f36378',
