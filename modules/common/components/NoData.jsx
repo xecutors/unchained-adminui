@@ -2,8 +2,7 @@ import { ExclamationIcon } from '@heroicons/react/solid';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
-const NoData = ({ message, className = '', icon }) => {
-  const Icon = icon || ExclamationIcon;
+const NoData = ({ message, className = '', Icon }) => {
   return (
     <div
       className={classnames(
@@ -12,8 +11,8 @@ const NoData = ({ message, className = '', icon }) => {
       )}
     >
       <div className="grid items-center justify-center">
-        <div className="flex items-center justify-center">
-          <Icon className="h-10 w-10" />
+        <div className="flex items-center justify-center text-indigo-500">
+          {Icon || <ExclamationIcon className="h-10 w-10" />}
         </div>
 
         <FormattedMessage

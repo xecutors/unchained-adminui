@@ -1,6 +1,11 @@
-import { StarIcon, ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/solid';
+import {
+  EmojiSadIcon,
+  StarIcon,
+  ThumbDownIcon,
+  ThumbUpIcon,
+} from '@heroicons/react/solid';
 import Image from 'next/image';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
 import DeleteButton from '../../common/components/DeleteButton';
@@ -9,7 +14,7 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useRemoveProductReview from '../hooks/useRemoveProductReview';
-import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
+/* import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId'; */
 import Badge from '../../common/components/Badge';
 import NoData from '../../common/components/NoData';
 
@@ -387,7 +392,7 @@ const productReviews = [
   },
 ];
 
-const ProductReviews = ({ productId }) => {
+const ProductReviews = (/* {  productId } */) => {
   // TODO: Uncomment product review data
   //   const { productReviews } = useProductReviewsByProductId({
   //     productId,
@@ -442,7 +447,7 @@ const ProductReviews = ({ productId }) => {
 
   return (
     <div className="mt-5 sm:max-w-full">
-      {productReviews ? (
+      {productReviews?.length ? (
         <div className="rounded bg-white shadow">
           <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
             <div className="lg:col-span-4">
@@ -456,12 +461,12 @@ const ProductReviews = ({ productId }) => {
               <div className="mt-3 flex items-center">
                 <div>
                   <div title={`${averageVote}`} className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((rating) => (
+                    {[0, 1, 2, 3, 4].map((rating) => (
                       <StarIcon
                         key={rating}
                         className={`
                         ${
-                          averageVote >= (rating - 1) * 20
+                          averageVote >= rating * 20
                             ? 'text-yellow-400'
                             : 'text-gray-300'
                         }
@@ -472,13 +477,27 @@ const ProductReviews = ({ productId }) => {
                     ))}
                   </div>
                 </div>
-                <p className="ml-2 text-sm text-gray-900">
-                  Based on {productReviews.length} reviews
-                </p>
+                <div className="ml-2 text-sm text-gray-900">
+                  <FormattedMessage
+                    id="paginated-data"
+                    defaultMessage="<div> Based on <cta> {total} </cta> reviews</div>"
+                    values={{
+                      div: (chunks) => <div>{chunks}</div>,
+                      cta: (chunks) => <b className="font-bold">{chunks}</b>,
+                      total: productReviews.length,
+                    }}
+                  />
+                </div>
               </div>
 
               <div className="mt-6">
-                <h3 className="sr-only">Review data</h3>
+                <h3 className="sr-only">
+                  {' '}
+                  {formatMessage({
+                    id: 'review_data',
+                    defaultMessage: 'Review data',
+                  })}{' '}
+                </h3>
 
                 <dl className="space-y-3">
                   <div className="flex items-center text-sm">
@@ -526,7 +545,13 @@ const ProductReviews = ({ productId }) => {
                     <dt className="flex flex-1 items-center">
                       <p className="font-medium text-gray-900">
                         {totalDownVote}
-                        <span className="sr-only"> star reviews</span>
+                        <span className="sr-only">
+                          {' '}
+                          {formatMessage({
+                            id: 'star_reviews',
+                            defaultMessage: 'Star reviews',
+                          })}{' '}
+                        </span>
                       </p>
                       <div
                         aria-hidden="true"
@@ -643,7 +668,7 @@ const ProductReviews = ({ productId }) => {
           </div>
         </div>
       ) : (
-        <NoData message="Reviews" />
+        <NoData message="Reviews" Icon={<EmojiSadIcon />} />
       )}
     </div>
   );
