@@ -39,7 +39,8 @@ const ProductReview = () => {
       isGuest:true,
       avatar :{
         _id:'4',
-        url:'fgh',
+        url:'https://robohash.org/molestiasdelenitivoluptatum.png?size=50x50&set=set1',
+      
       },
     },
     
@@ -73,10 +74,10 @@ const ProductReview = () => {
       {
       _id:'2',
       username:'amen',
-      isGuest:'yes',
+      isGuest:true,
       avatar :{
         _id:'4',
-        url:'https://engine.dev.publicare.ch/cdn/storage/media/j9PjsKRgbFWYLLAY3/original/j9PjsKRgbFWYLLAY3.jpg',
+        url:'https://robohash.org/molestiasdelenitivoluptatum.png?size=50x50&set=set1',
       },
     },
     
@@ -110,10 +111,10 @@ const ProductReview = () => {
       {
       _id:'2',
       username:'amen',
-      isGuest:'yes',
+      isGuest:false,
       avatar :{
         _id:'4',
-        url:'fgh',
+        url:'https://robohash.org/molestiasdelenitivoluptatum.png?size=50x50&set=set1',
       },
     },
     

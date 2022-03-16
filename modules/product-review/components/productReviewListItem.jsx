@@ -4,11 +4,11 @@ import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
-// const PRODUCT_STATUS = {
-//   DRAFT: 'yellow',
-//   ACTIVE: 'green',
-//   DELETED: 'red',
-// };
+const USER_STATUS = {
+
+  DELETED: 'red',
+  isGuest: 'red',
+};
 
 const ProductReviewListItem = ({ ProductReview, showAvatar }) => {
 
@@ -42,9 +42,16 @@ const ProductReviewListItem = ({ ProductReview, showAvatar }) => {
         </div>
       </Table.Cell>
       
-      <Table.Cell className="px-6  whitespace-nowrap">
+      <Table.Cell className=" px-6 whitespace-nowrap">
+        <div className="flex">
+      {showAvatar && (
+            <MediaAvatar
+              file={ProductReview.author?.avatar && ProductReview.author?.avatar}
+              className="mx-2"
+            />  
+           )} 
       <Link href={`#`}>
-      <a className="text-blue-600">
+      <a className="px-2 mt-4 whitespace-nowrap text-blue-600">
               {ProductReview?. author.username|| (
                 <>
                   {ProductReview._id}{' '}
@@ -52,10 +59,24 @@ const ProductReviewListItem = ({ ProductReview, showAvatar }) => {
                     color="blue"
                     text={formatMessage({ id: 'author', defaultMessage: 'author' })}
                   />
+         
                 </>
               )}
+               {ProductReview.author.isGuest && (
+            <Badge
+              className="ml-4 p-1"
+              text={formatMessage({
+                id: 'Guest',
+                defaultMessage: 'Guest',
+              })}
+              color="red"
+            />
+          )}
+        
             </a>
             </Link>
+            </div>
+        
       </Table.Cell>
 
       <Table.Cell className=" px-6   whitespace-nowrap">
