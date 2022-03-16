@@ -24,6 +24,7 @@ import useRemoveProduct from '../hooks/useRemoveProduct';
 import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
+import ProductReviews from '../../product-review/components/ProductReviews';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -46,6 +47,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
     return <GeneralTextForm productId={id} />;
   if (selectedView === 'subscription')
     return <SubscriptionForm productId={id} />;
+  if (selectedView === 'reviews') return <ProductReviews productId={id} />;
   return <GeneralTextForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
@@ -115,7 +117,15 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <UsersIcon className="h-4 w-5" />,
     },
-  ];
+    {
+      id: 'reviews',
+      title: formatMessage({
+        id: 'reviews',
+        defaultMessage: 'Reviews',
+      }),
+      Icon: <PresentationChartLineIcon className="h-4 w-5" />,
+    },
+  ].filter((item) => item !== false);
 
   const activeOptions = [
     {
