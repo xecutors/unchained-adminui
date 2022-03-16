@@ -11,6 +11,7 @@ import useModal from '../../modal/hooks/useModal';
 import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
 import Badge from '../../common/components/Badge';
+import NoData from '../../common/components/NoData';
 
 // TODO: remove mock data
 const productReviews = [
@@ -440,24 +441,25 @@ const ProductReviews = ({ productId }) => {
   const averageVote = (totalUpVote / (totalUpVote + totalDownVote)) * 100;
 
   return (
-    <div className="mt-5  sm:max-w-full">
-      <div className="rounded bg-white shadow">
-        <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
-          <div className="lg:col-span-4">
-            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-              {formatMessage({
-                id: 'customer_reviews',
-                defaultMessage: 'Customer Reviews',
-              })}
-            </h2>
+    <div className="mt-5 sm:max-w-full">
+      {productReviews ? (
+        <div className="rounded bg-white shadow">
+          <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
+            <div className="lg:col-span-4">
+              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+                {formatMessage({
+                  id: 'customer_reviews',
+                  defaultMessage: 'Customer Reviews',
+                })}
+              </h2>
 
-            <div className="mt-3 flex items-center">
-              <div>
-                <div title={`${averageVote}`} className="flex items-center">
-                  {[1, 2, 3, 4, 5].map((rating) => (
-                    <StarIcon
-                      key={rating}
-                      className={`
+              <div className="mt-3 flex items-center">
+                <div>
+                  <div title={`${averageVote}`} className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                      <StarIcon
+                        key={rating}
+                        className={`
                         ${
                           averageVote >= (rating - 1) * 20
                             ? 'text-yellow-400'
@@ -465,73 +467,73 @@ const ProductReviews = ({ productId }) => {
                         }
                         h-5 w-5 flex-shrink-0
                       `}
-                      aria-hidden="true"
-                    />
-                  ))}
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
                 </div>
+                <p className="ml-2 text-sm text-gray-900">
+                  Based on {productReviews.length} reviews
+                </p>
               </div>
-              <p className="ml-2 text-sm text-gray-900">
-                Based on {productReviews.length} reviews
-              </p>
-            </div>
 
-            <div className="mt-6">
-              <h3 className="sr-only">Review data</h3>
+              <div className="mt-6">
+                <h3 className="sr-only">Review data</h3>
 
-              <dl className="space-y-3">
-                <div className="flex items-center text-sm">
-                  <dt className="flex flex-1 items-center">
-                    <p className="font-medium text-gray-900">{totalUpVote}</p>
-                    <div
-                      aria-hidden="true"
-                      className="ml-2 flex flex-1 items-center"
-                    >
-                      <ThumbUpIcon
-                        className={`
+                <dl className="space-y-3">
+                  <div className="flex items-center text-sm">
+                    <dt className="flex flex-1 items-center">
+                      <p className="font-medium text-gray-900">{totalUpVote}</p>
+                      <div
+                        aria-hidden="true"
+                        className="ml-2 flex flex-1 items-center"
+                      >
+                        <ThumbUpIcon
+                          className={`
                           ${
                             totalUpVote > 0
                               ? 'text-yellow-400'
                               : 'text-gray-300'
                           }
                           h-5 w-5 flex-shrink-0`}
-                        aria-hidden="true"
-                      />
+                          aria-hidden="true"
+                        />
 
-                      <div className="relative ml-3 flex-1">
-                        <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
-                        {totalUpVote > 0 ? (
-                          <div
-                            className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
-                            style={{
-                              width: `calc(${totalUpVote} / ${
-                                totalUpVote + totalDownVote
-                              } * 100%)`,
-                            }}
-                          />
-                        ) : null}
+                        <div className="relative ml-3 flex-1">
+                          <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
+                          {totalUpVote > 0 ? (
+                            <div
+                              className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                              style={{
+                                width: `calc(${totalUpVote} / ${
+                                  totalUpVote + totalDownVote
+                                } * 100%)`,
+                              }}
+                            />
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                  </dt>
-                  <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
-                    {Math.round(
-                      (totalUpVote / (totalUpVote + totalDownVote)) * 100,
-                    )}
-                    %
-                  </dd>
-                </div>
+                    </dt>
+                    <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
+                      {Math.round(
+                        (totalUpVote / (totalUpVote + totalDownVote)) * 100,
+                      )}
+                      %
+                    </dd>
+                  </div>
 
-                <div className="flex items-center text-sm">
-                  <dt className="flex flex-1 items-center">
-                    <p className="font-medium text-gray-900">
-                      {totalDownVote}
-                      <span className="sr-only"> star reviews</span>
-                    </p>
-                    <div
-                      aria-hidden="true"
-                      className="ml-2 flex flex-1 items-center"
-                    >
-                      <ThumbDownIcon
-                        className={`
+                  <div className="flex items-center text-sm">
+                    <dt className="flex flex-1 items-center">
+                      <p className="font-medium text-gray-900">
+                        {totalDownVote}
+                        <span className="sr-only"> star reviews</span>
+                      </p>
+                      <div
+                        aria-hidden="true"
+                        className="ml-2 flex flex-1 items-center"
+                      >
+                        <ThumbDownIcon
+                          className={`
                           ${
                             totalDownVote > 0
                               ? 'text-yellow-400'
@@ -539,107 +541,110 @@ const ProductReviews = ({ productId }) => {
                           }
                           h-5 w-5 flex-shrink-0
                         `}
-                        aria-hidden="true"
-                      />
-
-                      <div className="relative ml-3 flex-1">
-                        <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
-                        {totalDownVote > 0 ? (
-                          <div
-                            className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
-                            style={{
-                              width: `calc(${totalDownVote} / ${
-                                totalUpVote + totalDownVote
-                              } * 100%)`,
-                            }}
-                          />
-                        ) : null}
-                      </div>
-                    </div>
-                  </dt>
-                  <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
-                    {Math.round(
-                      (totalDownVote / (totalUpVote + totalDownVote)) * 100,
-                    )}
-                    %
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-
-          <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-            <h3 className="sr-only">
-              {formatMessage({
-                id: 'recent_reviews',
-                defaultMessage: 'Recent reviews',
-              })}
-            </h3>
-
-            <div className="flow-root">
-              <div className="-my-3">
-                {productReviews.map((review) => (
-                  <div
-                    key={review._id}
-                    className={classNames('mb-2 rounded-md py-4 px-2', {
-                      'border-2 border-solid border-red-200': review.deleted,
-                    })}
-                  >
-                    <div className="flex items-center">
-                      <Image
-                        loader={defaultNextImageLoader}
-                        src={review?.author?.avatar?.url}
-                        alt={review?.author?.username}
-                        width={48}
-                        height={48}
-                        className="h-12 w-12 rounded-full"
-                      />
-                      <div className="ml-4 mr-auto">
-                        <h4 className="text-sm font-bold text-gray-900">
-                          {review?.author?.username}
-                        </h4>
-                        <p className="text-sm font-normal text-gray-400">
-                          <time dateTime={review.datetime}>
-                            {formatDateTime(review.updated || review.created)}
-                          </time>
-                        </p>
-                      </div>
-                      <div className="flex items-center">
-                        <ThumbUpIcon className="h-7 w-7 text-gray-400" />
-                        <span className="mx-2">{review.upVote}</span>
-                        <ThumbDownIcon className="h-7 w-7 text-gray-400" />
-                        <span className="mx-2">{review.downVote}</span>
-                      </div>
-                      {!review.deleted ? (
-                        <DeleteButton
-                          onClick={() => onRemove(review._id)}
-                          className="ml-auto hover:text-red-800"
+                          aria-hidden="true"
                         />
-                      ) : (
-                        <Badge
-                          text={formatMessage({
-                            id: 'deleted_text',
-                            defaultMessage: 'Deleted',
-                          })}
-                          color="red"
-                          className="ml-auto p-1"
-                        />
+
+                        <div className="relative ml-3 flex-1">
+                          <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
+                          {totalDownVote > 0 ? (
+                            <div
+                              className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
+                              style={{
+                                width: `calc(${totalDownVote} / ${
+                                  totalUpVote + totalDownVote
+                                } * 100%)`,
+                              }}
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                    </dt>
+                    <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
+                      {Math.round(
+                        (totalDownVote / (totalUpVote + totalDownVote)) * 100,
                       )}
-                    </div>
-
-                    <div className="mt-4 space-y-2 text-base italic text-gray-600">
-                      <h3 className="text-sm font-medium text-gray-900">
-                        {review.title}
-                      </h3>
-                      <p>{review.review}</p>
-                    </div>
+                      %
+                    </dd>
                   </div>
-                ))}
+                </dl>
+              </div>
+            </div>
+
+            <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+              <h3 className="sr-only">
+                {formatMessage({
+                  id: 'recent_reviews',
+                  defaultMessage: 'Recent reviews',
+                })}
+              </h3>
+
+              <div className="flow-root">
+                <div className="-my-3">
+                  {productReviews.map((review) => (
+                    <div
+                      key={review._id}
+                      className={classNames('mb-2 rounded-md py-4 px-2', {
+                        'border-2 border-solid border-red-200': review.deleted,
+                      })}
+                    >
+                      <div className="flex items-center">
+                        <Image
+                          loader={defaultNextImageLoader}
+                          src={review?.author?.avatar?.url}
+                          alt={review?.author?.username}
+                          width={48}
+                          height={48}
+                          className="h-12 w-12 rounded-full"
+                        />
+                        <div className="ml-4 mr-auto">
+                          <h4 className="text-sm font-bold text-gray-900">
+                            {review?.author?.username}
+                          </h4>
+                          <p className="text-sm font-normal text-gray-400">
+                            <time dateTime={review.datetime}>
+                              {formatDateTime(review.updated || review.created)}
+                            </time>
+                          </p>
+                        </div>
+                        <div className="flex items-center">
+                          <ThumbUpIcon className="h-7 w-7 text-gray-400" />
+                          <span className="mx-2">{review.upVote}</span>
+                          <ThumbDownIcon className="h-7 w-7 text-gray-400" />
+                          <span className="mx-2">{review.downVote}</span>
+                        </div>
+                        {!review.deleted ? (
+                          <DeleteButton
+                            onClick={() => onRemove(review._id)}
+                            className="ml-auto hover:text-red-800"
+                          />
+                        ) : (
+                          <Badge
+                            text={formatMessage({
+                              id: 'deleted_text',
+                              defaultMessage: 'Deleted',
+                            })}
+                            color="red"
+                            className="ml-auto p-1"
+                          />
+                        )}
+                      </div>
+
+                      <div className="mt-4 space-y-2 text-base italic text-gray-600">
+                        <h3 className="text-sm font-medium text-gray-900">
+                          {review.title}
+                        </h3>
+                        <p>{review.review}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <NoData message="Reviews" />
+      )}
     </div>
   );
 };

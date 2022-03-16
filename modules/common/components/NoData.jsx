@@ -7,12 +7,12 @@ const NoData = ({ message, className = '', icon }) => {
   return (
     <div
       className={classnames(
-        'w-full border-2 flex flex-col justify-center items-center',
+        'flex w-full flex-col items-center justify-center border-2',
         className,
       )}
     >
-      <div className="grid justify-center items-center">
-        <div className="flex justify-center items-center">
+      <div className="grid items-center justify-center">
+        <div className="flex items-center justify-center">
           <Icon className="h-10 w-10" />
         </div>
 
@@ -21,7 +21,7 @@ const NoData = ({ message, className = '', icon }) => {
           defaultMessage="<p> No &nbsp; <span>  {message}  available</span> </p>"
           values={{
             p: (chunks) => (
-              <p className="flex justify-center items-center m-auto">
+              <p className="m-auto flex items-center justify-center">
                 {chunks}
               </p>
             ),
