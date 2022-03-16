@@ -144,6 +144,17 @@ const Layout = ({
         },
         {
           name: formatMessage({
+            id: 'Product_review',
+            defaultMessage: 'Product review',
+          }),
+          href: '/product-review',
+        },
+        {
+          name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
+          href: '/events',
+        },
+        {
+          name: formatMessage({
             id: 'quotations',
             defaultMessage: 'Quotations',
           }),
