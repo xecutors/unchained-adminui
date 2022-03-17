@@ -18,19 +18,19 @@ const PaymentProviderUpdate = () => {
   const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
 
-  const { id } = query;
+  const { paymentProviderId } = query;
 
   const { updatePaymentProvider } = useUpdatePaymentProvider();
   const { removePaymentProvider } = useRemovePaymentProvider();
 
   const { paymentProvider, loading } = usePaymentProvider({
-    paymentProviderId: id,
+    paymentProviderId,
   });
 
   const onSubmit = async ({ configuration: config }) => {
     await updatePaymentProvider({
       configuration: JSON.parse(config || '[]'),
-      paymentProviderId: id,
+      paymentProviderId,
     });
     return true;
   };
@@ -49,26 +49,27 @@ const PaymentProviderUpdate = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removePaymentProvider({ id });
+          await removePaymentProvider({ paymentProviderId });
           toast.success(
             formatMessage(
               {
-                id: 'provider_deleted',
-                defaultMessage: 'Payment provider {id} deleted successfully',
+                id: 'payment_provider_deleted',
+                defaultMessage:
+                  'Payment provider {paymentProviderId} deleted successfully',
               },
               {
-                id,
+                paymentProviderId,
               },
             ),
           );
+          routerPush('/payment-provider');
         }}
         okText={formatMessage({
-          id: 'delete_provider',
+          id: 'delete_payment_provider',
           defaultMessage: 'Delete Payment Provider',
         })}
       />,
     );
-    routerPush('/payment-provider');
   };
 
   return (

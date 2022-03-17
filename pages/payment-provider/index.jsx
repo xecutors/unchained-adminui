@@ -8,11 +8,12 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
+import Loading from '../../modules/common/components/Loading';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
   const [type, setType] = useState(null);
-  const { paymentProviders } = usePaymentProviders({ type });
+  const { paymentProviders, loading } = usePaymentProviders({ type });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
 
@@ -56,13 +57,17 @@ const PaymentProviders = () => {
           defaultMessage: 'Payment providers',
         })}
       />
-      <ProvidersList
-        providerType={['CARD', 'INVOICE', 'GENERIC']}
-        providerPath="/payment-provider"
-        providers={paymentProviders}
-        onRemove={onRemovePaymentProvider}
-        onProviderFilterChange={setType}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProvidersList
+          providerType={['CARD', 'INVOICE', 'GENERIC']}
+          providerPath="/payment-provider"
+          providers={paymentProviders}
+          onRemove={onRemovePaymentProvider}
+          onProviderFilterChange={setType}
+        />
+      )}
     </>
   );
 };

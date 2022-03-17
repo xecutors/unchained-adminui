@@ -5,38 +5,38 @@ import { XIcon } from '@heroicons/react/solid';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
-import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
-import useUpdateWarehousingProvider from '../../modules/warehousing-providers/hooks/useUpdateWarehousingProvider';
-import useWarehousingProvider from '../../modules/warehousing-providers/hooks/useWarehousingProvider';
-import useModal from '../../modules/modal/hooks/useModal';
-import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
+import useModal from '../../modules/modal/hooks/useModal';
+import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
+import useUpdateDeliveryProvider from '../../modules/delivery-provider/hooks/useUpdateDeliveryProvider';
+import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDeliveryProvider';
+import ProviderDetail from '../../modules/common/components/ProviderDetail';
 
-const WarehousingProviderUpdate = () => {
+const DeliveryProviderUpdate = () => {
   const { formatMessage } = useIntl();
-  const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
+  const { setModal } = useModal();
 
-  const { id } = query;
+  const { deliveryProviderId } = query;
 
-  const { updateWarehousingProvider } = useUpdateWarehousingProvider();
-  const { removeWarehousingProvider } = useRemoveWarehousingProvider();
+  const { removeDeliveryProvider } = useRemoveDeliveryProvider();
+  const { updateDeliveryProvider } = useUpdateDeliveryProvider();
 
-  const { warehousingProvider, loading } = useWarehousingProvider({
-    warehousingProviderId: id,
+  const { deliveryProvider, loading } = useDeliveryProvider({
+    deliveryProviderId,
   });
 
   const onSubmit = async ({ configuration: config }) => {
-    await updateWarehousingProvider({
+    await updateDeliveryProvider({
       configuration: JSON.parse(config || '[]'),
-      warehousingProviderId: id,
+      deliveryProviderId,
     });
     return true;
   };
 
   const onSubmitSuccess = () => {
-    routerPush('/warehousing-provider');
+    routerPush('/delivery-provider');
   };
 
   const handleOnClick = async () => {
@@ -45,31 +45,31 @@ const WarehousingProviderUpdate = () => {
         message={formatMessage({
           id: 'delete_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this warehousing provider? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this deliver provider? ',
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWarehousingProvider({ id });
+          await removeDeliveryProvider({ deliveryProviderId });
           toast.success(
             formatMessage(
               {
-                id: 'provider_deleted',
+                id: 'delivery_provider_deleted',
                 defaultMessage:
-                  'Warehousing provider {id} deleted successfully',
+                  'Delivery provider {deliveryProviderId} deleted successfully',
               },
               {
-                id,
+                deliveryProviderId,
               },
             ),
           );
+          routerPush('/delivery-provider');
         }}
         okText={formatMessage({
-          id: 'delete_provider',
-          defaultMessage: 'Delete Warehousing Provider',
+          id: 'delete_delivery_provider',
+          defaultMessage: 'Delete Delivery Provider',
         })}
       />,
     );
-    routerPush('/warehousing-provider');
   };
 
   return (
@@ -78,8 +78,8 @@ const WarehousingProviderUpdate = () => {
       <div className="flex align-center justify-between min-w-full">
         <PageHeader
           headerText={formatMessage({
-            id: 'update_warehousing_provider_header',
-            defaultMessage: 'Update warehousing provider',
+            id: 'update_delivery_configuration',
+            defaultMessage: 'Update delivery provider',
           })}
         />
         <button
@@ -90,18 +90,19 @@ const WarehousingProviderUpdate = () => {
           <span className="pr-1">
             <XIcon className="inline-block h-4 w-4" />
           </span>
-          {formatMessage({
-            id: 'warehousing_delete',
-            defaultMessage: 'Delete',
-          })}
+          <span>
+            {formatMessage({
+              id: 'deliver_provider_delete',
+              defaultMessage: 'Delete',
+            })}
+          </span>
         </button>
       </div>
-
       {loading ? (
         <Loading />
       ) : (
         <ProviderDetail
-          provider={warehousingProvider}
+          provider={deliveryProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}
         />
@@ -110,4 +111,4 @@ const WarehousingProviderUpdate = () => {
   );
 };
 
-export default WarehousingProviderUpdate;
+export default DeliveryProviderUpdate;

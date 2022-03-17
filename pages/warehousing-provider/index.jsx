@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 
 import ProvidersList from '../../modules/common/components/ProvidersList';
@@ -14,7 +15,7 @@ const WarehousingProviders = () => {
   const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
 
-  const { warehousingProviders } = useWarehousingProviders({ type });
+  const { warehousingProviders, loading } = useWarehousingProviders({ type });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { setModal } = useModal();
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
@@ -60,13 +61,17 @@ const WarehousingProviders = () => {
           defaultMessage: 'Warehousing providers',
         })}
       />
-      <ProvidersList
-        providerType={['PHYSICAL']}
-        providerPath="/warehousing-provider"
-        providers={warehousingProviders}
-        onRemove={onRemoveWarehousingProvider}
-        onProviderFilterChange={setType}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProvidersList
+          providerType={['PHYSICAL']}
+          providerPath="/warehousing-provider"
+          providers={warehousingProviders}
+          onRemove={onRemoveWarehousingProvider}
+          onProviderFilterChange={setType}
+        />
+      )}
     </>
   );
 };

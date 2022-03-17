@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ProviderList from '../../modules/common/components/ProvidersList';
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
@@ -14,7 +15,7 @@ const DeliveryProviders = () => {
   const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
 
-  const { deliveryProviders } = useDeliveryProviders({ type });
+  const { deliveryProviders, loading } = useDeliveryProviders({ type });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
 
@@ -58,13 +59,17 @@ const DeliveryProviders = () => {
           defaultMessage: 'Delivery providers',
         })}
       />
-      <ProviderList
-        providerPath="/delivery-provider"
-        providerType={['PICKUP', 'SHIPPING']}
-        providers={deliveryProviders}
-        onRemove={onRemoveDeliveryProvider}
-        onProviderFilterChange={setType}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProviderList
+          providerPath="/delivery-provider"
+          providerType={['PICKUP', 'SHIPPING']}
+          providers={deliveryProviders}
+          onRemove={onRemoveDeliveryProvider}
+          onProviderFilterChange={setType}
+        />
+      )}
     </>
   );
 };
