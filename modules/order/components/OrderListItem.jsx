@@ -1,8 +1,12 @@
 import { format } from 'date-fns';
+import Image from 'next/image';
+
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import { useFormatPrice } from '../../common/utils/utils';
 
 const ORDER_STATUSES = {
   OPEN: 'purple',
@@ -11,11 +15,10 @@ const ORDER_STATUSES = {
   FULLFILLED: 'green',
 };
 
-const formatCurrency = ({ amount, currency }) => {
-  return `${currency} ${amount}`;
-};
-const OrderListItem = ({ order }) => {
+const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
+  const { formatPrice } = useFormatPrice();
+
   return (
     <Table.Row>
       <Table.Cell className="px-6  whitespace-nowrap ">
@@ -35,43 +38,34 @@ const OrderListItem = ({ order }) => {
           </Link>
         </div>
       </Table.Cell>
-
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
           {order.ordered ? format(new Date(order.ordered), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
-
       <Table.Cell className="px-6  whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {formatCurrency(order.total)}
+          {formatPrice(order.total)}
         </div>
       </Table.Cell>
-
-      {/* {showUser && order.user && ( */}
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        {/* <Link href={`/order/${order.user._id}`}>
-          <a>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+      {showUser && order.user && (
+        <Table.Cell className="px-6  whitespace-nowrap ">
+          <Link href={`/order/${order.user._id}`}>
+            <a className="flex text-blue-500">
+              <Image
+                loader={defaultNextImageLoader}
+                src={order.user?.avatar?.url || 'product_placeholder.png'}
+                width={60}
+                height={30}
+                onError={() => '/product_placeholder.png'}
+                placeholder="blur"
+                blurDataURL="/product_placeholder.png"
               />
-            </svg>{' '}
-            {order.user?.name}
-          </a>
-        </Link> */}
-      </Table.Cell>
-      {/* )} */}
-
+              <span className="self-end ml-2">{order.user?.username}</span>
+            </a>
+          </Link>
+        </Table.Cell>
+      )}
       <Table.Cell className="px-6  whitespace-nowrap ">
         <Badge
           text={order?.status}

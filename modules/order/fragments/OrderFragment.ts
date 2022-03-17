@@ -21,6 +21,15 @@ const OrderFragment = gql`
       amount
       currency
     }
+    user {
+      _id
+      username
+      isGuest
+      avatar {
+        _id
+        url
+      }
+    }
   }
 `;
 

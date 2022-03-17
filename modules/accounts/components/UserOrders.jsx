@@ -12,6 +12,7 @@ const UserOrders = ({ _id: userId }) => {
       orders={orders}
       includeCarts={includeCarts}
       onIncludeCartsChange={setIncludeCarts}
+      showUser={false}
     />
   );
 };
