@@ -2,6 +2,7 @@ import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -157,6 +158,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
           )}
         </FieldArray>
       </div>
+      <FormErrors />
       <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
         <SubmitButton
           label={formatMessage({

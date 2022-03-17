@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { XIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -11,6 +10,7 @@ import OrderDetail from '../../modules/order/components/OrderDetail';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveOrder from '../../modules/order/hooks/useRemoveOrder';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const OrderDetailPage = () => {
   const { formatMessage } = useIntl();
@@ -19,8 +19,6 @@ const OrderDetailPage = () => {
   const { query } = useRouter();
   const { orderId } = query;
   const { order, loading } = useOrder({ orderId });
-
-  console.log(order);
 
   const isDeletable = (status) => {
     return status === 'OPEN' || status === 'PENDING';
@@ -67,20 +65,8 @@ const OrderDetailPage = () => {
             defaultMessage: 'Order Detail',
           })}
         />
-        {isDeletable('OPEN') ? (
-          <button
-            type="button"
-            onClick={handleOnClick}
-            className="my-auto flex items-center justify-center rounded border border-red-400 px-3 py-2 text-sm font-semibold text-red-300 shadow-sm hover:border-red-800 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
-          >
-            <span className="pr-1">
-              <XIcon className="h-4 w-4" />
-            </span>
-            {formatMessage({
-              id: 'order_delete',
-              defaultMessage: 'Delete',
-            })}
-          </button>
+        {order && isDeletable(order.status) ? (
+          <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>
       {loading ? <Loading /> : <OrderDetail order={order} />}

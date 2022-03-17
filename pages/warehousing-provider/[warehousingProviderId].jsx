@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { XIcon } from '@heroicons/react/solid';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
@@ -12,6 +11,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const WarehousingProviderUpdate = () => {
   const { formatMessage } = useIntl();
@@ -82,19 +82,7 @@ const WarehousingProviderUpdate = () => {
             defaultMessage: 'Update warehousing provider',
           })}
         />
-        <button
-          type="button"
-          onClick={handleOnClick}
-          className="flex justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
-        >
-          <span className="pr-1">
-            <XIcon className="inline-block h-4 w-4" />
-          </span>
-          {formatMessage({
-            id: 'warehousing_delete',
-            defaultMessage: 'Delete',
-          })}
-        </button>
+        <HeaderDeleteButton onClick={handleOnClick} />
       </div>
 
       {loading ? (

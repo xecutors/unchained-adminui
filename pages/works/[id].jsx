@@ -10,6 +10,7 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const WorkDetailPage = () => {
   const { formatMessage } = useIntl();
@@ -64,36 +65,9 @@ const WorkDetailPage = () => {
               defaultMessage: 'Work Detail',
             })}
           />
-          {isDeletable(work?.status) ? (
-            <button
-              type="button"
-              onClick={handleOnClick}
-              className="flex justify-center items-center bg-red-400 text-white my-auto h-full rounded px-3 py-2 border border-transparent shadow-sm text-sm font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
-            >
-              <span className="pr-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="inline-block h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </span>
-              {formatMessage({
-                id: 'work_delete',
-                defaultMessage: 'Delete',
-              })}
-            </button>
-          ) : (
-            ''
-          )}
+          {work && isDeletable(work?.status) ? (
+            <HeaderDeleteButton onClick={handleOnClick} />
+          ) : null}
         </div>
         {loading ? <Loading /> : <WorkDetail work={work} />}
       </div>
