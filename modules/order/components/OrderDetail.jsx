@@ -15,6 +15,7 @@ import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import StatusProgress from '../../common/components/StatusProgress';
 import OrderDetailHeader from './OrderDetailHeader';
+import Accordion from '../../common/components/Accordion';
 
 const OrderDetail = ({ order }) => {
   const { formatMessage } = useIntl();
@@ -88,6 +89,35 @@ const OrderDetail = ({ order }) => {
     },
   };
 
+  const headerCSS =
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
+
+  const logs = {
+    header: (
+      <span className="flex">
+        {formatMessage({
+          id: 'logs',
+          defaultMessage: 'Logs',
+        })}
+      </span>
+    ),
+    body: <LogList logs={order.logs} user={order.user} />,
+  };
+
+  const documents = {
+    header: (
+      <span className="flex">
+        {formatMessage({
+          id: 'documents',
+          defaultMessage: 'Documents',
+        })}
+      </span>
+    ),
+    body: <DocumentList documents={order.documents} />,
+  };
+
+  console.log(order)
+
   return (
     <>
       <OrderDetailHeader order={order} />
@@ -114,16 +144,14 @@ const OrderDetail = ({ order }) => {
 
         <div className="grid w-full gap-4 text-sm sm:flex sm:flex-wrap sm:rounded-lg">
           <OrderDetailDelivery delivery={order.delivery} />
-
           <OrderDetailPayment order={order} />
-
           <DiscountList discount={order.discounts} />
         </div>
       </section>
 
       <OrderDetailBilling order={order} />
-      <DocumentList documents={order.documents} />
-      <LogList logs={order.logs} user={order.user} />
+
+      <Accordion data={[documents, logs]} headerCSS={headerCSS} />
     </>
   );
 };

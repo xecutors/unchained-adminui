@@ -9,6 +9,8 @@ const OrderDetailItem = ({ item }) => {
   const { formatPrice } = useFormatPrice();
   const src = `${item.originalProduct.media[0].file.url}`;
 
+  console.log(item.unitPrice);
+
   return (
     <>
       <section aria-labelledby="products-heading">
@@ -50,7 +52,7 @@ const OrderDetailItem = ({ item }) => {
                         }}
                       />
                       <p className="mt-2 text-sm font-medium text-gray-900">
-                        {formatPrice(item?.unitPrice)}
+                        {item?.unitPrice && formatPrice(item?.unitPrice)}
                       </p>
                       <p className="mt-2 text-sm font-medium text-gray-900">
                         {formatMessage({
