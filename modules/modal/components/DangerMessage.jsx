@@ -53,7 +53,7 @@ const DangerMessage = ({
         </div>
       </div>
 
-      <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
         <button
           onClick={onOkClick}
           type="button"

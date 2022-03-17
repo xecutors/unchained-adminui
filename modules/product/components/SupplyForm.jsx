@@ -46,7 +46,7 @@ const SupplyForm = ({ productId }) => {
     <FormHeader>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className="sm:flex w-full  justify-between align-baseline">
+          <div className="sm:flex w-full justify-between align-baseline">
             <TextField
               type="number"
               name="weight"
@@ -93,16 +93,15 @@ const SupplyForm = ({ productId }) => {
               className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
             />
           </div>
-
-          <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
-            <SubmitButton
-              label={formatMessage({
-                id: 'save',
-                defaultMessage: 'Save',
-              })}
-              full
-            />
-          </div>
+        </div>
+        <div className="space-y-6 sm:p-6 bg-gray-50 text-right">
+          <SubmitButton
+            label={formatMessage({
+              id: 'save',
+              defaultMessage: 'Save',
+            })}
+            full
+          />
         </div>
       </Form>
     </FormHeader>

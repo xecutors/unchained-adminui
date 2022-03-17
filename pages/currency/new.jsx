@@ -27,7 +27,7 @@ const AddCurrency = () => {
           defaultMessage: 'New currency',
         })}
       />
-      <div className="mt-6  sm:max-w-xl">
+      <div className="mt-6 sm:max-w-xl">
         <FormHeader
           headerText={formatMessage({ id: 'new', defaultMessage: 'New' })}
         >
