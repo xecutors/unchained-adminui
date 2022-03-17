@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import ProductMediaFragment from '../fragments/ProductMediaFragment';
 
 export const ProductMediaQuery = gql`
-  query Product($productId: ID, $slug: String) {
+  query ProductMedia($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       media {

@@ -29,8 +29,11 @@ const ProductListItem = ({ product, showAvatar }) => {
                 <>
                   {product._id}{' '}
                   <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
+                    color="yellow"
+                    text={formatMessage({
+                      id: 'title_not_found',
+                      defaultMessage: 'Title not found',
+                    })}
                   />
                 </>
               )}

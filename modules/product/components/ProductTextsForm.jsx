@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
+import SubmitButton from '../../forms/components/SubmitButton';
 
 import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
@@ -9,7 +11,7 @@ import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
 
-const GeneralTextForm = ({ productId, selectedLocale }) => {
+const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { translatedTexts, loading } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
@@ -87,6 +89,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
 
               <TextField
                 name="title"
+                required
                 id="title"
                 label={formatMessage({
                   id: 'title',
@@ -157,6 +160,15 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                 className="text-sm font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
               />
             </div>
+            <FormErrors />
+            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <SubmitButton
+                label={formatMessage({
+                  id: 'save',
+                  defaultMessage: 'Save',
+                })}
+              />
+            </div>
           </div>
         </Form>
       </div>
@@ -164,4 +176,4 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
   );
 };
 
-export default GeneralTextForm;
+export default ProductTextsForm;

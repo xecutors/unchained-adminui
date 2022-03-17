@@ -1,6 +1,6 @@
 import { EmojiSadIcon } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
-import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
+/* import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId'; */
 import NoData from '../../common/components/NoData';
 import ProductReviewsItem from './ProductReviewsItem';
 import ProductReviewsReport from './ProductReviewsReport';

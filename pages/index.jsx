@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import Badge from '../modules/common/components/Badge';
-import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
 
 const Home = ({ shopInfo }) => {
   const { formatMessage, locale } = useIntl();

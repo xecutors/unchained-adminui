@@ -14,7 +14,7 @@ import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
-import GeneralTextForm from './GeneralTextForm';
+import ProductTextsForm from './ProductTextsForm';
 import MediaForm from './MediaForm';
 import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
@@ -30,7 +30,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
-        <GeneralTextForm productId={id} />
+        <ProductTextsForm productId={id} />
       </LocaleWrapper>
     );
   if (selectedView === 'media')
@@ -44,11 +44,11 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
   if (selectedView === 'variations') return <VariationForm productId={id} />;
   if (selectedView === 'bundled_products')
-    return <GeneralTextForm productId={id} />;
+    return <ProductTextsForm productId={id} />;
   if (selectedView === 'subscription')
     return <SubscriptionForm productId={id} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
-  return <GeneralTextForm productId={id} />;
+  return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
@@ -157,7 +157,7 @@ const ProductDetail = ({ product }) => {
         id: 'not_published',
         defaultMessage: 'Not published',
       }),
-      bgColor: 'grey',
+      bgColor: 'gray',
       onClick: async () => {
         await unPublishProduct({ productId: product?._id });
       },
