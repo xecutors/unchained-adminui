@@ -8,7 +8,6 @@ const AssortmentMediaForm = ({ assortmentId }) => {
 
   return (
     <div className="mx-auto mt-5 max-w-7xl bg-white py-12 px-4 shadow sm:rounded-t sm:px-6 lg:px-8">
-      <MediaList medias={assortmentMedia} />
       <div className="mx-auto max-w-3xl">
         <div>
           <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -83,6 +82,7 @@ const AssortmentMediaForm = ({ assortmentId }) => {
           </div>
         </div>
       </div>
+      <MediaList medias={assortmentMedia} />
     </div>
   );
 };

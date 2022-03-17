@@ -71,15 +71,12 @@ const MediaForm = ({ productId }) => {
 
   return (
     <div className="mt-5 bg-white shadow sm:max-w-full sm:rounded-t">
-      {/* TODO: replace prodcts prob with productMedia */}
-      <MediaList medias={products} />
-
-      <div className="sm:px-15 py-5 px-5">
+      <div className="mx-auto max-w-3xl">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
-          </label>
-          <div className="mt-1 flex items-center">
+          </h3>
+          <div className="my-4 flex items-center">
             <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
               <svg
                 className="h-full w-full text-gray-300"
@@ -102,7 +99,7 @@ const MediaForm = ({ productId }) => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700" />
-          <div className="mt-5 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+          <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
@@ -123,7 +120,12 @@ const MediaForm = ({ productId }) => {
                   htmlFor="file-upload"
                   className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                  <span>Upload a file</span>
+                  <span>
+                    {formatMessage({
+                      id: 'upload_file',
+                      defaultMessage: 'Upload a file',
+                    })}
+                  </span>
                   <input
                     id="file-upload"
                     name="file-upload"
@@ -131,13 +133,20 @@ const MediaForm = ({ productId }) => {
                     className="sr-only"
                   />
                 </label>
-                <p className="pl-1">or drag and drop</p>
+                <p className="pl-1">
+                  {formatMessage({
+                    id: 'drag_and_drop',
+                    defaultMessage: 'or drag and drop',
+                  })}
+                </p>
               </div>
               <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
             </div>
           </div>
         </div>
       </div>
+      {/* TODO: replace prodcts prob with productMedia */}
+      <MediaList medias={products} />
     </div>
   );
 };
