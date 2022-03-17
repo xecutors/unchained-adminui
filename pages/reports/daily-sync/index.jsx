@@ -29,7 +29,7 @@ const SyncReport = () => {
           defaultMessage: 'Daily sync',
         })}
       />
-      <div className="border mt-4 border-gray-50 shadow bg-white rounded-md ">
+      <div className="border mt-4 border-gray-50 rounded-md ">
         <div className="flex py-5 max-w-sm justify-between items-center">
           <label className="ml-4 mr-2" htmlFor="report-start">
             {formatMessage({ id: 'from', defaultMessage: 'From' })}
@@ -66,7 +66,6 @@ const SyncReport = () => {
             className="sm:ml-1 text-sm hover:border-indigo-500 sm:mt-0 w-full border-gray-200 rounded-md py-1"
           />
         </div>
-        <hr />
         {loading ? <Loading /> : <SyncReportList data={dailySync} />}
         <Pagination
           onLoadMore={loadMore}

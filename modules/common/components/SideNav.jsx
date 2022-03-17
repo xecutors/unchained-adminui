@@ -6,7 +6,7 @@ const SideNav = ({ navigation }) => {
   return (
     <div className="mt-5 flex-grow flex flex-col">
       <nav
-        className="flex-1 px-2 lg:px-4 space-y-1 bg-white"
+        className="flex-1 px-2 lg:px-4 2xl:px-6 space-y-1 bg-white"
         aria-label="Sidebar"
       >
         {navigation.map((item) =>

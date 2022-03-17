@@ -6,7 +6,7 @@ const NoData = ({ message, className = '', Icon }) => {
   return (
     <div
       className={classnames(
-        'flex w-full flex-col items-center justify-center border-2',
+        'flex w-full flex-col items-center justify-center py-5',
         className,
       )}
     >

@@ -89,10 +89,12 @@ const DeliveryProviderUpdate = () => {
           <span className="pr-1">
             <XIcon className="inline-block h-4 w-4" />
           </span>
-          {formatMessage({
-            id: 'deliver_provider_delete',
-            defaultMessage: 'Delete',
-          })}
+          <span>
+            {formatMessage({
+              id: 'deliver_provider_delete',
+              defaultMessage: 'Delete',
+            })}
+          </span>
         </button>
       </div>
       {loading ? (

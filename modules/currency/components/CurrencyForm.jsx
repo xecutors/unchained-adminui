@@ -49,7 +49,7 @@ const CurrencyForm = ({
         />
 
         {isEdit && (
-          <div className="flex items-center h-5">
+          <div className="flex items-center mt-3">
             <CheckboxField
               id="is-active"
               name="isActive"
