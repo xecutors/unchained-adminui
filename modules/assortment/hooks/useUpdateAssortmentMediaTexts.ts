@@ -19,10 +19,10 @@ const useUpdateAssortmentMediaTexts = () => {
     UpdateAssortmentMediaTextsMutation,
   );
 
-  const updateAssortmentMediaTexts = async ({ assortmentId, texts }) => {
+  const updateAssortmentMediaTexts = async ({ assortmentMediaId, texts }) => {
     return updateAssortmentMediaTextsMutation({
-      variables: { assortmentId, texts },
-      refetchQueries: ['Assortments'],
+      variables: { assortmentMediaId, texts },
+      refetchQueries: ['TranslatedAssortmentMediaTexts'],
     });
   };
 

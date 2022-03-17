@@ -19,7 +19,7 @@ const useUpdateProductMediaTexts = () => {
   const updateProductMediaTexts = async ({ productMediaId, texts }) => {
     return updateProductMediaTextsMutation({
       variables: { productMediaId, texts },
-      refetchQueries: ['Products'],
+      refetchQueries: ['TranslatedProductMediaTexts'],
     });
   };
 

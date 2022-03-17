@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+
 import ProductMediaListItem from './ProductMediaListItem';
 
 const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {

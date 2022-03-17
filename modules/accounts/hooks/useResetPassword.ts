@@ -27,7 +27,6 @@ const useResetPassword = () => {
     token,
     disableHashing = false,
   }) => {
-    console.log(newPassword);
     const variables = {
       token,
       newPlainPassword: null,
