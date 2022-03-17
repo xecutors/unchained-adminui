@@ -1,3 +1,4 @@
+import { EmojiSadIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
@@ -7,18 +8,22 @@ const MediaAvatar = ({ file, className }) => {
   const { url } = file;
   const { formatMessage } = useIntl();
   return (
-    <div className={classNames('flex-shrink-0 h-10 w-10', className)}>
-      <Image
-        className="h-10 w-10 rounded-full relative"
-        loader={defaultNextImageLoader}
-        src={url}
-        width={100}
-        height={100}
-        alt={formatMessage({
-          id: 'image_not_available',
-          defaultMessage: 'Image not available',
-        })}
-      />
+    <div className={classNames('h-10 w-10 flex-shrink-0', className)}>
+      {file ? (
+        <Image
+          className="relative h-10 w-10 rounded-full"
+          loader={defaultNextImageLoader}
+          src={url}
+          width={100}
+          height={100}
+          alt={formatMessage({
+            id: 'image_not_available',
+            defaultMessage: 'Image not available',
+          })}
+        />
+      ) : (
+        <EmojiSadIcon />
+      )}
     </div>
   );
 };
