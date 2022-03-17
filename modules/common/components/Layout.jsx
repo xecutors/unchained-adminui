@@ -144,12 +144,12 @@ const Layout = ({
         },
         {
           name: formatMessage({
-            id: 'Product review',
+            id: 'product_review',
             defaultMessage: 'Product review',
           }),
           href: '/product-review',
         },
-        
+
         {
           name: formatMessage({
             id: 'quotations',
@@ -190,7 +190,7 @@ const Layout = ({
   return (
     <div>
       <div
-        className={`fixed inset-0 flex z-40 md:hidden  ${
+        className={`fixed inset-0 z-40 flex md:hidden  ${
           hideNav ? 'hidden' : ''
         } `}
         role="dialog"
@@ -201,12 +201,12 @@ const Layout = ({
           aria-hidden="true"
         />
 
-        <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               type="button"
               onClick={() => setHideNav(!hideNav)}
-              className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             >
               <span className="sr-only">
                 {formatMessage({
@@ -233,8 +233,8 @@ const Layout = ({
             </button>
           </div>
 
-          <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-            <div className="flex-shrink-0 flex items-center px-4">
+          <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
+            <div className="flex flex-shrink-0 items-center px-4">
               <Image
                 src="/logo.svg"
                 loader={defaultNextImageLoader}
@@ -248,7 +248,7 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
-          <div className=" flex-shrink-0 flex border-t border-gray-200 p-4">
+          <div className=" flex flex-shrink-0 border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
@@ -271,17 +271,22 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
-          <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+          <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div className="md:pl-64 2xl:pl-96 flex flex-col flex-1">
         <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
+=======
+      <div className="flex flex-1 flex-col md:pl-64">
+        <div className="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+>>>>>>> padd fix product list
           <button
             type="button"
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
             <span className="sr-only">
               {formatMessage({
@@ -307,8 +312,8 @@ const Layout = ({
             </svg>
           </button>
         </div>
-        <main className="container pt-5 max-w-7xl mx-auto flex-1 px-4 sm:px-6 md:px-8">
-          <h3 className="ml-8 text-lg leading-6 font-medium text-gray-900">
+        <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 sm:px-6 md:px-8">
+          <h3 className="ml-8 text-lg font-medium leading-6 text-gray-900">
             {pageHeader}
           </h3>
           {React.cloneElement(children, { shopInfo })}
