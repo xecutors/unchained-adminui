@@ -86,7 +86,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
 
   return (
     <Form form={form}>
-      <div className="overflow-hidden border-b rounded-md">
+      <div className="mt-6 overflow-hidden border-b rounded-md">
         <div className="lg:grid lg:grid-cols-3">
           <div className="lg:col-span-1 mb-5 lg:pr-5">
             <div className="space-y-2">
@@ -104,14 +104,14 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 })}
               </p>
             </div>
-            <span className="pt-4 flex-shrink-0 flex items-center space-x-4">
+            <span className="ml-1 pt-4 flex-shrink-0 flex items-center space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}
                 type="button"
                 className={classNames(
                   isEdit
-                    ? 'text-red-600 hover:text-red-500 focus:ring-red-500'
-                    : 'text-white-600 focus:ring-purple-500',
+                    ? 'bg-text-red-600 hover:text-red-500 focus:ring-red-500'
+                    : 'text-white-600 focus:ring-indigo-700',
                   'bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
                 )}
               >
@@ -132,7 +132,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   </span>
                   <button
                     type="submit"
-                    className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                   >
                     {formatMessage({
                       id: 'save',
@@ -144,15 +144,15 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             </span>
           </div>
           <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200 bg-white px-8">
-            <dl className="py-4 divide-y divide-gray-200">
+            <div className="py-4 divide-y divide-gray-200">
               <div className="py-4 sm:py-2 sm:grid sm:grid-cols-1">
-                <dt className="text-sm font-medium text-gray-500">
+                <label className="block text-sm font-medium text-gray-70">
                   {formatMessage({
                     id: 'photo',
                     defaultMessage: 'Photo',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm space-x-5 items-center text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm space-x-5 items-center text-gray-900 sm:mt-0 sm:col-span-2">
                   <span className="">
                     <input
                       onChange={onUpdateAvatar}
@@ -184,11 +184,11 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       </span>
                     )}
                   </span>
-                  <span className="ml-4 flex-shrink-0 flex items-start space-x-4">
+                  <span className="mt-1 ml-4 flex-shrink-0 flex items-start space-x-4">
                     <button
                       onClick={() => fileInputRef.current.click()}
                       type="button"
-                      className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                      className="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       {formatMessage({
                         id: 'change',
@@ -196,17 +196,17 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       })}
                     </button>
                   </span>
-                </dd>
+                </div>
               </div>
 
-              <div className="py-3 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'name',
                     defaultMessage: 'Name',
                   })}
-                </dt>
-                <dd className="mt-1 py-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 py-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -214,34 +214,34 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       required
                       label={formatMessage({
                         id: 'displayName',
-                        defaultMessage: 'Display Name',
+                        defaultMessage: 'Dispxlay Name',
                       })}
                       hideLabel
                     />
                   ) : (
                     <span className="flex-grow">{name}</span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   <span className="flex-grow">{username}</span>
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'gender',
                     defaultMessage: 'Gender',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <SelectField
                       className="w-full mt-0"
@@ -265,16 +265,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{profile?.gender}</span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'birthday',
                     defaultMessage: 'Birthday',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <DatePickerField
                       label={formatMessage({
@@ -292,13 +292,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                         : 'n/a'}
                     </span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   Phone
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -312,13 +312,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{profile?.phoneMobile}</span>
                   )}
-                </dd>
+                </div>
               </div>
-            </dl>
+            </div>
           </div>
         </div>
 
-        <div className="my-7 pt-3 border-t lg:grid lg:grid-cols-3">
+        <div className="my-7 pt-6 border-t lg:grid lg:grid-cols-3">
           <div className="space-y-1 col-span-1 py-3 lg:py-0 ">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               {formatMessage({
@@ -338,13 +338,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
           <div className="col-span-2 w-full lg:w-full lg:ml-auto shadow-md border-gray-200  bg-white px-8 py-6">
             <dl className="divide-y divide-gray-200">
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'full_name',
                     defaultMessage: 'Full name',
                   })}
-                </dt>
-                <dd className="mt-1  flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1  flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <div className=" flex w-full">
                       <TextField
@@ -373,16 +373,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       {address?.firstName} {address?.lastName}{' '}
                     </span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className=" py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'company',
                     defaultMessage: 'Company',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -396,16 +396,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{address?.company}</span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_1',
                     defaultMessage: 'Address line 1 (Street, House no)',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -419,16 +419,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{address?.addressLine}</span>
                   )}
-                </dd>
+                </div>
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
-                <dt className="text-sm h-10 font-medium text-gray-500">
+                <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_2',
                     defaultMessage: 'Address line 2',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                </label>
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"
@@ -442,19 +442,19 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{address?.addressLine2}</span>
                   )}
-                </dd>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2 divide-y divide-gray-200">
                 <div className="pt-2 pb-2 sm:grid sm:grid-cols-2 ">
-                  <dt className="mt-3 text-sm font-medium text-gray-500">
+                  <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'region',
                       defaultMessage: 'Region',
                     })}
-                  </dt>
+                  </label>
 
-                  <dd className="mt-1 flex text-sm text-gray-900">
+                  <div className="mt-1 flex text-sm text-gray-900">
                     {isEdit ? (
                       <TextField
                         className="w-full mt-0"
@@ -468,17 +468,17 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     ) : (
                       address?.regionCode
                     )}
-                  </dd>
+                  </div>
                 </div>
 
                 <div className="pt-2 sm:grid sm:grid-cols0-2">
-                  <dt className="mt-3 text-sm font-medium text-gray-500">
+                  <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'postal_code',
                       defaultMessage: 'Postal/ZIP code',
                     })}
-                  </dt>
-                  <dd className="mt-1 w-full text-sm text-gray-900">
+                  </label>
+                  <div className="mt-1 w-full text-sm text-gray-900">
                     {isEdit ? (
                       <TextField
                         className="w-full mt-0"
@@ -492,16 +492,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     ) : (
                       address?.postalCode
                     )}
-                  </dd>
+                  </div>
                 </div>
                 <div className="pt-2 sm:grid sm:grid-cols-2">
-                  <dt className="mt-3 text-sm font-medium text-gray-500">
+                  <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'city',
                       defaultMessage: 'City',
                     })}
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900">
+                  </label>
+                  <div className="mt-1 text-sm text-gray-900">
                     {isEdit ? (
                       <TextField
                         className="w-full mt-0"
@@ -515,16 +515,16 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     ) : (
                       address?.city
                     )}
-                  </dd>
+                  </div>
                 </div>
                 <div className="pt-2 sm:grid sm:grid-cols0-2">
-                  <dt className="mt-3 text-sm font-medium text-gray-500">
+                  <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'country_code',
                       defaultMessage: 'Country code',
                     })}
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900">
+                  </label>
+                  <div className="mt-1 text-sm text-gray-900">
                     {isEdit ? (
                       <TextField
                         className="w-full mt-0"
@@ -538,7 +538,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     ) : (
                       address?.countryCode
                     )}
-                  </dd>
+                  </div>
                 </div>
               </div>
             </dl>

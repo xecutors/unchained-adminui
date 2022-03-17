@@ -74,81 +74,82 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
     <div className="mt-5 sm:max-w-full">
       <div className="bg-white shadow sm:rounded-t">
         <Form form={form}>
-          <div className="px-5 sm:px-15 space-y-6 sm:p-6 rounded-md relative max-w-full">
-            <div className="sm:flex w-full justify-between align-baseline">
-              <TextField
-                name="slug"
-                id="slug"
-                label={formatMessage({
-                  id: 'slug',
-                  defaultMessage: 'Slug',
-                })}
-                autoComplete="on"
-                className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
-              />
-
-              <TextField
-                name="title"
-                required
-                id="title"
-                label={formatMessage({
-                  id: 'title',
-                  defaultMessage: 'Title',
-                })}
-                autoComplete="on"
-                className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
-              />
+          <div className="px-4 py-5 bg-white sm:p-6 relative">
+            <div className="grid grid-cols-6 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="slug"
+                  id="slug"
+                  label={formatMessage({
+                    id: 'slug',
+                    defaultMessage: 'Slug',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="title"
+                  id="title"
+                  label={formatMessage({
+                    id: 'title',
+                    defaultMessage: 'Title',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="subtitle"
+                  id="subtitle"
+                  label={formatMessage({
+                    id: 'subtitle',
+                    defaultMessage: 'Subtitle',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="vendor"
+                  id="vendor"
+                  label={formatMessage({
+                    id: 'vendor',
+                    defaultMessage: 'Vendor',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="brand"
+                  id="brand"
+                  label={formatMessage({
+                    id: 'brand',
+                    defaultMessage: 'Brand',
+                  })}
+                  autoComplete="on"
+                  className="text-sm  font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="labels"
+                  id="labels"
+                  label={formatMessage({
+                    id: 'labels',
+                    defaultMessage: 'Labels',
+                  })}
+                  autoComplete="on"
+                  className="text-sm  font-medium text-gray-500"
+                />
+              </div>
             </div>
-
-            <div className="sm:flex max-w-full justify-between align-baseline">
-              <TextField
-                name="subtitle"
-                id="subtitle"
-                label={formatMessage({
-                  id: 'subtitle',
-                  defaultMessage: 'Subtitle',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-              />
-
-              <TextField
-                name="vendor"
-                id="vendor"
-                label={formatMessage({
-                  id: 'vendor',
-                  defaultMessage: 'Vendor',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-              />
-            </div>
-
-            <div className="sm:flex max-w-full  justify-between align-baseline">
-              <TextField
-                name="brand"
-                id="brand"
-                label={formatMessage({
-                  id: 'brand',
-                  defaultMessage: 'Brand',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
-              />
-
-              <TextField
-                name="labels"
-                id="labels"
-                label={formatMessage({
-                  id: 'labels',
-                  defaultMessage: 'Labels',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
-              />
-            </div>
-
-            <div className="w-full">
+            <div className="mt-6 col-span-6 sm:col-span-3">
               <TextAreaField
                 name="description"
                 id="description"
@@ -157,7 +158,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Description',
                 })}
                 autoComplete="on"
-                className="text-sm font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
+                className="text-sm font-medium text-gray-500 w-full"
               />
             </div>
             <FormErrors />

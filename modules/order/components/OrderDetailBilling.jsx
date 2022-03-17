@@ -14,7 +14,7 @@ const OrderDetailBilling = ({ order }) => {
         })}
       </h2>
 
-      <div className="bg-gray-100 py-4 px-4 sm:rounded-lg md:grid md:grid-cols-2 lg:gap-x-8">
+      <div className="bg-white shadow py-4 px-4 sm:rounded-lg md:grid md:grid-cols-2 lg:gap-x-8">
         <dl className="grid justify-center md:justify-start sm:items-center md:gap-x-8 text-sm ">
           <dt className="font-medium text-gray-900">
             {formatMessage({

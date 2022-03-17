@@ -26,8 +26,8 @@ const OrderDetailHeader = ({ order, button }) => {
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <section>
-      <div className="flex items-center">
+    <>
+      <div className="mt-6 mb-8 flex items-center">
         <span className="hidden h-16 w-16 rounded-full sm:block">
           {order?.user?.avatar ? (
             <Image
@@ -191,7 +191,7 @@ const OrderDetailHeader = ({ order, button }) => {
           </span>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

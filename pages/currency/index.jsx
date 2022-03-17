@@ -21,7 +21,6 @@ const Currencies = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
-
   const { currencies, currenciesCount, loading } = useCurrencies({
     limit,
     offset,

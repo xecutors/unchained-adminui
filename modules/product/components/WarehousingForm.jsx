@@ -38,8 +38,8 @@ const WarehousingForm = ({ productId }) => {
   }, [product]);
 
   return (
-    <Form form={form}>
-      <div className="space-y-6 sm:p-6 rounded-md relative max-w-full bg-white">
+    <Form className="shadow rounded" form={form}>
+      <div className="px-4 pb-5 bg-white sm:p-6 relative">
         <div className="w-full justify-between align-baseline">
           <TextField
             name="sku"
@@ -49,7 +49,7 @@ const WarehousingForm = ({ productId }) => {
               defaultMessage: 'SKU',
             })}
             required
-            className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
+            className="text-sm font-medium text-gray-500 mb-4"
           />
 
           <TextField
@@ -60,7 +60,7 @@ const WarehousingForm = ({ productId }) => {
               defaultMessage: 'Base Unit',
             })}
             required
-            className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
+            className="text-sm font-medium text-gray-500"
           />
         </div>
       </div>

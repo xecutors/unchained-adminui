@@ -20,7 +20,9 @@ const OrderDetailDelivery = ({ delivery }) => {
       <span
         title={label}
         className={`${
-          currentType === enumType ? 'bg-teal-500 text-white' : ''
+          currentType === enumType
+            ? 'bg-teal-500 text-white border-teal-700'
+            : 'opacity-25'
         } inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-xs font-normal mr-2`}
       >
         {enumType}
@@ -29,22 +31,22 @@ const OrderDetailDelivery = ({ delivery }) => {
   };
 
   return (
-    <div className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm sm:flex-auto">
-      <div className="font-medium text-gray-900 border-b pb-2 text-center">
+    <div className="bg-white shadow sm:rounded-lg">
+      <h2 className="px-4 py-5 sm:px-6 text-lg font-medium text-gray-900">
         {formatMessage({
           id: 'delivery_information',
           defaultMessage: 'Delivery Information',
         })}
-      </div>
-      <div className="mt-3">
-        <span className="block">
+      </h2>
+      <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
+        <span className="block mb-5">
           <Link href={`/delivery-provider/${delivery.provider._id}`}>
-            <a className="text-blue-600 text-base font-bold">
+            <a className="font-medium text-blue-600 hover:text-blue-500">
               {getInterfaceLabel(delivery?.provider?.interface)}
             </a>
           </Link>
         </span>
-        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+        <div className="text-sm font-medium text-gray-500 mt-3">
           {formatMessage({
             id: 'provider',
             defaultMessage: 'Provider',
@@ -60,7 +62,7 @@ const OrderDetailDelivery = ({ delivery }) => {
             />
           ))}
         </span>
-        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+        <div className="text-sm font-medium text-gray-500 mt-3">
           {formatMessage({
             id: 'wrapping_condition',
             defaultMessage: 'Wrapping condition',
@@ -76,7 +78,7 @@ const OrderDetailDelivery = ({ delivery }) => {
             />
           ))}
         </span>
-        <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+        <div className="text-sm font-medium text-gray-500 mt-3">
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',
@@ -94,7 +96,7 @@ const OrderDetailDelivery = ({ delivery }) => {
         </span>
         {delivery.fee ? (
           <>
-            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+            <div className="text-sm font-medium text-gray-500 mt-3">
               {formatMessage({
                 id: 'delivery_fee',
                 defaultMessage: 'Fee',
@@ -106,7 +108,7 @@ const OrderDetailDelivery = ({ delivery }) => {
           </>
         ) : null}
         {delivery?.delivered ? (
-          <span className="block py-2 text-sm leading-5 font-bold">
+          <span className="mt-3 block py-2 text-sm leading-5 font-bold">
             {formatDateTime(delivery?.delivered)}
           </span>
         ) : null}

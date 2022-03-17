@@ -58,7 +58,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 type="button"
                 className={classNames(
                   isEdit
-                    ? 'text-red-600 hover:text-red-500  focus:ring-red-500'
+                    ? 'text-red-600 hover:text-red-500 focus:ring-red-500'
                     : 'text-purple-600 hover:text-purple-500  focus:ring-purple-500',
                   'bg-white rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
                 )}

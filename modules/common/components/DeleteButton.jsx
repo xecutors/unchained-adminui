@@ -14,7 +14,7 @@ const DeleteButton = ({
         type="button"
         onClick={onClick}
         className={classNames(
-          'items-center px-1 py-1 text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500',
+          'items-center px-1 py-1 text-sm rounded-full text-red-500 bg-white border-red-500 hover:bg-red-100 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500',
           classes,
         )}
       >

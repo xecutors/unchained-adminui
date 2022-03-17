@@ -85,13 +85,13 @@ const VariationForm = ({ products }) => {
       <div className="shadow bg-white">
         <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
           <span className="flex w-full">
-            <samp className="w-full  ">
+            <span className="w-full">
               {' '}
               {formatMessage({
                 id: 'max_quantity',
                 defaultMessage: 'Max Quantity',
               })}{' '}
-            </samp>
+            </span>
           </span>
         </label>
         <table className="bg-white min-w-full divide-y divide-gray-200">

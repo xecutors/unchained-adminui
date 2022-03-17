@@ -27,7 +27,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base capitalize focus:border-purple-500 focus:outline-none focus:ring-purple-500 sm:text-sm"
+          className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           value={tab}
         >
           {tabItems.map((value) => (
@@ -46,8 +46,8 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={` ${
                   tab === option.id &&
-                  'cursor-pointer border-purple-500 text-purple-600'
-                }  cursor-pointer whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium hover:border-b-slate-300`}
+                  'cursor-pointer border-indigo-500 text-indigo-600'
+                }  cursor-pointer whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium hover:border-b-indigo-500`}
               >
                 <div className="flex items-center space-x-1">
                   <div>{option.Icon}</div>

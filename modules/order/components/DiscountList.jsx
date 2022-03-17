@@ -17,13 +17,13 @@ const LogList = ({ discounts }) => {
   const { formatPrice } = useFormatPrice();
 
   return (
-    <section className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm flex-auto flex flex-col">
-      <div className="font-medium text-gray-900 border-b pb-2 text-center">
+    <div className="bg-white shadow sm:rounded-lg flex-auto flex flex-col">
+      <h2 className="px-4 py-5 sm:px-6 text-lg font-medium text-gray-900">
         {formatMessage({
           id: 'discount_information',
           defaultMessage: 'Discounts Information',
         })}
-      </div>
+      </h2>
       {discounts?.length ? (
         <Table className="min-w-full ">
           {(discounts || [])?.map((discount) => (
@@ -76,11 +76,11 @@ const LogList = ({ discounts }) => {
             id: 'discounts',
             defaultMessage: 'Discounts',
           })}
-          className="border-0 text-zinc-400 flex-auto"
+          className="px-4 py-5 sm:px-6 border-t border-gray-200"
           icon={EmojiSadIcon}
         />
       )}
-    </section>
+    </div>
   );
 };
 
