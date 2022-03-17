@@ -1,8 +1,8 @@
 import { EmojiSadIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
-/* import Image from 'next/image'; */
+import Image from 'next/image';
 import { useIntl } from 'react-intl';
-/* import defaultNextImageLoader from '../utils/defaultNextImageLoader'; */
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const MediaAvatar = ({ file, className }) => {
   const { url } = file;
@@ -24,7 +24,6 @@ const MediaAvatar = ({ file, className }) => {
       ) : (
         <EmojiSadIcon />
       )}
-
     </div>
   );
 };
