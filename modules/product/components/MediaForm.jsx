@@ -1,16 +1,86 @@
 import { useIntl } from 'react-intl';
+import useProductMedia from '../hooks/useProductMedia';
+import MediaList from './MediaList';
 
-const MediaForm = () => {
+const MediaForm = ({ productId }) => {
   const { formatMessage } = useIntl();
+
+  const { productMedia } = useProductMedia({ productId });
+
+  // TODO: Remove mock data
+  const products = [
+    {
+      _id: 1,
+      name: 'Organize Basic Set (Walnut)',
+      price: '$149',
+      rating: 5,
+      tags: ['img', 'pro', 'Organize', 'Basic', 'Set', 'Walnut'],
+      reviewCount: 38,
+      file: {
+        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg',
+      },
+      texts: {
+        title: 'TODO',
+      },
+      href: '#',
+    },
+    {
+      _id: 2,
+      name: 'Organize Pen Holder',
+      price: '$15',
+      rating: 5,
+      reviewCount: 18,
+      file: {
+        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-02.jpg',
+      },
+      texts: {
+        title: 'TODO',
+      },
+      href: '#',
+    },
+    {
+      _id: 3,
+      name: 'Organize Sticky Note Holder',
+      price: '$15',
+      rating: 5,
+      reviewCount: 14,
+      file: {
+        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-03.jpg',
+      },
+      texts: {
+        title: 'TODO',
+      },
+      href: '#',
+    },
+    {
+      _id: 4,
+      name: 'Organize Phone Holder',
+      price: '$15',
+      rating: 4,
+      reviewCount: 21,
+      file: {
+        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg',
+      },
+      texts: {
+        title: 'TODO',
+      },
+      href: '#',
+    },
+    // More products...
+  ];
+
   return (
-    <div className=" mt-5 sm:max-w-full">
-      <div className="py-2 bg-white px-5 shadow sm:rounded-t sm:px-15">
+    <div className="mt-5 bg-white shadow sm:max-w-full sm:rounded-t">
+      {/* TODO: replace prodcts prob with productMedia */}
+      <MediaList medias={products} />
+
+      <div className="sm:px-15 py-2 px-5">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </label>
           <div className="mt-1 flex items-center">
-            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
               <svg
                 className="h-full w-full text-gray-300"
                 fill="currentColor"
@@ -21,7 +91,7 @@ const MediaForm = () => {
             </span>
             <button
               type="button"
-              className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               {formatMessage({
                 id: 'upload_avatar',
@@ -32,7 +102,7 @@ const MediaForm = () => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700" />
-          <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
@@ -51,7 +121,7 @@ const MediaForm = () => {
               <div className="flex text-sm text-gray-600">
                 <label
                   htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                  className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
                   <span>Upload a file</span>
                   <input

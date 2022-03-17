@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 
-export const AssortmentMediasQuery = gql`
-  query AssortmentMedias($assortmentId: ID, $slug: String) {
+export const AssortmentMediaQuery = gql`
+  query AssortmentMedia($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       media {
@@ -9,22 +9,25 @@ export const AssortmentMediasQuery = gql`
         tags
         texts {
           _id
+          locale
           title
           subtitle
         }
         file {
+          _id
           url
           name
           size
           type
         }
+        sortKey
       }
     }
   }
 `;
 
-const useAssortmentMedias = ({ assortmentId = null, slug = null } = {}) => {
-  const { data, loading, error } = useQuery(AssortmentMediasQuery, {
+const useAssortmentMedia = ({ assortmentId = null, slug = null } = {}) => {
+  const { data, loading, error } = useQuery(AssortmentMediaQuery, {
     variables: {
       slug,
       assortmentId,
@@ -34,8 +37,8 @@ const useAssortmentMedias = ({ assortmentId = null, slug = null } = {}) => {
   return {
     loading,
     error,
-    assortments: data?.assortment,
+    assortmentMedia: data?.assortment?.media || [],
   };
 };
 
-export default useAssortmentMedias;
+export default useAssortmentMedia;

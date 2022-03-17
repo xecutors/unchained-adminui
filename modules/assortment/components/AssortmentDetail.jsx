@@ -196,7 +196,7 @@ const AssortmentDetail = ({ assortment }) => {
 
   return (
     <>
-      <div className="flex space-x-2 justify-end">
+      <div className="flex justify-end space-x-2">
         <SelectOptions
           options={baseOptions}
           type={formatMessage({
