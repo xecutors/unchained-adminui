@@ -93,13 +93,13 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           <div className="hidden sm:flex text-sm font-medium text-gray-600 mt-2">
             {status.map(({ value, label }) => (
               <div key={`${value}${label}`} className="sm:flex-auto">
-                <div className="relative mb-4">
+                <div className="relative mb-4 mr-1">
                   <span
                     className={classNames(
                       timeline[data.status].id >= timeline[value].id
-                        ? 'bg-indigo-600'
+                        ? 'bg-indigo-400'
                         : 'bg-gray-200',
-                      'absolute top-0 left-0 -ml-px w-full h-2 first:rounded-tl-full first:rounded-bl-full',
+                      'absolute top-0 left-0 -ml-px w-full h-2',
                     )}
                     aria-hidden="true"
                   />

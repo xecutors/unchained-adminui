@@ -71,10 +71,10 @@ const OrderDetailPage = () => {
           <button
             type="button"
             onClick={handleOnClick}
-            className="my-auto flex h-full items-center justify-center rounded border border-transparent bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+            className="my-auto flex items-center justify-center rounded border border-red-400 px-3 py-2 text-sm font-semibold text-red-300 shadow-sm hover:border-red-800 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
           >
             <span className="pr-1">
-              <XIcon className="inline-block h-4 w-4" />
+              <XIcon className="h-4 w-4" />
             </span>
             {formatMessage({
               id: 'order_delete',

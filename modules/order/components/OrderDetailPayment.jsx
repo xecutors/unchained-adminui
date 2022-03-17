@@ -57,7 +57,9 @@ const OrderDetailPayment = ({ order }) => {
         <span
           title={label}
           className={`${
-            currentType === enumType ? 'bg-teal-500 text-white' : ''
+            currentType === enumType
+              ? 'bg-teal-500 text-white border-teal-700'
+              : 'opacity-25'
           } inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-xs font-normal mr-2`}
         >
           {enumType}
@@ -67,24 +69,24 @@ const OrderDetailPayment = ({ order }) => {
   };
 
   return (
-    <div className="p-2 border border-gray-200 bg-gray-100 rounded-lg shadow-sm sm:flex-auto">
-      <div className="font-medium text-gray-900 border-b pb-2 text-center">
+    <div className="bg-white shadow sm:rounded-lg">
+      <h2 className="px-4 py-5 sm:px-6 text-lg font-medium text-gray-900">
         {formatMessage({
           id: 'payment_information',
           defaultMessage: 'Payment information',
         })}
-      </div>
-      <div className="mt-3">
+      </h2>
+      <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
         <div className="-ml-4 -mt-4 flex flex-wrap">
           <div className="ml-4 mt-4 w-full">
             <span className="block">
               <Link href={`/payment-provider/${order.payment.provider._id}`}>
-                <a className="text-blue-600 text-base font-bold">
+                <a className="font-medium text-blue-600 hover:text-blue-500">
                   {getInterfaceLabel(order.payment?.provider?.interface)}
                 </a>
               </Link>
             </span>
-            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+            <div className="text-sm font-medium text-gray-500 mt-3">
               {formatMessage({
                 id: 'payment_provider',
                 defaultMessage: 'Payment',
@@ -100,7 +102,7 @@ const OrderDetailPayment = ({ order }) => {
                 />
               ))}
             </span>
-            <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+            <div className="text-sm font-medium text-gray-500 mt-3">
               {formatMessage({
                 id: 'delivery_status',
                 defaultMessage: 'Status',
