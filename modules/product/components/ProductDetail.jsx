@@ -15,7 +15,7 @@ import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import CommerceForm from './CommerceForm';
 import ProductTextsForm from './ProductTextsForm';
-import MediaForm from './MediaForm';
+import ProductMediaForm from './ProductMediaForm';
 import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import VariationForm from './VariationForm';
@@ -36,7 +36,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'media')
     return (
       <LocaleWrapper>
-        <MediaForm productId={id} />
+        <ProductMediaForm productId={id} />
       </LocaleWrapper>
     );
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;

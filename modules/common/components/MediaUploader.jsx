@@ -1,77 +1,10 @@
 import { useIntl } from 'react-intl';
-import useProductMedia from '../hooks/useProductMedia';
-import MediaList from './MediaList';
 
-const MediaForm = ({ productId }) => {
+const MediaUploader = ({ enableDragAndDrop = true, onlyDragAndDrop, text }) => {
   const { formatMessage } = useIntl();
-
-  const { productMedia } = useProductMedia({ productId });
-
-  // TODO: Remove mock data
-  const products = [
-    {
-      _id: 1,
-      name: 'Organize Basic Set (Walnut)',
-      price: '$149',
-      rating: 5,
-      tags: ['img', 'pro', 'Organize', 'Basic', 'Set', 'Walnut'],
-      reviewCount: 38,
-      file: {
-        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-01.jpg',
-      },
-      texts: {
-        title: 'TODO',
-      },
-      href: '#',
-    },
-    {
-      _id: 2,
-      name: 'Organize Pen Holder',
-      price: '$15',
-      rating: 5,
-      reviewCount: 18,
-      file: {
-        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-02.jpg',
-      },
-      texts: {
-        title: 'TODO',
-      },
-      href: '#',
-    },
-    {
-      _id: 3,
-      name: 'Organize Sticky Note Holder',
-      price: '$15',
-      rating: 5,
-      reviewCount: 14,
-      file: {
-        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-03.jpg',
-      },
-      texts: {
-        title: 'TODO',
-      },
-      href: '#',
-    },
-    {
-      _id: 4,
-      name: 'Organize Phone Holder',
-      price: '$15',
-      rating: 4,
-      reviewCount: 21,
-      file: {
-        url: 'https://tailwindui.com/img/ecommerce-images/category-page-05-image-card-04.jpg',
-      },
-      texts: {
-        title: 'TODO',
-      },
-      href: '#',
-    },
-    // More products...
-  ];
-
   return (
-    <div className="mt-5 bg-white shadow sm:max-w-full sm:rounded-t">
-      <div className="mx-auto max-w-3xl">
+    <>
+      {!onlyDragAndDrop && (
         <div>
           <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
@@ -90,13 +23,16 @@ const MediaForm = ({ productId }) => {
               type="button"
               className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              {formatMessage({
-                id: 'upload_avatar',
-                defaultMessage: 'Upload avatar',
-              })}
+              {text ||
+                formatMessage({
+                  id: 'upload',
+                  defaultMessage: 'Upload',
+                })}
             </button>
           </div>
         </div>
+      )}
+      {enableDragAndDrop && (
         <div>
           <label className="block text-sm font-medium text-gray-700" />
           <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -135,7 +71,7 @@ const MediaForm = ({ productId }) => {
                 </label>
                 <p className="pl-1">
                   {formatMessage({
-                    id: 'drag_and_drop',
+                    id: 'or_drag_and_drop',
                     defaultMessage: 'or drag and drop',
                   })}
                 </p>
@@ -144,11 +80,9 @@ const MediaForm = ({ productId }) => {
             </div>
           </div>
         </div>
-      </div>
-      {/* TODO: replace prodcts prob with productMedia */}
-      <MediaList medias={products} />
-    </div>
+      )}
+    </>
   );
 };
 
-export default MediaForm;
+export default MediaUploader;

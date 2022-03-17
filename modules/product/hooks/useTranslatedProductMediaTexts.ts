@@ -10,10 +10,10 @@ export const TranslatedProductMediaQuery = gql`
   ${ProductMediaTextsFragment}
 `;
 
-const useTranslatedProductMediaTexts = ({ productId }) => {
+const useTranslatedProductMediaTexts = ({ productMediaId }) => {
   const { data, loading, error } = useQuery(TranslatedProductMediaQuery, {
     variables: {
-      productId,
+      productMediaId,
     },
   });
   const translatedMediaTexts = data?.translatedProductMediaTexts || [];
