@@ -27,7 +27,7 @@ const MediaList = ({ medias }) => {
           })}
         </h2>
 
-        <div className="-mx-px grid grid-cols-1 gap-y-4 border-gray-200 sm:mx-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className=" grid grid-cols-1 gap-4 border-gray-200 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {medias.map((media) => (
             <div
               key={media._id}

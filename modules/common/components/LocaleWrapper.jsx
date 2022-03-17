@@ -15,7 +15,7 @@ const LocaleWrapper = ({ children }) => {
       <div className="relative ">
         <div className="flex items-center absolute bottom-32 right-0 lg:bottom-8">
           <select
-            className="pr-8 text-sm lg:pr-10 cursor-pointer py-[0.25rem] lg:py-1 border-2 border-indigo-500 rounded-md"
+            className="pr-8 text-sm lg:pr-10 cursor-pointer py-[0.25rem] lg:py-1 border-gray-300 rounded-md"
             placeholder={formatMessage({
               id: 'select_language',
               defaultMessage: 'Select language',

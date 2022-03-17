@@ -74,7 +74,7 @@ const MediaForm = ({ productId }) => {
       {/* TODO: replace prodcts prob with productMedia */}
       <MediaList medias={products} />
 
-      <div className="sm:px-15 py-2 px-5">
+      <div className="sm:px-15 py-5 px-5">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
@@ -102,7 +102,7 @@ const MediaForm = ({ productId }) => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700" />
-          <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+          <div className="mt-5 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"

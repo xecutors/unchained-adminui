@@ -83,7 +83,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 mt-1 w-full"
+                  className="text-sm font-medium text-gray-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -95,60 +95,59 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 mt-1 w-full"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="subtitle"
+                  id="subtitle"
+                  label={formatMessage({
+                    id: 'subtitle',
+                    defaultMessage: 'Subtitle',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="vendor"
+                  id="vendor"
+                  label={formatMessage({
+                    id: 'vendor',
+                    defaultMessage: 'Vendor',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="brand"
+                  id="brand"
+                  label={formatMessage({
+                    id: 'brand',
+                    defaultMessage: 'Brand',
+                  })}
+                  autoComplete="on"
+                  className="text-sm  font-medium text-gray-500"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="labels"
+                  id="labels"
+                  label={formatMessage({
+                    id: 'labels',
+                    defaultMessage: 'Labels',
+                  })}
+                  autoComplete="on"
+                  className="text-sm  font-medium text-gray-500"
                 />
               </div>
             </div>
-
-            <div className="sm:flex max-w-full justify-between align-baseline">
-              <TextField
-                name="subtitle"
-                id="subtitle"
-                label={formatMessage({
-                  id: 'subtitle',
-                  defaultMessage: 'Subtitle',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-              />
-
-              <TextField
-                name="vendor"
-                id="vendor"
-                label={formatMessage({
-                  id: 'vendor',
-                  defaultMessage: 'Vendor',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-              />
-            </div>
-
-            <div className="sm:flex max-w-full  justify-between align-baseline">
-              <TextField
-                name="brand"
-                id="brand"
-                label={formatMessage({
-                  id: 'brand',
-                  defaultMessage: 'Brand',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
-              />
-
-              <TextField
-                name="labels"
-                id="labels"
-                label={formatMessage({
-                  id: 'labels',
-                  defaultMessage: 'Labels',
-                })}
-                autoComplete="on"
-                className="text-sm  font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
-              />
-            </div>
-
-            <div className="w-full">
+            <div className="mt-6 col-span-6 sm:col-span-3">
               <TextAreaField
                 name="description"
                 id="description"
@@ -157,7 +156,7 @@ const GeneralTextForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Description',
                 })}
                 autoComplete="on"
-                className="text-sm font-medium text-gray-500 py-2 ml-1 mt-1 w-full"
+                className="text-sm font-medium text-gray-500 w-full"
               />
             </div>
           </div>

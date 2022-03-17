@@ -76,34 +76,34 @@ const CommerceForm = ({ productId }) => {
 
         <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
           <span className="flex w-full">
-            <samp className="w-full  ">
+            <span className="w-full  ">
               {' '}
               {formatMessage({
                 id: 'max_quantity',
                 defaultMessage: 'Max Quantity',
               })}{' '}
-            </samp>
-            <samp className="w-full">
+            </span>
+            <span className="w-full">
               {formatMessage({
                 id: 'amount',
                 defaultMessage: 'Amount',
               })}{' '}
-            </samp>
+            </span>
           </span>
           <span className="flex w-full ml-3">
-            <samp className="w-full">
+            <span className="w-full">
               {' '}
               {formatMessage({
                 id: 'vat_suspect',
                 defaultMessage: 'Vat Suspect',
               })}
-            </samp>
-            <samp className="w-full">
+            </span>
+            <span className="w-full">
               {formatMessage({
                 id: 'net_price',
                 defaultMessage: 'Net Price',
               })}
-            </samp>
+            </span>
           </span>
           <span className="flex w-full mr-5">
             <span className="w-full ml-10">
