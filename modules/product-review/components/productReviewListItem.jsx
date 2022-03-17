@@ -5,190 +5,212 @@ import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
 const USER_STATUS = {
-
   DELETED: 'red',
   isGuest: 'red',
 };
 
 const ProductReviewListItem = ({ ProductReview, showAvatar }) => {
-
- 
   const { formatMessage } = useIntl();
-//   const { slug = '' } = product?.texts || {};
+  //   const { slug = '' } = product?.texts || {};
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
-        
-           {showAvatar && (
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
+          {showAvatar && (
             <MediaAvatar
-              file={ProductReview.product?.media?.file && ProductReview.product.media.file}
+              file={
+                ProductReview.product?.media?.file &&
+                ProductReview.product.media.file
+              }
               className="mr-2"
-            />  
-           )} 
-           <Link href={`#`}>
+            />
+          )}
+          <Link href={`#`}>
             <a className="text-blue-600">
               {ProductReview?.product.texts.title || (
                 <>
                   {ProductReview._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'product', defaultMessage: 'product' })}
+                    text={formatMessage({
+                      id: 'product',
+                      defaultMessage: 'product',
+                    })}
                   />
                 </>
               )}
             </a>
-          </Link> 
+          </Link>
         </div>
-      </Table.Cell>
-      
-      <Table.Cell className=" px-6 whitespace-nowrap">
-        <div className="flex">
-      {showAvatar && (
-            <MediaAvatar
-              file={ProductReview.author?.avatar && ProductReview.author?.avatar}
-              className="mx-2"
-            />  
-           )} 
-      <Link href={`#`}>
-      <a className="px-2 mt-4 whitespace-nowrap text-blue-600">
-              {ProductReview?. author.username|| (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'author', defaultMessage: 'author' })}
-                  />
-         
-                </>
-              )}
-               {ProductReview.author.isGuest && (
-            <Badge
-              className="ml-4 p-1"
-              text={formatMessage({
-                id: 'Guest',
-                defaultMessage: 'Guest',
-              })}
-              color="red"
-            />
-          )}
-        
-            </a>
-            </Link>
-            </div>
-        
       </Table.Cell>
 
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
+          {showAvatar && (
+            <MediaAvatar
+              file={
+                ProductReview.author?.avatar && ProductReview.author?.avatar
+              }
+              className="mx-2"
+            />
+          )}
           <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. rating  || (
+            <a className="mt-4 whitespace-nowrap px-2 text-blue-600">
+              {ProductReview?.author.username || (
                 <>
                   {ProductReview._id}{' '}
                   <Badge
                     color="blue"
-                    text={formatMessage({ id: 'rating', defaultMessage: 'rating' })}
+                    text={formatMessage({
+                      id: 'author',
+                      defaultMessage: 'author',
+                    })}
                   />
                 </>
               )}
+              {ProductReview.author.isGuest && (
+                <Badge
+                  className="mb- ml-4 p-1"
+                  text={formatMessage({
+                    id: 'Guest',
+                    defaultMessage: 'Guest',
+                  })}
+                  color="red"
+                />
+              )}
             </a>
+          </Link>
+        </div>
+      </Table.Cell>
+
+      <Table.Cell className=" whitespace-nowrap   px-6">
+        <div className="flex">
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.rating || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'rating',
+                        defaultMessage: 'rating',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap   px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. created  || (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'created', defaultMessage: 'created' })}
-                  />
-                </>
-              )}
-            </a>
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.created || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'created',
+                        defaultMessage: 'created',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap   px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. title  || (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'title', defaultMessage: 'title' })}
-                  />
-                </>
-              )}
-            </a>
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.title || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'title',
+                        defaultMessage: 'title',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap   px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. upVote  || (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'upVote', defaultMessage: 'upVote' })}
-                  />
-                </>
-              )}
-            </a>
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.upVote || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'upVote',
+                        defaultMessage: 'upVote',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap   px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. downVote  || (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'downVote', defaultMessage: 'downVote' })}
-                  />
-                </>
-              )}
-            </a>
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.downVote || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'downVote',
+                        defaultMessage: 'downVote',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
       </Table.Cell>
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap   px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
-          <Link href={`#`}>
-          <a className="text-blue-600">
-              {ProductReview?. voteReport  || (
-                <>
-                  {ProductReview._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'voteReport', defaultMessage: 'voteReport' })}
-                  />
-                </>
-              )}
-            </a>
+          <div className="flex items-center pl-2 text-sm text-gray-900">
+            <Link href={`#`}>
+              <a className="text-blue-600">
+                {ProductReview?.voteReport || (
+                  <>
+                    {ProductReview._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'voteReport',
+                        defaultMessage: 'voteReport',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
             </Link>
           </div>
         </div>
