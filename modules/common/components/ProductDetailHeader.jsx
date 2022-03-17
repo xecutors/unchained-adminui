@@ -67,7 +67,7 @@ const ProductDetailHeader = () => {
         </div>
 
         <ul
-          className="origin-top-right hidden  z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="origin-top-right hidden z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
           tabIndex="-1"
           role="listbox"
           aria-labelledby="listbox-label"

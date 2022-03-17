@@ -45,53 +45,56 @@ const SupplyForm = ({ productId }) => {
   return (
     <FormHeader>
       <Form form={form}>
-        <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className="sm:flex w-full justify-between align-baseline">
-            <TextField
-              type="number"
-              name="weight"
-              id="weight"
-              label={formatMessage({
-                id: 'weight_gram',
-                defaultMessage: 'Weight (Gram)',
-              })}
-              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
-            />
-
-            <TextField
-              name="length"
-              id="length"
-              type="number"
-              label={formatMessage({
-                id: 'length_millimeter',
-                defaultMessage: 'Length (Millimeter)',
-              })}
-              className="text-sm font-medium text-gray-500 py-2 ml-1   mt-1 w-full"
-            />
-          </div>
-
-          <div className="sm:flex max-w-full  justify-between align-baseline">
-            <TextField
-              type="number"
-              name="width "
-              id="width "
-              label={formatMessage({
-                id: 'width',
-                defaultMessage: 'Width (Millimeter)',
-              })}
-              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-            />
-
-            <TextField
-              name="height"
-              type="number"
-              id="height"
-              label={formatMessage({
-                id: 'height',
-                defaultMessage: 'Height (Millimeter)',
-              })}
-              className="text-sm  font-medium text-gray-500 py-2 ml-1  mt-1 w-full"
-            />
+        <div className="px-4 py-5 bg-white sm:p-6 relative">
+          <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6 sm:col-span-3">
+              <TextField
+                type="number"
+                name="weight"
+                id="weight"
+                label={formatMessage({
+                  id: 'weight_gram',
+                  defaultMessage: 'Weight (Gram)',
+                })}
+                className="text-sm font-medium text-gray-500"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <TextField
+                name="length"
+                id="length"
+                type="number"
+                label={formatMessage({
+                  id: 'length_millimeter',
+                  defaultMessage: 'Length (Millimeter)',
+                })}
+                className="text-sm font-medium text-gray-500"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <TextField
+                type="number"
+                name="width "
+                id="width "
+                label={formatMessage({
+                  id: 'width',
+                  defaultMessage: 'Width (Millimeter)',
+                })}
+                className="text-sm  font-medium text-gray-500"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <TextField
+                name="height"
+                type="number"
+                id="height"
+                label={formatMessage({
+                  id: 'height',
+                  defaultMessage: 'Height (Millimeter)',
+                })}
+                className="text-sm  font-medium text-gray-500"
+              />
+            </div>
           </div>
         </div>
         <div className="space-y-6 sm:p-6 bg-gray-50 text-right">
