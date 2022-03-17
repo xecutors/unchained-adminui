@@ -26,7 +26,7 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
   };
 
   return (
-    <div className="w-full m-5">
+    <div className="w-full">
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}

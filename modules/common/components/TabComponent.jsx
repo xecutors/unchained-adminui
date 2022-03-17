@@ -37,7 +37,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           ))}
         </select>
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block mb-5">
         <div className="al border-b border-gray-200">
           <nav className="-mb-px flex space-x-6">
             {tabItems.map((option) => (

@@ -86,10 +86,10 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
 
   return (
     <Form form={form}>
-      <div className="mt-5 overflow-hidden border-b rounded-md">
+      <div className="overflow-hidden border-b rounded-md">
         <div className="lg:grid lg:grid-cols-3">
-          <div className="lg:col-span-1">
-            <div className="space-y-1">
+          <div className="lg:col-span-1 mb-5 lg:pr-5">
+            <div className="space-y-2">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {formatMessage({
                   id: 'profile',
@@ -104,13 +104,13 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 })}
               </p>
             </div>
-            <span className=" pt-4 flex-shrink-0 flex items-start space-x-4">
+            <span className="pt-4 flex-shrink-0 flex items-center space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}
                 type="button"
                 className={classNames(
                   isEdit
-                    ? 'text-red-600 hover:text-red-500  focus:ring-red-500'
+                    ? 'text-red-600 hover:text-red-500 focus:ring-red-500'
                     : 'text-white-600 focus:ring-purple-500',
                   'bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
                 )}
@@ -143,7 +143,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               )}
             </span>
           </div>
-          <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200  bg-white px-8">
+          <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200 bg-white px-8">
             <dl className="py-4 divide-y divide-gray-200">
               <div className="py-4 sm:py-2 sm:grid sm:grid-cols-1">
                 <dt className="text-sm font-medium text-gray-500">

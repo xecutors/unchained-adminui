@@ -32,7 +32,7 @@ const BreadCrumbs = ({ routeName }) => {
     };
   });
   return (
-    <nav className="ml-5 hidden sm:flex mb-5" aria-label="Breadcrumb">
+    <nav className="hidden sm:flex mb-5" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
         {result.map((data, i) => (
           <li key={data.path}>

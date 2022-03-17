@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 const PageHeader = ({ headerText, onEdit, onDelete }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="md:flex md:items-center md:justify-between mb-5">
+    <div className="md:flex md:items-center md:justify-between">
       <div className="flex-1 min-w-0">
-        <h2 className="ml-5 mt-6 text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+        <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
           {headerText}
         </h2>
       </div>

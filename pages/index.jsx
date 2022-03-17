@@ -10,16 +10,6 @@ const Home = ({ shopInfo }) => {
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-          <Image
-            src="/logo.svg"
-            loader={defaultNextImageLoader}
-            width={200}
-            height={100}
-            alt={formatMessage({
-              id: 'unchained_logo',
-              defaultMessage: 'Unchained Logo',
-            })}
-          />
           <h2 className="mt-10 text-center text-2xl text-gray-700">
             {formatMessage({
               id: 'system_information',

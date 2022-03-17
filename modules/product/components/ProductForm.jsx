@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="sm:max-w-full p-4">
+      <div className="sm:max-w-full p-6">
         <TextField
           name="title"
           id="name"

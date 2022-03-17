@@ -19,7 +19,7 @@ const AddProduct = () => {
     return true;
   };
   return (
-    <>
+    <div className="sm:max-w-2xl mx-auto">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -27,12 +27,12 @@ const AddProduct = () => {
           defaultMessage: 'New product',
         })}
       />
-      <div className="mt-6 sm:max-w-2xl">
+      <div className="mt-6">
         <FormHeader>
           <ProductForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
         </FormHeader>
       </div>
-    </>
+    </div>
   );
 };
 
