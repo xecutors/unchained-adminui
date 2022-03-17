@@ -1,22 +1,9 @@
-import {
-  EmojiSadIcon,
-  StarIcon,
-  ThumbDownIcon,
-  ThumbUpIcon,
-} from '@heroicons/react/solid';
-import Image from 'next/image';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
-import classNames from 'classnames';
-import DeleteButton from '../../common/components/DeleteButton';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
-import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import DangerMessage from '../../modal/components/DangerMessage';
-import useModal from '../../modal/hooks/useModal';
-import useRemoveProductReview from '../hooks/useRemoveProductReview';
-/* import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId'; */
-import Badge from '../../common/components/Badge';
+import { EmojiSadIcon } from '@heroicons/react/solid';
+import { useIntl } from 'react-intl';
+import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
 import NoData from '../../common/components/NoData';
+import ProductReviewsItem from './ProductReviewsItem';
+import ProductReviewsReport from './ProductReviewsReport';
 
 // TODO: remove mock data
 const productReviews = [
@@ -397,203 +384,14 @@ const ProductReviews = (/* {  productId } */) => {
   //   const { productReviews } = useProductReviewsByProductId({
   //     productId,
   //   });
-  const { removeProductReview } = useRemoveProductReview();
   const { formatMessage } = useIntl();
-  const { formatDateTime } = useFormatDateTime();
-  const { setModal } = useModal();
-
-  const onRemove = async (reviewId) => {
-    await setModal(
-      <DangerMessage
-        message={formatMessage({
-          id: 'delete_review_confirmation',
-          defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this review? ',
-        })}
-        onOkClick={async () => {
-          setModal('');
-          await removeProductReview({ reviewId });
-          toast.success(
-            formatMessage(
-              {
-                id: 'review_deleted',
-                defaultMessage: 'Review {reviewId} deleted successfully',
-              },
-              {
-                reviewId,
-              },
-            ),
-          );
-        }}
-        okText={formatMessage({
-          id: 'delete_review',
-          defaultMessage: 'Delete review',
-        })}
-      />,
-    );
-  };
-
-  const totalUpVote = productReviews.reduce(
-    (prev, next) => prev + next.upVote,
-    0,
-  );
-
-  const totalDownVote = productReviews.reduce(
-    (prev, next) => prev + next.downVote,
-    0,
-  );
-
-  const averageVote = (totalUpVote / (totalUpVote + totalDownVote)) * 100;
 
   return (
     <div className="mt-5 sm:max-w-full">
       {productReviews?.length ? (
         <div className="rounded bg-white shadow">
           <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
-            <div className="lg:col-span-4">
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-                {formatMessage({
-                  id: 'customer_reviews',
-                  defaultMessage: 'Customer Reviews',
-                })}
-              </h2>
-
-              <div className="mt-3 flex items-center">
-                <div>
-                  <div title={`${averageVote}`} className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={`
-                        ${
-                          averageVote >= rating * 20
-                            ? 'text-yellow-400'
-                            : 'text-gray-300'
-                        }
-                        h-5 w-5 flex-shrink-0
-                      `}
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                </div>
-                <div className="ml-2 text-sm text-gray-900">
-                  <FormattedMessage
-                    id="paginated-data"
-                    defaultMessage="<div> Based on <cta> {total} </cta> reviews</div>"
-                    values={{
-                      div: (chunks) => <div>{chunks}</div>,
-                      cta: (chunks) => <b className="font-bold">{chunks}</b>,
-                      total: productReviews.length,
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <h3 className="sr-only">
-                  {' '}
-                  {formatMessage({
-                    id: 'review_data',
-                    defaultMessage: 'Review data',
-                  })}{' '}
-                </h3>
-
-                <dl className="space-y-3">
-                  <div className="flex items-center text-sm">
-                    <dt className="flex flex-1 items-center">
-                      <p className="font-medium text-gray-900">{totalUpVote}</p>
-                      <div
-                        aria-hidden="true"
-                        className="ml-2 flex flex-1 items-center"
-                      >
-                        <ThumbUpIcon
-                          className={`
-                          ${
-                            totalUpVote > 0
-                              ? 'text-yellow-400'
-                              : 'text-gray-300'
-                          }
-                          h-5 w-5 flex-shrink-0`}
-                          aria-hidden="true"
-                        />
-
-                        <div className="relative ml-3 flex-1">
-                          <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
-                          {totalUpVote > 0 ? (
-                            <div
-                              className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
-                              style={{
-                                width: `calc(${totalUpVote} / ${
-                                  totalUpVote + totalDownVote
-                                } * 100%)`,
-                              }}
-                            />
-                          ) : null}
-                        </div>
-                      </div>
-                    </dt>
-                    <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
-                      {Math.round(
-                        (totalUpVote / (totalUpVote + totalDownVote)) * 100,
-                      )}
-                      %
-                    </dd>
-                  </div>
-
-                  <div className="flex items-center text-sm">
-                    <dt className="flex flex-1 items-center">
-                      <p className="font-medium text-gray-900">
-                        {totalDownVote}
-                        <span className="sr-only">
-                          {' '}
-                          {formatMessage({
-                            id: 'star_reviews',
-                            defaultMessage: 'Star reviews',
-                          })}{' '}
-                        </span>
-                      </p>
-                      <div
-                        aria-hidden="true"
-                        className="ml-2 flex flex-1 items-center"
-                      >
-                        <ThumbDownIcon
-                          className={`
-                          ${
-                            totalDownVote > 0
-                              ? 'text-yellow-400'
-                              : 'text-gray-300'
-                          }
-                          h-5 w-5 flex-shrink-0
-                        `}
-                          aria-hidden="true"
-                        />
-
-                        <div className="relative ml-3 flex-1">
-                          <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
-                          {totalDownVote > 0 ? (
-                            <div
-                              className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
-                              style={{
-                                width: `calc(${totalDownVote} / ${
-                                  totalUpVote + totalDownVote
-                                } * 100%)`,
-                              }}
-                            />
-                          ) : null}
-                        </div>
-                      </div>
-                    </dt>
-                    <dd className="ml-3 w-10 text-right text-sm tabular-nums text-gray-900">
-                      {Math.round(
-                        (totalDownVote / (totalUpVote + totalDownVote)) * 100,
-                      )}
-                      %
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
+            <ProductReviewsReport productReviews={productReviews} />
 
             <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
               <h3 className="sr-only">
@@ -606,61 +404,7 @@ const ProductReviews = (/* {  productId } */) => {
               <div className="flow-root">
                 <div className="-my-3">
                   {productReviews.map((review) => (
-                    <div
-                      key={review._id}
-                      className={classNames('mb-2 rounded-md py-4 px-2', {
-                        'border-2 border-solid border-red-200': review.deleted,
-                      })}
-                    >
-                      <div className="flex items-center">
-                        <Image
-                          loader={defaultNextImageLoader}
-                          src={review?.author?.avatar?.url}
-                          alt={review?.author?.username}
-                          width={48}
-                          height={48}
-                          className="h-12 w-12 rounded-full"
-                        />
-                        <div className="ml-4 mr-auto">
-                          <h4 className="text-sm font-bold text-gray-900">
-                            {review?.author?.username}
-                          </h4>
-                          <p className="text-sm font-normal text-gray-400">
-                            <time dateTime={review.datetime}>
-                              {formatDateTime(review.updated || review.created)}
-                            </time>
-                          </p>
-                        </div>
-                        <div className="flex items-center">
-                          <ThumbUpIcon className="h-7 w-7 text-gray-400" />
-                          <span className="mx-2">{review.upVote}</span>
-                          <ThumbDownIcon className="h-7 w-7 text-gray-400" />
-                          <span className="mx-2">{review.downVote}</span>
-                        </div>
-                        {!review.deleted ? (
-                          <DeleteButton
-                            onClick={() => onRemove(review._id)}
-                            className="ml-auto hover:text-red-800"
-                          />
-                        ) : (
-                          <Badge
-                            text={formatMessage({
-                              id: 'deleted_text',
-                              defaultMessage: 'Deleted',
-                            })}
-                            color="red"
-                            className="ml-auto p-1"
-                          />
-                        )}
-                      </div>
-
-                      <div className="mt-4 space-y-2 text-base italic text-gray-600">
-                        <h3 className="text-sm font-medium text-gray-900">
-                          {review.title}
-                        </h3>
-                        <p>{review.review}</p>
-                      </div>
-                    </div>
+                    <ProductReviewsItem key={review._id} review={review} />
                   ))}
                 </div>
               </div>

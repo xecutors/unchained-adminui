@@ -36,7 +36,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'media')
     return (
       <LocaleWrapper>
-        <MediaForm />
+        <MediaForm productId={id} />
       </LocaleWrapper>
     );
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;

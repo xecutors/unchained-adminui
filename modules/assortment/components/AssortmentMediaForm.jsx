@@ -1,16 +1,21 @@
 import { useIntl } from 'react-intl';
+import MediaList from '../../product/components/MediaList';
+import useAssortmentMedia from '../hooks/useAssortmentMedia';
 
-const AssortmentMediaForm = () => {
+const AssortmentMediaForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
+  const { assortmentMedia } = useAssortmentMedia({ assortmentId });
+
   return (
-    <div className="bg-white mt-5 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 shadow sm:rounded-t">
-      <div className="max-w-3xl mx-auto">
+    <div className="mx-auto mt-5 max-w-7xl bg-white py-12 px-4 shadow sm:rounded-t sm:px-6 lg:px-8">
+      <MediaList medias={assortmentMedia} />
+      <div className="mx-auto max-w-3xl">
         <div>
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
           <div className="my-4 flex items-center">
-            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
               <svg
                 className="h-full w-full text-gray-300"
                 fill="currentColor"
@@ -21,7 +26,7 @@ const AssortmentMediaForm = () => {
             </span>
             <button
               type="button"
-              className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               {formatMessage({
                 id: 'upload_avatar',
@@ -32,7 +37,7 @@ const AssortmentMediaForm = () => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700" />
-          <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
@@ -51,7 +56,7 @@ const AssortmentMediaForm = () => {
               <div className="flex text-sm text-gray-600">
                 <label
                   htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                  className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
                   <span>
                     {formatMessage({
