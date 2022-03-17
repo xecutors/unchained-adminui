@@ -52,7 +52,7 @@ const ProductReviewsItem = ({ review }) => {
   return (
     <div
       key={review._id}
-      className={classNames('mb-2 rounded-md py-4 px-2', {
+      className={classNames('mb-2 rounded-md pb-3 pt-1 px-3', {
         'border-2 border-solid border-red-200': review.deleted,
       })}
     >
