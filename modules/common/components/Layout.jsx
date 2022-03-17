@@ -276,13 +276,8 @@ const Layout = ({
           </div>
         </div>
       </div>
-<<<<<<< HEAD
       <div className="md:pl-64 2xl:pl-96 flex flex-col flex-1">
         <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white">
-=======
-      <div className="flex flex-1 flex-col md:pl-64">
-        <div className="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
->>>>>>> padd fix product list
           <button
             type="button"
             onClick={() => setHideNav(!hideNav)}

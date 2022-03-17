@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useRouter } from 'next/router';
 
+import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -31,7 +31,7 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="py-5 flex align-center justify-between w-full">
+      <div className=" justify-between w-full">
         <PageHeader
           headerText={formatMessage({
             id: 'products_list_header',
