@@ -50,18 +50,18 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   return (
     <FilterWrapper
-      className="bg-white shadow my-2 p-6 "
+      className="bg-white shadow my-2 pt-2"
       onApplyFilter={onApplyFilter}
     >
-      <div className="lg:flex mb-2 sm:mb-0 justify-between">
+      <div className="p-4 lg:flex mb-2 sm:mb-0 justify-between">
         <div className="sm:mr-6">
-          <div className=" flex space-x-2">
-            <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+          <div className="flexspace-x-2">
+            <div className="text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
               {formatMessage({
                 id: 'date_range',
                 defaultMessage: 'Date range',
               })}
-            </p>
+            </div>
           </div>
           <div className="mt-5 max:mb-3 ">
             <div className="flex justify-center items-center">
@@ -80,7 +80,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 showYearDropdown
                 dropdownMode="select"
                 selected={dateRange.start}
-                className=" sm:ml-1 hover:border-indigo-500  text-sm sm:mt-0 w-full border-gray-200 rounded-md py-1"
+                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -98,7 +98,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 showYearDropdown
                 dropdownMode="select"
                 selected={dateRange.end}
-                className=" sm:ml-1 hover:border-indigo-500  text-sm sm:mt-0 w-full border-gray-200 rounded-md py-1"
+                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               />
             </div>
           </div>
@@ -112,13 +112,13 @@ const WorkFilter = ({ workTypes = [] }) => {
               viewBox="0 0 24 24"
               fill="none"
             />
-            <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+            <p className="text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </p>
           </div>
           <div>
             <>
-              <div className="py-1  ">
+              <div className="py-1">
                 <MultipleSelect
                   className="text-sm text-gray-900  "
                   label={formatMessage({
@@ -139,15 +139,15 @@ const WorkFilter = ({ workTypes = [] }) => {
       </div>
       <hr className=" bg-gray-200  w-full hidden sm:block  my-4" />
 
-      <div>
-        <p className=" mt-0 lg:text-2xl text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
+      <div className="p-4 pt-0">
+        <p className="mt-0 text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5 mt-3 m-1 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5 mt-3 m-1">
           {WORK_STATUSES.map((status) => (
-            <div className="flex justify-start m-2" key={status}>
+            <div className="flex justify-start items-center mr-2" key={status}>
               <input
-                className="w-4 h-4 mr-2 "
+                className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
                 type="checkbox"
                 id={status}
                 name={status}
@@ -155,12 +155,10 @@ const WorkFilter = ({ workTypes = [] }) => {
                 checked={selectedStatuses?.[status]}
                 onChange={statusChangeHandler}
               />
-              <div className="mr-2">
-                <div className="flex">
-                  <label className=" text-sm text-gray-600" htmlFor={status}>
-                    {status}
-                  </label>
-                </div>
+              <div className="ml-2">
+                <label className="text-sm text-gray-600" htmlFor={status}>
+                  {status}
+                </label>
               </div>
             </div>
           ))}
