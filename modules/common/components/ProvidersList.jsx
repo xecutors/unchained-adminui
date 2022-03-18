@@ -55,11 +55,7 @@ const ProviderList = ({
             <Link href={`${providerPath}/new`}>
               <a
                 type="button"
-<<<<<<< HEAD
-                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-=======
                 className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
->>>>>>> Fix provider
               >
                 <svg
                   className="h-5 w-5"
