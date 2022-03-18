@@ -277,7 +277,7 @@
     "defaultMessage": "Create Filter"
   },
   "create_new_account": {
-    "defaultMessage": "Create new Account?"
+    "defaultMessage": "Create new account?"
   },
   "create_provider": {
     "defaultMessage": "Create provider"
@@ -1207,7 +1207,7 @@
     "defaultMessage": "Sign up"
   },
   "sign_up_header": {
-    "defaultMessage": "Create new Account"
+    "defaultMessage": "Create new account"
   },
   "sku": {
     "defaultMessage": "SKU"

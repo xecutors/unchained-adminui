@@ -75,144 +75,126 @@ export default function LogInForm() {
   });
 
   return (
-    <>
-      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8 text-center">
-          <div>
-            <Image
-              className="mx-auto"
-              src="/logo.svg"
-              loader={defaultNextImageLoader}
-              width={160}
-              height={100}
-              alt={formatMessage({
-                id: 'unchained_logo',
-                defaultMessage: 'Unchained Logo',
-              })}
-            />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              {formatMessage({
-                id: 'login_header',
-                defaultMessage: 'Log in to your account',
-              })}
-            </h2>
-          </div>
-          <Form
-            form={form}
-            className="mt-8 space-y-6 bg-white pt-3 pb-8 px-4 shadow sm:rounded-lg sm:px-10"
-          >
-            <input type="hidden" name="remember" value="true" />
-            <div className="rounded-md shadow-sm space-y-6">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 text-left"
-                >
-                  Email address
-                </label>
-                <EmailField
-                  id="email-address"
-                  name="email"
-                  className="mt-1"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  label={formatMessage({
-                    id: 'email',
-                    defaultMessage: 'Email',
-                  })}
-                  hideLabel
-                  placeholder="samuel@example.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 text-left"
-                >
-                  Password
-                </label>
-                <PasswordField
-                  id="password"
-                  name="password"
-                  autoComplete="current-password"
-                  required
-                  label={formatMessage({
-                    id: 'password',
-                    defaultMessage: 'Password',
-                  })}
-                  hideLabel
-                  placeholder="password"
-                />
-              </div>
-            </div>
-
-            <div className="my-2 flex flex-wrap items-center justify-between">
-              <div className="flex items-center my-1 sm:my-0">
-                <CheckboxField
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  label={formatMessage({
-                    id: 'remember_password',
-                    defaultMessage: ' Remember me',
-                  })}
-                />
-              </div>
-
-              <div className="text-sm my-1 sm:my-0">
-                <Link href="/account/forgot-password">
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                    {formatMessage({
-                      id: 'forget_password',
-                      defaultMessage: 'Forgot your password?',
-                    })}
-                  </a>
-                </Link>
-              </div>
-            </div>
-            <FormErrors />
-            <div className="my-2">
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <svg
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-                {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
-              </button>
-            </div>
-            <div className=" text-sm">
-              {formatMessage({
-                id: 'create_new_account',
-                defaultMessage: 'Create new Account?',
-              })}
-              <a
-                href="/sign-up"
-                className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                {intl.formatMessage({
-                  id: 'sign_up',
-                  defaultMessage: 'Sign up',
-                })}
-              </a>
-            </div>
-          </Form>
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 text-center">
+        <div>
+          <Image
+            className="mx-auto"
+            src="/logo.svg"
+            loader={defaultNextImageLoader}
+            width={160}
+            height={100}
+            alt={formatMessage({
+              id: 'unchained_logo',
+              defaultMessage: 'Unchained Logo',
+            })}
+          />
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            {formatMessage({
+              id: 'login_header',
+              defaultMessage: 'Log in to your account',
+            })}
+          </h2>
         </div>
+        <Form
+          form={form}
+          className="mt-8 space-y-6 bg-white pt-3 pb-8 px-4 shadow sm:rounded-lg sm:px-10"
+        >
+          <input type="hidden" name="remember" value="true" />
+          <div className="rounded-md shadow-sm space-y-6">
+            <div>
+              <EmailField
+                id="email-address"
+                name="email"
+                className="mt-1"
+                type="email"
+                autoComplete="email"
+                required
+                label={formatMessage({
+                  id: 'email',
+                  defaultMessage: 'Email',
+                })}
+              />
+            </div>
+            <div>
+              <PasswordField
+                id="password"
+                name="password"
+                autoComplete="current-password"
+                required
+                label={formatMessage({
+                  id: 'password',
+                  defaultMessage: 'Password',
+                })}
+              />
+            </div>
+          </div>
+
+          <div className="my-2 flex flex-wrap items-center justify-between">
+            <div className="flex items-center my-1 sm:my-0">
+              <CheckboxField
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                label={formatMessage({
+                  id: 'remember_password',
+                  defaultMessage: ' Remember me',
+                })}
+              />
+            </div>
+
+            <div className="text-sm my-1 sm:my-0">
+              <Link href="/account/forgot-password">
+                <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                  {formatMessage({
+                    id: 'forget_password',
+                    defaultMessage: 'Forgot your password?',
+                  })}
+                </a>
+              </Link>
+            </div>
+          </div>
+          <FormErrors />
+          <div className="my-2">
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                <svg
+                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
+            </button>
+          </div>
+          <div className="text-sm text-gray-400">
+            {formatMessage({
+              id: 'create_new_account',
+              defaultMessage: 'Create new account?',
+            })}
+            <a
+              href="/sign-up"
+              className="ml-2 font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              {intl.formatMessage({
+                id: 'sign_up',
+                defaultMessage: 'Sign up',
+              })}
+            </a>
+          </div>
+        </Form>
       </div>
-    </>
+    </div>
   );
 }

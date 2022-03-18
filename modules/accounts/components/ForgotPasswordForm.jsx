@@ -16,8 +16,18 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
     },
   });
   return (
-    <Form form={form}>
+    <Form
+      form={form}
+      className="mt-8 space-y-6 bg-white pt-3 pb-8 px-4 shadow sm:rounded-lg sm:px-10"
+    >
       <div>
+        <p className="py-4">
+          {formatMessage({
+            id: 'forgot_password_header_description',
+            defaultMessage:
+              "Enter your email address below and we'll send you a link to reset your password!",
+          })}
+        </p>
         <EmailField
           name="email"
           id="email-address"

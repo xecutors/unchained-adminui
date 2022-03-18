@@ -32,10 +32,13 @@ const FieldWrapper = ({
       <label
         aria-label={label}
         htmlFor={name}
-        className={classnames('', {
-          'text-red-600': !!error,
-          'sr-only': hideLabel,
-        })}
+        className={classnames(
+          'block text-sm font-medium text-gray-700 text-left',
+          {
+            'text-red-600': !!error,
+            'sr-only': hideLabel,
+          },
+        )}
       >
         {error || label}
       </label>

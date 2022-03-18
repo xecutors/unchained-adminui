@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
+import defaultNextImageLoader from '../../modules/common/utils/defaultNextImageLoader';
 
 const ForgotPassword = () => {
   const { forgotPassword } = useForgotPassword();
@@ -11,27 +13,28 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-gray-100 antialiased">
-      <div className="container sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
-        <div className="text-center m-6">
-          <h1 className="text-3xl font-semibold text-gray-700">
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 text-center">
+        <div>
+          <Image
+            className="mx-auto"
+            src="/logo.svg"
+            loader={defaultNextImageLoader}
+            width={160}
+            height={100}
+            alt={formatMessage({
+              id: 'unchained_logo',
+              defaultMessage: 'Unchained Logo',
+            })}
+          />
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             {formatMessage({
               id: 'forgot_password',
               defaultMessage: 'Forgot your password?',
             })}
-          </h1>
-          <p className="text-gray-500">
-            {formatMessage({
-              id: 'forgot_password_header_description',
-              defaultMessage:
-                "Enter your email address below and we'll send you a link to reset your password!",
-            })}
-          </p>
+          </h2>
         </div>
-
-        <div className="p-2">
-          <ForgotPasswordForm onSubmit={onSubmit} />
-        </div>
+        <ForgotPasswordForm onSubmit={onSubmit} />
       </div>
     </div>
   );

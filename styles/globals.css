@@ -4,9 +4,9 @@
 
 .hide-show {
   position: absolute;
-  top: -50%;
+  top: 0;
   display: block;
-  margin-top: 1.875rem;
+  margin-top: 2.125rem;
   right: .75rem;
   outline: none;
   z-index: 9999;
