@@ -46,7 +46,7 @@ const Table = ({ className, ...props }) => {
       {...props}
     >
       {rowsWithSort.header.length ? (
-        <thead className="bg-white">{rowsWithSort.header}</thead>
+        <thead className="bg-gray-50">{rowsWithSort.header}</thead>
       ) : (
         <NoData
           message={formatMessage({

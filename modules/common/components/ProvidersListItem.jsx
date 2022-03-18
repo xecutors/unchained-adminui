@@ -41,7 +41,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
       </Table.Cell>
 
       <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="flex">
+        <div className="flex justify-around">
           <Link href={`${providerPath}/${provider?._id}`}>
             <a
               type="button"

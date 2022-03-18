@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="sm:max-w-full p-6">
+      <div className="sm:max-w-full px-5 py-2">
         <TextField
           name="title"
           id="name"
@@ -49,7 +49,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
           })}
           required
           autoComplete="on"
-          className="text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="text-sm mt-2 block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         <div className="flex items-center my-5">

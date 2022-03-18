@@ -53,7 +53,7 @@ const CountryForm = ({
           })}
           required
           autoComplete="on"
-          className="text-sm block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mt-2 text-sm block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
         />
 
         {isEdit && (

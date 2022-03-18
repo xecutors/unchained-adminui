@@ -56,35 +56,31 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               square
             />
           </div>
-          <div className="flex flex-col mt-6">
-            <div className="flex-col sm:flex  justify-between sm:items-center ">
-              <div className="flex justify-center  py-4 sm:py-5">
-                <dt className="inline-block text-sm font-medium text-gray-400">
+          <div className="flex flex-col">
+            <div className="flex-col sm:flex justify-between sm:items-center">
+              <div className="grid grid-cols-2 grid-rows-2 mt-6">
+                <dt className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
                 </dt>
-                <dd className="inline-block ml-4 text-lg font-bold border leading-4 rounded-lg shadow-lg p-2">
-                  {provider?.type}
-                </dd>
-              </div>
-              <div className="grid grid-cols-2 grid-rows-2 ">
-                <dd className="text-sm font-normal text-gray-400 justify-self-end">
+                <dd className="text-base font-medium ml-2">{provider?.type}</dd>
+                <dt className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({
                     id: 'created_colon',
                     defaultMessage: 'Created:',
                   })}
-                </dd>
-                <dt className="text-base font-medium ml-2">
-                  {formatDateTime(provider?.created, dateFormatOption)}
                 </dt>
-                <dd className="text-sm font-normal text-gray-400 justify-self-end">
+                <dd className="text-base font-medium ml-2">
+                  {formatDateTime(provider?.created, dateFormatOption)}
+                </dd>
+                <dt className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({
                     id: 'last_updated',
                     defaultMessage: 'Last Updated:',
                   })}
-                </dd>
-                <dt className="text-base font-medium ml-2">
-                  {formatDateTime(provider?.updated, dateFormatOption)}
                 </dt>
+                <dd className="text-base font-medium ml-2">
+                  {formatDateTime(provider?.updated, dateFormatOption)}
+                </dd>
               </div>
             </div>
 
