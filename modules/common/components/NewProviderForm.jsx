@@ -31,8 +31,8 @@ const NewProviderForm = ({
 
   return (
     <Form form={form}>
-      <div className="mt-6 sm:max-w-full  shadow sm:rounded-lg">
-        <div className="bg-white pt-4 pb-6 px-4 sm:px-15">
+      <div className="mt-6 shadow sm:max-w-full sm:rounded-lg">
+        <div className="sm:px-15 bg-white px-4 pt-4 pb-6">
           <SelectField
             onChange={(e) => onProviderChange(e.target.value)}
             name="type"
@@ -54,7 +54,7 @@ const NewProviderForm = ({
             className="mt-2"
           />
         </div>
-        <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="sm:px-15 space-y-6 bg-gray-50 p-6 px-5 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'create_provider',

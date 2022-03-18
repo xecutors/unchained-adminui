@@ -15,10 +15,10 @@ const ProviderList = ({
 
   return (
     <>
-      <div className="overflow-hidden px-2 py-3">
-        <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-          <div className="ml-2 mt-2 w-100">
-            <div className="relative flex items-start my-2">
+      <div className="overflow-hidden px-4 py-2 sm:px-6">
+        <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
+          <div className="w-100 ml-2 mt-2">
+            <div className="relative my-2 flex items-start">
               <select
                 onChange={(e) => onProviderFilterChange(e.target.value || null)}
                 defaultValue={null}
@@ -30,7 +30,7 @@ const ProviderList = ({
                 })}
                 input-hint="Filter provider by type"
                 autoComplete="off"
-                className="shadow-sm w-50 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                className="w-50 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               >
                 <option value="">
                   {formatMessage({
@@ -55,7 +55,7 @@ const ProviderList = ({
             <Link href={`${providerPath}/new`}>
               <a
                 type="button"
-                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <svg
                   className="h-5 w-5"
@@ -80,25 +80,25 @@ const ProviderList = ({
       <Table className="min-w-full ">
         {providers?.map((provider) => (
           <Table.Row key={provider._id} className="bg-white " header>
-            <Table.Cell className="py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <Table.Cell className="py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
               {formatMessage({
                 id: 'interface',
                 defaultMessage: 'Interface',
               })}
             </Table.Cell>
 
-            <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </Table.Cell>
 
-            <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
               {formatMessage({
                 id: 'problems',
                 defaultMessage: 'Problems',
               })}
             </Table.Cell>
 
-            <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
               &nbsp;
             </Table.Cell>
           </Table.Row>

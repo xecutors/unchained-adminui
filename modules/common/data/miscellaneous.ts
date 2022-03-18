@@ -523,3 +523,12 @@ export const UnrestrictedPages = [
   '/api/graphql',
   '/404',
 ];
+
+export const PROVIDER_TYPE_CLASSES = {
+  PHYSICAL: 'green',
+  CARD: 'blue',
+  INVOICE: 'lime',
+  GENERIC: 'purple',
+  PICKUP: 'yellow',
+  SHIPPING: 'blue',
+};
