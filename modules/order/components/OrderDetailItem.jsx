@@ -7,7 +7,6 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-  const src = `${item.originalProduct.media[0].file.url}`;
 
   return (
     <>
@@ -24,22 +23,22 @@ const OrderDetailItem = ({ item }) => {
             <div className="space-y-8">
               <div className="rounded-lg border border-gray-200 bg-white shadow-sm hover:border hover:border-solid hover:border-blue-600">
                 <div className="p-3">
-                  <div className="flex flex-wrap">
-                    <div className="w-auto flex-shrink-0 overflow-hidden rounded-lg sm:h-10 sm:w-10">
+                  <div className="flex flex-wrap gap-x-4 justify-center center">
+                    <div className="mx-auto   flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                       <Image
                         loader={defaultNextImageLoader}
-                        src={src}
+                        src={`${item.originalProduct.media[0].file.url}`}
                         alt={
                           item?.originalProduct?.texts?.title ||
                           item?.originalProduct?.texts?.subtitle
                         }
                         className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                        width={160}
-                        height={160}
+                        width={200}
+                        height={200}
                       />
                     </div>
 
-                    <div className="mt-6 sm:mt-0 sm:ml-6 sm:flex-auto">
+                    <div className="mx-auto flex flex-col justify-center sm:mt-0 sm:ml-6 sm:flex-auto">
                       <h3
                         className="text-base font-medium text-gray-900"
                         // eslint-disable-next-line react/no-danger
@@ -49,16 +48,18 @@ const OrderDetailItem = ({ item }) => {
                             item?.originalProduct?.texts?.subtitle,
                         }}
                       />
-                      <p className="mt-2 text-sm font-medium text-gray-900">
-                        {formatPrice(item?.unitPrice)}
-                      </p>
-                      <p className="mt-2 text-sm font-medium text-gray-900">
-                        {formatMessage({
-                          id: 'item_title',
-                          defaultMessage: 'QTY',
-                        })}
-                        <span className="pl-1">{item?.quantity}</span>
-                      </p>
+                      <div className="flex items-center">
+                        <p className="mt-2 text-sm font-medium text-gray-900">
+                          {item?.unitPrice && formatPrice(item?.unitPrice)}
+                        </p>
+                        <p className="mt-2 ml-2 text-sm font-medium text-gray-900">
+                          {formatMessage({
+                            id: 'item_quantity',
+                            defaultMessage: 'Quantity:',
+                          })}
+                          <span className="ml-2 pl-1">{item?.quantity}</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
