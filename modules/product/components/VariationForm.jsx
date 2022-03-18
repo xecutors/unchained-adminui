@@ -110,7 +110,7 @@ const VariationForm = ({ products }) => {
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
-                {formatMessage({ id: '0ptions', defaultMessage: 'Options' })}
+                {formatMessage({ id: 'options', defaultMessage: 'Options' })}
               </th>
             </tr>
           </thead>

@@ -1,7 +1,4 @@
 {
-  "0ptions": {
-    "defaultMessage": "Options"
-  },
   "EW1jgi": {
     "defaultMessage": "default_input_name",
     "description": "DO not translate Skip this as it's the default given label when a component is not provided explicit label"
@@ -866,6 +863,9 @@
   },
   "new_products": {
     "defaultMessage": "New Products"
+  },
+  "new_user_header": {
+    "defaultMessage": "New user"
   },
   "new_warehousing_provider_header": {
     "defaultMessage": "New warehousing provider"

@@ -1,8 +1,12 @@
 import { useRouter } from 'next/router';
+import { useIntl } from 'react-intl';
 import useCreateUser from '../../modules/accounts/hooks/useCreateUser';
 import CreateUserForm from '../../modules/accounts/components/CreateUserForm';
+import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import PageHeader from '../../modules/common/components/PageHeader';
 
 const CreateUser = () => {
+  const { formatMessage } = useIntl();
   const { createUser } = useCreateUser();
   const router = useRouter();
   const onCreateUser = async (userData) => {
@@ -58,7 +62,21 @@ const CreateUser = () => {
     router.push('/users');
   };
   return (
-    <CreateUserForm onSubmit={onCreateUser} onSubmitSuccess={onSubmitSuccess} />
+    <>
+      <BreadCrumbs />
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_user_header',
+          defaultMessage: 'New user',
+        })}
+      />
+      <div className="mt-6">
+        <CreateUserForm
+          onSubmit={onCreateUser}
+          onSubmitSuccess={onSubmitSuccess}
+        />
+      </div>
+    </>
   );
 };
 
