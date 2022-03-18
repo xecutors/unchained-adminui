@@ -10,7 +10,8 @@ const QuotationDetailHeader = ({ quotation }) => {
 
   return (
     <section>
-      <DetailHeader user={quotation.user} contact={quotation.contact}>
+      <DetailHeader user={quotation.user} contact={quotation.contact} />
+      <div className="mt-2 flex border-b border-gray-200 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-gray-500 sm:block">
             {formatMessage({
@@ -62,7 +63,7 @@ const QuotationDetailHeader = ({ quotation }) => {
             )}
           </span>
         </div>
-      </DetailHeader>
+      </div>
     </section>
   );
 };

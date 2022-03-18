@@ -23,8 +23,8 @@ const OrderDetailItem = ({ item }) => {
             <div className="space-y-8">
               <div className="rounded-lg border border-gray-200 bg-white shadow-sm hover:border hover:border-solid hover:border-blue-600">
                 <div className="p-3">
-                  <div className="flex flex-wrap gap-x-4">
-                    <div className="mx-auto w-auto flex-shrink-0 overflow-hidden rounded-lg sm:mx-0">
+                  <div className="flex flex-wrap gap-x-4 justify-center center">
+                    <div className="mx-auto   flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                       <Image
                         loader={defaultNextImageLoader}
                         src={`${item.originalProduct.media[0].file.url}`}
@@ -33,8 +33,8 @@ const OrderDetailItem = ({ item }) => {
                           item?.originalProduct?.texts?.subtitle
                         }
                         className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                        width={160}
-                        height={160}
+                        width={200}
+                        height={200}
                       />
                     </div>
 

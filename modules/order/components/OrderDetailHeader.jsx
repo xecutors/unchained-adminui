@@ -9,7 +9,8 @@ const OrderDetailHeader = ({ order }) => {
 
   return (
     <section>
-      <DetailHeader user={order?.user} contact={order?.contact}>
+      <DetailHeader user={order?.user} contact={order?.contact} />
+      <div className="mt-2 flex border-b border-gray-200 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-gray-500 sm:block">
             {formatMessage({
@@ -60,7 +61,7 @@ const OrderDetailHeader = ({ order }) => {
             )}
           </span>
         </div>
-      </DetailHeader>
+      </div>
     </section>
   );
 };
