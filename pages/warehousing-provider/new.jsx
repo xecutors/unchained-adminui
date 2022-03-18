@@ -32,28 +32,30 @@ const NewPaymentProvider = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'new_warehousing_provider_header',
-          defaultMessage: 'New warehousing provider',
-        })}
-      />
-      <div className="mt-6  sm:max-w-2xl">
-        <NewProviderForm
-          providerInterfaces={convertArrayOfObjectToObject(
-            warehousingInterfaces,
-            'label',
-            'value',
-          )}
-          providerTypes={convertArrayOfObjectToObject(
-            warehousingProviderType,
-            'label',
-            'value',
-          )}
-          onSubmit={onSubmit}
-          onSubmitSuccess={onSubmitSuccess}
-          onProviderChange={(current) => setSelectedType(current)}
+      <div className="sm:max-w-2xl mx-auto">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'new_warehousing_provider_header',
+            defaultMessage: 'New warehousing provider',
+          })}
         />
+        <div className="mt-6">
+          <NewProviderForm
+            providerInterfaces={convertArrayOfObjectToObject(
+              warehousingInterfaces,
+              'label',
+              'value',
+            )}
+            providerTypes={convertArrayOfObjectToObject(
+              warehousingProviderType,
+              'label',
+              'value',
+            )}
+            onSubmit={onSubmit}
+            onSubmitSuccess={onSubmitSuccess}
+            onProviderChange={(current) => setSelectedType(current)}
+          />
+        </div>
       </div>
     </>
   );

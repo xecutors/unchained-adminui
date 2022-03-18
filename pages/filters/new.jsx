@@ -29,16 +29,18 @@ const AddFilter = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'new_filter_header',
-          defaultMessage: 'New filter',
-        })}
-      />
-      <div className="mt-6  sm:max-w-2xl">
-        <FormWrapper>
-          <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-        </FormWrapper>
+      <div className="sm:max-w-2xl mx-auto">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'new_filter_header',
+            defaultMessage: 'New filter',
+          })}
+        />
+        <div className="mt-6">
+          <FormWrapper>
+            <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+          </FormWrapper>
+        </div>
       </div>
     </>
   );
