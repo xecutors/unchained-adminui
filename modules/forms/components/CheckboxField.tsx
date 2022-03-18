@@ -25,7 +25,7 @@ const CheckboxField = (props) => {
         name={field.name}
         onChange={field.onChange}
         type="checkbox"
-        className="form-check-input"
+        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
       />
       <label
         htmlFor={field.name}

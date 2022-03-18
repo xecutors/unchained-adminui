@@ -80,10 +80,10 @@ export default function LogInForm() {
         <div className="max-w-md w-full space-y-8 text-center">
           <div>
             <Image
-              className="mx-auto h-12 w-auto"
+              className="mx-auto"
               src="/logo.svg"
               loader={defaultNextImageLoader}
-              width={100}
+              width={160}
               height={100}
               alt={formatMessage({
                 id: 'unchained_logo',
@@ -99,14 +99,21 @@ export default function LogInForm() {
           </div>
           <Form
             form={form}
-            className="mt-8 space-y-6 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10"
+            className="mt-8 space-y-6 bg-white pt-3 pb-8 px-4 shadow sm:rounded-lg sm:px-10"
           >
             <input type="hidden" name="remember" value="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="rounded-md shadow-sm space-y-6">
               <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 text-left"
+                >
+                  Email address
+                </label>
                 <EmailField
                   id="email-address"
                   name="email"
+                  className="mt-1"
                   type="email"
                   autoComplete="email"
                   required
@@ -119,6 +126,12 @@ export default function LogInForm() {
                 />
               </div>
               <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 text-left"
+                >
+                  Password
+                </label>
                 <PasswordField
                   id="password"
                   name="password"
@@ -134,8 +147,8 @@ export default function LogInForm() {
               </div>
             </div>
 
-            <div className="m-2 flex items-center justify-between">
-              <div className="flex items-center">
+            <div className="my-2 flex flex-wrap items-center justify-between">
+              <div className="flex items-center my-1 sm:my-0">
                 <CheckboxField
                   id="remember-me"
                   name="remember-me"
@@ -147,7 +160,7 @@ export default function LogInForm() {
                 />
               </div>
 
-              <div className="text-sm">
+              <div className="text-sm my-1 sm:my-0">
                 <Link href="/account/forgot-password">
                   <a className="font-medium text-indigo-600 hover:text-indigo-500">
                     {formatMessage({
@@ -159,7 +172,7 @@ export default function LogInForm() {
               </div>
             </div>
             <FormErrors />
-            <div className="m-2">
+            <div className="my-2">
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

@@ -4,8 +4,10 @@
 
 .hide-show {
   position: absolute;
-  bottom: .4rem;
-  right: .5em;
+  top: -50%;
+  display: block;
+  margin-top: 1.875rem;
+  right: .75rem;
   outline: none;
   z-index: 9999;
 }
