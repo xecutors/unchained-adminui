@@ -1,31 +1,40 @@
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
+
 import Badge from './Badge';
 import Table from './Table';
-
-const getInterfaceLabel = ({ label, version }) => {
-  return `${label} ${version}`;
-};
-
-const PROVIDER_TYPE_CLASSES = {
-  PHYSICAL: 'green',
-  CARD: 'blue',
-  INVOICE: 'lime',
-  GENERIC: 'purple',
-  PICKUP: 'yellow',
-  SHIPPING: 'blue',
-};
+import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
+import { getInterfaceLabel } from '../utils/utils';
 
 const ProviderListItem = ({ provider, onRemove, providerPath }) => {
+  const { formatMessage } = useIntl();
+
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <div className="text-sm text-gray-900">
           {getInterfaceLabel(provider?.interface)}
+          <Badge
+            text={
+              provider?.isActive
+                ? formatMessage({
+                    id: 'active',
+                    defaultMessage: 'Active',
+                  })
+                : formatMessage({
+                    id: 'not_active',
+                    defaultMessage: 'Not Active',
+                  })
+            }
+            color={provider?.isActive ? 'green' : 'red'}
+            className="ml-3"
+            square
+          />
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <span className="inline-flex rounded-full px-2 text-xs font-semibold leading-5 ">
           <Badge
             text={provider?.type}
             color={PROVIDER_TYPE_CLASSES[provider?.type]}
@@ -34,14 +43,14 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
         </span>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <div className="text-sm text-red-900">
           {provider?.configurationError}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="flex justify-around">
+      <Table.Cell className="whitespace-nowrap px-6 ">
+        <div className="flex">
           <Link href={`${providerPath}/${provider?._id}`}>
             <a
               type="button"
@@ -66,7 +75,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
             </a>
           </Link>
           <a
-            className="ml-1 text-red-600 hover:text-red-900 cursor-pointer"
+            className="ml-1 cursor-pointer text-red-600 hover:text-red-900"
             onClick={async () => {
               await onRemove(provider?._id);
             }}
