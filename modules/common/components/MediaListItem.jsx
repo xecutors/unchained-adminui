@@ -37,19 +37,19 @@ const MediaListItem = ({
   }, [mediaText]);
 
   return (
-    <li className="py-6 flex space-x-6" key={media._id}>
+    <li className="md:col-5 flex space-x-6 py-6 md:col-start-1" key={media._id}>
       <a onClick={() => displayImageInModal(media?.file?.url)}>
         <img
           src={media?.file?.url}
           alt={mediaText?.title || mediaText?.subtitle}
-          className="flex-none w-36 h-36 object-center object-cover bg-gray-100 rounded-md"
+          className="h-36 w-36 flex-none rounded-md bg-gray-100 object-cover object-center"
         />
       </a>
 
-      <div className="flex-auto">
+      <div className="my-auto flex-auto">
         <Form form={form}>
-          <div className="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
-            <div className="flex-auto text-sm font-medium space-y-1">
+          <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between sm:space-x-6">
+            <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium">
               <h3 className="text-gray-900">
                 {isEdit ? (
                   <TextField
@@ -60,7 +60,15 @@ const MediaListItem = ({
                     })}
                   />
                 ) : (
-                  mediaText?.title
+                  <>
+                    <span>
+                      {formatMessage({
+                        id: 'media_title',
+                        defaultMessage: 'Title:',
+                      })}
+                    </span>
+                    <span className="ml-2">{mediaText?.title}</span>
+                  </>
                 )}
               </h3>
               <p className="text-gray-900 sm:block">
@@ -73,10 +81,18 @@ const MediaListItem = ({
                     })}
                   />
                 ) : (
-                  mediaText?.subtitle
+                  <>
+                    <span>
+                      {formatMessage({
+                        id: 'media_subtitle',
+                        defaultMessage: 'Subtitle:',
+                      })}
+                    </span>
+                    <span className="ml-2">{mediaText?.subtitle}</span>
+                  </>
                 )}
               </p>
-              <p className="hidden text-gray-500 sm:block" />
+              {/* <p className="hidden text-gray-500 sm:block" /> */}
 
               {media?.tags &&
                 media?.tags.map((tag, index) => (
@@ -88,7 +104,16 @@ const MediaListItem = ({
                   </span>
                 ))}
             </div>
-            <div className="flex-none flex space-x-4">
+            <div className="flex flex-none space-x-4 self-start">
+              {isEdit && (
+                <button
+                  type="button"
+                  onClick={() => onEdit(!isEdit)}
+                  className="border-r border-gray-300 pr-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
+                </button>
+              )}
               <button
                 type={isEdit ? 'button' : 'submit'}
                 onClick={(e) => {
@@ -101,21 +126,23 @@ const MediaListItem = ({
                   ? formatMessage({ id: 'edit', defaultMessage: 'Edit' })
                   : formatMessage({ id: 'save', defaultMessage: 'Save' })}
               </button>
-              <div className="flex border-l border-gray-300 pl-4">
-                <button
-                  onClick={async (e) => {
-                    stopPropagation(e);
-                    onDelete(media._id);
-                  }}
-                  type="button"
-                  className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({
-                    id: 'delete',
-                    defaultMessage: 'Delete',
-                  })}
-                </button>
-              </div>
+              {!isEdit && (
+                <div className="flex border-l border-gray-300 pl-4">
+                  <button
+                    onClick={async (e) => {
+                      stopPropagation(e);
+                      onDelete(media._id);
+                    }}
+                    type="button"
+                    className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    {formatMessage({
+                      id: 'delete',
+                      defaultMessage: 'Delete',
+                    })}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </Form>

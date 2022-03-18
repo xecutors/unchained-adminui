@@ -47,8 +47,8 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   };
 
   return (
-    <div className="mt-5 bg-white shadow sm:max-w-full sm:rounded-t">
-      <div className="mx-auto max-w-3xl">
+    <div className="mt-5 bg-white shadow sm:max-w-full sm:rounded-t md:grid md:grid-cols-12">
+      <div className="col-span-4 col-start-6 mx-auto max-w-3xl pt-4">
         <MediaUploader onlyDragAndDrop />
       </div>
       <ProductMediaList
