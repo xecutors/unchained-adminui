@@ -8,7 +8,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="md:grid md:grid-cols-3 md:gap-6">
+      <div className="mt-3 md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -27,10 +27,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         </div>
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden border-b border-gray-200  px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md ">
-            <div className="mt-6 ">
-              <UserNameView username={username} _id={_id} />
-            </div>
+          <div className="shadow overflow-hidden bg-white space-y-6 sm:p-6 rounded-md">
+            <UserNameView username={username} _id={_id} />
           </div>
         </div>
       </div>

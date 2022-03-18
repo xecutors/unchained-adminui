@@ -206,7 +206,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     defaultMessage: 'Name',
                   })}
                 </label>
-                <div className="mt-1 py-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
                     <TextField
                       className="w-full mt-0"

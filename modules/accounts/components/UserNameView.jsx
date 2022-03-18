@@ -31,11 +31,11 @@ const UserNameView = ({ _id: userId, username }) => {
   return (
     <Form form={form}>
       <dl className="divide-y divide-gray-200">
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
-          <dt className="text-sm font-medium text-gray-500">
+        <div className="sm:grid sm:grid-cols-3 sm:gap-4 flex items-center flex-wrap">
+          <div className="text-sm font-medium text-gray-500">
             {formatMessage({ id: 'username', defaultMessage: 'Username' })}
-          </dt>
-          <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          </div>
+          <div className="mt-1 flex items-center text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <span className="flex-grow">
               {isEdit ? (
                 <TextField
@@ -59,15 +59,15 @@ const UserNameView = ({ _id: userId, username }) => {
                 className={classNames(
                   isEdit
                     ? 'text-red-600 hover:text-red-500 focus:ring-red-500'
-                    : 'text-purple-600 hover:text-purple-500  focus:ring-purple-500',
-                  'bg-white rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
+                    : 'focus:ring-purple-500',
+                  'bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
                 )}
               >
                 {isEdit ? 'Cancel' : 'update'}
               </button>
               {isEdit && (
                 <>
-                  <span className="text-gray-300" aria-hidden="true">
+                  <span className="text-gray-300" aria-hidiven="true">
                     |
                   </span>
                   <button
@@ -82,7 +82,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 </>
               )}
             </span>
-          </dd>
+          </div>
         </div>
       </dl>
     </Form>
