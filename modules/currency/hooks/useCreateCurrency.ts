@@ -14,7 +14,7 @@ const useCreateCurrency = () => {
   const createCurrency = async ({ isoCode }) => {
     return createCurrencyMutation({
       variables: { currency: { isoCode } },
-      refetchQueries: ['Currencies'],
+      refetchQueries: ['Currency', 'Currencies'],
     });
   };
 

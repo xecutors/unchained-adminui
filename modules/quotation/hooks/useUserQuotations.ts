@@ -15,6 +15,7 @@ export const UserQuotationsQuery = gql`
 
 const useUserQuotations = ({ userId = null } = {}) => {
   const { data, loading, error } = useQuery(UserQuotationsQuery, {
+    skip: !userId,
     variables: { userId },
   });
   const quotations = data?.user?.quotations || [];

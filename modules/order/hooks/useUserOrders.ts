@@ -14,6 +14,7 @@ export const UserOrdersQuery = gql`
 
 const useUserOrders = ({ userId = null } = {}) => {
   const { data, loading, error } = useQuery(UserOrdersQuery, {
+    skip: !userId,
     variables: { userId },
   });
 

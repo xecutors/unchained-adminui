@@ -12,6 +12,7 @@ export const LanguageQuery = gql`
 
 const useLanguage = ({ languageId }) => {
   const { data, loading, error } = useQuery(LanguageQuery, {
+    skip: !languageId,
     variables: { languageId },
   });
 

@@ -12,6 +12,7 @@ export const DeliveryProviderQuery = gql`
 
 const useDeliveryProvider = ({ deliveryProviderId = null } = {}) => {
   const { data, loading, error } = useQuery(DeliveryProviderQuery, {
+    skip: !deliveryProviderId,
     variables: { deliveryProviderId },
   });
 

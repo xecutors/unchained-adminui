@@ -12,6 +12,7 @@ export const CountryQuery = gql`
 
 const useCountry = ({ countryId }) => {
   const { data, loading, error } = useQuery(CountryQuery, {
+    skip: !countryId,
     variables: { countryId },
   });
 

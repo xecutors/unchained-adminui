@@ -12,6 +12,7 @@ export const TranslatedProductMediaQuery = gql`
 
 const useTranslatedProductMediaTexts = ({ productMediaId }) => {
   const { data, loading, error } = useQuery(TranslatedProductMediaQuery, {
+    skip: !productMediaId,
     variables: {
       productMediaId,
     },

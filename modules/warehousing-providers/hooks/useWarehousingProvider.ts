@@ -12,6 +12,7 @@ export const WarehousingProviderQuery = gql`
 
 const useWarehousingProvider = ({ warehousingProviderId = null } = {}) => {
   const { data, loading, error } = useQuery(WarehousingProviderQuery, {
+    skip: !warehousingProviderId,
     variables: { warehousingProviderId },
   });
 

@@ -18,6 +18,7 @@ export const ProductVariationQuery = gql`
 
 const useProductVariations = ({ productId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(ProductVariationQuery, {
+    skip: !productId && !slug,
     variables: { productId, slug },
   });
 

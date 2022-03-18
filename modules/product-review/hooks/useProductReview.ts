@@ -12,6 +12,7 @@ export const ProductReviewQuery = gql`
 
 const useProductReview = ({ productReviewId = null } = {}) => {
   const { data, loading, error } = useQuery(ProductReviewQuery, {
+    skip: !productReviewId,
     variables: { productReviewId },
   });
 

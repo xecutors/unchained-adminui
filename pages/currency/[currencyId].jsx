@@ -6,7 +6,7 @@ import FormWrapper from '../../modules/common/components/FormWrapper';
 import CurrencyForm from '../../modules/currency/components/CurrencyForm';
 import useCurrency from '../../modules/currency/hooks/useCurrency';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
-import useUpdateCurrency from '../../modules/currency/hooks/useUpdateCountry';
+import useUpdateCurrency from '../../modules/currency/hooks/useUpdateCurrency';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import useModal from '../../modules/modal/hooks/useModal';

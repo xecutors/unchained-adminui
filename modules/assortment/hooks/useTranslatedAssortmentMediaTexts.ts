@@ -17,6 +17,7 @@ const useTranslatedAssortmentMediaTexts = ({
   const { data, loading, error } = useQuery(
     TranslatedAssortmentMediaTextsQuery,
     {
+      skip: !assortmentMediaId,
       variables: {
         assortmentMediaId,
       },

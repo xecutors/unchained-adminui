@@ -13,6 +13,7 @@ export const AssortmentQuery = gql`
 
 const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(AssortmentQuery, {
+    skip: !assortmentId,
     variables: {
       slug,
       assortmentId,

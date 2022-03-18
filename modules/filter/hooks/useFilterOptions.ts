@@ -15,6 +15,7 @@ export const FilterOptionsQuery = gql`
 
 const useFilterOptions = ({ filterId = null } = {}) => {
   const { data, loading, error } = useQuery(FilterOptionsQuery, {
+    skip: !filterId,
     variables: { filterId },
   });
 

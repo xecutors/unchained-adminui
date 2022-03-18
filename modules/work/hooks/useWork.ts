@@ -12,6 +12,7 @@ export const WorkQuery = gql`
 
 const useWork = ({ workId = null } = {}) => {
   const { data, loading, error } = useQuery(WorkQuery, {
+    skip: !workId,
     variables: { workId },
   });
 

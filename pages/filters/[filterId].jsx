@@ -1,29 +1,30 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import EventDetail from '../../modules/event/components/EventDetail';
-import useEvent from '../../modules/event/hooks/useEvent';
+import FilterDetail from '../../modules/filter/components/FilterDetail';
+import useFilter from '../../modules/filter/hooks/useFilter';
 
-const OrderDetailPage = () => {
+const FilterDetailPage = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const { id } = query;
-  const { event, loading } = useEvent({ eventId: id });
+  const { filterId = '' } = query || {};
+  const { filter, loading } = useFilter({ filterId });
 
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'event_detail',
-          defaultMessage: 'Event Detail',
+          id: 'filter_detail',
+          defaultMessage: 'Filter Detail',
         })}
       />
-      {loading ? <Loading /> : <EventDetail event={event} />}
+      {loading ? <Loading /> : <FilterDetail filter={filter} />}
     </div>
   );
 };
 
-export default OrderDetailPage;
+export default FilterDetailPage;

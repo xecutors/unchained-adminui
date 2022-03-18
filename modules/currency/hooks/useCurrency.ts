@@ -12,6 +12,7 @@ export const CurrencyQuery = gql`
 
 const useCurrency = ({ currencyId }) => {
   const { data, loading, error } = useQuery(CurrencyQuery, {
+    skip: !currencyId,
     variables: { currencyId },
   });
 

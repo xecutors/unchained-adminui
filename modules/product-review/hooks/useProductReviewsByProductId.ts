@@ -18,6 +18,7 @@ const useProductReviewsByProductId = ({
   slug = null,
 } = {}) => {
   const { data, loading, error } = useQuery(ProductReviewQuery, {
+    skip: !productId,
     variables: { productId, slug },
   });
   const product = data?.product;

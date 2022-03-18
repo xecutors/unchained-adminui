@@ -12,6 +12,7 @@ export const EventQuery = gql`
 
 const useEnrollments = ({ eventId = null } = {}) => {
   const { data, loading, error } = useQuery(EventQuery, {
+    skip: !eventId,
     variables: { eventId },
   });
   const event = data?.event || [];

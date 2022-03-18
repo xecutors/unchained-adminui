@@ -13,6 +13,7 @@ export const EnrollmentQuery = gql`
 
 const useEnrollment = ({ enrollmentId = null } = {}) => {
   const { data, loading, error } = useQuery(EnrollmentQuery, {
+    skip: !enrollmentId,
     variables: { enrollmentId },
   });
   const enrollment = data?.enrollment || {};

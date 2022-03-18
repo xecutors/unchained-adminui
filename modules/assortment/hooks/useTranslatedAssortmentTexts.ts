@@ -13,6 +13,7 @@ export const TranslatedAssortmentTextsQuery = gql`
 
 const useTranslatedAssortmentTexts = ({ assortmentId = null } = {}) => {
   const { data, loading, error } = useQuery(TranslatedAssortmentTextsQuery, {
+    skip: !assortmentId,
     variables: {
       assortmentId,
     },

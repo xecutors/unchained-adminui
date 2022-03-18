@@ -15,6 +15,7 @@ export const ProductMediaQuery = gql`
 
 const useProductMedia = ({ productId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(ProductMediaQuery, {
+    skip: !productId && !slug,
     variables: { productId, slug },
   });
 

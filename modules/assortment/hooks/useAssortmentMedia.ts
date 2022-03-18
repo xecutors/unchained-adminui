@@ -28,6 +28,7 @@ export const AssortmentMediaQuery = gql`
 
 const useAssortmentMedia = ({ assortmentId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(AssortmentMediaQuery, {
+    skip: !assortmentId,
     variables: {
       slug,
       assortmentId,

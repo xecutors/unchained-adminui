@@ -12,6 +12,7 @@ export const PaymentProviderQuery = gql`
 
 const usePaymentProvider = ({ paymentProviderId = null } = {}) => {
   const { data, loading, error } = useQuery(PaymentProviderQuery, {
+    skip: !paymentProviderId,
     variables: { paymentProviderId },
   });
 

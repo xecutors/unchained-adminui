@@ -12,6 +12,7 @@ export const ProductCatalogPricesQuery = gql`
 
 const useProductCatalogPrices = ({ productId }) => {
   const { data, loading, error } = useQuery(ProductCatalogPricesQuery, {
+    skip: !productId,
     variables: {
       productId,
     },
