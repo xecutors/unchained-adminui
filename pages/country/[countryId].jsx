@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import FormHeader from '../../modules/common/components/FormHeader';
+import FormWrapper from '../../modules/common/components/FormWrapper';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
@@ -11,6 +11,7 @@ import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import useUpdateCountry from '../../modules/country/hooks/useUpdateCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const normalizeCountry = (country) => {
   return {
@@ -80,16 +81,19 @@ const UpdateCountry = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader headerText={country?.isoCode} />
+      <div className="flex align-center justify-between min-w-full">
+        <PageHeader headerText={country?.isoCode} />
+        <HeaderDeleteButton onClick={onDelete} />
+      </div>
       <div className="mt-6  sm:max-w-xl">
-        <FormHeader headerText="" onDelete={onDelete}>
+        <FormWrapper>
           <CountryForm
             isEdit
             defaultValue={normalizeCountry(country)}
             onSubmitSuccess={onSubmitSuccess}
             onSubmit={onSubmit}
           />
-        </FormHeader>
+        </FormWrapper>
       </div>
     </>
   );

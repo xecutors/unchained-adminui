@@ -36,9 +36,9 @@ const GetCurrentTab = ({ user, selectedView }) => {
 const UserProfile = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const { id } = query;
+  const { userId } = query;
 
-  const { user } = useUser({ userId: id });
+  const { user } = useUser({ userId });
 
   const userProfileSettingOptions = [
     {

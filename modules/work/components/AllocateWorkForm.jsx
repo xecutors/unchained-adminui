@@ -1,6 +1,6 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
-import FormHeader from '../../common/components/FormHeader';
+import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -36,7 +36,7 @@ const AllocateWorkForm = () => {
 
   const { values } = form.formik;
   return (
-    <FormHeader>
+    <FormWrapper>
       <Form form={form}>
         <div className="px-4 max-w-4xl sm:mr-11 mr-8 mb-3 justify-between align-baseline">
           <div className="sm:py-3">
@@ -163,7 +163,7 @@ const AllocateWorkForm = () => {
           />
         </div>
       </Form>
-    </FormHeader>
+    </FormWrapper>
   );
 };
 

@@ -15,8 +15,8 @@ import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButt
 const WorkDetailPage = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const { id } = query;
-  const { work, loading } = useWork({ workId: id });
+  const { workId } = query;
+  const { work, loading } = useWork({ workId });
 
   const { setModal } = useModal();
   const { removeWork } = useRemoveWork();
@@ -33,15 +33,15 @@ const WorkDetailPage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWork({ workId: id });
+          await removeWork({ workId });
           toast.success(
             formatMessage(
               {
                 id: 'work_deleted',
-                defaultMessage: 'work {id} deleted successfully',
+                defaultMessage: 'work {workId} deleted successfully',
               },
               {
-                id,
+                workId,
               },
             ),
           );

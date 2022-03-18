@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import FormHeader from '../../common/components/FormHeader';
+import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -73,7 +73,7 @@ const SubscriptionForm = ({ productId }) => {
   }, [plan]);
 
   return (
-    <FormHeader>
+    <FormWrapper>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
           <div className="sm:flex w-full  justify-between align-baseline">
@@ -160,7 +160,7 @@ const SubscriptionForm = ({ productId }) => {
           </div>
         </div>
       </Form>
-    </FormHeader>
+    </FormWrapper>
   );
 };
 

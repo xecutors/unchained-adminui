@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import AssortmentForm from '../../modules/assortment/components/AssortmentForm';
 import useCreateAssortment from '../../modules/assortment/hooks/useCreateAssortment';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import FormHeader from '../../modules/common/components/FormHeader';
+import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
 
 const AddAssortments = () => {
@@ -23,19 +23,21 @@ const AddAssortments = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'new_assortment_header',
-          defaultMessage: 'New Assortment',
-        })}
-      />
-      <div className="mt-6  sm:max-w-2xl">
-        <FormHeader>
-          <AssortmentForm
-            onSubmitSuccess={onSubmitSuccess}
-            onSubmit={onCreateAssortment}
-          />
-        </FormHeader>
+      <div className="sm:max-w-2xl mx-auto">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'new_assortment_header',
+            defaultMessage: 'New Assortment',
+          })}
+        />
+        <div className="mt-6  sm:max-w-2xl">
+          <FormWrapper>
+            <AssortmentForm
+              onSubmitSuccess={onSubmitSuccess}
+              onSubmit={onCreateAssortment}
+            />
+          </FormWrapper>
+        </div>
       </div>
     </>
   );

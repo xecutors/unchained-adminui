@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import FormHeader from '../../modules/common/components/FormHeader';
 
 import LanguageForm from '../../modules/language/components/LanguageForm';
 import useLanguage from '../../modules/language/hooks/useLanguage';
@@ -11,6 +10,8 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import FormWrapper from '../../modules/common/components/FormWrapper';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
@@ -65,21 +66,24 @@ const UpdateLanguage = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'update_language_header',
-          defaultMessage: 'Update languages',
-        })}
-      />
+      <div className="flex align-center justify-between min-w-full">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'update_language_header',
+            defaultMessage: 'Update language',
+          })}
+        />
+        <HeaderDeleteButton onClick={onDelete} />
+      </div>
       <div className="mt-6  sm:max-w-xl">
-        <FormHeader onDelete={onDelete}>
+        <FormWrapper>
           <LanguageForm
             isEdit
             defaultValue={language}
             onSubmit={onSubmit}
             onSubmitSuccess={onSubmitSuccess}
           />
-        </FormHeader>
+        </FormWrapper>
       </div>
     </>
   );

@@ -28,7 +28,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
   return (
     <Form form={form}>
-      <div className="px-5 py-2">
+      <div className="sm:max-w-full p-6">
         <TextField
           name="isoCode"
           id="isoCode"

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
-import FormHeader from '../../modules/common/components/FormHeader';
+import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
 import FilterForm from '../../modules/filter/components/FilterForm';
 import useCreateFilter from '../../modules/filter/hooks/useCreateFilter';
@@ -36,9 +36,9 @@ const AddFilter = () => {
         })}
       />
       <div className="mt-6  sm:max-w-2xl">
-        <FormHeader>
+        <FormWrapper>
           <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
-        </FormHeader>
+        </FormWrapper>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import FormHeader from '../../common/components/FormHeader';
+import FormWrapper from '../../common/components/FormWrapper';
 
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -34,7 +34,7 @@ const VariationForm = ({ products }) => {
 
   return (
     <div className=" bg-white">
-      <FormHeader>
+      <FormWrapper>
         <Form form={form}>
           <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
             <div className="sm:flex max-w-full  justify-between align-baseline">
@@ -81,7 +81,7 @@ const VariationForm = ({ products }) => {
             />
           </div>
         </Form>
-      </FormHeader>
+      </FormWrapper>
       <div className="shadow bg-white">
         <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
           <span className="flex w-full">

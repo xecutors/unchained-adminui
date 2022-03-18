@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import FormHeader from '../../common/components/FormHeader';
+import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 
 import DatePickerField from '../../forms/components/DatePickerField';
@@ -56,7 +56,7 @@ const WorkForm = () => {
   });
 
   return (
-    <FormHeader>
+    <FormWrapper>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
           <div className="sm:flex max-w-4xl justify-between align-baseline">
@@ -207,7 +207,7 @@ const WorkForm = () => {
           />
         </div>
       </Form>
-    </FormHeader>
+    </FormWrapper>
   );
 };
 

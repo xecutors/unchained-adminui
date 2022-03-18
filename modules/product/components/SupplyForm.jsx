@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import FormHeader from '../../common/components/FormHeader';
+import FormWrapper from '../../common/components/FormWrapper';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -43,7 +43,7 @@ const SupplyForm = ({ productId }) => {
     if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
   }, [dimensions]);
   return (
-    <FormHeader>
+    <FormWrapper>
       <Form form={form}>
         <div className="px-4 py-5 bg-white sm:p-6 relative">
           <div className="grid grid-cols-6 gap-6">
@@ -107,7 +107,7 @@ const SupplyForm = ({ productId }) => {
           />
         </div>
       </Form>
-    </FormHeader>
+    </FormWrapper>
   );
 };
 

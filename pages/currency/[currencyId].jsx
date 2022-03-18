@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
-import FormHeader from '../../modules/common/components/FormHeader';
+import FormWrapper from '../../modules/common/components/FormWrapper';
 import CurrencyForm from '../../modules/currency/components/CurrencyForm';
 import useCurrency from '../../modules/currency/hooks/useCurrency';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
@@ -11,6 +11,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
+import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
@@ -64,21 +65,24 @@ const UpdateCurrency = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'update_currency_header',
-          defaultMessage: 'Update currency',
-        })}
-      />
+      <div className="flex align-center justify-between min-w-full">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'update_currency_header',
+            defaultMessage: 'Update currency',
+          })}
+        />
+        <HeaderDeleteButton onClick={onDelete} />
+      </div>
       <div className="mt-6  sm:max-w-xl">
-        <FormHeader onDelete={onDelete}>
+        <FormWrapper>
           <CurrencyForm
             onSubmit={onSubmit}
             onSubmitSuccess={onSubmitSuccess}
             defaultValue={currency}
             isEdit
           />
-        </FormHeader>
+        </FormWrapper>
       </div>
     </>
   );
