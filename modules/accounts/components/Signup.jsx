@@ -81,7 +81,6 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'email',
                     defaultMessage: 'Email',
                   })}
-                  className=""
                 />
               </div>
               <div>
@@ -94,7 +93,6 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
-                  className=""
                 />
               </div>
               <div>
@@ -107,7 +105,6 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
-                  className=""
                 />
               </div>
             </div>
