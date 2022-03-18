@@ -28,25 +28,23 @@ const Events = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'events_list_header',
-          defaultMessage: 'Events',
-        })}
-      />
+      <div className="flex items-center justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'events_list_header',
+            defaultMessage: 'Events',
+          })}
+        />
 
-      <div className="min-w-full overflow-hidden">
-        <div className="mb-5">
-          <SearchField onInputChange={setQueryString} />
-        </div>
-
-        {loading ? (
-          <Loading />
-        ) : (
-          <EventList events={events} onSearch={setQueryString} />
-        )}
-        <Pagination data={events} total={eventsCount} />
+        <SearchField onInputChange={setQueryString} />
       </div>
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <EventList events={events} onSearch={setQueryString} />
+      )}
+      <Pagination data={events} total={eventsCount} />
     </>
   );
 };
