@@ -31,14 +31,16 @@ const Users = () => {
   return (
     <div className="mb-10">
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'users_list_header',
-          defaultMessage: 'Users',
-        })}
-      />
-      <SearchField onInputChange={setQueryString} />
-      <div className="mt-5 overflow-hidden px-4 py-2 sm:px-6">
+      <div className="flex items-center flex-wrap justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'users_list_header',
+            defaultMessage: 'Users',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
+      <div className="mt-5 overflow-hidden p-2">
         <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div>
             <Toggle

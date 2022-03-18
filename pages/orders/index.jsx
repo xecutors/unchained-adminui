@@ -32,13 +32,15 @@ const Orders = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'orders_list_header',
-          defaultMessage: 'Orders',
-        })}
-      />
-      <SearchField onInputChange={setQueryString} />
+      <div className="flex items-center flex-wrap justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'orders_list_header',
+            defaultMessage: 'Orders',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
       <div className="mt-5 inline-block min-w-full overflow-hidden">
         <ListHeader>
           <Toggle

@@ -12,10 +12,10 @@ const ProductFilter = ({ onFilter }) => {
   };
   return (
     <FilterWrapper
-      className="bg-white shadow my-2 px-6 py-3"
+      className="bg-white shadow my-2 pt-2"
       onApplyFilter={onApplyFilter}
     >
-      <div className="grid grid-cols-6 gap-6 mb-5">
+      <div className="grid grid-cols-6 gap-6 mb-5 px-4 mt-4">
         <div className="col-span-6 sm:col-span-3">
           <SearchField onInputChange={(v) => setQueryString(v)} />
         </div>

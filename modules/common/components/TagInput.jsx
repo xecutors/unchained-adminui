@@ -57,7 +57,7 @@ const TagInput = ({ tagList: tags, onChange }) => {
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className="focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md px-4 sm:text-sm border-gray-l-white border-gray-300"
-              placeholder="New tag"
+              placeholder="Search tag"
               value={newTag}
             />
           </div>

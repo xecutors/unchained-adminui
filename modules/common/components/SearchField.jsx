@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const SearchField = ({ inputText, onInputChange }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="flex items-center md:max-w-3xl md:mx-auto lg:max-w-none mx-0 px-0">
+    <div className="md:max-w-3xl lg:max-w-none">
       <div className="w-full">
         <label htmlFor="search" className="sr-only">
           {inputText ||

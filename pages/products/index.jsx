@@ -31,7 +31,7 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="py-5 flex align-center justify-between w-full">
+      <div className="py-5 w-full">
         <PageHeader
           headerText={formatMessage({
             id: 'products_list_header',

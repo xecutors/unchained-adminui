@@ -15,7 +15,7 @@ const ProviderList = ({
 
   return (
     <>
-      <div className="overflow-hidden px-4 py-2 sm:px-6">
+      <div className="overflow-hidden px-2 py-3">
         <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
           <div className="ml-2 mt-2 w-100">
             <div className="relative flex items-start my-2">

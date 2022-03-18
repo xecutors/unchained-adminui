@@ -33,25 +33,11 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
         className="cursor-pointer sm:flex hidden hover:bg-indigo-700 rounded-md py-2 px-10 bg-indigo-500 flex text-base leading-4 font-normal text-white justify-center items-center"
       >
         <AdjustmentsIcon
-          className=" lg:w-6 lg:h-6 w-4 h-4"
+          className="mr-2 lg:w-6 lg:h-6 w-4 h-4"
           viewBox="0 0 26 26"
           fill="white"
           stroke="white"
-        />{' '}
-        {formatMessage({ id: 'filters', defaultMessage: 'Filters' })}
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setShowFilters(!showFilters)}
-        className="cursor-pointer mt-6 block sm:hidden rounded-md hover:bg-indigo-700 focus:ring-offset-2 py-2 w-full bg-indigo-800 flex text-base leading-4 font-normal text-white justify-center items-center"
-      >
-        <AdjustmentsIcon
-          className="lg:w-6 lg:h-6 w-4 h-4"
-          viewBox="0 0 26 26"
-          fill="white"
-          stroke="white"
-        />{' '}
+        />
         {formatMessage({ id: 'filters', defaultMessage: 'Filters' })}
       </button>
 
@@ -61,13 +47,12 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
         })}
       >
         {children}
-        <hr className="bg-gray-200 w-full" />
 
-        <div className="relative px-0 mt-2 md:w-auto md:mt-4 md:bottom-0 md:pb-10 lg:px-20 md:px-6">
+        <div className="text-right bg-gray-50 p-4">
           <button
             type="button"
             onClick={applyFilters}
-            className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 md:absolute right-0"
+            className="rounded inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {formatMessage({
               id: 'apply_filter',

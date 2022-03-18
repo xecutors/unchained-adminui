@@ -3,13 +3,13 @@ import { useIntl } from 'react-intl';
 const PageHeader = ({ headerText, onEdit, onDelete }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="md:flex md:items-center md:justify-between">
+    <div className="my-2 md:flex md:items-center md:justify-between">
       <div className="flex-1 min-w-0">
         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
           {headerText}
         </h2>
       </div>
-      <div className="mt-4 flex-shrink-0 flex md:mt-0 md:ml-4">
+      <div className="flex-shrink-0 flex md:mt-0 md:ml-4">
         {onEdit && (
           <button
             type="button"
