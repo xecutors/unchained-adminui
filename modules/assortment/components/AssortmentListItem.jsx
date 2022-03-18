@@ -51,7 +51,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
           {assortment.isRoot && (
             <Badge
               text={formatMessage({
-                id: 'assortment_root',
+                id: 'root_assortment',
                 defaultMessage: 'Root',
               })}
               color="green"

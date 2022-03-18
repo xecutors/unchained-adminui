@@ -15,7 +15,7 @@ const WarehousingForm = ({ productId }) => {
 
   const successMessage = formatMessage({
     id: 'saved',
-    defaultMessage: 'Saved...',
+    defaultMessage: 'Saved',
   });
 
   const onSubmit = async ({ sku, baseUnit }) => {

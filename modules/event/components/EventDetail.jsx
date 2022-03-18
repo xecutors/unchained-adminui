@@ -14,7 +14,7 @@ const EventDetail = ({ event }) => {
         <div className="flex justify-between ">
           <div className="pb-1 text-sm font-bold  my-1">
             {formatMessage({
-              id: 'type',
+              id: 'type_colon',
               defaultMessage: 'Type:',
             })}
             <span className="ml-2">

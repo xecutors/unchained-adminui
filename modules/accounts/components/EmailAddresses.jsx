@@ -77,7 +77,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             {formatMessage({
               id: 'email_addresses',
-              defaultMessage: 'Email Addresses',
+              defaultMessage: 'Email addresses',
             })}
           </h3>
         </div>

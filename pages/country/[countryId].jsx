@@ -50,9 +50,9 @@ const UpdateCountry = () => {
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_confirmation',
+          id: 'delete_country_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this payment provider? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this country? ',
         })}
         onOkClick={async () => {
           setModal('');

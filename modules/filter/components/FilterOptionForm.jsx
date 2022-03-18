@@ -54,7 +54,7 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
           className="w-full"
           label={formatMessage({
             id: 'add_filter_option',
-            defaultMessage: 'Add',
+            defaultMessage: 'Add option',
           })}
         />
       </div>

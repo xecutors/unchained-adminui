@@ -12,7 +12,7 @@ const OrderList = ({ orders, showUser }) => {
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
               id: 'order_number',
-              defaultMessage: 'Order number',
+              defaultMessage: 'Order#',
             })}
           </Table.Cell>
 

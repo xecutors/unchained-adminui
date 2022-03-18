@@ -77,11 +77,11 @@ const EnrollmentDetail = ({ enrollment }) => {
           defaultMessage: 'Send',
         })}
         headerText={formatMessage({
-          id: 'activate_header',
+          id: 'send_activation_email_header',
           defaultMessage: 'Send Email.',
         })}
         message={formatMessage({
-          id: 'activate_header',
+          id: 'send_activation_email_confirm',
           defaultMessage: 'Are you sure you want to send email?',
         })}
         onOkClick={async () => {
@@ -302,7 +302,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 <dt className="font-medium text-gray-900">
                   {formatMessage({
                     id: 'payment_provider',
-                    defaultMessage: 'Payment Provider',
+                    defaultMessage: 'Payment provider',
                   })}
                 </dt>
                 <dd className="mt-2 text-sm text-gray-500">
@@ -339,7 +339,7 @@ const EnrollmentDetail = ({ enrollment }) => {
               <div className="col-span-1 border-t border-gray-200 pt-4">
                 <dt className="font-medium text-gray-900">
                   {formatMessage({
-                    id: 'billing_address',
+                    id: 'contact',
                     defaultMessage: 'Contact',
                   })}
                 </dt>
@@ -366,7 +366,7 @@ const EnrollmentDetail = ({ enrollment }) => {
               <dt className="font-medium text-gray-900">
                 {formatMessage({
                   id: 'billing_address',
-                  defaultMessage: 'Billing Address',
+                  defaultMessage: 'Billing address',
                 })}
               </dt>
               <dd className="mt-2 text-sm text-gray-500">

@@ -55,7 +55,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
               id="tags"
               label={formatMessage({
                 id: 'tags',
-                defaultMessage: 'tags',
+                defaultMessage: 'Tags',
               })}
               onChange={(newTags) => setTags(newTags)}
               className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"

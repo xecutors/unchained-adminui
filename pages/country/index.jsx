@@ -46,10 +46,10 @@ const Country = () => {
             formatMessage(
               {
                 id: 'country_deleted',
-                defaultMessage: 'Country {id} deleted successfully',
+                defaultMessage: 'Country {countryId} deleted successfully',
               },
               {
-                id: countryId,
+                countryId,
               },
             ),
           );

@@ -32,17 +32,18 @@ const PaymentProviders = () => {
             formatMessage(
               {
                 id: 'payment_provider_deleted',
-                defaultMessage: 'Payment provider {id} deleted successfully',
+                defaultMessage:
+                  'Payment provider {paymentProviderId} deleted successfully',
               },
               {
-                id: paymentProviderId,
+                paymentProviderId,
               },
             ),
           );
         }}
         okText={formatMessage({
           id: 'delete_payment_provider',
-          defaultMessage: 'Delete paymentProvider',
+          defaultMessage: 'Delete payment provider',
         })}
       />,
     );

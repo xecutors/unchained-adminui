@@ -124,9 +124,9 @@ const OrderDetailHeader = ({ order, button }) => {
           <dt className="capitalize text-gray-500">
             {formatMessage({
               id: 'order_number',
-              defaultMessage: 'order',
+              defaultMessage: 'Order#',
             })}
-            &#35; &nbsp;
+            &nbsp;
           </dt>
           <dd className="text-xl font-bold text-gray-900">
             {order.orderNumber ? (

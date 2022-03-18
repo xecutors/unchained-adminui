@@ -35,7 +35,7 @@ const FiltersListView = () => {
         message={formatMessage({
           id: 'delete_filter_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter? ',
         })}
         onOkClick={async () => {
           setModal('');
@@ -44,10 +44,10 @@ const FiltersListView = () => {
             formatMessage(
               {
                 id: 'filter_deleted',
-                defaultMessage: 'filter {id} deleted successfully',
+                defaultMessage: 'Filter {filterId} deleted successfully',
               },
               {
-                id: filterId,
+                filterId,
               },
             ),
           );

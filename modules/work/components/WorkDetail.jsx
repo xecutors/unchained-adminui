@@ -51,7 +51,7 @@ const WorkDetail = ({ work }) => {
               <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
                 {formatMessage({
                   id: 'work_type',
-                  defaultMessage: 'Work Type',
+                  defaultMessage: 'Work type',
                 })}
               </div>
               <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
@@ -109,10 +109,15 @@ const WorkDetail = ({ work }) => {
               <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
                 {work?.worker ? (
                   <Badge
-                    text={formatMessage({
-                      id: 'worker',
-                      defaultMessage: `${work?.worker}`,
-                    })}
+                    text={formatMessage(
+                      {
+                        id: 'worker_dynamic',
+                        defaultMessage: '{worker}',
+                      },
+                      {
+                        worker: work?.worker,
+                      },
+                    )}
                     color="purple"
                     className="bg-purple-200 font-bold"
                   />
@@ -200,7 +205,7 @@ const WorkDetail = ({ work }) => {
               <div className="sm:col-span-1 mb-2">
                 <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
                   {formatMessage({
-                    id: 'work_deleted',
+                    id: 'deleted',
                     defaultMessage: 'Deleted',
                   })}
                 </div>

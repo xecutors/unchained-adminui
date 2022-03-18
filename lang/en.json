@@ -6,14 +6,29 @@
     "defaultMessage": "default_input_name",
     "description": "DO not translate Skip this as it's the default given label when a component is not provided explicit label"
   },
+  "Reject_alert_header": {
+    "defaultMessage": "Reject quotation?"
+  },
   "account": {
     "defaultMessage": "Account"
   },
   "account_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
   },
+  "account_status": {
+    "defaultMessage": "Account status"
+  },
   "activate": {
     "defaultMessage": "Activate"
+  },
+  "activate_button": {
+    "defaultMessage": "Activate"
+  },
+  "activate_header_conformation": {
+    "defaultMessage": "Are you sure you want to this subscritpion?"
+  },
+  "activate_header_title": {
+    "defaultMessage": "Activate subscritpion."
   },
   "activated": {
     "defaultMessage": "Activated"
@@ -102,6 +117,9 @@
   "assortment_detail": {
     "defaultMessage": "Assortment Detail"
   },
+  "assortment_filter_deleted": {
+    "defaultMessage": "Assortment filter {assortmentFilterId} deleted successfully"
+  },
   "assortment_link": {
     "defaultMessage": "Link {id} deleted successfully"
   },
@@ -111,11 +129,14 @@
   "assortment_links_list": {
     "defaultMessage": "Linked assortments"
   },
+  "assortment_media": {
+    "defaultMessage": "Assortment Media"
+  },
+  "assortment_media_deleted": {
+    "defaultMessage": "media {assortmentMediaId} deleted successfully"
+  },
   "assortment_product": {
     "defaultMessage": "Product"
-  },
-  "assortment_root": {
-    "defaultMessage": "Root"
   },
   "assortments": {
     "defaultMessage": "Assortments"
@@ -131,9 +152,6 @@
   },
   "avatar": {
     "defaultMessage": "Avatar"
-  },
-  "average_stat": {
-    "defaultMessage": "Avg. Open Rate stats"
   },
   "base": {
     "defaultMessage": "Base"
@@ -167,6 +185,9 @@
   },
   "bundled_products": {
     "defaultMessage": "Bundles"
+  },
+  "button": {
+    "defaultMessage": "Button"
   },
   "cancel": {
     "defaultMessage": "Cancel"
@@ -207,11 +228,11 @@
   "company": {
     "defaultMessage": "Company"
   },
-  "configuration_key": {
-    "defaultMessage": "Configuration key"
+  "configuration": {
+    "defaultMessage": "Configuration"
   },
-  "configuration_value": {
-    "defaultMessage": "Configuration value"
+  "configuration_error": {
+    "defaultMessage": "Configuration error"
   },
   "confirm_order": {
     "defaultMessage": "Confirm order"
@@ -224,6 +245,9 @@
   },
   "confirm_password": {
     "defaultMessage": "Confirm password"
+  },
+  "contact": {
+    "defaultMessage": "Contact"
   },
   "context": {
     "defaultMessage": "Context"
@@ -247,7 +271,7 @@
     "defaultMessage": "Currency"
   },
   "country_deleted": {
-    "defaultMessage": "Country {id} deleted successfully"
+    "defaultMessage": "Country {countryId} deleted successfully"
   },
   "country_updated": {
     "defaultMessage": "Country updated successfully!"
@@ -263,6 +287,9 @@
   },
   "created": {
     "defaultMessage": "Created"
+  },
+  "created_colon": {
+    "defaultMessage": "Created:"
   },
   "crossbase": {
     "defaultMessage": "Crossbase",
@@ -281,7 +308,7 @@
     "defaultMessage": "Currency added successfully!"
   },
   "currency_deleted": {
-    "defaultMessage": "currency {id} deleted successfully"
+    "defaultMessage": "Currency {currencyId} deleted successfully"
   },
   "currency_updated": {
     "defaultMessage": "Currency updated successfully!"
@@ -289,8 +316,14 @@
   "current_password": {
     "defaultMessage": "Current password"
   },
+  "customer_reviews": {
+    "defaultMessage": "Customer Reviews"
+  },
   "daily_sync": {
     "defaultMessage": "Daily sync"
+  },
+  "data": {
+    "defaultMessage": "Data"
   },
   "date": {
     "defaultMessage": "Date"
@@ -322,6 +355,12 @@
   "delete_assortment_link": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language?"
   },
+  "delete_assortment_media": {
+    "defaultMessage": "Delete media"
+  },
+  "delete_assortment_media_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
+  },
   "delete_country": {
     "defaultMessage": "Delete country"
   },
@@ -333,6 +372,12 @@
   },
   "delete_currency_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
+  },
+  "delete_delivery_provider": {
+    "defaultMessage": "Delete Delivery Provider"
+  },
+  "delete_delivery_provider_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this delivery provider?"
   },
   "delete_delivery_providers": {
     "defaultMessage": "Delete delivery providers"
@@ -347,13 +392,16 @@
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this email?"
   },
   "delete_filter": {
-    "defaultMessage": "Delete"
+    "defaultMessage": "Delete filter"
   },
   "delete_filter_confirmation": {
-    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language?"
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter?"
   },
   "delete_filter_option": {
     "defaultMessage": "Delete option"
+  },
+  "delete_filter_option_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter option?"
   },
   "delete_language": {
     "defaultMessage": "Delete language"
@@ -374,7 +422,10 @@
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Payment provider?"
   },
   "delete_payment_provider": {
-    "defaultMessage": "Delete paymentProvider"
+    "defaultMessage": "Delete payment provider"
+  },
+  "delete_payment_provider_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this payment provider?"
   },
   "delete_product": {
     "defaultMessage": "Delete Product"
@@ -382,8 +433,20 @@
   "delete_product_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language?"
   },
+  "delete_product_media": {
+    "defaultMessage": "Delete media"
+  },
+  "delete_product_media_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
+  },
+  "delete_review": {
+    "defaultMessage": "Delete review"
+  },
+  "delete_review_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this review?"
+  },
   "delete_warehousing_provider": {
-    "defaultMessage": "Delete warehousing provider"
+    "defaultMessage": "Delete warehousing Provider"
   },
   "delete_warehousing_provider_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this warehousing provider?"
@@ -396,6 +459,15 @@
   },
   "deleted": {
     "defaultMessage": "Deleted"
+  },
+  "deleted_products": {
+    "defaultMessage": "Deleted products"
+  },
+  "deleted_text": {
+    "defaultMessage": "Deleted"
+  },
+  "delivery": {
+    "defaultMessage": "Delivery"
   },
   "deliveryProviders_deleted": {
     "defaultMessage": "deliveryProviders {id} deleted successfully"
@@ -410,7 +482,10 @@
     "defaultMessage": "Delivery, Payment and Discount Summary"
   },
   "delivery_provider": {
-    "defaultMessage": "Provider"
+    "defaultMessage": "Delivery Provider"
+  },
+  "delivery_provider_deleted": {
+    "defaultMessage": "Delivery provider {deliveryProviderId} deleted successfully"
   },
   "delivery_providers": {
     "defaultMessage": "Delivery providers"
@@ -433,8 +508,11 @@
   "discount_information": {
     "defaultMessage": "Discounts Information"
   },
+  "discounts": {
+    "defaultMessage": "Discounts"
+  },
   "displayName": {
-    "defaultMessage": "Display Name"
+    "defaultMessage": "Dispxlay Name"
   },
   "display_name": {
     "defaultMessage": "Display Name"
@@ -442,14 +520,14 @@
   "do_work": {
     "defaultMessage": "Do Work"
   },
+  "documents": {
+    "defaultMessage": "Documents"
+  },
   "dont_have_account": {
     "defaultMessage": "Don't have an account yet?"
   },
   "draft": {
     "defaultMessage": "Draft"
-  },
-  "drag_and_drop": {
-    "defaultMessage": "or drag and drop"
   },
   "edit": {
     "defaultMessage": "Edit"
@@ -464,7 +542,7 @@
     "defaultMessage": "Email Address"
   },
   "email_addresses": {
-    "defaultMessage": "Email Addresses"
+    "defaultMessage": "Email addresses"
   },
   "email_deleted": {
     "defaultMessage": "email {id} deleted successfully"
@@ -472,8 +550,17 @@
   "email_exists_error": {
     "defaultMessage": "Email already exists"
   },
+  "end": {
+    "defaultMessage": "end"
+  },
   "engine_version": {
     "defaultMessage": "Engine version"
+  },
+  "enrollment": {
+    "defaultMessage": "enrollment"
+  },
+  "enrollment_detail": {
+    "defaultMessage": "Enrollment Detail"
   },
   "enrollment_number": {
     "defaultMessage": "Enrollment number"
@@ -487,11 +574,17 @@
   "error": {
     "defaultMessage": "Error"
   },
+  "error_404": {
+    "defaultMessage": "404 error"
+  },
   "error_server": {
     "defaultMessage": "There was a problem on the server ({details}). Please try again later."
   },
   "event": {
     "defaultMessage": "Events"
+  },
+  "event_detail": {
+    "defaultMessage": "Event Detail"
   },
   "events_list_header": {
     "defaultMessage": "Events"
@@ -526,7 +619,7 @@
     "description": "shown on successful toggle of filter status"
   },
   "filter_deleted": {
-    "defaultMessage": "filter {id} deleted successfully"
+    "defaultMessage": "Filter {filterId} deleted successfully"
   },
   "filter_detail": {
     "defaultMessage": "Filter Detail"
@@ -620,12 +713,6 @@
   "input": {
     "defaultMessage": "Input"
   },
-  "input_key": {
-    "defaultMessage": "Input Key"
-  },
-  "input_value": {
-    "defaultMessage": "Input value"
-  },
   "interface": {
     "defaultMessage": "Interface"
   },
@@ -648,7 +735,7 @@
     "defaultMessage": "Language added successfully!"
   },
   "language_deleted": {
-    "defaultMessage": "language {id} deleted successfully"
+    "defaultMessage": "Language {languageId} deleted successfully"
   },
   "language_header": {
     "defaultMessage": "Languages"
@@ -661,6 +748,9 @@
   },
   "last_Name": {
     "defaultMessage": "Last name"
+  },
+  "last_updated": {
+    "defaultMessage": "Last Updated:"
   },
   "leaf": {
     "defaultMessage": "Leaf"
@@ -698,6 +788,9 @@
   "login_header": {
     "defaultMessage": "Log in to your account"
   },
+  "logs": {
+    "defaultMessage": "Logs"
+  },
   "make_leaf": {
     "defaultMessage": "Make leaf"
   },
@@ -717,7 +810,10 @@
     "defaultMessage": "Max Quantity"
   },
   "media": {
-    "defaultMessage": "media"
+    "defaultMessage": "Media"
+  },
+  "media_updated": {
+    "defaultMessage": "Media updated"
   },
   "message": {
     "defaultMessage": "Message"
@@ -735,11 +831,11 @@
   "net_price": {
     "defaultMessage": "Net Price"
   },
-  "new": {
-    "defaultMessage": "New"
-  },
   "new_assortment_header": {
     "defaultMessage": "New Assortment"
+  },
+  "new_assortments": {
+    "defaultMessage": "New Assortments"
   },
   "new_country_header": {
     "defaultMessage": "New country"
@@ -753,6 +849,9 @@
   "new_filter_header": {
     "defaultMessage": "New filter"
   },
+  "new_filters": {
+    "defaultMessage": "New Filters"
+  },
   "new_language_header": {
     "defaultMessage": "New language"
   },
@@ -765,6 +864,9 @@
   "new_product_header": {
     "defaultMessage": "New product"
   },
+  "new_products": {
+    "defaultMessage": "New Products"
+  },
   "new_warehousing_provider_header": {
     "defaultMessage": "New warehousing provider"
   },
@@ -776,6 +878,12 @@
   },
   "no_result_found": {
     "defaultMessage": "No result found"
+  },
+  "not_active": {
+    "defaultMessage": "Not Active"
+  },
+  "not_base": {
+    "defaultMessage": "Not Base"
   },
   "not_found_message": {
     "defaultMessage": "Sorry, we couldn’t find the page you’re looking for."
@@ -791,6 +899,9 @@
   },
   "options": {
     "defaultMessage": "Options"
+  },
+  "or_drag_and_drop": {
+    "defaultMessage": "or drag and drop"
   },
   "order": {
     "defaultMessage": "Order"
@@ -811,13 +922,13 @@
     "defaultMessage": "Order Detail"
   },
   "order_number": {
-    "defaultMessage": "Order number"
+    "defaultMessage": "Order#"
   },
   "order_payed": {
     "defaultMessage": "Order {id} payed successfully"
   },
-  "order_payment_confirmation": {
-    "defaultMessage": "Payment"
+  "order_total": {
+    "defaultMessage": "Order total"
   },
   "orders": {
     "defaultMessage": "Orders"
@@ -840,6 +951,12 @@
   "password_mismatch": {
     "defaultMessage": "Password fields don't match"
   },
+  "pay": {
+    "defaultMessage": "PAY"
+  },
+  "payment": {
+    "defaultMessage": "Payment"
+  },
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
   },
@@ -850,13 +967,22 @@
     "defaultMessage": "Payment information"
   },
   "payment_provider": {
-    "defaultMessage": "Payment"
+    "defaultMessage": "Payment provider"
   },
   "payment_provider_deleted": {
-    "defaultMessage": "Payment provider {id} deleted successfully"
+    "defaultMessage": "Payment provider {paymentProviderId} deleted successfully"
+  },
+  "payment_providers": {
+    "defaultMessage": "Payment providers"
   },
   "payment_providers_header": {
     "defaultMessage": "Payment providers"
+  },
+  "periods": {
+    "defaultMessage": "Periods"
+  },
+  "phone": {
+    "defaultMessage": "Phone"
   },
   "photo": {
     "defaultMessage": "Photo"
@@ -891,6 +1017,18 @@
   "product_detail": {
     "defaultMessage": "Product Detail"
   },
+  "product_media": {
+    "defaultMessage": "Product Media"
+  },
+  "product_media_deleted": {
+    "defaultMessage": "media {productMediaId} deleted successfully"
+  },
+  "product_quantity": {
+    "defaultMessage": "Quantity"
+  },
+  "product_title": {
+    "defaultMessage": "Product"
+  },
   "products": {
     "defaultMessage": "Products"
   },
@@ -906,17 +1044,26 @@
   "profile_updated": {
     "defaultMessage": "Profile updated successfully!"
   },
+  "provider": {
+    "defaultMessage": "Provider"
+  },
   "provider_created_success": {
     "defaultMessage": "Provider created successfully!"
-  },
-  "provider_updated": {
-    "defaultMessage": "Provider updated successfully!"
   },
   "publish": {
     "defaultMessage": "Publish"
   },
   "published": {
     "defaultMessage": "Published"
+  },
+  "purchased_products": {
+    "defaultMessage": "Purchased products"
+  },
+  "quotation": {
+    "defaultMessage": "quotation"
+  },
+  "quotation_detail": {
+    "defaultMessage": "Quotation Detail"
   },
   "quotation_list_header": {
     "defaultMessage": "Quotations"
@@ -927,11 +1074,20 @@
   "quotations": {
     "defaultMessage": "Quotations"
   },
+  "recent_reviews": {
+    "defaultMessage": "Recent reviews"
+  },
   "region": {
     "defaultMessage": "Region"
   },
   "region_Code": {
     "defaultMessage": "Region"
+  },
+  "reject_alert_button": {
+    "defaultMessage": "Reject"
+  },
+  "reject_alert_success": {
+    "defaultMessage": "Reject {id} verified successfully"
   },
   "remember_password": {
     "defaultMessage": "Remember me"
@@ -954,8 +1110,23 @@
   "rest_password": {
     "defaultMessage": "Reset password"
   },
+  "result": {
+    "defaultMessage": "Result"
+  },
   "retries": {
     "defaultMessage": "Retries"
+  },
+  "review_data": {
+    "defaultMessage": "Review data"
+  },
+  "review_deleted": {
+    "defaultMessage": "Review {reviewId} deleted successfully"
+  },
+  "review_summary": {
+    "defaultMessage": "<div> Based on <cta> {total} </cta> reviews</div>"
+  },
+  "reviews": {
+    "defaultMessage": "Reviews"
   },
   "role_updated": {
     "defaultMessage": "Role updated successfully!"
@@ -964,7 +1135,10 @@
     "defaultMessage": "Roles"
   },
   "root": {
-    "defaultMessage": ""
+    "defaultMessage": "Root"
+  },
+  "root_assortment": {
+    "defaultMessage": "Root"
   },
   "root_node": {
     "defaultMessage": "Root node"
@@ -973,7 +1147,7 @@
     "defaultMessage": "Save"
   },
   "saved": {
-    "defaultMessage": "Saved..."
+    "defaultMessage": "Saved"
   },
   "scheduled": {
     "defaultMessage": "Scheduled"
@@ -995,6 +1169,18 @@
   },
   "select_type": {
     "defaultMessage": "Select type"
+  },
+  "send_activation_email_confirm": {
+    "defaultMessage": "Are you sure you want to send email?"
+  },
+  "send_activation_email_header": {
+    "defaultMessage": "Send Email."
+  },
+  "send_button": {
+    "defaultMessage": "Send"
+  },
+  "send_email_button": {
+    "defaultMessage": "Send Email"
   },
   "send_rest_link": {
     "defaultMessage": "Send reset link"
@@ -1033,6 +1219,12 @@
     "defaultMessage": "Solr",
     "description": "Name"
   },
+  "star_reviews": {
+    "defaultMessage": "Star reviews"
+  },
+  "start": {
+    "defaultMessage": "Start"
+  },
   "started": {
     "defaultMessage": "Started"
   },
@@ -1041,6 +1233,9 @@
   },
   "status": {
     "defaultMessage": "Status"
+  },
+  "subscription_message": {
+    "defaultMessage": "Subscription"
   },
   "subscription_product_type_not_valid": {
     "defaultMessage": "Status of the product does not allow this operation"
@@ -1056,6 +1251,12 @@
   },
   "subtotal": {
     "defaultMessage": "Subtotal"
+  },
+  "success": {
+    "defaultMessage": "Quotation {id} verified successfully"
+  },
+  "success_message": {
+    "defaultMessage": "Subscritpion successfully activated."
   },
   "supply": {
     "defaultMessage": "Supply"
@@ -1078,8 +1279,17 @@
   "sync_removed": {
     "defaultMessage": "Removed { categoryName }"
   },
+  "sync_report": {
+    "defaultMessage": "Sync report"
+  },
   "sync_status": {
     "defaultMessage": "Sync status"
+  },
+  "sync_updated": {
+    "defaultMessage": "Updated { categoryName }"
+  },
+  "synced_items_report": {
+    "defaultMessage": "Synced items report"
   },
   "system": {
     "defaultMessage": "System"
@@ -1096,6 +1306,18 @@
   "tax": {
     "defaultMessage": "Tax"
   },
+  "terminate_enrollment": {
+    "defaultMessage": "Terminate Enrollment"
+  },
+  "terminate_enrollment_confirmation": {
+    "defaultMessage": "Are you sure you want to terminate this subscription?"
+  },
+  "terminate_enrollment_success": {
+    "defaultMessage": "Subscription {enrollmentId} terminated successfully"
+  },
+  "terminate_subscription": {
+    "defaultMessage": "Terminate subscription"
+  },
   "text": {
     "defaultMessage": "Text"
   },
@@ -1107,6 +1329,9 @@
   },
   "title_colon": {
     "defaultMessage": "Title:"
+  },
+  "title_not_found": {
+    "defaultMessage": "Title not found"
   },
   "to": {
     "defaultMessage": "To"
@@ -1130,8 +1355,17 @@
   "type": {
     "defaultMessage": "Type"
   },
+  "type_colon": {
+    "defaultMessage": "Type:"
+  },
   "unchained": {
     "defaultMessage": "Unchained Admin UI"
+  },
+  "unchained_logo": {
+    "defaultMessage": "Unchained Logo"
+  },
+  "update_configuration": {
+    "defaultMessage": "Update configuration"
   },
   "update_country": {
     "defaultMessage": "Update Country"
@@ -1152,16 +1386,13 @@
     "defaultMessage": "Update Language"
   },
   "update_language_header": {
-    "defaultMessage": "Update languages"
+    "defaultMessage": "Update language"
   },
   "update_payment_provider_header": {
     "defaultMessage": "Update payment provider"
   },
   "update_profile": {
     "defaultMessage": "Update profile"
-  },
-  "update_provider": {
-    "defaultMessage": "Update provider"
   },
   "update_role": {
     "defaultMessage": "Update role"
@@ -1172,8 +1403,17 @@
   "update_warehousing_provider_header": {
     "defaultMessage": "Update warehousing provider"
   },
-  "upload_avatar": {
-    "defaultMessage": "Upload avatar"
+  "updated_assortments": {
+    "defaultMessage": "Updated Assortments"
+  },
+  "updated_filters": {
+    "defaultMessage": "Updated filters"
+  },
+  "updated_products": {
+    "defaultMessage": "Updated Products"
+  },
+  "upload": {
+    "defaultMessage": "Upload"
   },
   "upload_file": {
     "defaultMessage": "Upload a file"
@@ -1208,9 +1448,6 @@
   "valid": {
     "defaultMessage": "Valid"
   },
-  "value": {
-    "defaultMessage": "Value"
-  },
   "variations": {
     "defaultMessage": "Variations"
   },
@@ -1219,6 +1456,12 @@
   },
   "vendor": {
     "defaultMessage": "Vendor"
+  },
+  "verify_alert_button": {
+    "defaultMessage": "Verify"
+  },
+  "verify_alert_header": {
+    "defaultMessage": "Verify quotation?"
   },
   "view_all": {
     "defaultMessage": "View all"
@@ -1230,7 +1473,7 @@
     "defaultMessage": "Warehousing provider"
   },
   "warehousing_provider_deleted": {
-    "defaultMessage": "warehousing provider {id} deleted successfully"
+    "defaultMessage": "Warehousing provider {warehousingProviderId} deleted successfully"
   },
   "warehousing_providers_header": {
     "defaultMessage": "Warehousing providers"
@@ -1247,7 +1490,7 @@
   "width": {
     "defaultMessage": "Width (Millimeter)"
   },
-  "work_added": {
+  "work_added_success": {
     "defaultMessage": "Work added successfully!"
   },
   "work_allocated_success": {
@@ -1256,20 +1499,14 @@
   "work_created": {
     "defaultMessage": "Created"
   },
-  "work_delete": {
-    "defaultMessage": "Delete"
-  },
   "work_deleted": {
-    "defaultMessage": "Deleted"
+    "defaultMessage": "Work {workId} deleted successfully"
   },
   "work_detail": {
     "defaultMessage": "Work Detail"
   },
   "work_finished": {
     "defaultMessage": "Finished"
-  },
-  "work_input": {
-    "defaultMessage": "Work Input"
   },
   "work_management_setting_list_header": {
     "defaultMessage": "Work Management Settings"
@@ -1289,9 +1526,6 @@
   "work_queue_header": {
     "defaultMessage": "Work queue"
   },
-  "work_result": {
-    "defaultMessage": "Work Result"
-  },
   "work_retries": {
     "defaultMessage": "Retries"
   },
@@ -1308,12 +1542,16 @@
     "defaultMessage": "Work Status"
   },
   "work_type": {
-    "defaultMessage": "Work Type"
+    "defaultMessage": "Work type"
   },
   "work_updated": {
     "defaultMessage": "Updated"
   },
   "worker": {
+    "defaultMessage": "Worker"
+  },
+  "worker_dynamic": {
+    "defaultMessage": "{worker}"
   },
   "wrapping_condition": {
     "defaultMessage": "Wrapping condition"

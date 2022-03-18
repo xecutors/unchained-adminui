@@ -44,7 +44,7 @@ const Languages = () => {
             formatMessage(
               {
                 id: 'language_deleted',
-                defaultMessage: 'language {id} deleted successfully',
+                defaultMessage: 'Language {languageId} deleted successfully',
               },
               {
                 id: languageId,

@@ -69,7 +69,7 @@ const ProductDetail = ({ product }) => {
     },
     {
       id: 'media',
-      title: formatMessage({ id: 'media', defaultMessage: 'media' }),
+      title: formatMessage({ id: 'media', defaultMessage: 'Media' }),
       Icon: <FilmIcon className="h-4 w-5" />,
     },
     __typename !== 'ConfigurableProduct' && {

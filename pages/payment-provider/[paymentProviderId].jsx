@@ -43,7 +43,7 @@ const PaymentProviderUpdate = () => {
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_confirmation',
+          id: 'delete_payment_provider_confirmation',
           defaultMessage:
             'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this payment provider? ',
         })}
@@ -66,7 +66,7 @@ const PaymentProviderUpdate = () => {
         }}
         okText={formatMessage({
           id: 'delete_payment_provider',
-          defaultMessage: 'Delete Payment Provider',
+          defaultMessage: 'Delete payment provider',
         })}
       />,
     );

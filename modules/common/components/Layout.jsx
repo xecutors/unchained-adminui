@@ -96,7 +96,7 @@ const Layout = ({
         },
         {
           name: formatMessage({
-            id: 'payment_provider',
+            id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
           href: '/payment-provider',

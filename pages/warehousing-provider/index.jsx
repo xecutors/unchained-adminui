@@ -34,17 +34,17 @@ const WarehousingProviders = () => {
               {
                 id: 'warehousing_provider_deleted',
                 defaultMessage:
-                  'warehousing provider {id} deleted successfully',
+                  'Warehousing provider {warehousingProviderId} deleted successfully',
               },
               {
-                id: warehousingProviderId,
+                warehousingProviderId,
               },
             ),
           );
         }}
         okText={formatMessage({
           id: 'delete_warehousing_provider',
-          defaultMessage: 'Delete warehousing provider',
+          defaultMessage: 'Delete warehousing Provider',
         })}
       />,
     );

@@ -152,7 +152,7 @@ const AssortmentDetail = ({ assortment }) => {
     {
       id: 'not_base',
       title: formatMessage({
-        id: 'root',
+        id: 'not_base',
         defaultMessage: 'Not Base',
       }),
       description: '',

@@ -21,7 +21,7 @@ const SubscriptionForm = ({ productId }) => {
   const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
     id: 'saved',
-    defaultMessage: 'Saved...',
+    defaultMessage: 'Saved',
   });
 
   const onSubmit = async ({

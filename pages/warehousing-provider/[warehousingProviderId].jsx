@@ -43,7 +43,7 @@ const WarehousingProviderUpdate = () => {
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_confirmation',
+          id: 'delete_warehousing_provider_confirmation',
           defaultMessage:
             'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this warehousing provider? ',
         })}
@@ -66,7 +66,7 @@ const WarehousingProviderUpdate = () => {
         }}
         okText={formatMessage({
           id: 'delete_warehousing_provider',
-          defaultMessage: 'Delete Warehousing Provider',
+          defaultMessage: 'Delete warehousing Provider',
         })}
       />,
     );

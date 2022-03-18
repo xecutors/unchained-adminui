@@ -57,7 +57,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               id="tags"
               label={formatMessage({
                 id: 'tags',
-                defaultMessage: 'tags',
+                defaultMessage: 'Tags',
               })}
               onChange={(newTags) => setTags(newTags)}
               autoComplete="on"

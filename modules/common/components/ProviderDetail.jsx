@@ -60,7 +60,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
             <div className="flex-col sm:flex  justify-between sm:items-center ">
               <div className="flex justify-center  py-4 sm:py-5">
                 <dt className="inline-block text-sm font-medium text-gray-400">
-                  {formatMessage({ id: 'type', defaultMessage: 'Type:' })}
+                  {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
                 </dt>
                 <dd className="inline-block ml-4 text-lg font-bold border leading-4 rounded-lg shadow-lg p-2">
                   {provider?.type}
@@ -69,7 +69,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               <div className="grid grid-cols-2 grid-rows-2 ">
                 <dd className="text-sm font-normal text-gray-400 justify-self-end">
                   {formatMessage({
-                    id: 'created',
+                    id: 'created_colon',
                     defaultMessage: 'Created:',
                   })}
                 </dd>

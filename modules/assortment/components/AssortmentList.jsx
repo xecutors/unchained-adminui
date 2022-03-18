@@ -25,7 +25,7 @@ const AssortmentList = ({ assortments, showAvatar = true }) => {
           <Table.Cell className=" text-left text-xs font-medium text-gray-500  uppercase tracking-wider">
             {formatMessage({
               id: 'root',
-              defaultMessage: ' ',
+              defaultMessage: 'Root',
             })}
           </Table.Cell>
 

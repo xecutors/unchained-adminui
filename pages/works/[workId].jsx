@@ -38,7 +38,7 @@ const WorkDetailPage = () => {
             formatMessage(
               {
                 id: 'work_deleted',
-                defaultMessage: 'work {workId} deleted successfully',
+                defaultMessage: 'Work {workId} deleted successfully',
               },
               {
                 workId,

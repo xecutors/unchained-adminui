@@ -25,11 +25,11 @@ const OrderDetailPayment = ({ order }) => {
     await setModal(
       <AlertMessage
         buttonText={formatMessage({
-          id: 'order_payment_confirmation',
+          id: 'pay',
           defaultMessage: 'PAY',
         })}
         headerText={formatMessage({
-          id: 'order_payment_confirmation',
+          id: 'payment',
           defaultMessage: 'Payment',
         })}
         onOkClick={async () => {
@@ -88,7 +88,7 @@ const OrderDetailPayment = ({ order }) => {
             </span>
             <div className="text-sm font-medium text-gray-500 mt-3">
               {formatMessage({
-                id: 'payment_provider',
+                id: 'payment',
                 defaultMessage: 'Payment',
               })}
             </div>

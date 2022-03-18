@@ -43,10 +43,10 @@ const Currencies = () => {
             formatMessage(
               {
                 id: 'currency_deleted',
-                defaultMessage: 'currency {id} deleted successfully',
+                defaultMessage: 'Currency {currencyId} deleted successfully',
               },
               {
-                id: currencyId,
+                currencyId,
               },
             ),
           );

@@ -46,7 +46,7 @@ const ProductReviewsReport = ({ productReviews }) => {
         </div>
         <div className="ml-2 text-sm text-gray-900">
           <FormattedMessage
-            id="paginated-data"
+            id="review_summary"
             defaultMessage="<div> Based on <cta> {total} </cta> reviews</div>"
             values={{
               div: (chunks) => <div>{chunks}</div>,

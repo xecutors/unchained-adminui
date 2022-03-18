@@ -88,7 +88,7 @@ const OrderDetailBilling = ({ order }) => {
           <div className="pt-2 flex items-center justify-between">
             <dt className="font-medium text-gray-900">
               {formatMessage({
-                id: 'total',
+                id: 'order_total',
                 defaultMessage: 'Order total',
               })}
             </dt>

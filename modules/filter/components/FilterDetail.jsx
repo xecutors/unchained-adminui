@@ -53,7 +53,7 @@ const FilterDetail = ({ filter }) => {
         message={formatMessage({
           id: 'delete_filter_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter? ',
         })}
         onOkClick={async () => {
           setModal('');
@@ -62,10 +62,10 @@ const FilterDetail = ({ filter }) => {
             formatMessage(
               {
                 id: 'filter_deleted',
-                defaultMessage: 'filter {id} deleted successfully',
+                defaultMessage: 'Filter {filterId} deleted successfully',
               },
               {
-                id: filterId,
+                filterId,
               },
             ),
           );
@@ -175,7 +175,7 @@ const FilterDetail = ({ filter }) => {
               className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mr-5"
             >
               <TrashIcon className="h-5 w-5 cursor-pointer text-white-400" />
-              {formatMessage({ id: 'delete_filter', defaultMessage: 'Delete' })}
+              {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
             </button>
             <SelectOptions
               options={activeOptions}

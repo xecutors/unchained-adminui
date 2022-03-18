@@ -52,13 +52,13 @@ const EnrollmentList = ({ enrollments, showUser }) => {
           </Table.Cell>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
-              id: 'payment_provider',
+              id: 'payment',
               defaultMessage: 'Payment',
             })}
           </Table.Cell>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
-              id: 'delivery_provider',
+              id: 'delivery',
               defaultMessage: 'Delivery',
             })}
           </Table.Cell>

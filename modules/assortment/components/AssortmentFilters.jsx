@@ -28,18 +28,19 @@ const AssortmentFilters = ({ assortmentId }) => {
           toast.success(
             formatMessage(
               {
-                id: 'filter_deleted',
-                defaultMessage: 'filter {id} deleted successfully',
+                id: 'assortment_filter_deleted',
+                defaultMessage:
+                  'Assortment filter {assortmentFilterId} deleted successfully',
               },
               {
-                id: assortmentId,
+                assortmentFilterId,
               },
             ),
           );
         }}
         okText={formatMessage({
           id: 'delete_filter',
-          defaultMessage: 'Delete Filter',
+          defaultMessage: 'Delete filter',
         })}
       />,
     );

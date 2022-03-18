@@ -15,9 +15,9 @@ function FilterListView({ filterId, options, selectedLocale }) {
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_filter_confirmation',
+          id: 'delete_filter_option_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter option? ',
         })}
         onOkClick={async () => {
           setModal('');
@@ -26,10 +26,10 @@ function FilterListView({ filterId, options, selectedLocale }) {
             formatMessage(
               {
                 id: 'filter_deleted',
-                defaultMessage: 'filter {id} deleted successfully',
+                defaultMessage: 'Filter {filterId} deleted successfully',
               },
               {
-                id: filterId,
+                filterId,
               },
             ),
           );

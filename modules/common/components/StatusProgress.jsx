@@ -77,7 +77,6 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',
-            description: 'Progress status',
           })}
         </h4>
         <p className="text-sm font-medium text-gray-900">
