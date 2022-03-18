@@ -18,6 +18,8 @@ import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useRejectQuotation from '../hooks/useRejectQuotation';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -25,6 +27,7 @@ const QuotationDetail = ({ quotation }) => {
 
   const { quotationStatusTypes } = useQuotationStatusTypes();
   const { VerifyQuotation } = useVerifyQuotation();
+  const { rejectQuotation } = useRejectQuotation();
 
   const onVerify = async () => {
     await setModal(
@@ -45,6 +48,36 @@ const QuotationDetail = ({ quotation }) => {
               {
                 id: 'success',
                 defaultMessage: 'Quotation {id} verified successfully',
+              },
+              {
+                id: quotation._id,
+              },
+            ),
+          );
+        }}
+      />,
+    );
+  };
+
+  const onReject = async () => {
+    await setModal(
+      <DangerMessage
+        buttonText={formatMessage({
+          id: 'reject_alert_button',
+          defaultMessage: 'Reject',
+        })}
+        headerText={formatMessage({
+          id: 'Reject_alert_header',
+          defaultMessage: 'Reject quotation?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await rejectQuotation({ id: quotation._id });
+          toast.success(
+            formatMessage(
+              {
+                id: 'reject_alert_success',
+                defaultMessage: 'Reject {id} verified successfully',
               },
               {
                 id: quotation._id,
@@ -83,6 +116,14 @@ const QuotationDetail = ({ quotation }) => {
       id: 4,
       content: 'rejected',
       visible: quotation.status !== 'FULLFILLED',
+      Component: quotation.status !== 'FULLFILLED' &&
+        quotation.status !== 'REJECTED' && (
+          <Button
+            text="Reject"
+            onClick={onReject}
+            className="rounded-md text-base"
+          />
+        ),
     },
     FULLFILLED: {
       id: 5,

@@ -116,8 +116,6 @@ const OrderDetail = ({ order }) => {
     body: <DocumentList documents={order.documents} />,
   };
 
-  console.log(order)
-
   return (
     <>
       <OrderDetailHeader order={order} />
