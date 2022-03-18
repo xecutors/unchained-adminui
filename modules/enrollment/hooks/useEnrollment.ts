@@ -6,7 +6,6 @@ export const EnrollmentQuery = gql`
     enrollment(enrollmentId: $enrollmentId) {
       ...EnrollmentFragment
     }
-    enrollmentCount
   }
   ${EnrollmentFragment}
 `;

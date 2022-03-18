@@ -20,6 +20,7 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
           <ul className="-my-6 divide-y divide-gray-200">
             {medias.map((media) => (
               <AssortmentMediaListItem
+                key={media._id}
                 media={media}
                 locale={selectedLocale}
                 isEdit={isEditing}

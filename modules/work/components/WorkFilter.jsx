@@ -145,7 +145,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5 mt-3 m-1 ">
           {WORK_STATUSES.map((status) => (
-            <div className="flex justify-start m-2">
+            <div className="flex justify-start m-2" key={status}>
               <input
                 className="w-4 h-4 mr-2 "
                 type="checkbox"

@@ -21,7 +21,7 @@ export const AssortmentLinksQuery = gql`
 
 const useAssortmentLinks = ({ assortmentId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(AssortmentLinksQuery, {
-    skip: !assortmentId,
+    skip: !assortmentId && !slug,
     variables: {
       slug,
       assortmentId,

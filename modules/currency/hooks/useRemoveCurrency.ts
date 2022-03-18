@@ -14,7 +14,7 @@ const useRemoveCurrency = () => {
   const removeCurrency = async ({ currencyId }) => {
     return removeCurrencyMutation({
       variables: { currencyId },
-      refetchQueries: ['Currencies'],
+      refetchQueries: ['Currencies', 'CurrencyId'],
     });
   };
 
