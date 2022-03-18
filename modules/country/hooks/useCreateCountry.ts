@@ -14,7 +14,7 @@ const useCreateCountry = () => {
   const createCountry = async ({ isoCode }) => {
     return createCountryMutation({
       variables: { country: { isoCode } },
-      refetchQueries: ['Countries'],
+      refetchQueries: ['Countries', 'Country'],
     });
   };
 

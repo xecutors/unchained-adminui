@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import FormHeader from '../../modules/common/components/FormHeader';
 
 import LanguageForm from '../../modules/language/components/LanguageForm';
@@ -8,27 +9,57 @@ import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import useUpdateLanguage from '../../modules/language/hooks/useUpdateLanguage';
 import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import DangerMessage from '../../modules/modal/components/DangerMessage';
+import useModal from '../../modules/modal/hooks/useModal';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
   const { push, query } = useRouter();
-  const { id } = query;
-
-  const { language } = useLanguage({ languageId: id });
+  const { languageId } = query;
+  const { setModal } = useModal();
+  const { removeLanguage } = useRemoveLanguage();
+  const { language } = useLanguage({ languageId });
 
   const onSubmitSuccess = () => {
     push('/language');
   };
   const { formatMessage } = useIntl();
 
-  const { removeLanguage } = useRemoveLanguage();
-  const onDelete = async () => {
-    await removeLanguage(id);
+  const onSubmit = async ({ isoCode, isActive }) => {
+    await updateLanguage({ isoCode, isActive, languageId });
+    return true;
   };
 
-  const onSubmit = async ({ isoCode, isActive }) => {
-    await updateLanguage({ isoCode, isActive, languageId: id });
-    return true;
+  const onDelete = async () => {
+    await setModal(
+      <DangerMessage
+        message={formatMessage({
+          id: 'delete_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this payment provider? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeLanguage({});
+          toast.success(
+            formatMessage(
+              {
+                id: 'language_deleted',
+                defaultMessage: 'Language {languageId} deleted successfully',
+              },
+              {
+                languageId,
+              },
+            ),
+          );
+          push('/language');
+        }}
+        okText={formatMessage({
+          id: 'delete_language',
+          defaultMessage: 'Delete language',
+        })}
+      />,
+    );
   };
 
   return (

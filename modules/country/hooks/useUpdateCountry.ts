@@ -27,7 +27,7 @@ const useUpdateCountry = () => {
         country: { isoCode, isActive, defaultCurrencyId },
         countryId,
       },
-      refetchQueries: ['Country', 'Countries'],
+      refetchQueries: ['Countries'],
     });
   };
 
