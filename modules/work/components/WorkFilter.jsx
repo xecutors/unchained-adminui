@@ -1,10 +1,11 @@
 import { VariableIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
-import FilterWrapper from '../../common/components/FilterWrapper';
+
 import MultipleSelect from '../../common/components/MultipleSelect';
+import normalizeFilterKeys from '../../common/utils/normalizeFilterKeys';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 const extractQuery = (query) => {
@@ -13,7 +14,6 @@ const extractQuery = (query) => {
     .filter(Boolean);
 };
 
-const arrayToBooleanObject = (key, val) => ({ ...key, [val]: true });
 const WorkFilter = ({ workTypes = [] }) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
@@ -23,36 +23,36 @@ const WorkFilter = ({ workTypes = [] }) => {
   );
 
   const [dateRange, setDateRange] = useState({
-    start: new Date(0).getTime(),
-    end: new Date().getTime(),
+    start: new Date(0),
+    end: new Date(),
   });
 
   const [selectedStatuses, setSelectedStatuses] = useState(
-    extractQuery(router.query?.status).reduce(arrayToBooleanObject, {}),
+    extractQuery(router.query?.status),
   );
 
   const statusChangeHandler = (e) => {
-    setSelectedStatuses({
-      ...selectedStatuses,
-      [e.target.name]: e.target.checked,
-    });
-  };
-  const onApplyFilter = () => {
-    return {
-      ...dateRange,
-      types: selectedTypes,
-      status: Object.entries(selectedStatuses)
-        .filter(([, isChecked]) => isChecked)
-        .map(([key]) => key)
-        ?.filter(Boolean),
-    };
+    if (e.target.checked) {
+      setSelectedStatuses([...selectedStatuses, e.target.name]);
+    } else {
+      setSelectedStatuses([
+        ...selectedStatuses.filter((v) => v !== e.target.value),
+      ]);
+    }
   };
 
+  useEffect(() => {
+    const filterQuery = normalizeFilterKeys({
+      ...dateRange,
+      types: selectedTypes,
+      status: selectedStatuses,
+    });
+
+    router.push(`${router.pathname}?${filterQuery}`);
+  }, [dateRange, selectedTypes, selectedStatuses]);
+
   return (
-    <FilterWrapper
-      className="bg-white shadow my-2 pt-2"
-      onApplyFilter={onApplyFilter}
-    >
+    <>
       <div className="p-4 lg:flex mb-2 sm:mb-0 justify-between">
         <div className="sm:mr-6">
           <div className="flexspace-x-2">
@@ -72,7 +72,10 @@ const WorkFilter = ({ workTypes = [] }) => {
                 name="startDate"
                 id="work-start"
                 onChange={(value) =>
-                  setDateRange({ ...dateRange, start: value.getTime() })
+                  setDateRange({
+                    ...dateRange,
+                    start: new Date(value),
+                  })
                 }
                 placeholderText="Start date"
                 dateFormat="dd.MM.yyyy"
@@ -89,7 +92,10 @@ const WorkFilter = ({ workTypes = [] }) => {
                 name="endDate"
                 id="work-end"
                 onChange={(value) =>
-                  setDateRange({ ...dateRange, end: value.getTime() })
+                  setDateRange({
+                    ...dateRange,
+                    end: new Date(value),
+                  })
                 }
                 placeholderText="End Date"
                 value={new Date()}
@@ -152,7 +158,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 id={status}
                 name={status}
                 value={status}
-                checked={selectedStatuses?.[status]}
+                checked={selectedStatuses.includes(status)}
                 onChange={statusChangeHandler}
               />
               <div className="ml-2">
@@ -164,7 +170,7 @@ const WorkFilter = ({ workTypes = [] }) => {
           ))}
         </div>
       </div>
-    </FilterWrapper>
+    </>
   );
 };
 

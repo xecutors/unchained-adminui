@@ -67,7 +67,7 @@ const UserNameView = ({ _id: userId, username }) => {
               </button>
               {isEdit && (
                 <>
-                  <span className="text-gray-300" aria-hidiven="true">
+                  <span className="text-gray-300" aria-hidden="true">
                     |
                   </span>
                   <button

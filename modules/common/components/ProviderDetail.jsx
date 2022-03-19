@@ -9,7 +9,7 @@ import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import { getInterfaceLabel } from '../utils/utils';
 import useFormatDateTime from '../utils/useFormatDateTime';
-import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous.ts';
+import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();

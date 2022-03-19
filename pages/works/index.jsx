@@ -16,12 +16,12 @@ const WorkQueueView = () => {
   const { formatMessage } = useIntl();
 
   const filter = {
-    dateRange: {
+    created: {
       start: query?.start,
       end: query?.end,
     },
     status: query?.status?.split(','),
-    types: query?.types?.split(','),
+    selectTypes: query?.types?.split(','),
   };
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
