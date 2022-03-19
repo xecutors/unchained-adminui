@@ -37,18 +37,33 @@ const MediaListItem = ({
   }, [mediaText]);
 
   return (
-    <li className="md:col-5 flex space-x-6 py-6 md:col-start-1" key={media._id}>
-      <a onClick={() => displayImageInModal(media?.file?.url)}>
-        <img
-          src={media?.file?.url}
-          alt={mediaText?.title || mediaText?.subtitle}
-          className="h-36 w-36 flex-none rounded-md bg-gray-100 object-cover object-center"
-        />
-      </a>
+    <li className="flex gap-x-4 flex-wrap" key={media._id}>
+      <div className="flex-auto ">
+        <a onClick={() => displayImageInModal(media?.file?.url)}>
+          <img
+            src={media?.file?.url}
+            alt={mediaText?.title || mediaText?.subtitle}
+            className="h-36 w-36 flex-none rounded-md bg-gray-100 object-cover object-center"
+          />
+        </a>
 
-      <div className="my-auto flex-auto">
+        {media?.tags && (
+          <div className="space-x-2">
+            {media?.tags.map((tag, index) => (
+              <span
+                key={`${tag}${index + 1}`}
+                className="rounded border shadow-sm bg-white px-1 text-sm font-light capitalize text-gray-900"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )} 
+      </div>
+      
+      <div className="flex-auto my-auto">
         <Form form={form}>
-          <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between sm:space-x-6">
+          <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
             <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium">
               <h3 className="text-gray-900">
                 {isEdit ? (
@@ -92,17 +107,6 @@ const MediaListItem = ({
                   </>
                 )}
               </p>
-              {/* <p className="hidden text-gray-500 sm:block" /> */}
-
-              {media?.tags &&
-                media?.tags.map((tag, index) => (
-                  <span
-                    key={`${tag}${index + 1}`}
-                    className="rounded border border-sky-400 bg-white px-1 text-xs font-light capitalize text-gray-900"
-                  >
-                    {tag}
-                  </span>
-                ))}
             </div>
             <div className="flex flex-none space-x-4 self-start">
               {isEdit && (
