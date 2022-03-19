@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { useRouter } from 'next/router';
@@ -15,17 +14,18 @@ import useProducts from '../../modules/product/hooks/useProducts';
 
 const Products = () => {
   const { formatMessage } = useIntl();
-  const [filter, setFilter] = useState({});
+
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
+  const tags = query.tags?.split(',') || [];
 
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,
     offset,
-    ...filter,
+    tags,
   });
 
   return (
@@ -38,14 +38,7 @@ const Products = () => {
             defaultMessage: 'Products',
           })}
         />
-        <ProductFilter
-          onFilter={({ queryString, tags }) => {
-            setFilter({
-              tags,
-              queryString,
-            });
-          }}
-        />
+        <ProductFilter />
       </div>
       <div className="min-w-full overflow-hidden">
         <ListHeader addPath="/products/new">

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import Badge from './Badge';
 import Button from './Button';
 
-const TagInput = ({ tagList: tags, onChange }) => {
+const TagInput = ({ tagList: tags, onChange, buttonText }) => {
   const { formatMessage } = useIntl();
   const [tagList, setTagList] = useState([...(tags || [])]);
 
@@ -64,10 +64,13 @@ const TagInput = ({ tagList: tags, onChange }) => {
 
           <Button
             onClick={addTag}
-            text={formatMessage({
-              id: 'add',
-              defaultMessage: 'Add',
-            })}
+            text={
+              buttonText ||
+              formatMessage({
+                id: 'add',
+                defaultMessage: 'Add',
+              })
+            }
           />
         </div>
       </div>

@@ -12,6 +12,12 @@ export const isTruthy = (val) => {
 
 export const arrayToBooleanObject = (key, val) => ({ ...key, [val]: true });
 
+export const extractQuery = (query) => {
+  return decodeURIComponent(query || [])
+    .split(',')
+    .filter(Boolean);
+};
+
 const normalizeFilterKeys = (rawFilter) => {
   return Object.keys(rawFilter)
     .filter((key) => isTruthy(rawFilter[key]))

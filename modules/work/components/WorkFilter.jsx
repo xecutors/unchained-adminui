@@ -5,14 +5,11 @@ import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
-import normalizeFilterKeys from '../../common/utils/normalizeFilterKeys';
+import normalizeFilterKeys, {
+  extractQuery,
+} from '../../common/utils/normalizeFilterKeys';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
-const extractQuery = (query) => {
-  return decodeURIComponent(query || [])
-    .split(',')
-    .filter(Boolean);
-};
 
 const WorkFilter = ({ workTypes = [] }) => {
   const router = useRouter();
