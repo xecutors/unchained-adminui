@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import useAssortments from '../../modules/assortment/hooks/useAssortments';
@@ -17,18 +16,19 @@ import AssortmentSearchFilter from '../../modules/assortment/components/Assortme
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const [filter, setFilter] = useState({});
+
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
   const includeLeaves = query?.includeLeaves === 'true';
+  const tags = query?.tags?.split(',') || [];
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     includeInactive,
     includeLeaves,
     limit,
     offset,
-    ...filter,
+    tags,
   });
 
   return (
@@ -40,14 +40,7 @@ const AssortmentsListView = () => {
           defaultMessage: 'Assortments',
         })}
       />
-      <AssortmentSearchFilter
-        onFilter={({ onSearch, tag }) => {
-          setFilter({
-            tag,
-            onSearch,
-          });
-        }}
-      />
+      <AssortmentSearchFilter />
       <div className="min-w-full overflow-hidden">
         <ListHeader addPath="/assortments/new">
           <Toggle

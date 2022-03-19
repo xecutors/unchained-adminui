@@ -15,7 +15,6 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
 
     const output = Object.keys(filters)
       .map((key) => {
-        console.log(key, Array.isArray(filters[key]));
         const valueIsArray = Array.isArray(filters[key])
           ? filters[key].join(',')
           : filters[key];

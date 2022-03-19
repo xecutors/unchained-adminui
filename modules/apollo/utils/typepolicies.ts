@@ -5,7 +5,13 @@ export const keyMappings: any = {
   Query: {
     fields: {
       assortments: {
-        keyArgs: ['limit', 'includeLeaves', 'includeInactive', 'offset'],
+        keyArgs: [
+          'limit',
+          'includeLeaves',
+          'includeInactive',
+          'offset',
+          'tags',
+        ],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },

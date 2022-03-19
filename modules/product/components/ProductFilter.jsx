@@ -1,20 +1,14 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import TagInput from '../../common/components/TagInput';
-import normalizeFilterKeys, {
-  extractQuery,
-} from '../../common/utils/normalizeFilterKeys';
+import { isTruthy } from '../../common/utils/normalizeFilterKeys';
 
 const ProductFilter = () => {
   const router = useRouter();
-  const [tags, setTags] = useState(extractQuery(router.query?.tags));
+
   const { formatMessage } = useIntl();
-  useEffect(() => {
-    const filterQuery = normalizeFilterKeys({ tags });
-    router.push(`${router.pathname}?${filterQuery}`);
-  }, [tags]);
+
   return (
     <div className="grid grid-cols-6 gap-6  px-4 mt-4">
       <div className="col-span-6 sm:col-span-3">
@@ -23,8 +17,23 @@ const ProductFilter = () => {
             id: 'add_tag',
             defaultMessage: 'Add tag',
           })}
+          tagList={router?.query?.tags?.split(',')}
           onChange={(value) => {
-            setTags(value);
+            if (isTruthy(value))
+              router.push({
+                query: {
+                  ...router.query,
+                  tags: value?.join(','),
+                },
+              });
+            else {
+              delete router.query?.tags;
+              router.push({
+                query: {
+                  ...router.query,
+                },
+              });
+            }
           }}
         />
       </div>
