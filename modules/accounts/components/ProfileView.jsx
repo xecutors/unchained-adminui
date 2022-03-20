@@ -296,7 +296,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               </div>
               <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
                 <label className="text-sm font-medium text-gray-500">
-                  Phone
+                  {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (

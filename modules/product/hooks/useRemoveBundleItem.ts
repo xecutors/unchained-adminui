@@ -14,7 +14,7 @@ const useRemoveBundleItem = () => {
   const removeBundleItem = async ({ productId, index }) => {
     return removeBundleItemMutation({
       variables: { productId, index },
-      refetchQueries: ['Products'],
+      refetchQueries: ['ProductBundleItems', 'Product'],
     });
   };
 
