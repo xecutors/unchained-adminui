@@ -1,22 +1,27 @@
 import Image from 'next/image';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
-const FilteredListItem = ({ item }) => {
+const FilteredListItem = ({ item, onSelected }) => {
   return (
-    <div className="cursor-pointer w-full border-gray-100 border-b hover:bg-teal-100">
+    <a
+      className="cursor-pointer w-full border-gray-100 border-b hover:bg-teal-100"
+      onClick={() => onSelected(item)}
+    >
       <div className="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
-        <div className="w-6 flex flex-col items-center">
-          <div className="flex relative w-5 h-5 bg-orange-500 justify-center items-center m-1 mr-2 w-4 h-4 mt-1 rounded-full ">
-            <Image
-              className="mx-auto h-12 w-auto"
-              src="https://randomuser.me/api/portraits/men/65.jpg"
-              loader={defaultNextImageLoader}
-              width={160}
-              height={100}
-              alt={item?.title || item?.subtitle}
-            />
+        {item.image && (
+          <div className="w-20 flex flex-col items-center">
+            <div className="flex relative   justify-center items-center m-1 mr-2  mt-1 rounded-full ">
+              <Image
+                className="mx-auto w-auto"
+                src={item.image}
+                loader={defaultNextImageLoader}
+                width={160}
+                height={100}
+                alt={item?.title || item?.subtitle}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="w-full items-center flex">
           <div className="mx-2 -mt-1 w-1/2 ">
             {item?.title}
@@ -33,7 +38,7 @@ const FilteredListItem = ({ item }) => {
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

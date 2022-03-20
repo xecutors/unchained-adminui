@@ -9,6 +9,8 @@ export const SearchProductsQuery = gql`
     $orderBy: SearchOrderBy
     $includeInactive: Boolean
     $ignoreChildAssortments: Boolean
+    $limit: Int
+    $offset: Int
   ) {
     searchProducts(
       queryString: $queryString
