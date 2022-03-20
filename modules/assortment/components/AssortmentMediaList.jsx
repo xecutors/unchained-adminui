@@ -7,7 +7,7 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="sm:px-15 py-5 px-5">
+    <div className="sm:px-15 p-5 sm:order-1 sm:col-span-6">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
