@@ -26,6 +26,7 @@ import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 import ProductReviews from '../../product-review/components/ProductReviews';
+import BundleProductsForm from './BundleProductsForm';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -45,14 +46,13 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
   if (selectedView === 'variations') return <VariationForm productId={id} />;
   if (selectedView === 'bundled_products')
-    return <ProductTextsForm productId={id} />;
+    return <BundleProductsForm productId={id} />;
   if (selectedView === 'subscription')
     return <SubscriptionForm productId={id} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
-  console.log(product._id);
   const { formatMessage } = useIntl();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
@@ -104,9 +104,9 @@ const ProductDetail = ({ product }) => {
       Icon: <ColorSwatchIcon className="h-4 w-5" />,
     },
     __typename === 'BundleProduct' && {
-      id: 'bundles',
+      id: 'bundled_products',
       title: formatMessage({
-        id: 'bundled_products',
+        id: 'bundles',
         defaultMessage: 'Bundles',
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
