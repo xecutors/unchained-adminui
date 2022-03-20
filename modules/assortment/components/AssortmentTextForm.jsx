@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -81,10 +83,10 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
           </p>
         </div>
       </div>
-      <div className="mt-5 md:mt-0 md:col-span-2">
+      <div className="mt-5 md:col-span-2 md:mt-0">
         <Form form={form}>
-          <div className="shadow overflow-hidden sm:rounded-md">
-            <div className="grid gap-6 px-4 py-5 bg-white sm:p-6">
+          <div className="overflow-hidden shadow sm:rounded-md">
+            <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
               <div className="col-span-12">
                 <TextField
                   name="slug"
@@ -95,7 +97,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
                 />
               </div>
               <div className="col-span-12">
@@ -108,7 +110,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                   })}
                   required
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
                 />
               </div>
               <div className="col-span-12">
@@ -120,24 +122,24 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
                 />
               </div>
               <div className="col-span-12">
-                <TextAreaField
+                {formatMessage({
+                  id: 'description',
+                  defaultMessage: 'Description',
+                })}
+                <ReactQuill
                   name="description"
                   id="description"
-                  label={formatMessage({
-                    id: 'description',
-                    defaultMessage: 'Description',
-                  })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 mt-1 w-full"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
                 />
               </div>
             </div>
 
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <FormErrors />
               <SubmitButton
                 label={formatMessage({

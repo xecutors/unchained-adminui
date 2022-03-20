@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
+import 'react-quill/dist/quill.snow.css'
 
 import App from 'next/app';
 
