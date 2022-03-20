@@ -26,7 +26,7 @@ import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 import ProductReviews from '../../product-review/components/ProductReviews';
-import BundleProductsForm from './BundleProductsForm';
+import BundleProducts from './BundleProducts';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -46,7 +46,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
   if (selectedView === 'variations') return <VariationForm productId={id} />;
   if (selectedView === 'bundled_products')
-    return <BundleProductsForm productId={id} />;
+    return <BundleProducts productId={id} />;
   if (selectedView === 'subscription')
     return <SubscriptionForm productId={id} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
