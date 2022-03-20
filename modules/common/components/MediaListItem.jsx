@@ -39,7 +39,7 @@ const MediaListItem = ({
   return (
     <li className="flex gap-x-4 flex-wrap" key={media._id}>
       <div className="flex-auto ">
-        <a onClick={() => displayImageInModal(media?.file?.url)}>
+        <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <img
             src={media?.file?.url}
             alt={mediaText?.title || mediaText?.subtitle}
@@ -58,9 +58,9 @@ const MediaListItem = ({
               </span>
             ))}
           </div>
-        )} 
+        )}
       </div>
-      
+
       <div className="flex-auto my-auto">
         <Form form={form}>
           <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
