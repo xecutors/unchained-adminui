@@ -52,9 +52,15 @@ const ProductReviewsItem = ({ review }) => {
   return (
     <div
       key={review._id}
-      className={classNames('mb-2 rounded-md pb-3 pt-1 px-3', {
-        'border-2 border-solid border-red-200': review.deleted,
-      })}
+      className={classNames(
+        'mb-2 rounded-md px-3 pb-3 pt-1',
+        {
+          'border-2 border-solid border-red-200': review.deleted,
+        },
+        {
+          'border-2 border-solid border-gray-200': !review.deleted,
+        },
+      )}
     >
       <div className="flex items-center">
         <Image
