@@ -10,6 +10,7 @@ import {
   UsersIcon,
 } from '@heroicons/react/solid';
 
+import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 import SelectOptions from '../../common/components/SelectOptions';
@@ -51,6 +52,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
+  console.log(product._id);
   const { formatMessage } = useIntl();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
@@ -142,6 +144,12 @@ const ProductDetail = ({ product }) => {
       current: status === 'ACTIVE',
       onClick: async () => {
         await publishProduct({ productId: product?._id });
+        toast.success(
+          formatMessage({
+            id: 'product_published',
+            defaultMessage: 'Published successfully ',
+          }),
+        );
       },
       bgColor: 'green',
     },
@@ -160,6 +168,12 @@ const ProductDetail = ({ product }) => {
       bgColor: 'gray',
       onClick: async () => {
         await unPublishProduct({ productId: product?._id });
+        toast.success(
+          formatMessage({
+            id: 'product_drafted',
+            defaultMessage: 'Drafted successfully ',
+          }),
+        );
       },
     },
     {
@@ -177,6 +191,12 @@ const ProductDetail = ({ product }) => {
       bgColor: 'red',
       onClick: async () => {
         await removeProduct({ productId: product?._id });
+        toast.success(
+          formatMessage({
+            id: 'product_deleted_success',
+            defaultMessage: 'Deleted successfully ',
+          }),
+        );
       },
     },
   ];
