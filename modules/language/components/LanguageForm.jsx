@@ -22,6 +22,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
     enableReinitialize: true,
     initialValues: {
       isoCode: '',
+      isActive: '',
       ...defaultValue,
     },
   });
@@ -45,10 +46,11 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           <div className="flex items-center h-5">
             <CheckboxField
               id="isActive"
-              name="is-active"
+              name="isActive"
+              type="checkbox"
               label={formatMessage({
                 id: 'active',
-                defaultMessage: 'Active',
+                defaultMessage: ' Active',
               })}
               className="ml-3 focus:ring-indigo-500 h-4 w-4 text-indigo-500 border-gray-300 rounded"
             />

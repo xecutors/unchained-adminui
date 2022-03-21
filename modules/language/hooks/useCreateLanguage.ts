@@ -1,5 +1,4 @@
 import { useMutation, gql } from '@apollo/client';
-import { LanguagesQuery } from './useLanguages';
 
 const CreateLanguageMutation = gql`
   mutation CreateLanguage($language: CreateLanguageInput!) {
@@ -15,7 +14,7 @@ const useCreateLanguage = () => {
   const createLanguage = async ({ isoCode }) => {
     return createLanguageMutation({
       variables: { language: { isoCode } },
-      refetchQueries: [{ query: LanguagesQuery }],
+      refetchQueries: ['Language', 'Languages'],
     });
   };
 

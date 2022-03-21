@@ -26,10 +26,9 @@ const useProductPlan = ({ productId = null, slug = null } = {}) => {
   });
 
   const product = data?.product || {};
-  const plan = product?.plan || {};
 
   return {
-    plan,
+    plan: product?.plan,
     loading,
     error,
   };

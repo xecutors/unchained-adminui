@@ -12,6 +12,7 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import FormWrapper from '../../modules/common/components/FormWrapper';
+import Loading from '../../modules/common/components/Loading';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
@@ -19,7 +20,7 @@ const UpdateLanguage = () => {
   const { languageId } = query;
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
-  const { language } = useLanguage({ languageId });
+  const { language, loading } = useLanguage({ languageId });
 
   const onSubmitSuccess = () => {
     push('/language');
@@ -73,18 +74,23 @@ const UpdateLanguage = () => {
             defaultMessage: 'Update language',
           })}
         />
+
         <HeaderDeleteButton onClick={onDelete} />
       </div>
-      <div className="mt-6  sm:max-w-xl">
-        <FormWrapper>
-          <LanguageForm
-            isEdit
-            defaultValue={language}
-            onSubmit={onSubmit}
-            onSubmitSuccess={onSubmitSuccess}
-          />
-        </FormWrapper>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="mt-6  sm:max-w-xl">
+          <FormWrapper>
+            <LanguageForm
+              isEdit
+              defaultValue={language}
+              onSubmit={onSubmit}
+              onSubmitSuccess={onSubmitSuccess}
+            />
+          </FormWrapper>
+        </div>
+      )}
     </>
   );
 };
