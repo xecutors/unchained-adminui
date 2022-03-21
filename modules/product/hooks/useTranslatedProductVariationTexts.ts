@@ -1,5 +1,4 @@
 import { useQuery, gql } from '@apollo/client';
-import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 
 export const TranslatedProductVariationQuery = gql`
   query translatedProductVariationTexts(
@@ -16,10 +15,9 @@ export const TranslatedProductVariationQuery = gql`
       subtitle
     }
   }
-  ${ProductMediaTextsFragment}
 `;
 
-const useTranslatedProductMediaTexts = ({
+const useTranslatedProductVariationTexts = ({
   productVariationId,
   productVariationOptionValue,
 }) => {
@@ -30,13 +28,13 @@ const useTranslatedProductMediaTexts = ({
       productVariationOptionValue,
     },
   });
-  const translatedMediaTexts = data?.translatedProductVariationTexts || [];
+  const translatedVariationTexts = data?.translatedProductVariationTexts || [];
 
   return {
-    translatedMediaTexts,
+    translatedVariationTexts,
     loading,
     error,
   };
 };
 
-export default useTranslatedProductMediaTexts;
+export default useTranslatedProductVariationTexts;

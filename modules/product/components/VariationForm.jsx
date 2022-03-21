@@ -10,8 +10,8 @@ import useForm from '../../forms/hooks/useForm';
 import useCreateProductVariation from '../hooks/useCreateProductVariation';
 import useProductVariations from '../hooks/useProductVariations';
 import useProductVariationTypes from '../hooks/useProductVariationTypes';
-/* import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts'; */
-import ProductAssignmentListItem from './ProductAssignmentListItem';
+
+import ProductVariationsList from './ProductVariationsList';
 
 export const userCalculation = {
   color_picker: 'Color Picker',
@@ -20,12 +20,11 @@ export const userCalculation = {
 
 const VariationForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
-  const { updateProductVariationTexts } = useUpdateProductVariationTexts();
+
   const { createProductVariation } = useCreateProductVariation();
 
   const { variations } = useProductVariations({ productId });
   const { variationTypes } = useProductVariationTypes();
-  console.log(variations);
 
   const onSubmit = async ({ title, key, type }) => {
     await createProductVariation({ productId, key, type, title });
@@ -99,48 +98,15 @@ const VariationForm = ({ productId, selectedLocale }) => {
           </div>
         </Form>
       </FormWrapper>
-      <div className="shadow bg-white">
-        <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
-          <span className="flex w-full">
-            <span className="w-full">
-              {' '}
-              {formatMessage({
-                id: 'max_quantity',
-                defaultMessage: 'Max Quantity',
-              })}{' '}
-            </span>
-          </span>
-        </label>
-        <table className="bg-white min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                {formatMessage({
-                  id: 'product',
-                  defaultMessage: 'Product',
-                })}
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                {formatMessage({ id: 'options', defaultMessage: 'Options' })}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {variations?.map((variation) => (
-              <ProductAssignmentListItem
-                key-={variation._id}
-                variation={variation}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+      {variations?.map((variation) => (
+        <ProductVariationsList
+          selectedLocale={selectedLocale}
+          productVariationId={variation._id}
+          key={variation._id}
+          variation={variation}
+        />
+      ))}
     </div>
   );
 };
