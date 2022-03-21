@@ -57,7 +57,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
         />
       </div>
-      <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'add_assortment',

@@ -51,14 +51,14 @@ const WorkForm = () => {
       originalWorkId: null,
       scheduled: null,
       type: '',
-      input: [],
+      input: '',
     },
   });
 
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
+        <div className="space-y-6 p-6 rounded-md relative max-w-full">
           <div className="sm:flex max-w-4xl justify-between align-baseline">
             <div className="py-3">
               <div className="text-sm font-medium text-gray-500">
@@ -198,7 +198,7 @@ const WorkForm = () => {
         </div>
         <FormErrors />
 
-        <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'add_work',

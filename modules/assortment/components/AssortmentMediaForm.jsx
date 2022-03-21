@@ -47,8 +47,8 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
   };
 
   return (
-    <div className="mx-auto mt-5 max-w-7xl bg-white py-12 px-4 shadow sm:rounded-t sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
+    <div className="mx-auto mt-5 max-w-full py-6 shadow sm:grid sm:grid-cols-12 sm:gap-4 sm:rounded">
+      <div className="mx-auto w-full px-6 pb-6 sm:col-span-6 sm:col-start-1">
         <MediaUploader onlyDragAndDrop />
       </div>
       <AssortmentMediaList

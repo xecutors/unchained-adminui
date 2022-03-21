@@ -26,7 +26,7 @@ const DoWorkForm = () => {
     enableReinitialize: true,
     initialValues: {
       type: '',
-      input: [],
+      input: '',
     },
   });
 
@@ -34,7 +34,7 @@ const DoWorkForm = () => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
+        <div className="space-y-6 p-6 rounded-md relative max-w-full">
           <div className=" max-w-4xl sm:mr-10 justify-between align-baseline">
             <div className="py-3">
               <div className="text-sm  font-medium text-gray-500">
@@ -76,7 +76,7 @@ const DoWorkForm = () => {
           />
         </div>
 
-        <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'do_work',

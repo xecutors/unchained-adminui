@@ -14,7 +14,7 @@ const useRemoveProductMedia = () => {
   const removeProductMedia = async ({ productMediaId }) => {
     return removeProductMediaMutation({
       variables: { productMediaId },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['ProductMedia'],
     });
   };
 

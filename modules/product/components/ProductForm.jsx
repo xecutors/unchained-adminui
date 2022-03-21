@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="sm:max-w-full px-5 py-2">
+      <div className="px-5 py-2 sm:max-w-full">
         <TextField
           name="title"
           id="name"
@@ -49,12 +49,12 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
           })}
           required
           autoComplete="on"
-          className="text-sm mt-2 block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mt-2 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
-        <div className="flex items-center my-5">
+        <div className="my-5 flex items-center">
           <SelectField
-            className="w-full mt-0"
+            className="mt-0 w-full"
             label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             hideLabel
@@ -72,7 +72,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
         />
       </div>
 
-      <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'add_product',
