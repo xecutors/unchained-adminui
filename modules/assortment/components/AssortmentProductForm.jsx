@@ -53,8 +53,8 @@ const AssortmentProductForm = ({ assortmentId }) => {
 
   return (
     <Form form={form}>
-      <div className="shadow overflow-hidden sm:rounded-md">
-        <div className="grid gap-6 px-4 py-5 bg-white sm:p-6">
+      <div className="overflow-hidden shadow sm:rounded-md">
+        <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
           <div className="col-span-12">
             <TagInput
               name="tags"
@@ -64,7 +64,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
                 defaultMessage: 'Tags',
               })}
               onChange={(newTags) => setTags(newTags)}
-              className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
+              className="mt-1 w-full py-2 text-sm font-medium text-gray-500 sm:ml-1"
             />
 
             <FilterableDropdown
@@ -77,12 +77,12 @@ const AssortmentProductForm = ({ assortmentId }) => {
               })}
               required
               onFilter={setQueryString}
-              className="text-sm font-medium text-gray-500 py-2  mt-1 w-full"
+              className="mt-1 w-full py-2 text-sm font-medium text-gray-500"
             />
           </div>
         </div>
         <FormErrors />
-        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <SubmitButton
             label={formatMessage({
               id: 'save',

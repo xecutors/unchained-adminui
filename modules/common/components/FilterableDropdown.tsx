@@ -43,9 +43,9 @@ const FilterableDropdown = ({
   };
 
   return (
-    <div className="flex flex-col items-center relative">
+    <div className="relative flex flex-col items-center">
       <div className="w-full">
-        <div className="my-2 p-1 bg-white flex border border-gray-200 rounded">
+        <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
           <div className="w-full">
             <FieldWrapper {...field}>
               {currentSelection ? (
@@ -70,8 +70,8 @@ const FilterableDropdown = ({
                   <div className="w-full ">
                     <input
                       className={classNames(
-                        'w-full shadow-sm appearance-none mt-1 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
-                        'p-1 px-2 appearance-none outline-none w-full text-gray-800',
+                        'relative mt-1 block w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500',
+                        'w-full appearance-none p-1 px-2 text-gray-800 outline-none',
                         {
                           'border-red-300': !!field.error,
                         },
@@ -85,7 +85,7 @@ const FilterableDropdown = ({
                       }}
                     />
                   </div>
-                  <div className="w-full hidden">
+                  <div className="hidden w-full">
                     <input
                       readOnly
                       disabled={field.disabled}
@@ -104,11 +104,11 @@ const FilterableDropdown = ({
             </FieldWrapper>
           </div>
 
-          <div className="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200">
+          <div className="flex w-8 items-center border-l border-gray-200 py-1 pl-2 pr-1 text-gray-300">
             <button
               type="button"
               onClick={() => setShowDropdown(!showDropdown)}
-              className="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none"
+              className="h-6 w-6 cursor-pointer text-gray-600 outline-none focus:outline-none"
             >
               {showDropdown ? (
                 <ChevronDownIcon
@@ -131,13 +131,13 @@ const FilterableDropdown = ({
       </div>
       <div
         className={classNames(
-          'absolute shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto ',
+          'top-100 lef-0 max-h-select absolute z-40 w-full overflow-y-auto rounded bg-white shadow ',
           {
             hidden: !showDropdown,
           },
         )}
       >
-        <div className="flex flex-col w-full">
+        <div className="flex w-full flex-col">
           {isLoading ? (
             <Loading />
           ) : (
