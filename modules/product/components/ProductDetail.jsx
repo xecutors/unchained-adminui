@@ -44,7 +44,12 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations') return <VariationForm productId={id} />;
+  if (selectedView === 'variations')
+    return (
+      <LocaleWrapper>
+        <VariationForm productId={id} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')

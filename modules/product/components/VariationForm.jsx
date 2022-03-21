@@ -1,11 +1,15 @@
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
+import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useCreateProductVariation from '../hooks/useCreateProductVariation';
+import useProductVariations from '../hooks/useProductVariations';
+import useProductVariationTypes from '../hooks/useProductVariationTypes';
 /* import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts'; */
 import ProductAssignmentListItem from './ProductAssignmentListItem';
 
@@ -14,16 +18,25 @@ export const userCalculation = {
   text_answers: 'Text Answers',
 };
 
-const VariationForm = ({ products }) => {
+const VariationForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
-  /*   const { updateProductVariationTexts } = useUpdateProductVariationTexts(); */
+  const { updateProductVariationTexts } = useUpdateProductVariationTexts();
+  const { createProductVariation } = useCreateProductVariation();
+
+  const { variations } = useProductVariations({ productId });
+  const { variationTypes } = useProductVariationTypes();
+  console.log(variations);
+
+  const onSubmit = async ({ title, key, type }) => {
+    await createProductVariation({ productId, key, type, title });
+  };
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
 
   const form = useForm({
-    submit: () => true,
+    submit: onSubmit,
     successMessage,
     initialValues: {
       title: '',
@@ -68,7 +81,11 @@ const VariationForm = ({ products }) => {
                 defaultMessage: 'Type',
               })}
               name="type"
-              options={userCalculation}
+              options={convertArrayOfObjectToObject(
+                variationTypes,
+                'value',
+                'value',
+              )}
             />
           </div>
           <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
@@ -115,8 +132,11 @@ const VariationForm = ({ products }) => {
             </tr>
           </thead>
           <tbody>
-            {products?.map((product) => (
-              <ProductAssignmentListItem key-={product._id} product={product} />
+            {variations?.map((variation) => (
+              <ProductAssignmentListItem
+                key-={variation._id}
+                variation={variation}
+              />
             ))}
           </tbody>
         </table>
