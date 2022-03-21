@@ -19,6 +19,17 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
     submit: onSubmit,
     onSubmitSuccess,
     successMessage: isEdit ? languageUpdatedMessage : languageAddedMessage,
+    getSubmitErrorMessage: (error) => {
+      if (error?.message?.includes('duplicate key')) {
+        form.formik.setFieldError(
+          'isoCode',
+          formatMessage({
+            id: 'language_exists',
+            defaultMessage: 'Language with the same ISO code already exists',
+          }),
+        );
+      }
+    },
     enableReinitialize: true,
     initialValues: {
       isoCode: '',

@@ -5,7 +5,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const CountryListItem = ({ country, onRemove }) => {
-  const { /* locale, */ formatMessage } = useIntl();
+  const { locale, formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -34,10 +34,9 @@ const CountryListItem = ({ country, onRemove }) => {
 
       <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="text-sm text-gray-900">
-          {country.isoCode}
-          {/* {new Intl.DisplayNames([locale], { type: 'region' }).of(
+          {new Intl.DisplayNames([locale], { type: 'region' }).of(
             country.isoCode,
-          )} */}
+          )}
         </div>
       </Table.Cell>
 

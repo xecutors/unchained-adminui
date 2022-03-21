@@ -12,13 +12,14 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import Loading from '../../modules/common/components/Loading';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { currencyId } = query;
-  const { currency } = useCurrency({ currencyId });
+  const { currency, loading } = useCurrency({ currencyId });
   const { updateCurrency } = useUpdateCurrency();
   const { removeCurrency } = useRemoveCurrency();
   const onSubmit = async ({ isActive, isoCode }) => {
@@ -74,16 +75,20 @@ const UpdateCurrency = () => {
         />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
-      <div className="mt-6  sm:max-w-xl">
-        <FormWrapper>
-          <CurrencyForm
-            onSubmit={onSubmit}
-            onSubmitSuccess={onSubmitSuccess}
-            defaultValue={currency}
-            isEdit
-          />
-        </FormWrapper>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="mt-6  sm:max-w-xl">
+          <FormWrapper>
+            <CurrencyForm
+              onSubmit={onSubmit}
+              onSubmitSuccess={onSubmitSuccess}
+              defaultValue={currency}
+              isEdit
+            />
+          </FormWrapper>
+        </div>
+      )}
     </>
   );
 };

@@ -5,6 +5,7 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import { validateCurrency } from '../../forms/lib/validators';
 
 const CurrencyForm = ({
   onSubmit,
@@ -27,7 +28,17 @@ const CurrencyForm = ({
     submit: onSubmit,
     onSubmitSuccess,
     successMessage: isEdit ? currencyUpdatedMessage : currencyAddedMessage,
-    enableReinitialize: true,
+    getSubmitErrorMessage: (error) => {
+      if (error?.message?.includes('duplicate key')) {
+        form.formik.setFieldError(
+          'isoCode',
+          formatMessage({
+            id: 'currency_exists',
+            defaultMessage: 'Currency with the same ISO code already exists',
+          }),
+        );
+      }
+    },
     initialValues: {
       isoCode: '',
       ...defaultValue,
@@ -39,6 +50,7 @@ const CurrencyForm = ({
         <TextField
           name="isoCode"
           id="isoCode"
+          validators={[validateCurrency()]}
           label={formatMessage({
             id: 'iso_code',
             defaultMessage: 'ISO code',
@@ -62,7 +74,6 @@ const CurrencyForm = ({
           </div>
         )}
       </div>
-
       <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
         <SubmitButton
           label={

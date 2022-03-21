@@ -12,6 +12,7 @@ import useUpdateCountry from '../../modules/country/hooks/useUpdateCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import Loading from '../../modules/common/components/Loading';
 
 const normalizeCountry = (country) => {
   return {
@@ -27,7 +28,7 @@ const UpdateCountry = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
 
-  const { country } = useCountry({ countryId });
+  const { country, loading } = useCountry({ countryId });
   const { updateCountry } = useUpdateCountry();
   const { removeCountry } = useRemoveCountry();
 
@@ -85,16 +86,20 @@ const UpdateCountry = () => {
         <PageHeader headerText={country?.isoCode} />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
-      <div className="mt-6  sm:max-w-xl">
-        <FormWrapper>
-          <CountryForm
-            isEdit
-            defaultValue={normalizeCountry(country)}
-            onSubmitSuccess={onSubmitSuccess}
-            onSubmit={onSubmit}
-          />
-        </FormWrapper>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="mt-6  sm:max-w-xl">
+          <FormWrapper>
+            <CountryForm
+              isEdit
+              defaultValue={normalizeCountry(country)}
+              onSubmitSuccess={onSubmitSuccess}
+              onSubmit={onSubmit}
+            />
+          </FormWrapper>
+        </div>
+      )}
     </>
   );
 };

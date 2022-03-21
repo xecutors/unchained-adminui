@@ -3,10 +3,12 @@ import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectT
 import useCurrencies from '../../currency/hooks/useCurrencies';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
+
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import { validateCountry } from '../../forms/lib/validators';
 
 const CountryForm = ({
   onSubmit,
@@ -30,6 +32,17 @@ const CountryForm = ({
     submit: onSubmit,
     onSubmitSuccess,
     successMessage: isEdit ? countryUpdatedMessage : countryAddedMessage,
+    getSubmitErrorMessage: (error) => {
+      if (error?.message?.includes('duplicate key')) {
+        form.formik.setFieldError(
+          'isoCode',
+          formatMessage({
+            id: 'country_exists',
+            defaultMessage: 'Country with the same ISO code already exists',
+          }),
+        );
+      }
+    },
     enableReinitialize: true,
     initialValues: {
       isoCode: '',
@@ -43,6 +56,7 @@ const CountryForm = ({
         <TextField
           name="isoCode"
           id="isoCode"
+          validators={[validateCountry()]}
           label={formatMessage({
             id: 'iso_code',
             defaultMessage: 'ISO code',

@@ -5,7 +5,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
 
 const CurrencyListItem = ({ currency, onRemove }) => {
-  const { formatMessage } = useIntl();
+  const { locale, formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -21,11 +21,10 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
       <Table.Cell className="px-6 whitespace-nowrap ">
         <div className="pl-2 flex items-center text-sm text-gray-900">
-          {/* {new Intl.DisplayNames([locale], {
+          {new Intl.DisplayNames([locale], {
             type: 'currency',
             fallback: 'none',
-          })?.of(currency.isoCode)} */}
-          {currency.isoCode}
+          })?.of(currency.isoCode)}
         </div>
       </Table.Cell>
 

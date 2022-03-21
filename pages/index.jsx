@@ -3,7 +3,6 @@ import Badge from '../modules/common/components/Badge';
 
 const Home = ({ shopInfo }) => {
   const { formatMessage, locale } = useIntl();
-
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
