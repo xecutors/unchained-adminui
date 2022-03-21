@@ -8,11 +8,11 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
   const { product, quantity } = item;
 
   return (
-    <div className="flex justify-between items-center  border-gray-200 border-b last:border-none">
+    <div className="flex items-center justify-between border-b border-gray-200 last:border-none">
       <div className="flex items-center space-x-6 py-4">
         {product.media?.length ? (
-          <div className="w-20 flex flex-col items-center">
-            <div className="flex relative   justify-center items-center m-1 mr-2  mt-1 rounded-full ">
+          <div className="flex w-20 flex-col items-center">
+            <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
               <Image
                 className="mx-auto w-auto"
                 src={product.media[0]?.file.url}

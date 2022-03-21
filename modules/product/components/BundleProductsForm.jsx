@@ -60,11 +60,12 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
         required
       />
       <TextField
+        className=""
         name="quantity"
         type="number"
         label={formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
       />
-      <SubmitButton />
+      <SubmitButton className="mt-2" />
     </Form>
   );
 };

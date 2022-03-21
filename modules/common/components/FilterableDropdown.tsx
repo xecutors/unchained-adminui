@@ -7,7 +7,7 @@ import FieldWrapper from '../../forms/components/FieldWrapper';
 
 import { TextFieldProps } from '../../forms/components/TextField';
 import useField from '../../forms/hooks/useField';
-import FilteredListItem from './FilteredListItem';
+import FilteredList from './FilteredList';
 import Loading from './Loading';
 
 interface FilterableData {
@@ -45,7 +45,7 @@ const FilterableDropdown = ({
   return (
     <div className="relative flex flex-col items-center">
       <div className="w-full">
-        <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
+        <div className="my-2 flex rounded border-gray-200 bg-white p-1">
           <div className="w-full">
             <FieldWrapper {...field}>
               {currentSelection ? (
@@ -104,7 +104,7 @@ const FilterableDropdown = ({
             </FieldWrapper>
           </div>
 
-          <div className="flex w-8 items-center border-l border-gray-200 py-1 pl-2 pr-1 text-gray-300">
+          <div className="flex w-8 items-center border-gray-200 py-1 pl-2 pr-1 text-gray-300">
             <button
               type="button"
               onClick={() => setShowDropdown(!showDropdown)}
@@ -141,13 +141,7 @@ const FilterableDropdown = ({
           {isLoading ? (
             <Loading />
           ) : (
-            data?.map((item) => (
-              <FilteredListItem
-                key={item.id}
-                item={item}
-                onSelected={onSelected}
-              />
-            ))
+            <FilteredList data={data} onSelected={onSelected} />
           )}
         </div>
       </div>
