@@ -110,7 +110,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 type="button"
                 className={classNames(
                   isEdit
-                    ? 'bg-text-red-600 hover:text-red-500 focus:ring-red-500'
+                    ? 'text-black bg-gray-200'
                     : 'text-white-600 focus:ring-indigo-700',
                   'bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
                 )}
@@ -122,7 +122,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     })
                   : formatMessage({
                       id: 'update_profile',
-                      defaultMessage: 'Update profile',
+                      defaultMessage: 'Update profile / address',
                     })}
               </button>
               {isEdit && (
@@ -132,7 +132,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   </span>
                   <button
                     type="submit"
-                    className="bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     {formatMessage({
                       id: 'save',
@@ -344,9 +344,9 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     defaultMessage: 'Full name',
                   })}
                 </label>
-                <div className="mt-1  flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   {isEdit ? (
-                    <div className=" flex w-full">
+                    <div className="flex w-full">
                       <TextField
                         className="w-full mt-0"
                         name="firstName"
@@ -356,7 +356,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                         })}
                         hideLabel
                         placeholder="First Name"
-                      />{' '}
+                      />
                       <TextField
                         className="ml-2 w-full mt-0"
                         name="lastName"
@@ -471,7 +471,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   </div>
                 </div>
 
-                <div className="pt-2 sm:grid sm:grid-cols0-2">
+                <div className="pt-2 sm:grid sm:grid-cols-2">
                   <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'postal_code',
@@ -487,7 +487,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                           id: 'postal_code',
                           defaultMessage: 'Postal/ZIP code',
                         })}
-                        hideLabel
                       />
                     ) : (
                       address?.postalCode
@@ -517,7 +516,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     )}
                   </div>
                 </div>
-                <div className="pt-2 sm:grid sm:grid-cols0-2">
+                <div className="pt-2 sm:grid sm:grid-cols-2">
                   <label className="mt-3 text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'country_code',

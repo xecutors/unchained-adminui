@@ -90,7 +90,7 @@ const OrderDetail = ({ order }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
 
   const logs = {
     header: (
@@ -117,7 +117,7 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <>
+    <div className="pb-8">
       <OrderDetailHeader order={order} />
 
       <StatusProgress
@@ -150,7 +150,7 @@ const OrderDetail = ({ order }) => {
       <OrderDetailBilling order={order} />
 
       <Accordion data={[documents, logs]} headerCSS={headerCSS} />
-    </>
+    </div>
   );
 };
 
