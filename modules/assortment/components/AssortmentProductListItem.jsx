@@ -8,17 +8,6 @@ const AssortmentProductListItem = ({ link, onDelete }) => {
   return (
     <div className="flex justify-between items-center  border-gray-200 border-b last:border-none">
       <div className="flex items-center space-x-6 py-4">
-        {/*       <img
-          src={
-            product?.media?.length
-              ? product?.media[0]?.file?.url
-              : '/static/img/home-support.jpg'
-          }
-          width="80px"
-          height={40}
-          alt={product?.media?.texts?.title || product?.media?.texts?.title}
-          className="h-full w-full object-cover object-center"
-        /> */}
         <div className="">
           <h3 className="text-lg text-gray-800">{product?.texts?.title}</h3>
           <p className="text-xs text-gray-600">{product?.texts?.subtitle}</p>

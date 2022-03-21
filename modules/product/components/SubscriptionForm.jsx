@@ -20,8 +20,8 @@ const SubscriptionForm = ({ productId }) => {
 
   const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
-    id: 'saved',
-    defaultMessage: 'Saved',
+    id: 'enrollment_updated_successfully',
+    defaultMessage: 'Enrollment saved successfully',
   });
 
   const onSubmit = async ({
@@ -51,7 +51,6 @@ const SubscriptionForm = ({ productId }) => {
       billingInterval: '',
       billingIntervalCount: '',
       usageCalculationType: '',
-      ...plan,
     },
     getSubmitErrorMessage: (error) => {
       if (
@@ -76,17 +75,31 @@ const SubscriptionForm = ({ productId }) => {
     <FormWrapper>
       <Form form={form}>
         <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
-          <div className="sm:flex w-full  justify-between align-baseline">
+          <SelectField
+            required
+            className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+            label={formatMessage({
+              id: 'usage_calculation_type',
+              defaultMessage: 'Usage calculation type',
+            })}
+            name="usageCalculationType"
+            options={convertArrayOfObjectToObject(
+              usageCalculationTypes,
+              'value',
+              'value',
+            )}
+          />
+          <div className="sm:flex w-full  justify-end items-end">
             <SelectField
-              className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+              className="text-sm  font-medium text-gray-500  w-full mt-2.5"
               required
               label={formatMessage({
-                id: 'billing_interval',
-                defaultMessage: 'Billing Interval',
+                id: 'billing_interval_unit',
+                defaultMessage: 'Billing interval unit',
               })}
               placeholder={formatMessage({
-                id: 'billing_interval',
-                defaultMessage: 'Billing Interval',
+                id: 'billing_interval_unit',
+                defaultMessage: 'Billing interval unit',
               })}
               name="billingInterval"
               options={convertArrayOfObjectToObject(
@@ -104,16 +117,21 @@ const SubscriptionForm = ({ productId }) => {
                 id: 'billing_unit',
                 defaultMessage: 'Billing Unit',
               })}
-              className="text-sm  font-medium text-gray-500 py-2 sm:ml-1 mt-1 w-full"
+              hideLabel
+              className="text-sm  font-medium text-gray-500  sm:ml-1 mt-1 w-full"
             />
           </div>
 
-          <div className="sm:flex max-w-full  justify-between align-baseline">
+          <div className="sm:flex max-w-full  justify-end items-end">
             <SelectField
-              className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+              className="text-sm  font-medium text-gray-500  w-full mt-2.5"
               label={formatMessage({
-                id: 'trial_interval',
-                defaultMessage: 'Trial Interval',
+                id: 'trial_interval_unit',
+                defaultMessage: 'Trial interval unit',
+              })}
+              placeholder={formatMessage({
+                id: 'trial_interval_unit',
+                defaultMessage: 'Trial interval unit',
               })}
               name="trialInterval"
               options={convertArrayOfObjectToObject(
@@ -130,26 +148,18 @@ const SubscriptionForm = ({ productId }) => {
                 id: 'trial_unit',
                 defaultMessage: 'Trial Unit',
               })}
+              placeholder={formatMessage({
+                id: 'trial_unit',
+                defaultMessage: 'Trial Unit',
+              })}
+              hideLabel
               required
-              className="text-sm  font-medium text-gray-500 py-2  sm:ml-1 mt-1 w-full"
+              className="text-sm  font-medium text-gray-500   sm:ml-1 mt-1 w-full"
             />
           </div>
-          <SelectField
-            required
-            className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
-            label={formatMessage({
-              id: 'usage_calculation_type',
-              defaultMessage: 'Usage calculation type',
-            })}
-            name="usageCalculationType"
-            options={convertArrayOfObjectToObject(
-              usageCalculationTypes,
-              'value',
-              'value',
-            )}
-          />
+
           <FormErrors />
-          <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+          <div className=" sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
             <SubmitButton
               label={formatMessage({
                 id: 'save',
