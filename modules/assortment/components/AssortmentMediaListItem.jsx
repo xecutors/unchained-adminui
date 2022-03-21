@@ -1,14 +1,10 @@
+import { useState } from 'react';
 import MediaListItem from '../../common/components/MediaListItem';
 import useTranslatedAssortmentMediaTexts from '../hooks/useTranslatedAssortmentMediaTexts';
 import useUpdateAssortmentMediaTexts from '../hooks/useUpdateAssortmentMediaTexts';
 
-const AssortmentMediaListItem = ({
-  media,
-  isEdit,
-  onEdit,
-  onDelete,
-  locale,
-}) => {
+const AssortmentMediaListItem = ({ media, onDelete, locale }) => {
+  const [isEditing, setIsEditing] = useState(false);
   const { updateAssortmentMediaTexts } = useUpdateAssortmentMediaTexts();
   const { translatedAssortmentMediaTexts } = useTranslatedAssortmentMediaTexts({
     assortmentMediaId: media._id,
@@ -27,7 +23,7 @@ const AssortmentMediaListItem = ({
         subtitle,
       },
     });
-    onEdit(false);
+    setIsEditing(false);
     return true;
   };
 
@@ -35,9 +31,9 @@ const AssortmentMediaListItem = ({
     <MediaListItem
       media={media}
       mediaText={mediaText}
-      isEdit={isEdit}
+      isEdit={isEditing}
       onDelete={onDelete}
-      onEdit={onEdit}
+      onEdit={setIsEditing}
       onUpdate={onUpdateMediaText}
     />
   );

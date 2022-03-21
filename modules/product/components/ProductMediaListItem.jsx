@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import MediaListItem from '../../common/components/MediaListItem';
 
 import useTranslatedProductMediaTexts from '../hooks/useTranslatedProductMediaTexts';
 import useUpdateProductMediaTexts from '../hooks/useUpdateProductMediaTexts';
 
-const ProductMediaListItem = ({ media, isEdit, onEdit, onDelete, locale }) => {
+const ProductMediaListItem = ({ media, onDelete, locale }) => {
   const { updateProductMediaTexts } = useUpdateProductMediaTexts();
+  const [isEditing, setIsEditing] = useState(false);
   const { translatedMediaTexts } = useTranslatedProductMediaTexts({
     productMediaId: media._id,
   });
@@ -20,7 +22,7 @@ const ProductMediaListItem = ({ media, isEdit, onEdit, onDelete, locale }) => {
         subtitle,
       },
     });
-    onEdit(false);
+    setIsEditing(false);
     return true;
   };
 
@@ -28,9 +30,9 @@ const ProductMediaListItem = ({ media, isEdit, onEdit, onDelete, locale }) => {
     <MediaListItem
       media={media}
       mediaText={mediaText}
-      isEdit={isEdit}
+      isEdit={isEditing}
       onDelete={onDelete}
-      onEdit={onEdit}
+      onEdit={setIsEditing}
       onUpdate={onUpdateMediaText}
     />
   );

@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
 
 const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
-  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="sm:px-15 rounded bg-white p-5 sm:col-span-6">
@@ -23,8 +21,6 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 key={media._id}
                 media={media}
                 locale={selectedLocale}
-                isEdit={isEditing}
-                onEdit={setIsEditing}
                 onDelete={onDeleteMedia}
               />
             ))}
