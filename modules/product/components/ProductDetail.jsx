@@ -47,12 +47,13 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'variations') return <VariationForm productId={id} />;
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
-  if (selectedView === 'subscription')
+  if (selectedView === 'subscriptions')
     return <SubscriptionForm productId={id} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
+  console.log(product);
   const { formatMessage } = useIntl();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
@@ -209,6 +210,7 @@ const ProductDetail = ({ product }) => {
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
+      <h1>{product?.__typename}</h1>
       <TabComponent tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab id={product?._id} />
       </TabComponent>
