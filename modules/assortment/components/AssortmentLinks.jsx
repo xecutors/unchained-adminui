@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import Loading from '../../common/components/Loading';
 
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -11,7 +12,7 @@ import AssortmentLinksList from './AssortmentLinksList';
 const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { linkedAssortments } = useAssortmentLinks({ assortmentId });
+  const { linkedAssortments, loading } = useAssortmentLinks({ assortmentId });
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
 
@@ -70,7 +71,7 @@ const AssortmentLinks = ({ assortmentId }) => {
         </div>
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-6 mt-10">
+      <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -86,12 +87,16 @@ const AssortmentLinks = ({ assortmentId }) => {
             </p>
           </div>
         </div>
-        <div className="md:col-span-2 w-full py-2 bg-white shadow-md px-6">
-          <AssortmentLinksList
-            currentAssortmentId={assortmentId}
-            links={linkedAssortments || []}
-            onRemoveLink={onRemoveLink}
-          />
+        <div className="w-full bg-white py-2 px-6 shadow-md md:col-span-2">
+          {!loading ? (
+            <Loading />
+          ) : (
+            <AssortmentLinksList
+              currentAssortmentId={assortmentId}
+              links={linkedAssortments || []}
+              onRemoveLink={onRemoveLink}
+            />
+          )}
         </div>
       </div>
     </div>

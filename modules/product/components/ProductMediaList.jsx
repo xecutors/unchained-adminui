@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import NoData from '../../common/components/NoData';
 
 import ProductMediaListItem from './ProductMediaListItem';
 
 const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
-  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="sm:px-15 rounded bg-white p-5 sm:col-span-6">
@@ -19,16 +18,18 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
 
         <div className="flow-root">
           <ul className="space-y-4 divide-y divide-gray-200">
-            {medias.map((media) => (
-              <ProductMediaListItem
-                key={media._id}
-                media={media}
-                locale={selectedLocale}
-                isEdit={isEditing}
-                onEdit={setIsEditing}
-                onDelete={onDeleteMedia}
-              />
-            ))}
+            {medias.length ? (
+              medias.map((media) => (
+                <ProductMediaListItem
+                  key={media._id}
+                  media={media}
+                  locale={selectedLocale}
+                  onDelete={onDeleteMedia}
+                />
+              ))
+            ) : (
+              <NoData message="Media" />
+            )}
           </ul>
         </div>
       </div>

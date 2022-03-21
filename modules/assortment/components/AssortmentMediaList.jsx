@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import NoData from '../../common/components/NoData';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
 
 const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
@@ -16,14 +17,18 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
 
         <div className="flow-root">
           <ul className="space-y-4 divide-y divide-gray-200">
-            {medias.map((media) => (
-              <AssortmentMediaListItem
-                key={media._id}
-                media={media}
-                locale={selectedLocale}
-                onDelete={onDeleteMedia}
-              />
-            ))}
+            {medias.length ? (
+              medias.map((media) => (
+                <AssortmentMediaListItem
+                  key={media._id}
+                  media={media}
+                  locale={selectedLocale}
+                  onDelete={onDeleteMedia}
+                />
+              ))
+            ) : (
+              <NoData message="Media" />
+            )}
           </ul>
         </div>
       </div>

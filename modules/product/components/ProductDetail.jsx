@@ -187,7 +187,8 @@ const ProductDetail = ({ product }) => {
         id: 'deleted',
         defaultMessage: 'Deleted',
       }),
-      description: '',
+      description: 'This product item status is active',
+      disable: status === 'ACTIVE',
       current: status === 'DELETED',
       bgColor: 'red',
       onClick: async () => {
