@@ -9,12 +9,26 @@ import useField from '../../forms/hooks/useField';
 import FilteredListItem from './FilteredListItem';
 import Loading from './Loading';
 
+interface FilterableData {
+  id: string;
+  title: string;
+  subtitle?: string;
+  tags?: string[];
+  image?: string;
+}
+
+interface FilterableDropdownProps extends TextFieldProps {
+  data?: FilterableData[];
+  onFilter?: any;
+  isLoading: boolean;
+}
+
 const FilterableDropdown = ({
   data,
   onFilter,
   isLoading,
   ...props
-}: TextFieldProps) => {
+}: FilterableDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const [currentSelection, setCurrentSelection] = useState('');
   const field = useField({ ...props });

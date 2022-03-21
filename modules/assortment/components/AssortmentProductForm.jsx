@@ -4,31 +4,37 @@ import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
-import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
-import useProducts from '../../product/hooks/useProducts';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import FormErrors from '../../forms/components/FormErrors';
+import useSearchProducts from '../../product/hooks/useSearchProducts';
+import FilterableDropdown from '../../common/components/FilterableDropdown';
 
 const normalizeProducts = (productsList = []) => {
-  return productsList?.map(({ _id, texts }) => ({
-    _id,
-    title: texts?.title,
-    subtitle: texts?.subtitle,
+  return productsList?.map(({ _id, status, texts, media }) => ({
+    id: _id,
+    tag: status,
+    ...texts,
+    image: media?.length ? media[0]?.file.url : null,
   }));
 };
 
 const AssortmentProductForm = ({ assortmentId }) => {
   const [tags, setTags] = useState('');
+  const [queryString, setQueryString] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentProduct } = useAddAssortmentProduct();
-  const { products } = useProducts();
 
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
+  });
+
+  const { products, loading } = useSearchProducts({
+    queryString,
+    limit: 10,
+    includeInactive: true,
   });
 
   const onSubmit = async ({ productId }) => {
@@ -61,18 +67,16 @@ const AssortmentProductForm = ({ assortmentId }) => {
               className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
             />
 
-            <SelectField
+            <FilterableDropdown
               name="productId"
+              data={normalizeProducts(products)}
+              isLoading={loading}
               label={formatMessage({
                 id: 'product',
                 defaultMessage: 'Product',
               })}
               required
-              options={convertArrayOfObjectToObject(
-                normalizeProducts(products),
-                'title',
-                '_id',
-              )}
+              onFilter={setQueryString}
               className="text-sm font-medium text-gray-500 py-2  mt-1 w-full"
             />
           </div>

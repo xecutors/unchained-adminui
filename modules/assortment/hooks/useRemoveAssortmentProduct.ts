@@ -16,7 +16,7 @@ const useRemoveAssortmentProduct = () => {
   const removeAssortmentProduct = async ({ assortmentProductId }) => {
     return removeAssortmentProductMutation({
       variables: { assortmentProductId },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentProducts', 'Product'],
     });
   };
 
