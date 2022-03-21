@@ -8,7 +8,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="sm:px-15 py-5 px-5 sm:flex-auto sm:order-1 sm:col-span-6">
+    <div className="sm:px-15 rounded bg-white p-5 sm:col-span-6">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
@@ -18,7 +18,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root">
-          <ul className="divide-y divide-gray-200">
+          <ul className="space-y-4 divide-y divide-gray-200">
             {medias.map((media) => (
               <ProductMediaListItem
                 key={media._id}

@@ -37,8 +37,8 @@ const MediaListItem = ({
   }, [mediaText]);
 
   return (
-    <li className="flex gap-x-4 flex-wrap" key={media._id}>
-      <div className="flex-auto ">
+    <li className="flex flex-wrap gap-4" key={media._id}>
+      <div className="mt-4 flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <img
             src={media?.file?.url}
@@ -52,7 +52,7 @@ const MediaListItem = ({
             {media?.tags.map((tag, index) => (
               <span
                 key={`${tag}${index + 1}`}
-                className="rounded border shadow-sm bg-white px-1 text-sm font-light capitalize text-gray-900"
+                className="rounded border bg-white px-1 text-sm font-light capitalize text-gray-900 shadow-sm"
               >
                 {tag}
               </span>
@@ -61,7 +61,7 @@ const MediaListItem = ({
         )}
       </div>
 
-      <div className="flex-auto my-auto">
+      <div className="my-auto flex-1 basis-1/3">
         <Form form={form}>
           <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
             <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium">
