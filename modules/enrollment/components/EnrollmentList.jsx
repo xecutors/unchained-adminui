@@ -7,7 +7,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
   return (
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
-        <Table.Row key={enrollment._id} className="bg-white " header>
+        <Table.Row key={enrollment._id} className="bg-white" header>
           <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
             {formatMessage({
               id: 'enrollment_number',

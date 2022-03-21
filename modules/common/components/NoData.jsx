@@ -17,7 +17,7 @@ const NoData = ({ message, className = '', Icon }) => {
 
         <FormattedMessage
           id="no_data_message"
-          defaultMessage="<p> No &nbsp; <span>  {message}  available</span> </p>"
+          defaultMessage="<p>No&nbsp;<span>  {message}  available</span> </p>"
           values={{
             p: (chunks) => (
               <p className="m-auto flex items-center justify-center">

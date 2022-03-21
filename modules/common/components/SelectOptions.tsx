@@ -63,7 +63,7 @@ export default function SelectOptions({
                   </p>
                 </div>
                 <Listbox.Button
-                  className={`relative inline-flex items-center bg-${select?.bgColor}-500  hover:bg-${select?.bgColor}-900 p-1 lg:p-2 outline-none border-none rounded-l-none rounded-r-md text-sm font-medium text-white focus:outline-none focus:z-10`}
+                  className={`relative inline-flex items-center bg-${select?.bgColor}-500 hover:bg-${select?.bgColor}-900 p-1 lg:p-2 outline-none border-none rounded-l-none rounded-r-md text-sm font-medium text-white focus:outline-none focus:z-10`}
                 >
                   <span className="sr-only">
                     {formatMessage(
@@ -91,17 +91,17 @@ export default function SelectOptions({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="w-full origin-top-right absolute z-10 right-0 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="mt-1 w-full origin-top-right absolute z-10 right-0 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
                     className={() =>
                       classNames(
-                        'hover:bg-gray-500',
+                        'hover:bg-gray-200',
                         option.id === select.id
                           ? `text-white bg-${option.bgColor}-500`
                           : 'text-gray-900',
-                        `cursor-default select-none relative px-4 py-2 text-sm `,
+                        `cursor-default select-none relative pl-4 pr-3 py-2 text-sm `,
                       )
                     }
                     value={option}
@@ -129,16 +129,16 @@ export default function SelectOptions({
                           </span>
                         ) : null}
                       </div>
-                      <p
+                      <div
                         className={classNames(
                           option.id === select.id
                             ? 'text-indigo-200'
                             : 'text-gray-500',
-                          'mt-2',
+                          '',
                         )}
                       >
                         {option?.description}
-                      </p>
+                      </div>
                     </div>
                   </Listbox.Option>
                 ))}

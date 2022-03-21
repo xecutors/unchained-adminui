@@ -70,29 +70,27 @@ const CommerceForm = ({ productId }) => {
   }, [catalogPrices]);
 
   return (
-    <Form form={form}>
-      <div className="sm:p-3 rounded-md relative max-w-full">
-        <div className=" max-w-full justify-between align-baseline" />
+    <Form className="bg-white shadow-md rounded-md" form={form}>
+      <div className="sm:p-3 relative max-w-full">
+        <div className="max-w-full justify-between align-baseline" />
 
         <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
           <span className="flex w-full">
-            <span className="w-full  ">
-              {' '}
+            <span className="w-full">
               {formatMessage({
                 id: 'max_quantity',
                 defaultMessage: 'Max Quantity',
-              })}{' '}
+              })}
             </span>
             <span className="w-full">
               {formatMessage({
                 id: 'amount',
                 defaultMessage: 'Amount',
-              })}{' '}
+              })}
             </span>
           </span>
           <span className="flex w-full ml-3">
             <span className="w-full">
-              {' '}
               {formatMessage({
                 id: 'vat_suspect',
                 defaultMessage: 'Vat Suspect',
@@ -266,10 +264,9 @@ const CommerceForm = ({ productId }) => {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         >
-                          {' '}
-                          <polyline points="3 6 5 6 21 6" />{' '}
-                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
-                          <line x1="10" y1="11" x2="10" y2="17" />{' '}
+                          <polyline points="3 6 5 6 21 6" />
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                          <line x1="10" y1="11" x2="10" y2="17" />
                           <line x1="14" y1="11" x2="14" y2="17" />
                         </svg>
                       </button>
