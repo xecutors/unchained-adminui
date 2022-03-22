@@ -34,21 +34,16 @@ const DoWorkForm = () => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="space-y-6 p-6 rounded-md relative max-w-full">
-          <div className=" max-w-4xl sm:mr-10 justify-between align-baseline">
-            <div className="py-3">
-              <div className="text-sm  font-medium text-gray-500">
-                {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              </div>
-            </div>
+        <div className="relative max-w-full space-y-6 rounded-md p-6">
+          <div className="w-full justify-between align-baseline sm:mr-10">
             <SelectField
-              className="py-2 text-sm text-gray-900 sm:mt-0 w-full"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
               placeholder={formatMessage({
                 id: 'type',
                 defaultMessage: 'Type',
               })}
-              hideLabel
+              labelClassName="text-sm font-medium text-gray-500 mb-2"
               name="type"
               required
               options={convertArrayOfObjectToObject(
@@ -59,24 +54,17 @@ const DoWorkForm = () => {
             />
           </div>
 
-          <div className=" text-lg font-sm text-gray-500">
-            {formatMessage({
-              id: 'input',
-              defaultMessage: 'Input',
-            })}
-          </div>
-
           <JSONAreaField
             name="input"
-            hideLabel
             label={formatMessage({
               id: 'input',
               defaultMessage: 'Input',
             })}
+            labelClassName="text-sm font-medium text-gray-500 mb-2"
           />
         </div>
 
-        <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({
               id: 'do_work',

@@ -38,16 +38,7 @@ const AllocateWorkForm = () => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="px-4 max-w-4xl sm:mr-11 mr-8 mb-3 justify-between align-baseline">
-          <div className="sm:py-3">
-            <div className="text-sm font-medium text-gray-500">
-              {formatMessage({
-                id: 'worker',
-                defaultMessage: 'Worker',
-              })}
-            </div>
-          </div>
-
+        <div className="mr-8 mb-3 max-w-4xl justify-between px-4 align-baseline sm:mr-11">
           <TextField
             name="worker"
             id="worker"
@@ -55,12 +46,12 @@ const AllocateWorkForm = () => {
               id: 'worker',
               defaultMessage: 'Worker',
             })}
-            hideLabel
+            labelClassName="text-sm font-medium text-gray-500 mb-3"
             placeholder={formatMessage({
               id: 'worker',
               defaultMessage: 'Worker',
             })}
-            className="text-sm text-gray-900 sm:mt-0 max-w-full"
+            className="max-w-full text-sm text-gray-900 sm:mt-0"
           />
         </div>
         <FieldArray name="types">
@@ -73,10 +64,10 @@ const AllocateWorkForm = () => {
                     key={index}
                     className="flex max-w-4xl align-baseline"
                   >
-                    <div className="space-y-3 w-100 sm:pr-2 rounded-md relative w-full">
-                      <div className="sm:flex max-w-4xl  justify-between align-baseline">
+                    <div className="w-100 relative w-full space-y-3 rounded-md sm:pr-2">
+                      <div className="max-w-4xl justify-between  align-baseline sm:flex">
                         <SelectField
-                          className="py-2 text-sm text-gray-500 sm:mt-0 w-full"
+                          className="w-full py-2 text-sm text-gray-500 sm:mt-0"
                           label={formatMessage({
                             id: 'type',
                             defaultMessage: 'Type',
@@ -85,7 +76,7 @@ const AllocateWorkForm = () => {
                             id: 'type',
                             defaultMessage: 'Type',
                           })}
-                          hideLabel
+                          labelClassName="text-sm font-medium text-gray-500 mb-3"
                           name={`types[${index}`}
                           required
                           options={convertArrayOfObjectToObject(
@@ -96,9 +87,9 @@ const AllocateWorkForm = () => {
                         />
                       </div>
                     </div>
-                    <div className="flex-shrink-0 ml-2  sm:mt-4 mt-5">
+                    <div className="ml-2 mt-5  flex-shrink-0 sm:mt-4">
                       <button
-                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                        className="items-center rounded-full border border-red-500 bg-white px-1 py-1 text-sm text-red-500 shadow-sm hover:bg-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >
@@ -122,13 +113,13 @@ const AllocateWorkForm = () => {
                   </div>
                 );
               })}
-              <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+              <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className=" " />
                 <div className=" mt-2 flex-shrink-0">
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="items-right inline-flex rounded-full border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       variant="outlined"
                       onClick={() => push('')}
                     >
@@ -153,7 +144,7 @@ const AllocateWorkForm = () => {
           )}
         </FieldArray>
 
-        <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({
               id: 'allocate_work',

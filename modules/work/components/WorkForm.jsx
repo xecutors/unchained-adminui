@@ -58,17 +58,12 @@ const WorkForm = () => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="space-y-6 p-6 rounded-md relative max-w-full">
-          <div className="sm:flex max-w-4xl justify-between align-baseline">
-            <div className="py-3">
-              <div className="text-sm font-medium text-gray-500">
-                {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              </div>
-            </div>
+        <div className="relative max-w-full space-y-6 rounded-md p-6">
+          <div className="max-w-4xl justify-between align-baseline sm:flex">
             <SelectField
-              className="py-2 sm:ml-2 text-sm text-gray-900 sm:mt-0 w-full"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              hideLabel
+              labelClassName="text-sm font-medium text-gray-500 mb-3"
               name="type"
               required
               options={convertArrayOfObjectToObject(
@@ -78,16 +73,7 @@ const WorkForm = () => {
               )}
             />
           </div>
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
-            <div className="sm:py-3">
-              <div className="text-sm  font-medium text-gray-500">
-                {formatMessage({
-                  id: 'priority',
-                  defaultMessage: 'Priority',
-                })}
-              </div>
-            </div>
-
+          <div className="max-w-4xl justify-between  align-baseline sm:flex sm:gap-4">
             <TextField
               name="priority"
               id="priority"
@@ -95,24 +81,16 @@ const WorkForm = () => {
                 id: 'priority',
                 defaultMessage: 'Priority',
               })}
-              hideLabel
+              labelClassName="text-sm font-medium text-gray-500 mb-3"
               placeholder={formatMessage({
                 id: 'priority',
                 defaultMessage: 'Priority',
               })}
               required
               autoComplete="on"
-              className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
             />
 
-            <div className="sm:py-3 sm:ml-4 ">
-              <div className="text-sm  font-medium text-gray-500">
-                {formatMessage({
-                  id: 'retries',
-                  defaultMessage: 'Retries',
-                })}
-              </div>
-            </div>
             <TextField
               name="retries"
               id="retries"
@@ -120,26 +98,18 @@ const WorkForm = () => {
                 id: 'retries',
                 defaultMessage: 'Retries',
               })}
-              hideLabel
+              labelClassName="text-sm  font-medium text-gray-500 mb-3"
               placeholder={formatMessage({
                 id: 'retries',
                 defaultMessage: 'Retries',
               })}
               required
               autoComplete="on"
-              className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
             />
           </div>
 
-          <div className="sm:flex max-w-4xl  justify-between align-baseline">
-            <div className="sm:py-3">
-              <div className="text-sm  font-medium text-gray-500">
-                {formatMessage({
-                  id: 'original_work_id',
-                  defaultMessage: 'Original Work Id',
-                })}
-              </div>
-            </div>
+          <div className="max-w-4xl justify-between align-baseline sm:flex sm:gap-4">
             <TextField
               name="originalWorkId"
               id="original_work_id"
@@ -147,30 +117,22 @@ const WorkForm = () => {
                 id: 'original_work_id',
                 defaultMessage: 'Original Work Id',
               })}
-              hideLabel
+              labelClassName="text-sm font-medium text-gray-500 mb-3"
               placeholder={formatMessage({
                 id: 'original_work_id',
                 defaultMessage: 'Original Work Id',
               })}
               autoComplete="on"
-              className="py-2 sm:ml-1 sm:pr-4 text-sm text-gray-900 sm:mt-0 w-full"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
             />
-            <div className="sm:py-3">
-              <div className="text-sm  font-medium text-gray-500">
-                {formatMessage({
-                  id: 'scheduled',
-                  defaultMessage: 'Scheduled',
-                })}
-              </div>
-            </div>
 
             <DatePickerField
               label={formatMessage({
                 id: 'scheduled',
                 defaultMessage: 'Scheduled',
               })}
-              hideLabel
-              className="py-2 sm:ml-1 text-sm text-gray-900 sm:mt-0 w-full "
+              labelClassName="text-sm font-medium text-gray-500 mb-3"
+              className="w-full py-2 text-sm text-gray-900 sm:mt-0 "
               name="scheduled"
               placeholder={formatMessage({
                 id: 'scheduled',
@@ -180,15 +142,9 @@ const WorkForm = () => {
           </div>
 
           <div>
-            <div className=" text-lg font-sm text-gray-500">
-              {formatMessage({
-                id: 'input',
-                defaultMessage: 'Input',
-              })}
-            </div>
             <JSONAreaField
               name="input"
-              hideLabel
+              labelClassName="font-sm text-lg text-gray-500 mb-3"
               label={formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
@@ -198,7 +154,7 @@ const WorkForm = () => {
         </div>
         <FormErrors />
 
-        <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({
               id: 'add_work',
