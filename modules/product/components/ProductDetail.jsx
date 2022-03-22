@@ -53,7 +53,6 @@ const GetCurrentTab = ({ id, selectedView }) => {
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
-  console.log(product);
   const { formatMessage } = useIntl();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
@@ -187,7 +186,11 @@ const ProductDetail = ({ product }) => {
         id: 'deleted',
         defaultMessage: 'Deleted',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'delete',
+        defaultMessage: 'This product item status is active',
+      }),
+      disable: status === 'ACTIVE',
       current: status === 'DELETED',
       bgColor: 'red',
       onClick: async () => {

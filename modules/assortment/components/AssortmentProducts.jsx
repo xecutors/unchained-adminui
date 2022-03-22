@@ -8,11 +8,12 @@ import useAssortmentProducts from '../hooks/useAssortmentProducts';
 import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
 import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentProductList from './AssortmentProductList';
+import Loading from '../../common/components/Loading';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
 
-  const { linkedProducts } = useAssortmentProducts({ assortmentId });
+  const { linkedProducts, loading } = useAssortmentProducts({ assortmentId });
   const { setModal } = useModal();
 
   const { removeAssortmentProduct } = useRemoveAssortmentProduct();
@@ -82,12 +83,19 @@ const AssortmentProducts = ({ assortmentId }) => {
           </p>
         </div>
       </div>
-      <div className="md:col-span-2 w-full py-2 ml-auto shadow-md px-6">
-        <AssortmentProductList
-          products={linkedProducts}
-          onRemoveProduct={onRemoveProduct}
-        />
-      </div>
+
+      {loading ? (
+        <div className="ml-auto w-full md:col-span-2">
+          <Loading />
+        </div>
+      ) : (
+        <div className="ml-auto w-full py-2 px-6 shadow-md md:col-span-2">
+          <AssortmentProductList
+            products={linkedProducts}
+            onRemoveProduct={onRemoveProduct}
+          />
+        </div>
+      )}
     </div>
   );
 };

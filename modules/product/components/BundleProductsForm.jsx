@@ -64,7 +64,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
         type="number"
         label={formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
       />
-      <SubmitButton />
+      <SubmitButton className="mt-2" />
     </Form>
   );
 };

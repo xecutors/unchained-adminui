@@ -53,8 +53,8 @@ const AssortmentLinkForm = ({ assortmentId }) => {
 
   return (
     <Form form={form}>
-      <div className="shadow overflow-hidden sm:rounded-md">
-        <div className="grid gap-6 px-4 py-5 bg-white sm:p-6">
+      <div className="shadow sm:rounded-md">
+        <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
           <div className="col-span-12">
             <TagInput
               name="tags"
@@ -66,7 +66,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               onChange={(newTags) => setTags(newTags)}
               autoComplete="on"
               options={{}}
-              className="text-sm font-medium text-gray-500 mt-1 w-full"
+              className="mt-1 w-full text-sm font-medium text-gray-500"
             />
           </div>
           <div className="col-span-12">
@@ -82,7 +82,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
             />
           </div>
         </div>
-        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+        <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <SubmitButton
             label={formatMessage({
               id: 'save',

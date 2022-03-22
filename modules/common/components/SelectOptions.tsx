@@ -13,6 +13,7 @@ export type SelectOptionsProp = {
   selectedTitle?: string;
   onClick: MouseEventHandler<any>;
   description?: string;
+  disable?: boolean;
   current: boolean;
   bgColor: string;
 };
@@ -46,24 +47,24 @@ export default function SelectOptions({
           </Listbox.Label>
           <div className="relative">
             <div
-              className={`inline-flex shadow-sm rounded-md divide-x divide-${select?.bgColor}-600`}
+              className={`inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
             >
               <div
-                className={`relative z-0 inline-flex shadow-sm rounded-md divide-x divide-${select?.bgColor}-600`}
+                className={`relative z-0 inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
               >
                 <div
-                  className={`relative inline-flex items-center hover:bg-${select?.bgColor}-200 bg-${select?.bgColor}-500 py-[0.3rem] lg:py-2 pl-2 lg:pl-3 pr-2 lg:pr-4 border border-transparent rounded-l-md shadow-sm text-white`}
+                  className={`relative inline-flex items-center hover:bg-${select?.bgColor}-200 bg-${select?.bgColor}-500 rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`}
                 >
                   <CheckIcon
                     className="h-4 w-4 lg:h-5 lg:w-5"
                     aria-hidden="true"
                   />
-                  <p className="ml-2.5 text-xs lg:text-sm font-medium">
+                  <p className="ml-2.5 text-xs font-medium lg:text-sm">
                     {select?.selectedTitle || select.title}
                   </p>
                 </div>
                 <Listbox.Button
-                  className={`relative inline-flex items-center bg-${select?.bgColor}-500 hover:bg-${select?.bgColor}-900 p-1 lg:p-2 outline-none border-none rounded-l-none rounded-r-md text-sm font-medium text-white focus:outline-none focus:z-10`}
+                  className={`relative inline-flex items-center bg-${select?.bgColor}-500  hover:bg-${select?.bgColor}-900 rounded-l-none rounded-r-md border-none p-1 text-sm font-medium text-white outline-none focus:z-10 focus:outline-none lg:p-2`}
                 >
                   <span className="sr-only">
                     {formatMessage(
@@ -77,7 +78,7 @@ export default function SelectOptions({
                     )}
                   </span>
                   <ChevronDownIcon
-                    className="h-4 w-4 lg:h-5 lg:w-5 text-white"
+                    className="h-4 w-4 text-white lg:h-5 lg:w-5"
                     aria-hidden="true"
                   />
                 </Listbox.Button>
@@ -91,23 +92,30 @@ export default function SelectOptions({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="mt-1 w-full origin-top-right absolute z-10 right-0 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="absolute right-0 z-10 w-full origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
                     className={() =>
                       classNames(
-                        'hover:bg-gray-200',
+                        'hover:bg-gray-500',
+                        option?.disable && 'cursor-not-allowed',
                         option.id === select.id
                           ? `text-white bg-${option.bgColor}-500`
                           : 'text-gray-900',
-                        `cursor-default select-none relative pl-4 pr-3 py-2 text-sm `,
+                        `relative cursor-default select-none px-4 py-2 text-sm `,
                       )
                     }
                     value={option}
+                    disabled={option.disable}
                   >
-                    <div className={`flex flex-col `} onClick={option?.onClick}>
-                      <div className="flex justify-between cursor-pointer">
+                    <div
+                      className={`flex flex-col ${
+                        option?.disable && 'pointer-events-none'
+                      } `}
+                      onClick={option?.onClick}
+                    >
+                      <div className="flex cursor-pointer justify-between">
                         <p
                           className={
                             option.id === select.id
@@ -133,8 +141,8 @@ export default function SelectOptions({
                         className={classNames(
                           option.id === select.id
                             ? 'text-indigo-200'
-                            : 'text-gray-500',
-                          '',
+                            : 'text-gray-900',
+                          'mt-2',
                         )}
                       >
                         {option?.description}

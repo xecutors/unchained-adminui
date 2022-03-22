@@ -82,16 +82,18 @@ const AssortmentFilters = ({ assortmentId }) => {
           </p>
         </div>
       </div>
-      <div className="md:col-span-2 w-full py-2 ml-auto shadow-md px-6">
-        {loading ? (
+      {loading ? (
+        <div className="ml-auto w-full md:col-span-2">
           <Loading />
-        ) : (
+        </div>
+      ) : (
+        <div className="ml-auto w-full py-2 px-6 shadow-md md:col-span-2">
           <AssortmentFiltersList
             filters={assortmentFilters}
             onRemoveFilter={onRemoveFilter}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

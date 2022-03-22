@@ -15,8 +15,8 @@ const ProductListItem = ({ product, showAvatar }) => {
   const { slug = '' } = product?.texts || {};
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {showAvatar && (
             <MediaAvatar
               file={product?.media?.length && product.media[0].file}
@@ -42,7 +42,7 @@ const ProductListItem = ({ product, showAvatar }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap">
+      <Table.Cell className="whitespace-nowrap px-6">
         <Badge
           text={product.status}
           color={PRODUCT_STATUS[product.status]}
@@ -50,9 +50,9 @@ const ProductListItem = ({ product, showAvatar }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className=" px-6   whitespace-nowrap">
+      <Table.Cell className=" whitespace-nowrap px-6">
         <div className="flex">
-          <div className="pl-2 flex items-center text-sm text-gray-900">
+          <div className="flex items-center pl-2 text-sm text-gray-900">
             {product.tags?.map((t) => (
               <Badge key={t} text={t} color="indigo" />
             ))}
