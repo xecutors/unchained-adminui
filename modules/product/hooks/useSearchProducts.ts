@@ -41,6 +41,7 @@ const useSearchProducts = ({
   ignoreChildAssortments = false,
 } = {}) => {
   const { data, loading, error } = useQuery(SearchProductsQuery, {
+    skip: !queryString && !assortmentId,
     variables: {
       limit,
       offset,

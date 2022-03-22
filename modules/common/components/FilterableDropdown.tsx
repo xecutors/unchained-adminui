@@ -46,56 +46,58 @@ const FilterableDropdown = ({
         <div className="my-2 p-1 bg-white flex border border-gray-200 rounded">
           <div className="w-full">
             <FieldWrapper {...field}>
-              {currentSelection ? (
-                <div className="w-full">
-                  <input
-                    type="search"
-                    className="w-full px-4 py-1 text-gray-800  focus:outline-none"
-                    placeholder="search"
-                    defaultValue={currentSelection}
-                    x-model="search"
-                    onClick={() => {
-                      setCurrentSelection('');
-                      field.setValue('');
-                    }}
-                  />
-                </div>
-              ) : (
-                <>
-                  <div className="w-full ">
+              <>
+                {currentSelection ? (
+                  <div className="w-full">
                     <input
-                      className={classNames(
-                        'w-full shadow-sm appearance-none mt-1 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
-                        'p-1 px-2 appearance-none outline-none w-full text-gray-800',
-                        {
-                          'border-red-300': !!field.error,
-                        },
-                      )}
-                      onChange={(e) => {
-                        if (!showDropdown) setShowDropdown(true);
-
-                        field.setTouched(true);
-
-                        onFilter(e.target.value);
+                      type="search"
+                      className="w-full px-4 py-1 text-gray-800  focus:outline-none"
+                      placeholder="search"
+                      defaultValue={currentSelection}
+                      onClick={() => {
+                        setCurrentSelection('');
+                        field.setValue('');
                       }}
                     />
                   </div>
-                  <div className="w-full hidden">
-                    <input
-                      readOnly
-                      disabled={field.disabled}
-                      id={field.name}
-                      name={field.name}
-                      onBlur={field.onBlur}
-                      onChange={field.onChange}
-                      placeholder={field.placeholder}
-                      autoComplete={field.autoComplete}
-                      value={field.value}
-                      {...field}
-                    />
-                  </div>
-                </>
-              )}
+                ) : (
+                  <>
+                    <div className="w-full ">
+                      <input
+                        className={classNames(
+                          'w-full shadow-sm appearance-none mt-1 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+                          'p-1 px-2 appearance-none outline-none w-full text-gray-800',
+                          {
+                            'border-red-300': !!field?.error,
+                          },
+                        )}
+                        onChange={(e) => {
+                          if (!showDropdown) setShowDropdown(true);
+
+                          field.setTouched(true);
+
+                          onFilter(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="w-full hidden">
+                      <input
+                        readOnly
+                        required={field.required}
+                        disabled={field.disabled}
+                        id={field.name}
+                        name={field.name}
+                        onBlur={field.onBlur}
+                        onChange={field.onChange}
+                        placeholder={field.placeholder}
+                        autoComplete={field.autoComplete}
+                        value={field.value}
+                        className={classNames('', field.className)}
+                      />
+                    </div>
+                  </>
+                )}
+              </>
             </FieldWrapper>
           </div>
 
