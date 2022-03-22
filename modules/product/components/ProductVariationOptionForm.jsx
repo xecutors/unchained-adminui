@@ -21,7 +21,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
 
   return (
     <Form form={form}>
-      <div className="flex">
+      <div className="flex gap-2">
         <TextField
           name="title"
           label={formatMessage({ id: 'title', defaultMessage: 'Title' })}
@@ -32,12 +32,15 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
           label={formatMessage({ id: 'value', defaultMessage: 'Value' })}
           required
         />
-        <SubmitButton
-          label={formatMessage({
-            id: 'add_options',
-            defaultMessage: 'Add option',
-          })}
-        />
+        <span className="self-end">
+          <SubmitButton
+            className="h-11"
+            label={formatMessage({
+              id: 'add_options',
+              defaultMessage: 'Add option',
+            })}
+          />
+        </span>
       </div>
     </Form>
   );

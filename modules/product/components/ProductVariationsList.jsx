@@ -71,7 +71,13 @@ const ProductVariationsList = ({
     },
   ];
 
-  return <Accordion data={variations} containerCSS="w-full" />;
+  return (
+    <Accordion
+      data={variations}
+      containerCSS="w-full"
+      headerCSS="w-full flex items-center py-2 justify-between"
+    />
+  );
 };
 
 export default ProductVariationsList;
