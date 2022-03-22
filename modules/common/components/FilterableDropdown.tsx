@@ -31,11 +31,7 @@ const FilterableDropdown = ({
   ...props
 }: FilterableDropdownProps) => {
   const { formatMessage } = useIntl();
-<<<<<<< HEAD
-  const [showDropdown, setShowDropdown] = useState(true);
-=======
   const [showDropdown, setShowDropdown] = useState(false);
->>>>>>> Fix assortment product filtere
   const [currentSelection, setCurrentSelection] = useState('');
   const field = useField({ ...props });
 
