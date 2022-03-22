@@ -29,13 +29,15 @@ const FilteredListItem = ({ item, onSelected }) => {
               {item?.subtitle}
             </div>
           </div>
-          <div className="w-1/2 flex">
-            <div className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-teal-100 border border-teal-300 ">
-              <div className="text-xs font-normal leading-none max-w-full flex-initial">
-                {item?.tag}
+          {item?.tag ? (
+            <div className="w-1/2 flex">
+              <div className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-teal-100 border border-teal-300 ">
+                <div className="text-xs font-normal leading-none max-w-full flex-initial">
+                  {item?.tag}
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </a>

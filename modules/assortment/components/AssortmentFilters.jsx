@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAssortmentFilters from '../hooks/useAssortmentFilters';

@@ -35,6 +35,7 @@ const FilterableDropdown = ({
 
   const onSelected = (value) => {
     setShowDropdown(false);
+    console.log(value.title);
     setCurrentSelection(value.title);
 
     field.setValue(value.id, true);
@@ -53,6 +54,7 @@ const FilterableDropdown = ({
                       type="search"
                       className="w-full px-4 py-1 text-gray-800  focus:outline-none"
                       placeholder="search"
+                      value={currentSelection}
                       defaultValue={currentSelection}
                       onClick={() => {
                         setCurrentSelection('');

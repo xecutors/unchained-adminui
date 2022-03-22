@@ -4,17 +4,18 @@ import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
-import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 
 import useAddAssortmentFilter from '../hooks/useAddAssortmentFilter';
-import useFilters from '../../filter/hooks/useFilters';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+
 import FormErrors from '../../forms/components/FormErrors';
+import FilterableDropdown from '../../common/components/FilterableDropdown';
+import useFiltersList from '../../filter/hooks/useFiltersList';
 
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
-    _id,
+    id: _id,
+
     title: ` (${key})-${texts?.title}`,
   }));
 };
@@ -23,7 +24,11 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentFilter } = useAddAssortmentFilter();
-  const { filters } = useFilters();
+  const { filters } = useFiltersList({ limit: 300 });
+
+  const [filteredFilters, setFilteredFilters] = useState(() =>
+    normalizeFilters(filters),
+  );
 
   const successMessage = formatMessage({
     id: 'saved',
@@ -63,18 +68,25 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
             />
           </div>
           <div className="col-span-12">
-            <SelectField
+            <FilterableDropdown
               name="filterId"
               required
               label={formatMessage({
                 id: 'filter',
                 defaultMessage: 'Filter',
               })}
-              options={convertArrayOfObjectToObject(
-                normalizeFilters(filters),
-                'title',
-                '_id',
-              )}
+              data={filteredFilters}
+              onFilter={(val) => {
+                setFilteredFilters(
+                  normalizeFilters(filters).filter((item) => {
+                    return (
+                      item?.title?.toLowerCase().includes(val?.toLowerCase()) ||
+                      item?.subtitle?.toLowerCase() === val?.toLowerCase() ||
+                      !val
+                    );
+                  }),
+                );
+              }}
               className="text-sm font-medium text-gray-500 py-2   mt-1 w-full"
             />
           </div>
