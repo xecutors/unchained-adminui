@@ -1,7 +1,7 @@
 import Accordion from '../../common/components/Accordion';
 import useTranslatedProductVariationTexts from '../hooks/useTranslatedProductVariationTexts';
 import ProductVariation from './ProductVariation';
-import ProductVariationOptions from './ProductVariationOptions';
+import ProductVariationOptionsList from './ProductVariationOptionsList';
 
 const ProductVariationsList = ({
   productVariationId,
@@ -12,8 +12,6 @@ const ProductVariationsList = ({
   const { translatedVariationTexts } = useTranslatedProductVariationTexts({
     productVariationId,
   });
-  console.log('options', options);
-  console.log('variation', variation);
 
   const variations = translatedVariationTexts
     .filter(({ locale }) => locale === selectedLocale)
@@ -26,7 +24,7 @@ const ProductVariationsList = ({
         />
       ),
       body: (
-        <ProductVariationOptions
+        <ProductVariationOptionsList
           variationId={variation._id}
           options={options}
         />

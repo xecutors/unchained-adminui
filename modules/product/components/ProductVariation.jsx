@@ -1,18 +1,9 @@
 import Badge from '../../common/components/Badge';
 
-const ProductVariation = ({
-  productVariationId,
-  type,
-  variationText,
-  _id,
-  options,
-  variationKey,
-  ...props
-}) => {
+const ProductVariation = ({ type, variationText, variationKey }) => {
   return (
     <div>
       <span>
-        {' '}
         <Badge text={type} square />
       </span>
       <span> {variationText.title}</span>
