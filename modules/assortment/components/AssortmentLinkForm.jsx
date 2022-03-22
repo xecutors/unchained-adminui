@@ -4,17 +4,17 @@ import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
-import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import useAssortments from '../hooks/useAssortments';
+import useSearchAssortments from '../hooks/useSearchAssortments';
+import FilterableDropdown from '../../common/components/FilterableDropdown';
 
-const normalizeAssortments = (assortmentList = []) => {
-  return assortmentList?.map(({ _id, texts }) => ({
-    _id,
-    title: texts?.title,
-    subtitle: texts?.subtitle,
+const normalizeAssortments = (productsList = []) => {
+  return productsList?.map(({ _id, status, texts, media }) => ({
+    id: _id,
+    tag: status,
+    ...texts,
+    image: media?.length ? media[0]?.file.url : null,
   }));
 };
 
@@ -22,7 +22,11 @@ const AssortmentLinkForm = ({ assortmentId }) => {
   const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
-  const { assortments } = useAssortments({ includeLeaves: true });
+  const [queryString, setQueryString] = useState('');
+  const { assortments } = useSearchAssortments({
+    queryString,
+    limit: 50,
+  });
 
   const onSubmit = async ({ childAssortmentId }) => {
     await addAssortmentLink({
@@ -66,17 +70,14 @@ const AssortmentLinkForm = ({ assortmentId }) => {
             />
           </div>
           <div className="col-span-12">
-            <SelectField
+            <FilterableDropdown
               name="childAssortmentId"
               label={formatMessage({
                 id: 'child_assortment',
                 defaultMessage: 'Sub-Assortment',
               })}
-              options={convertArrayOfObjectToObject(
-                normalizeAssortments(assortments),
-                'title',
-                '_id',
-              )}
+              onFilter={setQueryString}
+              data={normalizeAssortments(assortments)}
               className="text-sm font-medium text-gray-500 §mt-1 w-full"
             />
           </div>

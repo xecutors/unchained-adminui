@@ -15,7 +15,6 @@ import useFiltersList from '../../filter/hooks/useFiltersList';
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
     id: _id,
-
     title: ` (${key})-${texts?.title}`,
   }));
 };
