@@ -30,7 +30,7 @@ const useUpdatePaymentProvider = () => {
         paymentProvider: { configuration },
         paymentProviderId,
       },
-      refetchQueries: ['PaymentProvider', 'PaymentProviders'],
+      refetchQueries: ['PaymentProviders', 'PaymentProvider'],
     });
   };
 

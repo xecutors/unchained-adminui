@@ -51,22 +51,16 @@ const DeliveryProviderUpdate = () => {
           setModal('');
           await removeDeliveryProvider({ deliveryProviderId });
           toast.success(
-            formatMessage(
-              {
-                id: 'delivery_provider_deleted',
-                defaultMessage:
-                  'Delivery provider {deliveryProviderId} deleted successfully',
-              },
-              {
-                deliveryProviderId,
-              },
-            ),
+            formatMessage({
+              id: 'delivery_provider_deleted',
+              defaultMessage: 'Delivery provider deleted successfully',
+            }),
           );
           routerPush('/delivery-provider');
         }}
         okText={formatMessage({
           id: 'delete_delivery_provider',
-          defaultMessage: 'Delete Delivery Provider',
+          defaultMessage: 'Delete delivery Provider',
         })}
       />,
     );

@@ -51,16 +51,10 @@ const WarehousingProviderUpdate = () => {
           setModal('');
           await removeWarehousingProvider({ warehousingProviderId });
           toast.success(
-            formatMessage(
-              {
-                id: 'warehousing_provider_deleted',
-                defaultMessage:
-                  'Warehousing provider {warehousingProviderId} deleted successfully',
-              },
-              {
-                warehousingProviderId,
-              },
-            ),
+            formatMessage({
+              id: 'warehousing_provider_deleted',
+              defaultMessage: 'Warehousing provider deleted successfully',
+            }),
           );
           routerPush('/warehousing-provider');
         }}

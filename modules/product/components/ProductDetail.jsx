@@ -186,10 +186,7 @@ const ProductDetail = ({ product }) => {
         id: 'deleted',
         defaultMessage: 'Deleted',
       }),
-      description: formatMessage({
-        id: 'delete',
-        defaultMessage: 'This product item status is active',
-      }),
+      description: '',
       disable: status === 'ACTIVE',
       current: status === 'DELETED',
       bgColor: 'red',

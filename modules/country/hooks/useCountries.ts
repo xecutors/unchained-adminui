@@ -19,7 +19,7 @@ export const CountriesQuery = gql`
 const useCountries = ({
   limit = 20,
   offset = 0,
-  includeInactive = true,
+  includeInactive = false,
 } = {}) => {
   const { data, loading, error, fetchMore }: any = useQuery(CountriesQuery, {
     variables: { limit, offset, includeInactive },

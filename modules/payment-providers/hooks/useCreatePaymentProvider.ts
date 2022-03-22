@@ -18,7 +18,7 @@ const useCreatePaymentProvider = () => {
   const createPaymentProvider = async ({ adapterKey, type }) => {
     return createPaymentProviderMutation({
       variables: { paymentProvider: { adapterKey, type } },
-      refetchQueries: ['PaymentProviders'],
+      refetchQueries: ['PaymentProviders', 'PaymentProvider'],
     });
   };
 

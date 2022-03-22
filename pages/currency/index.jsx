@@ -40,15 +40,10 @@ const Currencies = () => {
           setModal('');
           await removeCurrency({ currencyId });
           toast.success(
-            formatMessage(
-              {
-                id: 'currency_deleted',
-                defaultMessage: 'Currency {currencyId} deleted successfully',
-              },
-              {
-                currencyId,
-              },
-            ),
+            formatMessage({
+              id: 'currency_deleted',
+              defaultMessage: 'Currency deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

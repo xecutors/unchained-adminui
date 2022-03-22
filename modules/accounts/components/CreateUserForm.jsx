@@ -139,7 +139,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     name="displayName"
                     label={formatMessage({
                       id: 'display_name',
-                      defaultMessage: 'Display Name',
+                      defaultMessage: 'Display name',
                     })}
                     hideLabel
                   />

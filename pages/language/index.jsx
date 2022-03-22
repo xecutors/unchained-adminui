@@ -41,15 +41,10 @@ const Languages = () => {
           setModal('');
           await removeLanguage({ languageId });
           toast.success(
-            formatMessage(
-              {
-                id: 'language_deleted',
-                defaultMessage: 'Language {languageId} deleted successfully',
-              },
-              {
-                id: languageId,
-              },
-            ),
+            formatMessage({
+              id: 'language_deleted',
+              defaultMessage: 'Language deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

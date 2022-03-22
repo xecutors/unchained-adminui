@@ -18,7 +18,7 @@ const useCreateDeliveryProvider = () => {
   const createDeliveryProvider = async ({ adapterKey, type }) => {
     return createDeliveryProviderMutation({
       variables: { deliveryProvider: { adapterKey, type } },
-      refetchQueries: ['DeliveryProviders'],
+      refetchQueries: ['DeliveryProviders', 'DeliveryProvider'],
     });
   };
 

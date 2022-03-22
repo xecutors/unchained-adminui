@@ -31,15 +31,10 @@ const DeliveryProviders = () => {
           setModal('');
           await removeDeliveryProvider({ deliveryProviderId });
           toast.success(
-            formatMessage(
-              {
-                id: 'deliveryProviders_deleted',
-                defaultMessage: 'deliveryProviders {id} deleted successfully',
-              },
-              {
-                id: deliveryProviderId,
-              },
-            ),
+            formatMessage({
+              id: 'deliveryProviders_deleted',
+              defaultMessage: 'DeliveryProviders deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

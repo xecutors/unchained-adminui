@@ -43,15 +43,10 @@ const Country = () => {
           setModal('');
           await removeCountry({ countryId });
           toast.success(
-            formatMessage(
-              {
-                id: 'country_deleted',
-                defaultMessage: 'Country {countryId} deleted successfully',
-              },
-              {
-                countryId,
-              },
-            ),
+            formatMessage({
+              id: 'country_deleted',
+              defaultMessage: 'Country deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

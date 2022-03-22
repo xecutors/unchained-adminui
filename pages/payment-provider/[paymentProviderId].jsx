@@ -51,16 +51,10 @@ const PaymentProviderUpdate = () => {
           setModal('');
           await removePaymentProvider({ paymentProviderId });
           toast.success(
-            formatMessage(
-              {
-                id: 'payment_provider_deleted',
-                defaultMessage:
-                  'Payment provider {paymentProviderId} deleted successfully',
-              },
-              {
-                paymentProviderId,
-              },
-            ),
+            formatMessage({
+              id: 'payment_provider_deleted',
+              defaultMessage: 'Payment provider deleted successfully',
+            }),
           );
           routerPush('/payment-provider');
         }}

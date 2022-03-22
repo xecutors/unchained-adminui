@@ -18,7 +18,7 @@ const useCreateWarehousingProvider = () => {
   const createWarehousingProvider = async ({ adapterKey, type }) => {
     return createWarehousingProviderMutation({
       variables: { warehousingProvider: { adapterKey, type } },
-      refetchQueries: ['WarehousingProviders'],
+      refetchQueries: ['WarehousingProviders', 'WarehousingProvider'],
     });
   };
 

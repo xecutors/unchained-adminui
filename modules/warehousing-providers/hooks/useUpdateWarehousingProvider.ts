@@ -30,7 +30,7 @@ const useUpdateWarehousingProvider = () => {
         warehousingProvider: { configuration },
         warehousingProviderId,
       },
-      refetchQueries: ['WarehousingProvider', 'WarehousingProviders'],
+      refetchQueries: ['WarehousingProviders', 'WarehousingProvider'],
     });
   };
 
