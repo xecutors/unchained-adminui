@@ -1,6 +1,6 @@
 import Badge from '../../common/components/Badge';
 
-const ProductVariationsListItem = ({
+const ProductVariation = ({
   productVariationId,
   type,
   variationText,
@@ -9,8 +9,6 @@ const ProductVariationsListItem = ({
   variationKey,
   ...props
 }) => {
-  console.log(props);
-
   return (
     <div>
       <span>
@@ -23,4 +21,4 @@ const ProductVariationsListItem = ({
   );
 };
 
-export default ProductVariationsListItem;
+export default ProductVariation;
