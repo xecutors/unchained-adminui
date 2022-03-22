@@ -8,7 +8,11 @@ import useRemoveProductVariationOption from '../hooks/useRemoveProductVariationO
 import ProductVariationOptionForm from './ProductVariationOptionForm';
 import ProductVariationOptionItem from './ProductVariationOptionItem';
 
-const ProductVariationOptionsList = ({ variationId, options }) => {
+const ProductVariationOptionsList = ({
+  variationId,
+  options,
+  selectedLocale,
+}) => {
   const { createProductVariationOption } = useCreateProductVariationOption();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -61,6 +65,8 @@ const ProductVariationOptionsList = ({ variationId, options }) => {
       <ProductVariationOptionForm onSubmit={onSubmit} />
       {options.map((option) => (
         <ProductVariationOptionItem
+          locale={selectedLocale}
+          variationId={variationId}
           key={option._id}
           option={option}
           onDelete={onDeleteOption}

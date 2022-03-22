@@ -1,11 +1,12 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import Accordion from '../../common/components/Accordion';
+import LocaleWrapper from '../../common/components/LocaleWrapper';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useRemoveProductVariation from '../hooks/useRemoveProductVariation';
 import useTranslatedProductVariationTexts from '../hooks/useTranslatedProductVariationTexts';
-import ProductVariation from './ProductVariation';
+import Variation from './Variation';
 import ProductVariationOptionsList from './ProductVariationOptionsList';
 
 const ProductVariationsList = ({
@@ -57,7 +58,7 @@ const ProductVariationsList = ({
     .filter(({ locale }) => locale === selectedLocale)
     .map((variationText) => ({
       header: (
-        <ProductVariation
+        <Variation
           onDelete={onDeleteVariation}
           selectedLocale={selectedLocale}
           variationText={variationText}
@@ -67,15 +68,18 @@ const ProductVariationsList = ({
         />
       ),
       body: (
-        <ProductVariationOptionsList
-          key={productVariationId}
-          variationId={variation._id}
-          options={options}
-        />
+        <LocaleWrapper>
+          <ProductVariationOptionsList
+            selectedLocale={selectedLocale}
+            key={productVariationId}
+            variationId={variation._id}
+            options={options}
+          />
+        </LocaleWrapper>
       ),
     }));
 
-  return <Accordion data={variations} />;
+  return <Accordion data={variations} containerCSS="w-full" />;
 };
 
 export default ProductVariationsList;

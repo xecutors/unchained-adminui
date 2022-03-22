@@ -6,8 +6,13 @@ import useForm from '../../forms/hooks/useForm';
 
 const ProductVariationOptionForm = ({ onSubmit }) => {
   const { formatMessage } = useIntl();
+  const successMessage = formatMessage({
+    id: 'variation_option_added',
+    defaultMessage: 'Variation option added successfully!',
+  });
   const form = useForm({
     submit: onSubmit,
+    successMessage,
     initialValues: {
       value: '',
       title: '',

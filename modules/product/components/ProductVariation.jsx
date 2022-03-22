@@ -1,56 +1,43 @@
-import Badge from '../../common/components/Badge';
-import DeleteButton from '../../common/components/DeleteButton';
-import { stopPropagation } from '../../common/data/miscellaneous';
-import Form from '../../forms/components/Form';
-import useForm from '../../forms/hooks/useForm';
-import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts';
+import useCreateProductVariation from '../hooks/useCreateProductVariation';
+import useProductVariations from '../hooks/useProductVariations';
+import ProductVariationForm from './ProductVariationForm';
 
-const ProductVariation = ({
-  type,
-  variationText,
-  variation,
-  selectedLocale,
-  onDelete,
-}) => {
-  const { updateProductVariationTexts } = useUpdateProductVariationTexts();
+import ProductVariationsList from './ProductVariationsList';
 
-  const onSubmit = async ({ title, subtitle }) => {
-    await updateProductVariationTexts({
-      productVariationId: variation._id,
-      texts: { title, subtitle, locale: selectedLocale },
-    });
+export const userCalculation = {
+  color_picker: 'Color Picker',
+  text_answers: 'Text Answers',
+};
+
+const VariationForm = ({ productId, selectedLocale }) => {
+  const { createProductVariation } = useCreateProductVariation();
+
+  const { variations } = useProductVariations({ productId });
+
+  const onSubmit = async ({ title, key, type }) => {
+    await createProductVariation({ productId, key, type, title });
   };
-  const form = useForm({
-    submit: onSubmit,
-    initialValues: {
-      title: variation,
-      subtitle: '',
-    },
-  });
-
   return (
-    <div>
-      <Form form={form}>
-        <div className="flex">
-          <span>
-            <Badge text={type} square />
-          </span>
-          <span> {variationText.title}</span>
-          <span>{variation?.key}</span>
-
-          <div>
-            <DeleteButton
-              onClick={(e) => {
-                stopPropagation(e);
-                onDelete(variation._id);
-              }}
-              className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
-            />
+    <div className="mt-6 overflow-hidden border-b rounded-md">
+      <div className="lg:grid lg:grid-cols-4">
+        <div className="lg:col-span-2 mb-5 lg:pr-5">
+          <ProductVariationForm onSubmit={onSubmit} />
+        </div>
+        <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200 bg-white px-8">
+          <div className="py-4 divide-y divide-gray-200">
+            {variations?.map((variation) => (
+              <ProductVariationsList
+                selectedLocale={selectedLocale}
+                productVariationId={variation._id}
+                key={variation._id}
+                variation={variation}
+              />
+            ))}
           </div>
         </div>
-      </Form>
+      </div>
     </div>
   );
 };
 
-export default ProductVariation;
+export default VariationForm;
