@@ -74,6 +74,7 @@ const VariationForm = ({ productId, selectedLocale }) => {
               />
             </div>
             <SelectField
+              required
               className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
               label={formatMessage({
                 id: 'type',

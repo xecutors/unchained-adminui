@@ -1,11 +1,52 @@
+import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
+import DangerMessage from '../../modal/components/DangerMessage';
+import useModal from '../../modal/hooks/useModal';
 import useCreateProductVariationOption from '../hooks/useCreateProductVariationOption';
 import useRemoveProductVariationOption from '../hooks/useRemoveProductVariationOption';
+
 import ProductVariationOptionForm from './ProductVariationOptionForm';
 import ProductVariationOptionItem from './ProductVariationOptionItem';
 
 const ProductVariationOptionsList = ({ variationId, options }) => {
-  const { removeProductVariationOption } = useRemoveProductVariationOption();
   const { createProductVariationOption } = useCreateProductVariationOption();
+  const { formatMessage } = useIntl();
+  const { setModal } = useModal();
+  const { removeProductVariationOption } = useRemoveProductVariationOption();
+  const onDeleteOption = async (productVariationOptionValue) => {
+    await setModal(
+      <DangerMessage
+        message={formatMessage({
+          id: 'delete_product_variation_confirmation',
+          defaultMessage:
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this option? ',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await removeProductVariationOption({
+            productVariationId: variationId,
+            productVariationOptionValue,
+          });
+          toast.success(
+            formatMessage(
+              {
+                id: 'product_variation_option_deleted',
+                defaultMessage:
+                  'Variation option {productVariationOptionValue} deleted successfully',
+              },
+              {
+                productVariationOptionValue,
+              },
+            ),
+          );
+        }}
+        okText={formatMessage({
+          id: 'delete_product_variation',
+          defaultMessage: 'Delete option',
+        })}
+      />,
+    );
+  };
 
   const onSubmit = async ({ value, title }) => {
     await createProductVariationOption({
@@ -19,7 +60,11 @@ const ProductVariationOptionsList = ({ variationId, options }) => {
     <div>
       <ProductVariationOptionForm onSubmit={onSubmit} />
       {options.map((option) => (
-        <ProductVariationOptionItem option={option} />
+        <ProductVariationOptionItem
+          key={option._id}
+          option={option}
+          onDelete={onDeleteOption}
+        />
       ))}
     </div>
   );

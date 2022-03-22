@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 import ProductVariationFragment from '../fragments/ProductVariationFragment';
 
 export const ProductVariationQuery = gql`
-  query ProductVariation($productId: ID, $slug: String) {
+  query ProductVariations($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on ConfigurableProduct {

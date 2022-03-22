@@ -19,7 +19,7 @@ const useCreateProductVariation = () => {
   const createProductVariation = async ({ productId, key, type, title }) => {
     return createProductVariationMutation({
       variables: { productId, variation: { key, type, title } },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['ProductVariations', 'Product'],
     });
   };
 

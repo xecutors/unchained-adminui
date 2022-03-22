@@ -16,7 +16,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
 
   return (
     <Form form={form}>
-      <div className="flex-col sm:flex ">
+      <div className="flex">
         <TextField
           name="title"
           label={formatMessage({ id: 'title', defaultMessage: 'Title' })}
