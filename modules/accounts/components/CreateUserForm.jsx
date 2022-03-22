@@ -129,8 +129,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               <div className="py-3 sm:grid sm:gap-4 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
-                    id: 'name',
-                    defaultMessage: 'Display Name',
+                    id: 'display_name',
+                    defaultMessage: 'Display name',
                   })}
                 </dt>
                 <dd className="mt-1 flex py-1 text-sm text-gray-900 sm:mt-0">

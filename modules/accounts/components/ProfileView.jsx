@@ -98,7 +98,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
           type="button"
           className={classNames(
             isEdit
-              ? 'bg-gray-200 text-black'
+              ? 'bg-gray-200 text-white'
               : 'text-white-600 focus:ring-indigo-700',
             'rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2',
           )}
@@ -141,7 +141,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             onClick={() => setIsEdit(!isEdit)}
             type="button"
             className={classNames(
-              'bg-gray-200 text-black',
+              'bg-gray-200 text-white',
               'rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2',
             )}
           >
@@ -370,7 +370,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </div>
               </div>
 
-              <div className="ml-1 flex flex-shrink-0 items-center space-x-4 py-4 pt-4">
+              <div className="ml-1 flex flex-shrink-0 items-center justify-end space-x-4 py-4 pt-4">
                 <CancelSaveButton className="justify-end" />
               </div>
             </div>
@@ -606,8 +606,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </div>
               </div>
 
-              <div className="ml-1 flex flex-shrink-0 items-center space-x-4 py-4 pt-4">
-                <CancelSaveButton className="justify-end" />
+              <div className="ml-1 flex flex-shrink-0 justify-end items-center space-x-4 py-4 pt-4">
+                <CancelSaveButton />
               </div>
             </dl>
           </div>
