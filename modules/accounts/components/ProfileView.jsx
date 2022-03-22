@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { format } from 'date-fns';
 import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
@@ -11,11 +10,13 @@ import useForm from '../../forms/hooks/useForm';
 import useUpdateUserAvatar from '../hooks/useUpdateUserAvatar';
 import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
   const { address } = profile || {};
   const fileInputRef = useRef();
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
 
@@ -84,13 +85,95 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
     },
   });
 
+  const FormButton = ({ className }) => {
+    return (
+      <span
+        className={classNames(
+          'ml-1 flex flex-shrink-0 items-center space-x-4 pt-4',
+          className,
+        )}
+      >
+        <button
+          onClick={() => setIsEdit(!isEdit)}
+          type="button"
+          className={classNames(
+            isEdit
+              ? 'bg-gray-200 text-black'
+              : 'text-white-600 focus:ring-indigo-700',
+            'rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2',
+          )}
+        >
+          {isEdit
+            ? formatMessage({
+                id: 'cancel',
+                defaultMessage: 'Cancel',
+              })
+            : formatMessage({
+                id: 'update_profile',
+                defaultMessage: 'Update profile / address',
+              })}
+        </button>
+        {isEdit && (
+          <>
+            <span className="text-gray-300" aria-hidden="true">
+              |
+            </span>
+            <button
+              type="submit"
+              className="rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              {formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+            </button>
+          </>
+        )}
+      </span>
+    );
+  };
+
+  const CancelSaveButton = () => {
+    return (
+      isEdit && (
+        <>
+          <button
+            onClick={() => setIsEdit(!isEdit)}
+            type="button"
+            className={classNames(
+              'bg-gray-200 text-black',
+              'rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2',
+            )}
+          >
+            {formatMessage({
+              id: 'cancel',
+              defaultMessage: 'Cancel',
+            })}
+          </button>
+          <span className="text-gray-300" aria-hidden="true">
+            |
+          </span>
+          <button
+            type="submit"
+            className="rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            {formatMessage({
+              id: 'save',
+              defaultMessage: 'Save',
+            })}
+          </button>
+        </>
+      )
+    );
+  };
+
   return (
     <Form form={form}>
-      <div className="mt-6 overflow-hidden border-b rounded-md">
+      <div className="mt-6 overflow-hidden rounded-md border-b">
         <div className="lg:grid lg:grid-cols-3">
-          <div className="lg:col-span-1 mb-5 lg:pr-5">
+          <div className="mb-5 lg:col-span-1 lg:pr-5">
             <div className="space-y-2">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
                 {formatMessage({
                   id: 'profile',
                   defaultMessage: 'Profile',
@@ -104,55 +187,19 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 })}
               </p>
             </div>
-            <span className="ml-1 pt-4 flex-shrink-0 flex items-center space-x-4">
-              <button
-                onClick={() => setIsEdit(!isEdit)}
-                type="button"
-                className={classNames(
-                  isEdit
-                    ? 'text-black bg-gray-200'
-                    : 'text-white-600 focus:ring-indigo-700',
-                  'bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2',
-                )}
-              >
-                {isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update_profile',
-                      defaultMessage: 'Update profile / address',
-                    })}
-              </button>
-              {isEdit && (
-                <>
-                  <span className="text-gray-300" aria-hidden="true">
-                    |
-                  </span>
-                  <button
-                    type="submit"
-                    className="bg-indigo-700 text-white py-2 px-4 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    {formatMessage({
-                      id: 'save',
-                      defaultMessage: 'Save',
-                    })}
-                  </button>
-                </>
-              )}
-            </span>
+            <FormButton />
           </div>
-          <div className="col-span-2 lg:w-full ml-auto shadow-md border-gray-200 bg-white px-8">
-            <div className="py-4 divide-y divide-gray-200">
-              <div className="py-4 sm:py-2 sm:grid sm:grid-cols-1">
-                <label className="block text-sm font-medium text-gray-70">
+
+          <div className="col-span-2 ml-auto border-gray-200 bg-white px-8 shadow-md lg:w-full">
+            <div className="divide-y divide-gray-200 py-4">
+              <div className="py-4 sm:grid sm:py-2">
+                <label className="text-gray-70 block text-sm font-medium">
                   {formatMessage({
                     id: 'photo',
                     defaultMessage: 'Photo',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm space-x-5 items-center text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex items-center space-x-5 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   <span className="">
                     <input
                       onChange={onUpdateAvatar}
@@ -173,7 +220,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                         })}
                       />
                     ) : (
-                      <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                      <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
                         <svg
                           className="h-full w-full text-gray-300"
                           fill="currentColor"
@@ -184,11 +231,11 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       </span>
                     )}
                   </span>
-                  <span className="mt-1 ml-4 flex-shrink-0 flex items-start space-x-4">
+                  <span className="mt-1 ml-4 flex flex-shrink-0 items-start space-x-4">
                     <button
                       onClick={() => fileInputRef.current.click()}
                       type="button"
-                      className="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       {formatMessage({
                         id: 'change',
@@ -199,22 +246,22 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'name',
                     defaultMessage: 'Name',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="displayName"
                       required
                       label={formatMessage({
                         id: 'displayName',
-                        defaultMessage: 'Dispxlay Name',
+                        defaultMessage: 'Display Name',
                       })}
                       hideLabel
                     />
@@ -223,28 +270,30 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   <span className="flex-grow">{username}</span>
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'gender',
                     defaultMessage: 'Gender',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <SelectField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       label={formatMessage({
                         id: 'gender',
                         defaultMessage: 'Gender',
@@ -263,18 +312,21 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       }}
                     />
                   ) : (
-                    <span className="flex-grow">{profile?.gender}</span>
+                    <span className="flex-grow">
+                      {profile?.gender || 'n/a'}
+                    </span>
                   )}
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'birthday',
                     defaultMessage: 'Birthday',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <DatePickerField
                       label={formatMessage({
@@ -282,26 +334,27 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                         defaultMessage: 'Birthday',
                       })}
                       hideLabel
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="birthday"
                     />
                   ) : (
                     <span className="flex-grow">
                       {profile.birthday
-                        ? format(new Date(profile.birthday), 'P')
+                        ? formatDateTime(profile.birthday)
                         : 'n/a'}
                     </span>
                   )}
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="phoneMobile"
                       label={formatMessage({
                         id: 'mobile',
@@ -310,45 +363,54 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       hideLabel
                     />
                   ) : (
-                    <span className="flex-grow">{profile?.phoneMobile}</span>
+                    <span className="flex-grow">
+                      {profile?.phoneMobile || 'n/a'}
+                    </span>
                   )}
                 </div>
+              </div>
+
+              <div className="ml-1 flex flex-shrink-0 items-center space-x-4 py-4 pt-4">
+                <CancelSaveButton className="justify-end" />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="my-7 pt-6 border-t lg:grid lg:grid-cols-3">
-          <div className="space-y-1 col-span-1 py-3 lg:py-0 ">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              {formatMessage({
-                id: 'address',
-                defaultMessage: 'Address',
-              })}
-            </h3>
-            <p className="max-w-2xl text-sm text-gray-500">
-              {formatMessage({
-                id: 'address_notice',
-                defaultMessage:
-                  'This information will be displayed publicly so be careful what you share.',
-              })}
-            </p>
+        <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
+          <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
+            <div className="space-y-2">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                {formatMessage({
+                  id: 'address',
+                  defaultMessage: 'Address',
+                })}
+              </h3>
+              <p className="max-w-2xl text-sm text-gray-500">
+                {formatMessage({
+                  id: 'address_notice',
+                  defaultMessage:
+                    'This information will be displayed publicly so be careful what you share.',
+                })}
+              </p>
+            </div>
+            <FormButton />
           </div>
 
-          <div className="col-span-2 w-full lg:w-full lg:ml-auto shadow-md border-gray-200  bg-white px-8 py-6">
+          <div className="col-span-2 w-full border-gray-200 bg-white px-8 py-6  shadow-md lg:ml-auto lg:w-full">
             <dl className="divide-y divide-gray-200">
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'full_name',
                     defaultMessage: 'Full name',
                   })}
                 </label>
-                <div className="flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   {isEdit ? (
                     <div className="flex w-full">
                       <TextField
-                        className="w-full mt-0"
+                        className="mt-0 w-full"
                         name="firstName"
                         label={formatMessage({
                           id: 'first_name',
@@ -358,7 +420,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                         placeholder="First Name"
                       />
                       <TextField
-                        className="ml-2 w-full mt-0"
+                        className="ml-2 mt-0 w-full"
                         name="lastName"
                         label={formatMessage({
                           id: 'last_Name',
@@ -375,17 +437,17 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </div>
               </div>
-              <div className=" py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4">
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'company',
                     defaultMessage: 'Company',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="company"
                       label={formatMessage({
                         id: 'company',
@@ -398,17 +460,17 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_1',
                     defaultMessage: 'Address line 1 (Street, House no)',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="addressLine"
                       label={formatMessage({
                         id: 'address_line_1',
@@ -421,17 +483,17 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   )}
                 </div>
               </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols0-4 sm:gap-4">
+              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_2',
                     defaultMessage: 'Address line 2',
                   })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
-                      className="w-full mt-0"
+                      className="mt-0 w-full"
                       name="addressLine2"
                       label={formatMessage({
                         id: 'address_line_2',
@@ -445,19 +507,19 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2 divide-y divide-gray-200">
-                <div className="pt-2 pb-2 sm:grid sm:grid-cols-2 ">
-                  <label className="mt-3 text-sm font-medium text-gray-500">
+              <div className="grid grid-cols-1 gap-x-2 divide-y divide-gray-200 sm:grid-cols-2">
+                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                  <label className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'region',
                       defaultMessage: 'Region',
                     })}
                   </label>
 
-                  <div className="mt-1 flex text-sm text-gray-900">
+                  <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                     {isEdit ? (
                       <TextField
-                        className="w-full mt-0"
+                        className="mt-0 w-full"
                         name="regionCode"
                         label={formatMessage({
                           id: 'region_Code',
@@ -471,39 +533,41 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   </div>
                 </div>
 
-                <div className="pt-2 sm:grid sm:grid-cols-2">
-                  <label className="mt-3 text-sm font-medium text-gray-500">
+                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                  <label className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'postal_code',
                       defaultMessage: 'Postal/ZIP code',
                     })}
                   </label>
-                  <div className="mt-1 w-full text-sm text-gray-900">
+                  <div className="mt-1 w-full text-sm text-gray-900 sm:mt-0">
                     {isEdit ? (
                       <TextField
-                        className="w-full mt-0"
+                        className="mt-0 w-full"
                         name="postalCode"
                         label={formatMessage({
                           id: 'postal_code',
                           defaultMessage: 'Postal/ZIP code',
                         })}
+                        hideLabel
                       />
                     ) : (
                       address?.postalCode
                     )}
                   </div>
                 </div>
-                <div className="pt-2 sm:grid sm:grid-cols-2">
-                  <label className="mt-3 text-sm font-medium text-gray-500">
+
+                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                  <label className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'city',
                       defaultMessage: 'City',
                     })}
                   </label>
-                  <div className="mt-1 text-sm text-gray-900">
+                  <div className="mt-1 text-sm text-gray-900 sm:mt-0">
                     {isEdit ? (
                       <TextField
-                        className="w-full mt-0"
+                        className="mt-0 w-full"
                         name="city"
                         label={formatMessage({
                           id: 'city',
@@ -516,17 +580,18 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     )}
                   </div>
                 </div>
-                <div className="pt-2 sm:grid sm:grid-cols-2">
-                  <label className="mt-3 text-sm font-medium text-gray-500">
+
+                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                  <label className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'country_code',
                       defaultMessage: 'Country code',
                     })}
                   </label>
-                  <div className="mt-1 text-sm text-gray-900">
+                  <div className="mt-1 text-sm text-gray-900 sm:mt-0">
                     {isEdit ? (
                       <TextField
-                        className="w-full mt-0"
+                        className="mt-0 w-full"
                         name="countryCode"
                         label={formatMessage({
                           id: 'country_code',
@@ -539,6 +604,10 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                     )}
                   </div>
                 </div>
+              </div>
+
+              <div className="ml-1 flex flex-shrink-0 items-center space-x-4 py-4 pt-4">
+                <CancelSaveButton className="justify-end" />
               </div>
             </dl>
           </div>
