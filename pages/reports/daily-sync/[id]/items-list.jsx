@@ -43,6 +43,7 @@ const GetCurrentTab = ({ list, selectedView }) => {
 
 const Wrapper = ({ selectedView, list }) => {
   const router = useRouter();
+  const { formatMessage } = useIntl();
 
   const { searchKey = '' } = router.query;
 
@@ -66,7 +67,10 @@ const Wrapper = ({ selectedView, list }) => {
           autoComplete="off"
           value={searchKey}
           id="search"
-          placeholder="Find anything..."
+          placeholder={formatMessage({
+            id: 'search_anything',
+            defaultMessage: 'Search anything',
+          })}
         />
       </div>
       <GetCurrentTab

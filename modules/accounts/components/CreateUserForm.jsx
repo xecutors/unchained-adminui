@@ -262,7 +262,10 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                         defaultMessage: 'First name',
                       })}
                       hideLabel
-                      placeholder="First Name"
+                      placeholder={formatMessage({
+                        id: 'first_name',
+                        defaultMessage: 'First name',
+                      })}
                     />
                     <TextField
                       className="ml-2 mt-0 w-full"
@@ -272,7 +275,10 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                         defaultMessage: 'Last name',
                       })}
                       hideLabel
-                      placeholder="Last Name"
+                      placeholder={formatMessage({
+                        id: 'last_Name',
+                        defaultMessage: 'Last name',
+                      })}
                     />
                   </div>
                 </dd>

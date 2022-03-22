@@ -2,6 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 import FieldWrapper from '../../forms/components/FieldWrapper';
 
 import { TextFieldProps } from '../../forms/components/TextField';
@@ -29,6 +30,7 @@ const FilterableDropdown = ({
   isLoading,
   ...props
 }: FilterableDropdownProps) => {
+  const { formatMessage } = useIntl();
   const [showDropdown, setShowDropdown] = useState(true);
   const [currentSelection, setCurrentSelection] = useState('');
   const field = useField({ ...props });
@@ -47,9 +49,26 @@ const FilterableDropdown = ({
         <div className="my-2 p-1 bg-white flex border border-gray-200 rounded">
           <div className="w-full">
             <FieldWrapper {...field}>
-              <>
-                {currentSelection ? (
-                  <div className="w-full">
+              {currentSelection ? (
+                <div className="w-full">
+                  <input
+                    type="search"
+                    className="w-full px-4 py-1 text-gray-800  focus:outline-none"
+                    placeholder={formatMessage({
+                      id: 'search',
+                      defaultMessage: 'Search',
+                    })}
+                    defaultValue={currentSelection}
+                    x-model="search"
+                    onClick={() => {
+                      setCurrentSelection('');
+                      field.setValue('');
+                    }}
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="w-full ">
                     <input
                       type="search"
                       className="w-full px-4 py-1 text-gray-800  focus:outline-none"
