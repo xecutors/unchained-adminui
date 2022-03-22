@@ -53,7 +53,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
 
   return (
     <Form form={form}>
-      <div className="overflow-hidden shadow sm:rounded-md">
+      <div className="shadow sm:rounded-md">
         <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
           <div className="col-span-12">
             <TagInput

@@ -1,7 +1,9 @@
+import { useIntl } from 'react-intl';
 import NoData from '../../common/components/NoData';
 import AssortmentLinksListItem from './AssortmentLinksListItem';
 
 const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
+  const { formatMessage } = useIntl();
   return links.length ? (
     links.map((link) => {
       const { child, parent, _id } = link;
@@ -30,7 +32,12 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
       return comp;
     })
   ) : (
-    <NoData message="Linked assortment" />
+    <NoData
+      message={formatMessage({
+        id: 'linked-message',
+        defaultMessage: 'Linked assortment',
+      })}
+    />
   );
 };
 

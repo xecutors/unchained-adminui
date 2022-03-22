@@ -42,7 +42,6 @@ const FilterableDropdown = ({
   const onSelected = (value) => {
     setShowDropdown(false);
     setCurrentSelection(value.title);
-
     field.setValue(value.id, true);
   };
 

@@ -1,7 +1,9 @@
 import { TrashIcon } from '@heroicons/react/solid';
+import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 
 const AssortmentFiltersListItem = ({ link, onDelete }) => {
+  const { formatMessage } = useIntl();
   const { _id, filter, tags } = link;
 
   return (
@@ -9,7 +11,11 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
       <div className="shrink-0 grow-0 basis-20 space-y-1 p-2">
         <Badge
           color={filter?.isActive ? 'green' : 'gray'}
-          text={filter?.isActive ? 'Active' : 'In-Active'}
+          text={
+            filter?.isActive
+              ? formatMessage({ id: 'active', defaultMessage: 'Active' })
+              : formatMessage({ id: 'inactive', defaultMessage: 'In-Active' })
+          }
         />
       </div>
       <div className="shrink grow basis-1/3 space-y-1 p-2">

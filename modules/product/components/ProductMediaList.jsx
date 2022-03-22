@@ -28,7 +28,12 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 />
               ))
             ) : (
-              <NoData message="Media" />
+              <NoData
+                message={formatMessage({
+                  id: 'message_media',
+                  defaultMessage: 'Media',
+                })}
+              />
             )}
           </ul>
         </div>

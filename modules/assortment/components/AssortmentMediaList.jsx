@@ -27,7 +27,12 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 />
               ))
             ) : (
-              <NoData message="Media" />
+              <NoData
+                message={formatMessage({
+                  id: 'media_message',
+                  defaultMessage: 'Media',
+                })}
+              />
             )}
           </ul>
         </div>
