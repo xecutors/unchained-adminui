@@ -17,6 +17,7 @@ const ProductVariationOptionsList = ({
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeProductVariationOption } = useRemoveProductVariationOption();
+
   const onDeleteOption = async (productVariationOptionValue) => {
     await setModal(
       <DangerMessage
@@ -69,6 +70,7 @@ const ProductVariationOptionsList = ({
           variationId={variationId}
           key={option._id}
           option={option}
+          selectedLocale={selectedLocale}
           onDelete={onDeleteOption}
         />
       ))}

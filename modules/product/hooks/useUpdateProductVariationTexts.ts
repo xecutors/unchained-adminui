@@ -32,7 +32,7 @@ const useUpdateProductVariationTexts = () => {
         productVariationOptionValue,
         texts: [texts],
       },
-      refetchQueries: ['Products'],
+      refetchQueries: ['ProductVariations'],
     });
   };
 

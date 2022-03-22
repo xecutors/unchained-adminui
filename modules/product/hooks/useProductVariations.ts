@@ -1,9 +1,10 @@
 import { useQuery, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import ProductVariationFragment from '../fragments/ProductVariationFragment';
 
 export const ProductVariationQuery = gql`
-  query ProductVariations($productId: ID, $slug: String) {
+  query ProductVariations($productId: ID, $slug: String, $forceLocale: String) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on ConfigurableProduct {
@@ -16,10 +17,16 @@ export const ProductVariationQuery = gql`
   ${ProductVariationFragment}
 `;
 
-const useProductVariations = ({ productId = null, slug = null } = {}) => {
+const useProductVariations = ({
+  productId = null,
+  slug = null,
+  locale = null,
+} = {}) => {
+  const { locale: defaultLocale } = useIntl();
+  const forceLocale = locale || defaultLocale;
   const { data, loading, error } = useQuery(ProductVariationQuery, {
     skip: !productId && !slug,
-    variables: { productId, slug },
+    variables: { productId, slug, forceLocale },
   });
 
   const product = data?.product || {};

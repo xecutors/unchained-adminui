@@ -1,11 +1,10 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import Accordion from '../../common/components/Accordion';
-import LocaleWrapper from '../../common/components/LocaleWrapper';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useRemoveProductVariation from '../hooks/useRemoveProductVariation';
-import useTranslatedProductVariationTexts from '../hooks/useTranslatedProductVariationTexts';
+
 import Variation from './Variation';
 import ProductVariationOptionsList from './ProductVariationOptionsList';
 
@@ -18,9 +17,6 @@ const ProductVariationsList = ({
   const { setModal } = useModal();
   const { options } = variation;
   const { removeProductVariation } = useRemoveProductVariation();
-  const { translatedVariationTexts } = useTranslatedProductVariationTexts({
-    productVariationId,
-  });
 
   const onDeleteVariation = async () => {
     await setModal(
@@ -54,30 +50,26 @@ const ProductVariationsList = ({
     );
   };
 
-  const variations = translatedVariationTexts
-    .filter(({ locale }) => locale === selectedLocale)
-    .map((variationText) => ({
+  const variations = [
+    {
       header: (
         <Variation
           onDelete={onDeleteVariation}
           selectedLocale={selectedLocale}
-          variationText={variationText}
           variation={variation}
-          key={variationText.title}
           {...variation}
         />
       ),
       body: (
-        <LocaleWrapper>
-          <ProductVariationOptionsList
-            selectedLocale={selectedLocale}
-            key={productVariationId}
-            variationId={variation._id}
-            options={options}
-          />
-        </LocaleWrapper>
+        <ProductVariationOptionsList
+          selectedLocale={selectedLocale}
+          key={productVariationId}
+          variationId={variation._id}
+          options={options}
+        />
       ),
-    }));
+    },
+  ];
 
   return <Accordion data={variations} containerCSS="w-full" />;
 };

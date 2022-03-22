@@ -5,9 +5,15 @@ const ProductVariationFragment = gql`
     _id
     type
     key
+    texts(forceLocale: $forceLocale) {
+      _id
+      locale
+      title
+      subtitle
+    }
     options {
       _id
-      texts {
+      texts(forceLocale: $forceLocale) {
         _id
         locale
         title

@@ -4,19 +4,18 @@ import ProductVariationForm from './ProductVariationForm';
 
 import ProductVariationsList from './ProductVariationsList';
 
-export const userCalculation = {
-  color_picker: 'Color Picker',
-  text_answers: 'Text Answers',
-};
-
-const VariationForm = ({ productId, selectedLocale }) => {
+const ProductVariation = ({ productId, selectedLocale }) => {
   const { createProductVariation } = useCreateProductVariation();
 
-  const { variations } = useProductVariations({ productId });
+  const { variations } = useProductVariations({
+    productId,
+    locale: selectedLocale,
+  });
 
   const onSubmit = async ({ title, key, type }) => {
     await createProductVariation({ productId, key, type, title });
   };
+
   return (
     <div className="mt-6 overflow-hidden border-b rounded-md">
       <div className="lg:grid lg:grid-cols-4">
@@ -40,4 +39,4 @@ const VariationForm = ({ productId, selectedLocale }) => {
   );
 };
 
-export default VariationForm;
+export default ProductVariation;

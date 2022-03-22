@@ -13,7 +13,7 @@ const ProductVariationOptionItem = ({
   option,
   onDelete,
   variationId,
-  locale,
+  selectedLocale,
 }) => {
   const { formatMessage } = useIntl();
   const [isEdit, setIsEdit] = useState();
@@ -27,15 +27,16 @@ const ProductVariationOptionItem = ({
     await updateProductVariationTexts({
       productVariationId: variationId,
       productVariationOptionValue: option.value,
-      texts: { title, subtitle, locale },
+      texts: { title, subtitle, locale: selectedLocale },
     });
+    setIsEdit(false);
   };
   const form = useForm({
     submit: onUpdate,
     successMessage,
     initialValues: {
-      title: option.texts.title,
-      subtitle: option.texts.subtitl,
+      title: option?.texts.title,
+      subtitle: option?.texts.subtitle,
     },
   });
   return (
@@ -64,7 +65,7 @@ const ProductVariationOptionItem = ({
                     hideLabel
                   />
                 ) : (
-                  option?.texts.title
+                  option?.texts?.title
                 )}
               </p>
               <p className="text-sm text-gray-500 truncate">
@@ -83,7 +84,7 @@ const ProductVariationOptionItem = ({
                     hideLabel
                   />
                 ) : (
-                  option?.texts.subtitle && option?.texts.subtitle
+                  option?.texts?.subtitle
                 )}
               </p>
             </div>
@@ -120,7 +121,7 @@ const ProductVariationOptionItem = ({
                   </div>
 
                   <DeleteButton
-                    onClick={() => onDelete(option?.value)}
+                    onClick={() => onDelete(option?.texts?.value)}
                     className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
                   />
                 </div>
