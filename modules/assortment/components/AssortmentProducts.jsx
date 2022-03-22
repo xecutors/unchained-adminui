@@ -84,18 +84,18 @@ const AssortmentProducts = ({ assortmentId }) => {
         </div>
       </div>
 
-      <div className="py-2 md:col-span-2">
-        {loading ? (
+      {loading ? (
+        <div className="ml-auto w-full md:col-span-2">
           <Loading />
-        ) : (
-          <div className="ml-auto w-full py-2 px-6 shadow-md md:col-span-2">
-            <AssortmentProductList
-              products={linkedProducts}
-              onRemoveProduct={onRemoveProduct}
-            />
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="ml-auto w-full py-2 px-6 shadow-md md:col-span-2">
+          <AssortmentProductList
+            products={linkedProducts}
+            onRemoveProduct={onRemoveProduct}
+          />
+        </div>
+      )}
     </div>
   );
 };

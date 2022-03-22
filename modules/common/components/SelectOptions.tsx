@@ -30,8 +30,6 @@ export default function SelectOptions({
   );
   const { formatMessage } = useIntl();
 
-  console.log(options);
-
   return (
     <Listbox value={select} onChange={setSelected}>
       {({ open }) => (

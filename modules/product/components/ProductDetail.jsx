@@ -53,7 +53,6 @@ const GetCurrentTab = ({ id, selectedView }) => {
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
-  console.log(product);
   const { formatMessage } = useIntl();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();

@@ -31,7 +31,11 @@ const FilterableDropdown = ({
   ...props
 }: FilterableDropdownProps) => {
   const { formatMessage } = useIntl();
+<<<<<<< HEAD
   const [showDropdown, setShowDropdown] = useState(true);
+=======
+  const [showDropdown, setShowDropdown] = useState(false);
+>>>>>>> Fix assortment product filtere
   const [currentSelection, setCurrentSelection] = useState('');
   const field = useField({ ...props });
 
@@ -42,6 +46,13 @@ const FilterableDropdown = ({
     field.setValue(value.id, true);
   };
 
+  const handleOnBlur = () => {
+    if (!data.length) {
+      setShowDropdown(false);
+      field.setError('');
+    }
+  };
+
   return (
     <div className="relative flex flex-col items-center">
       <div className="w-full">
@@ -49,7 +60,7 @@ const FilterableDropdown = ({
           <div className="w-full">
             <FieldWrapper {...field}>
               {currentSelection ? (
-                <div className="w-full">
+                <div className="h-10 w-full">
                   <input
                     type="search"
                     className="w-full px-4 py-1 text-gray-800  focus:outline-none"
@@ -67,10 +78,10 @@ const FilterableDropdown = ({
                 </div>
               ) : (
                 <>
-                  <div className="w-full ">
+                  <div className="h-10 w-full">
                     <input
                       className={classNames(
-                        'relative mt-1 block w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500',
+                        'relative mt-1 block w-full appearance-none rounded-l-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500',
                         'w-full appearance-none p-1 px-2 text-gray-800 outline-none',
                         {
                           'border-red-300': !!field.error,
@@ -83,6 +94,7 @@ const FilterableDropdown = ({
 
                         onFilter(e.target.value);
                       }}
+                      onBlur={handleOnBlur}
                     />
                   </div>
                   <div className="hidden w-full">
@@ -104,7 +116,12 @@ const FilterableDropdown = ({
             </FieldWrapper>
           </div>
 
-          <div className="flex w-8 items-center border-gray-200 py-1 pl-2 pr-1 text-gray-300">
+          <div
+            className={classNames(
+              'mb-2 flex h-10 w-10 items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
+              { 'bg-red-500': !!field.error },
+            )}
+          >
             <button
               type="button"
               onClick={() => setShowDropdown(!showDropdown)}
@@ -112,14 +129,14 @@ const FilterableDropdown = ({
             >
               {showDropdown ? (
                 <ChevronDownIcon
-                  className="h-6 w-6"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                 />
               ) : (
                 <ChevronUpIcon
-                  className="h-6 w-6"
+                  className="h-6 w-6 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2}
