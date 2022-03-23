@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -16,7 +17,12 @@ const STATUS = {
   false: 'Not Verified',
 };
 
-const EmailAddresses = ({ emails, userId, enableVerification }) => {
+const EmailAddresses = ({
+  emails,
+  userId,
+  enableVerification,
+  emailBodyContainer,
+}) => {
   const { removeEmail } = useRemoveEmail();
   const { sendVerificationEmail } = useSendVerificationEmail();
   const { addEmail } = useAddEmail();
@@ -81,7 +87,12 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
             })}
           </h3>
         </div>
-        <div className="w-full border-b border-gray-200 bg-white px-8 py-4 shadow-md lg:ml-auto lg:w-4/6">
+        <div
+          className={classNames(
+            'bg-white shadow-md border-b border-gray-200 w-full px-8 py-4 lg:w-4/6 lg:ml-auto',
+            emailBodyContainer,
+          )}
+        >
           <ul className="-my-5 divide-y divide-gray-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
@@ -138,7 +149,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
             <div className="mt-4 border-t">
               <div className="mt-5 max-w-md ">
                 <TextField
-                  className="mt-7"
+                  className="mt-4 mb-2"
                   name="email"
                   required
                   label={formatMessage({
