@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 import useSetUserTags from '../hooks/useSetUserTags';
 import Button from '../../common/components/Button';
 import TagInput from '../../common/components/TagInput';
 
-const UserTagsView = ({ tags = [], userId }) => {
+const UserTagsView = ({
+  tags = [],
+  userId,
+  tagInputClasses,
+  tagButtonClasses,
+}) => {
   const { formatMessage } = useIntl();
   const { setUserTags } = useSetUserTags();
   const [tagList, setTagList] = useState([...(tags || [])]);
@@ -23,12 +29,13 @@ const UserTagsView = ({ tags = [], userId }) => {
     <div>
       <Button
         onClick={updateUserTags}
+        className={tagButtonClasses}
         text={formatMessage({
           id: 'update_tags',
           defaultMessage: 'Update tags',
         })}
       />
-      <div className="max-w-md">
+      <div className={classNames('max-w-md', tagInputClasses)}>
         <TagInput onChange={(values) => setTagList(values)} />
       </div>
     </div>
