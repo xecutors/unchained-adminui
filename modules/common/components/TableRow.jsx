@@ -13,7 +13,7 @@ const TableRow = ({
   return (
     <tr
       className={classNames(
-        'flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none  sm:mb-0',
+        'flex-no wrap flex flex-col rounded-l-lg sm:mb-0 sm:table-row  sm:rounded-none',
         className,
       )}
       {...props}

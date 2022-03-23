@@ -40,73 +40,65 @@ const ProductVariationOptionItem = ({
     },
   });
   return (
-    <Form form={form}>
-      <div className="flow-root mt-2 ">
-        <li className="py-2 px-2">
-          <div className="flex items-center space-x-4">
-            <Badge text={option?.value} color="gray" />
+    <Form form={form} className="last:pb-2">
+      <div className="my-2 flow-root rounded border sm:mx-4">
+        <li className="list-none py-2">
+          <div className="grid grid-cols-6 items-center gap-2">
+            <span className="col-span-1">
+              <Badge text={option?.value} color="gray" />
+            </span>
 
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
-                {formatMessage({
-                  id: 'title_colon',
-                  defaultMessage: 'Title:  ',
-                })}
-
+            <div className="col-span-4 min-w-0">
+              <p className="truncate text-sm font-medium text-gray-900">
                 {isEdit ? (
                   <TextField
-                    className="w-fit mt-0"
+                    className="mt-0"
                     name="title"
                     required
                     label={formatMessage({
                       id: 'title',
                       defaultMessage: 'Title',
                     })}
-                    hideLabel
                   />
                 ) : (
                   option?.texts?.title
                 )}
               </p>
-              <p className="text-sm text-gray-500 truncate">
-                {formatMessage({
-                  id: 'subtitle_colon',
-                  defaultMessage: 'Subtitle:  ',
-                })}
+              <p className="truncate text-sm text-gray-500">
                 {isEdit ? (
                   <TextField
-                    className="w-fit mt-0"
+                    className="mt-0"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
                       defaultMessage: 'Subtitle',
                     })}
-                    hideLabel
                   />
                 ) : (
                   option?.texts?.subtitle
                 )}
               </p>
             </div>
-            <div>
+
+            <div className="col-span-1">
               {isEdit ? (
-                <div className=" right-2 top-5 flex space-x-2">
+                <div className="flex flex-col space-y-2">
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
-                    className="bg-white rounded-md font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',
                       defaultMessage: 'Cancel',
                     })}
                   </button>
-                  <span className="text-gray-300" aria-hidden="true">
+                  {/* <span className="text-gray-300" aria-hidden="true">
                     |
-                  </span>
+                  </span> */}
                   <button
                     type="submit"
-                    className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',
@@ -115,14 +107,14 @@ const ProductVariationOptionItem = ({
                   </button>
                 </div>
               ) : (
-                <div className="flex space-x-2">
+                <div className="flex items-center space-x-2">
                   <div onClick={() => setIsEdit(!isEdit)}>
                     <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
                   </div>
 
                   <DeleteButton
                     onClick={() => onDelete(option?.texts?.value)}
-                    className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
+                    className="ml-1 mr-1 cursor-pointer border-white text-red-600 hover:text-red-900"
                   />
                 </div>
               )}

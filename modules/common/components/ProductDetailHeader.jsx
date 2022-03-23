@@ -12,9 +12,9 @@ const ProductDetailHeader = () => {
         })}
       </label>
       <div className="relative">
-        <div className="inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-          <div className="relative z-0 inline-flex shadow-sm rounded-md divide-x divide-indigo-600">
-            <div className="relative inline-flex items-center bg-indigo-500 py-2 pl-3 pr-4 border border-transparent rounded-l-md shadow-sm text-white">
+        <div className="inline-flex divide-x divide-indigo-600 rounded-md shadow-sm">
+          <div className="relative z-0 inline-flex divide-x divide-indigo-600 rounded-md shadow-sm">
+            <div className="relative inline-flex items-center rounded-l-md border border-transparent bg-indigo-500 py-2 pl-3 pr-4 text-white shadow-sm">
               <svg
                 className="h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const ProductDetailHeader = () => {
             </div>
             <button
               type="button"
-              className="relative inline-flex items-center bg-indigo-500 p-2 rounded-l-none rounded-r-md text-sm font-medium text-white hover:bg-indigo-600 focus:outline-none focus:z-10 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"
+              className="relative inline-flex items-center rounded-l-none rounded-r-md bg-indigo-500 p-2 text-sm font-medium text-white hover:bg-indigo-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               aria-haspopup="listbox"
               aria-expanded="true"
               aria-labelledby="listbox-label"
@@ -67,14 +67,14 @@ const ProductDetailHeader = () => {
         </div>
 
         <ul
-          className="origin-top-right hidden z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="right-0 z-10 mt-2 hidden w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           tabIndex="-1"
           role="listbox"
           aria-labelledby="listbox-label"
           aria-activedescendant="listbox-option-0"
         >
           <li
-            className="text-gray-900 cursor-default select-none relative p-4 text-sm"
+            className="relative cursor-default select-none p-4 text-sm text-gray-900"
             id="listbox-option-0"
           >
             <div className="flex flex-col">

@@ -6,10 +6,12 @@ import useForm from '../../forms/hooks/useForm';
 
 const ProductVariationOptionForm = ({ onSubmit }) => {
   const { formatMessage } = useIntl();
+
   const successMessage = formatMessage({
     id: 'variation_option_added',
     defaultMessage: 'Variation option added successfully!',
   });
+
   const form = useForm({
     submit: onSubmit,
     successMessage,
@@ -21,20 +23,23 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
 
   return (
     <Form form={form}>
-      <div className="flex gap-2">
+      <div className="mt-2 flex gap-2 px-2 pt-2 sm:px-4">
         <TextField
+          className="mt-0 shrink grow basis-1/3"
           name="title"
           label={formatMessage({ id: 'title', defaultMessage: 'Title' })}
           required
         />
         <TextField
+          className="mt-0 shrink grow basis-1/3"
           name="value"
           label={formatMessage({ id: 'value', defaultMessage: 'Value' })}
           required
         />
-        <span className="self-end">
+
+        <span className="flex-auto self-end">
           <SubmitButton
-            className="h-11"
+            className="p-0"
             label={formatMessage({
               id: 'add_options',
               defaultMessage: 'Add option',

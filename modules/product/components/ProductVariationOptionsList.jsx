@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import NoData from '../../common/components/NoData';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useCreateProductVariationOption from '../hooks/useCreateProductVariationOption';
@@ -64,16 +65,22 @@ const ProductVariationOptionsList = ({
   return (
     <div>
       <ProductVariationOptionForm onSubmit={onSubmit} />
-      {options.map((option) => (
-        <ProductVariationOptionItem
-          locale={selectedLocale}
-          variationId={variationId}
-          key={option._id}
-          option={option}
-          selectedLocale={selectedLocale}
-          onDelete={onDeleteOption}
+      {options.length ? (
+        options.map((option) => (
+          <ProductVariationOptionItem
+            locale={selectedLocale}
+            variationId={variationId}
+            key={option._id}
+            option={option}
+            selectedLocale={selectedLocale}
+            onDelete={onDeleteOption}
+          />
+        ))
+      ) : (
+        <NoData
+          message={formatMessage({ id: 'option', defaultMessage: 'Option' })}
         />
-      ))}
+      )}
     </div>
   );
 };

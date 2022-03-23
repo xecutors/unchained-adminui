@@ -38,8 +38,8 @@ const WarehousingForm = ({ productId }) => {
   }, [product]);
 
   return (
-    <Form className="shadow rounded" form={form}>
-      <div className="px-4 pb-5 bg-white sm:p-6 relative">
+    <Form className="rounded shadow" form={form}>
+      <div className="relative bg-white px-4 pb-5 sm:p-6">
         <div className="w-full justify-between align-baseline">
           <TextField
             name="sku"
@@ -49,7 +49,7 @@ const WarehousingForm = ({ productId }) => {
               defaultMessage: 'SKU',
             })}
             required
-            className="text-sm font-medium text-gray-500 mb-4"
+            className="mb-4 text-sm font-medium text-gray-500"
           />
 
           <TextField
@@ -64,7 +64,7 @@ const WarehousingForm = ({ productId }) => {
           />
         </div>
       </div>
-      <div className="space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="space-y-6 bg-gray-50 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'save',

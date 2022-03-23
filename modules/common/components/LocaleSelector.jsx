@@ -11,11 +11,11 @@ const LocaleSelector = ({ onChange }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="pl-3 flex justify-end">
+    <div className="flex justify-end pl-3">
       <span className="mt-1  rounded-md shadow-sm">
         <div className="">
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             aria-hidden="true"
             fill="none"
             stroke="currentColor"

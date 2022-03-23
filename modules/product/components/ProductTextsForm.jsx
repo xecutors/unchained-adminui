@@ -74,7 +74,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
     <div className="mt-5 sm:max-w-full">
       <div className="bg-white shadow sm:rounded-t">
         <Form form={form}>
-          <div className="px-4 py-5 bg-white sm:p-6 relative">
+          <div className="relative bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
                 <TextField
@@ -149,7 +149,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                 />
               </div>
             </div>
-            <div className="mt-6 col-span-6 sm:col-span-3">
+            <div className="col-span-6 mt-6 sm:col-span-3">
               <TextAreaField
                 name="description"
                 id="description"
@@ -158,11 +158,11 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                   defaultMessage: 'Description',
                 })}
                 autoComplete="on"
-                className="text-sm font-medium text-gray-500 w-full"
+                className="w-full text-sm font-medium text-gray-500"
               />
             </div>
             <FormErrors />
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <SubmitButton
                 label={formatMessage({
                   id: 'save',

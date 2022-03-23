@@ -41,8 +41,8 @@ const TagInput = ({ tagList: tags, onChange, buttonText }) => {
         />
       ))}
       <div>
-        <div className="h-9 max-w-full flex rounded-md shadow-sm">
-          <div className="relative flex items-stretch flex-grow focus-within:z-10">
+        <div className="flex h-9 max-w-full rounded-md shadow-sm">
+          <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <input
               type="text"
               id="tag-input"
@@ -56,7 +56,7 @@ const TagInput = ({ tagList: tags, onChange, buttonText }) => {
                 e.stopPropagation();
               }}
               onChange={(e) => setNewTag(e.target.value)}
-              className="focus:ring-0 focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md px-4 sm:text-sm border-gray-l-white border-gray-300"
+              className="border-gray-l-white block w-full rounded-none rounded-l-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm"
               placeholder={formatMessage({
                 id: 'search_tag',
                 defaultMessage: 'Search tag',

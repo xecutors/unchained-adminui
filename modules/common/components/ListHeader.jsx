@@ -5,7 +5,7 @@ const ListHeader = ({ addPath, children }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="px-2 py-3">
-      <div className="-ml-2 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+      <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
         <div className="mt-2">
           <h3 className="text-xs leading-6 text-gray-900">{children}</h3>
         </div>
@@ -14,7 +14,7 @@ const ListHeader = ({ addPath, children }) => {
             <Link href={addPath}>
               <a
                 type="button"
-                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-2 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <svg
                   className="h-5 w-5"

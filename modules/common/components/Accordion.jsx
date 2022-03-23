@@ -27,12 +27,12 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
         type="button"
         onClick={() => setShow(!show)}
         className={classNames(
-          'bg-white text-gray-500 border relative cursor-pointer hover:bg-gray-50',
+          'relative cursor-pointer border bg-white text-gray-500 hover:bg-gray-50',
           headerCSS,
         )}
       >
-        <div>{header}</div>
-        <span>
+        <div className="w-full">{header}</div>
+        <span className="px-2">
           {show ? (
             <ChevronUpIcon
               className="h-6 w-6"
@@ -52,7 +52,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       </button>
 
       {show ? (
-        <div className={classNames('p-0 text-gray-400 rounded-lg', bodyCSS)}>
+        <div className={classNames('rounded-lg p-0 text-gray-400', bodyCSS)}>
           {body}
         </div>
       ) : (

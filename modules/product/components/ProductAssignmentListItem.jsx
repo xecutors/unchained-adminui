@@ -3,10 +3,10 @@ const ProductAssignmentListItem = ({ variation }) => {
   return (
     <div>
       <tr>
-        <td className="px-6 py-4 whitespace-nowrap">{variation?.type}</td>
-        <td className="px-6 py-4 whitespace-nowrap">{variation?.key}</td>
+        <td className="whitespace-nowrap px-6 py-4">{variation?.type}</td>
+        <td className="whitespace-nowrap px-6 py-4">{variation?.key}</td>
 
-        <td className="px-6 py-4 whitespace-nowrap">
+        <td className="whitespace-nowrap px-6 py-4">
           {variation?.texts?.title}
         </td>
       </tr>

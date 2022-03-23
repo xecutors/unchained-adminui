@@ -22,7 +22,7 @@ const ProductVariation = ({ productId, selectedLocale }) => {
         <div className="mb-5 lg:col-span-5 lg:pr-5">
           <ProductVariationForm onSubmit={onSubmit} />
         </div>
-        <div className="col-span-7 ml-auto border-gray-200 bg-white px-8 shadow-md lg:w-full">
+        <div className="ml-auto rounded border-gray-200 shadow-md sm:pl-8 lg:col-span-7 lg:w-full">
           <div className="divide-y divide-gray-200 py-4">
             {variations?.map((variation) => (
               <ProductVariationsList

@@ -22,7 +22,7 @@ const ProviderConfigurationForm = ({
 
   return (
     <Form form={form}>
-      <div className="mt-1 sm:mt-0 sm:col-span-2">
+      <div className="mt-1 sm:col-span-2 sm:mt-0">
         <JSONAreaField
           id="configuration"
           name="configuration"
@@ -30,7 +30,7 @@ const ProviderConfigurationForm = ({
             id: 'configuration',
             defaultMessage: 'Configuration',
           })}
-          className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
+          className="block w-full max-w-lg rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           value={defaultValue}
           rows={3}
         />

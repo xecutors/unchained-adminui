@@ -24,7 +24,7 @@ const TextField = ({
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'shadow-sm appearance-none mt-1 rounded-md relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500',
+          'relative mt-1 block w-full appearance-none rounded-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500',
           props.className,
           {
             'border-red-300': !!field.error,

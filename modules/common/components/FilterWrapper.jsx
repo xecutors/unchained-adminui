@@ -30,10 +30,10 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
-        className="cursor-pointer sm:flex hidden hover:bg-indigo-700 rounded-md py-2 px-10 bg-indigo-500 flex text-base leading-4 font-normal text-white justify-center items-center"
+        className="flex hidden cursor-pointer items-center justify-center rounded-md bg-indigo-500 py-2 px-10 text-base font-normal leading-4 text-white hover:bg-indigo-700 sm:flex"
       >
         <AdjustmentsIcon
-          className="mr-2 lg:w-6 lg:h-6 w-4 h-4"
+          className="mr-2 h-4 w-4 lg:h-6 lg:w-6"
           viewBox="0 0 26 26"
           fill="white"
           stroke="white"
@@ -48,11 +48,11 @@ const FilterWrapper = ({ onApplyFilter, children, className }) => {
       >
         {children}
 
-        <div className="text-right bg-gray-50 p-4">
+        <div className="bg-gray-50 p-4 text-right">
           <button
             type="button"
             onClick={applyFilters}
-            className="rounded inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             {formatMessage({
               id: 'apply_filter',

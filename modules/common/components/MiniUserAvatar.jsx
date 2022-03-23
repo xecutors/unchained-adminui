@@ -3,7 +3,7 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
     <div className="flex-col ">
       <div>
         {!url ? (
-          <span className="flex items-center m-auto self-center justify-center h-8 w-8 rounded-full bg-gray-500">
+          <span className="m-auto flex h-8 w-8 items-center justify-center self-center rounded-full bg-gray-500">
             <span className="text-center text-sm font-medium leading-none text-white">
               {name
                 ?.split(' ')

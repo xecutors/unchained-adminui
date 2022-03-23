@@ -33,7 +33,7 @@ const SubmitButton = ({
   return (
     <input
       className={classNames(
-        'text-center cursor-pointer inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm leading-5 font-medium rounded-md text-white focus:ring-indigo-500',
+        'inline-flex cursor-pointer justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-500',
         className,
         {
           'bg-red-600  ': disabled,

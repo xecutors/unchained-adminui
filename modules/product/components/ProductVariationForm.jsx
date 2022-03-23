@@ -30,7 +30,7 @@ const ProductVariationForm = ({ onSubmit }) => {
 
   return (
     <Form form={form}>
-      <div className="relative max-w-full space-y-6 rounded-md sm:p-6">
+      <div className="max-w-full space-y-6 rounded-md sm:p-6">
         <div className="max-w-full">
           <TextField
             name="title"

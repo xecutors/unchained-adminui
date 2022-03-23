@@ -75,7 +75,8 @@ const ProductVariationsList = ({
     <Accordion
       data={variations}
       containerCSS="w-full"
-      headerCSS="w-full flex items-center py-2 justify-between"
+      bodyCSS="bg-white"
+      headerCSS="w-full flex items-center rounded justify-between p-1"
     />
   );
 };
