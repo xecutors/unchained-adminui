@@ -612,7 +612,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                 </div>
               </div>
 
-              <div className="ml-1 flex flex-shrink-0 justify-end items-center space-x-4 py-4 pt-4">
+              <div className="ml-1 flex flex-shrink-0 items-center justify-end space-x-4 py-4 pt-4">
                 <CancelSaveButton />
               </div>
             </dl>

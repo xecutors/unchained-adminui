@@ -5,7 +5,7 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 const UserAvatar = ({ avatar, username, onLogout }) => {
   const { formatMessage } = useIntl();
   return (
-    <a href="#" onClick={onLogout} className="flex-shrink-0 group block">
+    <a href="#" onClick={onLogout} className="group block flex-shrink-0">
       <div className="flex items-center">
         <>
           {avatar ? (
@@ -21,7 +21,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
               })}
             />
           ) : (
-            <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
               <svg
                 className="h-full w-full text-gray-300"
                 fill="currentColor"

@@ -33,7 +33,7 @@ const NewPaymentProvider = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="sm:max-w-2xl mx-auto">
+      <div className="mx-auto sm:max-w-2xl">
         <PageHeader
           headerText={formatMessage({
             id: 'new_payment_provider_header',

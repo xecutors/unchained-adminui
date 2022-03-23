@@ -6,7 +6,7 @@ const AssortmentSearchFilter = () => {
   const router = useRouter();
 
   return (
-    <div className="grid grid-cols-6 gap-6 mb-5 mt-4">
+    <div className="mb-5 mt-4 grid grid-cols-6 gap-6">
       <div className="col-span-6 sm:col-span-3">
         <TagInput
           tagList={router?.query?.tags?.split(',')}

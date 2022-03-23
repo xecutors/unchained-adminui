@@ -22,10 +22,10 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
 
   return (
     <div className="mt-4 sm:max-w-full ">
-      <div className=" shadow sm:rounded-t sm:px-15">
-        <div className="mt-3 bottom-1 border-t border-gray-200 pt-4">
-          <div className=" rounded-md relative max-w-full lg:grid lg:grid-cols-3">
-            <div className="md:col-span-1 p-3">
+      <div className=" sm:px-15 shadow sm:rounded-t">
+        <div className="bottom-1 mt-3 border-t border-gray-200 pt-4">
+          <div className=" relative max-w-full rounded-md lg:grid lg:grid-cols-3">
+            <div className="p-3 md:col-span-1">
               <div className="px-4 sm:px-0">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">
                   {formatMessage({
@@ -49,7 +49,7 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
                     />,
                   )
                 }
-                className="fixed sm:fixed mb-5 mt-5 mr-2  px-3 py-1 border border-transparent z-50  shadow-sm text-sm leading-5 font-medium text-white bg-indigo-600  h-9 rounded-md top-0 right-0 sm:top-auto sm:right-auto"
+                className="fixed top-0 right-0 z-50 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-indigo-600 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-sm sm:fixed sm:top-auto sm:right-auto"
               >
                 {formatMessage({
                   id: 'add_filter_option',
@@ -57,7 +57,7 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
                 })}
               </button>
             </div>
-            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200 mt-8 sm:mt-0  bg-white p-3">
+            <div className="col-span-2 ml-auto mt-8 w-full border-gray-200 bg-white p-3  sm:mt-0 lg:shadow-md">
               <FilterOptionsList
                 filterId={filterId}
                 options={filterOptions}

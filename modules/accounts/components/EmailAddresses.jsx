@@ -72,22 +72,22 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
   });
   return (
     <div>
-      <div className="lg:flex border-t pt-5">
-        <div className="pb-2 pt-4 mb-7 border-gray-200 sm:flex  sm:justify-between">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+      <div className="border-t pt-5 lg:flex">
+        <div className="mb-7 border-gray-200 pb-2 pt-4 sm:flex  sm:justify-between">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({
               id: 'email_addresses',
               defaultMessage: 'Email addresses',
             })}
           </h3>
         </div>
-        <div className="bg-white shadow-md border-b border-gray-200 w-full px-8 py-4 lg:w-4/6 lg:ml-auto">
+        <div className="w-full border-b border-gray-200 bg-white px-8 py-4 shadow-md lg:ml-auto lg:w-4/6">
           <ul className="-my-5 divide-y divide-gray-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
                 <div className=" flex items-center space-x-4">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-gray-900">
                       {address}
                     </p>
                     <Badge
@@ -101,7 +101,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="mr-2 inline-flex items-center shadow-sm px-2.5 py-0.5 border border-blue-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-blue-50"
+                        className="mr-2 inline-flex items-center rounded-full border border-blue-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-blue-50"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',
@@ -111,7 +111,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
                     )}
                     <a
                       onClick={() => onRemoveEmail({ email: address, userId })}
-                      className="inline-flex items-center shadow-sm   rounded-full bg-white hover:bg-red-50"
+                      className="inline-flex items-center rounded-full   bg-white shadow-sm hover:bg-red-50"
                     >
                       <svg
                         className="m-2 h-4 w-4 text-red-500"
@@ -135,7 +135,7 @@ const EmailAddresses = ({ emails, userId, enableVerification }) => {
             ))}
           </ul>
           <Form form={form}>
-            <div className="border-t mt-4">
+            <div className="mt-4 border-t">
               <div className="mt-5 max-w-md ">
                 <TextField
                   className="mt-7"

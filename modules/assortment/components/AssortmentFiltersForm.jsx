@@ -86,7 +86,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                   }),
                 );
               }}
-              className="text-sm font-medium text-gray-500 py-2   mt-1 w-full"
+              className="mt-1 w-full py-2 text-sm   font-medium text-gray-500"
             />
           </div>
         </div>

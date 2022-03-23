@@ -45,7 +45,7 @@ const SupplyForm = ({ productId }) => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="px-4 py-5 bg-white sm:p-6 relative">
+        <div className="relative bg-white px-4 py-5 sm:p-6">
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
               <TextField
@@ -97,7 +97,7 @@ const SupplyForm = ({ productId }) => {
             </div>
           </div>
         </div>
-        <div className="space-y-6 sm:p-6 bg-gray-50 text-right">
+        <div className="space-y-6 bg-gray-50 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({
               id: 'save',

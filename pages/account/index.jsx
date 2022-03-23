@@ -20,7 +20,7 @@ const Profile = () => {
       />
       <div className="max-w-7xl">
         <ProfileView {...currentUser} />
-        <div className="overflow-hidden border-b space-y-6 sm:p-6 rounded-md">
+        <div className="space-y-6 overflow-hidden rounded-md border-b sm:p-6">
           <ChangePassword />
           <EmailAddresses emails={currentUser?.emails} enableVerification />
         </div>

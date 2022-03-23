@@ -13,9 +13,9 @@ const UserListItem = ({ user }) => {
   return (
     <li>
       <Link href={`/users/${user._id}`}>
-        <a className="block hover:bg-gray-50 border-b border-b-slate-200">
+        <a className="block border-b border-b-slate-200 hover:bg-gray-50">
           <div className="flex items-center px-4 py-4 sm:px-6">
-            <div className="min-w-0 flex-1 flex items-center">
+            <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
                 <MiniUserAvatar
                   url={user?.avatar?.url}
@@ -25,12 +25,12 @@ const UserListItem = ({ user }) => {
               </div>
               <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                 <div>
-                  <p className="text-sm font-medium text-indigo-600 truncate">
+                  <p className="truncate text-sm font-medium text-indigo-600">
                     {user.name}
                   </p>
                   <p className="mt-2 flex items-center text-sm text-gray-500">
                     <svg
-                      className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -60,7 +60,7 @@ const UserListItem = ({ user }) => {
                       {isVerified ? (
                         <>
                           <svg
-                            className="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
+                            className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                             fill="currentColor"
@@ -78,7 +78,7 @@ const UserListItem = ({ user }) => {
                         <>
                           {' '}
                           <svg
-                            className="flex-shrink-0 mr-1.5 h-5 w-5 text-red-400"
+                            className="mr-1.5 h-5 w-5 flex-shrink-0 text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                             fill="currentColor"

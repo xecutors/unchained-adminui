@@ -40,7 +40,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
   return (
     <Form form={form}>
-      <div className="sm:max-w-full px-5 py-2">
+      <div className="px-5 py-2 sm:max-w-full">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -50,11 +50,11 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           })}
           autoComplete="on"
           required
-          className="text-sm mt-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mt-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         {isEdit && (
-          <div className="flex items-center h-5">
+          <div className="flex h-5 items-center">
             <CheckboxField
               id="isActive"
               name="isActive"
@@ -63,12 +63,12 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
                 id: 'active',
                 defaultMessage: ' Active',
               })}
-              className="ml-3 focus:ring-indigo-500 h-4 w-4 text-indigo-500 border-gray-300 rounded"
+              className="ml-3 h-4 w-4 rounded border-gray-300 text-indigo-500 focus:ring-indigo-500"
             />
           </div>
         )}
       </div>
-      <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
         <SubmitButton
           label={
             isEdit

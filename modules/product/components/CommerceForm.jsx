@@ -70,11 +70,11 @@ const CommerceForm = ({ productId }) => {
   }, [catalogPrices]);
 
   return (
-    <Form className="bg-white shadow-md rounded-md" form={form}>
-      <div className="sm:p-3 relative max-w-full">
+    <Form className="rounded-md bg-white shadow-md" form={form}>
+      <div className="relative max-w-full sm:p-3">
         <div className="max-w-full justify-between align-baseline" />
 
-        <label className="text-sm font-sans text-black lg:not-sr-only sr-only flex w-full">
+        <label className="sr-only flex w-full font-sans text-sm text-black lg:not-sr-only">
           <span className="flex w-full">
             <span className="w-full">
               {formatMessage({
@@ -89,7 +89,7 @@ const CommerceForm = ({ productId }) => {
               })}
             </span>
           </span>
-          <span className="flex w-full ml-3">
+          <span className="ml-3 flex w-full">
             <span className="w-full">
               {formatMessage({
                 id: 'vat_suspect',
@@ -103,8 +103,8 @@ const CommerceForm = ({ productId }) => {
               })}
             </span>
           </span>
-          <span className="flex w-full mr-5">
-            <span className="w-full ml-10">
+          <span className="mr-5 flex w-full">
+            <span className="ml-10 w-full">
               {formatMessage({
                 id: 'country',
                 defaultMessage: 'Country',
@@ -127,11 +127,11 @@ const CommerceForm = ({ productId }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="shadow mt-2 p-6  lg:p-0 md:p-6 md:shadow lg:shadow-none lg:flex max-w-full align-baseline relative"
+                    className="relative mt-2 max-w-full  p-6 align-baseline shadow md:p-6 md:shadow lg:flex lg:p-0 lg:shadow-none"
                   >
                     <div className="flex w-full">
                       <TextField
-                        className="w-full mr-2"
+                        className="mr-2 w-full"
                         name={`pricing[${index}].maxQuantity`}
                         id={`pricing[${index}].maxQuantity`}
                         required
@@ -148,7 +148,7 @@ const CommerceForm = ({ productId }) => {
                       />
                       <TextField
                         type="number"
-                        className="w-full mr-3"
+                        className="mr-3 w-full"
                         name={`pricing[${index}].amount`}
                         id={`pricing[${index}].amount`}
                         required
@@ -164,7 +164,7 @@ const CommerceForm = ({ productId }) => {
                       />
                     </div>
 
-                    <div className=" p-2 flex w-full ">
+                    <div className=" flex w-full p-2 ">
                       <div className="w-full lg:ml-8 lg:items-center">
                         <CheckboxField
                           name={`pricing[${index}].isTaxable`}
@@ -179,7 +179,7 @@ const CommerceForm = ({ productId }) => {
                               e.target.checked,
                             );
                           }}
-                          className="lg:items-center ml-1 focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          className="ml-1 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
                           type="checkbox"
                         />
                       </div>
@@ -199,7 +199,7 @@ const CommerceForm = ({ productId }) => {
                             );
                           }}
                           hideLabel
-                          className="lg:items-center mr-2 justify-between focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          className="mr-2 h-4 w-4 justify-between rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
                           type="checkbox"
                         />
                       </div>
@@ -207,7 +207,7 @@ const CommerceForm = ({ productId }) => {
 
                     <div className=" flex w-full justify-center ">
                       <SelectField
-                        className=" text-black w-full py-1.5 lg:ml-4  mr-2 lg:mr-5  "
+                        className=" mr-2 w-full py-1.5 text-black  lg:ml-4 lg:mr-5  "
                         label={formatMessage({
                           id: 'country',
                           defaultMessage: 'Country',
@@ -228,7 +228,7 @@ const CommerceForm = ({ productId }) => {
                       />
 
                       <SelectField
-                        className="text-black w-full  py-1.5 mr-2 lg:mr-8 "
+                        className="mr-2 w-full  py-1.5 text-black lg:mr-8 "
                         label={formatMessage({
                           id: 'currency',
                           defaultMessage: 'Currency',
@@ -249,9 +249,9 @@ const CommerceForm = ({ productId }) => {
                       />
                     </div>
 
-                    <div className="absolute top-0 mt-0 right-0 mr-0 md:mr-0  pb-1 lg:py-0 lg:px-0 flex-shrink-0  lg:mt-4 ">
+                    <div className="absolute top-0 right-0 mt-0 mr-0 flex-shrink-0  pb-1 md:mr-0 lg:mt-4 lg:py-0  lg:px-0 ">
                       <button
-                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                        className="items-center rounded-full border border-red-500 bg-white px-1 py-1 text-sm text-red-500 shadow-sm hover:bg-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >
@@ -274,13 +274,13 @@ const CommerceForm = ({ productId }) => {
                   </div>
                 );
               })}
-              <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+              <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className=" " />
                 <div className=" mt-2 flex-shrink-0">
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="items-right inline-flex rounded-full border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       variant="outlined"
                       onClick={() => push('')}
                     >
@@ -306,7 +306,7 @@ const CommerceForm = ({ productId }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="px-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'save',

@@ -17,8 +17,8 @@ const FilterListItem = ({ filter, onRemove }) => {
   };
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/filters/${filter._id}`}>
             <a className="text-blue-600">
               {filter?.texts.title || (
@@ -35,11 +35,11 @@ const FilterListItem = ({ filter, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap">
+      <Table.Cell className="whitespace-nowrap  px-6">
         <Badge text={filter.type} color={FILTER_TYPES[filter.type]} square />
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap">
+      <Table.Cell className="whitespace-nowrap  px-6">
         <Badge
           text={STATUS[filter.isActive]}
           color={filter.isActive ? 'green' : 'red'}
@@ -47,14 +47,14 @@ const FilterListItem = ({ filter, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap">
+      <Table.Cell className="whitespace-nowrap  px-6">
         {filter.options?.length}
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap ">
         <div className="flex items-center justify-center">
           <DeleteButton
-            className="border-white text-red-600 hover:text-red-900 cursor-pointer"
+            className="cursor-pointer border-white text-red-600 hover:text-red-900"
             onClick={async () => {
               await onRemove(filter?._id);
             }}

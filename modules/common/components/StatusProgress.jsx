@@ -36,7 +36,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                         timeline[data.status].id > index
                           ? 'bg-indigo-600'
                           : 'bg-gray-600',
-                        'h-5 w-5 rounded-full flex items-center justify-center',
+                        'flex h-5 w-5 items-center justify-center rounded-full',
                       )}
                     >
                       {timeline[data.status].id > index ? (
@@ -47,10 +47,10 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ) : null}
                     </span>
                   </div>
-                  <div className="min-w-0 flex-1 flex justify-between items-center ml-4">
+                  <div className="ml-4 flex min-w-0 flex-1 items-center justify-between">
                     <div className="flex-auto">
                       <p className="text-sm text-gray-500">
-                        <span className="w-full flex justify-between items-center font-medium text-gray-900 capitalize">
+                        <span className="flex w-full items-center justify-between font-medium capitalize text-gray-900">
                           {value}
                           {timeline[value]?.Component &&
                             timeline[value].Component}
@@ -58,7 +58,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {timeline[data.status].id >= timeline[value].id ? (
-                      <div className="text-right text-sm whitespace-nowrap text-gray-500">
+                      <div className="whitespace-nowrap text-right text-sm text-gray-500">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
                           : null}
@@ -72,7 +72,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </ul>
       </div>
 
-      <div className="hidden sm:block border-t border-gray-200 py-2 px-2 sm:px-2 lg:p-2">
+      <div className="hidden border-t border-gray-200 py-2 px-2 sm:block sm:px-2 lg:p-2">
         <h4 className="sr-only">
           {formatMessage({
             id: 'status',
@@ -80,7 +80,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           })}
         </h4>
         <p className="text-sm font-medium text-gray-900">
-          <span className="text-sm font-medium text-gray-900 capitalize">
+          <span className="text-sm font-medium capitalize text-gray-900">
             {data.status.toLowerCase()}
           </span>
           &nbsp;on&nbsp;
@@ -89,7 +89,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           </span>
         </p>
         <div className="mt-2" aria-hidden="true">
-          <div className="hidden sm:flex text-sm font-medium text-gray-600 mt-2">
+          <div className="mt-2 hidden text-sm font-medium text-gray-600 sm:flex">
             {status.map(({ value, label }) => (
               <div key={`${value}${label}`} className="sm:flex-auto">
                 <div className="relative mb-4 mr-1">
@@ -98,7 +98,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       timeline[data.status].id >= timeline[value].id
                         ? 'bg-indigo-400'
                         : 'bg-gray-200',
-                      'absolute top-0 left-0 -ml-px w-full h-2',
+                      'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
                     aria-hidden="true"
                   />
@@ -111,7 +111,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     'text-center',
                   )}
                 >
-                  <span className="capitalize flex flex-col justify-center items-center">
+                  <span className="flex flex-col items-center justify-center capitalize">
                     {timeline[value]?.Component
                       ? timeline[value].Component
                       : value}

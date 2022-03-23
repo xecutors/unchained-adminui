@@ -515,6 +515,15 @@ export const stopPropagation = (e) => {
   e.stopPropagation();
 };
 
+export const preventDefault = (e) => {
+  e.preventDefault();
+};
+
+export const stopPropagationAndPreventDefault = (e) => {
+  stopPropagation(e);
+  preventDefault(e);
+};
+
 export const UnrestrictedPages = [
   '/log-in',
   '/sign-up',

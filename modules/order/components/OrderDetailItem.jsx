@@ -23,7 +23,7 @@ const OrderDetailItem = ({ item }) => {
             <div className="space-y-8">
               <div className="rounded-lg border border-gray-200 bg-white shadow-sm hover:border hover:border-solid hover:border-blue-600">
                 <div className="p-3">
-                  <div className="flex flex-wrap gap-x-4 justify-center center">
+                  <div className="center flex flex-wrap justify-center gap-x-4">
                     <div className="mx-auto   flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                       <Image
                         loader={defaultNextImageLoader}

@@ -19,7 +19,7 @@ import ProductTextsForm from './ProductTextsForm';
 import ProductMediaForm from './ProductMediaForm';
 import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
-import VariationForm from './VariationForm';
+import ProductVariation from './ProductVariation';
 import WarehousingForm from './WarehousingForm';
 import useRemoveProduct from '../hooks/useRemoveProduct';
 import usePublishProduct from '../hooks/usePublishProduct';
@@ -44,7 +44,12 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'commerce') return <CommerceForm productId={id} />;
   if (selectedView === 'supply') return <SupplyForm productId={id} />;
   if (selectedView === 'warehousing') return <WarehousingForm productId={id} />;
-  if (selectedView === 'variations') return <VariationForm productId={id} />;
+  if (selectedView === 'variations')
+    return (
+      <LocaleWrapper>
+        <ProductVariation productId={id} />
+      </LocaleWrapper>
+    );
   if (selectedView === 'bundled_products')
     return <BundleProducts productId={id} />;
   if (selectedView === 'subscriptions')

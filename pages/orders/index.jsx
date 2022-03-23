@@ -32,7 +32,7 @@ const Orders = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex items-center flex-wrap justify-between">
+      <div className="flex flex-wrap items-center justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'orders_list_header',

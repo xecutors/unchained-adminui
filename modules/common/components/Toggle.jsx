@@ -19,7 +19,7 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
       <button
         type="button"
         className={classNames(
-          ' relative inline-flex flex-shrink-0 h-4 w-9 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+          ' relative inline-flex h-4 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
           {
             'bg-gray-200': !toggleState,
             'bg-indigo-600': toggleState,
@@ -33,7 +33,7 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
 
         <span
           className={classNames(
-            ' pointer-events-none relative inline-block h-3 w-3 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',
+            ' pointer-events-none relative inline-block h-3 w-3 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
             {
               'translate-x-5': toggleState,
               'translate-x-0': !toggleState,
@@ -42,10 +42,10 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
         >
           <span
             className={classNames(
-              'absolute inset-0 h-full w-full flex items-center justify-center transition-opacity',
+              'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
               {
-                'opacity-100 ease-in duration-200': toggleState,
-                'opacity-0 ease-out duration-100': toggleState,
+                'opacity-100 duration-200 ease-in': toggleState,
+                'opacity-0 duration-100 ease-out': toggleState,
               },
             )}
             aria-hidden="true"
@@ -67,10 +67,10 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
 
           <span
             className={classNames(
-              'absolute inset-0 h-full w-full flex items-center justify-center transition-opacity',
+              'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity',
               {
-                'opacity-100 ease-in duration-200': toggleState,
-                'opacity-0 ease-out duration-100': !toggleState,
+                'opacity-100 duration-200 ease-in': toggleState,
+                'opacity-0 duration-100 ease-out': !toggleState,
               },
             )}
             aria-hidden="true"

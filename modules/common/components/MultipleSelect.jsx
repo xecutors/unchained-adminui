@@ -27,7 +27,7 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
   }, [tagList]);
 
   return (
-    <div className="mt-2 sm:mt-0 flex-col">
+    <div className="mt-2 flex-col sm:mt-0">
       <div>
         {tagList.map((tag) => (
           <Badge
@@ -40,12 +40,12 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
         ))}
       </div>
       <div>
-        <div className="mt-1 h-9 max-w-full flex rounded-md shadow-sm">
-          <div className="relative flex items-stretch flex-grow focus-within:z-10">
+        <div className="mt-1 flex h-9 max-w-full rounded-md shadow-sm">
+          <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <select
               id="tag-input"
               placeholder={label}
-              className="mt-1 block w-full pl-3  py-1 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full rounded-md  border-gray-300 py-1 pl-3 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               onChange={(e) => addTag(e.target.value)}
             >
               <option>

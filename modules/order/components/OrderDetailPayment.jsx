@@ -58,9 +58,9 @@ const OrderDetailPayment = ({ order }) => {
           title={label}
           className={`${
             currentType === enumType
-              ? 'bg-teal-500 text-white border-teal-700'
+              ? 'border-teal-700 bg-teal-500 text-white'
               : 'opacity-25'
-          } inline-flex items-center px-2 py-1 rounded-md border border-gray-300 bg-white text-xs font-normal mr-2`}
+          } mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-1 text-xs font-normal`}
         >
           {enumType}
         </span>
@@ -70,13 +70,13 @@ const OrderDetailPayment = ({ order }) => {
 
   return (
     <div className="bg-white shadow sm:rounded-lg">
-      <h2 className="px-4 py-5 sm:px-6 text-lg font-medium text-gray-900">
+      <h2 className="px-4 py-5 text-lg font-medium text-gray-900 sm:px-6">
         {formatMessage({
           id: 'payment_information',
           defaultMessage: 'Payment information',
         })}
       </h2>
-      <div className="px-4 py-5 sm:px-6 border-t border-gray-200">
+      <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
         <div className="-ml-4 -mt-4 flex flex-wrap">
           <div className="ml-4 mt-4 w-full">
             <span className="block">
@@ -86,13 +86,13 @@ const OrderDetailPayment = ({ order }) => {
                 </a>
               </Link>
             </span>
-            <div className="text-sm font-medium text-gray-500 mt-3">
+            <div className="mt-3 text-sm font-medium text-gray-500">
               {formatMessage({
                 id: 'payment',
                 defaultMessage: 'Payment',
               })}
             </div>
-            <span className="block c py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+            <span className="c mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
               {paymentProviderType.map((type) => (
                 <StatusInformation
                   key={type.value}
@@ -102,13 +102,13 @@ const OrderDetailPayment = ({ order }) => {
                 />
               ))}
             </span>
-            <div className="text-sm font-medium text-gray-500 mt-3">
+            <div className="mt-3 text-sm font-medium text-gray-500">
               {formatMessage({
                 id: 'delivery_status',
                 defaultMessage: 'Status',
               })}
             </div>
-            <span className="block text-gray-900 py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+            <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5 text-gray-900">
               {paymentStatusTypes.map((type) => (
                 <StatusInformation
                   key={type.value}
@@ -121,7 +121,7 @@ const OrderDetailPayment = ({ order }) => {
                       <button
                         type="button"
                         onClick={handleOnClick}
-                        className="inline-flex  border-gray-300  text-xs  mr-2  justify-center items-center  my-2 bg-blue-600 text-white h-full rounded py-1 px-2 border border-transparent shadow-sm  font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                        className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-gray-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                       >
                         <span className="mr-1">
                           <PlusIcon className="inline-block h-3 w-3 text-white" />
@@ -138,20 +138,20 @@ const OrderDetailPayment = ({ order }) => {
             </span>
             {order.payment.fee ? (
               <>
-                <div className="pb-1 border border-x-0 border-t-0 border-gray-300 text-sm font-normal my-1">
+                <div className="my-1 border border-x-0 border-t-0 border-gray-300 pb-1 text-sm font-normal">
                   {formatMessage({
                     id: 'payment_fee',
                     defaultMessage: 'Fee',
                   })}
                 </div>
-                <span className="block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
                   {formatPrice(order.payment.fee)}
                 </span>
               </>
             ) : null}
 
             {order.payment.paid ? (
-              <span className="block  py-2 text-sm leading-5 font-bold">
+              <span className="block  py-2 text-sm font-bold leading-5">
                 {formatDateTime(order.payment?.delivered)}
               </span>
             ) : null}

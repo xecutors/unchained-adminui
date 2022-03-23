@@ -50,18 +50,18 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   return (
     <>
-      <div className="p-4 lg:flex mb-2 sm:mb-0 justify-between">
+      <div className="mb-2 justify-between p-4 sm:mb-0 lg:flex">
         <div className="sm:mr-6">
           <div className="flexspace-x-2">
-            <div className="text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+            <div className="text-xl font-medium leading-5 text-gray-800 lg:leading-6 ">
               {formatMessage({
                 id: 'date_range',
                 defaultMessage: 'Date range',
               })}
             </div>
           </div>
-          <div className="mt-5 max:mb-3 ">
-            <div className="flex justify-center items-center">
+          <div className="max:mb-3 mt-5 ">
+            <div className="flex items-center justify-center">
               <label className="ml-1 mr-2" htmlFor="work-start">
                 {formatMessage({ id: 'from', defaultMessage: 'From' })}
               </label>
@@ -80,7 +80,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 showYearDropdown
                 dropdownMode="select"
                 selected={dateRange.start}
-                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-500 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -101,21 +101,21 @@ const WorkFilter = ({ workTypes = [] }) => {
                 showYearDropdown
                 dropdownMode="select"
                 selected={dateRange.end}
-                className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-500 sm:text-sm"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex-1 w-md">
-          <div className="mt-4 sm:mt-1 lg:mt-1 md:mt-5 flex space-x-2">
+        <div className="w-md flex-1">
+          <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-1">
             <VariableIcon
               width="24"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
             />
-            <p className="text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">
+            <p className="text-xl font-medium leading-5 text-gray-800 lg:leading-6 ">
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </p>
           </div>
@@ -140,17 +140,17 @@ const WorkFilter = ({ workTypes = [] }) => {
           </div>
         </div>
       </div>
-      <hr className=" bg-gray-200  w-full hidden sm:block  my-4" />
+      <hr className=" my-4  hidden w-full bg-gray-200  sm:block" />
 
       <div className="p-4 pt-0">
-        <p className="mt-0 text-xl lg:leading-6 lg:gap-7 leading-5 font-medium text-gray-800 ">
+        <p className="mt-0 text-xl font-medium leading-5 text-gray-800 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5 mt-3 m-1">
+        <div className="m-1 mt-3 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           {WORK_STATUSES.map((status) => (
-            <div className="flex justify-start items-center mr-2" key={status}>
+            <div className="mr-2 flex items-center justify-start" key={status}>
               <input
-                className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 type="checkbox"
                 id={status}
                 name={status}

@@ -19,8 +19,8 @@ const QuotationListItem = ({ quotation }) => {
   const { formatDateTime } = useFormatDateTime();
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/quotations/${quotation._id}`}>
             <a className="text-blue-600">
               {quotation?.orderNumber || quotation._id?.substr(0, 10)}
@@ -29,14 +29,14 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {formatDateTime(quotation.created)}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {quotation.expires ? formatDateTime(quotation?.expires) : 'n/a'}
 
           {!quotation.isExpired && (
@@ -52,7 +52,7 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <Link href={`/users/${quotation.user._id}`}>
           <a className="flex text-blue-500">
             <Image
@@ -61,13 +61,13 @@ const QuotationListItem = ({ quotation }) => {
               width={40}
               height={20}
             />
-            <span className="self-end ml-2">{quotation.user?.username}</span>
+            <span className="ml-2 self-end">{quotation.user?.username}</span>
           </a>
         </Link>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/products/${quotation.product._id}`}>
             <a className="flex text-blue-600">
               <Image
@@ -76,7 +76,7 @@ const QuotationListItem = ({ quotation }) => {
                 width={40}
                 height={20}
               />
-              <span className="self-end ml-2">
+              <span className="ml-2 self-end">
                 {quotation?.product.texts.title}
               </span>
             </a>
@@ -84,7 +84,7 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <Badge
           text={quotation?.status}
           color={QUOTATION_STATUS[quotation.status]}

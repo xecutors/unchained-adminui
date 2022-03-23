@@ -17,8 +17,8 @@ const WorkListItem = ({ work }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/works/${work._id}`}>
             <a className="text-blue-600">
               {work?.type || (
@@ -35,30 +35,30 @@ const WorkListItem = ({ work }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <Badge text={work?.status} color={WORK_STATUSES[work.status]} square />
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {work.created ? format(new Date(work.created), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {work.scheduled ? format(new Date(work.scheduled), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {work.started ? format(new Date(work.started), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {work.finished ? format(new Date(work.finished), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>

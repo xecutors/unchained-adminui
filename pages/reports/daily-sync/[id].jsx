@@ -66,10 +66,10 @@ const SyncDetail = () => {
           defaultMessage: 'Sync status',
         })}
       />
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div>
           <Link href={`/reports/daily-sync/${id}/jobs`}>
-            <a className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <a className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
               {formatMessage({
                 id: 'sync_jobs_detail',
                 defaultMessage: 'Sync Jobs detail',
@@ -78,7 +78,7 @@ const SyncDetail = () => {
           </Link>
         </div>
         <div className="text-sm">
-          <h6 className="text-gray-400 flex justify-between">
+          <h6 className="flex justify-between text-gray-400">
             <span className="mr-2">
               {formatMessage({
                 id: 'started',
@@ -88,7 +88,7 @@ const SyncDetail = () => {
             </span>
             <span>{format(new Date(result?.startedFrom), 'Pp')}</span>
           </h6>
-          <h6 className="text-gray-900 flex justify-between">
+          <h6 className="flex justify-between text-gray-900">
             <span className="mr-2">
               {formatMessage({
                 id: 'finished',
@@ -100,18 +100,18 @@ const SyncDetail = () => {
           </h6>
         </div>
       </div>
-      <dl className="mt-5 grid grid-cols-1 rounded-lg bg-white overflow-hidden shadow-lg divide-y divide-gray-200 2xl:divide xl:grid-cols-3 md:divide-x">
-        <div className="px-4 py-2 sm:p-2 col-span-2 xl:col-span-1 mx-auto 2xl: max-w-none">
+      <dl className="2xl:divide mt-5 grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg md:divide-x xl:grid-cols-3">
+        <div className="2xl: col-span-2 mx-auto max-w-none px-4 py-2 sm:p-2 xl:col-span-1">
           <GraphSync dailySync={dailySync} />
         </div>
-        <div className=" py-5 sm:p-6 sm:col-span-1 col-span-2 ">
+        <div className=" col-span-2 py-5 sm:col-span-1 sm:p-6 ">
           <dt className="text-base font-normal text-gray-900">
             {formatMessage({
               id: 'total_products',
               defaultMessage: 'Total products',
             })}
           </dt>
-          <dd className="mt-1 flex xl:space-x-7 items-baseline md:block lg:flex">
+          <dd className="mt-1 flex items-baseline md:block lg:flex xl:space-x-7">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
               {stats.products?.total || 0}
               <span className="ml-2 text-sm font-medium text-gray-500">
@@ -123,7 +123,7 @@ const SyncDetail = () => {
               </span>
             </div>
 
-            <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium md:mt-2 lg:mt-0">
+            <div className="inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium md:mt-2 lg:mt-0">
               <SyncChangeIcon
                 {...stats.products}
                 productsCount={stats.products?.total || 0}
@@ -132,15 +132,15 @@ const SyncDetail = () => {
           </dd>
         </div>
 
-        <div className=" py-5 sm:p-6 sm:col-span-1 col-span-2  flex-wrap">
-          <dt className="text-base flex-wrap font-normal text-gray-900">
+        <div className=" col-span-2 flex-wrap py-5 sm:col-span-1  sm:p-6">
+          <dt className="flex-wrap text-base font-normal text-gray-900">
             {formatMessage({
               id: 'import_duration',
               defaultMessage: 'Duration of import',
             })}
           </dt>
           <dd className="mt-1 items-baseline  ">
-            <div className="flex items-baseline text-2xl font-semibold text-indigo-600 flex-wrap">
+            <div className="flex flex-wrap items-baseline text-2xl font-semibold text-indigo-600">
               {formatDuration({
                 hours: Math.floor(durationInMilliSeconds / 1000 / 60 / 60) % 24,
                 minutes: Number(

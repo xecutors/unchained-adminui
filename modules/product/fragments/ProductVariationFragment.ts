@@ -3,17 +3,17 @@ import { gql } from '@apollo/client';
 const ProductVariationFragment = gql`
   fragment ProductVariationFragment on ProductVariation {
     _id
-    texts {
+    type
+    key
+    texts(forceLocale: $forceLocale) {
       _id
       locale
       title
       subtitle
     }
-    type
-    key
     options {
       _id
-      texts {
+      texts(forceLocale: $forceLocale) {
         _id
         locale
         title

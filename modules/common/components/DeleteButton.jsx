@@ -14,14 +14,14 @@ const DeleteButton = ({
         type="button"
         onClick={onClick}
         className={classNames(
-          'items-center px-1 py-1 text-sm rounded-full text-red-500 bg-white border-red-500 hover:bg-red-100 hover:text-white focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500',
+          'items-center rounded-full border-red-500 bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-100 hover:text-white focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2',
           classes,
         )}
       >
         {textLeft || ''}
         {icon || (
           <svg
-            className="h-5 w-5 text-white-500"
+            className="text-white-500 h-5 w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

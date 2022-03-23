@@ -74,10 +74,10 @@ const SubscriptionForm = ({ productId }) => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="space-y-6 sm:p-6 rounded-md relative max-w-full">
+        <div className="relative max-w-full space-y-6 rounded-md sm:p-6">
           <SelectField
             required
-            className="text-sm  font-medium text-gray-500 py-1.5 w-full mt-2.5"
+            className="mt-2.5  w-full py-1.5 text-sm font-medium text-gray-500"
             label={formatMessage({
               id: 'usage_calculation_type',
               defaultMessage: 'Usage calculation type',
@@ -89,9 +89,9 @@ const SubscriptionForm = ({ productId }) => {
               'value',
             )}
           />
-          <div className="sm:flex w-full  justify-end items-end">
+          <div className="w-full items-end  justify-end sm:flex">
             <SelectField
-              className="text-sm  font-medium text-gray-500  w-full mt-2.5"
+              className="mt-2.5  w-full text-sm  font-medium text-gray-500"
               required
               label={formatMessage({
                 id: 'billing_interval_unit',
@@ -118,13 +118,13 @@ const SubscriptionForm = ({ productId }) => {
                 defaultMessage: 'Billing Unit',
               })}
               hideLabel
-              className="text-sm  font-medium text-gray-500  sm:ml-1 mt-1 w-full"
+              className="mt-1  w-full text-sm  font-medium text-gray-500 sm:ml-1"
             />
           </div>
 
-          <div className="sm:flex max-w-full  justify-end items-end">
+          <div className="max-w-full items-end  justify-end sm:flex">
             <SelectField
-              className="text-sm  font-medium text-gray-500  w-full mt-2.5"
+              className="mt-2.5  w-full text-sm  font-medium text-gray-500"
               label={formatMessage({
                 id: 'trial_interval_unit',
                 defaultMessage: 'Trial interval unit',
@@ -154,12 +154,12 @@ const SubscriptionForm = ({ productId }) => {
               })}
               hideLabel
               required
-              className="text-sm  font-medium text-gray-500   sm:ml-1 mt-1 w-full"
+              className="mt-1  w-full text-sm   font-medium text-gray-500 sm:ml-1"
             />
           </div>
 
           <FormErrors />
-          <div className=" sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+          <div className=" sm:px-15 space-y-6 bg-gray-50 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({
                 id: 'save',

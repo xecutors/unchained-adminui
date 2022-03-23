@@ -11,18 +11,18 @@ const SyncReportListItem = ({ data }) => {
       <Link href={`/reports/daily-sync/${data._id}`}>
         <a className="block hover:bg-gray-50">
           <div className="flex items-center px-4 py-3 sm:px-6">
-            <div className="min-w-0 flex-1 flex items-center">
+            <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
                 {success ? (
                   <CheckIcon
-                    className="w-5 h-5 bg-green-500 rounded-full"
+                    className="h-5 w-5 rounded-full bg-green-500"
                     fill="none"
                     stroke="white"
                     viewBox="0 0 24 24"
                   />
                 ) : (
                   <XIcon
-                    className="w-5 h-5 bg-red-500 rounded-full"
+                    className="h-5 w-5 rounded-full bg-red-500"
                     fill="none"
                     stroke="white"
                     viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ const SyncReportListItem = ({ data }) => {
                 )}
               </div>
               <div className="min-w-0 flex-1 px-4 ">
-                <div className="md:block text-gray-900">
+                <div className="text-gray-900 md:block">
                   <div>
                     <p className="text-sm ">
                       {formatMessage(

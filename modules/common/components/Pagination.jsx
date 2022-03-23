@@ -19,9 +19,9 @@ const Step = ({ onClick, disabled, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'bg-white border-gray-300 text-gray-500 hover:bg-gray-50 z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium',
+        'relative z-10 inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50',
         {
-          'bg-indigo-50 border-indigo-500 text-indigo-600 ': disabled,
+          'border-indigo-500 bg-indigo-50 text-indigo-600 ': disabled,
         },
       )}
     >
@@ -128,7 +128,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
   }, []);
 
   return (
-    <div className="px-4 py-3 flex items-center justify-between">
+    <div className="flex items-center justify-between px-4 py-3">
       {!total && data?.length && onLoadMore ? (
         <Button
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
@@ -137,7 +137,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
         />
       ) : (
         <>
-          <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div className=" sm:block">
               {!total ? (
                 formatMessage({
@@ -164,7 +164,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
             </div>
             <div>
               <nav
-                className="h-8 relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                className="relative z-0 inline-flex h-8 -space-x-px rounded-md shadow-sm"
                 aria-label="Pagination"
               >
                 <button
@@ -172,7 +172,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   disabled={!offset}
                   onClick={() => changeOffset(offset - limit)}
                   className={classNames(
-                    'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-600  hover:bg-gray-50',
+                    'relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-600  hover:bg-gray-50',
                     {
                       'text-gray-200': !offset,
                     },
@@ -185,7 +185,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                     })}{' '}
                   </span>
                   <svg
-                    className="w-5 h-5"
+                    className="h-5 w-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -206,7 +206,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   onClick={() => changeOffset(offset + limit)}
                   disabled={offset + limit >= total}
                   className={classNames(
-                    'relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50',
+                    'relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50',
                     {
                       'text-gray-200': offset + limit >= total,
                     },
@@ -216,7 +216,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                     {formatMessage({ id: 'next', defaultMessage: 'Next' })}
                   </span>
                   <svg
-                    className="w-5 h-5"
+                    className="h-5 w-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -234,12 +234,12 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
             </div>
           </div>
 
-          <div className="flex-1 h-8 flex justify-between sm:hidden">
+          <div className="flex h-8 flex-1 justify-between sm:hidden">
             <button
               type="button"
               disabled={!offset}
               onClick={() => changeOffset(offset - limit)}
-              className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
             </button>
@@ -250,7 +250,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   id="location"
                   defaultValue={DefaultLimit}
                   name="location"
-                  className="h-8 block w-full   py-0 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                  className="block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 >
                   {LimitSteps.map((l) => (
                     <option key={l} value={l}>
@@ -264,7 +264,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={offset + limit >= total}
               onClick={() => changeOffset(offset + limit)}
-              className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               {formatMessage({ id: 'next', defaultMessage: 'Next' })}{' '}
             </button>
@@ -272,14 +272,14 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
         </>
       )}
 
-      <div className="hidden sm:block ml-2 flex justify-between sm:justify-end">
+      <div className="ml-2 flex hidden justify-between sm:block sm:justify-end">
         <div>
           <select
             onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
             id="location"
             defaultValue={limit}
             name="location"
-            className=" h-8 block w-full   py-0 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            className=" block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l}>

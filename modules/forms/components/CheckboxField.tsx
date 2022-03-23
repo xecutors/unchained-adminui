@@ -25,12 +25,12 @@ const CheckboxField = (props) => {
         name={field.name}
         onChange={field.onChange}
         type="checkbox"
-        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
       />
       <label
         htmlFor={field.name}
         className={classnames(
-          'text-sm text-gray-900 ml-2 form-check-label',
+          'form-check-label ml-2 text-sm text-gray-900',
           labelClassNames,
           {
             'text-danger': !!field.error,

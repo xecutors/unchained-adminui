@@ -9,10 +9,10 @@ const EventDetail = ({ event }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="w-full border-t border-gray-300 mb-5" />
-      <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8">
+      <div className="mb-5 w-full border-t border-gray-300" />
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
         <div className="flex justify-between ">
-          <div className="pb-1 text-sm font-bold  my-1">
+          <div className="my-1 pb-1 text-sm  font-bold">
             {formatMessage({
               id: 'type_colon',
               defaultMessage: 'Type:',
@@ -21,7 +21,7 @@ const EventDetail = ({ event }) => {
               <Badge text={event.type} square className="p-2" color="indigo" />
             </span>
           </div>
-          <div className="pb-1 text-lg font-mono my-1">
+          <div className="my-1 pb-1 font-mono text-lg">
             <span className="ml-2 font-bold">
               {formatDateTime(event.created, {
                 day: '2-digit',

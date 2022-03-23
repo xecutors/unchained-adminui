@@ -78,7 +78,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               })}
               onFilter={setQueryString}
               data={normalizeAssortments(assortments)}
-              className="text-sm font-medium text-gray-500 §mt-1 w-full"
+              className="§mt-1 w-full text-sm font-medium text-gray-500"
             />
           </div>
         </div>

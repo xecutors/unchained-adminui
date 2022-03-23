@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 const SideNav = ({ navigation }) => {
   return (
-    <div className="mt-5 flex-grow flex flex-col">
+    <div className="mt-5 flex flex-grow flex-col">
       <nav
-        className="flex-1 px-2 lg:px-4 2xl:px-6 space-y-1 bg-white"
+        className="flex-1 space-y-1 bg-white px-2 lg:px-4 2xl:px-6"
         aria-label="Sidebar"
       >
         {navigation.map((item) =>
@@ -18,7 +18,7 @@ const SideNav = ({ navigation }) => {
                     item.current
                       ? 'bg-gray-100 text-gray-900'
                       : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                    'group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md',
+                    'group flex w-full items-center rounded-md py-2 pl-2 text-sm font-medium',
                   )}
                 >
                   <item.icon
@@ -26,7 +26,7 @@ const SideNav = ({ navigation }) => {
                       item.current
                         ? 'text-gray-500'
                         : 'text-gray-400 group-hover:text-gray-500',
-                      'mr-3 flex-shrink-0 h-6 w-6',
+                      'mr-3 h-6 w-6 flex-shrink-0',
                     )}
                     aria-hidden="true"
                   />
@@ -43,18 +43,18 @@ const SideNav = ({ navigation }) => {
                       item.current
                         ? 'bg-gray-100 text-gray-900'
                         : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
+                      'group flex w-full items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500',
                     )}
                   >
                     <item.icon
-                      className="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      className="mr-3 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                     <span className="flex-1">{item.name}</span>
                     <svg
                       className={classNames(
-                        open ? 'text-gray-400 rotate-90' : 'text-gray-300',
-                        'ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150',
+                        open ? 'rotate-90 text-gray-400' : 'text-gray-300',
+                        'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400',
                       )}
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -65,7 +65,7 @@ const SideNav = ({ navigation }) => {
                   <Disclosure.Panel className="space-y-1">
                     {item.children.map((subItem) => (
                       <Link key={subItem.name} href={subItem.href}>
-                        <a className="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
                           {subItem.name}
                         </a>
                       </Link>

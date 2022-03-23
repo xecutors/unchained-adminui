@@ -12,28 +12,28 @@ const SubscriptionList = ({ periods }) => {
   return (
     <section className="my-3">
       {periods?.length ? (
-        <Table className="min-w-full mt-0 rounded-t-none">
+        <Table className="mt-0 min-w-full rounded-t-none">
           {(periods || [])?.map((period) => (
             <Table.Row
               key={`${period.start}${period.end}`}
               className="bg-white "
               header
             >
-              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'order',
                   defaultMessage: 'Order',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'start',
                   defaultMessage: 'Start',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'end',
                   defaultMessage: 'end',
@@ -44,8 +44,8 @@ const SubscriptionList = ({ periods }) => {
 
           {(periods || [])?.map((period) => (
             <Table.Row key={`${period.start}`}>
-              <Table.Cell className="px-6  whitespace-nowrap ">
-                <div className="pl-2 flex items-center text-sm text-gray-900">
+              <Table.Cell className="whitespace-nowrap  px-6 ">
+                <div className="flex items-center pl-2 text-sm text-gray-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber
                     : 'N/A'}
@@ -53,21 +53,21 @@ const SubscriptionList = ({ periods }) => {
                     <Badge
                       text="Trial"
                       color="pink"
-                      className="py-1 ml-2 text-sm leading-5 font-semibold rounded-full"
+                      className="ml-2 rounded-full py-1 text-sm font-semibold leading-5"
                       square
                     />
                   )}
                 </div>
               </Table.Cell>
 
-              <Table.Cell className="px-6  whitespace-nowrap ">
-                <div className="pl-2 flex items-center text-sm text-gray-900">
+              <Table.Cell className="whitespace-nowrap  px-6 ">
+                <div className="flex items-center pl-2 text-sm text-gray-900">
                   {period?.start ? formatDateTime(period?.start) : 'n/a'}
                 </div>
               </Table.Cell>
 
-              <Table.Cell className="px-6 whitespace-nowrap ">
-                <div className="pl-2 flex items-center text-sm text-gray-900">
+              <Table.Cell className="whitespace-nowrap px-6 ">
+                <div className="flex items-center pl-2 text-sm text-gray-900">
                   {period?.end ? formatDateTime(period?.end) : 'n/a'}
                 </div>
               </Table.Cell>

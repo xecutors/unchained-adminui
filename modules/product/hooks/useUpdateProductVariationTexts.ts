@@ -27,8 +27,12 @@ const useUpdateProductVariationTexts = () => {
     texts,
   }) => {
     return updateProductVariationTextsMutation({
-      variables: { productVariationId, productVariationOptionValue, texts },
-      refetchQueries: ['Products'],
+      variables: {
+        productVariationId,
+        productVariationOptionValue,
+        texts: [texts],
+      },
+      refetchQueries: ['ProductVariations'],
     });
   };
 

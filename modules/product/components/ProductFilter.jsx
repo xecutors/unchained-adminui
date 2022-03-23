@@ -10,7 +10,7 @@ const ProductFilter = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="grid grid-cols-6 gap-6 mt-4">
+    <div className="mt-4 grid grid-cols-6 gap-6">
       <div className="col-span-6 sm:col-span-3">
         <TagInput
           buttonText={formatMessage({

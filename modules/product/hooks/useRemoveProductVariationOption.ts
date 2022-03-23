@@ -25,7 +25,7 @@ const useRemoveProductVariationOption = () => {
   }) => {
     return removeProductVariationOptionMutation({
       variables: { productVariationId, productVariationOptionValue },
-      refetchQueries: ['Products'],
+      refetchQueries: ['ProductVariations'],
     });
   };
 
