@@ -13,24 +13,24 @@ const LogList = ({ logs, user }) => {
   return (
     <section className="my-3">
       {logs?.length ? (
-        <Table className="min-w-full mt-0 rounded-t-none">
+        <Table className="mt-0 min-w-full rounded-t-none">
           {(logs || [])?.map((log) => (
             <Table.Row key={log._id} className="bg-white " header>
-              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'log_created',
                   defaultMessage: 'Created',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'log_level',
                   defaultMessage: 'Level',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'log_message',
                   defaultMessage: 'Message',
@@ -42,28 +42,28 @@ const LogList = ({ logs, user }) => {
           {(logs || [])?.map((log) => (
             <Fragment key={log._id}>
               <Table.Row>
-                <Table.Cell className="px-6 whitespace-nowrap">
-                  <div className="pl-2 flex items-center text-sm text-gray-900">
+                <Table.Cell className="whitespace-nowrap px-6">
+                  <div className="flex items-center pl-2 text-sm text-gray-900">
                     {log.created ? formatDateTime(log.created) : 'n/a'}
                     {user.username !== log.user?.username ? (
                       <Badge
                         text={log.user?.username}
                         color="pink"
-                        className="py-1 ml-2 text-sm leading-5 font-semibold rounded-full"
+                        className="ml-2 rounded-full py-1 text-sm font-semibold leading-5"
                         square
                       />
                     ) : null}
                   </div>
                 </Table.Cell>
 
-                <Table.Cell className="px-6 whitespace-normal">
-                  <div className="pl-2 flex items-center text-sm text-gray-900">
+                <Table.Cell className="whitespace-normal px-6">
+                  <div className="flex items-center pl-2 text-sm text-gray-900">
                     {log.level ? log.level : 'N/A'}
                   </div>
                 </Table.Cell>
 
                 <Table.Cell classes="px-6 whitespace-normal">
-                  <div className="pl-2 flex items-center text-sm text-gray-900">
+                  <div className="flex items-center pl-2 text-sm text-gray-900">
                     {log.message ? log.message : 'N/A'}
                   </div>
                 </Table.Cell>

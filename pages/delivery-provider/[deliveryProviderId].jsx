@@ -69,7 +69,7 @@ const DeliveryProviderUpdate = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex align-center justify-between min-w-full">
+      <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'update_delivery_configuration',

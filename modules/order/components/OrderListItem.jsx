@@ -21,8 +21,8 @@ const OrderListItem = ({ order, showUser }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/orders/${order._id}`}>
             <a className="text-blue-600">
               {order?.orderNumber || (
@@ -38,18 +38,18 @@ const OrderListItem = ({ order, showUser }) => {
           </Link>
         </div>
       </Table.Cell>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {order.ordered ? format(new Date(order.ordered), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
-      <Table.Cell className="px-6  whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>
       {showUser && order.user && (
-        <Table.Cell className="px-6  whitespace-nowrap ">
+        <Table.Cell className="whitespace-nowrap  px-6 ">
           <Link href={`/order/${order.user._id}`}>
             <a className="flex text-blue-500">
               <Image
@@ -61,12 +61,12 @@ const OrderListItem = ({ order, showUser }) => {
                 placeholder="blur"
                 blurDataURL="/product_placeholder.png"
               />
-              <span className="self-end ml-2">{order.user?.username}</span>
+              <span className="ml-2 self-end">{order.user?.username}</span>
             </a>
           </Link>
         </Table.Cell>
       )}
-      <Table.Cell className="px-6  whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap  px-6 ">
         <Badge
           text={order?.status}
           color={ORDER_STATUSES[order.status]}

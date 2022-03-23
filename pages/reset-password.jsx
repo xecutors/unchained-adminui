@@ -14,9 +14,9 @@ const PasswordReset = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-gray-100 antialiased">
-      <div className="container sm:mt-40 mt-24 my-auto max-w-md border-2 border-gray-200 p-3 bg-white">
-        <div className="text-center m-6">
+    <div className="flex min-h-screen justify-center bg-gray-100 antialiased">
+      <div className="container my-auto mt-24 max-w-md border-2 border-gray-200 bg-white p-3 sm:mt-40">
+        <div className="m-6 text-center">
           <h1 className="text-3xl font-semibold text-gray-700">
             {formatMessage({
               id: 'reset_password',

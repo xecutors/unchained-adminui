@@ -12,8 +12,8 @@ const LanguageListItem = ({ language, onRemove }) => {
   };
   return (
     <Table.Row>
-      <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900 border-">
+      <Table.Cell className="whitespace-nowrap px-6 ">
+        <div className="border- flex items-center pl-2 text-sm text-gray-900">
           {language.isoCode}
           {language.isBase && (
             <Badge
@@ -28,7 +28,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className=" text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'language' }).of(
             language.isoCode,
@@ -36,7 +36,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <Badge
           text={STATUS[language.isActive]}
           color={language.isActive ? 'green' : 'red'}
@@ -44,7 +44,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex items-center">
           <Link href={`/language/${language?._id}`}>
             <a type="button" href="#" className="flex">
@@ -67,7 +67,7 @@ const LanguageListItem = ({ language, onRemove }) => {
             </a>
           </Link>
           <DeleteButton
-            className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
+            className="ml-1 mr-1 cursor-pointer border-white text-red-600 hover:text-red-900"
             onClick={async () => {
               await onRemove(language?._id);
             }}

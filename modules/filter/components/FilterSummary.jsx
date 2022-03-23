@@ -1,15 +1,15 @@
 function FilterSummary({ filterKey, filterType }) {
   return (
-    <div className="space-y-2 lg:space-y-0 lg:flex lg:space-x-3">
-      <div className="flex space-x-1 items-center">
+    <div className="space-y-2 lg:flex lg:space-y-0 lg:space-x-3">
+      <div className="flex items-center space-x-1">
         <div className="text-sm">Key :</div>
-        <div className="bg-indigo-100 text-sm py-1 px-2 rounded-md">
+        <div className="rounded-md bg-indigo-100 py-1 px-2 text-sm">
           {filterKey}
         </div>
       </div>
-      <div className="flex space-x-1 items-center">
+      <div className="flex items-center space-x-1">
         <div className="text-sm">Filter Type :</div>
-        <div className="bg-indigo-100 text-sm py-1 px-2 rounded-md">
+        <div className="rounded-md bg-indigo-100 py-1 px-2 text-sm">
           {filterType}
         </div>
       </div>

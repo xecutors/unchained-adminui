@@ -47,7 +47,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Title',
           })}
           required
-          className="mb-5 text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         <TextField
@@ -63,11 +63,11 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Key',
           })}
           required
-          className="mb-5 text-sm block max-w-full w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         <SelectField
-          className="shadow-sm w-full mb-5"
+          className="mb-5 w-full shadow-sm"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           hideLabel
@@ -101,9 +101,9 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                       hideLabel
                       className="w-full shadow-sm"
                     />
-                    <div className="flex-shrink-0 ml-2 sm:mt-4 mt-5">
+                    <div className="ml-2 mt-5 flex-shrink-0 sm:mt-4">
                       <button
-                        className="items-center px-1 py-1 border shadow-sm text-sm rounded-full text-red-500 bg-white border-red-500 hover:text-white hover:bg-red-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-red-500"
+                        className="items-center rounded-full border border-red-500 bg-white px-1 py-1 text-sm text-red-500 shadow-sm hover:bg-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >
@@ -127,12 +127,12 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                   </div>
                 );
               })}
-              <div className="mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+              <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className=" mt-2 flex-shrink-0">
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="inline-flex items-right px-2 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="items-right inline-flex rounded border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       variant="outlined"
                       onClick={() => push('')}
                     >
@@ -159,7 +159,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'create_filter',

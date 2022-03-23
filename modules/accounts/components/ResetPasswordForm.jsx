@@ -60,7 +60,7 @@ const ResetPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
           })}
         />
       </div>
-      <div className="text-left p-3 pl-0 ">
+      <div className="p-3 pl-0 text-left ">
         <FormErrors />
       </div>
       <SubmitButton

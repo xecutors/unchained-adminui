@@ -58,7 +58,7 @@ const WorkDetailPage = () => {
     <>
       <div className="mt-6 max-w-full">
         <BreadCrumbs />
-        <div className="flex align-center justify-between min-w-full">
+        <div className="align-center flex min-w-full justify-between">
           <PageHeader
             headerText={formatMessage({
               id: 'work_detail',

@@ -5,8 +5,8 @@ const Home = ({ shopInfo }) => {
   const { formatMessage, locale } = useIntl();
   return (
     <>
-      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
+      <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="text-center sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-10 text-center text-2xl text-gray-700">
             {formatMessage({
               id: 'system_information',
@@ -15,7 +15,7 @@ const Home = ({ shopInfo }) => {
           </h2>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md text-right">
+        <div className="mt-8 text-right sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <ul className="-my-5 divide-y divide-gray-200">
               <li className="py-4">
@@ -26,7 +26,7 @@ const Home = ({ shopInfo }) => {
                       defaultMessage: 'Engine version',
                     })}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     <Badge text={shopInfo?.version} color="indigo" square />
                   </div>
                 </div>
@@ -39,7 +39,7 @@ const Home = ({ shopInfo }) => {
                       defaultMessage: 'Resolved language',
                     })}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     {(shopInfo?.language?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'language' }).of(
                         shopInfo?.language?.isoCode,
@@ -57,7 +57,7 @@ const Home = ({ shopInfo }) => {
                       defaultMessage: 'Resolved country',
                     })}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     {shopInfo?.country?.flagEmoji}
                     {(shopInfo?.country?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'region' }).of(
@@ -76,7 +76,7 @@ const Home = ({ shopInfo }) => {
                       defaultMessage: 'Default currency',
                     })}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     {(shopInfo?.country?.defaultCurrency?.isoCode &&
                       new Intl.DisplayNames([locale], { type: 'currency' }).of(
                         shopInfo?.country?.defaultCurrency?.isoCode,
@@ -94,7 +94,7 @@ const Home = ({ shopInfo }) => {
                       defaultMessage: 'Your roles',
                     })}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0 flex-1">
                     {shopInfo?.userRoles?.map((role) => (
                       <Badge key={role} text={role} color="green" />
                     ))}

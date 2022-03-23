@@ -69,7 +69,7 @@ const PaymentProviderUpdate = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex align-center justify-between min-w-full">
+      <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'update_payment_provider_header',

@@ -31,15 +31,15 @@ const UserNameView = ({ _id: userId, username }) => {
   return (
     <Form form={form}>
       <dl className="divide-y divide-gray-200">
-        <div className="sm:grid sm:grid-cols-3 sm:gap-4 flex items-center flex-wrap">
+        <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
           <div className="text-sm font-medium text-gray-500">
             {formatMessage({ id: 'username', defaultMessage: 'Username' })}
           </div>
-          <div className="mt-1 flex items-center text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <div className="mt-1 flex items-center text-sm text-gray-900 sm:col-span-2 sm:mt-0">
             <span className="flex-grow">
               {isEdit ? (
                 <TextField
-                  className="w-full mt-0"
+                  className="mt-0 w-full"
                   name="username"
                   label={formatMessage({
                     id: 'username',
@@ -52,7 +52,7 @@ const UserNameView = ({ _id: userId, username }) => {
               )}
             </span>
 
-            <span className="ml-4 flex-shrink-0 flex items-start space-x-4">
+            <span className="ml-4 flex flex-shrink-0 items-start space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}
                 type="button"
@@ -60,7 +60,7 @@ const UserNameView = ({ _id: userId, username }) => {
                   isEdit
                     ? 'text-red-600 hover:text-red-500 focus:ring-red-500'
                     : 'focus:ring-purple-500',
-                  'bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                  'rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
                 )}
               >
                 {isEdit ? 'Cancel' : 'update'}
@@ -72,7 +72,7 @@ const UserNameView = ({ _id: userId, username }) => {
                   </span>
                   <button
                     type="submit"
-                    className="bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',

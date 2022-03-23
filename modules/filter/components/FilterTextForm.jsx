@@ -56,18 +56,18 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
 
   return (
     <div className="mt-4 sm:max-w-full">
-      <div className="px-5 shadow sm:rounded-t sm:px-15">
+      <div className="sm:px-15 px-5 shadow sm:rounded-t">
         <Form form={form}>
-          <div className="sm:px-6 rounded-md relative max-w-full lg:grid lg:grid-cols-3">
-            <div className="pb-2 mb-7 border-gray-200 sm:flex  col-span-1">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <div className="relative max-w-full rounded-md sm:px-6 lg:grid lg:grid-cols-3">
+            <div className="col-span-1 mb-7 border-gray-200 pb-2  sm:flex">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
                 {formatMessage({
                   id: 'text',
                   defaultMessage: 'Text',
                 })}
               </h3>
             </div>
-            <div className="col-span-2 w-full ml-auto lg:shadow-md border-gray-200  bg-white">
+            <div className="col-span-2 ml-auto w-full border-gray-200 bg-white  lg:shadow-md">
               <div>
                 <TextField
                   name="title"
@@ -77,7 +77,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500 py-2 sm:ml-1   mt-1 w-full"
+                  className="mt-1 w-full py-2 text-sm font-medium   text-gray-500 sm:ml-1"
                 />
               </div>
 
@@ -90,7 +90,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm  font-medium text-gray-500 py-2 sm:ml-1  mt-1 w-full"
+                  className="mt-1  w-full py-2 text-sm font-medium  text-gray-500 sm:ml-1"
                 />
               </div>
 

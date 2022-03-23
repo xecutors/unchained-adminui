@@ -17,8 +17,8 @@ const LogList = ({ discounts }) => {
   const { formatPrice } = useFormatPrice();
 
   return (
-    <div className="bg-white shadow sm:rounded-lg flex-auto flex flex-col">
-      <h2 className="px-4 py-5 sm:px-6 text-lg font-medium text-gray-900">
+    <div className="flex flex-auto flex-col bg-white shadow sm:rounded-lg">
+      <h2 className="px-4 py-5 text-lg font-medium text-gray-900 sm:px-6">
         {formatMessage({
           id: 'discount_information',
           defaultMessage: 'Discounts Information',
@@ -28,14 +28,14 @@ const LogList = ({ discounts }) => {
         <Table className="min-w-full ">
           {(discounts || [])?.map((discount) => (
             <Table.Row key={discount._id} className="bg-white" header>
-              <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'code',
                   defaultMessage: 'Code',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
                 {formatMessage({
                   id: 'discount_amount',
                   defaultMessage: 'Discount Amount',
@@ -46,10 +46,10 @@ const LogList = ({ discounts }) => {
           {(discounts || [])?.map((discount) => (
             <Fragment key={discount._id}>
               <Table.Row>
-                <Table.Cell className="px-6 whitespace-nowrap ">
-                  <div className="pl-2 flex items-center text-sm text-gray-900">
+                <Table.Cell className="whitespace-nowrap px-6 ">
+                  <div className="flex items-center pl-2 text-sm text-gray-900">
                     {discount.code ? discount.code : 'n/a'}
-                    <span className="inline-block py-1 text-xs leading-5 font-semibold rounded-full mr-2">
+                    <span className="mr-2 inline-block rounded-full py-1 text-xs font-semibold leading-5">
                       <Badge
                         text={discount.trigger}
                         color={triggerColor[discount.trigger]}
@@ -59,8 +59,8 @@ const LogList = ({ discounts }) => {
                   </div>
                 </Table.Cell>
 
-                <Table.Cell className="px-6  whitespace-nowrap ">
-                  <div className="pl-2 flex items-center text-sm text-gray-900">
+                <Table.Cell className="whitespace-nowrap  px-6 ">
+                  <div className="flex items-center pl-2 text-sm text-gray-900">
                     {discount.total.amount
                       ? formatPrice(discount.total)
                       : 'N/A'}
@@ -76,7 +76,7 @@ const LogList = ({ discounts }) => {
             id: 'discounts',
             defaultMessage: 'Discounts',
           })}
-          className="px-4 py-5 sm:px-6 border-t border-gray-200"
+          className="border-t border-gray-200 px-4 py-5 sm:px-6"
           icon={EmojiSadIcon}
         />
       )}

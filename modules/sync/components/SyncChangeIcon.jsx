@@ -6,9 +6,9 @@ const SyncChangeIcon = ({ new: added, removed, diff }) => {
 
   if (added < removed) {
     return (
-      <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800 md:mt-2 lg:mt-0">
+      <div className="inline-flex items-baseline rounded-full bg-red-100 px-2.5 py-0.5 text-sm font-medium text-red-800 md:mt-2 lg:mt-0">
         <ArrowDownIcon
-          className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-red-500"
+          className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-red-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -26,9 +26,9 @@ const SyncChangeIcon = ({ new: added, removed, diff }) => {
   }
   if (added > removed) {
     return (
-      <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 md:mt-2 lg:mt-0">
+      <div className="inline-flex items-baseline rounded-full bg-green-100 px-2.5 py-0.5 text-sm font-medium text-green-800 md:mt-2 lg:mt-0">
         <svg
-          className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-green-500"
+          className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -51,10 +51,10 @@ const SyncChangeIcon = ({ new: added, removed, diff }) => {
     );
   }
   return (
-    <div className="inline-flex items-baseline px-2.5 py-0.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800 md:mt-2 lg:mt-0">
+    <div className="inline-flex items-baseline rounded-full bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800 md:mt-2 lg:mt-0">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="-ml-1 mr-0.5 flex-shrink-0 self-center h-5 w-5 text-gray-800"
+        className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-gray-800"
         viewBox="0 0 20 20"
         fill="currentColor"
       >

@@ -25,33 +25,33 @@ const convertJobSignalToNumber = (signal) => {
 
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
-    <div className="sm:flex-initial ml-1 p-2 py-3">
-      <span className="mr-9 relative inline-block  rounded-lg ">
-        <div className="relative bg-indigo-500 rounded-md p-2 ">
+    <div className="ml-1 p-2 py-3 sm:flex-initial">
+      <span className="relative mr-9 inline-block  rounded-lg ">
+        <div className="relative rounded-md bg-indigo-500 p-2 ">
           <PlusIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="currentColor"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
           {added}
         </span>
       </span>
-      <span className="mr-9 relative inline-block  rounded-lg ">
-        <div className="relative bg-green-500 rounded-md p-2 ">
+      <span className="relative mr-9 inline-block  rounded-lg ">
+        <div className="relative rounded-md bg-green-500 p-2 ">
           <RefreshIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
           {diff}
         </span>
       </span>
-      <span className="mr-9 relative inline-block  rounded-lg ">
-        <div className="relative bg-red-500 rounded-md p-2 ">
+      <span className="relative mr-9 inline-block  rounded-lg ">
+        <div className="relative rounded-md bg-red-500 p-2 ">
           <TrashIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
@@ -59,20 +59,20 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             stroke="red"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
           {removed}
         </span>
       </span>
 
       <span className="relative inline-block  rounded-lg ">
-        <div className="relative bg-green-500 rounded-md p-2 ">
+        <div className="relative rounded-md bg-green-500 p-2 ">
           <DatabaseIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
           />
         </div>
-        <span className="mb-6 absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-sm leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+        <span className="absolute top-0 right-0 mb-6 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
           {total}
         </span>
       </span>
@@ -92,7 +92,7 @@ const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="flex relative item-start">
+      <div className="item-start relative flex">
         <div className="mr-2 mt-3">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
@@ -124,10 +124,10 @@ const JobHeader = ({ job }) => {
             </svg>
           )}
         </div>
-        <div className="pt-2 items-start">
+        <div className="items-start pt-2">
           <div
             className={classNames(
-              'text-sm  leading-5  rounded-full  text-black ',
+              'rounded-full  text-sm  leading-5  text-black ',
             )}
           >
             {formatMessage(
@@ -142,7 +142,7 @@ const JobHeader = ({ job }) => {
           </div>
           <div
             className={classNames(
-              'mt-1 text-sm  leading-5 rounded-full  text-black ',
+              'mt-1 rounded-full  text-sm leading-5  text-black ',
               {
                 'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
                   job.sync.signal,
@@ -163,8 +163,8 @@ const JobHeader = ({ job }) => {
         </div>
       </div>
 
-      <div className=" mb-4 mr-4 flex float-right text-sm text-gray-500 sm:mt-0">
-        <ClockIcon className=" h-5 w-5 mr-2" viewBox="0 0 22 22" />
+      <div className=" float-right mb-4 mr-4 flex text-sm text-gray-500 sm:mt-0">
+        <ClockIcon className=" mr-2 h-5 w-5" viewBox="0 0 22 22" />
         {job.sync.duration}
       </div>
     </>
@@ -175,9 +175,9 @@ const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="bg-white overflow-hidden w-[100%]">
+    <div className="w-[100%] overflow-hidden bg-white">
       <div className="border border-gray-200  py-5 sm:p-0">
-        <dl className="px-7 divide-y divide-gray-300">
+        <dl className="divide-y divide-gray-300 px-7">
           <div className="py-4 sm:py-5 ">
             <dt className="text-sm font-medium text-gray-500">
               {formatMessage({
@@ -186,7 +186,7 @@ const JobBody = ({ job }) => {
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.solr} />
             </dd>
           </div>
@@ -198,7 +198,7 @@ const JobBody = ({ job }) => {
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.crossbase} />
             </dd>
           </div>
@@ -210,7 +210,7 @@ const JobBody = ({ job }) => {
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.navision} />
             </dd>
           </div>
@@ -221,7 +221,7 @@ const JobBody = ({ job }) => {
                 defaultMessage: 'Categories',
               })}
             </dt>
-            <dd className=" mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.categories} />
             </dd>
           </div>
@@ -232,7 +232,7 @@ const JobBody = ({ job }) => {
                 defaultMessage: 'Products',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.products} />
             </dd>
           </div>
@@ -243,7 +243,7 @@ const JobBody = ({ job }) => {
                 defaultMessage: 'Filters',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.filters} />
             </dd>
           </div>
@@ -282,7 +282,7 @@ const SyncJobs = () => {
           defaultMessage: 'Sync jobs',
         })}
       />
-      <div className="sticky overflow-hidden w-full">
+      <div className="sticky w-full overflow-hidden">
         {!jobs?.length ? (
           <p>No sync report found</p>
         ) : (

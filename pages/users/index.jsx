@@ -31,7 +31,7 @@ const Users = () => {
   return (
     <div className="mb-10">
       <BreadCrumbs />
-      <div className="flex items-center flex-wrap justify-between">
+      <div className="flex flex-wrap items-center justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'users_list_header',
@@ -41,7 +41,7 @@ const Users = () => {
         <SearchField onInputChange={setQueryString} />
       </div>
       <div className="mt-5 overflow-hidden p-2">
-        <div className=" flex items-center justify-between flex-wrap sm:flex-nowrap">
+        <div className=" flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div>
             <Toggle
               toggleKey="includeGuests"
@@ -56,7 +56,7 @@ const Users = () => {
             <Link href="/users/new">
               <a
                 type="button"
-                className="rounded relative inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium  text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-2 text-sm  font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <svg
                   className="h-5 w-5"
@@ -82,7 +82,7 @@ const Users = () => {
           </div>
         </div>
       </div>
-      <div className="shadow my-3">
+      <div className="my-3 shadow">
         {loading ? <Loading /> : <UserList users={users} />}
       </div>
       <Pagination data={users} total={usersCount} />

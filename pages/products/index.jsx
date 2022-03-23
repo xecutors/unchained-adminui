@@ -31,7 +31,7 @@ const Products = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="py-5 w-full">
+      <div className="w-full py-5">
         <PageHeader
           headerText={formatMessage({
             id: 'products_list_header',

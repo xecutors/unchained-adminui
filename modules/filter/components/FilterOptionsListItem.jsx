@@ -51,13 +51,13 @@ const FilterOptionsListItem = ({
 
   return (
     <Form form={form}>
-      <div className="flow-root mt-2 ">
+      <div className="mt-2 flow-root ">
         <li className="py-2 px-2">
           <div className="flex items-center space-x-4">
             <Badge text={option?.value} color="gray" />
 
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-medium text-gray-900">
                 {formatMessage({
                   id: 'title_colon',
                   defaultMessage: 'Title:  ',
@@ -65,7 +65,7 @@ const FilterOptionsListItem = ({
 
                 {isEdit ? (
                   <TextField
-                    className="w-fit mt-0"
+                    className="mt-0 w-fit"
                     name="title"
                     required
                     label={formatMessage({
@@ -78,14 +78,14 @@ const FilterOptionsListItem = ({
                   option?.texts.title
                 )}
               </p>
-              <p className="text-sm text-gray-500 truncate">
+              <p className="truncate text-sm text-gray-500">
                 {formatMessage({
                   id: 'subtitle_colon',
                   defaultMessage: 'Subtitle:  ',
                 })}
                 {isEdit ? (
                   <TextField
-                    className="w-fit mt-0"
+                    className="mt-0 w-fit"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
@@ -104,7 +104,7 @@ const FilterOptionsListItem = ({
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
-                    className="bg-white rounded-md font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',
@@ -116,7 +116,7 @@ const FilterOptionsListItem = ({
                   </span>
                   <button
                     type="submit"
-                    className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',
@@ -132,7 +132,7 @@ const FilterOptionsListItem = ({
 
                   <DeleteButton
                     onClick={() => onDelete(option?.value)}
-                    className="ml-1 mr-1 border-white text-red-600 hover:text-red-900 cursor-pointer"
+                    className="ml-1 mr-1 cursor-pointer border-white text-red-600 hover:text-red-900"
                   />
                 </div>
               )}

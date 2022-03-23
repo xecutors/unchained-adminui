@@ -25,13 +25,13 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
     <Form form={form}>
       <div className="mt-2 flex gap-2 px-2 pt-2 sm:px-4">
         <TextField
-          className="mt-0 shrink grow basis-1/3"
+          className="mt-0 shrink grow basis-1/3 py-1"
           name="title"
           label={formatMessage({ id: 'title', defaultMessage: 'Title' })}
           required
         />
         <TextField
-          className="mt-0 shrink grow basis-1/3"
+          className="mt-0 shrink grow basis-1/3 py-1"
           name="value"
           label={formatMessage({ id: 'value', defaultMessage: 'Value' })}
           required

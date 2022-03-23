@@ -36,9 +36,9 @@ const Modal = ({
 
   return visible ? (
     <ModalInner>
-      <div className="fixed z-10 inset-0 overflow-y-auto" role="button">
+      <div className="fixed inset-0 z-10 overflow-y-auto" role="button">
         <div
-          className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+          className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
           tabIndex={-1}
           role="button"
         >
@@ -49,21 +49,21 @@ const Modal = ({
             aria-hidden="true"
           />
           <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            className="hidden sm:inline-block sm:h-screen sm:align-middle"
             aria-hidden="true"
           >
             &#8203;
           </span>
           <div
-            className="inline-block  bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+            className="inline-block  transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
             onClick={stopPropagation}
             onKeyUp={stopPropagation}
           >
-            <div className=" sm:block absolute top-0 right-0 pt-4 pr-4">
+            <div className=" absolute top-0 right-0 pt-4 pr-4 sm:block">
               <button
                 type="button"
                 onClick={close}
-                className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="sr-only">
                   {formatMessage({ id: 'close', defaultMessage: 'Close' })}

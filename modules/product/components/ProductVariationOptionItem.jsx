@@ -30,6 +30,7 @@ const ProductVariationOptionItem = ({
       texts: { title, subtitle, locale: selectedLocale },
     });
     setIsEdit(false);
+    return true;
   };
   const form = useForm({
     submit: onUpdate,
@@ -113,7 +114,7 @@ const ProductVariationOptionItem = ({
                   </div>
 
                   <DeleteButton
-                    onClick={() => onDelete(option?.texts?.value)}
+                    onClick={() => onDelete(option.value)}
                     className="ml-1 mr-1 cursor-pointer border-white text-red-600 hover:text-red-900"
                   />
                 </div>

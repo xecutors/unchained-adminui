@@ -13,14 +13,14 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {currency.isoCode}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
-        <div className="pl-2 flex items-center text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap px-6 ">
+        <div className="flex items-center pl-2 text-sm text-gray-900">
           {new Intl.DisplayNames([locale], {
             type: 'currency',
             fallback: 'none',
@@ -28,7 +28,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <Badge
           text={STATUS[currency.isActive]}
           color={currency.isActive ? 'green' : 'red'}
@@ -36,7 +36,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex items-center">
           <Link href={`/currency/${currency?._id}`}>
             <a className="flex">
@@ -59,7 +59,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
             </a>
           </Link>
           <DeleteButton
-            className="ml-1 mr-1  border-white text-red-600 hover:text-red-900 cursor-pointer"
+            className="ml-1 mr-1  cursor-pointer border-white text-red-600 hover:text-red-900"
             onClick={() => onRemove(currency?._id)}
           />
         </div>

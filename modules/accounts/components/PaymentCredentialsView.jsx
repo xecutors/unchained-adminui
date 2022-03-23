@@ -6,19 +6,19 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="my-8 shadow w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden divide-y divide-gray-200 min-w-full">
+    <div className="flex-no-wrap my-8 flex w-full min-w-full flex-row divide-y divide-gray-200 overflow-hidden rounded-lg shadow sm:bg-white">
       {paymentCredentials?.length ? (
         <ul className="-my-5 divide-y divide-gray-200">
           {(paymentCredentials || []).map(
             ({ _id: paymentCredentialsId, isPreferred, isActive, isValid }) => (
               <li className="py-4" key={paymentCredentialsId}>
                 <div className=" flex items-center space-x-4">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-gray-900">
                       {paymentCredentialsId}
                     </p>
                     {isPreferred && (
-                      <p className="text-sm text-gray-500 truncate">
+                      <p className="truncate text-sm text-gray-500">
                         <Badge
                           text={formatMessage({
                             id: 'preferred',

@@ -34,16 +34,10 @@ const ProductVariationOptionsList = ({
             productVariationOptionValue,
           });
           toast.success(
-            formatMessage(
-              {
-                id: 'product_variation_option_deleted',
-                defaultMessage:
-                  'Variation option {productVariationOptionValue} deleted successfully',
-              },
-              {
-                productVariationOptionValue,
-              },
-            ),
+            formatMessage({
+              id: 'product_variation_option_deleted',
+              defaultMessage: 'Variation option deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -60,6 +54,7 @@ const ProductVariationOptionsList = ({
       value,
       title,
     });
+    return true;
   };
 
   return (

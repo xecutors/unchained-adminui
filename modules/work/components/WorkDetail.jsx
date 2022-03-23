@@ -45,29 +45,29 @@ const WorkDetail = ({ work }) => {
       <div className="w-full border-t border-gray-300" />
 
       <div className={`my-4 p-2 sm:p-6 lg:p-8  ${shadowStyle[work?.status]}`}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-4  gap-8 ">
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 sm:col-span-1 col-span-2 ">
-            <div className="flex flex-wrap justify-between items-center mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+        <div className="grid grid-cols-1 grid-rows-4 gap-8  sm:grid-cols-2 ">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:col-span-1 sm:p-6 lg:p-8 ">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_type',
                   defaultMessage: 'Work type',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 {work?.type}
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-between items-center mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_status',
                   defaultMessage: 'Work Status',
                 })}
               </div>
               <div
-                className={`mt-2 max-w-prose text-sm rounded-full text-gray-900 space-y-5 ${
+                className={`mt-2 max-w-prose space-y-5 rounded-full text-sm text-gray-900 ${
                   typeStyle[work?.status]
                 } py-1 px-5`}
               >
@@ -75,38 +75,38 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-between items-center mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_priority',
                   defaultMessage: 'Priority',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 {work?.priority}
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-between items-center mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_retries',
                   defaultMessage: 'Retries',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 {work?.retries}
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-between items-center mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+            <div className="mb-2 flex flex-wrap items-center justify-between">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'worker',
                   defaultMessage: 'Worker',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 {work?.worker ? (
                   <Badge
                     text={formatMessage(
@@ -127,14 +127,14 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
             {work?.retries ? (
-              <div className="flex flex-wrap justify-between items-center mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+              <div className="mb-2 flex flex-wrap items-center justify-between">
+                <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_original',
                     defaultMessage: 'Orginial Work',
                   })}
                 </div>
-                <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+                <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                   <Link href={`/works/${work?.work?._id}`}>
                     <a className="text-blue-600">{work?.work?._id}</a>
                   </Link>
@@ -145,116 +145,116 @@ const WorkDetail = ({ work }) => {
             )}
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 sm:col-span-1 col-span-2">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:col-span-1 sm:p-6 lg:p-8">
             <div className="grid grid-cols-2 sm:justify-items-center">
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_created',
                     defaultMessage: 'Created',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.created, options)}
                 </div>
               </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_scheduled',
                     defaultMessage: 'Scheduled',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.scheduled, options)}
                 </div>
               </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_started',
                     defaultMessage: 'Started',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.started, options)}
                 </div>
               </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_finished',
                     defaultMessage: 'Finished',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.finished, options)}
                 </div>
               </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_updated',
                     defaultMessage: 'Updated',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.updated, options)}
                 </div>
               </div>
-              <div className="sm:col-span-1 mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 flex justify-center items-center">
+              <div className="mb-2 sm:col-span-1">
+                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'deleted',
                     defaultMessage: 'Deleted',
                   })}
                 </div>
-                <div className="mt-2 text-sm text-gray-900 flex justify-center items-center">
+                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
                   {formatDateTime(work?.deleted, options)}
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
             <div className="mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'input',
                   defaultMessage: 'Input',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 <ReactJson src={work?.input} collapsed />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
-            <div className="flex flex-col justify-between items-start min-h-full">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
+            <div className="flex min-h-full flex-col items-start justify-between">
               <div className="mb-2">
-                <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+                <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'result',
                     defaultMessage: 'Result',
                   })}
                 </div>
 
-                <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+                <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                   <ReactJson src={work?.result} collapsed />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 shadow-md p-4 sm:p-6 lg:p-8 col-span-2">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
             <div className="mb-2">
-              <div className="text-base font-semibold sm:font-bold sm:text-lg text-gray-500 mr-4">
+              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'error',
                   defaultMessage: 'Error',
                 })}
               </div>
-              <div className="mt-2 max-w-prose text-sm text-gray-900 space-y-5">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
                 {work?.error ? (
                   <ReactJson src={work?.error} collapsed />
                 ) : (

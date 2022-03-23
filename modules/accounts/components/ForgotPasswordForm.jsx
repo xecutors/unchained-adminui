@@ -18,7 +18,7 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
   return (
     <Form
       form={form}
-      className="mt-8 space-y-6 bg-white pt-3 pb-8 px-4 shadow sm:rounded-lg sm:px-10"
+      className="mt-8 space-y-6 bg-white px-4 pt-3 pb-8 shadow sm:rounded-lg sm:px-10"
     >
       <div>
         <p className="py-4">
@@ -53,14 +53,14 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
           })}
         />
       </div>
-      <p className="text-sm text-center text-gray-400">
+      <p className="text-center text-sm text-gray-400">
         {formatMessage({
           id: 'dont_have_account',
           defaultMessage: "Don't have an account yet?",
         })}
         {'  '}
         <Link href="/sign-up">
-          <a className="font-semibold text-indigo-500 focus:text-indigo-600 focus:outline-none focus:underline">
+          <a className="font-semibold text-indigo-500 focus:text-indigo-600 focus:underline focus:outline-none">
             {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
           </a>
         </Link>

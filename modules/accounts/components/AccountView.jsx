@@ -26,8 +26,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </p>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden bg-white space-y-6 sm:p-6 rounded-md">
+        <div className="mt-5 md:col-span-2 md:mt-0">
+          <div className="space-y-6 overflow-hidden rounded-md bg-white shadow sm:p-6">
             <UserNameView username={username} _id={_id} />
           </div>
         </div>
@@ -49,8 +49,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </h3>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden border-b border-gray-200  px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md ">
+        <div className="mt-5 md:col-span-2 md:mt-0">
+          <div className="space-y-6 overflow-hidden rounded-md border-b  border-gray-200 bg-white px-4 py-5 shadow sm:p-6 ">
             <div className="mt-6">
               <EmailAddresses emails={emails} userId={_id} />
             </div>
@@ -73,8 +73,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </h3>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden border-b border-gray-200  px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md ">
+        <div className="mt-5 md:col-span-2 md:mt-0">
+          <div className="space-y-6 overflow-hidden rounded-md border-b  border-gray-200 bg-white px-4 py-5 shadow sm:p-6 ">
             <UserTagsView tags={tags} userId={_id} />
           </div>
         </div>
@@ -95,8 +95,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </h3>
           </div>
         </div>
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden border-b border-gray-200  px-4 py-5 bg-white space-y-6 sm:p-6 rounded-md ">
+        <div className="mt-5 md:col-span-2 md:mt-0">
+          <div className="space-y-6 overflow-hidden rounded-md border-b  border-gray-200 bg-white px-4 py-5 shadow sm:p-6 ">
             <UserRolesView roles={roles} userId={_id} />
           </div>
         </div>

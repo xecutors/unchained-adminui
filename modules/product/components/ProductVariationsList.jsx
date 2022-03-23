@@ -30,16 +30,10 @@ const ProductVariationsList = ({
           setModal('');
           await removeProductVariation({ productVariationId });
           toast.success(
-            formatMessage(
-              {
-                id: 'product_variation_deleted',
-                defaultMessage:
-                  'Variation {productVariationId} deleted successfully',
-              },
-              {
-                productVariationId,
-              },
-            ),
+            formatMessage({
+              id: 'product_variation_deleted',
+              defaultMessage: 'Variation deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -76,7 +70,7 @@ const ProductVariationsList = ({
       data={variations}
       containerCSS="w-full"
       bodyCSS="bg-white"
-      headerCSS="w-full flex items-center rounded justify-between p-1"
+      headerCSS="w-full flex items-center rounded justify-between p-1 bg-gray-50"
     />
   );
 };

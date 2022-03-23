@@ -36,7 +36,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           })}
           autoComplete="off"
           required
-          className="mb-5 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
+          className="mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         <TagInput
@@ -45,7 +45,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           }}
         />
       </div>
-      <div className="mx-5 mb-5 flex items-center h-5">
+      <div className="mx-5 mb-5 flex h-5 items-center">
         <CheckboxField
           id="isRoot"
           name="isRoot"
@@ -54,10 +54,10 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
             id: 'root_node',
             defaultMessage: 'Root node',
           })}
-          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
         />
       </div>
-      <div className="p-5 sm:px-15 space-y-6 sm:p-6 bg-gray-50 text-right">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'add_assortment',

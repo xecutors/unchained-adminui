@@ -14,8 +14,8 @@ const ProductVariationForm = ({ onSubmit }) => {
   const { variationTypes } = useProductVariationTypes();
 
   const successMessage = formatMessage({
-    id: 'saved',
-    defaultMessage: 'Saved',
+    id: 'product_variation_added',
+    defaultMessage: 'Product variation added successfully',
   });
 
   const form = useForm({

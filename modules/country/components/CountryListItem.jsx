@@ -14,9 +14,9 @@ const CountryListItem = ({ country, onRemove }) => {
     country.defaultCurrency && country.defaultCurrency.isoCode;
   return (
     <Table.Row>
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex">
-          <div className="pl-2 items-center text-sm text-gray-900">
+          <div className="items-center pl-2 text-sm text-gray-900">
             {country.isoCode}{' '}
           </div>
           {country.isBase && (
@@ -32,7 +32,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'region' }).of(
             country.isoCode,
@@ -40,7 +40,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="text-sm text-gray-900">
           {currencyISOcode}
 
@@ -50,14 +50,14 @@ const CountryListItem = ({ country, onRemove }) => {
             )}  (${currencyISOcode})`} */}
         </div>
       </Table.Cell>
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <Badge
           text={STATUS[country.isActive]}
           color={country.isActive ? 'green' : 'red'}
           square
         />
       </Table.Cell>
-      <Table.Cell className="px-6 whitespace-nowrap ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex items-center">
           <Link href={`/country/${country._id}`}>
             <a className="flex border-white text-indigo-600 hover:text-indigo-900">
@@ -80,7 +80,7 @@ const CountryListItem = ({ country, onRemove }) => {
             </a>
           </Link>
           <DeleteButton
-            className="ml-1 mr-1  border-white text-red-600 hover:text-red-900 cursor-pointer"
+            className="ml-1 mr-1  cursor-pointer border-white text-red-600 hover:text-red-900"
             onClick={async () => {
               await onRemove(country._id);
             }}

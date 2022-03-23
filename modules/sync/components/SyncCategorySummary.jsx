@@ -17,9 +17,9 @@ const SyncCategorySummary = ({
     <>
       <h3 className="mt-5 pt-5">{categoryName}</h3>
       <dl className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
           <dt>
-            <div className="absolute bg-indigo-500 rounded-md p-3">
+            <div className="absolute rounded-md bg-indigo-500 p-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
@@ -45,10 +45,10 @@ const SyncCategorySummary = ({
               )}
             </p>
           </dt>
-          <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
+          <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-green-600">
               <svg
-                className="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                className="h-5 w-5 flex-shrink-0 self-center text-green-500"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -63,7 +63,7 @@ const SyncCategorySummary = ({
               {statistics.new}
             </p>
 
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <Link href={`${router.asPath}/items-list?tab=${newItemsRoute}`}>
                   <a className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -78,9 +78,9 @@ const SyncCategorySummary = ({
           </dd>
         </div>
 
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
           <dt>
-            <div className="absolute bg-indigo-500 rounded-md p-3">
+            <div className="absolute rounded-md bg-indigo-500 p-3">
               <RefreshIcon
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
@@ -100,16 +100,16 @@ const SyncCategorySummary = ({
               )}
             </p>
           </dt>
-          <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
+          <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-green-600">
               <RefreshIcon
-                className="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                className="h-5 w-5 flex-shrink-0 self-center text-green-500"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
               {statistics.removed}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <Link
                   href={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
@@ -126,9 +126,9 @@ const SyncCategorySummary = ({
           </dd>
         </div>
 
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
           <dt>
-            <div className="absolute bg-indigo-500 rounded-md p-3">
+            <div className="absolute rounded-md bg-indigo-500 p-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
@@ -154,10 +154,10 @@ const SyncCategorySummary = ({
               )}
             </p>
           </dt>
-          <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
+          <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-red-600">
               <svg
-                className="self-center flex-shrink-0 h-5 w-5 text-red-500"
+                className="h-5 w-5 flex-shrink-0 self-center text-red-500"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -172,7 +172,7 @@ const SyncCategorySummary = ({
               {statistics.removed}
             </p>
             {removedItemsRoute && (
-              <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+              <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
                   <Link
                     href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
@@ -190,9 +190,9 @@ const SyncCategorySummary = ({
           </dd>
         </div>
 
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow-lg rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
           <dt>
-            <div className="absolute bg-indigo-500 rounded-md p-3">
+            <div className="absolute rounded-md bg-indigo-500 p-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -222,11 +222,11 @@ const SyncCategorySummary = ({
               )}
             </p>
           </dt>
-          <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
+          <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="text-2xl font-semibold text-gray-900">
               {statistics.total}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
               &nbsp;
             </div>
           </dd>

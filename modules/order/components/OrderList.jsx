@@ -9,21 +9,21 @@ const OrderList = ({ orders, showUser }) => {
     <Table className="min-w-full ">
       {(orders || [])?.map((order) => (
         <Table.Row key={order._id} className="bg-white " header>
-          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'order_number',
               defaultMessage: 'Order#',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'order_date',
               defaultMessage: 'Order date',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'total',
               defaultMessage: 'Total',
@@ -31,7 +31,7 @@ const OrderList = ({ orders, showUser }) => {
           </Table.Cell>
 
           {showUser && (
-            <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
               {formatMessage({
                 id: 'user',
                 defaultMessage: 'User',
@@ -39,7 +39,7 @@ const OrderList = ({ orders, showUser }) => {
             </Table.Cell>
           )}
 
-          <Table.Cell className="text-left text-xs font-medium  text-gray-500 uppercase tracking-wider">
+          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',
