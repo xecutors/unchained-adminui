@@ -70,7 +70,7 @@ const CommerceForm = ({ productId }) => {
   }, [catalogPrices]);
 
   return (
-    <Form className="rounded-md bg-white shadow-md" form={form}>
+    <Form className="rounded-md bg-white shadow" form={form}>
       <div className="relative max-w-full sm:p-3">
         <div className="max-w-full justify-between align-baseline" />
 
