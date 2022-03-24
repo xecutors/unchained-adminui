@@ -184,7 +184,7 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
             <FormButton />
           </div>
 
-          <div className="col-span-2 ml-auto border-gray-200 bg-white px-8 shadow-md lg:w-full">
+          <div className="col-span-2 ml-auto border-gray-200 bg-white px-8 shadow lg:w-full">
             <div className="divide-y divide-gray-200 py-4">
               <div className="py-4 sm:grid sm:py-2">
                 <label className="text-gray-70 block text-sm font-medium">

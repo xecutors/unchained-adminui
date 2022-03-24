@@ -78,8 +78,8 @@ const EmailAddresses = ({
   });
   return (
     <div>
-      <div className="border-t pt-5 lg:flex">
-        <div className="mb-7 border-gray-200 pb-2 pt-4 sm:flex sm:justify-between">
+      <div className="border-t pt-5 md:grid md:grid-cols-3 md:gap-6">
+        <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between md:col-span-1">
           <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({
               id: 'email_addresses',
@@ -89,14 +89,14 @@ const EmailAddresses = ({
         </div>
         <div
           className={classNames(
-            'w-full bg-white px-8 py-6 shadow-sm lg:ml-auto lg:w-4/6',
+            'w-full bg-white px-4 py-5 sm:p-6 md:col-span-2',
             emailBodyContainer,
           )}
         >
           <ul className="-my-5 divide-y divide-gray-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
-                <div className=" flex items-center space-x-4">
+                <div className="flex items-center space-x-4">
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-gray-900">
                       {address}
@@ -112,7 +112,7 @@ const EmailAddresses = ({
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="mr-2 inline-flex items-center rounded-full border border-blue-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-blue-50"
+                        className="mr-2 inline-flex items-center rounded-full border border-blue-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 hover:bg-blue-50"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',
