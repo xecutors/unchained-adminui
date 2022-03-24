@@ -115,9 +115,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
         </button>
         {isEdit && (
           <>
-            <span className="text-gray-300" aria-hidden="true">
-              |
-            </span>
             <button
               type="submit"
               className="rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -141,8 +138,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             onClick={() => setIsEdit(!isEdit)}
             type="button"
             className={classNames(
-              'bg-gray-200 text-white',
-              'rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2',
+              'focus:ring-indigo-500',
+              'inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
             )}
           >
             {formatMessage({
@@ -150,12 +147,9 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               defaultMessage: 'Cancel',
             })}
           </button>
-          <span className="text-gray-300" aria-hidden="true">
-            |
-          </span>
           <button
             type="submit"
-            className="rounded-md bg-indigo-700 py-2 px-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="rounded-md bg-indigo-700 py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             {formatMessage({
               id: 'save',
@@ -337,7 +331,10 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
 
               <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
+                  {formatMessage({
+                    id: 'mobile',
+                    defaultMessage: 'Mobile Phone',
+                  })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
@@ -346,7 +343,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                       name="phoneMobile"
                       label={formatMessage({
                         id: 'mobile',
-                        defaultMessage: 'Mobile',
+                        defaultMessage: 'Mobile Phone',
                       })}
                       hideLabel
                     />
