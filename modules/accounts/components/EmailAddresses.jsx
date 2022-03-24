@@ -79,7 +79,7 @@ const EmailAddresses = ({
   return (
     <div>
       <div className="border-t pt-5 lg:flex">
-        <div className="mb-7 border-gray-200 pb-2 pt-4 sm:flex  sm:justify-between">
+        <div className="mb-7 border-gray-200 pb-2 pt-4 sm:flex sm:justify-between">
           <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({
               id: 'email_addresses',
@@ -89,7 +89,7 @@ const EmailAddresses = ({
         </div>
         <div
           className={classNames(
-            'w-full border-b border-gray-200 bg-white px-8 py-4 shadow-md lg:ml-auto lg:w-4/6',
+            'w-full bg-white px-8 py-6 shadow-sm lg:ml-auto lg:w-4/6',
             emailBodyContainer,
           )}
         >
@@ -122,7 +122,7 @@ const EmailAddresses = ({
                     )}
                     <a
                       onClick={() => onRemoveEmail({ email: address, userId })}
-                      className="inline-flex items-center rounded-full   bg-white shadow-sm hover:bg-red-50"
+                      className="inline-flex items-center rounded-full bg-white shadow-sm hover:bg-red-50"
                     >
                       <svg
                         className="m-2 h-4 w-4 text-red-500"

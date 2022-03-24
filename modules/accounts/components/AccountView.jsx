@@ -38,7 +38,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           <EmailAddresses
             emails={emails}
             userId={_id}
-            emailBodyContainer="rounded-md shadow-none sahdow border"
+            emailBodyContainer="rounded-md shadow-md"
           />
         </div>
       </div>

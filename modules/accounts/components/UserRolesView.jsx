@@ -39,7 +39,6 @@ const UserRolesView = ({ roles, userId }) => {
           id: 'select_role',
           defaultMessage: 'Select role',
         })}
-        className="flex flex-wrap"
         hideLabel
         multiple
       />
