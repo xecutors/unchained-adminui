@@ -28,8 +28,6 @@ const ChoicesField = (props: ChoicesFieldProps) => {
     <div
       className={classNames('container', className, {
         'is-invalid': !!field.error,
-        '': field.half,
-        'container ': field.third,
         disabled: field.disabled,
         required: field.required,
       })}

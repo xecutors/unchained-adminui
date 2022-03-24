@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
-import useField from '../hooks/useField';
+import useField, { CommonFieldProps } from '../hooks/useField';
 
-const SwitchField = (props) => {
+const SwitchField = (props: CommonFieldProps) => {
   const intl = useIntl();
   const field = useField(props);
 
@@ -13,8 +13,6 @@ const SwitchField = (props) => {
     <div
       className={classNames('container', {
         'is-invalid': !!field.error,
-        '': field.half,
-        container: field.third,
         'form-check': true,
         disabled: field.disabled,
         required: field.required,
