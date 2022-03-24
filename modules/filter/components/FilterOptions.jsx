@@ -22,8 +22,8 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
 
   return (
     <div className="mt-4 sm:max-w-full ">
-      <div className=" sm:px-15 shadow sm:rounded-t">
-        <div className="bottom-1 mt-3 border-t border-gray-200 pt-4">
+      <div className=" sm:px-15">
+        <div className="bottom-1 mt-3">
           <div className=" relative max-w-full rounded-md lg:grid lg:grid-cols-3">
             <div className="p-3 md:col-span-1">
               <div className="px-4 sm:px-0">
@@ -46,6 +46,7 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
                     <FilterOptionForm
                       filterId={filterId}
                       onSubmit={onSubmit}
+                      onCancel={() => setModal('')}
                     />,
                   )
                 }
