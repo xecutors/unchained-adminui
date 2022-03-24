@@ -9,8 +9,8 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
   const { product, quantity } = item;
 
   return (
-    <div className="flex items-center justify-between w-full border-b border-gray-200 last:border-none">
-      <div className="flex items-center w-full space-x-6 py-4">
+    <div className="flex w-full items-center justify-between border-b border-gray-200 last:border-none">
+      <div className="flex w-full items-center space-x-6 py-4">
         {product.media?.length ? (
           <div className="flex w-20 flex-col items-center">
             <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
@@ -28,7 +28,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
           <NoImage className="h-10 w-10" />
         )}
 
-        <div className="basis-1/2 grow shrink">
+        <div className="shrink grow basis-1/2">
           <h3 className="text-lg text-gray-800">{product?.texts?.title}</h3>
           <p className="text-xs text-gray-600">{product?.texts?.subtitle}</p>
         </div>

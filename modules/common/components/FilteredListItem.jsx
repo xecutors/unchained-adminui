@@ -10,7 +10,7 @@ const FilteredListItem = ({ item, onSelected }) => {
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100">
         {item.image ? (
-          <div className="flex basis-1/5 grow-0 shrink-0 w-20 flex-col items-center">
+          <div className="flex w-20 shrink-0 grow-0 basis-1/5 flex-col items-center">
             <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
               <Image
                 className="mx-auto w-auto"
@@ -28,12 +28,16 @@ const FilteredListItem = ({ item, onSelected }) => {
             containerClassName="basis-1/5 flex item-center justify-center grow-0 shrink-0 h-10 w-20"
           />
         )}
-        <div className="flex items-center justify-between w-full basis-4/5 grow shrink overflow-x-hidden">
-          <div className="mx-2 -mt-1 w-2/3 truncate">
-            {item?.title}
-            <div className="-mt-1 w-full truncate text-xs font-normal normal-case text-gray-500">
-              {item?.subtitle}
-            </div>
+        <div className="flex w-full shrink grow basis-4/5 items-center justify-between overflow-x-hidden">
+          <div
+            className="mx-2 -mt-1 w-2/3 break-words" // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: item?.title }}
+          >
+            <div
+              className="-mt-1 w-full break-words text-xs font-normal normal-case text-gray-500"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: item?.subtitle }}
+            />
           </div>
           {item?.tag ? (
             <div className="flex w-1/3">
