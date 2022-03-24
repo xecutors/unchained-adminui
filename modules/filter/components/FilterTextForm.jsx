@@ -56,10 +56,10 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
 
   return (
     <div className="mt-4 sm:max-w-full">
-      <div className="sm:px-15 px-5 shadow sm:rounded-t">
+      <div className="sm:pl-15">
         <Form form={form}>
-          <div className="relative max-w-full rounded-md sm:px-6 lg:grid lg:grid-cols-3">
-            <div className="col-span-1 mb-7 border-gray-200 pb-2  sm:flex">
+          <div className="relative max-w-full rounded-md sm:pl-6 lg:grid lg:grid-cols-3">
+            <div className="col-span-1 mb-7 border-gray-200 pb-2 sm:flex">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
                 {formatMessage({
                   id: 'text',
@@ -67,7 +67,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 ml-auto w-full border-gray-200 bg-white  lg:shadow-md">
+            <div className="col-span-2 ml-auto pt-2 w-full border-gray-200 bg-white rounded lg:shadow">
               <div>
                 <TextField
                   name="title"
@@ -77,7 +77,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full py-2 text-sm font-medium   text-gray-500 sm:ml-1"
+                  className="mt-2 px-4 text-sm font-medium text-gray-500"
                 />
               </div>
 
@@ -90,16 +90,18 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="mt-1  w-full py-2 text-sm font-medium  text-gray-500 sm:ml-1"
+                  className="mt-2 px-4 text-sm font-medium text-gray-500"
                 />
               </div>
-
-              <SubmitButton
-                label={formatMessage({
-                  id: 'update_filter',
-                  defaultMessage: 'Update filter',
-                })}
-              />
+              <div className="flex">
+                <SubmitButton
+                  label={formatMessage({
+                    id: 'update_filter',
+                    defaultMessage: 'Update filter',
+                  })}
+                  className="ml-auto my-4 mr-4"
+                />
+              </div>
             </div>
           </div>
         </Form>

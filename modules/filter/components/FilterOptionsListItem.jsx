@@ -54,53 +54,50 @@ const FilterOptionsListItem = ({
       <div className="mt-2 flow-root ">
         <li className="py-2 px-2">
           <div className="flex items-center space-x-4">
-            <Badge text={option?.value} color="gray" />
+            <span className="basis-1/3 grow-0 shrink">
+              <Badge
+                text={option?.value}
+                color="gray"
+                square
+                className="break-all"
+              />
+            </span>
 
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-gray-900">
-                {formatMessage({
-                  id: 'title_colon',
-                  defaultMessage: 'Title:  ',
-                })}
-
                 {isEdit ? (
                   <TextField
-                    className="mt-0 w-fit"
+                    className="mt-0 py-0 px-2 rounded-sm"
                     name="title"
                     required
                     label={formatMessage({
                       id: 'title',
                       defaultMessage: 'Title',
                     })}
-                    hideLabel
                   />
                 ) : (
                   option?.texts.title
                 )}
               </p>
               <p className="truncate text-sm text-gray-500">
-                {formatMessage({
-                  id: 'subtitle_colon',
-                  defaultMessage: 'Subtitle:  ',
-                })}
                 {isEdit ? (
                   <TextField
-                    className="mt-0 w-fit"
+                    className="mt-0 py-0 px-2 rounded-sm"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
                       defaultMessage: 'Subtitle',
                     })}
-                    hideLabel
                   />
                 ) : (
                   option?.texts.subtitle && option?.texts.subtitle
                 )}
               </p>
             </div>
+
             <div>
               {isEdit ? (
-                <div className=" right-2 top-5 flex space-x-2">
+                <div className=" right-2 top-5 flex gap-2 flex-col">
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
@@ -111,9 +108,6 @@ const FilterOptionsListItem = ({
                       defaultMessage: 'Cancel',
                     })}
                   </button>
-                  <span className="text-gray-300" aria-hidden="true">
-                    |
-                  </span>
                   <button
                     type="submit"
                     className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
@@ -125,7 +119,7 @@ const FilterOptionsListItem = ({
                   </button>
                 </div>
               ) : (
-                <div className="flex space-x-2">
+                <div className="flex gap-2 items-center">
                   <div onClick={() => setIsEdit(!isEdit)}>
                     <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
                   </div>

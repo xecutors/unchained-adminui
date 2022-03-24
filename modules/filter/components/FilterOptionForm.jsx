@@ -22,12 +22,12 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
   });
   return (
     <Form form={form}>
-      <div className="flex">
+      <div className="flex gap-2">
         <TextField
           name="value"
           label={formatMessage({
             id: 'filter_option_value',
-            defaultMessage: 'value',
+            defaultMessage: 'Value',
           })}
           required
         />
@@ -41,22 +41,23 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
         />
       </div>
       <FormErrors />
-      <div className="flex justify-between">
+      <div className="flex justify-end">
         <button
           onClick={onCancel}
           type="button"
-          className="mb-5 mt-5 mr-2  h-9 rounded-md border border-transparent  bg-red-600 px-3 py-1 text-sm font-medium leading-5  text-white shadow-sm"
+          className="mb-5 mt-5 mr-2  h-9 rounded-md border border-transparent border-gray-300 bg-white px-3 py-1 text-sm font-medium leading-5 text-gray-700 shadow-sm"
         >
           {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
         </button>
-        <SubmitButton
-          full
-          className="w-full"
-          label={formatMessage({
-            id: 'add_filter_option',
-            defaultMessage: 'Add option',
-          })}
-        />
+        <span className="flex items-center">
+          <SubmitButton
+            className="w-full m-auto"
+            label={formatMessage({
+              id: 'add_filter_option',
+              defaultMessage: 'Add option',
+            })}
+          />
+        </span>
       </div>
     </Form>
   );

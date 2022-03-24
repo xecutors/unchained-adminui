@@ -1,12 +1,7 @@
 import { useIntl } from 'react-intl';
-import {
-  DocumentTextIcon,
-  ClipboardListIcon,
-  TrashIcon,
-} from '@heroicons/react/solid';
+import { DocumentTextIcon, ClipboardListIcon } from '@heroicons/react/solid';
 
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import TabComponent from '../../common/components/TabComponent';
@@ -14,9 +9,6 @@ import FilterTextForm from './FilterTextForm';
 import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
 import useUpdateFilter from '../hooks/useUpdateFilter';
-import useRemoveFilter from '../hooks/useRemoveFilter';
-import DangerMessage from '../../modal/components/DangerMessage';
-import useModal from '../../modal/hooks/useModal';
 
 const GetCurrentTab = ({ selectedView, id }) => {
   if (selectedView === 'text')
@@ -43,41 +35,6 @@ const FilterDetail = ({ filter }) => {
   const { _id: filterId, isActive, key, type, created, updated } = filter;
   const { formatMessage, formatDate } = useIntl();
   const { updateFilter } = useUpdateFilter();
-  const { removeFilter } = useRemoveFilter();
-  const router = useRouter();
-  const { setModal } = useModal();
-
-  const onRemoveFilter = async () => {
-    await setModal(
-      <DangerMessage
-        message={formatMessage({
-          id: 'delete_filter_confirmation',
-          defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this filter? ',
-        })}
-        onOkClick={async () => {
-          setModal('');
-          await removeFilter({ filterId });
-          toast.success(
-            formatMessage(
-              {
-                id: 'filter_deleted',
-                defaultMessage: 'Filter {filterId} deleted successfully',
-              },
-              {
-                filterId,
-              },
-            ),
-          );
-          router.push('/filters');
-        }}
-        okText={formatMessage({
-          id: 'delete_filter',
-          defaultMessage: 'Delete filter',
-        })}
-      />,
-    );
-  };
 
   const filterOptions = [
     {
@@ -168,20 +125,10 @@ const FilterDetail = ({ filter }) => {
           />
         </div>
         <div className="self-end">
-          <div className="flex">
-            <button
-              onClick={onRemoveFilter}
-              type="button"
-              className="mr-5 inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-            >
-              <TrashIcon className="text-white-400 h-5 w-5 cursor-pointer" />
-              {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
-            </button>
-            <SelectOptions
-              options={activeOptions}
-              type={formatMessage({ id: 'filter', defaultMessage: 'Filter' })}
-            />
-          </div>
+          <SelectOptions
+            options={activeOptions}
+            type={formatMessage({ id: 'filter', defaultMessage: 'Filter' })}
+          />
         </div>
       </div>
       <TabComponent tabItems={filterOptions} defaultTab="text">
