@@ -42,13 +42,6 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
           />
         </span>
       </Table.Cell>
-
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="text-sm text-red-900">
-          {provider?.configurationError}
-        </div>
-      </Table.Cell>
-
       <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex">
           <Link href={`${providerPath}/${provider?._id}`}>

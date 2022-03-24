@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import { validateInteger } from '../../forms/lib/validators';
 import useProductSupply from '../hooks/useProductSupply';
 import useUpdateProductSupply from '../hooks/useUpdateProductSupply';
 
@@ -20,16 +22,43 @@ const SupplyForm = ({ productId }) => {
   const onSubmit = async ({ weight, length, width, height }) => {
     await updateProductSupply({
       productId,
-      weightInGram: parseFloat(weight, 10),
-      lengthInMillimeters: parseFloat(length, 10),
-      heightInMillimeters: parseFloat(height, 10),
-      widthInMillimeters: parseFloat(width, 10),
+      weightInGram: weight,
+      lengthInMillimeters: length,
+      heightInMillimeters: height,
+      widthInMillimeters: width,
     });
     return true;
   };
 
   const form = useForm({
     submit: onSubmit,
+    getSubmitErrorMessage: (error) => {
+      if (
+        error.message.includes('supply.weightInGram') &&
+        error.message.includes('Expected type Int')
+      ) {
+        form.formik.setFieldError(
+          'weight',
+          'Invalid value, only integer is accepted',
+        );
+      } else if (
+        error.message.includes('supply.heightInMillimeters') &&
+        error.message.includes('Expected type Int')
+      ) {
+        form.formik.setFieldError(
+          'height',
+          'Invalid value, only integer is accepted',
+        );
+      } else if (
+        error.message.includes('supply.lengthInMillimeters') &&
+        error.message.includes('Expected type Int')
+      ) {
+        form.formik.setFieldError(
+          'length',
+          'Invalid value, only integer is accepted',
+        );
+      }
+    },
     successMessage,
     initialValues: {
       weight: '',
@@ -40,6 +69,7 @@ const SupplyForm = ({ productId }) => {
   });
 
   useEffect(() => {
+    console.log(dimensions);
     if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
   }, [dimensions]);
   return (
@@ -49,6 +79,7 @@ const SupplyForm = ({ productId }) => {
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
               <TextField
+                validators={[validateInteger()]}
                 type="number"
                 name="weight"
                 id="weight"
@@ -61,6 +92,7 @@ const SupplyForm = ({ productId }) => {
             </div>
             <div className="col-span-6 sm:col-span-3">
               <TextField
+                validators={[validateInteger()]}
                 name="length"
                 id="length"
                 type="number"
@@ -73,8 +105,9 @@ const SupplyForm = ({ productId }) => {
             </div>
             <div className="col-span-6 sm:col-span-3">
               <TextField
+                validators={[validateInteger()]}
                 type="number"
-                name="width "
+                name="width"
                 id="width "
                 label={formatMessage({
                   id: 'width',
@@ -85,6 +118,7 @@ const SupplyForm = ({ productId }) => {
             </div>
             <div className="col-span-6 sm:col-span-3">
               <TextField
+                validators={[validateInteger()]}
                 name="height"
                 type="number"
                 id="height"
@@ -97,6 +131,7 @@ const SupplyForm = ({ productId }) => {
             </div>
           </div>
         </div>
+        <FormErrors />
         <div className="space-y-6 bg-gray-50 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({

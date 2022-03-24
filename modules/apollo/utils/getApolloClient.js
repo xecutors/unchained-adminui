@@ -42,8 +42,9 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
     includeExtensions: true,
   });
 
-  const errorLink = onError(({ graphQLErrors, networkError }) => {
+  const errorLink = onError(({ response, graphQLErrors, networkError }) => {
     if (graphQLErrors) {
+      response?.errors?.push(...graphQLErrors);
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
           // eslint-disable-line

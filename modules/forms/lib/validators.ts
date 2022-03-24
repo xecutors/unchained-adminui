@@ -41,6 +41,14 @@ export const validateCurrency = (): Validator => ({
   },
 });
 
+export const validateInteger = (): Validator => ({
+  isValid: (value) => !Number.isNaN(value) && Number.isInteger(value),
+  intlMessageDescriptor: {
+    id: 'error_number_not_int',
+    defaultMessage: 'Invalid value please provide integer value',
+  },
+});
+
 export const validateCountry = (): Validator => ({
   isValid: (value) => CountryCodes.includes(value.toUpperCase()),
   intlMessageDescriptor: {

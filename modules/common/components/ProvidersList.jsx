@@ -70,7 +70,9 @@ const ProviderList = ({
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="ml-2">Add</span>
+                <span className="ml-2">
+                  {formatMessage({ id: 'add', defaultMessage: 'Add' })}
+                </span>
               </a>
             </Link>
           </div>
@@ -89,13 +91,6 @@ const ProviderList = ({
 
             <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            </Table.Cell>
-
-            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-              {formatMessage({
-                id: 'problems',
-                defaultMessage: 'Problems',
-              })}
             </Table.Cell>
 
             <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
