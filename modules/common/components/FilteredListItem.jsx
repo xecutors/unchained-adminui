@@ -29,14 +29,14 @@ const FilteredListItem = ({ item, onSelected }) => {
           />
         )}
         <div className="flex items-center justify-between w-full basis-4/5 grow shrink overflow-x-hidden">
-          <div className="mx-2 -mt-1 w-1/2">
+          <div className="mx-2 -mt-1 w-2/3 truncate">
             {item?.title}
             <div className="-mt-1 w-full truncate text-xs font-normal normal-case text-gray-500">
               {item?.subtitle}
             </div>
           </div>
           {item?.tag ? (
-            <div className="flex w-1/2">
+            <div className="flex w-1/3">
               <div className="m-1 ml-auto flex items-center justify-center rounded-full border border-teal-300 bg-white py-1 px-2 font-medium text-teal-700 ">
                 <div className="max-w-full flex-initial text-xs font-normal leading-none">
                   {item?.tag}
