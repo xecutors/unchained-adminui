@@ -24,8 +24,8 @@ const FieldWrapper = ({
     <div
       className={classnames(className, {
         'is-invalid': !!error,
-        'field-container--half': half,
-        'field-container--third': third,
+        '': half,
+        container: third,
         disabled,
         required,
       })}

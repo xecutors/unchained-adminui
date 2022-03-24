@@ -1,22 +1,27 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import useField from '../hooks/useField';
 
 const CheckboxField = (props) => {
-  const { disabled, labelClassNames } = props;
+  const { disabled, labelClassNames, containerClassNames, inputClassNames } =
+    props;
   const field = useField(props);
 
   return (
     <div
-      className={classnames('field-container', {
-        'text-red-600': !!field.error,
-        'field-container--half': field.half,
-        'field-container--third': field.third,
-        'form-check': true,
-        checkbox: true,
-        disabled: field.disabled,
-        required: field.required,
-      })}
+      className={classNames(
+        'container',
+        {
+          'text-red-600': !!field.error,
+          '': field.half,
+          container: field.third,
+          'form-check': true,
+          checkbox: true,
+          disabled: field.disabled,
+          required: field.required,
+        },
+        containerClassNames,
+      )}
     >
       <input
         checked={!!field.value}
@@ -25,11 +30,16 @@ const CheckboxField = (props) => {
         name={field.name}
         onChange={field.onChange}
         type="checkbox"
-        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+        className={
+          (classNames(
+            'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500',
+          ),
+          inputClassNames)
+        }
       />
       <label
         htmlFor={field.name}
-        className={classnames(
+        className={classNames(
           'form-check-label ml-2 text-sm text-gray-900',
           labelClassNames,
           {

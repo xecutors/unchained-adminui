@@ -18,6 +18,7 @@ const ChoicesField = (props: ChoicesFieldProps) => {
     choiceClassName = 'col-md-6 col-lg-4',
     choiceContainerClassName,
     labelClassName,
+    inputClassName,
   } = props;
 
   const mappableValue =
@@ -25,10 +26,10 @@ const ChoicesField = (props: ChoicesFieldProps) => {
   const { className, hideLabel } = props;
   return (
     <div
-      className={classNames('field-container', className, {
+      className={classNames('container', className, {
         'is-invalid': !!field.error,
-        'field-container--half': field.half,
-        'field-container--third': field.third,
+        '': field.half,
+        'container ': field.third,
         disabled: field.disabled,
         required: field.required,
       })}
@@ -50,13 +51,16 @@ const ChoicesField = (props: ChoicesFieldProps) => {
           >
             <label
               htmlFor={`${field.name}-${value}`}
-              className={classNames(' ml-3', labelClassName)}
+              className={classNames('ml-3', labelClassName)}
             >
               <div>{display}</div>
               <input
                 value={value}
                 checked={mappableValue.includes(value)}
-                className="form-check-input after-check"
+                className={classNames(
+                  'form-check-input after-check',
+                  inputClassName,
+                )}
                 disabled={field.disabled}
                 id={`${field.name}-${value}`}
                 name={field.name}
