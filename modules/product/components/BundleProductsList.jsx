@@ -8,10 +8,12 @@ import useRemoveBundleItem from '../hooks/useRemoveBundleItem';
 import ProductBundleItemsListItem from './BundleProductsListItem';
 
 const BundleProductList = ({ productId }) => {
-  const { bundleItems, loading } = useProductBundleItems({ productId });
-  const { removeBundleItem } = useRemoveBundleItem();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
+
+  const { bundleItems, loading } = useProductBundleItems({ productId });
+  const { removeBundleItem } = useRemoveBundleItem();
+
   const onRemoveBundleItem = async (index) => {
     await setModal(
       <DangerMessage
@@ -37,6 +39,7 @@ const BundleProductList = ({ productId }) => {
       />,
     );
   };
+
   if (loading) return <Loading />;
 
   return bundleItems.map((product, index) => (

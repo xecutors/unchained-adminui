@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import NoImage from './NoImage';
 
 const FilteredListItem = ({ item, onSelected }) => {
   return (
@@ -8,9 +9,9 @@ const FilteredListItem = ({ item, onSelected }) => {
       onClick={() => onSelected(item)}
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100">
-        {item.image && (
-          <div className="flex w-20 flex-col items-center">
-            <div className="relative m-1   mr-2 mt-1 flex items-center  justify-center rounded-full ">
+        {item.image ? (
+          <div className="flex basis-1/5 grow-0 shrink-0 w-20 flex-col items-center">
+            <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
               <Image
                 className="mx-auto w-auto"
                 src={item.image}
@@ -21,9 +22,14 @@ const FilteredListItem = ({ item, onSelected }) => {
               />
             </div>
           </div>
+        ) : (
+          <NoImage
+            className="h-10 w-10"
+            containerClassName="basis-1/5 flex item-center justify-center grow-0 shrink-0 h-10 w-20"
+          />
         )}
-        <div className="flex w-full items-center">
-          <div className="mx-2 -mt-1 w-1/2 ">
+        <div className="flex items-center justify-between w-full basis-4/5 grow shrink overflow-x-hidden">
+          <div className="mx-2 -mt-1 w-1/2">
             {item?.title}
             <div className="-mt-1 w-full truncate text-xs font-normal normal-case text-gray-500">
               {item?.subtitle}
@@ -31,7 +37,7 @@ const FilteredListItem = ({ item, onSelected }) => {
           </div>
           {item?.tag ? (
             <div className="flex w-1/2">
-              <div className="m-1 flex items-center justify-center rounded-full border border-teal-300 bg-white bg-teal-100 py-1 px-2 font-medium text-teal-700 ">
+              <div className="m-1 ml-auto flex items-center justify-center rounded-full border border-teal-300 bg-white py-1 px-2 font-medium text-teal-700 ">
                 <div className="max-w-full flex-initial text-xs font-normal leading-none">
                   {item?.tag}
                 </div>
