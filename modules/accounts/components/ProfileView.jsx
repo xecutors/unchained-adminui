@@ -249,8 +249,8 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
               <div className="py-4 sm:grid sm:gap-4 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
-                    id: 'name',
-                    defaultMessage: 'Name',
+                    id: 'displayName',
+                    defaultMessage: 'Display Name',
                   })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
@@ -268,18 +268,6 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
                   ) : (
                     <span className="flex-grow">{name}</span>
                   )}
-                </div>
-              </div>
-
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
-                <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'username',
-                    defaultMessage: 'Username',
-                  })}
-                </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <span className="flex-grow">{username}</span>
                 </div>
               </div>
 
