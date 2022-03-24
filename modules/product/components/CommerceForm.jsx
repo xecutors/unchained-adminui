@@ -168,7 +168,7 @@ const CommerceForm = ({ productId }) => {
                       <div className="w-full lg:ml-8 lg:items-center">
                         <CheckboxField
                           name={`pricing[${index}].isTaxable`}
-                          labelClassNames="lg:sr-only items-center "
+                          labelClassName="lg:sr-only items-center "
                           label={formatMessage({
                             id: 'vat_suspect',
                             defaultMessage: 'Vat Suspect',
@@ -187,7 +187,7 @@ const CommerceForm = ({ productId }) => {
                       <div className="w-full lg:ml-8">
                         <CheckboxField
                           name={`pricing[${index}].isNetPrice`}
-                          labelClassNames="lg:sr-only items-center"
+                          labelClassName="lg:sr-only items-center"
                           label={formatMessage({
                             id: 'net_price',
                             defaultMessage: 'Net Price',

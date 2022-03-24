@@ -16,9 +16,10 @@ export interface CommonFieldProps {
   errorMessage?: string;
   help?: string;
   className?: string;
+  labelClassName?: string;
+  containerClassName?: string;
+  inputClassName?: string;
   placeholder?: string;
-  half?: boolean;
-  third?: boolean;
   hideLabel?: boolean;
   /**
    * A second change handler without the possibility to change the value.
