@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Badge from '../../common/components/Badge';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import { WORK_STATUSES } from '../../common/data/miscellaneous';
 
 const ReactJson = loadable(() => import('react-json-view'));
 
@@ -21,30 +22,18 @@ const WorkDetail = ({ work }) => {
   };
 
   const shadowStyle = {
-    NEW: 'shadow-[inset_-5px_5px_5px_0px_#60a5fa,inset_5px_-5px_5px_0px_#60a5fa]',
-    ALLOCATED:
-      'shadow-[inset_-5px_5px_5px_0px_#facc15,inset_5px_-5px_5px_0px_#facc15]',
-    SUCCESS:
-      'shadow-[inset_-5px_5px_5px_0px_#4ade80,inset_5px_-5px_5px_0px_#4ade80]',
-    FAILED:
-      'shadow-[inset_-5px_5px_5px_0px_#f87171,inset_5px_-5px_5px_0px_#f87171]',
-    DELETED:
-      'shadow-[inset_-5px_5px_5px_0px_#f87171,inset_5px_-5px_5px_0px_#f87171]',
-  };
-
-  const typeStyle = {
-    NEW: 'bg-slate-400',
-    ALLOCATED: 'bg-yellow-400',
-    SUCCESS: 'bg-green-400',
-    FAILED: 'bg-red-400',
-    DELETED: 'bg-red-400',
+    NEW: `shadow-[inset_-5px_5px_5px_0px_#c084fc,inset_5px_-5px_5px_0px_#c084fc]`,
+    ALLOCATED: `shadow-[inset_-5px_5px_5px_0px_#60a5fa,inset_5px_-5px_5px_0px_#60a5fa]`,
+    SUCCESS: `shadow-[inset_-5px_5px_5px_0px_#4ade80,inset_5px_-5px_5px_0px_#4ade80]`,
+    FAILED: `shadow-[inset_-5px_5px_5px_0px_#f87171,inset_5px_-5px_5px_0px_#f87171]`,
+    DELETED: `shadow-[inset_-5px_5px_5px_0px_#fb923c,inset_5px_-5px_5px_0px_#fb923c]`,
   };
 
   return (
     <>
       <div className="w-full border-t border-gray-300" />
 
-      <div className={`my-4 p-2 sm:p-6 lg:p-8  ${shadowStyle[work?.status]}`}>
+      <div className={`my-4 p-2 sm:p-6 lg:p-8 ${shadowStyle[work?.status]}`}>
         <div className="grid grid-cols-1 grid-rows-4 gap-8  sm:grid-cols-2 ">
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:col-span-1 sm:p-6 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
@@ -67,9 +56,9 @@ const WorkDetail = ({ work }) => {
                 })}
               </div>
               <div
-                className={`mt-2 max-w-prose space-y-5 rounded-full text-sm text-gray-900 ${
-                  typeStyle[work?.status]
-                } py-1 px-5`}
+                className={`mt-2 py-1 px-5 max-w-prose space-y-5 rounded-full text-sm text-${
+                  WORK_STATUSES[work?.status]
+                }-800 bg-${WORK_STATUSES[work?.status]}-200`}
               >
                 {work?.status}
               </div>
