@@ -135,70 +135,70 @@ const WorkDetail = ({ work }) => {
           </div>
 
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:col-span-1 sm:p-6 lg:p-8">
-            <div className="grid grid-cols-2 sm:justify-items-center">
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+            <div className="grid grid-cols-2 gap-5">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_created',
                     defaultMessage: 'Created',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.created, options)}
                 </div>
               </div>
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_scheduled',
                     defaultMessage: 'Scheduled',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.scheduled, options)}
                 </div>
               </div>
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_started',
                     defaultMessage: 'Started',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.started, options)}
                 </div>
               </div>
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_finished',
                     defaultMessage: 'Finished',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.finished, options)}
                 </div>
               </div>
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_updated',
                     defaultMessage: 'Updated',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.updated, options)}
                 </div>
               </div>
-              <div className="mb-2 sm:col-span-1">
-                <div className="flex items-center justify-center text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'deleted',
                     defaultMessage: 'Deleted',
                   })}
                 </div>
-                <div className="mt-2 flex items-center justify-center text-sm text-gray-900">
+                <div className="flex text-sm text-gray-900">
                   {formatDateTime(work?.deleted, options)}
                 </div>
               </div>
