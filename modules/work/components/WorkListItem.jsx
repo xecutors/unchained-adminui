@@ -4,13 +4,7 @@ import Link from 'next/link';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 
-const WORK_STATUSES = {
-  NEW: 'purple',
-  ALLOCATED: 'blue',
-  SUCCESS: 'green',
-  FAILED: 'red',
-  DELETED: 'orange',
-};
+import { WORK_STATUSES } from '../../common/data/miscellaneous';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();

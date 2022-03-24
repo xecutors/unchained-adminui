@@ -11,8 +11,6 @@ const FieldWrapper = ({
   children,
   className,
   error,
-  half,
-  third,
   disabled,
   required,
   name,
@@ -22,13 +20,15 @@ const FieldWrapper = ({
 }: FieldWrapperProps) => {
   return (
     <div
-      className={classnames(className, {
-        'is-invalid': !!error,
-        'field-container--half': half,
-        'field-container--third': third,
-        disabled,
-        required,
-      })}
+      className={classnames(
+        'container',
+        {
+          'is-invalid': !!error,
+          disabled,
+          required,
+        },
+        className,
+      )}
     >
       <label
         aria-label={label}
