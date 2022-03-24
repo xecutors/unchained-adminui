@@ -209,13 +209,13 @@ const ProductDetail = ({ product }) => {
 
   return (
     <>
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center flex-wrap space-y-1">
+        <h1 className="">{product?.__typename}</h1>
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
-      <h1>{product?.__typename}</h1>
       <TabComponent tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab id={product?._id} />
       </TabComponent>
