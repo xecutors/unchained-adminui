@@ -6,7 +6,7 @@ const Button = ({ text, onClick, className }) => {
       type="button"
       onClick={onClick}
       className={classNames(
-        'bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-r-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-500 focus:outline-none focus:ring-0 focus:ring-indigo-500',
+        'inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
         className,
       )}
     >

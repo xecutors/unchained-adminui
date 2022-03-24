@@ -138,7 +138,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       ) : (
         <>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div className=" sm:block">
+            <div className="sm:block">
               {!total ? (
                 formatMessage({
                   id: 'no_result_found',
