@@ -541,3 +541,11 @@ export const PROVIDER_TYPE_CLASSES = {
   PICKUP: 'yellow',
   SHIPPING: 'blue',
 };
+
+export const WORK_STATUSES = {
+  NEW: 'purple',
+  ALLOCATED: 'blue',
+  SUCCESS: 'green',
+  FAILED: 'red',
+  DELETED: 'orange',
+};
