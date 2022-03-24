@@ -51,7 +51,12 @@ const FilterableDropdown = ({
   return (
     <div className="relative flex flex-col items-center">
       <div className="w-full">
-        <div className="my-2 flex rounded border-gray-200 bg-white p-1">
+        <div
+          className={classNames(
+            'my-2 flex rounded border-gray-200 bg-white p-1',
+            props.className,
+          )}
+        >
           <div className="w-full">
             <FieldWrapper {...field}>
               {currentSelection ? (
@@ -116,6 +121,7 @@ const FilterableDropdown = ({
             className={classNames(
               'mb-2 flex h-10 w-10 items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
               { 'bg-red-500': !!field.error },
+              props.buttonClassName,
             )}
           >
             <button
