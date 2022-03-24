@@ -166,7 +166,7 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
       <div className="mt-6 overflow-hidden rounded-md border-b">
         <div className="lg:grid lg:grid-cols-3">
           <div className="mb-5 lg:col-span-1 lg:pr-5">
-            <div className="space-y-2">
+            <div className="space-y-2 ml-1">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
                 {formatMessage({
                   id: 'profile',
@@ -364,7 +364,7 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
 
         <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
           <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
-            <div className="space-y-2">
+            <div className="space-y-2 ml-1">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
                 {formatMessage({
                   id: 'address',
