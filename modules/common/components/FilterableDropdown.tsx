@@ -89,7 +89,7 @@ const FilterableDropdown = ({
                         },
                       )}
                       onChange={(e) => {
-                        if (!showDropdown) setShowDropdown(true);
+                        if (!showDropdown) setShowDropdown(!showDropdown);
 
                         field.setTouched(true);
 

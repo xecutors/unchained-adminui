@@ -9,7 +9,7 @@ const FilteredListItem = ({ item, onSelected }) => {
       onClick={() => onSelected(item)}
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100">
-        {item.image ? (
+        {item?.image ? (
           <div className="flex w-20 shrink-0 grow-0 basis-1/5 flex-col items-center">
             <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
               <Image
@@ -31,8 +31,8 @@ const FilteredListItem = ({ item, onSelected }) => {
         <div className="flex w-full shrink grow basis-4/5 items-center justify-between overflow-x-hidden">
           <div
             className="mx-2 -mt-1 w-2/3 break-words" // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: item?.title }}
           >
+            {item?.title}
             <div
               className="-mt-1 w-full break-words text-xs font-normal normal-case text-gray-500"
               // eslint-disable-next-line react/no-danger

@@ -12,7 +12,7 @@ import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
-const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
+const ProfileView = ({ profile = {}, avatar, name, _id }) => {
   const { address } = profile || {};
   const fileInputRef = useRef();
   const { formatMessage } = useIntl();
@@ -139,7 +139,7 @@ const ProfileView = ({ profile = {}, avatar, username, name, _id }) => {
             type="button"
             className={classNames(
               'focus:ring-indigo-500',
-              'inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+              'inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
             )}
           >
             {formatMessage({

@@ -56,7 +56,7 @@ const WorkDetail = ({ work }) => {
                 })}
               </div>
               <div
-                className={`mt-2 py-1 px-5 max-w-prose space-y-5 rounded-full text-sm text-${
+                className={`mt-2 max-w-prose space-y-5 rounded-full py-1 px-5 text-sm text-${
                   WORK_STATUSES[work?.status]
                 }-800 bg-${WORK_STATUSES[work?.status]}-200`}
               >

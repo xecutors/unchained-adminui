@@ -7,7 +7,7 @@ const FilteredList = ({ data, onSelected }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      {data.length ? (
+      {data?.length ? (
         data?.map((item) => (
           <FilteredListItem key={item.id} item={item} onSelected={onSelected} />
         ))
