@@ -11,17 +11,7 @@ const useFormatPrice = () => {
     }).format(amount);
   };
 
-  const calculateTotalDiscount = (discounts) => {
-    const initialValue = 0;
-    const totalDiscount = discounts.reduce(
-      (previousValue, currentValue) =>
-        previousValue + currentValue.total.amount,
-      initialValue,
-    );
-    return totalDiscount;
-  };
-
-  return { formatPrice, calculateTotalDiscount };
+  return { formatPrice };
 };
 
 const getInterfaceLabel = ({ label, version }) => {

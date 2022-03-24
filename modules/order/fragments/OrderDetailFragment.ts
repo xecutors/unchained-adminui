@@ -3,6 +3,27 @@ import { gql } from '@apollo/client';
 const OrderDetailFragment = gql`
   fragment OrderDetailFragment on Order {
     _id
+    totalTax: total(category: TAXES) {
+      amount
+      currency
+    }
+    itemsTotal: total(category: ITEMS) {
+      amount
+      currency
+    }
+    totalDiscount: total(category: DISCOUNTS) {
+      amount
+      currency
+    }
+
+    totalPayment: total(category: PAYMENT) {
+      amount
+      currency
+    }
+    totalDelivery: total(category: DELIVERY) {
+      amount
+      currency
+    }
 
     user {
       _id
@@ -238,23 +259,7 @@ const OrderDetailFragment = gql`
         }
       }
       quantity
-      originalProduct {
-        _id
-        texts {
-          _id
-          slug
-          brand
-          vendor
-          subtitle
-        }
-        media {
-          _id
-          file {
-            _id
-            url
-          }
-        }
-      }
+
       unitPrice {
         amount
         isTaxable

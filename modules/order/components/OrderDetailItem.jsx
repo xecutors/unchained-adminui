@@ -11,7 +11,7 @@ const OrderDetailItem = ({ item }) => {
   return (
     <>
       <section aria-labelledby="products-heading">
-        <Link href={`/products/${item.originalProduct.texts.slug}`}>
+        <Link href={`/products/${item.product.texts.slug}`}>
           <a>
             <h2 id="products-heading" className="sr-only">
               {formatMessage({
@@ -25,17 +25,19 @@ const OrderDetailItem = ({ item }) => {
                 <div className="p-3">
                   <div className="center flex flex-wrap justify-center gap-x-4">
                     <div className="mx-auto   flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
-                      <Image
-                        loader={defaultNextImageLoader}
-                        src={`${item.originalProduct.media[0].file.url}`}
-                        alt={
-                          item?.originalProduct?.texts?.title ||
-                          item?.originalProduct?.texts?.subtitle
-                        }
-                        className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                        width={200}
-                        height={200}
-                      />
+                      {item.product?.media?.length ? (
+                        <Image
+                          loader={defaultNextImageLoader}
+                          src={`${item.product?.media[0].file.url}`}
+                          alt={
+                            item?.product?.texts?.title ||
+                            item?.product?.texts?.subtitle
+                          }
+                          className="h-full w-full object-cover object-center sm:h-full sm:w-full"
+                          width={200}
+                          height={200}
+                        />
+                      ) : null}
                     </div>
 
                     <div className="mx-auto flex flex-col justify-center sm:mt-0 sm:ml-6 sm:flex-auto">

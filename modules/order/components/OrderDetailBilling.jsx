@@ -3,7 +3,7 @@ import { useFormatPrice } from '../../common/utils/utils';
 
 const OrderDetailBilling = ({ order }) => {
   const { formatMessage } = useIntl();
-  const { formatPrice, calculateTotalDiscount } = useFormatPrice();
+  const { formatPrice } = useFormatPrice();
 
   return (
     <section aria-labelledby="summary-heading" className="mt-4">
@@ -49,7 +49,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {formatPrice(order.total)}
+              {formatPrice(order?.itemsTotal)}
             </dd>
           </div>
           <div className="flex items-center justify-between py-2">
@@ -60,7 +60,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {calculateTotalDiscount(order.discounts)}
+              {formatPrice(order?.totalDiscount)}
             </dd>
           </div>
           <div className="flex items-center justify-between py-2">
@@ -71,7 +71,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {order.delivery.amount || 0}
+              {formatPrice(order?.totalDelivery)}
             </dd>
           </div>
           <div className="flex items-center justify-between py-2">
@@ -82,7 +82,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-gray-900">
-              {order.delivery.isTaxable || 0}
+              {formatPrice(order?.totalTax)}
             </dd>
           </div>
           <div className="flex items-center justify-between pt-2">
@@ -93,7 +93,7 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <dd className="font-medium text-indigo-600">
-              {formatPrice(order.total)}
+              {formatPrice(order?.total)}
             </dd>
           </div>
         </dl>
