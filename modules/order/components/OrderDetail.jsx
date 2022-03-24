@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import OrderDetailItem from './OrderDetailItem';
-import LogList from './LogList';
+
 import OrderDetailBilling from './OrderDetailBilling';
 import DocumentList from './DocumentList';
 import OrderDetailPayment from './OrderDetailPayment';
@@ -92,18 +92,6 @@ const OrderDetail = ({ order }) => {
   const headerCSS =
     'inline-flex items-center justify-between w-full px-4 py-2 rounded-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
 
-  const logs = {
-    header: (
-      <span className="flex">
-        {formatMessage({
-          id: 'logs',
-          defaultMessage: 'Logs',
-        })}
-      </span>
-    ),
-    body: <LogList logs={order.logs} user={order.user} />,
-  };
-
   const documents = {
     header: (
       <span className="flex">
@@ -113,7 +101,7 @@ const OrderDetail = ({ order }) => {
         })}
       </span>
     ),
-    body: <DocumentList documents={order.documents} />,
+    body: <DocumentList documents={order?.documents || []} />,
   };
 
   return (
@@ -127,7 +115,7 @@ const OrderDetail = ({ order }) => {
       />
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {order.items.map((item) => {
+        {order?.items.map((item) => {
           return <OrderDetailItem key={item._id} item={item} />;
         })}
       </div>
@@ -141,15 +129,15 @@ const OrderDetail = ({ order }) => {
         </h2>
 
         <div className="grid w-full gap-4 text-sm sm:flex sm:flex-wrap sm:rounded-lg">
-          <OrderDetailDelivery delivery={order.delivery} />
+          <OrderDetailDelivery delivery={order?.delivery} />
           <OrderDetailPayment order={order} />
-          <DiscountList discount={order.discounts} />
+          <DiscountList discount={order?.discounts} />
         </div>
       </section>
 
       <OrderDetailBilling order={order} />
 
-      <Accordion data={[documents, logs]} headerCSS={headerCSS} />
+      <Accordion data={[documents]} headerCSS={headerCSS} />
     </div>
   );
 };

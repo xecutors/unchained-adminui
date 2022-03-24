@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
-import LogList from '../../order/components/LogList';
 import DocumentList from '../../order/components/DocumentList';
 import Accordion from '../../common/components/Accordion';
 import Button from '../../common/components/Button';
@@ -151,18 +150,6 @@ const QuotationDetail = ({ quotation }) => {
     body: <DocumentList documents={quotation.documents} />,
   };
 
-  const logs = {
-    header: (
-      <span className="flex">
-        {formatMessage({
-          id: 'logs',
-          defaultMessage: 'Logs',
-        })}
-      </span>
-    ),
-    body: <LogList logs={quotation.logs} user={quotation.user} />,
-  };
-
   const form = useForm({
     initialValues: {
       configuration: JSON.stringify(quotation.configuration || {}, null, 2),
@@ -231,7 +218,7 @@ const QuotationDetail = ({ quotation }) => {
         </div>
       </section>
 
-      <Accordion data={[documents, logs]} headerCSS={headerCSS} />
+      <Accordion data={[documents]} headerCSS={headerCSS} />
     </>
   );
 };

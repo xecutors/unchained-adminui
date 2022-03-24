@@ -3,13 +3,12 @@ import Link from 'next/link';
 
 import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import useDeliveryProviderTypes from '../../delivery-provider/hooks/useDeliveryProviderTypes';
-import useDeliveryWrappingTypes from '../../delivery-provider/hooks/useDeliveryWrappingTypes';
 import useDeliveryStatusTypes from '../../delivery-provider/hooks/useDeliveryStatusTypes';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const OrderDetailDelivery = ({ delivery }) => {
   const { deliveryProviderType } = useDeliveryProviderTypes();
-  const { deliveryWrappingType } = useDeliveryWrappingTypes();
+
   const { deliveryStatusType } = useDeliveryStatusTypes();
   const { formatPrice } = useFormatPrice();
   const { formatMessage } = useIntl();
@@ -62,22 +61,7 @@ const OrderDetailDelivery = ({ delivery }) => {
             />
           ))}
         </span>
-        <div className="mt-3 text-sm font-medium text-gray-500">
-          {formatMessage({
-            id: 'wrapping_condition',
-            defaultMessage: 'Wrapping condition',
-          })}
-        </div>
-        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-          {deliveryWrappingType.map((type) => (
-            <StatusInformation
-              key={type.value}
-              enumType={type.value}
-              currentType={delivery?.wrapping}
-              label={type.label}
-            />
-          ))}
-        </span>
+
         <div className="mt-3 text-sm font-medium text-gray-500">
           {formatMessage({
             id: 'status',

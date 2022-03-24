@@ -54,23 +54,6 @@ const QuotationDetailFragment = gql`
       size
       url
     }
-    logs {
-      _id
-      created
-      level
-      message
-      user {
-        _id
-        name
-        username
-        avatar {
-          _id
-          name
-          url
-        }
-        isGuest
-      }
-    }
     status
     created
     expires

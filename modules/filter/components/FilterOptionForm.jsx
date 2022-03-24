@@ -51,7 +51,7 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
         </button>
         <span className="flex items-center">
           <SubmitButton
-            className="w-full m-auto"
+            className="m-auto w-full"
             label={formatMessage({
               id: 'add_filter_option',
               defaultMessage: 'Add option',

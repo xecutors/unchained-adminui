@@ -196,7 +196,7 @@ const AssortmentDetail = ({ assortment }) => {
 
   return (
     <>
-      <div className="flex lg:justify-end flex-wrap space-y-2 space-x-2 -ml-2">
+      <div className="-ml-2 flex flex-wrap space-y-2 space-x-2 lg:justify-end">
         <SelectOptions
           options={baseOptions}
           type={formatMessage({

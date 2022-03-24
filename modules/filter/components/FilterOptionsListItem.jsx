@@ -54,7 +54,7 @@ const FilterOptionsListItem = ({
       <div className="mt-2 flow-root ">
         <li className="py-2 px-2">
           <div className="flex items-center space-x-4">
-            <span className="basis-1/3 grow-0 shrink">
+            <span className="shrink grow-0 basis-1/3">
               <Badge
                 text={option?.value}
                 color="gray"
@@ -67,7 +67,7 @@ const FilterOptionsListItem = ({
               <p className="truncate text-sm font-medium text-gray-900">
                 {isEdit ? (
                   <TextField
-                    className="mt-0 py-0 px-2 rounded-sm"
+                    className="mt-0 rounded-sm py-0 px-2"
                     name="title"
                     required
                     label={formatMessage({
@@ -82,7 +82,7 @@ const FilterOptionsListItem = ({
               <p className="truncate text-sm text-gray-500">
                 {isEdit ? (
                   <TextField
-                    className="mt-0 py-0 px-2 rounded-sm"
+                    className="mt-0 rounded-sm py-0 px-2"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
@@ -97,7 +97,7 @@ const FilterOptionsListItem = ({
 
             <div>
               {isEdit ? (
-                <div className=" right-2 top-5 flex gap-2 flex-col">
+                <div className=" right-2 top-5 flex flex-col gap-2">
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
@@ -119,7 +119,7 @@ const FilterOptionsListItem = ({
                   </button>
                 </div>
               ) : (
-                <div className="flex gap-2 items-center">
+                <div className="flex items-center gap-2">
                   <div onClick={() => setIsEdit(!isEdit)}>
                     <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
                   </div>

@@ -3,8 +3,7 @@ import { gql } from '@apollo/client';
 const OrderDetailFragment = gql`
   fragment OrderDetailFragment on Order {
     _id
-    reference
-    comment
+
     user {
       _id
       username
@@ -24,7 +23,6 @@ const OrderDetailFragment = gql`
         version
       }
       total {
-        _id
         amount
         currency
         isTaxable
@@ -35,7 +33,6 @@ const OrderDetailFragment = gql`
         orderDiscount {
           _id
           total {
-            _id
             amount
             currency
             isTaxable
@@ -43,7 +40,6 @@ const OrderDetailFragment = gql`
           }
         }
         total {
-          _id
           amount
           currency
           isTaxable
@@ -64,7 +60,6 @@ const OrderDetailFragment = gql`
       }
       status
       fee {
-        _id
         currency
         amount
       }
@@ -82,9 +77,8 @@ const OrderDetailFragment = gql`
           version
         }
       }
-      wrapping
-      deliveryType
-      deliveryDate
+
+      delivered
     }
 
     orderNumber
@@ -139,7 +133,6 @@ const OrderDetailFragment = gql`
       status
       delivered
       fee {
-        _id
         isTaxable
         isNetPrice
         amount
@@ -161,7 +154,6 @@ const OrderDetailFragment = gql`
             version
           }
           total {
-            _id
             isTaxable
             isNetPrice
             amount
@@ -183,7 +175,6 @@ const OrderDetailFragment = gql`
                 version
               }
               total {
-                _id
                 isTaxable
                 isNetPrice
                 amount
@@ -193,15 +184,10 @@ const OrderDetailFragment = gql`
           }
         }
       }
-      deliveryAddressId
-      wrapping
-      deliveryType
-      deliveryDate
-      deliveryOption
-      billingAddressId
+
+      delivered
     }
     total {
-      _id
       isTaxable
       isTaxable
       amount
@@ -270,34 +256,16 @@ const OrderDetailFragment = gql`
         }
       }
       unitPrice {
-        _id
         amount
         isTaxable
         isNetPrice
         currency
       }
       total {
-        _id
         amount
         isTaxable
         isNetPrice
         currency
-      }
-    }
-
-    logs {
-      _id
-      created
-      level
-      message
-      user {
-        _id
-        username
-        isGuest
-        avatar {
-          _id
-          url
-        }
       }
     }
   }

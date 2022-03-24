@@ -209,7 +209,7 @@ const ProductDetail = ({ product }) => {
 
   return (
     <>
-      <div className="flex justify-between items-center flex-wrap space-y-1">
+      <div className="flex flex-wrap items-center justify-between space-y-1">
         <h1 className="">{product?.__typename}</h1>
         <SelectOptions
           options={activeOptions}

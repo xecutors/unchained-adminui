@@ -67,7 +67,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 ml-auto pt-2 w-full border-gray-200 bg-white rounded lg:shadow">
+            <div className="col-span-2 ml-auto w-full rounded border-gray-200 bg-white pt-2 lg:shadow">
               <div>
                 <TextField
                   name="title"
@@ -99,7 +99,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     id: 'update_filter',
                     defaultMessage: 'Update filter',
                   })}
-                  className="ml-auto my-4 mr-4"
+                  className="my-4 ml-auto mr-4"
                 />
               </div>
             </div>

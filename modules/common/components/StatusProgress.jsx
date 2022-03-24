@@ -9,7 +9,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
 
   const { content } = timeline[data.status];
 
-  const status = statusTypes.filter(({ value }) => timeline[value].visible);
+  const status = statusTypes.filter(({ value }) => timeline[value]?.visible);
 
   return (
     <>

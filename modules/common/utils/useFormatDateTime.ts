@@ -13,7 +13,9 @@ const useFormatDateTime = () => {
   ) => {
     if (!date) return 'N/A';
 
-    return new Intl.DateTimeFormat(locale, options).format(date);
+    return new Intl.DateTimeFormat(locale, options).format(
+      new Date(date).getTime(),
+    );
   };
 
   return { formatDateTime };
