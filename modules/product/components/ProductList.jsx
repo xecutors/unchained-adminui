@@ -14,7 +14,7 @@ const ProductList = ({ products, showAvatar = true }) => {
               defaultMessage: 'Name',
             })}
           </Table.Cell>
-          <Table.Cell className="sm:py-1 text-gray-500 pr-6 text-left text-sm font-medium tracking-wider">
+          <Table.Cell className="pr-6 text-left text-sm font-medium tracking-wider text-gray-500 sm:py-1">
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',

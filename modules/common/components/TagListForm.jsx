@@ -1,50 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import SubmitButton from '../../forms/components/SubmitButton';
+import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import Button from './Button';
+import FormWrapper from './FormWrapper';
+import SaveAndCancelButtons from './SaveAndCancelButtons';
 import TagInput from './TagInput';
 
-const TagListForm = ({ tags, meta, onCancel, onSubmit }) => {
+const TagListForm = ({ tags, onSubmit, onCancel }) => {
   const { formatMessage } = useIntl();
-  const { tag, setTag } = useState();
+  const successMessage = formatMessage({
+    id: 'tags_updated',
+    defaultMessage: 'Tags updated successfully',
+  });
+
   const form = useForm({
     submit: onSubmit,
-    successMessage: '',
+    successMessage,
+    onSubmitSuccess: onCancel,
     initialValues: {
-      meta: JSON.stringify(meta || {}, null, 2),
+      tags,
+      sequence: 0,
     },
   });
   return (
-    <Form form={form}>
-      <div className="flex flex-col gap-2">
-        <TagInput onChange={() => setTag} tagList={tags} />
-        <JSONAreaField
-          id="meta"
-          name="meta"
-          value={form.formik.initialValues}
-          label={formatMessage({ id: 'meta', defaultMessage: 'Meta' })}
-        />
-        <div className="flex gap-4">
-          <Button
-            text={formatMessage({
-              id: 'cancel',
-              defaultMessage: 'Cancel',
-            })}
-            onClick={onCancel}
-            className="border-gray-300 bg-white text-gray-700"
+    <FormWrapper>
+      <Form form={form}>
+        <div className="flex flex-col gap-2">
+          <TagInput
+            onChange={(value) => form.formik.setFieldValue('tags', value)}
+            tagList={tags}
           />
-          <SubmitButton
+          <TextField
+            required
+            type="number"
+            name="sequence"
             label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
+              id: 'sequence',
+              defaultMessage: 'Sequence',
             })}
           />
         </div>
-      </div>
-    </Form>
+        <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
+      </Form>
+    </FormWrapper>
   );
 };
 

@@ -13,6 +13,7 @@ const AssortmentFragment = gql`
     }
     isBase
     isRoot
+    tags
     childrenCount
     media {
       _id

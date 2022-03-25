@@ -46,7 +46,7 @@ const Table = ({ className, ...props }) => {
       {...props}
     >
       {rowsWithSort.header.length ? (
-        <thead className="bg-gray-50 text-gray-700 text-sm">
+        <thead className="bg-gray-50 text-sm text-gray-700">
           {rowsWithSort.header}
         </thead>
       ) : (
@@ -58,7 +58,7 @@ const Table = ({ className, ...props }) => {
         />
       )}
       {rowsWithSort.body.length ? (
-        <tbody className="divide-y divide-gray-200 bg-white flex-1 sm:flex-none">
+        <tbody className="flex-1 divide-y divide-gray-200 bg-white sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}

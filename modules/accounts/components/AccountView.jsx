@@ -27,7 +27,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         </div>
         <div className="mt-5 lg:col-span-2 lg:mt-0">
-          <div className="space-y-6 overflow-hidden rounded-md bg-white shadow p-3 sm:p-6">
+          <div className="space-y-6 overflow-hidden rounded-md bg-white p-3 shadow sm:p-6">
             <UserNameView username={username} _id={_id} />
           </div>
         </div>

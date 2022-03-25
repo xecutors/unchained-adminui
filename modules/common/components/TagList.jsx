@@ -1,21 +1,24 @@
 import { PlusIcon, TagIcon } from '@heroicons/react/outline';
+
 import { useIntl } from 'react-intl';
 import useModal from '../../modal/hooks/useModal';
+
 import Badge from './Badge';
 import Button from './Button';
 import TagListForm from './TagListForm';
 
-const TagList = ({ tags, meta, onSubmit }) => {
+const TagList = ({ defaultValue, onSubmit }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
+
   return (
-    <div className="flex gap-2 mr-auto ml-4 w-1/2">
+    <div className="mr-auto ml-4 flex w-1/2 gap-2">
       <span className="flex items-center">
-        <TagIcon className="h-5 w-5 mr-auto text-indigo-600" />
+        <TagIcon className="mr-auto h-5 w-5 text-indigo-600" />
       </span>
-      <div className="flex flex-wrap gap-2 items-center">
-        {tags ? (
-          tags.map((tag) => (
+      <div className="flex flex-wrap items-center gap-2">
+        {defaultValue?.length ? (
+          defaultValue.map((tag) => (
             <span>
               <Badge text={tag} color="indigo" />
             </span>
@@ -40,8 +43,7 @@ const TagList = ({ tags, meta, onSubmit }) => {
           onClick={() =>
             setModal(
               <TagListForm
-                tags={tags}
-                meta={meta}
+                tags={defaultValue || []}
                 onCancel={() => setModal('')}
                 onSubmit={onSubmit}
               />,

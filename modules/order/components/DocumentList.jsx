@@ -9,7 +9,7 @@ const DocumentList = ({ documents }) => {
     <section className="my-3">
       {documents?.length ? (
         <div className="sm:grid sm:grid-cols-2 sm:gap-1">
-          <dt className="text-sm sr-only font-medium text-gray-500">
+          <dt className="sr-only text-sm font-medium text-gray-500">
             {formatMessage({
               id: 'attachments',
               defaultMessage: 'Attachments',
@@ -25,7 +25,7 @@ const DocumentList = ({ documents }) => {
                   <div className="flex w-0 flex-1 items-center">
                     <a
                       download
-                      className="ml-2 text-indigo-500 w-0 flex-1 truncate"
+                      className="ml-2 w-0 flex-1 truncate text-indigo-500"
                       href={`${document.url}?download=true`}
                     >
                       {document.name}

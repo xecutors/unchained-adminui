@@ -28,6 +28,7 @@ import TabComponent from '../../common/components/TabComponent';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
+import useUpdateProduct from '../hooks/useUpdateProduct';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -208,23 +209,18 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
-  // TODO: Remove mock Data
-  const taggs = [
-    'AUFSAUGENDE PRODUKTE',
-    'AUFSAUGENDE PRODUKTE',
-    'AUFSAUGENDE PRODUKTE',
-    'AUFSAUGENDE PRODUKTE',
-  ];
+  const { updateProduct } = useUpdateProduct();
 
-  const onSubmit = () => {
-    console.log('tags is submitted');
+  const onUpdateTags = async ({ tags, sequence }) => {
+    await updateProduct({ productId: product?._id, tags, sequence });
+    return true;
   };
 
   return (
     <>
       <div className="flex flex-wrap items-center justify-between space-y-1">
         <h1 className="">{product?.__typename}</h1>
-        <TagList tags={taggs} meta={product.meta} onSubmit={onSubmit} />
+        <TagList defaultValue={product?.tags} onSubmit={onUpdateTags} />
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
