@@ -78,8 +78,8 @@ const EmailAddresses = ({
   });
   return (
     <div>
-      <div className="border-t pt-5 md:grid md:grid-cols-3 md:gap-6">
-        <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between md:col-span-1">
+      <div className="border-t pt-5 lg:grid lg:grid-cols-3 lg:gap-6">
+        <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between lg:col-span-1">
           <h3 className="text-lg font-medium leading-6 text-gray-900">
             {formatMessage({
               id: 'email_addresses',
@@ -89,7 +89,7 @@ const EmailAddresses = ({
         </div>
         <div
           className={classNames(
-            'w-full bg-white px-4 py-5 sm:p-6 md:col-span-2',
+            'w-full bg-white px-4 py-5 sm:p-6 lg:col-span-2',
             emailBodyContainer,
           )}
         >
