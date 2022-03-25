@@ -208,6 +208,7 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
+  // TODO: Remove mock Data
   const taggs = [
     'AUFSAUGENDE PRODUKTE',
     'AUFSAUGENDE PRODUKTE',
@@ -215,11 +216,15 @@ const ProductDetail = ({ product }) => {
     'AUFSAUGENDE PRODUKTE',
   ];
 
+  const onSubmit = () => {
+    console.log('tags is submitted');
+  };
+
   return (
     <>
       <div className="flex flex-wrap items-center justify-between space-y-1">
         <h1 className="">{product?.__typename}</h1>
-        <TagList tags={taggs} meta={product.meta} />
+        <TagList tags={taggs} meta={product.meta} onSubmit={onSubmit} />
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}

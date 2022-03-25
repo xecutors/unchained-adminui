@@ -5,7 +5,7 @@ import Badge from './Badge';
 import Button from './Button';
 import TagListForm from './TagListForm';
 
-const TagList = ({ tags, meta }) => {
+const TagList = ({ tags, meta, onSubmit }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   return (
@@ -43,6 +43,7 @@ const TagList = ({ tags, meta }) => {
                 tags={tags}
                 meta={meta}
                 onCancel={() => setModal('')}
+                onSubmit={onSubmit}
               />,
             )
           }

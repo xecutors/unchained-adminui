@@ -7,11 +7,11 @@ import useForm from '../../forms/hooks/useForm';
 import Button from './Button';
 import TagInput from './TagInput';
 
-const TagListForm = ({ tags, meta, onCancel }) => {
+const TagListForm = ({ tags, meta, onCancel, onSubmit }) => {
   const { formatMessage } = useIntl();
   const { tag, setTag } = useState();
   const form = useForm({
-    submit: '',
+    submit: onSubmit,
     successMessage: '',
     initialValues: {
       meta: JSON.stringify(meta || {}, null, 2),
