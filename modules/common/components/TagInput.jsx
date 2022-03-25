@@ -41,7 +41,7 @@ const TagInput = ({ tagList: tags, onChange, buttonText }) => {
         />
       ))}
       <div>
-        <div className="flex h-9 max-w-full rounded-md shadow-sm">
+        <div className="flex h-9 max-w-full gap-2 rounded-md shadow-sm">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <input
               type="text"

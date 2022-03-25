@@ -8,8 +8,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="mt-3 md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1">
+      <div className="mt-3 lg:grid lg:grid-cols-3 lg:gap-6">
+        <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {formatMessage({
@@ -26,8 +26,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </p>
           </div>
         </div>
-        <div className="mt-5 md:col-span-2 md:mt-0">
-          <div className="space-y-6 overflow-hidden rounded-md bg-white shadow sm:p-6">
+        <div className="mt-5 lg:col-span-2 lg:mt-0">
+          <div className="space-y-6 overflow-hidden rounded-md bg-white p-3 shadow sm:p-6">
             <UserNameView username={username} _id={_id} />
           </div>
         </div>
@@ -48,8 +48,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           <div className="border-t border-gray-200" />
         </div>
       </div>
-      <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1">
+      <div className="lg:grid lg:grid-cols-3 lg:gap-6">
+        <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {formatMessage({
@@ -59,7 +59,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </h3>
           </div>
         </div>
-        <div className="mt-5 md:col-span-2 md:mt-0">
+        <div className="mt-5 lg:col-span-2 lg:mt-0">
           <div className="my-2 space-y-6 overflow-hidden rounded-md border-b border-gray-200 bg-white px-4 py-5 shadow sm:p-6">
             <UserTagsView
               tags={tags}
@@ -75,8 +75,8 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           <div className="border-t border-gray-200" />
         </div>
       </div>
-      <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1">
+      <div className="lg:grid lg:grid-cols-3 lg:gap-6">
+        <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {formatMessage({
@@ -86,7 +86,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             </h3>
           </div>
         </div>
-        <div className="mt-5 md:col-span-2 md:mt-0">
+        <div className="mt-5 lg:col-span-2 lg:mt-0">
           <div className="space-y-6 overflow-hidden rounded-md border-b  border-gray-200 bg-white px-4 py-5 shadow sm:p-6 ">
             <UserRolesView roles={roles} userId={_id} />
           </div>

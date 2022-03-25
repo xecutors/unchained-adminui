@@ -33,7 +33,8 @@ const UserRolesView = ({ roles, userId }) => {
       <ChoicesField
         key="user-roles"
         name="updatedRoles"
-        labelClassName="flex flex-col items-center "
+        labelClassName="flex flex-col justify-center"
+        inputClassName="ml-4"
         options={Object.fromEntries(userRoles.map((role) => [role, role]))}
         label={formatMessage({
           id: 'select_role',

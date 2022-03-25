@@ -27,6 +27,8 @@ import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
+import TagList from '../../common/components/TagList';
+import useUpdateProduct from '../hooks/useUpdateProduct';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -207,10 +209,18 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
+  const { updateProduct } = useUpdateProduct();
+
+  const onUpdateTags = async ({ tags, sequence }) => {
+    await updateProduct({ productId: product?._id, tags, sequence });
+    return true;
+  };
+
   return (
     <>
       <div className="flex flex-wrap items-center justify-between space-y-1">
         <h1 className="">{product?.__typename}</h1>
+        <TagList defaultValue={product?.tags} onSubmit={onUpdateTags} />
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}

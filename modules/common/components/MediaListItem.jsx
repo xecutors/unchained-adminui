@@ -6,6 +6,7 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import { stopPropagation } from '../data/miscellaneous';
 import useDisplayImageInModal from '../utils/useDisplayImageInModal';
+import DeleteButton from './DeleteButton';
 
 const MediaListItem = ({
   media,
@@ -38,7 +39,7 @@ const MediaListItem = ({
 
   return (
     <li className="flex flex-wrap gap-4" key={media._id}>
-      <div className="mt-4 flex-1 basis-1/3">
+      <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <img
             src={media?.file?.url}
@@ -68,6 +69,7 @@ const MediaListItem = ({
               <h3 className="text-gray-900">
                 {isEdit ? (
                   <TextField
+                    className="mt-0 px-2 py-0"
                     name="title"
                     label={formatMessage({
                       id: 'title',
@@ -89,6 +91,7 @@ const MediaListItem = ({
               <p className="text-gray-900 sm:block">
                 {isEdit ? (
                   <TextField
+                    className="mt-0 px-2 py-0"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
@@ -113,7 +116,7 @@ const MediaListItem = ({
                 <button
                   type="button"
                   onClick={() => onEdit(!isEdit)}
-                  className="border-r border-gray-300 pr-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  className="pr-4 pl-2 text-sm font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
                 </button>
@@ -130,7 +133,7 @@ const MediaListItem = ({
                   ? formatMessage({ id: 'edit', defaultMessage: 'Edit' })
                   : formatMessage({ id: 'save', defaultMessage: 'Save' })}
               </button>
-              {!isEdit && (
+              {/* {!isEdit && (
                 <div className="flex border-l border-gray-300 pl-4">
                   <button
                     onClick={async (e) => {
@@ -146,11 +149,20 @@ const MediaListItem = ({
                     })}
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </Form>
       </div>
+      <span className="flex items-start ">
+        <DeleteButton
+          className="mt-2 mr-2"
+          onClick={async (e) => {
+            stopPropagation(e);
+            onDelete(media._id);
+          }}
+        />
+      </span>
     </li>
   );
 };

@@ -16,6 +16,7 @@ import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import TabComponent from '../../common/components/TabComponent';
+import TagList from '../../common/components/TagList';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -96,6 +97,15 @@ const AssortmentDetail = ({ assortment }) => {
       assortmentId: assortment?._id,
       assortment: { isRoot: value },
     });
+    return true;
+  };
+
+  const updateAssortmentTags = async ({ tags }) => {
+    await updateAssortment({
+      assortmentId: assortment?._id,
+      assortment: { tags },
+    });
+    return true;
   };
 
   const setActive = async (value) => {
@@ -103,6 +113,7 @@ const AssortmentDetail = ({ assortment }) => {
       assortmentId: assortment?._id,
       assortment: { isActive: value },
     });
+    return true;
   };
 
   const activeOptions = [
@@ -197,6 +208,10 @@ const AssortmentDetail = ({ assortment }) => {
   return (
     <>
       <div className="-ml-2 flex flex-wrap space-y-2 space-x-2 lg:justify-end">
+        <TagList
+          defaultValue={assortment?.tags}
+          onSubmit={updateAssortmentTags}
+        />
         <SelectOptions
           options={baseOptions}
           type={formatMessage({
