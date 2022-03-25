@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { ClipboardListIcon, PaperClipIcon } from '@heroicons/react/solid';
+import { ClipboardListIcon } from '@heroicons/react/solid';
 import NoData from '../../common/components/NoData';
 
 const DocumentList = ({ documents }) => {
@@ -8,8 +8,8 @@ const DocumentList = ({ documents }) => {
   return (
     <section className="my-3">
       {documents?.length ? (
-        <div className="py-4 sm:grid sm:grid-cols-2 sm:gap-1 sm:py-5">
-          <dt className="text-sm font-medium text-gray-500">
+        <div className="sm:grid sm:grid-cols-2 sm:gap-1">
+          <dt className="text-sm sr-only font-medium text-gray-500">
             {formatMessage({
               id: 'attachments',
               defaultMessage: 'Attachments',
@@ -23,13 +23,9 @@ const DocumentList = ({ documents }) => {
                   className="flex items-center justify-between py-3 pl-3 pr-4 text-sm"
                 >
                   <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon
-                      className="h-5 w-5 flex-shrink-0 text-gray-400"
-                      aria-hidden="true"
-                    />
                     <a
                       download
-                      className="ml-2 w-0 flex-1 truncate"
+                      className="ml-2 text-indigo-500 w-0 flex-1 truncate"
                       href={`${document.url}?download=true`}
                     >
                       {document.name}
