@@ -385,36 +385,38 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
           <div className="col-span-2 w-full border-gray-200 bg-white px-8 py-6  shadow-md lg:ml-auto lg:w-full">
             <dl className="divide-y divide-gray-200">
               <div className="py-4 sm:grid sm:gap-4 sm:py-5">
-                <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'full_name',
-                    defaultMessage: 'Full name',
-                  })}
-                </label>
+                {!isEdit && (
+                  <label className="text-sm font-medium text-gray-500">
+                    {formatMessage({
+                      id: 'full_name',
+                      defaultMessage: 'Full name',
+                    })}
+                  </label>
+                )}
                 <div className="flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   {isEdit ? (
-                    <div className="flex w-full">
+                    <div className="flex gap-4 w-full">
                       <TextField
-                        className="mt-0 w-full"
+                        className="mt-4 w-full"
+                        labelClassName="text-sm font-medium text-gray-500"
                         name="firstName"
                         label={formatMessage({
                           id: 'first_name',
                           defaultMessage: 'First name',
                         })}
-                        hideLabel
                         placeholder={formatMessage({
                           id: 'first_name',
                           defaultMessage: 'First name',
                         })}
                       />
                       <TextField
-                        className="ml-2 mt-0 w-full"
+                        className="mt-4 w-full"
+                        labelClassName="text-sm font-medium text-gray-500"
                         name="lastName"
                         label={formatMessage({
                           id: 'last_Name',
                           defaultMessage: 'Last name',
                         })}
-                        hideLabel
                         placeholder={formatMessage({
                           id: 'last_Name',
                           defaultMessage: 'Last name',
