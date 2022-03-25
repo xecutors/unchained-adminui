@@ -22,7 +22,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/enrollments/${enrollment._id}`}>
             <a className="text-blue-600">
@@ -32,13 +32,13 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           {formatDateTime(enrollment.created)}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           {enrollment.expires ? formatDateTime(enrollment.expires) : 'n/a'}
 
@@ -56,7 +56,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       </Table.Cell>
 
       {showUser && enrollment.user && (
-        <Table.Cell className="whitespace-nowrap  px-6 ">
+        <Table.Cell className="whitespace-nowrap px-6">
           <Link href={`/users/${enrollment.user._id}`}>
             <a className="flex items-center text-blue-500">
               <span className="inline-block h-9 w-9 rounded-full">
@@ -73,7 +73,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         </Table.Cell>
       )}
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/products/${enrollment.plan.product._id}`}>
             <span className="flex items-center">
@@ -91,7 +91,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <Badge
           text={enrollment?.status}
           color={ENROLLMENT_STATUS[enrollment.status]}
@@ -99,7 +99,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/payment-provider/${enrollment?.payment?.provider._id}`}>
             <a className="ml-2 text-blue-600">
@@ -109,7 +109,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link
             href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
