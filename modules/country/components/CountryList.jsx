@@ -7,32 +7,32 @@ const CountryList = ({ countries, onRemoveCountry }) => {
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (
-        <Table.Row key={country._id} className="bg-white " header>
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+        <Table.Row key={country._id} header>
+          <Table.Cell>
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             {formatMessage({
               id: 'default_currency',
               defaultMessage: 'Default currency',
             })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             <span className="sr-only">
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             <span className="sr-only">
               {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
             </span>

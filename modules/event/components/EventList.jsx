@@ -7,7 +7,7 @@ const EventList = ({ events }) => {
   return (
     <Table className="min-w-full ">
       {events?.map((event) => (
-        <Table.Row key={event._id} className="bg-white " header>
+        <Table.Row key={event._id} header>
           <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'created',

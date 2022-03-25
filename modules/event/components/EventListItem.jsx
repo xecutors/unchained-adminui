@@ -8,7 +8,7 @@ const EventListItem = ({ event }) => {
   const { formatMessage } = useIntl();
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           <Link href={`/events/${event._id}`}>
             <a className="text-blue-600">
@@ -29,7 +29,7 @@ const EventListItem = ({ event }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           {event.type ? format(new Date(event.created), 'Pp') : 'n/a'}
         </div>

@@ -8,7 +8,7 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
   return (
     <Table className="min-w-full ">
       {languages?.map((language) => (
-        <Table.Row key={language._id} className="bg-white " header>
+        <Table.Row key={language._id} header>
           <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'iso_code',

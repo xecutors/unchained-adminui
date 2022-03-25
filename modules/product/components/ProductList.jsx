@@ -7,21 +7,21 @@ const ProductList = ({ products, showAvatar = true }) => {
   return (
     <Table className="min-w-full ">
       {products?.map((product) => (
-        <Table.Row key={product._id} className="bg-white " header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+        <Table.Row key={product._id} header>
+          <Table.Cell className="text-left text-sm font-medium tracking-wider text-gray-500">
             {formatMessage({
               id: 'name',
               defaultMessage: 'Name',
             })}
           </Table.Cell>
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell className="sm:py-1 text-gray-500 pr-6 text-left text-sm font-medium tracking-wider">
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell className=" text-left text-xs font-medium uppercase  tracking-wider text-gray-500">
+          <Table.Cell className="text-left text-sm font-medium tracking-wider text-gray-500">
             {formatMessage({
               id: 'tags',
               defaultMessage: 'Tags',

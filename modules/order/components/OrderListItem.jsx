@@ -21,8 +21,8 @@ const OrderListItem = ({ order, showUser }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell>
+        <div className="flex items-center text-sm text-gray-900">
           <Link href={`/orders/${order._id}`}>
             <a className="text-blue-600">
               {order?.orderNumber || (
@@ -38,18 +38,18 @@ const OrderListItem = ({ order, showUser }) => {
           </Link>
         </div>
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell>
+        <div className="flex items-center pl-2 text-sm text-gray-500">
           {order.ordered ? format(new Date(order.ordered), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell>
+        <div className="flex items-center pl-2 text-sm text-gray-500">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>
       {showUser && order.user && (
-        <Table.Cell className="whitespace-nowrap  px-6 ">
+        <Table.Cell>
           <Link href={`/order/${order.user._id}`}>
             <a className="flex text-blue-500">
               <Image
@@ -66,7 +66,7 @@ const OrderListItem = ({ order, showUser }) => {
           </Link>
         </Table.Cell>
       )}
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <Badge
           text={order?.status}
           color={ORDER_STATUSES[order.status]}

@@ -7,7 +7,7 @@ const QuotationList = ({ quotations }) => {
   return (
     <Table className="min-w-full ">
       {quotations?.map((quotation) => (
-        <Table.Row key={quotation._id} className="bg-white " header>
+        <Table.Row key={quotation._id} header>
           <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
             {formatMessage({
               id: 'quotation_number',

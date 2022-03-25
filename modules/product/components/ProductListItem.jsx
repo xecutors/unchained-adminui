@@ -15,7 +15,7 @@ const ProductListItem = ({ product, showAvatar }) => {
   const { slug = '' } = product?.texts || {};
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex items-center pl-2 text-sm text-gray-900">
           {showAvatar && (
             <MediaAvatar

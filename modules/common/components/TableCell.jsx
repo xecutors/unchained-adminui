@@ -7,8 +7,8 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
     <Td
       className={classNames(
         header
-          ? 'border-gray-light max-h-[30px] min-h-[40px] border p-3 pl-4 text-left text-xs font-medium uppercase  tracking-wider text-gray-500'
-          : 'border-gray-light max-h-[30px] min-h-[40px] border px-6 sm:p-3',
+          ? 'px-4 py-3 text-left font-medium tracking-wider text-gray-800'
+          : 'max-h-[30px] min-h-[40px] px-4 py-3',
         className,
       )}
       {...props}

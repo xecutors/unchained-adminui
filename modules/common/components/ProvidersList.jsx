@@ -81,21 +81,19 @@ const ProviderList = ({
 
       <Table className="min-w-full ">
         {providers?.map((provider) => (
-          <Table.Row key={provider._id} className="bg-white " header>
-            <Table.Cell className="py-2 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+          <Table.Row key={provider._id} header>
+            <Table.Cell>
               {formatMessage({
                 id: 'interface',
                 defaultMessage: 'Interface',
               })}
             </Table.Cell>
 
-            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+            <Table.Cell>
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </Table.Cell>
 
-            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-              &nbsp;
-            </Table.Cell>
+            <Table.Cell>&nbsp;</Table.Cell>
           </Table.Row>
         ))}
         {providers?.map((provider) => (

@@ -46,7 +46,9 @@ const Table = ({ className, ...props }) => {
       {...props}
     >
       {rowsWithSort.header.length ? (
-        <thead className="bg-gray-50">{rowsWithSort.header}</thead>
+        <thead className="bg-gray-50 text-gray-700 text-sm">
+          {rowsWithSort.header}
+        </thead>
       ) : (
         <NoData
           message={formatMessage({
@@ -56,7 +58,9 @@ const Table = ({ className, ...props }) => {
         />
       )}
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 sm:flex-none">{rowsWithSort.body}</tbody>
+        <tbody className="divide-y divide-gray-200 bg-white flex-1 sm:flex-none">
+          {rowsWithSort.body}
+        </tbody>
       ) : null}
       {rowsWithSort.footer.length ? <tfoot>{rowsWithSort.footer}</tfoot> : null}
     </table>

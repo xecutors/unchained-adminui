@@ -15,22 +15,22 @@ const LogList = ({ logs, user }) => {
       {logs?.length ? (
         <Table className="mt-0 min-w-full rounded-t-none">
           {(logs || [])?.map((log) => (
-            <Table.Row key={log._id} className="bg-white " header>
-              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+            <Table.Row key={log._id} header>
+              <Table.Cell>
                 {formatMessage({
                   id: 'log_created',
                   defaultMessage: 'Created',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'log_level',
                   defaultMessage: 'Level',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'log_message',
                   defaultMessage: 'Message',

@@ -7,29 +7,29 @@ const AssortmentList = ({ assortments, showAvatar = true }) => {
   return (
     <Table className="min-w-full">
       {assortments?.map((assortment) => (
-        <Table.Row key={assortment._id} className="bg-white " header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+        <Table.Row key={assortment._id} header>
+          <Table.Cell>
             {formatMessage({
               id: 'name',
               defaultMessage: 'Name',
             })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell className=" text-left text-xs font-medium uppercase  tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'root',
               defaultMessage: 'Root',
             })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             {formatMessage({
               id: 'base',
               defaultMessage: 'Base',

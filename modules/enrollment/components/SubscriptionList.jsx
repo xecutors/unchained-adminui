@@ -19,24 +19,24 @@ const SubscriptionList = ({ periods }) => {
               className="bg-white "
               header
             >
-              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'order',
                   defaultMessage: 'Order',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'start',
                   defaultMessage: 'Start',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'end',
-                  defaultMessage: 'end',
+                  defaultMessage: 'End',
                 })}
               </Table.Cell>
             </Table.Row>
@@ -44,7 +44,7 @@ const SubscriptionList = ({ periods }) => {
 
           {(periods || [])?.map((period) => (
             <Table.Row key={`${period.start}`}>
-              <Table.Cell className="whitespace-nowrap  px-6 ">
+              <Table.Cell className="whitespace-nowrap px-6 ">
                 <div className="flex items-center pl-2 text-sm text-gray-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber

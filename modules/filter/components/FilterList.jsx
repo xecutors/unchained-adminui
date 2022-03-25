@@ -7,8 +7,8 @@ const FilterList = ({ filters, onRemoveFilter }) => {
   return (
     <Table className="min-w-full ">
       {filters?.map((filter) => (
-        <Table.Row key={filter._id} className="bg-white " header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+        <Table.Row key={filter._id} header>
+          <Table.Cell>
             {formatMessage({
               id: 'filter_key',
               defaultMessage: 'Key',
@@ -16,29 +16,27 @@ const FilterList = ({ filters, onRemoveFilter }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'type',
               defaultMessage: 'Type',
             })}
           </Table.Cell>
 
-          <Table.Cell className="sm:py-1text-gray-500  pr-6 text-left text-xs font-medium uppercase tracking-wider">
+          <Table.Cell>
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'options',
               defaultMessage: 'Options',
             })}
           </Table.Cell>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-            &nbsp;
-          </Table.Cell>
+          <Table.Cell>&nbsp;</Table.Cell>
         </Table.Row>
       ))}
       {filters?.map((filter) => (
