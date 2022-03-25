@@ -16,6 +16,7 @@ import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import TabComponent from '../../common/components/TabComponent';
+import TagList from '../../common/components/TagList';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -197,6 +198,7 @@ const AssortmentDetail = ({ assortment }) => {
   return (
     <>
       <div className="-ml-2 flex flex-wrap space-y-2 space-x-2 lg:justify-end">
+        <TagList tags={assortment?.tags} meta={assortment?.meta} />
         <SelectOptions
           options={baseOptions}
           type={formatMessage({

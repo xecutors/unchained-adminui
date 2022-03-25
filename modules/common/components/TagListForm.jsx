@@ -7,16 +7,14 @@ import useForm from '../../forms/hooks/useForm';
 import Button from './Button';
 import TagInput from './TagInput';
 
-const TagForm = ({ tags, onCancel }) => {
+const TagListForm = ({ tags, meta, onCancel }) => {
   const { formatMessage } = useIntl();
   const { tag, setTag } = useState();
   const form = useForm({
     submit: '',
     successMessage: '',
     initialValues: {
-      meta: '',
-      title: '',
-      value: '',
+      meta: JSON.stringify(meta || {}, null, 2),
     },
   });
   return (
@@ -50,4 +48,4 @@ const TagForm = ({ tags, onCancel }) => {
   );
 };
 
-export default TagForm;
+export default TagListForm;

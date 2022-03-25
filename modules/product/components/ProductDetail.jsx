@@ -8,8 +8,6 @@ import {
   ColorSwatchIcon,
   PresentationChartLineIcon,
   UsersIcon,
-  TagIcon,
-  PlusIcon,
 } from '@heroicons/react/solid';
 
 import { toast } from 'react-toastify';
@@ -29,9 +27,7 @@ import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import TabComponent from '../../common/components/TabComponent';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
-import Button from '../../common/components/Button';
-import useModal from '../../modal/hooks/useModal';
-import TagForm from '../../common/components/TagForm';
+import TagList from '../../common/components/TagList';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -67,7 +63,6 @@ const ProductDetail = ({ product }) => {
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
-  const { setModal } = useModal();
 
   const { status, __typename } = product;
 
@@ -213,26 +208,18 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
-  const taggs = ['medical', 'lab', 'houses'];
+  const taggs = [
+    'AUFSAUGENDE PRODUKTE',
+    'AUFSAUGENDE PRODUKTE',
+    'AUFSAUGENDE PRODUKTE',
+    'AUFSAUGENDE PRODUKTE',
+  ];
 
   return (
     <>
       <div className="flex flex-wrap items-center justify-between space-y-1">
         <h1 className="">{product?.__typename}</h1>
-        <div className="flex">
-          <Button
-            text={
-              <>
-                <PlusIcon className="h-5 w-5" />
-              </>
-            }
-            onClick={() =>
-              setModal(<TagForm tags={taggs} onCancel={() => setModal('')} />)
-            }
-          />
-
-          <TagIcon className="h-5 w-5 mr-auto" />
-        </div>
+        <TagList tags={taggs} meta={product.meta} />
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
