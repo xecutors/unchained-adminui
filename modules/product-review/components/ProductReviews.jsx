@@ -9,9 +9,9 @@ import ProductReviewsReport from './ProductReviewsReport';
 const productReviews = [
   {
     _id: 'bdaa8bd9-cebc-4f52-9f39-8c7c8aaf8e3a',
-    created: '1646142170000',
+    created: 1646142170000,
     deleted: null,
-    updated: '1625505365000',
+    updated: 1625505365000,
     author: {
       _id: '358a5be9-2f6d-46d6-a44b-2e9ecc0e9f40',
       username: 'fsutter0',
@@ -46,9 +46,9 @@ const productReviews = [
   },
   {
     _id: '55d73218-57ee-4e50-a02c-8df95057dd11',
-    created: '1645613095000',
-    deleted: '1623016422000',
-    updated: '1645352333000',
+    created: 1645613095000,
+    deleted: 1623016422000,
+    updated: 1645352333000,
     author: {
       _id: '261918cd-98f5-4f5b-9288-ba930bca4193',
       username: 'eandraud1',
@@ -83,9 +83,9 @@ const productReviews = [
   },
   {
     _id: '2a0c9e3a-c150-4593-807c-f668e07a1c89',
-    created: '1638304671000',
+    created: 1638304671000,
     deleted: null,
-    updated: '1635386096000',
+    updated: 1635386096000,
     author: {
       _id: 'e3ce8141-5973-4c31-b9ff-e1ae090877ba',
       username: 'jespinola2',
@@ -120,9 +120,9 @@ const productReviews = [
   },
   {
     _id: 'adbf27c1-3eee-489a-9e1b-48ac565d212c',
-    created: '1641160743000',
-    deleted: '1625457892000',
-    updated: '1616379035000',
+    created: 1641160743000,
+    deleted: 1625457892000,
+    updated: 1616379035000,
     author: {
       _id: '4c8e836c-396c-42a9-b903-3805a4215d26',
       username: 'umiddler3',
@@ -157,9 +157,9 @@ const productReviews = [
   },
   {
     _id: '382fcb95-8e5b-46d4-8304-3548a6f62422',
-    created: '1627911131000',
+    created: 1627911131000,
     deleted: null,
-    updated: '1642629986000',
+    updated: 1642629986000,
     author: {
       _id: '047f53b9-1df3-43ae-9681-7c26c0f36378',
       username: 'bdukelow4',
@@ -194,9 +194,9 @@ const productReviews = [
   },
   {
     _id: 'd2f5b8e7-a74f-40ad-aaa0-d8a13f46eefa',
-    created: '1639030184000',
-    deleted: '1631910286000',
-    updated: '1641618257000',
+    created: 1639030184000,
+    deleted: 1631910286000,
+    updated: 1641618257000,
     author: {
       _id: 'a9a25852-c448-4dc7-ac2b-41c45d67d596',
       username: 'dheardman5',
@@ -231,9 +231,9 @@ const productReviews = [
   },
   {
     _id: 'b078c575-6b56-451d-a67d-9ec6938704f9',
-    created: '1629503283000',
-    deleted: '1625201834000',
-    updated: '1616653690000',
+    created: 1629503283000,
+    deleted: 1625201834000,
+    updated: 1616653690000,
     author: {
       _id: '516f9f41-37e6-4dbb-9011-b44dfac74ffd',
       username: 'cmougel6',
@@ -268,9 +268,9 @@ const productReviews = [
   },
   {
     _id: 'c4c43e61-93a3-4837-8db9-740bf5dbf085',
-    created: '1647248423000',
-    deleted: '1643435915000',
-    updated: '1632064411000',
+    created: 1647248423000,
+    deleted: 1643435915000,
+    updated: 1632064411000,
     author: {
       _id: 'ccaa24fa-1e92-435c-8411-157ffbcce01b',
       username: 'spreator7',
@@ -305,9 +305,9 @@ const productReviews = [
   },
   {
     _id: '1b870eb2-5952-4913-bacf-067c47a29e86',
-    created: '1635265229000',
-    deleted: '1634666360000',
-    updated: '1620386717000',
+    created: 1635265229000,
+    deleted: 1634666360000,
+    updated: 1620386717000,
     author: {
       _id: '67d87632-33b3-446f-8f22-a8a528605de4',
       username: 'cabramamovh8',
@@ -342,9 +342,9 @@ const productReviews = [
   },
   {
     _id: 'c33915ea-030a-4fe1-8962-bff3dc010977',
-    created: '1632648992000',
-    deleted: '1623663996000',
-    updated: '1634982273000',
+    created: 1632648992000,
+    deleted: 1623663996000,
+    updated: 1634982273000,
     author: {
       _id: '0170c018-af33-40ec-8852-9407a847cec4',
       username: 'csurpliss9',

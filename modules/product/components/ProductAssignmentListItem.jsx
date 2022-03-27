@@ -1,5 +1,4 @@
 const ProductAssignmentListItem = ({ variation }) => {
-  console.log(variation);
   return (
     <div>
       <tr>

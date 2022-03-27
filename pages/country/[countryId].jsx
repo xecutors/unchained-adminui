@@ -25,7 +25,7 @@ const normalizeCountry = (country) => {
 const UpdateCountry = () => {
   const { push, query } = useRouter();
   const { countryId } = query;
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { setModal } = useModal();
 
   const { country, loading } = useCountry({ countryId });
@@ -74,11 +74,19 @@ const UpdateCountry = () => {
     );
   };
 
+  const normalizedCountryName = (isoCode) => {
+    return isoCode
+      ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(
+          isoCode,
+        )} (${isoCode})`
+      : '';
+  };
+
   return (
     <>
       <BreadCrumbs />
       <div className="align-center flex min-w-full justify-between">
-        <PageHeader headerText={country?.isoCode} />
+        <PageHeader headerText={normalizedCountryName(country?.isoCode)} />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
       {loading ? (

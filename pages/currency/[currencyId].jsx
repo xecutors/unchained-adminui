@@ -16,7 +16,7 @@ import Loading from '../../modules/common/components/Loading';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { setModal } = useModal();
   const { currencyId } = query;
   const { currency, loading } = useCurrency({ currencyId });
@@ -58,16 +58,19 @@ const UpdateCurrency = () => {
     );
   };
 
+  const normalizedCurrencyName = (isoCode) => {
+    return isoCode
+      ? `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
+          isoCode,
+        )} (${isoCode})`
+      : '';
+  };
+
   return (
     <>
       <BreadCrumbs />
       <div className="align-center flex min-w-full justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'update_currency_header',
-            defaultMessage: 'Update currency',
-          })}
-        />
+        <PageHeader headerText={normalizedCurrencyName(currency?.isoCode)} />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
       {loading ? (
