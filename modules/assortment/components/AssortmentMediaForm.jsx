@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import MediaUploader from '../../common/components/MediaUploader';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
+import useAddAssortmentMedia from '../hooks/useAddAssortmentMedia';
 
 import useAssortmentMedia from '../hooks/useAssortmentMedia';
 import useRemoveAssortmentMedia from '../hooks/useRemoveAssortmentMedia';
@@ -13,6 +14,27 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeAssortmentMedia } = useRemoveAssortmentMedia();
+
+  const { addAssortmentMedia } = useAddAssortmentMedia();
+
+  const onAddMedia = async (media) => {
+    try {
+      await addAssortmentMedia({ assortmentId, media });
+      toast.success(
+        formatMessage({
+          id: 'assortment_media_upload',
+          defaultMessage: 'Media uploaded successfully',
+        }),
+      );
+    } catch (err) {
+      toast.error(
+        formatMessage({
+          id: 'fail_upload',
+          defaultMessage: 'Media upload is unsuccessful',
+        }),
+      );
+    }
+  };
 
   const onRemoveMedia = async (assortmentMediaId) => {
     await setModal(
@@ -49,7 +71,7 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
   return (
     <div className="mx-auto mt-5 max-w-full bg-white py-6 shadow sm:grid sm:grid-cols-12 sm:gap-4 sm:rounded">
       <div className="mx-auto w-full px-6 sm:col-span-6 sm:col-start-1">
-        <MediaUploader onlyDragAndDrop />
+        <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>
       <AssortmentMediaList
         medias={assortmentMedia}

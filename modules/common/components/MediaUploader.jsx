@@ -1,7 +1,45 @@
+import classNames from 'classnames';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { preventDefault, stopPropagation } from '../data/miscellaneous';
 
-const MediaUploader = ({ enableDragAndDrop = true, onlyDragAndDrop, text }) => {
+const MediaUploader = ({
+  enableDragAndDrop = true,
+  onlyDragAndDrop,
+  text,
+  addMedia,
+}) => {
+  const [dragArea, setDragArea] = useState(false);
   const { formatMessage } = useIntl();
+
+  const handleDragOver = (event) => {
+    preventDefault(event);
+    stopPropagation(event);
+    setDragArea(true);
+  };
+
+  const handleDragEnter = (event) => {
+    preventDefault(event);
+    stopPropagation(event);
+    setDragArea(true);
+  };
+
+  const handleDragLeave = (event) => {
+    preventDefault(event);
+    stopPropagation(event);
+    setDragArea(false);
+  };
+
+  const handleDrop = (event) => {
+    preventDefault(event);
+    stopPropagation(event);
+    const { files } = event.dataTransfer;
+    [...files].forEach((file) => {
+      addMedia(file);
+    });
+    setDragArea(false);
+  };
+
   return (
     <>
       {!onlyDragAndDrop && (
@@ -33,9 +71,21 @@ const MediaUploader = ({ enableDragAndDrop = true, onlyDragAndDrop, text }) => {
         </div>
       )}
       {enableDragAndDrop && (
-        <div>
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+        >
           <label className="block text-sm font-medium text-gray-700" />
-          <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+          <div
+            className={classNames(
+              'mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6',
+              {
+                'border-indigo-600': dragArea,
+              },
+            )}
+          >
             <div className="space-y-1 text-center">
               <svg
                 className="mx-auto h-12 w-12 text-gray-400"
