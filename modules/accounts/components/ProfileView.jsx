@@ -13,7 +13,7 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
 
-const ProfileView = ({ profile = {}, avatar, name, _id }) => {
+const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
   const fileInputRef = useRef();
   const { formatMessage } = useIntl();
@@ -82,8 +82,21 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
     submit: onUpdateProfile,
     successMessage,
     initialValues: {
-      ...profile,
-      ...profile?.address,
+      birthday: profile.birthday,
+      displayName: profile.displayName,
+      gender: profile.gender,
+      phoneMobile: profile.phoneMobile,
+      address: {
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        city: profile.city,
+        company: profile.company,
+        addressLine: profile.addressLine,
+        addressLine2: profile.addressLine2,
+        postalCode: profile.postalCode,
+        countryCode: profile.countryCode,
+        regionCode: profile.regionCode,
+      },
     },
   });
 
@@ -201,7 +214,7 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
                       hideLabel
                     />
                   ) : (
-                    <span className="flex-grow">{name}</span>
+                    <span className="flex-grow">{profile?.displayName}</span>
                   )}
                 </div>
               </div>
