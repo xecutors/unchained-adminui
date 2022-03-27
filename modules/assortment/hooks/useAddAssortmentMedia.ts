@@ -14,7 +14,7 @@ const useAddAssortmentMedia = () => {
   const addAssortmentMedia = async ({ assortmentId, media }) => {
     return addAssortmentMediaMutation({
       variables: { assortmentId, media },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentMedia'],
     });
   };
 

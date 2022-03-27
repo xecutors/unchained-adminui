@@ -14,7 +14,7 @@ const useAddProductMedia = () => {
   const addProductMedia = async ({ productId, media }) => {
     return addProductMediaMutation({
       variables: { productId, media },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['ProductMedia'],
     });
   };
 

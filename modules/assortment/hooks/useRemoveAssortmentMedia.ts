@@ -16,7 +16,7 @@ const useRemoveAssortmentMedia = () => {
   const removeAssortmentMedia = async ({ assortmentMediaId }) => {
     return removeAssortmentMediaMutation({
       variables: { assortmentMediaId },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentMedia'],
     });
   };
 

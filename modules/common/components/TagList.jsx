@@ -18,8 +18,8 @@ const TagList = ({ defaultValue, onSubmit }) => {
       </span>
       <div className="flex flex-wrap items-center gap-2">
         {defaultValue?.length ? (
-          defaultValue.map((tag) => (
-            <span>
+          defaultValue.map((tag, key) => (
+            <span key={`${tag}${key + 1}`}>
               <Badge text={tag} color="indigo" />
             </span>
           ))
