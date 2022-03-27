@@ -1,4 +1,4 @@
-import { PlusIcon, TagIcon } from '@heroicons/react/outline';
+import { PencilAltIcon, TagIcon } from '@heroicons/react/outline';
 
 import { useIntl } from 'react-intl';
 import useModal from '../../modal/hooks/useModal';
@@ -37,7 +37,7 @@ const TagList = ({ defaultValue, onSubmit }) => {
           className="py-0 px-0"
           text={
             <>
-              <PlusIcon className="h-5 w-5" />
+              <PencilAltIcon className="h-5 w-5" />
             </>
           }
           onClick={() =>
