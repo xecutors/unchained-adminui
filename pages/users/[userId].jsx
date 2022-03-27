@@ -84,7 +84,7 @@ const UserProfile = () => {
 
   return (
     <div className=" max-w-6xl">
-      <BreadCrumbs />
+      <BreadCrumbs currentPageTitle={user ? `${user.name}` : ''} />
       <PageHeader
         headerText={formatMessage({
           id: 'users_setting_list_header',

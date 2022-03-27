@@ -12,6 +12,7 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import { getInterfaceLabel } from '../../modules/common/utils/utils';
 
 const PaymentProviderUpdate = () => {
   const { formatMessage } = useIntl();
@@ -68,7 +69,9 @@ const PaymentProviderUpdate = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={getInterfaceLabel(paymentProvider?.interface)}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({

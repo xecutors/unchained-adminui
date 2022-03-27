@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const BreadCrumbs = ({ routeName }) => {
+const BreadCrumbs = ({ routeName, currentPageTitle }) => {
   const router = useRouter();
   const pathArr = router.asPath
 
@@ -54,7 +54,10 @@ const BreadCrumbs = ({ routeName }) => {
               )}
               <Link href={data.path}>
                 <a className="text-sm font-medium capitalize text-gray-500 hover:text-gray-700">
-                  {data.name}
+                  {/* if current page title is provided display that instead of using page id */}
+                  {i === result.length - 1 && currentPageTitle
+                    ? currentPageTitle
+                    : data.name}
                 </a>
               </Link>
             </div>

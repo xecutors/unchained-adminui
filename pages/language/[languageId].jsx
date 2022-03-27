@@ -25,7 +25,7 @@ const UpdateLanguage = () => {
   const onSubmitSuccess = () => {
     push('/language');
   };
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   const onSubmit = async ({ isoCode, isActive }) => {
     await updateLanguage({ isoCode, isActive, languageId });
@@ -59,16 +59,21 @@ const UpdateLanguage = () => {
     );
   };
 
+  const normalizeLanguageName = (isoCode) => {
+    return isoCode
+      ? `${new Intl.DisplayNames([locale], { type: 'language' }).of(
+          language.isoCode,
+        )} (${isoCode})`
+      : '';
+  };
+
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={normalizeLanguageName(language?.isoCode)}
+      />
       <div className="align-center flex min-w-full justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'update_language_header',
-            defaultMessage: 'Update language',
-          })}
-        />
+        <PageHeader headerText={normalizeLanguageName(language?.isoCode)} />
 
         <HeaderDeleteButton onClick={onDelete} />
       </div>

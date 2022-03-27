@@ -68,7 +68,9 @@ const UpdateCurrency = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={normalizedCurrencyName(currency?.isoCode)}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader headerText={normalizedCurrencyName(currency?.isoCode)} />
         <HeaderDeleteButton onClick={onDelete} />

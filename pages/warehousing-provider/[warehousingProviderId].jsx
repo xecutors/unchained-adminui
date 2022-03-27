@@ -12,6 +12,7 @@ import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import { getInterfaceLabel } from '../../modules/common/utils/utils';
 
 const WarehousingProviderUpdate = () => {
   const { formatMessage } = useIntl();
@@ -68,7 +69,9 @@ const WarehousingProviderUpdate = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={getInterfaceLabel(warehousingProvider?.interface)}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({
