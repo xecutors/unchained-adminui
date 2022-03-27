@@ -108,6 +108,14 @@ export const validateDateBefore = (dateToCompare): Validator => ({
   intlMessageValues: { dateToCompare: format(dateToCompare, DATE_FORMAT) },
 });
 
+export const validateRequiredTag = (isRequired): Validator => ({
+  isValid: (value) => (isRequired ? value.length > 0 : true),
+  intlMessageDescriptor: {
+    id: 'error_tag_required',
+    defaultMessage: '{label} you must provide at least one tag',
+  },
+});
+
 export const validateDateAfter = (dateToCompare): Validator => {
   return {
     isValid: (value) => {

@@ -68,7 +68,6 @@ const FilterableDropdown = ({
                       id: 'search',
                       defaultMessage: 'Search',
                     })}
-                    defaultValue={currentSelection}
                     value={currentSelection}
                     x-model="search"
                     onClick={() => {

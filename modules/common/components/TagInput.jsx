@@ -1,9 +1,24 @@
+import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import {
+  preventDefault,
+  stopPropagation,
+  stopPropagationAndPreventDefault,
+} from '../data/miscellaneous';
 import Badge from './Badge';
 import Button from './Button';
 
-const TagInput = ({ tagList: tags, onChange, buttonText }) => {
+const TagInput = ({
+  tagList: tags,
+  onChange,
+  buttonText = '',
+  disabled = false,
+  name = 'tag-input',
+  id = 'tag-input',
+  className: classes,
+  placeholder,
+}) => {
   const { formatMessage } = useIntl();
   const [tagList, setTagList] = useState([...(tags || [])]);
 
@@ -45,23 +60,35 @@ const TagInput = ({ tagList: tags, onChange, buttonText }) => {
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <input
               type="text"
-              id="tag-input"
+              id={id || name}
+              name={name}
               onKeyUp={(e) => {
-                e.stopPropagation();
                 if (e.key === 'Enter') {
                   addTag();
                 }
+                stopPropagationAndPreventDefault(e);
               }}
               onKeyDown={(e) => {
-                e.stopPropagation();
+                if (e.key === 'Enter') {
+                  preventDefault(e);
+                }
+                stopPropagation(e);
               }}
               onChange={(e) => setNewTag(e.target.value)}
-              className="border-gray-l-white block w-full rounded-none rounded-l-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm"
-              placeholder={formatMessage({
-                id: 'search_tag',
-                defaultMessage: 'Search tag',
-              })}
+              className={classNames(
+                'border-gray-l-white block w-full rounded-none rounded-l-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm',
+                classes,
+              )}
+              placeholder={
+                placeholder ||
+                formatMessage({
+                  id: 'search_tag',
+                  defaultMessage: 'Search tag',
+                })
+              }
               value={newTag}
+              disabled={disabled}
+              autoComplete="off"
             />
           </div>
 

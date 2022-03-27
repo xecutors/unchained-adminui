@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
-import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 
@@ -11,6 +10,7 @@ import useAddAssortmentFilter from '../hooks/useAddAssortmentFilter';
 import FormErrors from '../../forms/components/FormErrors';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import useFiltersList from '../../filter/hooks/useFiltersList';
+import TagInputField from '../../forms/components/TagInputField';
 
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
@@ -20,7 +20,6 @@ const normalizeFilters = (filterList) => {
 };
 
 const AssortmentFiltersForm = ({ assortmentId }) => {
-  const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentFilter } = useAddAssortmentFilter();
   const { filters } = useFiltersList({ limit: 300 });
@@ -34,7 +33,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
     defaultMessage: 'Saved',
   });
 
-  const onSubmit = async ({ filterId }) => {
+  const onSubmit = async ({ filterId, tags }) => {
     await addAssortmentFilter({ filterId, assortmentId, tags });
     return true;
   };
@@ -53,16 +52,10 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
       <div className="shadow sm:rounded-md">
         <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
           <div className="col-span-12">
-            <TagInput
+            <TagInputField
               name="tags"
               id="tags"
-              label={formatMessage({
-                id: 'tags',
-                defaultMessage: 'Tags',
-              })}
-              onChange={(newTags) => setTags(newTags)}
-              autoComplete="on"
-              options={{}}
+              required
               className="mt-1 w-full py-2 text-sm font-medium   text-gray-500 sm:ml-1"
             />
           </div>

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
-import TagInput from '../../common/components/TagInput';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
 import useSearchAssortments from '../hooks/useSearchAssortments';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
+import TagInputField from '../../forms/components/TagInputField';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -19,7 +19,6 @@ const normalizeAssortments = (productsList = []) => {
 };
 
 const AssortmentLinkForm = ({ assortmentId }) => {
-  const [tags, setTags] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
   const [queryString, setQueryString] = useState('');
@@ -28,7 +27,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
     limit: 50,
   });
 
-  const onSubmit = async ({ childAssortmentId }) => {
+  const onSubmit = async ({ childAssortmentId, tags }) => {
     await addAssortmentLink({
       childAssortmentId,
       parentAssortmentId: assortmentId,
@@ -56,16 +55,9 @@ const AssortmentLinkForm = ({ assortmentId }) => {
       <div className="shadow sm:rounded-md">
         <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
           <div className="col-span-12">
-            <TagInput
+            <TagInputField
               name="tags"
               id="tags"
-              label={formatMessage({
-                id: 'tags',
-                defaultMessage: 'Tags',
-              })}
-              onChange={(newTags) => setTags(newTags)}
-              autoComplete="on"
-              options={{}}
               className="mt-1 w-full text-sm font-medium text-gray-500"
             />
           </div>

@@ -211,8 +211,8 @@ const ProductDetail = ({ product }) => {
 
   const { updateProduct } = useUpdateProduct();
 
-  const onUpdateTags = async ({ tags, sequence }) => {
-    await updateProduct({ productId: product?._id, tags, sequence });
+  const onUpdateTags = async ({ tags }) => {
+    await updateProduct({ productId: product?._id, tags, sequence: 1 });
     return true;
   };
 

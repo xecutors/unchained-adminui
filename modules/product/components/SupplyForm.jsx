@@ -69,7 +69,6 @@ const SupplyForm = ({ productId }) => {
   });
 
   useEffect(() => {
-    console.log(dimensions);
     if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
   }, [dimensions]);
   return (
