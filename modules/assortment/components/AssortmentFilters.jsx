@@ -27,16 +27,10 @@ const AssortmentFilters = ({ assortmentId }) => {
           setModal('');
           await removeAssortmentFilter({ assortmentFilterId });
           toast.success(
-            formatMessage(
-              {
-                id: 'assortment_filter_deleted',
-                defaultMessage:
-                  'Assortment filter {assortmentFilterId} deleted successfully',
-              },
-              {
-                assortmentFilterId,
-              },
-            ),
+            formatMessage({
+              id: 'assortment_filter_deleted',
+              defaultMessage: 'Assortment filter deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -87,7 +81,7 @@ const AssortmentFilters = ({ assortmentId }) => {
           <Loading />
         </div>
       ) : (
-        <div className="ml-auto w-full py-2 px-6 shadow-md md:col-span-2">
+        <div className="ml-auto w-full bg-white py-2 px-6 shadow-md md:col-span-2">
           <AssortmentFiltersList
             filters={assortmentFilters}
             onRemoveFilter={onRemoveFilter}

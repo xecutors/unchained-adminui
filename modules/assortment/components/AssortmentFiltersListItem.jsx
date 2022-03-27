@@ -27,7 +27,7 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
       </div>
       <div className="basis-1/4 space-y-1 p-2">
         {tags?.map((tag) => (
-          <Badge color="indigo" text={tag} />
+          <Badge color="indigo" text={tag} key={tag} />
         ))}
       </div>
       <div className=" p-2" onClick={() => onDelete(_id)}>

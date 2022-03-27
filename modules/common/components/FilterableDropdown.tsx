@@ -68,7 +68,7 @@ const FilterableDropdown = ({
                       id: 'search',
                       defaultMessage: 'Search',
                     })}
-                    value={currentSelection}
+                    defaultValue={currentSelection}
                     x-model="search"
                     onClick={() => {
                       setCurrentSelection('');
@@ -108,7 +108,6 @@ const FilterableDropdown = ({
                       placeholder={field.placeholder}
                       autoComplete={field.autoComplete}
                       value={field.value}
-                      {...field}
                     />
                   </div>
                 </>
