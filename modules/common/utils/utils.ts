@@ -14,8 +14,10 @@ const useFormatPrice = () => {
   return { formatPrice };
 };
 
-const getInterfaceLabel = ({ label, version }) => {
-  return `${label} ${version}`;
+const getInterfaceLabel = (
+  { label, version } = { label: null, version: null },
+) => {
+  return label && version ? `${label} ${version}` : '';
 };
 
 const classNames = (...classes) => {

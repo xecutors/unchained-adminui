@@ -12,6 +12,7 @@ import useUpdateDeliveryProvider from '../../modules/delivery-provider/hooks/use
 import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDeliveryProvider';
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import { getInterfaceLabel } from '../../modules/common/utils/utils';
 
 const DeliveryProviderUpdate = () => {
   const { formatMessage } = useIntl();
@@ -68,7 +69,9 @@ const DeliveryProviderUpdate = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={getInterfaceLabel(deliveryProvider?.interface)}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({

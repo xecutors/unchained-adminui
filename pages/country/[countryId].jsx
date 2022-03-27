@@ -84,7 +84,7 @@ const UpdateCountry = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs currentPageTitle={normalizedCountryName(country?.isoCode)} />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader headerText={normalizedCountryName(country?.isoCode)} />
         <HeaderDeleteButton onClick={onDelete} />

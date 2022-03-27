@@ -57,7 +57,9 @@ const OrderDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs />
+      <BreadCrumbs
+        currentPageTitle={order?.orderNumber ? `#${order?.orderNumber}` : ''}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({

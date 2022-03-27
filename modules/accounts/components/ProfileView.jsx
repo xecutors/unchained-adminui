@@ -77,6 +77,7 @@ const ProfileView = ({ profile = {}, avatar, name, _id }) => {
     id: 'profile_updated',
     defaultMessage: 'Profile updated successfully!',
   });
+
   const form = useForm({
     submit: onUpdateProfile,
     successMessage,
