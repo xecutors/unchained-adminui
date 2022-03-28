@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { useState } from 'react';
 import { PencilAltIcon } from '@heroicons/react/solid';
+
 import TextField from '../../forms/components/TextField';
 import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';

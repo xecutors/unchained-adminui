@@ -1,6 +1,5 @@
-import { TrashIcon } from '@heroicons/react/solid';
-/* import Image from 'next/image'; */
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 
 const AssortmentProductListItem = ({ link, onDelete }) => {
   const { _id, product, tags } = link;
@@ -18,9 +17,7 @@ const AssortmentProductListItem = ({ link, onDelete }) => {
           <Badge text={tag} color="cyan" key={tag} />
         ))}
       </div>
-      <div onClick={() => onDelete(_id)}>
-        <TrashIcon className="h-5 w-5 cursor-pointer text-red-400" />
-      </div>
+      <DeleteButton onClick={() => onDelete(_id)} />
     </div>
   );
 };

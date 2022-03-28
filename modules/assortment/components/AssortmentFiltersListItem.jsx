@@ -1,6 +1,7 @@
-import { TrashIcon } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
+
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 
 const AssortmentFiltersListItem = ({ link, onDelete }) => {
   const { formatMessage } = useIntl();
@@ -30,9 +31,7 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
           <Badge color="indigo" text={tag} key={tag} />
         ))}
       </div>
-      <div className=" p-2" onClick={() => onDelete(_id)}>
-        <TrashIcon className="h-5 w-5 cursor-pointer text-red-400" />
-      </div>
+      <DeleteButton onClick={() => onDelete(_id)} />
     </div>
   );
 };

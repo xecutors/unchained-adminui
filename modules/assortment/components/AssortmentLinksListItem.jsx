@@ -1,5 +1,5 @@
-import { TrashIcon } from '@heroicons/react/solid';
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 
 const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent }) => {
   return (
@@ -28,9 +28,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent }) => {
           </div>
         )}
       </div>
-      <div onClick={() => onDelete(linkId)}>
-        <TrashIcon className="h-5 w-5 cursor-pointer text-red-400" />
-      </div>
+      <DeleteButton onClick={() => onDelete(linkId)} />
     </div>
   );
 };

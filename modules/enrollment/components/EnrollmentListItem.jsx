@@ -6,7 +6,6 @@ import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
-import { getInterfaceLabel } from '../../common/utils/utils';
 
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
@@ -97,28 +96,6 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
           color={ENROLLMENT_STATUS[enrollment.status]}
           square
         />
-      </Table.Cell>
-
-      <Table.Cell className="whitespace-nowrap px-6">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
-          <Link href={`/payment-provider/${enrollment?.payment?.provider._id}`}>
-            <a className="ml-2 text-blue-600">
-              {getInterfaceLabel(enrollment?.payment?.provider?.interface)}
-            </a>
-          </Link>
-        </div>
-      </Table.Cell>
-
-      <Table.Cell className="whitespace-nowrap px-6">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
-          <Link
-            href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
-          >
-            <a className="ml-2 text-blue-600">
-              {getInterfaceLabel(enrollment?.payment?.provider?.interface)}
-            </a>
-          </Link>
-        </div>
       </Table.Cell>
     </Table.Row>
   );

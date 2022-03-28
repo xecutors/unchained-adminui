@@ -8,28 +8,28 @@ const EnrollmentList = ({ enrollments, showUser }) => {
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
         <Table.Row key={enrollment._id} header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell className="uppercase">
             {formatMessage({
               id: 'enrollment_number',
               defaultMessage: 'Enrollment number',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell className="uppercase sm:text-center">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell className="uppercase sm:text-center">
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
             })}
           </Table.Cell>
           {showUser && (
-            <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+            <Table.Cell className="uppercase sm:text-center">
               {formatMessage({
                 id: 'user',
                 defaultMessage: 'User',
@@ -37,29 +37,17 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             </Table.Cell>
           )}
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell className="uppercase">
             {formatMessage({
               id: 'product',
               defaultMessage: 'Product',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell className="uppercase">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',
-            })}
-          </Table.Cell>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-            {formatMessage({
-              id: 'payment',
-              defaultMessage: 'Payment',
-            })}
-          </Table.Cell>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-            {formatMessage({
-              id: 'delivery',
-              defaultMessage: 'Delivery',
             })}
           </Table.Cell>
         </Table.Row>

@@ -1,7 +1,7 @@
-import { TrashIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 
 import Badge from '../../common/components/Badge';
+import DeleteButton from '../../common/components/DeleteButton';
 import NoImage from '../../common/components/NoImage';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
@@ -38,9 +38,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         </div>
       </div>
 
-      <div onClick={() => onDelete(index)}>
-        <TrashIcon className="h-5 w-5 cursor-pointer text-red-400" />
-      </div>
+      <DeleteButton onClick={() => onDelete(index)} />
     </div>
   );
 };
