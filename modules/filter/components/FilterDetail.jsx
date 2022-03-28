@@ -4,7 +4,7 @@ import { DocumentTextIcon, ClipboardListIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
-import TabComponent from '../../common/components/TabComponent';
+import Tab from '../../common/components/Tab';
 import FilterTextForm from './FilterTextForm';
 import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
@@ -131,9 +131,9 @@ const FilterDetail = ({ filter }) => {
           />
         </div>
       </div>
-      <TabComponent tabItems={filterOptions} defaultTab="text">
+      <Tab tabItems={filterOptions} defaultTab="text">
         <GetCurrentTab id={filter?._id} />
-      </TabComponent>
+      </Tab>
     </>
   );
 };

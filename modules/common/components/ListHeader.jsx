@@ -1,6 +1,9 @@
-import AddButton from './AddButton';
+import { PlusSmIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 const ListHeader = ({ addPath, children, addButtonText }) => {
+  const { formatMessage } = useIntl();
   return (
     <div className="px-2 py-3">
       <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
@@ -9,7 +12,18 @@ const ListHeader = ({ addPath, children, addButtonText }) => {
         </div>
         {addPath && (
           <div className="ml-4 mt-2 flex-shrink-0">
-            <AddButton path={addPath} text={addButtonText} />
+            <Link href={addPath}>
+              <a
+                type="button"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <PlusSmIcon className="h-5 w-5" />
+                <span className="ml-2">
+                  {addButtonText ||
+                    formatMessage({ id: 'add', defaultMessage: 'Add' })}
+                </span>
+              </a>
+            </Link>
           </div>
         )}
       </div>

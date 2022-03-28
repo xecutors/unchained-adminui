@@ -5,7 +5,7 @@ import AssortmentAlphabeticalList from '../../../../modules/assortment/component
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
-import TabComponent from '../../../../modules/common/components/TabComponent';
+import Tab from '../../../../modules/common/components/Tab';
 import FiltersAlphabeticalList from '../../../../modules/filter/components/FiltersAlphabeticalList';
 import ProductsAlphabeticalList from '../../../../modules/product/components/ProductsAlphabeticalList';
 import useWork from '../../../../modules/work/hooks/useWork';
@@ -179,10 +179,7 @@ const DailyAnalyticsReportList = () => {
           defaultMessage: 'Synced items report',
         })}
       />
-      <TabComponent
-        tabItems={dailySyncItemReportOptions}
-        defaultTab="new-assortments"
-      >
+      <Tab tabItems={dailySyncItemReportOptions} defaultTab="new-assortments">
         <Wrapper
           list={{
             newAssortments,
@@ -194,7 +191,7 @@ const DailyAnalyticsReportList = () => {
             removedProducts,
           }}
         />
-      </TabComponent>
+      </Tab>
     </>
   );
 };

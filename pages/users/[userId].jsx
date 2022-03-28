@@ -20,7 +20,7 @@ import useUser from '../../modules/accounts/hooks/useUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import TabComponent from '../../modules/common/components/TabComponent';
+import Tab from '../../modules/common/components/Tab';
 
 const GetCurrentTab = ({ user, selectedView }) => {
   if (!user) return <Loading />;
@@ -91,9 +91,9 @@ const UserProfile = () => {
           defaultMessage: 'Users setting',
         })}
       />
-      <TabComponent tabItems={userProfileSettingOptions} defaultTab="profile">
+      <Tab tabItems={userProfileSettingOptions} defaultTab="profile">
         <GetCurrentTab user={user} />
-      </TabComponent>
+      </Tab>
     </div>
   );
 };

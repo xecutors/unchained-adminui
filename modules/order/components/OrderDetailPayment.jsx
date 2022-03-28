@@ -36,15 +36,10 @@ const OrderDetailPayment = ({ order }) => {
           setModal('');
           await payOrder({ orderId: order._id });
           toast.success(
-            formatMessage(
-              {
-                id: 'order_payed',
-                defaultMessage: 'Order {id} payed successfully',
-              },
-              {
-                id: order?._id,
-              },
-            ),
+            formatMessage({
+              id: 'order_payed',
+              defaultMessage: 'Order payed successfully',
+            }),
           );
         }}
       />,

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
-import TabComponent from '../../modules/common/components/TabComponent';
+import Tab from '../../modules/common/components/Tab';
 import AllocateWorkForm from '../../modules/work/components/AllocateWorkForm';
 import DoWorkForm from '../../modules/work/components/DoWorkForm';
 import WorkForm from '../../modules/work/components/WorkForm';
@@ -42,9 +42,9 @@ const WorkManagement = () => {
           defaultMessage: 'Work Management Settings',
         })}
       />
-      <TabComponent tabItems={workSettingOptions} defaultTab="add_work">
+      <Tab tabItems={workSettingOptions} defaultTab="add_work">
         <GetCurrentTab />
-      </TabComponent>
+      </Tab>
     </div>
   );
 };

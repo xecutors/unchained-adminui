@@ -2,14 +2,10 @@ import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
 
 import Badge from './Badge';
-import Form from '../../forms/components/Form';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import useForm from '../../forms/hooks/useForm';
-import FormErrors from '../../forms/components/FormErrors';
-import SubmitButton from '../../forms/components/SubmitButton';
 import { getInterfaceLabel } from '../utils/utils';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
+import ProviderConfigurationForm from './ProviderConfigurationForm';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
@@ -22,14 +18,6 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
     hour: '2-digit',
     minute: '2-digit',
   };
-
-  const form = useForm({
-    initialValues: {
-      configuration: JSON.stringify(provider?.configuration || {}, null, 2),
-    },
-    submit: onSubmit,
-    onSubmitSuccess,
-  });
 
   return (
     <div className="my-6">
@@ -99,37 +87,11 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               </div>
             </div>
 
-            <Form form={form} className="mt-6">
-              <label
-                htmlFor="configuration"
-                className="block text-sm font-medium text-gray-400 sm:mt-px sm:pt-2"
-              >
-                {formatMessage({
-                  id: 'configuration',
-                  defaultMessage: 'Configuration',
-                })}
-              </label>
-              <div className="mt-1 sm:mt-0">
-                <JSONAreaField
-                  id="configuration"
-                  name="configuration"
-                  value={form.formik.values.configuration}
-                  label={formatMessage({
-                    id: 'configuration',
-                    defaultMessage: 'Configuration',
-                  })}
-                  hideLabel
-                />
-                <FormErrors />
-                <SubmitButton
-                  label={formatMessage({
-                    id: 'update_configuration',
-                    defaultMessage: 'Update configuration',
-                  })}
-                  className="my-2"
-                />
-              </div>
-            </Form>
+            <ProviderConfigurationForm
+              onSubmit={onSubmit}
+              onSubmitSuccess={onSubmitSuccess}
+              provider={provider}
+            />
 
             <div className="mt-6 mb-3">
               <dt className="inline-block text-sm font-normal text-gray-400">

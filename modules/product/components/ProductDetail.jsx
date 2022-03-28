@@ -24,7 +24,7 @@ import WarehousingForm from './WarehousingForm';
 import useRemoveProduct from '../hooks/useRemoveProduct';
 import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
-import TabComponent from '../../common/components/TabComponent';
+import Tab from '../../common/components/Tab';
 import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
@@ -226,9 +226,9 @@ const ProductDetail = ({ product }) => {
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         />
       </div>
-      <TabComponent tabItems={productOptions} defaultTab="texts">
+      <Tab tabItems={productOptions} defaultTab="texts">
         <GetCurrentTab id={product?._id} />
-      </TabComponent>
+      </Tab>
     </>
   );
 };

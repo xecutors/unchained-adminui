@@ -16,7 +16,7 @@ import AssortmentLinks from './AssortmentLinks';
 import AssortmentProducts from './AssortmentProducts';
 import AssortmentFilters from './AssortmentFilters';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
-import TabComponent from '../../common/components/TabComponent';
+import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
 
@@ -280,9 +280,9 @@ const AssortmentDetail = ({ assortment }) => {
           })}
         />
       </div>
-      <TabComponent tabItems={assortmentOptions} defaultTab="texts">
+      <Tab tabItems={assortmentOptions} defaultTab="texts">
         <GetCurrentTab id={assortment?._id} />
-      </TabComponent>
+      </Tab>
     </>
   );
 };
