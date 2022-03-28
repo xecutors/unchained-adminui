@@ -7,7 +7,11 @@ import { isValid as isValidDate, isAfter, isBefore, format } from 'date-fns';
 import { MessageDescriptor } from 'react-intl';
 import { PrimitiveType } from 'intl-messageformat';
 import parseDate from './parseDate';
-import { CurrencyCodes, CountryCodes } from '../../common/data/iso-codes';
+import {
+  CurrencyCodes,
+  CountryCodes,
+  LanguageCodes,
+} from '../../common/data/iso-codes';
 
 export const DATE_FORMAT = 'd.M.y';
 
@@ -32,6 +36,14 @@ export const validateEmail: Validator = {
     defaultMessage: '{label} must be a valid email address',
   },
 };
+
+export const validateLanguage = (): Validator => ({
+  isValid: (value) => LanguageCodes.includes(value.toLowerCase()),
+  intlMessageDescriptor: {
+    id: 'error_language_code',
+    defaultMessage: 'Invalid language code',
+  },
+});
 
 export const validateCurrency = (): Validator => ({
   isValid: (value) => CurrencyCodes.includes(value.toUpperCase()),

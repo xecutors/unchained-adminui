@@ -4,6 +4,7 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import { validateLanguage } from '../../forms/lib/validators';
 
 const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
   const { formatMessage } = useIntl();
@@ -44,6 +45,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
         <TextField
           name="isoCode"
           id="isoCode"
+          validators={[validateLanguage()]}
           label={formatMessage({
             id: 'iso_code',
             defaultMessage: 'ISO code',
