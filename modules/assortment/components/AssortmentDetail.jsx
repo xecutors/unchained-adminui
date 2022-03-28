@@ -7,6 +7,7 @@ import {
   FilterIcon,
 } from '@heroicons/react/solid';
 
+import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 import SelectOptions from '../../common/components/SelectOptions';
 import AssortmentTextForm from './AssortmentTextForm';
@@ -17,6 +18,7 @@ import AssortmentFilters from './AssortmentFilters';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import TabComponent from '../../common/components/TabComponent';
 import TagList from '../../common/components/TagList';
+import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -47,6 +49,7 @@ const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
+  const { setBaseAssortment } = useSetBaseAssortment();
 
   const assortmentOptions = [
     {
@@ -130,7 +133,15 @@ const AssortmentDetail = ({ assortment }) => {
       description: 'Some description',
       current: isActive,
       bgColor: 'green',
-      onClick: async () => setActive(true),
+      onClick: async () => {
+        await setActive(true);
+        toast.success(
+          formatMessage({
+            id: 'assortment_activated',
+            defaultMessage: 'Assortment activated successfully',
+          }),
+        );
+      },
     },
     {
       id: 'in-active',
@@ -145,7 +156,15 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: !isActive,
       bgColor: 'gray',
-      onClick: async () => setActive(false),
+      onClick: async () => {
+        await setActive(false);
+        toast.success(
+          formatMessage({
+            id: 'assortment_deactivated',
+            defaultMessage: 'Assortment deactivated successfully',
+          }),
+        );
+      },
     },
   ];
 
@@ -159,6 +178,17 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: isBase,
       bgColor: 'green',
+      onClick: !isBase
+        ? async () => {
+            await setBaseAssortment({ assortmentId: assortment?._id });
+            toast.success(
+              formatMessage({
+                id: 'assortment_made_base',
+                defaultMessage: 'Assortment changed to base',
+              }),
+            );
+          }
+        : null,
     },
     {
       id: 'not_base',
@@ -186,7 +216,15 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: isRoot,
       bgColor: 'green',
-      onClick: async () => setIsRoot(true),
+      onClick: async () => {
+        await setIsRoot(true);
+        toast.success(
+          formatMessage({
+            id: 'assortment_changed_to_root',
+            defaultMessage: 'Assortment changed to root',
+          }),
+        );
+      },
     },
     {
       id: 'leaf',
@@ -201,7 +239,15 @@ const AssortmentDetail = ({ assortment }) => {
       description: '',
       current: !isRoot,
       bgColor: 'gray',
-      onClick: async () => setIsRoot(false),
+      onClick: async () => {
+        await setIsRoot(false);
+        toast.success(
+          formatMessage({
+            id: 'assortment_changed_to_leaf',
+            defaultMessage: 'Assortment changed to leaf',
+          }),
+        );
+      },
     },
   ];
 
