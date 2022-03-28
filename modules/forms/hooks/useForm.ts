@@ -61,7 +61,7 @@ const useForm = ({
             setSubmitError(
               (await getSubmitErrorMessage(error)) ||
                 intl.formatMessage({
-                  id: 'auth_error',
+                  id: 'invalid_credential_error',
                   defaultMessage: 'Invalid credential,please try again',
                 }),
             );
