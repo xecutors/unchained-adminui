@@ -28,9 +28,12 @@ const useLoginWithPassword = () => {
     username,
     email,
     password,
+
     /* totpCode, */
     disableHashing = false,
   }) => {
+
+    // const normalizedEmail = email?.trim()
     const variables = {
       username,
       email,

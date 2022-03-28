@@ -62,7 +62,7 @@ const useForm = ({
               (await getSubmitErrorMessage(error)) ||
                 intl.formatMessage({
                   id: 'auth_error',
-                  defaultMessage: 'Incorrect email,please try again',
+                  defaultMessage: 'Invalid credential,please try again',
                 }),
             );
           }
@@ -73,7 +73,7 @@ const useForm = ({
               (await getSubmitErrorMessage(error)) ||
                 intl.formatMessage({
                   id: 'invalid_credential_error',
-            defaultMessage: 'Incorrect password,please try again',
+            defaultMessage: 'Invalid credential,please try again',
                 }),
             );
           }
