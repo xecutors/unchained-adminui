@@ -36,6 +36,15 @@ const MediaUploader = ({
     setDragArea(false);
   };
 
+  const handleSelect = (event) => {
+    stopPropagationAndPreventDefault(event);
+    const { files } = event.target;
+    [...files].forEach((file) => {
+      addMedia(file);
+    });
+    setDragArea(false);
+  };
+
   return (
     <>
       {!onlyDragAndDrop && (
@@ -113,6 +122,7 @@ const MediaUploader = ({
                     name="file-upload"
                     type="file"
                     className="sr-only"
+                    onChange={handleSelect}
                   />
                 </label>
                 <p className="pl-1">
