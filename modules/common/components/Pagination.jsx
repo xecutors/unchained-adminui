@@ -156,7 +156,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                       <span className="font-medium">{chunks}</span>
                     ),
                     to: offset + data.length,
-                    from: offset + 1,
+                    from: offset || 1,
                     total,
                   }}
                 />
@@ -266,13 +266,13 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               onClick={() => changeOffset(offset + limit)}
               className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              {formatMessage({ id: 'next', defaultMessage: 'Next' })}{' '}
+              {formatMessage({ id: 'next', defaultMessage: 'Next' })}
             </button>
           </div>
         </>
       )}
 
-      <div className="ml-2 flex hidden justify-between sm:block sm:justify-end">
+      <div className="ml-2 hidden justify-between sm:block sm:justify-end">
         <div>
           <select
             onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
