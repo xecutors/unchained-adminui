@@ -26,7 +26,7 @@ const SubscriptionList = ({ periods }) => {
                 })}
               </Table.Cell>
 
-              <Table.Cell>
+              <Table.Cell className="text-left">
                 {formatMessage({
                   id: 'start',
                   defaultMessage: 'Start',
@@ -60,16 +60,12 @@ const SubscriptionList = ({ periods }) => {
                 </div>
               </Table.Cell>
 
-              <Table.Cell className="whitespace-nowrap  px-6 ">
-                <div className="flex items-center pl-2 text-sm text-gray-900">
-                  {period?.start ? formatDateTime(period?.start) : 'n/a'}
-                </div>
+              <Table.Cell className="whitespace-nowrap  px-6  pl-2 text-left text-sm text-gray-900">
+                {period?.start ? formatDateTime(period?.start) : 'n/a'}
               </Table.Cell>
 
-              <Table.Cell className="whitespace-nowrap px-6 ">
-                <div className="flex items-center pl-2 text-sm text-gray-900">
-                  {period?.end ? formatDateTime(period?.end) : 'n/a'}
-                </div>
+              <Table.Cell className="whitespace-nowrap px-6  pl-2 text-left text-sm text-gray-900">
+                {period?.end ? formatDateTime(period?.end) : 'n/a'}
               </Table.Cell>
             </Table.Row>
           ))}

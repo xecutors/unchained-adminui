@@ -58,8 +58,6 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
               required
               className="mt-1 w-full py-2 text-sm font-medium   text-gray-500 sm:ml-1"
             />
-          </div>
-          <div className="col-span-12">
             <FilterableDropdown
               name="filterId"
               required
@@ -79,7 +77,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                   }),
                 );
               }}
-              className="mt-1 w-full py-2 text-sm   font-medium text-gray-500"
+              className="mt-1 w-full py-2 text-sm font-medium text-gray-500"
             />
           </div>
         </div>

@@ -48,7 +48,6 @@ const WarehousingForm = ({ productId }) => {
               id: 'sku',
               defaultMessage: 'SKU',
             })}
-            required
             className="mb-4 text-sm font-medium text-gray-500"
           />
 
@@ -59,7 +58,6 @@ const WarehousingForm = ({ productId }) => {
               id: 'baseUnit',
               defaultMessage: 'Base Unit',
             })}
-            required
             className="text-sm font-medium text-gray-500"
           />
         </div>

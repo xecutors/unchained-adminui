@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { InboxIcon } from '@heroicons/react/solid';
-import LogList from '../../order/components/LogList';
+
 import useEnrollmentStatusTypes from '../hooks/useEnrollmentStatusTypes';
 import StatusProgress from '../../common/components/StatusProgress';
 import Accordion from '../../common/components/Accordion';
@@ -178,18 +178,6 @@ const EnrollmentDetail = ({ enrollment }) => {
 
   const headerCSS =
     'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500';
-
-  const logs = {
-    header: (
-      <span className="flex">
-        {formatMessage({
-          id: 'logs',
-          defaultMessage: 'Logs',
-        })}
-      </span>
-    ),
-    body: <LogList logs={enrollment.logs} user={enrollment.user} />,
-  };
 
   const periods = {
     header: (
@@ -395,7 +383,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         </div>
       </section>
 
-      <Accordion data={[periods, logs]} headerCSS={headerCSS} />
+      <Accordion data={[periods]} headerCSS={headerCSS} />
     </>
   );
 };

@@ -15,7 +15,7 @@ const AssortmentProductListItem = ({ link, onDelete }) => {
       </div>
       <div>
         {(tags || [])?.map((tag) => (
-          <Badge text={tag} color="cyan" />
+          <Badge text={tag} color="cyan" key={tag} />
         ))}
       </div>
       <div onClick={() => onDelete(_id)}>

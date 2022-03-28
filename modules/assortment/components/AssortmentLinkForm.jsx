@@ -60,8 +60,6 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               id="tags"
               className="mt-1 w-full text-sm font-medium text-gray-500"
             />
-          </div>
-          <div className="col-span-12">
             <FilterableDropdown
               name="childAssortmentId"
               label={formatMessage({
@@ -70,7 +68,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               })}
               onFilter={setQueryString}
               data={normalizeAssortments(assortments)}
-              className="§mt-1 w-full text-sm font-medium text-gray-500"
+              className="mt-1 w-full py-2 text-sm font-medium text-gray-500"
             />
           </div>
         </div>
