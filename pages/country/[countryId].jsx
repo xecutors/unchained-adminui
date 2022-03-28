@@ -13,6 +13,7 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
+import { normalizeCountryISOCode } from '../../modules/common/utils/utils';
 
 const normalizeCountry = (country) => {
   return {
@@ -74,19 +75,13 @@ const UpdateCountry = () => {
     );
   };
 
-  const normalizedCountryName = (isoCode) => {
-    return isoCode
-      ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(
-          isoCode,
-        )} (${isoCode})`
-      : '';
-  };
-
   return (
     <>
-      <BreadCrumbs currentPageTitle={normalizedCountryName(country?.isoCode)} />
+      <BreadCrumbs
+        currentPageTitle={normalizeCountryISOCode(locale, country?.isoCode)}
+      />
       <div className="align-center flex min-w-full justify-between">
-        <PageHeader headerText={normalizedCountryName(country?.isoCode)} />
+        <PageHeader headerText={normalizeCountry(locale, country?.isoCode)} />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
       {loading ? (

@@ -24,4 +24,26 @@ const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
-export { useFormatPrice, getInterfaceLabel, classNames };
+const normalizeCountryISOCode = (locale, isoCode) => {
+  return isoCode
+    ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(
+        isoCode,
+      )} (${isoCode})`
+    : '';
+};
+
+const normalizeCurrencyISOCode = (locale, isoCode) => {
+  return isoCode
+    ? `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
+        isoCode,
+      )} (${isoCode})`
+    : '';
+};
+
+export {
+  useFormatPrice,
+  getInterfaceLabel,
+  classNames,
+  normalizeCurrencyISOCode,
+  normalizeCountryISOCode,
+};

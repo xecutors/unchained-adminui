@@ -68,6 +68,7 @@ const CommerceForm = ({ productId }) => {
     if (!loading)
       form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
   }, [catalogPrices]);
+  console.log(form);
 
   return (
     <Form className="rounded-md bg-white shadow" form={form}>
@@ -173,12 +174,6 @@ const CommerceForm = ({ productId }) => {
                             id: 'vat_suspect',
                             defaultMessage: 'Vat Suspect',
                           })}
-                          onChange={async (e) => {
-                            await form.formik.setFieldValue(
-                              `pricing[${index}].isTaxable`,
-                              e.target.checked,
-                            );
-                          }}
                           className="ml-1 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
                           type="checkbox"
                         />
@@ -192,12 +187,6 @@ const CommerceForm = ({ productId }) => {
                             id: 'net_price',
                             defaultMessage: 'Net Price',
                           })}
-                          onChange={async (e) => {
-                            await form.formik.setFieldValue(
-                              `pricing[${index}].isNetPrice`,
-                              e.target.checked,
-                            );
-                          }}
                           hideLabel
                           className="mr-2 h-4 w-4 justify-between rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
                           type="checkbox"
