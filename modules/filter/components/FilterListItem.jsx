@@ -54,7 +54,6 @@ const FilterListItem = ({ filter, onRemove }) => {
       <Table.Cell className="whitespace-nowrap ">
         <div className="flex items-center justify-center">
           <DeleteButton
-            className="cursor-pointer border-white text-red-600 hover:text-red-900"
             onClick={async () => {
               await onRemove(filter?._id);
             }}

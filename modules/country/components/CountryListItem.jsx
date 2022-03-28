@@ -80,7 +80,7 @@ const CountryListItem = ({ country, onRemove }) => {
             </a>
           </Link>
           <DeleteButton
-            className="ml-1 mr-1  cursor-pointer border-white text-red-600 hover:text-red-900"
+            className="ml-1 mr-1 "
             onClick={async () => {
               await onRemove(country._id);
             }}

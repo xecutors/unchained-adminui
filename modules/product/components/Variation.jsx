@@ -134,7 +134,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
 
                     <DeleteButton
                       onClick={() => onDelete(variation._id)}
-                      className="ml-1 mr-1 cursor-pointer border-white text-red-600 hover:text-red-900"
+                      className="ml-1 mr-1 "
                     />
                   </div>
                 )}

@@ -90,7 +90,7 @@ const ProductReviewsItem = ({ review }) => {
         {!review.deleted ? (
           <DeleteButton
             onClick={() => onRemove(review._id)}
-            className="ml-auto hover:text-red-800"
+            className="ml-auto"
           />
         ) : (
           <Badge
