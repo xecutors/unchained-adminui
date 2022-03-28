@@ -22,14 +22,14 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell className="uppercase sm:text-center">
+          <Table.Cell className="uppercase">
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
             })}
           </Table.Cell>
           {showUser && (
-            <Table.Cell className="uppercase sm:text-center">
+            <Table.Cell className="uppercase">
               {formatMessage({
                 id: 'user',
                 defaultMessage: 'User',

@@ -2,14 +2,17 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import ListHeader from '../../modules/common/components/ListHeader';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
+import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 
 import ProvidersList from '../../modules/common/components/ProvidersList';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
 import useWarehousingProviders from '../../modules/warehousing-providers/hooks/useWarehousingProviders';
+import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
 
 const WarehousingProviders = () => {
   const [type, setType] = useState(null);
@@ -17,7 +20,9 @@ const WarehousingProviders = () => {
 
   const { warehousingProviders, loading } = useWarehousingProviders({ type });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
+  const { warehousingProviderType } = useWarehousingProviderTypes();
   const { setModal } = useModal();
+
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
     await setModal(
       <DangerMessage
@@ -55,15 +60,19 @@ const WarehousingProviders = () => {
           defaultMessage: 'Warehousing providers',
         })}
       />
+      <ListHeader addPath="/warehousing-provider/new">
+        <ProvidersFilter
+          providerType={warehousingProviderType?.map(({ value }) => value)}
+          onProviderFilterChange={setType}
+        />
+      </ListHeader>
       {loading ? (
         <Loading />
       ) : (
         <ProvidersList
-          providerType={['PHYSICAL']}
           providerPath="/warehousing-provider"
           providers={warehousingProviders}
           onRemove={onRemoveWarehousingProvider}
-          onProviderFilterChange={setType}
         />
       )}
     </>

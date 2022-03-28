@@ -9,6 +9,9 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
+import ListHeader from '../../modules/common/components/ListHeader';
+import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
+import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
@@ -16,6 +19,7 @@ const PaymentProviders = () => {
   const { paymentProviders, loading } = usePaymentProviders({ type });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
+  const { paymentProviderType } = usePaymentProviderTypes();
 
   const onRemovePaymentProvider = async (paymentProviderId) => {
     await setModal(
@@ -52,15 +56,19 @@ const PaymentProviders = () => {
           defaultMessage: 'Payment providers',
         })}
       />
+      <ListHeader addPath="/payment-provider/new">
+        <ProvidersFilter
+          providerType={paymentProviderType?.map(({ value }) => value)}
+          onProviderFilterChange={setType}
+        />
+      </ListHeader>
       {loading ? (
         <Loading />
       ) : (
         <ProvidersList
-          providerType={['CARD', 'INVOICE', 'GENERIC']}
           providerPath="/payment-provider"
           providers={paymentProviders}
           onRemove={onRemovePaymentProvider}
-          onProviderFilterChange={setType}
         />
       )}
     </>

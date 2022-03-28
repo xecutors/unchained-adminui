@@ -13,8 +13,8 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="text-sm text-gray-900">
+      <Table.Cell>
+        <div className="text-gray-900">
           {getInterfaceLabel(provider?.interface)}
           <Badge
             text={
@@ -35,8 +35,8 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <span className="inline-flex rounded-full px-2 text-xs font-semibold leading-5 ">
+      <Table.Cell>
+        <span className="font-semibold">
           <Badge
             text={provider?.type}
             color={PROVIDER_TYPE_CLASSES[provider?.type]}
@@ -44,7 +44,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
           />
         </span>
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <div className="flex">
           <Link href={`${providerPath}/${provider?._id}`}>
             <a>

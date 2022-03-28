@@ -13,8 +13,8 @@ const LanguageListItem = ({ language, onRemove }) => {
   };
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap px-6 ">
-        <div className="border- flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell>
+        <div className="font-bold uppercase">
           {language.isoCode}
           {language.isBase && (
             <Badge
@@ -29,7 +29,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <div className=" text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'language' }).of(
             language.isoCode,
@@ -37,7 +37,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <Badge
           text={STATUS[language.isActive]}
           color={language.isActive ? 'green' : 'red'}
@@ -45,8 +45,8 @@ const LanguageListItem = ({ language, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
-        <div className="flex items-center">
+      <Table.Cell>
+        <div className="flex">
           <Link href={`/language/${language?._id}`}>
             <a>
               <PencilAltIcon className="mt-1 mr-2 h-5 w-5  text-indigo-500" />

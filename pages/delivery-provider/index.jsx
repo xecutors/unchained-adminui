@@ -3,10 +3,13 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
+import ListHeader from '../../modules/common/components/ListHeader';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import ProviderList from '../../modules/common/components/ProvidersList';
+import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
+import ProvidersList from '../../modules/common/components/ProvidersList';
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
+import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
@@ -18,6 +21,7 @@ const DeliveryProviders = () => {
   const { deliveryProviders, loading } = useDeliveryProviders({ type });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
+  const { deliveryProviderType } = useDeliveryProviderTypes();
 
   const onRemoveDeliveryProvider = async (deliveryProviderId) => {
     await setModal(
@@ -54,15 +58,19 @@ const DeliveryProviders = () => {
           defaultMessage: 'Delivery providers',
         })}
       />
+      <ListHeader addPath="/delivery-provider/new">
+        <ProvidersFilter
+          providerType={deliveryProviderType?.map(({ value }) => value)}
+          onProviderFilterChange={setType}
+        />
+      </ListHeader>
       {loading ? (
         <Loading />
       ) : (
-        <ProviderList
+        <ProvidersList
           providerPath="/delivery-provider"
-          providerType={['PICKUP', 'SHIPPING']}
           providers={deliveryProviders}
           onRemove={onRemoveDeliveryProvider}
-          onProviderFilterChange={setType}
         />
       )}
     </>

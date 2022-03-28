@@ -44,7 +44,13 @@ const WorkQueueView = () => {
       />
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-hidden">
-        <ListHeader addPath="/works/management" />
+        <ListHeader
+          addPath="/works/management"
+          addButtonText={formatMessage({
+            id: 'manage',
+            defaultMessage: 'Manage',
+          })}
+        />
 
         {loading ? <Loading /> : <WorkList workQueue={workQueue} />}
         <Pagination data={workQueue} onLoadMore={loadMore} />
