@@ -18,8 +18,8 @@ const SwitchField = (props: CommonFieldProps) => {
       })}
     >
       <div
-        className={classNames(containerClassName, 'can-toggle', {
-          'text-danger': field.error, // eslint-disable-line
+        className={classNames(containerClassName, {
+          'text-red-600': field.error, // eslint-disable-line
         })}
       >
         <input
@@ -33,7 +33,6 @@ const SwitchField = (props: CommonFieldProps) => {
         />
         <label htmlFor={field.name} className={classNames(labelClassName)}>
           <div
-            className="can-toggle__switch"
             data-unchecked={intl.formatMessage({
               id: 'switch_on',
               defaultMessage: 'on',
@@ -43,7 +42,7 @@ const SwitchField = (props: CommonFieldProps) => {
               defaultMessage: 'off',
             })}
           />
-          <div className="can-toggle__label-text">{field.label}</div>
+          <div>{field.label}</div>
         </label>
       </div>
     </div>

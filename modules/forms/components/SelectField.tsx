@@ -18,7 +18,7 @@ const SelectField = (props: SelectFieldProps) => {
 
   return (
     <FieldWrapper {...field}>
-      <div className="select-wrap">
+      <div>
         <select
           className={classnames(
             'mt-1 block w-full dark:bg-slate-600 rounded-md border-2 border-slate-200 py-2.5 pl-3 pr-10 text-base text-slate-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
