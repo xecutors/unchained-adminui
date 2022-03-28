@@ -21,17 +21,17 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
     },
   });
   return (
-    <Form form={form}>
-      <div className="">
-        <TagInputField
-          name="tags"
-          id="tags"
-          placeholder={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-          label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-          tagList={tags}
-        />
-      </div>
-      <div className="border border-t-indigo-50 bg-slate-50 mt-6 -mx-5 -mb-6">
+    <FormWrapper className="shadow-none">
+      <Form form={form}>
+        <div className="flex flex-col gap-2">
+          <TagInputField
+            name="tags"
+            id="tags"
+            placeholder={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+            label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+            tagList={tags}
+          />
+        </div>
         <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
       </div>
     </Form>
