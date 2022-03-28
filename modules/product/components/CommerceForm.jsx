@@ -68,7 +68,6 @@ const CommerceForm = ({ productId }) => {
     if (!loading)
       form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
   }, [catalogPrices]);
-  console.log(form);
 
   return (
     <Form className="rounded-md bg-white shadow" form={form}>

@@ -3,10 +3,16 @@ import classNames from 'classnames';
 import useField, { CommonFieldProps } from '../hooks/useField';
 
 const CheckboxField = (props: CommonFieldProps) => {
-  const { disabled, labelClassName, containerClassName, inputClassName } =
-    props;
+  const {
+    disabled,
+    labelClassName,
+    containerClassName,
+    inputClassName,
+    hideLabel,
+    errorMessage,
+    ...checkboxProps
+  } = props;
   const field = useField({ ...props, type: 'checkbox' });
-
   return (
     <div
       className={classNames(
@@ -26,6 +32,8 @@ const CheckboxField = (props: CommonFieldProps) => {
         disabled={disabled}
         id={field.name}
         name={field.name}
+        onChange={field.onChange}
+        onBlur={field.onBlur}
         type="checkbox"
         className={
           (classNames(
@@ -33,7 +41,7 @@ const CheckboxField = (props: CommonFieldProps) => {
           ),
           inputClassName)
         }
-        {...field}
+        {...checkboxProps}
       />
       <label
         htmlFor={field.name}
