@@ -35,11 +35,7 @@ const TagList = ({ defaultValue, onSubmit }) => {
       <span className="flex items-center">
         <Button
           className="py-0 px-0"
-          text={
-            <>
-              <PencilAltIcon className="h-5 w-5" />
-            </>
-          }
+          text={<PencilAltIcon className="h-5 w-5" />}
           onClick={() =>
             setModal(
               <TagListForm

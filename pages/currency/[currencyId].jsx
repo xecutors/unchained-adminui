@@ -13,7 +13,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
-import { normalizeCountryISOCode } from '../../modules/common/utils/utils';
+import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
@@ -62,11 +62,11 @@ const UpdateCurrency = () => {
   return (
     <>
       <BreadCrumbs
-        currentPageTitle={normalizeCountryISOCode(locale, currency?.isoCode)}
+        currentPageTitle={normalizeCurrencyISOCode(locale, currency?.isoCode)}
       />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
-          headerText={normalizeCountryISOCode(locale, currency?.isoCode)}
+          headerText={normalizeCurrencyISOCode(locale, currency?.isoCode)}
         />
         <HeaderDeleteButton onClick={onDelete} />
       </div>

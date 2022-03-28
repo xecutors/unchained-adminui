@@ -81,7 +81,9 @@ const UpdateCountry = () => {
         currentPageTitle={normalizeCountryISOCode(locale, country?.isoCode)}
       />
       <div className="align-center flex min-w-full justify-between">
-        <PageHeader headerText={normalizeCountry(locale, country?.isoCode)} />
+        <PageHeader
+          headerText={normalizeCountryISOCode(locale, country?.isoCode)}
+        />
         <HeaderDeleteButton onClick={onDelete} />
       </div>
       {loading ? (
