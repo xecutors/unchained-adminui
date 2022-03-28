@@ -36,7 +36,7 @@ const ChangePassword = () => {
       </div>
       <div className="w-full border-b border-slate-200 bg-white shadow rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
-          <div className="relative max-w-full space-y-6 rounded-md bg-white sm:p-6">
+          <div className="max-w-full space-y-6 rounded-md bg-white sm:p-6">
             <PasswordField
               label={formatMessage({
                 id: 'current_password',

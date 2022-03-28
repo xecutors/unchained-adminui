@@ -44,8 +44,8 @@ const CheckboxField = (props: CommonFieldProps) => {
       />
       <label
         htmlFor={field.name}
-        className={classNames('text-sm text-slate-900', labelClassName, {
-          'text-danger': !!field.error,
+        className={classNames('ml-2 text-sm text-gray-900', labelClassName, {
+          'text-red-600': !!field.error,
         })}
       >
         {field.label}
