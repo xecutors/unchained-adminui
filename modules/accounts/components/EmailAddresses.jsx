@@ -97,7 +97,7 @@ const EmailAddresses = ({
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
                 <div className="flex items-center justify-between flex-wrap">
-                  <div className="flex flex-wrap max-w-md space-x-2 mr-2">
+                  <div className="flex flex-wrap items-center max-w-md space-x-2 mr-2">
                     <div className="truncate text-sm font-medium text-gray-900">
                       {address}
                     </div>

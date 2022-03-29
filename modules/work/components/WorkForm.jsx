@@ -63,7 +63,7 @@ const WorkForm = () => {
             <SelectField
               className="w-full py-2 text-sm text-gray-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-              labelClassName="text-sm font-medium text-gray-500 mb-3"
+              labelClassName="text-sm font-medium text-gray-500 mb-1"
               name="type"
               required
               options={convertArrayOfObjectToObject(
@@ -81,7 +81,7 @@ const WorkForm = () => {
                 id: 'priority',
                 defaultMessage: 'Priority',
               })}
-              labelClassName="text-sm font-medium text-gray-500 mb-3"
+              labelClassName="text-sm font-medium text-gray-500 mb-1"
               placeholder={formatMessage({
                 id: 'priority',
                 defaultMessage: 'Priority',
@@ -98,7 +98,7 @@ const WorkForm = () => {
                 id: 'retries',
                 defaultMessage: 'Retries',
               })}
-              labelClassName="text-sm  font-medium text-gray-500 mb-3"
+              labelClassName="text-sm  font-medium text-gray-500 mb-1"
               placeholder={formatMessage({
                 id: 'retries',
                 defaultMessage: 'Retries',
@@ -117,7 +117,7 @@ const WorkForm = () => {
                 id: 'original_work_id',
                 defaultMessage: 'Original Work Id',
               })}
-              labelClassName="text-sm font-medium text-gray-500 mb-3"
+              labelClassName="text-sm font-medium text-gray-500 mb-1"
               placeholder={formatMessage({
                 id: 'original_work_id',
                 defaultMessage: 'Original Work Id',
@@ -131,7 +131,7 @@ const WorkForm = () => {
                 id: 'scheduled',
                 defaultMessage: 'Scheduled',
               })}
-              labelClassName="text-sm font-medium text-gray-500 mb-3"
+              labelClassName="text-sm font-medium text-gray-500 mb-1"
               className="w-full py-2 text-sm text-gray-900 sm:mt-0 "
               name="scheduled"
               placeholder={formatMessage({
@@ -144,7 +144,7 @@ const WorkForm = () => {
           <div>
             <JSONAreaField
               name="input"
-              labelClassName="font-sm text-lg text-gray-500 mb-3"
+              labelClassName="font-sm text-gray-500 mb-1"
               label={formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
