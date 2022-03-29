@@ -1,5 +1,4 @@
 import { PencilAltIcon, TagIcon } from '@heroicons/react/outline';
-import { useRef } from 'react';
 
 import { useIntl } from 'react-intl';
 import useModal from '../../modal/hooks/useModal';
@@ -13,8 +12,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { setToolTip } = useToolTip();
-  const toolTip = setToolTip(<span>assortment</span>);
-  const container = useRef(null);
+  const toolTip = setToolTip('assortment');
 
   return (
     <div className="mr-auto ml-4 flex w-1/2 gap-2">
@@ -22,8 +20,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         <button
           type="button"
           className="relative hover:cursor-pointer"
-          ref={container}
-          onMouseEnter={toolTip}
+          onClick={toolTip}
         >
           <TagIcon className="mr-auto h-5 w-5 text-indigo-600"> </TagIcon>
         </button>
