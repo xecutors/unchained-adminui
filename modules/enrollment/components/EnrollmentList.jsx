@@ -8,28 +8,28 @@ const EnrollmentList = ({ enrollments, showUser }) => {
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
         <Table.Row key={enrollment._id} header>
-          <Table.Cell className="uppercase">
+          <Table.Cell>
             {formatMessage({
               id: 'enrollment_number',
               defaultMessage: 'Enrollment number',
             })}
           </Table.Cell>
 
-          <Table.Cell className="uppercase sm:text-center">
+          <Table.Cell>
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell className="uppercase">
+          <Table.Cell>
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
             })}
           </Table.Cell>
           {showUser && (
-            <Table.Cell className="uppercase">
+            <Table.Cell>
               {formatMessage({
                 id: 'user',
                 defaultMessage: 'User',
@@ -37,14 +37,14 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             </Table.Cell>
           )}
 
-          <Table.Cell className="uppercase">
+          <Table.Cell>
             {formatMessage({
               id: 'product',
               defaultMessage: 'Product',
             })}
           </Table.Cell>
 
-          <Table.Cell className="uppercase">
+          <Table.Cell>
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',
