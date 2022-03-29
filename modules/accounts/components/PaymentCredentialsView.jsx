@@ -6,7 +6,7 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="flex-no-wrap my-8 flex w-full min-w-full flex-row divide-y divide-gray-200 overflow-hidden rounded-lg shadow sm:bg-white">
+    <div className="flex-nowrap my-8 flex w-full min-w-full flex-row divide-y divide-gray-200 overflow-hidden rounded-lg shadow sm:bg-white">
       {paymentCredentials?.length ? (
         <ul className="-my-5 divide-y divide-gray-200">
           {(paymentCredentials || []).map(
