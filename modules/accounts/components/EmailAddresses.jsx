@@ -96,23 +96,24 @@ const EmailAddresses = ({
           <ul className="-my-5 divide-y divide-gray-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
-                <div className="flex items-center space-x-4">
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-900">
+                <div className="flex items-center justify-between flex-wrap">
+                  <div className="flex flex-wrap max-w-md space-x-2 mr-2">
+                    <div className="truncate text-sm font-medium text-gray-900">
                       {address}
-                    </p>
+                    </div>
                     <Badge
+                      className="flex-shrink-0"
                       text={STATUS[verified]}
                       color={verified ? 'green' : 'red'}
                     />
                   </div>
-                  <div>
+                  <div className="flex items-center my-1">
                     {!enableVerification && (
                       <a
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="mr-2 inline-flex items-center rounded-full border border-blue-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 hover:bg-blue-50"
+                        className="focus:ring-indigo-500 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',
@@ -122,7 +123,7 @@ const EmailAddresses = ({
                     )}
                     <a
                       onClick={() => onRemoveEmail({ email: address, userId })}
-                      className="inline-flex items-center rounded-full bg-white shadow-sm hover:bg-red-50"
+                      className="inline-flex items-center rounded-full bg-white hover:bg-red-50 ml-2"
                     >
                       <svg
                         className="m-2 h-4 w-4 text-red-500"
@@ -133,10 +134,9 @@ const EmailAddresses = ({
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
-                        {' '}
-                        <polyline points="3 6 5 6 21 6" />{' '}
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />{' '}
-                        <line x1="10" y1="11" x2="10" y2="17" />{' '}
+                        <polyline points="3 6 5 6 21 6" />
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        <line x1="10" y1="11" x2="10" y2="17" />
                         <line x1="14" y1="11" x2="14" y2="17" />
                       </svg>
                     </a>
@@ -147,22 +147,27 @@ const EmailAddresses = ({
           </ul>
           <Form form={form}>
             <div className="mt-4 border-t">
-              <div className="mt-5 max-w-md ">
+              <div className="mt-4 flex space-x-4 items-between">
                 <TextField
-                  className="mt-4 mb-2"
+                  className="mt-0"
                   name="email"
                   required
+                  hideLabel
+                  placeholder={formatMessage({
+                    id: 'email',
+                    defaultMessage: 'Email',
+                  })}
                   label={formatMessage({
                     id: 'email',
                     defaultMessage: 'Email',
                   })}
                 />
                 <SubmitButton
+                  className="flex-shrink-0"
                   label={formatMessage({
                     id: 'add_email',
                     defaultMessage: 'Add email',
                   })}
-                  third
                 />
               </div>
             </div>
