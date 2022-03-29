@@ -71,7 +71,7 @@ const CountryForm = ({
         />
 
         {isEdit && (
-          <div className=" min-w-0 flex-1 sm:max-w-lg">
+          <div className="my-3 min-w-0 flex-1">
             <SelectField
               name="defaultCurrencyId"
               id="defaultCurrencyId"
@@ -97,14 +97,14 @@ const CountryForm = ({
               type="checkbox"
               label={formatMessage({
                 id: 'active',
-                defaultMessage: ' Active',
+                defaultMessage: 'Active',
               })}
-              className=" h-4 w-4 rounded-md border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              className="h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-500"
             />
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

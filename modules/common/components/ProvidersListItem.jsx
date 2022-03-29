@@ -45,14 +45,13 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
         </span>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex">
+        <div className="flex items-center">
           <Link href={`${providerPath}/${provider?._id}`}>
-            <a>
-              <PencilAltIcon className="mt-2 mr-2 h-5 w-5  rounded-full text-indigo-500" />
+            <a className="mr-2 rounded-full text-indigo-500 hover:bg-indigo-50">
+              <PencilAltIcon className="h-5 w-5" />
             </a>
           </Link>
           <DeleteButton
-            className="mt-1 ml-1"
             onClick={async () => {
               await onRemove(provider?._id);
             }}

@@ -36,7 +36,7 @@ const SaveAndCancelButtons = ({
       {showSubmit ? (
         <button
           type="submit"
-          className="rounded-md bg-indigo-700 py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="rounded-md bg-indigo-500 py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           {submitText ||
             formatMessage({

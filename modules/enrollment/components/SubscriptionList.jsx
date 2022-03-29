@@ -45,7 +45,7 @@ const SubscriptionList = ({ periods }) => {
           {(periods || [])?.map((period) => (
             <Table.Row key={`${period.start}`}>
               <Table.Cell className="whitespace-nowrap px-6 ">
-                <div className="flex items-center pl-2 text-sm text-gray-900">
+                <div className="flex items-center text-sm text-gray-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber
                     : 'N/A'}

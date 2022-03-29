@@ -41,7 +41,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
   return (
     <Form form={form}>
-      <div className="px-5 py-2 sm:max-w-full">
+      <div className="px-5 py-2">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -52,7 +52,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           })}
           autoComplete="on"
           required
-          className="mt-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="my-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         {isEdit && (
@@ -65,12 +65,12 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
                 id: 'active',
                 defaultMessage: ' Active',
               })}
-              className="ml-3 h-4 w-4 rounded border-gray-300 text-indigo-500 focus:ring-indigo-500"
+              className="mr-2 h-4 w-4 rounded-sm border-gray-300 text-indigo-500 focus:ring-indigo-500"
             />
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
+      <div className="mt-5 sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

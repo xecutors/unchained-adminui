@@ -89,7 +89,7 @@ const UpdateCountry = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className="mt-6  sm:max-w-xl">
+        <div className="mt-6 mx-auto sm:max-w-xl">
           <FormWrapper>
             <CountryForm
               isEdit

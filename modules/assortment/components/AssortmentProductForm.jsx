@@ -58,6 +58,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
             <TagInputField
               name="tags"
               id="tags"
+              hideLabel
               className="mt-1 w-full py-2 text-sm font-medium text-gray-500 sm:ml-1"
             />
 

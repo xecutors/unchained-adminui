@@ -56,7 +56,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                     PROVIDER_TYPE_CLASSES[provider.type]
                   }-100 text-${
                     PROVIDER_TYPE_CLASSES[provider.type]
-                  }-800 ml-4 inline-block rounded-lg border p-2 text-lg font-bold leading-4 shadow`}
+                  }-800 ml-4 inline-block rounded-lg border p-2 text-lg font-bold leading-4`}
                 >
                   {provider?.type}
                 </dd>

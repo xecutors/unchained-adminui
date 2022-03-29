@@ -5,19 +5,19 @@ const UserLogListItem = ({ log }) => {
   return (
     <tr key={log._id}>
       <td className="whitespace-nowrap px-6 py-4">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+        <div className="flex items-center text-sm text-gray-900">
           {log.created ? format(new Date(log.created), 'Pp') : 'n/a'}
         </div>
       </td>
 
       <td className="whitespace-nowrap px-6 py-4">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+        <div className="flex items-center text-sm text-gray-900">
           {log.level}
         </div>
       </td>
 
       <td className="whitespace-nowrap px-6 py-4">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+        <div className="flex items-center text-sm text-gray-900">
           {log.message}
         </div>
       </td>

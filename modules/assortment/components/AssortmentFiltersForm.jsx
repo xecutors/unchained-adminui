@@ -56,7 +56,8 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
               name="tags"
               id="tags"
               required
-              className="mt-1 w-full py-2 text-sm font-medium   text-gray-500 sm:ml-1"
+              hideLabel
+              className="mt-1 w-full py-2 text-sm font-medium text-gray-500 sm:ml-1"
             />
             <FilterableDropdown
               name="filterId"

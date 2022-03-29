@@ -16,7 +16,7 @@ const ProductListItem = ({ product, showAvatar }) => {
   return (
     <Table.Row>
       <Table.Cell className="whitespace-nowrap px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+        <div className="flex items-center text-sm text-gray-900">
           {showAvatar && (
             <MediaAvatar
               file={product?.media?.length && product.media[0].file}
@@ -52,7 +52,7 @@ const ProductListItem = ({ product, showAvatar }) => {
 
       <Table.Cell className=" whitespace-nowrap px-6">
         <div className="flex">
-          <div className="flex items-center pl-2 text-sm text-gray-900">
+          <div className="flex items-center text-sm text-gray-900">
             {product.tags?.map((t) => (
               <Badge key={t} text={t} color="indigo" />
             ))}

@@ -47,7 +47,7 @@ const LogList = ({ discounts }) => {
             <Fragment key={discount._id}>
               <Table.Row>
                 <Table.Cell className="whitespace-nowrap px-6 ">
-                  <div className="flex items-center pl-2 text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-gray-900">
                     {discount.code ? discount.code : 'n/a'}
                     <span className="mr-2 inline-block rounded-full py-1 text-xs font-semibold leading-5">
                       <Badge
@@ -60,7 +60,7 @@ const LogList = ({ discounts }) => {
                 </Table.Cell>
 
                 <Table.Cell className="whitespace-nowrap  px-6 ">
-                  <div className="flex items-center pl-2 text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-gray-900">
                     {discount.total.amount
                       ? formatPrice(discount.total)
                       : 'N/A'}

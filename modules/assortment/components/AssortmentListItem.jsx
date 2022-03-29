@@ -14,8 +14,8 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap">
+        <div className="flex items-center text-sm text-gray-900">
           {showAvatar && (
             <MediaAvatar
               file={assortment?.media?.length && assortment.media[0].file}
@@ -38,7 +38,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
+      <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[assortment.isActive]}
           color={assortment.isActive ? 'green' : 'red'}
@@ -46,8 +46,8 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap">
+        <div className="flex items-center text-sm text-gray-900">
           {assortment.isRoot && (
             <Badge
               text={formatMessage({
@@ -61,8 +61,8 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+      <Table.Cell className="whitespace-nowrap">
+        <div className="flex items-center text-sm text-gray-900">
           {assortment.isBase && (
             <Badge
               text={formatMessage({

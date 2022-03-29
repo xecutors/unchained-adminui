@@ -35,7 +35,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="px-5 py-2 sm:max-w-full">
+      <div className="px-5 pt-2 pb-5 sm:max-w-full">
         <TextField
           name="title"
           id="name"
@@ -72,7 +72,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
         />
       </div>
 
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'add_product',

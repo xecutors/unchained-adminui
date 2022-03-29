@@ -39,12 +39,12 @@ const OrderListItem = ({ order, showUser }) => {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center pl-2 text-sm text-gray-500">
+        <div className="flex items-center text-sm text-gray-500">
           {order.ordered ? format(new Date(order.ordered), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center pl-2 text-sm text-gray-500">
+        <div className="flex items-center text-sm text-gray-500">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>

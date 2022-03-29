@@ -18,7 +18,7 @@ const FilterListItem = ({ filter, onRemove }) => {
   return (
     <Table.Row>
       <Table.Cell className="whitespace-nowrap  px-6 ">
-        <div className="flex items-center pl-2 text-sm text-gray-900">
+        <div className="flex items-center text-sm text-gray-900">
           <Link href={`/filters/${filter._id}`}>
             <a className="text-blue-600">
               {filter?.texts.title || (

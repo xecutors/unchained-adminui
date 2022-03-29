@@ -58,6 +58,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
             <TagInputField
               name="tags"
               id="tags"
+              hideLabel
               className="mt-1 w-full text-sm font-medium text-gray-500"
             />
             <FilterableDropdown

@@ -61,7 +61,7 @@ const CurrencyForm = ({
         />
 
         {isEdit && (
-          <div className="mt-3 flex items-center">
+          <div className="my-3 flex items-center">
             <CheckboxField
               id="is-active"
               name="isActive"
@@ -69,12 +69,12 @@ const CurrencyForm = ({
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="m-3 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
             />
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right sm:p-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit
