@@ -15,7 +15,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
     <Table.Row>
       <Table.Cell>
         <div className="text-gray-900">
-          {getInterfaceLabel(provider?.interface)}
+          <span className="mr-2">{getInterfaceLabel(provider?.interface)}</span>
           <Badge
             text={
               provider?.isActive
@@ -29,7 +29,6 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
                   })
             }
             color={provider?.isActive ? 'green' : 'red'}
-            className="ml-3"
             square
           />
         </div>
