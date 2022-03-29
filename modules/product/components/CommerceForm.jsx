@@ -239,7 +239,7 @@ const CommerceForm = ({ productId }) => {
 
                     <div className="absolute top-0 right-0 mt-0 mr-0 flex-shrink-0  pb-1 md:mr-0 lg:mt-4 lg:py-0  lg:px-0 ">
                       <button
-                        className="items-center rounded-full border border-red-500 bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
+                        className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >

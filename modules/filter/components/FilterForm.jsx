@@ -103,12 +103,12 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                     />
                     <div className="ml-2 mt-5 flex-shrink-0 sm:mt-4">
                       <button
-                        className="items-center rounded-full border border-red-500 bg-white px-1 py-1 text-sm text-red-500 shadow-sm hover:bg-red-500 hover:text-white focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
+                        className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
                         onClick={() => removeConfig(index)}
                       >
                         <svg
-                          className=" h-4 w-4 text-red-500"
+                          className="h-4 w-4 text-red-500"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"

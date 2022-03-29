@@ -55,11 +55,11 @@ const Modal = ({
             &#8203;
           </span>
           <div
-            className="inline-block  transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
+            className="inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
             onClick={stopPropagation}
             onKeyUp={stopPropagation}
           >
-            <div className=" absolute top-0 right-0 pt-4 pr-4 sm:block">
+            <div className="absolute top-0 right-0 pt-4 pr-4 sm:block">
               <button
                 type="button"
                 onClick={close}
