@@ -195,7 +195,7 @@ const CommerceForm = ({ productId }) => {
 
                     <div className="flex w-full gap-x-2">
                       <SelectField
-                        className="w-full py-1.5 text-black lg:ml-4 lg:mr-5  "
+                        className="w-full lg:ml-4 lg:mr-4"
                         label={formatMessage({
                           id: 'country',
                           defaultMessage: 'Country',
@@ -216,7 +216,7 @@ const CommerceForm = ({ productId }) => {
                       />
 
                       <SelectField
-                        className="w-full py-1.5 text-black lg:mr-8 "
+                        className="w-full lg:mr-8 "
                         label={formatMessage({
                           id: 'currency',
                           defaultMessage: 'Currency',
