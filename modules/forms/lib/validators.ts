@@ -150,3 +150,11 @@ export const validatePhoneNumber: Validator = {
     defaultMessage: 'Invalid phone number',
   },
 };
+export const validateRequiredTextArea = (required): Validator => {
+  return {
+  isValid: (value) => required ? value !== "<p><br></p>": true,
+  intlMessageDescriptor: {
+    id: 'error_text_area_required',
+    defaultMessage: '{label} is required',
+  },
+}};

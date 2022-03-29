@@ -5,6 +5,7 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 
 import TextAreaField from '../../forms/components/TextAreaField';
+import RichTextEditorField from '../../forms/components/RichTextEditorField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
@@ -149,14 +150,15 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               </div>
             </div>
             <div className="col-span-6 mt-6 sm:col-span-3">
-              <TextAreaField
+              <RichTextEditorField
+                required
                 name="description"
                 id="description"
+                autoComplete="on"
                 label={formatMessage({
                   id: 'description',
                   defaultMessage: 'Description',
                 })}
-                autoComplete="on"
                 className="w-full text-sm font-medium text-gray-500"
               />
             </div>
