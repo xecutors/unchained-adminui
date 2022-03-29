@@ -44,19 +44,18 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       <div className={classNames(`row ${choiceContainerClassName}`, className)}>
         {Object.entries(field.options).map(([value, display]) => (
           <div
-            className={classNames(`m-1 ${choiceClassName}`, className)}
+            className={classNames(`mb-3 ${choiceClassName}`, className)}
             key={value}
           >
             <label
               htmlFor={`${field.name}-${value}`}
-              className={classNames('ml-3', labelClassName)}
+              className={classNames('', labelClassName)}
             >
-              <div>{display}</div>
               <input
                 value={value}
                 checked={mappableValue.includes(value)}
                 className={classNames(
-                  'form-check-input after-check',
+                  'mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500',
                   inputClassName,
                 )}
                 disabled={field.disabled}
@@ -65,6 +64,7 @@ const ChoicesField = (props: ChoicesFieldProps) => {
                 onChange={field.onChange}
                 type={field.multiple ? 'checkbox' : 'radio'}
               />
+              <span>{display}</span>
             </label>
           </div>
         ))}
