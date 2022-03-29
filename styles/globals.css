@@ -26,10 +26,6 @@
   thead tr {
     border: 1px solid #E2E8F0;
   }
-  thead th {
-    max-height: 30px;
-    min-height: 40px;
-  }
 }
 
 .top-100 {top: 100%}

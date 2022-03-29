@@ -8,7 +8,7 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       className={classNames(
         header
           ? 'px-4 py-3 text-left font-medium tracking-wider text-gray-800'
-          : 'max-h-[30px] min-h-[40px] px-4 py-3',
+          : 'px-4 py-3',
         className,
       )}
       {...props}
