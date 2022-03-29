@@ -43,7 +43,7 @@ const WorkQueueView = () => {
         })}
       />
       <WorkFilter workTypes={activeWorkTypes} />
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath="/works/management"
           addButtonText={formatMessage({

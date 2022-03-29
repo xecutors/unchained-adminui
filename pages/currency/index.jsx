@@ -63,7 +63,7 @@ const Currencies = () => {
         })}
       />
 
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader addPath="/currency/new">
           <Toggle
             toggleText={formatMessage({

@@ -40,7 +40,7 @@ const Products = () => {
         />
         <ProductFilter />
       </div>
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader addPath="/products/new">
           <Toggle
             toggleText={formatMessage({

@@ -65,7 +65,7 @@ const Languages = () => {
         })}
       />
 
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader addPath="/language/new">
           <Toggle
             toggleText={formatMessage({

@@ -22,6 +22,16 @@
   }
 }
 
+@media (max-width: 639px) {
+  thead tr {
+    border: 1px solid #E2E8F0;
+  }
+  thead th {
+    max-height: 30px;
+    min-height: 40px;
+  }
+}
+
 .top-100 {top: 100%}
 .bottom-100 {bottom: 100%}
 .max-h-select {

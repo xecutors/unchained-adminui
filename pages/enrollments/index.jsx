@@ -2051,7 +2051,7 @@ const EnrollmentListView = () => {
           defaultMessage: 'Enrollments',
         })}
       />
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader />
 
         {/* TODO change mock props data */}

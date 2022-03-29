@@ -69,7 +69,7 @@ const FiltersListView = () => {
           defaultMessage: 'Filters',
         })}
       />
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader addPath="/filters/new">
           <Toggle
             toggleText={formatMessage({

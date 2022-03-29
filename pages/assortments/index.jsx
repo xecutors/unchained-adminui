@@ -41,7 +41,7 @@ const AssortmentsListView = () => {
         })}
       />
       <AssortmentSearchFilter />
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader addPath="/assortments/new">
           <Toggle
             toggleKey="includeInactive"

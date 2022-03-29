@@ -934,7 +934,7 @@ const Quotations = () => {
           defaultMessage: 'Quotations',
         })}
       />
-      <div className="min-w-full overflow-hidden">
+      <div className="min-w-full overflow-x-auto">
         <ListHeader />
         {loading ? (
           <Loading />
