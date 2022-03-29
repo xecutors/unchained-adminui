@@ -33,7 +33,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form}>
-      <div className="m-5">
+      <div className="p-5">
         <TextField
           name="title"
           id="title"
@@ -84,7 +84,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="flex justify-between align-baseline"
+                    className="flex justify-between align-baseline mb-3"
                   >
                     <TextField
                       placeholder={formatMessage({

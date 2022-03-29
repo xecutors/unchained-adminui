@@ -138,8 +138,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
             />
           </div>
 
-          <div className="col-span-2 ml-auto border-gray-200 bg-white px-8 shadow lg:w-full">
-            <div className="divide-y divide-gray-200 py-4">
+          <div className="col-span-2 ml-auto bg-white px-8 shadow lg:w-full">
+            <div className="py-4">
               <div className="py-4 sm:grid sm:py-2">
                 <label className="text-gray-70 block text-sm font-medium">
                   {formatMessage({
@@ -194,7 +194,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'displayName',
@@ -219,7 +219,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'gender',
@@ -255,7 +255,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'birthday',
@@ -283,7 +283,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'mobile',
