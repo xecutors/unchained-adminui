@@ -25,13 +25,15 @@ const QuotationDetailHeader = ({ quotation }) => {
             {quotation.quotationNumber ? (
               <Badge
                 text={quotation.quotationNumber}
-                className="p-0 text-lg font-medium sm:p-1 sm:text-xl sm:font-bold"
+                color="indigo"
+                square
+                className="text-lg font-medium sm:text-xl sm:font-bold"
               />
             ) : (
               <Badge
                 text="Cart"
                 color="yellow"
-                className="p-0 text-lg font-medium sm:p-1 sm:text-xl sm:font-bold"
+                className="text-lg font-medium sm:text-xl sm:font-bold"
               />
             )}
           </dd>

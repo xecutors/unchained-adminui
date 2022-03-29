@@ -178,7 +178,7 @@ const QuotationDetail = ({ quotation }) => {
                 />
               </div>
             </div>
-            <div className="mt-6 pl-4 sm:col-span-7 sm:mt-0 md:row-end-1">
+            <div className="pt-6 pl-4 sm:col-span-7 md:row-end-1">
               <h3 className="text-lg font-medium text-gray-900">
                 <Link href={`/products/${quotation.product._id}`}>
                   <a href="#">{quotation.product?.texts?.title}</a>
