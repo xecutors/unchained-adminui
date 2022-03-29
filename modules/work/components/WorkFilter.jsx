@@ -108,7 +108,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         </div>
 
         <div className="w-md flex-1">
-          <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-1">
+          <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
             <VariableIcon
               width="24"
               height="24"
@@ -121,7 +121,7 @@ const WorkFilter = ({ workTypes = [] }) => {
           </div>
           <div>
             <>
-              <div className="py-1">
+              <div className="mt-4">
                 <MultipleSelect
                   className="text-sm text-gray-900  "
                   label={formatMessage({
