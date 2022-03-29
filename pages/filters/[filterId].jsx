@@ -56,7 +56,7 @@ const FilterDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs />
+      <BreadCrumbs currentPageTitle={filter?.key} />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({

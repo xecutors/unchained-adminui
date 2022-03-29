@@ -52,7 +52,6 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 <div className="flex items-center space-x-1">
                   <div>{option.Icon}</div>
                   <div className="capitalize">
-                    {' '}
                     {option?.title || option?.id}
                   </div>
                 </div>

@@ -70,7 +70,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           </div>
         )}
       </div>
-      <div className="mt-5 sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
+      <div className="sm:px-15 mt-5 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

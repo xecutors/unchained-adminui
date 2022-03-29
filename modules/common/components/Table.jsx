@@ -40,7 +40,7 @@ const Table = ({ className, ...props }) => {
   return (
     <table
       className={classNames(
-        'flex-nowrap my-3 flex w-full flex-row divide-y divide-gray-200 overflow-hidden sm:rounded-lg shadow sm:bg-white',
+        'my-3 flex w-full flex-row flex-nowrap divide-y divide-gray-200 overflow-hidden shadow sm:rounded-lg sm:bg-white',
         className,
       )}
       {...props}

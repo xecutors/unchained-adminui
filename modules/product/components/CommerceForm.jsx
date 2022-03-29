@@ -127,7 +127,7 @@ const CommerceForm = ({ productId }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="border-b py-3 relative max-w-full align-baseline lg:flex"
+                    className="relative max-w-full border-b py-3 align-baseline lg:flex"
                   >
                     <div className="flex w-full gap-x-2">
                       <TextField
@@ -294,7 +294,7 @@ const CommerceForm = ({ productId }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right py-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 py-6 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'save',

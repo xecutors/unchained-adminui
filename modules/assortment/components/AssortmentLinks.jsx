@@ -50,7 +50,7 @@ const AssortmentLinks = ({ assortmentId }) => {
   return (
     <div className="mt-0 md:mt-5">
       <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1 mb-4">
+        <div className="mb-4 md:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {formatMessage({
@@ -72,7 +72,7 @@ const AssortmentLinks = ({ assortmentId }) => {
       </div>
 
       <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
-        <div className="md:col-span-1 mb-4">
+        <div className="mb-4 md:col-span-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-lg font-medium leading-6 text-gray-900">
               {formatMessage({

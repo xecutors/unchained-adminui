@@ -96,8 +96,8 @@ const EmailAddresses = ({
           <ul className="-my-5 divide-y divide-gray-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
-                <div className="flex items-center justify-between flex-wrap">
-                  <div className="flex flex-wrap items-center max-w-md space-x-2 mr-2">
+                <div className="flex flex-wrap items-center justify-between">
+                  <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
                     <div className="truncate text-sm font-medium text-gray-900">
                       {address}
                     </div>
@@ -107,13 +107,13 @@ const EmailAddresses = ({
                       color={verified ? 'green' : 'red'}
                     />
                   </div>
-                  <div className="flex items-center my-1">
+                  <div className="my-1 flex items-center">
                     {!enableVerification && (
                       <a
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="focus:ring-indigo-500 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',
@@ -123,7 +123,7 @@ const EmailAddresses = ({
                     )}
                     <a
                       onClick={() => onRemoveEmail({ email: address, userId })}
-                      className="inline-flex items-center rounded-full bg-white hover:bg-red-50 ml-2"
+                      className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
                     >
                       <svg
                         className="m-2 h-4 w-4 text-red-500"
@@ -147,7 +147,7 @@ const EmailAddresses = ({
           </ul>
           <Form form={form}>
             <div className="mt-4 border-t">
-              <div className="mt-4 flex space-x-4 items-between">
+              <div className="items-between mt-4 flex space-x-4">
                 <TextField
                   className="mt-0"
                   name="email"

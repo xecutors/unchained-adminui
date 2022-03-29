@@ -70,7 +70,7 @@ const ProductVariationForm = ({ onSubmit }) => {
           )}
         />
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right py-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 py-6 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'save',

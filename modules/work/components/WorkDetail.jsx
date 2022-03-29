@@ -33,7 +33,7 @@ const WorkDetail = ({ work }) => {
     <>
       <div className={`my-4 p-2 sm:p-6 lg:p-8 ${shadowStyle[work?.status]}`}>
         <div className="grid grid-cols-1 grid-rows-4 gap-8 lg:grid-cols-2">
-          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md lg:col-span-1 sm:p-6 lg:p-8 ">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
               <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
                 {formatMessage({
@@ -132,7 +132,7 @@ const WorkDetail = ({ work }) => {
             )}
           </div>
 
-          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md lg:col-span-1 sm:p-6 lg:p-8">
+          <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8">
             <div className="grid grid-cols-2 gap-5">
               <div className="sm:col-span-1">
                 <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">

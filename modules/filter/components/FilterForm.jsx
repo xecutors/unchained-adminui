@@ -84,7 +84,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="flex justify-between align-baseline mb-3"
+                    className="mb-3 flex justify-between align-baseline"
                   >
                     <TextField
                       placeholder={formatMessage({
