@@ -13,13 +13,8 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { setToolTip } = useToolTip();
+  const toolTip = setToolTip(<span>assortment</span>);
   const container = useRef(null);
-
-  const tooltip = () => {
-    const { x, y, height } = container.current.getBoundingClientRect();
-    console.log(x, y - height, height);
-    setToolTip(<span>assortment</span>, { top: y, left: x });
-  };
 
   return (
     <div className="mr-auto ml-4 flex w-1/2 gap-2">
@@ -28,7 +23,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
           type="button"
           className="relative hover:cursor-pointer"
           ref={container}
-          onClick={tooltip}
+          onMouseEnter={toolTip}
         >
           <TagIcon className="mr-auto h-5 w-5 text-indigo-600"> </TagIcon>
         </button>
