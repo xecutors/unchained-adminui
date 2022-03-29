@@ -9,24 +9,22 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
     <Table className="min-w-full ">
       {languages?.map((language) => (
         <Table.Row key={language._id} header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
-            &nbsp;
-          </Table.Cell>
+          <Table.Cell>&nbsp;</Table.Cell>
         </Table.Row>
       ))}
 

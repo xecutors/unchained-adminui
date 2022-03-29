@@ -28,14 +28,14 @@ const LogList = ({ discounts }) => {
         <Table className="min-w-full ">
           {(discounts || [])?.map((discount) => (
             <Table.Row key={discount._id} header>
-              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'code',
                   defaultMessage: 'Code',
                 })}
               </Table.Cell>
 
-              <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+              <Table.Cell>
                 {formatMessage({
                   id: 'discount_amount',
                   defaultMessage: 'Discount Amount',

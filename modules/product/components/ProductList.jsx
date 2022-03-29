@@ -8,20 +8,20 @@ const ProductList = ({ products, showAvatar = true }) => {
     <Table className="min-w-full ">
       {products?.map((product) => (
         <Table.Row key={product._id} header>
-          <Table.Cell className="text-left text-sm font-medium tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'name',
               defaultMessage: 'Name',
             })}
           </Table.Cell>
-          <Table.Cell className="pr-6 text-left text-sm font-medium tracking-wider text-gray-500 sm:py-1">
+          <Table.Cell>
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-sm font-medium tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'tags',
               defaultMessage: 'Tags',

@@ -8,14 +8,14 @@ const EventList = ({ events }) => {
     <Table className="min-w-full ">
       {events?.map((event) => (
         <Table.Row key={event._id} header>
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell className="text-left text-xs font-medium  uppercase tracking-wider text-gray-500">
+          <Table.Cell>
             {formatMessage({ id: 'type', defaultMessage: 'Type' })}
           </Table.Cell>
         </Table.Row>
