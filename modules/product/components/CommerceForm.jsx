@@ -70,7 +70,7 @@ const CommerceForm = ({ productId }) => {
   }, [catalogPrices]);
 
   return (
-    <Form className="rounded-md bg-white shadow" form={form}>
+    <Form className="mt-3 rounded-md bg-white shadow" form={form}>
       <div className="relative max-w-full sm:p-3">
         <div className="max-w-full justify-between align-baseline" />
 
@@ -127,7 +127,7 @@ const CommerceForm = ({ productId }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="relative mt-2 max-w-full  p-6 align-baseline shadow md:p-6 md:shadow lg:flex lg:p-0 lg:shadow-none"
+                    className="relative mt-2 max-w-full p-6 align-baseline md:p-6 lg:flex lg:p-0"
                   >
                     <div className="flex w-full">
                       <TextField
@@ -264,7 +264,7 @@ const CommerceForm = ({ productId }) => {
               })}
               <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <div className=" " />
-                <div className=" mt-2 flex-shrink-0">
+                <div className="mt-2 flex-shrink-0">
                   <div className="flex-shrink-0">
                     <button
                       type="button"
@@ -294,7 +294,7 @@ const CommerceForm = ({ productId }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right sm:p-6">
+      <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right py-6">
         <SubmitButton
           label={formatMessage({
             id: 'save',

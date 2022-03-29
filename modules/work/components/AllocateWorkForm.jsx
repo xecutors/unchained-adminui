@@ -144,7 +144,7 @@ const AllocateWorkForm = () => {
           )}
         </FieldArray>
 
-        <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right sm:p-6">
+        <div className="sm:px-15 space-y-6 bg-gray-50 px-5 text-right py-6">
           <SubmitButton
             label={formatMessage({
               id: 'allocate_work',
