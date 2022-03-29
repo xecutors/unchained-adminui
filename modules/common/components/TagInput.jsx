@@ -76,7 +76,7 @@ const TagInput = ({
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className={classNames(
-                'border-gray-l-white block w-full rounded-none rounded-l-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm',
+                'block w-full rounded-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm',
                 classes,
               )}
               placeholder={

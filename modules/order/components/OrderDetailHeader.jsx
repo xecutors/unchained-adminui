@@ -24,13 +24,15 @@ const OrderDetailHeader = ({ order }) => {
             {order.orderNumber ? (
               <Badge
                 text={order.orderNumber}
-                className="p-0 text-lg font-medium sm:p-1 sm:text-xl sm:font-bold "
+                square
+                color="indigo"
+                className="text-lg font-medium sm:text-xl sm:font-bold "
               />
             ) : (
               <Badge
                 text="Cart"
                 color="yellow"
-                className="p-0 text-lg font-medium sm:p-1 sm:text-xl sm:font-bold"
+                className="text-lg font-medium sm:text-xl sm:font-bold"
               />
             )}
           </dd>
@@ -52,12 +54,7 @@ const OrderDetailHeader = ({ order }) => {
           </span>
           <span>
             {order?.currency?.isoCode && (
-              <Badge
-                text={order?.currency?.isoCode}
-                color="amber"
-                className="px-2 py-0 sm:py-1"
-                square
-              />
+              <Badge text={order?.currency?.isoCode} color="amber" square />
             )}
           </span>
         </div>

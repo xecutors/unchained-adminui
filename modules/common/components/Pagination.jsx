@@ -19,9 +19,9 @@ const Step = ({ onClick, disabled, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'relative z-10 inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50',
+        'relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50',
         {
-          'border-indigo-500 bg-indigo-50 text-indigo-600 ': disabled,
+          'z-10 border-indigo-500 bg-indigo-50 text-indigo-600 ': disabled,
         },
       )}
     >
