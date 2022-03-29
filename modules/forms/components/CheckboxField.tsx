@@ -16,7 +16,7 @@ const CheckboxField = (props: CommonFieldProps) => {
   return (
     <div
       className={classNames(
-        'container',
+        '',
         {
           'text-red-600': !!field.error,
           checkbox: true,

@@ -71,7 +71,7 @@ const CommerceForm = ({ productId }) => {
 
   return (
     <Form className="mt-3 rounded-md bg-white shadow" form={form}>
-      <div className="relative max-w-full sm:p-3">
+      <div className="relative max-w-full p-3 sm:p-5">
         <div className="max-w-full justify-between align-baseline" />
 
         <label className="sr-only flex w-full font-sans text-sm text-black lg:not-sr-only">
@@ -127,11 +127,11 @@ const CommerceForm = ({ productId }) => {
                   <div
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
-                    className="relative mt-2 max-w-full p-6 align-baseline md:p-6 lg:flex lg:p-0"
+                    className="border-b py-3 relative max-w-full align-baseline lg:flex"
                   >
-                    <div className="flex w-full">
+                    <div className="flex w-full gap-x-2">
                       <TextField
-                        className="mr-2 w-full"
+                        className="w-full"
                         name={`pricing[${index}].maxQuantity`}
                         id={`pricing[${index}].maxQuantity`}
                         required
@@ -148,7 +148,7 @@ const CommerceForm = ({ productId }) => {
                       />
                       <TextField
                         type="number"
-                        className="mr-3 w-full"
+                        className="w-full"
                         name={`pricing[${index}].amount`}
                         id={`pricing[${index}].amount`}
                         required
@@ -164,7 +164,7 @@ const CommerceForm = ({ productId }) => {
                       />
                     </div>
 
-                    <div className=" flex w-full p-2 ">
+                    <div className="flex w-full gap-x-2 pt-3 pb-2">
                       <div className="w-full lg:ml-8 lg:items-center">
                         <CheckboxField
                           name={`pricing[${index}].isTaxable`}
@@ -173,7 +173,7 @@ const CommerceForm = ({ productId }) => {
                             id: 'vat_suspect',
                             defaultMessage: 'Vat Suspect',
                           })}
-                          className="ml-1 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
+                          className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
                           type="checkbox"
                         />
                       </div>
@@ -193,9 +193,9 @@ const CommerceForm = ({ productId }) => {
                       </div>
                     </div>
 
-                    <div className=" flex w-full justify-center ">
+                    <div className="flex w-full gap-x-2">
                       <SelectField
-                        className=" mr-2 w-full py-1.5 text-black  lg:ml-4 lg:mr-5  "
+                        className="w-full py-1.5 text-black lg:ml-4 lg:mr-5  "
                         label={formatMessage({
                           id: 'country',
                           defaultMessage: 'Country',
@@ -216,7 +216,7 @@ const CommerceForm = ({ productId }) => {
                       />
 
                       <SelectField
-                        className="mr-2 w-full  py-1.5 text-black lg:mr-8 "
+                        className="w-full py-1.5 text-black lg:mr-8 "
                         label={formatMessage({
                           id: 'currency',
                           defaultMessage: 'Currency',
@@ -237,7 +237,7 @@ const CommerceForm = ({ productId }) => {
                       />
                     </div>
 
-                    <div className="absolute top-0 right-0 mt-0 mr-0 flex-shrink-0  pb-1 md:mr-0 lg:mt-4 lg:py-0  lg:px-0 ">
+                    <div className="absolute top-0 right-0 mt-0 mr-0 flex-shrink-0  pb-1 md:mr-0 lg:mt-6 lg:py-0 lg:px-0 ">
                       <button
                         className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
