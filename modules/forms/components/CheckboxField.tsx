@@ -19,7 +19,6 @@ const CheckboxField = (props: CommonFieldProps) => {
         'container',
         {
           'text-red-600': !!field.error,
-          'form-check': true,
           checkbox: true,
           disabled: field.disabled,
           required: field.required,

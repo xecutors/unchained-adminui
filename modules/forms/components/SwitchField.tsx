@@ -13,7 +13,6 @@ const SwitchField = (props: CommonFieldProps) => {
     <div
       className={classNames('container', {
         'is-invalid': !!field.error,
-        'form-check': true,
         disabled: field.disabled,
         required: field.required,
       })}

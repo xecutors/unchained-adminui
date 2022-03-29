@@ -69,7 +69,6 @@ const MediaListItem = ({
               <h3 className="text-gray-900">
                 {isEdit ? (
                   <TextField
-                    className="mt-0 px-2 py-0"
                     name="title"
                     label={formatMessage({
                       id: 'title',
@@ -91,7 +90,6 @@ const MediaListItem = ({
               <p className="text-gray-900 sm:block">
                 {isEdit ? (
                   <TextField
-                    className="mt-0 px-2 py-0"
                     name="subtitle"
                     label={formatMessage({
                       id: 'subtitle',
