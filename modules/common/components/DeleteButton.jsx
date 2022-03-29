@@ -13,12 +13,12 @@ const DeleteButton = ({
       type="button"
       onClick={onClick}
       className={classNames(
-        'rounded-full border-red-500 bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-400 hover:text-white  focus:outline-none focus:ring-0 focus:ring-red-500  focus:ring-offset-2',
+        'rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2',
         classes,
       )}
     >
       {textLeft || ''}
-      {icon || <TrashIcon className="text-white-500 h-5 w-5" />}
+      {icon || <TrashIcon className="h-5 w-5" />}
       {textRight || ''}
     </button>
   );

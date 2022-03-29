@@ -61,8 +61,8 @@ const CountryListItem = ({ country, onRemove }) => {
       <Table.Cell className="whitespace-nowrap px-6 ">
         <div className="flex items-center">
           <Link href={`/country/${country._id}`}>
-            <a>
-              <PencilAltIcon className="mt-1 mr-2 h-5 w-5 text-indigo-500" />
+            <a className="rounded-full bg-white px-1 py-1 text-sm text-indigo-500 hover:bg-indigo-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2">
+              <PencilAltIcon className="h-5 w-5" />
             </a>
           </Link>
           <DeleteButton
