@@ -7,7 +7,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
   return (
     <dl className="divide-y divide-gray-200">
-      <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+      <div className="py-4 sm:grid sm:gap-1 sm:py-5">
         {!isEdit && (
           <label className="text-sm font-medium text-gray-500">
             {formatMessage({
@@ -18,9 +18,9 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         )}
         <div className="flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
           {isEdit ? (
-            <div className="flex w-full gap-4">
+            <div className="flex w-full gap-2">
               <TextField
-                className="mt-4 w-full"
+                className="w-full"
                 labelClassName="text-sm font-medium text-gray-500"
                 name="firstName"
                 label={formatMessage({
@@ -33,7 +33,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 })}
               />
               <TextField
-                className="mt-4 w-full"
+                className="w-full"
                 labelClassName="text-sm font-medium text-gray-500"
                 name="lastName"
                 label={formatMessage({
@@ -53,7 +53,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+      <div className="py-4 sm:grid sm:gap-1 sm:py-5">
         <label className="text-sm font-medium text-gray-500">
           {formatMessage({
             id: 'company',
@@ -76,7 +76,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+      <div className="py-4 sm:grid sm:gap-1 sm:py-5">
         <label className="text-sm font-medium text-gray-500">
           {formatMessage({
             id: 'address_line_1',
@@ -99,7 +99,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+      <div className="py-4 sm:grid sm:gap-1 sm:py-5">
         <label className="text-sm font-medium text-gray-500">
           {formatMessage({
             id: 'address_line_2',
@@ -124,7 +124,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-x-2 divide-y divide-gray-200 sm:grid-cols-2">
-        <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+        <div className="py-4 sm:grid sm:gap-1 sm:py-5">
           <label className="text-sm font-medium text-gray-500">
             {formatMessage({
               id: 'region',
@@ -149,7 +149,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+        <div className="py-4 sm:grid sm:gap-1 sm:py-5">
           <label className="text-sm font-medium text-gray-500">
             {formatMessage({
               id: 'postal_code',
@@ -173,7 +173,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+        <div className="py-4 sm:grid sm:gap-1 sm:py-5">
           <label className="text-sm font-medium text-gray-500">
             {formatMessage({
               id: 'city',
@@ -197,7 +197,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+        <div className="py-4 sm:grid sm:gap-1 sm:py-5">
           <label className="text-sm font-medium text-gray-500">
             {formatMessage({
               id: 'country_code',

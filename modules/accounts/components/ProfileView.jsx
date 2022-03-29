@@ -194,7 +194,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'displayName',
@@ -219,7 +219,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'gender',
@@ -255,7 +255,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'birthday',
@@ -283,7 +283,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'mobile',

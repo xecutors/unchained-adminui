@@ -32,21 +32,18 @@ const TagList = ({ defaultValue, onSubmit }) => {
           </span>
         )}
       </div>
-      <span className="flex items-center">
-        <Button
-          className="py-0 px-0"
-          text={<PencilAltIcon className="h-5 w-5" />}
-          onClick={() =>
-            setModal(
-              <TagListForm
-                tags={defaultValue || []}
-                onCancel={() => setModal('')}
-                onSubmit={onSubmit}
-              />,
-            )
-          }
-        />
-      </span>
+      <Button
+        text={<PencilAltIcon className="h-5 w-5" />}
+        onClick={() =>
+          setModal(
+            <TagListForm
+              tags={defaultValue || []}
+              onCancel={() => setModal('')}
+              onSubmit={onSubmit}
+            />,
+          )
+        }
+      />
     </div>
   );
 };

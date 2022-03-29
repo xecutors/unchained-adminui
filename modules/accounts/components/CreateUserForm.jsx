@@ -64,7 +64,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
           <div className="mt-1 rounded-md border-gray-200 bg-white px-4 py-5 lg:col-span-2">
             <dl className="divide-y divide-gray-200">
-              <div className="py-2 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-2 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'username',
@@ -85,7 +85,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 </dd>
               </div>
 
-              <div className="py-3 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-3 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'email',
@@ -106,7 +106,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 </dd>
               </div>
 
-              <div className="py-3 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-3 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'password',
@@ -126,7 +126,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </dd>
               </div>
-              <div className="py-3 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-3 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'display_name',
@@ -146,7 +146,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 </dd>
               </div>
 
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'gender',
@@ -175,7 +175,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </dd>
               </div>
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'birthday',
@@ -194,7 +194,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </dd>
               </div>
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
                 </dt>
@@ -245,7 +245,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
           <div className="rounded-md bg-white px-4 py-5 lg:col-span-2">
             <dl className="divide-y divide-gray-200">
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'full_name',
@@ -283,7 +283,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   </div>
                 </dd>
               </div>
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'company',
@@ -302,7 +302,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </dd>
               </div>
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_1',
@@ -321,7 +321,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </dd>
               </div>
-              <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+              <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                 <dt className="text-sm font-medium text-gray-500">
                   {formatMessage({
                     id: 'address_line_2',
@@ -342,7 +342,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               </div>
 
               <div className="grid grid-cols-1 gap-x-2 divide-y divide-gray-200 sm:grid-cols-2">
-                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                   <dt className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'region',
@@ -363,7 +363,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   </dd>
                 </div>
 
-                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                   <dt className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'postal_code',
@@ -382,7 +382,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     />
                   </dd>
                 </div>
-                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                   <dt className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'city',
@@ -401,7 +401,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     />
                   </dd>
                 </div>
-                <div className="py-4 sm:grid sm:gap-4 sm:py-5">
+                <div className="py-4 sm:grid sm:gap-1 sm:py-5">
                   <dt className="text-sm font-medium text-gray-500">
                     {formatMessage({
                       id: 'country_code',
