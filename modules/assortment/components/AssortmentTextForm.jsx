@@ -8,6 +8,7 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import RichTextEditorField from '../../forms/components/RichTextEditorField';
 
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
@@ -124,16 +125,17 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-12">
-                <TextAreaField
-                  name="description"
-                  id="description"
-                  label={formatMessage({
-                    id: 'description',
-                    defaultMessage: 'Description',
-                  })}
-                  autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium text-gray-500"
-                />
+              <RichTextEditorField
+                required
+                name="description"
+                id="description"
+                autoComplete="on"
+                label={formatMessage({
+                  id: 'description',
+                  defaultMessage: 'Description',
+                })}
+                className="w-full text-sm font-medium text-gray-500"
+              />
               </div>
             </div>
 
