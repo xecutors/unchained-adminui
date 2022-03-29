@@ -137,7 +137,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
               </div>
             </div>
 
-            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+            <div className="bg-gray-50 px-4 py-5 text-right sm:px-6">
               <FormErrors />
               <SubmitButton
                 label={formatMessage({
