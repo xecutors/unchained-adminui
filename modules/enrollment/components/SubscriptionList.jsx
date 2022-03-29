@@ -44,7 +44,7 @@ const SubscriptionList = ({ periods }) => {
 
           {(periods || [])?.map((period) => (
             <Table.Row key={`${period.start}`}>
-              <Table.Cell className="whitespace-nowrap px-6 ">
+              <Table.Cell>
                 <div className="flex items-center text-sm text-gray-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber
@@ -60,11 +60,11 @@ const SubscriptionList = ({ periods }) => {
                 </div>
               </Table.Cell>
 
-              <Table.Cell className="whitespace-nowrap  px-6  pl-2 text-left text-sm text-gray-900">
+              <Table.Cell>
                 {period?.start ? formatDateTime(period?.start) : 'n/a'}
               </Table.Cell>
 
-              <Table.Cell className="whitespace-nowrap px-6  pl-2 text-left text-sm text-gray-900">
+              <Table.Cell>
                 {period?.end ? formatDateTime(period?.end) : 'n/a'}
               </Table.Cell>
             </Table.Row>

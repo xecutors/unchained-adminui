@@ -14,13 +14,13 @@ const CurrencyListItem = ({ currency, onRemove }) => {
 
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           {currency.isoCode}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           {new Intl.DisplayNames([locale], {
             type: 'currency',
@@ -29,7 +29,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <Badge
           text={STATUS[currency.isActive]}
           color={currency.isActive ? 'green' : 'red'}
@@ -37,7 +37,7 @@ const CurrencyListItem = ({ currency, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell>
         <div className="flex items-center">
           <Link href={`/currency/${currency?._id}`}>
             <a>

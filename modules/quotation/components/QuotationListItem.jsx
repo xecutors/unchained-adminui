@@ -19,7 +19,7 @@ const QuotationListItem = ({ quotation }) => {
   const { formatDateTime } = useFormatDateTime();
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           <Link href={`/quotations/${quotation._id}`}>
             <a className="text-blue-600">
@@ -29,13 +29,13 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           {formatDateTime(quotation.created)}
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           {quotation.expires ? formatDateTime(quotation?.expires) : 'n/a'}
 
@@ -52,7 +52,7 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <Link href={`/users/${quotation.user._id}`}>
           <a className="flex text-blue-500">
             <Image
@@ -66,7 +66,7 @@ const QuotationListItem = ({ quotation }) => {
         </Link>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           <Link href={`/products/${quotation.product._id}`}>
             <a className="flex text-blue-600">
@@ -84,7 +84,7 @@ const QuotationListItem = ({ quotation }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <Badge
           text={quotation?.status}
           color={QUOTATION_STATUS[quotation.status]}

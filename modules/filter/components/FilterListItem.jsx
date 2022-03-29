@@ -17,7 +17,7 @@ const FilterListItem = ({ filter, onRemove }) => {
   };
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap  px-6 ">
+      <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           <Link href={`/filters/${filter._id}`}>
             <a className="text-blue-600">
@@ -35,11 +35,11 @@ const FilterListItem = ({ filter, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
+      <Table.Cell>
         <Badge text={filter.type} color={FILTER_TYPES[filter.type]} square />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
+      <Table.Cell>
         <Badge
           text={STATUS[filter.isActive]}
           color={filter.isActive ? 'green' : 'red'}
@@ -47,11 +47,9 @@ const FilterListItem = ({ filter, onRemove }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap  px-6">
-        {filter.options?.length}
-      </Table.Cell>
+      <Table.Cell>{filter.options?.length}</Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap ">
+      <Table.Cell>
         <div className="flex items-center justify-center">
           <DeleteButton
             onClick={async () => {

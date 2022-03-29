@@ -15,9 +15,9 @@ const CountryListItem = ({ country, onRemove }) => {
     country.defaultCurrency && country.defaultCurrency.isoCode;
   return (
     <Table.Row>
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell className="whitespace-nowrap">
         <div className="flex">
-          <div className="items-center pl-2 text-sm text-gray-900">
+          <div className="items-center text-sm text-gray-900">
             {country.isoCode}{' '}
           </div>
           {country.isBase && (
@@ -33,7 +33,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell className="whitespace-nowrap">
         <div className="text-sm text-gray-900">
           {new Intl.DisplayNames([locale], { type: 'region' }).of(
             country.isoCode,
@@ -41,7 +41,7 @@ const CountryListItem = ({ country, onRemove }) => {
         </div>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell className="whitespace-nowrap">
         <div className="text-sm text-gray-900">
           {currencyISOcode}
 
@@ -51,14 +51,14 @@ const CountryListItem = ({ country, onRemove }) => {
             )}  (${currencyISOcode})`} */}
         </div>
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell className="whitespace-nowrap">
         <Badge
           text={STATUS[country.isActive]}
           color={country.isActive ? 'green' : 'red'}
           square
         />
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap px-6 ">
+      <Table.Cell className="whitespace-nowrap">
         <div className="flex items-center">
           <Link href={`/country/${country._id}`}>
             <a className="rounded-full bg-white px-1 py-1 text-sm text-indigo-500 hover:bg-indigo-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2">
