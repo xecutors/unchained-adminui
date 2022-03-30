@@ -29,8 +29,8 @@ const DetailHeader = ({ user, contact }) => {
             loader={defaultNextImageLoader}
             src={user.avatar.url}
             alt={user.name || user.username}
-            width={64}
-            height={64}
+            width={16}
+            height={16}
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -44,8 +44,8 @@ const DetailHeader = ({ user, contact }) => {
                 loader={defaultNextImageLoader}
                 src={user.avatar.url}
                 alt={user.name || user.username}
-                width={64}
-                height={64}
+                width={16}
+                height={16}
               />
             ) : (
               <FallbackAvatar username={user?.username} />

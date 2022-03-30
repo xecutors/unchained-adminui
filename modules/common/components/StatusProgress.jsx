@@ -72,7 +72,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </ul>
       </div>
 
-      <div className="hidden border-t border-gray-200 py-2 px-2 sm:block sm:px-2 lg:p-2">
+      <div className="hidden py-2 px-2 sm:block sm:px-2 lg:p-2">
         <h4 className="sr-only">
           {formatMessage({
             id: 'status',

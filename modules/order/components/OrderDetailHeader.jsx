@@ -10,16 +10,16 @@ const OrderDetailHeader = ({ order }) => {
   return (
     <section>
       <DetailHeader user={order?.user} contact={order?.contact} />
-      <div className="mt-2 flex border-b border-gray-200 pb-2 text-sm">
-        <dl className="flex flex-wrap items-center gap-1">
-          <dt className="hidden capitalize text-gray-500 sm:block">
+      <div className="mt-2 flex pb-2">
+        <div className="flex flex-wrap items-center gap-1">
+          <div className="hidden text-gray-500 sm:block">
             {formatMessage({
               id: 'order_number',
               defaultMessage: 'Order#',
             })}
             &nbsp;
-          </dt>
-          <dd className="inline-flex text-lg font-medium text-gray-900 sm:text-xl sm:font-bold">
+          </div>
+          <div className="inline-flex text-lg font-medium text-gray-900 sm:text-xl sm:font-bold">
             <span className="sm:hidden">&#35;&nbsp;</span>
             {order.orderNumber ? (
               <Badge
@@ -35,17 +35,15 @@ const OrderDetailHeader = ({ order }) => {
                 className="text-lg font-medium sm:text-xl sm:font-bold"
               />
             )}
-          </dd>
-          <dt>
-            <span className="sr-only">
+          </div>
+          <div className="mt-5">
+            <span className="text-md mr-5 text-gray-500">
               {formatMessage({ id: 'date', defaultMessage: 'Date' })}
             </span>
-          </dt>
-          <dd className="font-medium text-gray-900">
             {order?.ordered ? formatDateTime(order.ordered) : null}
-          </dd>
-        </dl>
-        <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-gray-900 sm:text-base">
+          </div>
+        </div>
+        <div className="ml-auto flex flex-wrap gap-x-1 text-sm text-gray-900 sm:text-base">
           <span>{order?.country?.flagEmoji}</span>
           <span>
             {new Intl.DisplayNames([locale], {

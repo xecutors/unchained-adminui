@@ -105,39 +105,33 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <div className="pb-8">
-      <OrderDetailHeader order={order} />
+    <div className="grid grid-cols-3 gap-10 md:mt-10 xl:mt-20">
+      <div className="mb-2">
+        <OrderDetailHeader order={order} />
+      </div>
+      <div className="col-span-2">
+        <OrderDetailBilling order={order} />
+      </div>
 
-      <StatusProgress
-        data={order}
-        statusTypes={orderStatusType}
-        timeline={timeline}
-      />
+      <div className="col-span-2">
+        <StatusProgress
+          data={order}
+          statusTypes={orderStatusType}
+          timeline={timeline}
+        />
+      </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+      <div className="bg-white flex">
         {order?.items.map((item) => {
           return <OrderDetailItem key={item._id} item={item} />;
         })}
       </div>
-
-      <section aria-labelledby="summary-heading" className="mt-8">
-        <h2 id="summary-heading" className="sr-only">
-          {formatMessage({
-            id: 'delivery_payment_discount_summary',
-            defaultMessage: 'Delivery, Payment and Discount Summary',
-          })}
-        </h2>
-
-        <div className="grid w-full gap-4 text-sm sm:flex sm:flex-wrap sm:rounded-lg">
-          <OrderDetailDelivery delivery={order?.delivery} />
-          <OrderDetailPayment order={order} />
-          <DiscountList discount={order?.discounts} />
-        </div>
-      </section>
-
-      <OrderDetailBilling order={order} />
-
-      <Accordion data={[documents]} headerCSS={headerCSS} />
+      <OrderDetailDelivery delivery={order?.delivery} />
+      <OrderDetailPayment order={order} />
+      <DiscountList discount={order?.discounts} />
+      <div className="col-span-2">
+        <Accordion data={[documents]} headerCSS={headerCSS} />
+      </div>
     </div>
   );
 };
