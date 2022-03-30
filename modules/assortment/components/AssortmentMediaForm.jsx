@@ -48,16 +48,10 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
           setModal('');
           await removeAssortmentMedia({ assortmentMediaId });
           toast.success(
-            formatMessage(
-              {
-                id: 'assortment_media_deleted',
-                defaultMessage:
-                  'media {assortmentMediaId} deleted successfully',
-              },
-              {
-                assortmentMediaId,
-              },
-            ),
+            formatMessage({
+              id: 'assortment_media_deleted',
+              defaultMessage: 'Media deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

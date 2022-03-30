@@ -148,7 +148,7 @@
     "defaultMessage": "Assortment Media"
   },
   "assortment_media_deleted": {
-    "defaultMessage": "media {assortmentMediaId} deleted successfully"
+    "defaultMessage": "Media deleted successfully"
   },
   "assortment_media_upload": {
     "defaultMessage": "Media uploaded successfully"
@@ -1111,7 +1111,7 @@
     "defaultMessage": "Product Media"
   },
   "product_media_deleted": {
-    "defaultMessage": "media {productMediaId} deleted successfully"
+    "defaultMessage": "Media deleted successfully"
   },
   "product_media_upload": {
     "defaultMessage": "Media uploaded successfully"

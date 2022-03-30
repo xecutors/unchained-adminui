@@ -48,15 +48,10 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
           setModal('');
           await removeProductMedia({ productMediaId });
           toast.success(
-            formatMessage(
-              {
-                id: 'product_media_deleted',
-                defaultMessage: 'media {productMediaId} deleted successfully',
-              },
-              {
-                productMediaId,
-              },
-            ),
+            formatMessage({
+              id: 'product_media_deleted',
+              defaultMessage: 'Media deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
