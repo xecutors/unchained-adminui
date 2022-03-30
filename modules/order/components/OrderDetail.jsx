@@ -121,7 +121,7 @@ const OrderDetail = ({ order }) => {
         />
       </div>
 
-      <div className="bg-white flex">
+      <div className="flex bg-white">
         {order?.items.map((item) => {
           return <OrderDetailItem key={item._id} item={item} />;
         })}

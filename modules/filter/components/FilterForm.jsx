@@ -2,7 +2,7 @@ import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
+
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -41,7 +41,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             id: 'title',
             defaultMessage: 'Title',
           })}
-          hideLabel
           placeholder={formatMessage({
             id: 'title',
             defaultMessage: 'Title',
@@ -57,7 +56,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             id: 'key',
             defaultMessage: 'Key',
           })}
-          hideLabel
           placeholder={formatMessage({
             id: 'key',
             defaultMessage: 'Key',
@@ -70,7 +68,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
           className="mb-5"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-          hideLabel
           required
           name="type"
           options={convertArrayOfObjectToObject(filterTypes, 'label', 'value')}
@@ -148,7 +145,12 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span className="ml-2">Add Option</span>
+                      <span className="ml-2">
+                        {formatMessage({
+                          id: 'add_option',
+                          defaultMessage: 'Add Option',
+                        })}{' '}
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -157,7 +159,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
           )}
         </FieldArray>
       </div>
-      <FormErrors />
       <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={formatMessage({

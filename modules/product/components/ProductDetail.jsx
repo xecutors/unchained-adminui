@@ -218,7 +218,7 @@ const ProductDetail = ({ product }) => {
 
   return (
     <>
-      <div className="lg:ml-5 flex flex-wrap items-center justify-between space-y-1">
+      <div className="flex flex-wrap items-center justify-between space-y-1 lg:ml-5">
         <h1 className="">{product?.__typename}</h1>
         <TagList defaultValue={product?.tags} onSubmit={onUpdateTags} />
         <SelectOptions

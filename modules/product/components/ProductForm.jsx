@@ -66,7 +66,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
         />
       </div>
 
-      <div className="sm:px-15 space-y-6 bg-gray-50 border-t border-t-indigo-50 p-5 text-right">
+      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'add_product',

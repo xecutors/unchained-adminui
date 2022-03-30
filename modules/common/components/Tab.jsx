@@ -46,8 +46,8 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={` ${
                   tab === option.id &&
-                  'cursor-pointer border-indigo-100 border-b-indigo-500 text-indigo-600 bg-indigo-50 border rounded-t-lg'
-                }  cursor-pointer whitespace-nowrap border-b-2 border-transparent py-4 px-1 text-sm font-medium hover:border-b-indigo-500 pr-3 pl-2`}
+                  'cursor-pointer rounded-t-lg border border-indigo-100 border-b-indigo-500 bg-indigo-50 text-indigo-600'
+                }  cursor-pointer whitespace-nowrap border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm font-medium hover:border-b-indigo-500`}
               >
                 <div className="flex items-center space-x-1">
                   <div>{option.Icon}</div>

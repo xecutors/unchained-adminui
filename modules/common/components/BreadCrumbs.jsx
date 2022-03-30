@@ -33,7 +33,7 @@ const BreadCrumbs = ({ routeName, currentPageTitle }) => {
   });
   return (
     <nav
-      className="lg:mt-10 lg:mb-10 mb-5 hidden sm:flex"
+      className="mb-5 hidden sm:flex lg:mt-10 lg:mb-10"
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-4">

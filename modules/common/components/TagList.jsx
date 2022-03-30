@@ -33,7 +33,7 @@ const TagList = ({ defaultValue, onSubmit }) => {
         )}
       </div>
       <Button
-        className="rounded-full h-12 w-12"
+        className="h-12 w-12 rounded-full"
         text={<PencilAltIcon className="h-5 w-5" />}
         onClick={() =>
           setModal(
