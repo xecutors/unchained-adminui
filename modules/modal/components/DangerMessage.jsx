@@ -13,7 +13,7 @@ const DangerMessage = ({
   const { formatMessage } = useIntl();
   return (
     <>
-      <div className="sm:flex sm:items-start">
+      <div className="px-4 sm:px-6 sm:flex sm:items-start">
         {icon || (
           <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
             <svg
@@ -53,7 +53,7 @@ const DangerMessage = ({
         </div>
       </div>
 
-      <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+      <div className="mt-5 bg-gray-50 px-4 py-3 sm:px-6 sm:mt-4 sm:flex sm:flex-row-reverse">
         <button
           onClick={onOkClick}
           type="button"
