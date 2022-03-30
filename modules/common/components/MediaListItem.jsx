@@ -1,3 +1,4 @@
+import { PencilAltIcon } from '@heroicons/react/outline';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -7,6 +8,7 @@ import useForm from '../../forms/hooks/useForm';
 import { stopPropagation } from '../data/miscellaneous';
 import useDisplayImageInModal from '../utils/useDisplayImageInModal';
 import DeleteButton from './DeleteButton';
+import SaveAndCancelButtons from './SaveAndCancelButtons';
 
 const MediaListItem = ({
   media,
@@ -109,16 +111,13 @@ const MediaListItem = ({
                 )}
               </p>
             </div>
-            <div className="flex flex-none space-x-4 self-start">
-              {isEdit && (
-                <button
-                  type="button"
-                  onClick={() => onEdit(!isEdit)}
-                  className="pr-4 pl-2 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
-                </button>
-              )}
+
+            {isEdit ? (
+              <SaveAndCancelButtons
+                className="justify-end"
+                onCancel={() => onEdit(!isEdit)}
+              />
+            ) : (
               <button
                 type={isEdit ? 'button' : 'submit'}
                 onClick={(e) => {
@@ -127,11 +126,9 @@ const MediaListItem = ({
                 }}
                 className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               >
-                {!isEdit
-                  ? formatMessage({ id: 'edit', defaultMessage: 'Edit' })
-                  : formatMessage({ id: 'save', defaultMessage: 'Save' })}
+                <PencilAltIcon className="h-5 w-5" />
               </button>
-            </div>
+            )}
           </div>
         </Form>
       </div>

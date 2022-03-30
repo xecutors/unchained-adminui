@@ -1,10 +1,9 @@
 import { useIntl } from 'react-intl';
 
-import TagInput from '../../common/components/TagInput';
-
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
+import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
@@ -48,7 +47,6 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Name',
           })}
           required
-          autoComplete="on"
           className="mt-2 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
@@ -57,18 +55,14 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
             className="mt-0 w-full"
             label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-            hideLabel
+            required
             name="type"
             options={ProductTypes}
           />
         </div>
-        <TagInput
-          onChange={async (values) => {
-            await form.formik.setValues({
-              ...form.formik.values,
-              tags: values,
-            });
-          }}
+        <TagInputField
+          name="tags"
+          label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
         />
       </div>
 
