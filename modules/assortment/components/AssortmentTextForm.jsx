@@ -89,7 +89,12 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium text-slate-500"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
+                  showToolTip
+                  toolTipMessage={formatMessage({
+                    id: 'tool-tip',
+                    defaultMessage: 'Slug is needed for the product',
+                  })}
                 />
               </div>
               <div className="col-span-12">
