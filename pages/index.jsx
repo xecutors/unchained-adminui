@@ -37,7 +37,7 @@ const Home = ({ shopInfo }) => {
 
         <div className="col-span-1">
           <div className="mb-10">
-            <h2 className="ml-4 text-xl text-gray-700 mb-3">Shortcuts</h2>
+            <h2 className="ml-4 mb-3 text-xl text-gray-700">Shortcuts</h2>
             <div className="grid grid-cols-2 gap-3">
               <a
                 type="button"
@@ -108,7 +108,7 @@ const Home = ({ shopInfo }) => {
             </div>
           </div>
           <div className="mb-10">
-            <h2 className="ml-4 text-xl text-gray-700 mb-3">Daily Sync</h2>
+            <h2 className="ml-4 mb-3 text-xl text-gray-700">Daily Sync</h2>
             {loading ? <Loading /> : <SyncReportList data={dailySync} />}
           </div>
           <h2 className="ml-4 text-xl text-gray-700">

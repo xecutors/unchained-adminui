@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 
+import { useRouter } from 'next/router';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
@@ -7,10 +8,11 @@ import SelectField from '../../forms/components/SelectField';
 import DatePickerField from '../../forms/components/DatePickerField';
 import EmailField from '../../forms/components/EmailField';
 import PasswordField from '../../forms/components/PasswordField';
-import SubmitButton from '../../forms/components/SubmitButton';
+import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
   const successMessage = formatMessage({
     id: 'user_profile_created',
     defaultMessage: 'User profile created successfully!',
@@ -38,6 +40,9 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
       city: '',
     },
   });
+  const back = () => {
+    router.back();
+  };
 
   return (
     <>
@@ -175,13 +180,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
             </div>
-            <div className="sm:px-15 mt-5 space-y-6 border-t-indigo-50 bg-gray-50 p-5 text-right lg:col-span-3 lg:p-6">
-              <SubmitButton
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-              />
+            <div className="sm:px-15 mt-5 space-y-6  p-5 ">
+              <SaveAndCancelButtons className="justify-end" onCancel={back} />
             </div>
           </div>
 
@@ -341,14 +341,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 </div>
               </div>
             </div>
-            <div className="sm:px-15 mt-5 space-y-6 border-t-indigo-50 bg-gray-50 p-5 text-right lg:col-span-3 lg:p-6">
-              <SubmitButton
-                full
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-              />
+            <div className="sm:px-15 mt-5 space-y-6  p-5 ">
+              <SaveAndCancelButtons className="justify-end" onCancel={back} />
             </div>
           </div>
         </div>
