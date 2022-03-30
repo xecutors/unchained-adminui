@@ -10,7 +10,7 @@ const UserTagsView = ({ tags: defaultTags = [], userId }) => {
 
   const tagsUpdatedMessage = formatMessage({
     id: 'tags_updated',
-    defaultMessage: 'Tags updated successfully!',
+    defaultMessage: 'Tags updated successfully',
   });
   const updateUserTags = async ({ tags }) => {
     await setUserTags({ tags, userId });

@@ -202,8 +202,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   className="mt-0 w-full"
                   name="phoneMobile"
                   label={formatMessage({
-                    id: 'mobile',
-                    defaultMessage: 'Mobile',
+                    id: 'mobile_phone',
+                    defaultMessage: 'Mobile phone',
                   })}
                   hideLabel
                 />

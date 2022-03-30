@@ -30,7 +30,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       toast.error(
         formatMessage({
           id: 'fail_upload',
-          defaultMessage: 'Media uploaded unsuccessfully',
+          defaultMessage: 'Media upload failed',
         }),
       );
     }

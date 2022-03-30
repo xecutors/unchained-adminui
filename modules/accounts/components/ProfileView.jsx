@@ -286,8 +286,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
                   {formatMessage({
-                    id: 'mobile',
-                    defaultMessage: 'Mobile Phone',
+                    id: 'mobile_phone',
+                    defaultMessage: 'Mobile phone',
                   })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
@@ -296,8 +296,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                       className="mt-0 w-full"
                       name="phoneMobile"
                       label={formatMessage({
-                        id: 'mobile',
-                        defaultMessage: 'Mobile Phone',
+                        id: 'mobile_phone',
+                        defaultMessage: 'Mobile phone',
                       })}
                       hideLabel
                     />

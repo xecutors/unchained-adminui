@@ -23,7 +23,7 @@ const ProductVariationOptionsList = ({
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_product_variation_confirmation',
+          id: 'delete_variation_option_confirmation',
           defaultMessage:
             'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this option? ',
         })}
@@ -41,7 +41,7 @@ const ProductVariationOptionsList = ({
           );
         }}
         okText={formatMessage({
-          id: 'delete_product_variation',
+          id: 'delete_variation_option',
           defaultMessage: 'Delete option',
         })}
       />,
