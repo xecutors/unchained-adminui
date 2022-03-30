@@ -8,9 +8,10 @@ const ToolTipWrapper = ({ children }) => {
 
   const setToolTip = (value) => {
     return (event) => {
-      const { clientX, clientY } = event;
+      console.log(event.currentTarget.getBoundingClientRect());
+      const { x, y, height } = event.currentTarget.getBoundingClientRect();
       setCurrentToolTip(value);
-      setPosition({ top: clientY, left: clientX });
+      setPosition({ top: y - height - 10, left: x });
     };
   };
   const ctx = useMemo(() => ({ setToolTip }), []);
@@ -25,6 +26,7 @@ const ToolTipWrapper = ({ children }) => {
                 left: position.left - 100,
                 width: 200,
                 height: 200,
+                // background: 'red',
                 position: 'absolute',
                 borderRadius: '50%',
               }

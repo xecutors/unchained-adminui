@@ -24,6 +24,8 @@ export interface CommonFieldProps {
   inputClassName?: string;
   placeholder?: string;
   hideLabel?: boolean;
+  showToolTip?: boolean;
+  toolTipMessage?: string;
   /**
    * A second change handler without the possibility to change the value.
    */

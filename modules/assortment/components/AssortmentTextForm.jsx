@@ -75,6 +75,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
       className="mt-2 sm:mt-0"
       documentation="A Slug is the unique identifying part of a web address, typically at the end of the URL."
       mainContent={
+<<<<<<< HEAD
         <FormWrapper>
           <Form form={form}>
             <div className="shadow sm:rounded-md">
@@ -127,6 +128,53 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     })}
                   />
                 </div>
+=======
+        <Form form={form}>
+          <div className="shadow sm:rounded-md">
+            <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
+              <div className="col-span-12">
+                <TextField
+                  name="slug"
+                  required
+                  id="slug"
+                  label={formatMessage({
+                    id: 'slug',
+                    defaultMessage: 'Slug',
+                  })}
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium text-gray-500"
+                  showToolTip
+                  toolTipMessage={formatMessage({
+                    id: 'tool-tip',
+                    defaultMessage: 'Slug is needed for the product',
+                  })}
+                />
+              </div>
+              <div className="col-span-12">
+                <TextField
+                  name="title"
+                  id="title"
+                  label={formatMessage({
+                    id: 'title',
+                    defaultMessage: 'Title',
+                  })}
+                  required
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium text-slate-500"
+                />
+              </div>
+              <div className="col-span-12">
+                <TextField
+                  name="subtitle"
+                  id="subtitle"
+                  label={formatMessage({
+                    id: 'subtitle',
+                    defaultMessage: 'Subtitle',
+                  })}
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium text-slate-500"
+                />
+>>>>>>> 30170f59 (Refactor fieldWrapper to accept tool tip)
               </div>
 
               <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
