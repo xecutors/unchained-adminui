@@ -5,7 +5,7 @@ import Link from 'next/link';
 const SideNav = ({ navigation }) => {
   return (
     <div className="mt-1 flex flex-grow flex-col">
-      <h1 className="font-bold text-indigo-500 text-md mb-4 bg-white px-2 lg:px-4 2xl:px-6">
+      <h1 className="text-md mb-4 bg-white px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6">
         Admin UI
       </h1>
       <nav

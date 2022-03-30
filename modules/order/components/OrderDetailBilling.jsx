@@ -85,7 +85,7 @@ const OrderDetailBilling = ({ order }) => {
               {formatPrice(order?.totalTax)}
             </dd>
           </div>
-          <div className="flex text-lg items-center justify-between pt-3">
+          <div className="flex items-center justify-between pt-3 text-lg">
             <dt className="font-bold text-gray-900">
               {formatMessage({
                 id: 'order_total',

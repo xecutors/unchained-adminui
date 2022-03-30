@@ -103,7 +103,7 @@ const CountryForm = ({
           </div>
         )}
       </div>
-      <div className="border-t border-t-indigo-50 sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
+      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit
