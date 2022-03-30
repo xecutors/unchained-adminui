@@ -47,8 +47,8 @@ const OrderDetailDelivery = ({ delivery }) => {
         </span>
         <div className="mt-3 text-sm font-medium text-gray-500">
           {formatMessage({
-            id: 'provider',
-            defaultMessage: 'Provider',
+            id: 'method',
+            defaultMessage: 'Method',
           })}
         </div>
         <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">

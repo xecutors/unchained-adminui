@@ -146,9 +146,12 @@ const WorkFilter = ({ workTypes = [] }) => {
         <p className="mt-0 text-xl font-medium leading-5 text-gray-800 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
-        <div className="m-1 mt-3 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+        <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           {WORK_STATUSES.map((status) => (
-            <div className="mr-2 flex items-center justify-start" key={status}>
+            <div
+              className="inline-flex items-center rounded-md bg-white py-2 px-4 text-sm font-medium text-indigo-800 shadow"
+              key={status}
+            >
               <input
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                 type="checkbox"

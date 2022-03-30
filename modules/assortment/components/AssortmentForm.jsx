@@ -39,7 +39,11 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           className="mb-5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
-        <TagInputField name="tags" id="tags" />
+        <TagInputField
+          name="tags"
+          id="tags"
+          label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+        />
       </div>
       <div className="mx-5 mb-5 flex h-5 items-center">
         <CheckboxField
