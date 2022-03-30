@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
@@ -6,7 +7,6 @@ import SelectField from '../../forms/components/SelectField';
 import DatePickerField from '../../forms/components/DatePickerField';
 import EmailField from '../../forms/components/EmailField';
 import PasswordField from '../../forms/components/PasswordField';
-import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
@@ -65,155 +65,118 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           <div className="mt-1 rounded-md border-gray-200 bg-white pt-5 shadow lg:col-span-2">
             <div className="px-6">
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <TextField
+                  className="mt-0 w-full"
+                  name="username"
+                  required
+                  label={formatMessage({
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="username"
-                    required
-                    label={formatMessage({
-                      id: 'username',
-                      defaultMessage: 'Username',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'username',
+                    defaultMessage: 'Username',
+                  })}
+                />
               </div>
 
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <EmailField
+                  className="mt-0 w-full"
+                  name="email"
+                  required
+                  label={formatMessage({
                     id: 'email',
                     defaultMessage: 'Email',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <EmailField
-                    className="mt-0 w-full"
-                    name="email"
-                    required
-                    label={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'email',
+                    defaultMessage: 'Email',
+                  })}
+                />
               </div>
 
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <PasswordField
+                  className="mt-0 w-full"
+                  name="password"
+                  required
+                  label={formatMessage({
                     id: 'password',
                     defaultMessage: 'Password',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <PasswordField
-                    className="mt-0 w-full"
-                    name="password"
-                    required
-                    label={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                />
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <TextField
+                  className="mt-0 w-full"
+                  name="displayName"
+                  label={formatMessage({
                     id: 'display_name',
                     defaultMessage: 'Display name',
                   })}
-                </dt>
-                <dd className="mt-1 flex py-1 text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="displayName"
-                    label={formatMessage({
-                      id: 'display_name',
-                      defaultMessage: 'Display name',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'display_name',
+                    defaultMessage: 'Display name',
+                  })}
+                />
               </div>
 
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <SelectField
+                  className="mt-0 w-full"
+                  label={formatMessage({
                     id: 'gender',
                     defaultMessage: 'Gender',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <SelectField
-                    className="mt-0 w-full"
-                    label={formatMessage({
-                      id: 'gender',
-                      defaultMessage: 'Gender',
-                    })}
-                    hideLabel
-                    name="gender"
-                    options={{
-                      M: formatMessage({
-                        id: 'male',
-                        defaultMessage: 'Male',
-                      }),
-                      F: formatMessage({
-                        id: 'female',
-                        defaultMessage: 'Female',
-                      }),
-                    }}
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'gender',
+                    defaultMessage: 'Gender',
+                  })}
+                  name="gender"
+                  options={{
+                    M: formatMessage({
+                      id: 'male',
+                      defaultMessage: 'Male',
+                    }),
+                    F: formatMessage({
+                      id: 'female',
+                      defaultMessage: 'Female',
+                    }),
+                  }}
+                />
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <DatePickerField
+                  label={formatMessage({
                     id: 'birthday',
                     defaultMessage: 'Birthday',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <DatePickerField
-                    label={formatMessage({
-                      id: 'birthday',
-                      defaultMessage: 'Birthday',
-                    })}
-                    hideLabel
-                    className="mt-0 w-full"
-                    name="birthday"
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'birthday',
+                    defaultMessage: 'Birthday',
+                  })}
+                  className="mt-0 w-full"
+                  name="birthday"
+                />
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="phoneMobile"
-                    label={formatMessage({
-                      id: 'mobile_phone',
-                      defaultMessage: 'Mobile phone',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                <TextField
+                  className="mt-0 w-full"
+                  name="phoneMobile"
+                  label={formatMessage({
+                    id: 'mobile_phone',
+                    defaultMessage: 'Mobile phone',
+                  })}
+                  placeholder={formatMessage({
+                    id: 'mobile_phone',
+                    defaultMessage: 'Mobile phone',
+                  })}
+                />
               </div>
             </div>
             <div className="sm:px-15 mt-5 space-y-6 border-t-indigo-50 bg-gray-50 p-5 text-right lg:col-span-3 lg:p-6">
               <SubmitButton
-                full
                 label={formatMessage({
                   id: 'save',
                   defaultMessage: 'Save',
@@ -245,13 +208,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           <div className="rounded-md bg-white pt-5 shadow lg:col-span-2">
             <div className="px-5">
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'full_name',
-                    defaultMessage: 'Full name',
-                  })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
+                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   <div className="flex w-full">
                     <TextField
                       className="mt-0 w-full"
@@ -260,7 +217,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                         id: 'first_name',
                         defaultMessage: 'First name',
                       })}
-                      hideLabel
+                      l
                       placeholder={formatMessage({
                         id: 'first_name',
                         defaultMessage: 'First name',
@@ -273,151 +230,114 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                         id: 'last_Name',
                         defaultMessage: 'Last name',
                       })}
-                      hideLabel
                       placeholder={formatMessage({
                         id: 'last_Name',
                         defaultMessage: 'Last name',
                       })}
                     />
                   </div>
-                </dd>
+                </div>
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <TextField
+                  className="mt-0 w-full"
+                  name="company"
+                  label={formatMessage({
                     id: 'company',
                     defaultMessage: 'Company',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="company"
-                    label={formatMessage({
-                      id: 'company',
-                      defaultMessage: 'Company',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'company',
+                    defaultMessage: 'Company',
+                  })}
+                />
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <TextField
+                  className="mt-0 w-full"
+                  name="addressLine"
+                  label={formatMessage({
                     id: 'address_line_1',
                     defaultMessage: 'Address line 1 (Street, House no)',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="addressLine"
-                    label={formatMessage({
-                      id: 'address_line_1',
-                      defaultMessage: 'Address line 1 (Street, House no)',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'address_line_1',
+                    defaultMessage: 'Address line 1 (Street, House no)',
+                  })}
+                />
               </div>
               <div className="py-2 sm:grid sm:gap-1">
-                <dt className="text-sm font-medium text-gray-500">
-                  {formatMessage({
+                <TextField
+                  className="mt-0 w-full"
+                  name="addressLine2"
+                  label={formatMessage({
                     id: 'address_line_2',
                     defaultMessage: 'Address line 2',
                   })}
-                </dt>
-                <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                  <TextField
-                    className="mt-0 w-full"
-                    name="addressLine2"
-                    label={formatMessage({
-                      id: 'address_line_2',
-                      defaultMessage: 'Address line 2',
-                    })}
-                    hideLabel
-                  />
-                </dd>
+                  placeholder={formatMessage({
+                    id: 'address_line_2',
+                    defaultMessage: 'Address line 2',
+                  })}
+                />
               </div>
 
               <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
                 <div className="py-2 sm:grid sm:gap-1">
-                  <dt className="text-sm font-medium text-gray-500">
-                    {formatMessage({
-                      id: 'region',
+                  <TextField
+                    className="mt-0 w-full"
+                    name="regionCode"
+                    label={formatMessage({
+                      id: 'region_Code',
                       defaultMessage: 'Region',
                     })}
-                  </dt>
-
-                  <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0">
-                    <TextField
-                      className="mt-0 w-full"
-                      name="regionCode"
-                      label={formatMessage({
-                        id: 'region_Code',
-                        defaultMessage: 'Region',
-                      })}
-                      hideLabel
-                    />
-                  </dd>
+                    placeholder={formatMessage({
+                      id: 'region_Code',
+                      defaultMessage: 'Region',
+                    })}
+                  />
                 </div>
 
                 <div className="py-2 sm:grid sm:gap-1">
-                  <dt className="text-sm font-medium text-gray-500">
-                    {formatMessage({
+                  <TextField
+                    className="mt-0 w-full"
+                    name="postalCode"
+                    label={formatMessage({
                       id: 'postal_code',
                       defaultMessage: 'Postal/ZIP code',
                     })}
-                  </dt>
-                  <dd className="mt-1 w-full text-sm text-gray-900 sm:mt-0">
-                    <TextField
-                      className="mt-0 w-full"
-                      name="postalCode"
-                      label={formatMessage({
-                        id: 'postal_code',
-                        defaultMessage: 'Postal/ZIP code',
-                      })}
-                      hideLabel
-                    />
-                  </dd>
+                    placeholder={formatMessage({
+                      id: 'postal_code',
+                      defaultMessage: 'Postal/ZIP code',
+                    })}
+                  />
                 </div>
                 <div className="py-2 sm:grid sm:gap-1">
-                  <dt className="text-sm font-medium text-gray-500">
-                    {formatMessage({
+                  <TextField
+                    className="mt-0 w-full"
+                    name="city"
+                    label={formatMessage({
                       id: 'city',
                       defaultMessage: 'City',
                     })}
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0">
-                    <TextField
-                      className="mt-0 w-full"
-                      name="city"
-                      label={formatMessage({
-                        id: 'city',
-                        defaultMessage: 'City',
-                      })}
-                      hideLabel
-                    />
-                  </dd>
+                    placeholder={formatMessage({
+                      id: 'city',
+                      defaultMessage: 'City',
+                    })}
+                  />
                 </div>
                 <div className="py-2 sm:grid sm:gap-1">
-                  <dt className="text-sm font-medium text-gray-500">
-                    {formatMessage({
+                  <TextField
+                    className="mt-0 w-full"
+                    name="countryCode"
+                    label={formatMessage({
                       id: 'country_code',
                       defaultMessage: 'Country code',
                     })}
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0">
-                    <TextField
-                      className="mt-0 w-full"
-                      name="countryCode"
-                      label={formatMessage({
-                        id: 'country_code',
-                        defaultMessage: 'Country code',
-                      })}
-                      hideLabel
-                    />
-                  </dd>
+                    placeholder={formatMessage({
+                      id: 'country_code',
+                      defaultMessage: 'Country code',
+                    })}
+                  />
                 </div>
               </div>
             </div>
@@ -431,8 +351,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               />
             </div>
           </div>
-
-          <FormErrors />
         </div>
       </Form>
     </>
