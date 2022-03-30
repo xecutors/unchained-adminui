@@ -18,19 +18,19 @@ const useUpdateProductSupply = () => {
 
   const updateProductSupply = async ({
     productId,
-    weightInGram = null,
-    heightInMillimeters = null,
-    lengthInMillimeters = null,
-    widthInMillimeters = null,
+    weightInGram: weight = null,
+    heightInMillimeters: height = null,
+    lengthInMillimeters: length = null,
+    widthInMillimeters: width = null,
   }) => {
     return updateProductSupplyMutation({
       variables: {
         productId,
         supply: {
-          weightInGram,
-          heightInMillimeters,
-          lengthInMillimeters,
-          widthInMillimeters,
+          weightInGram: weight || null,
+          heightInMillimeters: height || null,
+          lengthInMillimeters: length || null,
+          widthInMillimeters: width || null,
         },
       },
       refetchQueries: ['Products'],
