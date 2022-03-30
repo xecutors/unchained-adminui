@@ -4,7 +4,10 @@ import Link from 'next/link';
 
 const SideNav = ({ navigation }) => {
   return (
-    <div className="mt-5 flex flex-grow flex-col">
+    <div className="mt-1 flex flex-grow flex-col">
+      <h1 className="font-bold text-indigo-500 text-md mb-4 bg-white px-2 lg:px-4 2xl:px-6">
+        Admin UI
+      </h1>
       <nav
         className="flex-1 space-y-1 bg-white px-2 lg:px-4 2xl:px-6"
         aria-label="Sidebar"
@@ -24,8 +27,8 @@ const SideNav = ({ navigation }) => {
                   <item.icon
                     className={classNames(
                       item.current
-                        ? 'text-gray-500'
-                        : 'text-gray-400 group-hover:text-gray-500',
+                        ? 'text-indigo-500'
+                        : 'text-indigo-400 group-hover:text-indigo-500',
                       'mr-3 h-6 w-6 flex-shrink-0',
                     )}
                     aria-hidden="true"
@@ -47,13 +50,13 @@ const SideNav = ({ navigation }) => {
                     )}
                   >
                     <item.icon
-                      className="mr-3 h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500"
                       aria-hidden="true"
                     />
                     <span className="flex-1">{item.name}</span>
                     <svg
                       className={classNames(
-                        open ? 'rotate-90 text-gray-400' : 'text-gray-300',
+                        open ? 'rotate-90 text-indigo-400' : 'text-indigo-300',
                         'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400',
                       )}
                       viewBox="0 0 20 20"

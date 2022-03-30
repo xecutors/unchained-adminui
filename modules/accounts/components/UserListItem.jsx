@@ -25,10 +25,10 @@ const UserListItem = ({ user }) => {
               </div>
               <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                 <div>
-                  <p className="truncate text-sm font-medium text-indigo-600">
+                  <div className="truncate text-sm font-medium text-indigo-600">
                     {user.name}
-                  </p>
-                  <p className="mt-2 flex items-center text-sm text-gray-500">
+                  </div>
+                  <div className="flex items-center text-sm text-gray-500">
                     <svg
                       className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                       xmlns="http://www.w3.org/2000/svg"
@@ -42,11 +42,11 @@ const UserListItem = ({ user }) => {
                     <span className="truncate">
                       {user?.primaryEmail?.address}
                     </span>
-                  </p>
+                  </div>
                 </div>
                 <div className="hidden md:block">
                   <div>
-                    <p className="text-sm text-gray-900">
+                    <div className="text-sm text-gray-900">
                       {user.isGuest && (
                         <Badge
                           text={formatMessage({
@@ -55,8 +55,8 @@ const UserListItem = ({ user }) => {
                           })}
                         />
                       )}
-                    </p>
-                    <p className="mt-2 flex items-center text-sm text-gray-500">
+                    </div>
+                    <div className="mt-2 flex items-center text-sm text-gray-500">
                       {isVerified ? (
                         <>
                           <svg
@@ -92,7 +92,7 @@ const UserListItem = ({ user }) => {
                           {UserTypes[isVerified]}
                         </>
                       )}
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
