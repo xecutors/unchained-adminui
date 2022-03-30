@@ -6,6 +6,10 @@ option:not(:first-of-type), html, body, a {
  color: rgb(51 65 85);
 }
 
+.xl\:text-5xl {
+  line-height: 1.15 !important;
+}
+
 .hide-show {
   position: absolute;
   top: 0;

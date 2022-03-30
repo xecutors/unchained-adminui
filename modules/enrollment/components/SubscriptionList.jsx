@@ -44,7 +44,7 @@ const SubscriptionList = ({ periods }) => {
 
           {(periods || [])?.map((period) => (
             <Table.Row key={`${period.start}`}>
-              <Table.Cell>
+              <Table.Cellw>
                 <div className="flex items-center text-sm text-gray-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber

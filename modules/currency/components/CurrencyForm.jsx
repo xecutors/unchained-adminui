@@ -57,7 +57,7 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           required
-          className="my-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="my-4"
         />
 
         {isEdit && (

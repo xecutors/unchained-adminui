@@ -88,7 +88,7 @@ const UserProfile = () => {
       <PageHeader
         headerText={formatMessage({
           id: 'users_setting_list_header',
-          defaultMessage: 'Users setting',
+          defaultMessage: 'User settings',
         })}
       />
       <Tab tabItems={userProfileSettingOptions} defaultTab="profile">

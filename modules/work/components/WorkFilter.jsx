@@ -50,7 +50,7 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   return (
     <>
-      <div className="mb-2 justify-between p-4 sm:mb-0 lg:flex">
+      <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
         <div className="sm:mr-6">
           <div className="flexspace-x-2">
             <div className="text-xl font-medium leading-5 text-gray-800 lg:leading-6 ">
@@ -140,9 +140,9 @@ const WorkFilter = ({ workTypes = [] }) => {
           </div>
         </div>
       </div>
-      <hr className=" my-4  hidden w-full bg-gray-200  sm:block" />
+      <hr className="my-4 hidden w-full bg-gray-200  sm:block" />
 
-      <div className="p-4 pt-0">
+      <div>
         <p className="mt-0 text-xl font-medium leading-5 text-gray-800 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>

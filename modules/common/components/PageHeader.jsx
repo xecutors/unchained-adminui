@@ -6,7 +6,7 @@ const PageHeader = ({ headerText, onEdit, onDelete }) => {
     <div className="my-2 md:flex md:items-center md:justify-between">
       <div className="min-w-0 flex-1">
         {headerText && (
-          <h2 className="lg:ml-5 text-2xl font-bold leading-7 text-slate-700 sm:truncate sm:text-3xl">
+          <h2 className="text-2xl font-bold text-slate-700 sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
             {headerText}
           </h2>
         )}

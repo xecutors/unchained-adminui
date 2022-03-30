@@ -41,7 +41,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
 
   return (
     <Form form={form}>
-      <div className="px-5 py-2">
+      <div className="p-5">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -52,7 +52,6 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           })}
           autoComplete="on"
           required
-          className="my-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
         {isEdit && (

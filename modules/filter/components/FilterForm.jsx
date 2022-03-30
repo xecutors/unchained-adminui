@@ -47,7 +47,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Title',
           })}
           required
-          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="mb-5"
         />
 
         <TextField
@@ -63,11 +63,11 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Key',
           })}
           required
-          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="mb-5"
         />
 
         <SelectField
-          className="mb-5 w-full shadow-sm"
+          className="mb-5"
           label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
           hideLabel
@@ -99,7 +99,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                         defaultMessage: 'Option',
                       })}
                       hideLabel
-                      className="w-full shadow-sm"
                     />
                     <div className="ml-2 mt-5 flex-shrink-0 sm:mt-4">
                       <button
