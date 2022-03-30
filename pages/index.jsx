@@ -37,7 +37,78 @@ const Home = ({ shopInfo }) => {
 
         <div className="col-span-1">
           <div className="mb-10">
-            <h2 className="ml-4 mb-3 text-xl text-gray-700">Daily Sync</h2>
+            <h2 className="ml-4 text-xl text-gray-700 mb-3">Shortcuts</h2>
+            <div className="grid grid-cols-2 gap-3">
+              <a
+                type="button"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                href="/products/new"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+                <span className="ml-2">Product</span>
+              </a>
+              <a
+                type="button"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                href="/users/new"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+                <span className="ml-2">User</span>
+              </a>
+              <a
+                type="button"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                href="/assortments/new"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg>
+                <span className="ml-2">Assortment</span>
+              </a>
+            </div>
+          </div>
+          <div className="mb-10">
+            <h2 className="ml-4 text-xl text-gray-700 mb-3">Daily Sync</h2>
             {loading ? <Loading /> : <SyncReportList data={dailySync} />}
           </div>
           <h2 className="ml-4 text-xl text-gray-700">
