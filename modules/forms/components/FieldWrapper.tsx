@@ -36,7 +36,8 @@ const FieldWrapper = ({
         className={classnames(
           'block text-left text-sm font-medium text-gray-700',
           {
-            'text-red-500': !!error,
+            'rounded pl-4 mt-1 mb-5 text-red-400 p-2 border border-red-100 bg-red-50':
+              !!error,
             'sr-only': hideLabel,
           },
           labelClassName,

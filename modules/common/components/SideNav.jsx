@@ -43,7 +43,7 @@ const SideNav = ({ navigation }) => {
                       item.current
                         ? 'bg-gray-100 text-gray-900'
                         : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex w-full items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500',
+                      'group flex w-full items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400',
                     )}
                   >
                     <item.icon

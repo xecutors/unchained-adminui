@@ -47,7 +47,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Title',
           })}
           required
-          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
         <TextField
@@ -63,7 +63,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Key',
           })}
           required
-          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="mb-5 block w-full max-w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
         <SelectField
@@ -132,7 +132,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="items-right inline-flex rounded border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="items-right inline-flex rounded border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                       variant="outlined"
                       onClick={() => push('')}
                     >

@@ -15,7 +15,7 @@ const ListHeader = ({ addPath, children, addButtonText }) => {
             <Link href={addPath}>
               <a
                 type="button"
-                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               >
                 <PlusSmIcon className="h-5 w-5" />
                 <span className="ml-2">

@@ -173,7 +173,7 @@ const CommerceForm = ({ productId }) => {
                             id: 'vat_suspect',
                             defaultMessage: 'Vat Suspect',
                           })}
-                          className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
+                          className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
                           type="checkbox"
                         />
                       </div>
@@ -187,7 +187,7 @@ const CommerceForm = ({ productId }) => {
                             defaultMessage: 'Net Price',
                           })}
                           hideLabel
-                          className="mr-2 h-4 w-4 justify-between rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 lg:items-center"
+                          className="mr-2 h-4 w-4 justify-between rounded border-gray-300 text-indigo-600 focus:ring-indigo-400 lg:items-center"
                           type="checkbox"
                         />
                       </div>
@@ -268,7 +268,7 @@ const CommerceForm = ({ productId }) => {
                   <div className="flex-shrink-0">
                     <button
                       type="button"
-                      className="items-right inline-flex rounded-full border border-transparent bg-indigo-600 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                       variant="outlined"
                       onClick={() => push('')}
                     >

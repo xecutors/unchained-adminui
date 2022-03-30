@@ -6,7 +6,7 @@ const PageHeader = ({ headerText, onEdit, onDelete }) => {
     <div className="my-2 md:flex md:items-center md:justify-between">
       <div className="min-w-0 flex-1">
         {headerText && (
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl">
+          <h2 className="lg:ml-5 text-2xl font-bold leading-7 text-slate-700 sm:truncate sm:text-3xl">
             {headerText}
           </h2>
         )}
@@ -15,7 +15,7 @@ const PageHeader = ({ headerText, onEdit, onDelete }) => {
         {onEdit && (
           <button
             type="button"
-            className="inline-flex items-center rounded-md border border-gray-300 bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="inline-flex items-center rounded-md border border-gray-300 bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
           >
             {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
           </button>

@@ -81,7 +81,7 @@ const FilterableDropdown = ({
                   <div className="h-10 w-full">
                     <input
                       className={classNames(
-                        'relative mt-1 block w-full appearance-none rounded-l-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500',
+                        'relative mt-1 block w-full appearance-none rounded-l-md border border-gray-300 px-4 py-2 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
                         'w-full appearance-none p-1 px-2 text-gray-800 outline-none',
                         {
                           'border-red-300': !!field.error,

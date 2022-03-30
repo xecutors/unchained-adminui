@@ -19,10 +19,10 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
       <button
         type="button"
         className={classNames(
-          ' relative inline-flex h-4 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+          ' relative inline-flex h-4 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
           {
             'bg-gray-200': !toggleState,
-            'bg-indigo-600': toggleState,
+            'bg-indigo-500': toggleState,
           },
         )}
         role="switch"

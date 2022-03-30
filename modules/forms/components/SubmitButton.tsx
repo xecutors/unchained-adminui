@@ -33,12 +33,12 @@ const SubmitButton = ({
   return (
     <input
       className={classNames(
-        'inline-flex cursor-pointer justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-500',
+        'inline-flex cursor-pointer justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-400',
         className,
         {
-          'bg-red-600  ': disabled,
+          'bg-red-400  ': disabled,
 
-          ' bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 ':
+          ' bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-2 ':
             !disabled,
         },
       )}

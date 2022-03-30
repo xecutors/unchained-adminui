@@ -22,8 +22,8 @@ const SaveAndCancelButtons = ({
           onClick={onCancel}
           type="button"
           className={classNames(
-            'focus:ring-indigo-500',
-            'inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+            'focus:ring-indigo-400',
+            'inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
           )}
         >
           {cancelText ||
@@ -36,7 +36,7 @@ const SaveAndCancelButtons = ({
       {showSubmit ? (
         <button
           type="submit"
-          className="rounded-md bg-indigo-500 py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="rounded-md bg-indigo-500 py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
         >
           {submitText ||
             formatMessage({

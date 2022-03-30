@@ -76,7 +76,7 @@ const TagInput = ({
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className={classNames(
-                'block w-full rounded-md border-gray-300 px-4 focus:border-indigo-500 focus:ring-0 focus:ring-indigo-500 sm:text-sm',
+                'placeholder:text-slate-400 py-5 focus:ring-1 block w-full rounded-md border-2 shadow-sm border-gray-200 px-4 focus:border-indigo-400 focus:ring-0 focus:ring-indigo-400 sm:text-sm',
                 classes,
               )}
               placeholder={
@@ -98,7 +98,7 @@ const TagInput = ({
               buttonText ||
               formatMessage({
                 id: 'add',
-                defaultMessage: 'Add',
+                defaultMessage: 'Add tag',
               })
             }
           />

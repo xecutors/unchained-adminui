@@ -250,7 +250,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   id="location"
                   defaultValue={DefaultLimit}
                   name="location"
-                  className="block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
                 >
                   {LimitSteps.map((l) => (
                     <option key={l} value={l}>
@@ -279,7 +279,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
             id="location"
             defaultValue={limit}
             name="location"
-            className=" block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            className=" block h-8 w-full   rounded-md border-gray-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l}>

@@ -22,7 +22,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span
                     className={classNames(
                       timeline[data.status].id > index + 1
-                        ? 'bg-indigo-600'
+                        ? 'bg-indigo-500'
                         : 'bg-gray-200',
                       'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
                     )}
@@ -34,7 +34,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     <span
                       className={classNames(
                         timeline[data.status].id > index
-                          ? 'bg-indigo-600'
+                          ? 'bg-indigo-500'
                           : 'bg-gray-600',
                         'flex h-5 w-5 items-center justify-center rounded-full',
                       )}

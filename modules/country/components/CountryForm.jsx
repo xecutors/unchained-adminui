@@ -52,7 +52,7 @@ const CountryForm = ({
 
   return (
     <Form form={form}>
-      <div className="px-5 py-2">
+      <div className="p-5 pb-7">
         <TextField
           name="isoCode"
           id="isoCode"
@@ -67,7 +67,6 @@ const CountryForm = ({
           })}
           required
           autoComplete="on"
-          className="mt-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         />
 
         {isEdit && (
@@ -99,12 +98,12 @@ const CountryForm = ({
                 id: 'active',
                 defaultMessage: 'Active',
               })}
-              className="h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-500"
+              className="h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-400"
             />
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
+      <div className="border-t border-t-indigo-50 sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

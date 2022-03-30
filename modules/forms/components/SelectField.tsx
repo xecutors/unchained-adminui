@@ -21,7 +21,7 @@ const SelectField = (props: SelectFieldProps) => {
       <div className="select-wrap">
         <select
           className={classnames(
-            'mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm',
+            'text-slate-400 mt-1 block w-full rounded-md border-2 border-gray-200 py-2.5 pl-3 pr-10 text-base shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
             className,
             {
               'border-red-300 text-red-600': !!field.error,

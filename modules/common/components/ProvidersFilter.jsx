@@ -16,7 +16,7 @@ const ProvidersFilter = ({ providerType, onProviderFilterChange }) => {
           })}
           input-hint="Filter provider by type"
           autoComplete="off"
-          className="w-50 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="w-50 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         >
           <option value="">
             {formatMessage({

@@ -52,7 +52,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
           })}
           autoComplete="on"
           required
-          className="my-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="my-2 block w-full rounded-md border-gray-300 text-sm shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
         {isEdit && (
@@ -65,7 +65,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
                 id: 'active',
                 defaultMessage: ' Active',
               })}
-              className="mr-2 h-4 w-4 rounded-sm border-gray-300 text-indigo-500 focus:ring-indigo-500"
+              className="mr-2 h-4 w-4 rounded-sm border-gray-300 text-indigo-500 focus:ring-indigo-400"
             />
           </div>
         )}

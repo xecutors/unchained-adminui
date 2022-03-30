@@ -114,7 +114,7 @@ export const ColorLookupTable = {
       300: 'bg-indigo-300',
       400: 'bg-indigo-400',
       500: 'bg-indigo-500',
-      600: 'bg-indigo-600',
+      600: 'bg-indigo-500',
       700: 'bg-indigo-700',
       800: 'bg-indigo-800',
       900: 'bg-indigo-900',
