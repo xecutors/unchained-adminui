@@ -24,19 +24,27 @@ const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
-const normalizeCountryISOCode = (locale, isoCode) => {
+const normalizeCountryISOCode = (locale, isoCode, showIso = true) => {
   return isoCode
-    ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(
-        isoCode,
-      )} (${isoCode})`
+    ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(isoCode)} ${
+        showIso ? `(${isoCode})` : ''
+      }`
     : '';
 };
 
-const normalizeCurrencyISOCode = (locale, isoCode) => {
+const normalizeLanguageISOCode = (locale, isoCode, showIso = true) => {
   return isoCode
-    ? `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
-        isoCode,
-      )} (${isoCode})`
+    ? `${new Intl.DisplayNames([locale], { type: 'language' }).of(isoCode)} ${
+        showIso ? `(${isoCode})` : ''
+      }`
+    : '';
+};
+
+const normalizeCurrencyISOCode = (locale, isoCode, showIso = true) => {
+  return isoCode
+    ? `${new Intl.DisplayNames([locale], { type: 'currency' }).of(isoCode)} ${
+        showIso ? `(${isoCode})` : ''
+      }`
     : '';
 };
 
@@ -46,4 +54,5 @@ export {
   classNames,
   normalizeCurrencyISOCode,
   normalizeCountryISOCode,
+  normalizeLanguageISOCode,
 };

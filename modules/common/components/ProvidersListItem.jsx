@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import { PencilAltIcon } from '@heroicons/react/outline';
 import Badge from './Badge';
 import Table from './Table';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import { getInterfaceLabel } from '../utils/utils';
 import DeleteButton from './DeleteButton';
+import EditIcon from './EditIcon';
 
 const ProviderListItem = ({ provider, onRemove, providerPath }) => {
   const { formatMessage } = useIntl();
@@ -46,8 +46,8 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
       <Table.Cell>
         <div className="flex items-center">
           <Link href={`${providerPath}/${provider?._id}`}>
-            <a className="mr-2 rounded-full text-indigo-500 hover:bg-indigo-50">
-              <PencilAltIcon className="h-5 w-5" />
+            <a>
+              <EditIcon />
             </a>
           </Link>
           <DeleteButton

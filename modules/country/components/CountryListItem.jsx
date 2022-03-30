@@ -1,9 +1,14 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import {
+  normalizeCountryISOCode,
+  normalizeCurrencyISOCode,
+} from '../../common/utils/utils';
 
 const CountryListItem = ({ country, onRemove }) => {
   const { locale, formatMessage } = useIntl();
@@ -14,19 +19,18 @@ const CountryListItem = ({ country, onRemove }) => {
   const currencyISOcode =
     country.defaultCurrency && country.defaultCurrency.isoCode;
   return (
-    <Table.Row>
+    <Table.Row className="text-sm">
       <Table.Cell className="whitespace-nowrap">
-        <div className="flex">
-          <div className="items-center text-sm text-gray-900">
-            {country.isoCode}{' '}
-          </div>
+        <div>
+          {country.isoCode}
+
           {country.isBase && (
             <Badge
               text={formatMessage({
                 id: 'base_country',
                 defaultMessage: 'Base',
               })}
-              className="ml-2 text-sm"
+              className="ml-2 "
               square
             />
           )}
@@ -34,22 +38,13 @@ const CountryListItem = ({ country, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], { type: 'region' }).of(
-            country.isoCode,
-          )}
-        </div>
+        {normalizeCountryISOCode(locale, country?.isoCode, false)}
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm text-gray-900">
-          {currencyISOcode}
-
-          {/* &&
-            `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
-              currencyISOcode,
-            )}  (${currencyISOcode})`} */}
-        </div>
+        {currencyISOcode
+          ? normalizeCurrencyISOCode(locale, currencyISOcode)
+          : null}
       </Table.Cell>
       <Table.Cell className="whitespace-nowrap">
         <Badge
@@ -61,8 +56,8 @@ const CountryListItem = ({ country, onRemove }) => {
       <Table.Cell className="whitespace-nowrap">
         <div className="flex items-center">
           <Link href={`/country/${country._id}`}>
-            <a className="rounded-full bg-white px-1 py-1 text-sm text-indigo-500 hover:bg-indigo-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2">
-              <PencilAltIcon className="h-5 w-5" />
+            <a>
+              <EditIcon />
             </a>
           </Link>
           <DeleteButton

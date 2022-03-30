@@ -1,4 +1,3 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -8,6 +7,7 @@ import useForm from '../../forms/hooks/useForm';
 import { stopPropagation } from '../data/miscellaneous';
 import useDisplayImageInModal from '../utils/useDisplayImageInModal';
 import DeleteButton from './DeleteButton';
+import EditIcon from './EditIcon';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 
 const MediaListItem = ({
@@ -124,9 +124,8 @@ const MediaListItem = ({
                   stopPropagation(e);
                   onEdit(!isEdit);
                 }}
-                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               >
-                <PencilAltIcon className="h-5 w-5" />
+                <EditIcon />
               </button>
             )}
           </div>

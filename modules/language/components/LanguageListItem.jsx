@@ -1,9 +1,10 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import { normalizeLanguageISOCode } from '../../common/utils/utils';
 
 const LanguageListItem = ({ language, onRemove }) => {
   const { locale, formatMessage } = useIntl();
@@ -12,9 +13,9 @@ const LanguageListItem = ({ language, onRemove }) => {
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
   };
   return (
-    <Table.Row>
+    <Table.Row className="text-sm">
       <Table.Cell>
-        <div className="font-bold uppercase">
+        <div className=" uppercase">
           {language.isoCode}
           {language.isBase && (
             <Badge
@@ -30,11 +31,7 @@ const LanguageListItem = ({ language, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <div className=" text-sm text-gray-900">
-          {new Intl.DisplayNames([locale], { type: 'language' }).of(
-            language.isoCode,
-          )}
-        </div>
+        {normalizeLanguageISOCode(locale, language?.isoCode, false)}
       </Table.Cell>
 
       <Table.Cell>
@@ -49,7 +46,7 @@ const LanguageListItem = ({ language, onRemove }) => {
         <div className="flex">
           <Link href={`/language/${language?._id}`}>
             <a>
-              <PencilAltIcon className="mt-1 mr-2 h-5 w-5  text-indigo-500" />
+              <EditIcon />
             </a>
           </Link>
           <DeleteButton

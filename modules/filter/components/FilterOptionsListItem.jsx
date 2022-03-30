@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { useState } from 'react';
-import { PencilAltIcon } from '@heroicons/react/solid';
 
 import TextField from '../../forms/components/TextField';
 import Form from '../../forms/components/Form';
@@ -8,6 +7,7 @@ import useForm from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import DeleteButton from '../../common/components/DeleteButton';
 import Badge from '../../common/components/Badge';
+import EditIcon from '../../common/components/EditIcon';
 
 const FilterOptionsListItem = ({
   filterId,
@@ -122,7 +122,7 @@ const FilterOptionsListItem = ({
               ) : (
                 <div className="flex items-center gap-2">
                   <div onClick={() => setIsEdit(!isEdit)}>
-                    <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
+                    <EditIcon />
                   </div>
 
                   <DeleteButton

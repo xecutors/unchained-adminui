@@ -1,11 +1,11 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import EditIcon from '../../common/components/EditIcon';
 import { stopPropagationAndPreventDefault } from '../../common/data/miscellaneous';
-
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
@@ -129,7 +129,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                 ) : (
                   <div className="flex items-center space-x-2">
                     <div onClick={() => setIsEdit(!isEdit)}>
-                      <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
+                      <EditIcon />
                     </div>
 
                     <DeleteButton
