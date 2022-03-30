@@ -133,6 +133,7 @@ export default function LogInForm() {
           <div className="my-2 flex flex-wrap items-center justify-between">
             <div className="my-1 flex items-center sm:my-0">
               <CheckboxField
+                className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400"
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"

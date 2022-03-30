@@ -253,7 +253,7 @@ const Layout = ({
               <Image
                 src="/logo.svg"
                 loader={defaultNextImageLoader}
-                width={125}
+                width={175}
                 height={100}
                 alt={formatMessage({
                   id: 'unchained_logo',

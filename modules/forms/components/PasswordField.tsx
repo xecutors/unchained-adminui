@@ -35,7 +35,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
             className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="rgb(55, 65, 81)"
           >
             <path
               strokeLinecap="round"
@@ -56,7 +56,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
             className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
-            stroke="currentColor"
+            stroke="rgb(55, 65, 81)"
           >
             <path
               strokeLinecap="round"

@@ -62,7 +62,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             <span className="ml-4 flex flex-shrink-0 items-start space-x-4" />
           </div>
 
-          <div className="mt-1 rounded-md border-gray-200 bg-white pt-5 lg:col-span-2">
+          <div className="shadow mt-1 rounded-md border-gray-200 bg-white pt-5 lg:col-span-2">
             <div className="px-6">
               <div className="py-2 sm:grid sm:gap-1">
                 <dt className="text-sm font-medium text-gray-500">
@@ -242,7 +242,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className="rounded-md bg-white pt-5 lg:col-span-2">
+          <div className="shadow rounded-md bg-white pt-5 lg:col-span-2">
             <div className="px-5">
               <div className="py-2 sm:grid sm:gap-1">
                 <dt className="text-sm font-medium text-gray-500">
