@@ -5,8 +5,9 @@ import {
   HomeIcon,
   InboxIcon,
   CollectionIcon,
+  AdjustmentsIcon,
   UserGroupIcon,
-  UserCircleIcon,
+  UserIcon,
   LightningBoltIcon,
 } from '@heroicons/react/outline';
 import Image from 'next/image';
@@ -66,12 +67,22 @@ const Layout = ({
       href: '/products',
     },
     {
+      name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
+      icon: CollectionIcon,
+      href: '/assortments',
+    },
+    {
+      name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
+      icon: AdjustmentsIcon,
+      href: '/filters',
+    },
+    {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserGroupIcon,
       href: '/users',
     },
     {
-      name: formatMessage({ id: 'system', defaultMessage: 'System' }),
+      name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
       icon: CogIcon,
       children: [
         {
@@ -113,23 +124,6 @@ const Layout = ({
       ],
     },
     {
-      name: formatMessage({ id: 'master_data', defaultMessage: 'Master Data' }),
-      icon: CollectionIcon,
-      children: [
-        {
-          name: formatMessage({
-            id: 'assortments',
-            defaultMessage: 'Assortments',
-          }),
-          href: '/assortments',
-        },
-        {
-          name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
-          href: '/filters',
-        },
-      ],
-    },
-    {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
       icon: LightningBoltIcon,
       children: [
@@ -144,25 +138,25 @@ const Layout = ({
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
         },
-        {
-          name: formatMessage({
-            id: 'quotations',
-            defaultMessage: 'Quotations',
-          }),
-          href: '/quotations',
-        },
-        {
-          name: formatMessage({
-            id: 'enrollments',
-            defaultMessage: 'Enrollments',
-          }),
-          href: '/enrollments',
-        },
+        // {
+        //   name: formatMessage({
+        //     id: 'quotations',
+        //     defaultMessage: 'Quotations',
+        //   }),
+        //   href: '/quotations',
+        // },
+        // {
+        //   name: formatMessage({
+        //     id: 'enrollments',
+        //     defaultMessage: 'Enrollments',
+        //   }),
+        //   href: '/enrollments',
+        // },
       ],
     },
     {
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
-      icon: UserCircleIcon,
+      icon: UserIcon,
       href: '/account',
     },
   ];

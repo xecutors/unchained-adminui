@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInputField from '../../forms/components/TagInputField';
 import useForm from '../../forms/hooks/useForm';
-import FormWrapper from './FormWrapper';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 
 const TagListForm = ({ tags, onSubmit, onCancel }) => {
@@ -22,20 +21,20 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
     },
   });
   return (
-    <FormWrapper>
-      <Form form={form}>
-        <div className="flex flex-col gap-2">
-          <TagInputField
-            name="tags"
-            id="tags"
-            placeholder={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-            label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-            tagList={tags}
-          />
-        </div>
+    <Form form={form}>
+      <div className="flex flex-col gap-2">
+        <TagInputField
+          name="tags"
+          id="tags"
+          placeholder={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+          label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+          tagList={tags}
+        />
+      </div>
+      <div className="bg-gray-50">
         <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
-      </Form>
-    </FormWrapper>
+      </div>
+    </Form>
   );
 };
 

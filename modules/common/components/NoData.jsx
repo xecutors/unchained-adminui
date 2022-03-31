@@ -6,7 +6,7 @@ const NoData = ({ message, className = '', Icon }) => {
   return (
     <div
       className={classnames(
-        'flex w-full flex-col items-center justify-center py-5',
+        'flex w-full flex-col items-center justify-center py-8',
         className,
       )}
     >
@@ -20,7 +20,7 @@ const NoData = ({ message, className = '', Icon }) => {
           defaultMessage="<p>No&nbsp;<span>  {message}  available</span> </p>"
           values={{
             p: (chunks) => (
-              <p className="m-auto flex items-center justify-center">
+              <p className="mt-2 m-auto flex items-center justify-center">
                 {chunks}
               </p>
             ),
