@@ -89,7 +89,7 @@ const EmailAddresses = ({
         </div>
         <div
           className={classNames(
-            'w-full bg-white px-4 py-5 sm:p-6 lg:col-span-2',
+            'w-full rounded-md shadow bg-white px-4 py-5 sm:p-6 lg:col-span-2',
             emailBodyContainer,
           )}
         >

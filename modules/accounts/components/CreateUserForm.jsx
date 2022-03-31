@@ -205,7 +205,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className="rounded-md bg-white pt-5 shadow lg:col-span-2">
+          <div className="rounded-md bg-white pt-5 mb-5 shadow lg:col-span-2">
             <div className="px-5">
               <div className="py-2 sm:grid sm:gap-1">
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
