@@ -2,7 +2,7 @@ import { useMutation, gql } from '@apollo/client';
 
 const RejectOrderMutation = gql`
   mutation RejectOrder($orderId: ID!) {
-    RejectOrder(orderId: $orderId) {
+    rejectOrder(orderId: $orderId) {
       _id
     }
   }
