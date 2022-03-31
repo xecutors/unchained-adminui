@@ -6,12 +6,27 @@ const ToolTipWrapper = ({ children }) => {
   const [currentToolTip, setCurrentToolTip] = useState(null);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
-  const setToolTip = (value) => {
+  const setToolTip = (value, { direction = 'top' }) => {
     return (event) => {
       console.log(event.currentTarget.getBoundingClientRect());
-      const { x, y, height } = event.currentTarget.getBoundingClientRect();
+      const { x, y, bottom, right, height } =
+        event.currentTarget.getBoundingClientRect();
       setCurrentToolTip(value);
-      setPosition({ top: y - height - 10, left: x });
+      switch (direction) {
+        case 'right':
+          setPosition({ top: y, left: right });
+          break;
+        case 'bottom':
+          setPosition({ top: bottom, left: x });
+          break;
+        case 'left':
+          setPosition({ top: bottom, left: x });
+          break;
+        default:
+          setPosition({ top: y - height - 10, left: x, height });
+          break;
+      }
+      setPosition({ top: y - height - 10, left: x, height });
     };
   };
   const ctx = useMemo(() => ({ setToolTip }), []);
@@ -26,7 +41,6 @@ const ToolTipWrapper = ({ children }) => {
                 left: position.left - 100,
                 width: 200,
                 height: 200,
-                // background: 'red',
                 position: 'absolute',
                 borderRadius: '50%',
               }

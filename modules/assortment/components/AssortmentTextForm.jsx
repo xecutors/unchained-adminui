@@ -146,7 +146,8 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                   showToolTip
                   toolTipMessage={formatMessage({
                     id: 'tool-tip',
-                    defaultMessage: 'Slug is needed for the product',
+                    defaultMessage:
+                      'Lorem ipsum dolor sit amet, consectetur Slug is needed for the product',
                   })}
                 />
               </div>
