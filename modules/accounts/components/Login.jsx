@@ -36,7 +36,7 @@ export default function LogInForm() {
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
-      return false;
+      return { error: e.message };
     }
   };
 
