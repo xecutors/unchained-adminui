@@ -54,41 +54,27 @@ const useForm = ({
         await onSubmitSuccess(success, values);
       } else {
         const error = typeof result === 'boolean' ? !result : result?.error;
-         
-          if (error?.includes('auth failed')) {
-          
-  
-            setSubmitError(
-              (await getSubmitErrorMessage(error)) ||
-                intl.formatMessage({
-                  id: 'invalid_credential_error',
-                  defaultMessage: 'Invalid credential,please try again',
-                }),
-            );
-          }
-         else if (error?.includes('Invalid credentials')) {
-           
-  
-            setSubmitError(
-              (await getSubmitErrorMessage(error)) ||
-                intl.formatMessage({
-                  id: 'invalid_credential_error',
-            defaultMessage: 'Invalid credential,please try again',
-                }),
-            );
-          }
-         else if (error?.includes('Email already exists')) {
-          
-  
-           setSubmitError(
-             (await getSubmitErrorMessage(error)) ||
-               intl.formatMessage({
-                 id: 'email_exists_error',
-           defaultMessage: 'Email already exists',
-               }),
-           );
-         }
-         else{
+
+        if (
+          error?.toLowerCase()?.includes('auth failed') ||
+          error?.toLowerCase()?.includes('invalid credentials')
+        ) {
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'invalid_credential_error',
+                defaultMessage: 'Invalid credential, please try again',
+              }),
+          );
+        } else if (error?.includes('Email already exists')) {
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'email_exists_error',
+                defaultMessage: 'Email already exists',
+              }),
+          );
+        } else {
           setSubmitError(
             (await getSubmitErrorMessage(error)) ||
               intl.formatMessage(
@@ -100,8 +86,8 @@ const useForm = ({
                 { details: error?.message || '' },
               ),
           );
-              }
         }
+      }
     } catch (error) {
       console.error(error); // eslint-disable-line
       setSubmitError(
