@@ -19,7 +19,7 @@ const Products = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
-  const tags = query.tags?.split(',') || [];
+  const tags = query.tags?.split(',') || undefined;
 
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
