@@ -54,17 +54,39 @@ const useForm = ({
         await onSubmitSuccess(success, values);
       } else {
         const error = typeof result === 'boolean' ? !result : result?.error;
-        setSubmitError(
-          (await getSubmitErrorMessage(error)) ||
-            intl.formatMessage(
-              {
-                id: 'error_server',
-                defaultMessage:
-                  'There was a problem on the server ({details}). Please try again later.',
-              },
-              { details: error?.message || '' },
-            ),
-        );
+
+        if (
+          error?.toLowerCase()?.includes('auth failed') ||
+          error?.toLowerCase()?.includes('invalid credentials')
+        ) {
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'invalid_credential_error',
+                defaultMessage: 'Invalid credential, please try again',
+              }),
+          );
+        } else if (error?.includes('Email already exists')) {
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage({
+                id: 'email_exists_error',
+                defaultMessage: 'Email already exists',
+              }),
+          );
+        } else {
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) ||
+              intl.formatMessage(
+                {
+                  id: 'error_server',
+                  defaultMessage:
+                    'There was a problem on the server ({details}). Please try again later..',
+                },
+                { details: error?.message || '' },
+              ),
+          );
+        }
       }
     } catch (error) {
       console.error(error); // eslint-disable-line

@@ -21,7 +21,7 @@ const AssortmentsListView = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
   const includeLeaves = query?.includeLeaves === 'true';
-  const tags = query?.tags?.split(',') || [];
+  const tags = query?.tags?.split(',') || undefined;
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     includeInactive,
