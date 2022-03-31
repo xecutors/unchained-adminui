@@ -52,7 +52,7 @@ const ProductListItem = ({ product, showAvatar }) => {
 
       <Table.Cell className=" whitespace-nowrap px-6">
         <div className="flex">
-          <div className="flex items-center text-sm text-gray-900">
+          <div className="flex items-center text-sm text-gray-900 space-x-2">
             {product.tags?.map((t) => (
               <Badge key={t} text={t} color="indigo" />
             ))}
