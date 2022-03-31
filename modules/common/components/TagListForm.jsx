@@ -31,7 +31,7 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
           tagList={tags}
         />
       </div>
-      <div className="border border-t-indigo-50 bg-gray-50 mt-6 -mx-5 -mb-6">
+      <div className="border border-t-indigo-50 bg-slate-50 mt-6 -mx-5 -mb-6">
         <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
       </div>
     </Form>

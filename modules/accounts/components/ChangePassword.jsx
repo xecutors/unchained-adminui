@@ -27,7 +27,7 @@ const ChangePassword = () => {
   return (
     <div className="overflow-hidden lg:flex">
       <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-gray-900">
+        <h3 className="text-lg font-medium leading-6 text-slate-900">
           {formatMessage({
             id: 'change_password',
             defaultMessage: 'Change password',
@@ -66,7 +66,7 @@ const ChangePassword = () => {
               className="mb-4 text-sm"
             />
           </div>
-          <div className="space-y-6 bg-gray-50 text-right sm:p-6">
+          <div className="space-y-6 bg-slate-50 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({
                 id: 'change_password',

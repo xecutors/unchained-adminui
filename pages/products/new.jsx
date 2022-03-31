@@ -29,10 +29,10 @@ const AddProduct = () => {
       />
       <div className="mt-6 lg:grid lg:grid-cols-3">
         <div className="lg:col-span-1 space-y-2">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
             Product Type
           </h3>
-          <p className="max-w-2xl text-sm text-gray-500">
+          <p className="max-w-2xl text-sm text-slate-500">
             Here comes an explainer
           </p>
         </div>

@@ -22,7 +22,7 @@ const OrderListItem = ({ order, showUser }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           <Link href={`/orders/${order._id}`}>
             <a className="font-medium text-blue-500">
               {order?.orderNumber || (
@@ -39,14 +39,14 @@ const OrderListItem = ({ order, showUser }) => {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-500">
+        <div className="flex items-center text-sm text-slate-500">
           {order.ordered
             ? format(new Date(order.ordered), 'yyyy-MM-dd HH:mm')
             : 'n/a'}
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-500">
+        <div className="flex items-center text-sm text-slate-500">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>

@@ -177,7 +177,7 @@ const EnrollmentDetail = ({ enrollment }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
 
   const periods = {
     header: (
@@ -211,7 +211,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         timeline={timeline}
       />
 
-      <section className="rounded-md border border-gray-300 bg-white">
+      <section className="rounded-md border border-slate-300 bg-white">
         <div className="mx-auto -mt-12 max-w-7xl px-4 pb-4 sm:px-6 sm:pb-16 lg:px-8">
           <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 sm:gap-y-8 lg:max-w-none lg:grid-cols-3 lg:gap-x-8">
             <div className="w flex flex-auto flex-col gap-y-4 gap-x-8 sm:col-span-2 sm:gap-y-8 lg:col-span-3 lg:grid-cols-12 lg:flex-row">
@@ -233,22 +233,22 @@ const EnrollmentDetail = ({ enrollment }) => {
                   />
                 </span>
                 <div className="flex flex-col">
-                  <dt className="font-medium text-gray-900">
+                  <dt className="font-medium text-slate-900">
                     {formatMessage({
                       id: 'product_title',
                       defaultMessage: 'Product',
                     })}
                   </dt>
-                  <dd className="my-2 text-sm text-gray-500">
+                  <dd className="my-2 text-sm text-slate-500">
                     {enrollment.plan.product.texts.title}
                   </dd>
-                  <dt className="font-medium text-gray-900">
+                  <dt className="font-medium text-slate-900">
                     {formatMessage({
                       id: 'product_quantity',
                       defaultMessage: 'Quantity',
                     })}
                   </dt>
-                  <dd className="my-2 text-sm text-gray-500">
+                  <dd className="my-2 text-sm text-slate-500">
                     {enrollment?.plan?.quantity}
                   </dd>
                 </div>
@@ -258,7 +258,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 <Form form={form}>
                   <JSONAreaField
                     disabled
-                    className="mt-2 text-sm text-gray-500"
+                    className="mt-2 text-sm text-slate-500"
                     id="configuration"
                     name="configuration"
                     value={form.formik.values.configuration}
@@ -277,13 +277,13 @@ const EnrollmentDetail = ({ enrollment }) => {
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8">
               <div className="border-t border-gray-200 pt-4">
-                <dt className="font-medium text-gray-900">
+                <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'payment_provider',
                     defaultMessage: 'Payment provider',
                   })}
                 </dt>
-                <dd className="mt-2 text-sm text-gray-500">
+                <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/payment-provider/${enrollment?.payment?.provider._id}`}
                   >
@@ -295,13 +295,13 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
 
               <div className="border-t border-gray-200 pt-4">
-                <dt className="font-medium text-gray-900">
+                <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'delivery_provider',
                     defaultMessage: 'Delivery Provider',
                   })}
                 </dt>
-                <dd className="mt-2 text-sm text-gray-500">
+                <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
                   >
@@ -315,19 +315,19 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
 
               <div className="col-span-1 border-t border-gray-200 pt-4">
-                <dt className="font-medium text-gray-900">
+                <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'contact',
                     defaultMessage: 'Contact',
                   })}
                 </dt>
-                <dd className="mt-2 text-sm text-gray-500">
+                <dd className="mt-2 text-sm text-slate-500">
                   {enrollment?.contact?.telNumber}
                 </dd>
-                <dd className="mt-2 text-sm text-gray-500">
+                <dd className="mt-2 text-sm text-slate-500">
                   {enrollment?.contact?.emailAddress}
                 </dd>
-                <dd className="mt-2 text-sm text-gray-500">
+                <dd className="mt-2 text-sm text-slate-500">
                   <Button
                     text={formatMessage({
                       id: 'send_email_button',
@@ -341,29 +341,29 @@ const EnrollmentDetail = ({ enrollment }) => {
             </div>
 
             <div className="border-t border-gray-200 pt-4">
-              <dt className="font-medium text-gray-900">
+              <dt className="font-medium text-slate-900">
                 {formatMessage({
                   id: 'billing_address',
                   defaultMessage: 'Billing address',
                 })}
               </dt>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.firstName}&nbsp;&nbsp;
                 {enrollment?.billingAddress?.lastName}
               </dd>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.company}
               </dd>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.addressLine}
               </dd>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.addressLine2}
               </dd>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.postalCode}
               </dd>
-              <dd className="mt-2 text-sm text-gray-500">
+              <dd className="mt-2 text-sm text-slate-500">
                 {enrollment?.billingAddress?.city}&nbsp;&nbsp;
                 {enrollment?.billingAddress?.regionCode}&nbsp;&nbsp;
                 {enrollment?.billingAddress?.countryCode}

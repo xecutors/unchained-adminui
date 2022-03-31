@@ -88,7 +88,7 @@ const SyncDetail = () => {
             </span>
             <span>{format(new Date(result?.startedFrom), 'Pp')}</span>
           </h6>
-          <h6 className="flex justify-between text-gray-900">
+          <h6 className="flex justify-between text-slate-900">
             <span className="mr-2">
               {formatMessage({
                 id: 'finished',
@@ -105,7 +105,7 @@ const SyncDetail = () => {
           <GraphSync dailySync={dailySync} />
         </div>
         <div className=" col-span-2 py-5 sm:col-span-1 sm:p-6 ">
-          <dt className="text-base font-normal text-gray-900">
+          <dt className="text-base font-normal text-slate-900">
             {formatMessage({
               id: 'total_products',
               defaultMessage: 'Total products',
@@ -114,7 +114,7 @@ const SyncDetail = () => {
           <dd className="mt-1 flex items-baseline md:block lg:flex xl:space-x-7">
             <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
               {stats.products?.total || 0}
-              <span className="ml-2 text-sm font-medium text-gray-500">
+              <span className="ml-2 text-sm font-medium text-slate-500">
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
@@ -133,7 +133,7 @@ const SyncDetail = () => {
         </div>
 
         <div className=" col-span-2 flex-wrap py-5 sm:col-span-1  sm:p-6">
-          <dt className="flex-wrap text-base font-normal text-gray-900">
+          <dt className="flex-wrap text-base font-normal text-slate-900">
             {formatMessage({
               id: 'import_duration',
               defaultMessage: 'Duration of import',

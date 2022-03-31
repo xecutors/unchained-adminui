@@ -163,7 +163,7 @@ const JobHeader = ({ job }) => {
         </div>
       </div>
 
-      <div className=" float-right mb-4 mr-4 flex text-sm text-gray-500 sm:mt-0">
+      <div className=" float-right mb-4 mr-4 flex text-sm text-slate-500 sm:mt-0">
         <ClockIcon className=" mr-2 h-5 w-5" viewBox="0 0 22 22" />
         {job.sync.duration}
       </div>
@@ -177,73 +177,73 @@ const JobBody = ({ job }) => {
   return (
     <div className="w-[100%] overflow-hidden bg-white">
       <div className="border border-gray-200  py-5 sm:p-0">
-        <dl className="divide-y divide-gray-300 px-7">
+        <dl className="divide-y divide-slate-300 px-7">
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'solr',
                 defaultMessage: 'Solr',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.solr} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'crossbase',
                 defaultMessage: 'Crossbase',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.crossbase} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'navision',
                 defaultMessage: 'Navision',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.navision} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'categories',
                 defaultMessage: 'Categories',
               })}
             </dt>
-            <dd className=" mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className=" mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.categories} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'products',
                 defaultMessage: 'Products',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.products} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'filters',
                 defaultMessage: 'Filters',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.filters} />
             </dd>
           </div>

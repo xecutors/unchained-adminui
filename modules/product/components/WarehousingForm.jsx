@@ -48,7 +48,7 @@ const WarehousingForm = ({ productId }) => {
               id: 'sku',
               defaultMessage: 'SKU',
             })}
-            className="mb-4 text-sm font-medium text-gray-500"
+            className="mb-4 text-sm font-medium text-slate-500"
           />
 
           <TextField
@@ -58,11 +58,11 @@ const WarehousingForm = ({ productId }) => {
               id: 'baseUnit',
               defaultMessage: 'Base Unit',
             })}
-            className="text-sm font-medium text-gray-500"
+            className="text-sm font-medium text-slate-500"
           />
         </div>
       </div>
-      <div className="space-y-6 bg-gray-50 text-right sm:p-6">
+      <div className="space-y-6 bg-slate-50 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'save',

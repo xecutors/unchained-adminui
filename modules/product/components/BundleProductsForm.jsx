@@ -57,7 +57,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
         label={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         data={normalizeProduct(products)}
         isLoading={loading}
-        className="bg-gray-50"
+        className="bg-slate-50"
         buttonClassName="mb-0"
         required
       />

@@ -45,7 +45,7 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
             <select
               id="tag-input"
               placeholder={label}
-              className="mt-1 block w-full rounded-md  border-gray-300 py-2 pl-3 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+              className="mt-1 block w-full rounded-md  border-slate-300 py-2 pl-3 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
               onChange={(e) => addTag(e.target.value)}
             >
               <option>

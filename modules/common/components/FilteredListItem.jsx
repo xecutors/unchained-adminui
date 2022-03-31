@@ -5,7 +5,7 @@ import NoImage from './NoImage';
 const FilteredListItem = ({ item, onSelected }) => {
   return (
     <a
-      className="w-full cursor-pointer border-b border-gray-100 hover:bg-teal-100"
+      className="w-full cursor-pointer border-b border-slate-100 hover:bg-teal-100"
       onClick={() => onSelected(item)}
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100">
@@ -34,7 +34,7 @@ const FilteredListItem = ({ item, onSelected }) => {
           >
             {item?.title}
             <div
-              className="-mt-1 w-full break-words text-xs font-normal normal-case text-gray-500"
+              className="-mt-1 w-full break-words text-xs font-normal normal-case text-slate-500"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: item?.subtitle }}
             />

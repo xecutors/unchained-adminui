@@ -11,7 +11,7 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const FallbackAvatar = ({ username }) => {
   return (
-    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
+    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-500">
       <span className="text font-medium leading-none text-white">
         {username?.slice(0, 2)}
       </span>
@@ -67,7 +67,7 @@ const DetailHeader = ({ user, contact }) => {
                     defaultMessage: 'Account status',
                   })}
                 </dt>
-                <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-gray-500 sm:mr-6 sm:mt-0">
+                <dd className="mt-3 flex items-center self-end text-sm font-medium capitalize text-slate-500 sm:mr-6 sm:mt-0">
                   {user?.primaryEmail?.verified ? (
                     <CheckCircleIcon
                       className="mb-1.5 h-4 w-4 flex-shrink-0 text-green-400"
@@ -101,7 +101,7 @@ const DetailHeader = ({ user, contact }) => {
               <dt className="sr-only">
                 {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
               </dt>
-              <dd className="flex items-center text-sm font-medium capitalize text-gray-500 sm:mr-6">
+              <dd className="flex items-center text-sm font-medium capitalize text-slate-500 sm:mr-6">
                 <DeviceMobileIcon
                   className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                   aria-hidden="true"

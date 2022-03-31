@@ -35,19 +35,19 @@ const WorkDetail = ({ work }) => {
         <div className="grid grid-cols-1 grid-rows-4 gap-8 lg:grid-cols-2">
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_type',
                   defaultMessage: 'Work type',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 {work?.type}
               </div>
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_status',
                   defaultMessage: 'Work Status',
@@ -63,37 +63,37 @@ const WorkDetail = ({ work }) => {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_priority',
                   defaultMessage: 'Priority',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 {work?.priority}
               </div>
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_retries',
                   defaultMessage: 'Retries',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 {work?.retries}
               </div>
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'worker',
                   defaultMessage: 'Worker',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 {work?.worker ? (
                   <Badge
                     text={formatMessage(
@@ -115,13 +115,13 @@ const WorkDetail = ({ work }) => {
             </div>
             {work?.retries ? (
               <div className="mb-2 flex flex-wrap items-center justify-between">
-                <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_original',
                     defaultMessage: 'Orginial Work',
                   })}
                 </div>
-                <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+                <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                   <Link href={`/works/${work?.work?._id}`}>
                     <a className="text-blue-600">{work?.work?._id}</a>
                   </Link>
@@ -135,68 +135,68 @@ const WorkDetail = ({ work }) => {
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8">
             <div className="grid grid-cols-2 gap-5">
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_created',
                     defaultMessage: 'Created',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.created, options)}
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_scheduled',
                     defaultMessage: 'Scheduled',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.scheduled, options)}
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_started',
                     defaultMessage: 'Started',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.started, options)}
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_finished',
                     defaultMessage: 'Finished',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.finished, options)}
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_updated',
                     defaultMessage: 'Updated',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.updated, options)}
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'deleted',
                     defaultMessage: 'Deleted',
                   })}
                 </div>
-                <div className="flex text-sm text-gray-900">
+                <div className="flex text-sm text-slate-900">
                   {formatDateTime(work?.deleted, options)}
                 </div>
               </div>
@@ -204,13 +204,13 @@ const WorkDetail = ({ work }) => {
           </div>
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
             <div className="mb-2">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'input',
                   defaultMessage: 'Input',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 <ReactJson src={work?.input} collapsed />
               </div>
             </div>
@@ -219,14 +219,14 @@ const WorkDetail = ({ work }) => {
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
             <div className="flex min-h-full flex-col items-start justify-between">
               <div className="mb-2">
-                <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+                <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'result',
                     defaultMessage: 'Result',
                   })}
                 </div>
 
-                <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+                <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                   <ReactJson src={work?.result} collapsed />
                 </div>
               </div>
@@ -235,13 +235,13 @@ const WorkDetail = ({ work }) => {
 
           <div className="col-span-2 rounded-lg border border-gray-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
             <div className="mb-2">
-              <div className="mr-4 text-base font-semibold text-gray-500 sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'error',
                   defaultMessage: 'Error',
                 })}
               </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-gray-900">
+              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
                 {work?.error ? (
                   <ReactJson src={work?.error} collapsed />
                 ) : (

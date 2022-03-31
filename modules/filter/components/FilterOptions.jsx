@@ -27,13 +27,13 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
           <div className=" relative max-w-full rounded-md lg:grid lg:grid-cols-3">
             <div className="p-3 md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                <h3 className="text-lg font-medium leading-6 text-slate-900">
                   {formatMessage({
                     id: 'filer_options',
                     defaultMessage: 'Filter options',
                   })}
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-slate-600">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco

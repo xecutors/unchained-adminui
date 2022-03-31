@@ -80,7 +80,7 @@ const EmailAddresses = ({
     <div>
       <div className="border-t pt-5 lg:grid lg:grid-cols-3 lg:gap-6">
         <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between lg:col-span-1">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
             {formatMessage({
               id: 'email_addresses',
               defaultMessage: 'Email addresses',
@@ -98,7 +98,7 @@ const EmailAddresses = ({
               <li className="py-4" key={address}>
                 <div className="flex flex-wrap items-center justify-between">
                   <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
-                    <div className="truncate text-sm font-medium text-gray-900">
+                    <div className="truncate text-sm font-medium text-slate-900">
                       {address}
                     </div>
                     <Badge
@@ -113,7 +113,7 @@ const EmailAddresses = ({
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
+                        className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',

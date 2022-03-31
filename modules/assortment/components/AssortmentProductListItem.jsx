@@ -8,8 +8,8 @@ const AssortmentProductListItem = ({ link, onDelete }) => {
     <div className="flex items-center justify-between  border-b border-gray-200 last:border-none">
       <div className="flex items-center space-x-6 py-4">
         <div className="">
-          <h3 className="text-lg text-gray-800">{product?.texts?.title}</h3>
-          <p className="text-xs text-gray-600">{product?.texts?.subtitle}</p>
+          <h3 className="text-lg text-slate-800">{product?.texts?.title}</h3>
+          <p className="text-xs text-slate-600">{product?.texts?.subtitle}</p>
         </div>
       </div>
       <div>

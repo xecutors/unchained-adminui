@@ -42,7 +42,7 @@ const OrderDetailItem = ({ item }) => {
 
                     <div className="mx-auto flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
                       <h3
-                        className="text-base font-medium text-gray-900"
+                        className="text-base font-medium text-slate-900"
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{
                           __html:

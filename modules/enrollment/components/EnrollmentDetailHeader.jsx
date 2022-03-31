@@ -13,14 +13,14 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
       <DetailHeader user={enrollment.user} contact={enrollment.contact} />
       <div className="mt-2 flex border-b border-gray-200 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
-          <dt className="hidden capitalize text-gray-500 sm:block">
+          <dt className="hidden capitalize text-slate-500 sm:block">
             {formatMessage({
               id: 'enrollment',
               defaultMessage: 'enrollment',
             })}
             &#35; &nbsp;
           </dt>
-          <dd className="inline-flex text-lg font-medium text-gray-900 sm:flex-none sm:text-xl sm:font-bold">
+          <dd className="inline-flex text-lg font-medium text-slate-900 sm:flex-none sm:text-xl sm:font-bold">
             <span className="sm:hidden">&#35;&nbsp;</span>
             {enrollment.enrollmentNumber ? (
               <Badge
@@ -41,11 +41,11 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
               {formatMessage({ id: 'date', defaultMessage: 'Date' })}
             </span>
           </dt>
-          <dd className="font-medium text-gray-900">
+          <dd className="font-medium text-slate-900">
             {enrollment?.ordered ? formatDateTime(enrollment.ordered) : null}
           </dd>
         </dl>
-        <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-gray-900 sm:text-base">
+        <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-slate-900 sm:text-base">
           <span>{enrollment?.country?.flagEmoji}</span>
           <span>
             {new Intl.DisplayNames([locale], {

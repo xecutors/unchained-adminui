@@ -54,7 +54,7 @@ const NewProviderForm = ({
             className="mt-2"
           />
         </div>
-        <div className="sm:px-15 space-y-6 bg-gray-50 p-6 px-5 text-right">
+        <div className="sm:px-15 space-y-6 bg-slate-50 p-6 px-5 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'create_provider',

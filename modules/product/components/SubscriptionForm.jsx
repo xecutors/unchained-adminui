@@ -77,7 +77,7 @@ const SubscriptionForm = ({ productId }) => {
         <div className="relative max-w-full space-y-6 rounded-md sm:p-6">
           <SelectField
             required
-            className="mt-2.5  w-full py-1.5 text-sm font-medium text-gray-500"
+            className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500"
             label={formatMessage({
               id: 'usage_calculation_type',
               defaultMessage: 'Usage calculation type',
@@ -95,7 +95,7 @@ const SubscriptionForm = ({ productId }) => {
           />
           <div className="w-full items-end  justify-end sm:flex">
             <SelectField
-              className="mt-2.5  w-full text-sm  font-medium text-gray-500"
+              className="mt-2.5  w-full text-sm  font-medium text-slate-500"
               required
               label={formatMessage({
                 id: 'billing_interval_unit',
@@ -125,13 +125,13 @@ const SubscriptionForm = ({ productId }) => {
                 id: 'billing_unit',
                 defaultMessage: 'Billing Unit',
               })}
-              className="mt-1  w-full text-sm  font-medium text-gray-500 sm:ml-1"
+              className="mt-1  w-full text-sm  font-medium text-slate-500 sm:ml-1"
             />
           </div>
 
           <div className="max-w-full items-end  justify-end sm:flex">
             <SelectField
-              className="mt-2.5  w-full text-sm  font-medium text-gray-500"
+              className="mt-2.5  w-full text-sm  font-medium text-slate-500"
               label={formatMessage({
                 id: 'trial_interval_unit',
                 defaultMessage: 'Trial interval unit',
@@ -160,11 +160,11 @@ const SubscriptionForm = ({ productId }) => {
                 defaultMessage: 'Trial Unit',
               })}
               required
-              className="mt-1  w-full text-sm   font-medium text-gray-500 sm:ml-1"
+              className="mt-1  w-full text-sm   font-medium text-slate-500 sm:ml-1"
             />
           </div>
 
-          <div className=" sm:px-15 space-y-6 bg-gray-50 text-right sm:p-6">
+          <div className=" sm:px-15 space-y-6 bg-slate-50 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({
                 id: 'save',

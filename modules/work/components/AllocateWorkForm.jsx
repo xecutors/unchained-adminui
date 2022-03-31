@@ -47,12 +47,12 @@ const AllocateWorkForm = () => {
                 id: 'worker',
                 defaultMessage: 'Worker',
               })}
-              labelClassName="text-sm font-medium text-gray-500 mb-1"
+              labelClassName="text-sm font-medium text-slate-500 mb-1"
               placeholder={formatMessage({
                 id: 'worker',
                 defaultMessage: 'Worker',
               })}
-              className="max-w-full text-sm text-gray-900 sm:mt-0"
+              className="max-w-full text-sm text-slate-900 sm:mt-0"
             />
           </div>
           <FieldArray name="types">
@@ -68,7 +68,7 @@ const AllocateWorkForm = () => {
                       <div className="w-100 relative w-full space-y-1 rounded-md sm:pr-2">
                         <div className="max-w-4xl justify-between align-baseline sm:flex">
                           <SelectField
-                            className="w-full py-2 text-sm text-gray-500 sm:mt-0"
+                            className="w-full py-2 text-sm text-slate-500 sm:mt-0"
                             label={formatMessage({
                               id: 'type',
                               defaultMessage: 'Type',
@@ -77,7 +77,7 @@ const AllocateWorkForm = () => {
                               id: 'type',
                               defaultMessage: 'Type',
                             })}
-                            labelClassName="text-sm font-medium text-gray-500 mb-1"
+                            labelClassName="text-sm font-medium text-slate-500 mb-1"
                             name={`types[${index}`}
                             required
                             options={convertArrayOfObjectToObject(
@@ -145,7 +145,7 @@ const AllocateWorkForm = () => {
             )}
           </FieldArray>
         </div>
-        <div className="sm:px-15 space-y-6 bg-gray-50 px-5 py-6 text-right">
+        <div className="sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'allocate_work',

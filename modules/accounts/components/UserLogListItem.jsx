@@ -5,25 +5,25 @@ const UserLogListItem = ({ log }) => {
   return (
     <tr key={log._id}>
       <td>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {log.created ? format(new Date(log.created), 'Pp') : 'n/a'}
         </div>
       </td>
 
       <td>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {log.level}
         </div>
       </td>
 
       <td>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {log.message}
         </div>
       </td>
 
       <td className="text-green flex">
-        <div className="items-center text-sm text-gray-900 ">
+        <div className="items-center text-sm text-slate-900 ">
           {log.order && (
             <Link href={`/order/${log.order._id}`}>
               <a className="flex text-blue-600">

@@ -89,7 +89,7 @@ export default function LogInForm() {
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
             {formatMessage({
               id: 'login_header',
               defaultMessage: 'Log in to your account',
@@ -141,7 +141,7 @@ export default function LogInForm() {
           <div className="my-2 flex flex-wrap items-center justify-between">
             <div className="my-1 flex items-center sm:my-0">
               <CheckboxField
-                className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400"
+                className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"

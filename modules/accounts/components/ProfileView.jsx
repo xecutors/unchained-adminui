@@ -106,13 +106,13 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
         <div className="lg:grid lg:grid-cols-3">
           <div className="mb-5 lg:col-span-1 lg:pr-5">
             <div className="ml-1 space-y-2">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'profile',
                   defaultMessage: 'Profile',
                 })}
               </h3>
-              <p className="max-w-2xl text-sm text-gray-500">
+              <p className="max-w-2xl text-sm text-slate-500">
                 {formatMessage({
                   id: 'profile_notice',
                   defaultMessage:
@@ -147,7 +147,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     defaultMessage: 'Photo',
                   })}
                 </label>
-                <div className="mt-1 flex items-center space-x-5 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <div className="mt-1 flex items-center space-x-5 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
                   <span className="">
                     <input
                       onChange={onUpdateAvatar}
@@ -168,9 +168,9 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         })}
                       />
                     ) : (
-                      <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+                      <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
                         <svg
-                          className="h-full w-full text-gray-300"
+                          className="h-full w-full text-slate-300"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
@@ -183,7 +183,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     <button
                       onClick={() => fileInputRef.current.click()}
                       type="button"
-                      className="rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       {formatMessage({
                         id: 'change',
@@ -195,14 +195,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               </div>
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-slate-500">
                   {!isEdit &&
                     formatMessage({
                       id: 'displayName',
                       defaultMessage: 'Display Name',
                     })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
+                <div className="mt-1 flex text-sm text-slate-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
                       className="mt-0 w-full"
@@ -224,14 +224,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               </div>
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-slate-500">
                   {!isEdit &&
                     formatMessage({
                       id: 'gender',
                       defaultMessage: 'Gender',
                     })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
+                <div className="mt-1 flex text-sm text-slate-900 sm:mt-0">
                   {isEdit ? (
                     <SelectField
                       className="mt-0 w-full"
@@ -264,14 +264,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               </div>
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-slate-500">
                   {!isEdit &&
                     formatMessage({
                       id: 'birthday',
                       defaultMessage: 'Birthday',
                     })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
+                <div className="mt-1 flex text-sm text-slate-900 sm:mt-0">
                   {isEdit ? (
                     <DatePickerField
                       label={formatMessage({
@@ -296,14 +296,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               </div>
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
-                <label className="text-sm font-medium text-gray-500">
+                <label className="text-sm font-medium text-slate-500">
                   {!isEdit &&
                     formatMessage({
                       id: 'mobile_phone',
                       defaultMessage: 'Mobile phone',
                     })}
                 </label>
-                <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
+                <div className="mt-1 flex text-sm text-slate-900 sm:mt-0">
                   {isEdit ? (
                     <TextField
                       className="mt-0 w-full"
@@ -337,13 +337,13 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
         <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
           <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
             <div className="ml-1 space-y-2">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'address',
                   defaultMessage: 'Address',
                 })}
               </h3>
-              <p className="max-w-2xl text-sm text-gray-500">
+              <p className="max-w-2xl text-sm text-slate-500">
                 {formatMessage({
                   id: 'address_notice',
                   defaultMessage:

@@ -11,13 +11,13 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
       <div className="mt-3 lg:grid lg:grid-cols-3 lg:gap-6">
         <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'account',
                 defaultMessage: 'Account',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-slate-600">
               {formatMessage({
                 id: 'account_notice',
                 defaultMessage:
@@ -51,7 +51,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
       <div className="lg:grid lg:grid-cols-3 lg:gap-6">
         <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'tags',
                 defaultMessage: 'Tags',
@@ -78,7 +78,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
       <div className="lg:grid lg:grid-cols-3 lg:gap-6">
         <div className="lg:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'roles',
                 defaultMessage: 'Roles',

@@ -68,13 +68,13 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
     <div className="md:grid md:grid-cols-3 md:gap-6">
       <div className="md:col-span-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
             {formatMessage({
               id: 'texts',
               defaultMessage: 'Texts',
             })}
           </h3>
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm text-slate-600">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco
@@ -95,7 +95,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium text-gray-500"
+                  className="mt-1 w-full text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-12">
@@ -108,7 +108,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                   })}
                   required
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium text-gray-500"
+                  className="mt-1 w-full text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-12">
@@ -120,7 +120,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="mt-1 w-full text-sm font-medium text-gray-500"
+                  className="mt-1 w-full text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-12">
@@ -135,7 +135,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
               </div>
             </div>
 
-            <div className="bg-gray-50 px-4 py-5 text-right sm:px-6">
+            <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
               <FormErrors />
               <SubmitButton
                 label={formatMessage({

@@ -20,7 +20,7 @@ const QuotationListItem = ({ quotation }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           <Link href={`/quotations/${quotation._id}`}>
             <a className="text-blue-600">
               {quotation?.orderNumber || quotation._id?.substr(0, 10)}
@@ -30,13 +30,13 @@ const QuotationListItem = ({ quotation }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {formatDateTime(quotation.created)}
         </div>
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {quotation.expires ? formatDateTime(quotation?.expires) : 'n/a'}
 
           {!quotation.isExpired && (
@@ -67,7 +67,7 @@ const QuotationListItem = ({ quotation }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           <Link href={`/products/${quotation.product._id}`}>
             <a className="flex text-blue-600">
               <Image

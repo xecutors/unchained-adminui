@@ -132,7 +132,7 @@ const QuotationDetail = ({ quotation }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-gray-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
 
   const documents = {
     header: (
@@ -168,7 +168,7 @@ const QuotationDetail = ({ quotation }) => {
         <div className="rounded-lg border-t border-b border-gray-200 bg-white shadow-sm sm:border">
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
             <div className="sm:col-span-4 md:col-span-5 md:row-span-2 md:row-end-2">
-              <div className="m:col-span-4 rounded-lg bg-gray-50 md:col-span-5 md:row-span-2 md:row-end-2">
+              <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
                 <Image
                   loader={defaultNextImageLoader}
                   src={quotation.product?.media?.file.url}
@@ -179,12 +179,12 @@ const QuotationDetail = ({ quotation }) => {
               </div>
             </div>
             <div className="pt-6 pl-4 sm:col-span-7 md:row-end-1">
-              <h3 className="text-lg font-medium text-gray-900">
+              <h3 className="text-lg font-medium text-slate-900">
                 <Link href={`/products/${quotation.product._id}`}>
                   <a href="#">{quotation.product?.texts?.title}</a>
                 </Link>
               </h3>
-              <p className="mt-3 text-gray-500">
+              <p className="mt-3 text-slate-500">
                 {quotation.product?.description}
               </p>
               <Form form={form} className="mr-4 pb-4">

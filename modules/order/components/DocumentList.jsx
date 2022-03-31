@@ -9,13 +9,13 @@ const DocumentList = ({ documents }) => {
     <section className="my-3">
       {documents?.length ? (
         <div className="sm:grid sm:grid-cols-2 sm:gap-1">
-          <dt className="sr-only text-sm font-medium text-gray-500">
+          <dt className="sr-only text-sm font-medium text-slate-500">
             {formatMessage({
               id: 'attachments',
               defaultMessage: 'Attachments',
             })}
           </dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+          <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
             <ul className="divide-y divide-gray-200 rounded-md border border-gray-200">
               {documents.map((document) => (
                 <li

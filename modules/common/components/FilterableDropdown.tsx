@@ -63,7 +63,7 @@ const FilterableDropdown = ({
                 <div className="h-10 w-full">
                   <input
                     type="search"
-                    className="w-full px-4 py-1 text-gray-800  focus:outline-none"
+                    className="w-full px-4 py-1 text-slate-800  focus:outline-none"
                     placeholder={formatMessage({
                       id: 'search',
                       defaultMessage: 'Search',
@@ -81,8 +81,8 @@ const FilterableDropdown = ({
                   <div className="h-10 w-full">
                     <input
                       className={classNames(
-                        'relative mt-1 block w-full appearance-none rounded-l-md border-2 border-gray-200 px-4 py-2.5 text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
-                        'w-full appearance-none p-1 px-2 text-gray-800 outline-none',
+                        'relative mt-1 block w-full appearance-none rounded-l-md border-2 border-gray-200 px-4 py-2.5 text-slate-900 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
+                        'w-full appearance-none p-1 px-2 text-slate-800 outline-none',
                         {
                           'border-red-300': !!field.error,
                         },
@@ -125,7 +125,7 @@ const FilterableDropdown = ({
             <button
               type="button"
               onClick={() => setShowDropdown(!showDropdown)}
-              className="h-6 w-6 cursor-pointer text-gray-600 outline-none focus:outline-none"
+              className="h-6 w-6 cursor-pointer text-slate-600 outline-none focus:outline-none"
             >
               {showDropdown ? (
                 <ChevronDownIcon

@@ -51,10 +51,10 @@ const SyncChangeIcon = ({ new: added, removed, diff }) => {
     );
   }
   return (
-    <div className="inline-flex items-baseline rounded-full bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800 md:mt-2 lg:mt-0">
+    <div className="inline-flex items-baseline rounded-full bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-800 md:mt-2 lg:mt-0">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-gray-800"
+        className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-slate-800"
         viewBox="0 0 20 20"
         fill="currentColor"
       >

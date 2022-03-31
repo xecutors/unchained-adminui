@@ -24,7 +24,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
       <div className="space-y-8 divide-y divide-gray-200">
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div className="flex items-center">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {getInterfaceLabel(provider?.interface)}
             </h3>
 

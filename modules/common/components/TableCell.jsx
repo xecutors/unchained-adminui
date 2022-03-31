@@ -7,7 +7,7 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
     <Td
       className={classNames(
         header
-          ? 'px-4 py-3 text-left font-medium tracking-wider text-gray-800'
+          ? 'px-4 py-3 text-left font-medium tracking-wider text-slate-800'
           : 'whitespace-nowrap px-4 py-3',
         className,
       )}

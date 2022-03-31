@@ -35,7 +35,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       className={classNames(
                         timeline[data.status].id > index
                           ? 'bg-indigo-500'
-                          : 'bg-gray-600',
+                          : 'bg-slate-600',
                         'flex h-5 w-5 items-center justify-center rounded-full',
                       )}
                     >
@@ -49,8 +49,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   </div>
                   <div className="ml-4 flex min-w-0 flex-1 items-center justify-between">
                     <div className="flex-auto">
-                      <p className="text-sm text-gray-500">
-                        <span className="flex w-full items-center justify-between font-medium capitalize text-gray-900">
+                      <p className="text-sm text-slate-500">
+                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900">
                           {value}
                           {timeline[value]?.Component &&
                             timeline[value].Component}
@@ -58,7 +58,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {timeline[data.status].id >= timeline[value].id ? (
-                      <div className="whitespace-nowrap text-right text-sm text-gray-500">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
                           : null}
@@ -89,7 +89,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           </span>
         </p>
         <div className="mt-2" aria-hidden="true">
-          <div className="mt-2 hidden text-sm font-medium text-gray-600 sm:flex">
+          <div className="mt-2 hidden text-sm font-medium text-slate-600 sm:flex">
             {status.map(({ value, label }) => (
               <div key={`${value}${label}`} className="sm:flex-auto">
                 <div className="relative mb-4 mr-1">
@@ -107,7 +107,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   className={classNames(
                     timeline[data.status].id >= timeline[value].id
                       ? 'text-indigo-600'
-                      : 'text-gray-600',
+                      : 'text-slate-600',
                     'text-center',
                   )}
                 >
@@ -116,7 +116,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ? timeline[value].Component
                       : value}
                   </span>
-                  <span className="block text-gray-900">
+                  <span className="block text-slate-900">
                     {timeline[data.status].id >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           month: 'short',

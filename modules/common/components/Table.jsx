@@ -46,7 +46,7 @@ const Table = ({ className, ...props }) => {
       {...props}
     >
       {rowsWithSort.header.length ? (
-        <thead className="bg-gray-50 text-sm text-gray-700">
+        <thead className="bg-slate-50 text-sm text-gray-700">
           {rowsWithSort.header}
         </thead>
       ) : (

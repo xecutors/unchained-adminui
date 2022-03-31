@@ -55,7 +55,7 @@ const OrderDetailPayment = ({ order }) => {
             currentType === enumType
               ? 'border-indigo-200 bg-indigo-100 text-indigo-800'
               : 'opacity-10'
-          } mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-1 text-sm`}
+          } mr-2 inline-flex items-center rounded-md border border-slate-300 bg-white px-2 py-1 text-sm`}
         >
           {enumType}
         </span>
@@ -66,7 +66,7 @@ const OrderDetailPayment = ({ order }) => {
   return (
     <div className="bg-white shadow sm:rounded-lg">
       <div className="flex items-center justify-between px-4 sm:px-6">
-        <h2 className="py-4 text-lg font-medium text-gray-900">
+        <h2 className="py-4 text-lg font-medium text-slate-900">
           {formatMessage({
             id: 'payment_information',
             defaultMessage: 'Payment',
@@ -80,7 +80,7 @@ const OrderDetailPayment = ({ order }) => {
       </div>
       {order.payment.fee ? (
         <>
-          <div className="my-1 border border-x-0 border-t-0 border-gray-300 pb-1 text-sm font-normal">
+          <div className="my-1 border border-x-0 border-t-0 border-slate-300 pb-1 text-sm font-normal">
             {formatMessage({
               id: 'payment_fee',
               defaultMessage: 'Fee',
@@ -100,7 +100,7 @@ const OrderDetailPayment = ({ order }) => {
             </a>
           </Link>
         </span>
-        <div className="mt-3 text-sm font-medium text-gray-500">
+        <div className="mt-3 text-sm font-medium text-slate-500">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -116,13 +116,13 @@ const OrderDetailPayment = ({ order }) => {
             />
           ))}
         </span>
-        <div className="mt-3 text-sm font-medium text-gray-500">
+        <div className="mt-3 text-sm font-medium text-slate-500">
           {formatMessage({
             id: 'delivery_status',
             defaultMessage: 'Status',
           })}
         </div>
-        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5 text-gray-900">
+        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5 text-slate-900">
           {paymentStatusTypes.map((type) => (
             <StatusInformation
               key={type.value}
@@ -135,7 +135,7 @@ const OrderDetailPayment = ({ order }) => {
                   <button
                     type="button"
                     onClick={handleOnClick}
-                    className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-gray-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                    className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                   >
                     <span className="mr-1">
                       <PlusIcon className="inline-block h-3 w-3 text-white" />

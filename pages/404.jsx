@@ -33,13 +33,13 @@ const NotFound = () => {
             <p className="text-sm font-semibold uppercase tracking-wide text-red-600">
               {formatMessage({ id: 'error_404', defaultMessage: '404 error' })}{' '}
             </p>
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
               {formatMessage({
                 id: 'page_not_found',
                 defaultMessage: 'Page not found.',
               })}
             </h1>
-            <p className="mt-2 text-base text-gray-500">
+            <p className="mt-2 text-base text-slate-500">
               {formatMessage({
                 id: 'not_found_message',
                 defaultMessage:

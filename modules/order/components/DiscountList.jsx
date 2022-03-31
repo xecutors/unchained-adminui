@@ -18,7 +18,7 @@ const LogList = ({ discounts }) => {
 
   return (
     <div className="flex flex-auto flex-col bg-white shadow sm:rounded-lg">
-      <h2 className="px-4 py-4 text-lg font-medium text-gray-900 sm:px-6">
+      <h2 className="px-4 py-4 text-lg font-medium text-slate-900 sm:px-6">
         {formatMessage({
           id: 'discount_information',
           defaultMessage: 'Discounts',
@@ -47,7 +47,7 @@ const LogList = ({ discounts }) => {
             <Fragment key={discount._id}>
               <Table.Row>
                 <Table.Cell>
-                  <div className="flex items-center text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-slate-900">
                     {discount.code ? discount.code : 'n/a'}
                     <span className="mr-2 inline-block rounded-full py-1 text-xs font-semibold leading-5">
                       <Badge
@@ -60,7 +60,7 @@ const LogList = ({ discounts }) => {
                 </Table.Cell>
 
                 <Table.Cell>
-                  <div className="flex items-center text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-slate-900">
                     {discount.total.amount
                       ? formatPrice(discount.total)
                       : 'N/A'}

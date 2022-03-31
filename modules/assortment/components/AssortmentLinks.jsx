@@ -52,13 +52,13 @@ const AssortmentLinks = ({ assortmentId }) => {
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="mb-4 md:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'assortment_links',
                 defaultMessage: 'Links',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-slate-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco
@@ -74,13 +74,13 @@ const AssortmentLinks = ({ assortmentId }) => {
       <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
         <div className="mb-4 md:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
               {formatMessage({
                 id: 'assortment_links_list',
                 defaultMessage: 'Linked assortments',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-slate-600">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco

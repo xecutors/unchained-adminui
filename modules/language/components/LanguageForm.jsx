@@ -64,12 +64,12 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
                 id: 'active',
                 defaultMessage: ' Active',
               })}
-              className="mr-2 h-4 w-4 rounded-sm border-gray-300 text-indigo-500 focus:ring-indigo-400"
+              className="mr-2 h-4 w-4 rounded-sm border-slate-300 text-indigo-500 focus:ring-indigo-400"
             />
           </div>
         )}
       </div>
-      <div className="sm:px-15 mt-5 space-y-6 bg-gray-50 p-5 text-right">
+      <div className="sm:px-15 mt-5 space-y-6 bg-slate-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

@@ -9,7 +9,7 @@ const EventListItem = ({ event }) => {
   return (
     <Table.Row>
       <Table.Cell className="whitespace-nowrap px-6">
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           <Link href={`/events/${event._id}`}>
             <a className="text-blue-600">
               {event?.type || (
@@ -30,7 +30,7 @@ const EventListItem = ({ event }) => {
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap px-6">
-        <div className="flex items-center text-sm text-gray-900">
+        <div className="flex items-center text-sm text-slate-900">
           {event.type ? format(new Date(event.created), 'Pp') : 'n/a'}
         </div>
       </Table.Cell>

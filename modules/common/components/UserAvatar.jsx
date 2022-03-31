@@ -21,9 +21,9 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
               })}
             />
           ) : (
-            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
               <svg
-                className="h-full w-full text-gray-300"
+                className="h-full w-full text-slate-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -33,10 +33,10 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
           )}
         </>
         <div className="ml-3">
-          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
+          <p className="text-base font-medium text-gray-700 group-hover:text-slate-900">
             {username}
           </p>
-          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+          <p className="text-sm font-medium text-slate-500 group-hover:text-gray-700">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',

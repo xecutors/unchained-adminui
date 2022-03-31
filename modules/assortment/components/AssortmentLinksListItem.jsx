@@ -12,15 +12,15 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent }) => {
           <div className="flex items-center space-x-6 pr-4">
             <Badge color="cyan" text={isParent ? 'Parent' : 'Descendant'} />
           </div>
-          <h3 className="text-lg text-gray-800">{link?.texts?.title}</h3>
-          <p className="text-xs text-gray-600">{link?.texts?.subtitle}</p>
+          <h3 className="text-lg text-slate-800">{link?.texts?.title}</h3>
+          <p className="text-xs text-slate-600">{link?.texts?.subtitle}</p>
         </div>
         {link?.tags && (
           <div className="space-x-2">
             {link?.tags.map((tag, index) => (
               <span
                 key={`${tag}${index + 1}`}
-                className="rounded border bg-white px-1 text-sm font-light capitalize text-gray-900 shadow-sm"
+                className="rounded border bg-white px-1 text-sm font-light capitalize text-slate-900 shadow-sm"
               >
                 {tag}
               </span>

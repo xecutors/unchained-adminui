@@ -37,13 +37,13 @@ const DoWorkForm = () => {
         <div className="relative max-w-full space-y-6 rounded-md p-6">
           <div className="w-full justify-between align-baseline sm:mr-10">
             <SelectField
-              className="w-full py-2 text-sm text-gray-900 sm:mt-0"
+              className="w-full py-2 text-sm text-slate-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
               placeholder={formatMessage({
                 id: 'type',
                 defaultMessage: 'Type',
               })}
-              labelClassName="text-sm font-medium text-gray-500 mb-2"
+              labelClassName="text-sm font-medium text-slate-500 mb-2"
               name="type"
               required
               options={convertArrayOfObjectToObject(
@@ -60,11 +60,11 @@ const DoWorkForm = () => {
               id: 'input',
               defaultMessage: 'Input',
             })}
-            labelClassName="text-sm font-medium text-gray-500 mb-2"
+            labelClassName="text-sm font-medium text-slate-500 mb-2"
           />
         </div>
 
-        <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
+        <div className="sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
           <SubmitButton
             label={formatMessage({
               id: 'do_work',

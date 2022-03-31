@@ -20,10 +20,10 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
         />
       </div>
       <div className="shrink grow basis-1/3 space-y-1 p-2">
-        <h3 className="text-lg text-gray-800">
+        <h3 className="text-lg text-slate-800">
           ({filter?.key}) {filter?.texts?.title}
         </h3>
-        <p className="text-xs text-gray-600">{filter?.texts?.subtitle}</p>
+        <p className="text-xs text-slate-600">{filter?.texts?.subtitle}</p>
         <Badge color="indigo" text={filter?.type} />
       </div>
       <div className="basis-1/4 space-y-1 p-2">

@@ -14,7 +14,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="text-gray-900">
+        <div className="text-slate-900">
           <span className="mr-2">{getInterfaceLabel(provider?.interface)}</span>
           <Badge
             text={

@@ -43,7 +43,7 @@ const LogList = ({ logs, user }) => {
             <Fragment key={log._id}>
               <Table.Row>
                 <Table.Cell className="whitespace-nowrap px-6">
-                  <div className="flex items-center text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-slate-900">
                     {log.created ? formatDateTime(log.created) : 'n/a'}
                     {user.username !== log.user?.username ? (
                       <Badge
@@ -57,13 +57,13 @@ const LogList = ({ logs, user }) => {
                 </Table.Cell>
 
                 <Table.Cell className="whitespace-normal px-6">
-                  <div className="flex items-center text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-slate-900">
                     {log.level ? log.level : 'N/A'}
                   </div>
                 </Table.Cell>
 
                 <Table.Cell classes="px-6 whitespace-normal">
-                  <div className="flex items-center text-sm text-gray-900">
+                  <div className="flex items-center text-sm text-slate-900">
                     {log.message ? log.message : 'N/A'}
                   </div>
                 </Table.Cell>

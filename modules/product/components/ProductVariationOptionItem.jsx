@@ -50,7 +50,7 @@ const ProductVariationOptionItem = ({
             </span>
 
             <div className="col-span-4 min-w-0">
-              <p className="truncate text-sm font-medium text-gray-900">
+              <p className="truncate text-sm font-medium text-slate-900">
                 {isEdit ? (
                   <TextField
                     className="mt-0"
@@ -65,7 +65,7 @@ const ProductVariationOptionItem = ({
                   option?.texts?.title
                 )}
               </p>
-              <p className="truncate text-sm text-gray-500">
+              <p className="truncate text-sm text-slate-500">
                 {isEdit ? (
                   <TextField
                     className="mt-0"
@@ -94,7 +94,7 @@ const ProductVariationOptionItem = ({
                       defaultMessage: 'Cancel',
                     })}
                   </button>
-                  {/* <span className="text-gray-300" aria-hidden="true">
+                  {/* <span className="text-slate-300" aria-hidden="true">
                     |
                   </span> */}
                   <button

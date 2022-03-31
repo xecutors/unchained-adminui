@@ -22,7 +22,7 @@ const OrderDetailDelivery = ({ delivery }) => {
           currentType === enumType
             ? 'border-indigo-200 bg-indigo-100 text-indigo-800'
             : 'opacity-10'
-        } mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-1 text-sm `}
+        } mr-2 inline-flex items-center rounded-md border border-slate-300 bg-white px-2 py-1 text-sm `}
       >
         {enumType}
       </span>
@@ -54,7 +54,7 @@ const OrderDetailDelivery = ({ delivery }) => {
         </span>
         {delivery.fee ? (
           <>
-            <div className="text-sm font-medium text-gray-500">
+            <div className="text-sm font-medium text-slate-500">
               {formatMessage({
                 id: 'delivery_fee',
                 defaultMessage: 'Fee',
@@ -65,7 +65,7 @@ const OrderDetailDelivery = ({ delivery }) => {
             </span>
           </>
         ) : null}
-        <div className="mt-3 text-sm font-medium text-gray-500">
+        <div className="mt-3 text-sm font-medium text-slate-500">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -82,7 +82,7 @@ const OrderDetailDelivery = ({ delivery }) => {
           ))}
         </span>
 
-        <div className="mt-3 text-sm font-medium text-gray-500">
+        <div className="mt-3 text-sm font-medium text-slate-500">
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',

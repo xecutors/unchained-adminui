@@ -3,7 +3,7 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
     <div className="flex-col ">
       <div>
         {!url ? (
-          <span className="m-auto flex h-8 w-8 items-center justify-center self-center rounded-full bg-gray-500">
+          <span className="m-auto flex h-8 w-8 items-center justify-center self-center rounded-full bg-slate-500">
             <span className="text-center text-sm font-medium leading-none text-white">
               {name
                 ?.split(' ')
@@ -21,7 +21,7 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
       </div>
       {name && showName && (
         <div className="ml-3">
-          <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+          <p className="text-sm font-medium text-gray-700 group-hover:text-slate-900">
             {name}
           </p>
         </div>

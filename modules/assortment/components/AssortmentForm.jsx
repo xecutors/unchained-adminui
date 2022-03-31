@@ -54,10 +54,10 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
             id: 'root_node',
             defaultMessage: 'Root node',
           })}
-          className="mr-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-400"
+          className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
         />
       </div>
-      <div className="sm:px-15 space-y-6 bg-gray-50 p-5 text-right">
+      <div className="sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'add_assortment',

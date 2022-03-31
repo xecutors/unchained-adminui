@@ -13,7 +13,7 @@ const UserListItem = ({ user }) => {
   return (
     <li>
       <Link href={`/users/${user._id}`}>
-        <a className="block border-b border-b-slate-200 hover:bg-gray-50">
+        <a className="block border-b border-b-slate-200 hover:bg-slate-50">
           <div className="flex items-center px-4 py-4 sm:px-6">
             <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
@@ -28,7 +28,7 @@ const UserListItem = ({ user }) => {
                   <div className="truncate text-sm font-medium text-indigo-600">
                     {user.name}
                   </div>
-                  <div className="flex items-center text-sm text-gray-500">
+                  <div className="flex items-center text-sm text-slate-500">
                     <svg
                       className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                       xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const UserListItem = ({ user }) => {
                 </div>
                 <div className="hidden md:block">
                   <div>
-                    <div className="text-sm text-gray-900">
+                    <div className="text-sm text-slate-900">
                       {user.isGuest && (
                         <Badge
                           text={formatMessage({
@@ -56,7 +56,7 @@ const UserListItem = ({ user }) => {
                         />
                       )}
                     </div>
-                    <div className="mt-2 flex items-center text-sm text-gray-500">
+                    <div className="mt-2 flex items-center text-sm text-slate-500">
                       {isVerified ? (
                         <>
                           <svg

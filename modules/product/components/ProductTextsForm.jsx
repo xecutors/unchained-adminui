@@ -84,7 +84,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Slug',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500"
+                  className="text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -96,7 +96,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500"
+                  className="text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -108,7 +108,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500"
+                  className="text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -120,7 +120,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Vendor',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-gray-500"
+                  className="text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -132,7 +132,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Brand',
                   })}
                   autoComplete="on"
-                  className="text-sm  font-medium text-gray-500"
+                  className="text-sm  font-medium text-slate-500"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -144,7 +144,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Labels',
                   })}
                   autoComplete="on"
-                  className="text-sm  font-medium text-gray-500"
+                  className="text-sm  font-medium text-slate-500"
                 />
               </div>
             </div>
@@ -159,7 +159,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               />
             </div>
           </div>
-          <div className="bg-gray-50 px-4 py-5 text-right sm:px-6">
+          <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
             <SubmitButton
               label={formatMessage({
                 id: 'save',

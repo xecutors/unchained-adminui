@@ -60,7 +60,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
         <Form form={form}>
           <div className="relative max-w-full rounded-md sm:pl-6 lg:grid lg:grid-cols-3">
             <div className="col-span-1 mb-7 border-gray-200 pb-2 sm:flex">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">
+              <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'text',
                   defaultMessage: 'Text',
@@ -77,7 +77,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Title',
                   })}
                   autoComplete="on"
-                  className="mt-2 px-4 text-sm font-medium text-gray-500"
+                  className="mt-2 px-4 text-sm font-medium text-slate-500"
                 />
               </div>
 
@@ -90,7 +90,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                     defaultMessage: 'Subtitle',
                   })}
                   autoComplete="on"
-                  className="mt-2 px-4 text-sm font-medium text-gray-500"
+                  className="mt-2 px-4 text-sm font-medium text-slate-500"
                 />
               </div>
               <div className="flex">

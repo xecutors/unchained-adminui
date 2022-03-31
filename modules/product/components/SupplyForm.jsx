@@ -86,7 +86,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'weight_gram',
                   defaultMessage: 'Weight (Gram)',
                 })}
-                className="text-sm font-medium text-gray-500"
+                className="text-sm font-medium text-slate-500"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -99,7 +99,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'length_millimeter',
                   defaultMessage: 'Length (Millimeter)',
                 })}
-                className="text-sm font-medium text-gray-500"
+                className="text-sm font-medium text-slate-500"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -112,7 +112,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'width',
                   defaultMessage: 'Width (Millimeter)',
                 })}
-                className="text-sm  font-medium text-gray-500"
+                className="text-sm  font-medium text-slate-500"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -125,13 +125,13 @@ const SupplyForm = ({ productId }) => {
                   id: 'height',
                   defaultMessage: 'Height (Millimeter)',
                 })}
-                className="text-sm  font-medium text-gray-500"
+                className="text-sm  font-medium text-slate-500"
               />
             </div>
           </div>
         </div>
         <FormErrors />
-        <div className="space-y-6 bg-gray-50 text-right sm:p-6">
+        <div className="space-y-6 bg-slate-50 text-right sm:p-6">
           <SubmitButton
             label={formatMessage({
               id: 'save',

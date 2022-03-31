@@ -19,8 +19,8 @@ const SideNav = ({ navigation }) => {
                 <a
                   className={classNames(
                     item.current
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      ? 'bg-slate-100 text-slate-900'
+                      : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900',
                     'group flex w-full items-center rounded-md py-2 pl-2 text-sm font-medium',
                   )}
                 >
@@ -44,8 +44,8 @@ const SideNav = ({ navigation }) => {
                   <Disclosure.Button
                     className={classNames(
                       item.current
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                        ? 'bg-slate-100 text-slate-900'
+                        : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900',
                       'group flex w-full items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400',
                     )}
                   >
@@ -68,7 +68,7 @@ const SideNav = ({ navigation }) => {
                   <Disclosure.Panel className="space-y-1">
                     {item.children.map((subItem) => (
                       <Link key={subItem.name} href={subItem.href}>
-                        <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+                        <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900">
                           {subItem.name}
                         </a>
                       </Link>

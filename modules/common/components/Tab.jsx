@@ -27,7 +27,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+          className="mt-1 block w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           value={tab}
         >
           {tabItems.map((value) => (
@@ -38,7 +38,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
         </select>
       </div>
       <div className="mb-5 hidden lg:block">
-        <div className="al border-b border-gray-200">
+        <div className="al border-b border-indigo-100">
           <nav className="-mb-px flex space-x-6">
             {tabItems.map((option) => (
               <a

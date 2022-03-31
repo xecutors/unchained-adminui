@@ -49,13 +49,13 @@ const MediaUploader = ({
     <>
       {!onlyDragAndDrop && (
         <div>
-          <h3 className="text-lg font-medium leading-6 text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
           <div className="my-4 flex items-center">
-            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
               <svg
-                className="h-full w-full text-gray-300"
+                className="h-full w-full text-slate-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -64,7 +64,7 @@ const MediaUploader = ({
             </span>
             <button
               type="button"
-              className="ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              className="ml-5 rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
             >
               {text ||
                 formatMessage({
@@ -85,7 +85,7 @@ const MediaUploader = ({
           <label className="block text-sm font-medium text-gray-700" />
           <div
             className={classNames(
-              'mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6',
+              'mt-1 flex justify-center rounded-md border-2 border-dashed border-slate-300 px-6 pt-5 pb-6',
               {
                 'border-indigo-600': dragArea,
               },
@@ -106,7 +106,7 @@ const MediaUploader = ({
                   strokeLinejoin="round"
                 />
               </svg>
-              <div className="flex text-sm text-gray-600">
+              <div className="flex text-sm text-slate-600">
                 <label
                   htmlFor="file-upload"
                   className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
@@ -132,7 +132,7 @@ const MediaUploader = ({
                   })}
                 </p>
               </div>
-              <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+              <p className="text-xs text-slate-500">PNG, JPG, GIF up to 10MB</p>
             </div>
           </div>
         </div>

@@ -29,7 +29,7 @@ const SyncReport = () => {
           defaultMessage: 'Daily sync',
         })}
       />
-      <div className="mt-4 rounded-md border border-gray-50 ">
+      <div className="mt-4 rounded-md border border-slate-50 ">
         <div className="flex max-w-sm items-center justify-between py-5">
           <label className="ml-4 mr-2" htmlFor="report-start">
             {formatMessage({ id: 'from', defaultMessage: 'From' })}

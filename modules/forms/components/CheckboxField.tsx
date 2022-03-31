@@ -36,7 +36,7 @@ const CheckboxField = (props: CommonFieldProps) => {
         type="checkbox"
         className={
           (classNames(
-            'h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-400',
+            'h-4 w-4 rounded-sm border-slate-300 text-indigo-600 focus:ring-indigo-400',
           ),
           inputClassName)
         }
@@ -44,7 +44,7 @@ const CheckboxField = (props: CommonFieldProps) => {
       />
       <label
         htmlFor={field.name}
-        className={classNames('text-sm text-gray-900', labelClassName, {
+        className={classNames('text-sm text-slate-900', labelClassName, {
           'text-danger': !!field.error,
         })}
       >

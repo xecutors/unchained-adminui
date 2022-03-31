@@ -33,7 +33,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 ">
+            <p className="ml-16 text-sm font-medium text-slate-500 ">
               {formatMessage(
                 {
                   id: 'sync_added',
@@ -63,7 +63,7 @@ const SyncCategorySummary = ({
               {statistics.new}
             </p>
 
-            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <Link href={`${router.asPath}/items-list?tab=${newItemsRoute}`}>
                   <a className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -88,7 +88,7 @@ const SyncCategorySummary = ({
                 fill="currentColor"
               />
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 ">
+            <p className="ml-16 text-sm font-medium text-slate-500 ">
               {formatMessage(
                 {
                   id: 'sync_updated',
@@ -109,7 +109,7 @@ const SyncCategorySummary = ({
               />
               {statistics.removed}
             </p>
-            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <Link
                   href={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
@@ -142,7 +142,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 ">
+            <p className="ml-16 text-sm font-medium text-slate-500 ">
               {formatMessage(
                 {
                   id: 'sync_removed',
@@ -172,7 +172,7 @@ const SyncCategorySummary = ({
               {statistics.removed}
             </p>
             {removedItemsRoute && (
-              <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+              <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
                   <Link
                     href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
@@ -208,7 +208,7 @@ const SyncCategorySummary = ({
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 ">
+            <p className="ml-16 text-sm font-medium text-slate-500 ">
               {formatMessage(
                 {
                   id: 'total_variable_category',
@@ -223,10 +223,10 @@ const SyncCategorySummary = ({
             </p>
           </dt>
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900">
+            <p className="text-2xl font-semibold text-slate-900">
               {statistics.total}
             </p>
-            <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
               &nbsp;
             </div>
           </dd>

@@ -46,7 +46,7 @@ const MediaListItem = ({
           <img
             src={media?.file?.url}
             alt={mediaText?.title || mediaText?.subtitle}
-            className="h-36 w-36 flex-none rounded-md bg-gray-100 object-cover object-center"
+            className="h-36 w-36 flex-none rounded-md bg-slate-100 object-cover object-center"
           />
         </a>
 
@@ -55,7 +55,7 @@ const MediaListItem = ({
             {media?.tags.map((tag, index) => (
               <span
                 key={`${tag}${index + 1}`}
-                className="rounded border bg-white px-1 text-sm font-light capitalize text-gray-900 shadow-sm"
+                className="rounded border bg-white px-1 text-sm font-light capitalize text-slate-900 shadow-sm"
               >
                 {tag}
               </span>
@@ -68,7 +68,7 @@ const MediaListItem = ({
         <Form form={form}>
           <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
             <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium">
-              <h3 className="text-gray-900">
+              <h3 className="text-slate-900">
                 {isEdit ? (
                   <TextField
                     name="title"
@@ -89,7 +89,7 @@ const MediaListItem = ({
                   </>
                 )}
               </h3>
-              <p className="text-gray-900 sm:block">
+              <p className="text-slate-900 sm:block">
                 {isEdit ? (
                   <TextField
                     name="subtitle"

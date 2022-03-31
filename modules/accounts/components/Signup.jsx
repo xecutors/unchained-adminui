@@ -58,7 +58,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                 defaultMessage: 'Unchained Logo',
               })}
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
               {formatMessage({
                 id: 'sign_up_header',
                 defaultMessage: 'Create new account',

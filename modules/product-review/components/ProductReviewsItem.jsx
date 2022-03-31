@@ -72,7 +72,7 @@ const ProductReviewsItem = ({ review }) => {
           className="h-12 w-12 rounded-full"
         />
         <div className="ml-4 mr-auto">
-          <h4 className="text-sm font-bold text-gray-900">
+          <h4 className="text-sm font-bold text-slate-900">
             {review?.author?.username}
           </h4>
           <p className="text-sm font-normal text-gray-400">
@@ -104,8 +104,8 @@ const ProductReviewsItem = ({ review }) => {
         )}
       </div>
 
-      <div className="mt-4 space-y-2 text-base italic text-gray-600">
-        <h3 className="text-sm font-medium text-gray-900">{review.title}</h3>
+      <div className="mt-4 space-y-2 text-base italic text-slate-600">
+        <h3 className="text-sm font-medium text-slate-900">{review.title}</h3>
         <p>{review.review}</p>
       </div>
     </div>

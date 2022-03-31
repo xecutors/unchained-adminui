@@ -17,7 +17,7 @@ const OrderDetailHeader = ({ order }) => {
           })}
           &nbsp;
         </span>
-        <span className="inline-flex text-lg font-medium text-gray-900 sm:text-xl sm:font-bold">
+        <span className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-bold">
           <span className="sm:hidden">&#35;&nbsp;</span>
           {order.orderNumber ? (
             <Badge

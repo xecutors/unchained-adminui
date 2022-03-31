@@ -27,13 +27,13 @@ const ProductsAlphabeticalList = ({ dictionary = {} }) => {
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-gray-200 bg-gray-300 px-6 py-1 text-sm font-medium text-white">
+              <div className="sticky top-0 z-10 border-t border-b border-gray-200 bg-slate-300 px-6 py-1 text-sm font-medium text-white">
                 <h3>{letter}</h3>
               </div>
               <ul className="relative z-0 divide-y divide-gray-200">
                 {filtered[letter].map((item) => (
                   <li key={item._id} className="bg-white">
-                    <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50">
+                    <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50">
                       {item?.media && (
                         <div className="flex-shrink-0">
                           <img
@@ -51,13 +51,13 @@ const ProductsAlphabeticalList = ({ dictionary = {} }) => {
                               aria-hidden="true"
                             />
                             <p
-                              className="text-sm font-medium text-gray-900"
+                              className="text-sm font-medium text-slate-900"
                               // eslint-disable-next-line react/no-danger
                               dangerouslySetInnerHTML={{ __html: item?.title }}
                             />
 
                             <p
-                              className="truncate text-sm text-gray-500"
+                              className="truncate text-sm text-slate-500"
                               // eslint-disable-next-line react/no-danger
                               dangerouslySetInnerHTML={{
                                 __html: item?.subtitle,

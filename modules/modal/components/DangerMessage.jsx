@@ -35,14 +35,14 @@ const DangerMessage = ({
         )}
         <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
           <h3
-            className="text-lg font-medium leading-6 text-gray-900"
+            className="text-lg font-medium leading-6 text-slate-900"
             id="modal-title"
           >
             {headerText ||
               formatMessage({ id: 'warning', defaultMessage: 'Warning!' })}
           </h3>
           <div className="mt-2">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-slate-500">
               {message ||
                 formatMessage({
                   id: 'are_you_sure',
@@ -65,7 +65,7 @@ const DangerMessage = ({
         <button
           onClick={onCancelClick || close}
           type="button"
-          className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
         >
           {cancelText ||
             formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
