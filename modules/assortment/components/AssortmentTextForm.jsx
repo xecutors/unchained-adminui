@@ -125,17 +125,15 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-12">
-              <RichTextEditorField
-                required
-                name="description"
-                id="description"
-                autoComplete="on"
-                label={formatMessage({
-                  id: 'description',
-                  defaultMessage: 'Description',
-                })}
-                className="w-full text-sm font-medium text-gray-500"
-              />
+                <RichTextEditorField
+                  required
+                  name="description"
+                  id="description"
+                  label={formatMessage({
+                    id: 'description',
+                    defaultMessage: 'Description',
+                  })}
+                />
               </div>
             </div>
 
