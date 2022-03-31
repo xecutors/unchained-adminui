@@ -1,4 +1,4 @@
-import { EmojiSadIcon } from '@heroicons/react/solid';
+import { BanIcon } from '@heroicons/react/solid';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
@@ -11,8 +11,8 @@ const NoData = ({ message, className = '', Icon }) => {
       )}
     >
       <div className="grid items-center justify-center">
-        <div className="flex items-center justify-center text-indigo-500">
-          {Icon || <EmojiSadIcon className="h-10 w-10" />}
+        <div className="flex items-center justify-center text-indigo-300">
+          {Icon || <BanIcon className="h-10 w-10" />}
         </div>
 
         <FormattedMessage

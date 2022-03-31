@@ -1,11 +1,13 @@
 import {
-  BriefcaseIcon,
+  ChartBarIcon,
   CogIcon,
   TagIcon,
   HomeIcon,
   InboxIcon,
-  OfficeBuildingIcon,
-  UserIcon,
+  CollectionIcon,
+  UserGroupIcon,
+  UserCircleIcon,
+  LightningBoltIcon,
 } from '@heroicons/react/outline';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -36,7 +38,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
-      icon: BriefcaseIcon,
+      icon: ChartBarIcon,
       children: [
         {
           name: formatMessage({
@@ -65,7 +67,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
-      icon: UserIcon,
+      icon: UserGroupIcon,
       href: '/users',
     },
     {
@@ -112,7 +114,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'master_data', defaultMessage: 'Master Data' }),
-      icon: OfficeBuildingIcon,
+      icon: CollectionIcon,
       children: [
         {
           name: formatMessage({
@@ -129,7 +131,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
-      icon: OfficeBuildingIcon,
+      icon: LightningBoltIcon,
       children: [
         {
           name: formatMessage({
@@ -160,7 +162,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'account', defaultMessage: 'Account' }),
-      icon: UserIcon,
+      icon: UserCircleIcon,
       href: '/account',
     },
   ];
