@@ -23,7 +23,7 @@ const FieldWrapper = ({
   showToolTip,
 }: FieldWrapperProps) => {
   const { setToolTip } = useToolTip();
-  const handleToolTip = setToolTip(toolTipMessage);
+  const handleToolTip = setToolTip(toolTipMessage, { direction: 'top' });
   return (
     <div
       className={classnames(
