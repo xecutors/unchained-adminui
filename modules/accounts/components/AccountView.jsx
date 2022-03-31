@@ -60,7 +60,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         </div>
         <div className="mt-5 lg:col-span-2 lg:mt-0">
-          <div className="my-2   bg-white px-4 py-5 shadow sm:p-6">
+          <div className="my-2 rounded-md bg-white px-4 py-5 shadow sm:p-6">
             <UserTagsView
               tags={tags}
               userId={_id}
@@ -87,7 +87,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         </div>
         <div className="mt-5 lg:col-span-2 lg:mt-0">
-          <div className="space-y-6 overflow-hidden rounded-md border-b  border-gray-200 bg-white px-4 py-5 shadow sm:p-6 ">
+          <div className="space-y-6 overflow-hidden rounded-md border-b border-gray-200 bg-white px-4 py-5 shadow sm:p-6">
             <UserRolesView roles={roles} userId={_id} />
           </div>
         </div>
