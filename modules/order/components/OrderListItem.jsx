@@ -24,7 +24,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <div className="flex items-center text-sm text-gray-900">
           <Link href={`/orders/${order._id}`}>
-            <a className="text-blue-600">
+            <a className="font-medium text-blue-500">
               {order?.orderNumber || (
                 <>
                   {order._id}{' '}
@@ -40,7 +40,9 @@ const OrderListItem = ({ order, showUser }) => {
       </Table.Cell>
       <Table.Cell>
         <div className="flex items-center text-sm text-gray-500">
-          {order.ordered ? format(new Date(order.ordered), 'Pp') : 'n/a'}
+          {order.ordered
+            ? format(new Date(order.ordered), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
       <Table.Cell>
@@ -51,17 +53,17 @@ const OrderListItem = ({ order, showUser }) => {
       {showUser && order.user && (
         <Table.Cell>
           <Link href={`/order/${order.user._id}`}>
-            <a className="flex text-blue-500">
+            <a className="flex items-center text-sm text-blue-500 hover:text-decoration">
               <Image
                 loader={defaultNextImageLoader}
                 src={order.user?.avatar?.url || 'product_placeholder.png'}
-                width={60}
-                height={30}
+                width={20}
+                height={20}
                 onError={() => '/product_placeholder.png'}
                 placeholder="blur"
                 blurDataURL="/product_placeholder.png"
               />
-              <span className="ml-2 self-end">{order.user?.username}</span>
+              <span className="font-medium ml-2">{order.user?.username}</span>
             </a>
           </Link>
         </Table.Cell>

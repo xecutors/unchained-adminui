@@ -79,12 +79,12 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
             defaultMessage: 'Status',
           })}
         </h4>
-        <p className="text-sm font-medium text-gray-900">
-          <span className="text-sm font-medium capitalize text-gray-900">
+        <p className="font-medium flex items-center justify-between">
+          <span className="text-xl capitalize">
             {data.status.toLowerCase()}
           </span>
-          &nbsp;on&nbsp;
           <span>
+            &nbsp;on&nbsp;
             {data[content] ? formatDateTime(data[content]) : `In the cart`}
           </span>
         </p>
@@ -116,7 +116,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ? timeline[value].Component
                       : value}
                   </span>
-                  <span className="block">
+                  <span className="block text-gray-900">
                     {timeline[data.status].id >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           month: 'short',

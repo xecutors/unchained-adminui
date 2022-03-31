@@ -6,7 +6,7 @@ const OrderDetailBilling = ({ order }) => {
   const { formatPrice } = useFormatPrice();
 
   return (
-    <section aria-labelledby="summary-heading" className="mt-4">
+    <section aria-labelledby="summary-heading">
       <h2 id="summary-heading" className="sr-only">
         {formatMessage({
           id: 'billing_summary',
@@ -14,18 +14,18 @@ const OrderDetailBilling = ({ order }) => {
         })}
       </h2>
 
-      <div className="bg-white py-4 px-4 shadow sm:rounded-lg md:grid md:grid-cols-2 lg:gap-x-8">
-        <dl className="grid justify-center text-sm md:justify-start md:gap-x-8 ">
-          <dt className="mb-0 font-medium text-gray-900">
-            {formatMessage({
-              id: 'billing_address',
-              defaultMessage: 'Billing address',
-            })}
-          </dt>
-          <dd className="text-gray-500">
-            <span className="my-1 block">
+      <div className="md:grid md:grid-cols-2 lg:gap-x-8">
+        <dl className="bg-white py-4 px-4 shadow sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
+          <dd>
+            <span className="text-xl mb-5 block font-bold">
               {order.billingAddress.firstName || order.billingAddress.lastName}
             </span>
+            <dt className="mb-2 font-medium">
+              {formatMessage({
+                id: 'billing_address',
+                defaultMessage: 'Billing address',
+              })}
+            </dt>
             <span className="my-1 inline-block">
               {order.billingAddress.postalCode}
             </span>
@@ -40,17 +40,15 @@ const OrderDetailBilling = ({ order }) => {
           </dd>
         </dl>
 
-        <dl className="mt-8 divide-y divide-gray-200 text-sm lg:mt-0">
-          <div className="flex items-center justify-between pb-1">
-            <dt className="text-gray-600">
+        <dl className="bg-white py-4 px-4 shadow sm:rounded-lg mt-8 divide-y divide-indigo-50 text-sm lg:mt-0">
+          <div className="flex items-center justify-between pb-3 text-lg">
+            <dt className="font-bold">
               {formatMessage({
-                id: 'subtotal',
-                defaultMessage: 'Subtotal',
+                id: 'order_total',
+                defaultMessage: 'Order total',
               })}
             </dt>
-            <dd className="font-medium text-gray-900">
-              {formatPrice(order?.itemsTotal)}
-            </dd>
+            <dd className="font-bold">{formatPrice(order?.total)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
             <dt className="text-gray-600">
@@ -59,9 +57,7 @@ const OrderDetailBilling = ({ order }) => {
                 defaultMessage: 'Discount',
               })}
             </dt>
-            <dd className="font-medium text-gray-900">
-              {formatPrice(order?.totalDiscount)}
-            </dd>
+            <dd className="font-medium">{formatPrice(order?.totalDiscount)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
             <dt className="text-gray-600">
@@ -70,9 +66,7 @@ const OrderDetailBilling = ({ order }) => {
                 defaultMessage: 'Shipping',
               })}
             </dt>
-            <dd className="font-medium text-gray-900">
-              {formatPrice(order?.totalDelivery)}
-            </dd>
+            <dd className="font-medium">{formatPrice(order?.totalDelivery)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
             <dt className="text-gray-600">
@@ -81,20 +75,16 @@ const OrderDetailBilling = ({ order }) => {
                 defaultMessage: 'Tax',
               })}
             </dt>
-            <dd className="font-medium text-gray-900">
-              {formatPrice(order?.totalTax)}
-            </dd>
+            <dd className="font-medium">{formatPrice(order?.totalTax)}</dd>
           </div>
-          <div className="flex items-center justify-between pt-3 text-lg">
-            <dt className="font-bold text-gray-900">
+          <div className="flex items-center justify-between py-1">
+            <dt className="text-gray-600">
               {formatMessage({
-                id: 'order_total',
-                defaultMessage: 'Order total',
+                id: 'subtotal',
+                defaultMessage: 'Subtotal',
               })}
             </dt>
-            <dd className="font-bold text-indigo-600">
-              {formatPrice(order?.total)}
-            </dd>
+            <dd className="font-medium">{formatPrice(order?.itemsTotal)}</dd>
           </div>
         </dl>
       </div>

@@ -105,7 +105,7 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-10 space-y-5 md:mt-10 xl:mt-20">
+    <div className="lg:grid lg:grid-cols-3 lg:gap-10 md:mt-10">
       <div>
         <OrderDetailHeader order={order} />
       </div>
@@ -113,7 +113,7 @@ const OrderDetail = ({ order }) => {
         <OrderDetailBilling order={order} />
       </div>
 
-      <div className="lg:col-span-2">
+      <div className="lg:col-span-2 bg-white p-4 shadow rounded-md">
         <StatusProgress
           data={order}
           statusTypes={orderStatusType}

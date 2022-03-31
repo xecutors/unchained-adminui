@@ -18,10 +18,10 @@ const LogList = ({ discounts }) => {
 
   return (
     <div className="flex flex-auto flex-col bg-white shadow sm:rounded-lg">
-      <h2 className="px-4 py-5 text-lg font-medium text-gray-900 sm:px-6">
+      <h2 className="px-4 py-4 text-lg font-medium text-gray-900 sm:px-6">
         {formatMessage({
           id: 'discount_information',
-          defaultMessage: 'Discounts Information',
+          defaultMessage: 'Discounts',
         })}
       </h2>
       {discounts?.length ? (
@@ -76,7 +76,7 @@ const LogList = ({ discounts }) => {
             id: 'discounts',
             defaultMessage: 'Discounts',
           })}
-          className="border-t border-gray-200 px-4 py-5 sm:px-6"
+          className="border-t border-indigo-50 px-4 py-4 sm:px-6"
           icon={EmojiSadIcon}
         />
       )}

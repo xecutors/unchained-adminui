@@ -8,44 +8,44 @@ const OrderDetailHeader = ({ order }) => {
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <section>
+    <div className="bg-white rounded-md shadow p-4 space-y-5">
+      <div className="flex items-center justify-between">
+        <span className="text-sm block mr-3">
+          {formatMessage({
+            id: 'order_number',
+            defaultMessage: 'Order#',
+          })}
+          &nbsp;
+        </span>
+        <span className="inline-flex text-lg font-medium text-gray-900 sm:text-xl sm:font-bold">
+          <span className="sm:hidden">&#35;&nbsp;</span>
+          {order.orderNumber ? (
+            <Badge
+              text={order.orderNumber}
+              square
+              color="indigo"
+              className="text-lg font-medium sm:text-xl sm:font-bold "
+            />
+          ) : (
+            <Badge
+              text="Cart"
+              color="yellow"
+              className="text-lg font-medium sm:text-xl sm:font-bold"
+            />
+          )}
+        </span>
+      </div>
       <DetailHeader user={order?.user} contact={order?.contact} />
-      <div className="mt-2 flex pb-2">
-        <div className="flex flex-wrap items-center gap-1">
-          <div className="hidden text-gray-500 sm:block">
-            {formatMessage({
-              id: 'order_number',
-              defaultMessage: 'Order#',
-            })}
-            &nbsp;
-          </div>
-          <div className="inline-flex text-lg font-medium text-gray-900 sm:text-xl sm:font-bold">
-            <span className="sm:hidden">&#35;&nbsp;</span>
-            {order.orderNumber ? (
-              <Badge
-                text={order.orderNumber}
-                square
-                color="indigo"
-                className="text-lg font-medium sm:text-xl sm:font-bold "
-              />
-            ) : (
-              <Badge
-                text="Cart"
-                color="yellow"
-                className="text-lg font-medium sm:text-xl sm:font-bold"
-              />
-            )}
-          </div>
-          <div className="mt-5">
-            <span className="text-md mr-5 text-gray-500">
-              {formatMessage({ id: 'date', defaultMessage: 'Date' })}
-            </span>
-            {order?.ordered ? formatDateTime(order.ordered) : null}
-          </div>
+      <div className="flex justify-between">
+        <div>
+          <span className="text-sm mr-3">
+            {formatMessage({ id: 'date', defaultMessage: 'Date' })}
+          </span>
+          {order?.ordered ? formatDateTime(order.ordered) : null}
         </div>
-        <div className="ml-auto flex flex-wrap gap-x-1 text-sm text-gray-900 sm:text-base">
+        <div className="">
           <span>{order?.country?.flagEmoji}</span>
-          <span>
+          <span className="mr-1">
             {new Intl.DisplayNames([locale], {
               type: 'currency',
             }).of(order?.currency?.isoCode)}
@@ -57,7 +57,7 @@ const OrderDetailHeader = ({ order }) => {
           </span>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

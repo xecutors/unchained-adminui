@@ -53,9 +53,9 @@ const OrderDetailPayment = ({ order }) => {
           title={label}
           className={`${
             currentType === enumType
-              ? 'border-teal-700 bg-teal-500 text-white'
-              : 'opacity-25'
-          } mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-1 text-xs font-normal`}
+              ? 'border-indigo-200 bg-indigo-100 text-indigo-800'
+              : 'opacity-10'
+          } mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-2 py-1 text-sm`}
         >
           {enumType}
         </span>
@@ -65,13 +65,34 @@ const OrderDetailPayment = ({ order }) => {
 
   return (
     <div className="bg-white shadow sm:rounded-lg">
-      <h2 className="px-4 py-5 text-lg font-medium text-gray-900 sm:px-6">
-        {formatMessage({
-          id: 'payment_information',
-          defaultMessage: 'Payment information',
-        })}
-      </h2>
-      <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+      <div className="flex items-center justify-between px-4 sm:px-6">
+        <h2 className="py-4 text-lg font-medium text-gray-900">
+          {formatMessage({
+            id: 'payment_information',
+            defaultMessage: 'Payment',
+          })}
+        </h2>
+        {order.payment.paid ? (
+          <span className="font-medium">
+            {formatDateTime(order.payment.paid)}
+          </span>
+        ) : null}
+      </div>
+      {order.payment.fee ? (
+        <>
+          <div className="my-1 border border-x-0 border-t-0 border-gray-300 pb-1 text-sm font-normal">
+            {formatMessage({
+              id: 'payment_fee',
+              defaultMessage: 'Fee',
+            })}
+          </div>
+          <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
+            {formatPrice(order.payment.fee)}
+          </span>
+        </>
+      ) : null}
+
+      <div className="border-t border-indigo-50 px-4 py-4 sm:px-6">
         <span className="mb-5  block">
           <Link href={`/payment-provider/${order.payment.provider._id}`}>
             <a className="font-medium text-blue-600 hover:text-blue-500">
@@ -129,25 +150,6 @@ const OrderDetailPayment = ({ order }) => {
             />
           ))}
         </span>
-        {order.payment.fee ? (
-          <>
-            <div className="my-1 border border-x-0 border-t-0 border-gray-300 pb-1 text-sm font-normal">
-              {formatMessage({
-                id: 'payment_fee',
-                defaultMessage: 'Fee',
-              })}
-            </div>
-            <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-              {formatPrice(order.payment.fee)}
-            </span>
-          </>
-        ) : null}
-
-        {order.payment.paid ? (
-          <span className="mt-3 block py-2 text-sm font-bold leading-5">
-            {formatDateTime(order.payment.paid)}
-          </span>
-        ) : null}
       </div>
     </div>
   );

@@ -11,8 +11,8 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const FallbackAvatar = ({ username }) => {
   return (
-    <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-500">
-      <span className="text-4xl font-medium leading-none text-white">
+    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
+      <span className="text font-medium leading-none text-white">
         {username?.slice(0, 2)}
       </span>
     </span>
@@ -22,15 +22,15 @@ const FallbackAvatar = ({ username }) => {
 const DetailHeader = ({ user, contact }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="my-6 flex items-center">
-      <span className="hidden h-16 w-16 rounded-full sm:block">
+    <div className="flex items-center">
+      <span className="hidden h-8 w-8 rounded-full sm:block">
         {user?.avatar ? (
           <Image
             loader={defaultNextImageLoader}
             src={user.avatar.url}
             alt={user.name || user.username}
-            width={16}
-            height={16}
+            width={8}
+            height={8}
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -38,23 +38,23 @@ const DetailHeader = ({ user, contact }) => {
       </span>
       <div>
         <div className="flex items-center">
-          <span className="block h-16 w-16 rounded-full sm:hidden">
+          <span className="block h-8 w-8 rounded-full sm:hidden">
             {user?.avatar ? (
               <Image
                 loader={defaultNextImageLoader}
                 src={user.avatar.url}
                 alt={user.name || user.username}
-                width={16}
-                height={16}
+                width={8}
+                height={8}
               />
             ) : (
               <FallbackAvatar username={user?.username} />
             )}
           </span>
           <span className="flex items-center">
-            <h3 className="ml-3 text-2xl font-bold capitalize leading-7 text-gray-900 sm:truncate sm:leading-9">
+            <h3 className="ml-3 text-xl font-bold capitalize">
               <Link href={`/users/${user._id}`}>
-                <a className="hover:text-blue-500">
+                <a className="text-blue-500 hover:text-blue-600">
                   {user?.name ? user.name : user?.username}
                 </a>
               </Link>
@@ -90,11 +90,7 @@ const DetailHeader = ({ user, contact }) => {
               <dt className="sr-only">
                 {formatMessage({ id: 'email', defaultMessage: 'Email' })}
               </dt>
-              <dd className="flex items-center text-sm font-medium capitalize text-gray-500 sm:mr-6">
-                <AtSymbolIcon
-                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                  aria-hidden="true"
-                />
+              <dd className="flex items-center text-xl font-medium capitalize sm:mr-6">
                 {contact.emailAddress}
               </dd>
             </>
