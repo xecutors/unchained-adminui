@@ -96,7 +96,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                         defaultMessage: 'Option',
                       })}
                     />
-                    <div className="ml-2 mt-5 flex-shrink-0 sm:mt-4">
+                    <div className="ml-2 flex-shrink-0 mt-8">
                       <button
                         className="items-center rounded-full bg-white px-1 py-1 text-sm text-red-500 hover:bg-red-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
                         type="button"
