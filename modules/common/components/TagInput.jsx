@@ -56,7 +56,7 @@ const TagInput = ({
         />
       ))}
       <div>
-        <div className="flex h-11 max-w-full gap-2 rounded-md shadow-sm">
+        <div className="flex h-11 max-w-full gap-2">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <input
               type="text"
