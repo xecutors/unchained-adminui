@@ -21,14 +21,23 @@ const AddProduct = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="mx-auto sm:max-w-2xl">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'new_product_header',
-            defaultMessage: 'New product',
-          })}
-        />
-        <div className="mt-6">
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_product_header',
+          defaultMessage: 'New product',
+        })}
+      />
+      <div className="mt-6 lg:grid lg:grid-cols-3">
+        <div className="lg:col-span-1 space-y-2">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
+            Product Type
+          </h3>
+          <p className="max-w-2xl text-sm text-gray-500">
+            Here comes an explainer
+          </p>
+        </div>
+
+        <div className="lg:col-span-2">
           <FormWrapper>
             <ProductForm
               onSubmit={onSubmit}

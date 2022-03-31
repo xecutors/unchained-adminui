@@ -22,7 +22,7 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
   });
   return (
     <Form form={form}>
-      <div className="flex flex-col gap-2">
+      <div className="">
         <TagInputField
           name="tags"
           id="tags"
@@ -31,7 +31,7 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
           tagList={tags}
         />
       </div>
-      <div className="bg-gray-50">
+      <div className="border border-t-indigo-50 bg-gray-50 px-6 pb-6 mt-6 -mx-6 -mb-6">
         <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
       </div>
     </Form>
