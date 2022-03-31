@@ -154,12 +154,10 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                 required
                 name="description"
                 id="description"
-                autoComplete="on"
                 label={formatMessage({
                   id: 'description',
                   defaultMessage: 'Description',
                 })}
-                className="w-full text-sm font-medium text-gray-500"
               />
             </div>
           </div>
