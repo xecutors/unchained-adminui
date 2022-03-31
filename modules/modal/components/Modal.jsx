@@ -1,6 +1,7 @@
 import React from 'react';
 import { injectIntl, useIntl } from 'react-intl';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import { stopPropagation } from '../../common/data/miscellaneous';
 
 class ModalInner extends React.Component {
@@ -28,6 +29,7 @@ const Modal = ({
   children,
   visible,
   closeOnOutsideClick = false,
+  containerClassName,
 }) => {
   const { formatMessage } = useIntl();
   const onOverlayClick = () => {
@@ -55,7 +57,10 @@ const Modal = ({
             &#8203;
           </span>
           <div
-            className="inline-block transform overflow-hidden rounded-lg bg-white pt-5 text-left shadow-xl transition-all sm:mt-8 sm:w-full sm:max-w-lg sm:align-middle"
+            className={classNames(
+              'relative inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:max-w-lg sm:p-6 sm:align-middle',
+              containerClassName,
+            )}
             onClick={stopPropagation}
             onKeyUp={stopPropagation}
           >

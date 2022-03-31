@@ -52,6 +52,7 @@ const OrderDetailPage = () => {
           defaultMessage: 'Delete order',
         })}
       />,
+      { containerClassName: 'px-0 pb-0 sm:px-0 sm:pb-0' },
     );
   };
 

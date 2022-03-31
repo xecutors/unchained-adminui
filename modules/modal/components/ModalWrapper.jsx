@@ -7,17 +7,21 @@ const ModalWrapper = ({ children }) => {
   const [modalChildren, setChildren] = useState(null);
   const [closeOnOutsideClick, setCloseOnOutsideClick] = useState(false);
   const hideModal = () => setChildren(null);
+  const [className, setClassName] = useState('');
   const [onClose, setOnClose] = useState(() => hideModal);
 
   const setModal = (
     newModalChildren,
-    { closeOnOutsideClick: newCloseOnOutsideClick = false } = {},
+    {
+      closeOnOutsideClick: newCloseOnOutsideClick = false,
+      containerClassName,
+    } = {},
   ) => {
     return new Promise((resolve) => {
       if (!newModalChildren) {
         resolve(true);
       }
-
+      setClassName(containerClassName);
       setCloseOnOutsideClick(newCloseOnOutsideClick);
       setChildren(() => newModalChildren);
       setOnClose(() => () => {
@@ -35,6 +39,7 @@ const ModalWrapper = ({ children }) => {
         visible={!!modalChildren}
         onClose={onClose}
         closeOnOutsideClick={closeOnOutsideClick}
+        containerClassName={className}
       >
         {modalChildren}
       </Modal>
