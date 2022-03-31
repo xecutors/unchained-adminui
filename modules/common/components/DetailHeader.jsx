@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import {
   CheckCircleIcon,
-  AtSymbolIcon,
   XCircleIcon,
   DeviceMobileIcon,
 } from '@heroicons/react/solid';

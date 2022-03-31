@@ -21,7 +21,7 @@ const OrderDetailPage = () => {
   const { order, loading } = useOrder({ orderId });
 
   const isDeletable = (status) => {
-    return status === 'OPEN' || status === 'PENDING';
+    return status === 'OPEN';
   };
 
   const handleOnClick = async () => {

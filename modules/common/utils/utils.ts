@@ -8,7 +8,7 @@ const useFormatPrice = () => {
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency,
-    }).format(amount);
+    }).format(amount / 100);
   };
 
   return { formatPrice };
