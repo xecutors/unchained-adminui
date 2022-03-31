@@ -196,10 +196,11 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'displayName',
-                    defaultMessage: 'Display Name',
-                  })}
+                  {!isEdit &&
+                    formatMessage({
+                      id: 'displayName',
+                      defaultMessage: 'Display Name',
+                    })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
@@ -211,7 +212,10 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         id: 'displayName',
                         defaultMessage: 'Display Name',
                       })}
-                      hideLabel
+                      placeholder={formatMessage({
+                        id: 'displayName',
+                        defaultMessage: 'Display Name',
+                      })}
                     />
                   ) : (
                     <span className="flex-grow">{profile?.displayName}</span>
@@ -221,10 +225,11 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'gender',
-                    defaultMessage: 'Gender',
-                  })}
+                  {!isEdit &&
+                    formatMessage({
+                      id: 'gender',
+                      defaultMessage: 'Gender',
+                    })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
@@ -234,7 +239,10 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         id: 'gender',
                         defaultMessage: 'Gender',
                       })}
-                      hideLabel
+                      placeholder={formatMessage({
+                        id: 'gender',
+                        defaultMessage: 'Gender',
+                      })}
                       name="gender"
                       options={{
                         M: formatMessage({
@@ -257,10 +265,11 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'birthday',
-                    defaultMessage: 'Birthday',
-                  })}
+                  {!isEdit &&
+                    formatMessage({
+                      id: 'birthday',
+                      defaultMessage: 'Birthday',
+                    })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
@@ -269,7 +278,10 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         id: 'birthday',
                         defaultMessage: 'Birthday',
                       })}
-                      hideLabel
+                      placeholder={formatMessage({
+                        id: 'birthday',
+                        defaultMessage: 'Birthday',
+                      })}
                       className="mt-0 w-full"
                       name="birthday"
                     />
@@ -285,10 +297,11 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
 
               <div className="py-4 sm:grid sm:gap-1 sm:py-3">
                 <label className="text-sm font-medium text-gray-500">
-                  {formatMessage({
-                    id: 'mobile_phone',
-                    defaultMessage: 'Mobile phone',
-                  })}
+                  {!isEdit &&
+                    formatMessage({
+                      id: 'mobile_phone',
+                      defaultMessage: 'Mobile phone',
+                    })}
                 </label>
                 <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
                   {isEdit ? (
@@ -299,7 +312,10 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         id: 'mobile_phone',
                         defaultMessage: 'Mobile phone',
                       })}
-                      hideLabel
+                      placeholder={formatMessage({
+                        id: 'mobile_phone',
+                        defaultMessage: 'Mobile phone',
+                      })}
                     />
                   ) : (
                     <span className="flex-grow">

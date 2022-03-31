@@ -55,10 +55,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       </div>
       <div className="py-4 sm:grid sm:gap-1 sm:py-3">
         <label className="text-sm font-medium text-gray-500">
-          {formatMessage({
-            id: 'company',
-            defaultMessage: 'Company',
-          })}
+          {!isEdit &&
+            formatMessage({
+              id: 'company',
+              defaultMessage: 'Company',
+            })}
         </label>
         <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
           {isEdit ? (
@@ -69,7 +70,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 id: 'company',
                 defaultMessage: 'Company',
               })}
-              hideLabel
+              placeholder={formatMessage({
+                id: 'company',
+                defaultMessage: 'Company',
+              })}
             />
           ) : (
             <span className="flex-grow">{address?.company}</span>
@@ -78,10 +82,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       </div>
       <div className="py-4 sm:grid sm:gap-1 sm:py-3">
         <label className="text-sm font-medium text-gray-500">
-          {formatMessage({
-            id: 'address_line_1',
-            defaultMessage: 'Address line 1 (Street, House no)',
-          })}
+          {!isEdit &&
+            formatMessage({
+              id: 'address_line_1',
+              defaultMessage: 'Address line 1 (Street, House no)',
+            })}
         </label>
         <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
           {isEdit ? (
@@ -92,7 +97,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 id: 'address_line_1',
                 defaultMessage: 'Address line 1 (Street, House no)',
               })}
-              hideLabel
+              placeholder={formatMessage({
+                id: 'address_line_1',
+                defaultMessage: 'Address line 1 (Street, House no)',
+              })}
             />
           ) : (
             <span className="flex-grow">{address?.addressLine}</span>
@@ -101,10 +109,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       </div>
       <div className="py-4 sm:grid sm:gap-1 sm:py-3">
         <label className="text-sm font-medium text-gray-500">
-          {formatMessage({
-            id: 'address_line_2',
-            defaultMessage: 'Address line 2',
-          })}
+          {!isEdit &&
+            formatMessage({
+              id: 'address_line_2',
+              defaultMessage: 'Address line 2',
+            })}
         </label>
         <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
           {isEdit ? (
@@ -115,7 +124,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                 id: 'address_line_2',
                 defaultMessage: 'Address line 2',
               })}
-              hideLabel
+              placeholder={formatMessage({
+                id: 'address_line_2',
+                defaultMessage: 'Address line 2',
+              })}
             />
           ) : (
             <span className="flex-grow">{address?.addressLine2}</span>
@@ -126,10 +138,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2">
         <div className="py-4 sm:grid sm:gap-1 sm:py-3">
           <label className="text-sm font-medium text-gray-500">
-            {formatMessage({
-              id: 'region',
-              defaultMessage: 'Region',
-            })}
+            {!isEdit &&
+              formatMessage({
+                id: 'region',
+                defaultMessage: 'Region',
+              })}
           </label>
 
           <div className="mt-1 flex text-sm text-gray-900 sm:mt-0">
@@ -141,7 +154,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'region_Code',
                   defaultMessage: 'Region',
                 })}
-                hideLabel
+                placeholder={formatMessage({
+                  id: 'region_Code',
+                  defaultMessage: 'Region',
+                })}
               />
             ) : (
               address?.regionCode
@@ -151,10 +167,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
         <div className="py-4 sm:grid sm:gap-1 sm:py-3">
           <label className="text-sm font-medium text-gray-500">
-            {formatMessage({
-              id: 'postal_code',
-              defaultMessage: 'Postal/ZIP code',
-            })}
+            {!isEdit &&
+              formatMessage({
+                id: 'postal_code',
+                defaultMessage: 'Postal/ZIP code',
+              })}
           </label>
           <div className="mt-1 w-full text-sm text-gray-900 sm:mt-0">
             {isEdit ? (
@@ -165,7 +182,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'postal_code',
                   defaultMessage: 'Postal/ZIP code',
                 })}
-                hideLabel
+                placeholder={formatMessage({
+                  id: 'postal_code',
+                  defaultMessage: 'Postal/ZIP code',
+                })}
               />
             ) : (
               address?.postalCode
@@ -175,10 +195,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
         <div className="py-4 sm:grid sm:gap-1 sm:py-3">
           <label className="text-sm font-medium text-gray-500">
-            {formatMessage({
-              id: 'city',
-              defaultMessage: 'City',
-            })}
+            {!isEdit &&
+              formatMessage({
+                id: 'city',
+                defaultMessage: 'City',
+              })}
           </label>
           <div className="mt-1 text-sm text-gray-900 sm:mt-0">
             {isEdit ? (
@@ -189,7 +210,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'city',
                   defaultMessage: 'City',
                 })}
-                hideLabel
+                placeholder={formatMessage({
+                  id: 'city',
+                  defaultMessage: 'City',
+                })}
               />
             ) : (
               address?.city
@@ -199,10 +223,11 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
         <div className="py-4 sm:grid sm:gap-1 sm:py-3">
           <label className="text-sm font-medium text-gray-500">
-            {formatMessage({
-              id: 'country_code',
-              defaultMessage: 'Country code',
-            })}
+            {!isEdit &&
+              formatMessage({
+                id: 'country_code',
+                defaultMessage: 'Country code',
+              })}
           </label>
           <div className="mt-1 text-sm text-gray-900 sm:mt-0">
             {isEdit ? (
@@ -213,7 +238,10 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
                   id: 'country_code',
                   defaultMessage: 'Country code',
                 })}
-                hideLabel
+                placeholder={formatMessage({
+                  id: 'country_code',
+                  defaultMessage: 'Country code',
+                })}
               />
             ) : (
               address?.countryCode
