@@ -21,10 +21,10 @@ const OrderDetailItem = ({ item }) => {
             </h2>
 
             <div className="space-y-8">
-              <div className="rounded-lg border border-gray-200 bg-white shadow-sm hover:border hover:border-solid hover:border-blue-600">
-                <div className="p-3">
-                  <div className="center flex flex-wrap justify-center gap-x-4">
-                    <div className="mx-auto   flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
+              <div className="mb-2 rounded-lg border border-gray-200 bg-white shadow hover:border hover:border-solid hover:border-blue-600">
+                <div className="px-2 py-1">
+                  <div className="center flex flex-wrap justify-center">
+                    <div className="mx-auto flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                       {item.product?.media?.length ? (
                         <Image
                           loader={defaultNextImageLoader}
@@ -34,13 +34,13 @@ const OrderDetailItem = ({ item }) => {
                             item?.product?.texts?.subtitle
                           }
                           className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                          width={200}
-                          height={200}
+                          width={80}
+                          height={80}
                         />
                       ) : null}
                     </div>
 
-                    <div className="mx-auto flex flex-col justify-center sm:mt-0 sm:ml-6 sm:flex-auto">
+                    <div className="mx-auto flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
                       <h3
                         className="text-base font-medium text-gray-900"
                         // eslint-disable-next-line react/no-danger
@@ -50,17 +50,15 @@ const OrderDetailItem = ({ item }) => {
                             item?.originalProduct?.texts?.subtitle,
                         }}
                       />
-                      <div className="flex items-center">
-                        <p className="mt-2 text-sm font-medium text-gray-900">
-                          {item?.unitPrice && formatPrice(item?.unitPrice)}
-                        </p>
-                        <p className="mt-2 ml-2 text-sm font-medium text-gray-900">
-                          {formatMessage({
-                            id: 'item_quantity',
-                            defaultMessage: 'Quantity:',
-                          })}
-                          <span className="ml-2 pl-1">{item?.quantity}</span>
-                        </p>
+                      <div className="mt-1 text-sm font-medium">
+                        {item?.unitPrice && formatPrice(item?.unitPrice)}
+                      </div>
+                      <div className="mt-2 text-xs">
+                        {formatMessage({
+                          id: 'item_quantity',
+                          defaultMessage: 'Quantity:',
+                        })}
+                        <span className="ml-2 font-bold">{item?.quantity}</span>
                       </div>
                     </div>
                   </div>

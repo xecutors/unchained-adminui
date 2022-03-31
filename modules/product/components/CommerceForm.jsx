@@ -85,7 +85,7 @@ const CommerceForm = ({ productId }) => {
             <span className="w-full">
               {formatMessage({
                 id: 'amount',
-                defaultMessage: 'Amount',
+                defaultMessage: 'Price',
               })}
             </span>
           </span>
@@ -155,11 +155,11 @@ const CommerceForm = ({ productId }) => {
                         hideLabel
                         label={formatMessage({
                           id: 'amount',
-                          defaultMessage: 'Amount',
+                          defaultMessage: 'Price  ',
                         })}
                         placeholder={formatMessage({
                           id: 'amount',
-                          defaultMessage: 'Amount',
+                          defaultMessage: 'Price',
                         })}
                       />
                     </div>

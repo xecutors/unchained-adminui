@@ -105,32 +105,38 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-10 md:mt-10 xl:mt-20">
-      <div className="mb-2">
+    <div className="lg:grid lg:grid-cols-3 lg:gap-10 space-y-5 md:mt-10 xl:mt-20">
+      <div>
         <OrderDetailHeader order={order} />
       </div>
-      <div className="col-span-2">
+      <div className="lg:col-span-2">
         <OrderDetailBilling order={order} />
       </div>
 
-      <div className="col-span-2">
+      <div className="lg:col-span-2">
         <StatusProgress
           data={order}
           statusTypes={orderStatusType}
           timeline={timeline}
         />
+        <div className="mt-10">
+          <Accordion data={[documents]} headerCSS={headerCSS} />
+        </div>
       </div>
 
-      <div className="flex bg-white">
+      <div>
         {order?.items.map((item) => {
           return <OrderDetailItem key={item._id} item={item} />;
         })}
       </div>
-      <OrderDetailDelivery delivery={order?.delivery} />
-      <OrderDetailPayment order={order} />
-      <DiscountList discount={order?.discounts} />
-      <div className="col-span-2">
-        <Accordion data={[documents]} headerCSS={headerCSS} />
+      <div>
+        <OrderDetailDelivery delivery={order?.delivery} />
+      </div>
+      <div>
+        <OrderDetailPayment order={order} />
+      </div>
+      <div>
+        <DiscountList discount={order?.discounts} />
       </div>
     </div>
   );

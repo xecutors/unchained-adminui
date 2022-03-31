@@ -53,7 +53,7 @@ export default function SelectOptions({
                 className={`relative z-0 inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
               >
                 <div
-                  className={`relative inline-flex items-center hover:bg-${select?.bgColor}-200 bg-${select?.bgColor}-500 rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`}
+                  className={`relative inline-flex items-center hover:bg-${select?.bgColor}-500 bg-${select?.bgColor}-500 rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`}
                 >
                   <CheckIcon
                     className="h-4 w-4 lg:h-5 lg:w-5"
@@ -92,18 +92,18 @@ export default function SelectOptions({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute right-0 z-10 w-full origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Listbox.Options className="mt-1 absolute right-0 z-10 w-full origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.title}
                     className={() =>
                       classNames(
-                        'hover:bg-gray-500',
+                        'hover:bg-indigo-500 hover:text-white',
                         option?.disable && 'cursor-not-allowed',
                         option.id === select.id
                           ? `text-white bg-${option.bgColor}-500`
                           : 'text-gray-900',
-                        `relative cursor-default select-none px-4 py-2 text-sm `,
+                        `relative cursor-default select-none px-4 py-2 text-sm`,
                       )
                     }
                     value={option}
@@ -139,10 +139,8 @@ export default function SelectOptions({
                       </div>
                       <div
                         className={classNames(
-                          option.id === select.id
-                            ? 'text-indigo-200'
-                            : 'text-gray-900',
-                          'mt-2',
+                          option.id === select.id ? 'text-green-100' : '',
+                          '',
                         )}
                       >
                         {option?.description}
