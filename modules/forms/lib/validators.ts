@@ -151,11 +151,12 @@ export const validatePhoneNumber: Validator = {
   },
 };
 export const validateRequiredTextArea = (required): Validator => {
-  
   return {
-  isValid: (value) => required ? value.replaceAll(/<[^>]*>/g,'').trim().length !== 0 : true,
-  intlMessageDescriptor: {
-    id: 'error_text_area_required',
-    defaultMessage: '{label} is required',
-  },
-}};
+    isValid: (value) =>
+      required ? value.replaceAll(/<[^>]*>/g, '').trim().length !== 0 : true,
+    intlMessageDescriptor: {
+      id: 'error_text_area_required',
+      defaultMessage: '{label} is required',
+    },
+  };
+};

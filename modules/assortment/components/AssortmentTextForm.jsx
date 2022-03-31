@@ -5,7 +5,6 @@ import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
-import TextAreaField from '../../forms/components/TextAreaField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import RichTextEditorField from '../../forms/components/RichTextEditorField';
@@ -126,7 +125,6 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
               </div>
               <div className="col-span-12">
                 <RichTextEditorField
-                  required
                   name="description"
                   id="description"
                   label={formatMessage({
