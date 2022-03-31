@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -82,6 +82,10 @@ const SubscriptionForm = ({ productId }) => {
               id: 'usage_calculation_type',
               defaultMessage: 'Usage calculation type',
             })}
+            placeholder={formatMessage({
+              id: 'usage_calculation_type',
+              defaultMessage: 'Usage calculation type',
+            })}
             name="usageCalculationType"
             options={convertArrayOfObjectToObject(
               usageCalculationTypes,
@@ -117,7 +121,10 @@ const SubscriptionForm = ({ productId }) => {
                 id: 'billing_unit',
                 defaultMessage: 'Billing Unit',
               })}
-              hideLabel
+              placeholder={formatMessage({
+                id: 'billing_unit',
+                defaultMessage: 'Billing Unit',
+              })}
               className="mt-1  w-full text-sm  font-medium text-gray-500 sm:ml-1"
             />
           </div>
@@ -152,13 +159,11 @@ const SubscriptionForm = ({ productId }) => {
                 id: 'trial_unit',
                 defaultMessage: 'Trial Unit',
               })}
-              hideLabel
               required
               className="mt-1  w-full text-sm   font-medium text-gray-500 sm:ml-1"
             />
           </div>
 
-          <FormErrors />
           <div className=" sm:px-15 space-y-6 bg-gray-50 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({

@@ -152,7 +152,6 @@ const EmailAddresses = ({
                   className="mt-0"
                   name="email"
                   required
-                  hideLabel
                   placeholder={formatMessage({
                     id: 'email',
                     defaultMessage: 'Email',

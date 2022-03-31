@@ -40,7 +40,6 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
             defaultMessage: 'Email Address',
           })}
           required
-          hideLabel
         />
       </div>
 

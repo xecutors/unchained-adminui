@@ -256,15 +256,6 @@ const EnrollmentDetail = ({ enrollment }) => {
 
               <div className="flex-auto border-t border-gray-200 pt-4 lg:col-span-6 lg:border-0">
                 <Form form={form}>
-                  <label
-                    htmlFor="configuration"
-                    className="block text-lg font-medium text-gray-900"
-                  >
-                    {formatMessage({
-                      id: 'configuration',
-                      defaultMessage: 'Configuration',
-                    })}
-                  </label>
                   <JSONAreaField
                     disabled
                     className="mt-2 text-sm text-gray-500"
@@ -279,7 +270,6 @@ const EnrollmentDetail = ({ enrollment }) => {
                       id: 'configuration',
                       defaultMessage: 'Configuration',
                     })}
-                    hideLabel
                   />
                 </Form>
               </div>

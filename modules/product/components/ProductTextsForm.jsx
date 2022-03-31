@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 
 import TextAreaField from '../../forms/components/TextAreaField';
@@ -161,7 +160,6 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                 className="w-full text-sm font-medium text-gray-500"
               />
             </div>
-            <FormErrors />
           </div>
           <div className="bg-gray-50 px-4 py-5 text-right sm:px-6">
             <SubmitButton

@@ -29,11 +29,19 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
             id: 'filter_option_value',
             defaultMessage: 'Value',
           })}
+          placeholder={formatMessage({
+            id: 'filter_option_value',
+            defaultMessage: 'Value',
+          })}
           required
         />
         <TextField
           name="title"
           label={formatMessage({
+            id: 'filter_option_title',
+            defaultMessage: 'Title',
+          })}
+          placeholder={formatMessage({
             id: 'filter_option_title',
             defaultMessage: 'Title',
           })}

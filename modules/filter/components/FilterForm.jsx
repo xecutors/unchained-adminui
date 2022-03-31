@@ -95,7 +95,6 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                         id: 'option',
                         defaultMessage: 'Option',
                       })}
-                      hideLabel
                     />
                     <div className="ml-2 mt-5 flex-shrink-0 sm:mt-4">
                       <button

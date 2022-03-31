@@ -17,15 +17,6 @@ const ProviderConfigurationForm = ({ onSubmit, onSubmitSuccess, provider }) => {
   });
   return (
     <Form form={form} className="mt-6">
-      <label
-        htmlFor="configuration"
-        className="block text-sm font-medium text-gray-400 sm:mt-px sm:pt-2"
-      >
-        {formatMessage({
-          id: 'configuration',
-          defaultMessage: 'Configuration',
-        })}
-      </label>
       <div className="mt-1 sm:mt-0">
         <JSONAreaField
           id="configuration"
@@ -35,7 +26,6 @@ const ProviderConfigurationForm = ({ onSubmit, onSubmitSuccess, provider }) => {
             id: 'configuration',
             defaultMessage: 'Configuration',
           })}
-          hideLabel
         />
         <FormErrors />
         <SubmitButton
