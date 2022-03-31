@@ -14,7 +14,7 @@ const Badge = ({
   return (
     <span
       className={classnames(
-        `inline-flex items-center px-2.5 py-0.5 text-sm font-medium ${bgColor(
+        `inline-flex items-center border border-${normalizedColor}-900 px-2.5 py-0.5 text-sm font-medium ${bgColor(
           normalizedColor,
           100,
         )} ${textColor(normalizedColor, 800)}`,
