@@ -52,7 +52,7 @@ const TagInput = ({
           text={tag}
           color="indigo"
           onClick={() => onRemoveTag(tag)}
-          className="ml-2 mb-2"
+          className="mr-2 mb-2 mt-1"
         />
       ))}
       <div>
