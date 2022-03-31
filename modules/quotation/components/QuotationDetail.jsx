@@ -188,15 +188,6 @@ const QuotationDetail = ({ quotation }) => {
                 {quotation.product?.description}
               </p>
               <Form form={form} className="mr-4 pb-4">
-                <label
-                  htmlFor="configuration"
-                  className="block text-lg font-medium text-gray-900 sm:mt-px sm:pt-2"
-                >
-                  {formatMessage({
-                    id: 'configuration',
-                    defaultMessage: 'Configuration',
-                  })}
-                </label>
                 <JSONAreaField
                   disabled
                   id="configuration"
@@ -210,7 +201,6 @@ const QuotationDetail = ({ quotation }) => {
                     id: 'configuration',
                     defaultMessage: 'Configuration',
                   })}
-                  hideLabel
                 />
               </Form>
             </div>

@@ -62,6 +62,10 @@ const ProductVariationForm = ({ onSubmit }) => {
             id: 'type',
             defaultMessage: 'Type',
           })}
+          placeholder={formatMessage({
+            id: 'type',
+            defaultMessage: 'Type',
+          })}
           name="type"
           options={convertArrayOfObjectToObject(
             variationTypes,

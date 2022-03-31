@@ -40,7 +40,10 @@ const UserRolesView = ({ roles, userId }) => {
           id: 'select_role',
           defaultMessage: 'Select role',
         })}
-        hideLabel
+        placeholder={formatMessage({
+          id: 'select_role',
+          defaultMessage: 'Select role',
+        })}
         multiple
       />
       <SubmitButton

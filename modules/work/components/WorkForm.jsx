@@ -63,6 +63,10 @@ const WorkForm = () => {
             <SelectField
               className="w-full py-2 text-sm text-gray-900 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+              placeholder={formatMessage({
+                id: 'type',
+                defaultMessage: 'Type',
+              })}
               labelClassName="text-sm font-medium text-gray-500 mb-1"
               name="type"
               required
@@ -146,6 +150,10 @@ const WorkForm = () => {
               name="input"
               labelClassName="font-sm text-gray-500 mb-1"
               label={formatMessage({
+                id: 'input',
+                defaultMessage: 'Input',
+              })}
+              placeholder={formatMessage({
                 id: 'input',
                 defaultMessage: 'Input',
               })}

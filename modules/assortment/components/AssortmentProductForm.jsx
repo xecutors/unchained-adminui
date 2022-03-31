@@ -6,7 +6,6 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
-import FormErrors from '../../forms/components/FormErrors';
 import useSearchProducts from '../../product/hooks/useSearchProducts';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
@@ -58,7 +57,6 @@ const AssortmentProductForm = ({ assortmentId }) => {
             <TagInputField
               name="tags"
               id="tags"
-              hideLabel
               className="mt-1 w-full py-2 text-sm font-medium text-gray-500 sm:ml-1"
             />
 
@@ -76,7 +74,6 @@ const AssortmentProductForm = ({ assortmentId }) => {
             />
           </div>
         </div>
-        <FormErrors />
         <div className="bg-gray-50 px-4 py-5 text-right sm:px-6">
           <SubmitButton
             label={formatMessage({

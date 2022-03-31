@@ -58,7 +58,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
             <TagInputField
               name="tags"
               id="tags"
-              hideLabel
+              label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
               className="mt-1 w-full text-sm font-medium text-gray-500"
             />
             <FilterableDropdown
@@ -67,6 +67,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 id: 'child_assortment',
                 defaultMessage: 'Sub-Assortment',
               })}
+              required
               onFilter={setQueryString}
               data={normalizeAssortments(assortments)}
               className="mt-1 w-full py-2 text-sm font-medium text-gray-500"

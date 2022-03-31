@@ -114,6 +114,10 @@ export default function LogInForm() {
                   id: 'email',
                   defaultMessage: 'Email',
                 })}
+                placeholder={formatMessage({
+                  id: 'email',
+                  defaultMessage: 'Email',
+                })}
               />
             </div>
             <div>
@@ -123,6 +127,10 @@ export default function LogInForm() {
                 autoComplete="current-password"
                 required
                 label={formatMessage({
+                  id: 'password',
+                  defaultMessage: 'Password',
+                })}
+                placeholder={formatMessage({
                   id: 'password',
                   defaultMessage: 'Password',
                 })}

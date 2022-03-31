@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 const NoImage = ({ className, containerClassName, Icon }) => {
   return (
-    <span className="text-indigo-300">
+    <span className={classNames('text-indigo-300', containerClassName)}>
       {Icon || <PhotographIcon className={classNames(className)} />}
     </span>
   );
