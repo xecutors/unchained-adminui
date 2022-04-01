@@ -9,15 +9,16 @@ import PageHeader from '../../modules/common/components/PageHeader';
 
 const AddAssortments = () => {
   const { formatMessage } = useIntl();
-  const { push } = useRouter();
+  const router = useRouter();
   const { createAssortment } = useCreateAssortment();
-  const onCreateAssortment = async ({ isRoot, tags, title }) => {
-    await createAssortment({ title, isRoot, tags });
-    return true;
+ 
+  const onSubmitSuccess = (_, { texts }) => {
+    router.push(`/assortments/${texts?.slug}`);
   };
 
-  const onSubmitSuccess = () => {
-    push('/assortments');
+  const onSubmit = async ({title, isRoot, tags}) => {
+    const { data } = await createAssortment({ isRoot, title, tags});
+    return { success: true, data: data?.createAssortment };
   };
 
   return (
@@ -34,7 +35,7 @@ const AddAssortments = () => {
           <FormWrapper>
             <AssortmentForm
               onSubmitSuccess={onSubmitSuccess}
-              onSubmit={onCreateAssortment}
+              onSubmit={onSubmit}
             />
           </FormWrapper>
         </div>
