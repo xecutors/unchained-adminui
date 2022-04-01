@@ -51,7 +51,7 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
             aria-hidden="true"
           >
             <svg
-              className="h-3 w-3 text-gray-400"
+              className="h-3 w-3 text-slate-400"
               fill="none"
               viewBox="0 0 12 12"
             >

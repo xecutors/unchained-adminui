@@ -79,7 +79,7 @@ const EmailAddresses = ({
   return (
     <div>
       <div className="border-t pt-5 lg:grid lg:grid-cols-3 lg:gap-6">
-        <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between lg:col-span-1">
+        <div className="mb-7 border-slate-200 pb-2 sm:flex sm:justify-between lg:col-span-1">
           <h3 className="text-lg font-medium leading-6 text-slate-900">
             {formatMessage({
               id: 'email_addresses',
@@ -93,7 +93,7 @@ const EmailAddresses = ({
             emailBodyContainer,
           )}
         >
-          <ul className="-my-5 divide-y divide-gray-200">
+          <ul className="-my-5 divide-y divide-slate-200">
             {(emails || []).map(({ address, verified }) => (
               <li className="py-4" key={address}>
                 <div className="flex flex-wrap items-center justify-between">
@@ -113,7 +113,7 @@ const EmailAddresses = ({
                         onClick={() =>
                           sendVerificationEmail({ email: address })
                         }
-                        className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
+                        className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
                       >
                         {formatMessage({
                           id: 'send_verification_mail',

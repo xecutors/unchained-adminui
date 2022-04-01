@@ -5,7 +5,7 @@ const AssortmentProductListItem = ({ link, onDelete }) => {
   const { _id, product, tags } = link;
 
   return (
-    <div className="flex items-center justify-between  border-b border-gray-200 last:border-none">
+    <div className="flex items-center justify-between  border-b border-slate-200 last:border-none">
       <div className="flex items-center space-x-6 py-4">
         <div className="">
           <h3 className="text-lg text-slate-800">{product?.texts?.title}</h3>

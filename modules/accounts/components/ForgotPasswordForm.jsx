@@ -52,7 +52,7 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
           })}
         />
       </div>
-      <p className="text-center text-sm text-gray-400">
+      <p className="text-center text-sm text-slate-400">
         {formatMessage({
           id: 'dont_have_account',
           defaultMessage: "Don't have an account yet?",

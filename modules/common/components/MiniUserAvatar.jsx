@@ -21,7 +21,7 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
       </div>
       {name && showName && (
         <div className="ml-3">
-          <p className="text-sm font-medium text-gray-700 group-hover:text-slate-900">
+          <p className="text-sm font-medium text-slate-700 group-hover:text-slate-900">
             {name}
           </p>
         </div>

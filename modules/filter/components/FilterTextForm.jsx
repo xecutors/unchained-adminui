@@ -59,7 +59,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
       <div className="sm:pl-15">
         <Form form={form}>
           <div className="relative max-w-full rounded-md sm:pl-6 lg:grid lg:grid-cols-3">
-            <div className="col-span-1 mb-7 border-gray-200 pb-2 sm:flex">
+            <div className="col-span-1 mb-7 border-slate-200 pb-2 sm:flex">
               <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'text',
@@ -67,7 +67,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
                 })}
               </h3>
             </div>
-            <div className="col-span-2 ml-auto w-full rounded border-gray-200 bg-white pt-2 lg:shadow">
+            <div className="col-span-2 ml-auto w-full rounded border-slate-200 bg-white pt-2 lg:shadow">
               <div>
                 <TextField
                   name="title"

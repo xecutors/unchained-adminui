@@ -6,7 +6,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <dl>
+    <dl className="space-y-4 -mb-6">
       <div>
         {!isEdit && (
           <label className="text-sm font-medium text-slate-500">
@@ -193,7 +193,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div>
+        <div className="mt-4">
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({
@@ -221,7 +221,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div>
+        <div className="mt-4">
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({

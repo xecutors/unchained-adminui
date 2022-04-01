@@ -150,7 +150,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   defaultMessage="<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
                   values={{
                     p: (chunks) => (
-                      <p className="text-sm text-gray-700">{chunks}</p>
+                      <p className="text-sm text-slate-700">{chunks}</p>
                     ),
                     span: (chunks) => (
                       <span className="font-medium">{chunks}</span>
@@ -174,7 +174,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   className={classNames(
                     'relative inline-flex items-center rounded-l-md border border-slate-300 bg-white px-2 py-2 text-sm font-medium text-slate-600  hover:bg-slate-50',
                     {
-                      'text-gray-200': !offset,
+                      'text-slate-200': !offset,
                     },
                   )}
                 >
@@ -208,7 +208,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   className={classNames(
                     'relative inline-flex items-center rounded-r-md border border-slate-300 bg-white px-2 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50',
                     {
-                      'text-gray-200': offset + limit >= total,
+                      'text-slate-200': offset + limit >= total,
                     },
                   )}
                 >
@@ -239,7 +239,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={!offset}
               onClick={() => changeOffset(offset - limit)}
-              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50"
+              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
             </button>
@@ -264,7 +264,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={offset + limit >= total}
               onClick={() => changeOffset(offset + limit)}
-              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-slate-50"
+              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               {formatMessage({ id: 'next', defaultMessage: 'Next' })}
             </button>

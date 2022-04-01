@@ -53,7 +53,7 @@ const FilterableDropdown = ({
       <div className="w-full">
         <div
           className={classNames(
-            'my-2 flex items-center rounded border-gray-200 bg-white p-1',
+            'my-2 flex items-center rounded border-slate-200 bg-white p-1',
             props.className,
           )}
         >
@@ -81,7 +81,7 @@ const FilterableDropdown = ({
                   <div className="h-10 w-full">
                     <input
                       className={classNames(
-                        'relative mt-1 block w-full appearance-none rounded-l-md border-2 border-gray-200 px-4 py-2.5 text-slate-900 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
+                        'relative mt-1 block w-full appearance-none rounded-l-md border-2 border-slate-200 px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
                         'w-full appearance-none p-1 px-2 text-slate-800 outline-none',
                         {
                           'border-red-300': !!field.error,
@@ -117,7 +117,7 @@ const FilterableDropdown = ({
 
           <div
             className={classNames(
-              '-ml-px mb-1 flex h-11 w-11 items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
+              '-ml-px mb-1 flex h-11 w-11 items-center self-end rounded-r-md border-slate-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
               { 'bg-red-400': !!field.error },
               props.buttonClassName,
             )}

@@ -177,7 +177,7 @@ const EnrollmentDetail = ({ enrollment }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
 
   const periods = {
     header: (
@@ -254,7 +254,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </div>
               </div>
 
-              <div className="flex-auto border-t border-gray-200 pt-4 lg:col-span-6 lg:border-0">
+              <div className="flex-auto border-t border-slate-200 pt-4 lg:col-span-6 lg:border-0">
                 <Form form={form}>
                   <JSONAreaField
                     disabled
@@ -276,7 +276,7 @@ const EnrollmentDetail = ({ enrollment }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8">
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-slate-200 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'payment_provider',
@@ -294,7 +294,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </dd>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-slate-200 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'delivery_provider',
@@ -314,7 +314,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </dd>
               </div>
 
-              <div className="col-span-1 border-t border-gray-200 pt-4">
+              <div className="col-span-1 border-t border-slate-200 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'contact',
@@ -340,7 +340,7 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4">
+            <div className="border-t border-slate-200 pt-4">
               <dt className="font-medium text-slate-900">
                 {formatMessage({
                   id: 'billing_address',

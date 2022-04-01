@@ -21,8 +21,8 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
 
   return (
     <div className="my-6">
-      <div className="space-y-8 divide-y divide-gray-200">
-        <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
+      <div className="space-y-8 divide-y divide-slate-200">
+        <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">
           <div className="flex items-center">
             <h3 className="text-lg font-medium leading-6 text-slate-900">
               {getInterfaceLabel(provider?.interface)}
@@ -48,7 +48,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
           <div className="mt-6 flex flex-col">
             <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
               <div className="flex justify-center py-4 sm:py-5">
-                <dt className="my-auto inline-block text-sm font-medium text-gray-400">
+                <dt className="my-auto inline-block text-sm font-medium text-slate-400">
                   {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
                 </dt>
                 <dd
@@ -63,7 +63,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex flex-auto items-center">
-                  <dt className="text-sm font-normal text-gray-400 sm:justify-self-end">
+                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end">
                     {formatMessage({
                       id: 'created_colon',
                       defaultMessage: 'Created:',
@@ -74,7 +74,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
                   </dd>
                 </div>
                 <div className="flex flex-auto">
-                  <dt className="text-sm font-normal text-gray-400 sm:justify-self-end">
+                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end">
                     {formatMessage({
                       id: 'last_updated',
                       defaultMessage: 'Last Updated:',
@@ -94,7 +94,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
             />
 
             <div className="mt-6 mb-3">
-              <dt className="inline-block text-sm font-normal text-gray-400">
+              <dt className="inline-block text-sm font-normal text-slate-400">
                 {formatMessage({
                   id: 'configuration_error',
                   defaultMessage: 'Configuration error',

@@ -138,7 +138,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
               </button>
             </div>
 
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-slate-400">
               {formatMessage({
                 id: 'already_got_a_user',
                 defaultMessage: 'Already got a user?',

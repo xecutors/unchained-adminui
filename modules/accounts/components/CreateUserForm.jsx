@@ -67,7 +67,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             <span className="ml-4 flex flex-shrink-0 items-start space-x-4" />
           </div>
 
-          <div className="mt-1 rounded-md border-gray-200 bg-white pt-5 shadow lg:col-span-2">
+          <div className="mt-1 rounded-md border-slate-200 bg-white pt-5 shadow lg:col-span-2">
             <div className="px-6 space-y-4">
               <div>
                 <TextField

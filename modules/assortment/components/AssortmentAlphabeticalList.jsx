@@ -27,10 +27,10 @@ const AssortmentAlphabeticalList = ({ dictionary = {} }) => {
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-gray-200 bg-slate-300 px-6 py-1 text-sm font-medium text-white">
+              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 px-6 py-1 text-sm font-medium text-white">
                 <h3>{letter}</h3>
               </div>
-              <ul className="relative z-0 divide-y divide-gray-200">
+              <ul className="relative z-0 divide-y divide-slate-200">
                 {values.map((item) => (
                   <li key={item._id} className="bg-white">
                     <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50">

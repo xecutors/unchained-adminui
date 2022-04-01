@@ -187,7 +187,7 @@ export default function LogInForm() {
               {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
             </button>
           </div>
-          <div className="text-sm text-gray-400">
+          <div className="text-sm text-slate-400">
             {formatMessage({
               id: 'create_new_account',
               defaultMessage: 'Create new account?',

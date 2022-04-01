@@ -236,14 +236,14 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
-          <div className=" flex flex-shrink-0 border-t border-gray-200 p-4">
+          <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
       </div>
 
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Image
@@ -259,7 +259,7 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
-          <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+          <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>

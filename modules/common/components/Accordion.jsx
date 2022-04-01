@@ -52,7 +52,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
       </button>
 
       {show ? (
-        <div className={classNames('rounded-lg p-0 text-gray-400', bodyCSS)}>
+        <div className={classNames('rounded-lg p-0 text-slate-400', bodyCSS)}>
           {body}
         </div>
       ) : (

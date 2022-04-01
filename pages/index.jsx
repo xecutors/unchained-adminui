@@ -31,13 +31,13 @@ const Home = ({ shopInfo }) => {
     <>
       <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20">
         <div className="xl:col-span-2 overflow-x-auto">
-          <h2 className="ml-4 text-xl text-gray-700">Orders</h2>
+          <h2 className="ml-4 text-xl text-slate-700">Orders</h2>
           {loading ? <Loading /> : <OrderList orders={orders} showUser />}
         </div>
 
         <div className="xl:col-span-1">
           <div className="mb-10">
-            <h2 className="ml-4 mb-3 text-xl text-gray-700">Shortcuts</h2>
+            <h2 className="ml-4 mb-3 text-xl text-slate-700">Shortcuts</h2>
             <div className="grid grid-cols-2 gap-3">
               <a
                 type="button"
@@ -108,10 +108,10 @@ const Home = ({ shopInfo }) => {
             </div>
           </div>
           <div className="mb-10">
-            <h2 className="ml-4 mb-3 text-xl text-gray-700">Daily Sync</h2>
+            <h2 className="ml-4 mb-3 text-xl text-slate-700">Daily Sync</h2>
             {loading ? <Loading /> : <SyncReportList data={dailySync} />}
           </div>
-          <h2 className="ml-4 text-xl text-gray-700">
+          <h2 className="ml-4 text-xl text-slate-700">
             {formatMessage({
               id: 'system_information',
               defaultMessage: 'System Information',
@@ -120,7 +120,7 @@ const Home = ({ shopInfo }) => {
 
           <div className="mt-2 text-right">
             <div className="bg-white p-4 shadow sm:rounded-lg sm:px-4">
-              <ul className="-my-5 divide-y divide-gray-200">
+              <ul className="-my-3 divide-y divide-slate-200">
                 <li className="py-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">

@@ -21,7 +21,7 @@ const OrderDetailItem = ({ item }) => {
             </h2>
 
             <div className="space-y-8">
-              <div className="mb-2 rounded-lg border border-gray-200 bg-white shadow hover:border hover:border-solid hover:border-blue-600">
+              <div className="mb-2 rounded-lg border border-slate-200 bg-white shadow hover:border hover:border-solid hover:border-blue-600">
                 <div className="px-2 py-1">
                   <div className="center flex flex-wrap justify-center">
                     <div className="mx-auto flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">

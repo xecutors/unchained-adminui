@@ -46,7 +46,7 @@ const SyncReport = () => {
             id="report-start"
             placeholderText="Start date"
             selected={start}
-            className=" w-full rounded-md  border-gray-200 py-1 text-sm hover:border-indigo-500 sm:ml-1 sm:mt-0"
+            className=" w-full rounded-md  border-slate-200 py-1 text-sm hover:border-indigo-500 sm:ml-1 sm:mt-0"
           />
           <label className="mr-2 ml-3 " htmlFor="report-end">
             {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -63,7 +63,7 @@ const SyncReport = () => {
             dropdownMode="select"
             placeholderText="Start date"
             selected={end}
-            className="w-full rounded-md border-gray-200 py-1 text-sm hover:border-indigo-500 sm:ml-1 sm:mt-0"
+            className="w-full rounded-md border-slate-200 py-1 text-sm hover:border-indigo-500 sm:ml-1 sm:mt-0"
           />
         </div>
         {loading ? <Loading /> : <SyncReportList data={dailySync} />}

@@ -102,7 +102,7 @@ const DetailHeader = ({ user, contact }) => {
               </dt>
               <dd className="flex items-center text-sm font-medium capitalize text-slate-500 sm:mr-6">
                 <DeviceMobileIcon
-                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400"
                   aria-hidden="true"
                 />
                 {contact.telNumber}

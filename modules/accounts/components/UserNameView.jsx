@@ -30,7 +30,7 @@ const UserNameView = ({ _id: userId, username }) => {
   });
   return (
     <Form form={form}>
-      <dl className="divide-y divide-gray-200">
+      <dl className="divide-y divide-slate-200">
         <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
           <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500">
             {!isEdit &&
@@ -58,7 +58,7 @@ const UserNameView = ({ _id: userId, username }) => {
                 type="button"
                 className={classNames(
                   isEdit ? '' : 'focus:ring-indigo-400',
-                  'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+                  'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
                 )}
               >
                 {isEdit ? 'Cancel' : 'Update'}

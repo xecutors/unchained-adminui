@@ -26,7 +26,7 @@ const ChangePassword = () => {
 
   return (
     <div className="overflow-hidden lg:flex">
-      <div className="mb-7 border-gray-200 pb-2 sm:flex sm:justify-between">
+      <div className="mb-7 border-slate-200 pb-2 sm:flex sm:justify-between">
         <h3 className="text-lg font-medium leading-6 text-slate-900">
           {formatMessage({
             id: 'change_password',
@@ -34,7 +34,7 @@ const ChangePassword = () => {
           })}
         </h3>
       </div>
-      <div className="w-full border-b border-gray-200 bg-white shadow rounded-md lg:ml-auto lg:w-4/6">
+      <div className="w-full border-b border-slate-200 bg-white shadow rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
           <div className="relative max-w-full space-y-6 rounded-md bg-white sm:p-6">
             <PasswordField

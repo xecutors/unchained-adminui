@@ -30,7 +30,7 @@ const DateField = ({ validators = [], ...props }: FieldHookProps) => {
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'relative mt-3 block w-full appearance-none rounded-md rounded-b-md border-2 border-gray-200 px-4 py-2.5 text-sm text-slate-900 placeholder-gray-400 shadow-sm focus:z-10 focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
+          'relative mt-3 block w-full appearance-none rounded-md rounded-b-md border-2 border-slate-200 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm focus:z-10 focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
           props.className,
           {
             'border-red-300': !!field.error,

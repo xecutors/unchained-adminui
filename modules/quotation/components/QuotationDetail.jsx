@@ -132,13 +132,13 @@ const QuotationDetail = ({ quotation }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-gray-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-grey-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
 
   const documents = {
     header: (
       <span className="flex">
         <PaperClipIcon
-          className="mr-4 h-5 w-5 flex-shrink-0 text-gray-400"
+          className="mr-4 h-5 w-5 flex-shrink-0 text-slate-400"
           aria-hidden="true"
         />
         {formatMessage({
@@ -165,7 +165,7 @@ const QuotationDetail = ({ quotation }) => {
         timeline={timeline}
       />
       <section aria-labelledby="products-heading" className="my-6">
-        <div className="rounded-lg border-t border-b border-gray-200 bg-white shadow-sm sm:border">
+        <div className="rounded-lg border-t border-b border-slate-200 bg-white shadow-sm sm:border">
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
             <div className="sm:col-span-4 md:col-span-5 md:row-span-2 md:row-end-2">
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">

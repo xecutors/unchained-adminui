@@ -16,7 +16,7 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root">
-          <ul className="space-y-4 divide-y divide-gray-200">
+          <ul className="space-y-4 divide-y divide-slate-200">
             {medias.length ? (
               medias.map((media) => (
                 <AssortmentMediaListItem

@@ -11,7 +11,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
   return (
     <section>
       <DetailHeader user={enrollment.user} contact={enrollment.contact} />
-      <div className="mt-2 flex border-b border-gray-200 pb-2 text-sm">
+      <div className="mt-2 flex border-b border-slate-200 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-slate-500 sm:block">
             {formatMessage({
