@@ -9,7 +9,9 @@ const CreateLanguageMutation = gql`
 `;
 
 const useCreateLanguage = () => {
-  const [createLanguageMutation] = useMutation(CreateLanguageMutation);
+  const [createLanguageMutation, { data, loading, error }] = useMutation(
+    CreateLanguageMutation,
+  );
 
   const createLanguage = async ({ isoCode }) => {
     return createLanguageMutation({
@@ -17,9 +19,12 @@ const useCreateLanguage = () => {
       refetchQueries: ['Language', 'Languages'],
     });
   };
-
+  const newLanguage = data?.createLanguage;
   return {
     createLanguage,
+    newLanguage,
+    loading,
+    error,
   };
 };
 
