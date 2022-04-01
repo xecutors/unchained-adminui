@@ -1,11 +1,11 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
 
-import Badge from './Badge';
 import { getInterfaceLabel } from '../utils/utils';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import ProviderConfigurationForm from './ProviderConfigurationForm';
+import ActiveInActive from './ActiveInActive';
 
 const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
@@ -28,22 +28,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               {getInterfaceLabel(provider?.interface)}
             </h3>
 
-            <Badge
-              text={
-                provider?.isActive
-                  ? formatMessage({
-                      id: 'active',
-                      defaultMessage: 'Active',
-                    })
-                  : formatMessage({
-                      id: 'not_active',
-                      defaultMessage: 'Not Active',
-                    })
-              }
-              color={provider?.isActive ? 'green' : 'red'}
-              className="ml-3"
-              square
-            />
+            <ActiveInActive />
           </div>
           <div className="mt-6 flex flex-col">
             <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">

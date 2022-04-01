@@ -5,14 +5,26 @@ import Table from './Table';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
-import ProviderName from './ProviderName';
+import { getInterfaceLabel } from '../utils/utils';
+import ActiveInActive from './ActiveInActive';
+import ProviderNameConfiguration from './ProviderNameConfiguration';
 
 const ProviderListItem = ({ provider, onRemove, providerPath }) => {
   return (
     <Table.Row>
       <Table.Cell>
         <div className="text-gray-900">
-          <ProviderName provider={provider} />
+          <span className="flex items-center">
+            <span className="mr-1">
+              {getInterfaceLabel(provider?.interface)}
+            </span>
+            <ActiveInActive isActive={provider?.isActive} />
+          </span>
+
+          <ProviderNameConfiguration
+            configuration={provider?.configuration}
+            color={PROVIDER_TYPE_CLASSES[provider?.type]}
+          />
         </div>
       </Table.Cell>
 

@@ -6,20 +6,29 @@ const ActiveInActive = ({
   activeIcon,
   inActiveIcon,
   activeClassName,
-  InActiveClassName,
+  inActiveClassName,
   containerClassName,
+  iconClassName,
 }) => {
   return (
     <span className={classNames('inline-flex self-end', containerClassName)}>
       {isActive
         ? activeIcon || (
             <BadgeCheckIcon
-              className={classNames('text-green-500 w-4 h-4', activeClassName)}
+              className={classNames(
+                'text-green-500 w-5 h-5',
+                iconClassName,
+                activeClassName,
+              )}
             />
           )
         : inActiveIcon || (
             <XCircleIcon
-              className={classNames('text-red-500 w-4 h-4', InActiveClassName)}
+              className={classNames(
+                'text-red-500 w-5 h-5',
+                iconClassName,
+                inActiveClassName,
+              )}
             />
           )}
     </span>
