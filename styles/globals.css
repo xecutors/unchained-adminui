@@ -80,6 +80,9 @@ option:not(:first-of-type), html, body, a {
 
 .quill-error-border .ql-editor{
   border: 1px solid rgb(252 165 165);
+}
 
-
+.ql-editor:focus {
+  outline: 3px solid #818CF8;
+  border-radius: .25rem;
 }
