@@ -9,7 +9,8 @@ const CreateFilterMutation = gql`
 `;
 
 const useCreateFilter = () => {
-  const [createFilterMutation] = useMutation(CreateFilterMutation);
+  const [createFilterMutation, { data, loading, error }] =
+    useMutation(CreateFilterMutation);
 
   const createFilter = async ({ key, type, title, options }) => {
     return createFilterMutation({
@@ -17,9 +18,12 @@ const useCreateFilter = () => {
       refetchQueries: ['Filters'],
     });
   };
-
+  const newFilter = data?.createFilter;
   return {
     createFilter,
+    newFilter,
+    loading,
+    error,
   };
 };
 

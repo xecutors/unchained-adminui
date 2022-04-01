@@ -9,7 +9,9 @@ const CreateCurrencyMutation = gql`
 `;
 
 const useCreateCurrency = () => {
-  const [createCurrencyMutation] = useMutation(CreateCurrencyMutation);
+  const [createCurrencyMutation, { data, loading, error }] = useMutation(
+    CreateCurrencyMutation,
+  );
 
   const createCurrency = async ({ isoCode }) => {
     return createCurrencyMutation({
@@ -17,9 +19,13 @@ const useCreateCurrency = () => {
       refetchQueries: ['Currency', 'Currencies'],
     });
   };
+  const newCurrency = data?.createCurrency;
 
   return {
     createCurrency,
+    newCurrency,
+    error,
+    loading,
   };
 };
 

@@ -11,9 +11,8 @@ const CreateWarehousingProviderMutation = gql`
 `;
 
 const useCreateWarehousingProvider = () => {
-  const [createWarehousingProviderMutation] = useMutation(
-    CreateWarehousingProviderMutation,
-  );
+  const [createWarehousingProviderMutation, { data, loading, error }] =
+    useMutation(CreateWarehousingProviderMutation);
 
   const createWarehousingProvider = async ({ adapterKey, type }) => {
     return createWarehousingProviderMutation({
@@ -22,8 +21,13 @@ const useCreateWarehousingProvider = () => {
     });
   };
 
+  const newWarehousingProvider = data?.createWarehousingProvider;
+
   return {
     createWarehousingProvider,
+    newWarehousingProvider,
+    loading,
+    error,
   };
 };
 

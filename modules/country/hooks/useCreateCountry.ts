@@ -9,7 +9,9 @@ const CreateCountryMutation = gql`
 `;
 
 const useCreateCountry = () => {
-  const [createCountryMutation] = useMutation(CreateCountryMutation);
+  const [createCountryMutation, { data, loading, error }] = useMutation(
+    CreateCountryMutation,
+  );
 
   const createCountry = async ({ isoCode }) => {
     return createCountryMutation({
@@ -17,9 +19,12 @@ const useCreateCountry = () => {
       refetchQueries: ['Countries', 'Country'],
     });
   };
-
+  const newCountry = data?.createCountry;
   return {
     createCountry,
+    newCountry,
+    loading,
+    error,
   };
 };
 

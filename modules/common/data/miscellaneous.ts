@@ -549,3 +549,11 @@ export const WORK_STATUSES = {
   FAILED: 'red',
   DELETED: 'orange',
 };
+
+export const ORDER_STATUSES = {
+  OPEN: 'purple',
+  PENDING: 'blue',
+  CONFIRMED: 'lime',
+  FULLFILLED: 'green',
+  REJECTED: 'red',
+};

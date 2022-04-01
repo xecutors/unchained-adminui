@@ -5,15 +5,9 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
+import { ORDER_STATUSES } from '../../common/data/miscellaneous';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import { useFormatPrice } from '../../common/utils/utils';
-
-const ORDER_STATUSES = {
-  OPEN: 'purple',
-  PENDING: 'blue',
-  CONFIRMED: 'lime',
-  FULLFILLED: 'green',
-};
 
 const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
