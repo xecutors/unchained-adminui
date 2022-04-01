@@ -19,14 +19,15 @@ const NewDeliveryProvider = () => {
     type: selectedType,
   });
   const onSubmit = async ({ adapterKey, type }) => {
-    await createDeliveryProvider({ adapterKey, type });
-    return true;
+    const { data }= await createDeliveryProvider({ adapterKey, type });
+    return { success: true, data: data?.createDeliveryProvider };
   };
 
-  const { push } = useRouter();
+  const router = useRouter();
 
-  const onSubmitSuccess = () => {
-    push('/delivery-provider');
+  const onSubmitSuccess = (_id) => {
+    
+    router.push(`/delivery-provider/${_id}`);
   };
 
   return (
