@@ -14,7 +14,7 @@ const QUOTATION_STATUS = {
   FULLFILLED: 'green',
 };
 
-const QuotationListItem = ({ quotation }) => {
+const QuotationListItem = ({ quotation , showUser}) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
@@ -51,7 +51,7 @@ const QuotationListItem = ({ quotation }) => {
           )}
         </div>
       </Table.Cell>
-
+      {showUser && enrollment.user && (
       <Table.Cell>
         <Link href={`/users/${quotation.user._id}`}>
           <a className="flex text-blue-500">
@@ -65,7 +65,7 @@ const QuotationListItem = ({ quotation }) => {
           </a>
         </Link>
       </Table.Cell>
-
+    )}
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
           <Link href={`/products/${quotation.product._id}`}>
