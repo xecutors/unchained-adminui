@@ -7,7 +7,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
 
   return (
     <dl>
-      <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+      <div>
         {!isEdit && (
           <label className="text-sm font-medium text-slate-500">
             {formatMessage({
@@ -53,7 +53,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+      <div>
         <label className="text-sm font-medium text-slate-500">
           {!isEdit &&
             formatMessage({
@@ -80,7 +80,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+      <div>
         <label className="text-sm font-medium text-slate-500">
           {!isEdit &&
             formatMessage({
@@ -107,7 +107,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           )}
         </div>
       </div>
-      <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+      <div>
         <label className="text-sm font-medium text-slate-500">
           {!isEdit &&
             formatMessage({
@@ -136,7 +136,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-x-2 sm:grid-cols-2">
-        <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+        <div>
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({
@@ -165,7 +165,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+        <div>
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({
@@ -193,7 +193,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+        <div>
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({
@@ -221,7 +221,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
           </div>
         </div>
 
-        <div className="py-4 sm:grid sm:gap-1 sm:py-3">
+        <div>
           <label className="text-sm font-medium text-slate-500">
             {!isEdit &&
               formatMessage({
@@ -250,7 +250,7 @@ const AddressFields = ({ isEdit, address, setIsEdit }) => {
         </div>
       </div>
 
-      <div className="ml-1 flex flex-shrink-0 items-center justify-end space-x-4 py-4 pt-4">
+      <div className="border-t border-t-indigo-50 mt-3 -mx-6 -mb-6 bg-slate-50 flex flex-shrink-0 items-center justify-end space-x-4">
         {isEdit ? (
           <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
         ) : null}

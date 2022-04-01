@@ -105,7 +105,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
       <div className="mt-6 overflow-hidden rounded-md border-b">
         <div className="lg:grid lg:grid-cols-3">
           <div className="mb-5 lg:col-span-1 lg:pr-5">
-            <div className="ml-1 space-y-2">
+            <div className="space-y-2">
               <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'profile',
@@ -138,7 +138,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
             />
           </div>
 
-          <div className="col-span-2 ml-auto rounded-md bg-white px-8 shadow lg:w-full">
+          <div className="col-span-2 ml-auto rounded-md bg-white px-6 shadow lg:w-full">
             <div className="py-4">
               <div className="py-4 sm:grid sm:py-2">
                 <label className="text-gray-70 block text-sm font-medium">
@@ -324,19 +324,18 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   )}
                 </div>
               </div>
-
-              <div className="ml-1 flex flex-shrink-0 items-center justify-end space-x-4 py-4 pt-4">
-                {isEdit ? (
-                  <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
-                ) : null}
-              </div>
+            </div>
+            <div className="border-t border-t-indigo-50 -mx-6 bg-slate-50 flex flex-shrink-0 items-center justify-end space-x-4">
+              {isEdit ? (
+                <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
+              ) : null}
             </div>
           </div>
         </div>
 
         <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
           <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
-            <div className="ml-1 space-y-2">
+            <div className="space-y-2">
               <h3 className="text-lg font-medium leading-6 text-slate-900">
                 {formatMessage({
                   id: 'address',
@@ -369,7 +368,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
             />
           </div>
 
-          <div className="col-span-2 w-full border-gray-200 bg-white px-8 py-6 rounded-md shadow lg:ml-auto lg:w-full">
+          <div className="col-span-2 w-full border-gray-200 bg-white px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full">
             <AddressFields
               isEdit={isEdit}
               address={address}
