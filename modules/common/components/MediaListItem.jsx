@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import { stopPropagation } from '../data/miscellaneous';
+import { preventDefault, stopPropagation } from '../data/miscellaneous';
 import useDisplayImageInModal from '../utils/useDisplayImageInModal';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
@@ -20,6 +21,10 @@ const MediaListItem = ({
 }) => {
   const { formatMessage } = useIntl();
   const { displayImageInModal } = useDisplayImageInModal();
+  const [isDragStart, setIsDragStart] = useState(false);
+  const [isDragEnd, setIsDragEnd] = useState(false);
+  const [isDragEnter, setIsDragEnter] = useState(false);
+  const [isDragLeave, setIsDragLeave] = useState(false);
 
   const successMessage = formatMessage({
     id: 'media_updated',
@@ -39,8 +44,52 @@ const MediaListItem = ({
     if (mediaText) form.formik.setValues(mediaText);
   }, [mediaText]);
 
+  const handleDragStart = () => {
+    setIsDragStart(true);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragStart(false);
+    setIsDragEnd(true);
+    setIsDragEnter(false);
+  };
+
+  const handleDragEnter = () => {
+    setIsDragEnter(true);
+    // setIsDragLeave(false);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragEnter(false);
+    // setIsDragLeave(true);
+  };
+
+  const handleDragOver = (event) => {
+    preventDefault(event);
+    return false;
+  };
+
+  const handleDrop = (event) => {
+    stopPropagation(event);
+    return false;
+  };
+
   return (
-    <li className="flex flex-wrap gap-4" key={media._id}>
+    <li
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDragEnd={handleDragEnd}
+      onDrop={handleDrop}
+      draggable="true"
+      className={classNames('flex flex-wrap gap-4 bg-slate-100 cursor-move', {
+        'opacity-40': isDragStart,
+        'opacity-100': isDragEnd,
+        'border-2 rounded-md border-dashed border-red-800': isDragEnter,
+      })}
+      key={media._id}
+    >
       <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <img

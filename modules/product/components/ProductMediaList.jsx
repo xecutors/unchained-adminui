@@ -7,7 +7,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="rounded bg-white p-5 sm:col-span-6 sm:p-0">
+    <div className="rounded bg-white p-5 lg:col-span-6 sm:p-0">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
