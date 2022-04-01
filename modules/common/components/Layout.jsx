@@ -27,6 +27,7 @@ const Layout = ({
   apollo,
   router,
   pageHeader = '',
+  currentRoles,
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
@@ -34,11 +35,13 @@ const Layout = ({
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
+      roles: [],
       icon: HomeIcon,
       href: '/',
     },
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
+      roles: ['viewReports'],
       icon: ChartBarIcon,
       children: [
         {
@@ -55,6 +58,7 @@ const Layout = ({
         id: 'orders',
         defaultMessage: 'Orders',
       }),
+      roles: ['manageOrders'],
       icon: InboxIcon,
       href: '/orders',
     },
@@ -63,23 +67,27 @@ const Layout = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
+      roles: ['manageProducts'],
       icon: TagIcon,
       href: '/products',
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
+      roles: ['manageAssortments'],
       href: '/assortments',
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsIcon,
+      roles: ['manageFilters'],
       href: '/filters',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserGroupIcon,
       href: '/users',
+      roles: ['manageUsers'],
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
@@ -90,21 +98,25 @@ const Layout = ({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
+          roles: ['manageCurrencies'],
           href: '/currency',
         },
         {
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
+          roles: ['manageCountries'],
         },
         {
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
+          roles: ['manageLanguages'],
         },
         {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           }),
+          roles: ['manageDeliveryProviders'],
           href: '/delivery-provider',
         },
         {
@@ -112,6 +124,7 @@ const Layout = ({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
+          roles: ['managePaymentProviders'],
           href: '/payment-provider',
         },
         {
@@ -119,6 +132,7 @@ const Layout = ({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
           }),
+          roles: ['manageWarehousingProviders'],
           href: '/warehousing-provider',
         },
       ],
@@ -132,11 +146,13 @@ const Layout = ({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
+          roles: ['viewWork'],
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
+          roles: ['viewCurrencies'],
         },
         // {
         //   name: formatMessage({
@@ -234,7 +250,10 @@ const Layout = ({
                 })}
               />
             </div>
-            <SideNav navigation={defaultNavigation} />
+            <SideNav
+              navigation={defaultNavigation}
+              currentRoles={currentRoles}
+            />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
@@ -257,7 +276,10 @@ const Layout = ({
                 })}
               />
             </div>
-            <SideNav navigation={defaultNavigation} />
+            <SideNav
+              navigation={defaultNavigation}
+              currentRoles={currentRoles}
+            />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />

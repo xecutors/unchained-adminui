@@ -11,6 +11,7 @@ const UserFragment = gql`
       type
       url
     }
+    allowedActions
     paymentCredentials {
       _id
       isValid

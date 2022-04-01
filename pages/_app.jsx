@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import App from 'next/app';
 
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
@@ -18,6 +18,7 @@ import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
+  const [currentUser, setCurrentUser] = useState(null);
 
   const { locale } = router;
 
@@ -30,6 +31,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
         errorPolicy: 'none',
         fetchPolicy: 'network-only',
       });
+      setCurrentUser(data?.me);
       if (!data?.me && !UnrestrictedPages.includes(router.pathname))
         router.push('/log-in');
     })();
@@ -38,7 +40,11 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const getLayout =
     Component.getLayout ||
     ((page) => (
-      <Layout apollo={apollo} {...rest}>
+      <Layout
+        apollo={apollo}
+        {...rest}
+        currentRoles={currentUser?.allowedActions}
+      >
         {page}
       </Layout>
     ));
