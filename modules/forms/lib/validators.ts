@@ -160,3 +160,39 @@ export const validateRequiredTextArea = (required): Validator => {
     },
   };
 };
+
+export const validateProductCommerce = (currentIndex, values): Validator => {
+  return {
+    isValid: () => {
+      if (!values?.length || values?.length === 1) return true;
+      const current = values[currentIndex];
+      const others = values.filter((_, index) => index !== currentIndex);
+
+      const isSame = others.every(
+        ({
+          maxQuantity,
+          amount,
+          isNetPrice,
+          isTaxable,
+          countryCode,
+          currencyCode,
+        }) => {
+          return (
+            maxQuantity !== current?.maxQuantity ||
+            amount !== current?.amount ||
+            countryCode !== current?.countryCode ||
+            currencyCode !== current?.currencyCode ||
+            isNetPrice !== current?.isNetPrice ||
+            isTaxable !== current?.isTaxable
+          );
+        },
+      );
+      return isSame;
+    },
+
+    intlMessageDescriptor: {
+      id: 'error_same_product_prices',
+      defaultMessage: '{label} can not have same values',
+    },
+  };
+};

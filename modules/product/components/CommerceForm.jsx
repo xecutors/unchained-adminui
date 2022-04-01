@@ -12,6 +12,7 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import { validateProductCommerce } from '../../forms/lib/validators';
 import useProductCatalogPrices from '../hooks/useProductCatalogPrices';
 import useUpdateProductCommerce from '../hooks/useUpdateProductCommerce';
 
@@ -46,16 +47,17 @@ const CommerceForm = ({ productId }) => {
     submit: onSubmit,
     successMessage,
     enableReinitialize: true,
+
     initialValues: {
       pricing: [
         ...(catalogPrices || [
           {
-            maxQuantity: '',
-            amount: '',
-            isTaxable: '',
-            isNetPrice: '',
-            currencyCode: '',
-            countryCode: '',
+            maxQuantity: null,
+            amount: null,
+            isTaxable: false,
+            isNetPrice: false,
+            currencyCode: null,
+            countryCode: null,
           },
         ]),
       ],
@@ -63,6 +65,7 @@ const CommerceForm = ({ productId }) => {
   });
 
   const { values } = form.formik;
+  const { pricing } = values;
 
   useEffect(() => {
     if (!loading)
@@ -132,10 +135,11 @@ const CommerceForm = ({ productId }) => {
                     <div className="flex w-full gap-x-2">
                       <TextField
                         className="w-full"
+                        validators={[validateProductCommerce(index, pricing)]}
                         name={`pricing[${index}].maxQuantity`}
                         id={`pricing[${index}].maxQuantity`}
-                        required
                         type="number"
+                        min={0}
                         hideLabel
                         label={formatMessage({
                           id: 'max_quantity',
@@ -270,7 +274,16 @@ const CommerceForm = ({ productId }) => {
                       type="button"
                       className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                       variant="outlined"
-                      onClick={() => push('')}
+                      onClick={() =>
+                        push({
+                          maxQuantity: null,
+                          amount: null,
+                          isTaxable: false,
+                          isNetPrice: false,
+                          currencyCode: null,
+                          countryCode: null,
+                        })
+                      }
                     >
                       <svg
                         className="h-4 w-4"
