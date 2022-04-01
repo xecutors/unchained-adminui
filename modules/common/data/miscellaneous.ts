@@ -557,3 +557,10 @@ export const ORDER_STATUSES = {
   FULLFILLED: 'green',
   REJECTED: 'red',
 };
+
+export const ENROLLMENT_STATUS = {
+  INITIAL: 'orange',
+  PAUSED: 'yellow',
+  TERMINATED: 'red',
+  ACTIVE: 'green',
+};

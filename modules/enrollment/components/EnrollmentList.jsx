@@ -5,13 +5,13 @@ import EnrollmentListItem from './EnrollmentListItem';
 const EnrollmentList = ({ enrollments, showUser }) => {
   const { formatMessage } = useIntl();
   return (
-    <Table className="min-w-full">
+    <Table>
       {enrollments?.map((enrollment) => (
         <Table.Row key={enrollment._id} header>
           <Table.Cell>
             {formatMessage({
               id: 'enrollment_number',
-              defaultMessage: 'Enrollment number',
+              defaultMessage: 'Enrollment#',
             })}
           </Table.Cell>
 

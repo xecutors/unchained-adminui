@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import QuotationListItem from './QuotationListItem';
 
-const QuotationList = ({ quotations,showUser }) => {
+const QuotationList = ({ quotations, showUser }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full ">
@@ -11,7 +11,7 @@ const QuotationList = ({ quotations,showUser }) => {
           <Table.Cell>
             {formatMessage({
               id: 'quotation_number',
-              defaultMessage: 'Quotation number',
+              defaultMessage: 'Quotation#',
             })}
           </Table.Cell>
 
@@ -29,13 +29,13 @@ const QuotationList = ({ quotations,showUser }) => {
             })}
           </Table.Cell>
           {showUser && (
-          <Table.Cell>
-            {formatMessage({
-              id: 'user',
-              defaultMessage: 'User',
-            })}
-          </Table.Cell>
-       )}
+            <Table.Cell>
+              {formatMessage({
+                id: 'user',
+                defaultMessage: 'User',
+              })}
+            </Table.Cell>
+          )}
           <Table.Cell>
             {formatMessage({
               id: 'product',
