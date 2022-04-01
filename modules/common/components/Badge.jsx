@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import { bgColor, textColor } from '../data/miscellaneous';
+import { bgColor, textColor, borderColor } from '../data/miscellaneous';
 
 const Badge = ({
   text,
@@ -14,7 +14,10 @@ const Badge = ({
   return (
     <span
       className={classnames(
-        `inline-flex items-center px-2.5 py-0.5 text-sm font-medium ${bgColor(
+        `inline-flex items-center shadow-md border ${borderColor(
+          normalizedColor,
+          800,
+        )} px-2.5 py-0.5 text-sm font-medium ${bgColor(
           normalizedColor,
           100,
         )} ${textColor(normalizedColor, 800)}`,

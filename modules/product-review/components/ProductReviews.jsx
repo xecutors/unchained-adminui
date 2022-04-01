@@ -5,7 +5,6 @@ import NoData from '../../common/components/NoData';
 import ProductReviewsItem from './ProductReviewsItem';
 import ProductReviewsReport from './ProductReviewsReport';
 
-// TODO: remove mock data
 const productReviews = [
   {
     _id: 'bdaa8bd9-cebc-4f52-9f39-8c7c8aaf8e3a',

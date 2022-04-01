@@ -1,35 +1,29 @@
 import Link from 'next/link';
-import { useIntl } from 'react-intl';
 
 import Badge from './Badge';
 import Table from './Table';
 import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
-import { getInterfaceLabel } from '../utils/utils';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
+import { getInterfaceLabel } from '../utils/utils';
+import ActiveInActive from './ActiveInActive';
+import ProviderNameConfiguration from './ProviderNameConfiguration';
 
 const ProviderListItem = ({ provider, onRemove, providerPath }) => {
-  const { formatMessage } = useIntl();
-
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="text-slate-900">
-          <span className="mr-2">{getInterfaceLabel(provider?.interface)}</span>
-          <Badge
-            text={
-              provider?.isActive
-                ? formatMessage({
-                    id: 'active',
-                    defaultMessage: 'Active',
-                  })
-                : formatMessage({
-                    id: 'not_active',
-                    defaultMessage: 'Not Active',
-                  })
-            }
-            color={provider?.isActive ? 'green' : 'red'}
-            square
+        <div className="text-gray-900">
+          <span className="flex items-center">
+            <span className="mr-1">
+              {getInterfaceLabel(provider?.interface)}
+            </span>
+            <ActiveInActive isActive={provider?.isActive} />
+          </span>
+
+          <ProviderNameConfiguration
+            configuration={provider?.configuration}
+            color={PROVIDER_TYPE_CLASSES[provider?.type]}
           />
         </div>
       </Table.Cell>
