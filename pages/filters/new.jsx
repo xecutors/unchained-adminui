@@ -7,23 +7,23 @@ import FilterForm from '../../modules/filter/components/FilterForm';
 import useCreateFilter from '../../modules/filter/hooks/useCreateFilter';
 
 const AddFilter = () => {
-  const { push: routerPush } = useRouter();
+  const router = useRouter();
   const { formatMessage } = useIntl();
 
   const { createFilter } = useCreateFilter();
 
   const onSubmit = async ({ key, title, type, options }) => {
-    await createFilter({
+    const { data } = await createFilter({
       options,
       key,
       title,
       type,
     });
-    return true;
+    return { success: true, data: data?.createFilter };
   };
 
-  const onSubmitSuccess = () => {
-    routerPush('/filters');
+  const onSubmitSuccess = ({ _id }) => {
+    router.push(`/filters/${_id}`);
   };
 
   return (
