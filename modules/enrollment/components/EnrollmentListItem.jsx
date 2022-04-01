@@ -16,44 +16,37 @@ const ENROLLMENT_STATUS = {
 
 const EnrollmentListItem = ({ enrollment, showUser }) => {
   const { formatMessage } = useIntl();
-
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <Table.Row>
-      <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm">
-          <Link href={`/enrollments/${enrollment._id}`}>
-            <a className="text-blue-600">
-              {enrollment?.orderNumber || enrollment._id?.substr(0, 10)}
-            </a>
-          </Link>
-        </div>
+    <Table.Row className="text-sm">
+      <Table.Cell>
+        <Link href={`/enrollments/${enrollment._id}`}>
+          <a className="text-blue-600">
+            {enrollment?.orderNumber || enrollment._id?.substr(0, 10)}
+          </a>
+        </Link>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm">{formatDateTime(enrollment.created)}</div>
-      </Table.Cell>
+      <Table.Cell>{formatDateTime(enrollment.created)}</Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm">
-          {enrollment.expires ? formatDateTime(enrollment.expires) : 'n/a'}
+      <Table.Cell>
+        {enrollment.expires ? formatDateTime(enrollment.expires) : 'n/a'}
 
-          {!enrollment.isExpired && (
-            <Badge
-              className="ml-1"
-              text={formatMessage({
-                id: 'expired',
-                defaultMessage: 'Expired',
-              })}
-              color="red"
-            />
-          )}
-        </div>
+        {!enrollment.isExpired && (
+          <Badge
+            className="ml-1"
+            text={formatMessage({
+              id: 'expired',
+              defaultMessage: 'Expired',
+            })}
+            color="red"
+          />
+        )}
       </Table.Cell>
 
       {showUser && enrollment.user && (
-        <Table.Cell className="whitespace-nowrap">
+        <Table.Cell>
           <Link href={`/users/${enrollment.user._id}`}>
             <a className="flex items-center text-blue-500">
               <span className="inline-block h-9 w-9 rounded-full">
@@ -70,25 +63,23 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
         </Table.Cell>
       )}
 
-      <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm">
-          <Link href={`/products/${enrollment.plan.product._id}`}>
-            <span className="flex items-center">
-              <Image
-                loader={defaultNextImageLoader}
-                src={enrollment?.plan?.product?.media?.file?.url}
-                width={20}
-                height={20}
-              />
-              <a className="ml-2 text-blue-600">
-                {enrollment?.plan.product.texts.title}
-              </a>
-            </span>
-          </Link>
-        </div>
+      <Table.Cell>
+        <Link href={`/products/${enrollment.plan.product._id}`}>
+          <span className="flex items-center">
+            <Image
+              loader={defaultNextImageLoader}
+              src={enrollment?.plan?.product?.media?.file?.url}
+              width={20}
+              height={20}
+            />
+            <a className="ml-2 text-blue-600">
+              {enrollment?.plan.product.texts.title}
+            </a>
+          </span>
+        </Link>
       </Table.Cell>
 
-      <Table.Cell className="whitespace-nowrap">
+      <Table.Cell>
         <Badge
           text={enrollment?.status}
           color={ENROLLMENT_STATUS[enrollment.status]}
