@@ -294,7 +294,7 @@ const CommerceForm = ({ productId }) => {
         </FieldArray>
       </div>
       <FormErrors />
-      <div className="sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
+      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
         <SubmitButton
           label={formatMessage({
             id: 'save',

@@ -180,7 +180,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
             </div>
-            <div className="bg-slate-50 sm:px-15 mt-5">
+            <div className="border-t-indigo-50 border-t bg-slate-50 sm:px-15 mt-5">
               <SaveAndCancelButtons className="justify-end" onCancel={back} />
             </div>
           </div>

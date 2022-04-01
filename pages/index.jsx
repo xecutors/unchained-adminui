@@ -29,13 +29,13 @@ const Home = ({ shopInfo }) => {
   });
   return (
     <>
-      <div className="grid grid-cols-3 gap-10 md:mt-10 xl:mt-20">
-        <div className="col-span-2">
+      <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20">
+        <div className="xl:col-span-2 overflow-x-auto">
           <h2 className="ml-4 text-xl text-gray-700">Orders</h2>
           {loading ? <Loading /> : <OrderList orders={orders} showUser />}
         </div>
 
-        <div className="col-span-1">
+        <div className="xl:col-span-1">
           <div className="mb-10">
             <h2 className="ml-4 mb-3 text-xl text-gray-700">Shortcuts</h2>
             <div className="grid grid-cols-2 gap-3">

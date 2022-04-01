@@ -74,7 +74,7 @@ const CurrencyForm = ({
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 rounded-b-md bg-slate-50 p-5 text-right">
+      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 rounded-b-md bg-slate-50 p-5 text-right">
         <SubmitButton
           label={
             isEdit

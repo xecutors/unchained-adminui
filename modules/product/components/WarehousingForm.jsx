@@ -62,7 +62,7 @@ const WarehousingForm = ({ productId }) => {
           />
         </div>
       </div>
-      <div className="space-y-6 bg-slate-50 text-right sm:p-6">
+      <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 text-right sm:p-6">
         <SubmitButton
           label={formatMessage({
             id: 'save',
