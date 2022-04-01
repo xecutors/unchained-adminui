@@ -6,6 +6,11 @@ option:not(:first-of-type), html, body, a {
  color: rgb(51 65 85);
 }
 
+.ql-toolbar.ql-snow,
+.ql-container.ql-snow {
+  border: 0;
+}
+
 .xl\:text-5xl {
   line-height: 1.15 !important;
 }
