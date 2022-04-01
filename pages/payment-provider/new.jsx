@@ -20,14 +20,14 @@ const NewPaymentProvider = () => {
     type: selectedType,
   });
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data }=  await createPaymentProvider({ adapterKey, type });
+    const { data, errors } = await createPaymentProvider({ adapterKey, type });
+    if (errors?.length) return false;
     return { success: true, data: data?.createPaymentProvider };
   };
 
   const router = useRouter();
 
-  const onSubmitSuccess = ({_id}) => {
-
+  const onSubmitSuccess = ({ _id }) => {
     router.push(`/payment-provider/${_id}`);
   };
 

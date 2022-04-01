@@ -11,13 +11,14 @@ const AddAssortments = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { createAssortment } = useCreateAssortment();
- 
+
   const onSubmitSuccess = (_, { texts }) => {
     router.push(`/assortments/${texts?.slug}`);
   };
 
-  const onSubmit = async ({title, isRoot, tags}) => {
-    const { data } = await createAssortment({ isRoot, title, tags});
+  const onSubmit = async ({ title, isRoot, tags }) => {
+    const { data, errors } = await createAssortment({ isRoot, title, tags });
+    if (errors?.length) return false;
     return { success: true, data: data?.createAssortment };
   };
 

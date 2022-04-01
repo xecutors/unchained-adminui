@@ -13,7 +13,7 @@ const AddFilter = () => {
   const { createFilter } = useCreateFilter();
 
   const onSubmit = async ({ key, title, type, options }) => {
-    const { data }=  await createFilter({
+    const { data } = await createFilter({
       options,
       key,
       title,
@@ -22,8 +22,7 @@ const AddFilter = () => {
     return { success: true, data: data?.createFilter };
   };
 
-  const onSubmitSuccess = ({_id}) => {
-   
+  const onSubmitSuccess = ({ _id }) => {
     router.push(`/filters/${_id}`);
   };
 

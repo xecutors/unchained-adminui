@@ -19,16 +19,18 @@ const NewPaymentProvider = () => {
     type: selectedType,
   });
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data } = await createWarehousingProvider({ adapterKey, type });
+    const { data, errors } = await createWarehousingProvider({
+      adapterKey,
+      type,
+    });
+    if (errors?.length) return false;
     return { success: true, data: data?.createWarehousingProvider };
   };
 
   const router = useRouter();
 
-  const onSubmitSuccess = (  {_id}) => {
-  
+  const onSubmitSuccess = ({ _id }) => {
     router.push(`/warehousing-provider/${_id}`);
-
   };
 
   return (

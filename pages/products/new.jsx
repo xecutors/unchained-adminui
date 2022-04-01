@@ -16,7 +16,8 @@ const AddProduct = () => {
   };
 
   const onSubmit = async ({ title, type, tags }) => {
-    const { data } = await createProduct({ title, type, tags });
+    const { data, errors } = await createProduct({ title, type, tags });
+    if (errors?.length) return false;
     return { success: true, data: data?.createProduct };
   };
   return (

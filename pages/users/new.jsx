@@ -31,7 +31,7 @@ const CreateUser = () => {
       city,
     } = userData;
 
-    const { data } = await createUser({
+    const { data, errors } = await createUser({
       username,
       email,
       password,
@@ -54,11 +54,11 @@ const CreateUser = () => {
       },
       disableHashing: true,
     });
-
+    if (errors?.length) return false;
     return { success: true, data: data?.createUser };
   };
 
-  const onSubmitSuccess = ({id}) => {
+  const onSubmitSuccess = ({ id }) => {
     router.push(`/users/${id}`);
   };
   return (

@@ -10,13 +10,14 @@ const AddCurrency = () => {
   const { createCurrency } = useCreateCurrency();
   const router = useRouter();
   const { formatMessage } = useIntl();
-  const onSubmitSuccess = () => {
-    router.push('/currency');
+  const onSubmitSuccess = ({ _id }) => {
+    router.push(`/currency/${_id}`);
   };
 
   const onSubmit = async ({ isoCode }) => {
-    await createCurrency({ isoCode });
-    return true;
+    const { data, errors } = await createCurrency({ isoCode });
+    if (errors?.length) return false;
+    return { success: true, data: data?.createCurrency };
   };
   return (
     <>
