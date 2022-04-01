@@ -130,9 +130,9 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
   ];
   return (
     <div className="my-8 flex w-full min-w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden rounded-lg shadow sm:bg-white">
-      {paymentCredentials?.length ? (
-        <ul className="-my-5 divide-y divide-slate-200">
-          {(paymentCredentials || []).map(
+      {paymentCredentialss?.length ? (
+        <ul className="-my-5 divide-y w-full divide-slate-200">
+          {(paymentCredentialss || []).map(
             ({
               _id: paymentCredentialsId,
               isPreferred,
