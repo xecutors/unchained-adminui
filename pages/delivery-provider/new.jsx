@@ -25,7 +25,7 @@ const NewDeliveryProvider = () => {
 
   const router = useRouter();
 
-  const onSubmitSuccess = (_id) => {
+  const onSubmitSuccess = ({_id}) => {
     
     router.push(`/delivery-provider/${_id}`);
   };
