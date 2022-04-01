@@ -1,14 +1,27 @@
-import React from 'react';
 import { BadgeCheckIcon, XCircleIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
 
-const ActiveInActive = ({ isActive }) => {
+const ActiveInActive = ({
+  isActive,
+  activeIcon,
+  inActiveIcon,
+  activeClassName,
+  InActiveClassName,
+  containerClassName,
+}) => {
   return (
-    <span className="inline-flex self-end">
-      {isActive ? (
-        <BadgeCheckIcon className="text-green-500 w-4 h-4" />
-      ) : (
-        <XCircleIcon className="text-red-500 w-4 h-4" />
-      )}
+    <span className={classNames('inline-flex self-end', containerClassName)}>
+      {isActive
+        ? activeIcon || (
+            <BadgeCheckIcon
+              className={classNames('text-green-500 w-4 h-4', activeClassName)}
+            />
+          )
+        : inActiveIcon || (
+            <XCircleIcon
+              className={classNames('text-red-500 w-4 h-4', InActiveClassName)}
+            />
+          )}
     </span>
   );
 };

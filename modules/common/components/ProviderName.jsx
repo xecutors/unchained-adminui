@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 import { getInterfaceLabel } from '../utils/utils';
+import ActiveInActive from './ActiveInActive';
 import Badge from './Badge';
 
+// TODO Remove mock data
 const configuration = [
   {
     key: 'sector',
@@ -23,22 +23,31 @@ const configuration = [
 ];
 
 const ProviderName = ({ provider }) => {
-  const { formatMessage } = useIntl();
   return (
     <>
-      <span className="mr-1">{getInterfaceLabel(provider?.interface)}</span>
-      {configuration &&
-        configuration.map((config) => (
-          <Badge
-            text={
-              `${config.key} | ${config.value}`.length > 20
-                ? `${config.key} | ${config.value}`.slice(0, 20).concat('...')
-                : `${config.key} | ${config.value}`
-            }
-            color="indigo"
-            className="px-0 py-0 mr-1"
-          />
-        ))}
+      <span className="flex items-center">
+        <span className="mr-1">{getInterfaceLabel(provider?.interface)}</span>
+        <ActiveInActive isActive={provider?.isActive} />
+      </span>
+
+      {/* TODO Replace with props   */}
+      <div className="flex flex-wrap">
+        {configuration &&
+          configuration.map((config) => (
+            <Badge
+              key={`${config.key} ${config.value}`}
+              text={
+                `${config.key} | ${config.value}`?.length > 20
+                  ? `${config.key} | ${config.value}`
+                      ?.slice(0, 20)
+                      ?.concat('...')
+                  : `${config.key} | ${config.value}`
+              }
+              color="indigo"
+              className="px-1 py-0 mr-1 my-1 block"
+            />
+          ))}
+      </div>
     </>
   );
 };

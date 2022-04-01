@@ -6,15 +6,13 @@ import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
 import ProviderName from './ProviderName';
-import ActiveInActive from './ActiveInActive';
 
 const ProviderListItem = ({ provider, onRemove, providerPath }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="text-gray-900 flex items-center">
+        <div className="text-gray-900">
           <ProviderName provider={provider} />
-          <ActiveInActive isActive={provider?.isActive} />
         </div>
       </Table.Cell>
 
