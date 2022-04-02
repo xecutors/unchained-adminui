@@ -9,15 +9,16 @@ import useCreateCountry from '../../modules/country/hooks/useCreateCountry';
 
 const AddCountries = () => {
   const { formatMessage } = useIntl();
-  const { push } = useRouter();
+  const router = useRouter();
   const { createCountry } = useCreateCountry();
   const onCreateCountry = async ({ isoCode }) => {
-    await createCountry({ isoCode });
-    return true;
+    const { data }=  await createCountry({ isoCode });
+    return { success: true, data: data?. createCountry };
   };
 
-  const onSubmitSuccess = () => {
-    push('/country');
+  const onSubmitSuccess = ({_id}) => {
+   
+    router.push(`/country/${_id}`);
   };
 
   return (
