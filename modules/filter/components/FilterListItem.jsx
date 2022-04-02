@@ -36,7 +36,11 @@ const FilterListItem = ({ filter, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <Badge text={filter.type} color={FILTER_TYPES[filter.type]} square />
+        <Badge
+          text={filter.type?.split('_')?.join(' ')}
+          color={FILTER_TYPES[filter.type]}
+          square
+        />
       </Table.Cell>
 
       <Table.Cell>

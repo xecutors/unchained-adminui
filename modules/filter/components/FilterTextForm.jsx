@@ -8,6 +8,7 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const FilterTextForm = ({ filterId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -55,58 +56,50 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
   }, [translatedFilterTexts, selectedLocale]);
 
   return (
-    <div className="mt-4 sm:max-w-full">
-      <div className="sm:pl-15">
-        <Form form={form}>
-          <div className="relative max-w-full rounded-md sm:pl-6 lg:grid lg:grid-cols-3">
-            <div className="col-span-1 mb-7 border-slate-200 pb-2 sm:flex">
-              <h3 className="text-lg font-medium leading-6 text-slate-900">
-                {formatMessage({
-                  id: 'text',
-                  defaultMessage: 'Text',
-                })}
-              </h3>
-            </div>
-            <div className="col-span-2 ml-auto w-full rounded border-slate-200 bg-white pt-2 lg:shadow">
-              <div>
-                <TextField
-                  name="title"
-                  id="title"
-                  label={formatMessage({
-                    id: 'title',
-                    defaultMessage: 'Title',
-                  })}
-                  autoComplete="on"
-                  className="mt-2 px-4 text-sm font-medium text-slate-500"
-                />
-              </div>
+    <SelfDocumentingView
+      documentationLabel={formatMessage({
+        id: 'text',
+        defaultMessage: 'Text',
+      })}
+      mainContent={
+        <Form form={form} className="border-slate-200 bg-white pt-2 lg:shadow">
+          <div>
+            <TextField
+              name="title"
+              id="title"
+              label={formatMessage({
+                id: 'title',
+                defaultMessage: 'Title',
+              })}
+              autoComplete="on"
+              className="mt-2 px-4 text-sm font-medium text-slate-500"
+            />
+          </div>
 
-              <div>
-                <TextField
-                  name="subtitle"
-                  id="subtitle"
-                  label={formatMessage({
-                    id: 'subtitle',
-                    defaultMessage: 'Subtitle',
-                  })}
-                  autoComplete="on"
-                  className="mt-2 px-4 text-sm font-medium text-slate-500"
-                />
-              </div>
-              <div className="flex">
-                <SubmitButton
-                  label={formatMessage({
-                    id: 'update_filter',
-                    defaultMessage: 'Update filter',
-                  })}
-                  className="my-4 ml-auto mr-4"
-                />
-              </div>
-            </div>
+          <div>
+            <TextField
+              name="subtitle"
+              id="subtitle"
+              label={formatMessage({
+                id: 'subtitle',
+                defaultMessage: 'Subtitle',
+              })}
+              autoComplete="on"
+              className="mt-2 px-4 text-sm font-medium text-slate-500"
+            />
+          </div>
+          <div className="flex">
+            <SubmitButton
+              label={formatMessage({
+                id: 'update_filter',
+                defaultMessage: 'Update filter',
+              })}
+              className="my-4 ml-auto mr-4"
+            />
           </div>
         </Form>
-      </div>
-    </div>
+      }
+    />
   );
 };
 

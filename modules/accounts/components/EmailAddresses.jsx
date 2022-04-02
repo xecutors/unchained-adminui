@@ -11,6 +11,7 @@ import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
 import Badge from '../../common/components/Badge';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const STATUS = {
   true: 'Verified',
@@ -77,19 +78,15 @@ const EmailAddresses = ({
     },
   });
   return (
-    <div>
-      <div className="border-t pt-5 lg:grid lg:grid-cols-3 lg:gap-6">
-        <div className="mb-7 border-slate-200 pb-2 sm:flex sm:justify-between lg:col-span-1">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
-            {formatMessage({
-              id: 'email_addresses',
-              defaultMessage: 'Email addresses',
-            })}
-          </h3>
-        </div>
+    <SelfDocumentingView
+      documentationLabel={formatMessage({
+        id: 'email_addresses',
+        defaultMessage: 'Email addresses',
+      })}
+      mainContent={
         <div
           className={classNames(
-            'w-full rounded-md shadow bg-white px-4 py-5 sm:p-6 lg:col-span-2',
+            'rounded-md shadow bg-white px-4 py-5 sm:p-6 ',
             emailBodyContainer,
           )}
         >
@@ -172,8 +169,8 @@ const EmailAddresses = ({
             </div>
           </Form>
         </div>
-      </div>
-    </div>
+      }
+    />
   );
 };
 

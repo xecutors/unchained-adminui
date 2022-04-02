@@ -155,7 +155,7 @@ const AssortmentDetail = ({ assortment }) => {
       }),
       description: '',
       current: !isActive,
-      bgColor: 'gray',
+      bgColor: 'slate',
       onClick: async () => {
         await setActive(false);
         toast.success(
@@ -198,7 +198,7 @@ const AssortmentDetail = ({ assortment }) => {
       }),
       description: '',
       current: !isBase,
-      bgColor: 'gray',
+      bgColor: 'slate',
     },
   ];
 
@@ -238,7 +238,7 @@ const AssortmentDetail = ({ assortment }) => {
       }),
       description: '',
       current: !isRoot,
-      bgColor: 'gray',
+      bgColor: 'slate',
       onClick: async () => {
         await setIsRoot(false);
         toast.success(

@@ -9,6 +9,7 @@ import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
 import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentProductList from './AssortmentProductList';
 import Loading from '../../common/components/Loading';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -49,54 +50,40 @@ const AssortmentProducts = ({ assortmentId }) => {
     );
   };
   return (
-    <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
-            {formatMessage({
-              id: 'assortment_product',
-              defaultMessage: 'Product',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-      <div className="md:col-span-2">
-        <AssortmentProductForm assortmentId={assortmentId} />
-      </div>
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
-            {formatMessage({
-              id: 'assigned_assortment_products',
-              defaultMessage: 'Assigned products',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-
-      {loading ? (
-        <div className="ml-auto w-full md:col-span-2">
-          <Loading />
-        </div>
-      ) : (
-        <div className="ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2">
-          <AssortmentProductList
-            products={linkedProducts}
-            onRemoveProduct={onRemoveProduct}
-          />
-        </div>
-      )}
-    </div>
+    <>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_product',
+          defaultMessage: 'Product',
+        })}
+        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+          ad minim veniam, quis nostrud exercitation ullamco"
+        mainContent={<AssortmentProductForm assortmentId={assortmentId} />}
+      />
+      <SelfDocumentingView
+        className="mt-5"
+        documentationLabel={formatMessage({
+          id: 'assigned_assortment_products',
+          defaultMessage: 'Assigned products',
+        })}
+        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco"
+        mainContent={
+          loading ? (
+            <Loading />
+          ) : (
+            <div className=" bg-white py-2 px-6 shadow">
+              <AssortmentProductList
+                products={linkedProducts}
+                onRemoveProduct={onRemoveProduct}
+              />
+            </div>
+          )
+        }
+      />
+    </>
   );
 };
 
