@@ -172,7 +172,7 @@ const ProductDetail = ({ product }) => {
         id: 'not_published',
         defaultMessage: 'Not published',
       }),
-      bgColor: 'gray',
+      bgColor: 'slate',
       onClick: async () => {
         await unPublishProduct({ productId: product?._id });
         toast.success(

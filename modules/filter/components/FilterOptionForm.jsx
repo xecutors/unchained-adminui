@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
+
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
@@ -48,7 +48,7 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
           required
         />
       </div>
-      <FormErrors />
+
       <div className="flex justify-end">
         <button
           onClick={onCancel}

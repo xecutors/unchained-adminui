@@ -723,7 +723,7 @@ export const bgColor = (color, hue) => {
 };
 
 export const borderColor = (color, hue) => {
-  return `${ColorLookupTable[color].border[hue]}`;
+  return `${ColorLookupTable[color]?.border[hue]}`;
 };
 
 export const getColor = (type, color, hue) => {

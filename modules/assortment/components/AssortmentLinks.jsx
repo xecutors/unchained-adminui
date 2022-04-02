@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import Loading from '../../common/components/Loading';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -48,58 +49,41 @@ const AssortmentLinks = ({ assortmentId }) => {
   };
 
   return (
-    <div className="mt-0 md:mt-5">
-      <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="mb-4 md:col-span-1">
-          <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-slate-900">
-              {formatMessage({
-                id: 'assortment_links',
-                defaultMessage: 'Links',
-              })}
-            </h3>
-            <p className="mt-1 text-sm text-slate-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    <>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_links',
+          defaultMessage: 'Links',
+        })}
+        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco
-            </p>
-          </div>
-        </div>
-
-        <div className="md:col-span-2">
-          <AssortmentLinkForm assortmentId={assortmentId} />
-        </div>
-      </div>
-
-      <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
-        <div className="mb-4 md:col-span-1">
-          <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-slate-900">
-              {formatMessage({
-                id: 'assortment_links_list',
-                defaultMessage: 'Linked assortments',
-              })}
-            </h3>
-            <p className="mt-1 text-sm text-slate-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco
-            </p>
-          </div>
-        </div>
-        <div className="w-full bg-white py-2 px-6 shadow md:col-span-2">
-          {loading ? (
+              enim ad minim veniam, quis nostrud exercitation ullamco"
+        mainContent={<AssortmentLinkForm assortmentId={assortmentId} />}
+      />
+      <SelfDocumentingView
+        className="mt-5"
+        documentationLabel={formatMessage({
+          id: 'assortment_links_list',
+          defaultMessage: 'Linked assortments',
+        })}
+        documentation=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco"
+        mainContent={
+          loading ? (
             <Loading />
           ) : (
-            <AssortmentLinksList
-              currentAssortmentId={assortmentId}
-              links={linkedAssortments || []}
-              onRemoveLink={onRemoveLink}
-            />
-          )}
-        </div>
-      </div>
-    </div>
+            <div className=" bg-white py-2 px-6 shadow">
+              <AssortmentLinksList
+                currentAssortmentId={assortmentId}
+                links={linkedAssortments || []}
+                onRemoveLink={onRemoveLink}
+              />
+            </div>
+          )
+        }
+      />
+    </>
   );
 };
 

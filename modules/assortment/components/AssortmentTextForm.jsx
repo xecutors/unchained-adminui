@@ -11,6 +11,7 @@ import RichTextEditorField from '../../forms/components/RichTextEditorField';
 
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -65,23 +66,16 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   }, [translatedAssortmentTexts, selectedLocale]);
 
   return (
-    <div className="md:grid md:grid-cols-3 md:gap-6">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
-            {formatMessage({
-              id: 'texts',
-              defaultMessage: 'Texts',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-      <div className="mt-5 md:col-span-2 md:mt-0">
+    <SelfDocumentingView
+      documentationLabel={formatMessage({
+        id: 'texts',
+        defaultMessage: 'Texts',
+      })}
+      className="mt-2 sm:mt-0"
+      documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco"
+      mainContent={
         <Form form={form}>
           <div className="shadow sm:rounded-md">
             <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
@@ -146,8 +140,8 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
             </div>
           </div>
         </Form>
-      </div>
-    </div>
+      }
+    />
   );
 };
 

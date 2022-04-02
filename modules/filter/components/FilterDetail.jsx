@@ -109,7 +109,7 @@ const FilterDetail = ({ filter }) => {
       }),
       description: 'some description',
       current: !isActive,
-      bgColor: 'gray',
+      bgColor: 'slate',
     },
   ];
 

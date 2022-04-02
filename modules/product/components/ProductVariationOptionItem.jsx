@@ -46,7 +46,7 @@ const ProductVariationOptionItem = ({
         <li className="list-none py-2">
           <div className="grid grid-cols-6 items-center gap-2">
             <span className="col-span-1">
-              <Badge text={option?.value} color="gray" />
+              <Badge text={option?.value} color="slate" />
             </span>
 
             <div className="col-span-4 min-w-0">

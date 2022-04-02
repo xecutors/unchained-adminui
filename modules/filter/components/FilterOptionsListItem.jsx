@@ -58,7 +58,7 @@ const FilterOptionsListItem = ({
             <span className="shrink grow-0 basis-1/3">
               <Badge
                 text={option?.value}
-                color="gray"
+                color="slate"
                 square
                 className="break-all"
               />
