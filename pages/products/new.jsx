@@ -2,13 +2,12 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';
-import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ProductForm from '../../modules/product/components/ProductForm';
 import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
 
 const AddProduct = () => {
-  const { createProduct, loading } = useCreateProduct();
+  const { createProduct } = useCreateProduct();
   const router = useRouter();
   const { formatMessage } = useIntl();
   const onSubmitSuccess = (_, { texts }) => {
@@ -44,14 +43,10 @@ const AddProduct = () => {
 
         <div className="lg:col-span-2">
           <FormWrapper>
-            {loading ? (
-              <Loading />
-            ) : (
-              <ProductForm
-                onSubmit={onSubmit}
-                onSubmitSuccess={onSubmitSuccess}
-              />
-            )}
+            <ProductForm
+              onSubmit={onSubmit}
+              onSubmitSuccess={onSubmitSuccess}
+            />
           </FormWrapper>
         </div>
       </div>
