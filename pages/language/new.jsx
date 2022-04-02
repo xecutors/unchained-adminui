@@ -13,13 +13,14 @@ const AddLanguage = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
 
-  const onSubmitSuccess = () => {
-    router.push('/language');
+  const onSubmitSuccess = ({_id}) => {
+    
+    router.push(`/language/${_id}`);
   };
 
   const onSubmit = async ({ isoCode }) => {
-    await createLanguage({ isoCode });
-    return true;
+    const { data }= await createLanguage({ isoCode });
+    return { success: true, data: data?. createLanguage };
   };
 
   return (
