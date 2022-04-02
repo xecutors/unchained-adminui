@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Badge from '../../common/components/Badge';
 import NoData from '../../common/components/NoData';
 import { getInterfaceLabel } from '../../common/utils/utils';
+import ActiveInActive from '../../common/components/ActiveInActive';
+import ProviderNameConfiguration from '../../common/components/ProviderNameConfiguration';
+import { PROVIDER_TYPE_CLASSES } from '../../common/data/miscellaneous';
 
 const PaymentCredentialsView = ({ paymentCredentials }) => {
   const { formatMessage } = useIntl();
@@ -131,36 +134,47 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
   return (
     <div className="my-8 flex w-full min-w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden rounded-lg shadow sm:bg-white">
       {paymentCredentialss?.length ? (
-        <ul className="-my-5 divide-y w-full divide-slate-200">
+        <ul className="my-5 mx-7 divide-y w-full divide-slate-200">
           {(paymentCredentialss || []).map(
             ({
               _id: paymentCredentialsId,
               isPreferred,
-              isActive,
               isValid,
               paymentProvider,
             }) => (
-              <li className="py-4" key={paymentCredentialsId}>
-                <div className=" flex items-center space-x-4">
-                  <div className="min-w-0 flex-1">
+              <li className="py-4 border-2" key={paymentCredentialsId}>
+                <div className=" flex flex-col sm:flex-row    ">
+                  <div className=" flex-1">
                     <Link href={`/payment-provider/${paymentProvider._id}`}>
-                      <a className="truncate text-sm font-medium text-blue-600">
-                        {getInterfaceLabel(paymentProvider.interface)}
+                      <a className=" text-sm font-medium text-blue-600">
+                        <div className="text-slate-900">
+                          <span className="flex items-center">
+                            <span className="mr-1">
+                              {getInterfaceLabel(paymentProvider?.interface)}
+                            </span>
+                            <ActiveInActive
+                              isActive={paymentProvider?.isActive}
+                            />
+                          </span>
+
+                          <ProviderNameConfiguration
+                            configuration={paymentProvider?.configuration}
+                            color={PROVIDER_TYPE_CLASSES[paymentProvider?.type]}
+                          />
+                        </div>
                       </a>
                     </Link>
                   </div>
                   <div>
                     {isPreferred && (
-                      <p className="truncate text-sm text-slate-500">
-                        <Badge
-                          text={formatMessage({
-                            id: 'preferred',
-                            defaultMessage: 'Preferred',
-                          })}
-                          color="green"
-                          square
-                        />
-                      </p>
+                      <Badge
+                        text={formatMessage({
+                          id: 'preferred',
+                          defaultMessage: 'Preferred',
+                        })}
+                        color="green"
+                        square
+                      />
                     )}
                   </div>
                   <div>

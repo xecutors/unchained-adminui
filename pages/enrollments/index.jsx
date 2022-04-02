@@ -1691,7 +1691,7 @@ const enrollmentss = [
       provider: {
         interface: {
           label:
-            'Crepis runcinata (James) Torr. & A. Gray ssp. hallii Babc. & Stebbins',
+            'Crepis runcinata (James) Torr. & A. slate ssp. hallii Babc. & Stebbins',
           version: '4.3',
         },
       },
