@@ -176,7 +176,7 @@ const JobBody = ({ job }) => {
 
   return (
     <div className="w-[100%] overflow-hidden bg-white">
-      <div className="border border-gray-200  py-5 sm:p-0">
+      <div className="border border-slate-200  py-5 sm:p-0">
         <dl className="divide-y divide-slate-300 px-7">
           <div className="py-4 sm:py-5 ">
             <dt className="text-sm font-medium text-slate-500">

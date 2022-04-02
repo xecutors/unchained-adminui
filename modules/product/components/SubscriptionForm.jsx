@@ -164,7 +164,7 @@ const SubscriptionForm = ({ productId }) => {
             />
           </div>
 
-          <div className=" sm:px-15 space-y-6 bg-slate-50 text-right sm:p-6">
+          <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({
                 id: 'save',

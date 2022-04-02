@@ -16,7 +16,7 @@ const DocumentList = ({ documents }) => {
             })}
           </dt>
           <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
-            <ul className="divide-y divide-gray-200 rounded-md border border-gray-200">
+            <ul className="divide-y divide-slate-200 rounded-md border border-slate-200">
               {documents.map((document) => (
                 <li
                   key={document._id}

@@ -8,7 +8,7 @@ const AssortmentFiltersListItem = ({ link, onDelete }) => {
   const { _id, filter, tags } = link;
 
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-gray-200 last:border-none">
+    <div className="flex items-center justify-between gap-4 border-b border-slate-200 last:border-none">
       <div className="shrink-0 grow-0 basis-20 space-y-1 p-2">
         <Badge
           color={filter?.isActive ? 'green' : 'gray'}

@@ -23,7 +23,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     className={classNames(
                       timeline[data.status].id > index + 1
                         ? 'bg-indigo-500'
-                        : 'bg-gray-200',
+                        : 'bg-slate-200',
                       'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
                     )}
                     aria-hidden="true"
@@ -97,7 +97,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     className={classNames(
                       timeline[data.status].id >= timeline[value].id
                         ? 'bg-indigo-400'
-                        : 'bg-gray-200',
+                        : 'bg-slate-200',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
                     )}
                     aria-hidden="true"

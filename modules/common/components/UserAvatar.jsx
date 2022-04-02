@@ -16,12 +16,12 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
               width={100}
               height={100}
               alt={formatMessage({
-                id: 'unchained_logo',
-                defaultMessage: 'Unchained Logo',
+                id: 'user_avatar',
+                defaultMessage: 'User avatar',
               })}
             />
           ) : (
-            <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
+            <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-100">
               <svg
                 className="h-full w-full text-slate-300"
                 fill="currentColor"
@@ -33,10 +33,10 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
           )}
         </>
         <div className="ml-3">
-          <p className="text-base font-medium text-gray-700 group-hover:text-slate-900">
+          <p className="text-base font-medium text-slate-700 group-hover:text-slate-900">
             {username}
           </p>
-          <p className="text-sm font-medium text-slate-500 group-hover:text-gray-700">
+          <p className="text-sm font-medium text-slate-500 group-hover:text-slate-700">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',

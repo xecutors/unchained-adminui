@@ -67,9 +67,9 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             <span className="ml-4 flex flex-shrink-0 items-start space-x-4" />
           </div>
 
-          <div className="mt-1 rounded-md border-gray-200 bg-white pt-5 shadow lg:col-span-2">
-            <div className="px-6">
-              <div className="py-2 sm:grid sm:gap-1">
+          <div className="mt-1 rounded-md border-slate-200 bg-white pt-5 shadow lg:col-span-2">
+            <div className="px-6 space-y-4">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="username"
@@ -85,7 +85,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
 
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <EmailField
                   className="mt-0 w-full"
                   name="email"
@@ -101,7 +101,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
 
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <PasswordField
                   className="mt-0 w-full"
                   name="password"
@@ -112,7 +112,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   })}
                 />
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="displayName"
@@ -127,7 +127,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
 
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <SelectField
                   className="mt-0 w-full"
                   label={formatMessage({
@@ -151,7 +151,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   }}
                 />
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <DatePickerField
                   label={formatMessage({
                     id: 'birthday',
@@ -165,7 +165,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   name="birthday"
                 />
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="phoneMobile"
@@ -180,7 +180,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
             </div>
-            <div className="bg-slate-50 sm:px-15 mt-5">
+            <div className="border-t-indigo-50 border-t bg-slate-50 sm:px-15 mt-5">
               <SaveAndCancelButtons className="justify-end" onCancel={back} />
             </div>
           </div>
@@ -206,8 +206,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           </div>
 
           <div className="rounded-md bg-white pt-5 mb-5 shadow lg:col-span-2">
-            <div className="px-5">
-              <div className="py-2 sm:grid sm:gap-1">
+            <div className="px-5 space-y-4">
+              <div>
                 <div className="mt-1 flex text-sm text-slate-900 sm:mt-0">
                   <div className="flex w-full">
                     <TextField
@@ -238,7 +238,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   </div>
                 </div>
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="company"
@@ -252,7 +252,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   })}
                 />
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="addressLine"
@@ -266,7 +266,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   })}
                 />
               </div>
-              <div className="py-2 sm:grid sm:gap-1">
+              <div>
                 <TextField
                   className="mt-0 w-full"
                   name="addressLine2"
@@ -281,8 +281,8 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-                <div className="py-2 sm:grid sm:gap-1">
+              <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 space-y-4 sm:space-y-0">
+                <div>
                   <TextField
                     className="mt-0 w-full"
                     name="regionCode"
@@ -297,7 +297,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                   />
                 </div>
 
-                <div className="py-2 sm:grid sm:gap-1">
+                <div>
                   <TextField
                     className="mt-0 w-full"
                     name="postalCode"
@@ -311,7 +311,9 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     })}
                   />
                 </div>
-                <div className="py-2 sm:grid sm:gap-1">
+              </div>
+              <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 space-y-4 sm:space-y-0">
+                <div>
                   <TextField
                     className="mt-0 w-full"
                     name="city"
@@ -325,7 +327,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                     })}
                   />
                 </div>
-                <div className="py-2 sm:grid sm:gap-1">
+                <div>
                   <TextField
                     className="mt-0 w-full"
                     name="countryCode"

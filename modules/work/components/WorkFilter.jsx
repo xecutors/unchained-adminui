@@ -140,7 +140,7 @@ const WorkFilter = ({ workTypes = [] }) => {
           </div>
         </div>
       </div>
-      <hr className="my-4 hidden w-full bg-gray-200  sm:block" />
+      <hr className="my-4 hidden w-full bg-slate-200 sm:block" />
 
       <div>
         <p className="mt-0 text-xl font-medium leading-5 text-slate-800 lg:gap-7 lg:leading-6 ">

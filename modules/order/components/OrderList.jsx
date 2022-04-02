@@ -6,7 +6,7 @@ const OrderList = ({ orders, showUser }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <Table className="min-w-full">
+    <Table>
       {(orders || [])?.map((order) => (
         <Table.Row key={order._id} header>
           <Table.Cell>
@@ -48,7 +48,7 @@ const OrderList = ({ orders, showUser }) => {
         </Table.Row>
       ))}
       {(orders || [])?.map((order) => (
-        <OrderListItem key={`${order?._id}-body`} order={order} showUser />
+        <OrderListItem key={`${order?._id}-body`} order={order} />
       ))}
     </Table>
   );

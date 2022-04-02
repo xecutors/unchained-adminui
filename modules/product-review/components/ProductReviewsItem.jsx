@@ -58,7 +58,7 @@ const ProductReviewsItem = ({ review }) => {
           'border-2 border-solid border-red-200': review.deleted,
         },
         {
-          'border-2 border-solid border-gray-200': !review.deleted,
+          'border-2 border-solid border-slate-200': !review.deleted,
         },
       )}
     >
@@ -75,16 +75,16 @@ const ProductReviewsItem = ({ review }) => {
           <h4 className="text-sm font-bold text-slate-900">
             {review?.author?.username}
           </h4>
-          <p className="text-sm font-normal text-gray-400">
+          <p className="text-sm font-normal text-slate-400">
             <time dateTime={review.datetime}>
               {formatDateTime(review.updated || review.created)}
             </time>
           </p>
         </div>
         <div className="flex items-center">
-          <ThumbUpIcon className="h-7 w-7 text-gray-400" />
+          <ThumbUpIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.upVote}</span>
-          <ThumbDownIcon className="h-7 w-7 text-gray-400" />
+          <ThumbDownIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.downVote}</span>
         </div>
         {!review.deleted ? (

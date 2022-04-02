@@ -57,7 +57,7 @@ const SideNav = ({ navigation }) => {
                     <svg
                       className={classNames(
                         open ? 'rotate-90 text-indigo-400' : 'text-indigo-300',
-                        'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400',
+                        'ml-3 h-5 w-5 flex-shrink-0 transform transition-colors duration-150 ease-in-out group-hover:text-slate-400',
                       )}
                       viewBox="0 0 20 20"
                       aria-hidden="true"

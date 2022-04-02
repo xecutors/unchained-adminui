@@ -11,9 +11,8 @@ const CreateDeliveryProviderMutation = gql`
 `;
 
 const useCreateDeliveryProvider = () => {
-  const [createDeliveryProviderMutation] = useMutation(
-    CreateDeliveryProviderMutation,
-  );
+  const [createDeliveryProviderMutation, { data, error, loading }] =
+    useMutation(CreateDeliveryProviderMutation);
 
   const createDeliveryProvider = async ({ adapterKey, type }) => {
     return createDeliveryProviderMutation({
@@ -22,8 +21,13 @@ const useCreateDeliveryProvider = () => {
     });
   };
 
+  const newDeliveryProvider = data?.createDeliveryProvider;
+
   return {
     createDeliveryProvider,
+    newDeliveryProvider,
+    loading,
+    error,
   };
 };
 

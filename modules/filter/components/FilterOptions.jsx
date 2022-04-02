@@ -58,7 +58,7 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
                 })}
               </button>
             </div>
-            <div className="col-span-2 ml-auto mt-8 w-full border-gray-200 bg-white p-3  sm:mt-0 lg:shadow-md">
+            <div className="col-span-2 ml-auto mt-8 w-full border-slate-200 bg-white p-3  sm:mt-0 lg:shadow-md">
               <FilterOptionsList
                 filterId={filterId}
                 options={filterOptions}

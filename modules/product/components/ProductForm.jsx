@@ -47,7 +47,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Name',
           })}
           required
-          className="block w-full max-w-full rounded-md border-gray-200 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full max-w-full rounded-md border-slate-200 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
         <div className="my-5 flex items-center">

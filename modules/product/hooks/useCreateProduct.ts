@@ -4,12 +4,18 @@ const CreateProductMutation = gql`
   mutation CreateProduct($product: CreateProductInput!) {
     createProduct(product: $product) {
       _id
+      texts {
+        _id
+        slug
+      }
     }
   }
 `;
 
 const useCreateProduct = () => {
-  const [createProductMutation] = useMutation(CreateProductMutation);
+  const [createProductMutation, { data, error, loading }] = useMutation(
+    CreateProductMutation,
+  );
 
   const createProduct = async ({ type, title, tags }) => {
     return createProductMutation({
@@ -17,9 +23,12 @@ const useCreateProduct = () => {
       refetchQueries: ['Products'],
     });
   };
-
+  const newProduct = data?.createProduct;
   return {
     createProduct,
+    newProduct,
+    error,
+    loading,
   };
 };
 

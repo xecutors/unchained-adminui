@@ -24,7 +24,8 @@ const CreateUserMutation = gql`
 `;
 
 const useCreateUser = () => {
-  const [createUserMutation, { data, error }] = useMutation(CreateUserMutation);
+  const [createUserMutation, { data, error, loading }] =
+    useMutation(CreateUserMutation);
 
   const createUser = async ({
     username,
@@ -50,11 +51,13 @@ const useCreateUser = () => {
       refetchQueries: ['Users'],
     });
   };
+  const newUser = data?.createUser;
 
   return {
     createUser,
-    data,
+    newUser,
     error,
+    loading,
   };
 };
 

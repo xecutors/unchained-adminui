@@ -14,7 +14,7 @@ const SyncReportList = ({ data }) => {
           })}
         />
       )}
-      <ul className="divide-y divide-gray-200">
+      <ul className="divide-y divide-slate-200">
         {(data || []).map((r) => (
           <SyncReportListItem key={r._id} data={r} />
         ))}

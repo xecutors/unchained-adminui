@@ -11,7 +11,7 @@ const CreatePaymentProviderMutation = gql`
 `;
 
 const useCreatePaymentProvider = () => {
-  const [createPaymentProviderMutation] = useMutation(
+  const [createPaymentProviderMutation, { data, loading, error }] = useMutation(
     CreatePaymentProviderMutation,
   );
 
@@ -21,9 +21,12 @@ const useCreatePaymentProvider = () => {
       refetchQueries: ['PaymentProviders', 'PaymentProvider'],
     });
   };
-
+  const newPaymentProvider = data?.createPaymentProvider;
   return {
     createPaymentProvider,
+    newPaymentProvider,
+    loading,
+    error,
   };
 };
 

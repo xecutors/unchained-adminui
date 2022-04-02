@@ -460,12 +460,12 @@ export const ColorLookupTable = {
     text: {
       50: 'text-slate-50',
       100: 'text-slate-100',
-      200: 'text-gray-200',
+      200: 'text-slate-200',
       300: 'text-slate-300',
-      400: 'text-gray-400',
+      400: 'text-slate-400',
       500: 'text-slate-500',
       600: 'text-slate-600',
-      700: 'text-gray-700',
+      700: 'text-slate-700',
       800: 'text-slate-800',
       900: 'text-slate-900',
     },
@@ -556,4 +556,11 @@ export const ORDER_STATUSES = {
   CONFIRMED: 'lime',
   FULLFILLED: 'green',
   REJECTED: 'red',
+};
+
+export const ENROLLMENT_STATUS = {
+  INITIAL: 'orange',
+  PAUSED: 'yellow',
+  TERMINATED: 'red',
+  ACTIVE: 'green',
 };

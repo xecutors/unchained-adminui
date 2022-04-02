@@ -129,9 +129,9 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
     },
   ];
   return (
-    <div className="my-8 flex w-full min-w-full flex-row flex-nowrap divide-y divide-gray-200 overflow-hidden rounded-lg shadow sm:bg-white">
+    <div className="my-8 flex w-full min-w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden rounded-lg shadow sm:bg-white">
       {paymentCredentialss?.length ? (
-        <ul className="my-5 px-7 w-full  divide-y divide-gray-200">
+        <ul className="-my-5 divide-y w-full divide-slate-200">
           {(paymentCredentialss || []).map(
             ({
               _id: paymentCredentialsId,
@@ -142,14 +142,13 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
               <li className="py-4" key={paymentCredentialsId}>
                 <div className=" flex items-center space-x-4">
                   <div className="min-w-0 flex-1">
-                    
-                    <Link href={`/payment-provider/${ paymentProvider._id}`}>
-                    <a className="truncate text-sm font-medium text-blue-600">
-                      {getInterfaceLabel(paymentProvider.interface)}
-                    </a>
+                    <Link href={`/payment-provider/${paymentProvider._id}`}>
+                      <a className="truncate text-sm font-medium text-blue-600">
+                        {getInterfaceLabel(paymentProvider.interface)}
+                      </a>
                     </Link>
-                      </div>
-                      <div>
+                  </div>
+                  <div>
                     {isPreferred && (
                       <p className="truncate text-sm text-slate-500">
                         <Badge
@@ -162,8 +161,8 @@ const PaymentCredentialsView = ({ paymentCredentials }) => {
                         />
                       </p>
                     )}
-                       </div>
-                       <div>
+                  </div>
+                  <div>
                     {isValid ? (
                       <Badge
                         text={formatMessage({

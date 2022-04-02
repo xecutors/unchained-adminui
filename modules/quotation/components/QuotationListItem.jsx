@@ -14,29 +14,23 @@ const QUOTATION_STATUS = {
   FULLFILLED: 'green',
 };
 
-const QuotationListItem = ({ quotation , showUser}) => {
+const QuotationListItem = ({ quotation, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
-    <Table.Row>
+    <Table.Row className="text-sm text-slate-900">
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          <Link href={`/quotations/${quotation._id}`}>
-            <a className="text-blue-600">
-              {quotation?.orderNumber || quotation._id?.substr(0, 10)}
-            </a>
-          </Link>
-        </div>
+        <Link href={`/quotations/${quotation._id}`}>
+          <a className="text-blue-600">
+            {quotation?.orderNumber || quotation._id?.substr(0, 10)}
+          </a>
+        </Link>
       </Table.Cell>
 
-      <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {formatDateTime(quotation.created)}
-        </div>
-      </Table.Cell>
+      <Table.Cell>{formatDateTime(quotation.created)}</Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div>
           {quotation.expires ? formatDateTime(quotation?.expires) : 'n/a'}
 
           {!quotation.isExpired && (
@@ -51,37 +45,35 @@ const QuotationListItem = ({ quotation , showUser}) => {
           )}
         </div>
       </Table.Cell>
-      {showUser && enrollment.user && (
-      <Table.Cell>
-        <Link href={`/users/${quotation.user._id}`}>
-          <a className="flex text-blue-500">
-            <Image
-              loader={defaultNextImageLoader}
-              src={quotation.user?.avatar?.url}
-              width={40}
-              height={20}
-            />
-            <span className="ml-2 self-end">{quotation.user?.username}</span>
-          </a>
-        </Link>
-      </Table.Cell>
-    )}
-      <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          <Link href={`/products/${quotation.product._id}`}>
-            <a className="flex text-blue-600">
+      {showUser && quotation.user && (
+        <Table.Cell>
+          <Link href={`/users/${quotation.user._id}`}>
+            <a className="flex text-blue-500">
               <Image
                 loader={defaultNextImageLoader}
-                src={quotation.product?.media?.file.url}
+                src={quotation.user?.avatar?.url}
                 width={40}
                 height={20}
               />
-              <span className="ml-2 self-end">
-                {quotation?.product.texts.title}
-              </span>
+              <span className="ml-2 self-end">{quotation.user?.username}</span>
             </a>
           </Link>
-        </div>
+        </Table.Cell>
+      )}
+      <Table.Cell>
+        <Link href={`/products/${quotation.product._id}`}>
+          <a className="flex text-blue-600">
+            <Image
+              loader={defaultNextImageLoader}
+              src={quotation.product?.media?.file.url}
+              width={40}
+              height={20}
+            />
+            <span className="ml-2 self-end">
+              {quotation?.product.texts.title}
+            </span>
+          </a>
+        </Link>
       </Table.Cell>
 
       <Table.Cell>
