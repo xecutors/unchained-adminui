@@ -17,7 +17,9 @@ const flatten = (obj, path = '') => {
       return [...carry, [`${path}${key}`, value]];
     }
 
-    const subentries = Object.entries(flatten(value, `${path}${key}.`));
+    const subentries = Object.entries(
+      flatten(Object.assign({}, ...value), `${path}${key}.`),
+    );
     return [...subentries, ...carry];
   }, []);
 
@@ -59,9 +61,7 @@ const FormErrors = () => {
 
   const fieldErrors = formik.errors;
 
-  const show =
-    submitError ||
-    (formik.submitCount > 0 && !!Object.keys(fieldErrors).length);
+  const show = submitError || !!Object.keys(fieldErrors).length;
 
   return (
     show && (

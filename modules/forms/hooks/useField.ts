@@ -66,13 +66,12 @@ const useField = (props: FieldHookProps): ComputedProps => {
     required && validateRequired,
   ].filter(Boolean);
 
-  const validate = (value) =>
-    combinedValidators.reduce(
+  const validate = (value) => {
+    return combinedValidators.reduce(
       (acc: string, { isValid, intlMessageDescriptor, intlMessageValues }) => {
         if (acc) return acc;
 
         // Do not run validators if field is not required
-        if (!required && !value) return acc;
 
         if (!isValid(value))
           return (
@@ -86,6 +85,7 @@ const useField = (props: FieldHookProps): ComputedProps => {
       },
       '',
     );
+  };
 
   const [field, meta, helpers] = useFormikField({
     name,
