@@ -52,7 +52,7 @@ const CommerceForm = ({ productId }) => {
       pricing: [
         ...(catalogPrices || [
           {
-            maxQuantity: null,
+            maxQuantity: '',
             amount: null,
             isTaxable: false,
             isNetPrice: false,
@@ -276,7 +276,7 @@ const CommerceForm = ({ productId }) => {
                       variant="outlined"
                       onClick={() =>
                         push({
-                          maxQuantity: null,
+                          maxQuantity: '',
                           amount: null,
                           isTaxable: false,
                           isNetPrice: false,

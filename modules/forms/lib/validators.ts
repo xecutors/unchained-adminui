@@ -169,21 +169,12 @@ export const validateProductCommerce = (currentIndex, values): Validator => {
       const others = values.filter((_, index) => index !== currentIndex);
 
       const isSame = others.every(
-        ({
-          maxQuantity,
-          amount,
-          isNetPrice,
-          isTaxable,
-          countryCode,
-          currencyCode,
-        }) => {
+        ({ maxQuantity, amount, countryCode, currencyCode }) => {
           return (
             maxQuantity !== current?.maxQuantity ||
             amount !== current?.amount ||
             countryCode !== current?.countryCode ||
-            currencyCode !== current?.currencyCode ||
-            isNetPrice !== current?.isNetPrice ||
-            isTaxable !== current?.isTaxable
+            currencyCode !== current?.currencyCode
           );
         },
       );

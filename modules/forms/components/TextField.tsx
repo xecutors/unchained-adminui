@@ -17,6 +17,7 @@ const TextField = ({
 }: TextFieldProps) => {
   const field = useField({
     validators: [...validators, maxLength && validateMaxLength(maxLength)],
+
     ...props,
   });
 
