@@ -174,7 +174,7 @@ const OrderDetail = ({ order }) => {
         })}
       </div>
       <div>
-        <OrderDetailDelivery delivery={order?.delivery} />
+        <OrderDetailDelivery order={order} />
       </div>
       <div>
         <OrderDetailPayment order={order} />

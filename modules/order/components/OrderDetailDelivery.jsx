@@ -1,31 +1,48 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
+import { PlusIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify';
 import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import useDeliveryProviderTypes from '../../delivery-provider/hooks/useDeliveryProviderTypes';
 import useDeliveryStatusTypes from '../../delivery-provider/hooks/useDeliveryStatusTypes';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import AlertMessage from '../../modal/components/AlertMessage';
+import useModal from '../../modal/hooks/useModal';
+import useDeliverOrder from '../hooks/useDeliverOrder';
+import StatusInformation from '../../common/components/StatusInformation';
 
-const OrderDetailDelivery = ({ delivery }) => {
+const OrderDetailDelivery = ({ order }) => {
   const { deliveryProviderType } = useDeliveryProviderTypes();
-
+  const { setModal } = useModal();
   const { deliveryStatusType } = useDeliveryStatusTypes();
+  const { deliverOrder } = useDeliverOrder();
   const { formatPrice } = useFormatPrice();
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
-  const StatusInformation = ({ enumType, currentType, label }) => {
-    return (
-      <span
-        title={label}
-        className={`${
-          currentType === enumType
-            ? 'border-indigo-200 bg-indigo-100 text-indigo-800'
-            : 'opacity-10'
-        } mr-2 inline-flex items-center rounded-md border border-slate-300 bg-white px-2 py-1 text-sm `}
-      >
-        {enumType}
-      </span>
+  const markAsDelivered = async () => {
+    await setModal(
+      <AlertMessage
+        buttonText={formatMessage({
+          id: 'delivered',
+          defaultMessage: 'Delivered',
+        })}
+        headerText={formatMessage({
+          id: 'mark_as_delivered_question',
+          defaultMessage: 'Mark as delivered ?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await deliverOrder({ orderId: order._id });
+          toast.success(
+            formatMessage({
+              id: 'order__marked_delivered',
+              defaultMessage: 'Order marked as delivered successfully',
+            }),
+          );
+        }}
+      />,
     );
   };
 
@@ -38,21 +55,21 @@ const OrderDetailDelivery = ({ delivery }) => {
             defaultMessage: 'Delivery',
           })}
         </h2>
-        {delivery?.delivered ? (
+        {order?.delivery?.delivered ? (
           <span className="font-medium">
-            {formatDateTime(delivery?.delivered)}
+            {formatDateTime(order?.delivery?.delivered)}
           </span>
         ) : null}
       </div>
       <div className="border-t border-indigo-50 px-4 py-4 sm:px-6">
         <span className="mb-5 block">
-          <Link href={`/delivery-provider/${delivery.provider._id}`}>
+          <Link href={`/delivery-provider/${order?.delivery.provider._id}`}>
             <a className="font-medium text-blue-600 hover:text-blue-500">
-              {getInterfaceLabel(delivery?.provider?.interface)}
+              {getInterfaceLabel(order?.delivery?.provider?.interface)}
             </a>
           </Link>
         </span>
-        {delivery.fee ? (
+        {order?.delivery?.fee ? (
           <>
             <div className="text-sm font-medium text-slate-500">
               {formatMessage({
@@ -61,7 +78,7 @@ const OrderDetailDelivery = ({ delivery }) => {
               })}
             </div>
             <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-              {formatPrice(delivery.fee)}
+              {formatPrice(order?.delivery.fee)}
             </span>
           </>
         ) : null}
@@ -76,7 +93,7 @@ const OrderDetailDelivery = ({ delivery }) => {
             <StatusInformation
               key={type.value}
               enumType={type.value}
-              currentType={delivery?.provider?.type}
+              currentType={order?.delivery?.provider?.type}
               label={type.label}
             />
           ))}
@@ -93,8 +110,26 @@ const OrderDetailDelivery = ({ delivery }) => {
             <StatusInformation
               key={type.value}
               enumType={type.value}
-              currentType={delivery?.status}
+              currentType={order?.delivery?.status}
               label={type.label}
+              component={
+                order?.delivery?.status === 'OPEN' &&
+                type.value === 'DELIVERED' && (
+                  <button
+                    type="button"
+                    onClick={markAsDelivered}
+                    className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                  >
+                    <span className="mr-1">
+                      <PlusIcon className="inline-block h-3 w-3 text-white" />
+                    </span>
+                    {formatMessage({
+                      id: 'mark_as_delivered',
+                      defaultMessage: 'Mark as delivered',
+                    })}
+                  </button>
+                )
+              }
             />
           ))}
         </span>

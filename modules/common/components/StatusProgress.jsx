@@ -7,7 +7,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
-  const { content } = timeline[data.status];
+  const { content, id: currentId } = timeline[data.status];
 
   const status = statusTypes.filter(({ value }) => timeline[value]?.visible);
 
@@ -21,9 +21,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 {index !== status.length - 1 ? (
                   <span
                     className={classNames(
-                      timeline[data.status].id > index + 1
-                        ? 'bg-indigo-500'
-                        : 'bg-slate-200',
+                      currentId > index + 1 ? 'bg-indigo-500' : 'bg-slate-200',
                       'absolute top-2.5 left-2.5 -ml-px h-full w-0.5',
                     )}
                     aria-hidden="true"
@@ -33,13 +31,11 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <div>
                     <span
                       className={classNames(
-                        timeline[data.status].id > index
-                          ? 'bg-indigo-500'
-                          : 'bg-slate-600',
+                        currentId > index ? 'bg-indigo-500' : 'bg-slate-600',
                         'flex h-5 w-5 items-center justify-center rounded-full',
                       )}
                     >
-                      {timeline[data.status].id > index ? (
+                      {currentId > index ? (
                         <CheckIcon
                           className="h-5 w-5 text-white"
                           aria-hidden="true"
@@ -57,7 +53,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                         </span>
                       </p>
                     </div>
-                    {timeline[data.status].id >= timeline[value].id ? (
+                    {currentId >= timeline[value].id ? (
                       <div className="whitespace-nowrap text-right text-sm text-slate-500">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
@@ -85,7 +81,9 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           </span>
           <span>
             &nbsp;on&nbsp;
-            {data[content] ? formatDateTime(data[content]) : `In the cart`}
+            {data[content]
+              ? formatDateTime(data[content])
+              : formatMessage({ id: 'in_cart', defaultMessage: 'In cart' })}
           </span>
         </p>
         <div className="mt-2" aria-hidden="true">
@@ -95,7 +93,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 <div className="relative mb-4 mr-1">
                   <span
                     className={classNames(
-                      timeline[data.status].id >= timeline[value].id
+                      currentId >= timeline[value].id
                         ? 'bg-indigo-400'
                         : 'bg-slate-200',
                       'absolute top-0 left-0 -ml-px h-2 w-full',
@@ -105,7 +103,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                 </div>
                 <div
                   className={classNames(
-                    timeline[data.status].id >= timeline[value].id
+                    currentId >= timeline[value].id
                       ? 'text-indigo-600'
                       : 'text-slate-600',
                     'text-center',
@@ -117,7 +115,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       : value}
                   </span>
                   <span className="block text-slate-900">
-                    {timeline[data.status].id >= timeline[value].id
+                    {currentId >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           month: 'short',
                           day: 'numeric',

@@ -10,6 +10,7 @@ import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import usePaymentProviderTypes from '../../payment-providers/hooks/usePaymentProviderTypes';
 import usePaymentStatusTypes from '../../payment-providers/hooks/usePaymentStatusTypes';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import StatusInformation from '../../common/components/StatusInformation';
 
 const OrderDetailPayment = ({ order }) => {
   const { paymentProviderType } = usePaymentProviderTypes();
@@ -21,7 +22,7 @@ const OrderDetailPayment = ({ order }) => {
   const { setModal } = useModal();
   const { payOrder } = usePayOrder();
 
-  const handleOnClick = async () => {
+  const markAsPaid = async () => {
     await setModal(
       <AlertMessage
         buttonText={formatMessage({
@@ -29,37 +30,20 @@ const OrderDetailPayment = ({ order }) => {
           defaultMessage: 'PAY',
         })}
         headerText={formatMessage({
-          id: 'payment',
-          defaultMessage: 'Payment',
+          id: 'mark_as_paid_question',
+          defaultMessage: 'Mark as paid ?',
         })}
         onOkClick={async () => {
           setModal('');
           await payOrder({ orderId: order._id });
           toast.success(
             formatMessage({
-              id: 'order_payed',
+              id: 'order_paid',
               defaultMessage: 'Order payed successfully',
             }),
           );
         }}
       />,
-    );
-  };
-
-  const StatusInformation = ({ enumType, currentType, label, component }) => {
-    return (
-      component || (
-        <span
-          title={label}
-          className={`${
-            currentType === enumType
-              ? 'border-indigo-200 bg-indigo-100 text-indigo-800'
-              : 'opacity-10'
-          } mr-2 inline-flex items-center rounded-md border border-slate-300 bg-white px-2 py-1 text-sm`}
-        >
-          {enumType}
-        </span>
-      )
     );
   };
 
@@ -134,7 +118,7 @@ const OrderDetailPayment = ({ order }) => {
                 type.value === 'PAID' && (
                   <button
                     type="button"
-                    onClick={handleOnClick}
+                    onClick={markAsPaid}
                     className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                   >
                     <span className="mr-1">
