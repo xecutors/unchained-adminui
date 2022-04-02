@@ -169,10 +169,9 @@ export const validateProductCommerce = (currentIndex, values): Validator => {
       const others = values.filter((_, index) => index !== currentIndex);
 
       const isSame = others.every(
-        ({ maxQuantity, amount, countryCode, currencyCode }) => {
+        ({ maxQuantity, countryCode, currencyCode }) => {
           return (
             maxQuantity !== current?.maxQuantity ||
-            amount !== current?.amount ||
             countryCode !== current?.countryCode ||
             currencyCode !== current?.currencyCode
           );
@@ -183,7 +182,8 @@ export const validateProductCommerce = (currentIndex, values): Validator => {
 
     intlMessageDescriptor: {
       id: 'error_same_product_prices',
-      defaultMessage: '{label} can not have same values',
+      defaultMessage:
+        '{label} can not be equal for a price with the same country and currency',
     },
   };
 };
