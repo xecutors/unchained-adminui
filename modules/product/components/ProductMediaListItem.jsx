@@ -4,7 +4,7 @@ import MediaListItem from '../../common/components/MediaListItem';
 import useTranslatedProductMediaTexts from '../hooks/useTranslatedProductMediaTexts';
 import useUpdateProductMediaTexts from '../hooks/useUpdateProductMediaTexts';
 
-const ProductMediaListItem = ({ media, onDelete, locale }) => {
+const ProductMediaListItem = ({ media, onDelete, locale, index }) => {
   const { updateProductMediaTexts } = useUpdateProductMediaTexts();
   const [isEditing, setIsEditing] = useState(false);
   const { translatedMediaTexts } = useTranslatedProductMediaTexts({
@@ -34,6 +34,7 @@ const ProductMediaListItem = ({ media, onDelete, locale }) => {
       onDelete={onDelete}
       onEdit={setIsEditing}
       onUpdate={onUpdateMediaText}
+      index={index}
     />
   );
 };

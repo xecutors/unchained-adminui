@@ -3,7 +3,7 @@ import MediaListItem from '../../common/components/MediaListItem';
 import useTranslatedAssortmentMediaTexts from '../hooks/useTranslatedAssortmentMediaTexts';
 import useUpdateAssortmentMediaTexts from '../hooks/useUpdateAssortmentMediaTexts';
 
-const AssortmentMediaListItem = ({ media, onDelete, locale }) => {
+const AssortmentMediaListItem = ({ media, onDelete, locale, index }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { updateAssortmentMediaTexts } = useUpdateAssortmentMediaTexts();
   const { translatedAssortmentMediaTexts } = useTranslatedAssortmentMediaTexts({
@@ -35,6 +35,7 @@ const AssortmentMediaListItem = ({ media, onDelete, locale }) => {
       onDelete={onDelete}
       onEdit={setIsEditing}
       onUpdate={onUpdateMediaText}
+      index={index}
     />
   );
 };

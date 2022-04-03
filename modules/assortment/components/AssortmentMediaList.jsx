@@ -1,12 +1,23 @@
 import { useIntl } from 'react-intl';
+import { Droppable } from 'react-beautiful-dnd';
+import { useState } from 'react';
+import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
 
 const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   return (
-    <div className="rounded bg-white p-5 lg:col-span-6 sm:p-0">
+    <div
+      className={classNames(
+        'rounded bg-white p-5 lg:col-span-6 transition-[background-color] ease-in-out delay-200',
+        {
+          'bg-slate-100': isDraggingOver,
+        },
+      )}
+    >
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
@@ -16,25 +27,36 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root">
-          <ul className="space-y-4 divide-y divide-slate-200">
-            {medias.length ? (
-              medias.map((media) => (
-                <AssortmentMediaListItem
-                  key={media._id}
-                  media={media}
-                  locale={selectedLocale}
-                  onDelete={onDeleteMedia}
-                />
-              ))
-            ) : (
-              <NoData
-                message={formatMessage({
-                  id: 'media_message',
-                  defaultMessage: 'Media',
-                })}
-              />
+          <Droppable droppableId="product-media">
+            {(provided, snapshot) => (
+              <ul
+                key={Date.now()}
+                className="space-y-4"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {setIsDraggingOver(snapshot.isDraggingOver)}
+                {medias.length ? (
+                  medias.map((media, index) => (
+                    <AssortmentMediaListItem
+                      key={media._id}
+                      media={media}
+                      locale={selectedLocale}
+                      onDelete={onDeleteMedia}
+                      index={index}
+                    />
+                  ))
+                ) : (
+                  <NoData
+                    message={formatMessage({
+                      id: 'media_message',
+                      defaultMessage: 'Media',
+                    })}
+                  />
+                )}
+              </ul>
             )}
-          </ul>
+          </Droppable>
         </div>
       </div>
     </div>

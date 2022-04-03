@@ -1,5 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { Source } from 'graphql';
 import MediaUploader from '../../common/components/MediaUploader';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -8,6 +10,7 @@ import useProductMedia from '../hooks/useProductMedia';
 import useRemoveProductMedia from '../hooks/useRemoveProductMedia';
 
 import ProductMediaList from './ProductMediaList';
+import useReOrderProductMedia from '../hooks/useReOrderProductMedia';
 
 const ProductMediaForm = ({ productId, selectedLocale }) => {
   const { productMedia } = useProductMedia({ productId });
@@ -16,6 +19,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
 
   const { removeProductMedia } = useRemoveProductMedia();
   const { addProductMedia } = useAddProductMedia();
+  const { reOrderProductMedia } = useReOrderProductMedia();
 
   const onAddMedia = async (media) => {
     try {
@@ -62,17 +66,90 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
     );
   };
 
+  const handleDragEnd = async (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      toast.success(
+        formatMessage({
+          id: 'product_media_reorder_empty',
+          defaultMessage: 'Media destination is empty',
+        }),
+      );
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      toast.success(
+        formatMessage({
+          id: 'product_media_already_ordered',
+          defaultMessage: 'Media already on that order',
+        }),
+      );
+      return;
+    }
+
+    const sortKeys = productMedia.map((media) => ({
+      productMediaId: media._id,
+      sortKey: media.sortKey,
+    }));
+
+    // const [i] = sortKeys.filter((keys, index) => {
+    //   if (keys?.productMediaId === draggableId) {
+    //     return index;
+    //   }
+    //   return null;
+    // });
+
+    // const [destinationSortKey] = sortKeys.filter(
+    //   (keys) => keys?.sortKey === destination.index,
+    // );
+
+    const [removedSortKey] = sortKeys.splice(source.index, 1);
+    sortKeys.splice(destination.index, 0, removedSortKey);
+
+    // console.log(sortKeys, sourceSortKey, destinationSortKey, productMedia);
+    // sourceSortKey.sortKey = destination.index;
+    // destinationSortKey.sortKey = source.index;
+    // console.log(
+    //   productMedia,
+    //   sortKeys.sort((a, b) => a.sortKey - b.sortKey),
+    // );
+
+    try {
+      await reOrderProductMedia({ sortKeys });
+      toast.success(
+        formatMessage({
+          id: 'product_media_reorder',
+          defaultMessage: 'Media reorder successfully',
+        }),
+      );
+    } catch (error) {
+      toast.error(
+        formatMessage({
+          id: 'fail_reorder',
+          defaultMessage: 'Media reorder failed, Try again!',
+        }),
+      );
+    }
+  };
+
   return (
     <div className="mx-auto mt-5 max-w-full bg-white py-6 shadow lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded">
       <div className="mx-auto w-full px-6 sm:col-span-6 sm:col-start-1">
         <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>
 
-      <ProductMediaList
-        medias={productMedia}
-        selectedLocale={selectedLocale}
-        onDeleteMedia={onRemoveMedia}
-      />
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <ProductMediaList
+          medias={productMedia}
+          selectedLocale={selectedLocale}
+          onDeleteMedia={onRemoveMedia}
+        />
+      </DragDropContext>
     </div>
   );
 };
