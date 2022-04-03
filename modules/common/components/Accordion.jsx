@@ -2,7 +2,13 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { useState } from 'react';
 
-const Accordion = ({ data, containerCSS, headerCSS, bodyCSS }) => {
+const Accordion = ({
+  data,
+  containerCSS,
+  headerCSS,
+  bodyCSS,
+  itemContainerCSS,
+}) => {
   return (
     <div className={classNames('my-3', containerCSS)}>
       {data.map(({ header, body }, key) => (
@@ -13,16 +19,23 @@ const Accordion = ({ data, containerCSS, headerCSS, bodyCSS }) => {
           key={key}
           headerCSS={headerCSS}
           bodyCSS={bodyCSS}
+          itemContainerCSS={itemContainerCSS}
         />
       ))}
     </div>
   );
 };
 
-const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
+const AccordionItem = ({
+  header,
+  body,
+  headerCSS,
+  bodyCSS,
+  itemContainerCSS,
+}) => {
   const [show, setShow] = useState(false);
   return (
-    <div className="mt-3">
+    <div className={classNames('mt-3', itemContainerCSS)}>
       <button
         type="button"
         onClick={() => setShow(!show)}
