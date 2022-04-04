@@ -27,7 +27,7 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root">
-          <Droppable droppableId="product-media">
+          <Droppable droppableId="assortment-media">
             {(provided, snapshot) => (
               <ul
                 key={Date.now()}

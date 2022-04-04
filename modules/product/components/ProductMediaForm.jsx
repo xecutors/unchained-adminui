@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { Source } from 'graphql';
 import MediaUploader from '../../common/components/MediaUploader';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -67,7 +66,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   };
 
   const handleDragEnd = async (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
 
     if (!destination) {
       toast.success(
@@ -92,32 +91,19 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       return;
     }
 
-    const sortKeys = productMedia.map((media) => ({
+    const sortKeys = productMedia.map((media, index) => ({
       productMediaId: media._id,
-      sortKey: media.sortKey,
+      sortKey: index,
     }));
-
-    // const [i] = sortKeys.filter((keys, index) => {
-    //   if (keys?.productMediaId === draggableId) {
-    //     return index;
-    //   }
-    //   return null;
-    // });
-
-    // const [destinationSortKey] = sortKeys.filter(
-    //   (keys) => keys?.sortKey === destination.index,
-    // );
 
     const [removedSortKey] = sortKeys.splice(source.index, 1);
     sortKeys.splice(destination.index, 0, removedSortKey);
 
-    // console.log(sortKeys, sourceSortKey, destinationSortKey, productMedia);
-    // sourceSortKey.sortKey = destination.index;
-    // destinationSortKey.sortKey = source.index;
-    // console.log(
-    //   productMedia,
-    //   sortKeys.sort((a, b) => a.sortKey - b.sortKey),
-    // );
+    sortKeys.map((sk, index) => {
+      // eslint-disable-next-line no-param-reassign
+      sk.sortKey = index;
+      return sk;
+    });
 
     try {
       await reOrderProductMedia({ sortKeys });

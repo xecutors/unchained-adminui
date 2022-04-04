@@ -66,7 +66,7 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
   };
 
   const handleDragEnd = async (result) => {
-    const { destination, source, draggableId } = result;
+    const { destination, source } = result;
 
     if (!destination) {
       toast.success(
@@ -92,12 +92,18 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
     }
 
     const sortKeys = assortmentMedia.map((media) => ({
-      productMediaId: media._id,
+      assortmentMediaId: media._id,
       sortKey: media.sortKey,
     }));
 
     const [removedSortKey] = sortKeys.splice(source.index, 1);
     sortKeys.splice(destination.index, 0, removedSortKey);
+
+    sortKeys.map((sk, index) => {
+      // eslint-disable-next-line no-param-reassign
+      sk.sortKey = index;
+      return sk;
+    });
 
     try {
       await reorderAssortmentMedia({ sortKeys });
