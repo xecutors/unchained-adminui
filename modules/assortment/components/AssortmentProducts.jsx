@@ -2,8 +2,6 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { useState } from 'react';
-import classNames from 'classnames';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 
@@ -19,8 +17,6 @@ const AssortmentProducts = ({ assortmentId }) => {
 
   const { linkedProducts, loading } = useAssortmentProducts({ assortmentId });
   const { setModal } = useModal();
-
-  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const { removeAssortmentProduct } = useRemoveAssortmentProduct();
   const { reorderAssortmentProducts } = useReorderAssortmentProducts();
@@ -155,19 +151,11 @@ const AssortmentProducts = ({ assortmentId }) => {
           <Loading />
         </div>
       ) : (
-        <div
-          className={classNames(
-            'ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2',
-            {
-              'bg-slate-100': isDraggingOver,
-            },
-          )}
-        >
+        <div className="ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2">
           <DragDropContext onDragEnd={handleDragEnd}>
             <AssortmentProductList
               products={linkedProducts}
               onRemoveProduct={onRemoveProduct}
-              setIsDraggingOver={setIsDraggingOver}
             />
           </DragDropContext>
         </div>

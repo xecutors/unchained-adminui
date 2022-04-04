@@ -1,10 +1,8 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { useState } from 'react';
-import classNames from 'classnames';
-import Loading from '../../common/components/Loading';
 
+import Loading from '../../common/components/Loading';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAssortmentLinks from '../hooks/useAssortmentLinks';
@@ -20,8 +18,6 @@ const AssortmentLinks = ({ assortmentId }) => {
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
   const { reorderAssortmentLink } = useReorderAssortmentLink();
-
-  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
@@ -56,8 +52,6 @@ const AssortmentLinks = ({ assortmentId }) => {
 
   const handleDragEnd = async (result) => {
     const { destination, source } = result;
-
-    console.log(result);
 
     if (!destination) {
       toast.success(
@@ -154,14 +148,7 @@ const AssortmentLinks = ({ assortmentId }) => {
             </p>
           </div>
         </div>
-        <div
-          className={classNames(
-            'w-full bg-white py-2 px-6 shadow md:col-span-2',
-            {
-              'bg-slate-100': isDraggingOver,
-            },
-          )}
-        >
+        <div className="w-full shadow md:col-span-2 py-2 px-6 bg-white">
           {loading ? (
             <Loading />
           ) : (
@@ -170,7 +157,6 @@ const AssortmentLinks = ({ assortmentId }) => {
                 currentAssortmentId={assortmentId}
                 links={linkedAssortments || []}
                 onRemoveLink={onRemoveLink}
-                setIsDraggingOver={setIsDraggingOver}
               />
             </DragDropContext>
           )}

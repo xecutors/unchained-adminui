@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Draggable } from 'react-beautiful-dnd';
@@ -23,8 +23,6 @@ const MediaListItem = ({
 }) => {
   const { formatMessage } = useIntl();
   const { displayImageInModal } = useDisplayImageInModal();
-
-  const [isDragging, setIsDragging] = useState(false);
 
   const successMessage = formatMessage({
     id: 'media_updated',
@@ -54,10 +52,9 @@ const MediaListItem = ({
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames('flex flex-wrap gap-4 bg-white cursor-move', {
-            'bg-slate-100': isDragging,
+            'bg-slate-100': snapshot.isDragging,
           })}
         >
-          {setIsDragging(snapshot.isDragging)}
           <div className="flex-1 basis-1/3">
             <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
               <img

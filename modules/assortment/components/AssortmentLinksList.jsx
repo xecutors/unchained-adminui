@@ -1,14 +1,10 @@
 import { useIntl } from 'react-intl';
 import { Droppable } from 'react-beautiful-dnd';
+import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 import AssortmentLinksListItem from './AssortmentLinksListItem';
 
-const AssortmentLinksList = ({
-  currentAssortmentId,
-  links,
-  onRemoveLink,
-  setIsDraggingOver,
-}) => {
+const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
   const { formatMessage } = useIntl();
 
   return links.length ? (
@@ -16,11 +12,12 @@ const AssortmentLinksList = ({
       {(provided, snapshot) => (
         <span
           key={Date.now()}
-          className="space-y-4"
+          className={classNames('space-y-4 bg-white', {
+            'bg-slate-100': snapshot.isDraggingOver,
+          })}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          {setIsDraggingOver(snapshot.isDraggingOver)}
           {links.map((link, index) => {
             const { child, parent, _id } = link;
             const comp = [];

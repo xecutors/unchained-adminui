@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { Droppable } from 'react-beautiful-dnd';
-import { useState } from 'react';
 import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 
@@ -8,17 +7,9 @@ import ProductMediaListItem from './ProductMediaListItem';
 
 const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
-  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   return (
-    <div
-      className={classNames(
-        'rounded p-5 bg-white lg:col-span-6 transition-[background-color] ease-in-out delay-200',
-        {
-          'bg-slate-100': isDraggingOver,
-        },
-      )}
-    >
+    <div className="rounded lg:col-span-6">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
@@ -32,11 +23,13 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
             {(provided, snapshot) => (
               <ul
                 key={Date.now()}
-                className="space-y-4"
+                className={classNames(
+                  'space-y-4 p-5 bg-white transition-[background-color] ease-in-out delay-200',
+                  { 'bg-slate-100': snapshot.isDraggingOver },
+                )}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
-                {setIsDraggingOver(snapshot.isDraggingOver)}
                 {medias.length ? (
                   medias.map((media, index) => (
                     <ProductMediaListItem

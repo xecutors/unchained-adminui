@@ -2,8 +2,6 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import classNames from 'classnames';
-import { useState } from 'react';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAssortmentFilters from '../hooks/useAssortmentFilters';
@@ -17,8 +15,6 @@ const AssortmentFilters = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { assortmentFilters, loading } = useAssortmentFilters({ assortmentId });
   const { setModal } = useModal();
-
-  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const { removeAssortmentFilter } = useRemoveAssortmentFilter();
   const { reorderAssortmentFilters } = useReorderAssortmentFilters();
@@ -147,19 +143,11 @@ const AssortmentFilters = ({ assortmentId }) => {
           <Loading />
         </div>
       ) : (
-        <div
-          className={classNames(
-            'ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2',
-            {
-              'bg-slate-100': isDraggingOver,
-            },
-          )}
-        >
+        <div className="ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2">
           <DragDropContext onDragEnd={handleDragEnd}>
             <AssortmentFiltersList
               filters={assortmentFilters}
               onRemoveFilter={onRemoveFilter}
-              setIsDraggingOver={setIsDraggingOver}
             />
           </DragDropContext>
         </div>

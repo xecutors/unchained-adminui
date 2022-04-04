@@ -1,12 +1,9 @@
 import classNames from 'classnames';
-import { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 
 const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, i }) => {
-  const [isDragging, setIsDragging] = useState(false);
-
   return (
     <Draggable draggableId={link._id} index={i}>
       {(provided, snapshot) => (
@@ -14,7 +11,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, i }) => {
           className={classNames(
             'flex items-center justify-between border-b bg-white border-gray-200 last:border-none cursor-move',
             {
-              'bg-slate-100': isDragging,
+              'bg-slate-100': snapshot.isDragging,
             },
           )}
           key={link._id}
@@ -23,7 +20,6 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, i }) => {
           {...provided.dragHandleProps}
           draggable="true"
         >
-          {setIsDragging(snapshot.isDragging)}
           <div className="flex flex-col justify-center space-x-6 py-4">
             <div className="flex">
               <div className="flex items-center space-x-6 pr-4">

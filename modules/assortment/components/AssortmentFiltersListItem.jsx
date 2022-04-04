@@ -1,19 +1,17 @@
 import { useIntl } from 'react-intl';
 import { Draggable } from 'react-beautiful-dnd';
-
-import { useState } from 'react';
 import classNames from 'classnames';
+
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 
-const AssortmentFiltersListItem = ({ link, onDelete, i }) => {
+const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
   const { formatMessage } = useIntl();
-  const [isDragging, setIsDragging] = useState(false);
 
   const { _id, filter, tags } = link;
 
   return (
-    <Draggable draggableId={_id} index={i}>
+    <Draggable draggableId={_id} index={index}>
       {(provided, snapshot) => (
         <div
           key={_id}
@@ -24,11 +22,10 @@ const AssortmentFiltersListItem = ({ link, onDelete, i }) => {
           className={classNames(
             'flex items-center justify-between gap-4 border-b bg-white border-gray-200 last:border-none cursor-move',
             {
-              'bg-slate-100': isDragging,
+              'bg-slate-100': snapshot.isDragging,
             },
           )}
         >
-          {setIsDragging(snapshot.isDragging)}
           <div className="shrink-0 grow-0 basis-20 space-y-1 p-2">
             <Badge
               color={filter?.isActive ? 'green' : 'gray'}
