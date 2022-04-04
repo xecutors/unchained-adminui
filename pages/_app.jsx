@@ -15,7 +15,7 @@ import Layout from '../modules/common/components/Layout';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
-import SessionWrapper from './account/SessionWrapper';
+import AuthWrapper from './account/AuthWrapper';
 
 const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
   const router = useRouter();
@@ -69,9 +69,7 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
           pauseOnHover
         />
         <ModalWrapper>
-          <SessionWrapper>
-            {getLayout(<Component {...pageProps} />)}
-          </SessionWrapper>
+          <AuthWrapper>{getLayout(<Component {...pageProps} />)}</AuthWrapper>
         </ModalWrapper>
       </IntlWrapper>
     </ApolloProvider>

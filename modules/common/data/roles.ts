@@ -106,4 +106,23 @@ export const ACTION_ROLES = {
   },
 };
 
+export const ROUTE_ROLES = {
+  '/products/new': 'manageProducts',
+  '/products/[slug]': 'manageProducts',
+  '/filters/new': 'manageFilters',
+  '/filters/[filterId]': 'manageFilters',
+  '/assortments/new': 'manageAssortments',
+  '/assortments/[slug]': 'manageAssortments',
+  '/delivery-providers/[paymentProviderId]': 'manageDeliveryProviders',
+  '/payment-providers/[paymentProviderId]': 'managePaymentProviders',
+  '/warehousing-providers/[paymentProviderId]': 'manageWarehousingProviders',
+  '/currency/new': 'manageCurrencies',
+  '/country/new': 'manageCountries',
+  '/language/new': 'manageLanguages',
+  '/currency/[currencyId]': 'manageCurrencies',
+  '/country/[countryId]': 'manageCountries',
+  '/language/[languageId]': 'manageLanguages',
+  '/works/management': 'manageWorker',
+};
+
 export default ACTION_ROLES;
