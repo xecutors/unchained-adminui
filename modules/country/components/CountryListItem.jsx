@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 import {
   normalizeCountryISOCode,
   normalizeCurrencyISOCode,
@@ -12,6 +14,7 @@ import {
 
 const CountryListItem = ({ country, onRemove }) => {
   const { locale, formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -55,17 +58,21 @@ const CountryListItem = ({ country, onRemove }) => {
       </Table.Cell>
       <Table.Cell className="whitespace-nowrap">
         <div className="flex items-center">
-          <Link href={`/country/${country._id}`}>
-            <a>
-              <EditIcon />
-            </a>
-          </Link>
-          <DeleteButton
-            className="ml-1 mr-1 "
-            onClick={async () => {
-              await onRemove(country._id);
-            }}
-          />
+          {hasRole(ACTION_ROLES.country.update) && (
+            <Link href={`/country/${country._id}`}>
+              <a>
+                <EditIcon />
+              </a>
+            </Link>
+          )}
+          {hasRole(ACTION_ROLES.country.delete) && (
+            <DeleteButton
+              className="ml-1 mr-1 "
+              onClick={async () => {
+                await onRemove(country._id);
+              }}
+            />
+          )}
         </div>
       </Table.Cell>
     </Table.Row>

@@ -1,9 +1,11 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import Table from '../../common/components/Table';
 import CountryListItem from './CountryListItem';
 
 const CountryList = ({ countries, onRemoveCountry }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (
@@ -31,12 +33,14 @@ const CountryList = ({ countries, onRemoveCountry }) => {
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </Table.Cell>
-
-          <Table.Cell>
-            <span className="sr-only">
-              {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-            </span>
-          </Table.Cell>
+          {hasRole('manageCountries') && (
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
+          )}
         </Table.Row>
       ))}
 

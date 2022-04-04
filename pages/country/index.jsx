@@ -15,6 +15,8 @@ import useCountries from '../../modules/country/hooks/useCountries';
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -22,6 +24,7 @@ const Country = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
+  const { hasRole } = useCurrentRoles();
 
   const { countries, countriesCount, loading } = useCountries({
     limit,
@@ -66,7 +69,9 @@ const Country = () => {
         })}
       />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/country/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

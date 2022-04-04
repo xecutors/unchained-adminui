@@ -10,10 +10,7 @@ const CurrentUserQuery = gql`
 `;
 
 const useCurrentRoles = () => {
-  const { loading, error, data } = useQuery(CurrentUserQuery, {
-    ssr: false,
-    nextFetchPolicy: 'network-only',
-  });
+  const { loading, error, data } = useQuery(CurrentUserQuery);
 
   const roles = data?.me?.allowedActions;
 
