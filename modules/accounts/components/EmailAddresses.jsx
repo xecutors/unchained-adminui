@@ -12,6 +12,7 @@ import Badge from '../../common/components/Badge';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import useCurrentRoles from '../hooks/useCurrentRoles';
 
 const STATUS = {
   true: 'Verified',
@@ -26,6 +27,7 @@ const EmailAddresses = ({
 }) => {
   const { removeEmail } = useRemoveEmail();
   const { sendVerificationEmail } = useSendVerificationEmail();
+  const { hasRole } = useCurrentRoles();
   const { addEmail } = useAddEmail();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -105,7 +107,7 @@ const EmailAddresses = ({
                     />
                   </div>
                   <div className="my-1 flex items-center">
-                    {!enableVerification && (
+                    {hasRole('manageAccounts') && !enableVerification && (
                       <a
                         onClick={() =>
                           sendVerificationEmail({ email: address })

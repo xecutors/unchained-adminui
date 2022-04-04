@@ -16,7 +16,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
-import useCurrentUser from '../../accounts/hooks/useCurrentUser';
+
 import useShopInfo from '../hooks/useShopInfo';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
@@ -27,7 +27,8 @@ const Layout = ({
   apollo,
   router,
   pageHeader = '',
-  currentRoles,
+  allowedActions,
+  currentUser,
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
@@ -189,8 +190,6 @@ const Layout = ({
 
   const [hideNav, setHideNav] = useState(true);
 
-  const { currentUser } = useCurrentUser();
-
   return (
     <div>
       <div
@@ -252,7 +251,7 @@ const Layout = ({
             </div>
             <SideNav
               navigation={defaultNavigation}
-              currentRoles={currentRoles}
+              currentRoles={allowedActions}
             />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
@@ -278,7 +277,7 @@ const Layout = ({
             </div>
             <SideNav
               navigation={defaultNavigation}
-              currentRoles={currentRoles}
+              currentRoles={allowedActions}
             />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
