@@ -13,12 +13,14 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const PaymentProviderUpdate = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
-
+  const { hasRole } = useCurrentRoles();
   const { paymentProviderId } = query;
 
   const { updatePaymentProvider } = useUpdatePaymentProvider();
@@ -79,7 +81,9 @@ const PaymentProviderUpdate = () => {
             defaultMessage: 'Update payment provider',
           })}
         />
-        <HeaderDeleteButton onClick={handleOnClick} />
+        {hasRole(ACTION_ROLES.paymentProviders.delete) && (
+          <HeaderDeleteButton onClick={handleOnClick} />
+        )}
       </div>
       {loading ? (
         <Loading />

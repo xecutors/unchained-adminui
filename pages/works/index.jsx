@@ -10,9 +10,12 @@ import WorkFilter from '../../modules/work/components/WorkFilter';
 import WorkList from '../../modules/work/components/WorkList';
 import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const WorkQueueView = () => {
   const { query } = useRouter();
+  const { hasRole } = useCurrentRoles();
   const { formatMessage } = useIntl();
 
   const filter = {
@@ -45,7 +48,12 @@ const WorkQueueView = () => {
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-x-auto">
         <ListHeader
-          addPath="/works/management"
+          addPath={
+            (hasRole(ACTION_ROLES.work.allocateWork) ||
+              hasRole(ACTION_ROLES.work.doWork) ||
+              hasRole(ACTION_ROLES.work.add)) &&
+            '/works/management'
+          }
           addButtonText={formatMessage({
             id: 'manage',
             defaultMessage: 'Manage',

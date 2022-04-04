@@ -12,6 +12,8 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
+import useCurrentRoles from '../hooks/useCurrentRoles';
+import ACTION_ROLES from '../../common/data/roles';
 
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
@@ -20,6 +22,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
+  const { hasRole } = useCurrentRoles();
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
@@ -120,22 +123,24 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 })}
               </p>
             </div>
-            <SaveAndCancelButtons
-              showSubmit={isEdit}
-              onCancel={() => setIsEdit(!isEdit)}
-              showCancel
-              cancelText={
-                isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update_profile',
-                      defaultMessage: 'Update profile / address',
-                    })
-              }
-            />
+            {hasRole(ACTION_ROLES.users.updateProfile) && (
+              <SaveAndCancelButtons
+                showSubmit={isEdit}
+                onCancel={() => setIsEdit(!isEdit)}
+                showCancel
+                cancelText={
+                  isEdit
+                    ? formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })
+                    : formatMessage({
+                        id: 'update_profile',
+                        defaultMessage: 'Update profile / address',
+                      })
+                }
+              />
+            )}
           </div>
 
           <div className="col-span-2 ml-auto rounded-md bg-white px-6 shadow lg:w-full">
@@ -350,22 +355,24 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 })}
               </p>
             </div>
-            <SaveAndCancelButtons
-              showSubmit={isEdit}
-              onCancel={() => setIsEdit(!isEdit)}
-              showCancel
-              cancelText={
-                isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update_profile',
-                      defaultMessage: 'Update profile / address',
-                    })
-              }
-            />
+            {hasRole(ACTION_ROLES.users.updateProfile) && (
+              <SaveAndCancelButtons
+                showSubmit={isEdit}
+                onCancel={() => setIsEdit(!isEdit)}
+                showCancel
+                cancelText={
+                  isEdit
+                    ? formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })
+                    : formatMessage({
+                        id: 'update_profile',
+                        defaultMessage: 'Update profile / address',
+                      })
+                }
+              />
+            )}
           </div>
 
           <div className="col-span-2 w-full border-slate-200 bg-white px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full">

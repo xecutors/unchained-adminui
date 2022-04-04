@@ -7,7 +7,7 @@ import Badge from './Badge';
 import Button from './Button';
 import TagListForm from './TagListForm';
 
-const TagList = ({ defaultValue, onSubmit }) => {
+const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
 
@@ -32,19 +32,21 @@ const TagList = ({ defaultValue, onSubmit }) => {
           </span>
         )}
       </div>
-      <Button
-        className="h-12 w-12 rounded-full"
-        text={<PencilAltIcon className="h-5 w-5" />}
-        onClick={() =>
-          setModal(
-            <TagListForm
-              tags={defaultValue || []}
-              onCancel={() => setModal('')}
-              onSubmit={onSubmit}
-            />,
-          )
-        }
-      />
+      {enableEdit && (
+        <Button
+          className="h-12 w-12 rounded-full"
+          text={<PencilAltIcon className="h-5 w-5" />}
+          onClick={() =>
+            setModal(
+              <TagListForm
+                tags={defaultValue || []}
+                onCancel={() => setModal('')}
+                onSubmit={onSubmit}
+              />,
+            )
+          }
+        />
+      )}
     </div>
   );
 };

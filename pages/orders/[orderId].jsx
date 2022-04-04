@@ -11,12 +11,15 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveOrder from '../../modules/order/hooks/useRemoveOrder';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const OrderDetailPage = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeOrder } = useRemoveOrder();
   const { query } = useRouter();
+  const { hasRole } = useCurrentRoles();
   const { orderId } = query;
   const { order, loading } = useOrder({ orderId });
 
@@ -67,7 +70,9 @@ const OrderDetailPage = () => {
             defaultMessage: 'Order Detail',
           })}
         />
-        {order && isDeletable(order.status) ? (
+        {order &&
+        isDeletable(order.status) &&
+        hasRole(ACTION_ROLES.order.delete) ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

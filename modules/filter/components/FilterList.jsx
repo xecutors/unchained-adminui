@@ -1,9 +1,12 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 import FilterListItem from './FilterListItem';
 
 const FilterList = ({ filters, onRemoveFilter }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   return (
     <Table className="min-w-full ">
       {filters?.map((filter) => (
@@ -36,7 +39,9 @@ const FilterList = ({ filters, onRemoveFilter }) => {
               defaultMessage: 'Options',
             })}
           </Table.Cell>
-          <Table.Cell>&nbsp;</Table.Cell>
+          {hasRole(ACTION_ROLES.filters.delete) && (
+            <Table.Cell>&nbsp;</Table.Cell>
+          )}
         </Table.Row>
       ))}
       {filters?.map((filter) => (

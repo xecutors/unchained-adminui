@@ -3,9 +3,12 @@ import { toast } from 'react-toastify';
 
 import useSetUserTags from '../hooks/useSetUserTags';
 import TagList from '../../common/components/TagList';
+import useCurrentRoles from '../hooks/useCurrentRoles';
+import ACTION_ROLES from '../../common/data/roles';
 
 const UserTagsView = ({ tags: defaultTags = [], userId }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   const { setUserTags } = useSetUserTags();
 
   const tagsUpdatedMessage = formatMessage({
@@ -17,7 +20,13 @@ const UserTagsView = ({ tags: defaultTags = [], userId }) => {
     toast.success(tagsUpdatedMessage);
   };
 
-  return <TagList defaultValue={defaultTags} onSubmit={updateUserTags} />;
+  return (
+    <TagList
+      defaultValue={defaultTags}
+      onSubmit={updateUserTags}
+      enableEdit={hasRole(ACTION_ROLES.users.setUserTags)}
+    />
+  );
 };
 
 export default UserTagsView;

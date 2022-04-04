@@ -3,7 +3,13 @@ import { useIntl } from 'react-intl';
 import ProviderListItem from './ProvidersListItem';
 import Table from './Table';
 
-const ProviderList = ({ providers, providerPath, onRemove }) => {
+const ProviderList = ({
+  providers,
+  providerPath,
+  onRemove,
+  canEdit,
+  canDelete,
+}) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -21,8 +27,7 @@ const ProviderList = ({ providers, providerPath, onRemove }) => {
             <Table.Cell>
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </Table.Cell>
-
-            <Table.Cell>&nbsp;</Table.Cell>
+            {(canEdit || canDelete) && <Table.Cell>&nbsp;</Table.Cell>}
           </Table.Row>
         ))}
         {providers?.map((provider) => (
@@ -31,6 +36,8 @@ const ProviderList = ({ providers, providerPath, onRemove }) => {
             provider={provider}
             providerPath={providerPath}
             onRemove={onRemove}
+            canEdit
+            canDelete
           />
         ))}
       </Table>

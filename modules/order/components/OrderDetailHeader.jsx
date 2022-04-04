@@ -8,7 +8,7 @@ const OrderDetailHeader = ({ order }) => {
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <div className="bg-white rounded-md shadow p-4 space-y-5">
+    <div className="bg-white rounded-md shadow p-4 space-y-5 ">
       <div className="flex items-center justify-between">
         <span className="text-sm block mr-3">
           {formatMessage({
@@ -28,7 +28,7 @@ const OrderDetailHeader = ({ order }) => {
             />
           ) : (
             <Badge
-              text="Cart"
+              text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
               color="yellow"
               className="text-lg font-medium sm:text-xl sm:font-bold"
             />

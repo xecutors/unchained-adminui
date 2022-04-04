@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Loading from '../../modules/common/components/Loading';
@@ -8,6 +9,7 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 
 import ProvidersList from '../../modules/common/components/ProvidersList';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
@@ -22,7 +24,7 @@ const WarehousingProviders = () => {
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
   const { setModal } = useModal();
-
+  const { hasRole } = useCurrentRoles();
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
     await setModal(
       <DangerMessage
@@ -60,7 +62,12 @@ const WarehousingProviders = () => {
           defaultMessage: 'Warehousing providers',
         })}
       />
-      <ListHeader addPath="/warehousing-provider/new">
+      <ListHeader
+        addPath={
+          hasRole(ACTION_ROLES.warehousingProviders.create) &&
+          '/warehousing-provider/new'
+        }
+      >
         <ProvidersFilter
           providerType={warehousingProviderType?.map(({ value }) => value)}
           onProviderFilterChange={setType}
@@ -73,6 +80,8 @@ const WarehousingProviders = () => {
           providerPath="/warehousing-provider"
           providers={warehousingProviders}
           onRemove={onRemoveWarehousingProvider}
+          canDelete={hasRole(ACTION_ROLES.warehousingProviders.delete)}
+          canUpdate={hasRole(ACTION_ROLES.warehousingProviders.update)}
         />
       )}
     </>

@@ -12,6 +12,8 @@ import Loading from '../../modules/common/components/Loading';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
@@ -20,6 +22,7 @@ const PaymentProviders = () => {
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
   const { paymentProviderType } = usePaymentProviderTypes();
+  const { hasRole } = useCurrentRoles();
 
   const onRemovePaymentProvider = async (paymentProviderId) => {
     await setModal(
@@ -56,7 +59,12 @@ const PaymentProviders = () => {
           defaultMessage: 'Payment providers',
         })}
       />
-      <ListHeader addPath="/payment-provider/new">
+      <ListHeader
+        addPath={
+          hasRole(ACTION_ROLES.paymentProviders.create) &&
+          '/payment-provider/new'
+        }
+      >
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}
           onProviderFilterChange={setType}
@@ -69,6 +77,8 @@ const PaymentProviders = () => {
           providerPath="/payment-provider"
           providers={paymentProviders}
           onRemove={onRemovePaymentProvider}
+          canDelete={hasRole(ACTION_ROLES.paymentProviders.delete)}
+          canEdit={hasRole(ACTION_ROLES.paymentProviders.update)}
         />
       )}
     </>

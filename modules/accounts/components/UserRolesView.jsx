@@ -1,16 +1,21 @@
 import { useIntl } from 'react-intl';
+import ACTION_ROLES from '../../common/data/roles';
 import useShopInfo from '../../common/hooks/useShopInfo';
 import ChoicesField from '../../forms/components/ChoicesField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
+import useCurrentRoles from '../hooks/useCurrentRoles';
 import useSetRoles from '../hooks/useSetRoles';
 
 const UserRolesView = ({ roles, userId }) => {
   const { formatMessage } = useIntl();
   const { shopInfo = {} } = useShopInfo();
+
   const { setRoles } = useSetRoles();
+  const { hasRole } = useCurrentRoles();
   const { userRoles = [] } = shopInfo;
   const onSubmit = async ({ updatedRoles }) => {
     await setRoles({ roles: updatedRoles, userId });
@@ -46,7 +51,10 @@ const UserRolesView = ({ roles, userId }) => {
         })}
         multiple
       />
+      <FormErrors />
+
       <SubmitButton
+        disabled={!hasRole(ACTION_ROLES.users.updateRoles)}
         label={formatMessage({
           id: 'update_role',
           defaultMessage: 'Update role',

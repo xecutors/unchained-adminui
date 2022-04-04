@@ -89,7 +89,7 @@ const DetailHeader = ({ user, contact }) => {
               <dt className="sr-only">
                 {formatMessage({ id: 'email', defaultMessage: 'Email' })}
               </dt>
-              <dd className="flex items-center text-xl font-medium capitalize sm:mr-6">
+              <dd className="flex items-center text-sm font-medium capitalize sm:mr-6">
                 {contact.emailAddress}
               </dd>
             </>

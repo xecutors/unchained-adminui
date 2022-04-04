@@ -13,11 +13,14 @@ import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDelive
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const DeliveryProviderUpdate = () => {
   const { formatMessage } = useIntl();
   const { push: routerPush, query } = useRouter();
   const { setModal } = useModal();
+  const { hasRole } = useCurrentRoles();
 
   const { deliveryProviderId } = query;
 
@@ -79,7 +82,9 @@ const DeliveryProviderUpdate = () => {
             defaultMessage: 'Update delivery provider',
           })}
         />
-        <HeaderDeleteButton onClick={handleOnClick} />
+        {hasRole(ACTION_ROLES.deliveryProviders.delete) && (
+          <HeaderDeleteButton onClick={handleOnClick} />
+        )}
       </div>
       {loading ? (
         <Loading />

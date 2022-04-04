@@ -91,6 +91,13 @@ export const ACTION_ROLES = {
     removeWork: 'manageWorker',
     doWork: 'manageWorker',
   },
+  order: {
+    delete: 'updateOrder',
+    confirm: 'markOrderConfirmed',
+    reject: 'markOrderRejected',
+    manualPay: 'markOrderPaid',
+    manualDeliver: 'markOrderDelivered',
+  },
   users: {
     updateEmail: 'updateUser',
     addEmail: 'updateUser',
