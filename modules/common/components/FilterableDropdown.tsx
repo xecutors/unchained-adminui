@@ -116,11 +116,7 @@ const FilterableDropdown = ({
 
           <div
             className={classNames(
-<<<<<<< HEAD
-              '-ml-px mb-1 flex h-11 w-11 items-center self-end rounded-r-md border-slate-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
-=======
               '-ml-px mb-2 h-12 flex items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-2 pl-2 pr-1 text-white',
->>>>>>> Fix minor style
               { 'bg-red-400': !!field.error },
               props.buttonClassName,
             )}

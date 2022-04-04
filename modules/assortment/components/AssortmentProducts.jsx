@@ -12,11 +12,7 @@ import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
 import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentProductList from './AssortmentProductList';
 import Loading from '../../common/components/Loading';
-<<<<<<< HEAD
-import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-=======
 import useReorderAssortmentProducts from '../hooks/useReorderAssortmentProducts';
->>>>>>> Add reorder for assortment links, products and filters.
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
