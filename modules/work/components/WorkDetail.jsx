@@ -1,12 +1,13 @@
-import loadable from '@loadable/component';
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
 import Badge from '../../common/components/Badge';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import { WORK_STATUSES } from '../../common/data/miscellaneous';
-
-const ReactJson = loadable(() => import('react-json-view'));
+import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
+import Accordion from '../../common/components/Accordion';
+import JSONView from '../../common/components/JSONView';
+import AccordionHeader from '../../common/components/AccordionHeader';
+import NoData from '../../common/components/NoData';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -21,19 +22,96 @@ const WorkDetail = ({ work }) => {
     second: 'numeric',
   };
 
-  const shadowStyle = {
-    NEW: `shadow-[inset_-5px_5px_0px_0px_#c084fc,inset_5px_-5px_0px_0px_#c084fc]`,
-    ALLOCATED: `shadow-[inset_-5px_5px_0px_0px_#60a5fa,inset_5px_-5px_0px_0px_#60a5fa]`,
-    SUCCESS: `shadow-[inset_-5px_5px_0px_0px_#4ade80,inset_5px_-5px_0px_0px_#4ade80]`,
-    FAILED: `shadow-[inset_-5px_5px_0px_0px_#f87171,inset_5px_-5px_0px_0px_#f87171]`,
-    DELETED: `shadow-[inset_-5px_5px_0px_0px_#fb923c,inset_5px_-5px_0px_0px_#fb923c]`,
-  };
+  const data = [
+    {
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'input', defaultMessage: 'Input' })}
+        />
+      ),
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.input ? (
+            <JSONView
+              value={JSON.stringify(work.input, null, 2)}
+              disabled
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_result',
+                defaultMessage: 'Result',
+              })}
+            />
+          )}
+        </div>
+      ),
+    },
+    {
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'result', defaultMessage: 'Result' })}
+        />
+      ),
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.result ? (
+            <JSONView
+              value={JSON.stringify(work.result, null, 2)}
+              disabled
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_result',
+                defaultMessage: 'Result',
+              })}
+            />
+          )}
+        </div>
+      ),
+    },
+
+    {
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'error', defaultMessage: 'Error' })}
+        />
+      ),
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.error ? (
+            <JSONView
+              value={JSON.stringify(work.error, null, 2)}
+              disabled
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_error',
+                defaultMessage: 'Error',
+              })}
+            />
+          )}
+        </div>
+      ),
+    },
+  ];
+
+  const headerCSS =
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
   return (
     <>
-      <div className={`my-4 p-2 sm:p-6 lg:p-8 ${shadowStyle[work?.status]}`}>
-        <div className="grid grid-cols-1 grid-rows-4 gap-8 lg:grid-cols-2">
-          <div className="col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8 ">
+      <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="max-h-fit col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
               <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                 {formatMessage({
@@ -118,7 +196,7 @@ const WorkDetail = ({ work }) => {
                 <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_original',
-                    defaultMessage: 'Orginial Work',
+                    defaultMessage: 'Original Work',
                   })}
                 </div>
                 <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
@@ -202,54 +280,14 @@ const WorkDetail = ({ work }) => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
-            <div className="mb-2">
-              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-                {formatMessage({
-                  id: 'input',
-                  defaultMessage: 'Input',
-                })}
-              </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
-                <ReactJson src={work?.input} collapsed />
-              </div>
-            </div>
-          </div>
 
-          <div className="col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
-            <div className="flex min-h-full flex-col items-start justify-between">
-              <div className="mb-2">
-                <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-                  {formatMessage({
-                    id: 'result',
-                    defaultMessage: 'Result',
-                  })}
-                </div>
-
-                <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
-                  <ReactJson src={work?.result} collapsed />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:p-8">
-            <div className="mb-2">
-              <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-                {formatMessage({
-                  id: 'error',
-                  defaultMessage: 'Error',
-                })}
-              </div>
-              <div className="mt-2 max-w-prose space-y-5 text-sm text-slate-900">
-                {work?.error ? (
-                  <ReactJson src={work?.error} collapsed />
-                ) : (
-                  'No Error'
-                )}
-              </div>
-            </div>
-          </div>
+          <Accordion
+            data={data}
+            headerCSS={headerCSS}
+            bodyCSS="rounded-lg border border-slate-200 shadow-md"
+            itemContainerCSS="col-span-2 border-0 shadow-none"
+            containerCSS="col-span-2 grid grid-cols-1 gap-8 lg:grid-cols-2"
+          />
         </div>
       </div>
     </>

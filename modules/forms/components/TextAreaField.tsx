@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { validateMaxLength } from '../lib/validators';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
+import JSONView from '../../common/components/JSONView';
 
 interface TextAreaFieldProps extends FieldHookProps {
   autoComplete?: 'on' | 'off';
@@ -22,7 +23,7 @@ const TextAreaField = ({
 
   return (
     <FieldWrapper {...field}>
-      <textarea
+      <JSONView
         className={classnames(
           'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
           {

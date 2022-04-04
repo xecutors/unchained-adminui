@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import JSONView from '../../common/components/JSONView';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
 
@@ -59,7 +60,7 @@ const JSONAreaField = ({
   return (
     <FieldWrapper {...field}>
       <>
-        <textarea
+        <JSONView
           className={classnames(
             'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
             {
