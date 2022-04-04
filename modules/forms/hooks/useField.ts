@@ -15,7 +15,6 @@ export interface CommonFieldProps {
   disabled?: boolean;
   value: string;
   autoComplete?: 'on' | 'off';
-  rows?: number;
   label?: string;
   errorMessage?: string;
   help?: string;

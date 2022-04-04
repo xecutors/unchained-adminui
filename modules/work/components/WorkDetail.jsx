@@ -24,35 +24,17 @@ const WorkDetail = ({ work }) => {
 
   const data = [
     {
-      header: <AccordionHeader name="result" />,
-      body: (
-        <div className="mt-2 text-sm text-slate-900">
-          {work?.result ? (
-            <JSONView
-              value={work.result}
-              disable
-              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
-            />
-          ) : (
-            <NoData
-              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
-              message={formatMessage({
-                id: 'no_result',
-                defaultMessage: 'Result',
-              })}
-            />
-          )}
-        </div>
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'input', defaultMessage: 'Input' })}
+        />
       ),
-    },
-    {
-      header: <AccordionHeader name="input" />,
       body: (
         <div className="mt-2 text-sm text-slate-900">
           {work?.input ? (
             <JSONView
-              value={work.input}
-              disable
+              value={JSON.stringify(work.input, null, 2)}
+              disabled
               className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
             />
           ) : (
@@ -68,13 +50,44 @@ const WorkDetail = ({ work }) => {
       ),
     },
     {
-      header: <AccordionHeader name="error" />,
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'result', defaultMessage: 'Result' })}
+        />
+      ),
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.result ? (
+            <JSONView
+              value={JSON.stringify(work.result, null, 2)}
+              disabled
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_result',
+                defaultMessage: 'Result',
+              })}
+            />
+          )}
+        </div>
+      ),
+    },
+
+    {
+      header: (
+        <AccordionHeader
+          name={formatMessage({ id: 'error', defaultMessage: 'Error' })}
+        />
+      ),
       body: (
         <div className="mt-2 text-sm text-slate-900">
           {work?.error ? (
             <JSONView
-              value={work.error}
-              disable
+              value={JSON.stringify(work.error, null, 2)}
+              disabled
               className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
             />
           ) : (

@@ -12,7 +12,11 @@ const EventDetail = ({ event }) => {
   const { formatDateTime } = useFormatDateTime();
 
   const dataEvent = {
-    header: <AccordionHeader name="payload" />,
+    header: (
+      <AccordionHeader
+        name={formatMessage({ id: 'payload', defaultMessage: 'Payload' })}
+      />
+    ),
     body: event?.payload ? (
       <JSONView
         disable

@@ -738,7 +738,7 @@ const shadowStyle = {
   DELETED: `shadow-[inset_-5px_5px_0px_0px_#fb923c,inset_5px_-5px_0px_0px_#fb923c]`,
 };
 
-export const getShadowStyle = (status, color, hue) => {
+export const getShadowStyle = (status) => {
   return `${shadowStyle[status]}`;
 };
 

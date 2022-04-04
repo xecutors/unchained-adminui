@@ -1,8 +1,6 @@
 import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 
 const AccordionHeader = ({ name, className }) => {
-  const { formatMessage } = useIntl();
   return (
     <div
       className={classNames(
@@ -10,10 +8,7 @@ const AccordionHeader = ({ name, className }) => {
         className,
       )}
     >
-      {formatMessage({
-        id: `${name}`,
-        defaultMessage: `${name}`,
-      })}
+      {name}
     </div>
   );
 };
