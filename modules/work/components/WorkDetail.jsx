@@ -5,9 +5,6 @@ import Badge from '../../common/components/Badge';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import Accordion from '../../common/components/Accordion';
-import Form from '../../forms/components/Form';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import useForm from '../../forms/hooks/useForm';
 import NoData from '../../common/components/NoData';
 
 const WorkDetail = ({ work }) => {
@@ -31,14 +28,6 @@ const WorkDetail = ({ work }) => {
     DELETED: `shadow-[inset_-5px_5px_0px_0px_#fb923c,inset_5px_-5px_0px_0px_#fb923c]`,
   };
 
-  const form = useForm({
-    initialValues: {
-      input: JSON.stringify(work?.input || {}, null, 2),
-      result: JSON.stringify(work?.result || {}, null, 2),
-      error: JSON.stringify(work?.error || {}, null, 2),
-    },
-  });
-
   const result = {
     header: (
       <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
@@ -51,23 +40,18 @@ const WorkDetail = ({ work }) => {
     body: (
       <div className="mt-2 text-sm text-slate-900">
         {work?.result ? (
-          <Form form={form}>
-            <JSONAreaField
-              disabled
-              id="result"
-              name="result"
-              value={form.formik.values.result}
-              rows={Math.max(
-                form.formik.values.result?.split(' ')?.length / 2,
+          <textarea
+            disabled
+            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
+            id="result"
+            name="result"
+            value={JSON.stringify(work?.result || {}, null, 2)}
+            rows={Math.max(
+              JSON.stringify(work?.result || {}, null, 2)?.split(' ')?.length /
                 5,
-              )}
-              label={formatMessage({
-                id: 'result_area',
-                defaultMessage: 'Result',
-              })}
-              hideLabel
-            />
-          </Form>
+              5,
+            )}
+          />
         ) : (
           <NoData
             className="bg-white rounded-lg border border-slate-200 shadow-md"
@@ -93,23 +77,18 @@ const WorkDetail = ({ work }) => {
     body: (
       <div className="mt-2 text-sm text-slate-900">
         {work?.input ? (
-          <Form form={form}>
-            <JSONAreaField
-              disabled
-              id="input"
-              name="input"
-              value={form.formik.values.input}
-              rows={Math.max(
-                form.formik.values.input?.split(' ')?.length / 2,
-                5,
-              )}
-              label={formatMessage({
-                id: 'input_area',
-                defaultMessage: 'Input',
-              })}
-              hideLabel
-            />
-          </Form>
+          <textarea
+            disabled
+            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
+            id="input"
+            name="input"
+            value={JSON.stringify(work?.input || {}, null, 2)}
+            rows={Math.max(
+              JSON.stringify(work?.input || {}, null, 2)?.split(' ')?.length /
+                2,
+              5,
+            )}
+          />
         ) : (
           <NoData
             className="bg-white rounded-lg border border-slate-200 shadow-md"
@@ -135,23 +114,18 @@ const WorkDetail = ({ work }) => {
     body: (
       <div className="mt-2 text-sm text-slate-900">
         {work?.error ? (
-          <Form form={form}>
-            <JSONAreaField
-              disabled
-              id="error"
-              name="error"
-              value={form.formik.values.error}
-              rows={Math.max(
-                form.formik.values.error?.split(' ')?.length / 2,
+          <textarea
+            disabled
+            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
+            id="error"
+            name="error"
+            value={JSON.stringify(work?.input || {}, null, 2)}
+            rows={Math.max(
+              JSON.stringify(work?.input || {}, null, 2)?.split(' ')?.length /
                 5,
-              )}
-              label={formatMessage({
-                id: 'error_area',
-                defaultMessage: 'Error',
-              })}
-              hideLabel
-            />
-          </Form>
+              5,
+            )}
+          />
         ) : (
           <NoData
             className="bg-white rounded-lg border border-slate-200 shadow-md"

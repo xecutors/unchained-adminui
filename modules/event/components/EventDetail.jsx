@@ -4,19 +4,10 @@ import Badge from '../../common/components/Badge';
 import NoData from '../../common/components/NoData';
 
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import Form from '../../forms/components/Form';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import useForm from '../../forms/hooks/useForm';
 
 const EventDetail = ({ event }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
-
-  const form = useForm({
-    initialValues: {
-      payload: JSON.stringify(event?.payload || {}, null, 2),
-    },
-  });
 
   const dataEvent = {
     header: (
@@ -30,23 +21,18 @@ const EventDetail = ({ event }) => {
     body: (
       <div className="mt-2 text-sm text-slate-900">
         {event?.payload ? (
-          <Form form={form}>
-            <JSONAreaField
-              disabled
-              id="payload"
-              name="payload"
-              value={form.formik.values.payload}
-              rows={Math.max(
-                form.formik.values.payload?.split(' ')?.length / 8,
+          <textarea
+            disabled
+            className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm  sm:text-sm"
+            id="payload"
+            name="payload"
+            value={JSON.stringify(event?.payload || {}, null, 2)}
+            rows={Math.max(
+              JSON.stringify(event?.payload || {}, null, 2).split(' ')?.length /
                 5,
-              )}
-              label={formatMessage({
-                id: 'payload_area',
-                defaultMessage: 'Payload',
-              })}
-              hideLabel
-            />
-          </Form>
+              5,
+            )}
+          />
         ) : (
           <NoData
             className="bg-white rounded-lg border border-slate-200 shadow-md"
