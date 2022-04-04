@@ -40,11 +40,11 @@ const EnrollmentDetail = ({ enrollment }) => {
         })}
         headerText={formatMessage({
           id: 'activate_header_title',
-          defaultMessage: 'Activate subscritpion.',
+          defaultMessage: 'Activate subscription.',
         })}
         message={formatMessage({
           id: 'activate_header_conformation',
-          defaultMessage: 'Are you sure you want to this subscritpion?',
+          defaultMessage: 'Are you sure you want to this subscription?',
         })}
         onOkClick={async () => {
           setModal('');
@@ -52,7 +52,7 @@ const EnrollmentDetail = ({ enrollment }) => {
           toast.success(
             formatMessage({
               id: 'success_message',
-              defaultMessage: 'Subscritpion successfully activated.',
+              defaultMessage: 'Subscription successfully activated.',
             }),
           );
         }}

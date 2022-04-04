@@ -3,9 +3,10 @@ import Link from 'next/link';
 
 import Badge from '../../common/components/Badge';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import { WORK_STATUSES } from '../../common/data/miscellaneous';
+import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
 import Accordion from '../../common/components/Accordion';
-import NoData from '../../common/components/NoData';
+import JSONView from '../../common/components/JSONView';
+import AccordionHeader from '../../common/components/AccordionHeader';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -20,131 +21,27 @@ const WorkDetail = ({ work }) => {
     second: 'numeric',
   };
 
-  const shadowStyle = {
-    NEW: `shadow-[inset_-5px_5px_0px_0px_#c084fc,inset_5px_-5px_0px_0px_#c084fc]`,
-    ALLOCATED: `shadow-[inset_-5px_5px_0px_0px_#60a5fa,inset_5px_-5px_0px_0px_#60a5fa]`,
-    SUCCESS: `shadow-[inset_-5px_5px_0px_0px_#4ade80,inset_5px_-5px_0px_0px_#4ade80]`,
-    FAILED: `shadow-[inset_-5px_5px_0px_0px_#f87171,inset_5px_-5px_0px_0px_#f87171]`,
-    DELETED: `shadow-[inset_-5px_5px_0px_0px_#fb923c,inset_5px_-5px_0px_0px_#fb923c]`,
-  };
-
-  const result = {
-    header: (
-      <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-        {formatMessage({
-          id: 'result',
-          defaultMessage: 'Result',
-        })}
-      </div>
-    ),
-    body: (
-      <div className="mt-2 text-sm text-slate-900">
-        {work?.result ? (
-          <textarea
-            disabled
-            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
-            id="result"
-            name="result"
-            value={JSON.stringify(work?.result || {}, null, 2)}
-            rows={Math.max(
-              JSON.stringify(work?.result || {}, null, 2)?.split(' ')?.length /
-                5,
-              5,
-            )}
-          />
-        ) : (
-          <NoData
-            className="bg-white rounded-lg border border-slate-200 shadow-md"
-            message={formatMessage({
-              id: 'no_result',
-              defaultMessage: 'Result',
-            })}
-          />
-        )}
-      </div>
-    ),
-  };
-
-  const input = {
-    header: (
-      <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-        {formatMessage({
-          id: 'input',
-          defaultMessage: 'Input',
-        })}
-      </div>
-    ),
-    body: (
-      <div className="mt-2 text-sm text-slate-900">
-        {work?.input ? (
-          <textarea
-            disabled
-            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
-            id="input"
-            name="input"
-            value={JSON.stringify(work?.input || {}, null, 2)}
-            rows={Math.max(
-              JSON.stringify(work?.input || {}, null, 2)?.split(' ')?.length /
-                2,
-              5,
-            )}
-          />
-        ) : (
-          <NoData
-            className="bg-white rounded-lg border border-slate-200 shadow-md"
-            message={formatMessage({
-              id: 'no_input',
-              defaultMessage: 'Input',
-            })}
-          />
-        )}
-      </div>
-    ),
-  };
-
-  const error = {
-    header: (
-      <div className="mr-4 text-base font-semibold text-slate-500 sm:text-lg sm:font-bold">
-        {formatMessage({
-          id: 'error',
-          defaultMessage: 'Error',
-        })}
-      </div>
-    ),
-    body: (
-      <div className="mt-2 text-sm text-slate-900">
-        {work?.error ? (
-          <textarea
-            disabled
-            className="block w-full rounded-md border-2 resize-none border-slate-200 shadow-sm"
-            id="error"
-            name="error"
-            value={JSON.stringify(work?.input || {}, null, 2)}
-            rows={Math.max(
-              JSON.stringify(work?.input || {}, null, 2)?.split(' ')?.length /
-                5,
-              5,
-            )}
-          />
-        ) : (
-          <NoData
-            className="bg-white rounded-lg border border-slate-200 shadow-md"
-            message={formatMessage({
-              id: 'no_error',
-              defaultMessage: 'Error',
-            })}
-          />
-        )}
-      </div>
-    ),
-  };
+  const data = [
+    {
+      header: <AccordionHeader name="result" />,
+      body: <JSONView name="result" value={work.result} />,
+    },
+    {
+      header: <AccordionHeader name="input" />,
+      body: <JSONView name="input" value={work.input} />,
+    },
+    {
+      header: <AccordionHeader name="error" />,
+      body: <JSONView name="error" value={work.error} />,
+    },
+  ];
 
   const headerCSS =
     'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
   return (
     <>
-      <div className={`my-4 p-2 sm:p-6 lg:p-8 ${shadowStyle[work?.status]}`}>
+      <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div className="max-h-fit col-span-2 rounded-lg border border-slate-200 bg-white p-4 shadow-md sm:p-6 lg:col-span-1 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
@@ -317,7 +214,7 @@ const WorkDetail = ({ work }) => {
           </div>
 
           <Accordion
-            data={[input, result, error]}
+            data={data}
             headerCSS={headerCSS}
             bodyCSS="rounded-lg border border-slate-200 shadow-md"
             itemContainerCSS="col-span-2 border-0 shadow-none"

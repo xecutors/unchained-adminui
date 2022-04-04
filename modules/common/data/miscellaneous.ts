@@ -729,6 +729,19 @@ export const borderColor = (color, hue) => {
 export const getColor = (type, color, hue) => {
   return `${ColorLookupTable[color][type][hue]}`;
 };
+
+const shadowStyle = {
+  NEW: `shadow-[inset_-5px_5px_0px_0px_#c084fc,inset_5px_-5px_0px_0px_#c084fc]`,
+  ALLOCATED: `shadow-[inset_-5px_5px_0px_0px_#60a5fa,inset_5px_-5px_0px_0px_#60a5fa]`,
+  SUCCESS: `shadow-[inset_-5px_5px_0px_0px_#4ade80,inset_5px_-5px_0px_0px_#4ade80]`,
+  FAILED: `shadow-[inset_-5px_5px_0px_0px_#f87171,inset_5px_-5px_0px_0px_#f87171]`,
+  DELETED: `shadow-[inset_-5px_5px_0px_0px_#fb923c,inset_5px_-5px_0px_0px_#fb923c]`,
+};
+
+export const getShadowStyle = (status, color, hue) => {
+  return `${shadowStyle[status]}`;
+};
+
 export default { LimitSteps, DefaultLimit };
 
 export const stopPropagation = (e) => {
