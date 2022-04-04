@@ -9,9 +9,13 @@ import { Validator, validateRequired } from '../lib/validators';
 import useFormContext from './useFormContext';
 
 export interface CommonFieldProps {
-  name: string;
+  name?: string;
+  id?: string;
   required?: boolean;
   disabled?: boolean;
+  value: string;
+  autoComplete?: 'on' | 'off';
+  rows?: number;
   label?: string;
   errorMessage?: string;
   help?: string;

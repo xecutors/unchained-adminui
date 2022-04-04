@@ -3,6 +3,7 @@ import Accordion from '../../common/components/Accordion';
 import AccordionHeader from '../../common/components/AccordionHeader';
 import Badge from '../../common/components/Badge';
 import JSONView from '../../common/components/JSONView';
+import NoData from '../../common/components/NoData';
 
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -12,7 +13,21 @@ const EventDetail = ({ event }) => {
 
   const dataEvent = {
     header: <AccordionHeader name="payload" />,
-    body: <JSONView name="payload" value={event.payload} />,
+    body: event?.payload ? (
+      <JSONView
+        disable
+        value={event.payload}
+        className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+      />
+    ) : (
+      <NoData
+        className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+        message={formatMessage({
+          id: `no_payload`,
+          defaultMessage: 'Payload',
+        })}
+      />
+    ),
   };
 
   const headerCSS =

@@ -7,6 +7,7 @@ import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
 import Accordion from '../../common/components/Accordion';
 import JSONView from '../../common/components/JSONView';
 import AccordionHeader from '../../common/components/AccordionHeader';
+import NoData from '../../common/components/NoData';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -24,15 +25,69 @@ const WorkDetail = ({ work }) => {
   const data = [
     {
       header: <AccordionHeader name="result" />,
-      body: <JSONView name="result" value={work.result} />,
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.result ? (
+            <JSONView
+              value={work.result}
+              disable
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_result',
+                defaultMessage: 'Result',
+              })}
+            />
+          )}
+        </div>
+      ),
     },
     {
       header: <AccordionHeader name="input" />,
-      body: <JSONView name="input" value={work.input} />,
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.input ? (
+            <JSONView
+              value={work.input}
+              disable
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_result',
+                defaultMessage: 'Result',
+              })}
+            />
+          )}
+        </div>
+      ),
     },
     {
       header: <AccordionHeader name="error" />,
-      body: <JSONView name="error" value={work.error} />,
+      body: (
+        <div className="mt-2 text-sm text-slate-900">
+          {work?.error ? (
+            <JSONView
+              value={work.error}
+              disable
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+            />
+          ) : (
+            <NoData
+              className="bg-white rounded-lg capitalize border border-slate-200 shadow-md"
+              message={formatMessage({
+                id: 'no_error',
+                defaultMessage: 'Error',
+              })}
+            />
+          )}
+        </div>
+      ),
     },
   ];
 
