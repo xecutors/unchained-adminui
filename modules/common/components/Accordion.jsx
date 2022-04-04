@@ -27,7 +27,7 @@ const AccordionItem = ({ header, body, headerCSS, bodyCSS }) => {
         type="button"
         onClick={() => setShow(!show)}
         className={classNames(
-          'relative cursor-pointer border bg-white text-slate-500 hover:bg-slate-50',
+          'relative cursor-pointer border bg-white text-slate-500 hover:bg-slate-50 w-full',
           headerCSS,
         )}
       >

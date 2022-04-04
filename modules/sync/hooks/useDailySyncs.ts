@@ -7,6 +7,7 @@ const useDailySyncs = ({ start = null, end = null } = {}) => {
       range: { start, end },
       status: ['SUCCESS', 'FAILED'],
       selectTypes: ['PUBLICARE_DAILY_ANALYTICS'],
+      limit: 3,
     },
   });
 
