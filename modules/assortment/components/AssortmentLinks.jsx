@@ -1,5 +1,8 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useState } from 'react';
+import classNames from 'classnames';
 import Loading from '../../common/components/Loading';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
@@ -9,6 +12,7 @@ import useAssortmentLinks from '../hooks/useAssortmentLinks';
 import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentLinksList from './AssortmentLinksList';
+import useReorderAssortmentLink from '../hooks/useReorderAssortmentLinks';
 
 const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -16,6 +20,9 @@ const AssortmentLinks = ({ assortmentId }) => {
   const { linkedAssortments, loading } = useAssortmentLinks({ assortmentId });
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
+  const { reorderAssortmentLink } = useReorderAssortmentLink();
+
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
@@ -48,6 +55,66 @@ const AssortmentLinks = ({ assortmentId }) => {
     );
   };
 
+  const handleDragEnd = async (result) => {
+    const { destination, source } = result;
+
+    console.log(result);
+
+    if (!destination) {
+      toast.success(
+        formatMessage({
+          id: 'link_reorder_empty',
+          defaultMessage: 'Link destination is empty',
+        }),
+      );
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      toast.success(
+        formatMessage({
+          id: 'link_already_ordered',
+          defaultMessage: 'Link already on that order',
+        }),
+      );
+      return;
+    }
+
+    const sortKeys = linkedAssortments.map((media) => ({
+      assortmentLinkId: media._id,
+      sortKey: media.sortKey,
+    }));
+
+    const [removedSortKey] = sortKeys.splice(source.index, 1);
+    sortKeys.splice(destination.index, 0, removedSortKey);
+
+    sortKeys.map((sk, index) => {
+      // eslint-disable-next-line no-param-reassign
+      sk.sortKey = index;
+      return sk;
+    });
+
+    try {
+      await reorderAssortmentLink({ sortKeys });
+      toast.success(
+        formatMessage({
+          id: 'link_reorder',
+          defaultMessage: 'Link reorder successfully',
+        }),
+      );
+    } catch (error) {
+      toast.error(
+        formatMessage({
+          id: 'fail_reorder',
+          defaultMessage: 'Link reorder failed, Try again!',
+        }),
+      );
+    }
+  };
+
   return (
     <>
       <SelfDocumentingView
@@ -57,33 +124,33 @@ const AssortmentLinks = ({ assortmentId }) => {
         })}
         documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco"
-        mainContent={<AssortmentLinkForm assortmentId={assortmentId} />}
-      />
-      <SelfDocumentingView
-        className="mt-5"
-        documentationLabel={formatMessage({
-          id: 'assortment_links_list',
-          defaultMessage: 'Linked assortments',
-        })}
-        documentation=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco"
-        mainContent={
-          loading ? (
+              enim ad minim veniam, quis nostrud exercitation ullamco
+            </p>
+          </div>
+        </div>
+        <div
+          className={classNames(
+            'w-full bg-white py-2 px-6 shadow md:col-span-2',
+            {
+              'bg-slate-100': isDraggingOver,
+            },
+          )}
+        >
+          {loading ? (
             <Loading />
           ) : (
-            <div className=" bg-white py-2 px-6 shadow">
+            <DragDropContext onDragEnd={handleDragEnd}>
               <AssortmentLinksList
                 currentAssortmentId={assortmentId}
                 links={linkedAssortments || []}
                 onRemoveLink={onRemoveLink}
+                setIsDraggingOver={setIsDraggingOver}
               />
-            </div>
-          )
-        }
-      />
-    </>
+            </DragDropContext>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
