@@ -108,25 +108,35 @@ const AssortmentFilters = ({ assortmentId }) => {
   };
 
   return (
-    <>
-      <SelfDocumentingView
-        documentationLabel={formatMessage({
-          id: 'add_assortment_filter',
-          defaultMessage: 'Add Filters',
-        })}
-        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
+            {formatMessage({
+              id: 'add_assortment_filter',
+              defaultMessage: 'Add Filters',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-slate-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco"
-        mainContent={<AssortmentFiltersForm assortmentId={assortmentId} />}
-      />
-
-      <SelfDocumentingView
-        documentationLabel={formatMessage({
-          id: 'assigned_assortment_filters',
-          defaultMessage: 'Assigned filters',
-        })}
-        className="mt-5"
-        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            ad minim veniam, quis nostrud exercitation ullamco
+          </p>
+        </div>
+      </div>
+      <div className="md:col-span-2">
+        <AssortmentFiltersForm assortmentId={assortmentId} />
+      </div>
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
+            {formatMessage({
+              id: 'assigned_assortment_filters',
+              defaultMessage: 'Assigned filters',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-slate-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco
           </p>
