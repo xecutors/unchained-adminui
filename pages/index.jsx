@@ -208,9 +208,6 @@ const Home = ({ shopInfo }) => {
             </div>
           </div>
         </div>
-        <div className="" />
-        <div className="" />
-        <div className="" />
       </div>
     </>
   );

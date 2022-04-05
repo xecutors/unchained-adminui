@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';
@@ -85,24 +85,42 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
     submit: onUpdateProfile,
     successMessage,
     initialValues: {
-      birthday: profile.birthday,
-      displayName: profile.displayName,
-      gender: profile.gender,
-      phoneMobile: profile.phoneMobile,
-      address: {
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        city: profile.city,
-        company: profile.company,
-        addressLine: profile.addressLine,
-        addressLine2: profile.addressLine2,
-        postalCode: profile.postalCode,
-        countryCode: profile.countryCode,
-        regionCode: profile.regionCode,
-      },
+      birthday: '',
+      displayName: null,
+      gender: null,
+      phoneMobile: null,
+      firstName: null,
+      lastName: null,
+      city: null,
+      company: null,
+      addressLine: null,
+      addressLine2: null,
+      postalCode: null,
+      countryCode: null,
+      regionCode: null,
     },
   });
 
+  useEffect(() => {
+    if (Object.keys(profile).length)
+      form.formik.setValues({
+        birthday: profile?.birthday,
+        displayName: profile?.displayName,
+        gender: profile?.gender,
+        phoneMobile: profile?.phoneMobile,
+        firstName: address.firstName,
+        lastName: address.lastName,
+        city: address.city,
+        company: address.company,
+        addressLine: address.addressLine,
+        addressLine2: address.addressLine2,
+        postalCode: address.postalCode,
+        countryCode: address.countryCode,
+        regionCode: address.regionCode,
+      });
+  }, [profile]);
+
+  console.log(profile);
   return (
     <Form form={form}>
       <div className="mt-6 overflow-hidden rounded-md">

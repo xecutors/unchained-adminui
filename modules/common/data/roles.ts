@@ -121,6 +121,9 @@ export const ACTION_ROLES = {
     enrollUser: 'manageUsers',
     sendVerification: 'sendEmail',
   },
+  shopInfo: {
+    view: 'viewShopInfo',
+  },
 };
 
 export const ROUTE_ROLES = {
