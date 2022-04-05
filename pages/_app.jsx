@@ -17,7 +17,7 @@ import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from './account/AuthWrapper';
 
-const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
+const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -35,6 +35,9 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
       setCurrentUser(data?.me);
       if (!data?.me && !UnrestrictedPages.includes(router.pathname))
         router.push('/log-in');
+      else if (data?.me && data.me?.isGuest) {
+        router.push('/account');
+      }
     })();
   }, [router.pathname]);
 

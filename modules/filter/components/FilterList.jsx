@@ -40,7 +40,11 @@ const FilterList = ({ filters, onRemoveFilter }) => {
             })}
           </Table.Cell>
           {hasRole(ACTION_ROLES.filters.delete) && (
-            <Table.Cell>&nbsp;</Table.Cell>
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
           )}
         </Table.Row>
       ))}

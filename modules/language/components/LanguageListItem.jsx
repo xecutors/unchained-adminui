@@ -6,7 +6,7 @@ import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
 import { normalizeLanguageISOCode } from '../../common/utils/utils';
 
-const LanguageListItem = ({ language, onRemove }) => {
+const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
@@ -41,22 +41,28 @@ const LanguageListItem = ({ language, onRemove }) => {
           square
         />
       </Table.Cell>
-
-      <Table.Cell>
-        <div className="flex">
-          <Link href={`/language/${language?._id}`}>
-            <a>
-              <EditIcon />
-            </a>
-          </Link>
-          <DeleteButton
-            className="ml-1 mr-1"
-            onClick={async () => {
-              await onRemove(language?._id);
-            }}
-          />
-        </div>
-      </Table.Cell>
+      {enableEdit ||
+        (enableDelete && (
+          <Table.Cell>
+            <div className="flex">
+              {enableEdit && (
+                <Link href={`/language/${language?._id}`}>
+                  <a>
+                    <EditIcon />
+                  </a>
+                </Link>
+              )}
+              {enableDelete && (
+                <DeleteButton
+                  className="ml-1 mr-1"
+                  onClick={async () => {
+                    await onRemove(language?._id);
+                  }}
+                />
+              )}
+            </div>
+          </Table.Cell>
+        ))}
     </Table.Row>
   );
 };

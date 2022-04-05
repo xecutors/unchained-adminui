@@ -7,8 +7,9 @@ import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
 import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
-const CurrencyListItem = ({ currency, onRemove }) => {
+const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
+
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -29,20 +30,26 @@ const CurrencyListItem = ({ currency, onRemove }) => {
           square
         />
       </Table.Cell>
-
-      <Table.Cell>
-        <div className="flex items-center">
-          <Link href={`/currency/${currency?._id}`}>
-            <a>
-              <EditIcon />
-            </a>
-          </Link>
-          <DeleteButton
-            className="ml-1 mr-1"
-            onClick={() => onRemove(currency?._id)}
-          />
-        </div>
-      </Table.Cell>
+      {enableEdit ||
+        (enableDelete && (
+          <Table.Cell>
+            <div className="flex items-center">
+              {enableEdit && (
+                <Link href={`/currency/${currency?._id}`}>
+                  <a>
+                    <EditIcon />
+                  </a>
+                </Link>
+              )}
+              {enableDelete && (
+                <DeleteButton
+                  className="ml-1 mr-1"
+                  onClick={() => onRemove(currency?._id)}
+                />
+              )}
+            </div>
+          </Table.Cell>
+        ))}
     </Table.Row>
   );
 };

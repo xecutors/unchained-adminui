@@ -27,7 +27,14 @@ const ProviderList = ({
             <Table.Cell>
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </Table.Cell>
-            {(canEdit || canDelete) && <Table.Cell>&nbsp;</Table.Cell>}
+            {(canEdit || canDelete) && (
+              <Table.Cell>
+                <span className="sr-only">
+                  {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                  {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+                </span>
+              </Table.Cell>
+            )}
           </Table.Row>
         ))}
         {providers?.map((provider) => (

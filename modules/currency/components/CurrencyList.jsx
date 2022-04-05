@@ -1,9 +1,12 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 import CurrencyListItem from './CurrencyListItem';
 
 const CurrencyList = ({ currencies, onRemoveCurrency }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   return (
     <Table className="min-w-full ">
       {currencies?.map((currency) => (
@@ -22,8 +25,10 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
           <Table.Cell>
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
-
-          <Table.Cell>&nbsp;</Table.Cell>
+          {hasRole(ACTION_ROLES.currencies.update) ||
+            (hasRole(ACTION_ROLES.currencies.delete) && (
+              <Table.Cell>&nbsp;</Table.Cell>
+            ))}
         </Table.Row>
       ))}
 
@@ -32,6 +37,8 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
           key={`${currency?._id}-body`}
           currency={currency}
           onRemove={onRemoveCurrency}
+          enableDelete={hasRole(ACTION_ROLES.currencies.delete)}
+          enableEdit={hasRole(ACTION_ROLES.currencies.update)}
         />
       ))}
     </Table>

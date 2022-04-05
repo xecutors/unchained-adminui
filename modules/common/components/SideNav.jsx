@@ -2,16 +2,10 @@ import { Disclosure } from '@headlessui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
-const hasRole = ({ roles } = { roles: [] }, currentUserRoles) => {
-  if (currentUserRoles === undefined) return false;
-  if (currentUserRoles?.length === 0) return true;
-
-  return currentUserRoles.some((r) => roles?.indexOf(r) >= 0);
-};
-
-const ChildrenNav = ({ item, currentRoles }) => {
-  return item.children?.some((d) => hasRole(d, currentRoles)) ? (
+const ChildrenNav = ({ item, hasRole }) => {
+  return item.children?.some((d) => d?.roles?.some((e) => hasRole(e))) ? (
     <Disclosure as="div" key={item.name} className="space-y-1">
       {({ open }) => (
         <>
@@ -41,7 +35,7 @@ const ChildrenNav = ({ item, currentRoles }) => {
           </Disclosure.Button>
           <Disclosure.Panel className="space-y-1">
             {item.children
-              .filter((f) => hasRole(f, currentRoles))
+              .filter((f) => !f?.roles || f.roles?.some((y) => hasRole(y)))
               .map((subItem) => (
                 <Link key={subItem.name} href={subItem.href}>
                   <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900">
@@ -56,8 +50,9 @@ const ChildrenNav = ({ item, currentRoles }) => {
   ) : null;
 };
 
-const SideNav = ({ navigation, currentRoles }) => {
+const SideNav = ({ navigation }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
   return (
     <div className="mt-1 flex flex-grow flex-col">
       <h1 className="text-md mb-4 bg-white px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6">
@@ -68,7 +63,8 @@ const SideNav = ({ navigation, currentRoles }) => {
         aria-label="Sidebar"
       >
         {navigation.map((item) =>
-          !item.children && hasRole(item, currentRoles) ? (
+          !item.children &&
+          (!item.roles || item.roles.some((t) => hasRole(t))) ? (
             <div key={item.name}>
               <Link href={item?.href || '#'}>
                 <a
@@ -93,7 +89,7 @@ const SideNav = ({ navigation, currentRoles }) => {
               </Link>
             </div>
           ) : (
-            <ChildrenNav item={item} currentRoles={currentRoles} />
+            <ChildrenNav item={item} hasRole={hasRole} />
           ),
         )}
       </nav>

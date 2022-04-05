@@ -80,8 +80,8 @@ const DeliveryProviders = () => {
           providerPath="/delivery-provider"
           providers={deliveryProviders}
           onRemove={onRemoveDeliveryProvider}
-          canDelete={hasRole(ACTION_ROLES.deliveryProviders.delete)}
-          canEdit={hasRole(ACTION_ROLES.deliveryProviders.update)}
+          enableDelete={hasRole(ACTION_ROLES.deliveryProviders.delete)}
+          enableEdit={hasRole(ACTION_ROLES.deliveryProviders.update)}
         />
       )}
     </>
