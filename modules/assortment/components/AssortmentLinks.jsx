@@ -148,7 +148,7 @@ const AssortmentLinks = ({ assortmentId }) => {
             </p>
           </div>
         </div>
-        <div className="w-full shadow md:col-span-2 py-2 px-6 bg-white">
+        <div className="w-full md:col-span-2">
           {loading ? (
             <Loading />
           ) : (

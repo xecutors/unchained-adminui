@@ -151,7 +151,7 @@ const AssortmentProducts = ({ assortmentId }) => {
           <Loading />
         </div>
       ) : (
-        <div className="ml-auto w-full bg-white py-2 px-6 shadow md:col-span-2">
+        <div className="ml-auto w-full bg-white md:col-span-2">
           <DragDropContext onDragEnd={handleDragEnd}>
             <AssortmentProductList
               products={linkedProducts}

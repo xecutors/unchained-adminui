@@ -25,7 +25,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 key={Date.now()}
                 className={classNames(
                   'space-y-4 p-5 bg-white transition-[background-color] ease-in-out delay-200',
-                  { 'bg-slate-100': snapshot.isDraggingOver },
+                  { 'bg-slate-100 rounded': snapshot.isDraggingOver },
                 )}
                 ref={provided.innerRef}
                 {...provided.droppableProps}

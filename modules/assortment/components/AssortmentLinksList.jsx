@@ -10,11 +10,14 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
   return links.length ? (
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
-        <span
+        <div
           key={Date.now()}
-          className={classNames('space-y-4 bg-white', {
-            'bg-slate-100': snapshot.isDraggingOver,
-          })}
+          className={classNames(
+            'space-y-4 bg-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
+            {
+              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+            },
+          )}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -29,7 +32,7 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
                   isParent={parent._id === currentAssortmentId}
                   linkId={_id}
                   onDelete={onRemoveLink}
-                  i={index}
+                  index={index}
                 />,
               );
             if (child && child._id !== currentAssortmentId)
@@ -40,13 +43,14 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
                   linkId={_id}
                   isParent={child._id !== currentAssortmentId}
                   onDelete={onRemoveLink}
-                  i={index}
+                  index={index}
                 />,
               );
 
             return comp;
           })}
-        </span>
+          {provided.placeholder}
+        </div>
       )}
     </Droppable>
   ) : (

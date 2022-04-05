@@ -20,9 +20,10 @@ const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex items-center justify-between gap-4 border-b bg-white border-gray-200 last:border-none cursor-move',
+            'flex items-center justify-between rounded px-2 gap-4 border-b bg-white border-gray-200 last:border-none cursor-move',
             {
-              'bg-slate-100': snapshot.isDragging,
+              'bg-slate-100 border-2 border-b-2 rounded last:border-solid':
+                snapshot.isDragging,
             },
           )}
         >

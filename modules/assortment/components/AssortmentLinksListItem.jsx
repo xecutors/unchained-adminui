@@ -3,15 +3,21 @@ import { Draggable } from 'react-beautiful-dnd';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 
-const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, i }) => {
+const AssortmentLinksListItem = ({
+  link,
+  onDelete,
+  linkId,
+  isParent,
+  index,
+}) => {
   return (
-    <Draggable draggableId={link._id} index={i}>
+    <Draggable draggableId={link._id} index={index}>
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'flex items-center justify-between border-b bg-white border-gray-200 last:border-none cursor-move',
+            'flex items-center justify-between rounded border-b px-2 bg-white border-gray-200 last:border-none cursor-move',
             {
-              'bg-slate-100': snapshot.isDragging,
+              'bg-slate-100 border-2 border-b-2 rounded': snapshot.isDragging,
             },
           )}
           key={link._id}
@@ -30,9 +36,9 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, i }) => {
             </div>
             {link?.tags && (
               <div className="space-x-2">
-                {link?.tags.map((tag, index) => (
+                {link?.tags.map((tag, key) => (
                   <span
-                    key={`${tag}${index + 1}`}
+                    key={`${tag}${key + 1}`}
                     className="rounded border bg-white px-1 text-sm font-light capitalize text-slate-900 shadow-sm"
                   >
                     {tag}

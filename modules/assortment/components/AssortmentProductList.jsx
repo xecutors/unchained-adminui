@@ -9,11 +9,14 @@ const AssortmentProductsList = ({ products, onRemoveProduct }) => {
   return products.length ? (
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
-        <span
+        <div
           key={Date.now()}
-          className={classNames('space-y-4', {
-            'bg-slate-100': snapshot.isDraggingOver,
-          })}
+          className={classNames(
+            'space-y-4 block py-3 rounded px-6 bg-white transition-[background-color] ease-in-out delay-200',
+            {
+              'bg-slate-100 border-2 rounded': snapshot.isDraggingOver,
+            },
+          )}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -25,7 +28,8 @@ const AssortmentProductsList = ({ products, onRemoveProduct }) => {
               i={index}
             />
           ))}
-        </span>
+          {provided.placeholder}
+        </div>
       )}
     </Droppable>
   ) : (

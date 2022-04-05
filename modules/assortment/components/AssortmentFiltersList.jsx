@@ -10,11 +10,14 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
   return filters?.length ? (
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
-        <span
+        <div
           key={Date.now()}
-          className={classNames('space-y-4', {
-            'bg-slate-100': snapshot.isDraggingOver,
-          })}
+          className={classNames(
+            'space-y-4 py-3 px-6 bg-white rounded transition-[background-color] ease-in-out delay-200',
+            {
+              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+            },
+          )}
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
@@ -26,7 +29,8 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
               index={index}
             />
           ))}
-        </span>
+          {provided.placeholder}
+        </div>
       )}
     </Droppable>
   ) : (

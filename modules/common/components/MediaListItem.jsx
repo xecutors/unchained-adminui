@@ -51,9 +51,12 @@ const MediaListItem = ({
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           draggable="true"
-          className={classNames('flex flex-wrap gap-4 bg-white cursor-move', {
-            'bg-slate-100': snapshot.isDragging,
-          })}
+          className={classNames(
+            'flex flex-wrap gap-4 rounded bg-white cursor-move',
+            {
+              'bg-slate-100 border-2 rounded': snapshot.isDragging,
+            },
+          )}
         >
           <div className="flex-1 basis-1/3">
             <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
