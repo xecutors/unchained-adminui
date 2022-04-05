@@ -11,7 +11,6 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
         <div
-          key={Date.now()}
           className={classNames(
             'space-y-4 py-3 px-6 bg-white rounded transition-[background-color] ease-in-out delay-200',
             {

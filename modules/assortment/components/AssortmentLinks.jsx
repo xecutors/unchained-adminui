@@ -54,10 +54,10 @@ const AssortmentLinks = ({ assortmentId }) => {
     const { destination, source } = result;
 
     if (!destination) {
-      toast.success(
+      toast.info(
         formatMessage({
-          id: 'link_reorder_empty',
-          defaultMessage: 'Link destination is empty',
+          id: 'drop_area_empty',
+          defaultMessage: 'Destination is empty',
         }),
       );
       return;
@@ -67,12 +67,6 @@ const AssortmentLinks = ({ assortmentId }) => {
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      toast.success(
-        formatMessage({
-          id: 'link_already_ordered',
-          defaultMessage: 'Link already on that order',
-        }),
-      );
       return;
     }
 
@@ -84,11 +78,10 @@ const AssortmentLinks = ({ assortmentId }) => {
     const [removedSortKey] = sortKeys.splice(source.index, 1);
     sortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sk, index) => {
-      // eslint-disable-next-line no-param-reassign
-      sk.sortKey = index;
-      return sk;
-    });
+    sortKeys.map((sortKey, index) => ({
+      ...sortKey,
+      sortKey: index,
+    }));
 
     try {
       await reorderAssortmentLink({ sortKeys });

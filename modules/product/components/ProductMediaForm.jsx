@@ -69,10 +69,10 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
     const { destination, source } = result;
 
     if (!destination) {
-      toast.success(
+      toast.info(
         formatMessage({
-          id: 'product_media_reorder_empty',
-          defaultMessage: 'Media destination is empty',
+          id: 'drop_area_empty',
+          defaultMessage: 'Destination is empty',
         }),
       );
       return;
@@ -82,12 +82,6 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      toast.success(
-        formatMessage({
-          id: 'product_media_already_ordered',
-          defaultMessage: 'Media already on that order',
-        }),
-      );
       return;
     }
 
@@ -99,10 +93,11 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
     const [removedSortKey] = sortKeys.splice(source.index, 1);
     sortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sk, index) => {
-      // eslint-disable-next-line no-param-reassign
-      sk.sortKey = index;
-      return sk;
+    sortKeys.map((sortKey, index) => {
+      return {
+        ...sortKey,
+        sortKeys: index,
+      };
     });
 
     try {

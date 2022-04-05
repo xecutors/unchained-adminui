@@ -11,7 +11,6 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
         <div
-          key={Date.now()}
           className={classNames(
             'space-y-4 bg-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
             {
@@ -56,7 +55,7 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
   ) : (
     <NoData
       message={formatMessage({
-        id: 'linked-message',
+        id: 'linked_assortment',
         defaultMessage: 'Linked assortment',
       })}
     />

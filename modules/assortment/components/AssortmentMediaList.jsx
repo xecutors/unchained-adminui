@@ -21,7 +21,6 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
           <Droppable droppableId="assortment-media">
             {(provided, snapshot) => (
               <ul
-                key={Date.now()}
                 className={classNames(
                   'space-y-4 bg-white p-5 transition-[background-color] ease-in-out delay-200',
                   {
@@ -44,7 +43,7 @@ const AssortmentMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 ) : (
                   <NoData
                     message={formatMessage({
-                      id: 'media_message',
+                      id: 'media',
                       defaultMessage: 'Media',
                     })}
                   />

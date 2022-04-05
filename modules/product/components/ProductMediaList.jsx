@@ -19,10 +19,9 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root">
-          <Droppable droppableId="product-media">
+          <Droppable droppableId="product-media" mode="standard">
             {(provided, snapshot) => (
               <ul
-                key={Date.now()}
                 className={classNames(
                   'space-y-4 p-5 bg-white transition-[background-color] ease-in-out delay-200',
                   { 'bg-slate-100 rounded': snapshot.isDraggingOver },
@@ -43,7 +42,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
                 ) : (
                   <NoData
                     message={formatMessage({
-                      id: 'message_media',
+                      id: 'media',
                       defaultMessage: 'Media',
                     })}
                   />

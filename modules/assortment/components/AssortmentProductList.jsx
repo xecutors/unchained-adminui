@@ -10,7 +10,6 @@ const AssortmentProductsList = ({ products, onRemoveProduct }) => {
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
         <div
-          key={Date.now()}
           className={classNames(
             'space-y-4 block py-3 rounded px-6 bg-white transition-[background-color] ease-in-out delay-200',
             {
@@ -35,7 +34,7 @@ const AssortmentProductsList = ({ products, onRemoveProduct }) => {
   ) : (
     <NoData
       message={formatMessage({
-        id: 'message_product',
+        id: 'assigned_products',
         defaultMessage: 'Assigned Products',
       })}
     />
