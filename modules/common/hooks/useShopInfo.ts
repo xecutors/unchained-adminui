@@ -20,7 +20,7 @@ export const ShopInfoQuery = gql`
           isoCode
         }
       }
-      userRoles
+
       externalLinks {
         href
         title
@@ -31,7 +31,6 @@ export const ShopInfoQuery = gql`
 
 const useShopInfo = () => {
   const { data, loading, error } = useQuery(ShopInfoQuery);
-
   return {
     shopInfo: data?.shopInfo,
     loading,

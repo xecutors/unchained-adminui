@@ -54,28 +54,27 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
           square
         />
       </Table.Cell>
-      {enableEdit ||
-        (enableDelete && (
-          <Table.Cell className="whitespace-nowrap">
-            <div className="flex items-center">
-              {enableEdit && (
-                <Link href={`/country/${country._id}`}>
-                  <a>
-                    <EditIcon />
-                  </a>
-                </Link>
-              )}
-              {enableEdit && (
-                <DeleteButton
-                  className="ml-1 mr-1 "
-                  onClick={async () => {
-                    await onRemove(country._id);
-                  }}
-                />
-              )}
-            </div>
-          </Table.Cell>
-        ))}
+      {(enableEdit || enableDelete) && (
+        <Table.Cell className="whitespace-nowrap">
+          <div className="flex items-center">
+            {enableEdit && (
+              <Link href={`/country/${country._id}`}>
+                <a>
+                  <EditIcon />
+                </a>
+              </Link>
+            )}
+            {enableDelete && (
+              <DeleteButton
+                className="ml-1 mr-1 "
+                onClick={async () => {
+                  await onRemove(country._id);
+                }}
+              />
+            )}
+          </div>
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

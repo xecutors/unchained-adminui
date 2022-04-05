@@ -30,26 +30,25 @@ const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
           square
         />
       </Table.Cell>
-      {enableEdit ||
-        (enableDelete && (
-          <Table.Cell>
-            <div className="flex items-center">
-              {enableEdit && (
-                <Link href={`/currency/${currency?._id}`}>
-                  <a>
-                    <EditIcon />
-                  </a>
-                </Link>
-              )}
-              {enableDelete && (
-                <DeleteButton
-                  className="ml-1 mr-1"
-                  onClick={() => onRemove(currency?._id)}
-                />
-              )}
-            </div>
-          </Table.Cell>
-        ))}
+      {(enableEdit || enableDelete) && (
+        <Table.Cell>
+          <div className="flex items-center">
+            {enableEdit && (
+              <Link href={`/currency/${currency?._id}`}>
+                <a>
+                  <EditIcon />
+                </a>
+              </Link>
+            )}
+            {enableDelete && (
+              <DeleteButton
+                className="ml-1 mr-1"
+                onClick={() => onRemove(currency?._id)}
+              />
+            )}
+          </div>
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

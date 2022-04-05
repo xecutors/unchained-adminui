@@ -10,7 +10,9 @@ const AuthWrapper = ({ children }) => {
   const { currentUser, loading } = useCurrentUser();
   const { hasRole } = useCurrentRoles();
   const privilege = ROUTE_ROLES[router.pathname];
+
   if (loading) return <Loading />;
+
   if (privilege !== undefined && !hasRole(privilege)) router.push('/403');
   return React.cloneElement(children, {
     allowedActions: currentUser?.allowedActions,

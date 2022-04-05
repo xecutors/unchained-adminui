@@ -13,10 +13,13 @@ import Pagination from '../../modules/common/components/Pagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
+  const { hasRole } = useCurrentRoles();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
@@ -66,7 +69,9 @@ const Languages = () => {
       />
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/language/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.languages.create) && '/language/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

@@ -6,6 +6,7 @@ import Loading from './Loading';
 const ShopInformation = () => {
   const { formatMessage, locale } = useIntl();
   const { shopInfo, loading } = useShopInfo();
+
   if (loading) return <Loading />;
   return (
     <>

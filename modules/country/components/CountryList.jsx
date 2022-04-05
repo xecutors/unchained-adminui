@@ -34,15 +34,15 @@ const CountryList = ({ countries, onRemoveCountry }) => {
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </Table.Cell>
-          {hasRole(ACTION_ROLES.country.update) ||
-            (hasRole(ACTION_ROLES.country.delete) && (
-              <Table.Cell>
-                <span className="sr-only">
-                  {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-                  {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
-                </span>
-              </Table.Cell>
-            ))}
+          {(hasRole(ACTION_ROLES.country.view) ||
+            hasRole(ACTION_ROLES.country.delete)) && (
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
+          )}
         </Table.Row>
       ))}
 
@@ -51,7 +51,7 @@ const CountryList = ({ countries, onRemoveCountry }) => {
           key={`${country?._id}-body`}
           country={country}
           onRemove={onRemoveCountry}
-          enableEdit={hasRole(ACTION_ROLES.country.update)}
+          enableEdit={hasRole(ACTION_ROLES.country.view)}
           enableDelete={hasRole(ACTION_ROLES.country.delete)}
         />
       ))}

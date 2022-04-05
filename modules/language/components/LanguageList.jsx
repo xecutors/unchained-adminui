@@ -26,15 +26,15 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
           <Table.Cell>
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
-          {hasRole(ACTION_ROLES.country.update) ||
-            (hasRole(ACTION_ROLES.country.delete) && (
-              <Table.Cell>
-                <span className="sr-only">
-                  {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
-                  {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
-                </span>
-              </Table.Cell>
-            ))}
+          {(hasRole(ACTION_ROLES.country.view) ||
+            hasRole(ACTION_ROLES.country.delete)) && (
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
+          )}
         </Table.Row>
       ))}
 
@@ -43,7 +43,7 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
           key={`${language?._id}`}
           language={language}
           onRemove={onRemoveLanguage}
-          enableEdit={hasRole(ACTION_ROLES.country.update)}
+          enableEdit={hasRole(ACTION_ROLES.country.view)}
           enableDelete={hasRole(ACTION_ROLES.country.delete)}
         />
       ))}

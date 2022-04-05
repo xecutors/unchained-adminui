@@ -12,10 +12,13 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import Loading from '../../modules/common/components/Loading';
 
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
+  const { hasRole } = useCurrentRoles();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
@@ -42,7 +45,11 @@ const AssortmentsListView = () => {
       />
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/assortments/new">
+        <ListHeader
+          addPath={
+            hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
+          }
+        >
           <Toggle
             toggleKey="includeInactive"
             toggleText={formatMessage({

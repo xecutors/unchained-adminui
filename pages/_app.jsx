@@ -39,7 +39,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
         router.push('/account');
       }
     })();
-  }, [router.pathname]);
+  }, []);
 
   const getLayout =
     Component.getLayout ||

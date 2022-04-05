@@ -13,7 +13,7 @@ import SyncReportList from '../modules/sync/components/SyncReportList';
 import useDailySyncs from '../modules/sync/hooks/useDailySyncs';
 import useCurrentRoles from '../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../modules/common/data/roles';
-import ShopInformation from '../modules/common/components/SystemInformations';
+import ShopInformation from '../modules/common/components/SystemInformation';
 
 const Home = () => {
   const { dailySync } = useDailySyncs({});

@@ -120,7 +120,6 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
       });
   }, [profile]);
 
-  console.log(profile);
   return (
     <Form form={form}>
       <div className="mt-6 overflow-hidden rounded-md">
