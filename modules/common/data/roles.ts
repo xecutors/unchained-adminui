@@ -1,5 +1,7 @@
 export const ACTION_ROLES = {
   assortments: {
+    view: 'viewAssortment',
+    viewList: 'viewAssortments',
     create: 'manageAssortments',
     update: 'manageAssortments',
     delete: 'manageAssortments',
@@ -20,6 +22,8 @@ export const ACTION_ROLES = {
     reorderFilter: 'manageAssortments',
   },
   products: {
+    view: 'viewProduct',
+    viewList: 'viewProducts',
     create: 'manageProducts',
     update: 'manageProducts',
     delete: 'manageProducts',
@@ -43,6 +47,10 @@ export const ACTION_ROLES = {
     removeBundleItem: 'manageProducts',
     addAssignment: 'manageProducts',
     removeAssignment: 'manageProducts',
+  },
+  quotations: {
+    view: 'viewQuotation',
+    viewList: 'viewQuotations',
   },
   filters: {
     view: 'viewFilter',
@@ -84,12 +92,16 @@ export const ACTION_ROLES = {
     markDelivered: 'markOrderDelivered',
   },
   paymentProviders: {
+    view: 'viewPaymentProvider',
+    viewList: 'viewPaymentProviders',
     create: 'manageWarehousingProviders',
     update: 'manageWarehousingProviders',
     delete: 'manageWarehousingProviders',
     markPaid: 'markOrderPaid',
   },
   warehousingProviders: {
+    view: 'viewWarehousingProvider',
+    viewList: 'viewWarehousingProviders',
     create: 'manageWarehousingProviders',
     update: 'manageWarehousingProviders',
     delete: 'manageWarehousingProviders',
@@ -102,6 +114,8 @@ export const ACTION_ROLES = {
     doWork: 'manageWorker',
   },
   order: {
+    view: 'viewOrder',
+    viewList: 'viewOrders',
     delete: 'updateOrder',
     confirm: 'markOrderConfirmed',
     reject: 'markOrderRejected',
@@ -109,6 +123,8 @@ export const ACTION_ROLES = {
     manualDeliver: 'markOrderDelivered',
   },
   users: {
+    view: 'viewUser',
+    viewList: 'viewUsers',
     updateEmail: 'updateUser',
     addEmail: 'updateUser',
     removeEmail: 'updateUser',

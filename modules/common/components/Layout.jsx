@@ -17,7 +17,6 @@ import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 
-import useShopInfo from '../hooks/useShopInfo';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
@@ -32,7 +31,7 @@ const Layout = ({
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
-  const { shopInfo } = useShopInfo();
+
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
@@ -320,7 +319,7 @@ const Layout = ({
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>
-          {React.cloneElement(children, { shopInfo })}
+          {React.cloneElement(children)}
         </main>
       </div>
     </div>
