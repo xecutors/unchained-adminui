@@ -21,7 +21,7 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   const [dateRange, setDateRange] = useState({
     start: new Date(0),
-    end: new Date(),
+    end: null,
   });
 
   const [selectedStatuses, setSelectedStatuses] = useState(
@@ -40,7 +40,8 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   useEffect(() => {
     const filterQuery = normalizeFilterKeys({
-      ...dateRange,
+      start: dateRange?.start?.getTime(),
+      end: dateRange?.end?.getTime(),
       types: selectedTypes,
       status: selectedStatuses,
     });
@@ -52,7 +53,7 @@ const WorkFilter = ({ workTypes = [] }) => {
     <>
       <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
         <div className="sm:mr-6">
-          <div className="flexspace-x-2">
+          <div className="space-x-2">
             <div className="text-xl font-medium leading-5 text-slate-800 lg:leading-6 ">
               {formatMessage({
                 id: 'date_range',

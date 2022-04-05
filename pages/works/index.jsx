@@ -20,8 +20,8 @@ const WorkQueueView = () => {
 
   const filter = {
     created: {
-      start: query?.start,
-      end: query?.end,
+      start: new Date(query?.start),
+      end: new Date(query?.end),
     },
     status: query?.status?.split(','),
     selectTypes: query?.types?.split(','),

@@ -4,6 +4,7 @@ const UnPublishProductMutation = gql`
   mutation UnpublishProduct($productId: ID!) {
     unpublishProduct(productId: $productId) {
       _id
+      status
     }
   }
 `;
@@ -14,7 +15,7 @@ const useUnPublishProduct = () => {
   const unPublishProduct = async ({ productId }) => {
     return unPublishProductMutation({
       variables: { productId },
-      refetchQueries: ['Products'],
+      refetchQueries: ['Product'],
     });
   };
 
