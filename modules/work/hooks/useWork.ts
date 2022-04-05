@@ -10,10 +10,11 @@ export const WorkQuery = gql`
   ${WorkFragment}
 `;
 
-const useWork = ({ workId = null } = {}) => {
+const useWork = ({ workId = null, ...options } = {}) => {
   const { data, loading, error } = useQuery(WorkQuery, {
     skip: !workId,
     variables: { workId },
+    ...options,
   });
 
   return {

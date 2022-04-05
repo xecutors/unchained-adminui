@@ -58,7 +58,7 @@ const CreateUser = () => {
     return { success: true, data: data?.createUser };
   };
 
-  const onSubmitSuccess = ({ id }) => {
+  const onSubmitSuccess = (_, { id }) => {
     router.push(`/users/${id}`);
   };
   return (

@@ -16,7 +16,7 @@ const WorkDetailPage = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const { workId } = query;
-  const { work, loading } = useWork({ workId });
+  const { work, loading } = useWork({ workId, pollInterval: 2000 });
 
   const { setModal } = useModal();
   const { removeWork } = useRemoveWork();

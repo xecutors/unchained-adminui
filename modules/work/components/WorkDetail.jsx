@@ -86,7 +86,7 @@ const WorkDetail = ({ work }) => {
         <div className="mt-2 text-sm text-slate-900">
           {work?.error ? (
             <JSONView
-              value={JSON.stringify(work.error, null, 2)}
+              value={decodeURI(JSON.stringify(work.error, null, 2))}
               disabled
               className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
             />

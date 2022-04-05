@@ -22,7 +22,7 @@ const AddFilter = () => {
     return { success: true, data: data?.createFilter };
   };
 
-  const onSubmitSuccess = ({ _id }) => {
+  const onSubmitSuccess = (_, { _id }) => {
     router.push(`/filters/${_id}`);
   };
 

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
@@ -17,10 +18,15 @@ const WorkForm = () => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
   const { addWork } = useAddWork();
+  const router = useRouter();
   const successMessage = formatMessage({
     id: 'work_added_success',
     defaultMessage: 'Work added successfully!',
   });
+
+  const onSubmitSuccess = (_, { _id }) => {
+    router.push(`/works/${_id}`);
+  };
 
   const onSubmit = async ({
     type,
@@ -30,7 +36,7 @@ const WorkForm = () => {
     scheduled,
     originalWorkId,
   }) => {
-    await addWork({
+    const { data, errors } = await addWork({
       type,
       retries: parseInt(inputRetry, 10),
       priority: parseInt(inputPriority, 10),
@@ -38,20 +44,22 @@ const WorkForm = () => {
       scheduled,
       originalWorkId,
     });
-    return true;
+    if (errors.length) return false;
+    return { success: true, data: data?.addWork };
   };
 
   const form = useForm({
     submit: onSubmit,
     successMessage,
+    onSubmitSuccess,
     enableReinitialize: true,
     initialValues: {
       priority: '',
       retries: '',
       originalWorkId: null,
-      scheduled: null,
+      scheduled: '',
       type: '',
-      input: '',
+      input: '{}',
     },
   });
 

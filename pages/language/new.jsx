@@ -13,7 +13,7 @@ const AddLanguage = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
 
-  const onSubmitSuccess = ({ _id }) => {
+  const onSubmitSuccess = (_, { _id }) => {
     router.push(`/language/${_id}`);
   };
 

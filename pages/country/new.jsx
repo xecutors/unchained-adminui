@@ -17,7 +17,7 @@ const AddCountries = () => {
     return { success: true, data: data?.createCountry };
   };
 
-  const onSubmitSuccess = ({ _id }) => {
+  const onSubmitSuccess = (_, { _id }) => {
     push(`/country/${_id}`);
   };
 

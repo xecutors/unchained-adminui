@@ -1,4 +1,5 @@
 import { FieldArray } from 'formik';
+import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
@@ -12,11 +13,17 @@ import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
 const AllocateWorkForm = () => {
   const { formatMessage } = useIntl();
+  const router = useRouter();
   const { allocateWork } = useAllocateWork();
 
   const onSubmit = async ({ types, worker }) => {
-    await allocateWork({ types, worker });
-    return true;
+    const { data, errors } = await allocateWork({ types, worker });
+    if (errors.length) return false;
+    return { success: true, data: data?.allocateWork };
+  };
+
+  const onSubmitSuccess = (_, { _id }) => {
+    router.push(`/works/${_id}`);
   };
   const successMessage = formatMessage({
     id: 'work_allocated_success',
@@ -24,6 +31,7 @@ const AllocateWorkForm = () => {
   });
   const form = useForm({
     submit: onSubmit,
+    onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
     initialValues: {

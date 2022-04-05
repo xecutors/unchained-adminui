@@ -27,7 +27,7 @@ const NewPaymentProvider = () => {
 
   const router = useRouter();
 
-  const onSubmitSuccess = ({ _id }) => {
+  const onSubmitSuccess = (_, { _id }) => {
     router.push(`/payment-provider/${_id}`);
   };
 
