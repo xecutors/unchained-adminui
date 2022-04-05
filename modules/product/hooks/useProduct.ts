@@ -23,4 +23,16 @@ const useProduct = ({ productId = null, slug = null } = {}) => {
   };
 };
 
+export const preFetchProduct = async (
+  apolloClient,
+  { productId = null, slug = null },
+) => {
+  const { data } = await apolloClient.query({
+    query: ProductQuery,
+    skip: !productId && !slug,
+    variables: { productId, slug },
+  });
+  return data?.product;
+};
+
 export default useProduct;
