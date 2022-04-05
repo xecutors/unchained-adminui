@@ -17,6 +17,10 @@ const LogInWithPasswordMutation = gql`
       id
       token
       tokenExpires
+      user {
+        _id
+        allowedActions
+      }
     }
   }
 `;

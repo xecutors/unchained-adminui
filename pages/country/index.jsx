@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -17,14 +18,19 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
-const Country = () => {
+const Country = ({ userId }) => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
   const { hasRole } = useCurrentRoles();
+  const { checkAccess } = useAuth();
+  useEffect(() => {
+    checkAccess(userId);
+  }, [userId]);
 
   const { countries, countriesCount, loading } = useCountries({
     limit,

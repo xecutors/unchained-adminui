@@ -181,10 +181,13 @@ const Layout = ({
     id: 'logged_out',
     defaultMessage: 'Logged out',
   });
+
   const onLogout = async () => {
+    const id = currentUser?._id;
     await logOut(apollo);
     toast.success(successfullyLoggedOutMessage);
-    router.replace('/');
+    localStorage.setItem(id, null);
+    router.replace('/log-in');
   };
 
   const [hideNav, setHideNav] = useState(true);
