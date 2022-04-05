@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInputField from '../../forms/components/TagInputField';
 import useForm from '../../forms/hooks/useForm';
+import FormWrapper from './FormWrapper';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 
 const TagListForm = ({ tags, onSubmit, onCancel }) => {
@@ -33,8 +34,8 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
           />
         </div>
         <SaveAndCancelButtons onCancel={onCancel} className="justify-end" />
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 
