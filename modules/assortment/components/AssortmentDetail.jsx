@@ -253,7 +253,7 @@ const AssortmentDetail = ({ assortment }) => {
 
   return (
     <>
-      <div className="-ml-2 flex flex-wrap space-y-2 space-x-2 lg:justify-end">
+      <div className="-ml-2 flex flex-wrap gap-2 lg:justify-end">
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}

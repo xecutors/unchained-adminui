@@ -1,14 +1,15 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import Loading from '../../common/components/Loading';
-import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import { DragDropContext } from 'react-beautiful-dnd';
 
+import Loading from '../../common/components/Loading';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAssortmentLinks from '../hooks/useAssortmentLinks';
 import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentLinksList from './AssortmentLinksList';
+import useReorderAssortmentLink from '../hooks/useReorderAssortmentLinks';
 
 const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -16,6 +17,7 @@ const AssortmentLinks = ({ assortmentId }) => {
   const { linkedAssortments, loading } = useAssortmentLinks({ assortmentId });
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
+  const { reorderAssortmentLink } = useReorderAssortmentLink();
 
   const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
@@ -48,42 +50,112 @@ const AssortmentLinks = ({ assortmentId }) => {
     );
   };
 
+  const handleDragEnd = async (result) => {
+    const { destination, source } = result;
+
+    if (!destination) {
+      toast.info(
+        formatMessage({
+          id: 'drop_area_empty',
+          defaultMessage: 'Destination is empty',
+        }),
+      );
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const sortKeys = linkedAssortments.map((media) => ({
+      assortmentLinkId: media._id,
+      sortKey: media.sortKey,
+    }));
+
+    const [removedSortKey] = sortKeys.splice(source.index, 1);
+    sortKeys.splice(destination.index, 0, removedSortKey);
+
+    sortKeys.map((sortKey, index) => ({
+      ...sortKey,
+      sortKey: index,
+    }));
+
+    try {
+      await reorderAssortmentLink({ sortKeys });
+      toast.success(
+        formatMessage({
+          id: 'link_reorder',
+          defaultMessage: 'Link reorder successfully',
+        }),
+      );
+    } catch (error) {
+      toast.error(
+        formatMessage({
+          id: 'fail_reorder',
+          defaultMessage: 'Link reorder failed, Try again!',
+        }),
+      );
+    }
+  };
+
   return (
-    <>
-      <SelfDocumentingView
-        documentationLabel={formatMessage({
-          id: 'assortment_links',
-          defaultMessage: 'Links',
-        })}
-        documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+    <div className="mt-0 md:mt-5">
+      <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="mb-4 md:col-span-1">
+          <div className="px-4 sm:px-0">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
+              {formatMessage({
+                id: 'assortment_links',
+                defaultMessage: 'Links',
+              })}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco"
-        mainContent={<AssortmentLinkForm assortmentId={assortmentId} />}
-      />
-      <SelfDocumentingView
-        className="mt-5"
-        documentationLabel={formatMessage({
-          id: 'assortment_links_list',
-          defaultMessage: 'Linked assortments',
-        })}
-        documentation=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco"
-        mainContent={
-          loading ? (
+              enim ad minim veniam, quis nostrud exercitation ullamco
+            </p>
+          </div>
+        </div>
+
+        <div className="md:col-span-2">
+          <AssortmentLinkForm assortmentId={assortmentId} />
+        </div>
+      </div>
+
+      <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
+        <div className="mb-4 md:col-span-1">
+          <div className="px-4 sm:px-0">
+            <h3 className="text-lg font-medium leading-6 text-slate-900">
+              {formatMessage({
+                id: 'assortment_links_list',
+                defaultMessage: 'Linked assortments',
+              })}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco
+            </p>
+          </div>
+        </div>
+        <div className="w-full md:col-span-2">
+          {loading ? (
             <Loading />
           ) : (
-            <div className=" bg-white py-2 px-6 shadow">
+            <DragDropContext onDragEnd={handleDragEnd}>
               <AssortmentLinksList
                 currentAssortmentId={assortmentId}
                 links={linkedAssortments || []}
                 onRemoveLink={onRemoveLink}
               />
-            </div>
-          )
-        }
-      />
-    </>
+            </DragDropContext>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

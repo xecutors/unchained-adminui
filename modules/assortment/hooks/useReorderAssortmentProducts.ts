@@ -18,7 +18,7 @@ const useReorderAssortmentProducts = () => {
   const reorderAssortmentProducts = async ({ sortKeys }) => {
     return reorderAssortmentProductsMutation({
       variables: { sortKeys },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentProducts'],
     });
   };
 

@@ -14,7 +14,7 @@ const useReOrderProductMedia = () => {
   const reOrderProductMedia = async ({ sortKeys }) => {
     return reOrderProductMutation({
       variables: { sortKeys },
-      refetchQueries: ['Products'],
+      refetchQueries: ['ProductMedia'],
     });
   };
 

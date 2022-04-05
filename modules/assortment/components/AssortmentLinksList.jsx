@@ -1,40 +1,61 @@
 import { useIntl } from 'react-intl';
+import { Droppable } from 'react-beautiful-dnd';
+import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 import AssortmentLinksListItem from './AssortmentLinksListItem';
 
 const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
   const { formatMessage } = useIntl();
-  return links.length ? (
-    links.map((link) => {
-      const { child, parent, _id } = link;
-      const comp = [];
-      if (parent && parent._id !== currentAssortmentId)
-        comp.push(
-          <AssortmentLinksListItem
-            key={parent._id}
-            link={parent}
-            isParent={parent._id === currentAssortmentId}
-            linkId={_id}
-            onDelete={onRemoveLink}
-          />,
-        );
-      if (child && child._id !== currentAssortmentId)
-        comp.push(
-          <AssortmentLinksListItem
-            key={child._id}
-            link={child}
-            linkId={_id}
-            isParent={child._id !== currentAssortmentId}
-            onDelete={onRemoveLink}
-          />,
-        );
 
-      return comp;
-    })
+  return links.length ? (
+    <Droppable droppableId="assortment-links">
+      {(provided, snapshot) => (
+        <div
+          className={classNames(
+            'space-y-4 bg-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
+            {
+              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+            },
+          )}
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          {links.map((link, index) => {
+            const { child, parent, _id } = link;
+            const comp = [];
+            if (parent && parent._id !== currentAssortmentId)
+              comp.push(
+                <AssortmentLinksListItem
+                  key={parent._id}
+                  link={parent}
+                  isParent={parent._id === currentAssortmentId}
+                  linkId={_id}
+                  onDelete={onRemoveLink}
+                  index={index}
+                />,
+              );
+            if (child && child._id !== currentAssortmentId)
+              comp.push(
+                <AssortmentLinksListItem
+                  key={child._id}
+                  link={child}
+                  linkId={_id}
+                  isParent={child._id !== currentAssortmentId}
+                  onDelete={onRemoveLink}
+                  index={index}
+                />,
+              );
+
+            return comp;
+          })}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   ) : (
     <NoData
       message={formatMessage({
-        id: 'linked-message',
+        id: 'linked_assortment',
         defaultMessage: 'Linked assortment',
       })}
     />

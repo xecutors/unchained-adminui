@@ -60,10 +60,10 @@ const FilterableDropdown = ({
           <div className="w-full">
             <FieldWrapper {...field}>
               {currentSelection ? (
-                <div className="h-10 w-full">
+                <div className="w-full">
                   <input
                     type="search"
-                    className="w-full px-4 py-1 text-slate-800  focus:outline-none"
+                    className="w-full h-12 text-slate-800 focus:outline-none mt-1 block appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
                     placeholder={formatMessage({
                       id: 'search',
                       defaultMessage: 'Search',
@@ -78,13 +78,12 @@ const FilterableDropdown = ({
                 </div>
               ) : (
                 <>
-                  <div className="h-10 w-full">
+                  <div className="w-full">
                     <input
                       className={classNames(
-                        'relative mt-1 block w-full appearance-none rounded-l-md border-2 border-slate-200 px-4 py-2.5 text-slate-900 placeholder-slate-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
-                        'w-full appearance-none p-1 px-2 text-slate-800 outline-none',
+                        'mt-1 h-12 block w-full appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 text-slate-800 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
                         {
-                          'border-red-300': !!field.error,
+                          'border-red-300 focus:border-red-300': !!field.error,
                         },
                       )}
                       onChange={(e) => {
@@ -117,7 +116,7 @@ const FilterableDropdown = ({
 
           <div
             className={classNames(
-              '-ml-px mb-1 flex h-11 w-11 items-center self-end rounded-r-md border-slate-200 bg-indigo-500 py-1 pl-2 pr-1 text-white',
+              '-ml-px mb-2 h-12 flex items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-2 pl-2 pr-1 text-white',
               { 'bg-red-400': !!field.error },
               props.buttonClassName,
             )}

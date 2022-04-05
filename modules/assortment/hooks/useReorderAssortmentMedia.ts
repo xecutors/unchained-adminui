@@ -16,7 +16,7 @@ const useReorderAssortmentMedia = () => {
   const reorderAssortmentMedia = async ({ sortKeys }) => {
     return reorderAssortmentMediaMutation({
       variables: { sortKeys },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentMedia'],
     });
   };
 
