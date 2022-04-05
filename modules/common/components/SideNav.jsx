@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
 const ChildrenNav = ({ item, hasRole }) => {
-  return item.children?.some((d) => d?.roles?.some((e) => hasRole(e))) ? (
+  return item.children?.some((d) => hasRole(d?.requiredRole)) ? (
     <Disclosure as="div" key={item.name} className="space-y-1">
       {({ open }) => (
         <>
@@ -35,7 +35,7 @@ const ChildrenNav = ({ item, hasRole }) => {
           </Disclosure.Button>
           <Disclosure.Panel className="space-y-1">
             {item.children
-              .filter((f) => !f?.roles || f.roles?.some((y) => hasRole(y)))
+              .filter((f) => !f?.requiredRole || hasRole(f.requiredRole))
               .map((subItem) => (
                 <Link key={subItem.name} href={subItem.href}>
                   <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900">
@@ -64,7 +64,7 @@ const SideNav = ({ navigation }) => {
       >
         {navigation.map((item) =>
           !item.children &&
-          (!item.roles || item.roles.some((t) => hasRole(t))) ? (
+          (!item.requiredRole || hasRole(item.requiredRole)) ? (
             <div key={item.name}>
               <Link href={item?.href || '#'}>
                 <a
@@ -89,7 +89,7 @@ const SideNav = ({ navigation }) => {
               </Link>
             </div>
           ) : (
-            <ChildrenNav item={item} hasRole={hasRole} />
+            <ChildrenNav key={item.name} item={item} hasRole={hasRole} />
           ),
         )}
       </nav>

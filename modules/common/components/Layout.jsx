@@ -35,13 +35,13 @@ const Layout = ({
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-      roles: [],
+      requiredRole: [],
       icon: HomeIcon,
       href: '/',
     },
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
-      roles: ['viewReports'],
+      requiredRole: 'viewReports',
       icon: ChartBarIcon,
       children: [
         {
@@ -58,7 +58,7 @@ const Layout = ({
         id: 'orders',
         defaultMessage: 'Orders',
       }),
-      roles: ['viewOrders', 'manageOrders'],
+      requiredRole: 'viewOrders',
       icon: InboxIcon,
       href: '/orders',
     },
@@ -67,27 +67,27 @@ const Layout = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
-      roles: ['viewProducts', 'manageProducts'],
+      requiredRole: 'viewProducts',
       icon: TagIcon,
       href: '/products',
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
-      roles: ['viewAssortments', 'manageAssortments'],
+      requiredRole: 'viewAssortments',
       href: '/assortments',
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsIcon,
-      roles: ['viewFilters', 'manageFilters'],
+      requiredRole: 'viewFilters',
       href: '/filters',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserGroupIcon,
       href: '/users',
-      roles: ['manageUsers'],
+      requiredRole: 'viewUsers',
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
@@ -98,25 +98,25 @@ const Layout = ({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
-          roles: ['viewCurrencies', 'manageCurrencies'],
+          requiredRole: 'viewCurrencies',
           href: '/currency',
         },
         {
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
-          roles: ['viewCountries', 'manageCountries'],
+          requiredRole: 'viewCountries',
         },
         {
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
-          roles: ['viewLanguages', 'manageLanguages'],
+          requiredRole: 'viewLanguages',
         },
         {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           }),
-          roles: ['viewDeliveryProviders', 'manageDeliveryProviders'],
+          requiredRole: 'viewDeliveryProviders',
           href: '/delivery-provider',
         },
         {
@@ -124,7 +124,7 @@ const Layout = ({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
-          roles: ['viewPaymentProviders', 'managePaymentProviders'],
+          requiredRole: 'viewPaymentProviders',
           href: '/payment-provider',
         },
         {
@@ -132,7 +132,7 @@ const Layout = ({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
           }),
-          roles: ['viewWarehousingProviders', 'manageWarehousingProviders'],
+          requiredRole: 'viewWarehousingProviders',
           href: '/warehousing-provider',
         },
       ],
@@ -146,13 +146,13 @@ const Layout = ({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
-          roles: ['viewWork'],
+          requiredRole: 'manageWorker',
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
-          roles: ['viewCurrencies'],
+          requiredRole: 'viewEvents',
         },
         // {
         //   name: formatMessage({
