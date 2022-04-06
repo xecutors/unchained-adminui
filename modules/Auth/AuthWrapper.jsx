@@ -16,8 +16,9 @@ const AuthWrapper = ({ children }) => {
   };
   const isAuthenticated = (id) => {
     const roles = localStorage.getItem(id);
-    if (!roles) return false;
-    return roles?.split(',');
+    // empty string means array since setting array to local storage is transformed to empty string
+    if (!roles && roles !== '') return false;
+    return roles?.split(',')?.filter(Boolean);
   };
 
   const isAdmin = (id) => {
@@ -28,7 +29,6 @@ const AuthWrapper = ({ children }) => {
     if (role === 'UNRESTRICTED') return true;
     const userId = getUserId();
     const roles = isAuthenticated(userId);
-
     if (roles === false) return false;
     return isAdmin(userId) || roles.includes(role);
   };
@@ -38,7 +38,8 @@ const AuthWrapper = ({ children }) => {
     const userRoles = isAuthenticated(id);
     if (
       ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
-      (userRoles && userRoles.includes(ROUTE_ROLES[router.pathname]))
+      isAdmin(id) ||
+      userRoles?.includes(ROUTE_ROLES[router.pathname])
     )
       return true;
     return false;
