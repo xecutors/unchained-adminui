@@ -54,7 +54,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {currentId >= timeline[value].id ? (
-                      <div className="whitespace-nowrap text-right text-sm text-slate-500">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500 ml-4">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
                           : null}
@@ -109,7 +109,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     'text-center',
                   )}
                 >
-                  <span className="flex flex-col items-center justify-center capitalize">
+                  <span className="flex flex-col gap-1 items-center justify-center capitalize">
                     {timeline[value]?.Component
                       ? timeline[value].Component
                       : value}
