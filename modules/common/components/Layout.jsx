@@ -16,6 +16,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
+import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
@@ -26,12 +27,11 @@ const Layout = ({
   apollo,
   router,
   pageHeader = '',
-  allowedActions,
-  currentUser,
+
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
-
+  const { currentUser } = useCurrentUser();
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
@@ -176,15 +176,15 @@ const Layout = ({
     },
   ];
 
-  const successfullyLoggedOutMessage = formatMessage({
-    id: 'logged_out',
-    defaultMessage: 'Logged out',
-  });
-
   const onLogout = async () => {
     const id = currentUser?._id;
     await logOut(apollo);
-    toast.success(successfullyLoggedOutMessage);
+    toast.success(
+      formatMessage({
+        id: 'logged_out',
+        defaultMessage: 'Logged out',
+      }),
+    );
     localStorage.setItem(id, null);
     router.replace('/log-in');
   };
@@ -250,10 +250,7 @@ const Layout = ({
                 })}
               />
             </div>
-            <SideNav
-              navigation={defaultNavigation}
-              currentRoles={allowedActions}
-            />
+            <SideNav navigation={defaultNavigation} />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
@@ -276,10 +273,7 @@ const Layout = ({
                 })}
               />
             </div>
-            <SideNav
-              navigation={defaultNavigation}
-              currentRoles={allowedActions}
-            />
+            <SideNav navigation={defaultNavigation} />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />

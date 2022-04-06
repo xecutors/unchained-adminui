@@ -35,6 +35,8 @@ export default function LogInForm() {
       const { id, token, tokenExpires, user } = data.loginWithPassword;
       await storeLoginToken(id, token, new Date(tokenExpires));
       setAuthContext(id, user?.allowedActions);
+
+      if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
       return true;
     } catch (e) {
       // eslint-disable-next-line no-console

@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import App from 'next/app';
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+
 import { ToastContainer } from 'react-toastify';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
@@ -12,44 +12,21 @@ import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
-import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
+
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
-import AccessControl from '../modules/Auth/AccessControl';
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState(null);
 
   const { locale } = router;
 
   const apollo = useApollo(pageProps, { locale });
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await apollo.query({
-        query: CurrentUserQuery,
-        errorPolicy: 'none',
-        fetchPolicy: 'network-only',
-      });
-      setCurrentUser(data?.me);
-      if (!data?.me && !UnrestrictedPages.includes(router.pathname))
-        router.push('/log-in');
-      else if (data?.me && data.me?.isGuest) {
-        router.push('/account');
-      }
-    })();
-  }, []);
-
   const getLayout =
     Component.getLayout ||
     ((page) => (
-      <Layout
-        apollo={apollo}
-        {...rest}
-        currentRoles={currentUser?.allowedActions}
-      >
+      <Layout apollo={apollo} {...rest}>
         {page}
       </Layout>
     ));
@@ -73,11 +50,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
           pauseOnHover
         />
         <ModalWrapper>
-          <AuthWrapper>
-            <AccessControl userId={currentUser?._id}>
-              {getLayout(<Component {...pageProps} />)}
-            </AccessControl>
-          </AuthWrapper>
+          <AuthWrapper>{getLayout(<Component {...pageProps} />)}</AuthWrapper>
         </ModalWrapper>
       </IntlWrapper>
     </ApolloProvider>

@@ -1,32 +1,36 @@
 import { useRouter } from 'next/router';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import useCurrentUser from '../accounts/hooks/useCurrentUser';
+import Loading from '../common/components/Loading';
+import { UnrestrictedPages } from '../common/data/miscellaneous';
 import { ROUTE_ROLES } from '../common/data/roles';
 
 import AuthContext from './AuthContext';
 
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
+  const { currentUser, loading } = useCurrentUser();
   const setAuthContext = (id, roles) => {
     localStorage.setItem(id, roles);
   };
   const isAuthenticated = (id) => {
-    return !!localStorage.getItem(id);
+    const roles = localStorage.getItem(id);
+    if (!roles) return false;
+    return roles?.split(',');
+  };
+
+  const isAdmin = (id) => {
+    return isAuthenticated(id) && isAuthenticated(id)?.length === 0;
   };
 
   const checkAccess = (id) => {
-    if (!id) return false;
-    const userRoles =
-      localStorage.getItem(id) && localStorage.getItem(id)?.split(',');
-
+    if (!id && !UnrestrictedPages.includes(router.pathname)) return false;
+    const userRoles = isAuthenticated(id);
     if (
       ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
-      (userRoles !== false &&
-        userRoles.includes(ROUTE_ROLES[router.pathname])) ||
-      userRoles?.length === 0
+      (userRoles && userRoles.includes(ROUTE_ROLES[router.pathname]))
     )
       return true;
-
-    router.push('/403');
     return false;
   };
   const restAuth = (id) => {
@@ -34,13 +38,27 @@ const AuthWrapper = ({ children }) => {
   };
 
   const ctx = useMemo(
-    () => ({ setAuthContext, isAuthenticated, checkAccess, restAuth }),
+    () => ({ setAuthContext, isAuthenticated, checkAccess, restAuth, isAdmin }),
     [],
   );
 
+  useEffect(() => {
+    if (!loading) {
+      if (isAuthenticated(currentUser?._id)) {
+        if (!checkAccess(currentUser?._id)) {
+          router.push('/403');
+        }
+      } else {
+        router.replace('/log-in');
+      }
+    }
+  }, [currentUser, loading]);
+
   return (
     <>
-      <AuthContext.Provider value={ctx}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={ctx}>
+        {loading ? <Loading /> : children}
+      </AuthContext.Provider>
     </>
   );
 };

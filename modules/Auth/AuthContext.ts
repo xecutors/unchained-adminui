@@ -6,17 +6,20 @@ export type SetAuth = (
 ) => Promise<boolean>;
 
 export type Auth = (id: string) => boolean;
-
+export type AuthState = (id: string) => boolean | string[];
+export type AuthReset = (id: string) => void;
 const AuthContext = React.createContext<{
   setAuthContext: SetAuth;
-  isAuthenticated: Auth;
+  isAuthenticated: AuthState;
+  isAdmin: Auth;
   checkAccess: () => boolean;
-  resetAuth?: (id: string) => void;
+  resetAuth?: AuthReset;
 }>({
   setAuthContext: () => {
     throw new Error('No AuthContext registered');
   },
   isAuthenticated: () => false,
+  isAdmin: () => false,
   checkAccess: () => false,
   resetAuth: (id) => {
     localStorage.setItem(id, null);

@@ -20,6 +20,7 @@ const LogInWithPasswordMutation = gql`
       user {
         _id
         allowedActions
+        roles
       }
     }
   }

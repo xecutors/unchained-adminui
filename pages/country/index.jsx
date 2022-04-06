@@ -28,6 +28,7 @@ const Country = ({ userId }) => {
   const includeInactive = query?.includeInactive === 'true';
   const { hasRole } = useCurrentRoles();
   const { checkAccess } = useAuth();
+
   useEffect(() => {
     checkAccess(userId);
   }, [userId]);
