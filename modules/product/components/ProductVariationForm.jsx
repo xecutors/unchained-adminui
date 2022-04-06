@@ -1,5 +1,7 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -12,7 +14,7 @@ const ProductVariationForm = ({ onSubmit }) => {
   const { formatMessage } = useIntl();
 
   const { variationTypes } = useProductVariationTypes();
-
+  const { hasRole } = useCurrentRoles();
   const successMessage = formatMessage({
     id: 'product_variation_added',
     defaultMessage: 'Product variation added successfully',
@@ -76,6 +78,7 @@ const ProductVariationForm = ({ onSubmit }) => {
       </div>
       <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
         <SubmitButton
+          hidden={!hasRole(ACTION_ROLES.products.createVariation)}
           label={formatMessage({
             id: 'save',
             defaultMessage: 'Save',

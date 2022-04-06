@@ -10,6 +10,8 @@ import useAddAssortmentFilter from '../hooks/useAddAssortmentFilter';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import useFiltersList from '../../filter/hooks/useFiltersList';
 import TagInputField from '../../forms/components/TagInputField';
+import ACTION_ROLES from '../../common/data/roles';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
@@ -21,6 +23,7 @@ const normalizeFilters = (filterList) => {
 const AssortmentFiltersForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { addAssortmentFilter } = useAddAssortmentFilter();
+  const { hasRole } = useCurrentRoles();
   const { filters } = useFiltersList({ limit: 300 });
 
   const [filteredFilters, setFilteredFilters] = useState(() =>
@@ -82,6 +85,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
         </div>
         <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.assortments.addFilter)}
             label={formatMessage({
               id: 'save',
               defaultMessage: 'Save',

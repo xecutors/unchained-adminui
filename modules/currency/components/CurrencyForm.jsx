@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../common/data/roles';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
@@ -15,6 +16,7 @@ const CurrencyForm = ({
   isEdit,
 }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
 
   const currencyAddedMessage = formatMessage({
     id: 'currency_added',
@@ -77,7 +79,7 @@ const CurrencyForm = ({
       </div>
       <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 rounded-b-md bg-slate-50 p-5 text-right">
         <SubmitButton
-          disabled={ACTION_ROLES.currencies.update}
+          hidden={!hasRole(ACTION_ROLES.currencies.update)}
           label={
             isEdit
               ? formatMessage({

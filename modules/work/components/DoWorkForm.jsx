@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import SelectField from '../../forms/components/SelectField';
@@ -12,6 +14,7 @@ import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 const DoWorkForm = () => {
   const { formatMessage } = useIntl();
   const { doWork } = useDoWork();
+  const { hasRole } = useCurrentRoles();
   const onSubmit = async ({ type, input }) => {
     await doWork({ type, input: JSON.parse(input) });
     return true;
@@ -66,6 +69,7 @@ const DoWorkForm = () => {
 
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.work.doWork)}
             label={formatMessage({
               id: 'do_work',
               defaultMessage: 'Do Work',

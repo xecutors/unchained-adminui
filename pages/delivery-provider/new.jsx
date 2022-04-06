@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import useCreateDeliveryProvider from '../../modules/delivery-provider/hooks/useCreateDeliveryProvider';
 import useDeliveryInterfacesByType from '../../modules/delivery-provider/hooks/useDeliveryInterfacesByType';
 import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
@@ -18,6 +20,8 @@ const NewDeliveryProvider = () => {
   const { deliveryInterfaces } = useDeliveryInterfacesByType({
     type: selectedType,
   });
+  const { hasRole } = useCurrentRoles();
+
   const onSubmit = async ({ adapterKey, type }) => {
     const { data, errors } = await createDeliveryProvider({ adapterKey, type });
     if (errors?.length) return false;
@@ -42,6 +46,7 @@ const NewDeliveryProvider = () => {
         />
         <div className="mt-6">
           <NewProviderForm
+            readOnly={!hasRole(ACTION_ROLES.deliveryProviders.create)}
             providerInterfaces={convertArrayOfObjectToObject(
               deliveryInterfaces,
               'label',

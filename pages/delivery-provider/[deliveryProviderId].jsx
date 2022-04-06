@@ -90,6 +90,7 @@ const DeliveryProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
+          readOnly={!hasRole(ACTION_ROLES.deliveryProviders.update)}
           provider={deliveryProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

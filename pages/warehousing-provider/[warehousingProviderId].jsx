@@ -91,6 +91,7 @@ const WarehousingProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
+          readOnly={!hasRole(ACTION_ROLES.warehousingProviders.update)}
           provider={warehousingProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

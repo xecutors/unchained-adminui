@@ -145,6 +145,13 @@ export const ACTION_ROLES = {
   shopInfo: {
     view: 'viewShopInfo',
   },
+  enrollment: {
+    view: 'viewEnrollment',
+    viewList: 'viewEnrollments',
+    create: 'createEnrollment',
+    update: 'updateEnrollment',
+    terminate: 'terminateEnrollment',
+  },
 };
 
 export const ROUTE_ROLES = {
@@ -173,6 +180,7 @@ export const ROUTE_ROLES = {
   '/payment-provider': 'viewPaymentProviders',
   '/warehousing-provider/[warehousingProviderId]': 'viewWarehousingProvider',
   '/warehousing-provider': 'viewWarehousingProviders',
+  '/': 'UNRESTRICTED',
   '/account': 'UNRESTRICTED',
   '/log-in': 'UNRESTRICTED',
   '/forgot-password': 'UNRESTRICTED',

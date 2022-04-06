@@ -1,7 +1,9 @@
 import { FieldArray } from 'formik';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 import useCountries from '../../country/hooks/useCountries';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 
@@ -33,7 +35,7 @@ const normalizeCatalogPrices = (prices = []) => {
 const CommerceForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { catalogPrices, loading } = useProductCatalogPrices({ productId });
-
+  const { hasRole } = useCurrentRoles();
   const { updateProductCommerce } = useUpdateProductCommerce();
   const { countries } = useCountries();
   const { currencies } = useCurrencies();
@@ -334,6 +336,7 @@ const CommerceForm = ({ productId }) => {
           <FormErrors />
           <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
             <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.products.updateCommerce)}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',

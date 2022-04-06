@@ -8,6 +8,8 @@ import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
 import useSearchAssortments from '../hooks/useSearchAssortments';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
+import ACTION_ROLES from '../../common/data/roles';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -21,6 +23,7 @@ const normalizeAssortments = (productsList = []) => {
 const AssortmentLinkForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
+  const { hasRole } = useCurrentRoles();
   const [queryString, setQueryString] = useState('');
   const { assortments } = useSearchAssortments({
     queryString,
@@ -76,6 +79,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
         </div>
         <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.assortments.addLink)}
             label={formatMessage({
               id: 'save',
               defaultMessage: 'Save',

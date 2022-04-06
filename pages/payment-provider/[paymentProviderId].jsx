@@ -89,6 +89,7 @@ const PaymentProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
+          readOnly={!hasRole(ACTION_ROLES.paymentProviders.update)}
           provider={paymentProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

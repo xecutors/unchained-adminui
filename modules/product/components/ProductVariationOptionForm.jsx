@@ -1,4 +1,6 @@
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -6,6 +8,7 @@ import useForm from '../../forms/hooks/useForm';
 
 const ProductVariationOptionForm = ({ onSubmit }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useCurrentRoles();
 
   const successMessage = formatMessage({
     id: 'variation_option_added',
@@ -39,6 +42,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
 
         <span className="flex-auto self-end">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.products.createVariationOption)}
             className="p-0"
             label={formatMessage({
               id: 'add_options',

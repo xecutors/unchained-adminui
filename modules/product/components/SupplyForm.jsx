@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import FormWrapper from '../../common/components/FormWrapper';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -16,6 +18,7 @@ const SupplyForm = ({ productId }) => {
     id: 'saved',
     defaultMessage: 'Saved',
   });
+  const { hasRole } = useCurrentRoles();
   const { updateProductSupply } = useUpdateProductSupply();
   const { dimensions } = useProductSupply({ productId });
 
@@ -133,6 +136,7 @@ const SupplyForm = ({ productId }) => {
         <FormErrors />
         <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 text-right sm:p-6">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.products.updateSupply)}
             label={formatMessage({
               id: 'save',
               defaultMessage: 'Save',

@@ -10,6 +10,7 @@ const NewProviderForm = ({
   providerTypes,
   providerInterfaces,
   onProviderChange,
+  readOnly,
 }) => {
   const { formatMessage } = useIntl();
 
@@ -56,6 +57,7 @@ const NewProviderForm = ({
         </div>
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-6 px-5 text-right">
           <SubmitButton
+            hidden={readOnly}
             label={formatMessage({
               id: 'create_provider',
               defaultMessage: 'Create provider',
