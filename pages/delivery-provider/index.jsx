@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import useAuth from '../../modules/Auth/useAuth';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -19,7 +19,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 const DeliveryProviders = () => {
   const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { deliveryProviders, loading } = useDeliveryProviders({ type });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();

@@ -1,6 +1,6 @@
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
@@ -14,7 +14,7 @@ import useFilterTypes from '../hooks/useFilterTypes';
 const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'filter_created',
     defaultMessage: 'Filter created successfully!',

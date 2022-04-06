@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
@@ -14,7 +14,7 @@ import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 const DoWorkForm = () => {
   const { formatMessage } = useIntl();
   const { doWork } = useDoWork();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const onSubmit = async ({ type, input }) => {
     await doWork({ type, input: JSON.parse(input) });
     return true;

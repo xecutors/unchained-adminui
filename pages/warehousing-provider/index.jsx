@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Loading from '../../modules/common/components/Loading';
@@ -24,7 +24,7 @@ const WarehousingProviders = () => {
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
   const { setModal } = useModal();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
     await setModal(
       <DangerMessage

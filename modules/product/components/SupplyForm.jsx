@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
@@ -18,7 +18,7 @@ const SupplyForm = ({ productId }) => {
     id: 'saved',
     defaultMessage: 'Saved',
   });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { updateProductSupply } = useUpdateProductSupply();
   const { dimensions } = useProductSupply({ productId });
 

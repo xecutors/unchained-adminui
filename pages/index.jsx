@@ -3,14 +3,14 @@ import { useIntl } from 'react-intl';
 import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
-import useCurrentRoles from '../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../modules/common/data/roles';
 import ShopInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
 import SyncSummary from '../modules/sync/components/SyncSummary';
+import useAuth from '../modules/Auth/useAuth';
 
 const Home = () => {
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
 
   return (

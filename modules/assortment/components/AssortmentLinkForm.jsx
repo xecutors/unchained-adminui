@@ -9,7 +9,7 @@ import useSearchAssortments from '../hooks/useSearchAssortments';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -23,7 +23,7 @@ const normalizeAssortments = (productsList = []) => {
 const AssortmentLinkForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const [queryString, setQueryString] = useState('');
   const { assortments } = useSearchAssortments({
     queryString,

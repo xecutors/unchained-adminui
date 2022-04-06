@@ -14,13 +14,13 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
   const { formatMessage, locale } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { setModal } = useModal();
   const { currencyId } = query;
   const { currency, loading } = useCurrency({ currencyId });

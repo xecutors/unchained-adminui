@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 
@@ -9,7 +9,7 @@ import useForm from '../../forms/hooks/useForm';
 
 const FilterOptionForm = ({ onCancel, onSubmit }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'filter_option_added_success',
     defaultMessage: 'Filter option added successfully',

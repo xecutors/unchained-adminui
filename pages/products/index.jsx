@@ -11,8 +11,8 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
 import useProducts from '../../modules/product/hooks/useProducts';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -22,7 +22,7 @@ const Products = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
   const tags = query.tags?.split(',') || undefined;
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,

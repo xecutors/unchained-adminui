@@ -13,14 +13,15 @@ import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const WarehousingProviderUpdate = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const { warehousingProviderId } = query;
 

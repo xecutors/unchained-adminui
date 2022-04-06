@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import useCurrencies from '../../currency/hooks/useCurrencies';
@@ -19,7 +19,7 @@ const CountryForm = ({
   isEdit,
 }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const countryAddedMessage = formatMessage({
     id: 'country_added',

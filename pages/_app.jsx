@@ -40,18 +40,18 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
         messages={messages}
         key="intl-provider"
       >
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <ModalWrapper>
-          <AuthWrapper>{getLayout(<Component {...pageProps} />)}</AuthWrapper>
-        </ModalWrapper>
+        <AuthWrapper>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
+        </AuthWrapper>
       </IntlWrapper>
     </ApolloProvider>
   );

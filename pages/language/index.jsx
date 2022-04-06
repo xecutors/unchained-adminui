@@ -13,13 +13,13 @@ import Pagination from '../../modules/common/components/Pagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';

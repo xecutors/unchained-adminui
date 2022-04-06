@@ -30,7 +30,7 @@ import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
 import ACTION_ROLES from '../../common/data/roles';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -63,7 +63,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();

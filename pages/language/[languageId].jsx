@@ -13,8 +13,8 @@ import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import Loading from '../../modules/common/components/Loading';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
@@ -23,7 +23,7 @@ const UpdateLanguage = () => {
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
   const { language, loading } = useLanguage({ languageId });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const onSubmitSuccess = () => {
     push('/language');
   };

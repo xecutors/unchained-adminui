@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
@@ -20,7 +20,7 @@ const NewDeliveryProvider = () => {
   const { deliveryInterfaces } = useDeliveryInterfacesByType({
     type: selectedType,
   });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const onSubmit = async ({ adapterKey, type }) => {
     const { data, errors } = await createDeliveryProvider({ adapterKey, type });

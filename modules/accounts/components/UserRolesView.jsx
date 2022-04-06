@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import useShopInfo from '../../common/hooks/useShopInfo';
 import ChoicesField from '../../forms/components/ChoicesField';
@@ -7,7 +8,7 @@ import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
-import useCurrentRoles from '../hooks/useCurrentRoles';
+
 import useSetRoles from '../hooks/useSetRoles';
 
 const UserRolesView = ({ roles, userId }) => {
@@ -15,7 +16,7 @@ const UserRolesView = ({ roles, userId }) => {
   const { shopInfo = {} } = useShopInfo();
 
   const { setRoles } = useSetRoles();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { userRoles = [] } = shopInfo;
   const onSubmit = async ({ updatedRoles }) => {
     await setRoles({ roles: updatedRoles, userId });

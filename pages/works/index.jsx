@@ -10,12 +10,12 @@ import WorkFilter from '../../modules/work/components/WorkFilter';
 import WorkList from '../../modules/work/components/WorkList';
 import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const WorkQueueView = () => {
   const { query } = useRouter();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
 
   const filter = {

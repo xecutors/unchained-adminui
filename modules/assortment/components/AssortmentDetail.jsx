@@ -19,8 +19,8 @@ import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -49,7 +49,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
 };
 const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();

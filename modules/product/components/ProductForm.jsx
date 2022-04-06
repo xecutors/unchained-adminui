@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
@@ -18,7 +18,7 @@ export const ProductTypes = {
 
 const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'product_added',
     defaultMessage: 'Product added successfully!',

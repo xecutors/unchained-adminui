@@ -16,7 +16,7 @@ import useCountries from '../../modules/country/hooks/useCountries';
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
@@ -26,7 +26,7 @@ const Country = ({ userId }) => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { checkAccess } = useAuth();
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
@@ -10,7 +10,7 @@ import useForm from '../../forms/hooks/useForm';
 
 const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'assortment_added',
     defaultMessage: 'Assortment added successfully!',

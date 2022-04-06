@@ -32,10 +32,9 @@ export default function LogInForm() {
         password,
         disableHashing: true,
       });
-      const { id, token, tokenExpires, user } = data.loginWithPassword;
+      const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
       await storeLoginToken(id, token, new Date(tokenExpires));
       setAuthContext(id, user?.allowedActions);
-
       if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
       return true;
     } catch (e) {
@@ -207,6 +206,7 @@ export default function LogInForm() {
               })}
             </a>
           </div>
+          <FormErrors />
         </Form>
       </div>
     </div>

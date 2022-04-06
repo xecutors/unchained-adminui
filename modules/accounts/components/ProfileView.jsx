@@ -12,8 +12,9 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
-import useCurrentRoles from '../hooks/useCurrentRoles';
+
 import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
@@ -22,7 +23,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {

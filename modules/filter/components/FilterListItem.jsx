@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
@@ -13,7 +13,7 @@ const FILTER_TYPES = {
 };
 const FilterListItem = ({ filter, onRemove }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),

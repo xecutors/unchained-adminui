@@ -1,7 +1,7 @@
 import { FieldArray } from 'formik';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import useCountries from '../../country/hooks/useCountries';
@@ -35,7 +35,7 @@ const normalizeCatalogPrices = (prices = []) => {
 const CommerceForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { catalogPrices, loading } = useProductCatalogPrices({ productId });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { updateProductCommerce } = useUpdateProductCommerce();
   const { countries } = useCountries();
   const { currencies } = useCurrencies();

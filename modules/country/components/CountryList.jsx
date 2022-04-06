@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import Table from '../../common/components/Table';
 import ACTION_ROLES from '../../common/data/roles';
 import CountryListItem from './CountryListItem';
 
 const CountryList = ({ countries, onRemoveCountry }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (

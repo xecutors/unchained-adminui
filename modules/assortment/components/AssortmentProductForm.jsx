@@ -10,7 +10,7 @@ import useSearchProducts from '../../product/hooks/useSearchProducts';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 
 const normalizeProducts = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -25,7 +25,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
   const [queryString, setQueryString] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentProduct } = useAddAssortmentProduct();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const successMessage = formatMessage({
     id: 'saved',

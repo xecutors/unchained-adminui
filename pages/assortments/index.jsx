@@ -13,12 +13,12 @@ import Loading from '../../modules/common/components/Loading';
 
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;

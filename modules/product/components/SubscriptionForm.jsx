@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+
+import useAuth from '../../Auth/useAuth';
 
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
@@ -19,7 +20,7 @@ const SubscriptionForm = ({ productId }) => {
   const { configurationIntervals, usageCalculationTypes } =
     useProductPlanConfigurationOptions();
   const { plan, loading } = useProductPlan({ productId });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
     id: 'enrollment_updated_successfully',

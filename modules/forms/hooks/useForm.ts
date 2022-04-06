@@ -48,7 +48,7 @@ const useForm = ({
       const result = await submit(clean(values));
 
       const success =
-        (typeof result === 'boolean' ? result : result?.success) ?? true;
+        (typeof result === 'boolean' ? result : result?.success) ?? false;
 
       if (success) {
         if (successMessage) toast.success(successMessage);

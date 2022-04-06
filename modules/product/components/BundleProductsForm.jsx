@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
@@ -21,7 +21,7 @@ const normalizeProduct = (products = []) => {
 const BundleProductsForm = ({ productId: currentProductId }) => {
   const [queryString, setQueryString] = useState('');
   const { createProductBundleItem } = useCreateProductBundleItem();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { products, loading } = useSearchProducts({
     queryString,

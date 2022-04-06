@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
@@ -13,7 +13,7 @@ import useUpdateProductWarehousing from '../hooks/useUpdateProductWarehousing';
 const WarehousingForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { product, loading } = useProductWarehousing({ productId });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const { updateProductWarehousing } = useUpdateProductWarehousing();
 
   const successMessage = formatMessage({

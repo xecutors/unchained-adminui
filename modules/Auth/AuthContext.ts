@@ -14,15 +14,17 @@ const AuthContext = React.createContext<{
   isAdmin: Auth;
   checkAccess: () => boolean;
   resetAuth?: AuthReset;
+  hasRole: Auth;
 }>({
   setAuthContext: () => {
     throw new Error('No AuthContext registered');
   },
   isAuthenticated: () => false,
   isAdmin: () => false,
+  hasRole: () => false,
   checkAccess: () => false,
-  resetAuth: (id) => {
-    localStorage.setItem(id, null);
+  resetAuth: () => {
+    throw new Error('No AuthContext registered');
   },
 });
 

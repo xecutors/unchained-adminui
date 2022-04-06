@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
+import { getUserId } from '../accounts/utils/store';
 import Loading from '../common/components/Loading';
 import { UnrestrictedPages } from '../common/data/miscellaneous';
 import { ROUTE_ROLES } from '../common/data/roles';
@@ -23,6 +24,15 @@ const AuthWrapper = ({ children }) => {
     return isAuthenticated(id) && isAuthenticated(id)?.length === 0;
   };
 
+  const hasRole = (role) => {
+    if (role === 'UNRESTRICTED') return true;
+    const userId = getUserId();
+    const roles = isAuthenticated(userId);
+
+    if (roles === false) return false;
+    return isAdmin(userId) || roles.includes(role);
+  };
+
   const checkAccess = (id) => {
     if (!id && !UnrestrictedPages.includes(router.pathname)) return false;
     const userRoles = isAuthenticated(id);
@@ -33,12 +43,19 @@ const AuthWrapper = ({ children }) => {
       return true;
     return false;
   };
-  const restAuth = (id) => {
+  const resetAuth = (id) => {
     localStorage.setItem(id, null);
   };
 
   const ctx = useMemo(
-    () => ({ setAuthContext, isAuthenticated, checkAccess, restAuth, isAdmin }),
+    () => ({
+      setAuthContext,
+      isAuthenticated,
+      checkAccess,
+      resetAuth,
+      isAdmin,
+      hasRole,
+    }),
     [],
   );
 
@@ -46,7 +63,7 @@ const AuthWrapper = ({ children }) => {
     if (!loading) {
       if (isAuthenticated(currentUser?._id)) {
         if (!checkAccess(currentUser?._id)) {
-          router.push('/403');
+          router.replace('/403');
         }
       } else {
         router.replace('/log-in');

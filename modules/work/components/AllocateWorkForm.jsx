@@ -1,7 +1,7 @@
 import { FieldArray } from 'formik';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
@@ -17,7 +17,7 @@ const AllocateWorkForm = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { allocateWork } = useAllocateWork();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const onSubmit = async ({ types, worker }) => {
     const { data, errors } = await allocateWork({ types, worker });

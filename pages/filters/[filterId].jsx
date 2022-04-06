@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import useAuth from '../../modules/Auth/useAuth';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
@@ -21,7 +21,7 @@ const FilterDetailPage = () => {
   const router = useRouter();
   const { filterId = '' } = query || {};
   const { filter, loading } = useFilter({ filterId });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
 
   const { removeFilter } = useRemoveFilter();
 

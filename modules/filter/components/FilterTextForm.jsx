@@ -10,14 +10,14 @@ import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import ACTION_ROLES from '../../common/data/roles';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 
 const FilterTextForm = ({ filterId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
   });
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+
+import useAuth from '../../Auth/useAuth';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 
@@ -14,7 +15,7 @@ const ProductVariationForm = ({ onSubmit }) => {
   const { formatMessage } = useIntl();
 
   const { variationTypes } = useProductVariationTypes();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'product_variation_added',
     defaultMessage: 'Product variation added successfully',

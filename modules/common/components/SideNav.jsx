@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
+import useAuth from '../../Auth/useAuth';
 
 const ChildrenNav = ({ item, hasRole }) => {
   return item.children?.some(
@@ -54,7 +54,7 @@ const ChildrenNav = ({ item, hasRole }) => {
 
 const SideNav = ({ navigation }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useCurrentRoles();
+  const { hasRole } = useAuth();
   return (
     <div className="mt-1 flex flex-grow flex-col">
       <h1 className="text-md mb-4 bg-white px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6">

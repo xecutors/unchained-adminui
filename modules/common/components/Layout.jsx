@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
+import useAuth from '../../Auth/useAuth';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
@@ -175,6 +176,7 @@ const Layout = ({
       href: '/account',
     },
   ];
+  const { resetAuth } = useAuth();
 
   const onLogout = async () => {
     const id = currentUser?._id;
@@ -185,7 +187,7 @@ const Layout = ({
         defaultMessage: 'Logged out',
       }),
     );
-    localStorage.setItem(id, null);
+    resetAuth(id);
     router.replace('/log-in');
   };
 
