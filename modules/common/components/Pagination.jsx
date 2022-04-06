@@ -134,6 +134,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
           type="button"
           onClick={onLoadMore}
+          className="py-2.5"
         />
       ) : (
         <>
