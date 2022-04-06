@@ -43,17 +43,9 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   useEffect(() => {
     const filterQuery = normalizeFilterKeys({
-      start: formatDateTime(dateRange?.start, {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      }),
+      start: dateRange.start.toISOString().replace(/T.*/, ''),
       end: dateRange?.end
-        ? formatDateTime(dateRange?.end, {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-          })
+        ? dateRange?.end.toISOString().replace(/T.*/, '')
         : null,
       types: selectedTypes,
       status: selectedStatuses,
