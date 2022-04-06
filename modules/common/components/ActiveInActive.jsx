@@ -11,12 +11,12 @@ const ActiveInActive = ({
   iconClassName,
 }) => {
   return (
-    <span className={classNames('inline-flex self-end', containerClassName)}>
+    <span className={classNames('', containerClassName)}>
       {isActive
         ? activeIcon || (
             <BadgeCheckIcon
               className={classNames(
-                'text-green-500 w-5 h-5',
+                'text-green-400 w-5 h-5',
                 iconClassName,
                 activeClassName,
               )}
@@ -25,7 +25,7 @@ const ActiveInActive = ({
         : inActiveIcon || (
             <XCircleIcon
               className={classNames(
-                'text-red-500 w-5 h-5',
+                'text-red-400 w-5 h-5',
                 iconClassName,
                 inActiveClassName,
               )}

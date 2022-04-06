@@ -35,25 +35,33 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {work.created ? format(new Date(work.created), 'Pp') : 'n/a'}
+          {work.created
+            ? format(new Date(work.created), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {work.scheduled ? format(new Date(work.scheduled), 'Pp') : 'n/a'}
+          {work.scheduled
+            ? format(new Date(work.scheduled), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {work.started ? format(new Date(work.started), 'Pp') : 'n/a'}
+          {work.started
+            ? format(new Date(work.started), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {work.finished ? format(new Date(work.finished), 'Pp') : 'n/a'}
+          {work.finished
+            ? format(new Date(work.finished), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
     </Table.Row>

@@ -24,10 +24,9 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
       <div className="space-y-8 divide-y divide-slate-200">
         <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">
           <div className="flex items-center">
-            <h3 className="text-lg font-medium leading-6 text-slate-900">
+            <h3 className="text-lg font-medium leading-6 text-slate-900 mr-2">
               {getInterfaceLabel(provider?.interface)}
             </h3>
-
             <ActiveInActive />
           </div>
           <div className="mt-6 flex flex-col">
@@ -88,7 +87,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               {provider?.configurationError ? (
                 <dd className="block">{provider?.configurationError}</dd>
               ) : (
-                <CheckCircleIcon className="ml-4 inline-block h-6 w-6 text-green-500" />
+                <CheckCircleIcon className="ml-2 inline-block h-6 w-6 text-green-500" />
               )}
             </div>
           </div>

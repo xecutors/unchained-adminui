@@ -6,7 +6,9 @@ const UserLogListItem = ({ log }) => {
     <tr key={log._id}>
       <td>
         <div className="flex items-center text-sm text-slate-900">
-          {log.created ? format(new Date(log.created), 'Pp') : 'n/a'}
+          {log.created
+            ? format(new Date(log.created), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </td>
 

@@ -15,7 +15,7 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
       <Table.Cell>
         <div className="text-gray-900">
           <span className="flex items-center">
-            <span className="mr-1">
+            <span className="mr-2">
               {getInterfaceLabel(provider?.interface)}
             </span>
             <ActiveInActive isActive={provider?.isActive} />

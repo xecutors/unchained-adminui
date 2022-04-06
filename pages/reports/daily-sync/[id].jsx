@@ -86,7 +86,9 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>{format(new Date(result?.startedFrom), 'Pp')}</span>
+            <span>
+              {format(new Date(result?.startedFrom), 'yyyy-MM-dd HH:mm')}
+            </span>
           </h6>
           <h6 className="flex justify-between text-slate-900">
             <span className="mr-2">
@@ -96,7 +98,9 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>{format(new Date(result?.startedEnd), 'Pp')}</span>
+            <span>
+              {format(new Date(result?.startedEnd), 'yyyy-MM-dd HH:mm')}
+            </span>
           </h6>
         </div>
       </div>

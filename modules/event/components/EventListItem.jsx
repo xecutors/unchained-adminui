@@ -31,7 +31,9 @@ const EventListItem = ({ event }) => {
 
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center text-sm text-slate-900">
-          {event.type ? format(new Date(event.created), 'Pp') : 'n/a'}
+          {event.type
+            ? format(new Date(event.created), 'yyyy-MM-dd HH:mm')
+            : 'n/a'}
         </div>
       </Table.Cell>
     </Table.Row>

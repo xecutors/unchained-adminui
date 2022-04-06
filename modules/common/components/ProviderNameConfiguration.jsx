@@ -15,7 +15,7 @@ const ProviderNameConfiguration = ({ configuration, color }) => {
             }
             color={color}
             square
-            className="px-1 py-0 mr-1 my-1 block"
+            className="px-1.5 py-0 mr-2 my-1"
           />
         ))}
     </div>

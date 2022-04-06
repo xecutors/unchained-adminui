@@ -136,7 +136,7 @@ const JobHeader = ({ job }) => {
                 defaultMessage: 'Started: {time}',
               },
               {
-                time: format(new Date(job.started), 'Pp'),
+                time: format(new Date(job.started), 'yyyy-MM-dd HH:mm'),
               },
             )}
           </div>
@@ -156,7 +156,7 @@ const JobHeader = ({ job }) => {
                 defaultMessage: 'Finished: {time}',
               },
               {
-                time: format(new Date(job.finished), 'Pp'),
+                time: format(new Date(job.finished), 'yyyy-MM-dd HH:mm'),
               },
             )}
           </div>
