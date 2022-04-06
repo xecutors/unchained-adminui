@@ -45,7 +45,7 @@ const AuthWrapper = ({ children }) => {
     return false;
   };
   const resetAuth = (id) => {
-    localStorage.setItem(id, null);
+    localStorage.setItem(id, '');
   };
 
   const ctx = useMemo(

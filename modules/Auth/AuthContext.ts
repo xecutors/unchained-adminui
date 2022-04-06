@@ -6,7 +6,7 @@ export type SetAuth = (
 ) => Promise<boolean>;
 
 export type Auth = (id: string) => boolean;
-export type AuthState = (id: string) => boolean | string[];
+export type AuthState = (id?: string) => boolean | string[];
 export type AuthReset = (id: string) => void;
 const AuthContext = React.createContext<{
   setAuthContext: SetAuth;

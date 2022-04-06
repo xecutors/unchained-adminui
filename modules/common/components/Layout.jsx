@@ -188,7 +188,7 @@ const Layout = ({
       }),
     );
     resetAuth(id);
-    router.replace('/log-in');
+    router.push('/log-in');
   };
 
   const [hideNav, setHideNav] = useState(true);

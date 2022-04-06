@@ -12,9 +12,12 @@ import RichTextEditorField from '../../forms/components/RichTextEditorField';
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
 
   const { translatedAssortmentTexts, loading } = useTranslatedAssortmentTexts({
     assortmentId,
@@ -131,12 +134,14 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
 
             <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
               <FormErrors />
-              <SubmitButton
-                label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
-                })}
-              />
+              {hasRole(ACTION_ROLES.assortments.updateTexts) && (
+                <SubmitButton
+                  label={formatMessage({
+                    id: 'save',
+                    defaultMessage: 'Save',
+                  })}
+                />
+              )}
             </div>
           </div>
         </Form>
