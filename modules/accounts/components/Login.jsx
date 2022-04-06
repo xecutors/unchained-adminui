@@ -206,7 +206,6 @@ export default function LogInForm() {
               })}
             </a>
           </div>
-          <FormErrors />
         </Form>
       </div>
     </div>

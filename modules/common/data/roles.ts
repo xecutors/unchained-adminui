@@ -187,6 +187,7 @@ export const ROUTE_ROLES = {
   '/rest-password': 'UNRESTRICTED',
   '/sign-up': 'UNRESTRICTED',
   '/users/new': 'UNRESTRICTED',
+  '/users/[userId]': 'viewUsers',
 };
 
 export default ACTION_ROLES;
