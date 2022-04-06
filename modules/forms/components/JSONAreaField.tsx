@@ -19,7 +19,7 @@ const JSONAreaField = ({
       {
         isValid: (v) => {
           try {
-            JSON.parse(v);
+            JSON?.parse(v);
             return true;
           } catch (err) {
             return false;
@@ -38,7 +38,7 @@ const JSONAreaField = ({
       JSON.parse(e.target.value || '{}');
       field.setError('');
     } catch (err) {
-      field.setError(err.message);
+      field.setError(err.message?.replace('JSON.parse', ''));
     } finally {
       field.setValue(e.target.value, true);
       field.setTouched(true);
