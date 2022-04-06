@@ -29,7 +29,7 @@ const SyncReportListItem = ({ data }) => {
                   />
                 )}
               </div>
-              <div className="min-w-0 flex-1 px-4 ">
+              <div className="min-w-0 flex-1 px-4">
                 <div className="text-slate-900 md:block">
                   <div>
                     <p className="text-sm ">
@@ -39,7 +39,10 @@ const SyncReportListItem = ({ data }) => {
                           defaultMessage: 'Started: {time}',
                         },
                         {
-                          time: format(new Date(data.started), 'Pp'),
+                          time: format(
+                            new Date(data.started),
+                            'yyyy-MM-dd HH:mm',
+                          ),
                         },
                       )}
                     </p>
@@ -51,7 +54,10 @@ const SyncReportListItem = ({ data }) => {
                           defaultMessage: 'Finished: {time}',
                         },
                         {
-                          time: format(new Date(data.finished), 'Pp'),
+                          time: format(
+                            new Date(data.finished),
+                            'yyyy-MM-dd HH:mm',
+                          ),
                         },
                       )}
                     </p>
