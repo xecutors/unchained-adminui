@@ -9,6 +9,7 @@ import PageHeader from '../../modules/common/components/PageHeader';
 const Profile = () => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+  console.log('aaaaa', currentUser);
   return (
     <>
       <BreadCrumbs />

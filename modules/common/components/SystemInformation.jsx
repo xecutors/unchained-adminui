@@ -87,21 +87,6 @@ const ShopInformation = () => {
                 </div>
               </div>
             </li>
-            <li className="py-4">
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  {formatMessage({
-                    id: 'your_roles',
-                    defaultMessage: 'Your roles',
-                  })}
-                </div>
-                <div className="min-w-0 flex-1">
-                  {shopInfo?.userRoles?.map((role) => (
-                    <Badge key={role} text={role} color="green" />
-                  ))}
-                </div>
-              </div>
-            </li>
           </ul>
         </div>
       </div>

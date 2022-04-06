@@ -1,46 +1,28 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useRouter } from 'next/router';
 
 import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
-import { DefaultLimit } from '../modules/common/data/miscellaneous';
-import OrderList from '../modules/order/components/OrderList';
-import useOrders from '../modules/order/hooks/useOrders';
-import Loading from '../modules/common/components/Loading';
-import SyncReportList from '../modules/sync/components/SyncReportList';
-import useDailySyncs from '../modules/sync/hooks/useDailySyncs';
 import useCurrentRoles from '../modules/accounts/hooks/useCurrentRoles';
 import ACTION_ROLES from '../modules/common/data/roles';
 import ShopInformation from '../modules/common/components/SystemInformation';
+import LatestOrders from '../modules/order/components/LatestOrders';
+import SyncSummary from '../modules/sync/components/SyncSummary';
 
 const Home = () => {
-  const { dailySync } = useDailySyncs({});
   const { hasRole } = useCurrentRoles();
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
 
-  const [queryString] = useState('');
-
-  const limit = parseInt(query?.limit, 10) || DefaultLimit;
-  const offset = parseInt(query?.skip, 10) || 0;
-  const includeCarts = query?.includeCarts === 'true';
-
-  const { orders, loading } = useOrders({
-    limit,
-    includeCarts,
-    queryString,
-    offset,
-  });
   return (
     <>
       <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20">
         <div className="xl:col-span-2 overflow-x-auto">
-          <h2 className="ml-4 text-xl text-slate-700">
-            {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
-          </h2>
-          {loading ? <Loading /> : <OrderList orders={orders} showUser />}
+          {hasRole(ACTION_ROLES.orders.viewList) && (
+            <h2 className="ml-4 text-xl text-slate-700">
+              {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
+            </h2>
+          )}
+          {hasRole(ACTION_ROLES.orders.viewList) && <LatestOrders />}
         </div>
 
         <div className="xl:col-span-1">
@@ -118,7 +100,7 @@ const Home = () => {
                 defaultMessage: 'Daily sync',
               })}{' '}
             </h2>
-            {loading ? <Loading /> : <SyncReportList data={dailySync} />}
+            {hasRole(ACTION_ROLES.work.viewList) && <SyncSummary />}
           </div>
           {hasRole(ACTION_ROLES.shopInfo.view) && <ShopInformation />}
         </div>

@@ -4,10 +4,13 @@ import useCreateUser from '../../modules/accounts/hooks/useCreateUser';
 import CreateUserForm from '../../modules/accounts/components/CreateUserForm';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
+import useCurrentRoles from '../../modules/accounts/hooks/useCurrentRoles';
+import ACTION_ROLES from '../../modules/common/data/roles';
 
 const CreateUser = () => {
   const { formatMessage } = useIntl();
   const { createUser } = useCreateUser();
+  const { hasRole } = useCurrentRoles();
   const router = useRouter();
   const onCreateUser = async (userData) => {
     const {
@@ -59,6 +62,7 @@ const CreateUser = () => {
   };
 
   const onSubmitSuccess = (_, { id }) => {
+    if (hasRole(ACTION_ROLES.users.view));
     router.push(`/users/${id}`);
   };
   return (

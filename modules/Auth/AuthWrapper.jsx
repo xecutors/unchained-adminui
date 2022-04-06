@@ -19,7 +19,7 @@ const AuthWrapper = ({ children }) => {
       localStorage.getItem(id) && localStorage.getItem(id)?.split(',');
 
     if (
-      router.pathname === '/' ||
+      ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
       (userRoles !== false &&
         userRoles.includes(ROUTE_ROLES[router.pathname])) ||
       userRoles?.length === 0

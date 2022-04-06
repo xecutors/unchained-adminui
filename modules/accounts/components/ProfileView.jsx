@@ -102,7 +102,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   });
 
   useEffect(() => {
-    if (Object.keys(profile).length)
+    if (Object.keys(profile || {}).length)
       form.formik.setValues({
         birthday: profile?.birthday,
         displayName: profile?.displayName,
@@ -309,7 +309,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     />
                   ) : (
                     <span className="flex-grow">
-                      {profile.birthday
+                      {profile?.birthday
                         ? formatDateTime(profile.birthday)
                         : 'n/a'}
                     </span>

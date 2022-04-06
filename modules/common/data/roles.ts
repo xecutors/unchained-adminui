@@ -51,6 +51,12 @@ export const ACTION_ROLES = {
   quotations: {
     view: 'viewQuotation',
     viewList: 'viewQuotations',
+    markPaid: 'markOrderPaid',
+    markDelivered: 'markOrderDelivered',
+  },
+  orders: {
+    view: 'viewOrder',
+    viewList: 'viewOrders',
   },
   filters: {
     view: 'viewFilter',
@@ -89,7 +95,6 @@ export const ACTION_ROLES = {
     create: 'manageDeliveryProviders',
     update: 'manageDeliveryProviders',
     delete: 'manageDeliveryProviders',
-    markDelivered: 'markOrderDelivered',
   },
   paymentProviders: {
     view: 'viewPaymentProvider',
@@ -97,7 +102,6 @@ export const ACTION_ROLES = {
     create: 'manageWarehousingProviders',
     update: 'manageWarehousingProviders',
     delete: 'manageWarehousingProviders',
-    markPaid: 'markOrderPaid',
   },
   warehousingProviders: {
     view: 'viewWarehousingProvider',
@@ -107,6 +111,8 @@ export const ACTION_ROLES = {
     delete: 'manageWarehousingProviders',
   },
   work: {
+    view: 'manageWorker',
+    viewList: 'manageWorker',
     add: 'manageWorker',
     allocateWork: 'manageWorker',
     finishWork: 'manageWorker',
@@ -135,7 +141,6 @@ export const ACTION_ROLES = {
     updateUsername: 'manageUsers',
     updateRoles: 'manageUsers',
     enrollUser: 'manageUsers',
-    sendVerification: 'sendEmail',
   },
   shopInfo: {
     view: 'viewShopInfo',
@@ -168,6 +173,12 @@ export const ROUTE_ROLES = {
   '/payment-provider': 'viewPaymentProviders',
   '/warehousing-provider/[warehousingProviderId]': 'viewWarehousingProvider',
   '/warehousing-provider': 'viewWarehousingProviders',
+  '/account': 'UNRESTRICTED',
+  '/log-in': 'UNRESTRICTED',
+  '/forgot-password': 'UNRESTRICTED',
+  '/rest-password': 'UNRESTRICTED',
+  '/sign-up': 'UNRESTRICTED',
+  '/users/new': 'UNRESTRICTED',
 };
 
 export default ACTION_ROLES;

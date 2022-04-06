@@ -41,7 +41,6 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
-      requiredRole: 'viewReports',
       icon: ChartBarIcon,
       children: [
         {

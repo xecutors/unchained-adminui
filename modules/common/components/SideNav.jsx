@@ -5,7 +5,9 @@ import { useIntl } from 'react-intl';
 import useCurrentRoles from '../../accounts/hooks/useCurrentRoles';
 
 const ChildrenNav = ({ item, hasRole }) => {
-  return item.children?.some((d) => hasRole(d?.requiredRole)) ? (
+  return item.children?.some(
+    (d) => !d?.requiredRole || hasRole(d?.requiredRole),
+  ) ? (
     <Disclosure as="div" key={item.name} className="space-y-1">
       {({ open }) => (
         <>

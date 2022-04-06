@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 
 const UserRolesQuery = gql`
-  query currentUser {
+  query CurrentUserRole {
     me {
       _id
       allowedActions
@@ -15,6 +15,7 @@ const useCurrentRoles = () => {
   const roles = data?.me?.allowedActions;
 
   const hasRole = (role) => {
+    if (role === 'UNRESTRICTED') return true;
     if (roles === undefined) return false;
     return roles?.length === 0 || roles.includes(role);
   };

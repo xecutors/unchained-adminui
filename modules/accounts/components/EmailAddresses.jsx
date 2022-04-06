@@ -12,8 +12,6 @@ import Badge from '../../common/components/Badge';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import useCurrentRoles from '../hooks/useCurrentRoles';
-import ACTION_ROLES from '../../common/data/roles';
 
 const STATUS = {
   true: 'Verified',
@@ -28,7 +26,6 @@ const EmailAddresses = ({
 }) => {
   const { removeEmail } = useRemoveEmail();
   const { sendVerificationEmail } = useSendVerificationEmail();
-  const { hasRole } = useCurrentRoles();
   const { addEmail } = useAddEmail();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -108,20 +105,19 @@ const EmailAddresses = ({
                     />
                   </div>
                   <div className="my-1 flex items-center">
-                    {hasRole(ACTION_ROLES.users.sendVerification) &&
-                      !enableVerification && (
-                        <a
-                          onClick={() =>
-                            sendVerificationEmail({ email: address })
-                          }
-                          className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
-                        >
-                          {formatMessage({
-                            id: 'send_verification_mail',
-                            defaultMessage: 'Send verification mail',
-                          })}
-                        </a>
-                      )}
+                    {enableVerification && (
+                      <a
+                        onClick={() =>
+                          sendVerificationEmail({ email: address })
+                        }
+                        className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-indigo-400 focus:ring-offset-2"
+                      >
+                        {formatMessage({
+                          id: 'send_verification_mail',
+                          defaultMessage: 'Send verification mail',
+                        })}
+                      </a>
+                    )}
                     <a
                       onClick={() => onRemoveEmail({ email: address, userId })}
                       className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
