@@ -25,6 +25,7 @@ export default function SelectOptions({
   options: SelectOptionsProp[];
   type?: string;
 }) {
+  const [isHover, setIsHover] = useState(false);
   const [select, setSelected] = useState(
     options?.filter(({ current }) => current)[0],
   );
@@ -50,10 +51,15 @@ export default function SelectOptions({
               className={`inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
             >
               <div
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
                 className={`relative z-0 inline-flex divide-x rounded-md shadow-sm divide-${select?.bgColor}-600`}
               >
                 <div
-                  className={`relative inline-flex items-center bg-${select?.bgColor}-500 rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`}
+                  className={classNames(
+                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`,
+                    isHover && `bg-${select?.bgColor}-600`,
+                  )}
                 >
                   <CheckIcon
                     className="h-4 w-4 lg:h-5 lg:w-5"
@@ -64,7 +70,10 @@ export default function SelectOptions({
                   </p>
                 </div>
                 <Listbox.Button
-                  className={`relative inline-flex items-center bg-${select?.bgColor}-500  hover:bg-${select?.bgColor}-900 rounded-l-none rounded-r-md border-none p-1 text-sm font-medium text-white outline-none focus:z-10 focus:outline-none lg:p-2`}
+                  className={classNames(
+                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none p-1 text-sm font-medium text-white outline-none focus:z-10 focus:outline-none lg:p-2`,
+                    isHover && `bg-${select?.bgColor}-600`,
+                  )}
                 >
                   <span className="sr-only">
                     {formatMessage(

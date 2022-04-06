@@ -21,6 +21,9 @@ import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import Button from '../../common/components/Button';
+import useModal from '../../modal/hooks/useModal';
+import AlertMessage from '../../modal/components/AlertMessage';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -53,6 +56,37 @@ const AssortmentDetail = ({ assortment }) => {
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();
+  const { setModal } = useModal();
+
+  const setAsBase = async () => {
+    await setModal(
+      <AlertMessage
+        buttonText={formatMessage({
+          id: 'mark_as_base',
+          defaultMessage: 'Mark as Base',
+        })}
+        headerText={formatMessage({
+          id: 'header_title',
+          defaultMessage: 'Assortment base change.',
+        })}
+        message={formatMessage({
+          id: 'header_conformation',
+          defaultMessage:
+            'This action is nonreversible, are you sure you want to change it to base?',
+        })}
+        onOkClick={async () => {
+          setModal('');
+          await setBaseAssortment({ assortmentId: assortment?._id });
+          toast.success(
+            formatMessage({
+              id: 'assortment_made_base',
+              defaultMessage: 'Assortment changed to base',
+            }),
+          );
+        }}
+      />,
+    );
+  };
 
   const assortmentOptions = [
     {
@@ -171,40 +205,6 @@ const AssortmentDetail = ({ assortment }) => {
     },
   ];
 
-  const baseOptions = [
-    {
-      id: 'base',
-      title: formatMessage({
-        id: 'base',
-        defaultMessage: 'Base',
-      }),
-      description: '',
-      current: isBase,
-      bgColor: 'green',
-      onClick: !isBase
-        ? async () => {
-            await setBaseAssortment({ assortmentId: assortment?._id });
-            toast.success(
-              formatMessage({
-                id: 'assortment_made_base',
-                defaultMessage: 'Assortment changed to base',
-              }),
-            );
-          }
-        : null,
-    },
-    {
-      id: 'not_base',
-      title: formatMessage({
-        id: 'not_base',
-        defaultMessage: 'Not Base',
-      }),
-      description: '',
-      current: !isBase,
-      bgColor: 'slate',
-    },
-  ];
-
   const rootOptions = [
     {
       id: 'root',
@@ -262,13 +262,25 @@ const AssortmentDetail = ({ assortment }) => {
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole(ACTION_ROLES.assortments.update)}
         />
-        <SelectOptions
-          options={baseOptions}
-          type={formatMessage({
-            id: 'assortment',
-            defaultMessage: 'Assortment',
-          })}
-        />
+        <div>
+          {isBase ? (
+            <span className="py-2.5 px-8 text-sm font-medium text-white bg-green-500 white inline-flex items-center shadow-md border rounded-md">
+              {formatMessage({
+                id: 'base',
+                defaultMessage: 'Base',
+              })}
+            </span>
+          ) : (
+            <Button
+              text={formatMessage({
+                id: 'not_base',
+                defaultMessage: 'Mark as Base',
+              })}
+              className="py-2.5"
+              onClick={setAsBase}
+            />
+          )}
+        </div>
         <SelectOptions
           options={rootOptions}
           type={formatMessage({

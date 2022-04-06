@@ -8,12 +8,15 @@ import MultipleSelect from '../../common/components/MultipleSelect';
 import normalizeFilterKeys, {
   extractQuery,
 } from '../../common/utils/normalizeFilterKeys';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
+
+  const { formatDateTime } = useFormatDateTime();
 
   const [selectedTypes, setSelectedTypes] = useState(
     extractQuery(router.query?.types),
@@ -40,8 +43,18 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   useEffect(() => {
     const filterQuery = normalizeFilterKeys({
-      start: dateRange?.start?.getTime(),
-      end: dateRange?.end?.getTime(),
+      start: formatDateTime(dateRange?.start, {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      }),
+      end: dateRange?.end
+        ? formatDateTime(dateRange?.end, {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+          })
+        : null,
       types: selectedTypes,
       status: selectedStatuses,
     });
