@@ -73,6 +73,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
               })}
               required
               onFilter={setQueryString}
+              queryString={queryString}
               className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
             />
           </div>

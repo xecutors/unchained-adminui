@@ -41,10 +41,21 @@ const FilterableDropdown = ({
     field.setValue(value.id, true);
   };
 
-  const handleOnBlur = () => {
+  const handleOnBlur = (event) => {
     if (!data.length) {
       setShowDropdown(false);
       field.setError('');
+    }
+    if (!event.target.value) {
+      setShowDropdown(false);
+      field.setError('');
+    }
+  };
+
+  const handleOnFocus = () => {
+    if (!props.queryString) {
+      onFilter('a');
+      if (!showDropdown) setShowDropdown(!showDropdown);
     }
   };
 
@@ -93,6 +104,7 @@ const FilterableDropdown = ({
 
                         onFilter(e.target.value);
                       }}
+                      onFocus={handleOnFocus}
                       onBlur={handleOnBlur}
                     />
                   </div>
