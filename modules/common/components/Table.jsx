@@ -40,13 +40,13 @@ const Table = ({ className, ...props }) => {
   return (
     <table
       className={classNames(
-        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg sm:bg-white',
+        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg sm:bg-white dark:bg-slate-600',
         className,
       )}
       {...props}
     >
       {rowsWithSort.header.length ? (
-        <thead className="bg-slate-50 text-sm text-slate-700">
+        <thead className="bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
           {rowsWithSort.header}
         </thead>
       ) : (
@@ -58,7 +58,7 @@ const Table = ({ className, ...props }) => {
         />
       )}
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y divide-slate-200 bg-white sm:flex-none">
+        <tbody className="flex-1 divide-y divide-slate-200 bg-white dark:bg-slate-600 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}

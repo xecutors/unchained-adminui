@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 const Loading = () => {
   const { formatMessage } = useIntl();
   return (
-    <div className="my-5 flex h-full w-full items-center justify-center bg-white py-5">
-      <div className="flex items-center justify-center space-x-1 text-sm text-slate-700">
+    <div className="my-5 flex h-full w-full items-center justify-center bg-white dark:bg-slate-600 py-5">
+      <div className="flex items-center justify-center space-x-1 text-sm text-slate-700 dark:text-white">
         <svg
           fill="none"
           className="h-6 w-6 animate-spin"

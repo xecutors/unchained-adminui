@@ -33,10 +33,10 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
           )}
         </>
         <div className="ml-3">
-          <p className="text-base font-medium text-slate-700 group-hover:text-slate-900">
+          <p className="text-base font-medium text-slate-700 dark:text-white group-hover:text-slate-900 dark:group-hover:text-indigo-500">
             {username}
           </p>
-          <p className="text-sm font-medium text-slate-500 group-hover:text-slate-700">
+          <p className="text-sm font-medium text-slate-500 dark:text-white group-hover:text-slate-700 dark:group-hover:text-indigo-400">
             {formatMessage({
               id: 'log_out',
               defaultMessage: 'Log out',

@@ -142,7 +142,9 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   defaultMessage="<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
                   values={{
                     p: (chunks) => (
-                      <p className="text-sm text-slate-700">{chunks}</p>
+                      <p className="text-sm text-slate-700 dark:text-white">
+                        {chunks}
+                      </p>
                     ),
                     span: (chunks) => (
                       <span className="font-medium">{chunks}</span>
