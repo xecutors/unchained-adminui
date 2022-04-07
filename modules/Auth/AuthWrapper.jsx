@@ -15,7 +15,8 @@ const AuthWrapper = ({ children }) => {
     localStorage.setItem(id, roles);
   };
   const isAuthenticated = (id) => {
-    const roles = localStorage.getItem(id);
+    const userId = getUserId();
+    const roles = localStorage.getItem(id || userId);
     // empty string means array since setting array to local storage is transformed to empty string
     if (!roles && roles !== '') return false;
     return roles?.split(',')?.filter(Boolean);

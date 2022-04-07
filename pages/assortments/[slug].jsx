@@ -4,7 +4,13 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import AssortmentDetail from '../../modules/assortment/components/AssortmentDetail';
-import useAssortment from '../../modules/assortment/hooks/useAssortment';
+import useAssortment, {
+  preFetchAssortment,
+} from '../../modules/assortment/hooks/useAssortment';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../../modules/apollo/apolloClient';
 
 const AssortmentDetailPage = () => {
   const { formatMessage } = useIntl();
@@ -25,5 +31,28 @@ const AssortmentDetailPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ params, locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  const { slug } = params;
+  const product = await preFetchAssortment(apolloClient, { locale, slug });
+  if (!product || product?.status === 'DELETED')
+    return {
+      notFound: true,
+    };
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 60,
+  });
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
 
 export default AssortmentDetailPage;
