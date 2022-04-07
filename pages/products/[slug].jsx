@@ -5,10 +5,12 @@ import {
   addApolloState,
   initializeApollo,
 } from '../../modules/apollo/apolloClient';
+import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import ProductDetail from '../../modules/product/components/ProductDetail';
@@ -19,6 +21,7 @@ import useRemoveProduct from '../../modules/product/hooks/useRemoveProduct';
 
 const ProductDetailPage = () => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const { query } = useRouter();
   const { setModal } = useModal();
 
@@ -60,7 +63,9 @@ const ProductDetailPage = () => {
           })}
         />
 
-        {product && product.status === 'DRAFT' ? (
+        {product &&
+        product.status === 'DRAFT' &&
+        hasRole(ACTION_ROLES.products.delete) ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

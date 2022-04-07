@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
@@ -118,14 +117,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
     }
     return steps;
   };
-
-  useEffect(() => {
-    if (!router.query?.limit && router?.query?.skip === undefined) {
-      router.push({
-        query: { ...router?.query, limit: DefaultLimit, skip: 0 },
-      });
-    }
-  }, []);
 
   return (
     <div className="flex items-center justify-between px-4 py-3">

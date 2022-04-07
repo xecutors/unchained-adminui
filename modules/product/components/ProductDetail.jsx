@@ -63,8 +63,6 @@ const GetCurrentTab = ({ id, selectedView }) => {
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-
-  const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
 

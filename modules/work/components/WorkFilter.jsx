@@ -1,14 +1,11 @@
 import { VariableIcon } from '@heroicons/react/outline';
+import { format } from 'date-fns';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
-import normalizeFilterKeys, {
-  extractQuery,
-} from '../../common/utils/normalizeFilterKeys';
-import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import { extractQuery } from '../../common/utils/normalizeFilterKeys';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
@@ -16,43 +13,54 @@ const WorkFilter = ({ workTypes = [] }) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
-  const { formatDateTime } = useFormatDateTime();
-
-  const [selectedTypes, setSelectedTypes] = useState(
-    extractQuery(router.query?.types),
-  );
-
-  const [dateRange, setDateRange] = useState({
-    start: new Date(0),
-    end: null,
-  });
-
-  const [selectedStatuses, setSelectedStatuses] = useState(
-    extractQuery(router.query?.status),
-  );
-
-  const statusChangeHandler = (e) => {
-    if (e.target.checked) {
-      setSelectedStatuses([...selectedStatuses, e.target.name]);
+  const typeChangeHandler = (selectedTypes) => {
+    const { types, ...rest } = router.query;
+    if (selectedTypes?.length) {
+      router.push({
+        query: {
+          ...rest,
+          types: selectedTypes?.join(','),
+        },
+      });
     } else {
-      setSelectedStatuses([
-        ...selectedStatuses.filter((v) => v !== e.target.value),
-      ]);
+      router.push({
+        query: {
+          ...rest,
+        },
+      });
     }
   };
 
-  useEffect(() => {
-    const filterQuery = normalizeFilterKeys({
-      start: dateRange.start.toISOString().replace(/T.*/, ''),
-      end: dateRange?.end
-        ? dateRange?.end.toISOString().replace(/T.*/, '')
-        : null,
-      types: selectedTypes,
-      status: selectedStatuses,
-    });
+  const statusChangeHandler = (e) => {
+    const { status, ...rest } = router.query;
+    if (e.target.checked) {
+      const newStatus = [...extractQuery(status), e.target.name];
+      router.push({
+        query: {
+          ...rest,
+          status: newStatus?.join(','),
+        },
+      });
+    } else {
+      const newStatus = [...extractQuery(status)].filter(
+        (v) => v !== e.target.value,
+      );
 
-    router.push(`${router.pathname}?${filterQuery}`);
-  }, [dateRange, selectedTypes, selectedStatuses]);
+      if (newStatus.length)
+        router.push({
+          query: {
+            ...router.query,
+            status: newStatus?.join(','),
+          },
+        });
+      else
+        router.push({
+          query: {
+            ...rest,
+          },
+        });
+    }
+  };
 
   return (
     <>
@@ -75,17 +83,23 @@ const WorkFilter = ({ workTypes = [] }) => {
                 name="startDate"
                 id="work-start"
                 onChange={(value) =>
-                  setDateRange({
-                    ...dateRange,
-                    start: new Date(value),
+                  router.push({
+                    query: {
+                      ...router.query,
+                      start: format(new Date(value), 'MM.dd.yyyy'),
+                    },
                   })
                 }
                 placeholderText="Start date"
-                dateFormat="dd.MM.yyyy"
+                dateFormat="MM.dd.yyyy"
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                selected={dateRange.start}
+                selected={
+                  router?.query?.start
+                    ? new Date(router?.query?.start)
+                    : new Date(0)
+                }
                 className="block w-full rounded-md border border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
@@ -95,18 +109,21 @@ const WorkFilter = ({ workTypes = [] }) => {
                 name="endDate"
                 id="work-end"
                 onChange={(value) =>
-                  setDateRange({
-                    ...dateRange,
-                    end: new Date(value),
+                  router.push({
+                    query: {
+                      ...router.query,
+                      end: format(new Date(value), 'MM.dd.yyyy'),
+                    },
                   })
                 }
                 placeholderText="End Date"
-                value={new Date()}
-                dateFormat="dd.MM.yyyy"
+                dateFormat="MM.dd.yyyy"
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                selected={dateRange.end}
+                selected={
+                  router?.query?.end ? new Date(router?.query?.end) : new Date()
+                }
                 className="block w-full rounded-md border border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
             </div>
@@ -134,8 +151,8 @@ const WorkFilter = ({ workTypes = [] }) => {
                     id: 'select_type',
                     defaultMessage: 'Select type',
                   })}
-                  tagList={selectedTypes}
-                  onChange={setSelectedTypes}
+                  tagList={extractQuery(router.query?.types)}
+                  onChange={typeChangeHandler}
                   options={workTypes.map((type) => ({
                     label: type,
                     value: type,
@@ -164,7 +181,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 id={status}
                 name={status}
                 value={status}
-                checked={selectedStatuses.includes(status)}
+                checked={extractQuery(router.query?.status).includes(status)}
                 onChange={statusChangeHandler}
               />
               <div className="ml-2">
