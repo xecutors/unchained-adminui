@@ -44,7 +44,7 @@ const OrderDetail = ({ order }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await rejectOrder({ orderId: order._id });
+          await confirmOrder({ orderId: order._id });
           toast.success(
             formatMessage({
               id: 'order_confirmed_success',
@@ -69,7 +69,7 @@ const OrderDetail = ({ order }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await confirmOrder({ orderId: order._id });
+          await rejectOrder({ orderId: order._id });
           toast.success(
             formatMessage({
               id: 'order_reject_success',
@@ -116,6 +116,11 @@ const OrderDetail = ({ order }) => {
       ),
       visible: true,
     },
+    REJECTED: {
+      id: 3,
+      content: 'rejected',
+      visible: order?.status === 'REJECTED',
+    },
     CONFIRMED: {
       id: 4,
       content: 'confirmed',
@@ -125,11 +130,6 @@ const OrderDetail = ({ order }) => {
       id: 5,
       content: 'fullfilled',
       visible: order?.status !== 'REJECTED',
-    },
-    REJECTED: {
-      id: 3,
-      content: 'rejected',
-      visible: order?.status === 'REJECTED',
     },
   };
 
