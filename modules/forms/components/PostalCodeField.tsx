@@ -1,10 +1,11 @@
 import TextField from './TextField';
 // import { validatePostalCode } from '../lib/validators';
 
-const PostalCodeField = ({ validators = [], ...props }) => {
+const PostalCodeField = ({ validators = [], value, ...props }) => {
   return (
     <TextField
       {...{
+        value,
         autoComplete: 'on',
         type: 'text',
         name: 'postalCode',

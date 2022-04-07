@@ -1,10 +1,11 @@
 import TextField from './TextField';
 import { validatePhoneNumber } from '../lib/validators';
 
-const ContactNumberField = ({ validators = [], ...props }) => {
+const ContactNumberField = ({ validators = [], value, ...props }) => {
   return (
     <TextField
       {...{
+        value,
         autoComplete: 'off',
         name: 'contactNumber',
         validators: [...validators, validatePhoneNumber],
