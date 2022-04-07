@@ -32,7 +32,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
           <div className="mt-6 flex flex-col">
             <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
               <div className="flex justify-center py-4 sm:py-5">
-                <dt className="my-auto inline-block text-sm font-medium text-slate-400">
+                <dt className="my-auto inline-block text-sm font-medium text-slate-400 ">
                   {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
                 </dt>
                 <dd

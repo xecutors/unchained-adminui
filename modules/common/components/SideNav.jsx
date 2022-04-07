@@ -14,9 +14,9 @@ const ChildrenNav = ({ item, hasRole }) => {
           <Disclosure.Button
             className={classNames(
               item.current
-                ? 'bg-slate-100 text-slate-900'
+                ? 'bg-slate-100 text-slate-900 dark:bg-slate-500'
                 : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900',
-              'group flex w-full dark:bg-slate-600 dark:text-white items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400',
+              'flex w-full dark:bg-slate-600 dark:hover:bg-slate-500 dark:text-white items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400',
             )}
           >
             <item.icon
@@ -40,7 +40,7 @@ const ChildrenNav = ({ item, hasRole }) => {
               .filter((f) => !f?.requiredRole || hasRole(f.requiredRole))
               .map((subItem) => (
                 <Link key={subItem.name} href={subItem.href}>
-                  <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                  <a className="group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-400 hover:text-slate-900">
                     {subItem.name}
                   </a>
                 </Link>
@@ -74,7 +74,7 @@ const SideNav = ({ navigation }) => {
                     item.current
                       ? 'bg-slate-100 text-slate-900'
                       : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900',
-                    'group flex w-full dark:bg-slate-600 dark:text-white items-center rounded-md py-2 pl-2 text-sm font-medium',
+                    'group flex w-full dark:bg-slate-600 dark:text-white dark:hover:bg-slate-500 items-center rounded-md py-2 pl-2 text-sm font-medium',
                   )}
                 >
                   <item.icon

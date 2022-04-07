@@ -67,7 +67,7 @@ const WorkFilter = ({ workTypes = [] }) => {
       <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
         <div className="sm:mr-6">
           <div className="space-x-2">
-            <div className="text-xl font-medium leading-5 text-slate-800 lg:leading-6 ">
+            <div className="text-xl font-medium leading-5 text-slate-800 dark:text-white lg:leading-6 ">
               {formatMessage({
                 id: 'date_range',
                 defaultMessage: 'Date range',
@@ -100,7 +100,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                     ? new Date(router?.query?.start)
                     : new Date(0)
                 }
-                className="block w-full rounded-md border border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
+                className="block w-full rounded-md border dark:bg-slate-600 border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
               <label className="mr-2 ml-3 " htmlFor="report-end">
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
@@ -124,7 +124,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 selected={
                   router?.query?.end ? new Date(router?.query?.end) : new Date()
                 }
-                className="block w-full rounded-md border border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
+                className="block w-full rounded-md dark:bg-slate-600 border border-slate-300 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
             </div>
           </div>
@@ -138,7 +138,7 @@ const WorkFilter = ({ workTypes = [] }) => {
               viewBox="0 0 24 24"
               fill="none"
             />
-            <p className="text-xl font-medium leading-5 text-slate-800 lg:leading-6 ">
+            <p className="text-xl font-medium leading-5 text-slate-800 dark:text-white lg:leading-6 ">
               {formatMessage({ id: 'type', defaultMessage: 'Type' })}
             </p>
           </div>
@@ -146,7 +146,7 @@ const WorkFilter = ({ workTypes = [] }) => {
             <>
               <div className="mt-4">
                 <MultipleSelect
-                  className="text-sm text-slate-900  "
+                  className="text-sm text-slate-900 dark:text-white"
                   label={formatMessage({
                     id: 'select_type',
                     defaultMessage: 'Select type',
@@ -166,17 +166,17 @@ const WorkFilter = ({ workTypes = [] }) => {
       <hr className="my-4 hidden w-full bg-slate-200 sm:block" />
 
       <div>
-        <p className="mt-0 text-xl font-medium leading-5 text-slate-800 lg:gap-7 lg:leading-6 ">
+        <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-white lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
         <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           {WORK_STATUSES.map((status) => (
             <div
-              className="inline-flex items-center rounded-md bg-white py-2 px-4 text-sm font-medium text-indigo-800 shadow"
+              className="inline-flex items-center rounded-md bg-white dark:bg-slate-600 py-2 px-4 text-sm font-medium text-indigo-800 shadow"
               key={status}
             >
               <input
-                className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
+                className="h-4 w-4 rounded border-slate-300 text-indigo-600 dark:text-white focus:ring-indigo-400"
                 type="checkbox"
                 id={status}
                 name={status}
@@ -185,7 +185,10 @@ const WorkFilter = ({ workTypes = [] }) => {
                 onChange={statusChangeHandler}
               />
               <div className="ml-2">
-                <label className="text-sm text-slate-600" htmlFor={status}>
+                <label
+                  className="text-sm text-slate-600 dark:text-white"
+                  htmlFor={status}
+                >
                   {status}
                 </label>
               </div>
