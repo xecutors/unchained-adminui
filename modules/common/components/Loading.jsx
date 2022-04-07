@@ -1,4 +1,7 @@
+import { useIntl } from 'react-intl';
+
 const Loading = () => {
+  const { formatMessage } = useIntl();
   return (
     <div className="my-5 flex h-full w-full items-center justify-center bg-white py-5">
       <div className="flex items-center justify-center space-x-1 text-sm text-slate-700">
@@ -16,7 +19,9 @@ const Loading = () => {
           />
         </svg>
 
-        <div>Loading ...</div>
+        <div>
+          {formatMessage({ id: 'loading', defaultMessage: 'Loading ...' })}
+        </div>
       </div>
     </div>
   );

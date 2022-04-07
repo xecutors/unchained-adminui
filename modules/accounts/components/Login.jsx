@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import CheckboxField from '../../forms/components/CheckboxField';
 import EmailField from '../../forms/components/EmailField';
@@ -16,6 +17,7 @@ import { storeLoginToken } from '../utils/store';
 export default function LogInForm() {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
+  const { setAuthContext } = useAuth();
   const router = useRouter();
   const { formatMessage } = useIntl();
   const successMessage = formatMessage({
@@ -30,8 +32,11 @@ export default function LogInForm() {
         password,
         disableHashing: true,
       });
-      const { id, token, tokenExpires } = data.loginWithPassword;
+      const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
       await storeLoginToken(id, token, new Date(tokenExpires));
+
+      setAuthContext(id, user?.allowedActions);
+      if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
       return true;
     } catch (e) {
       // eslint-disable-next-line no-console

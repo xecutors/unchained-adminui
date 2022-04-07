@@ -5,12 +5,13 @@ import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import EditIcon from '../../common/components/EditIcon';
 import Table from '../../common/components/Table';
+
 import {
   normalizeCountryISOCode,
   normalizeCurrencyISOCode,
 } from '../../common/utils/utils';
 
-const CountryListItem = ({ country, onRemove }) => {
+const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
   const { locale, formatMessage } = useIntl();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
@@ -53,21 +54,27 @@ const CountryListItem = ({ country, onRemove }) => {
           square
         />
       </Table.Cell>
-      <Table.Cell className="whitespace-nowrap">
-        <div className="flex items-center">
-          <Link href={`/country/${country._id}`}>
-            <a>
-              <EditIcon />
-            </a>
-          </Link>
-          <DeleteButton
-            className="ml-1 mr-1 "
-            onClick={async () => {
-              await onRemove(country._id);
-            }}
-          />
-        </div>
-      </Table.Cell>
+      {(enableEdit || enableDelete) && (
+        <Table.Cell className="whitespace-nowrap">
+          <div className="flex items-center">
+            {enableEdit && (
+              <Link href={`/country/${country._id}`}>
+                <a>
+                  <EditIcon />
+                </a>
+              </Link>
+            )}
+            {enableDelete && (
+              <DeleteButton
+                className="ml-1 mr-1 "
+                onClick={async () => {
+                  await onRemove(country._id);
+                }}
+              />
+            )}
+          </div>
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

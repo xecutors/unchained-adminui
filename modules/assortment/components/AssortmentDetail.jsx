@@ -19,6 +19,8 @@ import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -47,6 +49,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
 };
 const AssortmentDetail = ({ assortment }) => {
   const { isActive, isBase, isRoot } = assortment;
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();
   const { setBaseAssortment } = useSetBaseAssortment();
@@ -257,6 +260,7 @@ const AssortmentDetail = ({ assortment }) => {
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
+          enableEdit={hasRole(ACTION_ROLES.assortments.update)}
         />
         <SelectOptions
           options={baseOptions}

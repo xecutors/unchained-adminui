@@ -17,12 +17,19 @@ const LogInWithPasswordMutation = gql`
       id
       token
       tokenExpires
+      user {
+        _id
+        allowedActions
+        roles
+      }
     }
   }
 `;
 
 const useLoginWithPassword = () => {
-  const [logInWithPasswordMutation] = useMutation(LogInWithPasswordMutation);
+  const [logInWithPasswordMutation] = useMutation(LogInWithPasswordMutation, {
+    errorPolicy: 'all',
+  });
 
   const logInWithPassword = async ({
     username,

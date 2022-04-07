@@ -9,6 +9,8 @@ import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
 import useSearchProducts from '../../product/hooks/useSearchProducts';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const normalizeProducts = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -23,6 +25,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
   const [queryString, setQueryString] = useState('');
   const { formatMessage } = useIntl();
   const { addAssortmentProduct } = useAddAssortmentProduct();
+  const { hasRole } = useAuth();
 
   const successMessage = formatMessage({
     id: 'saved',
@@ -76,6 +79,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
         </div>
         <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.assortments.addProduct)}
             label={formatMessage({
               id: 'save',
               defaultMessage: 'Save',

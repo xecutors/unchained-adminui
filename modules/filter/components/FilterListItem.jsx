@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 
 const FILTER_TYPES = {
   SWITCH: 'blue',
@@ -11,6 +13,7 @@ const FILTER_TYPES = {
 };
 const FilterListItem = ({ filter, onRemove }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
@@ -52,16 +55,17 @@ const FilterListItem = ({ filter, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell>{filter.options?.length}</Table.Cell>
-
-      <Table.Cell>
-        <div className="flex items-center justify-center">
-          <DeleteButton
-            onClick={async () => {
-              await onRemove(filter?._id);
-            }}
-          />
-        </div>
-      </Table.Cell>
+      {hasRole(ACTION_ROLES.filters.delete) && (
+        <Table.Cell>
+          <div className="flex items-center justify-center">
+            <DeleteButton
+              onClick={async () => {
+                await onRemove(filter?._id);
+              }}
+            />
+          </div>
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

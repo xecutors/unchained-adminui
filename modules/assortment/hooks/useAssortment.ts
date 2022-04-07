@@ -27,4 +27,16 @@ const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
   };
 };
 
+export const preFetchAssortment = async (
+  apolloClient,
+  { assortmentId = null, slug = null },
+) => {
+  const { data } = await apolloClient.query({
+    query: AssortmentQuery,
+    skip: !assortmentId && !slug,
+    variables: { assortmentId, slug },
+  });
+  return data?.assortment;
+};
+
 export default useAssortment;

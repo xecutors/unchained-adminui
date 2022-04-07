@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -16,12 +17,21 @@ import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
-const Country = () => {
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
+
+const Country = ({ userId }) => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
+  const { hasRole } = useAuth();
+  const { checkAccess } = useAuth();
+
+  useEffect(() => {
+    checkAccess(userId);
+  }, [userId]);
 
   const { countries, countriesCount, loading } = useCountries({
     limit,
@@ -66,7 +76,9 @@ const Country = () => {
         })}
       />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/country/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

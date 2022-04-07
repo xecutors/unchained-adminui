@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import useAuth from '../../modules/Auth/useAuth';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import FilterDetail from '../../modules/filter/components/FilterDetail';
 import useFilter from '../../modules/filter/hooks/useFilter';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
@@ -19,6 +21,7 @@ const FilterDetailPage = () => {
   const router = useRouter();
   const { filterId = '' } = query || {};
   const { filter, loading } = useFilter({ filterId });
+  const { hasRole } = useAuth();
 
   const { removeFilter } = useRemoveFilter();
 
@@ -64,7 +67,9 @@ const FilterDetailPage = () => {
             defaultMessage: 'Filter Detail',
           })}
         />
-        <HeaderDeleteButton onClick={onRemoveFilter} />
+        {hasRole(ACTION_ROLES.filters.delete) && (
+          <HeaderDeleteButton onClick={onRemoveFilter} />
+        )}
       </div>
 
       {loading ? <Loading /> : <FilterDetail filter={filter} />}

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -19,6 +21,7 @@ const normalizeProduct = (products = []) => {
 const BundleProductsForm = ({ productId: currentProductId }) => {
   const [queryString, setQueryString] = useState('');
   const { createProductBundleItem } = useCreateProductBundleItem();
+  const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { products, loading } = useSearchProducts({
     queryString,
@@ -66,7 +69,10 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
         type="number"
         label={formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
       />
-      <SubmitButton className="mt-2" />
+      <SubmitButton
+        hidden={!hasRole(ACTION_ROLES.products.createBundleItem)}
+        className="mt-2"
+      />
     </Form>
   );
 };

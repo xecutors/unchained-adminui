@@ -7,7 +7,7 @@ import { PROVIDER_TYPE_CLASSES } from '../data/miscellaneous';
 import ProviderConfigurationForm from './ProviderConfigurationForm';
 import ActiveInActive from './ActiveInActive';
 
-const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
+const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
@@ -75,6 +75,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess }) => {
               onSubmit={onSubmit}
               onSubmitSuccess={onSubmitSuccess}
               provider={provider}
+              readOnly={readOnly}
             />
 
             <div className="mt-6 mb-3">

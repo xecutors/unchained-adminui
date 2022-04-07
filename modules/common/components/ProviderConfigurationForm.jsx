@@ -6,7 +6,12 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
 
-const ProviderConfigurationForm = ({ onSubmit, onSubmitSuccess, provider }) => {
+const ProviderConfigurationForm = ({
+  onSubmit,
+  onSubmitSuccess,
+  provider,
+  readOnly,
+}) => {
   const { formatMessage } = useIntl();
   const form = useForm({
     initialValues: {
@@ -29,6 +34,7 @@ const ProviderConfigurationForm = ({ onSubmit, onSubmitSuccess, provider }) => {
         />
         <FormErrors />
         <SubmitButton
+          hidden={readOnly}
           label={formatMessage({
             id: 'update_configuration',
             defaultMessage: 'Update configuration',

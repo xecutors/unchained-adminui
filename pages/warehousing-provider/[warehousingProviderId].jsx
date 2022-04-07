@@ -14,10 +14,14 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
 
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
+
 const WarehousingProviderUpdate = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
+  const { hasRole } = useAuth();
 
   const { warehousingProviderId } = query;
 
@@ -79,13 +83,16 @@ const WarehousingProviderUpdate = () => {
             defaultMessage: 'Update warehousing provider',
           })}
         />
-        <HeaderDeleteButton onClick={handleOnClick} />
+        {hasRole(ACTION_ROLES.warehousingProviders.delete) && (
+          <HeaderDeleteButton onClick={handleOnClick} />
+        )}
       </div>
 
       {loading ? (
         <Loading />
       ) : (
         <ProviderDetail
+          readOnly={!hasRole(ACTION_ROLES.warehousingProviders.update)}
           provider={warehousingProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

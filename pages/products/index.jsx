@@ -11,6 +11,8 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
 import useProducts from '../../modules/product/hooks/useProducts';
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -20,7 +22,7 @@ const Products = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
   const tags = query.tags?.split(',') || undefined;
-
+  const { hasRole } = useAuth();
   const { products, productsCount, loadMore, loading } = useProducts({
     includeDrafts,
     limit,
@@ -41,7 +43,9 @@ const Products = () => {
         <ProductFilter />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/products/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',

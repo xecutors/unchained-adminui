@@ -29,6 +29,8 @@ import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -61,6 +63,7 @@ const GetCurrentTab = ({ id, selectedView }) => {
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
@@ -219,8 +222,12 @@ const ProductDetail = ({ product }) => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-y-1">
-        <h1>{product?.__typename}</h1>
-        <TagList defaultValue={product?.tags} onSubmit={onUpdateTags} />
+        <h1 className="">{product?.__typename}</h1>
+        <TagList
+          defaultValue={product?.tags}
+          onSubmit={onUpdateTags}
+          enableEdit={hasRole(ACTION_ROLES.products.update)}
+        />
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}

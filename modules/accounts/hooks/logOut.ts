@@ -11,7 +11,7 @@ const logOut = async (apollo) => {
         }
       }
     `,
-    awaitRefetchQueries: true,
+    awaitRefetchQueries: false,
     variables: { token },
   });
   await resetStore();

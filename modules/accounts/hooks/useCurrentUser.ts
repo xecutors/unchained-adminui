@@ -16,9 +16,7 @@ const useCurrentUser = () => {
     fetchPolicy: 'network-only',
   });
 
-  const currentUser = data?.me
-    ? (data?.me.roles || []).indexOf('admin') !== -1 && data?.me
-    : null;
+  const currentUser = data?.me;
 
   return {
     currentUser,

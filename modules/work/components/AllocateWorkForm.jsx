@@ -1,8 +1,10 @@
 import { FieldArray } from 'formik';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -15,6 +17,7 @@ const AllocateWorkForm = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { allocateWork } = useAllocateWork();
+  const { hasRole } = useAuth();
 
   const onSubmit = async ({ types, worker }) => {
     const { data, errors } = await allocateWork({ types, worker });
@@ -155,6 +158,7 @@ const AllocateWorkForm = () => {
         </div>
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.work.allocateWork)}
             label={formatMessage({
               id: 'allocate_work',
               defaultMessage: 'Allocate Work',

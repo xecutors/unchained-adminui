@@ -1,15 +1,33 @@
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
 import defaultNextImageLoader from '../../modules/common/utils/defaultNextImageLoader';
 
 const ForgotPassword = () => {
   const { forgotPassword } = useForgotPassword();
+
   const { formatMessage } = useIntl();
+
+  const onSubmitSuccess = (success, { email }) => {
+    if (success) {
+      toast.success(
+        formatMessage(
+          {
+            id: 'reset_link_sent',
+            defaultMessage: 'Password reset link sent to {email} ',
+          },
+          {
+            email,
+          },
+        ),
+      );
+    }
+  };
   const onSubmit = async ({ email }) => {
     await forgotPassword({ email });
-    return true;
+    return { success: true, data: { email } };
   };
 
   return (
@@ -34,7 +52,10 @@ const ForgotPassword = () => {
             })}
           </h2>
         </div>
-        <ForgotPasswordForm onSubmit={onSubmit} />
+        <ForgotPasswordForm
+          onSubmit={onSubmit}
+          onSubmitSuccess={onSubmitSuccess}
+        />
       </div>
     </div>
   );

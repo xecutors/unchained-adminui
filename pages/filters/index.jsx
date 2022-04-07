@@ -13,11 +13,14 @@ import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const FiltersListView = () => {
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
+  const { hasRole } = useAuth();
   const includeInactive = query?.includeInactive === 'true';
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
@@ -70,7 +73,9 @@ const FiltersListView = () => {
         })}
       />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/filters/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',

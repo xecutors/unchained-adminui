@@ -1,4 +1,6 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -8,6 +10,7 @@ import useForm from '../../forms/hooks/useForm';
 
 const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'assortment_added',
     defaultMessage: 'Assortment added successfully!',
@@ -59,6 +62,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
       </div>
       <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
         <SubmitButton
+          hidden={!hasRole(ACTION_ROLES.assortments.create)}
           label={formatMessage({
             id: 'add_assortment',
             defaultMessage: 'Add Assortment',

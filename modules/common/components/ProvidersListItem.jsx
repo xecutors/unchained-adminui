@@ -9,7 +9,13 @@ import { getInterfaceLabel } from '../utils/utils';
 import ActiveInActive from './ActiveInActive';
 import ProviderNameConfiguration from './ProviderNameConfiguration';
 
-const ProviderListItem = ({ provider, onRemove, providerPath }) => {
+const ProviderListItem = ({
+  provider,
+  onRemove,
+  providerPath,
+  canEdit,
+  canDelete,
+}) => {
   return (
     <Table.Row>
       <Table.Cell>
@@ -37,20 +43,26 @@ const ProviderListItem = ({ provider, onRemove, providerPath }) => {
           />
         </span>
       </Table.Cell>
-      <Table.Cell>
-        <div className="flex items-center">
-          <Link href={`${providerPath}/${provider?._id}`}>
-            <a>
-              <EditIcon />
-            </a>
-          </Link>
-          <DeleteButton
-            onClick={async () => {
-              await onRemove(provider?._id);
-            }}
-          />
-        </div>
-      </Table.Cell>
+      {(canEdit || canDelete) && (
+        <Table.Cell>
+          <div className="flex items-center">
+            {canEdit && (
+              <Link href={`${providerPath}/${provider?._id}`}>
+                <a>
+                  <EditIcon />
+                </a>
+              </Link>
+            )}
+            {canDelete && (
+              <DeleteButton
+                onClick={async () => {
+                  await onRemove(provider?._id);
+                }}
+              />
+            )}
+          </div>
+        </Table.Cell>
+      )}
     </Table.Row>
   );
 };

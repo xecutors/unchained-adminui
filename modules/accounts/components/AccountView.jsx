@@ -30,6 +30,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
         <div className="mt-6">
           <EmailAddresses
             emails={emails}
+            enableVerification
             userId={_id}
             emailBodyContainer="rounded-md shadow"
           />

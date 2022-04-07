@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css';
 import App from 'next/app';
 
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 import { ToastContainer } from 'react-toastify';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
@@ -12,28 +12,16 @@ import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
-import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import { UnrestrictedPages } from '../modules/common/data/miscellaneous';
-import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
-const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
+import ModalWrapper from '../modules/modal/components/ModalWrapper';
+import AuthWrapper from '../modules/Auth/AuthWrapper';
+
+const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
 
   const { locale } = router;
 
   const apollo = useApollo(pageProps, { locale });
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await apollo.query({
-        query: CurrentUserQuery,
-        errorPolicy: 'none',
-        fetchPolicy: 'network-only',
-      });
-      if (!data?.me && !UnrestrictedPages.includes(router.pathname))
-        router.push('/log-in');
-    })();
-  }, [router.pathname]);
 
   const getLayout =
     Component.getLayout ||
@@ -52,16 +40,18 @@ const UnchainedAdmin = ({ Component, pageProps, isLoggedIn, ...rest }) => {
         messages={messages}
         key="intl-provider"
       >
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
+        <AuthWrapper>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
+        </AuthWrapper>
       </IntlWrapper>
     </ApolloProvider>
   );

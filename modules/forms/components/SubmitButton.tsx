@@ -7,6 +7,7 @@ const SubmitButton = ({
   label,
   disabled: disabledProp = false,
   className,
+  hidden,
   ...props
 }) => {
   const formik = useFormikContext();
@@ -36,10 +37,11 @@ const SubmitButton = ({
         'inline-flex cursor-pointer justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-400',
         className,
         {
-          'bg-red-400  ': disabled,
+          'bg-red-200  cursor-not-allowed': disabled,
 
           ' bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ':
             !disabled,
+          hidden,
         },
       )}
       aria-label={label}

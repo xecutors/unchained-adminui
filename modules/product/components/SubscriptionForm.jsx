@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
+import useAuth from '../../Auth/useAuth';
+
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -17,7 +20,7 @@ const SubscriptionForm = ({ productId }) => {
   const { configurationIntervals, usageCalculationTypes } =
     useProductPlanConfigurationOptions();
   const { plan, loading } = useProductPlan({ productId });
-
+  const { hasRole } = useAuth();
   const { updateProductPlan } = useUpdateProductPlan();
   const successMessage = formatMessage({
     id: 'enrollment_updated_successfully',
@@ -166,6 +169,7 @@ const SubscriptionForm = ({ productId }) => {
 
           <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 text-right sm:p-6">
             <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.enrollment.create)}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',

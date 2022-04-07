@@ -14,10 +14,13 @@ import Pagination from '../../modules/common/components/Pagination';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
+import ACTION_ROLES from '../../modules/common/data/roles';
+import useAuth from '../../modules/Auth/useAuth';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
+  const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
@@ -64,7 +67,9 @@ const Currencies = () => {
       />
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath="/currency/new">
+        <ListHeader
+          addPath={hasRole(ACTION_ROLES.currencies.create) && '/currency/new'}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

@@ -1,5 +1,7 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
@@ -17,6 +19,7 @@ const CountryForm = ({
   isEdit,
 }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
 
   const countryAddedMessage = formatMessage({
     id: 'country_added',
@@ -105,6 +108,7 @@ const CountryForm = ({
       </div>
       <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-slate-50 p-5 text-right">
         <SubmitButton
+          hidden={!hasRole(ACTION_ROLES.country.update)}
           label={
             isEdit
               ? formatMessage({

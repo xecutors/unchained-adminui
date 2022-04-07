@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import useAuth from '../../modules/Auth/useAuth';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -8,6 +9,7 @@ import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import ProvidersList from '../../modules/common/components/ProvidersList';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
 import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
@@ -17,7 +19,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 const DeliveryProviders = () => {
   const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
-
+  const { hasRole } = useAuth();
   const { deliveryProviders, loading } = useDeliveryProviders({ type });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
@@ -58,7 +60,12 @@ const DeliveryProviders = () => {
           defaultMessage: 'Delivery providers',
         })}
       />
-      <ListHeader addPath="/delivery-provider/new">
+      <ListHeader
+        addPath={
+          hasRole(ACTION_ROLES.deliveryProviders.create) &&
+          '/delivery-provider/new'
+        }
+      >
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}
           onProviderFilterChange={setType}
@@ -68,9 +75,13 @@ const DeliveryProviders = () => {
         <Loading />
       ) : (
         <ProvidersList
+          editRole={ACTION_ROLES.deliveryProviders.update}
+          deleteRole={ACTION_ROLES.deliveryProviders.delete}
           providerPath="/delivery-provider"
           providers={deliveryProviders}
           onRemove={onRemoveDeliveryProvider}
+          enableDelete={hasRole(ACTION_ROLES.deliveryProviders.delete)}
+          enableEdit={hasRole(ACTION_ROLES.deliveryProviders.update)}
         />
       )}
     </>

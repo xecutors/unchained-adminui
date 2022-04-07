@@ -105,7 +105,7 @@ const EmailAddresses = ({
                     />
                   </div>
                   <div className="my-1 flex items-center">
-                    {!enableVerification && (
+                    {enableVerification && (
                       <a
                         onClick={() =>
                           sendVerificationEmail({ email: address })

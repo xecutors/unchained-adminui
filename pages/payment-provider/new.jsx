@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../modules/common/data/roles';
 import useCreatePaymentProvider from '../../modules/payment-providers/hooks/useCreatePaymentProvider';
 import usePaymentInterfacesByType from '../../modules/payment-providers/hooks/usePaymentInterfacesByType';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
@@ -19,6 +21,7 @@ const NewPaymentProvider = () => {
   const { paymentInterfaces } = usePaymentInterfacesByType({
     type: selectedType,
   });
+  const { hasRole } = useAuth();
   const onSubmit = async ({ adapterKey, type }) => {
     const { data, errors } = await createPaymentProvider({ adapterKey, type });
     if (errors?.length) return false;
@@ -43,6 +46,7 @@ const NewPaymentProvider = () => {
         />
         <div className="mt-6">
           <NewProviderForm
+            readOnly={!hasRole(ACTION_ROLES.paymentProviders.create)}
             providerInterfaces={convertArrayOfObjectToObject(
               paymentInterfaces,
               'label',

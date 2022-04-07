@@ -1,9 +1,12 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 import LanguageListItem from './LanguageListItem';
 
 const LanguageList = ({ languages, onRemoveLanguage }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
 
   return (
     <Table className="min-w-full ">
@@ -23,8 +26,15 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
           <Table.Cell>
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
-
-          <Table.Cell>&nbsp;</Table.Cell>
+          {(hasRole(ACTION_ROLES.country.view) ||
+            hasRole(ACTION_ROLES.country.delete)) && (
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
+          )}
         </Table.Row>
       ))}
 
@@ -33,6 +43,8 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
           key={`${language?._id}`}
           language={language}
           onRemove={onRemoveLanguage}
+          enableEdit={hasRole(ACTION_ROLES.country.view)}
+          enableDelete={hasRole(ACTION_ROLES.country.delete)}
         />
       ))}
     </Table>

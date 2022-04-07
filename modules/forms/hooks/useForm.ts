@@ -48,7 +48,7 @@ const useForm = ({
       const result = await submit(clean(values));
 
       const success =
-        (typeof result === 'boolean' ? result : result?.success) ?? true;
+        (typeof result === 'boolean' ? result : result?.success) ?? false;
 
       if (success) {
         if (successMessage) toast.success(successMessage);
@@ -82,8 +82,7 @@ const useForm = ({
               intl.formatMessage(
                 {
                   id: 'error_server',
-                  defaultMessage:
-                    'There was a problem on the server ({details}). Please try again later..',
+                  defaultMessage: '{details}',
                 },
                 { details: error?.message || '' },
               ),
@@ -97,13 +96,10 @@ const useForm = ({
           intl.formatMessage(
             {
               id: 'error_server',
-              defaultMessage:
-                'There was a problem on the server ({details}). Please try again later.',
+              defaultMessage: '{details}',
             },
             {
-              details:
-                error?.message ||
-                'There was a problem on the server ({details}). Please try again later.',
+              details: error?.message || '{details}',
             },
           ),
       );

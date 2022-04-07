@@ -9,12 +9,15 @@ import useForm from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const FilterTextForm = ({ filterId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
   });
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
@@ -90,6 +93,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
           </div>
           <div className="flex">
             <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
               label={formatMessage({
                 id: 'update_filter',
                 defaultMessage: 'Update filter',

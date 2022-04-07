@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -11,6 +13,7 @@ import useUpdateProductWarehousing from '../hooks/useUpdateProductWarehousing';
 const WarehousingForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { product, loading } = useProductWarehousing({ productId });
+  const { hasRole } = useAuth();
   const { updateProductWarehousing } = useUpdateProductWarehousing();
 
   const successMessage = formatMessage({
@@ -64,6 +67,7 @@ const WarehousingForm = ({ productId }) => {
       </div>
       <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 text-right sm:p-6">
         <SubmitButton
+          hidden={!hasRole(ACTION_ROLES.products.updateWarehousing)}
           label={formatMessage({
             id: 'save',
             defaultMessage: 'Save',

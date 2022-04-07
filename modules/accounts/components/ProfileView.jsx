@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';
@@ -13,6 +13,9 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
 
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
+
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
   const fileInputRef = useRef();
@@ -20,6 +23,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
+  const { hasRole } = useAuth();
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
@@ -82,23 +86,40 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
     submit: onUpdateProfile,
     successMessage,
     initialValues: {
-      birthday: profile.birthday,
-      displayName: profile.displayName,
-      gender: profile.gender,
-      phoneMobile: profile.phoneMobile,
-      address: {
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        city: profile.city,
-        company: profile.company,
-        addressLine: profile.addressLine,
-        addressLine2: profile.addressLine2,
-        postalCode: profile.postalCode,
-        countryCode: profile.countryCode,
-        regionCode: profile.regionCode,
-      },
+      birthday: '',
+      displayName: null,
+      gender: null,
+      phoneMobile: null,
+      firstName: null,
+      lastName: null,
+      city: null,
+      company: null,
+      addressLine: null,
+      addressLine2: null,
+      postalCode: null,
+      countryCode: null,
+      regionCode: null,
     },
   });
+
+  useEffect(() => {
+    if (Object.keys(profile || {}).length)
+      form.formik.setValues({
+        birthday: profile?.birthday,
+        displayName: profile?.displayName,
+        gender: profile?.gender,
+        phoneMobile: profile?.phoneMobile,
+        firstName: address.firstName,
+        lastName: address.lastName,
+        city: address.city,
+        company: address.company,
+        addressLine: address.addressLine,
+        addressLine2: address.addressLine2,
+        postalCode: address.postalCode,
+        countryCode: address.countryCode,
+        regionCode: address.regionCode,
+      });
+  }, [profile]);
 
   return (
     <Form form={form}>
@@ -120,22 +141,24 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 })}
               </p>
             </div>
-            <SaveAndCancelButtons
-              showSubmit={isEdit}
-              onCancel={() => setIsEdit(!isEdit)}
-              showCancel
-              cancelText={
-                isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update_profile',
-                      defaultMessage: 'Update profile / address',
-                    })
-              }
-            />
+            {hasRole(ACTION_ROLES.users.updateProfile) && (
+              <SaveAndCancelButtons
+                showSubmit={isEdit}
+                onCancel={() => setIsEdit(!isEdit)}
+                showCancel
+                cancelText={
+                  isEdit
+                    ? formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })
+                    : formatMessage({
+                        id: 'update_profile',
+                        defaultMessage: 'Update profile / address',
+                      })
+                }
+              />
+            )}
           </div>
 
           <div className="col-span-2 ml-auto rounded-md bg-white px-6 shadow lg:w-full">
@@ -287,7 +310,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     />
                   ) : (
                     <span className="flex-grow">
-                      {profile.birthday
+                      {profile?.birthday
                         ? formatDateTime(profile.birthday)
                         : 'n/a'}
                     </span>
@@ -350,22 +373,24 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 })}
               </p>
             </div>
-            <SaveAndCancelButtons
-              showSubmit={isEdit}
-              onCancel={() => setIsEdit(!isEdit)}
-              showCancel
-              cancelText={
-                isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update_profile',
-                      defaultMessage: 'Update profile / address',
-                    })
-              }
-            />
+            {hasRole(ACTION_ROLES.users.updateProfile) && (
+              <SaveAndCancelButtons
+                showSubmit={isEdit}
+                onCancel={() => setIsEdit(!isEdit)}
+                showCancel
+                cancelText={
+                  isEdit
+                    ? formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })
+                    : formatMessage({
+                        id: 'update_profile',
+                        defaultMessage: 'Update profile / address',
+                      })
+                }
+              />
+            )}
           </div>
 
           <div className="col-span-2 w-full border-slate-200 bg-white px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full">

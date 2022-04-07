@@ -1,9 +1,12 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import Table from '../../common/components/Table';
+import ACTION_ROLES from '../../common/data/roles';
 import FilterListItem from './FilterListItem';
 
 const FilterList = ({ filters, onRemoveFilter }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   return (
     <Table className="min-w-full ">
       {filters?.map((filter) => (
@@ -36,7 +39,13 @@ const FilterList = ({ filters, onRemoveFilter }) => {
               defaultMessage: 'Options',
             })}
           </Table.Cell>
-          <Table.Cell>&nbsp;</Table.Cell>
+          {hasRole(ACTION_ROLES.filters.delete) && (
+            <Table.Cell>
+              <span className="sr-only">
+                {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
+              </span>
+            </Table.Cell>
+          )}
         </Table.Row>
       ))}
       {filters?.map((filter) => (

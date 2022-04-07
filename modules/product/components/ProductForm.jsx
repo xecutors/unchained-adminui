@@ -1,4 +1,6 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -16,6 +18,7 @@ export const ProductTypes = {
 
 const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const successMessage = formatMessage({
     id: 'product_added',
     defaultMessage: 'Product added successfully!',
@@ -68,6 +71,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
 
       <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-slate-50 p-5 text-right">
         <SubmitButton
+          hidden={!hasRole(ACTION_ROLES.products.create)}
           label={formatMessage({
             id: 'add_product',
             defaultMessage: 'Add product',

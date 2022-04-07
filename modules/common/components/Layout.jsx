@@ -17,7 +17,8 @@ import { toast } from 'react-toastify';
 
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
-import useShopInfo from '../hooks/useShopInfo';
+import useAuth from '../../Auth/useAuth';
+
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
@@ -27,13 +28,15 @@ const Layout = ({
   apollo,
   router,
   pageHeader = '',
+
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
-  const { shopInfo } = useShopInfo();
+  const { currentUser } = useCurrentUser();
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
+      requiredRole: [],
       icon: HomeIcon,
       href: '/',
     },
@@ -55,6 +58,7 @@ const Layout = ({
         id: 'orders',
         defaultMessage: 'Orders',
       }),
+      requiredRole: 'viewOrders',
       icon: InboxIcon,
       href: '/orders',
     },
@@ -63,23 +67,27 @@ const Layout = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
+      requiredRole: 'viewProducts',
       icon: TagIcon,
       href: '/products',
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
+      requiredRole: 'viewAssortments',
       href: '/assortments',
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsIcon,
+      requiredRole: 'viewFilters',
       href: '/filters',
     },
     {
       name: formatMessage({ id: 'users', defaultMessage: 'Users' }),
       icon: UserGroupIcon,
       href: '/users',
+      requiredRole: 'viewUsers',
     },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
@@ -90,21 +98,25 @@ const Layout = ({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
+          requiredRole: 'viewCurrencies',
           href: '/currency',
         },
         {
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
+          requiredRole: 'viewCountries',
         },
         {
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
+          requiredRole: 'viewLanguages',
         },
         {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           }),
+          requiredRole: 'viewDeliveryProviders',
           href: '/delivery-provider',
         },
         {
@@ -112,6 +124,7 @@ const Layout = ({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
+          requiredRole: 'viewPaymentProviders',
           href: '/payment-provider',
         },
         {
@@ -119,6 +132,7 @@ const Layout = ({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
           }),
+          requiredRole: 'viewWarehousingProviders',
           href: '/warehousing-provider',
         },
       ],
@@ -132,11 +146,13 @@ const Layout = ({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
+          requiredRole: 'manageWorker',
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
+          requiredRole: 'viewEvents',
         },
         // {
         //   name: formatMessage({
@@ -160,20 +176,22 @@ const Layout = ({
       href: '/account',
     },
   ];
+  const { resetAuth } = useAuth();
 
-  const successfullyLoggedOutMessage = formatMessage({
-    id: 'logged_out',
-    defaultMessage: 'Logged out',
-  });
   const onLogout = async () => {
+    const id = currentUser?._id;
     await logOut(apollo);
-    toast.success(successfullyLoggedOutMessage);
-    router.replace('/');
+    toast.success(
+      formatMessage({
+        id: 'logged_out',
+        defaultMessage: 'Logged out',
+      }),
+    );
+    resetAuth(id);
+    router.push('/log-in');
   };
 
   const [hideNav, setHideNav] = useState(true);
-
-  const { currentUser } = useCurrentUser();
 
   return (
     <div>
@@ -299,7 +317,7 @@ const Layout = ({
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>
-          {React.cloneElement(children, { shopInfo })}
+          {React.cloneElement(children)}
         </main>
       </div>
     </div>

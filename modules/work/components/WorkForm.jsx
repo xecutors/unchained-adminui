@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import ACTION_ROLES from '../../common/data/roles';
 
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
@@ -17,6 +19,7 @@ import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 const WorkForm = () => {
   const { formatMessage } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
+  const { hasRole } = useAuth();
   const { addWork } = useAddWork();
   const router = useRouter();
   const successMessage = formatMessage({
@@ -172,6 +175,7 @@ const WorkForm = () => {
 
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
           <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.work.add)}
             label={formatMessage({
               id: 'add_work',
               defaultMessage: 'Add Work',

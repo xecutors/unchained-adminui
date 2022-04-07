@@ -9,9 +9,12 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
+import ACTION_ROLES from '../../common/data/roles';
+import useAuth from '../../Auth/useAuth';
 
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
+  const { hasRole } = useAuth();
   const { translatedTexts, loading } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
     id: 'saved',
@@ -161,6 +164,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
           </div>
           <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
             <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.products.updateTexts)}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',
