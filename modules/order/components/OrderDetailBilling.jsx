@@ -16,7 +16,7 @@ const OrderDetailBilling = ({ order }) => {
 
       <div className="md:grid md:grid-cols-2 lg:gap-x-8">
         <dl className="bg-white py-4 px-4 shadow sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
-          <dd>
+          <div>
             <span className="text-xl mb-5 block font-bold">
               {order.billingAddress.firstName || order.billingAddress.lastName}
             </span>
@@ -37,7 +37,7 @@ const OrderDetailBilling = ({ order }) => {
             <span className="my-1 inline-block">
               {`${order.country.name}, ${order.country.flagEmoji}`}
             </span>
-          </dd>
+          </div>
         </dl>
 
         <dl className="bg-white py-4 px-4 shadow sm:rounded-lg mt-8 divide-y divide-indigo-50 text-sm lg:mt-0">

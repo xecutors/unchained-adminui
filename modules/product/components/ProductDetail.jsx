@@ -21,7 +21,6 @@ import SubscriptionForm from './SubscriptionForm';
 import SupplyForm from './SupplyForm';
 import ProductVariation from './ProductVariation';
 import WarehousingForm from './WarehousingForm';
-import useRemoveProduct from '../hooks/useRemoveProduct';
 import usePublishProduct from '../hooks/usePublishProduct';
 import useUnPublishProduct from '../hooks/useUnPublishProduct';
 import Tab from '../../common/components/Tab';
@@ -64,7 +63,6 @@ const GetCurrentTab = ({ id, selectedView }) => {
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { removeProduct } = useRemoveProduct();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
 
@@ -182,30 +180,6 @@ const ProductDetail = ({ product }) => {
           formatMessage({
             id: 'product_drafted',
             defaultMessage: 'Drafted successfully ',
-          }),
-        );
-      },
-    },
-    {
-      id: 'deleted',
-      title: formatMessage({
-        id: 'delete',
-        defaultMessage: 'Delete',
-      }),
-      selectedTitle: formatMessage({
-        id: 'deleted',
-        defaultMessage: 'Deleted',
-      }),
-      description: '',
-      disable: status === 'ACTIVE',
-      current: status === 'DELETED',
-      bgColor: 'red',
-      onClick: async () => {
-        await removeProduct({ productId: product?._id });
-        toast.success(
-          formatMessage({
-            id: 'product_deleted_success',
-            defaultMessage: 'Deleted successfully ',
           }),
         );
       },
