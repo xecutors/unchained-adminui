@@ -58,6 +58,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
           city,
         },
       },
+      userId: _id,
     });
     setIsEdit(false);
     return true;

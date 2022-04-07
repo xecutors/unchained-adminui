@@ -24,7 +24,7 @@ const UserTagsView = ({ tags: defaultTags = [], userId }) => {
     <TagList
       defaultValue={defaultTags}
       onSubmit={updateUserTags}
-      enableEdit={hasRole(ACTION_ROLES.users.setUserTags)}
+      enableEdit={hasRole(ACTION_ROLES.users.updateTags)}
     />
   );
 };
