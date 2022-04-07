@@ -164,6 +164,8 @@ export const ROUTE_ROLES = {
   '/works/management': 'manageWorker',
   '/country/[countryId]': 'viewCountry',
   '/currency/[currencyId]': 'viewCurrency',
+  '/orders': 'viewOrders',
+  '/orders/[orderId]': 'viewOrder',
   '/language/[languageId]': 'viewLanguage',
   '/products/[slug]': 'viewProduct',
   '/assortments/[slug]': 'viewAssortment',
