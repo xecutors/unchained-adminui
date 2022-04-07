@@ -23,4 +23,13 @@ const useFilter = ({ filterId = null } = {}) => {
   };
 };
 
+export const preFetchFilter = async (apolloClient, { filterId = null }) => {
+  const { data } = await apolloClient.query({
+    query: FilterQuery,
+    skip: !filterId,
+    variables: { filterId },
+  });
+  return data?.filter;
+};
+
 export default useFilter;

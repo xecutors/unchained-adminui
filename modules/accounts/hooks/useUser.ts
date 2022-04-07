@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 import UserFragment from '../fragment/UserFragment';
 
-export const UsersQuery = gql`
+export const UserQuery = gql`
   query User($userId: ID) {
     user(userId: $userId) {
       ...UserFragment
@@ -11,7 +11,7 @@ export const UsersQuery = gql`
 `;
 
 const useUser = ({ userId = null } = {}) => {
-  const { data, loading, error } = useQuery(UsersQuery, {
+  const { data, loading, error } = useQuery(UserQuery, {
     skip: !userId,
     variables: { userId },
   });
@@ -24,6 +24,15 @@ const useUser = ({ userId = null } = {}) => {
     loading,
     error,
   };
+};
+
+export const preFetchUser = async (apolloClient, { userId = null }) => {
+  const { data } = await apolloClient.query({
+    query: UserQuery,
+    skip: !userId,
+    variables: { userId },
+  });
+  return data?.user;
 };
 
 export default useUser;

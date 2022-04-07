@@ -23,4 +23,13 @@ const useCountry = ({ countryId }) => {
   };
 };
 
+export const preFetchCountry = async (apolloClient, { countryId = null }) => {
+  const { data } = await apolloClient.query({
+    query: CountryQuery,
+    skip: !countryId,
+    variables: { countryId },
+  });
+  return data?.country;
+};
+
 export default useCountry;

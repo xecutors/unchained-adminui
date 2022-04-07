@@ -24,4 +24,13 @@ const useOrder = ({ orderId = null } = {}) => {
   };
 };
 
+export const preFetchOrder = async (apolloClient, { orderId = null }) => {
+  const { data } = await apolloClient.query({
+    query: OrderQuery,
+    skip: !orderId,
+    variables: { orderId },
+  });
+  return data?.order;
+};
+
 export default useOrder;

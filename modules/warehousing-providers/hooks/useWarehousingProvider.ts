@@ -23,4 +23,16 @@ const useWarehousingProvider = ({ warehousingProviderId = null } = {}) => {
   };
 };
 
+export const preFetchWarehousingProvider = async (
+  apolloClient,
+  { warehousingProviderId = null },
+) => {
+  const { data } = await apolloClient.query({
+    query: WarehousingProviderQuery,
+    skip: !warehousingProviderId,
+    variables: { warehousingProviderId },
+  });
+  return data?.warehousingProvider;
+};
+
 export default useWarehousingProvider;

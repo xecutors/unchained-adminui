@@ -23,4 +23,16 @@ const usePaymentProvider = ({ paymentProviderId = null } = {}) => {
   };
 };
 
+export const preFetchPaymentProvider = async (
+  apolloClient,
+  { paymentProviderId = null },
+) => {
+  const { data } = await apolloClient.query({
+    query: PaymentProviderQuery,
+    skip: !paymentProviderId,
+    variables: { paymentProviderId },
+  });
+  return data?.paymentProvider;
+};
+
 export default usePaymentProvider;

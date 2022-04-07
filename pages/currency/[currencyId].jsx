@@ -4,7 +4,9 @@ import { toast } from 'react-toastify';
 
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import CurrencyForm from '../../modules/currency/components/CurrencyForm';
-import useCurrency from '../../modules/currency/hooks/useCurrency';
+import useCurrency, {
+  preFetchCurrency,
+} from '../../modules/currency/hooks/useCurrency';
 import useRemoveCurrency from '../../modules/currency/hooks/useRemoveCurrency';
 import useUpdateCurrency from '../../modules/currency/hooks/useUpdateCurrency';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -16,6 +18,10 @@ import Loading from '../../modules/common/components/Loading';
 import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../../modules/apollo/apolloClient';
 
 const UpdateCurrency = () => {
   const { push, query } = useRouter();
@@ -92,5 +98,28 @@ const UpdateCurrency = () => {
     </>
   );
 };
+
+export async function getStaticProps({ params, locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  const { currencyId } = params;
+  const currency = await preFetchCurrency(apolloClient, { locale, currencyId });
+  if (!currency)
+    return {
+      notFound: true,
+    };
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 60,
+  });
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
 
 export default UpdateCurrency;

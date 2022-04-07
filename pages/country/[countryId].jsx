@@ -6,7 +6,9 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
 import CountryForm from '../../modules/country/components/CountryForm';
-import useCountry from '../../modules/country/hooks/useCountry';
+import useCountry, {
+  preFetchCountry,
+} from '../../modules/country/hooks/useCountry';
 import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import useUpdateCountry from '../../modules/country/hooks/useUpdateCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
@@ -16,6 +18,10 @@ import Loading from '../../modules/common/components/Loading';
 import { normalizeCountryISOCode } from '../../modules/common/utils/utils';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../../modules/apollo/apolloClient';
 
 const normalizeCountry = (country) => {
   return {
@@ -109,4 +115,26 @@ const UpdateCountry = () => {
   );
 };
 
+export async function getStaticProps({ params, locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  const { countryId } = params;
+  const country = await preFetchCountry(apolloClient, { locale, countryId });
+  if (!country)
+    return {
+      notFound: true,
+    };
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 60,
+  });
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
 export default UpdateCountry;

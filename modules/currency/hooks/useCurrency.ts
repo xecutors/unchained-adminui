@@ -23,4 +23,13 @@ const useCurrency = ({ currencyId }) => {
   };
 };
 
+export const preFetchCurrency = async (apolloClient, { currencyId = null }) => {
+  const { data } = await apolloClient.query({
+    query: CurrencyQuery,
+    skip: !currencyId,
+    variables: { currencyId },
+  });
+  return data?.currency;
+};
+
 export default useCurrency;

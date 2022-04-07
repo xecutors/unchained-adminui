@@ -1,6 +1,10 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../../modules/apollo/apolloClient';
 import useAuth from '../../modules/Auth/useAuth';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -9,7 +13,9 @@ import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import FilterDetail from '../../modules/filter/components/FilterDetail';
-import useFilter from '../../modules/filter/hooks/useFilter';
+import useFilter, {
+  preFetchFilter,
+} from '../../modules/filter/hooks/useFilter';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
@@ -76,5 +82,28 @@ const FilterDetailPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ params, locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  const { filterId } = params;
+  const filter = await preFetchFilter(apolloClient, { locale, filterId });
+  if (!filter)
+    return {
+      notFound: true,
+    };
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 60,
+  });
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
 
 export default FilterDetailPage;

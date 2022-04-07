@@ -36,8 +36,8 @@ export async function getStaticProps({ params, locale }) {
   const apolloClient = await initializeApollo(null, { locale });
 
   const { slug } = params;
-  const product = await preFetchAssortment(apolloClient, { locale, slug });
-  if (!product || product?.status === 'DELETED')
+  const assortment = await preFetchAssortment(apolloClient, { locale, slug });
+  if (!assortment)
     return {
       notFound: true,
     };
