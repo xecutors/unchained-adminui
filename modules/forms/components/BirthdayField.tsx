@@ -1,10 +1,11 @@
 import DateField from './DateField';
 import { validateDateBefore, validateDateAfter } from '../lib/validators';
 
-const BirthdayField = ({ validators = [], name, ...props }) => {
+const BirthdayField = ({ validators = [], name, value, ...props }) => {
   return (
     <DateField
       {...{
+        value,
         name: name || 'birthday',
         validators: [
           ...validators,
