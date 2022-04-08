@@ -13,6 +13,7 @@ import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
@@ -52,22 +53,48 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   });
 
   return (
-    <Form form={form}>
-      <div className="shadow sm:rounded-md">
-        <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
-          <div className="col-span-12">
-            <TagInputField
-              name="tags"
-              id="tags"
-              label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
-            />
-            <FilterableDropdown
-              name="filterId"
-              required
+    <FormWrapper>
+      <Form form={form}>
+        <div className="shadow dark:shadow-white sm:rounded-md">
+          <div className="grid gap-6 px-4 py-5 sm:p-6">
+            <div className="col-span-12">
+              <TagInputField
+                name="tags"
+                id="tags"
+                label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+                className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
+              />
+              <FilterableDropdown
+                name="filterId"
+                required
+                label={formatMessage({
+                  id: 'filter',
+                  defaultMessage: 'Filter',
+                })}
+                data={filteredFilters}
+                onFilter={(val) => {
+                  setFilteredFilters(
+                    normalizeFilters(filters).filter((item) => {
+                      return (
+                        item?.title
+                          ?.toLowerCase()
+                          .includes(val?.toLowerCase()) ||
+                        item?.subtitle?.toLowerCase() === val?.toLowerCase() ||
+                        !val
+                      );
+                    }),
+                  );
+                }}
+                className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+              />
+            </div>
+          </div>
+          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.assortments.addFilter)}
               label={formatMessage({
-                id: 'filter',
-                defaultMessage: 'Filter',
+                id: 'save',
+                defaultMessage: 'Save',
               })}
               queryString={queryString}
               data={filteredFilters}
@@ -87,17 +114,8 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
             />
           </div>
         </div>
-        <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
-          <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.assortments.addFilter)}
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-          />
-        </div>
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 

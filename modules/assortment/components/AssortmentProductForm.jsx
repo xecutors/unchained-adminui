@@ -11,6 +11,7 @@ import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 
 const normalizeProducts = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -53,23 +54,37 @@ const AssortmentProductForm = ({ assortmentId }) => {
   });
 
   return (
-    <Form form={form}>
-      <div className="shadow sm:rounded-md">
-        <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
-          <div className="col-span-12">
-            <TagInputField
-              name="tags"
-              id="tags"
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
-            />
+    <FormWrapper>
+      <Form form={form}>
+        <div className="shadow dark:shadow-white sm:rounded-md">
+          <div className="grid gap-6 px-4 py-5 sm:p-6">
+            <div className="col-span-12">
+              <TagInputField
+                name="tags"
+                id="tags"
+                className="mt-1 w-full py-2 text-sm font-medium sm:ml-1"
+              />
 
-            <FilterableDropdown
-              name="productId"
-              data={normalizeProducts(products)}
-              isLoading={loading}
+              <FilterableDropdown
+                name="productId"
+                data={normalizeProducts(products)}
+                isLoading={loading}
+                label={formatMessage({
+                  id: 'product',
+                  defaultMessage: 'Product',
+                })}
+                required
+                onFilter={setQueryString}
+                className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+              />
+            </div>
+          </div>
+          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.assortments.addProduct)}
               label={formatMessage({
-                id: 'product',
-                defaultMessage: 'Product',
+                id: 'save',
+                defaultMessage: 'Save',
               })}
               required
               onFilter={setQueryString}
@@ -78,17 +93,8 @@ const AssortmentProductForm = ({ assortmentId }) => {
             />
           </div>
         </div>
-        <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
-          <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.assortments.addProduct)}
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-          />
-        </div>
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 

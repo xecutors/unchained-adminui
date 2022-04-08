@@ -72,9 +72,7 @@ const ProductReviewsItem = ({ review }) => {
           className="h-12 w-12 rounded-full"
         />
         <div className="ml-4 mr-auto">
-          <h4 className="text-sm font-bold text-slate-900">
-            {review?.author?.username}
-          </h4>
+          <h4 className="text-sm font-bold">{review?.author?.username}</h4>
           <p className="text-sm font-normal text-slate-400">
             <time dateTime={review.datetime}>
               {formatDateTime(review.updated || review.created)}
@@ -104,8 +102,8 @@ const ProductReviewsItem = ({ review }) => {
         )}
       </div>
 
-      <div className="mt-4 space-y-2 text-base italic text-slate-600">
-        <h3 className="text-sm font-medium text-slate-900">{review.title}</h3>
+      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-white">
+        <h3 className="text-sm font-medium">{review.title}</h3>
         <p>{review.review}</p>
       </div>
     </div>

@@ -65,7 +65,7 @@ const FilterableDropdown = ({
       <div className="w-full">
         <div
           className={classNames(
-            'my-2 flex items-center rounded border-slate-200 bg-white p-1',
+            'my-2 flex items-center rounded border-slate-200 p-1',
             props.className,
           )}
         >
@@ -75,7 +75,7 @@ const FilterableDropdown = ({
                 <div className="w-full">
                   <input
                     type="search"
-                    className="w-full h-12 text-slate-800 focus:outline-none mt-1 block appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
+                    className="w-full h-12 text-slate-800 dark:bg-slate-600 dark:text-white  focus:outline-none mt-1 block appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
                     placeholder={formatMessage({
                       id: 'search',
                       defaultMessage: 'Search',
@@ -93,7 +93,7 @@ const FilterableDropdown = ({
                   <div className="w-full">
                     <input
                       className={classNames(
-                        'mt-1 h-12 block w-full appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 text-slate-800 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
+                        'mt-1 h-12 block w-full dark:bg-slate-600 dark:text-white appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 text-slate-800 placeholder-gray-400 dark:placeholder:text-white shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
                         {
                           'border-red-300 focus:border-red-300': !!field.error,
                         },
@@ -160,7 +160,7 @@ const FilterableDropdown = ({
       </div>
       <div
         className={classNames(
-          'top-100 lef-0 max-h-select absolute z-40 w-full overflow-y-auto rounded bg-white shadow ',
+          'top-100 lef-0 max-h-select absolute z-40 w-full overflow-y-auto rounded shadow dark:shadow-white',
           {
             hidden: !showDropdown,
           },

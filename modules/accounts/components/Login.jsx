@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
@@ -93,107 +94,122 @@ export default function LogInForm() {
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-white">
             {formatMessage({
               id: 'login_header',
               defaultMessage: 'Log in to your account',
             })}
           </h2>
         </div>
-        <Form
-          form={form}
-          className="mt-8 space-y-6 bg-white px-4 pt-3 pb-8 shadow sm:rounded-lg sm:px-10"
-        >
-          <input type="hidden" name="remember" value="true" />
-          <div className="space-y-6 rounded-md shadow-sm">
-            <div>
-              <EmailField
-                id="email-address"
-                name="email"
-                className="mt-1"
-                type="email"
-                autoComplete="email"
-                required
-                label={formatMessage({
-                  id: 'email',
-                  defaultMessage: 'Email',
-                })}
-                placeholder={formatMessage({
-                  id: 'email',
-                  defaultMessage: 'Email',
-                })}
-              />
-            </div>
-            <div>
-              <PasswordField
-                id="password"
-                name="password"
-                autoComplete="current-password"
-                required
-                label={formatMessage({
-                  id: 'password',
-                  defaultMessage: 'Password',
-                })}
-                placeholder={formatMessage({
-                  id: 'password',
-                  defaultMessage: 'Password',
-                })}
-              />
-            </div>
-          </div>
-
-          <div className="my-2 flex flex-wrap items-center justify-between">
-            <div className="my-1 text-sm sm:my-0">
-              <Link href="/account/forgot-password">
-                <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                  {formatMessage({
-                    id: 'forget_password',
-                    defaultMessage: 'Forgot your password?',
+        <FormWrapper>
+          <Form
+            form={form}
+            className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
+          >
+            <input type="hidden" name="remember" value="true" />
+            <div className="space-y-6 rounded-md shadow-sm">
+              <div>
+                <EmailField
+                  id="email-address"
+                  name="email"
+                  className="mt-1"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  label={formatMessage({
+                    id: 'email',
+                    defaultMessage: 'Email',
                   })}
-                </a>
-              </Link>
+                  placeholder={formatMessage({
+                    id: 'email',
+                    defaultMessage: 'Email',
+                  })}
+                />
+              </div>
+              <div>
+                <PasswordField
+                  id="password"
+                  name="password"
+                  autoComplete="current-password"
+                  required
+                  label={formatMessage({
+                    id: 'password',
+                    defaultMessage: 'Password',
+                  })}
+                  placeholder={formatMessage({
+                    id: 'password',
+                    defaultMessage: 'Password',
+                  })}
+                />
+              </div>
             </div>
-          </div>
-          <FormErrors />
-          <div className="my-2">
-            <button
-              type="submit"
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-            >
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg
-                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
-            </button>
-          </div>
-          <div className="text-sm text-slate-400">
-            {formatMessage({
-              id: 'create_new_account',
-              defaultMessage: 'Create new account?',
-            })}
-            <a
-              href="/sign-up"
-              className="ml-2 font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              {intl.formatMessage({
-                id: 'sign_up',
-                defaultMessage: 'Sign up',
+
+            <div className="my-2 flex flex-wrap items-center justify-between">
+              <div className="my-1 flex items-center sm:my-0">
+                <CheckboxField
+                  className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  label={formatMessage({
+                    id: 'remember_password',
+                    defaultMessage: ' Remember me',
+                  })}
+                />
+              </div>
+
+              <div className="my-1 text-sm sm:my-0">
+                <Link href="/account/forgot-password">
+                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                    {formatMessage({
+                      id: 'forget_password',
+                      defaultMessage: 'Forgot your password?',
+                    })}
+                  </a>
+                </Link>
+              </div>
+            </div>
+            <FormErrors />
+            <div className="my-2">
+              <button
+                type="submit"
+                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              >
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg
+                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
+              </button>
+            </div>
+            <div className="text-sm text-slate-400">
+              {formatMessage({
+                id: 'create_new_account',
+                defaultMessage: 'Create new account?',
               })}
-            </a>
-          </div>
-        </Form>
+              <a
+                href="/sign-up"
+                className="ml-2 font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                {intl.formatMessage({
+                  id: 'sign_up',
+                  defaultMessage: 'Sign up',
+                })}
+              </a>
+            </div>
+          </Form>
+        </FormWrapper>
       </div>
     </div>
   );

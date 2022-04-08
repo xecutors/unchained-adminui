@@ -12,9 +12,9 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'space-y-4 bg-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
+            'space-y-4 bg-white dark:bg-slate-600 shadow dark:shadow-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+              'bg-slate-100 p': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}

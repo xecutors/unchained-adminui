@@ -23,7 +23,6 @@ import ACTION_ROLES from '../data/roles';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
-import ThemeToggle from './ThemeToggle';
 import UserAvatar from './UserAvatar';
 
 const Layout = ({
@@ -325,11 +324,10 @@ const Layout = ({
             </svg>
           </button>
         </div>
-        <main className="relative container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
+        <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>
-          <ThemeToggle />
           {React.cloneElement(children)}
         </main>
       </div>
