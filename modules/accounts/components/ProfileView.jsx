@@ -104,22 +104,23 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   });
 
   useEffect(() => {
-    if (Object.keys(profile || {}).length)
+    if (Object.keys(profile || {}).length) {
       form.formik.setValues({
         birthday: profile?.birthday,
         displayName: profile?.displayName,
         gender: profile?.gender,
         phoneMobile: profile?.phoneMobile,
-        firstName: address.firstName,
-        lastName: address.lastName,
-        city: address.city,
-        company: address.company,
-        addressLine: address.addressLine,
-        addressLine2: address.addressLine2,
-        postalCode: address.postalCode,
-        countryCode: address.countryCode,
-        regionCode: address.regionCode,
+        firstName: address?.firstName,
+        lastName: address?.lastName,
+        city: address?.city,
+        company: address?.company,
+        addressLine: address?.addressLine,
+        addressLine2: address?.addressLine2,
+        postalCode: address?.postalCode,
+        countryCode: address?.countryCode,
+        regionCode: address?.regionCode,
       });
+    }
   }, [profile]);
 
   return (

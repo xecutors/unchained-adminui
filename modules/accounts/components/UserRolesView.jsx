@@ -39,7 +39,7 @@ const UserRolesView = ({ roles, userId }) => {
         name="updatedRoles"
         labelClassName="flex items-center mt-1"
         inputClassName=""
-        options={Object.fromEntries(roles.map((role) => [role, role]))}
+        options={Object.fromEntries((roles || []).map((role) => [role, role]))}
         label={formatMessage({
           id: 'select_role',
           defaultMessage: 'Select role',

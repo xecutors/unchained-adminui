@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
-import CheckboxField from '../../forms/components/CheckboxField';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -144,19 +143,6 @@ export default function LogInForm() {
           </div>
 
           <div className="my-2 flex flex-wrap items-center justify-between">
-            <div className="my-1 flex items-center sm:my-0">
-              <CheckboxField
-                className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                label={formatMessage({
-                  id: 'remember_password',
-                  defaultMessage: ' Remember me',
-                })}
-              />
-            </div>
-
             <div className="my-1 text-sm sm:my-0">
               <Link href="/account/forgot-password">
                 <a className="font-medium text-indigo-600 hover:text-indigo-500">

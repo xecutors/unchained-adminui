@@ -72,7 +72,7 @@ const OrderDetailPage = () => {
         />
         {order &&
         isDeletable(order.status) &&
-        hasRole(ACTION_ROLES.order.delete) ? (
+        hasRole(ACTION_ROLES.orders.delete) ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

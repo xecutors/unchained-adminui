@@ -11,6 +11,7 @@ import {
   LightningBoltIcon,
 } from '@heroicons/react/outline';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
@@ -18,6 +19,7 @@ import { toast } from 'react-toastify';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../data/roles';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
@@ -48,6 +50,7 @@ const Layout = ({
             id: 'daily_sync',
             defaultMessage: 'Daily sync',
           }),
+          requiredRole: ACTION_ROLES.work.manage,
           href: '/reports/daily-sync',
         },
       ],
@@ -57,7 +60,7 @@ const Layout = ({
         id: 'orders',
         defaultMessage: 'Orders',
       }),
-      requiredRole: 'viewOrders',
+      requiredRole: ACTION_ROLES.orders.manage,
       icon: InboxIcon,
       href: '/orders',
     },
@@ -66,20 +69,20 @@ const Layout = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
-      requiredRole: 'viewProducts',
+      requiredRole: ACTION_ROLES.products.manage,
       icon: TagIcon,
       href: '/products',
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
-      requiredRole: 'viewAssortments',
+      requiredRole: ACTION_ROLES.assortments.manage,
       href: '/assortments',
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsIcon,
-      requiredRole: 'viewFilters',
+      requiredRole: ACTION_ROLES.filters.manage,
       href: '/filters',
     },
     {
@@ -97,25 +100,25 @@ const Layout = ({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
-          requiredRole: 'viewCurrencies',
+          requiredRole: ACTION_ROLES.currencies.manage,
           href: '/currency',
         },
         {
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
-          requiredRole: 'viewCountries',
+          requiredRole: ACTION_ROLES.country.manage,
         },
         {
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
-          requiredRole: 'viewLanguages',
+          requiredRole: ACTION_ROLES.languages.manage,
         },
         {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           }),
-          requiredRole: 'viewDeliveryProviders',
+          requiredRole: ACTION_ROLES.deliveryProviders.manage,
           href: '/delivery-provider',
         },
         {
@@ -123,7 +126,7 @@ const Layout = ({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
-          requiredRole: 'viewPaymentProviders',
+          requiredRole: ACTION_ROLES.paymentProviders.manage,
           href: '/payment-provider',
         },
         {
@@ -131,7 +134,7 @@ const Layout = ({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
           }),
-          requiredRole: 'viewWarehousingProviders',
+          requiredRole: ACTION_ROLES.warehousingProviders.manage,
           href: '/warehousing-provider',
         },
       ],
@@ -145,13 +148,13 @@ const Layout = ({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
-          requiredRole: 'manageWorker',
+          requiredRole: ACTION_ROLES.work.manage,
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
-          requiredRole: 'viewEvents',
+          requiredRole: ACTION_ROLES.events.view,
         },
         // {
         //   name: formatMessage({
@@ -240,16 +243,20 @@ const Layout = ({
 
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
-              <Image
-                src="/logo.svg"
-                loader={defaultNextImageLoader}
-                width={125}
-                height={100}
-                alt={formatMessage({
-                  id: 'unchained_logo',
-                  defaultMessage: 'Unchained Logo',
-                })}
-              />
+              <Link href="/">
+                <a>
+                  <Image
+                    src="/logo.svg"
+                    loader={defaultNextImageLoader}
+                    width={125}
+                    height={100}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </a>
+              </Link>
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
@@ -263,16 +270,20 @@ const Layout = ({
         <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
-              <Image
-                src="/logo.svg"
-                loader={defaultNextImageLoader}
-                width={175}
-                height={100}
-                alt={formatMessage({
-                  id: 'unchained_logo',
-                  defaultMessage: 'Unchained Logo',
-                })}
-              />
+              <Link href="/">
+                <a>
+                  <Image
+                    src="/logo.svg"
+                    loader={defaultNextImageLoader}
+                    width={175}
+                    height={100}
+                    alt={formatMessage({
+                      id: 'unchained_logo',
+                      defaultMessage: 'Unchained Logo',
+                    })}
+                  />
+                </a>
+              </Link>
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>

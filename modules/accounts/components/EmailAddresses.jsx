@@ -65,6 +65,16 @@ const EmailAddresses = ({
     );
   };
 
+  const onSendVerification = async ({ email }) => {
+    await sendVerificationEmail({ email });
+    toast.success(
+      formatMessage({
+        id: 'verification_sent_success',
+        defaultMessage: 'Verification email sent successfully ',
+      }),
+    );
+  };
+
   const successMessage = formatMessage({
     id: 'email_added',
     defaultMessage: 'Email added successfully!',
@@ -104,12 +114,12 @@ const EmailAddresses = ({
                       color={verified ? 'green' : 'red'}
                     />
                   </div>
-                  <div className="my-1 flex items-center">
+                  <div className="my-1 flex items-center cursor-pointer">
                     {enableVerification && (
                       <a
-                        onClick={() =>
-                          sendVerificationEmail({ email: address })
-                        }
+                        onClick={async () => {
+                          await onSendVerification({ email: address });
+                        }}
                         className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                       >
                         {formatMessage({
