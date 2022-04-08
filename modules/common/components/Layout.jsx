@@ -36,7 +36,6 @@ const Layout = ({
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
-      requiredRole: [],
       icon: HomeIcon,
       href: '/',
     },

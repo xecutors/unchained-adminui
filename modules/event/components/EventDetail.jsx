@@ -19,8 +19,8 @@ const EventDetail = ({ event }) => {
     ),
     body: event?.payload ? (
       <JSONView
-        disable
-        value={event.payload}
+        disabled
+        value={JSON.stringify(event.payload, null, 2)}
         className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
       />
     ) : (
