@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import useAuth from '../../modules/Auth/useAuth';
 
+import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';

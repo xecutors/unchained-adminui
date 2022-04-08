@@ -23,4 +23,13 @@ const useLanguage = ({ languageId }) => {
   };
 };
 
+export const preFetchLanguage = async (apolloClient, { languageId = null }) => {
+  const { data } = await apolloClient.query({
+    query: LanguageQuery,
+    skip: !languageId,
+    variables: { languageId },
+  });
+  return data?.language;
+};
+
 export default useLanguage;

@@ -23,4 +23,16 @@ const useDeliveryProvider = ({ deliveryProviderId = null } = {}) => {
   };
 };
 
+export const preFetchDeliveryProvider = async (
+  apolloClient,
+  { deliveryProviderId = null },
+) => {
+  const { data } = await apolloClient.query({
+    query: DeliveryProviderQuery,
+    skip: !deliveryProviderId,
+    variables: { deliveryProviderId },
+  });
+  return data?.deliveryProvider;
+};
+
 export default useDeliveryProvider;
