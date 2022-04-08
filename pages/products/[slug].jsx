@@ -1,10 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import {
-  addApolloState,
-  initializeApollo,
-} from '../../modules/apollo/apolloClient';
+
 import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
@@ -14,9 +11,7 @@ import ACTION_ROLES from '../../modules/common/data/roles';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import ProductDetail from '../../modules/product/components/ProductDetail';
-import useProduct, {
-  preFetchProduct,
-} from '../../modules/product/hooks/useProduct';
+import useProduct from '../../modules/product/hooks/useProduct';
 import useRemoveProduct from '../../modules/product/hooks/useRemoveProduct';
 
 const ProductDetailPage = () => {
@@ -73,28 +68,5 @@ const ProductDetailPage = () => {
     </div>
   );
 };
-
-export async function getStaticProps({ params, locale }) {
-  const apolloClient = await initializeApollo(null, { locale });
-
-  const { slug } = params;
-  const product = await preFetchProduct(apolloClient, { locale, slug });
-  if (!product || product?.status === 'DELETED')
-    return {
-      notFound: true,
-    };
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 60,
-  });
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-}
 
 export default ProductDetailPage;

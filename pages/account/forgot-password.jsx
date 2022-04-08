@@ -3,6 +3,10 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../../modules/apollo/apolloClient';
 import defaultNextImageLoader from '../../modules/common/utils/defaultNextImageLoader';
 
 const ForgotPassword = () => {
@@ -60,6 +64,15 @@ const ForgotPassword = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 3600,
+  });
+}
 
 export default ForgotPassword;
 

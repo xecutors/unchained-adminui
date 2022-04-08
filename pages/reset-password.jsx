@@ -2,6 +2,10 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import ResetPasswordForm from '../modules/accounts/components/ResetPasswordForm';
 import useResetPassword from '../modules/accounts/hooks/useResetPassword';
+import {
+  addApolloState,
+  initializeApollo,
+} from '../modules/apollo/apolloClient';
 
 const PasswordReset = () => {
   const { query } = useRouter();
@@ -38,6 +42,15 @@ const PasswordReset = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ locale }) {
+  const apolloClient = await initializeApollo(null, { locale });
+
+  return addApolloState(apolloClient, {
+    props: {},
+    revalidate: 3600,
+  });
+}
 
 export default PasswordReset;
 

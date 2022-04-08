@@ -3,9 +3,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import LanguageForm from '../../modules/language/components/LanguageForm';
-import useLanguage, {
-  preFetchLanguage,
-} from '../../modules/language/hooks/useLanguage';
+import useLanguage from '../../modules/language/hooks/useLanguage';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
 import useUpdateLanguage from '../../modules/language/hooks/useUpdateLanguage';
 import PageHeader from '../../modules/common/components/PageHeader';
@@ -17,10 +15,6 @@ import FormWrapper from '../../modules/common/components/FormWrapper';
 import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import {
-  addApolloState,
-  initializeApollo,
-} from '../../modules/apollo/apolloClient';
 
 const UpdateLanguage = () => {
   const { updateLanguage } = useUpdateLanguage();
@@ -103,28 +97,5 @@ const UpdateLanguage = () => {
     </>
   );
 };
-
-export async function getStaticProps({ params, locale }) {
-  const apolloClient = await initializeApollo(null, { locale });
-
-  const { languageId } = params;
-  const language = await preFetchLanguage(apolloClient, { locale, languageId });
-  if (!language)
-    return {
-      notFound: true,
-    };
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 60,
-  });
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-}
 
 export default UpdateLanguage;
