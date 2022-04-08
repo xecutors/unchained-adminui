@@ -52,10 +52,10 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
   });
 
   useEffect(() => {
-    if (translatedFilterTexts?.length)
-      form.formik.setValues(
-        translatedFilterTexts?.find((text) => text.locale === selectedLocale),
-      );
+    const value = translatedFilterTexts?.find(
+      (text) => text.locale === selectedLocale,
+    );
+    if (value) form.formik.setValues(value);
   }, [translatedFilterTexts, selectedLocale]);
 
   return (

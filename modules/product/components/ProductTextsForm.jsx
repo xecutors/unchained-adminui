@@ -59,17 +59,15 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
       description: '',
       brand: '',
       labels: '',
-      ...((!loading &&
-        translatedTexts?.find((text) => text.locale === selectedLocale)) ||
-        {}),
     },
   });
 
   useEffect(() => {
-    if (translatedTexts?.length)
-      form.formik.setValues(
-        translatedTexts?.find((text) => text.locale === selectedLocale),
-      );
+    const value = translatedTexts?.find(
+      (text) => text.locale === selectedLocale,
+    );
+
+    if (value) form.formik.setValues(value);
   }, [translatedTexts, selectedLocale]);
 
   return (

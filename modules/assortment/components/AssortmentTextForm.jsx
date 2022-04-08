@@ -60,12 +60,10 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   });
 
   useEffect(() => {
-    if (translatedAssortmentTexts?.length)
-      form.formik.setValues(
-        translatedAssortmentTexts?.find(
-          (text) => text.locale === selectedLocale,
-        ),
-      );
+    const value = translatedAssortmentTexts?.find(
+      (text) => text.locale === selectedLocale,
+    );
+    if (value) form.formik.setValues(value);
   }, [translatedAssortmentTexts, selectedLocale]);
 
   return (
