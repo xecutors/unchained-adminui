@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
-import useShopInfo from '../../common/hooks/useShopInfo';
 import ChoicesField from '../../forms/components/ChoicesField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -13,11 +12,10 @@ import useSetRoles from '../hooks/useSetRoles';
 
 const UserRolesView = ({ roles, userId }) => {
   const { formatMessage } = useIntl();
-  const { shopInfo = {} } = useShopInfo();
 
   const { setRoles } = useSetRoles();
   const { hasRole } = useAuth();
-  const { userRoles = [] } = shopInfo;
+
   const onSubmit = async ({ updatedRoles }) => {
     await setRoles({ roles: updatedRoles, userId });
     return true;
@@ -41,7 +39,7 @@ const UserRolesView = ({ roles, userId }) => {
         name="updatedRoles"
         labelClassName="flex items-center mt-1"
         inputClassName=""
-        options={Object.fromEntries(userRoles.map((role) => [role, role]))}
+        options={Object.fromEntries(roles.map((role) => [role, role]))}
         label={formatMessage({
           id: 'select_role',
           defaultMessage: 'Select role',

@@ -73,7 +73,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 <TextField
                   className="mt-0 w-full"
                   name="username"
-                  required
                   label={formatMessage({
                     id: 'username',
                     defaultMessage: 'Username',
