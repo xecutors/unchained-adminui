@@ -57,6 +57,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
       <FilterableDropdown
         name="productId"
         onFilter={setQueryString}
+        queryString={queryString}
         label={formatMessage({ id: 'product', defaultMessage: 'Product' })}
         data={normalizeProduct(products)}
         isLoading={loading}
