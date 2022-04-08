@@ -48,6 +48,7 @@ const FilterableDropdown = ({
     }
     if (!event.target.value) {
       setShowDropdown(false);
+      onFilter('');
       field.setError('');
     }
   };
@@ -55,7 +56,7 @@ const FilterableDropdown = ({
   const handleOnFocus = () => {
     if (!props.queryString) {
       onFilter('a');
-      if (!showDropdown) setShowDropdown(!showDropdown);
+      setShowDropdown(true);
     }
   };
 

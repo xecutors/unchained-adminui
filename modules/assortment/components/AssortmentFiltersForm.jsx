@@ -27,6 +27,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const { hasRole } = useAuth();
   const { filters } = useFiltersList({ limit: 300 });
 
+  const [queryString, setQueryString] = useState('');
   const [filteredFilters, setFilteredFilters] = useState(() =>
     normalizeFilters(filters),
   );
@@ -68,8 +69,10 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                 id: 'filter',
                 defaultMessage: 'Filter',
               })}
+              queryString={queryString}
               data={filteredFilters}
               onFilter={(val) => {
+                setQueryString(val);
                 setFilteredFilters(
                   normalizeFilters(filters).filter((item) => {
                     return (
