@@ -106,7 +106,7 @@ const CountryForm = ({
           </div>
         )}
       </div>
-      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-slate-50 p-5 text-right">
+      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-slate-50 dark:bg-slate-500 p-5 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.country.update)}
           label={

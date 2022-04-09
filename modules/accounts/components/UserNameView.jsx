@@ -32,11 +32,11 @@ const UserNameView = ({ _id: userId, username }) => {
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
         <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
-          <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500">
+          <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500 dark:text-white">
             {!isEdit &&
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
           </div>
-          <div className="shirnk mt-1 flex grow basis-3/5 flex-wrap items-center gap-4 text-sm text-slate-900 sm:col-span-2 sm:mt-0 sm:gap-0">
+          <div className="shrink mt-1 flex grow basis-3/5 flex-wrap items-center gap-4 text-sm sm:col-span-2 sm:mt-0 sm:gap-0">
             <span className="flex-grow">
               {isEdit ? (
                 <TextField
@@ -52,7 +52,7 @@ const UserNameView = ({ _id: userId, username }) => {
               )}
             </span>
 
-            <span className="ml-4 flex flex-shrink-0 items-center space-x-4">
+            <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}
                 type="button"

@@ -65,7 +65,7 @@ const FilterOptionsListItem = ({
             </span>
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-slate-900">
+              <div className="truncate text-sm font-medium text-slate-900 dark:text-white">
                 {isEdit ? (
                   <TextField
                     className="mt-0 rounded-sm py-0 px-2"
@@ -79,8 +79,8 @@ const FilterOptionsListItem = ({
                 ) : (
                   option?.texts.title
                 )}
-              </p>
-              <p className="truncate text-sm text-slate-500">
+              </div>
+              <div className="truncate text-sm text-slate-500 dark:text-white">
                 {isEdit ? (
                   <TextField
                     className="mt-0 rounded-sm py-0 px-2"
@@ -93,7 +93,7 @@ const FilterOptionsListItem = ({
                 ) : (
                   option?.texts.subtitle && option?.texts.subtitle
                 )}
-              </p>
+              </div>
             </div>
 
             <div>
@@ -102,7 +102,7 @@ const FilterOptionsListItem = ({
                   <button
                     onClick={() => setIsEdit(!isEdit)}
                     type="button"
-                    className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'cancel',
@@ -111,7 +111,7 @@ const FilterOptionsListItem = ({
                   </button>
                   <button
                     type="submit"
-                    className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                    className="rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'save',
