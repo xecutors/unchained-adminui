@@ -85,20 +85,18 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       return;
     }
 
-    const sortKeys = productMedia.map((media, index) => ({
+    const newSortKeys = productMedia.map((media, index) => ({
       productMediaId: media._id,
       sortKey: index,
     }));
 
-    const [removedSortKey] = sortKeys.splice(source.index, 1);
-    sortKeys.splice(destination.index, 0, removedSortKey);
+    const [removedSortKey] = newSortKeys.splice(source.index, 1);
+    newSortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sortKey, index) => {
-      return {
-        ...sortKey,
-        sortKeys: index,
-      };
-    });
+    const sortKeys = newSortKeys.map((sortKey, index) => ({
+      ...sortKey,
+      sortKey: index,
+    }));
 
     try {
       await reOrderProductMedia({ sortKeys });

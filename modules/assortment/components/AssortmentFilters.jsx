@@ -65,20 +65,18 @@ const AssortmentFilters = ({ assortmentId }) => {
       return;
     }
 
-    const sortKeys = assortmentFilters.map((media) => ({
+    const newSortKeys = assortmentFilters.map((media) => ({
       assortmentFilterId: media._id,
       sortKey: media.sortKey,
     }));
 
-    const [removedSortKey] = sortKeys.splice(source.index, 1);
-    sortKeys.splice(destination.index, 0, removedSortKey);
+    const [removedSortKey] = newSortKeys.splice(source.index, 1);
+    newSortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sortKey, index) => {
-      return {
-        ...sortKey,
-        sortKey: index,
-      };
-    });
+    const sortKeys = newSortKeys.map((sortKey, index) => ({
+      ...sortKey,
+      sortKey: index,
+    }));
 
     try {
       await reorderAssortmentFilters({ sortKeys });
