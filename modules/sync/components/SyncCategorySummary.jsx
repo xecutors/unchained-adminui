@@ -66,7 +66,7 @@ const SyncCategorySummary = ({
             <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <Link href={`${router.asPath}/items-list?tab=${newItemsRoute}`}>
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
                     {formatMessage({
                       id: 'view_all',
                       defaultMessage: 'View all',
@@ -114,7 +114,7 @@ const SyncCategorySummary = ({
                 <Link
                   href={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
                 >
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
                     {formatMessage({
                       id: 'view_all',
                       defaultMessage: 'View all',
@@ -177,7 +177,7 @@ const SyncCategorySummary = ({
                   <Link
                     href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
                   >
-                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
                       {formatMessage({
                         id: 'view_all',
                         defaultMessage: 'View all',

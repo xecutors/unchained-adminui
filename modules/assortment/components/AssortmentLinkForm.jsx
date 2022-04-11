@@ -74,6 +74,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 })}
                 required
                 onFilter={setQueryString}
+                queryString={queryString}
                 data={normalizeAssortments(assortments)}
                 className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
               />
@@ -86,11 +87,6 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 id: 'save',
                 defaultMessage: 'Save',
               })}
-              required
-              onFilter={setQueryString}
-              queryString={queryString}
-              data={normalizeAssortments(assortments)}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
             />
           </div>
         </div>

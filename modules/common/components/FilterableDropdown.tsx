@@ -160,7 +160,7 @@ const FilterableDropdown = ({
       </div>
       <div
         className={classNames(
-          'top-100 lef-0 max-h-select absolute z-40 w-full overflow-y-auto rounded shadow dark:shadow-white',
+          'top-100 lef-0 max-h-select absolute z-50 w-full overflow-y-auto rounded shadow dark:shadow-white',
           {
             hidden: !showDropdown,
           },

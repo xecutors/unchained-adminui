@@ -172,11 +172,11 @@ const WorkFilter = ({ workTypes = [] }) => {
         <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           {WORK_STATUSES.map((status) => (
             <div
-              className="inline-flex items-center rounded-md bg-white dark:bg-slate-600 py-2 px-4 text-sm font-medium text-indigo-800 shadow"
+              className="inline-flex items-center rounded-md bg-white dark:bg-slate-500 py-2 px-4 text-sm font-medium text-indigo-800 shadow-sm dark:shadow-white"
               key={status}
             >
               <input
-                className="h-4 w-4 rounded border-slate-300 text-indigo-600 dark:text-white focus:ring-indigo-400"
+                className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
                 type="checkbox"
                 id={status}
                 name={status}

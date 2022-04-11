@@ -201,7 +201,9 @@ const WorkDetail = ({ work }) => {
                 </div>
                 <div className="mt-2 max-w-prose space-y-5 text-sm">
                   <Link href={`/works/${work?.work?._id}`}>
-                    <a className="text-blue-600">{work?.work?._id}</a>
+                    <a className="text-blue-600 dark:text-blue-400">
+                      {work?.work?._id}
+                    </a>
                   </Link>
                 </div>
               </div>

@@ -161,7 +161,7 @@ export default function LogInForm() {
 
               <div className="my-1 text-sm sm:my-0">
                 <Link href="/account/forgot-password">
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
                     {formatMessage({
                       id: 'forget_password',
                       defaultMessage: 'Forgot your password?',

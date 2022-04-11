@@ -24,7 +24,7 @@ const WorkListItem = ({ work }) => {
       <Table.Cell>
         <div className="flex items-center text-sm">
           <Link href={`/works/${work._id}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {work?.type || (
                 <>
                   {work._id}{' '}

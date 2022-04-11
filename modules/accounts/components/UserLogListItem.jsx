@@ -28,7 +28,7 @@ const UserLogListItem = ({ log }) => {
         <div className="items-center text-sm text-slate-900 ">
           {log.order && (
             <Link href={`/order/${log.order._id}`}>
-              <a className="flex text-blue-600">
+              <a className="flex text-blue-600 dark:text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className=" h-7 w-7 p-1"

@@ -63,7 +63,7 @@ const NotAuthorized = () => {
             <div className="mt-6">
               {currentUser?._id ? (
                 <Link href="/">
-                  <a className="text-base font-medium text-indigo-600 hover:text-indigo-500">
+                  <a className="text-base font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-300">
                     {formatMessage({
                       id: 'go_back_home',
                       defaultMessage: 'Go back home',
@@ -73,7 +73,7 @@ const NotAuthorized = () => {
                 </Link>
               ) : (
                 <Link href="/log-in">
-                  <a className="text-base font-medium text-indigo-600 hover:text-indigo-500">
+                  <a className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
                     {formatMessage({
                       id: 'go_to_login',
                       defaultMessage: 'Go to login',

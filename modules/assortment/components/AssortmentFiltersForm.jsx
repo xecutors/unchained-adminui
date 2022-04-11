@@ -72,7 +72,9 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                   defaultMessage: 'Filter',
                 })}
                 data={filteredFilters}
+                queryString={queryString}
                 onFilter={(val) => {
+                  setQueryString(val);
                   setFilteredFilters(
                     normalizeFilters(filters).filter((item) => {
                       return (
@@ -96,21 +98,6 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                 id: 'save',
                 defaultMessage: 'Save',
               })}
-              queryString={queryString}
-              data={filteredFilters}
-              onFilter={(val) => {
-                setQueryString(val);
-                setFilteredFilters(
-                  normalizeFilters(filters).filter((item) => {
-                    return (
-                      item?.title?.toLowerCase().includes(val?.toLowerCase()) ||
-                      item?.subtitle?.toLowerCase() === val?.toLowerCase() ||
-                      !val
-                    );
-                  }),
-                );
-              }}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
             />
           </div>
         </div>

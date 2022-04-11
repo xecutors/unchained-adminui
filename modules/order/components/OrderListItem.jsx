@@ -18,7 +18,7 @@ const OrderListItem = ({ order, showUser }) => {
       <Table.Cell>
         <div className="flex items-center text-sm">
           <Link href={`/orders/${order._id}`}>
-            <a className="font-medium text-blue-500">
+            <a className="font-medium text-blue-500 dark:text-blue-400">
               {order?.orderNumber || (
                 <>
                   {order._id}{' '}
@@ -47,7 +47,7 @@ const OrderListItem = ({ order, showUser }) => {
       {showUser && order.user && (
         <Table.Cell>
           <Link href={`/order/${order.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 hover:text-decoration">
+            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
               <Image
                 loader={defaultNextImageLoader}
                 src={order.user?.avatar?.url || 'product_placeholder.png'}

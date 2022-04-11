@@ -24,7 +24,7 @@ const ProductListItem = ({ product, showAvatar }) => {
             />
           )}
           <Link href={`/products/${slug}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {product?.texts.title || (
                 <>
                   {product._id}{' '}
