@@ -47,7 +47,7 @@ const WorkForm = () => {
       scheduled,
       originalWorkId,
     });
-    if (errors.length) return false;
+    if (errors?.length) return false;
     return { success: true, data: data?.addWork };
   };
 

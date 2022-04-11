@@ -16,7 +16,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { translatedTexts, loading } = useTranslatedProductTexts({ productId });
+  const { translatedTexts } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',

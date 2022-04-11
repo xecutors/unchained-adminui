@@ -9,7 +9,6 @@ import DatePickerField from '../../forms/components/DatePickerField';
 import EmailField from '../../forms/components/EmailField';
 import PasswordField from '../../forms/components/PasswordField';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
-import FormWrapper from '../../common/components/FormWrapper';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
