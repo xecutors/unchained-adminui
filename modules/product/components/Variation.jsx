@@ -65,7 +65,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                 onClick={stopPropagationAndPreventDefault}
                 onKeyUp={stopPropagationAndPreventDefault}
               >
-                <p className="truncate text-sm font-medium text-slate-900">
+                <p className="truncate text-sm font-medium text-slate-900 dark:text-white">
                   {isEdit ? (
                     <TextField
                       className="mt-0 py-1"
@@ -80,7 +80,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                     variation?.texts?.title
                   )}
                 </p>
-                <p className="truncate text-sm font-normal text-slate-500">
+                <p className="truncate text-sm font-normal text-slate-500 dark:text-white">
                   {isEdit ? (
                     <TextField
                       className="mt-0 py-1"
