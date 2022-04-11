@@ -32,7 +32,7 @@ const AddAssortments = () => {
             defaultMessage: 'New Assortment',
           })}
         />
-        <div className="mt-6  sm:max-w-2xl">
+        <div className="mt-6 sm:max-w-2xl">
           <FormWrapper>
             <AssortmentForm
               onSubmitSuccess={onSubmitSuccess}

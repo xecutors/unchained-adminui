@@ -66,6 +66,7 @@ const JSONAreaField = ({
             'border-red-300 text-red-600 focus:border-red-600 focus:ring-red-600':
               !!field.error,
           },
+          props.className,
         )}
         disabled={field.disabled}
         id={field.name}

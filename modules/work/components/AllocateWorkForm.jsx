@@ -79,7 +79,7 @@ const AllocateWorkForm = () => {
                       <div className="w-100 relative w-full space-y-1 rounded-md sm:pr-2">
                         <div className="max-w-4xl justify-between align-baseline sm:flex">
                           <SelectField
-                            className="w-full py-2 text-sm text-slate-500 sm:mt-0"
+                            className="w-full py-2 text-sm text-slate-500 dark:text-white sm:mt-0"
                             label={formatMessage({
                               id: 'type',
                               defaultMessage: 'Type',
@@ -156,7 +156,7 @@ const AllocateWorkForm = () => {
             )}
           </FieldArray>
         </div>
-        <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
+        <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 px-5 py-6 text-right">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.work.allocateWork)}
             label={formatMessage({

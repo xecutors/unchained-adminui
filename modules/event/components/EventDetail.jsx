@@ -21,7 +21,7 @@ const EventDetail = ({ event }) => {
       <JSONView
         disabled
         value={JSON.stringify(event.payload, null, 2)}
-        className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+        className="bg-white dark:bg-slate-600 dark:text-white mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
       />
     ) : (
       <NoData

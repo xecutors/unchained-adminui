@@ -102,7 +102,7 @@ const Home = () => {
             ))}
           {hasRole(ACTION_ROLES.work.viewList) && (
             <div className="mb-10">
-              <h2 className="ml-4 mb-3 text-xl text-slate-700">
+              <h2 className="ml-4 mb-3 text-xl text-slate-700 dark:text-white">
                 {formatMessage({
                   id: 'daily_sync',
                   defaultMessage: 'Daily sync',

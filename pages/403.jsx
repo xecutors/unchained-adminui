@@ -14,7 +14,7 @@ const NotAuthorized = () => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   return (
-    <div className="flex min-h-full flex-col bg-white pt-16 pb-12 ">
+    <div className="flex min-h-full flex-col bg-white dark:bg-slate-600 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
           <a href="/" className="inline-flex">
@@ -46,14 +46,14 @@ const NotAuthorized = () => {
             </p>
             <div className="flex justify-center items-center">
               <LockClosedIcon className="h-12 w-12 inline-block text-red-300" />
-              <h1 className="text-4xl inline-block uppercase font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+              <h1 className="text-4xl inline-block uppercase font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
                 {formatMessage({
                   id: 'unauthorized_page',
                   defaultMessage: 'forbidden',
                 })}
               </h1>
             </div>
-            <p className="mt-2 text-base text-slate-500">
+            <p className="mt-2 text-base text-slate-500 dark:text-white">
               {formatMessage({
                 id: 'not_found_message',
                 defaultMessage:
