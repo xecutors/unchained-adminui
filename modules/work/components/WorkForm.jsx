@@ -147,7 +147,7 @@ const WorkForm = () => {
                 defaultMessage: 'Scheduled',
               })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
-              className="w-full py-2 text-sm text-slate-900 sm:mt-0 "
+              className="w-full py-2 text-sm text-slate-900 dark:text-white dark:bg-slate-600 sm:mt-0 "
               name="scheduled"
               placeholder={formatMessage({
                 id: 'scheduled',
@@ -159,6 +159,7 @@ const WorkForm = () => {
           <div>
             <JSONAreaField
               name="input"
+              className="dark:text-white"
               labelClassName="font-sm text-slate-500 mb-1"
               label={formatMessage({
                 id: 'input',
@@ -173,7 +174,7 @@ const WorkForm = () => {
         </div>
         <FormErrors />
 
-        <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
+        <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 p-5 text-right">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.work.add)}
             label={formatMessage({

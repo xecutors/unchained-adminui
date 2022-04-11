@@ -53,7 +53,7 @@ const DetailHeader = ({ user, contact }) => {
           <span className="flex items-center">
             <h3 className="ml-3 text-xl font-bold capitalize">
               <Link href={`/users/${user._id}`}>
-                <a className="text-blue-500 hover:text-blue-600">
+                <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300">
                   {user?.name ? user.name : user?.username}
                 </a>
               </Link>

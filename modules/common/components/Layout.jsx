@@ -35,6 +35,7 @@ const Layout = ({
 }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
@@ -209,7 +210,7 @@ const Layout = ({
           aria-hidden="true"
         />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-600">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               type="button"
@@ -266,8 +267,8 @@ const Layout = ({
         </div>
       </div>
 
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white">
+      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-800 dark:text-white">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white dark:bg-slate-600">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">

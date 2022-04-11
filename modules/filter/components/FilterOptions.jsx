@@ -51,7 +51,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco"
         </button>
       }
       mainContent={
-        <div className="mt-8 w-full border-slate-200 bg-white p-3  sm:mt-0 lg:shadow-md">
+        <div className="mt-8 w-full border-slate-200 p-3 sm:mt-0 shadow-md dark:shadow-white">
           <FilterOptionsList
             filterId={filterId}
             options={filterOptions}

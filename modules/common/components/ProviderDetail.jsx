@@ -24,7 +24,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
       <div className="space-y-8 divide-y divide-slate-200">
         <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">
           <div className="flex items-center">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 mr-2">
+            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white mr-2">
               {getInterfaceLabel(provider?.interface)}
             </h3>
             <ActiveInActive />
@@ -32,7 +32,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
           <div className="mt-6 flex flex-col">
             <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">
               <div className="flex justify-center py-4 sm:py-5">
-                <dt className="my-auto inline-block text-sm font-medium text-slate-400">
+                <dt className="my-auto inline-block text-sm font-medium text-slate-400 ">
                   {formatMessage({ id: 'type_colon', defaultMessage: 'Type:' })}
                 </dt>
                 <dd

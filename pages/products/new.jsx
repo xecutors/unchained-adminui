@@ -30,14 +30,17 @@ const AddProduct = () => {
       />
       <div className="mt-6 lg:grid lg:grid-cols-3">
         <div className="lg:col-span-1 space-y-2">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
             {formatMessage({
               id: 'product_type',
               defaultMessage: 'Product type',
             })}
           </h3>
-          <p className="max-w-2xl text-sm text-slate-500">
-            Here comes an explainer
+          <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+            {formatMessage({
+              id: 'here_comes_an_explainer',
+              defaultMessage: 'Here comes an explainer',
+            })}
           </p>
         </div>
 

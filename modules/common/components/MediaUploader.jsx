@@ -48,14 +48,14 @@ const MediaUploader = ({
   return (
     <>
       {!onlyDragAndDrop && (
-        <div>
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
+        <div className="text-slate-500 dark:text-white">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
             {formatMessage({ id: 'avatar', defaultMessage: 'Avatar' })}
           </h3>
           <div className="my-4 flex items-center">
             <span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-slate-100">
               <svg
-                className="h-full w-full text-slate-300"
+                className="h-full w-full text-slate-300 dark:text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -81,8 +81,9 @@ const MediaUploader = ({
           onDragOver={handleDragOver}
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
+          className="text-slate-500 dark:text-white"
         >
-          <label className="block text-sm font-medium text-slate-700" />
+          <label className="block text-sm font-medium text-slate-700 dark:text-white" />
           <div
             className={classNames(
               'mt-1 flex justify-center rounded-md border-2 border-dashed border-slate-300 px-6 pt-5 pb-6',
@@ -93,7 +94,7 @@ const MediaUploader = ({
           >
             <div className="space-y-1 text-center">
               <svg
-                className="mx-auto h-12 w-12 text-slate-400"
+                className="mx-auto h-12 w-12 text-slate-400 dark:text-white"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 48 48"
@@ -106,10 +107,10 @@ const MediaUploader = ({
                   strokeLinejoin="round"
                 />
               </svg>
-              <div className="flex text-sm text-slate-600">
+              <div className="flex text-sm text-slate-600 dark:text-white">
                 <label
                   htmlFor="file-upload"
-                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                  className="px-1 mr-1 relative cursor-pointer rounded-md font-medium text-indigo-600 dark:text-indigo-200 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
                   <span>
                     {formatMessage({
@@ -132,7 +133,7 @@ const MediaUploader = ({
                   })}
                 </p>
               </div>
-              <p className="text-xs text-slate-500">PNG, JPG, GIF up to 10MB</p>
+              <p className="text-xs">PNG, JPG, GIF up to 10MB</p>
             </div>
           </div>
         </div>

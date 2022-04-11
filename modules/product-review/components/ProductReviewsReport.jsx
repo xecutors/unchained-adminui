@@ -18,7 +18,7 @@ const ProductReviewsReport = ({ productReviews }) => {
 
   return (
     <div className="lg:col-span-4">
-      <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">
+      <h2 className="text-2xl font-extrabold tracking-tight">
         {formatMessage({
           id: 'customer_reviews',
           defaultMessage: 'Customer Reviews',
@@ -35,7 +35,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                         ${
                           averageVote >= rating * 20
                             ? 'text-yellow-400'
-                            : 'text-slate-300'
+                            : 'text-slate-400'
                         }
                         h-5 w-5 flex-shrink-0
                       `}
@@ -44,7 +44,7 @@ const ProductReviewsReport = ({ productReviews }) => {
             ))}
           </div>
         </div>
-        <div className="ml-2 text-sm text-slate-900">
+        <div className="ml-2 text-sm">
           <FormattedMessage
             id="review_summary"
             defaultMessage="<div> Based on <cta> {total} </cta> reviews</div>"
@@ -68,14 +68,14 @@ const ProductReviewsReport = ({ productReviews }) => {
         <dl className="space-y-3">
           <div className="flex items-center text-sm">
             <dt className="flex flex-1 items-center">
-              <p className="font-medium text-slate-900">{totalUpVote}</p>
+              <p className="font-medium">{totalUpVote}</p>
               <div aria-hidden="true" className="ml-2 flex flex-1 items-center">
                 <ThumbUpIcon
                   className={`
                           ${
                             totalUpVote > 0
                               ? 'text-yellow-400'
-                              : 'text-slate-300'
+                              : 'text-slate-400'
                           }
                           h-5 w-5 flex-shrink-0`}
                   aria-hidden="true"
@@ -96,14 +96,14 @@ const ProductReviewsReport = ({ productReviews }) => {
                 </div>
               </div>
             </dt>
-            <dd className="ml-3 w-10 text-right text-sm tabular-nums text-slate-900">
+            <dd className="ml-3 w-10 text-right text-sm tabular-nums">
               {Math.round((totalUpVote / (totalUpVote + totalDownVote)) * 100)}%
             </dd>
           </div>
 
           <div className="flex items-center text-sm">
             <dt className="flex flex-1 items-center">
-              <p className="font-medium text-slate-900">
+              <p className="font-medium">
                 {totalDownVote}
                 <span className="sr-only">
                   {formatMessage({
@@ -118,7 +118,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                           ${
                             totalDownVote > 0
                               ? 'text-yellow-400'
-                              : 'text-slate-300'
+                              : 'text-slate-400'
                           }
                           h-5 w-5 flex-shrink-0
                         `}
@@ -140,7 +140,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                 </div>
               </div>
             </dt>
-            <dd className="ml-3 w-10 text-right text-sm tabular-nums text-slate-900">
+            <dd className="ml-3 w-10 text-right text-sm tabular-nums">
               {Math.round(
                 (totalDownVote / (totalUpVote + totalDownVote)) * 100,
               )}

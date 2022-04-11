@@ -4,9 +4,9 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html className="h-full bg-slate-100">
+      <Html className="h-full">
         <Head />
-        <body className="h-full">
+        <body className="h-full bg-slate-100 dark:bg-slate-600 dark:text-white">
           <noscript
             // eslint-disable-next-line
             dangerouslySetInnerHTML={{

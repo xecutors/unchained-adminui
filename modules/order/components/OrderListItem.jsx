@@ -16,9 +16,9 @@ const OrderListItem = ({ order, showUser }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm">
           <Link href={`/orders/${order._id}`}>
-            <a className="font-medium text-blue-500">
+            <a className="font-medium text-blue-500 dark:text-blue-400">
               {order?.orderNumber || (
                 <>
                   {order._id}{' '}
@@ -33,21 +33,21 @@ const OrderListItem = ({ order, showUser }) => {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-500">
+        <div className="flex items-center text-sm">
           {order.ordered
             ? format(new Date(order.ordered), 'yyyy-MM-dd HH:mm')
             : 'n/a'}
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-500">
+        <div className="flex items-center text-sm">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>
       {showUser && order.user && (
         <Table.Cell>
           <Link href={`/order/${order.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 hover:text-decoration">
+            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
               <Image
                 loader={defaultNextImageLoader}
                 src={order.user?.avatar?.url || 'product_placeholder.png'}

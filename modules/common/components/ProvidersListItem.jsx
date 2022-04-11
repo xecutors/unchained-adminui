@@ -19,7 +19,7 @@ const ProviderListItem = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="text-gray-900">
+        <div className="text-gray-900 dark:text-white">
           <span className="flex items-center">
             <span className="mr-2">
               {getInterfaceLabel(provider?.interface)}
@@ -45,7 +45,7 @@ const ProviderListItem = ({
       </Table.Cell>
       {(canEdit || canDelete) && (
         <Table.Cell>
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             {canEdit && (
               <Link href={`${providerPath}/${provider?._id}`}>
                 <a>

@@ -23,7 +23,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
             />
           )}
           <Link href={`/assortments/${assortment?.texts?.slug}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {assortment?.texts?.title || (
                 <>
                   {assortment._id}{' '}

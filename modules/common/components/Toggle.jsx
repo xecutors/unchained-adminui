@@ -86,7 +86,9 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
         </span>
       </button>
       <span className="ml-3" id="annual-billing-label">
-        <span className="text-sm font-medium text-slate-900">{toggleText}</span>
+        <span className="text-sm font-medium text-slate-900 dark:text-white">
+          {toggleText}
+        </span>
       </span>
     </div>
   );

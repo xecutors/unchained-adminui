@@ -8,7 +8,7 @@ const OrderDetailHeader = ({ order }) => {
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <div className="bg-white rounded-md shadow p-4 space-y-5 ">
+    <div className="bg-white dark:bg-slate-600 rounded-md shadow dark:shadow-white p-4 space-y-5 ">
       <div className="flex items-center justify-between">
         <span className="text-sm block mr-3">
           {formatMessage({
@@ -17,7 +17,7 @@ const OrderDetailHeader = ({ order }) => {
           })}
           &nbsp;
         </span>
-        <span className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-bold">
+        <span className="inline-flex text-lg font-medium text-slate-900 dark:text-white sm:text-xl sm:font-bold">
           <span className="sm:hidden">&#35;&nbsp;</span>
           {order.orderNumber ? (
             <Badge

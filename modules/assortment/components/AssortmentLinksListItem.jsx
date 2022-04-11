@@ -15,9 +15,10 @@ const AssortmentLinksListItem = ({
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'flex items-center justify-between rounded border-b px-2 bg-white border-gray-200 last:border-none hover:cursor-move',
+            'flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-white border-gray-200 last:border-none hover:cursor-move',
             {
-              'bg-slate-100 border-2 border-b-2 rounded': snapshot.isDragging,
+              'bg-slate-100 dark:bg-slate-500 border-2 border-b-2 rounded':
+                snapshot.isDragging,
             },
           )}
           key={link._id}
@@ -31,7 +32,7 @@ const AssortmentLinksListItem = ({
               <div className="flex items-center space-x-6 pr-4">
                 <Badge color="cyan" text={isParent ? 'Parent' : 'Descendant'} />
               </div>
-              <h3 className="text-lg text-slate-800">{link?.texts?.title}</h3>
+              <h3 className="text-lg ">{link?.texts?.title}</h3>
               <p className="text-xs text-slate-600">{link?.texts?.subtitle}</p>
             </div>
             {link?.tags && (
@@ -39,7 +40,7 @@ const AssortmentLinksListItem = ({
                 {link?.tags.map((tag, key) => (
                   <span
                     key={`${tag}${key + 1}`}
-                    className="rounded border bg-white px-1 text-sm font-light capitalize text-slate-900 shadow-sm"
+                    className="rounded border px-1 text-sm font-light capitalize shadow-sm dark:shadow-white"
                   >
                     {tag}
                   </span>

@@ -287,7 +287,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                   <Link
                     href={`/payment-provider/${enrollment?.payment?.provider._id}`}
                   >
-                    <a className="text-blue-600">
+                    <a className="text-blue-600 dark:text-blue-400">
                       {getInterfaceLabel(enrollment.payment.provider.interface)}
                     </a>
                   </Link>
@@ -305,7 +305,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                   <Link
                     href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
                   >
-                    <a className="text-blue-600">
+                    <a className="text-blue-600 dark:text-blue-400">
                       {getInterfaceLabel(
                         enrollment.delivery.provider.interface,
                       )}

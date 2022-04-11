@@ -5,7 +5,7 @@ const UserList = ({ users }) => {
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <div className="overflow-hidden bg-white">
+          <div className="overflow-hidden bg-white dark:bg-slate-600">
             <ul>
               {users?.map((person) => (
                 <UserListItem key={person?._id} user={person} />

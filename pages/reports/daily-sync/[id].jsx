@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { format, formatDuration } from 'date-fns';
+import { formatDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import subDays from 'date-fns/subDays';
@@ -16,11 +16,22 @@ import useWork from '../../../modules/work/hooks/useWork';
 import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
 import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
+import useFormatDateTime from '../../../modules/common/utils/useFormatDateTime';
 
 const SyncDetail = () => {
   const [today, setToday] = useState(new Date());
   const { query } = useRouter();
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
+
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
 
   useEffect(() => {
     setToday(new Date());
@@ -78,7 +89,7 @@ const SyncDetail = () => {
           </Link>
         </div>
         <div className="text-sm">
-          <h6 className="flex justify-between text-slate-400">
+          <h6 className="flex justify-between text-slate-400 dark:text-white">
             <span className="mr-2">
               {formatMessage({
                 id: 'started',
@@ -86,11 +97,9 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>
-              {format(new Date(result?.startedFrom), 'yyyy-MM-dd HH:mm')}
-            </span>
+            <span>{formatDateTime(result?.startedFrom, options)}</span>
           </h6>
-          <h6 className="flex justify-between text-slate-900">
+          <h6 className="flex justify-between text-slate-900 dark:text-white">
             <span className="mr-2">
               {formatMessage({
                 id: 'finished',
@@ -98,9 +107,7 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>
-              {format(new Date(result?.startedEnd), 'yyyy-MM-dd HH:mm')}
-            </span>
+            <span>{formatDateTime(result?.startedEnd, options)}</span>
           </h6>
         </div>
       </div>

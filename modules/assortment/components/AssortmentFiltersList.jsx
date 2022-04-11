@@ -12,9 +12,9 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'space-y-4 py-3 px-6 bg-white rounded transition-[background-color] ease-in-out delay-200',
+            'space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+              'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}

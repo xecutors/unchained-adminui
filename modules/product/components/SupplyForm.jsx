@@ -77,7 +77,7 @@ const SupplyForm = ({ productId }) => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="relative bg-white px-4 py-5 sm:p-6">
+        <div className="relative px-4 py-5 sm:p-6">
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
               <TextField
@@ -89,7 +89,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'weight_gram',
                   defaultMessage: 'Weight (Gram)',
                 })}
-                className="text-sm font-medium text-slate-500"
+                className="text-sm font-medium"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -102,7 +102,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'length_millimeter',
                   defaultMessage: 'Length (Millimeter)',
                 })}
-                className="text-sm font-medium text-slate-500"
+                className="text-sm font-medium"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -115,7 +115,7 @@ const SupplyForm = ({ productId }) => {
                   id: 'width',
                   defaultMessage: 'Width (Millimeter)',
                 })}
-                className="text-sm  font-medium text-slate-500"
+                className="text-sm  font-medium"
               />
             </div>
             <div className="col-span-6 sm:col-span-3">
@@ -128,13 +128,13 @@ const SupplyForm = ({ productId }) => {
                   id: 'height',
                   defaultMessage: 'Height (Millimeter)',
                 })}
-                className="text-sm  font-medium text-slate-500"
+                className="text-sm  font-medium"
               />
             </div>
           </div>
         </div>
         <FormErrors />
-        <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 text-right sm:p-6">
+        <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.products.updateSupply)}
             label={formatMessage({

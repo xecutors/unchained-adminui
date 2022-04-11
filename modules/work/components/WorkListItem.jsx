@@ -1,20 +1,30 @@
 import { useIntl } from 'react-intl';
-import { format } from 'date-fns';
 import Link from 'next/link';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
+
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
 
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm">
           <Link href={`/works/${work._id}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {work?.type || (
                 <>
                   {work._id}{' '}
@@ -34,34 +44,26 @@ const WorkListItem = ({ work }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {work.created
-            ? format(new Date(work.created), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+        <div className="flex items-center text-sm">
+          {work.created ? formatDateTime(work.created, options) : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {work.scheduled
-            ? format(new Date(work.scheduled), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+        <div className="flex items-center text-sm">
+          {work.scheduled ? formatDateTime(work.scheduled, options) : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {work.started
-            ? format(new Date(work.started), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+        <div className="flex items-center text-sm">
+          {work.started ? formatDateTime(work.started, options) : 'n/a'}
         </div>
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {work.finished
-            ? format(new Date(work.finished), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+        <div className="flex items-center text-sm">
+          {work.finished ? formatDateTime(work.finished, options) : 'n/a'}
         </div>
       </Table.Cell>
     </Table.Row>

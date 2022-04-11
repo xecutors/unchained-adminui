@@ -14,7 +14,7 @@ const UserListItem = ({ user }) => {
   return (
     <li>
       <Link href={`/users/${user._id}`}>
-        <a className="block border-b border-b-slate-200 hover:bg-slate-50">
+        <a className="block border-b border-b-slate-200 hover:bg-slate-50 dark:hover:bg-slate-500">
           <div className="flex items-center px-4 py-4 sm:px-6">
             <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
@@ -29,9 +29,9 @@ const UserListItem = ({ user }) => {
                   <div className="truncate text-sm font-medium text-indigo-600">
                     {user.name}
                   </div>
-                  <div className="flex items-center text-sm text-slate-500">
+                  <div className="flex items-center text-sm text-slate-500 dark:text-white">
                     <svg
-                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400"
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400 dark:text-white"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -57,7 +57,7 @@ const UserListItem = ({ user }) => {
                         />
                       )}
                     </div>
-                    <div className="mt-2 flex items-center text-sm text-slate-500">
+                    <div className="mt-2 flex items-center text-sm text-slate-500 dark:text-white">
                       <ActiveInActive isActive={isVerified} />
                       {UserTypes[isVerified]}
                     </div>

@@ -17,18 +17,19 @@ const AssortmentProductListItem = ({ link, onDelete, i }) => {
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex items-center justify-between px-2 bg-white rounded border-b border-gray-200 last:border-none hover:cursor-move',
+            'flex items-center justify-between px-2 rounded border-b border-gray-200 last:border-none hover:cursor-move',
             {
-              'bg-slate-100 border-2 border-b-2 rounded': snapshot.isDragging,
+              'bg-slate-100 dark:bg-slate-400 border-2 border-b-2 rounded':
+                snapshot.isDragging,
             },
           )}
         >
           <div className="flex items-center space-x-6 py-4">
             <div>
-              <h3 className="text-lg text-slate-800">
+              <h3 className="text-lg text-slate-800 dark:text-white">
                 {product?.texts?.title}
               </h3>
-              <p className="text-xs text-slate-600">
+              <p className="text-xs text-slate-600 dark:text-white">
                 {product?.texts?.subtitle}
               </p>
             </div>

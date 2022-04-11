@@ -9,7 +9,7 @@ const SyncReportListItem = ({ data }) => {
   return (
     <li>
       <Link href={`/reports/daily-sync/${data._id}`}>
-        <a className="block hover:bg-slate-50">
+        <a className="block hover:bg-slate-50 dark:hover:bg-slate-400">
           <div className="flex items-center px-4 py-3 sm:px-6">
             <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
@@ -30,7 +30,7 @@ const SyncReportListItem = ({ data }) => {
                 )}
               </div>
               <div className="min-w-0 flex-1 px-4">
-                <div className="text-slate-900 md:block">
+                <div className="text-slate-900 dark:text-white md:block">
                   <div>
                     <p className="text-sm ">
                       {formatMessage(

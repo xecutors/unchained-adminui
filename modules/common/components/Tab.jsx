@@ -46,8 +46,8 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={` ${
                   tab === option.id &&
-                  'cursor-pointer rounded-t-lg border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800'
-                }  cursor-pointer whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm font-medium hover:border-b-indigo-500`}
+                  'cursor-pointer rounded-t-lg border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500'
+                }  cursor-pointer whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-white font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg`}
               >
                 <div className="flex items-center space-x-1">
                   <div>{option.Icon}</div>
@@ -60,7 +60,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           </nav>
         </div>
       </div>
-      <div className="text-white-500">
+      <div className="text-white">
         {React.cloneElement(children, { selectedView: tab })}
       </div>
     </div>
