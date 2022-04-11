@@ -70,15 +70,15 @@ const AssortmentLinks = ({ assortmentId }) => {
       return;
     }
 
-    const sortKeys = linkedAssortments.map((media) => ({
+    const newSortKeys = linkedAssortments.map((media) => ({
       assortmentLinkId: media._id,
       sortKey: media.sortKey,
     }));
 
-    const [removedSortKey] = sortKeys.splice(source.index, 1);
-    sortKeys.splice(destination.index, 0, removedSortKey);
+    const [removedSortKey] = newSortKeys.splice(source.index, 1);
+    newSortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sortKey, index) => ({
+    const sortKeys = newSortKeys.map((sortKey, index) => ({
       ...sortKey,
       sortKey: index,
     }));
