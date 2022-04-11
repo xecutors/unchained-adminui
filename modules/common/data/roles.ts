@@ -214,6 +214,8 @@ export const ROUTE_ROLES = {
   '/sign-up': UNRESTRICTED,
   '/404': UNRESTRICTED,
   '/403': UNRESTRICTED,
+  '/orders/[orderId]': ACTION_ROLES.orders.manage,
+  '/orders': ACTION_ROLES.orders.manage,
 };
 
 export default ACTION_ROLES;
