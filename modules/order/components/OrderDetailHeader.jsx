@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Badge from '../../common/components/Badge';
 import DetailHeader from '../../common/components/DetailHeader';
+import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
@@ -19,7 +20,7 @@ const OrderDetailHeader = ({ order }) => {
         </span>
         <span className="inline-flex text-lg font-medium text-slate-900 dark:text-white sm:text-xl sm:font-bold">
           <span className="sm:hidden">&#35;&nbsp;</span>
-          {order.orderNumber ? (
+          {order?.orderNumber ? (
             <Badge
               text={order.orderNumber}
               square
@@ -46,9 +47,7 @@ const OrderDetailHeader = ({ order }) => {
         <div className="">
           <span>{order?.country?.flagEmoji}</span>
           <span className="mr-1">
-            {new Intl.DisplayNames([locale], {
-              type: 'currency',
-            }).of(order?.currency?.isoCode)}
+            {normalizeCurrencyISOCode(locale, order?.currency?.isoCode)}
           </span>
           <span>
             {order?.currency?.isoCode && (

@@ -18,7 +18,8 @@ const OrderDetailBilling = ({ order }) => {
         <dl className="bg-white dark:bg-slate-600 py-4 px-4 shadow dark:shadow-white sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
           <div>
             <span className="text-xl mb-5 block font-bold">
-              {order.billingAddress.firstName || order.billingAddress.lastName}
+              {order?.billingAddress.firstName ||
+                order?.billingAddress.lastName}
             </span>
             <dt className="mb-2 font-medium">
               {formatMessage({
@@ -27,15 +28,15 @@ const OrderDetailBilling = ({ order }) => {
               })}
             </dt>
             <span className="my-1 inline-block">
-              {order.billingAddress.postalCode}
+              {order?.billingAddress.postalCode}
             </span>
             &nbsp;
             <span className="my-1 inline-block">
-              {order.billingAddress.addressLine}
+              {order?.billingAddress.addressLine}
             </span>
-            <span className="block">{order.billingAddress.city}</span>
+            <span className="block">{order?.billingAddress.city}</span>
             <span className="my-1 inline-block">
-              {`${order.country.name}, ${order.country.flagEmoji}`}
+              {`${order?.country.name}, ${order?.country.flagEmoji}`}
             </span>
           </div>
         </dl>
