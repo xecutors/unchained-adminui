@@ -32,27 +32,29 @@ const AssortmentLinksListItem = ({
               <div className="flex items-center pr-4 grow-0 shrink-0 basis-[22%]">
                 <Badge color="cyan" text={isParent ? 'Parent' : 'Descendant'} />
               </div>
-              <div className="flex flex-wrap flex-auto">
-                <h3 className="text-lg flex-auto">{link?.texts?.title}</h3>
-                {link?.texts?.title && (
-                  <p className="flex-auto text-xs text-slate-600 my-auto">
-                    {link?.texts?.subtitle}
-                  </p>
+              <div className="flex-auto">
+                <div className="flex flex-wrap">
+                  <h3 className="text-lg flex-auto">{link?.texts?.title}</h3>
+                  {link?.texts?.title && (
+                    <p className="flex-auto text-xs text-slate-600 my-auto">
+                      {link?.texts?.subtitle}
+                    </p>
+                  )}
+                </div>
+                {link?.tags && (
+                  <div className="flex gap-2">
+                    {link?.tags.map((tag, key) => (
+                      <Badge
+                        key={`${tag}${key + 1}`}
+                        text={tag}
+                        color="blue"
+                        className="px-3 text-sm font-light capitalize py-0"
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
             </div>
-            {link?.tags && (
-              <div className="space-x-2 grow shrink basis-2/5">
-                {link?.tags.map((tag, key) => (
-                  <span
-                    key={`${tag}${key + 1}`}
-                    className="rounded border px-1 text-sm font-light capitalize shadow-sm dark:shadow-white"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
           </div>
           <DeleteButton onClick={() => onDelete(linkId)} />
         </div>
