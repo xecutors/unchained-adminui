@@ -10,7 +10,6 @@ const AssortmentLinksListItem = ({
   isParent,
   index,
 }) => {
-  console.log(isParent);
   return (
     <Draggable draggableId={link._id} index={index}>
       {(provided, snapshot) => (
