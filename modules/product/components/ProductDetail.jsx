@@ -127,7 +127,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <UsersIcon className="h-4 w-5" />,
     },
-    {
+    product.reviews.length !== 0 && {
       id: 'reviews',
       title: formatMessage({
         id: 'reviews',
