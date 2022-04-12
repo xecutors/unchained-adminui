@@ -5,7 +5,7 @@ import NoImage from './NoImage';
 const FilteredListItem = ({ item, onSelected }) => {
   return (
     <a
-      className="w-full cursor-pointer border-b dark:bg-slate-600 border-slate-100 hover:bg-teal-100 dark:hover:bg-slate-500"
+      className="w-full cursor-pointer border-b bg-white dark:bg-slate-600 border-slate-100 hover:bg-teal-100 dark:hover:bg-slate-500"
       onClick={() => onSelected(item)}
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100 dark:hover:bg-slate-500">

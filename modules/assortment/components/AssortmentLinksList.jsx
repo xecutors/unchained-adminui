@@ -23,28 +23,30 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
           {links.map((link, index) => {
             const { child, parent, _id } = link;
             const comp = [];
-            if (parent && parent._id !== currentAssortmentId)
+            if (parent && parent._id !== currentAssortmentId) {
               comp.push(
                 <AssortmentLinksListItem
                   key={parent._id}
                   link={parent}
-                  isParent={parent._id === currentAssortmentId}
+                  isParent={parent?.childrenCount}
                   linkId={_id}
                   onDelete={onRemoveLink}
                   index={index}
                 />,
               );
-            if (child && child._id !== currentAssortmentId)
+            }
+            if (child && child._id !== currentAssortmentId) {
               comp.push(
                 <AssortmentLinksListItem
                   key={child._id}
                   link={child}
                   linkId={_id}
-                  isParent={child._id !== currentAssortmentId}
+                  isParent={child._id === currentAssortmentId}
                   onDelete={onRemoveLink}
                   index={index}
                 />,
               );
+            }
 
             return comp;
           })}
