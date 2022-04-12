@@ -27,26 +27,34 @@ const AssortmentLinksListItem = ({
           {...provided.dragHandleProps}
           draggable="true"
         >
-          <div className="flex flex-col justify-center space-x-6 py-4">
-            <div className="flex">
-              <div className="flex items-center space-x-6 pr-4">
+          <div className="flex flex-col justify-center space-x-6 py-4 flex-auto">
+            <div className="flex grow shrink basis-2/5">
+              <div className="flex items-center pr-4 grow-0 shrink-0 basis-[22%]">
                 <Badge color="cyan" text={isParent ? 'Parent' : 'Descendant'} />
               </div>
-              <h3 className="text-lg ">{link?.texts?.title}</h3>
-              <p className="text-xs text-slate-600">{link?.texts?.subtitle}</p>
-            </div>
-            {link?.tags && (
-              <div className="space-x-2">
-                {link?.tags.map((tag, key) => (
-                  <span
-                    key={`${tag}${key + 1}`}
-                    className="rounded border px-1 text-sm font-light capitalize shadow-sm dark:shadow-white"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="flex-auto">
+                <div className="flex flex-wrap">
+                  <h3 className="text-lg flex-auto">{link?.texts?.title}</h3>
+                  {link?.texts?.title && (
+                    <p className="flex-auto text-xs text-slate-600 my-auto">
+                      {link?.texts?.subtitle}
+                    </p>
+                  )}
+                </div>
+                {link?.tags && (
+                  <div className="flex gap-2">
+                    {link?.tags.map((tag, key) => (
+                      <Badge
+                        key={`${tag}${key + 1}`}
+                        text={tag}
+                        color="blue"
+                        className="px-3 text-sm font-light capitalize py-0"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
           <DeleteButton onClick={() => onDelete(linkId)} />
         </div>
