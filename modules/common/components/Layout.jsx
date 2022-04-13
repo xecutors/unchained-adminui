@@ -10,6 +10,7 @@ import {
   UserIcon,
   LightningBoltIcon,
 } from '@heroicons/react/outline';
+import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -20,6 +21,7 @@ import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../data/roles';
+import useShopInfo from '../hooks/useShopInfo';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
@@ -35,6 +37,7 @@ const Layout = ({
 }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+  const { shopInfo } = useShopInfo();
 
   const defaultNavigation = [
     {
@@ -178,7 +181,17 @@ const Layout = ({
       icon: UserIcon,
       href: '/account',
     },
-  ];
+    shopInfo?.externalLinks.length !== 0 && {
+      name: formatMessage({ id: 'more', defaultMessage: 'More' }),
+      icon: LinkIcon,
+      href: '/',
+      children: shopInfo?.externalLinks.map((link) => ({
+        name: link.title,
+        href: link.href,
+      })),
+    },
+  ].filter((item) => item !== false);
+
   const { resetAuth } = useAuth();
 
   const onLogout = async () => {

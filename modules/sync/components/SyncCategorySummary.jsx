@@ -3,6 +3,45 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
+const Card = ({ icon, title }) => {
+  return (
+    <dt>
+      <div className="absolute rounded-md bg-indigo-500 p-3">{icon}</div>
+      <p className="ml-16 text-sm font-medium text-slate-500 dark:text-slate-400">
+        {title}
+      </p>
+    </dt>
+  );
+};
+
+const ViewCard = ({ link }) => {
+  const { formatMessage } = useIntl();
+
+  return (
+    <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
+      <div className="text-sm">
+        <Link href={link}>
+          <a className="font-medium text-indigo-600 dark:text-indigo-300 hover:text-indigo-500 dark:hover:text-indigo-200">
+            {formatMessage({
+              id: 'view_all',
+              defaultMessage: 'View all',
+            })}
+          </a>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const CardContainer = (props) => {
+  return (
+    <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.children}
+    </div>
+  );
+};
+
 const SyncCategorySummary = ({
   categoryName,
   statistics,
@@ -17,9 +56,9 @@ const SyncCategorySummary = ({
     <>
       <h3 className="mt-5 pt-5">{categoryName}</h3>
       <dl className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
-          <dt>
-            <div className="absolute rounded-md bg-indigo-500 p-3">
+        <CardContainer>
+          <Card
+            icon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
@@ -32,19 +71,17 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-            </div>
-            <p className="ml-16 text-sm font-medium text-slate-500 ">
-              {formatMessage(
-                {
-                  id: 'sync_added',
-                  defaultMessage: 'Added { categoryName } ',
-                },
-                {
-                  categoryName,
-                },
-              )}
-            </p>
-          </dt>
+            }
+            title={formatMessage(
+              {
+                id: 'sync_added',
+                defaultMessage: 'Added { categoryName } ',
+              },
+              {
+                categoryName,
+              },
+            )}
+          />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-green-600">
               <svg
@@ -63,43 +100,32 @@ const SyncCategorySummary = ({
               {statistics.new}
             </p>
 
-            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
-              <div className="text-sm">
-                <Link href={`${router.asPath}/items-list?tab=${newItemsRoute}`}>
-                  <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                    {formatMessage({
-                      id: 'view_all',
-                      defaultMessage: 'View all',
-                    })}
-                  </a>
-                </Link>
-              </div>
-            </div>
+            <ViewCard
+              link={`${router.asPath}/items-list?tab=${newItemsRoute}`}
+            />
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
-          <dt>
-            <div className="absolute rounded-md bg-indigo-500 p-3">
+        <CardContainer>
+          <Card
+            icon={
               <RefreshIcon
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-            </div>
-            <p className="ml-16 text-sm font-medium text-slate-500 ">
-              {formatMessage(
-                {
-                  id: 'sync_updated',
-                  defaultMessage: 'Updated { categoryName } ',
-                },
-                {
-                  categoryName,
-                },
-              )}
-            </p>
-          </dt>
+            }
+            title={formatMessage(
+              {
+                id: 'sync_updated',
+                defaultMessage: 'Updated { categoryName } ',
+              },
+              {
+                categoryName,
+              },
+            )}
+          />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-green-600">
               <RefreshIcon
@@ -109,26 +135,15 @@ const SyncCategorySummary = ({
               />
               {statistics.removed}
             </p>
-            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
-              <div className="text-sm">
-                <Link
-                  href={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
-                >
-                  <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                    {formatMessage({
-                      id: 'view_all',
-                      defaultMessage: 'View all',
-                    })}
-                  </a>
-                </Link>
-              </div>
-            </div>
+            <ViewCard
+              link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
+            />
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
-          <dt>
-            <div className="absolute rounded-md bg-indigo-500 p-3">
+        <CardContainer>
+          <Card
+            icon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
@@ -141,19 +156,17 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-            </div>
-            <p className="ml-16 text-sm font-medium text-slate-500 ">
-              {formatMessage(
-                {
-                  id: 'sync_removed',
-                  defaultMessage: 'Removed { categoryName } ',
-                },
-                {
-                  categoryName,
-                },
-              )}
-            </p>
-          </dt>
+            }
+            title={formatMessage(
+              {
+                id: 'sync_removed',
+                defaultMessage: 'Removed { categoryName } ',
+              },
+              {
+                categoryName,
+              },
+            )}
+          />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-red-600">
               <svg
@@ -172,27 +185,16 @@ const SyncCategorySummary = ({
               {statistics.removed}
             </p>
             {removedItemsRoute && (
-              <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
-                <div className="text-sm">
-                  <Link
-                    href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
-                  >
-                    <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                      {formatMessage({
-                        id: 'view_all',
-                        defaultMessage: 'View all',
-                      })}
-                    </a>
-                  </Link>
-                </div>
-              </div>
+              <ViewCard
+                link={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
+              />
             )}
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow-lg sm:px-6 sm:pt-6">
-          <dt>
-            <div className="absolute rounded-md bg-indigo-500 p-3">
+        <CardContainer>
+          <Card
+            icon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -207,30 +209,28 @@ const SyncCategorySummary = ({
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
                 />
               </svg>
-            </div>
-            <p className="ml-16 text-sm font-medium text-slate-500 ">
-              {formatMessage(
-                {
-                  id: 'total_variable_category',
-                  defaultMessage: 'Total { categoryName } ',
-                  description:
-                    'Used in report where category is swapped with product, filter or assortment ',
-                },
-                {
-                  categoryName,
-                },
-              )}
-            </p>
-          </dt>
+            }
+            title={formatMessage(
+              {
+                id: 'total_variable_category',
+                defaultMessage: 'Total { categoryName } ',
+                description:
+                  'Used in report where category is swapped with product, filter or assortment ',
+              },
+              {
+                categoryName,
+              },
+            )}
+          />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-            <p className="text-2xl font-semibold text-slate-900">
+            <p className="text-2xl font-semibold text-slate-900 dark:text-slate-200">
               {statistics.total}
             </p>
-            <div className="absolute inset-x-0 bottom-0 bg-slate-50 px-4 py-4 sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
               &nbsp;
             </div>
           </dd>
-        </div>
+        </CardContainer>
       </dl>
     </>
   );
