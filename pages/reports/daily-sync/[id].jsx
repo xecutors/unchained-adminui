@@ -111,21 +111,21 @@ const SyncDetail = () => {
           </h6>
         </div>
       </div>
-      <dl className="2xl:divide mt-5 grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-lg bg-white shadow-lg md:divide-x xl:grid-cols-3">
-        <div className="2xl: col-span-2 mx-auto max-w-none px-4 py-2 sm:p-2 xl:col-span-1">
+      <dl className="2xl:divide mt-5 grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-lg bg-white shadow-md dark:shadow-white md:divide-x xl:grid-cols-3">
+        <div className="col-span-2 mx-auto max-w-none px-4 py-2 sm:p-2 xl:col-span-1">
           <GraphSync dailySync={dailySync} />
         </div>
-        <div className=" col-span-2 py-5 sm:col-span-1 sm:p-6 ">
-          <dt className="text-base font-normal text-slate-900">
+        <div className="col-span-2 py-5 sm:col-span-1 sm:p-6 bg-white dark:bg-slate-600">
+          <dt className="text-base font-normal text-slate-900 dark:text-white">
             {formatMessage({
               id: 'total_products',
               defaultMessage: 'Total products',
             })}
           </dt>
           <dd className="mt-1 flex items-baseline md:block lg:flex xl:space-x-7">
-            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
               {stats.products?.total || 0}
-              <span className="ml-2 text-sm font-medium text-slate-500">
+              <span className="ml-2 text-sm font-medium text-slate-500 dark:text-slate-400">
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
@@ -143,15 +143,15 @@ const SyncDetail = () => {
           </dd>
         </div>
 
-        <div className=" col-span-2 flex-wrap py-5 sm:col-span-1  sm:p-6">
-          <dt className="flex-wrap text-base font-normal text-slate-900">
+        <div className="col-span-2 flex-wrap py-5 sm:col-span-1 sm:p-6 bg-white dark:bg-slate-600">
+          <dt className="flex-wrap text-base font-normal text-slate-900 dark:text-white">
             {formatMessage({
               id: 'import_duration',
               defaultMessage: 'Duration of import',
             })}
           </dt>
           <dd className="mt-1 items-baseline  ">
-            <div className="flex flex-wrap items-baseline text-2xl font-semibold text-indigo-600">
+            <div className="flex flex-wrap items-baseline text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
               {formatDuration({
                 hours: Math.floor(durationInMilliSeconds / 1000 / 60 / 60) % 24,
                 minutes: Number(

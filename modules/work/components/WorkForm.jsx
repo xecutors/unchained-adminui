@@ -7,7 +7,6 @@ import ACTION_ROLES from '../../common/data/roles';
 
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -172,7 +171,6 @@ const WorkForm = () => {
             />
           </div>
         </div>
-        <FormErrors />
 
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 p-5 text-right">
           <SubmitButton

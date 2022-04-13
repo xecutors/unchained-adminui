@@ -26,7 +26,7 @@ const convertJobSignalToNumber = (signal) => {
 const JobSyncStat = ({ new: added, removed, total, diff }) => {
   return (
     <div className="ml-1 p-2 py-3 sm:flex-initial">
-      <span className="relative mr-9 inline-block  rounded-lg ">
+      <span className="relative mr-9 inline-block rounded-lg ">
         <div className="relative rounded-md bg-indigo-500 p-2 ">
           <PlusIcon
             className="h-4 w-4 text-white"
@@ -91,13 +91,13 @@ const JobSyncHealth = ({ signal, duration }) => {
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
-    <>
-      <div className="item-start relative flex">
-        <div className="mr-2 mt-3">
+    <div className="flex justify-between items-center">
+      <div className="flex item-center">
+        <div className="mr-2 text-red-400">
           {convertJobSignalToNumber(job.sync.signal) ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7  rounded-md"
+              className="h-7 w-7 rounded-md"
               viewBox="0 0 20 20"
               fill="green"
             >
@@ -124,12 +124,8 @@ const JobHeader = ({ job }) => {
             </svg>
           )}
         </div>
-        <div className="items-start pt-2">
-          <div
-            className={classNames(
-              'rounded-full  text-sm  leading-5  text-black ',
-            )}
-          >
+        <div className="flex items-center gap-4">
+          <div className="rounded-full text-sm leading-5">
             {formatMessage(
               {
                 id: 'started_at',
@@ -141,14 +137,11 @@ const JobHeader = ({ job }) => {
             )}
           </div>
           <div
-            className={classNames(
-              'mt-1 rounded-full  text-sm leading-5  text-black ',
-              {
-                'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
-                  job.sync.signal,
-                ),
-              },
-            )}
+            className={classNames('rounded-full text-sm leading-5', {
+              'bg-yellow-100 text-yellow-800': !convertJobSignalToNumber(
+                job.sync.signal,
+              ),
+            })}
           >
             {formatMessage(
               {
@@ -163,11 +156,11 @@ const JobHeader = ({ job }) => {
         </div>
       </div>
 
-      <div className=" float-right mb-4 mr-4 flex text-sm text-slate-500 sm:mt-0">
-        <ClockIcon className=" mr-2 h-5 w-5" viewBox="0 0 22 22" />
+      <div className="mr-4 flex text-sm text-slate-500 dark:text-slate-300 sm:mt-0">
+        <ClockIcon className="mr-2 h-5 w-5" viewBox="0 0 22 22" />
         {job.sync.duration}
       </div>
-    </>
+    </div>
   );
 };
 
@@ -175,75 +168,75 @@ const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="w-[100%] overflow-hidden bg-white">
-      <div className="border border-slate-200  py-5 sm:p-0">
+    <div className="border border-slate-200 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-600 text-slate-900 dark:text-white">
+      <div className="py-5 sm:p-0">
         <dl className="divide-y divide-slate-300 px-7">
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+          <div className="py-4 sm:py-5">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'solr',
                 defaultMessage: 'Solr',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.solr} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'crossbase',
                 defaultMessage: 'Crossbase',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.crossbase} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'navision',
                 defaultMessage: 'Navision',
                 description: 'Name',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncHealth {...job.navision} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'categories',
                 defaultMessage: 'Categories',
               })}
             </dt>
-            <dd className=" mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className=" mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.categories} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'products',
                 defaultMessage: 'Products',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.products} />
             </dd>
           </div>
           <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500">
+            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({
                 id: 'filters',
                 defaultMessage: 'Filters',
               })}
             </dt>
-            <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
+            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
               <JobSyncStat {...job.filters} />
             </dd>
           </div>
@@ -252,6 +245,9 @@ const JobBody = ({ job }) => {
     </div>
   );
 };
+
+const headerCSS =
+  'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
 const SyncJobs = () => {
   const { formatMessage } = useIntl();
@@ -286,7 +282,7 @@ const SyncJobs = () => {
         {!jobs?.length ? (
           <p>No sync report found</p>
         ) : (
-          <Accordion containerCSS="" data={accordionData} />
+          <Accordion data={accordionData} headerCSS={headerCSS} />
         )}
       </div>
     </>
