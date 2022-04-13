@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 
 import JSONAreaField from '../../forms/components/JSONAreaField';
-import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
@@ -32,7 +31,6 @@ const ProviderConfigurationForm = ({
             defaultMessage: 'Configuration',
           })}
         />
-        <FormErrors />
         <SubmitButton
           hidden={readOnly}
           label={formatMessage({

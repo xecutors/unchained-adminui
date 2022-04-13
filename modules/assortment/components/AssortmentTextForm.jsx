@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
-import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -133,7 +132,6 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
               </div>
 
               <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
-                <FormErrors />
                 {hasRole(ACTION_ROLES.assortments.updateTexts) && (
                   <SubmitButton
                     label={formatMessage({
