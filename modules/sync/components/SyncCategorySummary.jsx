@@ -21,7 +21,7 @@ const ViewCard = ({ link }) => {
     <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
       <div className="text-sm">
         <Link href={link}>
-          <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
+          <a className="font-medium text-indigo-600 dark:text-indigo-300 hover:text-indigo-500 dark:hover:text-indigo-200">
             {formatMessage({
               id: 'view_all',
               defaultMessage: 'View all',
@@ -29,6 +29,15 @@ const ViewCard = ({ link }) => {
           </a>
         </Link>
       </div>
+    </div>
+  );
+};
+
+const CardContainer = (props) => {
+  return (
+    <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.children}
     </div>
   );
 };
@@ -47,7 +56,7 @@ const SyncCategorySummary = ({
     <>
       <h3 className="mt-5 pt-5">{categoryName}</h3>
       <dl className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+        <CardContainer>
           <Card
             icon={
               <svg
@@ -95,9 +104,9 @@ const SyncCategorySummary = ({
               link={`${router.asPath}/items-list?tab=${newItemsRoute}`}
             />
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+        <CardContainer>
           <Card
             icon={
               <RefreshIcon
@@ -130,9 +139,9 @@ const SyncCategorySummary = ({
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
             />
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+        <CardContainer>
           <Card
             icon={
               <svg
@@ -176,25 +185,14 @@ const SyncCategorySummary = ({
               {statistics.removed}
             </p>
             {removedItemsRoute && (
-              <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
-                <div className="text-sm">
-                  <Link
-                    href={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
-                  >
-                    <a className="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                      {formatMessage({
-                        id: 'view_all',
-                        defaultMessage: 'View all',
-                      })}
-                    </a>
-                  </Link>
-                </div>
-              </div>
+              <ViewCard
+                link={`${router.asPath}/items-list?tab=${removedItemsRoute}`}
+              />
             )}
           </dd>
-        </div>
+        </CardContainer>
 
-        <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
+        <CardContainer>
           <Card
             icon={
               <svg
@@ -225,14 +223,14 @@ const SyncCategorySummary = ({
             )}
           />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-            <p className="text-2xl font-semibold text-slate-900">
+            <p className="text-2xl font-semibold text-slate-900 dark:text-slate-200">
               {statistics.total}
             </p>
             <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
               &nbsp;
             </div>
           </dd>
-        </div>
+        </CardContainer>
       </dl>
     </>
   );
