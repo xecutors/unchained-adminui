@@ -35,7 +35,7 @@ const WorkDetail = ({ work }) => {
             <JSONView
               value={JSON.stringify(work.input, null, 2)}
               disabled
-              className="dark:bg-slate-600 dark:text-white mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 sm:text-sm"
+              className=" mt-1 block w-full max-w-full rounded-md border-2 resize-none sm:text-sm"
             />
           ) : (
             <NoData
@@ -61,7 +61,7 @@ const WorkDetail = ({ work }) => {
             <JSONView
               value={JSON.stringify(work.result, null, 2)}
               disabled
-              className="dark:bg-slate-600 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 sm:text-sm"
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none sm:text-sm"
             />
           ) : (
             <NoData
@@ -88,7 +88,7 @@ const WorkDetail = ({ work }) => {
             <JSONView
               value={decodeURI(JSON.stringify(work.error, null, 2))}
               disabled
-              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 sm:text-sm"
+              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none  sm:text-sm"
             />
           ) : (
             <NoData

@@ -9,7 +9,10 @@ const JSONView = ({
 }: CommonFieldProps) => {
   return (
     <textarea
-      className={classNames('text-black', className)}
+      className={classNames(
+        'text-black dark:bg-slate-600 dark:text-white border-slate-200',
+        className,
+      )}
       value={value}
       onChange={onChange}
       rows={Math.max((value || ' ')?.split(' ')?.length / 8, 8)}
