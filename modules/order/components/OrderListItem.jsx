@@ -46,7 +46,7 @@ const OrderListItem = ({ order, showUser }) => {
       </Table.Cell>
       {showUser && order.user && (
         <Table.Cell>
-          <Link href={`/order/${order.user._id}`}>
+          <Link href={`/users/${order.user._id}`}>
             <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
               <Image
                 loader={defaultNextImageLoader}
