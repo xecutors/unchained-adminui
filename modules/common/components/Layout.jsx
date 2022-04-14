@@ -17,6 +17,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
+import getConfig from 'next/config';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useAuth from '../../Auth/useAuth';
@@ -26,6 +27,8 @@ import useShopInfo from '../hooks/useShopInfo';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
+
+const { publicRuntimeConfig } = getConfig();
 
 const Layout = ({
   children,
@@ -38,6 +41,12 @@ const Layout = ({
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
+  const { resetAuth } = useAuth();
+  const [hideNav, setHideNav] = useState(true);
+
+  const showCustomReports =
+    publicRuntimeConfig.showCustomReports ??
+    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
 
   const defaultNavigation = [
     {
@@ -45,7 +54,7 @@ const Layout = ({
       icon: HomeIcon,
       href: '/',
     },
-    {
+    showCustomReports && {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
       icon: ChartBarIcon,
       children: [
@@ -182,7 +191,7 @@ const Layout = ({
       href: '/account',
     },
     shopInfo?.externalLinks.length !== 0 && {
-      name: formatMessage({ id: 'more', defaultMessage: 'More' }),
+      name: formatMessage({ id: 'extensions', defaultMessage: 'Extensions' }),
       icon: LinkIcon,
       href: '/',
       children: shopInfo?.externalLinks.map((link) => ({
@@ -190,9 +199,7 @@ const Layout = ({
         href: link.href,
       })),
     },
-  ].filter((item) => item !== false);
-
-  const { resetAuth } = useAuth();
+  ].filter(Boolean);
 
   const onLogout = async () => {
     const id = currentUser?._id;
@@ -206,8 +213,6 @@ const Layout = ({
     resetAuth(id);
     router.push('/log-in');
   };
-
-  const [hideNav, setHideNav] = useState(true);
 
   return (
     <div>
