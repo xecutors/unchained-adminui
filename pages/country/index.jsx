@@ -27,10 +27,10 @@ const Country = ({ userId }) => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
   const { hasRole } = useAuth();
-  const { checkAccess } = useAuth();
+  const { hasAccess } = useAuth();
 
   useEffect(() => {
-    checkAccess(userId);
+    hasAccess(userId);
   }, [userId]);
 
   const { countries, countriesCount, loading } = useCountries({

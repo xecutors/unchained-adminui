@@ -34,7 +34,7 @@ const AuthWrapper = ({ children }) => {
     return isAdmin(userId) || roles.includes(role);
   };
 
-  const checkAccess = (id) => {
+  const hasAccess = (id) => {
     if (!id && !UnrestrictedPages.includes(router.pathname)) return false;
     const userRoles = isAuthenticated(id);
     if (
@@ -53,7 +53,7 @@ const AuthWrapper = ({ children }) => {
     () => ({
       setAuthContext,
       isAuthenticated,
-      checkAccess,
+      hasAccess,
       resetAuth,
       isAdmin,
       hasRole,
@@ -63,11 +63,11 @@ const AuthWrapper = ({ children }) => {
 
   useEffect(() => {
     if (!loading) {
-      if (isAuthenticated(currentUser?._id)) {
-        if (!checkAccess(currentUser?._id)) {
+      if (hasAccess(currentUser?._id)) {
+        if (!hasAccess(currentUser?._id)) {
           router.replace('/403');
         }
-      } else {
+      } else if (!hasAccess(currentUser?._id)) {
         router.replace('/log-in');
       }
     }

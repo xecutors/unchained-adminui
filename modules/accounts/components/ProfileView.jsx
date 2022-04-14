@@ -13,7 +13,6 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
 
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 
@@ -24,7 +23,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
-  const { hasRole } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
@@ -88,7 +87,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
     submit: onUpdateProfile,
     successMessage,
     initialValues: {
-      birthday: '',
+      birthday: null,
       displayName: null,
       gender: null,
       phoneMobile: null,
@@ -145,7 +144,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
-              {hasRole(ACTION_ROLES.users.updateProfile) && (
+              {isAuthenticated(_id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}
@@ -234,7 +233,6 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                       <TextField
                         className="mt-0 w-full"
                         name="displayName"
-                        required
                         label={formatMessage({
                           id: 'displayName',
                           defaultMessage: 'Display Name',
@@ -377,7 +375,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
-              {hasRole(ACTION_ROLES.users.updateProfile) && (
+              {isAuthenticated(_id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}

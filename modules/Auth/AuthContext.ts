@@ -12,7 +12,7 @@ const AuthContext = React.createContext<{
   setAuthContext: SetAuth;
   isAuthenticated: AuthState;
   isAdmin: Auth;
-  checkAccess: () => boolean;
+  hasAccess: () => boolean;
   resetAuth?: AuthReset;
   hasRole: Auth;
 }>({
@@ -22,7 +22,7 @@ const AuthContext = React.createContext<{
   isAuthenticated: () => false,
   isAdmin: () => false,
   hasRole: () => false,
-  checkAccess: () => false,
+  hasAccess: () => false,
   resetAuth: () => {
     throw new Error('No AuthContext registered');
   },

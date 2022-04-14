@@ -13,7 +13,7 @@ const defaultParseDate = (date) => {
 
     return utcDate.getTime();
   }
-  return '';
+  return date !== null;
 };
 
 const DatePickerField = ({
