@@ -26,10 +26,10 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
           <Table.Cell>
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
-          {hasRole(ACTION_ROLES.currencies.view) ||
-            (hasRole(ACTION_ROLES.currencies.delete) && (
-              <Table.Cell>&nbsp;</Table.Cell>
-            ))}
+          {(hasRole(ACTION_ROLES.currencies.view) ||
+            hasRole(ACTION_ROLES.currencies.delete)) && (
+            <Table.Cell>&nbsp;</Table.Cell>
+          )}
         </Table.Row>
       ))}
 
