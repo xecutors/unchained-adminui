@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
-import useShopInfo from '../../common/hooks/useShopInfo';
+import useSystemRoles from '../../common/hooks/useSystemRoles';
 import ChoicesField from '../../forms/components/ChoicesField';
 import Form from '../../forms/components/Form';
 
@@ -15,7 +15,7 @@ const UserRolesView = ({ roles, userId }) => {
 
   const { setRoles } = useSetRoles();
   const { hasRole } = useAuth();
-  const { shopInfo } = useShopInfo();
+  const { systemRoles } = useSystemRoles();
   const onSubmit = async ({ updatedRoles }) => {
     await setRoles({ roles: updatedRoles, userId });
     return true;
@@ -42,7 +42,7 @@ const UserRolesView = ({ roles, userId }) => {
         choiceContainerClassName="flex"
         inputClassName="ml-2"
         options={Object.fromEntries(
-          (shopInfo?.userRoles || []).map((role) => [role, role]),
+          (systemRoles || []).map((role) => [role, role]),
         )}
         label={formatMessage({
           id: 'select_role',
