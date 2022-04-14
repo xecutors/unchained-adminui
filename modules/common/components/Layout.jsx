@@ -190,11 +190,11 @@ const Layout = ({
       icon: UserIcon,
       href: '/account',
     },
-    shopInfo?.externalLinks.length !== 0 && {
+    shopInfo?.externalLinks?.length && {
       name: formatMessage({ id: 'extensions', defaultMessage: 'Extensions' }),
       icon: LinkIcon,
       href: '/',
-      children: shopInfo?.externalLinks.map((link) => ({
+      children: shopInfo.externalLinks.map((link) => ({
         name: link.title,
         href: link.href,
       })),
