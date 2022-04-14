@@ -21,6 +21,8 @@ export const ShopInfoQuery = gql`
         }
       }
 
+      userRoles
+
       externalLinks {
         href
         title
