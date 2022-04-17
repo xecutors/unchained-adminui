@@ -62,6 +62,8 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
                   src={enrollment?.user?.avatar?.url}
                   width={36}
                   height={36}
+                  placeholder="blur"
+                  blurDataURL="/product_placeholder.pbg"
                 />
               </span>
               <span className="ml-2">{enrollment.user?.username}</span>
@@ -78,6 +80,8 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
                 loader={defaultNextImageLoader}
                 src={enrollment?.plan?.product?.media?.file?.url}
                 width={20}
+                placeholder="blur"
+                blurDataURL="/product_placeholder.pbg"
                 height={20}
               />
               <a className="ml-2 text-blue-600 dark:text-blue-400">

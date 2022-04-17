@@ -55,6 +55,8 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
               loader={defaultNextImageLoader}
               width={160}
               height={100}
+              placeholder="blur"
+              blurDataURL="/product_placeholder.pbg"
               alt={formatMessage({
                 id: 'unchained_logo',
                 defaultMessage: 'Unchained Logo',

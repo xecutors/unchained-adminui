@@ -230,6 +230,8 @@ const EnrollmentDetail = ({ enrollment }) => {
                     alt={enrollment?.plan?.product?.text?.title}
                     layout="fill"
                     objectFit="contain"
+                    placeholder="blur"
+                    blurDataURL="/product_placeholder.pbg"
                   />
                 </span>
                 <div className="flex flex-col">

@@ -15,6 +15,8 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
               loader={defaultNextImageLoader}
               width={100}
               height={100}
+              placeholder="blur"
+              blurDataURL="/product_placeholder.pbg"
               alt={formatMessage({
                 id: 'user_avatar',
                 defaultMessage: 'User avatar',

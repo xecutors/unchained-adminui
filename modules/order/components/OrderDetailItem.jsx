@@ -36,6 +36,8 @@ const OrderDetailItem = ({ item }) => {
                           className="h-full w-full object-cover object-center sm:h-full sm:w-full"
                           width={80}
                           height={80}
+                          placeholder="blur"
+                          blurDataURL="/product_placeholder.pbg"
                         />
                       ) : null}
                     </div>

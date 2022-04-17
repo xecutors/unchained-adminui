@@ -70,6 +70,8 @@ const ProductReviewsItem = ({ review }) => {
           width={48}
           height={48}
           className="h-12 w-12 rounded-full"
+          placeholder="blur"
+          blurDataURL="/product_placeholder.pbg"
         />
         <div className="ml-4 mr-auto">
           <h4 className="text-sm font-bold">{review?.author?.username}</h4>

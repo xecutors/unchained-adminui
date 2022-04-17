@@ -30,6 +30,8 @@ const NotAuthorized = () => {
               src={logo}
               loader={defaultNextImageLoader}
               width={200}
+              placeholder="blur"
+              blurDataURL="/product_placeholder.pbg"
               height={100}
               alt={formatMessage({
                 id: 'unchained_logo',

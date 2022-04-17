@@ -270,6 +270,8 @@ const Layout = ({
                     loader={defaultNextImageLoader}
                     width={125}
                     height={100}
+                    placeholder="blur"
+                    blurDataURL="/product_placeholder.pbg"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',
@@ -297,6 +299,8 @@ const Layout = ({
                     loader={defaultNextImageLoader}
                     width={175}
                     height={100}
+                    placeholder="blur"
+                    blurDataURL="/product_placeholder.pbg"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',

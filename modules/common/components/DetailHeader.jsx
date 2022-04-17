@@ -30,6 +30,8 @@ const DetailHeader = ({ user, contact }) => {
             alt={user.name || user.username}
             width={8}
             height={8}
+            placeholder="blur"
+            blurDataURL="/product_placeholder.pbg"
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -45,6 +47,8 @@ const DetailHeader = ({ user, contact }) => {
                 alt={user.name || user.username}
                 width={8}
                 height={8}
+                placeholder="blur"
+                blurDataURL="/product_placeholder.pbg"
               />
             ) : (
               <FallbackAvatar username={user?.username} />

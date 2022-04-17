@@ -188,6 +188,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                           loader={defaultNextImageLoader}
                           width={100}
                           height={100}
+                          placeholder="blur"
+                          blurDataURL="/product_placeholder.pbg"
                           alt={formatMessage({
                             id: 'unchained_logo',
                             defaultMessage: 'Unchained Logo',

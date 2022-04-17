@@ -90,6 +90,8 @@ export default function LogInForm() {
             className="mx-auto"
             src={logo}
             loader={defaultNextImageLoader}
+            placeholder="blur"
+            blurDataURL="/product_placeholder.pbg"
             width={160}
             height={100}
             alt={formatMessage({

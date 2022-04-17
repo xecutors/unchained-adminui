@@ -14,6 +14,8 @@ const MediaAvatar = ({ file, className }) => {
           className="relative h-10 w-10 rounded-full"
           loader={defaultNextImageLoader}
           src={url}
+          placeholder="blur"
+          blurDataURL="/product_placeholder.pbg"
           width={100}
           height={100}
           alt={formatMessage({

@@ -16,6 +16,8 @@ const FilteredListItem = ({ item, onSelected }) => {
                 className="mx-auto w-auto"
                 src={item.image}
                 loader={defaultNextImageLoader}
+                placeholder="blur"
+                blurDataURL="/product_placeholder.pbg"
                 width={160}
                 height={100}
                 alt={item?.title || item?.subtitle}
