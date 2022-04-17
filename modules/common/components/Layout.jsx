@@ -27,6 +27,7 @@ import useShopInfo from '../hooks/useShopInfo';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
+import getLogo from '../utils/getLogo';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -47,7 +48,7 @@ const Layout = ({
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
     process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
-
+  const logo = getLogo();
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
@@ -265,7 +266,7 @@ const Layout = ({
               <Link href="/">
                 <a>
                   <Image
-                    src="/logo.svg"
+                    src={logo}
                     loader={defaultNextImageLoader}
                     width={125}
                     height={100}
@@ -292,7 +293,7 @@ const Layout = ({
               <Link href="/">
                 <a>
                   <Image
-                    src="/logo.svg"
+                    src={logo}
                     loader={defaultNextImageLoader}
                     width={175}
                     height={100}

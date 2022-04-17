@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import getLogo from '../../common/utils/getLogo';
 
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
@@ -42,7 +43,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
       password: null,
     },
   });
-
+  const logo = getLogo();
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -50,7 +51,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
           <div>
             <Image
               className="mx-auto h-12 w-auto"
-              src="/logo.svg"
+              src={logo}
               loader={defaultNextImageLoader}
               width={160}
               height={100}

@@ -20,5 +20,6 @@ module.exports = {
       process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
       10,
     ),
+    logo: process.env.NEXT_PUBLIC_LOGO,
   },
 };

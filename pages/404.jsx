@@ -6,9 +6,11 @@ import {
   initializeApollo,
 } from '../modules/apollo/apolloClient';
 import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
+import getLogo from '../modules/common/utils/getLogo';
 
 const NotFound = () => {
   const { formatMessage } = useIntl();
+  const logo = getLogo();
   return (
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-600 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
@@ -21,7 +23,7 @@ const NotFound = () => {
               })}{' '}
             </span>
             <Image
-              src="/logo.svg"
+              src={logo}
               loader={defaultNextImageLoader}
               width={200}
               height={100}
