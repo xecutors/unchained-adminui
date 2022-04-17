@@ -110,7 +110,7 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
       toast.error(
         formatMessage({
           id: 'fail_reorder',
-          defaultMessage: 'Media reorder failed, Try again!',
+          defaultMessage: 'Reordering failed, Try again!',
         }),
       );
     }

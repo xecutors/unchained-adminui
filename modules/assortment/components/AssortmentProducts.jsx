@@ -27,7 +27,7 @@ const AssortmentProducts = ({ assortmentId }) => {
         message={formatMessage({
           id: 'delete_product_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product? ',
         })}
         onOkClick={async () => {
           setModal('');
@@ -97,7 +97,7 @@ const AssortmentProducts = ({ assortmentId }) => {
       toast.error(
         formatMessage({
           id: 'fail_reorder',
-          defaultMessage: 'Product reorder failed, Try again!',
+          defaultMessage: 'Reordering failed, Try again!',
         }),
       );
     }

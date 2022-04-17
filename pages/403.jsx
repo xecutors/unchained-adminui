@@ -57,7 +57,7 @@ const NotAuthorized = () => {
             </div>
             <p className="mt-2 text-base text-slate-500 dark:text-white">
               {formatMessage({
-                id: 'not_found_message',
+                id: 'not_access_message',
                 defaultMessage:
                   'Sorry, The page you trying to access has restricted access.',
               })}

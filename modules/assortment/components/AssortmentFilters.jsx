@@ -90,7 +90,7 @@ const AssortmentFilters = ({ assortmentId }) => {
       toast.error(
         formatMessage({
           id: 'fail_reorder',
-          defaultMessage: 'Filter reorder failed, Try again!',
+          defaultMessage: 'Reordering failed, Try again!',
         }),
       );
     }

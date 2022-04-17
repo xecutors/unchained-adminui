@@ -97,7 +97,7 @@ const TagInput = ({
             text={
               buttonText ||
               formatMessage({
-                id: 'add',
+                id: 'add_tag',
                 defaultMessage: 'Add tag',
               })
             }

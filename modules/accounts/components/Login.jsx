@@ -63,7 +63,7 @@ export default function LogInForm() {
       if (error?.message?.includes('Invalid credentials'))
         return formatMessage({
           id: 'invalid_credential_error',
-          defaultMessage: 'Invalid credential error',
+          defaultMessage: 'Invalid credential, please try again',
         });
 
       if (error?.message?.includes('Email already exists'))
