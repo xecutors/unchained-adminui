@@ -93,6 +93,7 @@ const color = scaleOrdinal(schemeDark2);
 const backgroundColor = 'white';
 
 const constructTangleLayout = (levels, options = {}) => {
+  console.log(levels);
   // precompute level depth
   // eslint-disable-next-line no-param-reassign
   levels.forEach((l, i) => l.forEach((n) => (n.level = i)));
@@ -117,6 +118,7 @@ const constructTangleLayout = (levels, options = {}) => {
       }
 
       const id = n.parents
+        .filter(Boolean)
         .map((d) => d.id)
         .sort()
         .join('-X-');
@@ -355,52 +357,42 @@ const RenderChart = ({ data, options = {} }) => {
   );
 };
 
-const linkedAssortmentFunction = (linkedAssortments, assortmentId) => {
+const getAssortmentTree = (assortment) => {
   const linkedAssortmentsData = [];
   const childArray = [];
-  linkedAssortments?.forEach((link) => {
-    if (link.parent._id === assortmentId) {
-      childArray.push({
-        id: link.child.texts.slug,
-        parents: [link.parent.texts.slug],
-      });
-    }
-  });
-  linkedAssortmentsData.push(childArray);
 
-  linkedAssortments?.forEach((link) => {
-    console.log('repetitive');
-    if (link.child.linkedAssortments) {
-      link.linkedAssortments.forEach((link) => {
-        const { linkedAssortments } = useAssortmentPaths({
-          assortmentId: link._id,
-        });
-        linkedAssortmentFunction(linkedAssortments, link._id);
-      });
-    }
-  });
+  const walkTree = ({ _id, linkedAssortments, children }) => {
+    childArray.push([
+      ...children
+        .map((chi) => {
+          if (!_id)
+            return {
+              id: chi?._id,
+            };
 
-  return linkedAssortmentsData;
+          return {
+            id: chi?._id,
+            parents: [_id],
+          };
+        })
+        .filter(Boolean),
+    ]);
+
+    children.forEach((chi) => {
+      walkTree(chi);
+    });
+    return childArray.filter((arr) => arr.length);
+  };
+
+  return walkTree({ ...assortment, _id: null });
 };
 
 const AssortmentGraphDetail = ({ assortment }) => {
-  const { linkedAssortments } = useAssortmentPaths({
-    assortmentId: assortment._id,
-  });
-
-  console.log(linkedAssortments);
-  const linkedAssortmentsData = [];
-  linkedAssortmentsData.push([{ id: assortment.texts.slug }]);
-  linkedAssortmentsData.push(
-    ...linkedAssortmentFunction(linkedAssortments, assortment._id),
-  );
-  console.log(linkedAssortmentsData);
-
   return (
     <div className="w-full h-fit bg-white text-slate-900">
       <span>AssortmentGraphDetail</span>
       {/* <RenderChart data={dataa} /> */}
-      <RenderChart data={linkedAssortmentsData} />
+      <RenderChart data={getAssortmentTree(assortment)} />
     </div>
   );
 };

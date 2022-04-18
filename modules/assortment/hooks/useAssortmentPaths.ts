@@ -1,65 +1,58 @@
 import { useQuery, gql } from '@apollo/client';
+import AssortmentFragment from '../fragments/AssortmentFragment';
 
 const AssortmentPathsQuery = gql`
   query AssortmentPaths($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       childrenCount
-      children {
-        _id
-        isActive
-      }
       linkedAssortments {
         _id
         parent {
           _id
-          texts {
+        }
+      }
+      children {
+        ...AssortmentFragment
+        linkedAssortments {
+          _id
+          parent {
             _id
-            slug
-            title
-            subtitle
           }
         }
-        child {
-          _id
+
+        children {
+          ...AssortmentFragment
           linkedAssortments {
             _id
             parent {
               _id
             }
-            child {
+          }
+          children {
+            ...AssortmentFragment
+            linkedAssortments {
               _id
+              parent {
+                _id
+              }
             }
-          }
-          texts {
-            _id
-            slug
-            title
-            subtitle
-          }
-        }
-      }
-      assortmentPaths {
-        links {
-          assortmentId
-          assortmentTexts {
-            _id
-            title
-            subtitle
-          }
-          link {
-            _id
-            parent {
-              _id
-            }
-            child {
-              _id
+
+            children {
+              ...AssortmentFragment
+              linkedAssortments {
+                _id
+                parent {
+                  _id
+                }
+              }
             }
           }
         }
       }
     }
   }
+  ${AssortmentFragment}
 `;
 
 const useAssortmentPaths = ({ assortmentId = null, slug = null } = {}) => {
@@ -72,9 +65,8 @@ const useAssortmentPaths = ({ assortmentId = null, slug = null } = {}) => {
   });
 
   const assortment = data?.assortment || {};
-  const linkedAssortments = assortment?.linkedAssortments || [];
 
-  return { linkedAssortments, loading, error };
+  return { assortment, loading, error };
 };
 
 export default useAssortmentPaths;
