@@ -24,7 +24,7 @@ const AssortmentGraphView = () => {
         })}
       />
       <AssortmentSearchFilter />
-      <div className="min-w-full overflow-x-auto">
+      <div className="min-w-full overflow-hidden">
         {loading ? (
           <Loading />
         ) : (
