@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import NoImage from '../../common/components/NoImage';
 import Table from '../../common/components/Table';
 import { ORDER_STATUSES } from '../../common/data/miscellaneous';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
@@ -48,15 +49,18 @@ const OrderListItem = ({ order, showUser }) => {
         <Table.Cell>
           <Link href={`/users/${order.user._id}`}>
             <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
-              <Image
-                loader={defaultNextImageLoader}
-                src={order.user?.avatar?.url || 'product_placeholder.png'}
-                width={20}
-                height={20}
-                onError={() => '/product_placeholder.png'}
-                placeholder="blur"
-                blurDataURL="/placeholder.png"
-              />
+              {order.user?.avatar?.url ? (
+                <Image
+                  loader={defaultNextImageLoader}
+                  src={order.user?.avatar?.url}
+                  width={20}
+                  height={20}
+                  placeholder="blur"
+                  blurDataURL="/placeholder.png"
+                />
+              ) : (
+                <NoImage />
+              )}
               <span className="font-medium ml-2">{order.user?.username}</span>
             </a>
           </Link>

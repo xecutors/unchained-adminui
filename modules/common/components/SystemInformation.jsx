@@ -16,8 +16,8 @@ const ShopInformation = () => {
           defaultMessage: 'System Information',
         })}
       </h2>
-      <div className="mt-2 text-right">
-        <div className="bg-white dark:bg-slate-600 p-4 shadow sm:rounded-lg sm:px-4">
+      <div className="mt-2 text-right ">
+        <div className="bg-white dark:bg-slate-600 p-4 shadow sm:rounded-lg sm:px-4  dark:border-2">
           <ul className="-my-3 divide-y divide-slate-200">
             <li className="py-4">
               <div className="flex items-center space-x-4">
