@@ -43,7 +43,7 @@ const SyncDetail = () => {
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
-  console.log(work);
+
   if (loading || !work) return <Loading />;
 
   const {

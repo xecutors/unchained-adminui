@@ -12,8 +12,6 @@ const AssortmentGraphView = () => {
 
   const { assortments, loading } = useAssortments();
 
-  console.log(assortments);
-
   return (
     <>
       <BreadCrumbs />

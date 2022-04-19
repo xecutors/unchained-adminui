@@ -93,7 +93,7 @@ const color = scaleOrdinal(schemeDark2);
 const backgroundColor = 'white';
 
 const constructTangleLayout = (levels, options = {}) => {
-  console.log(levels);
+  // console.log(levels);
   // precompute level depth
   // eslint-disable-next-line no-param-reassign
   levels.forEach((l, i) => l.forEach((n) => (n.level = i)));
@@ -284,9 +284,9 @@ const RenderChart = ({ data, options = {} }) => {
 
   return (
     <svg
-      width={500}
+      width="100%"
       height={`${tangleLayout.layout.height}`}
-      className="fill-transparent mx-auto"
+      className="fill-transparent mx-10"
     >
       {tangleLayout.bundles.map((b, i) => {
         const d = b.links
@@ -357,37 +357,84 @@ const RenderChart = ({ data, options = {} }) => {
   );
 };
 
+// const getAssortmentTree = (assortment) => {
+//   const cleanedChildren = [];
+//   const childArray = [];
+
+//   const walkTree = ({ _id, children }) => {
+//     // console.log(_id, children);
+//     childArray.push([
+//       ...children
+//         .map((chi) => {
+//           if (!_id)
+//             return {
+//               id: chi?._id,
+//             };
+
+//           return {
+//             id: chi?._id,
+//             parents: [_id],
+//           };
+//         })
+//         .filter(Boolean),
+//     ]);
+//     // console.log('walk tree', childArray);
+
+//     children.forEach((chi) => {
+//       walkTree(chi);
+//     });
+
+//     return childArray.filter((arr) => arr.length);
+//   };
+
+//   return walkTree({ ...assortment, _id: null });
+// };
+
 const getAssortmentTree = (assortment) => {
-  const linkedAssortmentsData = [];
-  const childArray = [];
+  const { _id, children } = assortment;
+  const cleanedAssortmentData = [[{ id: _id }]];
 
-  const walkTree = ({ _id, linkedAssortments, children }) => {
-    childArray.push([
-      ...children
-        .map((chi) => {
-          if (!_id)
-            return {
-              id: chi?._id,
-            };
+  cleanedAssortmentData.push(
+    children.map((child) => ({ id: child._id, parents: [_id] })),
+  );
 
-          return {
+  cleanedAssortmentData.push(
+    children
+      .map((child) => {
+        const array = [];
+
+        child?.children?.forEach((chi) => {
+          array.push({
             id: chi?._id,
-            parents: [_id],
-          };
-        })
-        .filter(Boolean),
-    ]);
+            parents: [child?._id],
+          });
+        });
 
-    children.forEach((chi) => {
-      walkTree(chi);
-    });
-    return childArray.filter((arr) => arr.length);
-  };
+        return array;
+      })
+      .flat(),
+  );
 
-  return walkTree({ ...assortment, _id: null });
+  console.log('cleaned: ', cleanedAssortmentData);
+  return cleanedAssortmentData;
+};
+
+const recursiveAllData = (assortment) => {
+  return assortment.children.map((child) => {
+    if (!child.children) {
+      return;
+    }
+
+    // eslint-disable-next-line consistent-return
+    return recursiveAllData(child);
+  });
 };
 
 const AssortmentGraphDetail = ({ assortment }) => {
+  getAssortmentTree(assortment);
+
+  console.log('all data: ', recursiveAllData(assortment));
+
   return (
     <div className="w-full h-fit bg-white text-slate-900">
       <span>AssortmentGraphDetail</span>

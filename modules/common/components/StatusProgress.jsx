@@ -5,7 +5,6 @@ import { classNames } from '../utils/utils';
 
 const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
-
   const { formatDateTime } = useFormatDateTime();
 
   const { content, id: currentId } = timeline[data?.status];

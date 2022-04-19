@@ -255,7 +255,7 @@ const SyncJobs = () => {
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
-  console.log(work);
+
   if (loading || !work) return <Loading />;
   const { result } = work;
   const {

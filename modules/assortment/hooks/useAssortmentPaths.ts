@@ -20,7 +20,6 @@ const AssortmentPathsQuery = gql`
             _id
           }
         }
-
         children {
           ...AssortmentFragment
           linkedAssortments {
@@ -37,13 +36,39 @@ const AssortmentPathsQuery = gql`
                 _id
               }
             }
-
             children {
               ...AssortmentFragment
               linkedAssortments {
                 _id
                 parent {
                   _id
+                }
+              }
+              children {
+                ...AssortmentFragment
+                linkedAssortments {
+                  _id
+                  parent {
+                    _id
+                  }
+                }
+                children {
+                  ...AssortmentFragment
+                  linkedAssortments {
+                    _id
+                    parent {
+                      _id
+                    }
+                  }
+                  children {
+                    ...AssortmentFragment
+                    linkedAssortments {
+                      _id
+                      parent {
+                        _id
+                      }
+                    }
+                  }
                 }
               }
             }
