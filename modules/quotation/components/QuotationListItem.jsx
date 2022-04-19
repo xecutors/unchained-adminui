@@ -61,7 +61,7 @@ const QuotationListItem = ({ quotation }) => {
               width={40}
               height={20}
               placeholder="blur"
-              blurDataURL="/product_placeholder.pbg"
+              blurDataURL="/placeholder.png"
             />
             <span className="ml-2 self-end">{quotation.user?.username}</span>
           </a>
@@ -78,7 +78,7 @@ const QuotationListItem = ({ quotation }) => {
                 width={40}
                 height={20}
                 placeholder="blur"
-                blurDataURL="/product_placeholder.pbg"
+                blurDataURL="/placeholder.png"
               />
               <span className="ml-2 self-end">
                 {quotation?.product.texts.title}

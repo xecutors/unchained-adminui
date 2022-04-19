@@ -91,7 +91,7 @@ export default function LogInForm() {
             src={logo}
             loader={defaultNextImageLoader}
             placeholder="blur"
-            blurDataURL="/product_placeholder.pbg"
+            blurDataURL="/placeholder.png"
             width={160}
             height={100}
             alt={formatMessage({

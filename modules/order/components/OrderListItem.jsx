@@ -55,7 +55,7 @@ const OrderListItem = ({ order, showUser }) => {
                 height={20}
                 onError={() => '/product_placeholder.png'}
                 placeholder="blur"
-                blurDataURL="/product_placeholder.png"
+                blurDataURL="/placeholder.png"
               />
               <span className="font-medium ml-2">{order.user?.username}</span>
             </a>

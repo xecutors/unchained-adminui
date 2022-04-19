@@ -37,7 +37,7 @@ const OrderDetailItem = ({ item }) => {
                           width={80}
                           height={80}
                           placeholder="blur"
-                          blurDataURL="/product_placeholder.pbg"
+                          blurDataURL="/placeholder.png"
                         />
                       ) : null}
                     </div>

@@ -28,7 +28,7 @@ const NotFound = () => {
               width={200}
               height={100}
               placeholder="blur"
-              blurDataURL="/product_placeholder.pbg"
+              blurDataURL="/placeholder.png"
               alt={formatMessage({
                 id: 'unchained_logo',
                 defaultMessage: 'Unchained Logo',

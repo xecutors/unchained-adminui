@@ -231,7 +231,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                     layout="fill"
                     objectFit="contain"
                     placeholder="blur"
-                    blurDataURL="/product_placeholder.pbg"
+                    blurDataURL="/placeholder.png"
                   />
                 </span>
                 <div className="flex flex-col">
