@@ -19,14 +19,18 @@ const GetCurrentTab = ({ list, selectedView }) => {
     removedProducts,
     newAssortments,
     updatedAssortments,
+    removedAssortments,
     newFilters,
     updatedFilters,
+    removedFilters,
   } = list;
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
   if (selectedView === 'updated-assortments')
     return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
+  if (selectedView === 'removed-assortments')
+    return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
   if (selectedView === 'updated-products')
@@ -37,6 +41,8 @@ const GetCurrentTab = ({ list, selectedView }) => {
     return <FiltersAlphabeticalList dictionary={newFilters} />;
   if (selectedView === 'updated-filters')
     return <FiltersAlphabeticalList dictionary={updatedFilters} />;
+  if (selectedView === 'removed-filters')
+    return <FiltersAlphabeticalList dictionary={removedFilters} />;
 
   return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
 };
@@ -101,6 +107,13 @@ const DailyAnalyticsReportList = () => {
       }),
     },
     {
+      id: 'removed-assortments',
+      title: formatMessage({
+        id: 'removed_assortments',
+        defaultMessage: 'Removed Assortments',
+      }),
+    },
+    {
       id: 'new-products',
       title: formatMessage({
         id: 'new_products',
@@ -135,6 +148,13 @@ const DailyAnalyticsReportList = () => {
         defaultMessage: 'Updated filters',
       }),
     },
+    {
+      id: 'removed-filters',
+      title: formatMessage({
+        id: 'removed_filters',
+        defaultMessage: 'Removed filters',
+      }),
+    },
   ];
   const { query } = useRouter();
 
@@ -144,31 +164,49 @@ const DailyAnalyticsReportList = () => {
 
   if (loading || !work) return <Loading />;
 
-  const { assortments, filters, products } = work.result;
+  const { sync } = work.result || {};
+  const { stats } = sync || {};
+  const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    assortments?.new,
+    categories?.newCategories,
     'title',
     true,
   );
-  const updatedAssortments = sortArrayAlphabetically(
-    assortments?.updated,
+
+  const removedAssortments = sortArrayAlphabetically(
+    categories?.removedCategories,
     'title',
     true,
   );
-  const newProducts = sortArrayAlphabetically(products?.new, 'title', true);
-  const updatedProducts = sortArrayAlphabetically(
+
+  /*   const updatedAssortments = sortArrayAlphabetically(
+    categories?.updated,
+    'title',
+    true,
+  ); */
+  const newProducts = sortArrayAlphabetically(
+    products?.newItems,
+    'title',
+    true,
+  );
+  /*   const updatedProducts = sortArrayAlphabetically(
     products?.updated,
     'title',
     true,
-  );
+  ); */
   const removedProducts = sortArrayAlphabetically(
-    products?.removed,
+    products?.removedItems,
     'title',
     true,
   );
-  const newFilters = sortArrayAlphabetically(filters?.new, 'key', true);
-  const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true);
+  const newFilters = sortArrayAlphabetically(filters?.newItems, 'key', true);
+  const removedFilters = sortArrayAlphabetically(
+    filters?.removedItems,
+    'key',
+    true,
+  );
+  /* const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true); */
 
   return (
     <>
@@ -183,11 +221,14 @@ const DailyAnalyticsReportList = () => {
         <Wrapper
           list={{
             newAssortments,
+            removedAssortments,
             newFilters,
             newProducts,
-            updatedAssortments,
-            updatedFilters,
-            updatedProducts,
+
+            updatedAssortments: [],
+            updatedFilters: [],
+            removedFilters,
+            updatedProducts: [],
             removedProducts,
           }}
         />

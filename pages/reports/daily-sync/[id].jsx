@@ -171,6 +171,7 @@ const SyncDetail = () => {
         })}
         newItemsRoute="new-assortments"
         updatedItemsRoute="updated-assortments"
+        removedItemsRoute="removed-assortments"
         statistics={stats.categories}
       />
 
@@ -192,6 +193,7 @@ const SyncDetail = () => {
         })}
         newItemsRoute="new-filters"
         updatedItemsRoute="updated-filters"
+        removedItemsRoute="removed-filters"
         statistics={stats.filters}
       />
     </>
