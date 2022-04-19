@@ -170,7 +170,6 @@ const SyncDetail = () => {
           defaultMessage: 'Categories',
         })}
         newItemsRoute="new-assortments"
-        updatedItemsRoute="updated-assortments"
         removedItemsRoute="removed-assortments"
         statistics={stats.categories}
       />
@@ -181,7 +180,6 @@ const SyncDetail = () => {
           defaultMessage: 'Products',
         })}
         newItemsRoute="new-products"
-        updatedItemsRoute="updated-products"
         removedItemsRoute="removed-products"
         statistics={stats.products}
       />
@@ -192,7 +190,6 @@ const SyncDetail = () => {
           defaultMessage: 'Filters',
         })}
         newItemsRoute="new-filters"
-        updatedItemsRoute="updated-filters"
         removedItemsRoute="removed-filters"
         statistics={stats.filters}
       />

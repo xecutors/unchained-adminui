@@ -15,36 +15,29 @@ const GetCurrentTab = ({ list, selectedView }) => {
   if (!list) return <Loading />;
   const {
     newProducts,
-    updatedProducts,
     removedProducts,
     newAssortments,
-    updatedAssortments,
     removedAssortments,
     newFilters,
-    updatedFilters,
     removedFilters,
   } = list;
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'updated-assortments')
-    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
     return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
-  if (selectedView === 'updated-products')
-    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
+
   if (selectedView === 'removed-products')
     return <ProductsAlphabeticalList dictionary={removedProducts} />;
   if (selectedView === 'new-filters')
     return <FiltersAlphabeticalList dictionary={newFilters} />;
-  if (selectedView === 'updated-filters')
-    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
+
   if (selectedView === 'removed-filters')
     return <FiltersAlphabeticalList dictionary={removedFilters} />;
 
-  return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
+  return <AssortmentAlphabeticalList dictionary={newAssortments} />;
 };
 
 const Wrapper = ({ selectedView, list }) => {
