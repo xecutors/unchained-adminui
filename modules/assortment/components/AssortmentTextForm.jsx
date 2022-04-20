@@ -73,9 +73,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
         defaultMessage: 'Texts',
       })}
       className="mt-2 sm:mt-0"
-      documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam, quis nostrud exercitation ullamco"
+      documentation="A Slug is the unique identifying part of a web address, typically at the end of the URL."
       mainContent={
         <Form form={form}>
           <div className="shadow sm:rounded-md">
