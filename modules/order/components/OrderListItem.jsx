@@ -59,7 +59,7 @@ const OrderListItem = ({ order, showUser }) => {
                   blurDataURL="/placeholder.png"
                 />
               ) : (
-                <NoImage />
+                <NoImage className="h-10 w-10" />
               )}
               <span className="font-medium ml-2">{order.user?.username}</span>
             </a>
