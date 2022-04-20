@@ -20,7 +20,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
             'This information will be displayed publicly so be careful what you share.',
         })}
         mainContent={
-          <div className="space-y-6 overflow-hidden rounded-md bg-white p-3 shadow sm:p-6">
+          <div className="space-y-6 overflow-hidden rounded-md p-3 shadow dark:shadow-white sm:p-6">
             <UserNameView username={username} _id={_id} />
           </div>
         }
@@ -48,7 +48,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           defaultMessage: 'Tags',
         })}
         mainContent={
-          <div className="my-2 rounded-md bg-white px-4 py-5 shadow sm:p-6">
+          <div className="my-2 rounded-md px-4 py-5 shadow dark:shadow-white sm:p-6">
             <UserTagsView
               tags={tags}
               userId={_id}
@@ -71,7 +71,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           defaultMessage: 'Roles',
         })}
         mainContent={
-          <div className="space-y-6 overflow-hidden rounded-md border-b border-slate-200 bg-white px-4 py-5 shadow sm:p-6">
+          <div className="space-y-6 overflow-hidden rounded-md border-b text-slate-900 dark:text-white border-slate-200 px-4 py-5 shadow dark:shadow-white sm:p-6">
             <UserRolesView roles={roles} userId={_id} />
           </div>
         }

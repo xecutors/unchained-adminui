@@ -4,9 +4,9 @@ import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
 import ACTION_ROLES from '../modules/common/data/roles';
-import ShopInformation from '../modules/common/components/SystemInformation';
+import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
-import SyncSummary from '../modules/sync/components/SyncSummary';
+// import SyncSummary from '../modules/sync/components/SyncSummary';
 import useAuth from '../modules/Auth/useAuth';
 
 const Home = () => {
@@ -15,10 +15,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20">
+      <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-white">
         <div className="xl:col-span-2 overflow-x-auto">
           {hasRole(ACTION_ROLES.orders.viewList) && (
-            <h2 className="ml-4 text-xl text-slate-700">
+            <h2 className="ml-4 text-xl">
               {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
             </h2>
           )}
@@ -100,18 +100,8 @@ const Home = () => {
                 </div>
               </div>
             ))}
-          {hasRole(ACTION_ROLES.work.viewList) && (
-            <div className="mb-10">
-              <h2 className="ml-4 mb-3 text-xl text-slate-700">
-                {formatMessage({
-                  id: 'daily_sync',
-                  defaultMessage: 'Daily sync',
-                })}{' '}
-              </h2>
-              <SyncSummary />
-            </div>
-          )}
-          <ShopInformation />
+
+          <SystemInformation />
         </div>
       </div>
     </>

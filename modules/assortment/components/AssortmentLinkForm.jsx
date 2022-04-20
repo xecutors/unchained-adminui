@@ -10,6 +10,7 @@ import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -54,42 +55,43 @@ const AssortmentLinkForm = ({ assortmentId }) => {
   });
 
   return (
-    <Form form={form}>
-      <div className="shadow sm:rounded-md">
-        <div className="grid gap-6 bg-white px-4 py-5 sm:p-6">
-          <div className="col-span-12">
-            <TagInputField
-              name="tags"
-              id="tags"
-              label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-              className="mt-1 w-full text-sm font-medium text-slate-500"
-            />
-            <FilterableDropdown
-              name="childAssortmentId"
+    <FormWrapper>
+      <Form form={form}>
+        <div className="sm:rounded-md">
+          <div className="grid gap-6 px-4 py-5 sm:p-6">
+            <div className="col-span-12">
+              <TagInputField
+                name="tags"
+                id="tags"
+                label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+                className="mt-1 w-full text-sm font-medium"
+              />
+              <FilterableDropdown
+                name="childAssortmentId"
+                label={formatMessage({
+                  id: 'child_assortment',
+                  defaultMessage: 'Sub-Assortment',
+                })}
+                required
+                onFilter={setQueryString}
+                queryString={queryString}
+                data={normalizeAssortments(assortments)}
+                className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+              />
+            </div>
+          </div>
+          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.assortments.addLink)}
               label={formatMessage({
-                id: 'child_assortment',
-                defaultMessage: 'Sub-Assortment',
+                id: 'save',
+                defaultMessage: 'Save',
               })}
-              required
-              onFilter={setQueryString}
-              queryString={queryString}
-              data={normalizeAssortments(assortments)}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
             />
           </div>
         </div>
-        <div className="border-t-indigo-50 border-t bg-slate-50 px-4 py-5 text-right sm:px-6">
-          <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.assortments.addLink)}
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-            full
-          />
-        </div>
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 

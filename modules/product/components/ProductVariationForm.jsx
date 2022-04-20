@@ -44,7 +44,7 @@ const ProductVariationForm = ({ onSubmit }) => {
             })}
             required
             autoComplete="on"
-            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
+            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-white sm:ml-1"
           />
           <TextField
             name="key"
@@ -55,12 +55,12 @@ const ProductVariationForm = ({ onSubmit }) => {
             })}
             required
             autoComplete="on"
-            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
+            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-white sm:ml-1"
           />
         </div>
         <SelectField
           required
-          className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500"
+          className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500 dark:text-white"
           label={formatMessage({
             id: 'type',
             defaultMessage: 'Type',
@@ -77,7 +77,7 @@ const ProductVariationForm = ({ onSubmit }) => {
           )}
         />
       </div>
-      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 px-5 py-6 text-right">
+      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 px-5 py-6 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.products.createVariation)}
           label={formatMessage({

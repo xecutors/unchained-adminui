@@ -85,20 +85,18 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       return;
     }
 
-    const sortKeys = productMedia.map((media, index) => ({
+    const newSortKeys = productMedia.map((media, index) => ({
       productMediaId: media._id,
       sortKey: index,
     }));
 
-    const [removedSortKey] = sortKeys.splice(source.index, 1);
-    sortKeys.splice(destination.index, 0, removedSortKey);
+    const [removedSortKey] = newSortKeys.splice(source.index, 1);
+    newSortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sortKey, index) => {
-      return {
-        ...sortKey,
-        sortKeys: index,
-      };
-    });
+    const sortKeys = newSortKeys.map((sortKey, index) => ({
+      ...sortKey,
+      sortKey: index,
+    }));
 
     try {
       await reOrderProductMedia({ sortKeys });
@@ -112,14 +110,14 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       toast.error(
         formatMessage({
           id: 'fail_reorder',
-          defaultMessage: 'Media reorder failed, Try again!',
+          defaultMessage: 'Reordering failed, Try again!',
         }),
       );
     }
   };
 
   return (
-    <div className="mx-auto mt-5 max-w-full bg-white py-6 shadow lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded">
+    <div className="mx-auto mt-5 space-y-5 lg:space-y-0 max-w-full bg-white dark:bg-slate-600 py-6 shadow dark:shadow-white lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded">
       <div className="mx-auto w-full px-6 lg:col-span-6 lg:col-start-1">
         <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>

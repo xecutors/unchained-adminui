@@ -80,7 +80,7 @@ const SubscriptionForm = ({ productId }) => {
         <div className="relative max-w-full space-y-6 rounded-md sm:p-6">
           <SelectField
             required
-            className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500"
+            className="mt-2.5 w-full py-1.5 text-sm font-medium"
             label={formatMessage({
               id: 'usage_calculation_type',
               defaultMessage: 'Usage calculation type',
@@ -96,9 +96,9 @@ const SubscriptionForm = ({ productId }) => {
               'value',
             )}
           />
-          <div className="w-full items-end  justify-end sm:flex">
+          <div className="w-full items-end justify-end sm:flex">
             <SelectField
-              className="mt-2.5  w-full text-sm  font-medium text-slate-500"
+              className="mt-2.5 w-full text-sm font-medium text-slate-500"
               required
               label={formatMessage({
                 id: 'billing_interval_unit',
@@ -167,7 +167,7 @@ const SubscriptionForm = ({ productId }) => {
             />
           </div>
 
-          <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 text-right sm:p-6">
+          <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
             <SubmitButton
               hidden={!hasRole(ACTION_ROLES.enrollment.create)}
               label={formatMessage({

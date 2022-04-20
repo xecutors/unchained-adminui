@@ -20,9 +20,9 @@ const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex items-center justify-between rounded px-2 gap-4 border-b bg-white border-gray-200 last:border-none hover:cursor-move',
+            'flex items-center justify-between rounded px-2 gap-4 border-b border-gray-200 last:border-none hover:cursor-move',
             {
-              'bg-slate-100 border-2 border-b-2 rounded last:border-solid':
+              'bg-slate-100 dark:bg-slate-400 border-2 border-b-2 rounded last:border-solid':
                 snapshot.isDragging,
             },
           )}
@@ -41,7 +41,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
             />
           </div>
           <div className="shrink grow basis-1/3 space-y-1 p-2">
-            <h3 className="text-lg text-slate-800">
+            <h3 className="text-lg text-slate-800 dark:text-white">
               ({filter?.key}) {filter?.texts?.title}
             </h3>
             <p className="text-xs text-slate-600">{filter?.texts?.subtitle}</p>

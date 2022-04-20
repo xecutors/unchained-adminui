@@ -8,15 +8,10 @@ import useForm from '../../forms/hooks/useForm';
 import useAddEmail from '../hooks/useAddEmail';
 import useRemoveEmail from '../hooks/useRemoveEmail';
 import useSendVerificationEmail from '../hooks/useSendVerificationEmail';
-import Badge from '../../common/components/Badge';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-
-const STATUS = {
-  true: 'Verified',
-  false: 'Not Verified',
-};
+import ActiveInActive from '../../common/components/ActiveInActive';
 
 const EmailAddresses = ({
   emails,
@@ -96,7 +91,7 @@ const EmailAddresses = ({
       mainContent={
         <div
           className={classNames(
-            'rounded-md shadow bg-white px-4 py-5 sm:p-6 ',
+            'rounded-md shadow px-4 py-5 sm:p-6 ',
             emailBodyContainer,
           )}
         >
@@ -105,14 +100,10 @@ const EmailAddresses = ({
               <li className="py-4" key={address}>
                 <div className="flex flex-wrap items-center justify-between">
                   <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
-                    <div className="truncate text-sm font-medium text-slate-900">
+                    <div className="truncate text-sm font-medium text-slate-900 dark:text-white">
                       {address}
                     </div>
-                    <Badge
-                      className="flex-shrink-0"
-                      text={STATUS[verified]}
-                      color={verified ? 'green' : 'red'}
-                    />
+                    <ActiveInActive isActive={verified} />
                   </div>
                   <div className="my-1 flex items-center cursor-pointer">
                     {enableVerification && (
@@ -168,13 +159,15 @@ const EmailAddresses = ({
                     defaultMessage: 'Email',
                   })}
                 />
-                <SubmitButton
-                  className="flex-shrink-0"
-                  label={formatMessage({
-                    id: 'add_email',
-                    defaultMessage: 'Add email',
-                  })}
-                />
+                <span className="flex-shrink-0 flex items-end">
+                  <SubmitButton
+                    className="py-2.5"
+                    label={formatMessage({
+                      id: 'add_email',
+                      defaultMessage: 'Add email',
+                    })}
+                  />
+                </span>
               </div>
             </div>
           </Form>

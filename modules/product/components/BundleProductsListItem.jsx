@@ -21,6 +21,8 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
                 width={160}
                 height={100}
                 alt={product?.texts?.title || product?.texts?.subtitle}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
             </div>
           </div>
@@ -29,8 +31,12 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         )}
 
         <div className="shrink grow basis-1/2">
-          <h3 className="text-lg text-slate-800">{product?.texts?.title}</h3>
-          <p className="text-xs text-slate-600">{product?.texts?.subtitle}</p>
+          <h3 className="text-lg text-slate-800 dark:text-white">
+            {product?.texts?.title}
+          </h3>
+          <p className="text-xs text-slate-600 dark:text-white">
+            {product?.texts?.subtitle}
+          </p>
         </div>
 
         <div className="ml-auto">
@@ -38,7 +44,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         </div>
       </div>
 
-      <DeleteButton onClick={() => onDelete(index)} />
+      <DeleteButton onClick={() => onDelete(index)} className="ml-2" />
     </div>
   );
 };

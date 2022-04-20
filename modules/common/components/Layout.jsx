@@ -10,20 +10,26 @@ import {
   UserIcon,
   LightningBoltIcon,
 } from '@heroicons/react/outline';
+import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
+import getConfig from 'next/config';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../data/roles';
+import useShopInfo from '../hooks/useShopInfo';
 
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
+import getLogo from '../utils/getLogo';
+
+const { publicRuntimeConfig } = getConfig();
 
 const Layout = ({
   children,
@@ -35,13 +41,21 @@ const Layout = ({
 }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+  const { shopInfo } = useShopInfo();
+  const { resetAuth } = useAuth();
+  const [hideNav, setHideNav] = useState(true);
+
+  const showCustomReports =
+    publicRuntimeConfig.showCustomReports ??
+    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
+  const logo = getLogo();
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
       icon: HomeIcon,
       href: '/',
     },
-    {
+    showCustomReports && {
       name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
       icon: ChartBarIcon,
       children: [
@@ -177,8 +191,16 @@ const Layout = ({
       icon: UserIcon,
       href: '/account',
     },
-  ];
-  const { resetAuth } = useAuth();
+    shopInfo?.externalLinks?.length && {
+      name: formatMessage({ id: 'extensions', defaultMessage: 'Extensions' }),
+      icon: LinkIcon,
+      href: '/',
+      children: shopInfo.externalLinks.map((link) => ({
+        name: link.title,
+        href: link.href,
+      })),
+    },
+  ].filter(Boolean);
 
   const onLogout = async () => {
     const id = currentUser?._id;
@@ -192,8 +214,6 @@ const Layout = ({
     resetAuth(id);
     router.push('/log-in');
   };
-
-  const [hideNav, setHideNav] = useState(true);
 
   return (
     <div>
@@ -209,7 +229,7 @@ const Layout = ({
           aria-hidden="true"
         />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-600">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               type="button"
@@ -246,10 +266,12 @@ const Layout = ({
               <Link href="/">
                 <a>
                   <Image
-                    src="/logo.svg"
+                    src={logo}
                     loader={defaultNextImageLoader}
                     width={125}
                     height={100}
+                    placeholder="blur"
+                    blurDataURL="/placeholder.png"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',
@@ -266,17 +288,19 @@ const Layout = ({
         </div>
       </div>
 
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white">
+      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-800 dark:text-white">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white dark:bg-slate-600">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
                 <a>
                   <Image
-                    src="/logo.svg"
+                    src={logo}
                     loader={defaultNextImageLoader}
                     width={175}
                     height={100}
+                    placeholder="blur"
+                    blurDataURL="/placeholder.png"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',

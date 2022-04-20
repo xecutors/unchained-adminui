@@ -11,6 +11,7 @@ import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 
 const FilterTextForm = ({ filterId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -65,43 +66,45 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
         defaultMessage: 'Text',
       })}
       mainContent={
-        <Form form={form} className="border-slate-200 bg-white pt-2 lg:shadow">
-          <div>
-            <TextField
-              name="title"
-              id="title"
-              label={formatMessage({
-                id: 'title',
-                defaultMessage: 'Title',
-              })}
-              autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium text-slate-500"
-            />
-          </div>
+        <FormWrapper>
+          <Form form={form} className="border-slate-200 pt-2 lg:shadow">
+            <div>
+              <TextField
+                name="title"
+                id="title"
+                label={formatMessage({
+                  id: 'title',
+                  defaultMessage: 'Title',
+                })}
+                autoComplete="on"
+                className="mt-2 px-4 text-sm font-medium"
+              />
+            </div>
 
-          <div>
-            <TextField
-              name="subtitle"
-              id="subtitle"
-              label={formatMessage({
-                id: 'subtitle',
-                defaultMessage: 'Subtitle',
-              })}
-              autoComplete="on"
-              className="mt-2 px-4 text-sm font-medium text-slate-500"
-            />
-          </div>
-          <div className="flex">
-            <SubmitButton
-              hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
-              label={formatMessage({
-                id: 'update_filter',
-                defaultMessage: 'Update filter',
-              })}
-              className="my-4 ml-auto mr-4"
-            />
-          </div>
-        </Form>
+            <div>
+              <TextField
+                name="subtitle"
+                id="subtitle"
+                label={formatMessage({
+                  id: 'subtitle',
+                  defaultMessage: 'Subtitle',
+                })}
+                autoComplete="on"
+                className="mt-2 px-4 text-sm font-medium"
+              />
+            </div>
+            <div className="flex">
+              <SubmitButton
+                hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
+                label={formatMessage({
+                  id: 'update_filter',
+                  defaultMessage: 'Update filter',
+                })}
+                className="my-4 ml-auto mr-4"
+              />
+            </div>
+          </Form>
+        </FormWrapper>
       }
     />
   );

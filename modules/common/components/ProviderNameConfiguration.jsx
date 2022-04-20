@@ -3,7 +3,6 @@ import Badge from './Badge';
 const ProviderNameConfiguration = ({ configuration, color }) => {
   return (
     <div className="flex flex-wrap">
-      {/* TODO Replace with props   */}
       {configuration &&
         configuration.map((config) => (
           <Badge

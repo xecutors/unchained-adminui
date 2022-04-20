@@ -12,9 +12,9 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'space-y-4 bg-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
+            'space-y-4 bg-white dark:bg-slate-600 shadow dark:shadow-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 rounded border-2': snapshot.isDraggingOver,
+              'bg-slate-100 p': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}
@@ -23,28 +23,30 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
           {links.map((link, index) => {
             const { child, parent, _id } = link;
             const comp = [];
-            if (parent && parent._id !== currentAssortmentId)
+            if (parent && parent._id !== currentAssortmentId) {
               comp.push(
                 <AssortmentLinksListItem
                   key={parent._id}
                   link={parent}
-                  isParent={parent._id === currentAssortmentId}
+                  isParent={parent?.childrenCount}
                   linkId={_id}
                   onDelete={onRemoveLink}
                   index={index}
                 />,
               );
-            if (child && child._id !== currentAssortmentId)
+            }
+            if (child && child._id !== currentAssortmentId) {
               comp.push(
                 <AssortmentLinksListItem
                   key={child._id}
                   link={child}
                   linkId={_id}
-                  isParent={child._id !== currentAssortmentId}
+                  isParent={child._id === currentAssortmentId}
                   onDelete={onRemoveLink}
                   index={index}
                 />,
               );
+            }
 
             return comp;
           })}

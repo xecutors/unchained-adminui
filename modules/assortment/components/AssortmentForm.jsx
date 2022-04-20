@@ -60,7 +60,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
         />
       </div>
-      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 p-5 text-right">
+      <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 p-5 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.assortments.create)}
           label={formatMessage({

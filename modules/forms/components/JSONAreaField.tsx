@@ -59,26 +59,25 @@ const JSONAreaField = ({
 
   return (
     <FieldWrapper {...field}>
-      <>
-        <JSONView
-          className={classnames(
-            'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
-            {
-              'border-red-300 text-red-600 focus:border-red-600 focus:ring-red-600':
-                !!field.error,
-            },
-          )}
-          disabled={field.disabled}
-          id={field.name}
-          name={field.name}
-          onChange={handleOnChange}
-          onBlur={handleOnBlur}
-          placeholder={field.placeholder}
-          autoComplete={field.autoComplete}
-          value={field.value}
-          rows={Math.max(field.value?.split(' ')?.length / 2, rows)}
-        />
-      </>
+      <JSONView
+        className={classnames(
+          'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 dark:bg-slate-600 dark:text-white shadow-sm dark:shadow-white focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
+          {
+            'border-red-300 text-red-600 focus:border-red-600 focus:ring-red-600':
+              !!field.error,
+          },
+          props.className,
+        )}
+        disabled={field.disabled}
+        id={field.name}
+        name={field.name}
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        placeholder={field.placeholder}
+        autoComplete={field.autoComplete}
+        value={field.value}
+        rows={Math.max(field.value?.split(' ')?.length / 2, rows)}
+      />
     </FieldWrapper>
   );
 };

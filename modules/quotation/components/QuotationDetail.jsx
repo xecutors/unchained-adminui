@@ -175,6 +175,8 @@ const QuotationDetail = ({ quotation }) => {
                   layout="responsive"
                   width="100"
                   height={100}
+                  placeholder="blur"
+                  blurDataURL="/placeholder.png"
                 />
               </div>
             </div>

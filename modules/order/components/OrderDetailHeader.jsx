@@ -2,13 +2,14 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Badge from '../../common/components/Badge';
 import DetailHeader from '../../common/components/DetailHeader';
+import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
   return (
-    <div className="bg-white rounded-md shadow p-4 space-y-5 ">
+    <div className="bg-white dark:bg-slate-600 rounded-md shadow dark:shadow-white p-4 space-y-5 ">
       <div className="flex items-center justify-between">
         <span className="text-sm block mr-3">
           {formatMessage({
@@ -17,9 +18,9 @@ const OrderDetailHeader = ({ order }) => {
           })}
           &nbsp;
         </span>
-        <span className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-bold">
+        <span className="inline-flex text-lg font-medium text-slate-900 dark:text-white sm:text-xl sm:font-bold">
           <span className="sm:hidden">&#35;&nbsp;</span>
-          {order.orderNumber ? (
+          {order?.orderNumber ? (
             <Badge
               text={order.orderNumber}
               square
@@ -46,9 +47,7 @@ const OrderDetailHeader = ({ order }) => {
         <div className="">
           <span>{order?.country?.flagEmoji}</span>
           <span className="mr-1">
-            {new Intl.DisplayNames([locale], {
-              type: 'currency',
-            }).of(order?.currency?.isoCode)}
+            {normalizeCurrencyISOCode(locale, order?.currency?.isoCode)}
           </span>
           <span>
             {order?.currency?.isoCode && (

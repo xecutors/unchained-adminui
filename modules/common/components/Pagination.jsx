@@ -18,9 +18,10 @@ const Step = ({ onClick, disabled, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'relative inline-flex items-center border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50',
+        'relative inline-flex items-center border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500',
         {
-          'z-10 border-indigo-500 bg-indigo-50 text-indigo-600 ': disabled,
+          'z-10 border-indigo-500 bg-indigo-50 text-indigo-600 dark:bg-slate-500 dark:border-indigo-300 dark:text-white':
+            disabled,
         },
       )}
     >
@@ -142,7 +143,9 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   defaultMessage="<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
                   values={{
                     p: (chunks) => (
-                      <p className="text-sm text-slate-700">{chunks}</p>
+                      <p className="text-sm text-slate-700 dark:text-white">
+                        {chunks}
+                      </p>
                     ),
                     span: (chunks) => (
                       <span className="font-medium">{chunks}</span>
@@ -164,7 +167,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   disabled={!offset}
                   onClick={() => changeOffset(offset - limit)}
                   className={classNames(
-                    'relative inline-flex items-center rounded-l-md border border-slate-300 bg-white px-2 py-2 text-sm font-medium text-slate-600  hover:bg-slate-50',
+                    'relative inline-flex items-center rounded-l-md border border-slate-300 bg-white dark:bg-slate-600 px-2 py-2 text-sm font-medium text-slate-600  hover:bg-slate-50 dark:hover:bg-slate-500',
                     {
                       'text-slate-200': !offset,
                     },
@@ -198,7 +201,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   onClick={() => changeOffset(offset + limit)}
                   disabled={offset + limit >= total}
                   className={classNames(
-                    'relative inline-flex items-center rounded-r-md border border-slate-300 bg-white px-2 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50',
+                    'relative inline-flex items-center rounded-r-md border border-slate-300 bg-white dark:bg-slate-600 px-2 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500',
                     {
                       'text-slate-200': offset + limit >= total,
                     },
@@ -231,7 +234,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={!offset}
               onClick={() => changeOffset(offset - limit)}
-              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
             >
               {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
             </button>
@@ -242,7 +245,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
                   id="location"
                   defaultValue={DefaultLimit}
                   name="location"
-                  className="block h-8 w-full   rounded-md border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+                  className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
                 >
                   {LimitSteps.map((l) => (
                     <option key={l} value={l}>
@@ -256,7 +259,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={offset + limit >= total}
               onClick={() => changeOffset(offset + limit)}
-              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
             >
               {formatMessage({ id: 'next', defaultMessage: 'Next' })}
             </button>
@@ -271,7 +274,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
             id="location"
             defaultValue={limit}
             name="location"
-            className=" block h-8 w-full   rounded-md border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           >
             {LimitSteps.map((l) => (
               <option key={l} value={l}>

@@ -15,30 +15,29 @@ const GetCurrentTab = ({ list, selectedView }) => {
   if (!list) return <Loading />;
   const {
     newProducts,
-    updatedProducts,
     removedProducts,
     newAssortments,
-    updatedAssortments,
+    removedAssortments,
     newFilters,
-    updatedFilters,
+    removedFilters,
   } = list;
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'updated-assortments')
-    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
+  if (selectedView === 'removed-assortments')
+    return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
-  if (selectedView === 'updated-products')
-    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
+
   if (selectedView === 'removed-products')
     return <ProductsAlphabeticalList dictionary={removedProducts} />;
   if (selectedView === 'new-filters')
     return <FiltersAlphabeticalList dictionary={newFilters} />;
-  if (selectedView === 'updated-filters')
-    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
 
-  return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
+  if (selectedView === 'removed-filters')
+    return <FiltersAlphabeticalList dictionary={removedFilters} />;
+
+  return <AssortmentAlphabeticalList dictionary={newAssortments} />;
 };
 
 const Wrapper = ({ selectedView, list }) => {
@@ -62,7 +61,7 @@ const Wrapper = ({ selectedView, list }) => {
         <input
           type="text"
           name="search"
-          className="block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full dark:bg-slate-600 dark:text-white dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
           onChange={handleOnChange}
           autoComplete="off"
           value={searchKey}
@@ -101,6 +100,13 @@ const DailyAnalyticsReportList = () => {
       }),
     },
     {
+      id: 'removed-assortments',
+      title: formatMessage({
+        id: 'removed_assortments',
+        defaultMessage: 'Removed Assortments',
+      }),
+    },
+    {
       id: 'new-products',
       title: formatMessage({
         id: 'new_products',
@@ -135,6 +141,13 @@ const DailyAnalyticsReportList = () => {
         defaultMessage: 'Updated filters',
       }),
     },
+    {
+      id: 'removed-filters',
+      title: formatMessage({
+        id: 'removed_filters',
+        defaultMessage: 'Removed filters',
+      }),
+    },
   ];
   const { query } = useRouter();
 
@@ -144,31 +157,49 @@ const DailyAnalyticsReportList = () => {
 
   if (loading || !work) return <Loading />;
 
-  const { assortments, filters, products } = work.result;
+  const { sync } = work.result || {};
+  const { stats } = sync || {};
+  const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    assortments?.new,
+    categories?.newCategories,
     'title',
     true,
   );
-  const updatedAssortments = sortArrayAlphabetically(
-    assortments?.updated,
+
+  const removedAssortments = sortArrayAlphabetically(
+    categories?.removedCategories,
     'title',
     true,
   );
-  const newProducts = sortArrayAlphabetically(products?.new, 'title', true);
-  const updatedProducts = sortArrayAlphabetically(
+
+  /*   const updatedAssortments = sortArrayAlphabetically(
+    categories?.updated,
+    'title',
+    true,
+  ); */
+  const newProducts = sortArrayAlphabetically(
+    products?.newItems,
+    'title',
+    true,
+  );
+  /*   const updatedProducts = sortArrayAlphabetically(
     products?.updated,
     'title',
     true,
-  );
+  ); */
   const removedProducts = sortArrayAlphabetically(
-    products?.removed,
+    products?.removedItems,
     'title',
     true,
   );
-  const newFilters = sortArrayAlphabetically(filters?.new, 'key', true);
-  const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true);
+  const newFilters = sortArrayAlphabetically(filters?.newItems, 'key', true);
+  const removedFilters = sortArrayAlphabetically(
+    filters?.removedItems,
+    'key',
+    true,
+  );
+  /* const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true); */
 
   return (
     <>
@@ -183,11 +214,14 @@ const DailyAnalyticsReportList = () => {
         <Wrapper
           list={{
             newAssortments,
+            removedAssortments,
             newFilters,
             newProducts,
-            updatedAssortments,
-            updatedFilters,
-            updatedProducts,
+
+            updatedAssortments: [],
+            updatedFilters: [],
+            removedFilters,
+            updatedProducts: [],
             removedProducts,
           }}
         />

@@ -5,7 +5,7 @@ import SyncReportListItem from './SyncReportListItem';
 const SyncReportList = ({ data }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="overflow-hidden bg-white shadow sm:rounded-b">
+    <div className="overflow-hidden bg-white dark:bg-slate-600 shadow sm:rounded-b">
       {!data?.length && (
         <NoData
           message={formatMessage({

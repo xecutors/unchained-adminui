@@ -14,7 +14,7 @@ const ProductFilter = () => {
       <div className="col-span-6 sm:col-span-3">
         <TagInput
           buttonText={formatMessage({
-            id: 'add_tag',
+            id: 'add',
             defaultMessage: 'Add',
           })}
           tagList={router?.query?.tags?.split(',')}

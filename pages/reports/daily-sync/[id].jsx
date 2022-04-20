@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { format, formatDuration } from 'date-fns';
+import { formatDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import subDays from 'date-fns/subDays';
@@ -16,11 +16,22 @@ import useWork from '../../../modules/work/hooks/useWork';
 import SyncCategorySummary from '../../../modules/sync/components/SyncCategorySummary';
 import SyncChangeIcon from '../../../modules/sync/components/SyncChangeIcon';
 import useDailySyncs from '../../../modules/sync/hooks/useDailySyncs';
+import useFormatDateTime from '../../../modules/common/utils/useFormatDateTime';
 
 const SyncDetail = () => {
   const [today, setToday] = useState(new Date());
   const { query } = useRouter();
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
+
+  const options = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
 
   useEffect(() => {
     setToday(new Date());
@@ -78,7 +89,7 @@ const SyncDetail = () => {
           </Link>
         </div>
         <div className="text-sm">
-          <h6 className="flex justify-between text-slate-400">
+          <h6 className="flex justify-between text-slate-400 dark:text-white">
             <span className="mr-2">
               {formatMessage({
                 id: 'started',
@@ -86,11 +97,9 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>
-              {format(new Date(result?.startedFrom), 'yyyy-MM-dd HH:mm')}
-            </span>
+            <span>{formatDateTime(result?.startedFrom, options)}</span>
           </h6>
-          <h6 className="flex justify-between text-slate-900">
+          <h6 className="flex justify-between text-slate-900 dark:text-white">
             <span className="mr-2">
               {formatMessage({
                 id: 'finished',
@@ -98,27 +107,25 @@ const SyncDetail = () => {
               })}
               :
             </span>
-            <span>
-              {format(new Date(result?.startedEnd), 'yyyy-MM-dd HH:mm')}
-            </span>
+            <span>{formatDateTime(result?.startedEnd, options)}</span>
           </h6>
         </div>
       </div>
-      <dl className="2xl:divide mt-5 grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-lg bg-white shadow-lg md:divide-x xl:grid-cols-3">
-        <div className="2xl: col-span-2 mx-auto max-w-none px-4 py-2 sm:p-2 xl:col-span-1">
+      <dl className="2xl:divide mt-5 grid grid-cols-1 divide-y divide-slate-200 overflow-hidden rounded-lg bg-white shadow-md dark:shadow-white md:divide-x xl:grid-cols-3">
+        <div className="col-span-2 mx-auto max-w-none px-4 py-2 sm:p-2 xl:col-span-1">
           <GraphSync dailySync={dailySync} />
         </div>
-        <div className=" col-span-2 py-5 sm:col-span-1 sm:p-6 ">
-          <dt className="text-base font-normal text-slate-900">
+        <div className="col-span-2 py-5 sm:col-span-1 sm:p-6 bg-white dark:bg-slate-600">
+          <dt className="text-base font-normal text-slate-900 dark:text-white">
             {formatMessage({
               id: 'total_products',
               defaultMessage: 'Total products',
             })}
           </dt>
           <dd className="mt-1 flex items-baseline md:block lg:flex xl:space-x-7">
-            <div className="flex items-baseline text-2xl font-semibold text-indigo-600">
+            <div className="flex items-baseline text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
               {stats.products?.total || 0}
-              <span className="ml-2 text-sm font-medium text-slate-500">
+              <span className="ml-2 text-sm font-medium text-slate-500 dark:text-slate-400">
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
@@ -136,15 +143,15 @@ const SyncDetail = () => {
           </dd>
         </div>
 
-        <div className=" col-span-2 flex-wrap py-5 sm:col-span-1  sm:p-6">
-          <dt className="flex-wrap text-base font-normal text-slate-900">
+        <div className="col-span-2 flex-wrap py-5 sm:col-span-1 sm:p-6 bg-white dark:bg-slate-600">
+          <dt className="flex-wrap text-base font-normal text-slate-900 dark:text-white">
             {formatMessage({
               id: 'import_duration',
               defaultMessage: 'Duration of import',
             })}
           </dt>
           <dd className="mt-1 items-baseline  ">
-            <div className="flex flex-wrap items-baseline text-2xl font-semibold text-indigo-600">
+            <div className="flex flex-wrap items-baseline text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
               {formatDuration({
                 hours: Math.floor(durationInMilliSeconds / 1000 / 60 / 60) % 24,
                 minutes: Number(
@@ -163,7 +170,7 @@ const SyncDetail = () => {
           defaultMessage: 'Categories',
         })}
         newItemsRoute="new-assortments"
-        updatedItemsRoute="updated-assortments"
+        removedItemsRoute="removed-assortments"
         statistics={stats.categories}
       />
 
@@ -173,7 +180,6 @@ const SyncDetail = () => {
           defaultMessage: 'Products',
         })}
         newItemsRoute="new-products"
-        updatedItemsRoute="updated-products"
         removedItemsRoute="removed-products"
         statistics={stats.products}
       />
@@ -184,7 +190,7 @@ const SyncDetail = () => {
           defaultMessage: 'Filters',
         })}
         newItemsRoute="new-filters"
-        updatedItemsRoute="updated-filters"
+        removedItemsRoute="removed-filters"
         statistics={stats.filters}
       />
     </>

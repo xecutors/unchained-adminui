@@ -20,7 +20,6 @@ export const ShopInfoQuery = gql`
           isoCode
         }
       }
-
       externalLinks {
         href
         title

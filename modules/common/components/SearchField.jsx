@@ -12,7 +12,7 @@ const SearchField = ({ inputText, onInputChange }) => {
         <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <svg
-              className="h-5 w-5 text-slate-400"
+              className="h-5 w-5 text-slate-400 dark:text-slate-200"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -29,7 +29,7 @@ const SearchField = ({ inputText, onInputChange }) => {
             onChange={(e) => onInputChange(e.target.value)}
             id="search"
             name="search"
-            className="block w-full max-w-lg rounded-md border-2 border-slate-300 bg-white py-2 pl-10 pr-3 text-sm shadow-sm "
+            className="block w-full max-w-lg rounded-md border-2 border-slate-300 bg-white dark:placeholder:text-slate-200 dark:bg-slate-600 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-white"
             placeholder={formatMessage({
               id: 'search',
               defaultMessage: 'Search',

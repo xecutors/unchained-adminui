@@ -8,6 +8,7 @@ import {
   initializeApollo,
 } from '../../modules/apollo/apolloClient';
 import defaultNextImageLoader from '../../modules/common/utils/defaultNextImageLoader';
+import getLogo from '../../modules/common/utils/getLogo';
 
 const ForgotPassword = () => {
   const { forgotPassword } = useForgotPassword();
@@ -34,22 +35,26 @@ const ForgotPassword = () => {
     return { success: true, data: { email } };
   };
 
+  const logo = getLogo();
+
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 text-center">
         <div>
           <Image
             className="mx-auto"
-            src="/logo.svg"
+            src={logo}
             loader={defaultNextImageLoader}
             width={160}
             height={100}
+            placeholder="blur"
+            blurDataURL="/placeholder.png"
             alt={formatMessage({
               id: 'unchained_logo',
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-white">
             {formatMessage({
               id: 'forgot_password',
               defaultMessage: 'Forgot your password?',

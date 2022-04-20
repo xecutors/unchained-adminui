@@ -30,6 +30,8 @@ const DetailHeader = ({ user, contact }) => {
             alt={user.name || user.username}
             width={8}
             height={8}
+            placeholder="blur"
+            blurDataURL="/placeholder.png"
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -45,6 +47,8 @@ const DetailHeader = ({ user, contact }) => {
                 alt={user.name || user.username}
                 width={8}
                 height={8}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
             ) : (
               <FallbackAvatar username={user?.username} />
@@ -52,8 +56,8 @@ const DetailHeader = ({ user, contact }) => {
           </span>
           <span className="flex items-center">
             <h3 className="ml-3 text-xl font-bold capitalize">
-              <Link href={`/users/${user._id}`}>
-                <a className="text-blue-500 hover:text-blue-600">
+              <Link href={`/users/${user?._id}`}>
+                <a className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300">
                   {user?.name ? user.name : user?.username}
                 </a>
               </Link>

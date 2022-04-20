@@ -27,7 +27,7 @@ const AssortmentProducts = ({ assortmentId }) => {
         message={formatMessage({
           id: 'delete_product_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
+            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product? ',
         })}
         onOkClick={async () => {
           setModal('');
@@ -72,15 +72,15 @@ const AssortmentProducts = ({ assortmentId }) => {
       return;
     }
 
-    const sortKeys = linkedProducts.map((media) => ({
+    const newSortKeys = linkedProducts.map((media) => ({
       assortmentProductId: media._id,
       sortKey: media.sortKey,
     }));
 
-    const [removedSortKey] = sortKeys.splice(source.index, 1);
-    sortKeys.splice(destination.index, 0, removedSortKey);
+    const [removedSortKey] = newSortKeys.splice(source.index, 1);
+    newSortKeys.splice(destination.index, 0, removedSortKey);
 
-    sortKeys.map((sortKey, index) => ({
+    const sortKeys = newSortKeys.map((sortKey, index) => ({
       ...sortKey,
       sortKey: index,
     }));
@@ -97,7 +97,7 @@ const AssortmentProducts = ({ assortmentId }) => {
       toast.error(
         formatMessage({
           id: 'fail_reorder',
-          defaultMessage: 'Product reorder failed, Try again!',
+          defaultMessage: 'Reordering failed, Try again!',
         }),
       );
     }
@@ -107,13 +107,13 @@ const AssortmentProducts = ({ assortmentId }) => {
     <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
       <div className="md:col-span-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
             {formatMessage({
               id: 'assortment_product',
               defaultMessage: 'Product',
             })}
           </h3>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco
@@ -125,13 +125,13 @@ const AssortmentProducts = ({ assortmentId }) => {
       </div>
       <div className="md:col-span-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
             {formatMessage({
               id: 'assigned_assortment_products',
               defaultMessage: 'Assigned products',
             })}
           </h3>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-white">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco
@@ -140,11 +140,11 @@ const AssortmentProducts = ({ assortmentId }) => {
       </div>
 
       {loading ? (
-        <div className="ml-auto w-full md:col-span-2">
+        <div className="ml-auto w-full md:col-span-2 my-auto">
           <Loading />
         </div>
       ) : (
-        <div className="ml-auto w-full bg-white md:col-span-2">
+        <div className="ml-auto my-auto w-full rounded shadow dark:shadow-white md:col-span-2">
           <DragDropContext onDragEnd={handleDragEnd}>
             <AssortmentProductList
               products={linkedProducts}

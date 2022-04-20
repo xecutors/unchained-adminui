@@ -22,10 +22,10 @@
     "defaultMessage": "Activate"
   },
   "activate_header_conformation": {
-    "defaultMessage": "Are you sure you want to this subscritpion?"
+    "defaultMessage": "Are you sure you want to this subscription?"
   },
   "activate_header_title": {
-    "defaultMessage": "Activate subscritpion."
+    "defaultMessage": "Activate subscription."
   },
   "activated": {
     "defaultMessage": "Activated"
@@ -63,6 +63,9 @@
   "add_language": {
     "defaultMessage": "Add Language"
   },
+  "add_option": {
+    "defaultMessage": "Add Option"
+  },
   "add_options": {
     "defaultMessage": "Add option"
   },
@@ -70,7 +73,7 @@
     "defaultMessage": "Add product"
   },
   "add_tag": {
-    "defaultMessage": "Add"
+    "defaultMessage": "Add tag"
   },
   "add_work": {
     "defaultMessage": "Add Work"
@@ -87,14 +90,14 @@
   "address_notice": {
     "defaultMessage": "This information will be displayed publicly so be careful what you share."
   },
+  "admin_ui": {
+    "defaultMessage": "Admin UI"
+  },
   "allocate_work": {
     "defaultMessage": "Allocate Work"
   },
   "already_got_a_user": {
     "defaultMessage": "Already got a user?"
-  },
-  "amount": {
-    "defaultMessage": "Amount"
   },
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
@@ -104,6 +107,9 @@
   },
   "assigned_assortment_products": {
     "defaultMessage": "Assigned products"
+  },
+  "assigned_products": {
+    "defaultMessage": "Assigned Products"
   },
   "assortment": {
     "defaultMessage": "Assortment"
@@ -149,6 +155,9 @@
   },
   "assortment_media_deleted": {
     "defaultMessage": "Media deleted successfully"
+  },
+  "assortment_media_reorder": {
+    "defaultMessage": "Media reorder successfully"
   },
   "assortment_media_upload": {
     "defaultMessage": "Media uploaded successfully"
@@ -461,7 +470,7 @@
     "defaultMessage": "Delete Product"
   },
   "delete_product_confirmation": {
-    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language?"
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product?"
   },
   "delete_product_media": {
     "defaultMessage": "Delete media"
@@ -508,6 +517,9 @@
   "deleted_text": {
     "defaultMessage": "Deleted"
   },
+  "delivered": {
+    "defaultMessage": "Delivered"
+  },
   "deliveryProviders_deleted": {
     "defaultMessage": "DeliveryProviders deleted successfully"
   },
@@ -515,10 +527,7 @@
     "defaultMessage": "Fee"
   },
   "delivery_information": {
-    "defaultMessage": "Delivery Information"
-  },
-  "delivery_payment_discount_summary": {
-    "defaultMessage": "Delivery, Payment and Discount Summary"
+    "defaultMessage": "Delivery"
   },
   "delivery_provider": {
     "defaultMessage": "Delivery Provider"
@@ -545,7 +554,7 @@
     "defaultMessage": "Discount Amount"
   },
   "discount_information": {
-    "defaultMessage": "Discounts Information"
+    "defaultMessage": "Discounts"
   },
   "discounts": {
     "defaultMessage": "Discounts"
@@ -567,6 +576,9 @@
   },
   "draft": {
     "defaultMessage": "Draft"
+  },
+  "drop_area_empty": {
+    "defaultMessage": "Destination is empty"
   },
   "edit": {
     "defaultMessage": "Edit"
@@ -616,11 +628,14 @@
   "error": {
     "defaultMessage": "Error"
   },
+  "error_403": {
+    "defaultMessage": "403 unauthorized"
+  },
   "error_404": {
     "defaultMessage": "404 error"
   },
   "error_server": {
-    "defaultMessage": "There was a problem on the server ({details}). Please try again later."
+    "defaultMessage": "{details}"
   },
   "event": {
     "defaultMessage": "Events"
@@ -636,6 +651,12 @@
   },
   "expires": {
     "defaultMessage": "Expires"
+  },
+  "extensions": {
+    "defaultMessage": "Extensions"
+  },
+  "fail_reorder": {
+    "defaultMessage": "Reordering failed, Try again!"
   },
   "fail_upload": {
     "defaultMessage": "Media upload failed"
@@ -682,6 +703,9 @@
   "filter_option_value": {
     "defaultMessage": "Value"
   },
+  "filter_reorder": {
+    "defaultMessage": "Filter reorder successfully"
+  },
   "filter_type": {
     "defaultMessage": "Filter Type"
   },
@@ -727,11 +751,23 @@
   "go_back_home": {
     "defaultMessage": "Go back home"
   },
+  "go_to_login": {
+    "defaultMessage": "Go to login"
+  },
   "guest": {
     "defaultMessage": "Guest"
   },
+  "header_conformation": {
+    "defaultMessage": "This action is nonreversible, are you sure you want to change it to base?"
+  },
+  "header_title": {
+    "defaultMessage": "Assortment base change."
+  },
   "height": {
     "defaultMessage": "Height (Millimeter)"
+  },
+  "here_comes_an_explainer": {
+    "defaultMessage": "Here comes an explainer"
   },
   "home": {
     "defaultMessage": "Home"
@@ -744,6 +780,9 @@
   },
   "in_active": {
     "defaultMessage": "In-Active"
+  },
+  "in_cart": {
+    "defaultMessage": "In cart"
   },
   "in_valid": {
     "defaultMessage": "InValid"
@@ -771,7 +810,7 @@
     "defaultMessage": "Interface"
   },
   "invalid_credential_error": {
-    "defaultMessage": "Invalid credential error"
+    "defaultMessage": "Invalid credential, please try again"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
@@ -818,7 +857,10 @@
   "level": {
     "defaultMessage": "Level"
   },
-  "linked-message": {
+  "link_reorder": {
+    "defaultMessage": "Link reorder successfully"
+  },
+  "linked_assortment": {
     "defaultMessage": "Linked assortment"
   },
   "links": {
@@ -826,6 +868,9 @@
   },
   "load_more": {
     "defaultMessage": "Load more"
+  },
+  "loading": {
+    "defaultMessage": "Loading ..."
   },
   "log_created": {
     "defaultMessage": "Created"
@@ -863,19 +908,25 @@
   "manage": {
     "defaultMessage": "Manage"
   },
+  "mark_as_base": {
+    "defaultMessage": "Mark as Base"
+  },
+  "mark_as_delivered": {
+    "defaultMessage": "Mark as delivered"
+  },
+  "mark_as_delivered_question": {
+    "defaultMessage": "Mark as delivered ?"
+  },
   "mark_as_paid": {
     "defaultMessage": "Mark as Paid"
   },
-  "master_data": {
-    "defaultMessage": "Master Data"
+  "mark_as_paid_question": {
+    "defaultMessage": "Mark as paid ?"
   },
   "max_quantity": {
     "defaultMessage": "Max Quantity"
   },
   "media": {
-    "defaultMessage": "Media"
-  },
-  "media_message": {
     "defaultMessage": "Media"
   },
   "media_subtitle": {
@@ -889,12 +940,6 @@
   },
   "message": {
     "defaultMessage": "Message"
-  },
-  "message_media": {
-    "defaultMessage": "Media"
-  },
-  "message_product": {
-    "defaultMessage": "Assigned Products"
   },
   "method": {
     "defaultMessage": "Method"
@@ -960,17 +1005,26 @@
   "no_data_message": {
     "defaultMessage": "<p>No&nbsp;<span> {message} available</span> </p>"
   },
+  "no_error": {
+    "defaultMessage": "Error"
+  },
+  "no_payload": {
+    "defaultMessage": "Payload"
+  },
+  "no_result": {
+    "defaultMessage": "Result"
+  },
   "no_result_found": {
     "defaultMessage": "No result found"
   },
   "no_tag": {
     "defaultMessage": "No Tag"
   },
-  "not_active": {
-    "defaultMessage": "Not Active"
+  "not_access_message": {
+    "defaultMessage": "Sorry, The page you trying to access has restricted access."
   },
   "not_base": {
-    "defaultMessage": "Not Base"
+    "defaultMessage": "Mark as Base"
   },
   "not_found_message": {
     "defaultMessage": "Sorry, we couldn’t find the page you’re looking for."
@@ -993,8 +1047,11 @@
   "order": {
     "defaultMessage": "Order"
   },
+  "order__marked_delivered": {
+    "defaultMessage": "Order marked as delivered successfully"
+  },
   "order_confirmed_success": {
-    "defaultMessage": "Order {id} confirmed successfully"
+    "defaultMessage": "Order confirmed successfully"
   },
   "order_date": {
     "defaultMessage": "Order date"
@@ -1011,8 +1068,11 @@
   "order_number": {
     "defaultMessage": "Order#"
   },
-  "order_payed": {
+  "order_paid": {
     "defaultMessage": "Order payed successfully"
+  },
+  "order_reject_success": {
+    "defaultMessage": "Order rejected successfully"
   },
   "order_total": {
     "defaultMessage": "Order total"
@@ -1041,8 +1101,8 @@
   "pay": {
     "defaultMessage": "PAY"
   },
-  "payment": {
-    "defaultMessage": "Payment"
+  "payload": {
+    "defaultMessage": "Payload"
   },
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
@@ -1051,7 +1111,7 @@
     "defaultMessage": "Fee"
   },
   "payment_information": {
-    "defaultMessage": "Payment information"
+    "defaultMessage": "Payment"
   },
   "payment_provider": {
     "defaultMessage": "Payment provider"
@@ -1086,6 +1146,9 @@
   "previous": {
     "defaultMessage": "Previous"
   },
+  "price": {
+    "defaultMessage": "Price"
+  },
   "priority": {
     "defaultMessage": "Priority"
   },
@@ -1094,6 +1157,9 @@
   },
   "product_added": {
     "defaultMessage": "Product added successfully!"
+  },
+  "product_commerce_info": {
+    "defaultMessage": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified"
   },
   "product_deleted": {
     "defaultMessage": "product {id} deleted successfully"
@@ -1113,6 +1179,9 @@
   "product_media_deleted": {
     "defaultMessage": "Media deleted successfully"
   },
+  "product_media_reorder": {
+    "defaultMessage": "Media reorder successfully"
+  },
   "product_media_upload": {
     "defaultMessage": "Media uploaded successfully"
   },
@@ -1122,8 +1191,14 @@
   "product_quantity": {
     "defaultMessage": "Quantity"
   },
+  "product_reorder": {
+    "defaultMessage": "Product reorder successfully"
+  },
   "product_title": {
     "defaultMessage": "Product"
+  },
+  "product_type": {
+    "defaultMessage": "Product type"
   },
   "product_variation_added": {
     "defaultMessage": "Product variation added successfully"
@@ -1194,11 +1269,20 @@
   "reject_alert_success": {
     "defaultMessage": "Reject {id} verified successfully"
   },
-  "remember_password": {
-    "defaultMessage": "Remember me"
+  "reject_order": {
+    "defaultMessage": "Reject order"
+  },
+  "reject_order_alert_header": {
+    "defaultMessage": "Reject order?"
+  },
+  "reject_rder_alert_button": {
+    "defaultMessage": "Reject"
   },
   "reports": {
     "defaultMessage": "Reports"
+  },
+  "reset_link_sent": {
+    "defaultMessage": "Password reset link sent to {email}"
   },
   "reset_password": {
     "defaultMessage": "Reset password"
@@ -1302,6 +1386,9 @@
   "shipping": {
     "defaultMessage": "Shipping"
   },
+  "shortcuts": {
+    "defaultMessage": "Shortcuts"
+  },
   "show_carts": {
     "defaultMessage": "Show carts"
   },
@@ -1364,7 +1451,7 @@
     "defaultMessage": "Quotation {id} verified successfully"
   },
   "success_message": {
-    "defaultMessage": "Subscritpion successfully activated."
+    "defaultMessage": "Subscription successfully activated."
   },
   "supply": {
     "defaultMessage": "Supply"
@@ -1400,7 +1487,7 @@
     "defaultMessage": "Synced items report"
   },
   "system": {
-    "defaultMessage": "System"
+    "defaultMessage": "System settings"
   },
   "system_information": {
     "defaultMessage": "System Information"
@@ -1463,6 +1550,9 @@
   "type_colon": {
     "defaultMessage": "Type:"
   },
+  "unauthorized_page": {
+    "defaultMessage": "forbidden"
+  },
   "unchained": {
     "defaultMessage": "Unchained Admin UI"
   },
@@ -1520,6 +1610,9 @@
   "user": {
     "defaultMessage": "User"
   },
+  "user_avatar": {
+    "defaultMessage": "User avatar"
+  },
   "user_profile_created": {
     "defaultMessage": "User profile created successfully!"
   },
@@ -1539,7 +1632,7 @@
     "defaultMessage": "Users"
   },
   "users_setting_list_header": {
-    "defaultMessage": "Users setting"
+    "defaultMessage": "User settings"
   },
   "valid": {
     "defaultMessage": "Valid"
@@ -1564,6 +1657,9 @@
   },
   "vendor": {
     "defaultMessage": "Vendor"
+  },
+  "verification_sent_success": {
+    "defaultMessage": "Verification email sent successfully"
   },
   "verify_alert_button": {
     "defaultMessage": "Verify"
@@ -1623,7 +1719,7 @@
     "defaultMessage": "Work #"
   },
   "work_original": {
-    "defaultMessage": "Orginial Work"
+    "defaultMessage": "Original Work"
   },
   "work_priority": {
     "defaultMessage": "Priority"
@@ -1660,8 +1756,5 @@
   },
   "worker_dynamic": {
     "defaultMessage": "{worker}"
-  },
-  "your_roles": {
-    "defaultMessage": "Your roles"
   }
 }

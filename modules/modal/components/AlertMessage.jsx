@@ -18,13 +18,13 @@ const AlertMessage = ({ onOkClick, buttonText, headerText, message, icon }) => {
 
         <div className="mt-3 text-center sm:mt-5">
           <h3
-            className="text-lg font-medium leading-6 text-slate-900"
+            className="text-lg font-medium leading-6 text-slate-900 dark:text-white"
             id="modal-title"
           >
             {headerText}
           </h3>
           <div className="mt-2">
-            <p className="text-sm text-slate-500">{message}</p>
+            <p className="text-sm text-slate-500 dark:text-white">{message}</p>
           </div>
         </div>
       </div>

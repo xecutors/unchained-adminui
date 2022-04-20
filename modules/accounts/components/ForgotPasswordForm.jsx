@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import FormWrapper from '../../common/components/FormWrapper';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -16,56 +17,58 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
     },
   });
   return (
-    <Form
-      form={form}
-      className="mt-8 space-y-6 bg-white px-4 pt-3 pb-8 shadow sm:rounded-lg sm:px-10"
-    >
-      <div>
-        <p className="py-4">
-          {formatMessage({
-            id: 'forgot_password_header_description',
-            defaultMessage:
-              "Enter your email address below and we'll send you a link to reset your password!",
-          })}
-        </p>
-        <EmailField
-          name="email"
-          id="email-address"
-          label={formatMessage({
-            id: 'email_address',
-            defaultMessage: 'Email Address',
-          })}
-          placeholder={formatMessage({
-            id: 'email_address',
-            defaultMessage: 'Email Address',
-          })}
-          required
-        />
-      </div>
+    <FormWrapper>
+      <Form
+        form={form}
+        className="mt-8 space-y-6 px-4 pt-3 pb-8 shadow sm:rounded-lg sm:px-10"
+      >
+        <div>
+          <p className="py-4">
+            {formatMessage({
+              id: 'forgot_password_header_description',
+              defaultMessage:
+                "Enter your email address below and we'll send you a link to reset your password!",
+            })}
+          </p>
+          <EmailField
+            name="email"
+            id="email-address"
+            label={formatMessage({
+              id: 'email_address',
+              defaultMessage: 'Email Address',
+            })}
+            placeholder={formatMessage({
+              id: 'email_address',
+              defaultMessage: 'Email Address',
+            })}
+            required
+          />
+        </div>
 
-      <div className="mb-6">
-        <SubmitButton
-          className="w-full "
-          label={formatMessage({
-            id: 'send_rest_link',
-            defaultMessage: 'Send reset link',
+        <div className="mb-6">
+          <SubmitButton
+            className="w-full "
+            label={formatMessage({
+              id: 'send_rest_link',
+              defaultMessage: 'Send reset link',
+            })}
+          />
+        </div>
+        <p className="text-center text-sm text-slate-400">
+          {formatMessage({
+            id: 'dont_have_account',
+            defaultMessage: "Don't have an account yet?",
           })}
-        />
-      </div>
-      <p className="text-center text-sm text-slate-400">
-        {formatMessage({
-          id: 'dont_have_account',
-          defaultMessage: "Don't have an account yet?",
-        })}
-        {'  '}
-        <Link href="/sign-up">
-          <a className="font-semibold text-indigo-500 focus:text-indigo-600 focus:underline focus:outline-none">
-            {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
-          </a>
-        </Link>
-        .
-      </p>
-    </Form>
+          {'  '}
+          <Link href="/sign-up">
+            <a className="font-semibold text-indigo-500 dark:text-indigo-400 focus:text-indigo-600 dark:hover:text-indigo-300 focus:underline focus:outline-none">
+              {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
+            </a>
+          </Link>
+          .
+        </p>
+      </Form>
+    </FormWrapper>
   );
 };
 

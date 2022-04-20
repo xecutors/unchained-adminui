@@ -8,8 +8,8 @@ const BundleProducts = ({ productId }) => {
         <div className="mb-5 lg:col-span-4 lg:pr-5">
           <BundleProductsForm productId={productId} />
         </div>
-        <div className="col-span-5 ml-auto border-slate-200 bg-white px-8 shadow-md lg:w-full">
-          <div className="divide-y divide-slate-200 py-4">
+        <div className="col-span-5 ml-auto bg-white dark:bg-slate-600 px-8 shadow-md dark:shadow-white lg:w-full">
+          <div className="py-4">
             <BundleProductList productId={productId} />
           </div>
         </div>

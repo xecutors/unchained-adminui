@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import NoImage from '../../common/components/NoImage';
 import Table from '../../common/components/Table';
 import { ORDER_STATUSES } from '../../common/data/miscellaneous';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
@@ -16,9 +17,9 @@ const OrderListItem = ({ order, showUser }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm">
           <Link href={`/orders/${order._id}`}>
-            <a className="font-medium text-blue-500">
+            <a className="font-medium text-blue-500 dark:text-blue-400">
               {order?.orderNumber || (
                 <>
                   {order._id}{' '}
@@ -33,30 +34,33 @@ const OrderListItem = ({ order, showUser }) => {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-500">
+        <div className="flex items-center text-sm">
           {order.ordered
             ? format(new Date(order.ordered), 'yyyy-MM-dd HH:mm')
             : 'n/a'}
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-500">
+        <div className="flex items-center text-sm">
           {formatPrice(order.total)}
         </div>
       </Table.Cell>
       {showUser && order.user && (
         <Table.Cell>
-          <Link href={`/order/${order.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 hover:text-decoration">
-              <Image
-                loader={defaultNextImageLoader}
-                src={order.user?.avatar?.url || 'product_placeholder.png'}
-                width={20}
-                height={20}
-                onError={() => '/product_placeholder.png'}
-                placeholder="blur"
-                blurDataURL="/product_placeholder.png"
-              />
+          <Link href={`/users/${order.user._id}`}>
+            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
+              {order.user?.avatar?.url ? (
+                <Image
+                  loader={defaultNextImageLoader}
+                  src={order.user?.avatar?.url}
+                  width={20}
+                  height={20}
+                  placeholder="blur"
+                  blurDataURL="/placeholder.png"
+                />
+              ) : (
+                <NoImage />
+              )}
               <span className="font-medium ml-2">{order.user?.username}</span>
             </a>
           </Link>

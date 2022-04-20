@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+import FormWrapper from '../../common/components/FormWrapper';
 import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
@@ -41,41 +42,43 @@ const WarehousingForm = ({ productId }) => {
   }, [product]);
 
   return (
-    <Form className="rounded shadow" form={form}>
-      <div className="relative bg-white px-4 pb-5 sm:p-6">
-        <div className="w-full justify-between align-baseline">
-          <TextField
-            name="sku"
-            id="sku"
-            label={formatMessage({
-              id: 'sku',
-              defaultMessage: 'SKU',
-            })}
-            className="mb-4 text-sm font-medium text-slate-500"
-          />
+    <FormWrapper>
+      <Form className="rounded" form={form}>
+        <div className="relative px-4 pb-5 sm:p-6">
+          <div className="w-full justify-between align-baseline">
+            <TextField
+              name="sku"
+              id="sku"
+              label={formatMessage({
+                id: 'sku',
+                defaultMessage: 'SKU',
+              })}
+              className="mb-4 text-sm font-medium"
+            />
 
-          <TextField
-            name="baseUnit"
-            id="baseUnit"
+            <TextField
+              name="baseUnit"
+              id="baseUnit"
+              label={formatMessage({
+                id: 'baseUnit',
+                defaultMessage: 'Base Unit',
+              })}
+              className="text-sm font-medium "
+            />
+          </div>
+        </div>
+        <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+          <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.products.updateWarehousing)}
             label={formatMessage({
-              id: 'baseUnit',
-              defaultMessage: 'Base Unit',
+              id: 'save',
+              defaultMessage: 'Save',
             })}
-            className="text-sm font-medium text-slate-500"
+            full
           />
         </div>
-      </div>
-      <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 text-right sm:p-6">
-        <SubmitButton
-          hidden={!hasRole(ACTION_ROLES.products.updateWarehousing)}
-          label={formatMessage({
-            id: 'save',
-            defaultMessage: 'Save',
-          })}
-          full
-        />
-      </div>
-    </Form>
+      </Form>
+    </FormWrapper>
   );
 };
 

@@ -15,6 +15,7 @@ import Layout from '../modules/common/components/Layout';
 
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
+import ThemeToggle from '../modules/common/components/ThemeToggle';
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
             draggable
             pauseOnHover
           />
+          <ThemeToggle />
           <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
         </AuthWrapper>
       </IntlWrapper>

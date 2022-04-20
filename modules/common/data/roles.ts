@@ -193,11 +193,14 @@ export const ROUTE_ROLES = {
   '/delivery-provider/[deliveryProviderId]':
     ACTION_ROLES.deliveryProviders.manage,
   '/delivery-provider': ACTION_ROLES.deliveryProviders.manage,
+  '/delivery-provider/new': ACTION_ROLES.deliveryProviders.manage,
   '/payment-provider/[paymentProviderId]': ACTION_ROLES.paymentProviders.manage,
   '/payment-provider': ACTION_ROLES.paymentProviders.manage,
+  '/payment-provider/new': ACTION_ROLES.paymentProviders.manage,
   '/warehousing-provider/[warehousingProviderId]':
     ACTION_ROLES.warehousingProviders.manage,
   '/warehousing-provider': ACTION_ROLES.warehousingProviders.manage,
+  '/warehousing-provider/new': ACTION_ROLES.warehousingProviders.manage,
   '/users': ACTION_ROLES.users.manage,
   '/users/[userId]': ACTION_ROLES.users.manage,
   '/users/new': UNRESTRICTED,
@@ -211,6 +214,8 @@ export const ROUTE_ROLES = {
   '/sign-up': UNRESTRICTED,
   '/404': UNRESTRICTED,
   '/403': UNRESTRICTED,
+  '/orders/[orderId]': ACTION_ROLES.orders.manage,
+  '/orders': ACTION_ROLES.orders.manage,
 };
 
 export default ACTION_ROLES;

@@ -5,9 +5,10 @@ import { classNames } from '../utils/utils';
 
 const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
+
   const { formatDateTime } = useFormatDateTime();
 
-  const { content, id: currentId } = timeline[data.status];
+  const { content, id: currentId } = timeline[data?.status];
 
   const status = statusTypes.filter(({ value }) => timeline[value]?.visible);
 
@@ -46,7 +47,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <div className="ml-4 flex min-w-0 flex-1 items-center justify-between">
                     <div className="flex-auto">
                       <p className="text-sm text-slate-500">
-                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900">
+                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900 dark:text-white">
                           {value}
                           {timeline[value]?.Component &&
                             timeline[value].Component}
@@ -54,7 +55,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {currentId >= timeline[value].id ? (
-                      <div className="whitespace-nowrap text-right text-sm text-slate-500 ml-4">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-white ml-4">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content])
                           : null}
@@ -114,7 +115,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ? timeline[value].Component
                       : value}
                   </span>
-                  <span className="block text-slate-900">
+                  <span className="block text-slate-900 dark:text-white">
                     {currentId >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           month: 'short',

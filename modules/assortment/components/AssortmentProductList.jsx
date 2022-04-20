@@ -11,9 +11,9 @@ const AssortmentProductsList = ({ products, onRemoveProduct }) => {
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'space-y-4 block py-3 rounded px-6 bg-white transition-[background-color] ease-in-out delay-200',
+            'space-y-4 block py-3 rounded px-6 bg-white dark:bg-slate-600 shadow dark:shadow-white transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 border-2 rounded': snapshot.isDraggingOver,
+              'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}

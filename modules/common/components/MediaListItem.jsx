@@ -52,9 +52,10 @@ const MediaListItem = ({
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex flex-wrap gap-4 rounded bg-white hover:cursor-move',
+            'flex flex-wrap gap-4 rounded hover:cursor-move',
             {
-              'bg-slate-100 border-2 rounded': snapshot.isDragging,
+              'bg-slate-100 dark:bg-slate-400 border-2 rounded':
+                snapshot.isDragging,
             },
           )}
         >
@@ -63,7 +64,7 @@ const MediaListItem = ({
               <img
                 src={media?.file?.url}
                 alt={mediaText?.title || mediaText?.subtitle}
-                className="h-36 w-36 flex-none rounded-md bg-slate-100 object-cover object-center"
+                className="h-36 w-36 flex-none rounded-md bg-slate-10 object-cover object-center"
               />
             </a>
 
@@ -72,7 +73,7 @@ const MediaListItem = ({
                 {media?.tags.map((tag, i) => (
                   <span
                     key={`${tag}${i + 1}`}
-                    className="rounded border bg-white px-1 text-sm font-light capitalize text-slate-900 shadow-sm"
+                    className="rounded border px-1 text-sm font-light capitalize text-slate-900 dark:text-white shadow-sm dark:shadow-white"
                   >
                     {tag}
                   </span>
@@ -84,8 +85,8 @@ const MediaListItem = ({
           <div className="my-auto flex-1 basis-1/3">
             <Form form={form}>
               <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
-                <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium">
-                  <h3 className="text-slate-900">
+                <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium text-slate-900 dark:text-white">
+                  <h3>
                     {isEdit ? (
                       <TextField
                         name="title"
@@ -106,7 +107,7 @@ const MediaListItem = ({
                       </>
                     )}
                   </h3>
-                  <p className="text-slate-900 sm:block">
+                  <p className="sm:block">
                     {isEdit ? (
                       <TextField
                         name="subtitle"

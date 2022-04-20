@@ -22,7 +22,7 @@ const QuotationListItem = ({ quotation }) => {
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
           <Link href={`/quotations/${quotation._id}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {quotation?.orderNumber || quotation._id?.substr(0, 10)}
             </a>
           </Link>
@@ -54,12 +54,14 @@ const QuotationListItem = ({ quotation }) => {
 
       <Table.Cell>
         <Link href={`/users/${quotation.user._id}`}>
-          <a className="flex text-blue-500">
+          <a className="flex text-blue-500 dark:text-blue-400">
             <Image
               loader={defaultNextImageLoader}
               src={quotation.user?.avatar?.url}
               width={40}
               height={20}
+              placeholder="blur"
+              blurDataURL="/placeholder.png"
             />
             <span className="ml-2 self-end">{quotation.user?.username}</span>
           </a>
@@ -69,12 +71,14 @@ const QuotationListItem = ({ quotation }) => {
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
           <Link href={`/products/${quotation.product._id}`}>
-            <a className="flex text-blue-600">
+            <a className="flex text-blue-600 dark:text-blue-400">
               <Image
                 loader={defaultNextImageLoader}
                 src={quotation.product?.media?.file.url}
                 width={40}
                 height={20}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
               <span className="ml-2 self-end">
                 {quotation?.product.texts.title}

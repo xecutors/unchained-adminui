@@ -24,7 +24,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       <Table.Cell className="whitespace-nowrap">
         <div className="text-sm">
           <Link href={`/enrollments/${enrollment._id}`}>
-            <a className="text-blue-600">
+            <a className="text-blue-600 dark:text-blue-400">
               {enrollment?.orderNumber || enrollment._id?.substr(0, 10)}
             </a>
           </Link>
@@ -55,13 +55,15 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       {showUser && enrollment.user && (
         <Table.Cell className="whitespace-nowrap">
           <Link href={`/users/${enrollment.user._id}`}>
-            <a className="flex items-center text-blue-500">
+            <a className="flex items-center text-blue-500 dark:text-blue-400">
               <span className="inline-block h-9 w-9 rounded-full">
                 <Image
                   loader={defaultNextImageLoader}
                   src={enrollment?.user?.avatar?.url}
                   width={36}
                   height={36}
+                  placeholder="blur"
+                  blurDataURL="/placeholder.png"
                 />
               </span>
               <span className="ml-2">{enrollment.user?.username}</span>
@@ -78,9 +80,11 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
                 loader={defaultNextImageLoader}
                 src={enrollment?.plan?.product?.media?.file?.url}
                 width={20}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
                 height={20}
               />
-              <a className="ml-2 text-blue-600">
+              <a className="ml-2 text-blue-600 dark:text-blue-400">
                 {enrollment?.plan.product.texts.title}
               </a>
             </span>
