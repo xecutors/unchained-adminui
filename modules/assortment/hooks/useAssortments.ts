@@ -19,31 +19,7 @@ export const AssortmentsQuery = gql`
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
     ) {
-      ...AssortmentFragment
-      linkedAssortments {
-        _id
-        parent {
-          _id
-        }
-      }
-      children {
-        ...AssortmentFragment
-        linkedAssortments {
-          _id
-          parent {
-            _id
-          }
-        }
-        children {
-          ...AssortmentFragment
-          linkedAssortments {
-            _id
-            parent {
-              _id
-            }
-          }
-        }
-      }
+      ...AssortmentFragments
     }
     assortmentsCount(
       tags: $tags

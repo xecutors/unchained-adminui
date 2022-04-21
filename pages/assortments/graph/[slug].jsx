@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../modules/common/components/Loading';
 import PageHeader from '../../../modules/common/components/PageHeader';
-import AssortmentGraphDetail from '../../../modules/assortment/components/AssortmentGraphDetail';
-import useAssortmentPaths from '../../../modules/assortment/hooks/useAssortmentPaths';
+import AssortmentGraph from '../../../modules/assortment/components/AssortmentGraph';
+import useAssortmentPaths from '../../../modules/assortment/hooks/useAssortmentPath';
 
 const AssortmentGraphDetailPage = () => {
   const { formatMessage } = useIntl();
@@ -21,11 +21,7 @@ const AssortmentGraphDetailPage = () => {
           defaultMessage: 'Assortment Graph Detail',
         })}
       />
-      {loading ? (
-        <Loading />
-      ) : (
-        <AssortmentGraphDetail assortment={assortment} />
-      )}
+      {loading ? <Loading /> : <AssortmentGraph assortments={[assortment]} />}
     </div>
   );
 };
