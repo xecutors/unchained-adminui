@@ -1,4 +1,4 @@
-import RenderChart from '../../common/components/TangleTree';
+import TangleTree from '../../common/components/TangleTree';
 
 const getAssortmentTree = (assortments) => {
   let cleanedAssortmentData = assortments.map((assortment) => ({
@@ -48,7 +48,7 @@ const getAssortmentTree = (assortments) => {
 const AssortmentGraph = ({ assortments }) => {
   return (
     <div className="w-full h-fit rounded-lg bg-white shadow dark:shadow-white dark:bg-slate-600 text-slate-900 dark:text-white">
-      <RenderChart data={getAssortmentTree(assortments)} />
+      <TangleTree data={getAssortmentTree(assortments)} />
     </div>
   );
 };
