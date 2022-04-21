@@ -147,11 +147,14 @@ const WorkForm = () => {
               })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
               className="w-full py-2 text-sm text-slate-900 dark:text-white dark:bg-slate-600 sm:mt-0 "
+              containerClassName="w-full py-2 text-sm text-slate-900 sm:mt-0"
               name="scheduled"
               placeholder={formatMessage({
                 id: 'scheduled',
                 defaultMessage: 'Scheduled',
               })}
+              timeInputLabel="Time:"
+              showTimeInput
             />
           </div>
 
