@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import AssortmentFragment from './AssortmentFragment';
 
 const AssortmentChildrenFragment = gql`
-  fragment AssortmentFragment on Assortment {
+  fragment AssortmentChildrenFragment on Assortment {
     ...AssortmentFragment
     linkedAssortments {
       _id
