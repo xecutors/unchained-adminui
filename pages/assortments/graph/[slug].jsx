@@ -12,8 +12,6 @@ const AssortmentGraphDetailPage = () => {
   const { slug = '' } = query || {};
   const { assortment, loading } = useAssortmentPaths({ slug });
 
-  console.log(assortment);
-
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs />

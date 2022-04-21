@@ -5,7 +5,7 @@ import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../../modules/common/components/PageHeader';
 import Loading from '../../../modules/common/components/Loading';
 import AssortmentSearchFilter from '../../../modules/assortment/components/AssortmentSearchFilter';
-import AssortmentGraphList from '../../../modules/assortment/components/AssortmentGraphList';
+import AssortmentGraph from '../../../modules/assortment/components/AssortmentGraph';
 
 const AssortmentGraphView = () => {
   const { formatMessage } = useIntl();
@@ -23,11 +23,7 @@ const AssortmentGraphView = () => {
       />
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-hidden">
-        {loading ? (
-          <Loading />
-        ) : (
-          <AssortmentGraphList assortments={assortments} />
-        )}
+        {loading ? <Loading /> : <AssortmentGraph assortments={assortments} />}
       </div>
     </>
   );

@@ -13,14 +13,6 @@ a {
   stroke-linecap: round;
 }
 
-.link {
-  fill: none;
-}
-
-/* text {
-  font-size: 10px;
-} */
-
 .ql-toolbar.ql-snow,
 .ql-container.ql-snow {
   border: 0;

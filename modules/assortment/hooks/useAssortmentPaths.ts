@@ -4,8 +4,7 @@ import AssortmentFragment from '../fragments/AssortmentFragment';
 const AssortmentPathsQuery = gql`
   query AssortmentPaths($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
-      _id
-      childrenCount
+      ...AssortmentFragment
       linkedAssortments {
         _id
         parent {
