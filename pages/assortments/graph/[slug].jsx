@@ -17,8 +17,8 @@ const AssortmentGraphDetailPage = () => {
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'assortment_detail',
-          defaultMessage: 'Assortment Graph Detail',
+          id: 'assortment_graph',
+          defaultMessage: 'Assortment Graph',
         })}
       />
       {loading ? <Loading /> : <AssortmentGraph assortments={[assortment]} />}

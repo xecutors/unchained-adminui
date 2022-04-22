@@ -17,7 +17,7 @@ const AssortmentGraphView = () => {
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
-          id: 'assortments_list_header',
+          id: 'assortment_graph',
           defaultMessage: 'Assortments Graph',
         })}
       />
