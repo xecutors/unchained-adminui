@@ -16,7 +16,7 @@ import useAddWork from '../hooks/useAddWork';
 import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
 const WorkForm = () => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { workTypes } = useRegisteredWorkTypes();
   const { hasRole } = useAuth();
   const { addWork } = useAddWork();
@@ -153,8 +153,11 @@ const WorkForm = () => {
                 id: 'scheduled',
                 defaultMessage: 'Scheduled',
               })}
-              timeInputLabel="Time:"
+              locale={locale}
               showTimeInput
+              timeFormat="p"
+              timeIntervals={15}
+              dateFormat="Pp"
             />
           </div>
 

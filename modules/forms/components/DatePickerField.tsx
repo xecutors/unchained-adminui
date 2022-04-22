@@ -7,11 +7,7 @@ import FieldWrapper from './FieldWrapper';
 
 const defaultParseDate = (date) => {
   if (date && validateDate.isValid(date)) {
-    const utcDate = new Date(
-      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-    );
-
-    return utcDate.getTime();
+    return date;
   }
   return date !== null;
 };
@@ -42,9 +38,7 @@ const DatePickerField = ({
           },
         )}
         onChange={(date) => field.setValue(parseDate(date))}
-        onMonthChange={(date) => field.setValue(parseDate(date))}
-        onYearChange={(date) => field.setValue(parseDate(date))}
-        dateFormat="dd.MM.yyyy h:mm a"
+        dateFormat="dd.MM.yyyy h:mm aa"
         peekNextMonth
         showMonthDropdown
         showYearDropdown
