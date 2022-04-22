@@ -36,6 +36,7 @@
     "classnames": "^2.3.1",
     "cookie": "^0.4.1",
     "crypto-hash": "^2.0.1",
+    "d3": "^7.4.0",
     "date-fns": "^2.28.0",
     "deepmerge": "^4.2.2",
     "dotenv-extended": "^2.9.0",

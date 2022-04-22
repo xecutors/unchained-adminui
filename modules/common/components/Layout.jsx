@@ -91,7 +91,22 @@ const Layout = ({
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
       requiredRole: ACTION_ROLES.assortments.manage,
-      href: '/assortments',
+      children: [
+        {
+          name: formatMessage({
+            id: 'list',
+            defaultMessage: 'List',
+          }),
+          href: '/assortments',
+        },
+        {
+          name: formatMessage({
+            id: 'graph',
+            defaultMessage: 'Graph',
+          }),
+          href: '/assortments/graph',
+        },
+      ],
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),

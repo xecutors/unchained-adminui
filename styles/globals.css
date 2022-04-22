@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-option:not(:first-of-type), html, body, a {
- color: rgb(51 65 85);
+option:not(:first-of-type),
+html,
+body,
+a {
+  color: rgb(51 65 85);
+}
+
+.node {
+  stroke-linecap: round;
 }
 
 .ql-toolbar.ql-snow,
@@ -20,11 +27,11 @@ option:not(:first-of-type), html, body, a {
   top: 0;
   display: block;
   margin-top: 2.125rem;
-  right: .75rem;
+  right: 0.75rem;
   outline: none;
   z-index: 9999;
 }
-    
+
 @media (min-width: 640px) {
   table {
     display: inline-table !important;
@@ -37,18 +44,22 @@ option:not(:first-of-type), html, body, a {
 
 @media (max-width: 639px) {
   thead tr {
-    border: 1px solid #E2E8F0;
+    border: 1px solid #e2e8f0;
   }
 }
 
-.top-100 {top: 100%}
-.bottom-100 {bottom: 100%}
+.top-100 {
+  top: 100%;
+}
+.bottom-100 {
+  bottom: 100%;
+}
 .max-h-select {
-    max-height: 300px;
+  max-height: 300px;
 }
 
 .react-datepicker {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1),0 4px 6px -4px rgb(0 0 0/0.1);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0/0.1), 0 4px 6px -4px rgb(0 0 0/0.1);
 }
 
 .react-datepicker__day--selected,
@@ -78,11 +89,11 @@ option:not(:first-of-type), html, body, a {
   background-color: rgb(99, 102, 241) !important;
 }
 
-.quill-error-border .ql-editor{
+.quill-error-border .ql-editor {
   border: 1px solid rgb(252 165 165);
 }
 
 .ql-editor:focus {
-  outline: 3px solid #818CF8;
-  border-radius: .25rem;
+  outline: 3px solid #818cf8;
+  border-radius: 0.25rem;
 }
