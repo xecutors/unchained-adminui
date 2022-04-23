@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import useAuth from '../../modules/Auth/useAuth';
+import Badge from '../../modules/common/components/Badge';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
@@ -57,6 +58,17 @@ const ProductDetailPage = () => {
             defaultMessage: 'Product Detail',
           })}
         />
+        <span className="self-end my-2 mr-auto">
+          <Badge
+            text={formatMessage({
+              id: 'id',
+              defaultMessage: `ID: ${product?._id}`,
+            })}
+            color="indigo"
+          />
+          {}
+          {}
+        </span>
 
         {product &&
         product.status === 'DRAFT' &&

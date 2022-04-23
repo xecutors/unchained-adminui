@@ -30,6 +30,8 @@ import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import Badge from '../../common/components/Badge';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -65,6 +67,8 @@ const ProductDetail = ({ product }) => {
   const { hasRole } = useAuth();
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
+
+  const { formatDateTime } = useFormatDateTime();
 
   const { status, __typename } = product;
 
@@ -196,12 +200,25 @@ const ProductDetail = ({ product }) => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-between gap-y-1">
-        <h1 className="">{product?.__typename}</h1>
+        <h1>{product?.__typename}</h1>
         <TagList
           defaultValue={product?.tags}
           onSubmit={onUpdateTags}
           enableEdit={hasRole(ACTION_ROLES.products.update)}
         />
+        {product?.published && (
+          <div className="mx-2">
+            <Badge
+              text={formatMessage({
+                id: 'published_on',
+                defaultMessage: `Published on: ${formatDateTime(
+                  product.published,
+                )}`,
+              })}
+            />
+          </div>
+        )}
+
         <SelectOptions
           options={activeOptions}
           type={formatMessage({ id: 'product', defaultMessage: 'Product' })}
