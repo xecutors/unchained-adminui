@@ -4,6 +4,8 @@ const AssortmentFragment = gql`
   fragment AssortmentFragment on Assortment {
     _id
     isActive
+    created
+    updated
     texts {
       _id
       slug

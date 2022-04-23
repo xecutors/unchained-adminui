@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
 
-const PageHeader = ({ headerText, onEdit, onDelete }) => {
+const PageHeader = ({ headerText, onEdit, onDelete, children }) => {
   const { formatMessage } = useIntl();
   return (
-    <div className="my-2 md:flex md:items-center md:justify-between">
+    <div className="my-2 md:flex md:items-center md:justify-between w-full">
       <div className="min-w-0 flex-1">
         {headerText && (
           <h2 className="text-2xl font-bold text-slate-700 dark:text-white sm:truncate sm:text-3xl lg:text-4xl xl:text-5xl">
@@ -29,6 +29,7 @@ const PageHeader = ({ headerText, onEdit, onDelete }) => {
             {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
           </button>
         )}
+        {children}
       </div>
     </div>
   );

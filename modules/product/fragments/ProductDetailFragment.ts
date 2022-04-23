@@ -5,6 +5,7 @@ const ProductDetailFragment = gql`
     _id
     sequence
     status
+    created
     tags
     updated
     published
