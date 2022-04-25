@@ -203,7 +203,7 @@ const RenderChart = ({ data, options = {} }) => {
     <svg
       width="auto"
       height={`${tangleLayout.layout.height}`}
-      className="fill-transparent mx-10"
+      className="fill-transparent mx-10 w-full"
     >
       {tangleLayout.bundles.map((b, i) => {
         const d = b.links
