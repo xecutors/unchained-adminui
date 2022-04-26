@@ -13,9 +13,8 @@ const SignUpPage = () => {
   const { createUser } = useCreateUser();
   const { setAuthContext } = useAuth();
 
-  const onSubmit = async ({ email, password, username }) => {
+  const onSubmit = async ({ email, password }) => {
     const { data } = await createUser({
-      username,
       email,
       password,
       disableHashing: true,

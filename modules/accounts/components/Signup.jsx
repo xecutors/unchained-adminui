@@ -8,7 +8,6 @@ import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
-import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
 
@@ -85,18 +84,6 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                     label={formatMessage({
                       id: 'email',
                       defaultMessage: 'Email',
-                    })}
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="username"
-                    name="username"
-                    autoComplete="off"
-                    required
-                    label={formatMessage({
-                      id: 'username',
-                      defaultMessage: 'Username',
                     })}
                   />
                 </div>
