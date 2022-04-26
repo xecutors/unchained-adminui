@@ -90,7 +90,6 @@ const Layout = ({
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: CollectionIcon,
-      requiredRole: ACTION_ROLES.assortments.manage,
       children: [
         {
           name: formatMessage({
@@ -98,6 +97,7 @@ const Layout = ({
             defaultMessage: 'List',
           }),
           href: '/assortments',
+          requiredRole: ACTION_ROLES.assortments.manage,
         },
         {
           name: formatMessage({
@@ -105,6 +105,7 @@ const Layout = ({
             defaultMessage: 'Graph',
           }),
           href: '/assortments/graph',
+          requiredRole: ACTION_ROLES.assortments.manage,
         },
       ],
     },

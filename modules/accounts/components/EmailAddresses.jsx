@@ -91,7 +91,7 @@ const EmailAddresses = ({
       mainContent={
         <div
           className={classNames(
-            'rounded-md shadow px-4 py-5 sm:p-6 ',
+            'rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:border-2 dark:bg-slate-600',
             emailBodyContainer,
           )}
         >

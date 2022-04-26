@@ -34,7 +34,7 @@ const ChangePassword = () => {
           })}
         </h3>
       </div>
-      <div className="w-full border-b border-slate-200 bg-white dark:bg-slate-600 shadow dark:shadow-white rounded-md lg:ml-auto lg:w-4/6">
+      <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
           <div className="relative max-w-full space-y-6 sm:p-6">
             <PasswordField

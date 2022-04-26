@@ -164,7 +164,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 ml-auto rounded-md px-6 shadow lg:w-full">
+            <div className="col-span-2 ml-auto rounded-md px-6 shadow lg:w-full bg-white dark:border-2 dark:bg-slate-600">
               <div className="py-4">
                 <div className="py-4 sm:grid sm:py-2">
                   <label className="text-slate-70 block text-sm font-medium">
@@ -397,7 +397,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 w-full border-slate-200 px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full">
+            <div className="col-span-2 w-full border-slate-200 px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full bg-white dark:border-2 dark:bg-slate-600 ">
               <AddressFields
                 isEdit={isEdit}
                 address={address}
