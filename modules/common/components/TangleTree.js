@@ -1,13 +1,12 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-param-reassign */
-/* eslint-disable camelcase */
 /* eslint-disable no-return-assign */
 import { Fragment } from 'react';
 import Link from 'next/link';
 import { scaleOrdinal, schemeDark2, min, max, descending } from 'd3';
+import { useIntl } from 'react-intl';
 
-const _ = require('lodash');
+// const _ = require('lodash');
 
 const color = scaleOrdinal(schemeDark2);
 
@@ -16,13 +15,13 @@ const constructTangleLayout = (levels, options = {}) => {
   levels.forEach((l, i) => l.forEach((n) => (n.level = i)));
 
   const nodes = levels.reduce((a, x) => a.concat(x), []);
-  const nodes_index = {};
-  nodes.forEach((d) => (nodes_index[d.id] = d));
+  const nodesIndex = {};
+  nodes.forEach((d) => (nodesIndex[d.id] = d));
 
   // objectification
   nodes.forEach((d) => {
     d.parents = (d.parents === undefined ? [] : d.parents).map(
-      (p) => nodes_index[p],
+      (p) => nodesIndex[p],
     );
   });
 
@@ -102,31 +101,31 @@ const constructTangleLayout = (levels, options = {}) => {
 
   // layout
   const padding = 8;
-  const node_height = 30;
-  const node_width = 100;
-  const bundle_width = 14;
-  const level_y_padding = 16;
-  const metro_d = 4;
-  const min_family_height = 22;
+  const nodeHeight = 30;
+  const nodeWidth = 100;
+  const bundleWidth = 14;
+  const levelYPadding = 16;
+  const metroD = 4;
+  const minFamilyHeight = 22;
 
   options.c ||= 16;
   const { c } = options;
-  options.bigc ||= node_width + c;
+  options.bigc ||= nodeWidth + c;
 
   nodes.forEach(
-    (n) => (n.height = (Math.max(1, n.bundles.length) - 1) * metro_d),
+    (n) => (n.height = (Math.max(1, n.bundles.length) - 1) * metroD),
   );
 
-  let x_offset = padding;
-  let y_offset = padding;
+  let xOffset = padding;
+  let yOffset = padding;
   levels.forEach((l) => {
-    x_offset += l.bundles.length * bundle_width;
-    y_offset += level_y_padding;
+    xOffset += l.bundles.length * bundleWidth;
+    yOffset += levelYPadding;
     l.forEach((n) => {
-      n.x = n.level * node_width + x_offset;
-      n.y = node_height + y_offset + n.height / 2;
+      n.x = n.level * nodeWidth + xOffset;
+      n.y = nodeHeight + yOffset + n.height / 2;
 
-      y_offset += node_height + n.height;
+      yOffset += nodeHeight + n.height;
     });
   });
 
@@ -135,9 +134,9 @@ const constructTangleLayout = (levels, options = {}) => {
     l.bundles.forEach((b) => {
       b.x =
         max(b.parents, (d) => d.x) +
-        node_width +
-        (l.bundles.length - 1 - b.i) * bundle_width;
-      b.y = i * node_height;
+        nodeWidth +
+        (l.bundles.length - 1 - b.i) * bundleWidth;
+      b.y = i * nodeHeight;
     });
     i += l.length;
   });
@@ -146,9 +145,9 @@ const constructTangleLayout = (levels, options = {}) => {
     l.xt = l.target.x;
     l.yt =
       l.target.y +
-      l.target.bundles_index[l.bundle.id].i * metro_d -
-      (l.target.bundles.length * metro_d) / 2 +
-      metro_d / 2;
+      l.target.bundles_index[l.bundle.id].i * metroD -
+      (l.target.bundles.length * metroD) / 2 +
+      metroD / 2;
     l.xb = l.bundle.x;
     l.yb = l.bundle.y;
     l.xs = l.source.x;
@@ -156,23 +155,23 @@ const constructTangleLayout = (levels, options = {}) => {
   });
 
   // compress vertical space
-  let y_negative_offset = 0;
+  let yNegativeOffset = 0;
   levels.forEach((l) => {
-    y_negative_offset +=
-      -min_family_height +
+    yNegativeOffset +=
+      -minFamilyHeight +
         min(l.bundles, (b) =>
           min(b.links, (link) => link.ys - 2 * c - (link.yt + c)),
         ) || 0;
-    l.forEach((n) => (n.y -= y_negative_offset));
+    l.forEach((n) => (n.y -= yNegativeOffset));
   });
 
   // very ugly, I know
   links.forEach((l) => {
     l.yt =
       l.target.y +
-      l.target.bundles_index[l.bundle.id].i * metro_d -
-      (l.target.bundles.length * metro_d) / 2 +
-      metro_d / 2;
+      l.target.bundles_index[l.bundle.id].i * metroD -
+      (l.target.bundles.length * metroD) / 2 +
+      metroD / 2;
     l.ys = l.source.y;
     l.c1 =
       l.source.level - l.target.level > 1
@@ -182,28 +181,33 @@ const constructTangleLayout = (levels, options = {}) => {
   });
 
   const layout = {
-    width: max(nodes, (n) => n.x) + node_width + 2 * padding,
-    height: max(nodes, (n) => n.y) + node_height / 2 + 2 * padding,
-    node_height,
-    node_width,
-    bundle_width,
-    level_y_padding,
-    metro_d,
+    width: max(nodes, (n) => n.x) + nodeWidth + 2 * padding,
+    height: max(nodes, (n) => n.y) + nodeHeight / 2 + 2 * padding,
+    node_height: nodeHeight,
+    node_width: nodeWidth,
+    bundle_width: bundleWidth,
+    level_y_padding: levelYPadding,
+    metro_d: metroD,
   };
 
-  return { levels, nodes, nodes_index, links, bundles, layout };
+  return { levels, nodes, nodes_index: nodesIndex, links, bundles, layout };
 };
 
 const RenderChart = ({ data, options = {} }) => {
+  const { formatMessage } = useIntl();
   options.color ||= (d, i) => color(i);
 
-  const tangleLayout = constructTangleLayout(_.cloneDeep(data), options);
+  const tangleLayout = constructTangleLayout(data, options);
 
   return (
     <svg
-      width="auto"
+      width="100%"
       height={`${tangleLayout.layout.height}`}
-      className="fill-transparent mx-10 w-full"
+      // height="100%"
+      className="fill-transparent inline-block absolute top-0 left-0"
+      // viewBox={`0 0 500 ${tangleLayout.layout.height}`}
+      // viewBox="0 0 500 1265"
+      // preserveAspectRatio="xMinYMin meet"
     >
       {tangleLayout.bundles.map((b, i) => {
         const d = b.links
@@ -248,7 +252,7 @@ const RenderChart = ({ data, options = {} }) => {
             strokeWidth="4"
             d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
           />
-          <Link href={`/assortments/graph/${n?.slug}`}>
+          <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
             <a>
               <text
                 className="selectable fill-indigo-600 hover:fill-indigo-800 dark:fill-white dark:hover:fill-slate-300 text-base"
@@ -257,7 +261,21 @@ const RenderChart = ({ data, options = {} }) => {
                 y={`${n.y - n.height / 2 - 4}`}
                 // strokeWidth="2"
               >
-                {n.title}
+                {n?.title}
+
+                {n?.childCount && (
+                  <>
+                    <tspan dx="0.5rem" className="italic fill-slate-400">
+                      {formatMessage({
+                        id: 'children',
+                        defaultMessage: 'children:',
+                      })}
+                    </tspan>
+                    <tspan dx="0.25rem" className="italic fill-purple-600">
+                      {n?.childCount}
+                    </tspan>
+                  </>
+                )}
               </text>
             </a>
           </Link>

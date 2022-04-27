@@ -15,7 +15,16 @@ import AssortmentSearchFilter from '../../modules/assortment/components/Assortme
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 
+const GetCurrentView = ({ options, assortments }) => {
+  const [graph, ...rest] = options;
+  return graph === 'true' ? (
+    <AssortmentGraphView options={rest} />
+  ) : (
+    <AssortmentList assortments={assortments} />
+  );
+};
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
@@ -26,6 +35,8 @@ const AssortmentsListView = () => {
   const includeInactive = query?.includeInactive === 'true';
   const includeLeaves = query?.includeLeaves === 'true';
   const tags = query?.tags?.split(',') || undefined;
+  const graph = query?.viewGraph || false;
+  const slug = query?.slug || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -76,23 +87,39 @@ const AssortmentsListView = () => {
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
         >
-          <Toggle
-            toggleKey="includeInactive"
-            toggleText={formatMessage({
-              id: 'include_inactive',
-              defaultMessage: 'Include inactive',
-            })}
-          />
-          <Toggle
-            toggleKey="includeLeaves"
-            toggleText={formatMessage({
-              id: 'include_leaf',
-              defaultMessage: 'Include leafs',
-              description: 'Assortment children',
-            })}
-          />
+          <div className="flex gap-4">
+            <Toggle
+              toggleKey="includeInactive"
+              toggleText={formatMessage({
+                id: 'include_inactive',
+                defaultMessage: 'Include inactive',
+              })}
+            />
+            <Toggle
+              toggleKey="includeLeaves"
+              toggleText={formatMessage({
+                id: 'include_leaf',
+                defaultMessage: 'Include leafs',
+                description: 'Assortment children',
+              })}
+            />
+            <Toggle
+              toggleKey="viewGraph"
+              toggleText={formatMessage({
+                id: 'display_as_graph',
+                defaultMessage: 'Display as Graph',
+              })}
+            />
+          </div>
         </ListHeader>
-        {loading ? <Loading /> : <AssortmentList assortments={assortments} />}
+        {loading ? (
+          <Loading />
+        ) : (
+          <GetCurrentView
+            options={[graph, includeInactive, includeLeaves, slug]}
+            assortments={assortments}
+          />
+        )}
         <Pagination data={assortments} total={assortmentsCount} />
       </div>
     </>
