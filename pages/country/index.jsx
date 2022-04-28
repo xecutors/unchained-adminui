@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -19,6 +19,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const Country = ({ userId }) => {
   const { formatMessage } = useIntl();
@@ -33,7 +34,9 @@ const Country = ({ userId }) => {
     hasAccess(userId);
   }, [userId]);
 
+  const [queryString, setQueryString] = useState('');
   const { countries, countriesCount, loading } = useCountries({
+    queryString,
     limit,
     includeInactive,
     offset,
@@ -41,6 +44,7 @@ const Country = ({ userId }) => {
 
   const { setModal } = useModal();
   const { removeCountry } = useRemoveCountry();
+
   const onRemoveCountry = async (countryId) => {
     await setModal(
       <DangerMessage
@@ -66,15 +70,19 @@ const Country = ({ userId }) => {
       />,
     );
   };
+
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'countries',
-          defaultMessage: 'Countries',
-        })}
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'countries',
+            defaultMessage: 'Countries',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}

@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
@@ -15,6 +16,7 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -24,11 +26,14 @@ const Languages = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
 
+  const [queryString, setQueryString] = useState('');
   const { languages, languagesCount, loading } = useLanguages({
+    queryString,
     limit,
     includeInactive,
     offset,
   });
+
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
 
@@ -61,12 +66,15 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeaders
-        headerText={formatMessage({
-          id: 'language_header',
-          defaultMessage: 'Languages',
-        })}
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <PageHeaders
+          headerText={formatMessage({
+            id: 'language_header',
+            defaultMessage: 'Languages',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
 
       <div className="min-w-full overflow-x-auto">
         <ListHeader

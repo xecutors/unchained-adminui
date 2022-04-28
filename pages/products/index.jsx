@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
-
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -13,6 +14,7 @@ import ProductList from '../../modules/product/components/ProductList';
 import useProducts from '../../modules/product/hooks/useProducts';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -23,7 +25,10 @@ const Products = () => {
   const includeDrafts = query?.includeDrafts === 'true';
   const tags = query.tags?.split(',') || undefined;
   const { hasRole } = useAuth();
+
+  const [queryString, setQueryString] = useState('');
   const { products, productsCount, loadMore, loading } = useProducts({
+    queryString,
     includeDrafts,
     limit,
     offset,
@@ -34,12 +39,15 @@ const Products = () => {
     <>
       <BreadCrumbs />
       <div className="w-full py-5">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'products_list_header',
-            defaultMessage: 'Products',
-          })}
-        />
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+          <PageHeader
+            headerText={formatMessage({
+              id: 'products_list_header',
+              defaultMessage: 'Products',
+            })}
+          />
+          <SearchField onInputChange={setQueryString} />
+        </div>
         <ProductFilter />
       </div>
       <div className="min-w-full overflow-x-auto">

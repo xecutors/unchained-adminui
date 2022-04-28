@@ -3,6 +3,7 @@ import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const ProductsQuery = gql`
   query products(
+    $queryString: String
     $tags: [String!]
     $slugs: [String!]
     $limit: Int
@@ -10,6 +11,7 @@ export const ProductsQuery = gql`
     $includeDrafts: Boolean
   ) {
     products(
+      queryString: $queryString
       tags: $tags
       slugs: $slugs
       limit: $limit
@@ -24,6 +26,7 @@ export const ProductsQuery = gql`
 `;
 
 const useProducts = ({
+  queryString = '',
   limit = 20,
   offset = 0,
   tags = null,
@@ -31,7 +34,7 @@ const useProducts = ({
   slugs = null,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(ProductsQuery, {
-    variables: { limit, offset, includeDrafts, tags, slugs },
+    variables: { queryString, limit, offset, includeDrafts, tags, slugs },
     notifyOnNetworkStatusChange: true,
   });
   const products = data?.products || [];

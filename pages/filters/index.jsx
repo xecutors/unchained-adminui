@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -15,6 +17,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const FiltersListView = () => {
   const { query } = useRouter();
@@ -25,11 +28,14 @@ const FiltersListView = () => {
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
+  const [queryString, setQueryString] = useState('');
   const { filters, filtersCount, loading } = useFilters({
+    queryString,
     limit,
     includeInactive,
     offset,
   });
+
   const { formatMessage } = useIntl();
 
   const onRemoveFilter = async (filterId) => {
@@ -66,12 +72,16 @@ const FiltersListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'filters_list_header',
-          defaultMessage: 'Filters',
-        })}
-      />
+      <div className="w-full py-5">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'filters_list_header',
+            defaultMessage: 'Filters',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
+
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}

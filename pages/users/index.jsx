@@ -31,7 +31,7 @@ const Users = () => {
   return (
     <div className="mb-10">
       <BreadCrumbs />
-      <div className="flex flex-wrap items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'users_list_header',

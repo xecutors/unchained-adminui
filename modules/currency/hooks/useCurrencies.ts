@@ -2,8 +2,14 @@ import { useQuery, gql } from '@apollo/client';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
 export const CurrenciesQuery = gql`
-  query Currencies($limit: Int, $offset: Int, $includeInactive: Boolean) {
+  query Currencies(
+    $queryString: String
+    $limit: Int
+    $offset: Int
+    $includeInactive: Boolean
+  ) {
     currencies(
+      queryString: $queryString
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
@@ -16,12 +22,13 @@ export const CurrenciesQuery = gql`
 `;
 
 const useCurrencies = ({
+  queryString = '',
   limit = 20,
   offset = 0,
   includeInactive = true,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(CurrenciesQuery, {
-    variables: { limit, offset, includeInactive },
+    variables: { queryString, limit, offset, includeInactive },
   });
 
   const currencies = data?.currencies || [];

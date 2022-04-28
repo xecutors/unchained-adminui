@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
+import { useState } from 'react';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import CurrencyList from '../../modules/currency/components/CurrencyList';
 import useCurrencies from '../../modules/currency/hooks/useCurrencies';
@@ -16,6 +17,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -24,13 +26,18 @@ const Currencies = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
+
+  const [queryString, setQueryString] = useState('');
   const { currencies, currenciesCount, loading } = useCurrencies({
+    queryString,
     limit,
     offset,
     includeInactive,
   });
+
   const { setModal } = useModal();
   const { removeCurrency } = useRemoveCurrency();
+
   const onRemove = async (currencyId) => {
     await setModal(
       <DangerMessage
@@ -56,16 +63,19 @@ const Currencies = () => {
       />,
     );
   };
+
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'currencies_list_header',
-          defaultMessage: 'Currencies',
-        })}
-      />
-
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'currencies_list_header',
+            defaultMessage: 'Currencies',
+          })}
+        />
+        <SearchField onInputChange={setQueryString} />
+      </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.currencies.create) && '/currency/new'}

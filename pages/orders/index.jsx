@@ -29,10 +29,11 @@ const Orders = () => {
     queryString,
     offset,
   });
+
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-wrap items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'orders_list_header',
