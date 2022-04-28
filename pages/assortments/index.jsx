@@ -17,19 +17,20 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 
-const GetCurrentView = ({ options }) => {
+const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
   return graph === 'true' ? (
     <AssortmentGraphView options={rest} />
   ) : (
-    <AssortmentListView options={rest} />
+    <AssortmentListView options={rest} queryString={queryString} />
   );
 };
 
-const AssortmentListView = ({ options }) => {
+const AssortmentListView = ({ options, queryString }) => {
   const { includeInactive, includeLeaves, limit, offset, tags } = options;
 
   const { assortments, assortmentsCount, loading } = useAssortments({
+    queryString,
     includeInactive,
     includeLeaves,
     limit,
@@ -136,6 +137,7 @@ const AssortmentsListView = () => {
         </ListHeader>
 
         <GetCurrentView
+          queryString={queryString}
           options={{
             graph,
             includeInactive,
