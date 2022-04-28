@@ -17,14 +17,36 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 
-const GetCurrentView = ({ options, assortments }) => {
-  const [graph, ...rest] = options;
+const GetCurrentView = ({ options }) => {
+  const { graph, ...rest } = options;
   return graph === 'true' ? (
     <AssortmentGraphView options={rest} />
   ) : (
-    <AssortmentList assortments={assortments} />
+    <AssortmentListView options={rest} />
   );
 };
+
+const AssortmentListView = ({ options }) => {
+  const { includeInactive, includeLeaves, limit, offset, tags } = options;
+
+  const { assortments, assortmentsCount, loading } = useAssortments({
+    includeInactive,
+    includeLeaves,
+    limit,
+    offset,
+    tags,
+  });
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <AssortmentList assortments={assortments} />
+      <Pagination data={assortments} total={assortmentsCount} />
+    </>
+  );
+};
+
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
@@ -112,15 +134,18 @@ const AssortmentsListView = () => {
             />
           </div>
         </ListHeader>
-        {loading ? (
-          <Loading />
-        ) : (
-          <GetCurrentView
-            options={[graph, includeInactive, includeLeaves, slug]}
-            assortments={assortments}
-          />
-        )}
-        <Pagination data={assortments} total={assortmentsCount} />
+
+        <GetCurrentView
+          options={{
+            graph,
+            includeInactive,
+            includeLeaves,
+            slug,
+            tags,
+            limit,
+            offset,
+          }}
+        />
       </div>
     </>
   );

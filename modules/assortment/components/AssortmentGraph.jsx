@@ -24,31 +24,12 @@ const getAssortmentTree = (assortments) => {
       ?.flat(),
   ];
 
-  // cleanedAssortmentData = [
-  //   ...cleanedAssortmentData,
-  //   assortments
-  //     ?.map((assortment) => {
-  //       return assortment?.children
-  //         ?.map((child) =>
-  //           child?.children?.map((chi) => ({
-  //             id: chi?._id,
-  //             slug: chi?.texts.slug,
-  //             title: chi?.texts.title,
-  //             subtitle: chi?.texts.subtitle,
-  //             parents: [child?._id],
-  //           })),
-  //         )
-  //         ?.flat();
-  //     })
-  //     ?.flat(),
-  // ];
-
   return cleanedAssortmentData.filter(Boolean);
 };
 
 const AssortmentGraph = ({ assortments }) => {
   return (
-    <div className="relative inline-block align-middle overflow-visible w-full mx-auto pb-[100%] rounded-lg bg-white shadow dark:shadow-white dark:bg-slate-600 text-slate-900 dark:text-white">
+    <div className="w-full h-max rounded-lg bg-white shadow dark:shadow-white dark:bg-slate-600 text-slate-900 dark:text-white">
       <TangleTree data={getAssortmentTree(assortments)} />
     </div>
   );

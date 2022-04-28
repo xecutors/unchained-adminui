@@ -3,12 +3,12 @@ import AssortmentGraph from './AssortmentGraph';
 import useAssortmentPaths from '../hooks/useAssortmentPaths';
 
 const AssortmentGraphView = ({ options }) => {
-  const [includeInactive, includeLeaves, slug] = options;
+  const { includeInactive, slug } = options;
 
   const { assortments, loading } = useAssortmentPaths({
     slugs: [slug].filter(Boolean),
     includeInactive,
-    includeLeaves,
+    includeLeaves: !!slug,
   });
 
   return (

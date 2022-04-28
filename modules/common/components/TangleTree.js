@@ -203,11 +203,7 @@ const RenderChart = ({ data, options = {} }) => {
     <svg
       width="100%"
       height={`${tangleLayout.layout.height}`}
-      // height="100%"
-      className="fill-transparent inline-block absolute top-0 left-0"
-      // viewBox={`0 0 500 ${tangleLayout.layout.height}`}
-      // viewBox="0 0 500 1265"
-      // preserveAspectRatio="xMinYMin meet"
+      className="fill-transparent mx-10 w-full"
     >
       {tangleLayout.bundles.map((b, i) => {
         const d = b.links
