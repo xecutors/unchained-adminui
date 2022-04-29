@@ -6,7 +6,7 @@ const AssortmentGraphView = ({ options }) => {
   const { includeInactive, slug } = options;
 
   const { assortments, loading } = useAssortmentPaths({
-    slugs: [slug].filter(Boolean),
+    slugs: slug ? [slug].filter(Boolean) : null,
     includeInactive,
     includeLeaves: !!slug,
   });
