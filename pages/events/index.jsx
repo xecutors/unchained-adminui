@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -13,11 +12,27 @@ import useEvents from '../../modules/event/hooks/useEvents';
 
 const Events = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
 
   const { events, eventsCount, loading } = useEvents({
     limit,
@@ -28,7 +43,7 @@ const Events = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
           headerText={formatMessage({
             id: 'events_list_header',
@@ -36,7 +51,10 @@ const Events = () => {
           })}
         />
 
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
 
       {loading ? (

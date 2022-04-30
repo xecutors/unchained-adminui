@@ -11,55 +11,56 @@ export const keyMappings: any = {
           'includeInactive',
           'offset',
           'tags',
+          'queryString',
         ],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       products: {
-        keyArgs: ['limit', 'includeDrafts', 'offset', 'tags'],
+        keyArgs: ['limit', 'includeDrafts', 'offset', 'tags', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       countries: {
-        keyArgs: ['limit', 'includeInactive', 'offset'],
+        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       currencies: {
-        keyArgs: ['limit', 'includeInactive', 'offset'],
+        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       enrollments: {
-        keyArgs: ['limit', 'offset'],
+        keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       quotations: {
-        keyArgs: ['limit', 'offset'],
+        keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       workQueue: {
-        keyArgs: ['limit', 'status', 'selectTypes', 'created'],
+        keyArgs: ['limit', 'status', 'selectTypes', 'created', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       languages: {
-        keyArgs: ['limit', 'includeInactive', 'offset'],
+        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
       events: {
-        keyArgs: ['limit', 'offset', 'type'],
+        keyArgs: ['limit', 'offset', 'type', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -71,7 +72,7 @@ export const keyMappings: any = {
         },
       },
       filters: {
-        keyArgs: ['limit', 'offset'],
+        keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
@@ -79,7 +80,7 @@ export const keyMappings: any = {
       Log: offsetLimitPagination(),
     },
     orders: {
-      keyArgs: ['limit', 'includeCarts', 'offset'],
+      keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],
       merge(existing = [], incoming) {
         return [...existing, ...incoming];
       },

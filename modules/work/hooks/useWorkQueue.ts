@@ -3,6 +3,7 @@ import WorkFragment from '../fragments/WorkFragment';
 
 export const WorkQueueQuery = gql`
   query WorkQueue(
+    $queryString: String
     $offset: Int
     $limit: Int
     $status: [WorkStatus]
@@ -10,6 +11,7 @@ export const WorkQueueQuery = gql`
     $created: DateFilterInput
   ) {
     workQueue(
+      queryString: $queryString
       offset: $offset
       limit: $limit
       status: $status
@@ -24,6 +26,7 @@ export const WorkQueueQuery = gql`
 `;
 
 const useWorkQueue = ({
+  queryString = '',
   offset = 0,
   limit = 50,
   status = undefined,
@@ -31,7 +34,7 @@ const useWorkQueue = ({
   created = null,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
-    variables: { offset, limit, status, selectTypes, created },
+    variables: { queryString, offset, limit, status, selectTypes, created },
   });
   const workQueue = data?.workQueue || [];
   const activeWorkTypes = data?.activeWorkTypes || [];

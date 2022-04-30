@@ -14,10 +14,11 @@ import Loading from '../../modules/common/components/Loading';
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import SearchField from '../../modules/common/components/SearchField';
 
 const AssortmentsListView = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { hasRole } = useAuth();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
@@ -26,7 +27,26 @@ const AssortmentsListView = () => {
   const includeLeaves = query?.includeLeaves === 'true';
   const tags = query?.tags?.split(',') || undefined;
 
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
+
   const { assortments, assortmentsCount, loading } = useAssortments({
+    queryString,
     includeInactive,
     includeLeaves,
     limit,
@@ -37,12 +57,18 @@ const AssortmentsListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'assortments_list_header',
-          defaultMessage: 'Assortments',
-        })}
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'assortments_list_header',
+            defaultMessage: 'Assortments',
+          })}
+        />
+        <SearchField
+          onInputChange={setQueryString}
+          defaultValue={queryString}
+        />
+      </div>
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-x-auto">
         <ListHeader

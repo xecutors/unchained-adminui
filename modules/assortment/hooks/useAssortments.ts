@@ -8,6 +8,7 @@ export const AssortmentsQuery = gql`
     $slugs: [String!]
     $limit: Int
     $offset: Int
+    $queryString: String
     $includeInactive: Boolean
     $includeLeaves: Boolean
   ) {
@@ -18,6 +19,7 @@ export const AssortmentsQuery = gql`
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
+      queryString: $queryString
     ) {
       ...AssortmentFragment
     }
@@ -38,6 +40,7 @@ const useAssortments = ({
   offset = 0,
   includeInactive = false,
   includeLeaves = false,
+  queryString = '',
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(AssortmentsQuery, {
     variables: {
@@ -47,6 +50,7 @@ const useAssortments = ({
       offset,
       includeInactive,
       includeLeaves,
+      queryString,
     },
   });
   const assortments = data?.assortments || [];

@@ -2,8 +2,14 @@ import { useQuery, gql } from '@apollo/client';
 import LanguageFragment from '../fragments/LanguageFragment';
 
 export const LanguagesQuery = gql`
-  query Languages($offset: Int, $limit: Int, $includeInactive: Boolean) {
+  query Languages(
+    $queryString: String
+    $offset: Int
+    $limit: Int
+    $includeInactive: Boolean
+  ) {
     languages(
+      queryString: $queryString
       offset: $offset
       limit: $limit
       includeInactive: $includeInactive
@@ -16,12 +22,13 @@ export const LanguagesQuery = gql`
 `;
 
 const useLanguages = ({
+  queryString = '',
   limit = 20,
   offset = 0,
   includeInactive = false,
 } = {}) => {
   const { data, loading, error } = useQuery(LanguagesQuery, {
-    variables: { limit, offset, includeInactive },
+    variables: { queryString, limit, offset, includeInactive },
   });
   const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;
