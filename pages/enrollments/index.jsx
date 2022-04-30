@@ -9,26 +9,52 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EnrollmentList from '../../modules/enrollment/components/EnrollmentList';
 import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
+import SearchField from '../../modules/common/components/SearchField';
 
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
 
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
+
   const { enrollments, enrollmentsCount, loading } = useEnrollments({
+    queryString,
     limit,
     offset,
   });
   return (
     <>
       <BreadCrumbs />
-      <PageHeader
-        headerText={formatMessage({
-          id: 'enrollments_list_header',
-          defaultMessage: 'Enrollments',
-        })}
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'enrollments_list_header',
+            defaultMessage: 'Enrollments',
+          })}
+        />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
+      </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader />
 

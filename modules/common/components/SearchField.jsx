@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-const SearchField = ({ inputText, onInputChange }) => {
+const SearchField = ({ inputText, onInputChange, defaultValue }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="md:max-w-3xl lg:max-w-none">
@@ -28,6 +28,7 @@ const SearchField = ({ inputText, onInputChange }) => {
           <input
             onChange={(e) => onInputChange(e.target.value)}
             id="search"
+            defaultValue={defaultValue}
             name="search"
             className="block w-full max-w-lg rounded-md border-2 border-slate-300 bg-white dark:placeholder:text-slate-200 dark:bg-slate-600 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-white"
             placeholder={formatMessage({

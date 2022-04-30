@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -16,7 +15,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 
 const WorkQueueView = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
 
@@ -32,7 +31,24 @@ const WorkQueueView = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
+
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
     queryString,
     limit,
@@ -50,7 +66,10 @@ const WorkQueueView = () => {
             defaultMessage: 'Work queue',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-x-auto">

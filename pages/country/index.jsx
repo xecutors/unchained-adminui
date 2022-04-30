@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -23,7 +23,7 @@ import SearchField from '../../modules/common/components/SearchField';
 
 const Country = ({ userId }) => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
@@ -34,7 +34,23 @@ const Country = ({ userId }) => {
     hasAccess(userId);
   }, [userId]);
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
   const { countries, countriesCount, loading } = useCountries({
     queryString,
     limit,
@@ -81,7 +97,10 @@ const Country = ({ userId }) => {
             defaultMessage: 'Countries',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader

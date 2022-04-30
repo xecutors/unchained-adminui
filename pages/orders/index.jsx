@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 
@@ -15,13 +14,27 @@ import useOrders from '../../modules/order/hooks/useOrders';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
-
-  const [queryString, setQueryString] = useState('');
+  const { query, push } = useRouter();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
+  const { queryString, ...restQuery } = query;
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
 
   const { orders, ordersCount, loading } = useOrders({
     limit,
@@ -40,7 +53,10 @@ const Orders = () => {
             defaultMessage: 'Orders',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
         <ListHeader>

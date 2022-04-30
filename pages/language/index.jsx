@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import useLanguages from '../../modules/language/hooks/useLanguages';
 import LanguageList from '../../modules/language/components/LanguageList';
 import useRemoveLanguage from '../../modules/language/hooks/useRemoveLanguage';
@@ -20,13 +19,29 @@ import SearchField from '../../modules/common/components/SearchField';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
   const { languages, languagesCount, loading } = useLanguages({
     queryString,
     limit,
@@ -73,7 +88,10 @@ const Languages = () => {
             defaultMessage: 'Languages',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
 
       <div className="min-w-full overflow-x-auto">

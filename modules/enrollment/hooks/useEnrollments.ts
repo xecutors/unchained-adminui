@@ -2,8 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
 export const EnrollmentsQuery = gql`
-  query Enrollments($offset: Int, $limit: Int) {
-    enrollments(offset: $offset, limit: $limit) {
+  query Enrollments($offset: Int, $limit: Int, $queryString: String) {
+    enrollments(offset: $offset, limit: $limit, queryString: $queryString) {
       ...EnrollmentFragment
     }
     enrollmentsCount
@@ -11,9 +11,9 @@ export const EnrollmentsQuery = gql`
   ${EnrollmentFragment}
 `;
 
-const useEnrollments = ({ limit = 20, offset = 0 } = {}) => {
+const useEnrollments = ({ limit = 20, offset = 0, queryString = '' } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(EnrollmentsQuery, {
-    variables: { limit, offset },
+    variables: { limit, offset, queryString },
   });
   const enrollments = data?.enrollments || [];
   const enrollmentsCount = data?.enrollmentsCount;

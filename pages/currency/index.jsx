@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
-import { useState } from 'react';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import CurrencyList from '../../modules/currency/components/CurrencyList';
 import useCurrencies from '../../modules/currency/hooks/useCurrencies';
@@ -21,13 +20,29 @@ import SearchField from '../../modules/common/components/SearchField';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
   const { currencies, currenciesCount, loading } = useCurrencies({
     queryString,
     limit,
@@ -74,7 +89,10 @@ const Currencies = () => {
             defaultMessage: 'Currencies',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader
