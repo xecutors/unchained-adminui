@@ -34,6 +34,7 @@ const Quotations = () => {
   };
 
   const { quotations, quotationsCount, loading } = useQuotations({
+    queryString,
     limit,
     offset,
   });

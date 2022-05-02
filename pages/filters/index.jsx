@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -20,7 +19,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 
 const FiltersListView = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const { hasRole } = useAuth();
@@ -28,7 +27,24 @@ const FiltersListView = () => {
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
-  const [queryString, setQueryString] = useState('');
+  const { queryString, ...restQuery } = query;
+
+  const setQueryString = (searchString) => {
+    if (searchString)
+      push({
+        query: {
+          ...restQuery,
+          queryString: searchString,
+        },
+      });
+    else
+      push({
+        query: {
+          ...restQuery,
+        },
+      });
+  };
+
   const { filters, filtersCount, loading } = useFilters({
     queryString,
     limit,
@@ -79,7 +95,10 @@ const FiltersListView = () => {
             defaultMessage: 'Filters',
           })}
         />
-        <SearchField onInputChange={setQueryString} />
+        <SearchField
+          defaultValue={queryString}
+          onInputChange={setQueryString}
+        />
       </div>
 
       <div className="min-w-full overflow-x-auto">

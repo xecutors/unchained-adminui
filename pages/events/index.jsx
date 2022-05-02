@@ -9,6 +9,7 @@ import SearchField from '../../modules/common/components/SearchField';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EventList from '../../modules/event/components/EventList';
 import useEvents from '../../modules/event/hooks/useEvents';
+import useEventTypes from '../../modules/event/hooks/useEventTypes';
 
 const Events = () => {
   const { formatMessage } = useIntl();
@@ -34,27 +35,64 @@ const Events = () => {
       });
   };
 
+  const changeType = (selectedType) => {
+    const { type: newType, ...otherParams } = query;
+
+    if (selectedType) {
+      push({
+        query: {
+          ...otherParams,
+          type: selectedType,
+        },
+      });
+    } else
+      push({
+        query: {
+          ...otherParams,
+        },
+      });
+  };
+
   const { events, eventsCount, loading } = useEvents({
     limit,
-    type: queryString,
+    type: query?.type,
     offset,
+    queryString,
   });
+
+  const { eventsType } = useEventTypes();
 
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'events_list_header',
-            defaultMessage: 'Events',
-          })}
-        />
 
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
+      <div className="w-full py-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+          <PageHeader
+            headerText={formatMessage({
+              id: 'events_list_header',
+              defaultMessage: 'Events',
+            })}
+          />
+          <SearchField
+            onInputChange={setQueryString}
+            defaultValue={queryString}
+          />
+        </div>
+        <select
+          onChange={(e) => changeType(e.target.value)}
+          className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 dark:bg-slate-400"
+        >
+          <option value="">
+            {formatMessage({
+              id: 'select_type',
+              defaultMessage: 'Select type',
+            })}
+          </option>
+          {eventsType?.map((type) => (
+            <option value={type.value}>{type.label} </option>
+          ))}
+        </select>
       </div>
 
       {loading ? (

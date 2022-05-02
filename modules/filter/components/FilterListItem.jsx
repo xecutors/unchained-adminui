@@ -24,15 +24,19 @@ const FilterListItem = ({ filter, onRemove }) => {
         <div className="flex items-center text-sm text-slate-900">
           <Link href={`/filters/${filter._id}`}>
             <a className="text-blue-600 dark:text-blue-400">
-              {filter?.texts.title || (
-                <>
-                  {filter._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
-                  />
-                </>
-              )}
+              {filter?.texts &&
+                (filter?.texts.title || (
+                  <>
+                    {filter._id}{' '}
+                    <Badge
+                      color="blue"
+                      text={formatMessage({
+                        id: 'name',
+                        defaultMessage: 'Name',
+                      })}
+                    />
+                  </>
+                ))}
             </a>
           </Link>
         </div>
