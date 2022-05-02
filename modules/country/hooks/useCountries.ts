@@ -2,14 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import CountryFragment from '../fragments/CountryFragment';
 
 export const CountriesQuery = gql`
-  query Countries(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-  ) {
+  query Countries($limit: Int, $offset: Int, $includeInactive: Boolean) {
     countries(
-      queryString: $queryString
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
@@ -23,13 +17,12 @@ export const CountriesQuery = gql`
 `;
 
 const useCountries = ({
-  queryString = '',
   limit = 20,
   offset = 0,
   includeInactive = false,
 } = {}) => {
   const { data, loading, error, fetchMore }: any = useQuery(CountriesQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: { limit, offset, includeInactive },
   });
 
   const countries = data?.countries || [];

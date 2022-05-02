@@ -58,18 +58,14 @@ const AssortmentsView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'assortments_list_header',
-            defaultMessage: 'Assortments',
-          })}
-        />
-        <SearchField
-          onInputChange={setQueryString}
-          defaultValue={queryString}
-        />
-      </div>
+
+      <PageHeader
+        headerText={formatMessage({
+          id: 'assortments_list_header',
+          defaultMessage: 'Assortments',
+        })}
+      />
+
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-x-auto">
         <ListHeader

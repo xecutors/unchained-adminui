@@ -2,18 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FiltersQuery = gql`
-  query Filters(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-  ) {
-    filters(
-      queryString: $queryString
-      limit: $limit
-      offset: $offset
-      includeInactive: $includeInactive
-    ) {
+  query Filters($limit: Int, $offset: Int, $includeInactive: Boolean) {
+    filters(limit: $limit, offset: $offset, includeInactive: $includeInactive) {
       ...FilterFragment
     }
     filtersCount(includeInactive: $includeInactive)
@@ -22,13 +12,12 @@ export const FiltersQuery = gql`
 `;
 
 const useFilters = ({
-  queryString = '',
   limit = 20,
   offset = 0,
   includeInactive = false,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(FiltersQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: { limit, offset, includeInactive },
   });
   const filters = data?.filters || [];
   const filtersCount = data?.filtersCount;

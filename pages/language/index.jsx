@@ -15,35 +15,16 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
 
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
   const { languages, languagesCount, loading } = useLanguages({
-    queryString,
     limit,
     includeInactive,
     offset,
@@ -81,18 +62,13 @@ const Languages = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeaders
-          headerText={formatMessage({
-            id: 'language_header',
-            defaultMessage: 'Languages',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+
+      <PageHeaders
+        headerText={formatMessage({
+          id: 'language_header',
+          defaultMessage: 'Languages',
+        })}
+      />
 
       <div className="min-w-full overflow-x-auto">
         <ListHeader

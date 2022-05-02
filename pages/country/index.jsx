@@ -19,11 +19,10 @@ import useModal from '../../modules/modal/hooks/useModal';
 
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 
 const Country = ({ userId }) => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
@@ -34,25 +33,7 @@ const Country = ({ userId }) => {
     hasAccess(userId);
   }, [userId]);
 
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
   const { countries, countriesCount, loading } = useCountries({
-    queryString,
     limit,
     includeInactive,
     offset,
@@ -90,18 +71,13 @@ const Country = ({ userId }) => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'countries',
-            defaultMessage: 'Countries',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+      <PageHeader
+        headerText={formatMessage({
+          id: 'countries',
+          defaultMessage: 'Countries',
+        })}
+      />
+
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}

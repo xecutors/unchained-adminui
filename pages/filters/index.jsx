@@ -16,7 +16,6 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -27,6 +26,7 @@ const FiltersListView = () => {
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
+<<<<<<< HEAD
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
@@ -45,8 +45,9 @@ const FiltersListView = () => {
       });
   };
 
+=======
+>>>>>>> Remove unchained 1.0 related codes
   const { filters, filtersCount, loading } = useFilters({
-    queryString,
     limit,
     includeInactive,
     offset,
@@ -88,18 +89,13 @@ const FiltersListView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="w-full py-5">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'filters_list_header',
-            defaultMessage: 'Filters',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+
+      <PageHeader
+        headerText={formatMessage({
+          id: 'filters_list_header',
+          defaultMessage: 'Filters',
+        })}
+      />
 
       <div className="min-w-full overflow-x-auto">
         <ListHeader

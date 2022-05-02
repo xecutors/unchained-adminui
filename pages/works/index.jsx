@@ -12,10 +12,9 @@ import useWorkQueue from '../../modules/work/hooks/useWorkQueue';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 
 const WorkQueueView = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
 
@@ -31,26 +30,7 @@ const WorkQueueView = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
 
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
-
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
-    queryString,
     limit,
     offset,
     ...filter,
@@ -59,18 +39,14 @@ const WorkQueueView = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'work_queue_header',
-            defaultMessage: 'Work queue',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+
+      <PageHeader
+        headerText={formatMessage({
+          id: 'work_queue_header',
+          defaultMessage: 'Work queue',
+        })}
+      />
+
       <WorkFilter workTypes={activeWorkTypes} />
       <div className="min-w-full overflow-x-auto">
         <ListHeader

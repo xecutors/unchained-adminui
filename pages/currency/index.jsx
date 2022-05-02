@@ -16,35 +16,16 @@ import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
 
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
   const { currencies, currenciesCount, loading } = useCurrencies({
-    queryString,
     limit,
     offset,
     includeInactive,
@@ -82,18 +63,13 @@ const Currencies = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'currencies_list_header',
-            defaultMessage: 'Currencies',
-          })}
-        />
-        <SearchField
-          defaultValue={queryString}
-          onInputChange={setQueryString}
-        />
-      </div>
+
+      <PageHeader
+        headerText={formatMessage({
+          id: 'currencies_list_header',
+          defaultMessage: 'Currencies',
+        })}
+      />
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.currencies.create) && '/currency/new'}
