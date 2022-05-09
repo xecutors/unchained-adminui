@@ -18,6 +18,7 @@ export const AssortmentsQuery = gql`
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
+      queryString: $queryString
     ) {
       ...AssortmentFragment
     }
