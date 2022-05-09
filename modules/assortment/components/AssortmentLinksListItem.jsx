@@ -15,7 +15,7 @@ const AssortmentLinksListItem = ({
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-white border-gray-200 last:border-none hover:cursor-move',
+            'flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-white border-slate-200 last:border-none hover:cursor-move',
             {
               'bg-slate-100 dark:bg-slate-500 border-2 border-b-2 rounded':
                 snapshot.isDragging,

@@ -75,7 +75,7 @@ const FilterableDropdown = ({
                 <div className="w-full">
                   <input
                     type="search"
-                    className="w-full h-12 text-slate-800 dark:bg-slate-600 dark:text-white  focus:outline-none mt-1 block appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 placeholder-gray-400 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
+                    className="w-full h-12 text-slate-800 dark:bg-slate-600 dark:text-white  focus:outline-none mt-1 block appearance-none rounded-l-md border-2 outline-none border-slate-200 px-2 py-2.5 placeholder-slate-400 shadow-sm focus:border-indigo-400 focus:ring-indigo-400"
                     placeholder={formatMessage({
                       id: 'search',
                       defaultMessage: 'Search',
@@ -93,7 +93,7 @@ const FilterableDropdown = ({
                   <div className="w-full">
                     <input
                       className={classNames(
-                        'mt-1 h-12 block w-full dark:bg-slate-600 dark:text-white appearance-none rounded-l-md border-2 outline-none border-gray-200 px-2 py-2.5 text-slate-800 placeholder-gray-400 dark:placeholder:text-white shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
+                        'mt-1 h-12 block w-full dark:bg-slate-600 dark:text-white appearance-none rounded-l-md border-2 outline-none border-slate-200 px-2 py-2.5 text-slate-800 placeholder-slate-400 dark:placeholder:text-white shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400',
                         {
                           'border-red-300 focus:border-red-300': !!field.error,
                         },
@@ -129,7 +129,7 @@ const FilterableDropdown = ({
 
           <div
             className={classNames(
-              '-ml-px mb-2 h-12 flex items-center self-end rounded-r-md border-gray-200 bg-indigo-500 py-2 pl-2 pr-1 text-white',
+              '-ml-px mb-2 h-12 flex items-center self-end rounded-r-md border-slate-200 bg-indigo-500 py-2 pl-2 pr-1 text-white',
               { 'bg-red-400': !!field.error },
               props.buttonClassName,
             )}

@@ -8,7 +8,6 @@ export const AssortmentsQuery = gql`
     $slugs: [String!]
     $limit: Int
     $offset: Int
-    $queryString: String
     $includeInactive: Boolean
     $includeLeaves: Boolean
   ) {
@@ -19,7 +18,6 @@ export const AssortmentsQuery = gql`
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
-      queryString: $queryString
     ) {
       ...AssortmentFragment
     }

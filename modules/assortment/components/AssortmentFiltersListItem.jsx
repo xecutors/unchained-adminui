@@ -20,7 +20,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex items-center justify-between rounded px-2 gap-4 border-b border-gray-200 last:border-none hover:cursor-move',
+            'flex items-center justify-between rounded px-2 gap-4 border-b border-slate-200 last:border-none hover:cursor-move',
             {
               'bg-slate-100 dark:bg-slate-400 border-2 border-b-2 rounded last:border-solid':
                 snapshot.isDragging,
@@ -29,7 +29,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, index }) => {
         >
           <div className="shrink-0 grow-0 basis-20 space-y-1 p-2">
             <Badge
-              color={filter?.isActive ? 'green' : 'gray'}
+              color={filter?.isActive ? 'green' : 'slate'}
               text={
                 filter?.isActive
                   ? formatMessage({ id: 'active', defaultMessage: 'Active' })
