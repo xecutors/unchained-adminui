@@ -6,7 +6,7 @@ export const WorkQueueQuery = gql`
     $queryString: String
     $offset: Int
     $limit: Int
-    $status: [WorkStatus]
+    $status: [WorkStatus!]
     $selectTypes: [WorkType!]
     $created: DateFilterInput
   ) {
