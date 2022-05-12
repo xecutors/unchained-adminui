@@ -35,9 +35,7 @@ const useAssortmentPaths = ({
       includeInactive,
       includeLeaves,
     },
-    fetchPolicy: 'cache-first',
-    nextFetchPolicy: 'cache-only',
-    returnPartialData: true,
+    fetchPolicy: 'network-only',
   });
 
   const assortments = data?.assortments || [];

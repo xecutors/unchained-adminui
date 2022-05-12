@@ -20,7 +20,6 @@ export const AssortmentsQuery = gql`
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
-      queryString: $queryString
     ) {
       ...AssortmentFragment
     }
@@ -42,7 +41,6 @@ const useAssortments = ({
   offset = 0,
   includeInactive = false,
   includeLeaves = false,
-  queryString = '',
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(AssortmentsQuery, {
     variables: {

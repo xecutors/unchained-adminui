@@ -19,6 +19,7 @@ import AssortmentGraphView from '../../modules/assortment/components/AssortmentG
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
+
   return graph === 'true' ? (
     <AssortmentGraphView options={rest} />
   ) : (
@@ -28,6 +29,8 @@ const GetCurrentView = ({ options, queryString }) => {
 
 const AssortmentListView = ({ options, queryString }) => {
   const { includeInactive, includeLeaves, limit, offset, tags } = options;
+  const { query } = useRouter();
+  const slug = query?.slug || '';
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     queryString,
@@ -36,6 +39,7 @@ const AssortmentListView = ({ options, queryString }) => {
     limit,
     offset,
     tags,
+    slugs: slug,
   });
 
   return loading ? (
@@ -78,15 +82,6 @@ const AssortmentsListView = () => {
         },
       });
   };
-
-  const { assortments, assortmentsCount, loading } = useAssortments({
-    queryString,
-    includeInactive,
-    includeLeaves,
-    limit,
-    offset,
-    tags,
-  });
 
   return (
     <>
