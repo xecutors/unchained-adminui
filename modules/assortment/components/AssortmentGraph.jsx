@@ -29,7 +29,7 @@ const getAssortmentTree = (assortments) => {
 
 const AssortmentGraph = ({ assortments }) => {
   return (
-    <div className="w-full h-max rounded-lg bg-white shadow dark:shadow-white dark:bg-slate-600 text-slate-900 dark:text-white">
+    <div className="relative w-full h-max rounded-lg bg-white shadow dark:shadow-white dark:bg-slate-600 text-slate-900 dark:text-white">
       <TangleTree data={getAssortmentTree(assortments)} />
     </div>
   );

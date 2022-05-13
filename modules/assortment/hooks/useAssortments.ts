@@ -51,7 +51,6 @@ const useAssortments = ({
       offset,
       includeInactive,
       includeLeaves,
-      queryString,
     },
   });
   const assortments = data?.assortments || [];

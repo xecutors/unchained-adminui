@@ -1,12 +1,13 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 import { Fragment } from 'react';
-import Link from 'next/link';
 import { scaleOrdinal, schemeDark2, min, max, descending } from 'd3';
 import { useIntl } from 'react-intl';
-
-// const _ = require('lodash');
+import { useRouter } from 'next/router';
+import { ArrowLeftIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
 
 const color = scaleOrdinal(schemeDark2);
 
@@ -45,7 +46,7 @@ const constructTangleLayout = (levels, options = {}) => {
           id,
           parents: n.parents.slice(),
           level: i,
-          span: i - min(n.parents, (p) => p.level),
+          span: i - min(n.parents, (p) => p?.level),
         };
       }
       n.bundle = index[id];
@@ -64,12 +65,12 @@ const constructTangleLayout = (levels, options = {}) => {
   const bundles = levels.reduce((a, x) => a.concat(x.bundles), []);
 
   // reverse pointer from parent to bundles
-  bundles.forEach((b) =>
-    b.parents.forEach((p) => {
-      if (p.bundles_index === undefined) {
+  (bundles || []).forEach((b) =>
+    b.parents.filter(Boolean).forEach((p) => {
+      if (p?.bundles_index === undefined) {
         p.bundles_index = {};
       }
-      if (!(b.id in p.bundles_index)) {
+      if (!(b.id in (p?.bundles_index || []))) {
         p.bundles_index[b.id] = [];
       }
       p.bundles_index[b.id].push(b);
@@ -131,9 +132,9 @@ const constructTangleLayout = (levels, options = {}) => {
 
   let i = 0;
   levels.forEach((l) => {
-    l.bundles.forEach((b) => {
+    l.bundles.filter(Boolean).forEach((b) => {
       b.x =
-        max(b.parents, (d) => d.x) +
+        max(b.parents, (d) => d?.x) +
         nodeWidth +
         (l.bundles.length - 1 - b.i) * bundleWidth;
       b.y = i * nodeHeight;
@@ -195,89 +196,103 @@ const constructTangleLayout = (levels, options = {}) => {
 
 const RenderChart = ({ data, options = {} }) => {
   const { formatMessage } = useIntl();
-  options.color ||= (d, i) => color(i);
+  const router = useRouter();
 
   const tangleLayout = constructTangleLayout(data, options);
 
+  options.color ||= (d, i) => color(i);
+
   return (
-    <svg
-      width="100%"
-      height={`${tangleLayout.layout.height}`}
-      className="fill-transparent mx-10 w-full"
-    >
-      {tangleLayout.bundles.map((b, i) => {
-        const d = b.links
-          .map(
-            (l) => `
+    <>
+      <span className="absolute top-2 left-8">
+        <button
+          type="button"
+          className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600 dark:focus:ring-yellow-500"
+          onClick={() => router.back()}
+        >
+          <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
+        </button>
+      </span>
+
+      <svg
+        width="100%"
+        height={`${tangleLayout.layout.height}`}
+        className="fill-transparent pt-4 mx-10 w-full"
+      >
+        {tangleLayout.bundles.map((b, i) => {
+          const d = b.links
+            .map(
+              (l) => `
       M${l.xt} ${l.yt}
       L${l.xb - l.c1} ${l.yt}
       A${l.c1} ${l.c1} 90 0 1 ${l.xb} ${l.yt + l.c1}
       L${l.xb} ${l.ys - l.c2}
       A${l.c2} ${l.c2} 90 0 0 ${l.xb + l.c2} ${l.ys}
       L${l.xs} ${l.ys}`,
-          )
-          .join('');
-        return (
-          <Fragment key={d}>
+            )
+            .join('');
+          return (
+            <Fragment key={d}>
+              <path
+                className="link stroke-white dark:stroke-slate-600"
+                d={`${d}`}
+                strokeWidth="5"
+              />
+              <path
+                className="link"
+                d={`${d}`}
+                stroke={`${options.color(b, i)}`}
+                strokeWidth="2"
+              />
+            </Fragment>
+          );
+        })}
+        {tangleLayout.nodes.map((n, i) => (
+          <Fragment key={`${n.id}+${i}`}>
             <path
-              className="link stroke-white dark:stroke-slate-600"
-              d={`${d}`}
-              strokeWidth="5"
+              className="selectable node"
+              data-id={`${n.id}`}
+              stroke="black"
+              strokeWidth="8"
+              d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
             />
             <path
-              className="link"
-              d={`${d}`}
-              stroke={`${options.color(b, i)}`}
-              strokeWidth="2"
+              className="node"
+              stroke="white"
+              strokeWidth="4"
+              d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
             />
-          </Fragment>
-        );
-      })}
-      {tangleLayout.nodes.map((n) => (
-        <Fragment key={n.id}>
-          <path
-            className="selectable node"
-            data-id={`${n.id}`}
-            stroke="black"
-            strokeWidth="8"
-            d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
-          />
-          <path
-            className="node"
-            stroke="white"
-            strokeWidth="4"
-            d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
-          />
-          <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
-            <a>
-              <text
-                className="selectable fill-indigo-600 hover:fill-indigo-800 dark:fill-white dark:hover:fill-slate-300 text-base"
-                data-id={`${n.id}`}
-                x={`${n.x + 4}`}
-                y={`${n.y - n.height / 2 - 4}`}
-                // strokeWidth="2"
-              >
-                {n?.title}
+            <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
+              <a>
+                <text
+                  className="selectable fill-indigo-600 hover:fill-indigo-800 dark:fill-white dark:hover:fill-slate-300 text-base"
+                  data-id={`${n.id}`}
+                  x={`${n.x + 4}`}
+                  y={`${n.y - n.height / 2 - 4}`}
+                  // strokeWidth="2"
+                >
+                  {n?.title}
 
-                {n?.childCount && (
-                  <>
-                    <tspan dx="0.5rem" className="italic fill-slate-400">
-                      {formatMessage({
-                        id: 'children',
-                        defaultMessage: 'children:',
-                      })}
-                    </tspan>
-                    <tspan dx="0.25rem" className="italic fill-purple-600">
-                      {n?.childCount}
-                    </tspan>
-                  </>
-                )}
-              </text>
-            </a>
-          </Link>
-        </Fragment>
-      ))}
-    </svg>
+                  {n?.childCount !== undefined && (
+                    <>
+                      <tspan dx="0.5rem" className="italic fill-slate-400">
+                        {formatMessage({
+                          id: 'children',
+                          defaultMessage: 'children:',
+                        })}
+                      </tspan>
+                      <tspan dx="0.25rem" className="italic fill-purple-600">
+                        {n?.childCount}
+                      </tspan>
+                    </>
+                  )}
+                </text>
+              </a>
+            </Link>
+          </Fragment>
+        ))}
+      </svg>
+    </>
   );
 };
 
