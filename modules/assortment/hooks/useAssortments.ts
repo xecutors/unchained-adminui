@@ -4,6 +4,7 @@ import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const AssortmentsQuery = gql`
   query Assortments(
+    $queryString: String
     $tags: [String!]
     $slugs: [String!]
     $limit: Int
@@ -12,13 +13,13 @@ export const AssortmentsQuery = gql`
     $includeLeaves: Boolean
   ) {
     assortments(
+      queryString: $queryString
       tags: $tags
       slugs: $slugs
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
-      queryString: $queryString
     ) {
       ...AssortmentFragment
     }
@@ -33,23 +34,23 @@ export const AssortmentsQuery = gql`
 `;
 
 const useAssortments = ({
+  queryString = '',
   tags = null,
   slugs = null,
   limit = 20,
   offset = 0,
   includeInactive = false,
   includeLeaves = false,
-  queryString = '',
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(AssortmentsQuery, {
     variables: {
+      queryString,
       tags,
       slugs,
       limit,
       offset,
       includeInactive,
       includeLeaves,
-      queryString,
     },
   });
   const assortments = data?.assortments || [];

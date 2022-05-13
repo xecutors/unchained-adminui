@@ -12,6 +12,7 @@ export const keyMappings: any = {
           'offset',
           'tags',
           'queryString',
+          'slugs',
         ],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];

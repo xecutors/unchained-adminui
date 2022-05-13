@@ -89,15 +89,12 @@ a {
   background-color: rgb(99, 102, 241) !important;
 }
 
-<<<<<<< HEAD
-=======
 .react-datepicker-time__input input {
   width: 100%;
   padding: 4px 6px;
   border-radius: 4px;
 }
 
->>>>>>> Add time input
 .quill-error-border .ql-editor {
   border: 1px solid rgb(252 165 165);
 }

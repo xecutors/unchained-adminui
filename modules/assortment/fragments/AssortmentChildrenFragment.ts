@@ -1,11 +1,16 @@
 import { gql } from '@apollo/client';
-import AssortmentFragment from './AssortmentFragment';
 
 const AssortmentChildrenFragment = gql`
   fragment AssortmentChildrenFragment on Assortment {
-    ...AssortmentFragment
+    _id
+    texts {
+      _id
+      slug
+      title
+      subtitle
+    }
+    childrenCount
   }
-  ${AssortmentFragment}
 `;
 
 export default AssortmentChildrenFragment;

@@ -1,22 +1,30 @@
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import useAssortments from '../../modules/assortment/hooks/useAssortments';
-import AssortmentList from '../../modules/assortment/components/AssortmentList';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import Loading from '../../modules/common/components/Loading';
 
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
+import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 
-const AssortmentsListView = () => {
+const GetCurrentView = ({ options, queryString }) => {
+  const { graph, ...rest } = options;
+
+  return graph === 'true' ? (
+    <AssortmentGraphView options={rest} />
+  ) : (
+    <AssortmentListView options={rest} queryString={queryString} />
+  );
+};
+
+const AssortmentsView = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
   const { hasRole } = useAuth();
@@ -26,6 +34,8 @@ const AssortmentsListView = () => {
   const includeInactive = query?.includeInactive === 'true';
   const includeLeaves = query?.includeLeaves === 'true';
   const tags = query?.tags?.split(',') || undefined;
+  const graph = query?.viewGraph || false;
+  const slug = query?.slug || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -44,15 +54,6 @@ const AssortmentsListView = () => {
         },
       });
   };
-
-  const { assortments, assortmentsCount, loading } = useAssortments({
-    queryString,
-    includeInactive,
-    includeLeaves,
-    limit,
-    offset,
-    tags,
-  });
 
   return (
     <>
@@ -76,27 +77,47 @@ const AssortmentsListView = () => {
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
         >
-          <Toggle
-            toggleKey="includeInactive"
-            toggleText={formatMessage({
-              id: 'include_inactive',
-              defaultMessage: 'Include inactive',
-            })}
-          />
-          <Toggle
-            toggleKey="includeLeaves"
-            toggleText={formatMessage({
-              id: 'include_leaf',
-              defaultMessage: 'Include leafs',
-              description: 'Assortment children',
-            })}
-          />
+          <div className="flex gap-4">
+            <Toggle
+              toggleKey="includeInactive"
+              toggleText={formatMessage({
+                id: 'include_inactive',
+                defaultMessage: 'Include inactive',
+              })}
+            />
+            <Toggle
+              toggleKey="includeLeaves"
+              toggleText={formatMessage({
+                id: 'include_leaf',
+                defaultMessage: 'Include leafs',
+                description: 'Assortment children',
+              })}
+            />
+            <Toggle
+              toggleKey="viewGraph"
+              toggleText={formatMessage({
+                id: 'display_as_graph',
+                defaultMessage: 'Display as Graph',
+              })}
+            />
+          </div>
         </ListHeader>
-        {loading ? <Loading /> : <AssortmentList assortments={assortments} />}
-        <Pagination data={assortments} total={assortmentsCount} />
+
+        <GetCurrentView
+          queryString={queryString}
+          options={{
+            graph,
+            includeInactive,
+            includeLeaves,
+            slug,
+            tags,
+            limit,
+            offset,
+          }}
+        />
       </div>
     </>
   );
 };
 
-export default AssortmentsListView;
+export default AssortmentsView;

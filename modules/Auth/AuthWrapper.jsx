@@ -40,7 +40,7 @@ const AuthWrapper = ({ children }) => {
     if (
       ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
       isAdmin(id) ||
-      userRoles?.includes(ROUTE_ROLES[router.pathname])
+      (userRoles || [])?.includes(ROUTE_ROLES[router.pathname])
     )
       return true;
     return false;
