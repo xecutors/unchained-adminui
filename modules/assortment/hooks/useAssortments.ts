@@ -46,7 +46,7 @@ const useAssortments = ({
     variables: {
       queryString,
       tags,
-      slugs,
+      slugs: slugs || null,
       limit,
       offset,
       includeInactive,
