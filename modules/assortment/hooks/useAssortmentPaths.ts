@@ -15,9 +15,6 @@ const AssortmentPathsQuery = gql`
       ...AssortmentChildrenFragment
       children {
         ...AssortmentChildrenFragment
-        children {
-          ...AssortmentChildrenFragment
-        }
       }
     }
   }
