@@ -16,7 +16,6 @@ const Quotations = () => {
   const offset = parseInt(query?.skip, 10) || 0;
 
   const { quotations, quotationsCount, loading } = useQuotations({
-    queryString,
     limit,
     offset,
   });

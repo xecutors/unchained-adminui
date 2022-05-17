@@ -10,7 +10,6 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
-import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 
@@ -26,7 +25,7 @@ const GetCurrentView = ({ options, queryString }) => {
 
 const AssortmentsView = () => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const { hasRole } = useAuth();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
@@ -37,23 +36,7 @@ const AssortmentsView = () => {
   const graph = query?.viewGraph || false;
   const slug = query?.slug || '';
 
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
+  const { queryString } = query;
 
   return (
     <>
