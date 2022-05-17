@@ -18,7 +18,7 @@ import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const FiltersListView = () => {
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const { hasRole } = useAuth();
@@ -26,27 +26,6 @@ const FiltersListView = () => {
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
-<<<<<<< HEAD
-  const { queryString, ...restQuery } = query;
-
-  const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
-      });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
-  };
-
-=======
->>>>>>> Remove unchained 1.0 related codes
   const { filters, filtersCount, loading } = useFilters({
     limit,
     includeInactive,
