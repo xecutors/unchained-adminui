@@ -31,7 +31,12 @@ const GetCurrentTab = ({ list, selectedView }) => {
   if (selectedView === 'update-assortments')
     return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
-    return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
+    return (
+      <AssortmentAlphabeticalList
+        enableRedirect={false}
+        dictionary={removedAssortments}
+      />
+    );
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
   if (selectedView === 'updated-products')
@@ -43,7 +48,12 @@ const GetCurrentTab = ({ list, selectedView }) => {
   if (selectedView === 'updated-filters')
     return <FiltersAlphabeticalList dictionary={updatedFilters} />;
   if (selectedView === 'removed-filters')
-    return <FiltersAlphabeticalList dictionary={removedFilters} />;
+    return (
+      <FiltersAlphabeticalList
+        enableRedirect={false}
+        dictionary={removedFilters}
+      />
+    );
 
   return <AssortmentAlphabeticalList dictionary={newAssortments} />;
 };
