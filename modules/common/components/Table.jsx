@@ -37,7 +37,7 @@ const Table = ({ className, ...props }) => {
     setRows(buildRows(props));
   }, [props.children]);
 
-  return (
+  return rowsWithSort.header.length ? (
     <table
       className={classNames(
         'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg dark:rounded-none dark:border sm:bg-white dark:bg-slate-600',
@@ -64,6 +64,14 @@ const Table = ({ className, ...props }) => {
       ) : null}
       {rowsWithSort.footer.length ? <tfoot>{rowsWithSort.footer}</tfoot> : null}
     </table>
+  ) : (
+    <NoData
+      message={formatMessage({
+        id: 'data',
+        defaultMessage: 'Data',
+      })}
+      className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
+    />
   );
 };
 

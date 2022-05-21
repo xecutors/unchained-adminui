@@ -193,7 +193,6 @@ const SyncDetail = () => {
         removedItemsRoute="removed-filters"
         statistics={stats.filters}
       />
-      {console.log(stats)}
     </>
   );
 };
