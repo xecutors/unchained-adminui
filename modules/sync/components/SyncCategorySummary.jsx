@@ -132,7 +132,7 @@ const SyncCategorySummary = ({
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-              {statistics.removed}
+              {statistics.updated}
             </p>
             <ViewCard
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}

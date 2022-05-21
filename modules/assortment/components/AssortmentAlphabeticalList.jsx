@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const AssortmentAlphabeticalList = ({ dictionary = {} }) => {
+const AssortmentAlphabeticalList = ({
+  dictionary = {},
+  enableRedirect = true,
+}) => {
   const { query } = useRouter();
 
   const { searchKey = '' } = query;
@@ -44,7 +47,11 @@ const AssortmentAlphabeticalList = ({ dictionary = {} }) => {
                         </div>
                       )}
                       <div className="min-w-0 flex-1">
-                        <Link href={`/assortments/${item?.slug}`}>
+                        <Link
+                          href={
+                            enableRedirect ? `/assortments/${item?.slug}` : `#`
+                          }
+                        >
                           <a className="focus:outline-none">
                             <span
                               className="absolute inset-0"

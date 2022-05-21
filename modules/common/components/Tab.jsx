@@ -58,11 +58,11 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                   <div className="capitalize">
                     {option?.title || option?.id}
                   </div>
-                  {option?.length && (
+                  {option?.length ? (
                     <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-300 px-1 py-0.5 text-sm leading-none text-slate-900">
                       {option?.length}
                     </span>
-                  )}
+                  ) : null}
                 </div>
               </a>
             ))}

@@ -17,24 +17,31 @@ const GetCurrentTab = ({ list, selectedView }) => {
   const {
     newProducts,
     removedProducts,
+    updatedFilters,
     newAssortments,
+    updatedAssortments,
     removedAssortments,
     newFilters,
+    updatedProducts,
     removedFilters,
   } = list;
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
+  if (selectedView === 'update-assortments')
+    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
     return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
-
+  if (selectedView === 'updated-products')
+    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
   if (selectedView === 'removed-products')
     return <ProductsAlphabeticalList dictionary={removedProducts} />;
   if (selectedView === 'new-filters')
     return <FiltersAlphabeticalList dictionary={newFilters} />;
-
+  if (selectedView === 'updated-filters')
+    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
   if (selectedView === 'removed-filters')
     return <FiltersAlphabeticalList dictionary={removedFilters} />;
 
@@ -96,45 +103,51 @@ const DailyAnalyticsReportList = () => {
   const { stats } = sync || {};
   const { categories, products, filters } = stats || {};
 
+  console.log(stats);
+
   const newAssortments = sortArrayAlphabetically(
-    categories?.newCategories,
+    categories?.newItems,
+    'title',
+    true,
+  );
+  const updatedAssortments = sortArrayAlphabetically(
+    categories?.updatedItems,
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    categories?.removedCategories,
+    categories?.removedItems,
     'title',
     true,
   );
-
-  /*   const updatedAssortments = sortArrayAlphabetically(
-    categories?.updated,
-    'title',
-    true,
-  ); */
   const newProducts = sortArrayAlphabetically(
     products?.newItems,
     'title',
     true,
   );
-  /*   const updatedProducts = sortArrayAlphabetically(
-    products?.updated,
+  const updatedProducts = sortArrayAlphabetically(
+    products?.updatedItems,
     'title',
     true,
-  ); */
+  );
+
   const removedProducts = sortArrayAlphabetically(
     products?.removedItems,
     'title',
     true,
   );
   const newFilters = sortArrayAlphabetically(filters?.newItems, 'key', true);
+  const updatedFilters = sortArrayAlphabetically(
+    filters?.updatedItems,
+    'key',
+    true,
+  );
   const removedFilters = sortArrayAlphabetically(
     filters?.removedItems,
     'key',
     true,
   );
-  /* const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true); */
 
   const dailySyncItemReportOptions = [
     {
@@ -209,8 +222,6 @@ const DailyAnalyticsReportList = () => {
     },
   ];
 
-  console.log(removedAssortments);
-
   return (
     <>
       <BreadCrumbs />
@@ -236,11 +247,10 @@ const DailyAnalyticsReportList = () => {
             removedAssortments,
             newFilters,
             newProducts,
-
-            updatedAssortments: [],
-            updatedFilters: [],
+            updatedAssortments,
+            updatedFilters,
             removedFilters,
-            updatedProducts: [],
+            updatedProducts,
             removedProducts,
           }}
         />
