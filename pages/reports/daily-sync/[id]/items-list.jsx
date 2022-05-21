@@ -166,7 +166,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_assortments',
         defaultMessage: 'New Assortments',
       }),
-      length: Object.keys(newAssortments).length,
+      length: Object.values(newAssortments).flat().length,
     },
     {
       id: 'updated-assortments',
@@ -181,7 +181,7 @@ const DailyAnalyticsReportList = () => {
         id: 'removed_assortments',
         defaultMessage: 'Removed Assortments',
       }),
-      length: Object.keys(removedAssortments).length,
+      length: Object.values(removedAssortments).flat().length,
     },
     {
       id: 'new-products',
@@ -189,7 +189,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_products',
         defaultMessage: 'New Products',
       }),
-      length: Object.keys(newProducts).length,
+      length: Object.values(newProducts).flat().length,
     },
     {
       id: 'updated-products',
@@ -204,7 +204,7 @@ const DailyAnalyticsReportList = () => {
         id: 'deleted_products',
         defaultMessage: 'Deleted products',
       }),
-      length: Object.keys(removedProducts).length,
+      length: Object.values(removedProducts).flat().length,
     },
     {
       id: 'new-filters',
@@ -212,7 +212,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_filters',
         defaultMessage: 'New Filters',
       }),
-      length: Object.keys(newAssortments).length,
+      length: Object.values(newFilters).flat().length,
     },
     {
       id: 'updated-filters',
@@ -220,7 +220,6 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_filters',
         defaultMessage: 'Updated filters',
       }),
-      length: Object.keys(newAssortments).length,
     },
     {
       id: 'removed-filters',
@@ -228,7 +227,7 @@ const DailyAnalyticsReportList = () => {
         id: 'removed_filters',
         defaultMessage: 'Removed filters',
       }),
-      length: Object.keys(newAssortments).length,
+      length: Object.values(removedFilters).flat().length,
     },
   ];
 
