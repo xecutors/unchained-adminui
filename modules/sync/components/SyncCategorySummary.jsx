@@ -33,11 +33,10 @@ const ViewCard = ({ link }) => {
   );
 };
 
-const CardContainer = (props) => {
+const CardContainer = ({ children }) => {
   return (
     <div className="relative overflow-hidden rounded-lg bg-white dark:bg-slate-600 px-4 pt-5 pb-12 shadow dark:shadow-white sm:px-6 sm:pt-6">
-      {/* eslint-disable-next-line react/destructuring-assignment */}
-      {props.children}
+      {children}
     </div>
   );
 };

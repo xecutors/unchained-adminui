@@ -129,7 +129,7 @@ const SyncDetail = () => {
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
-                })}{' '}
+                })}
                 {getPreviousValue(stats.products)}
               </span>
             </div>
@@ -193,6 +193,7 @@ const SyncDetail = () => {
         removedItemsRoute="removed-filters"
         statistics={stats.filters}
       />
+      {console.log(stats)}
     </>
   );
 };

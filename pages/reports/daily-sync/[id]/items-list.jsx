@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
@@ -84,73 +85,7 @@ const Wrapper = ({ selectedView, list }) => {
 const DailyAnalyticsReportList = () => {
   const { formatMessage } = useIntl();
 
-  const dailySyncItemReportOptions = [
-    {
-      id: 'new-assortments',
-      title: formatMessage({
-        id: 'new_assortments',
-        defaultMessage: 'New Assortments',
-      }),
-    },
-    {
-      id: 'updated-assortments',
-      title: formatMessage({
-        id: 'updated_assortments',
-        defaultMessage: 'Updated Assortments',
-      }),
-    },
-    {
-      id: 'removed-assortments',
-      title: formatMessage({
-        id: 'removed_assortments',
-        defaultMessage: 'Removed Assortments',
-      }),
-    },
-    {
-      id: 'new-products',
-      title: formatMessage({
-        id: 'new_products',
-        defaultMessage: 'New Products',
-      }),
-    },
-    {
-      id: 'updated-products',
-      title: formatMessage({
-        id: 'updated_products',
-        defaultMessage: 'Updated Products',
-      }),
-    },
-    {
-      id: 'removed-products',
-      title: formatMessage({
-        id: 'deleted_products',
-        defaultMessage: 'Deleted products',
-      }),
-    },
-    {
-      id: 'new-filters',
-      title: formatMessage({
-        id: 'new_filters',
-        defaultMessage: 'New Filters',
-      }),
-    },
-    {
-      id: 'updated-filters',
-      title: formatMessage({
-        id: 'updated_filters',
-        defaultMessage: 'Updated filters',
-      }),
-    },
-    {
-      id: 'removed-filters',
-      title: formatMessage({
-        id: 'removed_filters',
-        defaultMessage: 'Removed filters',
-      }),
-    },
-  ];
-  const { query } = useRouter();
-
+  const { query, back } = useRouter();
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
@@ -201,6 +136,81 @@ const DailyAnalyticsReportList = () => {
   );
   /* const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true); */
 
+  const dailySyncItemReportOptions = [
+    {
+      id: 'new-assortments',
+      title: formatMessage({
+        id: 'new_assortments',
+        defaultMessage: 'New Assortments',
+      }),
+      length: Object.keys(newAssortments).length,
+    },
+    {
+      id: 'updated-assortments',
+      title: formatMessage({
+        id: 'updated_assortments',
+        defaultMessage: 'Updated Assortments',
+      }),
+    },
+    {
+      id: 'removed-assortments',
+      title: formatMessage({
+        id: 'removed_assortments',
+        defaultMessage: 'Removed Assortments',
+      }),
+      length: Object.keys(removedAssortments).length,
+    },
+    {
+      id: 'new-products',
+      title: formatMessage({
+        id: 'new_products',
+        defaultMessage: 'New Products',
+      }),
+      length: Object.keys(newProducts).length,
+    },
+    {
+      id: 'updated-products',
+      title: formatMessage({
+        id: 'updated_products',
+        defaultMessage: 'Updated Products',
+      }),
+    },
+    {
+      id: 'removed-products',
+      title: formatMessage({
+        id: 'deleted_products',
+        defaultMessage: 'Deleted products',
+      }),
+      length: Object.keys(removedProducts).length,
+    },
+    {
+      id: 'new-filters',
+      title: formatMessage({
+        id: 'new_filters',
+        defaultMessage: 'New Filters',
+      }),
+      length: Object.keys(newAssortments).length,
+    },
+    {
+      id: 'updated-filters',
+      title: formatMessage({
+        id: 'updated_filters',
+        defaultMessage: 'Updated filters',
+      }),
+      length: Object.keys(newAssortments).length,
+    },
+    {
+      id: 'removed-filters',
+      title: formatMessage({
+        id: 'removed_filters',
+        defaultMessage: 'Removed filters',
+      }),
+      length: Object.keys(newAssortments).length,
+    },
+  ];
+
+  console.log(removedAssortments);
+
   return (
     <>
       <BreadCrumbs />
@@ -210,6 +220,15 @@ const DailyAnalyticsReportList = () => {
           defaultMessage: 'Synced items report',
         })}
       />
+      <span>
+        <button
+          type="button"
+          className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
+          onClick={() => back()}
+        >
+          <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
+        </button>
+      </span>
       <Tab tabItems={dailySyncItemReportOptions} defaultTab="new-assortments">
         <Wrapper
           list={{
