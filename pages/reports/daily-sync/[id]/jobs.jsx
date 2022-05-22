@@ -5,7 +5,11 @@ import {
   RefreshIcon,
   TrashIcon,
 } from '@heroicons/react/outline';
-import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid';
+import {
+  ArrowLeftIcon,
+  CheckCircleIcon,
+  ExclamationIcon,
+} from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -13,6 +17,7 @@ import { useIntl } from 'react-intl';
 import Accordion from '../../../../modules/common/components/Accordion';
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
+import NoData from '../../../../modules/common/components/NoData';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import useWork from '../../../../modules/work/hooks/useWork';
 
@@ -35,7 +40,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="currentColor"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 border-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {added}
         </span>
       </span>
@@ -47,7 +52,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {diff}
         </span>
       </span>
@@ -60,7 +65,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             stroke="red"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {removed}
         </span>
       </span>
@@ -73,7 +78,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 mb-6 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 mb-6 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {total}
         </span>
       </span>
@@ -228,7 +233,7 @@ const headerCSS =
 
 const SyncJobs = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, back } = useRouter();
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
@@ -257,9 +262,26 @@ const SyncJobs = () => {
       />
       <div className="sticky w-full overflow-hidden">
         {!jobs?.length ? (
-          <p>No sync report found</p>
+          <NoData
+            message={formatMessage({
+              id: 'no_job',
+              defaultMessage: 'sync report found',
+            })}
+            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
+          />
         ) : (
-          <Accordion data={accordionData} headerCSS={headerCSS} />
+          <>
+            <span>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
+                onClick={() => back()}
+              >
+                <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
+              </button>
+            </span>
+            <Accordion data={accordionData} headerCSS={headerCSS} />
+          </>
         )}
       </div>
     </>
