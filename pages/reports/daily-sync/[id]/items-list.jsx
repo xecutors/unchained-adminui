@@ -7,7 +7,7 @@ import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import Tab from '../../../../modules/common/components/Tab';
-import uniqueData from '../../../../modules/common/utils/getUniqueData';
+import uniqueArrayObjects from '../../../../modules/common/utils/uniqueArrayObjects';
 import FiltersAlphabeticalList from '../../../../modules/filter/components/FiltersAlphabeticalList';
 import ProductsAlphabeticalList from '../../../../modules/product/components/ProductsAlphabeticalList';
 import useWork from '../../../../modules/work/hooks/useWork';
@@ -115,49 +115,49 @@ const DailyAnalyticsReportList = () => {
   const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    uniqueData(categories?.newItems),
+    uniqueArrayObjects(categories?.newItems),
     'title',
     true,
   );
   const updatedAssortments = sortArrayAlphabetically(
-    uniqueData(categories?.updatedItems),
+    uniqueArrayObjects(categories?.updatedItems),
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    uniqueData(categories?.removedItems),
+    uniqueArrayObjects(categories?.removedItems),
     'title',
     true,
   );
   const newProducts = sortArrayAlphabetically(
-    uniqueData(products?.newItems),
+    uniqueArrayObjects(products?.newItems),
     'title',
     true,
   );
   const updatedProducts = sortArrayAlphabetically(
-    uniqueData(products?.updatedItems),
+    uniqueArrayObjects(products?.updatedItems),
     'title',
     true,
   );
 
   const removedProducts = sortArrayAlphabetically(
-    uniqueData(products?.removedItems),
+    uniqueArrayObjects(products?.removedItems),
     'title',
     true,
   );
   const newFilters = sortArrayAlphabetically(
-    uniqueData(filters?.newItems),
+    uniqueArrayObjects(filters?.newItems),
     'key',
     true,
   );
   const updatedFilters = sortArrayAlphabetically(
-    uniqueData(filters?.updatedItems),
+    uniqueArrayObjects(filters?.updatedItems),
     'key',
     true,
   );
   const removedFilters = sortArrayAlphabetically(
-    uniqueData(filters?.removedItems),
+    uniqueArrayObjects(filters?.removedItems),
     'key',
     true,
   );
@@ -250,7 +250,9 @@ const DailyAnalyticsReportList = () => {
         <button
           type="button"
           className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
-          onClick={() => push(`/reports/daily-sync/${id}`)}
+          onClick={() =>
+            push(`/reports/daily-sync/${id}`, undefined, { shallow: true })
+          }
         >
           <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
         </button>

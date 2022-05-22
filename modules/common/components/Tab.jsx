@@ -9,9 +9,15 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
   const { tab = defaultTab } = router?.query || {};
   const { formatMessage } = useIntl();
   const onTabSelected = (selectedTab) => {
-    router.push({
-      query: { ...router?.query, tab: selectedTab },
-    });
+    router.push(
+      {
+        query: { ...router?.query, tab: selectedTab },
+      },
+      undefined,
+      {
+        shallow: true,
+      },
+    );
   };
 
   return (

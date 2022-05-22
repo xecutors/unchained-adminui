@@ -2,7 +2,7 @@ import { RefreshIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import uniqueData from '../../common/utils/getUniqueData';
+import uniqueArrayObjects from '../../common/utils/uniqueArrayObjects';
 
 const Card = ({ icon, title }) => {
   return (
@@ -134,7 +134,7 @@ const SyncCategorySummary = ({
                 fill="currentColor"
               />
               {categoryName === 'Products'
-                ? uniqueData(statistics.updatedItems).length
+                ? uniqueArrayObjects(statistics.updatedItems).length
                 : statistics?.updatedIds?.length}
             </p>
             <ViewCard
