@@ -29,7 +29,7 @@ const GetCurrentTab = ({ list, selectedView }) => {
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'update-assortments')
+  if (selectedView === 'updated-assortments')
     return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
     return (

@@ -170,7 +170,7 @@ const SyncDetail = () => {
           defaultMessage: 'Categories',
         })}
         newItemsRoute="new-assortments"
-        updatedItemsRoute="updated_assortments"
+        updatedItemsRoute="updated-assortments"
         removedItemsRoute="removed-assortments"
         statistics={stats.categories}
       />
