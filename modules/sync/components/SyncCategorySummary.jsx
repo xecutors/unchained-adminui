@@ -133,7 +133,9 @@ const SyncCategorySummary = ({
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-              {uniqueData(statistics.updatedItems).length}
+              {categoryName === 'Products'
+                ? uniqueData(statistics.updatedItems).length
+                : statistics?.updatedIds?.length}
             </p>
             <ViewCard
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
