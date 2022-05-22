@@ -5,6 +5,7 @@ import {
   RefreshIcon,
   TrashIcon,
 } from '@heroicons/react/outline';
+import { CheckCircleIcon, ExclamationIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -93,35 +94,11 @@ const JobHeader = ({ job }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex item-center">
-        <div className="mr-2 text-red-400">
+        <div className="mr-2">
           {convertJobSignalToNumber(job.sync.signal) ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 rounded-md"
-              viewBox="0 0 20 20"
-              fill="green"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <CheckCircleIcon className="h-7 w-7 text-green-500" />
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-15 w-15"
-              fill="none"
-              viewBox="0 0 15 15"
-              stroke="yellow"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
+            <ExclamationIcon className="h-7 w-7 text-yellow-500" />
           )}
         </div>
         <div className="flex items-center gap-4">

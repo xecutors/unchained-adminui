@@ -113,8 +113,6 @@ const DailyAnalyticsReportList = () => {
   const { stats } = sync || {};
   const { categories, products, filters } = stats || {};
 
-  console.log(stats);
-
   const newAssortments = sortArrayAlphabetically(
     categories?.newItems,
     'title',
@@ -174,6 +172,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_assortments',
         defaultMessage: 'Updated Assortments',
       }),
+      length: Object.values(updatedAssortments).flat().length,
     },
     {
       id: 'removed-assortments',
@@ -197,6 +196,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_products',
         defaultMessage: 'Updated Products',
       }),
+      length: Object.values(updatedProducts).flat().length,
     },
     {
       id: 'removed-products',
@@ -220,6 +220,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_filters',
         defaultMessage: 'Updated filters',
       }),
+      length: Object.values(updatedFilters).flat().length,
     },
     {
       id: 'removed-filters',

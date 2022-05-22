@@ -49,14 +49,7 @@ const Table = ({ className, ...props }) => {
         <thead className="bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
           {rowsWithSort.header}
         </thead>
-      ) : (
-        <NoData
-          message={formatMessage({
-            id: 'data',
-            defaultMessage: 'Data',
-          })}
-        />
-      )}
+      ) : null}
       {rowsWithSort.body.length ? (
         <tbody className="flex-1 divide-y divide-slate-200 bg-white dark:bg-slate-600 sm:flex-none">
           {rowsWithSort.body}

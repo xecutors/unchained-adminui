@@ -40,7 +40,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
       </div>
       <div className="mb-5 hidden lg:block">
         <div className="al border-b border-indigo-100">
-          <nav className="-mb-px flex space-x-6">
+          <nav className="-mb-px flex gap-6 flex-wrap">
             {tabItems.map((option) => (
               <a
                 key={option.id}
@@ -48,7 +48,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 className={classNames(
                   'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-white font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
                   {
-                    'cursor-pointer rounded-t- border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500':
+                    'cursor-pointer rounded-t-lg border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500':
                       tab === option.id,
                   },
                 )}
