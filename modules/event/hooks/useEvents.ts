@@ -2,13 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import EventFragment from '../fragments/EventFragment';
 
 export const EventQuery = gql`
-  query Events($type: String, $limit: Int, $offset: Int, $queryString: String) {
-    events(
-      type: $type
-      limit: $limit
-      offset: $offset
-      queryString: $queryString
-    ) {
+  query Events($type: String, $limit: Int, $offset: Int) {
+    events(type: $type, limit: $limit, offset: $offset) {
       ...EventFragment
     }
     eventsCount
@@ -16,14 +11,9 @@ export const EventQuery = gql`
   ${EventFragment}
 `;
 
-const useEvents = ({
-  type = null,
-  limit = 20,
-  offset = 0,
-  queryString = '',
-} = {}) => {
+const useEvents = ({ type = null, limit = 20, offset = 0 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(EventQuery, {
-    variables: { type, limit, offset, queryString },
+    variables: { type, limit, offset },
   });
   const events = data?.events || [];
   const eventsCount = data?.eventsCount;

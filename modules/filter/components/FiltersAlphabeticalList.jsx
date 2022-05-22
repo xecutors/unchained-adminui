@@ -23,6 +23,7 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
       ];
     }),
   );
+
   const totalFilters = Object.values(filtered).reduce(
     computeDictionaryTotal,
     0,
@@ -34,13 +35,13 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 px-6 py-1 text-sm font-medium text-white">
+              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 dark:bg-slate-400 px-6 py-1 text-sm font-medium text-white dark:text-slate-900">
                 <h3>{letter}</h3>
               </div>
               <ul className="relative z-0 divide-y divide-slate-200">
                 {filtered[letter].map((item) => (
-                  <li key={item._id} className="bg-white">
-                    <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50">
+                  <li key={item._id} className="bg-white dark:bg-slate-500">
+                    <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-400">
                       <div className="min-w-0 flex-1">
                         <Link href={`/filters/${item?._id}`}>
                           <a className="focus:outline-none">
@@ -48,10 +49,10 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
                               className="absolute inset-0"
                               aria-hidden="true"
                             />
-                            <p className="text-sm font-medium text-slate-900">
+                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                               {item?.type}
                             </p>
-                            <p className="truncate text-sm text-slate-500">
+                            <p className="truncate text-sm text-slate-500 dark:text-slate-300">
                               {item?.key}
                             </p>
                           </a>
@@ -65,7 +66,7 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
           ) : null}
         </div>
       ))}
-      <Pagination total={totalFilters} data={filtered} />
+      <Pagination total={totalFilters} data={Object.values(filtered).flat()} />
     </nav>
   );
 };
