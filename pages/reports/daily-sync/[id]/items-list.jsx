@@ -114,18 +114,18 @@ const DailyAnalyticsReportList = () => {
   const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    categories?.newItems,
+    categories?.newItems || categories?.newCategories,
     'title',
     true,
   );
   const updatedAssortments = sortArrayAlphabetically(
-    categories?.updatedItems,
+    categories?.updatedItems || categories.updatedCategories,
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    categories?.removedItems,
+    categories?.removedItems || categories?.removedCategories,
     'title',
     true,
   );
