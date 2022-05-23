@@ -1,24 +1,18 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 
-const Toggle = ({ toggleText = '', toggleKey }) => {
+const Toggle = ({ toggleText = '', toggleKey, toggle }) => {
   const router = useRouter();
 
   const toggleState = router?.query?.[toggleKey] === 'true';
 
   const onToggle = () => {
-    if (toggleKey === 'viewGraph' && toggleState) {
-      router.push({
-        pathname: '/assortments',
-      });
-    } else {
-      router.push({
-        query: {
-          ...router.query,
-          [toggleKey]: !toggleState,
-        },
-      });
-    }
+    router.push({
+      query: {
+        ...router.query,
+        [toggleKey]: !toggleState,
+      },
+    });
   };
 
   return (
@@ -33,7 +27,7 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
           },
         )}
         role="switch"
-        onClick={onToggle}
+        onClick={toggle || onToggle}
         aria-checked={toggleState ? 'true' : 'false'}
       >
         <span className="sr-only">{toggleText}</span>
