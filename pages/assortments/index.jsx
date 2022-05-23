@@ -25,7 +25,7 @@ const GetCurrentView = ({ options, queryString }) => {
 
 const AssortmentsView = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { hasRole } = useAuth();
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
@@ -37,6 +37,19 @@ const AssortmentsView = () => {
   const slug = query?.slug || '';
 
   const { queryString } = query;
+
+  const onViewGraph = () => {
+    if (query.viewGraph) {
+      push('/assortments');
+    } else {
+      push({
+        query: {
+          ...query,
+          viewGraph: true,
+        },
+      });
+    }
+  };
 
   return (
     <>
@@ -78,6 +91,7 @@ const AssortmentsView = () => {
                 id: 'display_as_graph',
                 defaultMessage: 'Display as Graph',
               })}
+              onToggle={onViewGraph}
             />
           </div>
         </ListHeader>
