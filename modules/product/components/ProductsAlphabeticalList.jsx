@@ -58,7 +58,7 @@ const ProductsAlphabeticalList = ({ dictionary = {} }) => {
                               aria-hidden="true"
                             />
                             <p
-                              className="text-sm font-medium text-slate-900 dark:text-slate-900"
+                              className="text-sm font-medium text-slate-900 dark:text-slate-100"
                               // eslint-disable-next-line react/no-danger
                               dangerouslySetInnerHTML={{ __html: item?.title }}
                             />

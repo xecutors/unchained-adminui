@@ -115,18 +115,22 @@ const DailyAnalyticsReportList = () => {
   const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(categories?.newItems),
+    uniqueArrayObjects(categories?.newItems || categories?.newCategories),
     'title',
     true,
   );
   const updatedAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(categories?.updatedItems),
+    uniqueArrayObjects(
+      categories?.updatedItems || categories.updatedCategories,
+    ),
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(categories?.removedItems),
+    uniqueArrayObjects(
+      categories?.removedItems || categories?.removedCategories,
+    ),
     'title',
     true,
   );
@@ -152,7 +156,7 @@ const DailyAnalyticsReportList = () => {
     true,
   );
   const updatedFilters = sortArrayAlphabetically(
-    uniqueArrayObjects(filters?.updatedItems),
+    uniqueArrayObjects(filters?.updatedItems || filters?.updatedFilters),
     'key',
     true,
   );

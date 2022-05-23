@@ -52,7 +52,7 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
                             <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                               {item?.type}
                             </p>
-                            <p className="truncate text-sm text-slate-500 dark:text-slate-300">
+                            <p className="truncate text-sm text-slate-500 dark:text-slate-100">
                               {item?.key}
                             </p>
                           </a>

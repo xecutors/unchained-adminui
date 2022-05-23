@@ -54,11 +54,11 @@ const AssortmentAlphabeticalList = ({
                         >
                           <a className="focus:outline-none">
                             <span
-                              className="absolute inset-0"
+                              className="absolute inset-0 dark:text-slate-100"
                               aria-hidden="true"
                             />
                             <span className="flex items-center justify-between ">
-                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                              <p className="text-sm font-medium text-slate-900 dark:text-white">
                                 {item?.title}
                               </p>
                               <p className="truncate text-sm text-slate-500 dark:text-slate-300">
