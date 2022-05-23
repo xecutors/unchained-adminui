@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -44,16 +45,24 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
               <a
                 key={option.id}
                 onClick={() => onTabSelected(option.id)}
-                className={` ${
-                  tab === option.id &&
-                  'cursor-pointer rounded-t-lg border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500'
-                }  cursor-pointer whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-white font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg`}
+                className={classNames(
+                  {
+                    'cursor-pointer rounded-t- border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500':
+                      tab === option.id,
+                  },
+                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-white font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
+                )}
               >
                 <div className="flex items-center space-x-1">
                   <div>{option.Icon}</div>
                   <div className="capitalize">
                     {option?.title || option?.id}
                   </div>
+                  {option?.length ? (
+                    <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-300 px-1 py-0.5 text-sm leading-none text-slate-900">
+                      {option?.length}
+                    </span>
+                  ) : null}
                 </div>
               </a>
             ))}

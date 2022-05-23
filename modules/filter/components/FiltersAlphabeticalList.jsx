@@ -4,7 +4,10 @@ import { useRouter } from 'next/router';
 import Pagination from '../../common/components/Pagination';
 import computeDictionaryTotal from '../../common/utils/computeDictionaryTotal';
 
-const FiltersAlphabeticalList = ({ dictionary = {} }) => {
+const FiltersAlphabeticalList = ({
+  dictionary = {},
+  enableRedirect = true,
+}) => {
   const { query } = useRouter();
 
   const { searchKey = '' } = query;

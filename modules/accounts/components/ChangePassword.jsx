@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import Form from '../../forms/components/Form';
 import PasswordField from '../../forms/components/PasswordField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -11,7 +12,26 @@ const ChangePassword = () => {
   const { formatMessage } = useIntl();
 
   const onSubmit = async ({ oldPassword, newPassword }) => {
-    await changePassword({ oldPassword, newPassword });
+    try {
+      await changePassword({ oldPassword, newPassword });
+      toast.success(
+        formatMessage({
+          id: 'password_success',
+          defaultMessage: 'Password changed successfully.',
+        }),
+      );
+    } catch (error) {
+      toast.error(
+        formatMessage(
+          {
+            id: 'password_error',
+            defaultMessage:
+              'Password change failed with {error}, try again later',
+          },
+          { error: error.message },
+        ),
+      );
+    }
     return true;
   };
 
@@ -36,7 +56,7 @@ const ChangePassword = () => {
       </div>
       <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
-          <div className="relative max-w-full space-y-6 sm:p-6">
+          <div className="relative max-w-full p-3 space-y-6 sm:p-6">
             <PasswordField
               label={formatMessage({
                 id: 'current_password',

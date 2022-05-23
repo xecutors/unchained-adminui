@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
@@ -16,26 +17,50 @@ const GetCurrentTab = ({ list, selectedView }) => {
   const {
     newProducts,
     removedProducts,
+    updatedFilters,
     newAssortments,
+    updatedAssortments,
     removedAssortments,
     newFilters,
+    updatedProducts,
     removedFilters,
   } = list;
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
+  if (selectedView === 'update-assortments')
+    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
-    return <AssortmentAlphabeticalList dictionary={removedAssortments} />;
+    return (
+      <AssortmentAlphabeticalList
+        enableRedirect={false}
+        dictionary={removedAssortments}
+      />
+    );
+
   if (selectedView === 'new-products')
     return <ProductsAlphabeticalList dictionary={newProducts} />;
-
+  if (selectedView === 'updated-products')
+    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
   if (selectedView === 'removed-products')
-    return <ProductsAlphabeticalList dictionary={removedProducts} />;
+    return (
+      <ProductsAlphabeticalList
+        enableRedirect={false}
+        dictionary={removedProducts}
+      />
+    );
+
   if (selectedView === 'new-filters')
     return <FiltersAlphabeticalList dictionary={newFilters} />;
-
+  if (selectedView === 'updated-filters')
+    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
   if (selectedView === 'removed-filters')
-    return <FiltersAlphabeticalList dictionary={removedFilters} />;
+    return (
+      <FiltersAlphabeticalList
+        enableRedirect={false}
+        dictionary={removedFilters}
+      />
+    );
 
   return <AssortmentAlphabeticalList dictionary={newAssortments} />;
 };
@@ -84,73 +109,7 @@ const Wrapper = ({ selectedView, list }) => {
 const DailyAnalyticsReportList = () => {
   const { formatMessage } = useIntl();
 
-  const dailySyncItemReportOptions = [
-    {
-      id: 'new-assortments',
-      title: formatMessage({
-        id: 'new_assortments',
-        defaultMessage: 'New Assortments',
-      }),
-    },
-    {
-      id: 'updated-assortments',
-      title: formatMessage({
-        id: 'updated_assortments',
-        defaultMessage: 'Updated Assortments',
-      }),
-    },
-    {
-      id: 'removed-assortments',
-      title: formatMessage({
-        id: 'removed_assortments',
-        defaultMessage: 'Removed Assortments',
-      }),
-    },
-    {
-      id: 'new-products',
-      title: formatMessage({
-        id: 'new_products',
-        defaultMessage: 'New Products',
-      }),
-    },
-    {
-      id: 'updated-products',
-      title: formatMessage({
-        id: 'updated_products',
-        defaultMessage: 'Updated Products',
-      }),
-    },
-    {
-      id: 'removed-products',
-      title: formatMessage({
-        id: 'deleted_products',
-        defaultMessage: 'Deleted products',
-      }),
-    },
-    {
-      id: 'new-filters',
-      title: formatMessage({
-        id: 'new_filters',
-        defaultMessage: 'New Filters',
-      }),
-    },
-    {
-      id: 'updated-filters',
-      title: formatMessage({
-        id: 'updated_filters',
-        defaultMessage: 'Updated filters',
-      }),
-    },
-    {
-      id: 'removed-filters',
-      title: formatMessage({
-        id: 'removed_filters',
-        defaultMessage: 'Removed filters',
-      }),
-    },
-  ];
-  const { query } = useRouter();
-
+  const { query, back } = useRouter();
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
@@ -162,44 +121,128 @@ const DailyAnalyticsReportList = () => {
   const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    categories?.newCategories,
+    categories?.newItems,
+    'title',
+    true,
+  );
+
+  const updatedAssortments = sortArrayAlphabetically(
+    categories?.updatedItems,
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    categories?.removedCategories,
+    categories?.removedItems,
     'title',
     true,
   );
 
-  /*   const updatedAssortments = sortArrayAlphabetically(
-    categories?.updated,
-    'title',
-    true,
-  ); */
   const newProducts = sortArrayAlphabetically(
     products?.newItems,
     'title',
     true,
   );
-  /*   const updatedProducts = sortArrayAlphabetically(
-    products?.updated,
+
+  const updatedProducts = sortArrayAlphabetically(
+    products?.updatedItems,
     'title',
     true,
-  ); */
+  );
+
   const removedProducts = sortArrayAlphabetically(
     products?.removedItems,
     'title',
     true,
   );
   const newFilters = sortArrayAlphabetically(filters?.newItems, 'key', true);
+
+  const updatedFilters = sortArrayAlphabetically(
+    filters?.updatedItems,
+    'key',
+    true,
+  );
+
   const removedFilters = sortArrayAlphabetically(
     filters?.removedItems,
     'key',
     true,
   );
-  /* const updatedFilters = sortArrayAlphabetically(filters?.updated, 'key', true); */
+
+  const dailySyncItemReportOptions = [
+    {
+      id: 'new-assortments',
+      title: formatMessage({
+        id: 'new_assortments',
+        defaultMessage: 'New Assortments',
+      }),
+      length: Object.values(newAssortments).flat().length,
+    },
+    {
+      id: 'updated-assortments',
+      title: formatMessage({
+        id: 'updated_assortments',
+        defaultMessage: 'Updated Assortments',
+      }),
+      length: Object.values(updatedAssortments).flat().length,
+    },
+    {
+      id: 'removed-assortments',
+      title: formatMessage({
+        id: 'removed_assortments',
+        defaultMessage: 'Removed Assortments',
+      }),
+      length: Object.values(removedAssortments).flat().length,
+    },
+    {
+      id: 'new-products',
+      title: formatMessage({
+        id: 'new_products',
+        defaultMessage: 'New Products',
+      }),
+      length: Object.values(newProducts).flat().length,
+    },
+    {
+      id: 'updated-products',
+      title: formatMessage({
+        id: 'updated_products',
+        defaultMessage: 'Updated Products',
+      }),
+      length: Object.values(updatedProducts).flat().length,
+    },
+    {
+      id: 'removed-products',
+      title: formatMessage({
+        id: 'deleted_products',
+        defaultMessage: 'Deleted products',
+      }),
+      length: Object.values(removedProducts).flat().length,
+    },
+    {
+      id: 'new-filters',
+      title: formatMessage({
+        id: 'new_filters',
+        defaultMessage: 'New Filters',
+      }),
+      length: Object.values(newFilters).flat().length,
+    },
+    {
+      id: 'updated-filters',
+      title: formatMessage({
+        id: 'updated_filters',
+        defaultMessage: 'Updated filters',
+      }),
+      length: Object.values(updatedFilters).flat().length,
+    },
+    {
+      id: 'removed-filters',
+      title: formatMessage({
+        id: 'removed_filters',
+        defaultMessage: 'Removed filters',
+      }),
+      length: Object.values(removedFilters).flat().length,
+    },
+  ];
 
   return (
     <>
@@ -210,19 +253,27 @@ const DailyAnalyticsReportList = () => {
           defaultMessage: 'Synced items report',
         })}
       />
+      <span>
+        <button
+          type="button"
+          className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
+          onClick={() => back()}
+        >
+          <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
+        </button>
+      </span>
       <Tab tabItems={dailySyncItemReportOptions} defaultTab="new-assortments">
         <Wrapper
           list={{
             newAssortments,
-            removedAssortments,
-            newFilters,
             newProducts,
-
-            updatedAssortments: [],
-            updatedFilters: [],
-            removedFilters,
-            updatedProducts: [],
+            newFilters,
+            updatedAssortments,
+            updatedProducts,
+            updatedFilters,
+            removedAssortments,
             removedProducts,
+            removedFilters,
           }}
         />
       </Tab>

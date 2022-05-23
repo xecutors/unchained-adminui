@@ -129,7 +129,7 @@ const SyncDetail = () => {
                 {formatMessage({
                   id: 'from',
                   defaultMessage: 'From',
-                })}{' '}
+                })}
                 {getPreviousValue(stats.products)}
               </span>
             </div>

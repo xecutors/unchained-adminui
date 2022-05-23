@@ -42,7 +42,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="absolute top-7 right-6 sm:right-8 md:right-10 flex items-center z-50">
+    <div className="absolute top-16 md:top-8 right-4 sm:right-8 md:right-10 flex items-center z-50">
       <button
         type="button"
         className="hover:cursor-pointer"

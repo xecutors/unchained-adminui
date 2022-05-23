@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import constructTangleLayout from '../utils/contructTangleLayout';
+import Badge from '../../common/components/Badge';
 
 const color = scaleOrdinal(schemeDark2);
 
@@ -34,8 +35,8 @@ const TangleTree = ({ data, options = {} }) => {
 
       <svg
         width="100%"
-        height={`${tangleLayout.layout.height}`}
-        className="fill-transparent pt-4 mx-10 w-full"
+        height={`${tangleLayout.layout.height + 6}`}
+        className="fill-transparent pt-2 mx-10 w-full"
       >
         {tangleLayout.bundles.map((b, i) => {
           const d = b.links
@@ -80,33 +81,38 @@ const TangleTree = ({ data, options = {} }) => {
               strokeWidth="4"
               d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`}
             />
-            <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
-              <a>
-                <text
-                  className="selectable fill-indigo-600 hover:fill-indigo-800 dark:fill-white dark:hover:fill-slate-300 text-base"
-                  data-id={`${n.id}`}
-                  x={`${n.x + 4}`}
-                  y={`${n.y - n.height / 2 - 4}`}
-                  // strokeWidth="2"
-                >
-                  {n?.title}
-
-                  {n?.childCount !== undefined && (
-                    <>
-                      <tspan dx="0.5rem" className="italic fill-slate-400">
+            <foreignObject
+              data-id={`${n.id}`}
+              x={`${n.x + 4}`}
+              y={`${n.y - n.height / 2 - 4}`}
+              width="100%"
+              height="100%"
+            >
+              <div xmlns="http://www.w3.org/1999/xhtml">
+                <Link href={`/assortments/${n?.slug}`}>
+                  <a className='className="selectable text-indigo-600 hover:text-indigo-800 dark:text-lime-400 dark:hover:text-lime-500 text-base'>
+                    {n?.title}
+                  </a>
+                </Link>
+                {n?.childCount !== undefined && (
+                  <>
+                    <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
+                      <a className="text-blue-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-sm text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         {formatMessage({
                           id: 'children',
-                          defaultMessage: 'children:',
+                          defaultMessage: 'Children:',
                         })}
-                      </tspan>
-                      <tspan dx="0.25rem" className="italic fill-purple-600">
-                        {n?.childCount}
-                      </tspan>
-                    </>
-                  )}
-                </text>
-              </a>
-            </Link>
+                      </a>
+                    </Link>
+                    <Badge
+                      text={n?.childCount}
+                      color="purple"
+                      className="inline-block mx-2 dark:bg-slate-500 dark:text-purple-400"
+                    />
+                  </>
+                )}
+              </div>
+            </foreignObject>
           </Fragment>
         ))}
       </svg>
