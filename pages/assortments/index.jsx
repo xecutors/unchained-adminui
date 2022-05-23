@@ -91,7 +91,7 @@ const AssortmentsView = () => {
                 id: 'display_as_graph',
                 defaultMessage: 'Display as Graph',
               })}
-              toggle={onViewGraph}
+              onToggle={onViewGraph}
             />
           </div>
         </ListHeader>
