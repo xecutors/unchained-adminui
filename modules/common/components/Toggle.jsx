@@ -7,13 +7,20 @@ const Toggle = ({ toggleText = '', toggleKey }) => {
   const toggleState = router?.query?.[toggleKey] === 'true';
 
   const onToggle = () => {
-    router.push({
-      query: {
-        ...router.query,
-        [toggleKey]: !toggleState,
-      },
-    });
+    if (toggleKey === 'viewGraph' && toggleState) {
+      router.push({
+        pathname: '/assortments',
+      });
+    } else {
+      router.push({
+        query: {
+          ...router.query,
+          [toggleKey]: !toggleState,
+        },
+      });
+    }
   };
+
   return (
     <div className="ml-1">
       <button
