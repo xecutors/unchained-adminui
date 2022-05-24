@@ -13,14 +13,13 @@ import {
 import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import getConfig from 'next/config';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
-// import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../data/roles';
 import useShopInfo from '../hooks/useShopInfo';
 
@@ -28,6 +27,7 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import getLogo from '../utils/getLogo';
+import useAuth from '../../Auth/useAuth';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -42,8 +42,8 @@ const Layout = ({
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
-  // const { resetAuth } = useAuth();
   const [hideNav, setHideNav] = useState(true);
+  const { hasAccess, isAuthenticated } = useAuth();
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
@@ -203,7 +203,6 @@ const Layout = ({
   ].filter(Boolean);
 
   const onLogout = async () => {
-    // const id = currentUser?._id;
     await logOut(apollo);
     toast.success(
       formatMessage({
@@ -211,9 +210,18 @@ const Layout = ({
         defaultMessage: 'Logged out',
       }),
     );
-    // resetAuth(id);
     router.push('/log-in');
   };
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      if (!hasAccess(currentUser?._id)) {
+        router.replace('/403');
+      }
+    } else if (!hasAccess(currentUser?._id)) {
+      router.replace('/log-in');
+    }
+  }, [router, currentUser?._id, hasAccess, isAuthenticated]);
 
   return (
     <div>

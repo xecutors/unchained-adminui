@@ -6,12 +6,10 @@ import {
   addApolloState,
   initializeApollo,
 } from '../modules/apollo/apolloClient';
-import useAuth from '../modules/Auth/useAuth';
 
 const SignUpPage = () => {
   const { push } = useRouter();
   const { createUser } = useCreateUser();
-  const { setAuthContext } = useAuth();
 
   const onSubmit = async ({ email, password }) => {
     const { data } = await createUser({
@@ -19,9 +17,9 @@ const SignUpPage = () => {
       password,
       disableHashing: true,
     });
-    const { id, token, tokenExpires, user } = data.createUser;
+    const { id, token, tokenExpires } = data.createUser;
     await storeLoginToken(id, token, new Date(tokenExpires));
-    setAuthContext(id, user?.allowedActions);
+
     return true;
   };
 
