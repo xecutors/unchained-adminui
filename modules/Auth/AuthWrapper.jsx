@@ -11,54 +11,66 @@ import AuthContext from './AuthContext';
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
-  const setAuthContext = (id, roles) => {
-    localStorage.setItem(id, roles);
-  };
-  const isAuthenticated = (id) => {
+  // const setAuthContext = (id, roles) => {
+  //   // localStorage.setItem(id, roles);
+  // };
+  const isAuthenticated = () => {
     const userId = getUserId();
-    const roles = localStorage.getItem(id || userId);
-    // empty string means array since setting array to local storage is transformed to empty string
-    if (!roles && roles !== '') return false;
-    return roles?.split(',')?.filter(Boolean);
+    // const roles = localStorage.getItem(id || userId);
+    // // empty string means array since setting array to local storage is transformed to empty string
+    // if (!roles && roles !== '') return false;
+    // return roles?.split(',')?.filter(Boolean);
+    return !!userId;
   };
 
-  const isAdmin = (id) => {
-    return isAuthenticated(id) && isAuthenticated(id)?.length === 0;
+  const isAdmin = () => {
+    // return isAuthenticated(id) && isAuthenticated(id)?.length === 0;
+    return isAuthenticated() && currentUser?.allowedActions.length === 0;
   };
+
+  // const hasRole = (role) => {
+  //   if (role === 'UNRESTRICTED') return true;
+  //   const userId = getUserId();
+  //   const roles = isAuthenticated(userId);
+  //   if (roles === false) return false;
+  //   return isAdmin(userId) || roles.includes(role);
+  // };
 
   const hasRole = (role) => {
-    if (role === 'UNRESTRICTED') return true;
-    const userId = getUserId();
-    const roles = isAuthenticated(userId);
-    if (roles === false) return false;
-    return isAdmin(userId) || roles.includes(role);
+    if (isAdmin()) {
+      return true;
+    }
+    if (currentUser?.allowedActions.includes(role)) {
+      return true;
+    }
+    return false;
   };
 
   const hasAccess = (id) => {
     if (!id && !UnrestrictedPages.includes(router.pathname)) return false;
-    const userRoles = isAuthenticated(id);
+    // const userRoles = isAuthenticated(id);
     if (
       ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
-      isAdmin(id) ||
-      (userRoles || [])?.includes(ROUTE_ROLES[router.pathname])
+      isAdmin()
+      // (userRoles || [])?.includes(ROUTE_ROLES[router.pathname])
     )
       return true;
     return false;
   };
-  const resetAuth = (id) => {
-    localStorage.setItem(id, '');
-  };
+  // const resetAuth = (id) => {
+  //   // localStorage.setItem(id, '');
+  // };
 
   const ctx = useMemo(
     () => ({
-      setAuthContext,
+      // setAuthContext
       isAuthenticated,
       hasAccess,
-      resetAuth,
+      // resetAuth,
       isAdmin,
       hasRole,
     }),
-    [],
+    [currentUser],
   );
 
   useEffect(() => {
@@ -71,7 +83,7 @@ const AuthWrapper = ({ children }) => {
         router.replace('/log-in');
       }
     }
-  }, [currentUser, loading]);
+  }, [loading]);
 
   return (
     <>
