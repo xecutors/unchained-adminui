@@ -13,7 +13,7 @@ export const CurrentUserQuery = gql`
 const useCurrentUser = () => {
   const { data, loading, error } = useQuery(CurrentUserQuery, {
     variables: {},
-    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
   });
 
   const currentUser = data?.me;
