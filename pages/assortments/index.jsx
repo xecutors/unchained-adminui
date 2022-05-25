@@ -55,6 +55,19 @@ const AssortmentsView = () => {
       });
   };
 
+  const onViewGraph = () => {
+    if (query.viewGraph) {
+      push('/assortments');
+    } else {
+      push({
+        query: {
+          ...query,
+          viewGraph: true,
+        },
+      });
+    }
+  };
+
   return (
     <>
       <BreadCrumbs />
@@ -99,6 +112,7 @@ const AssortmentsView = () => {
                 id: 'display_as_graph',
                 defaultMessage: 'Display as Graph',
               })}
+              onToggle={onViewGraph}
             />
           </div>
         </ListHeader>

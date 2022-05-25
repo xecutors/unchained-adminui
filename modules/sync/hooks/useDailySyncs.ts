@@ -1,13 +1,18 @@
 import { useQuery } from '@apollo/client';
+import { DefaultLimit } from '../../common/data/miscellaneous';
 import { WorkQueueQuery } from '../../work/hooks/useWorkQueue';
 
-const useDailySyncs = ({ start = null, end = null } = {}) => {
+const useDailySyncs = ({
+  start = null,
+  end = null,
+  limit = DefaultLimit,
+} = {}) => {
   const { data, loading, error, fetchMore }: any = useQuery(WorkQueueQuery, {
     variables: {
       range: { start, end },
       status: ['SUCCESS', 'FAILED'],
       selectTypes: ['PUBLICARE_DAILY_ANALYTICS'],
-      limit: 3,
+      limit,
     },
   });
 

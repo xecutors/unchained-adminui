@@ -17,6 +17,7 @@ const SyncReport = () => {
   const { dailySync, loadMore, loading } = useDailySyncs({
     start,
     end,
+    limit,
   });
   const { formatMessage } = useIntl();
 

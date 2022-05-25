@@ -5,6 +5,11 @@ import {
   RefreshIcon,
   TrashIcon,
 } from '@heroicons/react/outline';
+import {
+  ArrowLeftIcon,
+  CheckCircleIcon,
+  ExclamationIcon,
+} from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
@@ -12,6 +17,7 @@ import { useIntl } from 'react-intl';
 import Accordion from '../../../../modules/common/components/Accordion';
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
+import NoData from '../../../../modules/common/components/NoData';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import useWork from '../../../../modules/work/hooks/useWork';
 
@@ -34,7 +40,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="currentColor"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {added}
         </span>
       </span>
@@ -46,7 +52,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {diff}
         </span>
       </span>
@@ -59,7 +65,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             stroke="red"
           />
         </div>
-        <span className="absolute top-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {removed}
         </span>
       </span>
@@ -72,7 +78,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 mb-6 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 right-0 border-0 mb-6 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {total}
         </span>
       </span>
@@ -93,35 +99,11 @@ const JobHeader = ({ job }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex item-center">
-        <div className="mr-2 text-red-400">
+        <div className="mr-2">
           {convertJobSignalToNumber(job.sync.signal) ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 rounded-md"
-              viewBox="0 0 20 20"
-              fill="green"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <CheckCircleIcon className="h-7 w-7 text-green-500" />
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-15 w-15"
-              fill="none"
-              viewBox="0 0 15 15"
-              stroke="yellow"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
+            <ExclamationIcon className="h-7 w-7 text-yellow-500" />
           )}
         </div>
         <div className="flex items-center gap-4">
@@ -251,7 +233,7 @@ const headerCSS =
 
 const SyncJobs = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, back } = useRouter();
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
@@ -280,9 +262,26 @@ const SyncJobs = () => {
       />
       <div className="sticky w-full overflow-hidden">
         {!jobs?.length ? (
-          <p>No sync report found</p>
+          <NoData
+            message={formatMessage({
+              id: 'no_job',
+              defaultMessage: 'sync report found',
+            })}
+            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
+          />
         ) : (
-          <Accordion data={accordionData} headerCSS={headerCSS} />
+          <>
+            <span>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
+                onClick={() => back()}
+              >
+                <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
+              </button>
+            </span>
+            <Accordion data={accordionData} headerCSS={headerCSS} />
+          </>
         )}
       </div>
     </>
