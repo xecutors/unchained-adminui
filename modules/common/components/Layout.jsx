@@ -13,7 +13,7 @@ import {
 import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
@@ -27,7 +27,6 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import getLogo from '../utils/getLogo';
-import useAuth from '../../Auth/useAuth';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -43,7 +42,6 @@ const Layout = ({
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
-  const { hasAccess, isAuthenticated } = useAuth();
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
@@ -212,16 +210,6 @@ const Layout = ({
     );
     router.push('/log-in');
   };
-
-  useEffect(() => {
-    if (isAuthenticated()) {
-      if (!hasAccess(currentUser?._id)) {
-        router.replace('/403');
-      }
-    } else if (!hasAccess(currentUser?._id)) {
-      router.replace('/log-in');
-    }
-  }, [router, currentUser?._id, hasAccess, isAuthenticated]);
 
   return (
     <div>

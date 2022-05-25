@@ -179,6 +179,7 @@ export const ROUTE_ROLES = {
   '/language/new': ACTION_ROLES.languages.manage,
   '/works/management': ACTION_ROLES.work.manage,
   '/works': ACTION_ROLES.work.manage,
+  '/works/[workId]': ACTION_ROLES.work.manage,
   '/reports': ACTION_ROLES.work.manage,
   '/reports/daily-sync': ACTION_ROLES.work.manage,
   '/reports/daily-sync/[id]': ACTION_ROLES.work.manage,
