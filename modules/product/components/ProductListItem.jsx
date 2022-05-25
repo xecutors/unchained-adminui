@@ -50,14 +50,10 @@ const ProductListItem = ({ product, showAvatar }) => {
         />
       </Table.Cell>
 
-      <Table.Cell className=" whitespace-nowrap px-6">
-        <div className="flex">
-          <div className="flex items-center text-sm text-slate-900 space-x-2">
-            {product.tags?.map((t) => (
-              <Badge key={t} text={t} color="indigo" />
-            ))}
-          </div>
-        </div>
+      <Table.Cell className="whitespace-nowrap px-6 inline-flex flex-wrap item-center gap-2">
+        {product.tags?.map((t) => (
+          <Badge key={t} text={t} color="indigo" />
+        ))}
       </Table.Cell>
     </Table.Row>
   );
