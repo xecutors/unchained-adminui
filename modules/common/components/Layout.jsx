@@ -20,7 +20,6 @@ import { toast } from 'react-toastify';
 import getConfig from 'next/config';
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
-import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../data/roles';
 import useShopInfo from '../hooks/useShopInfo';
 
@@ -42,7 +41,6 @@ const Layout = ({
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
-  const { resetAuth } = useAuth();
   const [hideNav, setHideNav] = useState(true);
 
   const showCustomReports =
@@ -203,7 +201,6 @@ const Layout = ({
   ].filter(Boolean);
 
   const onLogout = async () => {
-    const id = currentUser?._id;
     await logOut(apollo);
     toast.success(
       formatMessage({
@@ -211,7 +208,7 @@ const Layout = ({
         defaultMessage: 'Logged out',
       }),
     );
-    resetAuth(id);
+
     router.push('/log-in');
   };
 

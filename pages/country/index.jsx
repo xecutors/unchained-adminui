@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
 import Pagination from '../../modules/common/components/Pagination';
@@ -20,18 +19,13 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
-const Country = ({ userId }) => {
+const Country = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
   const { hasRole } = useAuth();
-  const { hasAccess } = useAuth();
-
-  useEffect(() => {
-    hasAccess(userId);
-  }, [userId]);
 
   const { countries, countriesCount, loading } = useCountries({
     limit,
