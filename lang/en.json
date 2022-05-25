@@ -78,6 +78,9 @@
   "add_work": {
     "defaultMessage": "Add Work"
   },
+  "added_date": {
+    "defaultMessage": "<b>Created :</b> {created}"
+  },
   "address": {
     "defaultMessage": "Address"
   },
@@ -132,8 +135,8 @@
   "assortment_deactivated": {
     "defaultMessage": "Assortment deactivated successfully"
   },
-  "assortment_detail": {
-    "defaultMessage": "Assortment Detail"
+  "assortment_detail_header": {
+    "defaultMessage": "Assortment detail <b>({id})</b>"
   },
   "assortment_filter_deleted": {
     "defaultMessage": "Assortment filter deleted successfully"
@@ -561,6 +564,9 @@
   },
   "displayName": {
     "defaultMessage": "Display Name"
+  },
+  "display_as_graph": {
+    "defaultMessage": "Display as Graph"
   },
   "display_name": {
     "defaultMessage": "Display name"
@@ -1060,7 +1066,7 @@
     "defaultMessage": "Delete"
   },
   "order_deleted": {
-    "defaultMessage": "Order {orderId} deleted successfully"
+    "defaultMessage": "Order deleted successfully"
   },
   "order_detail": {
     "defaultMessage": "Order Detail"
@@ -1167,8 +1173,8 @@
   "product_deleted_success": {
     "defaultMessage": "Deleted successfully"
   },
-  "product_detail": {
-    "defaultMessage": "Product Detail"
+  "product_detail_header": {
+    "defaultMessage": "Product detail <b>({id})</b>"
   },
   "product_drafted": {
     "defaultMessage": "Drafted successfully"
@@ -1233,6 +1239,9 @@
   "published": {
     "defaultMessage": "Published"
   },
+  "published_date": {
+    "defaultMessage": "<b>Updated :</b> {updated}"
+  },
   "purchased_products": {
     "defaultMessage": "Purchased products"
   },
@@ -1277,6 +1286,12 @@
   },
   "reject_rder_alert_button": {
     "defaultMessage": "Reject"
+  },
+  "removed_assortments": {
+    "defaultMessage": "Removed Assortments"
+  },
+  "removed_filters": {
+    "defaultMessage": "Removed filters"
   },
   "reports": {
     "defaultMessage": "Reports"
@@ -1591,6 +1606,9 @@
   },
   "updated_assortments": {
     "defaultMessage": "Updated Assortments"
+  },
+  "updated_date": {
+    "defaultMessage": "<b>Updated :</b> {created}"
   },
   "updated_filters": {
     "defaultMessage": "Updated filters"

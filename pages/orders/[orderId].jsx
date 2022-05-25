@@ -18,7 +18,7 @@ const OrderDetailPage = () => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeOrder } = useRemoveOrder();
-  const { query } = useRouter();
+  const { query, ...router } = useRouter();
   const { hasRole } = useAuth();
   const { orderId } = query;
   const { order, loading } = useOrder({ orderId });
@@ -39,16 +39,12 @@ const OrderDetailPage = () => {
           setModal('');
           await removeOrder({ orderId });
           toast.success(
-            formatMessage(
-              {
-                id: 'order_deleted',
-                defaultMessage: 'Order {orderId} deleted successfully',
-              },
-              {
-                orderId,
-              },
-            ),
+            formatMessage({
+              id: 'order_deleted',
+              defaultMessage: 'Order deleted successfully',
+            }),
           );
+          router.push('/orders');
         }}
         okText={formatMessage({
           id: 'delete_order',

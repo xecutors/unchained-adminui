@@ -18,7 +18,7 @@ const Step = ({ onClick, disabled, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'relative inline-flex items-center border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500',
+        'relative inline-flex items-center border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500 dark:text-slate-400 dark:hover:text-slate-100',
         {
           'z-10 border-indigo-500 bg-indigo-50 text-indigo-600 dark:bg-slate-500 dark:border-indigo-300 dark:text-white':
             disabled,
@@ -274,10 +274,10 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
             id="location"
             defaultValue={limit}
             name="location"
-            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+            className="block h-8 w-full rounded-md text-slate-500 dark:text-slate-100  dark:bg-slate-600 border-slate-300 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           >
             {LimitSteps.map((l) => (
-              <option key={l} value={l}>
+              <option key={l} value={l} className="dark:text-slate-100">
                 {l}
               </option>
             ))}

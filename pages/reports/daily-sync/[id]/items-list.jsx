@@ -7,6 +7,7 @@ import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import Tab from '../../../../modules/common/components/Tab';
+import uniqueArrayObjects from '../../../../modules/common/utils/uniqueArrayObjects';
 import FiltersAlphabeticalList from '../../../../modules/filter/components/FiltersAlphabeticalList';
 import ProductsAlphabeticalList from '../../../../modules/product/components/ProductsAlphabeticalList';
 import useWork from '../../../../modules/work/hooks/useWork';
@@ -28,7 +29,7 @@ const GetCurrentTab = ({ list, selectedView }) => {
 
   if (selectedView === 'new-assortments')
     return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'update-assortments')
+  if (selectedView === 'updated-assortments')
     return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
   if (selectedView === 'removed-assortments')
     return (
@@ -86,7 +87,7 @@ const Wrapper = ({ selectedView, list }) => {
         <input
           type="text"
           name="search"
-          className="block w-full dark:bg-slate-600 dark:text-white dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full dark:bg-slate-600 text-slate-600 dark:text-white dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
           onChange={handleOnChange}
           autoComplete="off"
           value={searchKey}
@@ -109,7 +110,7 @@ const Wrapper = ({ selectedView, list }) => {
 const DailyAnalyticsReportList = () => {
   const { formatMessage } = useIntl();
 
-  const { query, back } = useRouter();
+  const { query, push } = useRouter();
   const { id } = query;
 
   const { work, loading } = useWork({ workId: id });
@@ -121,50 +122,58 @@ const DailyAnalyticsReportList = () => {
   const { categories, products, filters } = stats || {};
 
   const newAssortments = sortArrayAlphabetically(
-    categories?.newItems,
+    uniqueArrayObjects(categories?.newItems || categories?.newCategories),
     'title',
     true,
   );
 
   const updatedAssortments = sortArrayAlphabetically(
-    categories?.updatedItems,
+    uniqueArrayObjects(
+      categories?.updatedItems || categories.updatedCategories,
+    ),
     'title',
     true,
   );
 
   const removedAssortments = sortArrayAlphabetically(
-    categories?.removedItems,
+    uniqueArrayObjects(
+      categories?.removedItems || categories?.removedCategories,
+    ),
     'title',
     true,
   );
 
   const newProducts = sortArrayAlphabetically(
-    products?.newItems,
+    uniqueArrayObjects(products?.newItems),
     'title',
     true,
   );
 
   const updatedProducts = sortArrayAlphabetically(
-    products?.updatedItems,
+    uniqueArrayObjects(products?.updatedItems),
     'title',
     true,
   );
 
   const removedProducts = sortArrayAlphabetically(
-    products?.removedItems,
+    uniqueArrayObjects(products?.removedItems),
     'title',
     true,
   );
-  const newFilters = sortArrayAlphabetically(filters?.newItems, 'key', true);
+  const newFilters = sortArrayAlphabetically(
+    uniqueArrayObjects(filters?.newItems),
+    'key',
+    true,
+  );
 
   const updatedFilters = sortArrayAlphabetically(
-    filters?.updatedItems,
+    uniqueArrayObjects(filters?.updatedItems || filters?.updatedFilters),
     'key',
     true,
   );
 
   const removedFilters = sortArrayAlphabetically(
-    filters?.removedItems,
+    uniqueArrayObjects(filters?.removedItems),
     'key',
     true,
   );
@@ -257,7 +266,9 @@ const DailyAnalyticsReportList = () => {
         <button
           type="button"
           className="inline-flex items-center justify-center px-2 py-2 hover:bg-yellow-100 dark:hover:bg-yellow-700 rounded-full"
-          onClick={() => back()}
+          onClick={() =>
+            push(`/reports/daily-sync/${id}`, undefined, { shallow: true })
+          }
         >
           <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
         </button>
