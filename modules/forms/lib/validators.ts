@@ -52,6 +52,13 @@ export const validateCurrency = (): Validator => ({
     defaultMessage: 'Invalid currency code',
   },
 });
+export const isContractAddress = (): Validator => ({
+  isValid: (value) => /^(0x)?[a-z0-9]{40}$/i.test(value),
+  intlMessageDescriptor: {
+    id: 'error_contract_address',
+    defaultMessage: 'Invalid contract address',
+  },
+});
 
 export const validateInteger = (): Validator => ({
   isValid: (value) => !Number.isNaN(value) && Number.isInteger(value),
