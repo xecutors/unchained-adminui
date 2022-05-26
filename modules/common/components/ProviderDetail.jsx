@@ -24,10 +24,13 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
       <div className="space-y-8 divide-y divide-slate-200">
         <div className="space-y-8 divide-y divide-slate-200 sm:space-y-5">
           <div className="flex items-center">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white mr-2">
+            <h3 className="text-2xl font-medium leading-6 text-slate-900 dark:text-white mr-2">
               {getInterfaceLabel(provider?.interface)}
             </h3>
-            <ActiveInActive />
+            <ActiveInActive
+              containerClassName="self-end"
+              isActive={provider?.isActive}
+            />
           </div>
           <div className="mt-6 flex flex-col">
             <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between">

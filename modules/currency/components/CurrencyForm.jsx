@@ -7,13 +7,16 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import { validateCurrency } from '../../forms/lib/validators';
+import {
+  validateCurrency,
+  isContractAddress,
+} from '../../forms/lib/validators';
 
 const CurrencyForm = ({
   onSubmit,
   onSubmitSuccess,
   defaultValue = {},
-  isEdit,
+  isEdit = true,
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
@@ -44,6 +47,7 @@ const CurrencyForm = ({
     },
     initialValues: {
       isoCode: '',
+      contractAddress: '',
       ...defaultValue,
     },
   });
@@ -60,6 +64,18 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           required
+          className="my-4"
+        />
+
+        <TextField
+          name="contractAddress"
+          id="contractAddress"
+          validators={[isContractAddress()]}
+          label={formatMessage({
+            id: 'contract_address',
+            defaultMessage: 'Contract Address',
+          })}
+          autoComplete="on"
           className="my-4"
         />
 

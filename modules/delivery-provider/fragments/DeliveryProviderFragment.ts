@@ -7,6 +7,7 @@ const DeliveryProviderFragment = gql`
     updated
     deleted
     type
+    isActive
     configuration
     interface {
       _id
