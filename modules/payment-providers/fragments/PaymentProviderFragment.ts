@@ -6,6 +6,7 @@ const PaymentProviderFragment = gql`
     created
     updated
     deleted
+    isActive
     type
     interface {
       _id
