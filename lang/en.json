@@ -285,6 +285,9 @@
   "continue": {
     "defaultMessage": "Continue"
   },
+  "contract_address": {
+    "defaultMessage": "Contract Address"
+  },
   "countries": {
     "defaultMessage": "Countries"
   },
@@ -607,6 +610,12 @@
   "email_exists_error": {
     "defaultMessage": "Email already exists"
   },
+  "email_verification_failed": {
+    "defaultMessage": "Email verification failed"
+  },
+  "email_verified_successfully": {
+    "defaultMessage": "Email Verified successfully"
+  },
   "end": {
     "defaultMessage": "End"
   },
@@ -756,6 +765,9 @@
   },
   "go_back_home": {
     "defaultMessage": "Go back home"
+  },
+  "go_to_home": {
+    "defaultMessage": "Go to home"
   },
   "go_to_login": {
     "defaultMessage": "Go to login"
@@ -1014,6 +1026,9 @@
   "no_error": {
     "defaultMessage": "Error"
   },
+  "no_job": {
+    "defaultMessage": "sync report found"
+  },
   "no_payload": {
     "defaultMessage": "Payload"
   },
@@ -1101,8 +1116,14 @@
   "password": {
     "defaultMessage": "Password"
   },
+  "password_error": {
+    "defaultMessage": "Password change failed with {error}, try again later"
+  },
   "password_mismatch": {
     "defaultMessage": "Password fields don't match"
+  },
+  "password_success": {
+    "defaultMessage": "Password changed successfully."
   },
   "pay": {
     "defaultMessage": "PAY"
@@ -1534,6 +1555,9 @@
   "texts": {
     "defaultMessage": "Texts"
   },
+  "thank_you_for_verifying": {
+    "defaultMessage": "Thank you for verifying your email address"
+  },
   "title": {
     "defaultMessage": "Title"
   },
@@ -1625,6 +1649,9 @@
   "usage_calculation_type": {
     "defaultMessage": "Usage calculation type"
   },
+  "use_another_verification_token": {
+    "defaultMessage": "Please resend another verification email and try to verify again"
+  },
   "user": {
     "defaultMessage": "User"
   },
@@ -1678,6 +1705,9 @@
   },
   "verification_sent_success": {
     "defaultMessage": "Verification email sent successfully"
+  },
+  "verification_token_expired": {
+    "defaultMessage": "Verification token expired"
   },
   "verify_alert_button": {
     "defaultMessage": "Verify"
