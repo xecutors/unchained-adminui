@@ -68,7 +68,7 @@ const AuthWrapper = ({ children }) => {
   return (
     <>
       <AuthContext.Provider value={ctx}>
-        {loading ? <Loading /> : children}
+        {loading || !hasAccess() ? <Loading /> : children}
       </AuthContext.Provider>
     </>
   );
