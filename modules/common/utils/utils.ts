@@ -26,27 +26,37 @@ const classNames = (...classes) => {
 };
 
 const normalizeCountryISOCode = (locale, isoCode, showIso = true) => {
-  return isoCode
-    ? `${new Intl.DisplayNames([locale], { type: 'region' }).of(isoCode)} ${
-        showIso ? `(${isoCode})` : ''
-      }`
-    : '';
+  if (!isoCode) return '';
+
+  try {
+    return `${new Intl.DisplayNames([locale], { type: 'region' }).of(
+      isoCode,
+    )} ${showIso ? `(${isoCode})` : ''}`;
+  } catch {
+    return isoCode;
+  }
 };
 
 const normalizeLanguageISOCode = (locale, isoCode, showIso = true) => {
-  return isoCode
-    ? `${new Intl.DisplayNames([locale], { type: 'language' }).of(isoCode)} ${
-        showIso ? `(${isoCode})` : ''
-      }`
-    : '';
+  if (!isoCode) return '';
+  try {
+    return `${new Intl.DisplayNames([locale], { type: 'language' }).of(
+      isoCode,
+    )} ${showIso ? `(${isoCode})` : ''}`;
+  } catch {
+    return isoCode;
+  }
 };
 
 const normalizeCurrencyISOCode = (locale, isoCode, showIso = true) => {
-  return isoCode
-    ? `${new Intl.DisplayNames([locale], { type: 'currency' }).of(isoCode)} ${
-        showIso ? `(${isoCode})` : ''
-      }`
-    : '';
+  if (!isoCode) return '';
+  try {
+    return `${new Intl.DisplayNames([locale], { type: 'currency' }).of(
+      isoCode,
+    )} ${showIso ? `(${isoCode})` : ''}`;
+  } catch {
+    return isoCode;
+  }
 };
 
 export {
