@@ -15,7 +15,7 @@ const useUnPublishProduct = () => {
   const unPublishProduct = async ({ productId }) => {
     return unPublishProductMutation({
       variables: { productId },
-      refetchQueries: ['Product'],
+      refetchQueries: ['Product', 'Products'],
     });
   };
 

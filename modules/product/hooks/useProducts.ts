@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const ProductsQuery = gql`
-  query products(
+  query Products(
     $queryString: String
     $tags: [String!]
     $slugs: [String!]
@@ -35,7 +35,6 @@ const useProducts = ({
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(ProductsQuery, {
     variables: { queryString, limit, offset, includeDrafts, tags, slugs },
-    notifyOnNetworkStatusChange: true,
   });
   const products = data?.products || [];
   const productsCount = data?.productsCount;

@@ -26,7 +26,7 @@ const useUpdateProduct = () => {
           meta,
         },
       },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['Product', 'Products'],
     });
   };
 
