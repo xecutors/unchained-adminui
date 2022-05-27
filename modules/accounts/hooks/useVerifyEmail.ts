@@ -10,7 +10,7 @@ const VerifyEmailMutation = gql`
   }
 `;
 
-const useSendVerificationEmail = () => {
+const useVerifyEmail = () => {
   const [verifyEmailMutation] = useMutation(VerifyEmailMutation);
 
   const verifyEmail = async ({ token }) => {
@@ -24,4 +24,4 @@ const useSendVerificationEmail = () => {
   };
 };
 
-export default useSendVerificationEmail;
+export default useVerifyEmail;

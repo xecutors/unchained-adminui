@@ -221,6 +221,7 @@ export const ROUTE_ROLES = {
   '/sign-up': UNRESTRICTED,
   '/404': UNRESTRICTED,
   '/403': UNRESTRICTED,
+  '/verify-email': UNRESTRICTED,
   '/orders/[orderId]': ACTION_ROLES.orders.manage,
   '/orders': ACTION_ROLES.orders.manage,
 };
