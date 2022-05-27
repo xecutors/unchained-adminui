@@ -5,6 +5,7 @@ const CurrencyFragment = gql`
     _id
     isoCode
     isActive
+    contractAddress
   }
 `;
 
