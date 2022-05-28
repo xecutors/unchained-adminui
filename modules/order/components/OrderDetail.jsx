@@ -149,7 +149,7 @@ const OrderDetail = ({ order }) => {
   };
 
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-10 md:mt-10 dark:text-white">
+    <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-10 md:mt-10 dark:text-white">
       <div>
         <OrderDetailHeader order={order} />
       </div>

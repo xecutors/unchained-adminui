@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
@@ -34,12 +35,13 @@ export default function LogInForm() {
       });
       const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
       await storeLoginToken(id, token, new Date(tokenExpires));
-
       if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
+      // toast.success('Login is successful');
       return true;
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.error(e);
+      console.error(e.message);
+      toast.error('Login is unsuccessful, try again!!!', { autoClose: 2000 });
       return { error: e.message };
     }
   };
@@ -162,6 +164,8 @@ export default function LogInForm() {
             <div className="my-2">
               <button
                 type="submit"
+                id="submit"
+                name="submit"
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
