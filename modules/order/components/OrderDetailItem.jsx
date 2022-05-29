@@ -7,7 +7,7 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-
+  console.log(item.product?.media);
   return (
     <>
       <section aria-labelledby="products-heading">
@@ -23,8 +23,8 @@ const OrderDetailItem = ({ item }) => {
             <div className="space-y-8">
               <div className="mb-2 rounded-lg border border-slate-200 bg-white dark:bg-slate-600 shadow dark:shadow-white dark:text-white hover:border hover:border-solid hover:border-blue-600">
                 <div className="px-2 py-1">
-                  <div className="center flex flex-wrap justify-center">
-                    <div className="mx-auto flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
+                  <div className="flex items-center">
+                    <div className="flex flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                       {item.product?.media?.length ? (
                         <Image
                           loader={defaultNextImageLoader}
@@ -42,14 +42,14 @@ const OrderDetailItem = ({ item }) => {
                       ) : null}
                     </div>
 
-                    <div className="mx-auto flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
+                    <div className="w-1/2 flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
                       <h3
-                        className="text-base font-medium text-slate-900 dark:text-white"
+                        className="text-base font-medium text-slate-900 dark:text-white truncate"
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{
                           __html:
-                            item?.originalProduct?.texts?.title ||
-                            item?.originalProduct?.texts?.subtitle,
+                            item?.product?.texts?.title ||
+                            item?.product?.texts?.subtitle,
                         }}
                       />
                       <div className="mt-1 text-sm font-medium">

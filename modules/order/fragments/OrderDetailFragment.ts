@@ -248,6 +248,7 @@ const OrderDetailFragment = gql`
           slug
           brand
           vendor
+          title
           subtitle
         }
         media {
