@@ -36,12 +36,23 @@ export default function LogInForm() {
       const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
       await storeLoginToken(id, token, new Date(tokenExpires));
       if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
-      // toast.success('Login is successful');
+      toast.success(
+        formatMessage({
+          id: 'log_in_success',
+          defaultMessage: 'Login is successful',
+        }),
+      );
       return true;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e.message);
-      toast.error('Login is unsuccessful, try again!!!', { autoClose: 2000 });
+      toast.error(
+        formatMessage({
+          id: 'log_in_failed',
+          defaultMessage: 'Login is unsuccessful, try again.',
+        }),
+        { autoClose: 2000 },
+      );
       return { error: e.message };
     }
   };
