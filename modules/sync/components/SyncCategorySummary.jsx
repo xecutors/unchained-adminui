@@ -2,7 +2,6 @@ import { RefreshIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import uniqueArrayObjects from '../../common/utils/uniqueArrayObjects';
 
 const Card = ({ icon, title }) => {
   return (
@@ -133,9 +132,7 @@ const SyncCategorySummary = ({
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-              {categoryName === 'Products'
-                ? uniqueArrayObjects(statistics.updatedItems).length
-                : statistics?.updatedIds?.length}
+              {statistics.updated}
             </p>
             <ViewCard
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}

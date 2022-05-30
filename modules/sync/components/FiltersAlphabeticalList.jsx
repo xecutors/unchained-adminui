@@ -1,16 +1,15 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import Pagination from '../../common/components/Pagination';
 import computeDictionaryTotal from '../../common/utils/computeDictionaryTotal';
 
-const FiltersAlphabeticalList = ({ dictionary = {} }) => {
+const FiltersAlphabeticalList = ({ items /* , enableRedirect = true */ }) => {
   const { query } = useRouter();
 
   const { searchKey = '' } = query;
 
   const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
+    Object.entries(items).map(([key, values]) => {
       return [
         key,
         values.filter((item) => {

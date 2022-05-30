@@ -1,16 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const AssortmentAlphabeticalList = ({
-  dictionary = {},
-  enableRedirect = true,
-}) => {
+const AssortmentAlphabeticalList = ({ items, enableRedirect = true }) => {
   const { query } = useRouter();
 
   const { searchKey = '' } = query;
 
   const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
+    Object.entries(items).map(([key, values]) => {
       return [
         key,
         values.filter((item) => {

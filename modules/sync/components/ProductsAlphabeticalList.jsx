@@ -2,15 +2,15 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const ProductsAlphabeticalList = ({ dictionary = {} }) => {
+const ProductsAlphabeticalList = ({ items, enableRedirect = true }) => {
   const { query } = useRouter();
 
   const { searchKey = '' } = query;
 
-  const disable = query.tab === 'removed-products';
+  const disable = !enableRedirect;
 
   const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
+    Object.entries(items).map(([key, values]) => {
       return [
         key,
         values.filter((item) => {
