@@ -21,7 +21,7 @@ const useForm = ({
   submit: (
     // eslint-disable-next-line no-undef
     variables: Record<string, any>,
-  ) => Promise<{ success: boolean; data?: any; error?: any } | boolean>;
+  ) => Promise<{ success: boolean; data?: any; errors?: any } | boolean>;
   getSubmitErrorMessage?: (error?: Error | any) => Promise<string> | string;
   onSubmitSuccess?: (
     result: boolean,
@@ -48,62 +48,54 @@ const useForm = ({
       const result = await submit(clean(values));
 
       const success =
-        (typeof result === 'boolean' ? result : result?.success) ?? false;
+        (typeof result === 'boolean' ? result : !result?.errors?.length) ??
+        false;
 
       if (success) {
         if (successMessage) toast.success(successMessage);
-
-        await onSubmitSuccess(success, (result as any).data || values);
+        await onSubmitSuccess(success, result || values);
       } else {
-        const error = typeof result === 'boolean' ? !result : result?.error;
-
-        if (
-          error?.toLowerCase()?.includes('auth failed') ||
-          error?.toLowerCase()?.includes('invalid credentials')
-        ) {
-          setSubmitError(
-            (await getSubmitErrorMessage(error)) ||
-              intl.formatMessage({
-                id: 'invalid_credential_error',
-                defaultMessage: 'Invalid credential, please try again',
-              }),
-          );
-        } else if (error?.includes('Email already exists')) {
-          setSubmitError(
-            (await getSubmitErrorMessage(error)) ||
-              intl.formatMessage({
-                id: 'email_exists_error',
-                defaultMessage: 'Email already exists',
-              }),
-          );
-        } else {
-          setSubmitError(
-            (await getSubmitErrorMessage(error)) ||
-              intl.formatMessage(
-                {
-                  id: 'error_server',
-                  defaultMessage: '{details}',
-                },
-                { details: error?.message || '' },
-              ),
-          );
-        }
+        const errors = typeof result === 'boolean' ? !result : result?.errors;
+        errors.forEach(async (error) => {
+          if (error?.message.toLowerCase()?.includes('email already exists')) {
+            setSubmitError(
+              (await getSubmitErrorMessage(error)) ||
+                intl.formatMessage({
+                  id: 'email_exists_error',
+                  defaultMessage: 'Email already exists',
+                }),
+            );
+          } else {
+            setSubmitError(
+              (await getSubmitErrorMessage(error)) ||
+                intl.formatMessage(
+                  {
+                    id: 'error_server',
+                    defaultMessage: '{details}',
+                  },
+                  { details: error?.message?.message || '' },
+                ),
+            );
+          }
+        });
       }
     } catch (error) {
-      console.error(error); // eslint-disable-line
-      setSubmitError(
-        (await getSubmitErrorMessage(error)) ||
-          intl.formatMessage(
-            {
-              id: 'error_server',
-              defaultMessage: '{details}',
-            },
-            {
-              details: error?.message || '{details}',
-            },
-          ),
-      );
+      if (!error.message.includes('option maxAge is invalid')) {
+        setSubmitError(
+          (await getSubmitErrorMessage(error)) ||
+            intl.formatMessage(
+              {
+                id: 'error_server',
+                defaultMessage: '{details}',
+              },
+              {
+                details: error?.message || '{details}',
+              },
+            ),
+        );
+      }
     }
+    return true;
   };
 
   const formik = useFormik({

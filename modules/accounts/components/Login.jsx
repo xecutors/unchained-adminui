@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
@@ -27,38 +26,22 @@ export default function LogInForm() {
   });
 
   const onSubmit = async ({ email, password }) => {
-    try {
-      const { data } = await logInWithPassword({
-        email,
-        password,
-        disableHashing: true,
-      });
-      const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
-      await storeLoginToken(id, token, new Date(tokenExpires));
-      if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
-      toast.success(
-        formatMessage({
-          id: 'log_in_success',
-          defaultMessage: 'Login is successful',
-        }),
-      );
-      return true;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e.message);
-      toast.error(
-        formatMessage({
-          id: 'log_in_failed',
-          defaultMessage: 'Login is unsuccessful, try again.',
-        }),
-        { autoClose: 2000 },
-      );
-      return { error: e.message };
-    }
+    const result = await logInWithPassword({
+      email,
+      password,
+      disableHashing: true,
+    });
+
+    return result;
   };
 
-  const onSubmitSuccess = () => {
-    router.replace('/');
+  const onSubmitSuccess = async (_, { data }) => {
+    const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
+    await storeLoginToken(id, token, new Date(tokenExpires));
+
+    if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
+
+    router.push('/');
   };
 
   const form = useForm({
@@ -66,24 +49,13 @@ export default function LogInForm() {
     successMessage,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
-      if (error?.message?.includes('auth failed'))
-        return formatMessage({
-          id: 'auth_error',
-          defaultMessage: 'Authentication error',
-        });
       if (error?.message?.includes('Invalid credentials'))
         return formatMessage({
           id: 'invalid_credential_error',
           defaultMessage: 'Invalid credential, please try again',
         });
 
-      if (error?.message?.includes('Email already exists'))
-        return formatMessage({
-          id: 'email_exists_error',
-          defaultMessage: 'Email already exists',
-        });
-
-      return error?.message || '';
+      return '';
     },
     initialValues: {
       email: null,

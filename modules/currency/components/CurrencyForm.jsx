@@ -7,10 +7,7 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import {
-  validateCurrency,
-  isContractAddress,
-} from '../../forms/lib/validators';
+import { isContractAddress } from '../../forms/lib/validators';
 
 const CurrencyForm = ({
   onSubmit,
@@ -57,7 +54,6 @@ const CurrencyForm = ({
         <TextField
           name="isoCode"
           id="isoCode"
-          validators={[validateCurrency()]}
           label={formatMessage({
             id: 'iso_code',
             defaultMessage: 'ISO code',
