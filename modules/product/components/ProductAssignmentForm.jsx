@@ -21,6 +21,7 @@ import {
   normalizeVariationOption,
 } from '../../common/convertArrayOfObjectToObject';
 import DeleteButton from '../../common/components/DeleteButton';
+import useProductAssignments from '../hooks/useProductAssignments';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -34,6 +35,7 @@ const normalizeAssortments = (productsList = []) => {
 const ProductAssignmentForm = ({ proxyId }) => {
   const { formatMessage } = useIntl();
   const { addProductAssignment } = useAddProductAssignment();
+  const { assignments } = useProductAssignments({ productId: proxyId });
   const { hasRole } = useAuth();
 
   const [queryString, setQueryString] = useState('');
@@ -42,6 +44,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
     limit: 50,
   });
   const { variations } = useProductVariations({ productId: proxyId });
+  console.log(assignments);
 
   const onSubmit = async ({ productId, vectors }) => {
     await addProductAssignment({
