@@ -23,10 +23,14 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
       if (error.message.toLowerCase().includes('email already exists'))
-        return formatMessage({
-          id: 'email_already_exists_error',
-          defaultMessage: 'Email already exists',
-        });
+        form.formik.setFieldError(
+          'email',
+          formatMessage({
+            id: 'email_already_exists_error',
+            defaultMessage: 'Email already exists',
+          }),
+        );
+
       return '';
     },
     successMessage,
@@ -35,7 +39,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
       gender: '',
       birthday: new Date(),
       phoneMobile: '',
-      username: '',
       email: '',
       password: '',
       firstName: '',
@@ -78,21 +81,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
         <div className="mt-1 rounded-md border-slate-200 bg-white dark:bg-slate-600 pt-5 shadow dark:shadow-white lg:col-span-2">
           <div className="px-6 space-y-4">
             <div>
-              <TextField
-                className="mt-0 w-full"
-                name="username"
-                label={formatMessage({
-                  id: 'username',
-                  defaultMessage: 'Username',
-                })}
-                placeholder={formatMessage({
-                  id: 'username',
-                  defaultMessage: 'Username',
-                })}
-              />
-            </div>
-
-            <div>
               <EmailField
                 className="mt-0 w-full"
                 name="email"
@@ -112,7 +100,6 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               <PasswordField
                 className="mt-0 w-full"
                 name="password"
-                required
                 label={formatMessage({
                   id: 'password',
                   defaultMessage: 'Password',

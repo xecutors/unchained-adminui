@@ -1,27 +1,21 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import useCreateUser from '../../modules/accounts/hooks/useCreateUser';
+
 import CreateUserForm from '../../modules/accounts/components/CreateUserForm';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
+import useEnrollUser from '../../modules/accounts/hooks/useEnrollUser.ts';
 
 const CreateUser = () => {
   const { formatMessage } = useIntl();
-  const { createUser } = useCreateUser();
+  const { enrollUser } = useEnrollUser();
   const { hasRole } = useAuth();
   const router = useRouter();
   const onCreateUser = async (userData) => {
-    const {
-      phoneMobile,
-      birthday,
-      gender,
-      username,
-      password,
-      email,
-      displayName,
-    } = userData;
+    const { phoneMobile, birthday, gender, password, email, displayName } =
+      userData;
     const {
       firstName,
       lastName,
@@ -34,8 +28,7 @@ const CreateUser = () => {
       city,
     } = userData;
 
-    const result = await createUser({
-      username,
+    const result = await enrollUser({
       email,
       password,
       profile: {
@@ -57,13 +50,12 @@ const CreateUser = () => {
       },
       disableHashing: true,
     });
-
     return result;
   };
 
-  const onSubmitSuccess = (_, { id }) => {
+  const onSubmitSuccess = (_, { enrollUser: user }) => {
     if (hasRole(ACTION_ROLES.users.view));
-    router.push(`/users/${id}`);
+    router.push(`/users/${user?._id}`);
   };
   return (
     <>
