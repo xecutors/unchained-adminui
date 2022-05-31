@@ -3,10 +3,10 @@ import { useFormik, FormikValues, FormikErrors, FormikTouched } from 'formik';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import clean from '../lib/clean';
-
 /**
  * @param onSubmitSuccess Return `false` to skip redirect
  */
+
 const useForm = ({
   submit,
   getSubmitErrorMessage = () => '',
@@ -21,7 +21,7 @@ const useForm = ({
   submit: (
     // eslint-disable-next-line no-undef
     variables: Record<string, any>,
-  ) => Promise<{ success: boolean; data?: any; errors?: any } | boolean>;
+  ) => Promise<{ success: boolean; data?: any; errors?: any }>;
   getSubmitErrorMessage?: (error?: Error | any) => Promise<string> | string;
   onSubmitSuccess?: (
     result: boolean,
@@ -38,64 +38,53 @@ const useForm = ({
   ) => void | object | Promise<FormikErrors<FormikValues>>;
 }) => {
   const intl = useIntl();
-
   const [submitError, setSubmitError] = useState('');
+
+  const parseError = (error) => {
+    if (error?.includes('Email already exists')) {
+      return intl.formatMessage({
+        id: 'email_exists_error',
+        defaultMessage: 'Email already exists',
+      });
+    }
+
+    return intl.formatMessage(
+      {
+        id: 'error_server',
+        defaultMessage: '{details}',
+      },
+      { details: error?.message || '' },
+    );
+  };
 
   const onSubmit = async (values) => {
     setSubmitError('');
+    const result = await submit(clean(values));
+    const success =
+      (typeof result === 'boolean' ? result : result?.success) ?? false;
+    if (success) {
+      if (successMessage) toast.success(successMessage);
 
-    try {
-      const result = await submit(clean(values));
+      await onSubmitSuccess(success, result.data || values);
+    } else {
+      const errors = typeof result === 'boolean' ? !result : result?.errors;
 
-      const success =
-        (typeof result === 'boolean' ? result : !result?.errors?.length) ??
-        false;
-
-      if (success) {
-        if (successMessage) toast.success(successMessage);
-        await onSubmitSuccess(success, result || values);
-      } else {
-        const errors = typeof result === 'boolean' ? !result : result?.errors;
+      if (Array.isArray(errors)) {
         errors.forEach(async (error) => {
-          if (error?.message.toLowerCase()?.includes('email already exists')) {
-            setSubmitError(
-              (await getSubmitErrorMessage(error)) ||
-                intl.formatMessage({
-                  id: 'email_exists_error',
-                  defaultMessage: 'Email already exists',
-                }),
-            );
-          } else {
-            setSubmitError(
-              (await getSubmitErrorMessage(error)) ||
-                intl.formatMessage(
-                  {
-                    id: 'error_server',
-                    defaultMessage: '{details}',
-                  },
-                  { details: error?.message?.message || '' },
-                ),
-            );
-          }
+          setSubmitError(
+            (await getSubmitErrorMessage(error)) || parseError(error),
+          );
         });
-      }
-    } catch (error) {
-      if (!error.message.includes('option maxAge is invalid')) {
+      } else if (typeof errors === 'string') {
         setSubmitError(
-          (await getSubmitErrorMessage(error)) ||
-            intl.formatMessage(
-              {
-                id: 'error_server',
-                defaultMessage: '{details}',
-              },
-              {
-                details: error?.message || '{details}',
-              },
-            ),
+          (await getSubmitErrorMessage(errors)) || parseError(errors),
+        );
+      } else {
+        setSubmitError(
+          (await getSubmitErrorMessage(!!errors)) || parseError(!!errors),
         );
       }
     }
-    return true;
   };
 
   const formik = useFormik({
@@ -114,5 +103,4 @@ const useForm = ({
     disabled: false,
   };
 };
-
 export default useForm;

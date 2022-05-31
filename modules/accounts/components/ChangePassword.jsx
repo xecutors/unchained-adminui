@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
 import SubmitButton from '../../forms/components/SubmitButton';
 
@@ -12,32 +13,40 @@ const ChangePassword = () => {
   const { formatMessage } = useIntl();
 
   const onSubmit = async ({ oldPassword, newPassword }) => {
-    try {
-      await changePassword({ oldPassword, newPassword });
+    const { data } = await changePassword({ oldPassword, newPassword });
+
+    return data?.changePassword;
+  };
+
+  const form = useForm({
+    submit: onSubmit,
+    enableReinitialize: true,
+    onSubmitSuccess: () => {
       toast.success(
         formatMessage({
           id: 'password_success',
           defaultMessage: 'Password changed successfully.',
         }),
       );
-    } catch (error) {
+    },
+    getSubmitErrorMessage: (error) => {
       toast.error(
         formatMessage(
           {
-            id: 'password_error',
-            defaultMessage:
-              'Password change failed with {error}, try again later',
+            id: 'password_change_failed',
+            defaultMessage: 'Password change failed, try again later',
           },
           { error: error.message },
         ),
       );
-    }
-    return true;
-  };
-
-  const form = useForm({
-    submit: onSubmit,
-    enableReinitialize: true,
+      return formatMessage(
+        {
+          id: 'password_change_failed',
+          defaultMessage: 'Password change failed, try again later',
+        },
+        { error: error.message },
+      );
+    },
     initialValues: {
       oldPassword: '',
       newPassword: '',
@@ -86,6 +95,7 @@ const ChangePassword = () => {
               className="mb-4 text-sm"
             />
           </div>
+          <FormErrors />
           <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
             <SubmitButton
               label={formatMessage({

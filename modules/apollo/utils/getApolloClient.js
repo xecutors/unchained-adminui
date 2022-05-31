@@ -48,7 +48,6 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
           // eslint-disable-line
-
           `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
             locations,
           )}, Path: ${path}`,

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import ChangePassword from './ChangePassword';
 import EmailAddresses from './EmailAddresses';
 import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
@@ -80,6 +81,12 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
           <div className="border-t border-slate-200" />
+        </div>
+      </div>
+
+      <div className="space-y-6 overflow-hidden rounded-md  border-slate-200 py-5">
+        <div className="mt-6">
+          <ChangePassword />
         </div>
       </div>
     </>
