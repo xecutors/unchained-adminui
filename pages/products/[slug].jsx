@@ -94,8 +94,8 @@ const ProductDetailPage = () => {
             )}
             {product?.updated && (
               <FormattedMessage
-                id="published_date"
-                defaultMessage="<b>Updated :</b>  {updated} "
+                id="updated_date"
+                defaultMessage="<b>Updated :</b>  {created} "
                 values={{
                   b: (chunks) => <b>{chunks}</b>,
 

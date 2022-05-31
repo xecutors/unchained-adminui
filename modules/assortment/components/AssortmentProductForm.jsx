@@ -47,9 +47,6 @@ const AssortmentProductForm = ({ assortmentId }) => {
   const form = useForm({
     submit: onSubmit,
     successMessage,
-    getSubmitErrorMessage: async (error) => {
-      console.log(error);
-    },
     initialValues: {
       productId: '',
       tags: '',

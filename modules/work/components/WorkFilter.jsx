@@ -33,12 +33,16 @@ const WorkFilter = ({ workTypes = [] }) => {
 
   const statusChangeHandler = (e) => {
     const { status, ...rest } = router.query;
+
     if (e.target.checked) {
       const newStatus = [...extractQuery(status), e.target.name];
       router.push({
         query: {
           ...rest,
-          status: newStatus?.join(','),
+          status:
+            newStatus.length === 1 && e.target.value === 'DELETED'
+              ? WORK_STATUSES.join(',')
+              : newStatus?.join(','),
         },
       });
     } else {
@@ -53,10 +57,14 @@ const WorkFilter = ({ workTypes = [] }) => {
             status: newStatus?.join(','),
           },
         });
+      // initial query or to replicate the behavior in the engine when no status is selected
       else
         router.push({
           query: {
             ...rest,
+            status: WORK_STATUSES.filter(
+              (stat) => stat !== e.target.value && stat !== 'DELETED',
+            ).join(','),
           },
         });
     }
@@ -181,7 +189,11 @@ const WorkFilter = ({ workTypes = [] }) => {
                 id={status}
                 name={status}
                 value={status}
-                checked={extractQuery(router.query?.status).includes(status)}
+                checked={
+                  extractQuery(router.query?.status).includes(status) ||
+                  (extractQuery(router.query?.status).length === 0 &&
+                    status !== 'DELETED')
+                }
                 onChange={statusChangeHandler}
               />
               <div className="ml-2">
