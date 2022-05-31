@@ -1,13 +1,15 @@
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import ChangePassword from './ChangePassword';
 import EmailAddresses from './EmailAddresses';
+import SetPassword from './SetPassword';
 import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
 import UserTagsView from './UserTagsView';
 
 const AccountView = ({ _id, emails, username, roles, tags }) => {
   const { formatMessage } = useIntl();
+  const { isAdmin } = useAuth();
   return (
     <>
       <SelfDocumentingView
@@ -77,18 +79,21 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         }
       />
+      {isAdmin() ? (
+        <>
+          <div className="hidden sm:block" aria-hidden="true">
+            <div className="py-5">
+              <div className="border-t border-slate-200" />
+            </div>
+          </div>
 
-      <div className="hidden sm:block" aria-hidden="true">
-        <div className="py-5">
-          <div className="border-t border-slate-200" />
-        </div>
-      </div>
-
-      <div className="space-y-6 overflow-hidden rounded-md  border-slate-200 py-5">
-        <div className="mt-6">
-          <ChangePassword />
-        </div>
-      </div>
+          <div className="space-y-6 overflow-hidden rounded-md  border-slate-200 py-5">
+            <div className="mt-6">
+              <SetPassword userId={_id} />
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };

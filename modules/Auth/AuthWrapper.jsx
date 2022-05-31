@@ -16,7 +16,10 @@ const AuthWrapper = ({ children }) => {
   };
 
   const isAdmin = () => {
-    return currentUser?.allowedActions.length === 0;
+    return (
+      currentUser?.allowedActions.length === 0 ||
+      (currentUser?.roles || []).includes('admin')
+    );
   };
 
   const hasRole = (role) => {
