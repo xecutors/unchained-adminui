@@ -35,8 +35,8 @@ export default function LogInForm() {
     return result;
   };
 
-  const onSubmitSuccess = async (_, data) => {
-    const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
+  const onSubmitSuccess = async (_, { loginWithPassword }) => {
+    const { id, token, tokenExpires, user } = loginWithPassword || {};
     await storeLoginToken(id, token, new Date(tokenExpires));
 
     if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
