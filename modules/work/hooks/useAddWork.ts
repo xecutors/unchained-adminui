@@ -6,7 +6,7 @@ const AddWorkMutation = gql`
     $priority: Int!
     $input: JSON
     $originalWorkId: ID
-    $scheduled: Date
+    $scheduled: Timestamp
     $retries: Int!
   ) {
     addWork(

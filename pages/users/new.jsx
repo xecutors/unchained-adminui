@@ -34,7 +34,7 @@ const CreateUser = () => {
       city,
     } = userData;
 
-    const { data, errors } = await createUser({
+    const result = await createUser({
       username,
       email,
       password,
@@ -57,8 +57,8 @@ const CreateUser = () => {
       },
       disableHashing: true,
     });
-    if (errors?.length) return false;
-    return { success: true, data: data?.createUser };
+
+    return result;
   };
 
   const onSubmitSuccess = (_, { id }) => {

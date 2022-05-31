@@ -4,6 +4,7 @@ import ACTION_ROLES from '../../common/data/roles';
 import useSystemRoles from '../../common/hooks/useSystemRoles';
 import ChoicesField from '../../forms/components/ChoicesField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
@@ -54,6 +55,7 @@ const UserRolesView = ({ roles, userId }) => {
         })}
         multiple
       />
+      <FormErrors />
 
       <SubmitButton
         disabled={!hasRole(ACTION_ROLES.users.updateRoles)}

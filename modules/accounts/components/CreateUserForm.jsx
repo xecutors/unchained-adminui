@@ -9,6 +9,7 @@ import DatePickerField from '../../forms/components/DatePickerField';
 import EmailField from '../../forms/components/EmailField';
 import PasswordField from '../../forms/components/PasswordField';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
+import FormErrors from '../../forms/components/FormErrors';
 
 const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
@@ -20,6 +21,14 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    getSubmitErrorMessage: (error) => {
+      if (error.message.toLowerCase().includes('email already exists'))
+        return formatMessage({
+          id: 'email_already_exists_error',
+          defaultMessage: 'Email already exists',
+        });
+      return '';
+    },
     successMessage,
     initialValues: {
       displayName: '',
@@ -178,7 +187,9 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               />
             </div>
           </div>
+
           <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 sm:px-15 mt-5">
+            <FormErrors />
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
         </div>

@@ -24,7 +24,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
     onSubmitSuccess,
     successMessage: isEdit ? languageUpdatedMessage : languageAddedMessage,
     getSubmitErrorMessage: (error) => {
-      if (error?.message?.includes('duplicate key')) {
+      if (error?.message?.includes('duplicate')) {
         form.formik.setFieldError(
           'isoCode',
           formatMessage({

@@ -41,10 +41,16 @@ const useForm = ({
   const [submitError, setSubmitError] = useState('');
 
   const parseError = (error) => {
-    if (error?.includes('Email already exists')) {
+    if (error?.toLowerCase()?.includes('email already exists')) {
       return intl.formatMessage({
         id: 'email_exists_error',
         defaultMessage: 'Email already exists',
+      });
+    }
+    if (error?.toLowerCase()?.includes('permission')) {
+      return intl.formatMessage({
+        id: 'permission_missing',
+        defaultMessage: "You don't have the required permission",
       });
     }
 
@@ -59,31 +65,38 @@ const useForm = ({
 
   const onSubmit = async (values) => {
     setSubmitError('');
-    const result = await submit(clean(values));
-    const success =
-      (typeof result === 'boolean' ? result : result?.success) ?? false;
-    if (success) {
-      if (successMessage) toast.success(successMessage);
+    try {
+      const result = await submit(clean(values));
+      console.log(result);
 
-      await onSubmitSuccess(success, result.data || values);
-    } else {
-      const errors = typeof result === 'boolean' ? !result : result?.errors;
+      const success =
+        (typeof result === 'boolean' ? result : result?.success) ??
+        !result?.errors?.length;
+      if (success) {
+        if (successMessage) toast.success(successMessage);
 
-      if (Array.isArray(errors)) {
-        errors.forEach(async (error) => {
-          setSubmitError(
-            (await getSubmitErrorMessage(error)) || parseError(error),
-          );
-        });
-      } else if (typeof errors === 'string') {
-        setSubmitError(
-          (await getSubmitErrorMessage(errors)) || parseError(errors),
-        );
+        await onSubmitSuccess(success, result.data || values);
       } else {
-        setSubmitError(
-          (await getSubmitErrorMessage(!!errors)) || parseError(!!errors),
-        );
+        const errors = typeof result === 'boolean' ? !result : result?.errors;
+
+        if (Array.isArray(errors)) {
+          errors.forEach(async (error) => {
+            setSubmitError(
+              (await getSubmitErrorMessage(error)) || parseError(error),
+            );
+          });
+        } else if (typeof errors === 'string') {
+          setSubmitError(
+            (await getSubmitErrorMessage(errors)) || parseError(errors),
+          );
+        } else {
+          setSubmitError(
+            (await getSubmitErrorMessage(!!errors)) || parseError(!!errors),
+          );
+        }
       }
+    } catch (error) {
+      setSubmitError((await getSubmitErrorMessage(error)) || parseError(error));
     }
   };
 

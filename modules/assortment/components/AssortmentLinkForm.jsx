@@ -11,6 +11,7 @@ import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import FormErrors from '../../forms/components/FormErrors';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -80,6 +81,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
               />
             </div>
           </div>
+          <FormErrors />
           <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
             <SubmitButton
               hidden={!hasRole(ACTION_ROLES.assortments.addLink)}

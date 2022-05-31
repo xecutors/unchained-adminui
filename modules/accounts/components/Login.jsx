@@ -35,7 +35,7 @@ export default function LogInForm() {
     return result;
   };
 
-  const onSubmitSuccess = async (_, { data }) => {
+  const onSubmitSuccess = async (_, data) => {
     const { id, token, tokenExpires, user } = data?.loginWithPassword || {};
     await storeLoginToken(id, token, new Date(tokenExpires));
 

@@ -56,16 +56,19 @@ export const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   );
 };
 
-const FormErrors = () => {
+const FormErrors = ({ displayFieldErrors = false }) => {
   const { submitError, formik } = useFormContext();
 
   const fieldErrors = formik.errors;
 
-  const show = submitError || !!Object.keys(fieldErrors).length;
+  const show = submitError || displayFieldErrors;
 
   return (
     show && (
-      <FormErrorsPure submitError={submitError} fieldErrors={fieldErrors} />
+      <FormErrorsPure
+        submitError={submitError}
+        fieldErrors={displayFieldErrors && fieldErrors}
+      />
     )
   );
 };

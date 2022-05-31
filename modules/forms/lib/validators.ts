@@ -52,8 +52,8 @@ export const validateCurrency = (): Validator => ({
     defaultMessage: 'Invalid currency code',
   },
 });
-export const isContractAddress = (): Validator => ({
-  isValid: (value) => /^(0x)?[a-z0-9]{40}$/i.test(value),
+export const isContractAddress = (isRequired): Validator => ({
+  isValid: (value) => !isRequired || /^(0x)?[a-z0-9]{40}$/i.test(value),
   intlMessageDescriptor: {
     id: 'error_contract_address',
     defaultMessage: 'Invalid contract address',

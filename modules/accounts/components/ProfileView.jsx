@@ -40,7 +40,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
       city,
     } = updatedProfile;
 
-    await updateUserProfile({
+    const result = await updateUserProfile({
       profile: {
         displayName,
         phoneMobile,
@@ -61,7 +61,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
       userId: _id,
     });
     setIsEdit(false);
-    return true;
+    return result;
   };
   const updateProfilePhotoMessage = formatMessage({
     id: 'photo_updated',
@@ -377,6 +377,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
+
               {isAuthenticated(_id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}

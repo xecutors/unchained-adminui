@@ -11,6 +11,7 @@ import useDisplayImageInModal from '../utils/useDisplayImageInModal';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
+import FormErrors from '../../forms/components/FormErrors';
 
 const MediaListItem = ({
   media,
@@ -129,6 +130,7 @@ const MediaListItem = ({
                     )}
                   </p>
                 </div>
+                <FormErrors />
 
                 {isEdit ? (
                   <SaveAndCancelButtons

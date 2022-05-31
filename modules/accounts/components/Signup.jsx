@@ -16,18 +16,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
 
   const form = useForm({
     getSubmitErrorMessage: (error) => {
-      if (error?.message?.includes('auth failed'))
-        return formatMessage({
-          id: 'auth_error',
-          defaultMessage: 'Authentication error',
-        });
-      if (error?.message?.includes('Username already exists'))
-        return formatMessage({
-          id: 'username_exists_error',
-          defaultMessage: 'Username already exists',
-        });
-
-      if (error?.message?.includes('Email already exists'))
+      if (error?.message?.toLowerCase()?.includes('email already exists'))
         return formatMessage({
           id: 'email_exists_error',
           defaultMessage: 'Email already exists',

@@ -3,6 +3,7 @@ import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
@@ -60,6 +61,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
         />
       </div>
+      <FormErrors />
       <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 p-5 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.assortments.create)}

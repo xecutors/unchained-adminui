@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 
@@ -12,6 +13,12 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    getSubmitErrorMessage: async () => {
+      return formatMessage({
+        id: 'email_address_not_exist',
+        defaultMessage: 'Provided email does not exist',
+      });
+    },
     initialValues: {
       email: '',
     },
@@ -44,7 +51,7 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
             required
           />
         </div>
-
+        <FormErrors />
         <div className="mb-6">
           <SubmitButton
             className="w-full "

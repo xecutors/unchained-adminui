@@ -4,6 +4,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -27,6 +28,9 @@ const DoWorkForm = () => {
     submit: onSubmit,
     successMessage,
     enableReinitialize: true,
+    getSubmitErrorMessage: async (error) => {
+      return error?.message || '';
+    },
     initialValues: {
       type: '',
       input: '',
@@ -66,6 +70,7 @@ const DoWorkForm = () => {
             labelClassName="text-sm font-medium text-slate-500 mb-2"
           />
         </div>
+        <FormErrors />
 
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 p-5 text-right">
           <SubmitButton

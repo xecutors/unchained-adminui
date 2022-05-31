@@ -47,6 +47,18 @@ const ChangePassword = () => {
         { error: error.message },
       );
     },
+    validate: ({ newPassword, oldPassword }) => {
+      if (newPassword === oldPassword) {
+        return {
+          misMatchError: formatMessage({
+            id: 'password_identical',
+            defaultMessage:
+              'Provided new password identical to previous password',
+          }),
+        };
+      }
+      return {};
+    },
     initialValues: {
       oldPassword: '',
       newPassword: '',

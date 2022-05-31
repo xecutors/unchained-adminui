@@ -10,7 +10,7 @@ const AddCurrency = () => {
   const { createCurrency } = useCreateCurrency();
   const router = useRouter();
   const { formatMessage } = useIntl();
-  const onSubmitSuccess = ({ _id }) => {
+  const onSubmitSuccess = (_, { _id }) => {
     router.push(`/currency/${_id}`);
   };
 

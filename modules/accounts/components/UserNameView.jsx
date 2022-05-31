@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useSetUserName from '../hooks/useSetUsername';
@@ -12,9 +13,9 @@ const UserNameView = ({ _id: userId, username }) => {
   const { formatMessage } = useIntl();
 
   const onUpdateUserName = async ({ username: newUsername }) => {
-    await setUserName({ username: newUsername, userId });
+    const result = await setUserName({ username: newUsername, userId });
     setIsEdit(false);
-    return true;
+    return result;
   };
 
   const successMessage = formatMessage({
@@ -23,11 +24,20 @@ const UserNameView = ({ _id: userId, username }) => {
   });
   const form = useForm({
     submit: onUpdateUserName,
+    getSubmitErrorMessage: async (error) => {
+      if (error?.message?.toLowerCase().includes('duplicate'))
+        return formatMessage({
+          id: 'username_exists_error',
+          defaultMessage: 'Username is taken please provide another',
+        });
+      return error?.message || '';
+    },
     successMessage,
     initialValues: {
       username,
     },
   });
+
   return (
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
@@ -42,16 +52,17 @@ const UserNameView = ({ _id: userId, username }) => {
                 <TextField
                   className="mt-0"
                   name="username"
+                  required
                   label={formatMessage({
                     id: 'username',
                     defaultMessage: 'Username',
                   })}
                 />
               ) : (
-                username
+                <div>{username}</div>
               )}
             </span>
-
+            <FormErrors />
             <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}

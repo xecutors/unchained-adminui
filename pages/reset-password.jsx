@@ -14,7 +14,7 @@ const PasswordReset = () => {
   const { token } = query;
 
   const onSubmit = async ({ newPassword }) => {
-    await resetPassword({ newPassword, token, disableHashing: true });
+    return resetPassword({ newPassword, token, disableHashing: true });
   };
 
   return (

@@ -6,6 +6,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -35,6 +36,9 @@ const AllocateWorkForm = () => {
   const form = useForm({
     submit: onSubmit,
     onSubmitSuccess,
+    getSubmitErrorMessage: async (error) => {
+      return error?.message || '';
+    },
     successMessage,
     enableReinitialize: true,
     initialValues: {
@@ -156,6 +160,7 @@ const AllocateWorkForm = () => {
             )}
           </FieldArray>
         </div>
+        <FormErrors />
         <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 px-5 py-6 text-right">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.work.allocateWork)}

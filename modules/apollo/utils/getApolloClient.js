@@ -92,7 +92,6 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
       ((new Date().getTime() - new Date(tokenExpires).getTime()) * -1) / 1000;
 
     const newCookie = cookie.serialize('token', token, {
-      maxAge,
       path: '/',
       secure: window.location.protocol === 'https',
       sameSite: true,

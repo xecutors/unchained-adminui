@@ -4,6 +4,7 @@ import JSONAreaField from '../../forms/components/JSONAreaField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 
 const ProviderConfigurationForm = ({
   onSubmit,
@@ -17,6 +18,9 @@ const ProviderConfigurationForm = ({
       configuration: JSON.stringify(provider?.configuration || {}, null, 2),
     },
     submit: onSubmit,
+    getSubmitErrorMessage: async (error) => {
+      return error?.message || '';
+    },
     onSubmitSuccess,
   });
   return (
@@ -31,6 +35,7 @@ const ProviderConfigurationForm = ({
             defaultMessage: 'Configuration',
           })}
         />
+        <FormErrors />
         <SubmitButton
           hidden={readOnly}
           label={formatMessage({
