@@ -41,7 +41,8 @@ const VerifyEmail = () => {
       }
     };
     if (query.token) verify();
-  }, [query.token]);
+  }, [query.token, verifyEmail, formatMessage, result]);
+
   if (result.success === null) return <Loading />;
   return (
     <div className="flex items-center justify-center min-h-screen p-5 bg-blue-100 min-w-screen">

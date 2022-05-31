@@ -177,9 +177,6 @@
   "attachments": {
     "defaultMessage": "Attachments"
   },
-  "auth_error": {
-    "defaultMessage": "Authentication error"
-  },
   "avatar": {
     "defaultMessage": "Avatar"
   },
@@ -601,8 +598,14 @@
   "email_address": {
     "defaultMessage": "Email Address"
   },
+  "email_address_not_exist": {
+    "defaultMessage": "Provided email does not exist"
+  },
   "email_addresses": {
     "defaultMessage": "Email addresses"
+  },
+  "email_already_exists_error": {
+    "defaultMessage": "Email already exists"
   },
   "email_deleted": {
     "defaultMessage": "email {id} deleted successfully"
@@ -1116,8 +1119,11 @@
   "password": {
     "defaultMessage": "Password"
   },
-  "password_error": {
-    "defaultMessage": "Password change failed with {error}, try again later"
+  "password_change_failed": {
+    "defaultMessage": "Password change failed, try again later"
+  },
+  "password_identical": {
+    "defaultMessage": "Provided new password identical to previous password"
   },
   "password_mismatch": {
     "defaultMessage": "Password fields don't match"
@@ -1154,6 +1160,9 @@
   },
   "periods": {
     "defaultMessage": "Periods"
+  },
+  "permission_missing": {
+    "defaultMessage": "You don't have the required permission"
   },
   "phone": {
     "defaultMessage": "Phone"
@@ -1261,7 +1270,7 @@
     "defaultMessage": "Published"
   },
   "published_date": {
-    "defaultMessage": "<b>Updated :</b> {updated}"
+    "defaultMessage": "<b>Published :</b> {published}"
   },
   "purchased_products": {
     "defaultMessage": "Purchased products"
@@ -1325,6 +1334,9 @@
   },
   "reset_password_header_description": {
     "defaultMessage": "Enter your new password and make sure you don't forget it this time."
+  },
+  "reset_token_expired": {
+    "defaultMessage": "Token link invalid or has expired"
   },
   "resolved_country": {
     "defaultMessage": "Resolved country"
@@ -1665,7 +1677,7 @@
     "defaultMessage": "Username"
   },
   "username_exists_error": {
-    "defaultMessage": "Username already exists"
+    "defaultMessage": "Username is taken please provide another"
   },
   "username_updated": {
     "defaultMessage": "Username updated successfully!"

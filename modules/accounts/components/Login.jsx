@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
@@ -17,6 +18,7 @@ import { storeLoginToken } from '../utils/store';
 export default function LogInForm() {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
+  const { isAuthenticated } = useAuth();
 
   const router = useRouter();
   const { formatMessage } = useIntl();
@@ -64,6 +66,9 @@ export default function LogInForm() {
   });
 
   const logo = getLogo();
+  if (isAuthenticated()) {
+    router.replace('/');
+  }
 
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

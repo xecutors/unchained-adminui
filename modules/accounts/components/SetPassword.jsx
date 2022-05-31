@@ -34,7 +34,6 @@ const SetPassword = ({ userId }) => {
       );
     },
     getSubmitErrorMessage: (error) => {
-      console.log(error);
       toast.error(
         formatMessage(
           {

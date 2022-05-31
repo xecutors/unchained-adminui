@@ -67,7 +67,6 @@ const useForm = ({
     setSubmitError('');
     try {
       const result = await submit(clean(values));
-      console.log(result);
 
       const success =
         (typeof result === 'boolean' ? result : result?.success) ??
