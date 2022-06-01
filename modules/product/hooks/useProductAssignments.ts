@@ -18,7 +18,23 @@ export const ProductAssignmentQuery = gql`
           slug
           title
         }
-        assignments {
+        variations {
+          _id
+          key
+          texts {
+            _id
+            title
+          }
+          options {
+            _id
+            value
+            texts {
+              _id
+              title
+            }
+          }
+        }
+        assignments(includeInactive: true) {
           ...ProductAssignmentFragment
         }
       }
@@ -40,10 +56,9 @@ const useProductAssignments = ({
   });
 
   const product = data?.product || {};
-  const assignments = product?.assignments || [];
 
   return {
-    assignments,
+    product,
     loading,
     error,
   };

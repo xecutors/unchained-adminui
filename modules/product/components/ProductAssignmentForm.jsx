@@ -1,186 +1,175 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import Select from 'react-select';
 
-import { FieldArray } from 'formik';
-import { PlusCircleIcon } from '@heroicons/react/solid';
-import Form from '../../forms/components/Form';
-import SubmitButton from '../../forms/components/SubmitButton';
-import useForm from '../../forms/hooks/useForm';
-
-import FilterableDropdown from '../../common/components/FilterableDropdown';
-import ACTION_ROLES from '../../common/data/roles';
-import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import FormErrors from '../../forms/components/FormErrors';
+
 import useAddProductAssignment from '../hooks/useAddProductAssignment';
 import useSearchProducts from '../hooks/useSearchProducts';
-import useProductVariations from '../hooks/useProductVariations';
-import SelectField from '../../forms/components/SelectField';
-import {
-  normalizeVariation,
-  normalizeVariationOption,
-} from '../../common/convertArrayOfObjectToObject';
+
 import DeleteButton from '../../common/components/DeleteButton';
 import useProductAssignments from '../hooks/useProductAssignments';
+import Table from '../../common/components/Table';
+import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
 
-const normalizeAssortments = (productsList = []) => {
-  return productsList?.map(({ _id, status, texts, media }) => ({
-    id: _id,
-    tag: status,
-    ...texts,
-    image: media?.length ? media[0]?.file.url : null,
-  }));
+const matrixGenerator = (columns, rowContainer, currentIndex) => {
+  const column = columns[currentIndex];
+  const newRows = [];
+
+  column.values
+    .filter((v) => v.length)
+    .forEach((value) => {
+      const tempRow = {};
+      tempRow[column.key] = value;
+      if (rowContainer.length > 0) {
+        rowContainer.forEach((oldRow) => {
+          newRows.push({ ...oldRow, ...tempRow });
+        });
+      } else {
+        newRows.push(tempRow);
+      }
+    });
+
+  if (columns.length > currentIndex + 1) {
+    return matrixGenerator(columns, newRows, currentIndex + 1);
+  }
+  return newRows;
 };
+
+const normalizeProduct = ({ _id, texts }) => ({
+  value: _id,
+  label: texts?.title,
+});
 
 const ProductAssignmentForm = ({ proxyId }) => {
   const { formatMessage } = useIntl();
   const { addProductAssignment } = useAddProductAssignment();
-  const { assignments } = useProductAssignments({ productId: proxyId });
-  const { hasRole } = useAuth();
+  const { removeProductAssignment } = useRemoveProductAssignment();
+  const { product } = useProductAssignments({ productId: proxyId });
+
+  const variations = (product && product.variations) || [];
+
+  const columnTitles = variations
+    .filter(({ options }) => options.length)
+    .map(({ texts, key }) => texts?.title || key);
+  const columnKeys = variations
+    .filter(({ options }) => options.length)
+    .map(({ key }) => key);
+
+  const keyValueCombinations = variations.map(({ key, options }) => ({
+    values: (options || []).map((option) => option.value),
+    key,
+  }));
+
+  const allRowsPossible =
+    keyValueCombinations.length > 0
+      ? matrixGenerator(
+          keyValueCombinations.filter(({ values }) => values.length),
+          [],
+          0,
+        )
+      : [];
+
+  const assignments = (product && product.assignments) || [];
+  const allAssignedRows = {};
+  assignments.forEach((assignment) => {
+    const selector = {};
+    assignment.vectors.forEach((vector) => {
+      selector[vector?.variation?.key] = vector?.option?.value;
+    });
+    allAssignedRows[Object.values(selector).join('')] = assignment.product;
+  });
+
+  const rows = allRowsPossible
+    .map((row) => {
+      const hash = Object.values(row).join('');
+      return {
+        _id: hash,
+        product: allAssignedRows[hash],
+        columns: Object.values(row),
+        columnsText: Object.values(row),
+      };
+    })
+    .sort((row) => (row.product ? -1 : 1));
 
   const [queryString, setQueryString] = useState('');
   const { products } = useSearchProducts({
     queryString,
     limit: 50,
   });
-  const { variations } = useProductVariations({ productId: proxyId });
-  console.log(assignments);
 
-  const onSubmit = async ({ productId, vectors }) => {
-    await addProductAssignment({
-      proxyId,
-      productId,
-      vectors,
-    });
-    return true;
+  const getRowVector = (optionValue, index) => ({
+    key: columnKeys[index],
+    value: optionValue,
+  });
+
+  const handleProductAssignment = (context) => {
+    const assignVector = async ({ value: productId }) => {
+      const vectors = context.map(getRowVector);
+
+      await addProductAssignment({ proxyId, productId, vectors });
+    };
+
+    return assignVector;
   };
 
-  const successMessage = formatMessage({
-    id: 'saved',
-    defaultMessage: 'Saved',
-  });
-
-  const form = useForm({
-    submit: onSubmit,
-    successMessage,
-    initialValues: {
-      productId: '',
-      vectors: [
-        {
-          key: null,
-          value: null,
-        },
-      ],
-    },
-  });
-
-  const { values } = form.formik;
+  const handleRemoveAssignment = (context) => {
+    const removeAssignment = async () => {
+      const vectors = context.map(getRowVector);
+      await removeProductAssignment({ proxyId, vectors });
+    };
+    return removeAssignment;
+  };
 
   return (
     <FormWrapper>
-      <Form form={form}>
-        <div className="sm:rounded-md">
-          <div className="col-span-12">
-            <FilterableDropdown
-              name="productId"
-              label={formatMessage({
-                id: 'child_assortment',
-                defaultMessage: 'Sub-Assortment',
-              })}
-              required
-              onFilter={setQueryString}
-              queryString={queryString}
-              data={normalizeAssortments(products)}
-              className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
-            />
-          </div>
-          <FieldArray name="vectors">
-            {({ push, remove: removeConfig }) => (
-              <div className="w-full">
-                {(values?.vectors || []).map((p, index) => {
-                  return (
-                    <div
-                      className="flex w-full"
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={index}
-                    >
-                      <SelectField
-                        label={formatMessage({
-                          id: 'key',
-                          defaultMessage: 'key',
-                        })}
-                        name={`vectors[${index}].key`}
-                        id={`vectors[${index}].key`}
-                        required
-                        options={normalizeVariation(variations)}
-                        hideLabel
-                        placeholder={formatMessage({
-                          id: 'key',
-                          defaultMessage: 'key',
-                        })}
-                      />
+      <Table>
+        <Table.Row header>
+          {columnTitles.map((title) => (
+            <Table.Cell className="capitalize" key={title}>
+              {title}{' '}
+            </Table.Cell>
+          ))}
+          <Table.Cell
+            key={formatMessage({ id: 'product', defaultMessage: 'Product' })}
+          >
+            {formatMessage({ id: 'product', defaultMessage: 'Product' })}{' '}
+          </Table.Cell>
+          <Table.Cell>&nbsp;</Table.Cell>
+        </Table.Row>
 
-                      <SelectField
-                        label={formatMessage({
-                          id: 'value',
-                          defaultMessage: 'value',
-                        })}
-                        name={`vectors[${index}].value`}
-                        id={`vectors[${index}].value`}
-                        required
-                        options={normalizeVariationOption(
-                          variations?.filter(
-                            ({ key }) => key === values.vectors[index].key,
-                          )?.[0]?.options || [],
-                        )}
-                        hideLabel
-                        placeholder={formatMessage({
-                          id: 'value',
-                          defaultMessage: 'value',
-                        })}
-                      />
-                      <div>
-                        <DeleteButton onClick={() => removeConfig(index)} />
-                      </div>
-                    </div>
-                  );
-                })}
+        {rows.map(({ _id, columns, product: variationProduct }) => (
+          <Table.Row key={_id}>
+            {columns.map((columnText) => (
+              <Table.Cell>{columnText}</Table.Cell>
+            ))}
 
-                <div className="mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                  <div className=" " />
-                  <div className="mt-2 flex-shrink-0">
-                    <div className="flex-shrink-0">
-                      <button
-                        type="button"
-                        className="items-right inline-flex rounded-full border border-transparent bg-indigo-500 px-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                        variant="outlined"
-                        onClick={() =>
-                          push({
-                            key: null,
-                            value: null,
-                          })
-                        }
-                      >
-                        <PlusCircleIcon className="h-4 w-4" fill="white" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </FieldArray>
-        </div>
-        <FormErrors />
-        <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
-          <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.assortments.addLink)}
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-          />
-        </div>
-      </Form>
+            <Table.Cell>
+              {' '}
+              {variationProduct ? (
+                variationProduct?.texts?.title
+              ) : (
+                <Select
+                  name="productId"
+                  placeholder={formatMessage({
+                    id: 'search_product',
+                    defaultMessage: 'Search product',
+                  })}
+                  onChange={handleProductAssignment(columns)}
+                  onInputChange={setQueryString}
+                  options={(products || []).map(normalizeProduct)}
+                  className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
+                />
+              )}
+            </Table.Cell>
+            <Table.Cell>
+              {variationProduct && variationProduct._id && (
+                <DeleteButton onClick={handleRemoveAssignment(columns)} />
+              )}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
     </FormWrapper>
   );
 };

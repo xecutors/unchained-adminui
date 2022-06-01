@@ -5,9 +5,9 @@ const ProductAssignmentFragment = gql`
     _id
     vectors {
       _id
-
       option {
         _id
+        value
         texts {
           _id
           title
@@ -31,13 +31,6 @@ const ProductAssignmentFragment = gql`
         title
         slug
         subtitle
-      }
-      media {
-        _id
-        file {
-          _id
-          url
-        }
       }
     }
   }
