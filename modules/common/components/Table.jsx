@@ -37,7 +37,7 @@ const Table = ({ className, ...props }) => {
     setRows(buildRows(props));
   }, [props.children]);
 
-  return rowsWithSort.header.length ? (
+  return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(
         'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg dark:rounded-none dark:border sm:bg-white dark:bg-slate-600',

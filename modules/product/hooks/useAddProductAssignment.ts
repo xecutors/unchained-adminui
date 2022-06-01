@@ -24,7 +24,7 @@ const useAddProductAssignment = () => {
   const addProductAssignment = async ({ productId, proxyId, vectors }) => {
     return addProductAssignmentMutation({
       variables: { productId, proxyId, vectors },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['ProductAssignments'],
     });
   };
 

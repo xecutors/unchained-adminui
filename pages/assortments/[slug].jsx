@@ -46,11 +46,11 @@ const AssortmentDetailPage = () => {
           {assortment?.updated && (
             <FormattedMessage
               id="updated_date"
-              defaultMessage="<b>Updated :</b>  {created} "
+              defaultMessage="<b>Updated :</b>  {updated} "
               values={{
                 b: (chunks) => <b>{chunks}</b>,
 
-                created: formatDateTime(new Date(assortment.updated)),
+                updated: formatDateTime(new Date(assortment.updated)),
               }}
               tagName="div"
             />

@@ -19,7 +19,7 @@ const useRemoveProductAssignment = () => {
   const removeProductAssignment = async ({ proxyId, vectors }) => {
     return removeProductAssignmentMutation({
       variables: { proxyId, vectors },
-      refetchQueries: ['Products'],
+      refetchQueries: ['ProductAssignments'],
     });
   };
 

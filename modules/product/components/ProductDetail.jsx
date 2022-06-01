@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/solid';
 
 import { toast } from 'react-toastify';
+import { LinkIcon } from '@heroicons/react/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
 
 import SelectOptions from '../../common/components/SelectOptions';
@@ -30,6 +31,14 @@ import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
+import ProductAssignmentForm from './ProductAssignmentForm';
+
+const PRODUCT_TYPES = {
+  SIMPLE: 'ConfigurableProduct',
+  BUNDLE: 'BundleProduct',
+  PLAN: 'PlanProduct',
+  CONFIGURABLE: 'ConfigurableProduct',
+};
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -58,6 +67,8 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'subscriptions')
     return <SubscriptionForm productId={id} />;
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
+  if (selectedView === 'assignments')
+    return <ProductAssignmentForm proxyId={id} />;
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
@@ -82,12 +93,12 @@ const ProductDetail = ({ product }) => {
       title: formatMessage({ id: 'media', defaultMessage: 'Media' }),
       Icon: <FilmIcon className="h-4 w-5" />,
     },
-    __typename !== 'ConfigurableProduct' && {
+    __typename !== PRODUCT_TYPES.CONFIGURABLE && {
       id: 'commerce',
       title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
       Icon: <ShoppingBagIcon className="h-4 w-5" />,
     },
-    __typename === 'SimpleProduct' && {
+    __typename === PRODUCT_TYPES.SIMPLE && {
       id: 'supply',
       title: formatMessage({
         id: 'supply',
@@ -95,7 +106,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ChartPieIcon className="h-4 w-5" />,
     },
-    __typename === 'SimpleProduct' && {
+    __typename === PRODUCT_TYPES.SIMPLE && {
       id: 'warehousing',
       title: formatMessage({
         id: 'warehousing',
@@ -103,7 +114,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ArchiveIcon className="h-4 w-5" />,
     },
-    __typename === 'ConfigurableProduct' && {
+    __typename === PRODUCT_TYPES.CONFIGURABLE && {
       id: 'variations',
       title: formatMessage({
         id: 'variations',
@@ -111,7 +122,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ColorSwatchIcon className="h-4 w-5" />,
     },
-    __typename === 'BundleProduct' && {
+    __typename === PRODUCT_TYPES.BUNDLE && {
       id: 'bundled_products',
       title: formatMessage({
         id: 'bundles',
@@ -119,13 +130,21 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
     },
-    __typename === 'PlanProduct' && {
+    __typename === PRODUCT_TYPES.PLAN && {
       id: 'subscriptions',
       title: formatMessage({
         id: 'subscriptions',
         defaultMessage: 'Subscriptions',
       }),
       Icon: <UsersIcon className="h-4 w-5" />,
+    },
+    __typename === PRODUCT_TYPES.CONFIGURABLE && {
+      id: 'assignments',
+      title: formatMessage({
+        id: 'assignments',
+        defaultMessage: 'Assignments',
+      }),
+      Icon: <LinkIcon className="h-4 w-5" />,
     },
     product.reviews.length !== 0 && {
       id: 'reviews',
