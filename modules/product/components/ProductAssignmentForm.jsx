@@ -24,6 +24,8 @@ const matrixGenerator = (columns, rowContainer, currentIndex) => {
       if (rowContainer.length > 0) {
         rowContainer.forEach((oldRow) => {
           newRows.push({ ...oldRow, ...tempRow });
+          newRows.push(tempRow);
+          newRows.push(oldRow);
         });
       } else {
         newRows.push(tempRow);
@@ -33,7 +35,9 @@ const matrixGenerator = (columns, rowContainer, currentIndex) => {
   if (columns.length > currentIndex + 1) {
     return matrixGenerator(columns, newRows, currentIndex + 1);
   }
-  return newRows;
+  return Array.from(new Set(newRows.map((r) => JSON.stringify(r)))).map((r) =>
+    JSON.parse(r),
+  );
 };
 
 const normalizeProduct = ({ _id, texts }) => ({
@@ -45,13 +49,16 @@ const ProductAssignmentForm = ({ proxyId }) => {
   const { formatMessage } = useIntl();
   const { addProductAssignment } = useAddProductAssignment();
   const { removeProductAssignment } = useRemoveProductAssignment();
+
+  const [queryString, setQueryString] = useState('');
+  const { products } = useSearchProducts({
+    queryString,
+    limit: 50,
+  });
   const { product } = useProductAssignments({ productId: proxyId });
 
   const variations = (product && product.variations) || [];
 
-  const columnTitles = variations
-    .filter(({ options }) => options.length)
-    .map(({ texts, key }) => texts?.title || key);
   const columnKeys = variations
     .filter(({ options }) => options.length)
     .map(({ key }) => key);
@@ -90,13 +97,14 @@ const ProductAssignmentForm = ({ proxyId }) => {
         columnsText: Object.values(row),
       };
     })
-    .sort((row) => (row.product ? -1 : 1));
-
-  const [queryString, setQueryString] = useState('');
-  const { products } = useSearchProducts({
-    queryString,
-    limit: 50,
-  });
+    .sort((row, row2) => {
+      if ((row.product && row2.product) || (!row.product && !row2.product)) {
+        return row.columns.length > row2.columns.length ? 1 : -1;
+      }
+      if (row.product) return -1;
+      if (row2.product) return 1;
+      return 0;
+    });
 
   const getRowVector = (optionValue, index) => ({
     key: columnKeys[index],
@@ -124,24 +132,10 @@ const ProductAssignmentForm = ({ proxyId }) => {
   return (
     <FormWrapper>
       <Table>
-        <Table.Row header>
-          {columnTitles.map((title) => (
-            <Table.Cell className="capitalize" key={title}>
-              {title}{' '}
-            </Table.Cell>
-          ))}
-          <Table.Cell
-            key={formatMessage({ id: 'product', defaultMessage: 'Product' })}
-          >
-            {formatMessage({ id: 'product', defaultMessage: 'Product' })}{' '}
-          </Table.Cell>
-          <Table.Cell>&nbsp;</Table.Cell>
-        </Table.Row>
-
         {rows.map(({ _id, columns, product: variationProduct }) => (
           <Table.Row key={_id}>
             {columns.map((columnText) => (
-              <Table.Cell>{columnText}</Table.Cell>
+              <Table.Cell key={`${columnText}${_id}`}>{columnText}</Table.Cell>
             ))}
 
             <Table.Cell>
