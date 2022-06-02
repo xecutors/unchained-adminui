@@ -1,9 +1,7 @@
 import { useIntl } from 'react-intl';
 
 const useFormatDateTime = () => {
-  const { locale, ...rest } = useIntl();
-  console.log(locale);
-  console.log(rest);
+  const { locale } = useIntl();
 
   const formatDateTime = (
     date,

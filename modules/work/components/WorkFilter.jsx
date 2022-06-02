@@ -1,15 +1,16 @@
 import { VariableIcon } from '@heroicons/react/outline';
-import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
+  const { formatDateTime } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -90,16 +91,20 @@ const WorkFilter = ({ workTypes = [] }) => {
               <DatePicker
                 name="startDate"
                 id="work-start"
-                onChange={(value) =>
+                onChange={(value) => {
                   router.push({
                     query: {
                       ...router.query,
-                      start: format(new Date(value), 'MM.dd.yyyy'),
+                      start: formatDateTime(value, {
+                        dateStyle: 'short',
+                      }),
                     },
-                  })
-                }
-                placeholderText="Start date"
-                dateFormat="MM.dd.yyyy"
+                  });
+                }}
+                placeholderText={formatMessage({
+                  id: 'start_date',
+                  defaultMessage: 'Start date',
+                })}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
@@ -120,12 +125,16 @@ const WorkFilter = ({ workTypes = [] }) => {
                   router.push({
                     query: {
                       ...router.query,
-                      end: format(new Date(value), 'MM.dd.yyyy'),
+                      end: formatDateTime(value, {
+                        dateStyle: 'short',
+                      }),
                     },
                   })
                 }
-                placeholderText="End Date"
-                dateFormat="MM.dd.yyyy"
+                placeholderText={formatMessage({
+                  id: 'end_date',
+                  defaultMessage: 'End Date',
+                })}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
