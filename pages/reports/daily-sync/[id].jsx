@@ -25,12 +25,8 @@ const SyncDetail = () => {
   const { formatDateTime } = useFormatDateTime();
 
   const options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    dateStyle: 'full',
+    timeStyle: 'short',
   };
 
   useEffect(() => {

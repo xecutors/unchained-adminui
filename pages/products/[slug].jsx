@@ -74,7 +74,10 @@ const ProductDetailPage = () => {
                 values={{
                   b: (chunks) => <b>{chunks}</b>,
 
-                  created: formatDateTime(new Date(product.created)),
+                  created: formatDateTime(product.created, {
+                    dateStyle: 'long',
+                    timeStyle: 'short',
+                  }),
                 }}
                 tagName="div"
               />
@@ -87,7 +90,10 @@ const ProductDetailPage = () => {
                 values={{
                   b: (chunks) => <b>{chunks}</b>,
 
-                  published: formatDateTime(new Date(product.published)),
+                  published: formatDateTime(product.published, {
+                    dateStyle: 'long',
+                    timeStyle: 'short',
+                  }),
                 }}
                 tagName="div"
               />
@@ -99,7 +105,10 @@ const ProductDetailPage = () => {
                 values={{
                   b: (chunks) => <b>{chunks}</b>,
 
-                  updated: formatDateTime(new Date(product.updated)),
+                  updated: formatDateTime(product.updated, {
+                    dateStyle: 'long',
+                    timeStyle: 'short',
+                  }),
                 }}
                 tagName="div"
               />

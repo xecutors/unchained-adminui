@@ -1,11 +1,12 @@
 import { CheckIcon, XIcon } from '@heroicons/react/outline';
-import { format } from 'date-fns';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const SyncReportListItem = ({ data }) => {
   const { success } = data;
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   return (
     <li>
       <Link href={`/reports/daily-sync/${data._id}`}>
@@ -39,10 +40,10 @@ const SyncReportListItem = ({ data }) => {
                           defaultMessage: 'Started: {time}',
                         },
                         {
-                          time: format(
-                            new Date(data.started),
-                            'yyyy-MM-dd HH:mm',
-                          ),
+                          time: formatDateTime(data.started, {
+                            dateStyle: 'medium',
+                            timeStyle: 'short',
+                          }),
                         },
                       )}
                     </p>
@@ -54,10 +55,10 @@ const SyncReportListItem = ({ data }) => {
                           defaultMessage: 'Finished: {time}',
                         },
                         {
-                          time: format(
-                            new Date(data.finished),
-                            'yyyy-MM-dd HH:mm',
-                          ),
+                          time: formatDateTime(data.finished, {
+                            dateStyle: 'medium',
+                            timeStyle: 'short',
+                          }),
                         },
                       )}
                     </p>

@@ -4,15 +4,18 @@ const formatDate = ({
   date,
   locale,
   timeZone,
+  timeStyle = 'long',
+  dateStyle = 'full',
 }: {
   date: string;
   locale?: string;
   timeZone?: string;
+  dateStyle?: 'long' | 'medium' | 'short' | 'full';
+  timeStyle?: 'long' | 'medium' | 'short' | 'full';
 }) => {
   return Intl.DateTimeFormat(locale || 'default', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
+    dateStyle,
+    timeStyle,
     timeZone: 'UTC' || timeZone,
   }).format(parseDate(date));
 };

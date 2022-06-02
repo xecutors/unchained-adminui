@@ -52,15 +52,17 @@ const OrderDetailPayment = ({ order }) => {
       <div className="flex items-center justify-between px-4 sm:px-6">
         <h2 className="py-4 text-lg font-medium text-slate-900 dark:text-white">
           {formatMessage({
-            id: 'payment_information',
-            defaultMessage: 'Payment',
+            id: 'paid',
+            defaultMessage: 'Paid',
           })}
         </h2>
-        {order.payment.paid ? (
-          <span className="font-medium">
-            {formatDateTime(order.payment.paid)}
-          </span>
-        ) : null}
+
+        <span className="font-medium">
+          {formatDateTime(order.payment.paid, {
+            timeStyle: 'short',
+            dateStyle: 'medium',
+          })}
+        </span>
       </div>
       {order.payment.fee ? (
         <>

@@ -11,12 +11,8 @@ const WorkListItem = ({ work }) => {
   const { formatDateTime } = useFormatDateTime();
 
   const options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    dateStyle: 'short',
+    timeStyle: 'short',
   };
 
   return (

@@ -43,7 +43,11 @@ const QuotationDetailHeader = ({ quotation }) => {
             </span>
           </dt>
           <dd className="font-medium text-slate-900">
-            {quotation?.ordered && formatDateTime(quotation.ordered)}
+            {quotation?.ordered &&
+              formatDateTime(quotation.ordered, {
+                timeStyle: 'short',
+                dateStyle: 'full',
+              })}
           </dd>
         </dl>
 

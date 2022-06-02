@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import Image from 'next/image';
 
 import Link from 'next/link';
@@ -8,11 +7,13 @@ import NoImage from '../../common/components/NoImage';
 import Table from '../../common/components/Table';
 import { ORDER_STATUSES } from '../../common/data/miscellaneous';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { useFormatPrice } from '../../common/utils/utils';
 
 const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
+  const { formatDateTime } = useFormatDateTime();
 
   return (
     <Table.Row>
@@ -35,9 +36,10 @@ const OrderListItem = ({ order, showUser }) => {
       </Table.Cell>
       <Table.Cell>
         <div className="flex items-center text-sm">
-          {order.ordered
-            ? format(new Date(order.ordered), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+          {formatDateTime(order.ordered, {
+            dateStyle: 'short',
+            timeStyle: 'short',
+          })}
         </div>
       </Table.Cell>
       <Table.Cell>

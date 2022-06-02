@@ -61,11 +61,17 @@ const SubscriptionList = ({ periods }) => {
               </Table.Cell>
 
               <Table.Cell>
-                {period?.start ? formatDateTime(period?.start) : 'n/a'}
+                {formatDateTime(period?.start, {
+                  dateStyle: 'medium',
+                  timeStyle: 'medium',
+                })}
               </Table.Cell>
 
               <Table.Cell>
-                {period?.end ? formatDateTime(period?.end) : 'n/a'}
+                {formatDateTime(period?.end, {
+                  dateStyle: 'medium',
+                  timeStyle: 'medium',
+                })}
               </Table.Cell>
             </Table.Row>
           ))}
