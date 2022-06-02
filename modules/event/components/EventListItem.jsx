@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { format } from 'date-fns';
+
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const EventListItem = ({ event }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   return (
     <Table.Row>
       <Table.Cell className="whitespace-nowrap px-6">
@@ -31,9 +33,7 @@ const EventListItem = ({ event }) => {
 
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center text-sm">
-          {event.type
-            ? format(new Date(event.created), 'yyyy-MM-dd HH:mm')
-            : 'n/a'}
+          {formatDateTime(event.created)}
         </div>
       </Table.Cell>
     </Table.Row>

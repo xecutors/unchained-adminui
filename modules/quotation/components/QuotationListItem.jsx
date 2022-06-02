@@ -31,13 +31,19 @@ const QuotationListItem = ({ quotation }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {formatDateTime(quotation.created)}
+          {formatDateTime(quotation.created, {
+            dateStyle: 'short',
+            timeStyle: 'short',
+          })}
         </div>
       </Table.Cell>
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          {quotation.expires ? formatDateTime(quotation?.expires) : 'n/a'}
+          {formatDateTime(quotation?.expires, {
+            dateStyle: 'short',
+            timeStyle: 'short',
+          })}
 
           {!quotation.isExpired && (
             <Badge

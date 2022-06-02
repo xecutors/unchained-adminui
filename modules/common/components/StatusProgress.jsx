@@ -56,7 +56,11 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     {currentId >= timeline[value].id ? (
                       <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-white ml-4">
                         {data[timeline[value].content]
-                          ? formatDateTime(data[timeline[value].content])
+                          ? formatDateTime(data[timeline[value].content], {
+                              dateStyle: 'short',
+
+                              timeStyle: 'short',
+                            })
                           : null}
                       </div>
                     ) : null}
@@ -82,7 +86,10 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
           <span>
             &nbsp;on&nbsp;
             {data[content]
-              ? formatDateTime(data[content])
+              ? formatDateTime(data[content], {
+                  dateStyle: 'full',
+                  timeStyle: 'medium',
+                })
               : formatMessage({ id: 'in_cart', defaultMessage: 'In cart' })}
           </span>
         </p>
@@ -117,8 +124,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <span className="block text-slate-900 dark:text-white">
                     {currentId >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
-                          month: 'short',
-                          day: 'numeric',
+                          dateStyle: 'short',
+                          timeStyle: 'short',
                         })
                       : null}
                   </span>

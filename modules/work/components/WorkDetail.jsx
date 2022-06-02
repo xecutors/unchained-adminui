@@ -14,12 +14,8 @@ const WorkDetail = ({ work }) => {
   const { formatDateTime } = useFormatDateTime();
 
   const options = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    timeStyle: 'medium',
+    dateStyle: 'long',
   };
 
   const data = [

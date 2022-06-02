@@ -76,8 +76,11 @@ const ProductReviewsItem = ({ review }) => {
         <div className="ml-4 mr-auto">
           <h4 className="text-sm font-bold">{review?.author?.username}</h4>
           <p className="text-sm font-normal text-slate-400">
-            <time dateTime={review.datetime}>
-              {formatDateTime(review.updated || review.created)}
+            <time dateTime={review.updated || review.created}>
+              {formatDateTime(review.updated || review.created, {
+                dateStyle: 'short',
+                timeStyle: 'short',
+              })}
             </time>
           </p>
         </div>

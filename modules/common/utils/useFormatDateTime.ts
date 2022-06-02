@@ -6,16 +6,22 @@ const useFormatDateTime = () => {
   const formatDateTime = (
     date,
     options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+      dateStyle: 'full',
+      timeStyle: 'short',
     },
   ) => {
     if (!date) return 'N/A';
-
-    return new Intl.DateTimeFormat(locale, options).format(
-      new Date(date).getTime(),
-    );
+    try {
+      return Intl.DateTimeFormat(locale || 'default', options).format(
+        new Date(date).getTime(),
+      );
+    } catch {
+      return Intl.DateTimeFormat('default', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }).format(new Date(date).getTime());
+    }
   };
 
   return { formatDateTime };

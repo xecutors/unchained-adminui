@@ -37,7 +37,10 @@ const AssortmentDetailPage = () => {
               values={{
                 b: (chunks) => <b>{chunks}</b>,
 
-                created: formatDateTime(new Date(assortment.created)),
+                created: formatDateTime(assortment.created, {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                }),
               }}
               tagName="div"
             />
@@ -50,7 +53,10 @@ const AssortmentDetailPage = () => {
               values={{
                 b: (chunks) => <b>{chunks}</b>,
 
-                updated: formatDateTime(new Date(assortment.updated)),
+                updated: formatDateTime(assortment.updated, {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                }),
               }}
               tagName="div"
             />

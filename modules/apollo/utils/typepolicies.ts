@@ -48,7 +48,7 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      workQueue: {
+      WorkQueue: {
         keyArgs: ['limit', 'status', 'selectTypes', 'created', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
@@ -78,7 +78,6 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      Log: offsetLimitPagination(),
     },
     orders: {
       keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],

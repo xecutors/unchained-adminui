@@ -51,15 +51,16 @@ const OrderDetailDelivery = ({ order }) => {
       <div className="flex items-center justify-between px-4 sm:px-6">
         <h2 className="py-4 text-lg font-medium">
           {formatMessage({
-            id: 'delivery_information',
-            defaultMessage: 'Delivery',
+            id: 'delivered',
+            defaultMessage: 'Delivered',
           })}
         </h2>
-        {order?.delivery?.delivered ? (
-          <span className="font-medium">
-            {formatDateTime(order?.delivery?.delivered)}
-          </span>
-        ) : null}
+        <span className="font-medium">
+          {formatDateTime(order?.delivery?.delivered, {
+            timeStyle: 'short',
+            dateStyle: 'medium',
+          })}
+        </span>
       </div>
       <div className="border-t border-indigo-50 px-4 py-4 sm:px-6">
         <span className="mb-5 block">

@@ -38,7 +38,7 @@ const DatePickerField = ({
           },
         )}
         onChange={(date) => field.setValue(parseDate(date))}
-        dateFormat="dd.MM.yyyy h:mm aa"
+        dateFormat="dd/MM/yyyy"
         peekNextMonth
         showMonthDropdown
         showYearDropdown

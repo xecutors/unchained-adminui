@@ -32,12 +32,20 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap">
-        <div className="text-sm">{formatDateTime(enrollment.created)}</div>
+        <div className="text-sm">
+          {formatDateTime(enrollment.created, {
+            dateStyle: 'medium',
+            timeStyle: 'medium',
+          })}
+        </div>
       </Table.Cell>
 
       <Table.Cell className="whitespace-nowrap">
         <div className="text-sm">
-          {enrollment.expires ? formatDateTime(enrollment.expires) : 'n/a'}
+          {formatDateTime(enrollment.expires, {
+            dateStyle: 'medium',
+            timeStyle: 'medium',
+          })}
 
           {!enrollment.isExpired && (
             <Badge

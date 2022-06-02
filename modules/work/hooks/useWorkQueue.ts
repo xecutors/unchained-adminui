@@ -34,7 +34,18 @@ const useWorkQueue = ({
   created = null,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
-    variables: { queryString, offset, limit, status, selectTypes, created },
+    variables: {
+      queryString,
+      offset,
+      limit,
+      status,
+      selectTypes,
+      created: Object.fromEntries(
+        Object.entries(created || {})
+          .filter(([, value]) => value)
+          .map(([key, value]) => [key, new Date(value.toString())]),
+      ),
+    },
   });
   const workQueue = data?.workQueue || [];
   const activeWorkTypes = data?.activeWorkTypes || [];

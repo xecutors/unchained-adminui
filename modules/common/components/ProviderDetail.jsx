@@ -11,14 +11,6 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
-  const dateFormatOption = {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-
   return (
     <div className="my-6">
       <div className="space-y-8 divide-y divide-slate-200">
@@ -50,25 +42,31 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex flex-auto items-center">
-                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end">
+                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end pr-2">
                     {formatMessage({
                       id: 'created_colon',
                       defaultMessage: 'Created:',
                     })}
                   </dt>
                   <dd className="ml-auto text-base font-medium">
-                    {formatDateTime(provider?.created, dateFormatOption)}
+                    {formatDateTime(provider?.created, {
+                      dateStyle: 'long',
+                      timeStyle: 'short',
+                    })}
                   </dd>
                 </div>
                 <div className="flex flex-auto">
-                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end">
+                  <dt className="text-sm font-normal text-slate-400 sm:justify-self-end pr-2">
                     {formatMessage({
                       id: 'last_updated',
                       defaultMessage: 'Last Updated:',
                     })}
                   </dt>
-                  <dd className="ml-2 text-base font-medium">
-                    {formatDateTime(provider?.updated, dateFormatOption)}
+                  <dd className="text-base font-medium">
+                    {formatDateTime(provider?.updated, {
+                      dateStyle: 'long',
+                      timeStyle: 'short',
+                    })}
                   </dd>
                 </div>
               </div>

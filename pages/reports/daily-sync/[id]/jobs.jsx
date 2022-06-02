@@ -11,7 +11,6 @@ import {
   ExclamationIcon,
 } from '@heroicons/react/solid';
 import classNames from 'classnames';
-import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import Accordion from '../../../../modules/common/components/Accordion';
@@ -19,6 +18,7 @@ import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import NoData from '../../../../modules/common/components/NoData';
 import PageHeader from '../../../../modules/common/components/PageHeader';
+import useFormatDateTime from '../../../../modules/common/utils/useFormatDateTime';
 import useWork from '../../../../modules/work/hooks/useWork';
 
 const convertJobSignalToNumber = (signal) => {
@@ -96,6 +96,7 @@ const JobSyncHealth = ({ signal, duration }) => {
 
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
+  const { formatDateTime } = useFormatDateTime();
   return (
     <div className="flex justify-between items-center">
       <div className="flex item-center">
@@ -114,7 +115,10 @@ const JobHeader = ({ job }) => {
                 defaultMessage: 'Started: {time}',
               },
               {
-                time: format(new Date(job.started), 'yyyy-MM-dd HH:mm'),
+                time: formatDateTime(job.started, {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                }),
               },
             )}
           </div>
@@ -131,7 +135,10 @@ const JobHeader = ({ job }) => {
                 defaultMessage: 'Finished: {time}',
               },
               {
-                time: format(new Date(job.finished), 'yyyy-MM-dd HH:mm'),
+                time: formatDateTime(job.finished, {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                }),
               },
             )}
           </div>
