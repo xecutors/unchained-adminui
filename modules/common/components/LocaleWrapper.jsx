@@ -9,7 +9,7 @@ const LocaleWrapper = ({ children }) => {
   const { languages } = useLanguages();
   const { formatMessage, locale } = useIntl();
   const [selectedLocale, setSelectedLocale] = useState(locale);
-  console.log(selectedLocale);
+
   return (
     <div className="my-3 lg:mt-5">
       <div className="relative ">

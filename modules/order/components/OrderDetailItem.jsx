@@ -7,7 +7,6 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-  console.log(item.product?.media);
   return (
     <>
       <section aria-labelledby="products-heading">
