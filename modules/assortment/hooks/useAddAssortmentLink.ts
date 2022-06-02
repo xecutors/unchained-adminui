@@ -26,7 +26,7 @@ const useAddAssortmentLink = () => {
   }) => {
     return addAssortmentLinkMutation({
       variables: { parentAssortmentId, childAssortmentId, tags },
-      refetchQueries: ['AssortmentProducts', 'Product'],
+      refetchQueries: ['AssortmentLinks', 'Assortment'],
     });
   };
 

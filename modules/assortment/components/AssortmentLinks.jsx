@@ -102,59 +102,56 @@ const AssortmentLinks = ({ assortmentId }) => {
   };
 
   return (
-    <div className="mt-0 md:mt-5">
-      <div className="md:grid md:grid-cols-3 md:gap-6">
-        <div className="mb-4 md:col-span-1">
-          <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-              {formatMessage({
-                id: 'assortment_links',
-                defaultMessage: 'Links',
-              })}
-            </h3>
-            <p className="mt-1 text-sm text-slate-600 dark:text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco
-            </p>
-          </div>
-        </div>
-
-        <div className="md:col-span-2">
-          <AssortmentLinkForm assortmentId={assortmentId} />
+    <div className="md:grid md:grid-cols-3 md:gap-6">
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+            {formatMessage({
+              id: 'assortment_links',
+              defaultMessage: 'Links',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-slate-600 dark:text-white">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco
+          </p>
         </div>
       </div>
 
-      <div className="mt-10 md:grid md:grid-cols-3 md:gap-6">
-        <div className="mb-4 md:col-span-1">
-          <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-              {formatMessage({
-                id: 'assortment_links_list',
-                defaultMessage: 'Linked assortments',
-              })}
-            </h3>
-            <p className="mt-1 text-sm text-slate-600 dark:text-white">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco
-            </p>
-          </div>
-        </div>
-        <div className="w-full md:col-span-2">
-          {loading ? (
-            <Loading />
-          ) : (
-            <DragDropContext onDragEnd={handleDragEnd}>
-              <AssortmentLinksList
-                currentAssortmentId={assortmentId}
-                links={linkedAssortments || []}
-                onRemoveLink={onRemoveLink}
-              />
-            </DragDropContext>
-          )}
+      <div className="md:col-span-2">
+        <AssortmentLinkForm assortmentId={assortmentId} />
+      </div>
+
+      <div className="md:col-span-1">
+        <div className="px-4 sm:px-0">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+            {formatMessage({
+              id: 'assortment_links_list',
+              defaultMessage: 'Linked assortments',
+            })}
+          </h3>
+          <p className="mt-1 text-sm text-slate-600 dark:text-white ">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco
+          </p>
         </div>
       </div>
+
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2 bg-white">
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <AssortmentLinksList
+              currentAssortmentId={assortmentId}
+              links={linkedAssortments || []}
+              onRemoveLink={onRemoveLink}
+            />
+          </DragDropContext>
+        </div>
+      )}
     </div>
   );
 };

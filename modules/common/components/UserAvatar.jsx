@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
-const UserAvatar = ({ avatar, username, onLogout }) => {
+const UserAvatar = ({ avatar, username, onLogout, profile }) => {
   const { formatMessage } = useIntl();
   return (
     <a href="#" onClick={onLogout} className="group block flex-shrink-0">
@@ -36,7 +36,7 @@ const UserAvatar = ({ avatar, username, onLogout }) => {
         </>
         <div className="ml-3">
           <p className="text-base font-medium text-slate-700 dark:text-white group-hover:text-slate-900 dark:group-hover:text-indigo-500">
-            {username}
+            {username || profile?.displayName}
           </p>
           <p className="text-sm font-medium text-slate-500 dark:text-white group-hover:text-slate-700 dark:group-hover:text-indigo-400">
             {formatMessage({

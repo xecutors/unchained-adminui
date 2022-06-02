@@ -6,15 +6,14 @@ import AssortmentLinksListItem from './AssortmentLinksListItem';
 
 const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
   const { formatMessage } = useIntl();
-
   return links.length ? (
     <Droppable droppableId="assortment-links">
       {(provided, snapshot) => (
         <div
           className={classNames(
-            'space-y-4 bg-white dark:bg-slate-600 shadow dark:shadow-white px-6 py-3 rounded transition-[background-color] ease-in-out delay-200',
+            'space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 p': snapshot.isDraggingOver,
+              'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}
@@ -55,12 +54,15 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
       )}
     </Droppable>
   ) : (
-    <NoData
-      message={formatMessage({
-        id: 'linked_assortment',
-        defaultMessage: 'Linked assortment',
-      })}
-    />
+    <>
+      <h1>hello</h1>
+      <NoData
+        message={formatMessage({
+          id: 'linked_assortment',
+          defaultMessage: 'Linked assortment',
+        })}
+      />
+    </>
   );
 };
 

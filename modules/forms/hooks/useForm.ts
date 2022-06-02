@@ -41,13 +41,13 @@ const useForm = ({
   const [submitError, setSubmitError] = useState('');
 
   const parseError = (error) => {
-    if (error?.toLowerCase()?.includes('email already exists')) {
+    if (error && error?.toLowerCase()?.includes('email already exists')) {
       return intl.formatMessage({
         id: 'email_exists_error',
         defaultMessage: 'Email already exists',
       });
     }
-    if (error?.toLowerCase()?.includes('permission')) {
+    if (error && error?.toLowerCase()?.includes('permission')) {
       return intl.formatMessage({
         id: 'permission_missing',
         defaultMessage: "You don't have the required permission",

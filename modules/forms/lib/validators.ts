@@ -38,7 +38,7 @@ export const validateEmail: Validator = {
 };
 
 export const validateLanguage = (): Validator => ({
-  isValid: (value) => LanguageCodes.includes(value.toLowerCase()),
+  isValid: (value) => LanguageCodes.includes(value?.toLowerCase()),
   intlMessageDescriptor: {
     id: 'error_language_code',
     defaultMessage: 'Invalid language code',

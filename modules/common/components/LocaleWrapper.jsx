@@ -7,15 +7,15 @@ import { stopPropagation } from '../data/miscellaneous';
 
 const LocaleWrapper = ({ children }) => {
   const { languages } = useLanguages();
-  const [selectedLocale, setSelectedLocale] = useState('de');
-  const { formatMessage } = useIntl();
-
+  const { formatMessage, locale } = useIntl();
+  const [selectedLocale, setSelectedLocale] = useState(locale);
+  console.log(selectedLocale);
   return (
     <div className="my-3 lg:mt-5">
       <div className="relative ">
         <div className="lg:absolute lg:right-0 lg:bottom-8">
           <select
-            className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 dark:bg-slate-400"
+            className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
             placeholder={formatMessage({
               id: 'select_language',
               defaultMessage: 'Select language',

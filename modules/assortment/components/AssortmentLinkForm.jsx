@@ -76,7 +76,9 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 required
                 onFilter={setQueryString}
                 queryString={queryString}
-                data={normalizeAssortments(assortments)}
+                data={normalizeAssortments(
+                  (assortments || []).filter(({ _id }) => _id !== assortmentId),
+                )}
                 className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
               />
             </div>

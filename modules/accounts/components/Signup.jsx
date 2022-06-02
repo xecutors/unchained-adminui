@@ -119,14 +119,14 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                 </button>
               </div>
 
-              <div className="text-sm text-slate-400">
+              <div className="text-sm text-slate-400 dark:text-white">
                 {formatMessage({
                   id: 'already_got_a_user',
                   defaultMessage: 'Already got a user?',
                 })}
                 <a
                   href="/log-in"
-                  className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-fuchsia-400 dark:hover:text-fuchsia-500"
+                  className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
                 >
                   {formatMessage({
                     id: 'log_in',
