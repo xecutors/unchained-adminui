@@ -12,12 +12,10 @@ class MyDocument extends Document {
             dangerouslySetInnerHTML={{
               __html: `
   <!--
-
    _____ _____ _____ _____ _____ _____ _____ _____ ____
   |  |  |   | |     |  |  |  _  |     |   | |   __|    \\
   |  |  | | | |   --|     |     |-   -| | | |   __|  |  |
   |_____|_|___|_____|__|__|__|__|_____|_|___|_____|____/
-
 
   - Technology, Engineering & Design by Unchained Commerce GmbH - https://unchained.shop
 
