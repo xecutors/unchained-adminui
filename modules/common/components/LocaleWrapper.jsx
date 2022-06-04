@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useIntl } from 'react-intl';
 
@@ -6,9 +6,17 @@ import useLanguages from '../../language/hooks/useLanguages';
 import { stopPropagation } from '../data/miscellaneous';
 
 const LocaleWrapper = ({ children }) => {
-  const { languages } = useLanguages();
-  const { formatMessage, locale } = useIntl();
-  const [selectedLocale, setSelectedLocale] = useState(locale);
+  const { languages, loading } = useLanguages();
+  const { formatMessage } = useIntl();
+
+  const [selectedLocale, setSelectedLocale] = useState(null);
+
+  useEffect(() => {
+    if (!loading) {
+      const baseLanguage = languages.filter((l) => l.isBase);
+      setSelectedLocale(baseLanguage.length ? baseLanguage[0].isoCode : '');
+    }
+  }, [languages, loading]);
 
   return (
     <div className="my-3 lg:mt-5">
@@ -20,6 +28,7 @@ const LocaleWrapper = ({ children }) => {
               id: 'select_language',
               defaultMessage: 'Select language',
             })}
+            value={selectedLocale}
             defaultValue={selectedLocale}
             onChange={(e) => {
               stopPropagation(e);
