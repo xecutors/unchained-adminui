@@ -9,6 +9,7 @@ import {
   UserGroupIcon,
   UserIcon,
   LightningBoltIcon,
+  MenuIcon,
 } from '@heroicons/react/outline';
 import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
@@ -276,7 +277,10 @@ const Layout = ({
                 </a>
               </Link>
             </div>
-            <SideNav navigation={defaultNavigation} />
+            <SideNav
+              navigation={defaultNavigation}
+              onClick={() => setHideNav(!hideNav)}
+            />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
@@ -313,11 +317,11 @@ const Layout = ({
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+        <div className="sticky top-0 z-10 bg-white dark:bg-slate-500  pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
           <button
             type="button"
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-white"
           >
             <span className="sr-only">
               {formatMessage({
@@ -325,22 +329,13 @@ const Layout = ({
                 defaultMessage: ' Open sidebar',
               })}
             </span>
-
-            <svg
-              className="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
+            <MenuIcon
               fill="none"
               viewBox="0 0 24 24"
+              className="h-8 w-8"
               stroke="currentColor"
               aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            />
           </button>
         </div>
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
