@@ -3,7 +3,7 @@ require('./node_env');
 module.exports = withPWA({
   pwa: {
     dest: 'public',
-    register: true,
+    skipWaiting: false,
     runtimeCaching,
     disable: process.env.NODE_ENV === 'development',
   },
@@ -15,7 +15,7 @@ module.exports = withPWA({
     defaultLocale: 'en',
     localeDetection: false,
   },
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: process.env.NODE_ENV === 'production',
   publicRuntimeConfig: {
     // Will be available on both server and client
     showCustomReports: parseInt(

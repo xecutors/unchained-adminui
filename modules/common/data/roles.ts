@@ -220,6 +220,7 @@ export const ROUTE_ROLES = {
   '/reset-password': UNRESTRICTED,
   '/sign-up': UNRESTRICTED,
   '/404': UNRESTRICTED,
+  '/_offline': UNRESTRICTED,
   '/403': UNRESTRICTED,
   '/verify-email': UNRESTRICTED,
   '/orders/[orderId]': ACTION_ROLES.orders.manage,

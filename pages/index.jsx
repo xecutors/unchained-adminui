@@ -1,17 +1,70 @@
+/* eslint-disable no-console */
+/* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
 
 import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
+import { useEffect } from 'react';
 import ACTION_ROLES from '../modules/common/data/roles';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
-// import SyncSummary from '../modules/sync/components/SyncSummary';
 import useAuth from '../modules/Auth/useAuth';
 
 const Home = () => {
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      'serviceWorker' in navigator &&
+      window.workbox !== undefined
+    ) {
+      const wb = window.workbox;
+
+      wb.addEventListener('installed', (event) => {
+        console.log(`Event ${event.type} is triggered.`);
+      });
+
+      wb.addEventListener('controlling', (event) => {
+        console.log(`Event ${event.type} is triggered.`);
+      });
+
+      wb.addEventListener('activated', (event) => {
+        console.log(`Event ${event.type} is triggered.`);
+      });
+
+      const promptNewVersionAvailable = () => {
+        if (
+          // eslint-disable-next-line no-alert
+          confirm(
+            'A newer version of this web app is available, reload to update?',
+          )
+        ) {
+          wb.addEventListener('controlling', () => {
+            window.location.reload();
+          });
+
+          wb.messageSkipWaiting();
+        } else {
+          console.log(
+            'User rejected to reload the web app, keep using old version. New version will be automatically load when user open the app next time.',
+          );
+        }
+      };
+
+      wb.addEventListener('waiting', promptNewVersionAvailable);
+
+      // ISSUE - this is not working as expected, why?
+      // I could only make message event listener work when I manually add this listener into sw.js file
+      wb.addEventListener('message', (event) => {
+        console.log(`Event ${event.type} is triggered.`);
+      });
+
+      wb.register();
+    }
+  }, []);
 
   return (
     <>
