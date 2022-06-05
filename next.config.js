@@ -1,6 +1,12 @@
 require('./node_env');
 
-module.exports = {
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    register: true,
+    runtimeCaching,
+    disable: process.env.NODE_ENV === 'development',
+  },
   typescript: {
     ignoreBuildErrors: false,
   },
@@ -17,4 +23,4 @@ module.exports = {
     ),
     logo: process.env.NEXT_PUBLIC_LOGO,
   },
-};
+});
