@@ -15,6 +15,7 @@ module.exports = withPWA({
     defaultLocale: 'en',
     localeDetection: false,
   },
+  productionBrowserSourceMaps: true,
   publicRuntimeConfig: {
     // Will be available on both server and client
     showCustomReports: parseInt(
