@@ -169,9 +169,9 @@ const SyncDetail = () => {
           id: 'categories',
           defaultMessage: 'Categories',
         })}
-        newItemsRoute="new-assortments"
-        updatedItemsRoute="updated-assortments"
-        removedItemsRoute="removed-assortments"
+        newItemsRoute="newAssortments"
+        updatedItemsRoute="updatedAssortments"
+        removedItemsRoute="removedAssortments"
         statistics={stats.categories}
       />
 
@@ -180,9 +180,9 @@ const SyncDetail = () => {
           id: 'products',
           defaultMessage: 'Products',
         })}
-        newItemsRoute="new-products"
-        updatedItemsRoute="updated-products"
-        removedItemsRoute="removed-products"
+        newItemsRoute="newProducts"
+        updatedItemsRoute="updatedProducts"
+        removedItemsRoute="removedProducts"
         statistics={stats.products}
       />
 
@@ -191,9 +191,9 @@ const SyncDetail = () => {
           id: 'filters',
           defaultMessage: 'Filters',
         })}
-        newItemsRoute="new-filters"
-        updatedItemsRoute="updated-filters"
-        removedItemsRoute="removed-filters"
+        newItemsRoute="newFilters"
+        updatedItemsRoute="updatedFilters"
+        removedItemsRoute="removedFilters"
         statistics={stats.filters}
       />
     </>

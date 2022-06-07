@@ -1,28 +1,26 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useDailySyncItems from '../hooks/useDailySyncItems';
 
-const ProductsAlphabeticalList = ({ dictionary = {} }) => {
+const ProductsAlphabeticalList = ({ workId, itemKey }) => {
   const { query } = useRouter();
-
   const { searchKey = '' } = query;
+  const { items } = useDailySyncItems({
+    workId,
+    itemKey,
+    searchQuery: searchKey,
+  });
 
-  const disable = query.tab === 'removed-products';
+  const disable = itemKey === 'removedProducts';
 
-  const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
-      return [
-        key,
-        values.filter((item) => {
-          return (
-            item?.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            item?.subtitle?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            !searchKey
-          );
-        }),
-      ];
-    }),
-  );
+  const filtered = items.reduce((acc, cur) => {
+    const letter = cur.title[0].toUpperCase();
+    return {
+      ...acc,
+      [letter]: [...(acc[letter] || []), cur],
+    };
+  }, {});
 
   return (
     <nav className="h-full overflow-y-auto" aria-label="dictionary">

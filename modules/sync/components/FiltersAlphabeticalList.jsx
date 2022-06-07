@@ -1,33 +1,26 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import Pagination from '../../common/components/Pagination';
-import computeDictionaryTotal from '../../common/utils/computeDictionaryTotal';
+import useDailySyncItems from '../hooks/useDailySyncItems';
 
-const FiltersAlphabeticalList = ({ dictionary = {} }) => {
+const FiltersAlphabeticalList = ({ workId, itemKey }) => {
   const { query } = useRouter();
-
   const { searchKey = '' } = query;
+  const { items, loadMore } = useDailySyncItems({
+    workId,
+    itemKey,
+    searchQuery: searchKey,
+  });
 
-  const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
-      return [
-        key,
-        values.filter((item) => {
-          return (
-            item?.key?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            item?.type.toLowerCase() === searchKey.toLowerCase() ||
-            !searchKey
-          );
-        }),
-      ];
-    }),
-  );
+  const filtered = items.reduce((acc, cur) => {
+    const letter = cur.key[0].toUpperCase();
+    return {
+      ...acc,
+      [letter]: [...(acc[letter] || []), cur],
+    };
+  }, {});
 
-  const totalFilters = Object.values(filtered).reduce(
-    computeDictionaryTotal,
-    0,
-  );
+  const totalFilters = items.length;
 
   return (
     <nav className="h-full overflow-y-auto" aria-label="dictionary">
@@ -66,7 +59,11 @@ const FiltersAlphabeticalList = ({ dictionary = {} }) => {
           ) : null}
         </div>
       ))}
-      <Pagination total={totalFilters} data={Object.values(filtered).flat()} />
+      <Pagination
+        onLoadMore={loadMore}
+        total={totalFilters}
+        data={Object.values(filtered).flat()}
+      />
     </nav>
   );
 };
