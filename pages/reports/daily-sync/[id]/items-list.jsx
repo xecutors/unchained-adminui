@@ -10,31 +10,17 @@ import FiltersAlphabeticalList from '../../../../modules/sync/components/Filters
 import ProductsAlphabeticalList from '../../../../modules/sync/components/ProductsAlphabeticalList';
 import AssortmentAlphabeticalList from '../../../../modules/sync/components/AssortmentAlphabeticalList';
 import useWork from '../../../../modules/work/hooks/useWork';
-import useDailySyncItems from '../../../../modules/sync/hooks/useDailySyncItems';
 
-const GetCurrentTab = ({ selectedView, workId }) => {
-  const { items } = useDailySyncItems({ workId, itemKey: selectedView });
-
-  if (selectedView === 'newAssortments')
-    return <AssortmentAlphabeticalList items={items} />;
-  if (selectedView === 'updatedAssortments')
-    return <AssortmentAlphabeticalList items={items} />;
-  if (selectedView === 'removedAssortments')
-    return <AssortmentAlphabeticalList items={items} enableRedirect={false} />;
-  if (selectedView === 'newProducts')
-    return <ProductsAlphabeticalList items={items} />;
-  if (selectedView === 'updatedProducts')
-    return <ProductsAlphabeticalList items={items} />;
-  if (selectedView === 'removedProducts')
-    return <ProductsAlphabeticalList items={items} enableRedirect={false} />;
-  if (selectedView === 'newFilters')
-    return <FiltersAlphabeticalList items={items} />;
-  if (selectedView === 'updatedFilters')
-    return <FiltersAlphabeticalList items={items} />;
-  if (selectedView === 'removedFilters')
-    return <FiltersAlphabeticalList items={items} enableRedirect={false} />;
-
-  return <AssortmentAlphabeticalList items={items} />;
+const TabComponentMap = {
+  newAssortments: AssortmentAlphabeticalList,
+  updatedAssortments: AssortmentAlphabeticalList,
+  removedAssortments: AssortmentAlphabeticalList,
+  newProducts: ProductsAlphabeticalList,
+  updatedProducts: ProductsAlphabeticalList,
+  removedProducts: ProductsAlphabeticalList,
+  newFilters: FiltersAlphabeticalList,
+  removedFilters: FiltersAlphabeticalList,
+  updatedFilters: FiltersAlphabeticalList,
 };
 
 const Wrapper = ({ selectedView, workId }) => {
@@ -51,6 +37,8 @@ const Wrapper = ({ selectedView, workId }) => {
       query,
     });
   };
+
+  const TabComponent = TabComponentMap[selectedView];
 
   return (
     <div>
@@ -69,7 +57,7 @@ const Wrapper = ({ selectedView, workId }) => {
           })}
         />
       </div>
-      <GetCurrentTab selectedView={selectedView} workId={workId} />
+      <TabComponent itemKey={selectedView} workId={workId} />
     </div>
   );
 };
