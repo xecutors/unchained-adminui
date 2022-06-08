@@ -10,6 +10,7 @@ import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
+import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
@@ -27,11 +28,12 @@ export default function LogInForm() {
     defaultMessage: 'Welcome!',
   });
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ email, password, totpCode }) => {
     const result = await logInWithPassword({
       email,
       password,
       disableHashing: true,
+      totpCode,
     });
 
     return result;
@@ -57,11 +59,39 @@ export default function LogInForm() {
           defaultMessage: 'Invalid credential, please try again',
         });
 
+      if (error.message.includes('2FA code required')) {
+        form.formik.setFieldError(
+          'totpCode',
+          formatMessage({
+            id: 'totp_code_required',
+            defaultMessage: 'TOTP code is required',
+          }),
+        );
+        return formatMessage({
+          id: 'two_factor_authentication_required',
+          defaultMessage: 'Two factor authentication code required',
+        });
+      }
+      if (error.message.includes("2FA code didn't match")) {
+        form.formik.setFieldError(
+          'totpCode',
+          formatMessage({
+            id: 'totp_code_not_match',
+            defaultMessage: 'TOTP code did not match',
+          }),
+        );
+        return formatMessage({
+          id: 'two_factor_code_not_match',
+          defaultMessage: 'Two factor authentication code did not match',
+        });
+      }
+
       return '';
     },
     initialValues: {
       email: null,
       password: null,
+      totpCode: null,
     },
   });
 
@@ -132,6 +162,21 @@ export default function LogInForm() {
                   placeholder={formatMessage({
                     id: 'password',
                     defaultMessage: 'Password',
+                  })}
+                />
+              </div>
+              <div>
+                <TextField
+                  id="totp-code"
+                  name="totpCode"
+                  autoComplete="off"
+                  label={formatMessage({
+                    id: 'totp_code',
+                    defaultMessage: 'TOTP code',
+                  })}
+                  placeholder={formatMessage({
+                    id: 'totp_code',
+                    defaultMessage: 'TOTP code',
                   })}
                 />
               </div>
