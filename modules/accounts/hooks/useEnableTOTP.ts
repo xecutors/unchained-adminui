@@ -3,7 +3,7 @@ import UserFragment from '../fragment/UserFragment';
 import useBuildTOTPAuthURL from './useBuildTOTPAuthURL';
 
 const EnableTOTPMutation = gql`
-  mutation buildSecretTOTPAuthURL($secretBase32: String!, $code: String!) {
+  mutation EnableTOTP($secretBase32: String!, $code: String!) {
     enableTOTP(secretBase32: $secretBase32, code: $code) {
       ...UserFragment
     }
@@ -21,6 +21,7 @@ const useEnableTOTP = () => {
         code,
         secretBase32: data?.buildSecretTOTPAuthURL,
       },
+      refetchQueries: ['CurrentUser'],
     });
   };
 
