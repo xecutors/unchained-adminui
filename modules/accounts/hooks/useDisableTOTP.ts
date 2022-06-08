@@ -13,8 +13,13 @@ const DisableTOTPMutation = gql`
 const useDisableTOTP = () => {
   const [disableTOTPMutation] = useMutation(DisableTOTPMutation);
 
-  const disableTOTP = async () => {
-    return disableTOTPMutation();
+  const disableTOTP = async ({ code, userId = null }) => {
+    return disableTOTPMutation({
+      variables: {
+        code,
+        userId,
+      },
+    });
   };
 
   return {

@@ -7,12 +7,14 @@ const LogInWithPasswordMutation = gql`
     $email: String
     $password: HashedPasswordInput
     $plainPassword: String
+    $totpCode: String
   ) {
     loginWithPassword(
       username: $username
       email: $email
       password: $password
       plainPassword: $plainPassword
+      totpCode: $totpCode
     ) {
       id
       token
@@ -35,8 +37,7 @@ const useLoginWithPassword = () => {
     username,
     email,
     password,
-
-    /* totpCode, */
+    totpCode,
     disableHashing = false,
   }) => {
     const normalizedEmail = email?.trim();
@@ -44,7 +45,7 @@ const useLoginWithPassword = () => {
     const variables = {
       username,
       email: normalizedEmail,
-      /* totpCode, */
+      totpCode,
       plainPassword: null,
       password: null,
     };
