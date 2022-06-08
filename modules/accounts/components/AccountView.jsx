@@ -1,8 +1,10 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import useCurrentUser from '../hooks/useCurrentUser';
 import DisableTwoFactorAuthForm from './DisableTwoFactorAuthForm';
 import EmailAddresses from './EmailAddresses';
+import EnableTwoFactorAuthForm from './EnableTwoFactorAuthForm';
 import SetPassword from './SetPassword';
 import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
@@ -17,6 +19,7 @@ const AccountView = ({
   isTwoFactorEnabled,
 }) => {
   const { formatMessage } = useIntl();
+  const { currentUser } = useCurrentUser();
   const { isAdmin } = useAuth();
   return (
     <>
@@ -102,6 +105,9 @@ const AccountView = ({
           </div>
         </>
       ) : null}
+      {currentUser?._id === _id && !isTwoFactorEnabled && (
+        <EnableTwoFactorAuthForm />
+      )}
       {isTwoFactorEnabled && isAdmin() && (
         <DisableTwoFactorAuthForm userId={_id} />
       )}
