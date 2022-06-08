@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import EmailAddresses from './EmailAddresses';
+import EnableTwoFactorAuthForm from './EnableTwoFactorAuth';
 import SetPassword from './SetPassword';
 import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
@@ -94,6 +95,7 @@ const AccountView = ({ _id, emails, username, roles, tags }) => {
           </div>
         </>
       ) : null}
+      <EnableTwoFactorAuthForm />
     </>
   );
 };
