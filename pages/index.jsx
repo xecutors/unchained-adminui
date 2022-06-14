@@ -1,17 +1,50 @@
+/* eslint-disable no-console */
+/* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
 
 import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
+import { useEffect } from 'react';
 import ACTION_ROLES from '../modules/common/data/roles';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
-// import SyncSummary from '../modules/sync/components/SyncSummary';
 import useAuth from '../modules/Auth/useAuth';
 
 const Home = () => {
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      'serviceWorker' in navigator &&
+      window.workbox !== undefined
+    ) {
+      const wb = window.workbox;
+
+      const promptNewVersionAvailable = () => {
+        if (
+          // eslint-disable-next-line no-alert
+          confirm(
+            formatMessage({
+              id: 'app_new_version_available',
+              defaultMessage:
+                'A newer version of this web app is available, reload to update?',
+            }),
+          )
+        ) {
+          wb.addEventListener('controlling', () => {
+            window.location.reload();
+          });
+
+          wb.messageSkipWaiting();
+        }
+      };
+      wb.addEventListener('waiting', promptNewVersionAvailable);
+      wb.register();
+    }
+  }, [formatMessage]);
 
   return (
     <>
