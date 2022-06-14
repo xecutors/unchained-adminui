@@ -25,63 +25,66 @@ class MyDocument extends Document {
               href={logo}
             />
           )}
-          {metaConfig.assets?.['icon-152x152'] && (
+          {metaConfig?.assets?.['icon-152x152'] && (
             <link
               rel="apple-touch-icon"
               type="image/png"
               sizes="152x152"
-              href={metaConfig.assets?.['icon-152x152']}
+              href={metaConfig?.assets?.['icon-152x152']}
             />
           )}
-          {metaConfig.assets?.['icon-180x180'] && (
+          {metaConfig?.assets?.['icon-180x180'] && (
             <link
               rel="apple-touch-icon"
               type="image/png"
               sizes="180x180"
-              href={metaConfig.assets?.['icon-180x180']}
+              href={metaConfig?.assets?.['icon-180x180']}
             />
           )}
-          {metaConfig.assets?.['icon-167x167'] && (
+          {metaConfig?.assets?.['icon-167x167'] && (
             <link
               rel="apple-touch-icon"
               type="image/png"
               sizes="167x167"
-              href={metaConfig.assets?.['icon-167x167']}
+              href={metaConfig?.assets?.['icon-167x167']}
             />
           )}
-          {metaConfig.assets?.['icon-167x167'] && (
+          {metaConfig?.assets?.['icon-167x167'] && (
             <link
               rel="icon"
               type="image/png"
               sizes="167x167"
-              href={metaConfig.assets?.['icon-167x167']}
+              href={metaConfig?.assets?.['icon-167x167']}
             />
           )}
-          {metaConfig.assets?.['icon-32x32'] && (
+          {metaConfig?.assets?.['icon-32x32'] && (
             <link
               rel="icon"
               type="image/png"
               sizes="32x32"
-              href={metaConfig.assets?.['icon-32x32']}
+              href={metaConfig?.assets?.['icon-32x32']}
             />
           )}
-          {metaConfig.assets?.['icon-16x16'] && (
+          {metaConfig?.assets?.['icon-16x16'] && (
             <link
               rel="icon"
               type="image/png"
               sizes="16x16"
-              href={metaConfig.assets?.['icon-16x16']}
+              href={metaConfig?.assets?.['icon-16x16']}
             />
           )}
           <link rel="manifest" href="/manifest.json" />
 
-          {metaConfig.assets?.['mask-icon'] && (
-            <link rel="shortcut icon" href={metaConfig.assets?.['mask-icon']} />
-          )}
-          {metaConfig.assets?.['shortcut-icon'] && (
+          {metaConfig?.assets?.['mask-icon'] && (
             <link
               rel="shortcut icon"
-              href={metaConfig.assets?.['shortcut-icon']}
+              href={metaConfig?.assets?.['mask-icon']}
+            />
+          )}
+          {metaConfig?.assets?.['shortcut-icon'] && (
+            <link
+              rel="shortcut icon"
+              href={metaConfig?.assets?.['shortcut-icon']}
             />
           )}
         </Head>
