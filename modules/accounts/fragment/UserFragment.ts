@@ -4,6 +4,7 @@ const UserFragment = gql`
   fragment UserFragment on User {
     _id
     email
+    isTwoFactorEnabled
     avatar {
       _id
       name

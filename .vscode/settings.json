@@ -6,6 +6,7 @@
     "heroicons",
     "semibold",
     "tailwindcss",
+    "TOTP",
     "UPVOTE"
   ]
 }
