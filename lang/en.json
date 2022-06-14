@@ -114,6 +114,9 @@
   "assigned_products": {
     "defaultMessage": "Assigned Products"
   },
+  "assignments": {
+    "defaultMessage": "Assignments"
+  },
   "assortment": {
     "defaultMessage": "Assortment"
   },
@@ -275,9 +278,6 @@
   },
   "contact": {
     "defaultMessage": "Contact"
-  },
-  "context": {
-    "defaultMessage": "Context"
   },
   "continue": {
     "defaultMessage": "Continue"
@@ -529,9 +529,6 @@
   "delivery_fee": {
     "defaultMessage": "Fee"
   },
-  "delivery_information": {
-    "defaultMessage": "Delivery"
-  },
   "delivery_provider": {
     "defaultMessage": "Delivery Provider"
   },
@@ -621,6 +618,9 @@
   },
   "end": {
     "defaultMessage": "End"
+  },
+  "end_date": {
+    "defaultMessage": "End Date"
   },
   "engine_version": {
     "defaultMessage": "Engine version"
@@ -875,9 +875,6 @@
   "length_millimeter": {
     "defaultMessage": "Length (Millimeter)"
   },
-  "level": {
-    "defaultMessage": "Level"
-  },
   "link_reorder": {
     "defaultMessage": "Link reorder successfully"
   },
@@ -893,17 +890,8 @@
   "loading": {
     "defaultMessage": "Loading ..."
   },
-  "log_created": {
-    "defaultMessage": "Created"
-  },
   "log_in": {
     "defaultMessage": "Log in"
-  },
-  "log_level": {
-    "defaultMessage": "Level"
-  },
-  "log_message": {
-    "defaultMessage": "Message"
   },
   "log_out": {
     "defaultMessage": "Log out"
@@ -913,9 +901,6 @@
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
-  },
-  "logs": {
-    "defaultMessage": "Logs"
   },
   "make_leaf": {
     "defaultMessage": "Make leaf"
@@ -958,9 +943,6 @@
   },
   "media_updated": {
     "defaultMessage": "Media updated"
-  },
-  "message": {
-    "defaultMessage": "Message"
   },
   "method": {
     "defaultMessage": "Method"
@@ -1116,6 +1098,9 @@
   "paginated-data": {
     "defaultMessage": "<p> Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span> results </p>"
   },
+  "paid": {
+    "defaultMessage": "Paid"
+  },
   "password": {
     "defaultMessage": "Password"
   },
@@ -1142,9 +1127,6 @@
   },
   "payment_fee": {
     "defaultMessage": "Fee"
-  },
-  "payment_information": {
-    "defaultMessage": "Payment"
   },
   "payment_provider": {
     "defaultMessage": "Payment provider"
@@ -1395,6 +1377,9 @@
   "search_anything": {
     "defaultMessage": "Search anything"
   },
+  "search_product": {
+    "defaultMessage": "Search product"
+  },
   "search_tag": {
     "defaultMessage": "Search tag"
   },
@@ -1470,6 +1455,9 @@
   },
   "start": {
     "defaultMessage": "Start"
+  },
+  "start_date": {
+    "defaultMessage": "Start date"
   },
   "started": {
     "defaultMessage": "Started"
@@ -1644,7 +1632,7 @@
     "defaultMessage": "Updated Assortments"
   },
   "updated_date": {
-    "defaultMessage": "<b>Updated :</b> {created}"
+    "defaultMessage": "<b>Updated :</b> {updated}"
   },
   "updated_filters": {
     "defaultMessage": "Updated filters"

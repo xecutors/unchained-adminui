@@ -52,7 +52,7 @@ const FilterOptionsListItem = ({
 
   return (
     <Form form={form}>
-      <div className="mt-2 flow-root ">
+      <div className="mt-2 flow-root">
         <li className="py-2 px-2">
           <div className="flex items-center space-x-4">
             <span className="shrink grow-0 basis-1/3">

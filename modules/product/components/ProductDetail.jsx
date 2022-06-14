@@ -34,7 +34,7 @@ import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
 
 const PRODUCT_TYPES = {
-  SIMPLE: 'ConfigurableProduct',
+  SIMPLE: 'SimpleProduct',
   BUNDLE: 'BundleProduct',
   PLAN: 'PlanProduct',
   CONFIGURABLE: 'ConfigurableProduct',

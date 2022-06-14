@@ -221,24 +221,6 @@ const OrderDetailFragment = gql`
       size
       url
     }
-    supportedDeliveryProviders {
-      _id
-      type
-      interface {
-        _id
-        label
-        version
-      }
-    }
-    supportedPaymentProviders {
-      _id
-      type
-      interface {
-        _id
-        label
-        version
-      }
-    }
     items {
       _id
       product {
