@@ -12,6 +12,7 @@ import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -72,8 +73,14 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
   }, [translatedTexts, selectedLocale]);
 
   return (
-    <div className="mt-5 sm:max-w-full">
-      <div className="sm:rounded-t">
+    <SelfDocumentingView
+      documentationLabel={formatMessage({
+        id: 'texts',
+        defaultMessage: 'Texts',
+      })}
+      className="mt-2 sm:mt-0"
+      documentation="A Slug is the unique identifying part of a web address, typically at the end of the URL."
+      mainContent={
         <FormWrapper>
           <Form form={form}>
             <div className="relative text-slate-500 dark:text-white px-4 py-5 sm:p-6">
@@ -173,8 +180,8 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
             </div>
           </Form>
         </FormWrapper>
-      </div>
-    </div>
+      }
+    />
   );
 };
 

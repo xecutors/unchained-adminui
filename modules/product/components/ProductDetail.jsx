@@ -9,7 +9,6 @@ import {
   PresentationChartLineIcon,
   UsersIcon,
 } from '@heroicons/react/solid';
-
 import { toast } from 'react-toastify';
 import { LinkIcon } from '@heroicons/react/outline';
 import LocaleWrapper from '../../common/components/LocaleWrapper';

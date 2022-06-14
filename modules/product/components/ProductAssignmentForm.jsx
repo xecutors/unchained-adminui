@@ -16,7 +16,7 @@ const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
   const newRows = [];
 
-  column.values
+  column?.values
     .filter((v) => v.length)
     .forEach((value) => {
       const tempRow = {};

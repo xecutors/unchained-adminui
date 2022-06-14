@@ -102,6 +102,9 @@
   "already_got_a_user": {
     "defaultMessage": "Already got a user?"
   },
+  "app_new_version_available": {
+    "defaultMessage": "A newer version of this web app is available, reload to update?"
+  },
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
   },
@@ -547,6 +550,12 @@
   "description": {
     "defaultMessage": "Description"
   },
+  "disable_2fa_auth_header": {
+    "defaultMessage": "Disable 2FA authentication"
+  },
+  "disable_totp": {
+    "defaultMessage": "Disable TOTP"
+  },
   "discount": {
     "defaultMessage": "Discount"
   },
@@ -615,6 +624,12 @@
   },
   "email_verified_successfully": {
     "defaultMessage": "Email Verified successfully"
+  },
+  "enable_2fa_auth_header": {
+    "defaultMessage": "Enable 2FA authentication"
+  },
+  "enable_totp": {
+    "defaultMessage": "Enable TOTP"
   },
   "end": {
     "defaultMessage": "End"
@@ -1011,6 +1026,9 @@
   "no_error": {
     "defaultMessage": "Error"
   },
+  "no_internet_access": {
+    "defaultMessage": "You aren't connected to a working internet connection"
+  },
   "no_job": {
     "defaultMessage": "sync report found"
   },
@@ -1335,6 +1353,9 @@
   "retries": {
     "defaultMessage": "Retries"
   },
+  "retry": {
+    "defaultMessage": "Retry"
+  },
   "review_data": {
     "defaultMessage": "Review data"
   },
@@ -1577,11 +1598,29 @@
     "defaultMessage": "Total { categoryName }",
     "description": "Used in report where category is swapped with product, filter or assortment "
   },
+  "totp_code": {
+    "defaultMessage": "TOTP code"
+  },
+  "totp_code_not_match": {
+    "defaultMessage": "TOTP code did not match"
+  },
+  "totp_code_required": {
+    "defaultMessage": "TOTP code is required"
+  },
   "trial_interval_unit": {
     "defaultMessage": "Trial interval unit"
   },
   "trial_unit": {
     "defaultMessage": "Trial Unit"
+  },
+  "two_factor_auth_enabled": {
+    "defaultMessage": "2FA Enabled"
+  },
+  "two_factor_authentication_required": {
+    "defaultMessage": "Two factor authentication code required"
+  },
+  "two_factor_code_not_match": {
+    "defaultMessage": "Two factor authentication code did not match"
   },
   "type": {
     "defaultMessage": "Type"
