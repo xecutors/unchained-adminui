@@ -55,6 +55,11 @@ const OrderDetailDelivery = ({ order }) => {
             defaultMessage: 'Delivered',
           })}
         </h2>
+        {order?.delivery.fee && (
+          <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
+            {formatPrice(order?.delivery.fee)}
+          </span>
+        )}
         <span className="font-medium">
           {formatDateTime(order?.delivery?.delivered, {
             timeStyle: 'short',
@@ -70,19 +75,7 @@ const OrderDetailDelivery = ({ order }) => {
             </a>
           </Link>
         </span>
-        {order?.delivery?.fee ? (
-          <>
-            <div className="text-sm font-medium text-slate-500">
-              {formatMessage({
-                id: 'delivery_fee',
-                defaultMessage: 'Fee',
-              })}
-            </div>
-            <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-              {formatPrice(order?.delivery.fee)}
-            </span>
-          </>
-        ) : null}
+
         <div className="mt-3 text-sm font-medium text-slate-500 dark:text-white">
           {formatMessage({
             id: 'method',

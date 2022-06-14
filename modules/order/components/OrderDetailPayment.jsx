@@ -56,7 +56,11 @@ const OrderDetailPayment = ({ order }) => {
             defaultMessage: 'Paid',
           })}
         </h2>
-
+        {order.payment.fee && (
+          <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
+            {formatPrice(order.payment.fee)}
+          </span>
+        )}
         <span className="font-medium">
           {formatDateTime(order.payment.paid, {
             timeStyle: 'short',
@@ -64,19 +68,6 @@ const OrderDetailPayment = ({ order }) => {
           })}
         </span>
       </div>
-      {order.payment.fee ? (
-        <>
-          <div className="my-1 border border-x-0 border-t-0 border-slate-300 pb-1 text-sm font-normal">
-            {formatMessage({
-              id: 'payment_fee',
-              defaultMessage: 'Fee',
-            })}
-          </div>
-          <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-            {formatPrice(order.payment.fee)}
-          </span>
-        </>
-      ) : null}
 
       <div className="border-t border-indigo-50 px-4 py-4 sm:px-6">
         <span className="mb-5  block">
