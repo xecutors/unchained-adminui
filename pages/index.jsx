@@ -44,7 +44,7 @@ const Home = () => {
       wb.addEventListener('waiting', promptNewVersionAvailable);
       wb.register();
     }
-  }, []);
+  }, [formatMessage]);
 
   return (
     <>
