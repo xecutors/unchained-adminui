@@ -17,6 +17,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   const { formatMessage } = useIntl();
 
   const onSubmit = async ({ title, subtitle }) => {
+    console.log('jjjjjj');
     await updateProductVariationTexts({
       productVariationId: variation._id,
       texts: { title, subtitle, locale: selectedLocale },
@@ -106,7 +107,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                     <button
                       onClick={() => setIsEdit(!isEdit)}
                       type="button"
-                      className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                      className="rounded-md pl-2 pr-2 bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                     >
                       {formatMessage({
                         id: 'cancel',
@@ -117,8 +118,12 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
                       |
                     </span>
                     <button
+                      onClick={() => {
+                        form.formik.submitForm();
+                        setIsEdit(false);
+                      }}
                       type="submit"
-                      className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                      className="rounded-md pl-2 pr-2 bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                     >
                       {formatMessage({
                         id: 'save',

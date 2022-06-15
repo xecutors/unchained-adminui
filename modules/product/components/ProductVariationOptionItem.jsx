@@ -42,15 +42,15 @@ const ProductVariationOptionItem = ({
   });
   return (
     <Form form={form} className="last:pb-2">
-      <div className="my-2 flow-root rounded border sm:mx-4">
-        <li className="list-none py-2">
+      <div className="my-2 flow-root rounded border sm:mx-4 ">
+        <li className="list-none py-2 dark:bg-slate-600 dark:text-white pl-2 pr-2">
           <div className="grid grid-cols-6 items-center gap-2">
             <span className="col-span-1">
               <Badge text={option?.value} color="slate" />
             </span>
 
             <div className="col-span-4 min-w-0">
-              <p className="truncate text-sm font-medium text-slate-900">
+              <p className="truncate text-sm font-medium text-slate-900 dark:text-white">
                 {isEdit ? (
                   <TextField
                     className="mt-0"
@@ -94,9 +94,7 @@ const ProductVariationOptionItem = ({
                       defaultMessage: 'Cancel',
                     })}
                   </button>
-                  {/* <span className="text-slate-300" aria-hidden="true">
-                    |
-                  </span> */}
+
                   <button
                     type="submit"
                     className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"

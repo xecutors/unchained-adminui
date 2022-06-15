@@ -25,10 +25,10 @@ const ProductVariation = ({ productId, selectedLocale }) => {
   return (
     <div className="mt-6 overflow-hidden rounded-md">
       <div className="lg:grid lg:grid-cols-12">
-        <div className="mb-5 lg:col-span-5 lg:pr-5">
+        <div className="mb-5 lg:col-span-5 lg:pr-5 ">
           <ProductVariationForm onSubmit={onSubmit} />
         </div>
-        <div className="ml-auto rounded border-slate-200 shadow-md sm:pl-8 lg:col-span-7 lg:w-full">
+        <div className="ml-auto rounded border-slate-200 shadow-md sm:pl-2 pr-2 lg:col-span-7 lg:w-full bg-white dark:bg-slate-500">
           <div className="divide-y divide-slate-200 py-4">
             {!variations?.length ? (
               <NoData

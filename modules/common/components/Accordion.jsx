@@ -67,7 +67,7 @@ const AccordionItem = ({
       {show ? (
         <div
           className={classNames(
-            'rounded-lg p-0 text-slate-400 dark:text-white',
+            'rounded-lg p-0 text-slate-400 dark:text-white ',
             bodyCSS,
           )}
         >
