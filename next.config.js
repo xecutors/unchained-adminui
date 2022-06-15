@@ -32,7 +32,7 @@ module.exports = withPWA({
     defaultLocale: 'en',
     localeDetection: false,
   },
-  productionBrowserSourceMaps: process.env.NODE_ENV === 'production',
+
   publicRuntimeConfig: {
     metaConfig,
     showCustomReports: parseInt(
