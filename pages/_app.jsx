@@ -1,6 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
 import 'react-quill/dist/quill.snow.css';
-import App from 'next/app';
 
 import { useRouter } from 'next/router';
 
@@ -58,9 +57,5 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
     </ApolloProvider>
   );
 };
-UnchainedAdmin.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext);
-  return { ...appProps };
-};
+
 export default UnchainedAdmin;
