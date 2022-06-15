@@ -46,14 +46,6 @@ pipeline {
       when { branch 'master' }
       steps {
         script {
-          adminui.push("latest")
-        }
-      }
-    }
-    stage('Deploy to Unchained Cloud') {
-      when { buildingTag() }
-      steps {
-        script {
           adminui.push("stable")
         }
       }
