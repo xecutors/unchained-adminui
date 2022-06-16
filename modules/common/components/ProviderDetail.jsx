@@ -32,9 +32,9 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                 </dt>
                 <dd
                   className={`bg-${
-                    PROVIDER_TYPE_CLASSES[provider.type]
+                    PROVIDER_TYPE_CLASSES[provider?.type]
                   }-100 text-${
-                    PROVIDER_TYPE_CLASSES[provider.type]
+                    PROVIDER_TYPE_CLASSES[provider?.type]
                   }-800 ml-4 inline-block rounded-lg border p-2 text-lg font-bold leading-4`}
                 >
                   {provider?.type}
@@ -86,6 +86,7 @@ const ProviderDetail = ({ provider, onSubmit, onSubmitSuccess, readOnly }) => {
                   defaultMessage: 'Configuration error',
                 })}
               </dt>
+
               {provider?.configurationError ? (
                 <dd className="block">{provider?.configurationError}</dd>
               ) : (
