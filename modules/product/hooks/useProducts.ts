@@ -9,6 +9,7 @@ export const ProductsQuery = gql`
     $limit: Int
     $offset: Int
     $includeDrafts: Boolean
+    $sort: [SortOptionInput!]
   ) {
     products(
       queryString: $queryString
@@ -17,6 +18,7 @@ export const ProductsQuery = gql`
       limit: $limit
       offset: $offset
       includeDrafts: $includeDrafts
+      sort: $sort
     ) {
       ...ProductBriefFragment
     }
@@ -33,17 +35,20 @@ const useProducts = ({
   includeDrafts = false,
   slugs = null,
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(ProductsQuery, {
-    variables: { queryString, limit, offset, includeDrafts, tags, slugs },
+  const { data, loading, error } = useQuery(ProductsQuery, {
+    variables: {
+      queryString,
+      limit,
+      offset,
+      includeDrafts,
+      tags,
+      slugs,
+      sort: [{ key: 'sequence', value: 'ASC' }],
+    },
   });
   const products = data?.products || [];
   const productsCount = data?.productsCount;
   const hasMore = products?.length < productsCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: products.length },
-    });
-  };
 
   return {
     products,
@@ -51,7 +56,6 @@ const useProducts = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

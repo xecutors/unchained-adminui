@@ -9,6 +9,7 @@ const ProductDetailFragment = gql`
     tags
     updated
     published
+    sequence
     texts {
       _id
       slug

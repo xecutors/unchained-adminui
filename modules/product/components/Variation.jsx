@@ -17,7 +17,6 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   const { formatMessage } = useIntl();
 
   const onSubmit = async ({ title, subtitle }) => {
-    console.log('jjjjjj');
     await updateProductVariationTexts({
       productVariationId: variation._id,
       texts: { title, subtitle, locale: selectedLocale },
