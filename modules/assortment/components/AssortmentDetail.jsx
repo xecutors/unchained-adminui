@@ -58,6 +58,14 @@ const AssortmentDetail = ({ assortment }) => {
   const { setBaseAssortment } = useSetBaseAssortment();
   const { setModal } = useModal();
 
+  const updateAssortmentSequence = async (e) => {
+    if (e.target.value) {
+      await updateAssortment({
+        assortmentId: assortment?._id,
+        sequence: parseInt(e.target.value, 10),
+      });
+    }
+  };
   const setAsBase = async () => {
     await setModal(
       <AlertMessage
@@ -135,7 +143,7 @@ const AssortmentDetail = ({ assortment }) => {
   const setIsRoot = async (value) => {
     await updateAssortment({
       assortmentId: assortment?._id,
-      assortment: { isRoot: value },
+      isRoot: value,
     });
     return true;
   };
@@ -261,6 +269,13 @@ const AssortmentDetail = ({ assortment }) => {
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
           enableEdit={hasRole(ACTION_ROLES.assortments.update)}
+        />
+        <input
+          type="number"
+          disabled
+          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+          defaultValue={assortment?.sequence}
+          onBlur={updateAssortmentSequence}
         />
         <div>
           {isBase ? (

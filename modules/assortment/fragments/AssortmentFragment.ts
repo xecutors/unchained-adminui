@@ -6,6 +6,7 @@ const AssortmentFragment = gql`
     isActive
     created
     updated
+    sequence
     texts {
       _id
       slug

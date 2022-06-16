@@ -4,6 +4,8 @@ import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 
+import useUpdateProduct from '../hooks/useUpdateProduct';
+
 const PRODUCT_STATUS = {
   DRAFT: 'yellow',
   ACTIVE: 'green',
@@ -13,6 +15,15 @@ const PRODUCT_STATUS = {
 const ProductListItem = ({ product, showAvatar }) => {
   const { formatMessage } = useIntl();
   const { slug = '' } = product?.texts || {};
+  const { updateProduct } = useUpdateProduct();
+
+  const updateProductSequence = async (e) => {
+    if (e.target.value)
+      await updateProduct({
+        productId: product?._id,
+        sequence: parseInt(e.target.value, 10),
+      });
+  };
   return (
     <Table.Row>
       <Table.Cell>
@@ -47,6 +58,7 @@ const ProductListItem = ({ product, showAvatar }) => {
           text={product.status}
           color={PRODUCT_STATUS[product.status]}
           square
+          dotted
         />
       </Table.Cell>
 
@@ -54,6 +66,14 @@ const ProductListItem = ({ product, showAvatar }) => {
         {product.tags?.map((t) => (
           <Badge key={t} text={t} color="indigo" />
         ))}
+      </Table.Cell>
+      <Table.Cell>
+        <input
+          type="number"
+          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+          defaultValue={product?.sequence}
+          onBlur={updateProductSequence}
+        />
       </Table.Cell>
     </Table.Row>
   );

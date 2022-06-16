@@ -3,13 +3,23 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
+import useUpdateAssortment from '../hooks/useUpdateAssortment';
 
 const AssortmentListItem = ({ assortment, showAvatar }) => {
   const { formatMessage } = useIntl();
-
+  const { updateAssortment } = useUpdateAssortment();
   const STATUS = {
     true: formatMessage({ id: 'active', defaultMessage: 'Active' }),
     false: formatMessage({ id: 'in_active', defaultMessage: 'In-Active' }),
+  };
+
+  const updateAssortmentSequence = async (e) => {
+    if (e.target.value) {
+      await updateAssortment({
+        assortmentId: assortment?._id,
+        sequence: parseInt(e.target.value, 10),
+      });
+    }
   };
 
   return (
@@ -73,6 +83,15 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
             />
           )}
         </div>
+      </Table.Cell>
+      <Table.Cell>
+        <input
+          disabled
+          type="number"
+          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+          defaultValue={assortment?.sequence}
+          onBlur={updateAssortmentSequence}
+        />
       </Table.Cell>
     </Table.Row>
   );

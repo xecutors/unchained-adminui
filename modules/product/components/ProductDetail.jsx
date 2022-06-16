@@ -76,6 +76,15 @@ const ProductDetail = ({ product }) => {
   const { publishProduct } = usePublishProduct();
   const { unPublishProduct } = useUnPublishProduct();
 
+  const { updateProduct } = useUpdateProduct();
+
+  const updateProductSequence = async (e) => {
+    if (e.target.value)
+      await updateProduct({
+        productId: product?._id,
+        sequence: parseInt(e.target.value, 10),
+      });
+  };
   const { status, __typename } = product;
 
   const productOptions = [
@@ -204,8 +213,6 @@ const ProductDetail = ({ product }) => {
     },
   ];
 
-  const { updateProduct } = useUpdateProduct();
-
   const onUpdateTags = async ({ tags }) => {
     await updateProduct({ productId: product?._id, tags, sequence: 1 });
     return true;
@@ -219,6 +226,12 @@ const ProductDetail = ({ product }) => {
           defaultValue={product?.tags}
           onSubmit={onUpdateTags}
           enableEdit={hasRole(ACTION_ROLES.products.update)}
+        />
+        <input
+          type="number"
+          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+          defaultValue={product?.sequence}
+          onBlur={updateProductSequence}
         />
         <SelectOptions
           options={activeOptions}

@@ -6,6 +6,7 @@ const ProductBriefFragment = gql`
     sequence
     status
     tags
+    sequence
     updated
     published
     texts {
