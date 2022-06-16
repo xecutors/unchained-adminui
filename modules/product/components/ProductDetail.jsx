@@ -78,11 +78,11 @@ const ProductDetail = ({ product }) => {
 
   const { updateProduct } = useUpdateProduct();
 
-  const updateProductSequence = async (sequence) => {
-    if (sequence)
+  const updateProductSequence = async (e) => {
+    if (e.target.value)
       await updateProduct({
         productId: product?._id,
-        sequence: parseInt(sequence, 10),
+        sequence: parseInt(e.target.value, 10),
       });
   };
   const { status, __typename } = product;
@@ -231,7 +231,7 @@ const ProductDetail = ({ product }) => {
           type="number"
           className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 px-4 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={product?.sequence}
-          onBlur={(e) => updateProductSequence(e.target.value)}
+          onBlur={updateProductSequence}
         />
         <SelectOptions
           options={activeOptions}
