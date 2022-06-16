@@ -35,6 +35,12 @@ const AssortmentList = ({ assortments, showAvatar = true }) => {
               defaultMessage: 'Base',
             })}
           </Table.Cell>
+          <Table.Cell>
+            {formatMessage({
+              id: 'sequence',
+              defaultMessage: 'Sequence',
+            })}
+          </Table.Cell>
         </Table.Row>
       ))}
       {assortments?.map((assortment) => (

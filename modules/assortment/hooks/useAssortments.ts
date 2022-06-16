@@ -11,6 +11,7 @@ export const AssortmentsQuery = gql`
     $offset: Int
     $includeInactive: Boolean
     $includeLeaves: Boolean
+    $sort: [SortOptionInput!]
   ) {
     assortments(
       queryString: $queryString
@@ -20,6 +21,7 @@ export const AssortmentsQuery = gql`
       offset: $offset
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
+      sort: $sort
     ) {
       ...AssortmentFragment
     }
@@ -51,6 +53,7 @@ const useAssortments = ({
       offset,
       includeInactive,
       includeLeaves,
+      sort: [{ key: 'sequence', value: 'ASC' }],
     },
   });
   const assortments = data?.assortments || [];

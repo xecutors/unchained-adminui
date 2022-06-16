@@ -70,7 +70,7 @@ const ProductListItem = ({ product, showAvatar }) => {
       <Table.Cell>
         <input
           type="number"
-          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 px-4 rounded-full mr-2 font-bold text-indigo-500"
+          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={product?.sequence}
           onBlur={updateProductSequence}
         />

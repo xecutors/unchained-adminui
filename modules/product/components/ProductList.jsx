@@ -27,6 +27,12 @@ const ProductList = ({ products, showAvatar = true }) => {
               defaultMessage: 'Tags',
             })}
           </Table.Cell>
+          <Table.Cell>
+            {formatMessage({
+              id: 'sequence',
+              defaultMessage: 'Sequence',
+            })}
+          </Table.Cell>
         </Table.Row>
       ))}
 
