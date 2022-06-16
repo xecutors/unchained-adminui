@@ -81,6 +81,15 @@ const OrderDetailBilling = ({ order }) => {
           <div className="flex items-center justify-between py-1">
             <dt className="text-slate-600 dark:text-white">
               {formatMessage({
+                id: 'order_payment_fees',
+                defaultMessage: 'Fees',
+              })}
+            </dt>
+            <dd className="font-medium">{formatPrice(order?.totalPayment)}</dd>
+          </div>
+          <div className="flex items-center justify-between py-1">
+            <dt className="text-slate-600 dark:text-white">
+              {formatMessage({
                 id: 'subtotal',
                 defaultMessage: 'Subtotal',
               })}
