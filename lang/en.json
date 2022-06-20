@@ -222,6 +222,9 @@
   "bundle_item_deleted": {
     "defaultMessage": "Bundle item deleted successfully"
   },
+  "bundle_product_definition": {
+    "defaultMessage": "<h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example. </p>"
+  },
   "bundles": {
     "defaultMessage": "Bundles"
   },
@@ -260,6 +263,9 @@
   },
   "company": {
     "defaultMessage": "Company"
+  },
+  "configurable_product_definition": {
+    "defaultMessage": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>"
   },
   "configuration": {
     "defaultMessage": "Configuration"
@@ -529,9 +535,6 @@
   "deliveryProviders_deleted": {
     "defaultMessage": "DeliveryProviders deleted successfully"
   },
-  "delivery_fee": {
-    "defaultMessage": "Fee"
-  },
   "delivery_provider": {
     "defaultMessage": "Delivery Provider"
   },
@@ -624,6 +627,9 @@
   },
   "email_verified_successfully": {
     "defaultMessage": "Email Verified successfully"
+  },
+  "enable": {
+    "defaultMessage": "Enable"
   },
   "enable_2fa_auth_header": {
     "defaultMessage": "Enable 2FA authentication"
@@ -801,9 +807,6 @@
   },
   "height": {
     "defaultMessage": "Height (Millimeter)"
-  },
-  "here_comes_an_explainer": {
-    "defaultMessage": "Here comes an explainer"
   },
   "home": {
     "defaultMessage": "Home"
@@ -1095,6 +1098,9 @@
   "order_paid": {
     "defaultMessage": "Order payed successfully"
   },
+  "order_payment_fees": {
+    "defaultMessage": "Fees"
+  },
   "order_reject_success": {
     "defaultMessage": "Order rejected successfully"
   },
@@ -1143,9 +1149,6 @@
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
   },
-  "payment_fee": {
-    "defaultMessage": "Fee"
-  },
   "payment_provider": {
     "defaultMessage": "Payment provider"
   },
@@ -1172,6 +1175,9 @@
   },
   "photo_updated": {
     "defaultMessage": "Profile Photo updated successfully!"
+  },
+  "plan_product_definition": {
+    "defaultMessage": "<h3>Plan</h3> <p>Plan product is use when you have a product that is offered per subscription base. Since for this type of product the payment is usually recurring, you can adjust the interval of payment calculation. </p>"
   },
   "postal_code": {
     "defaultMessage": "Postal/ZIP code"
@@ -1437,6 +1443,9 @@
   "send_verification_mail": {
     "defaultMessage": "Send verification mail"
   },
+  "sequence": {
+    "defaultMessage": "Sequence"
+  },
   "shipping": {
     "defaultMessage": "Shipping"
   },
@@ -1460,6 +1469,9 @@
   },
   "sign_up_header": {
     "defaultMessage": "Create new account"
+  },
+  "simple_product_definition": {
+    "defaultMessage": "<h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
   },
   "sku": {
     "defaultMessage": "SKU"
