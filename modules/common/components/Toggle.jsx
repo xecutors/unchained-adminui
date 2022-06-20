@@ -1,10 +1,16 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 
-const Toggle = ({ toggleText = '', toggleKey, onToggle }) => {
+const Toggle = ({
+  toggleText = '',
+  toggleKey,
+  onToggle,
+  active,
+  className,
+}) => {
   const router = useRouter();
 
-  const toggleState = router?.query?.[toggleKey] === 'true';
+  const toggleState = router?.query?.[toggleKey] === 'true' || active;
 
   const toggle = () => {
     router.push({
@@ -15,7 +21,7 @@ const Toggle = ({ toggleText = '', toggleKey, onToggle }) => {
     });
   };
   return (
-    <div className="ml-1">
+    <div className={classNames('ml-1', className)}>
       <button
         type="button"
         className={classNames(
