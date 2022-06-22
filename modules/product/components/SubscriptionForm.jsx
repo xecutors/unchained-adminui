@@ -84,7 +84,7 @@ const SubscriptionForm = ({ productId }) => {
       className="mt-2 sm:mt-0"
       documentation={
         <FormattedMessage
-          id="product_subscription_form_documentation"
+          id="product_subscription_form_description"
           defaultMessage="<ul><li> Information that will be used to calculate price of a subscription based product </li>
           <li>The price specified in commerce section will be used when calculating fees on each interval. </li>
           <li>Price will not be included for the specified trial period </li> </ul>"

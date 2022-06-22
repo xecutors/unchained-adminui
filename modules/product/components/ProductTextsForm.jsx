@@ -81,7 +81,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
       className="mt-2 sm:mt-0"
       documentation={
         <FormattedMessage
-          id="product_text_form_documentation"
+          id="product_text_form_description"
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
            <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
           values={{

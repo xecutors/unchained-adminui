@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -10,6 +10,7 @@ import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
 import AssortmentLinkForm from './AssortmentLinkForm';
 import AssortmentLinksList from './AssortmentLinksList';
 import useReorderAssortmentLink from '../hooks/useReorderAssortmentLinks';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -102,57 +103,62 @@ const AssortmentLinks = ({ assortmentId }) => {
   };
 
   return (
-    <div className="md:grid md:grid-cols-3 md:gap-6">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'assortment_links',
-              defaultMessage: 'Links',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-
-      <div className="md:col-span-2">
+    <>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_link_form_header',
+          defaultMessage: 'Child assortments',
+        })}
+        className="mt-2 sm:mt-0"
+        documentation={
+          <FormattedMessage
+            id="assortment_link_form_description"
+            defaultMessage="<ul> <li>Assign assortment that are direct child of this assortment </li>
+          </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
         <AssortmentLinkForm assortmentId={assortmentId} />
-      </div>
-
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'assortment_links_list',
-              defaultMessage: 'Linked assortments',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2 bg-white">
-          <DragDropContext onDragEnd={handleDragEnd}>
-            <AssortmentLinksList
-              currentAssortmentId={assortmentId}
-              links={linkedAssortments || []}
-              onRemoveLink={onRemoveLink}
-            />
-          </DragDropContext>
-        </div>
-      )}
-    </div>
+      </SelfDocumentingView>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_links_header',
+          defaultMessage: 'Assortment links',
+        })}
+        className="sm:mt-4"
+        documentation={
+          <FormattedMessage
+            id="assortment_link_list_description"
+            defaultMessage="<ul> <li>All assortments found on the assortment relation tree</li>
+            <li> Drag and drop list items to sort assortment links </li>
+         <li> Parents are assortments found in the ancestors tree on any level </li>
+         <li> Descendants are assortments found in the children tree on any level </li> </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="ml-auto shadow dark:shadow-white dark:bg-slate-600 w-full md:col-span-2 bg-white">
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <AssortmentLinksList
+                currentAssortmentId={assortmentId}
+                links={linkedAssortments || []}
+                onRemoveLink={onRemoveLink}
+              />
+            </DragDropContext>
+          </div>
+        )}
+      </SelfDocumentingView>
+    </>
   );
 };
 

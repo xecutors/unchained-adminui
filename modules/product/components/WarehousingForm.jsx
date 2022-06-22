@@ -51,7 +51,7 @@ const WarehousingForm = ({ productId }) => {
       className="mt-2 sm:mt-0"
       documentation={
         <FormattedMessage
-          id="product_warehousing_form_documentation"
+          id="product_warehousing_form_description"
           defaultMessage="<ul><li> Information regarding product storage </li> </ul>"
           values={{
             ul: (chunk) => <ul className="list-disc">{chunk} </ul>,

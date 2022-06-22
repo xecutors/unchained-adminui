@@ -175,7 +175,10 @@ const AssortmentDetail = ({ assortment }) => {
         id: 'activated',
         defaultMessage: 'Activated',
       }),
-      description: 'Some description',
+      description: formatMessage({
+        id: 'activate_assortment_description',
+        defaultMessage: 'Will be visible on search',
+      }),
       current: isActive,
       bgColor: 'green',
       onClick: async () => {
@@ -198,7 +201,10 @@ const AssortmentDetail = ({ assortment }) => {
         id: 'deactivated',
         defaultMessage: 'Deactivated',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'deactivate_assortment_description',
+        defaultMessage: 'Will not be visible on search',
+      }),
       current: !isActive,
       bgColor: 'slate',
       onClick: async () => {
@@ -224,7 +230,10 @@ const AssortmentDetail = ({ assortment }) => {
         id: 'root',
         defaultMessage: 'Root',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'root_assortment_description',
+        defaultMessage: 'Can not be assigned as a child of another assortment ',
+      }),
       current: isRoot,
       bgColor: 'green',
       onClick: async () => {
@@ -247,7 +256,10 @@ const AssortmentDetail = ({ assortment }) => {
         id: 'make_leaf',
         defaultMessage: 'Make leaf',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'leaf_assortment_description',
+        defaultMessage: 'Can be assigned as a child of another assortment ',
+      }),
       current: !isRoot,
       bgColor: 'slate',
       onClick: async () => {

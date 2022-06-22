@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -11,6 +11,7 @@ import AssortmentProductForm from './AssortmentProductForm';
 import AssortmentProductList from './AssortmentProductList';
 import Loading from '../../common/components/Loading';
 import useReorderAssortmentProducts from '../hooks/useReorderAssortmentProducts';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -104,56 +105,63 @@ const AssortmentProducts = ({ assortmentId }) => {
   };
 
   return (
-    <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'assortment_product',
-              defaultMessage: 'Product',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-      <div className="md:col-span-2">
+    <>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_product_form_header',
+          defaultMessage: 'Products',
+        })}
+        className="mt-2 sm:mt-0"
+        documentation={
+          <FormattedMessage
+            id="assortment_product_form_description"
+            defaultMessage="<ul> <li>Products that belong to this assortment </li>
+          </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
         <AssortmentProductForm assortmentId={assortmentId} />
-      </div>
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'assigned_assortment_products',
-              defaultMessage: 'Assigned products',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
+      </SelfDocumentingView>
 
-      {loading ? (
-        <div className="ml-auto w-full md:col-span-2 my-auto">
-          <Loading />
-        </div>
-      ) : (
-        <div className="ml-auto my-auto w-full rounded shadow dark:shadow-white md:col-span-2">
-          <DragDropContext onDragEnd={handleDragEnd}>
-            <AssortmentProductList
-              products={linkedProducts}
-              onRemoveProduct={onRemoveProduct}
-            />
-          </DragDropContext>
-        </div>
-      )}
-    </div>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_products_header',
+          defaultMessage: 'Assortment product',
+        })}
+        className="sm:mt-4"
+        documentation={
+          <FormattedMessage
+            id="assortment_product_list_description"
+            defaultMessage="<ul> <li>All products that belong to this assortment</li>
+            <li> Drag and drop list items to sort products order </li>
+          </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
+        {loading ? (
+          <div className="ml-auto w-full md:col-span-2 my-auto">
+            <Loading />
+          </div>
+        ) : (
+          <div className="ml-auto my-auto w-full rounded shadow dark:shadow-white md:col-span-2">
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <AssortmentProductList
+                products={linkedProducts}
+                onRemoveProduct={onRemoveProduct}
+              />
+            </DragDropContext>
+          </div>
+        )}
+      </SelfDocumentingView>
+    </>
   );
 };
 
