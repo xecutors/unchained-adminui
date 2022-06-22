@@ -1,16 +1,35 @@
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { QRCode } from 'react-qr-svg';
+import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useBuildTOTPAuthURL from '../hooks/useBuildTOTPAuthURL';
 import useEnableTOTP from '../hooks/useEnableTOTP';
 
 const EnableTwoFactorAuthForm = () => {
   const { enableTOTP } = useEnableTOTP();
   const { formatMessage } = useIntl();
+  const [secretBase32, setBase32Secret] = useState();
+  const [enableToTp, setEnableToTp] = useState(false);
+  const { buildTOTPAuthURL } = useBuildTOTPAuthURL();
+
+  useEffect(() => {
+    const setTotp = async () => {
+      const totpUrl = await buildTOTPAuthURL();
+      setBase32Secret(totpUrl);
+    };
+
+    if (!secretBase32) {
+      setTotp();
+    }
+  }, [buildTOTPAuthURL, secretBase32]);
+
   const onSubmit = async ({ code }) => {
-    await enableTOTP({ code });
+    await enableTOTP({ secretBase32, code });
   };
   const form = useForm({
     submit: onSubmit,
@@ -46,34 +65,56 @@ const EnableTwoFactorAuthForm = () => {
           })}
         </h3>
       </div>
-      <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
-        <Form form={form}>
-          <div className="relative max-w-full p-3 space-y-6 sm:p-6">
-            <TextField
-              label={formatMessage({
-                id: 'totp_code',
-                defaultMessage: 'TOTP code',
-              })}
-              placeholder={formatMessage({
-                id: 'totp_code',
-                defaultMessage: 'TOTP code',
-              })}
-              name="code"
-              id="code"
-              required
-              className="mb-4 text-sm"
-            />
-          </div>
-          <FormErrors />
-          <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
-            <SubmitButton
-              label={formatMessage({
-                id: 'enable_totp',
-                defaultMessage: 'Enable TOTP',
-              })}
-            />
-          </div>
-        </Form>
+      <div className="w-full border-b  border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
+        <div className="flex align-middle ">
+          <Toggle
+            onToggle={() => setEnableToTp(!enableToTp)}
+            toggleText={formatMessage({
+              id: 'enable_totp',
+              defaultMessage: 'Enable TOTP',
+            })}
+            className="ml-2 my-3"
+            toggleKey="totp"
+            active={enableToTp}
+          />
+        </div>
+        {enableToTp && (
+          <Form form={form}>
+            <div className="relative max-w-full p-3 sm:flex justify-between space-y-6 sm:p-6">
+              <QRCode
+                style={{ width: 128, margin: 'auto' }}
+                value={secretBase32}
+                bgColor="#FFFFFF"
+                fgColor="#000000"
+                level="Q"
+              />
+
+              <TextField
+                label={formatMessage({
+                  id: 'totp_code',
+                  defaultMessage: 'TOTP code',
+                })}
+                placeholder={formatMessage({
+                  id: 'totp_code',
+                  defaultMessage: 'TOTP code',
+                })}
+                name="code"
+                id="code"
+                required
+                className="mb-4 text-sm sm:w-1/2"
+              />
+            </div>
+            <FormErrors />
+            <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+              <SubmitButton
+                label={formatMessage({
+                  id: 'enable',
+                  defaultMessage: 'Enable',
+                })}
+              />
+            </div>
+          </Form>
+        )}
       </div>
     </div>
   );

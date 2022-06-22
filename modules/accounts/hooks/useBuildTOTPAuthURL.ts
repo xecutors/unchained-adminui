@@ -12,7 +12,8 @@ const useBuildTOTPAuthURL = () => {
   );
 
   const buildTOTPAuthURL = async () => {
-    return buildSecretTOTPAuthURLMutation();
+    const { data } = await buildSecretTOTPAuthURLMutation();
+    return data?.buildSecretTOTPAuthURL;
   };
 
   return {

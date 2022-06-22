@@ -18,6 +18,9 @@
   "activate": {
     "defaultMessage": "Activate"
   },
+  "activate_assortment_description": {
+    "defaultMessage": "Will be visible on search"
+  },
   "activate_button": {
     "defaultMessage": "Activate"
   },
@@ -44,9 +47,6 @@
   },
   "add_assortment": {
     "defaultMessage": "Add Assortment"
-  },
-  "add_assortment_filter": {
-    "defaultMessage": "Add Filters"
   },
   "add_country": {
     "defaultMessage": "Add Country"
@@ -108,12 +108,6 @@
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
   },
-  "assigned_assortment_filters": {
-    "defaultMessage": "Assigned filters"
-  },
-  "assigned_assortment_products": {
-    "defaultMessage": "Assigned products"
-  },
   "assigned_products": {
     "defaultMessage": "Assigned Products"
   },
@@ -147,14 +141,32 @@
   "assortment_filter_deleted": {
     "defaultMessage": "Assortment filter deleted successfully"
   },
+  "assortment_filter_form_description": {
+    "defaultMessage": "<ul> <li>Assign filters that will be applied for the assortment </li> </ul>"
+  },
+  "assortment_filter_list_description": {
+    "defaultMessage": "<ul> <li>All filters that are applied when searching for this assortment </li> <li> Drag and drop list items to sort filters order </li> </ul>"
+  },
+  "assortment_filters_form_header": {
+    "defaultMessage": "Filters"
+  },
+  "assortment_filters_header": {
+    "defaultMessage": "Assortment filters"
+  },
   "assortment_link": {
-    "defaultMessage": "Link {id} deleted successfully"
+    "defaultMessage": "Link deleted successfully"
   },
-  "assortment_links": {
-    "defaultMessage": "Links"
+  "assortment_link_form_description": {
+    "defaultMessage": "<ul> <li>Assign assortment that are direct child of this assortment </li> </ul>"
   },
-  "assortment_links_list": {
-    "defaultMessage": "Linked assortments"
+  "assortment_link_form_header": {
+    "defaultMessage": "Child assortments"
+  },
+  "assortment_link_list_description": {
+    "defaultMessage": "<ul> <li>All assortments found on the assortment relation tree</li> <li> Drag and drop list items to sort assortment links </li> <li> Parents are assortments found in the ancestors tree on any level </li> <li> Descendants are assortments found in the children tree on any level </li> </ul>"
+  },
+  "assortment_links_header": {
+    "defaultMessage": "Assortment links"
   },
   "assortment_made_base": {
     "defaultMessage": "Assortment changed to base"
@@ -171,8 +183,20 @@
   "assortment_media_upload": {
     "defaultMessage": "Media uploaded successfully"
   },
-  "assortment_product": {
-    "defaultMessage": "Product"
+  "assortment_product_form_description": {
+    "defaultMessage": "<ul> <li>Products that belong to this assortment </li> </ul>"
+  },
+  "assortment_product_form_header": {
+    "defaultMessage": "Products"
+  },
+  "assortment_product_list_description": {
+    "defaultMessage": "<ul> <li>All products that belong to this assortment</li> <li> Drag and drop list items to sort products order </li> </ul>"
+  },
+  "assortment_products_header": {
+    "defaultMessage": "Assortment product"
+  },
+  "assortment_text_form_description": {
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
   },
   "assortments": {
     "defaultMessage": "Assortments"
@@ -222,6 +246,9 @@
   "bundle_item_deleted": {
     "defaultMessage": "Bundle item deleted successfully"
   },
+  "bundle_product_definition": {
+    "defaultMessage": "<h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example. </p>"
+  },
   "bundles": {
     "defaultMessage": "Bundles"
   },
@@ -260,6 +287,9 @@
   },
   "company": {
     "defaultMessage": "Company"
+  },
+  "configurable_product_definition": {
+    "defaultMessage": "<h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>"
   },
   "configuration": {
     "defaultMessage": "Configuration"
@@ -343,6 +373,9 @@
   "currency_added": {
     "defaultMessage": "Currency added successfully!"
   },
+  "currency_contract_address_description": {
+    "defaultMessage": "Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network."
+  },
   "currency_deleted": {
     "defaultMessage": "Currency deleted successfully"
   },
@@ -372,6 +405,9 @@
   },
   "deactivate": {
     "defaultMessage": "Deactivate"
+  },
+  "deactivate_assortment_description": {
+    "defaultMessage": "Will not be visible on search"
   },
   "deactivated": {
     "defaultMessage": "Deactivated"
@@ -529,9 +565,6 @@
   "deliveryProviders_deleted": {
     "defaultMessage": "DeliveryProviders deleted successfully"
   },
-  "delivery_fee": {
-    "defaultMessage": "Fee"
-  },
   "delivery_provider": {
     "defaultMessage": "Delivery Provider"
   },
@@ -589,6 +622,9 @@
   "draft": {
     "defaultMessage": "Draft"
   },
+  "draft_product_description": {
+    "defaultMessage": "Product will not be discoverable and can not be ordered"
+  },
   "drop_area_empty": {
     "defaultMessage": "Destination is empty"
   },
@@ -624,6 +660,9 @@
   },
   "email_verified_successfully": {
     "defaultMessage": "Email Verified successfully"
+  },
+  "enable": {
+    "defaultMessage": "Enable"
   },
   "enable_2fa_auth_header": {
     "defaultMessage": "Enable 2FA authentication"
@@ -739,6 +778,9 @@
   "filter_reorder": {
     "defaultMessage": "Filter reorder successfully"
   },
+  "filter_text_form_description": {
+    "defaultMessage": "<ul> <li>You can change the language of filter using the dropdown found at top right corner</li> </ul>"
+  },
   "filter_type": {
     "defaultMessage": "Filter Type"
   },
@@ -801,9 +843,6 @@
   },
   "height": {
     "defaultMessage": "Height (Millimeter)"
-  },
-  "here_comes_an_explainer": {
-    "defaultMessage": "Here comes an explainer"
   },
   "home": {
     "defaultMessage": "Home"
@@ -886,6 +925,9 @@
   },
   "leaf": {
     "defaultMessage": "Leaf"
+  },
+  "leaf_assortment_description": {
+    "defaultMessage": "Can be assigned as a child of another assortment"
   },
   "length_millimeter": {
     "defaultMessage": "Length (Millimeter)"
@@ -1095,6 +1137,9 @@
   "order_paid": {
     "defaultMessage": "Order payed successfully"
   },
+  "order_payment_fees": {
+    "defaultMessage": "Fees"
+  },
   "order_reject_success": {
     "defaultMessage": "Order rejected successfully"
   },
@@ -1143,9 +1188,6 @@
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
   },
-  "payment_fee": {
-    "defaultMessage": "Fee"
-  },
   "payment_provider": {
     "defaultMessage": "Payment provider"
   },
@@ -1172,6 +1214,9 @@
   },
   "photo_updated": {
     "defaultMessage": "Profile Photo updated successfully!"
+  },
+  "plan_product_definition": {
+    "defaultMessage": "<h3>Plan</h3> <p>Plan product is use when you have a product that is offered per subscription base. Since for this type of product the payment is usually recurring, you can adjust the interval of payment calculation. </p>"
   },
   "postal_code": {
     "defaultMessage": "Postal/ZIP code"
@@ -1230,6 +1275,15 @@
   "product_reorder": {
     "defaultMessage": "Product reorder successfully"
   },
+  "product_subscription_form_description": {
+    "defaultMessage": "<ul><li> Information that will be used to calculate price of a subscription based product </li> <li>The price specified in commerce section will be used when calculating fees on each interval. </li> <li>Price will not be included for the specified trial period </li> </ul>"
+  },
+  "product_supply_form_description": {
+    "defaultMessage": "<ul><li> Information that will be used to identify dimensions of a product </li> </ul>"
+  },
+  "product_text_form_description": {
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+  },
   "product_title": {
     "defaultMessage": "Product"
   },
@@ -1244,6 +1298,9 @@
   },
   "product_variation_option_deleted": {
     "defaultMessage": "Variation option deleted successfully"
+  },
+  "product_warehousing_form_description": {
+    "defaultMessage": "<ul><li> Information regarding product storage </li> </ul>"
   },
   "products": {
     "defaultMessage": "Products"
@@ -1265,6 +1322,9 @@
   },
   "publish": {
     "defaultMessage": "Publish"
+  },
+  "publish_product_description": {
+    "defaultMessage": "Product will be discoverable and can be ordered"
   },
   "published": {
     "defaultMessage": "Published"
@@ -1380,6 +1440,9 @@
   "root_assortment": {
     "defaultMessage": "Root"
   },
+  "root_assortment_description": {
+    "defaultMessage": "Can not be assigned as a child of another assortment"
+  },
   "root_node": {
     "defaultMessage": "Root node"
   },
@@ -1437,6 +1500,9 @@
   "send_verification_mail": {
     "defaultMessage": "Send verification mail"
   },
+  "sequence": {
+    "defaultMessage": "Sequence"
+  },
   "shipping": {
     "defaultMessage": "Shipping"
   },
@@ -1460,6 +1526,9 @@
   },
   "sign_up_header": {
     "defaultMessage": "Create new account"
+  },
+  "simple_product_definition": {
+    "defaultMessage": "<h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
   },
   "sku": {
     "defaultMessage": "SKU"
@@ -1488,6 +1557,9 @@
   },
   "status": {
     "defaultMessage": "Status"
+  },
+  "subscription": {
+    "defaultMessage": "Subscription"
   },
   "subscription_message": {
     "defaultMessage": "Subscription"

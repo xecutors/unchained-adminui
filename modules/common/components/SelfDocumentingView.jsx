@@ -6,6 +6,7 @@ const SelfDocumentingView = ({
   mainContent,
   sideComponents,
   className,
+  children,
 }) => {
   return (
     <div
@@ -25,7 +26,9 @@ const SelfDocumentingView = ({
           {sideComponents}
         </div>
       </div>
-      <div className="mt-5 md:col-span-2 md:mt-0">{mainContent}</div>
+      <div className="mt-5 md:col-span-2 md:mt-0">
+        {children || mainContent}
+      </div>
     </div>
   );
 };

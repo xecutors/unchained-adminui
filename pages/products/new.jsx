@@ -36,7 +36,7 @@ const AddProduct = () => {
               defaultMessage: 'Product type',
             })}
           </h3>
-          <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+          <div className="max-w-2xl text-sm text-slate-500 dark:text-white">
             <FormattedMessage
               id="simple_product_definition"
               defaultMessage=" <h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
@@ -71,7 +71,7 @@ const AddProduct = () => {
                 p: (chunks) => <p>{chunks}</p>,
               }}
             />
-          </p>
+          </div>
         </div>
 
         <div className="lg:col-span-2">

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import useAuth from '../../modules/Auth/useAuth';
@@ -17,14 +18,16 @@ import useWarehousingProviders from '../../modules/warehousing-providers/hooks/u
 import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
 
 const WarehousingProviders = () => {
-  const [type, setType] = useState(null);
   const { formatMessage } = useIntl();
-
-  const { warehousingProviders, loading } = useWarehousingProviders({ type });
+  const router = useRouter();
+  const { warehousingProviders, loading } = useWarehousingProviders({
+    type: router.query?.type,
+  });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
   const { setModal } = useModal();
   const { hasRole } = useAuth();
+
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
     await setModal(
       <DangerMessage
@@ -70,7 +73,6 @@ const WarehousingProviders = () => {
       >
         <ProvidersFilter
           providerType={warehousingProviderType?.map(({ value }) => value)}
-          onProviderFilterChange={setType}
         />
       </ListHeader>
       {loading ? (

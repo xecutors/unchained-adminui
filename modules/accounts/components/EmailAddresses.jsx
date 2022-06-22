@@ -89,79 +89,78 @@ const EmailAddresses = ({
         id: 'email_addresses',
         defaultMessage: 'Email addresses',
       })}
-      mainContent={
-        <div
-          className={classNames(
-            'rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:border-2 dark:bg-slate-600',
-            emailBodyContainer,
-          )}
-        >
-          <ul className="-my-5 divide-y divide-slate-200">
-            {(emails || []).map(({ address, verified }) => (
-              <li className="py-4" key={address}>
-                <div className="flex flex-wrap items-center justify-between">
-                  <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
-                    <div className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                      {address}
-                    </div>
-                    <ActiveInActive isActive={verified} />
+    >
+      <div
+        className={classNames(
+          'rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:border-2 dark:bg-slate-600',
+          emailBodyContainer,
+        )}
+      >
+        <ul className="-my-5 divide-y divide-slate-200">
+          {(emails || []).map(({ address, verified }) => (
+            <li className="py-4" key={address}>
+              <div className="flex flex-wrap items-center justify-between">
+                <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
+                  <div className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                    {address}
                   </div>
-                  <div className="my-1 flex items-center cursor-pointer">
-                    {enableVerification && !verified && (
-                      <a
-                        onClick={async () => {
-                          await onSendVerification({ email: address });
-                        }}
-                        className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                      >
-                        {formatMessage({
-                          id: 'send_verification_mail',
-                          defaultMessage: 'Send verification mail',
-                        })}
-                      </a>
-                    )}
-                    <a
-                      onClick={() => onRemoveEmail({ email: address, userId })}
-                      className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
-                    >
-                      <DeleteButton />
-                    </a>
-                  </div>
+                  <ActiveInActive isActive={verified} />
                 </div>
-              </li>
-            ))}
-          </ul>
-          <Form form={form}>
-            <div className="mt-4 border-t">
-              <div className="items-between mt-4 flex space-x-4">
-                <TextField
-                  className="mt-0"
-                  name="email"
-                  required
-                  placeholder={formatMessage({
-                    id: 'email',
-                    defaultMessage: 'Email',
-                  })}
+                <div className="my-1 flex items-center cursor-pointer">
+                  {enableVerification && !verified && (
+                    <a
+                      onClick={async () => {
+                        await onSendVerification({ email: address });
+                      }}
+                      className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    >
+                      {formatMessage({
+                        id: 'send_verification_mail',
+                        defaultMessage: 'Send verification mail',
+                      })}
+                    </a>
+                  )}
+                  <a
+                    onClick={() => onRemoveEmail({ email: address, userId })}
+                    className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
+                  >
+                    <DeleteButton />
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <Form form={form}>
+          <div className="mt-4 border-t">
+            <div className="items-between mt-4 flex space-x-4">
+              <TextField
+                className="mt-0"
+                name="email"
+                required
+                placeholder={formatMessage({
+                  id: 'email',
+                  defaultMessage: 'Email',
+                })}
+                label={formatMessage({
+                  id: 'email',
+                  defaultMessage: 'Email',
+                })}
+              />
+              <span className="flex-shrink-0 flex items-end">
+                <SubmitButton
+                  className="py-2.5"
                   label={formatMessage({
-                    id: 'email',
-                    defaultMessage: 'Email',
+                    id: 'add_email',
+                    defaultMessage: 'Add email',
                   })}
                 />
-                <span className="flex-shrink-0 flex items-end">
-                  <SubmitButton
-                    className="py-2.5"
-                    label={formatMessage({
-                      id: 'add_email',
-                      defaultMessage: 'Add email',
-                    })}
-                  />
-                </span>
-              </div>
+              </span>
             </div>
-          </Form>
-        </div>
-      }
-    />
+          </div>
+        </Form>
+      </div>
+    </SelfDocumentingView>
   );
 };
 

@@ -27,9 +27,6 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
         id: 'filer_options',
         defaultMessage: 'Filter options',
       })}
-      documentation="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco"
       sideComponents={
         <button
           type="button"
@@ -50,16 +47,15 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco"
           })}
         </button>
       }
-      mainContent={
-        <div className="mt-8 w-full border-slate-200 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-600">
-          <FilterOptionsList
-            filterId={filterId}
-            options={filterOptions}
-            selectedLocale={selectedLocale}
-          />
-        </div>
-      }
-    />
+    >
+      <div className="mt-8 w-full border-slate-200 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-600">
+        <FilterOptionsList
+          filterId={filterId}
+          options={filterOptions}
+          selectedLocale={selectedLocale}
+        />
+      </div>
+    </SelfDocumentingView>
   );
 };
 

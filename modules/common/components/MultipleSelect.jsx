@@ -50,8 +50,8 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
             >
               <option value="">
                 {formatMessage({
-                  id: 'work_type',
-                  defaultMessage: 'Work type',
+                  id: 'type',
+                  defaultMessage: 'Type',
                 })}
               </option>
               {options.map((option) => (

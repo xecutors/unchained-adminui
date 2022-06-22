@@ -22,14 +22,25 @@ const AddCurrency = () => {
   return (
     <>
       <BreadCrumbs />
-      <div className="mx-auto sm:max-w-2xl">
-        <PageHeader
-          headerText={formatMessage({
-            id: 'new_currency_header',
-            defaultMessage: 'New currency',
-          })}
-        />
-        <div className="mx-auto mt-6 sm:max-w-xl">
+
+      <PageHeader
+        headerText={formatMessage({
+          id: 'new_currency_header',
+          defaultMessage: 'New currency',
+        })}
+      />
+      <div className="mt-6 lg:grid lg:grid-cols-3">
+        <div className="lg:col-span-1 space-y-2">
+          <div className="max-w-2xl text-sm text-slate-500 dark:text-white">
+            {formatMessage({
+              id: 'currency_contract_address_description',
+              defaultMessage:
+                'Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network. ',
+            })}
+          </div>
+        </div>
+
+        <div className="lg:col-span-2">
           <FormWrapper>
             <CurrencyForm
               onSubmit={onSubmit}

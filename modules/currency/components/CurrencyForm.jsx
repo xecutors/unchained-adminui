@@ -45,6 +45,7 @@ const CurrencyForm = ({
     initialValues: {
       isoCode: '',
       contractAddress: '',
+      isActive: false,
       ...defaultValue,
     },
   });
