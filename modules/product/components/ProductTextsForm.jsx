@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -79,109 +79,118 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
         defaultMessage: 'Texts',
       })}
       className="mt-2 sm:mt-0"
-      documentation="A Slug is the unique identifying part of a web address, typically at the end of the URL."
-      mainContent={
-        <FormWrapper>
-          <Form form={form}>
-            <div className="relative text-slate-500 dark:text-white px-4 py-5 sm:p-6">
-              <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="slug"
-                    id="slug"
-                    label={formatMessage({
-                      id: 'slug',
-                      defaultMessage: 'Slug',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="title"
-                    id="title"
-                    label={formatMessage({
-                      id: 'title',
-                      defaultMessage: 'Title',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="subtitle"
-                    id="subtitle"
-                    label={formatMessage({
-                      id: 'subtitle',
-                      defaultMessage: 'Subtitle',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="vendor"
-                    id="vendor"
-                    label={formatMessage({
-                      id: 'vendor',
-                      defaultMessage: 'Vendor',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="brand"
-                    id="brand"
-                    label={formatMessage({
-                      id: 'brand',
-                      defaultMessage: 'Brand',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <TextField
-                    name="labels"
-                    id="labels"
-                    label={formatMessage({
-                      id: 'labels',
-                      defaultMessage: 'Labels',
-                    })}
-                    autoComplete="on"
-                    className="text-sm font-medium text-slate-500"
-                  />
-                </div>
-              </div>
-              <div className="col-span-6 mt-6 sm:col-span-3">
-                <RichTextEditorField
-                  name="description"
-                  id="description"
+      documentation={
+        <FormattedMessage
+          id="product_text_form_documentation"
+          defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
+           <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+          values={{
+            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            li: (chunk) => <li>{chunk} </li>,
+          }}
+        />
+      }
+    >
+      <FormWrapper>
+        <Form form={form}>
+          <div className="relative text-slate-500 dark:text-white px-4 py-5 sm:p-6">
+            <div className="grid grid-cols-6 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="slug"
+                  id="slug"
                   label={formatMessage({
-                    id: 'description',
-                    defaultMessage: 'Description',
+                    id: 'slug',
+                    defaultMessage: 'Slug',
                   })}
+                  autoComplete="on"
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="title"
+                  id="title"
+                  label={formatMessage({
+                    id: 'title',
+                    defaultMessage: 'Title',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="subtitle"
+                  id="subtitle"
+                  label={formatMessage({
+                    id: 'subtitle',
+                    defaultMessage: 'Subtitle',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="vendor"
+                  id="vendor"
+                  label={formatMessage({
+                    id: 'vendor',
+                    defaultMessage: 'Vendor',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="brand"
+                  id="brand"
+                  label={formatMessage({
+                    id: 'brand',
+                    defaultMessage: 'Brand',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  name="labels"
+                  id="labels"
+                  label={formatMessage({
+                    id: 'labels',
+                    defaultMessage: 'Labels',
+                  })}
+                  autoComplete="on"
+                  className="text-sm font-medium text-slate-500"
                 />
               </div>
             </div>
-            <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
-              <SubmitButton
-                hidden={!hasRole(ACTION_ROLES.products.updateTexts)}
+            <div className="col-span-6 mt-6 sm:col-span-3">
+              <RichTextEditorField
+                name="description"
+                id="description"
                 label={formatMessage({
-                  id: 'save',
-                  defaultMessage: 'Save',
+                  id: 'description',
+                  defaultMessage: 'Description',
                 })}
               />
             </div>
-          </Form>
-        </FormWrapper>
-      }
-    />
+          </div>
+          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.products.updateTexts)}
+              label={formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+            />
+          </div>
+        </Form>
+      </FormWrapper>
+    </SelfDocumentingView>
   );
 };
 

@@ -61,17 +61,16 @@ const AccountView = ({
           id: 'tags',
           defaultMessage: 'Tags',
         })}
-        mainContent={
-          <div className="my-2 rounded-md px-4 py-5 shadow bg-white dark:border-2 dark:bg-slate-600 sm:p-6">
-            <UserTagsView
-              tags={tags}
-              userId={_id}
-              tagButtonClasses="rounded-md"
-              tagInputClasses="mt-2"
-            />
-          </div>
-        }
-      />
+      >
+        <div className="my-2 rounded-md px-4 py-5 shadow bg-white dark:border-2 dark:bg-slate-600 sm:p-6">
+          <UserTagsView
+            tags={tags}
+            userId={_id}
+            tagButtonClasses="rounded-md"
+            tagInputClasses="mt-2"
+          />
+        </div>
+      </SelfDocumentingView>
 
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">

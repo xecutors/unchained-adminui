@@ -592,6 +592,9 @@
   "draft": {
     "defaultMessage": "Draft"
   },
+  "draft_product_description": {
+    "defaultMessage": "Product will not be discoverable and can not be ordered"
+  },
   "drop_area_empty": {
     "defaultMessage": "Destination is empty"
   },
@@ -1236,6 +1239,15 @@
   "product_reorder": {
     "defaultMessage": "Product reorder successfully"
   },
+  "product_subscription_form_documentation": {
+    "defaultMessage": "<ul><li> Information that will be used to calculate price of a subscription based product </li> <li>The price specified in commerce section will be used when calculating fees on each interval. </li> <li>Price will not be included for the specified trial period </li> </ul>"
+  },
+  "product_supply_form_documentation": {
+    "defaultMessage": "<ul><li> Information that will be used to identify dimensions of a product </li> </ul>"
+  },
+  "product_text_form_documentation": {
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+  },
   "product_title": {
     "defaultMessage": "Product"
   },
@@ -1250,6 +1262,9 @@
   },
   "product_variation_option_deleted": {
     "defaultMessage": "Variation option deleted successfully"
+  },
+  "product_warehousing_form_documentation": {
+    "defaultMessage": "<ul><li> Information regarding product storage </li> </ul>"
   },
   "products": {
     "defaultMessage": "Products"
@@ -1271,6 +1286,9 @@
   },
   "publish": {
     "defaultMessage": "Publish"
+  },
+  "publish_product_description": {
+    "defaultMessage": "Product will be discoverable and can be ordered"
   },
   "published": {
     "defaultMessage": "Published"
@@ -1500,6 +1518,9 @@
   },
   "status": {
     "defaultMessage": "Status"
+  },
+  "subscription": {
+    "defaultMessage": "Subscription"
   },
   "subscription_message": {
     "defaultMessage": "Subscription"
