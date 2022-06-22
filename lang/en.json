@@ -18,6 +18,9 @@
   "activate": {
     "defaultMessage": "Activate"
   },
+  "activate_assortment_description": {
+    "defaultMessage": "Will be visible on search"
+  },
   "activate_button": {
     "defaultMessage": "Activate"
   },
@@ -44,9 +47,6 @@
   },
   "add_assortment": {
     "defaultMessage": "Add Assortment"
-  },
-  "add_assortment_filter": {
-    "defaultMessage": "Add Filters"
   },
   "add_country": {
     "defaultMessage": "Add Country"
@@ -108,12 +108,6 @@
   "are_you_sure": {
     "defaultMessage": "Are you sure?"
   },
-  "assigned_assortment_filters": {
-    "defaultMessage": "Assigned filters"
-  },
-  "assigned_assortment_products": {
-    "defaultMessage": "Assigned products"
-  },
   "assigned_products": {
     "defaultMessage": "Assigned Products"
   },
@@ -147,14 +141,32 @@
   "assortment_filter_deleted": {
     "defaultMessage": "Assortment filter deleted successfully"
   },
+  "assortment_filter_form_description": {
+    "defaultMessage": "<ul> <li>Assign filters that will be applied for the assortment </li> </ul>"
+  },
+  "assortment_filter_list_description": {
+    "defaultMessage": "<ul> <li>All filters that are applied when searching for this assortment </li> <li> Drag and drop list items to sort filters order </li> </ul>"
+  },
+  "assortment_filters_form_header": {
+    "defaultMessage": "Filters"
+  },
+  "assortment_filters_header": {
+    "defaultMessage": "Assortment filters"
+  },
   "assortment_link": {
     "defaultMessage": "Link {id} deleted successfully"
   },
-  "assortment_links": {
-    "defaultMessage": "Links"
+  "assortment_link_form_description": {
+    "defaultMessage": "<ul> <li>Assign assortment that are direct child of this assortment </li> </ul>"
   },
-  "assortment_links_list": {
-    "defaultMessage": "Linked assortments"
+  "assortment_link_form_header": {
+    "defaultMessage": "Child assortments"
+  },
+  "assortment_link_list_description": {
+    "defaultMessage": "<ul> <li>All assortments found on the assortment relation tree</li> <li> Drag and drop list items to sort assortment links </li> <li> Parents are assortments found in the ancestors tree on any level </li> <li> Descendants are assortments found in the children tree on any level </li> </ul>"
+  },
+  "assortment_links_header": {
+    "defaultMessage": "Assortment links"
   },
   "assortment_made_base": {
     "defaultMessage": "Assortment changed to base"
@@ -171,8 +183,20 @@
   "assortment_media_upload": {
     "defaultMessage": "Media uploaded successfully"
   },
-  "assortment_product": {
-    "defaultMessage": "Product"
+  "assortment_product_form_description": {
+    "defaultMessage": "<ul> <li>Products that belong to this assortment </li> </ul>"
+  },
+  "assortment_product_form_header": {
+    "defaultMessage": "Products"
+  },
+  "assortment_product_list_description": {
+    "defaultMessage": "<ul> <li>All products that belong to this assortment</li> <li> Drag and drop list items to sort products order </li> </ul>"
+  },
+  "assortment_products_header": {
+    "defaultMessage": "Assortment product"
+  },
+  "assortment_text_form_description": {
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
   },
   "assortments": {
     "defaultMessage": "Assortments"
@@ -378,6 +402,9 @@
   },
   "deactivate": {
     "defaultMessage": "Deactivate"
+  },
+  "deactivate_assortment_description": {
+    "defaultMessage": "Will not be visible on search"
   },
   "deactivated": {
     "defaultMessage": "Deactivated"
@@ -748,6 +775,9 @@
   "filter_reorder": {
     "defaultMessage": "Filter reorder successfully"
   },
+  "filter_text_form_description": {
+    "defaultMessage": "<ul> <li>You can change the language of filter using the dropdown found at top right corner</li> </ul>"
+  },
   "filter_type": {
     "defaultMessage": "Filter Type"
   },
@@ -892,6 +922,9 @@
   },
   "leaf": {
     "defaultMessage": "Leaf"
+  },
+  "leaf_assortment_description": {
+    "defaultMessage": "Can be assigned as a child of another assortment"
   },
   "length_millimeter": {
     "defaultMessage": "Length (Millimeter)"
@@ -1403,6 +1436,9 @@
   },
   "root_assortment": {
     "defaultMessage": "Root"
+  },
+  "root_assortment_description": {
+    "defaultMessage": "Can not be assigned as a child of another assortment"
   },
   "root_node": {
     "defaultMessage": "Root node"

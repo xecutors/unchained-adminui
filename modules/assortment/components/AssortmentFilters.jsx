@@ -107,7 +107,7 @@ const AssortmentFilters = ({ assortmentId }) => {
         className="mt-2 sm:mt-0"
         documentation={
           <FormattedMessage
-            id="assortment_link_form_description"
+            id="assortment_filter_form_description"
             defaultMessage="<ul> <li>Assign filters that will be applied for the assortment </li>
       </ul>"
             values={{
