@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
+import { VariableIcon } from '@heroicons/react/solid';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import Pagination from '../../modules/common/components/Pagination';
@@ -10,6 +11,8 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EventList from '../../modules/event/components/EventList';
 import useEvents from '../../modules/event/hooks/useEvents';
 import useEventTypes from '../../modules/event/hooks/useEventTypes';
+import MultipleSelect from '../../modules/common/components/MultipleSelect';
+import { extractQuery } from '../../modules/common/utils/normalizeFilterKeys';
 
 const Events = () => {
   const { formatMessage } = useIntl();
@@ -35,27 +38,27 @@ const Events = () => {
       });
   };
 
-  const changeType = (selectedType) => {
-    const { type: newType, ...otherParams } = query;
-
-    if (selectedType) {
+  const typeChangeHandler = (selectedTypes) => {
+    const { types, ...rest } = query;
+    if (selectedTypes?.length) {
       push({
         query: {
-          ...otherParams,
-          type: selectedType,
+          ...rest,
+          types: selectedTypes?.join(','),
         },
       });
-    } else
+    } else {
       push({
         query: {
-          ...otherParams,
+          ...rest,
         },
       });
+    }
   };
 
   const { events, eventsCount, loading } = useEvents({
     limit,
-    type: query?.type,
+    types: query?.types?.split(','),
     offset,
     queryString,
   });
@@ -79,20 +82,33 @@ const Events = () => {
             defaultValue={queryString}
           />
         </div>
-        <select
-          onChange={(e) => changeType(e.target.value)}
-          className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 dark:bg-slate-400"
-        >
-          <option value="">
-            {formatMessage({
-              id: 'select_type',
-              defaultMessage: 'Select type',
-            })}
-          </option>
-          {eventsType?.map((type) => (
-            <option value={type.value}>{type.label} </option>
-          ))}
-        </select>
+        <div className="mt-4 flex space-x-2 sm:mt-1 md:mt-5 lg:mt-0">
+          <VariableIcon
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          />
+          <p className="text-xl font-medium leading-5 text-slate-800 dark:text-white lg:leading-6 ">
+            {formatMessage({ id: 'type', defaultMessage: 'Type' })}
+          </p>
+        </div>
+        <div>
+          <>
+            <div className="mt-4">
+              <MultipleSelect
+                className="text-sm text-slate-900 dark:text-white"
+                label={formatMessage({
+                  id: 'select_type',
+                  defaultMessage: 'Select type',
+                })}
+                tagList={extractQuery(query?.types)}
+                onChange={typeChangeHandler}
+                options={eventsType}
+              />
+            </div>
+          </>
+        </div>
       </div>
 
       {loading ? (
