@@ -154,7 +154,7 @@
     "defaultMessage": "Assortment filters"
   },
   "assortment_link": {
-    "defaultMessage": "Link {id} deleted successfully"
+    "defaultMessage": "Link deleted successfully"
   },
   "assortment_link_form_description": {
     "defaultMessage": "<ul> <li>Assign assortment that are direct child of this assortment </li> </ul>"
@@ -372,6 +372,9 @@
   },
   "currency_added": {
     "defaultMessage": "Currency added successfully!"
+  },
+  "currency_contract_address_description": {
+    "defaultMessage": "Contract address is optional and represents address of the 40 character long deployed token contract on the ethereum network."
   },
   "currency_deleted": {
     "defaultMessage": "Currency deleted successfully"

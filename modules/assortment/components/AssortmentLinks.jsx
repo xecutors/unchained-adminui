@@ -32,15 +32,10 @@ const AssortmentLinks = ({ assortmentId }) => {
           setModal('');
           await removeAssortmentLink({ assortmentLinkId });
           toast.success(
-            formatMessage(
-              {
-                id: 'assortment_link',
-                defaultMessage: 'Link {id} deleted successfully',
-              },
-              {
-                id: assortmentLinkId,
-              },
-            ),
+            formatMessage({
+              id: 'assortment_link',
+              defaultMessage: 'Link deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
