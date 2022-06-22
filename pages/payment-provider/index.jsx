@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
 import usePaymentProviders from '../../modules/payment-providers/hooks/usePaymentProviders';
 import useRemovePaymentProvider from '../../modules/payment-providers/hooks/useRemovePaymentProvider';
 import ProvidersList from '../../modules/common/components/ProvidersList';
@@ -17,8 +17,10 @@ import useAuth from '../../modules/Auth/useAuth';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
-  const [type, setType] = useState(null);
-  const { paymentProviders, loading } = usePaymentProviders({ type });
+  const router = useRouter();
+  const { paymentProviders, loading } = usePaymentProviders({
+    type: router.query?.type,
+  });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
   const { paymentProviderType } = usePaymentProviderTypes();
@@ -67,7 +69,6 @@ const PaymentProviders = () => {
       >
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}
-          onProviderFilterChange={setType}
         />
       </ListHeader>
       {loading ? (
