@@ -25,7 +25,7 @@ const WorkQueueView = () => {
       end: query?.end?.replaceAll('-', '/'),
     },
     status: query?.status?.split(','),
-    selectTypes: query?.types?.split(','),
+    types: query?.types?.split(','),
   };
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
