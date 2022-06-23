@@ -17,7 +17,7 @@ const useUpdateAssortment = () => {
   const updateAssortment = async ({ isRoot, assortmentId, tags, sequence }) => {
     return updateAssortmentMutation({
       variables: { assortment: { isRoot, tags, sequence }, assortmentId },
-      refetchQueries: ['Assortment'],
+      refetchQueries: ['Assortment', 'Assortments'],
     });
   };
 
