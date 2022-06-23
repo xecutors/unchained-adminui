@@ -49,7 +49,7 @@ export const keyMappings: any = {
         },
       },
       WorkQueue: {
-        keyArgs: ['limit', 'status', 'selectTypes', 'created', 'queryString'],
+        keyArgs: ['limit', 'status', 'types', 'created', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },

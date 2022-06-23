@@ -11,7 +11,7 @@ const useDailySyncs = ({
     variables: {
       range: { start, end },
       status: ['SUCCESS', 'FAILED'],
-      selectTypes: ['PUBLICARE_DAILY_ANALYTICS'],
+      types: ['PUBLICARE_DAILY_ANALYTICS'],
       limit,
     },
   });
