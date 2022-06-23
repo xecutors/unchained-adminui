@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -74,76 +75,94 @@ const SupplyForm = ({ productId }) => {
     if (Object.keys(dimensions).length) form.formik.setValues(dimensions);
   }, [dimensions]);
   return (
-    <FormWrapper>
-      <Form form={form}>
-        <div className="relative px-4 py-5 sm:p-6">
-          <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6 sm:col-span-3">
-              <TextField
-                validators={[validateInteger()]}
-                type="number"
-                name="weight"
-                id="weight"
-                label={formatMessage({
-                  id: 'weight_gram',
-                  defaultMessage: 'Weight (Gram)',
-                })}
-                className="text-sm font-medium"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-              <TextField
-                validators={[validateInteger()]}
-                name="length"
-                id="length"
-                type="number"
-                label={formatMessage({
-                  id: 'length_millimeter',
-                  defaultMessage: 'Length (Millimeter)',
-                })}
-                className="text-sm font-medium"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-              <TextField
-                validators={[validateInteger()]}
-                type="number"
-                name="width"
-                id="width "
-                label={formatMessage({
-                  id: 'width',
-                  defaultMessage: 'Width (Millimeter)',
-                })}
-                className="text-sm  font-medium"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-              <TextField
-                validators={[validateInteger()]}
-                name="height"
-                type="number"
-                id="height"
-                label={formatMessage({
-                  id: 'height',
-                  defaultMessage: 'Height (Millimeter)',
-                })}
-                className="text-sm  font-medium"
-              />
+    <SelfDocumentingView
+      documentationLabel={formatMessage({
+        id: 'supply',
+        defaultMessage: 'Supply',
+      })}
+      className="mt-2 sm:mt-0"
+      documentation={
+        <FormattedMessage
+          id="product_supply_form_description"
+          defaultMessage="<ul><li> Information that will be used to identify dimensions of a product  </li> </ul>"
+          values={{
+            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            li: (chunk) => <li>{chunk} </li>,
+          }}
+        />
+      }
+    >
+      <FormWrapper>
+        <Form form={form}>
+          <div className="relative px-4 py-5 sm:p-6">
+            <div className="grid grid-cols-6 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  validators={[validateInteger()]}
+                  type="number"
+                  name="weight"
+                  id="weight"
+                  label={formatMessage({
+                    id: 'weight_gram',
+                    defaultMessage: 'Weight (Gram)',
+                  })}
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  validators={[validateInteger()]}
+                  name="length"
+                  id="length"
+                  type="number"
+                  label={formatMessage({
+                    id: 'length_millimeter',
+                    defaultMessage: 'Length (Millimeter)',
+                  })}
+                  className="text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  validators={[validateInteger()]}
+                  type="number"
+                  name="width"
+                  id="width "
+                  label={formatMessage({
+                    id: 'width',
+                    defaultMessage: 'Width (Millimeter)',
+                  })}
+                  className="text-sm  font-medium"
+                />
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <TextField
+                  validators={[validateInteger()]}
+                  name="height"
+                  type="number"
+                  id="height"
+                  label={formatMessage({
+                    id: 'height',
+                    defaultMessage: 'Height (Millimeter)',
+                  })}
+                  className="text-sm  font-medium"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
-          <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.products.updateSupply)}
-            label={formatMessage({
-              id: 'save',
-              defaultMessage: 'Save',
-            })}
-            full
-          />
-        </div>
-      </Form>
-    </FormWrapper>
+          <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.products.updateSupply)}
+              label={formatMessage({
+                id: 'save',
+                defaultMessage: 'Save',
+              })}
+              full
+            />
+          </div>
+        </Form>
+      </FormWrapper>
+    </SelfDocumentingView>
   );
 };
 

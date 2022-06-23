@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 
@@ -73,77 +73,86 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
         defaultMessage: 'Texts',
       })}
       className="mt-2 sm:mt-0"
-      documentation="A Slug is the unique identifying part of a web address, typically at the end of the URL."
-      mainContent={
-        <FormWrapper>
-          <Form form={form}>
-            <div className="shadow sm:rounded-md">
-              <div className="grid gap-6 px-4 py-5 sm:p-6">
-                <div className="col-span-12">
-                  <TextField
-                    name="slug"
-                    required
-                    id="slug"
-                    label={formatMessage({
-                      id: 'slug',
-                      defaultMessage: 'Slug',
-                    })}
-                    autoComplete="on"
-                    className="mt-1 w-full text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-12">
-                  <TextField
-                    name="title"
-                    id="title"
-                    label={formatMessage({
-                      id: 'title',
-                      defaultMessage: 'Title',
-                    })}
-                    required
-                    autoComplete="on"
-                    className="mt-1 w-full text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-12">
-                  <TextField
-                    name="subtitle"
-                    id="subtitle"
-                    label={formatMessage({
-                      id: 'subtitle',
-                      defaultMessage: 'Subtitle',
-                    })}
-                    autoComplete="on"
-                    className="mt-1 w-full text-sm font-medium"
-                  />
-                </div>
-                <div className="col-span-12">
-                  <RichTextEditorField
-                    name="description"
-                    id="description"
-                    label={formatMessage({
-                      id: 'description',
-                      defaultMessage: 'Description',
-                    })}
-                  />
-                </div>
+      documentation={
+        <FormattedMessage
+          id="assortment_text_form_description"
+          defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
+         <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+          values={{
+            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            li: (chunk) => <li>{chunk} </li>,
+          }}
+        />
+      }
+    >
+      <FormWrapper>
+        <Form form={form}>
+          <div className="shadow sm:rounded-md">
+            <div className="grid gap-6 px-4 py-5 sm:p-6">
+              <div className="col-span-12">
+                <TextField
+                  name="slug"
+                  required
+                  id="slug"
+                  label={formatMessage({
+                    id: 'slug',
+                    defaultMessage: 'Slug',
+                  })}
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium"
+                />
               </div>
-
-              <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
-                {hasRole(ACTION_ROLES.assortments.updateTexts) && (
-                  <SubmitButton
-                    label={formatMessage({
-                      id: 'save',
-                      defaultMessage: 'Save',
-                    })}
-                  />
-                )}
+              <div className="col-span-12">
+                <TextField
+                  name="title"
+                  id="title"
+                  label={formatMessage({
+                    id: 'title',
+                    defaultMessage: 'Title',
+                  })}
+                  required
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-12">
+                <TextField
+                  name="subtitle"
+                  id="subtitle"
+                  label={formatMessage({
+                    id: 'subtitle',
+                    defaultMessage: 'Subtitle',
+                  })}
+                  autoComplete="on"
+                  className="mt-1 w-full text-sm font-medium"
+                />
+              </div>
+              <div className="col-span-12">
+                <RichTextEditorField
+                  name="description"
+                  id="description"
+                  label={formatMessage({
+                    id: 'description',
+                    defaultMessage: 'Description',
+                  })}
+                />
               </div>
             </div>
-          </Form>
-        </FormWrapper>
-      }
-    />
+
+            <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+              {hasRole(ACTION_ROLES.assortments.updateTexts) && (
+                <SubmitButton
+                  label={formatMessage({
+                    id: 'save',
+                    defaultMessage: 'Save',
+                  })}
+                />
+              )}
+            </div>
+          </div>
+        </Form>
+      </FormWrapper>
+    </SelfDocumentingView>
   );
 };
 

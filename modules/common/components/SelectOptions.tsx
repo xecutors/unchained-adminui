@@ -71,7 +71,7 @@ export default function SelectOptions({
                 </div>
                 <Listbox.Button
                   className={classNames(
-                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none p-1 text-sm font-medium text-white outline-none focus:z-10 focus:outline-none lg:p-2`,
+                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-none focus:z-10 focus:outline-none `,
                     isHover && `bg-${select?.bgColor}-600`,
                   )}
                 >
@@ -148,7 +148,10 @@ export default function SelectOptions({
                       </div>
                       <div
                         className={classNames(
-                          option.id === select.id ? 'text-green-100' : '',
+                          'mt-2',
+                          option.id === select.id
+                            ? 'text-green-100'
+                            : 'text-gray-500',
                           '',
                         )}
                       >

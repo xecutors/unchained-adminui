@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 
@@ -65,48 +65,58 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
         id: 'text',
         defaultMessage: 'Text',
       })}
-      mainContent={
-        <FormWrapper>
-          <Form form={form} className="border-slate-200 pt-2 lg:shadow">
-            <div>
-              <TextField
-                name="title"
-                id="title"
-                label={formatMessage({
-                  id: 'title',
-                  defaultMessage: 'Title',
-                })}
-                autoComplete="on"
-                className="mt-2 px-4 text-sm font-medium"
-              />
-            </div>
-
-            <div>
-              <TextField
-                name="subtitle"
-                id="subtitle"
-                label={formatMessage({
-                  id: 'subtitle',
-                  defaultMessage: 'Subtitle',
-                })}
-                autoComplete="on"
-                className="mt-2 px-4 text-sm font-medium"
-              />
-            </div>
-            <div className="flex">
-              <SubmitButton
-                hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
-                label={formatMessage({
-                  id: 'update_filter',
-                  defaultMessage: 'Update filter',
-                })}
-                className="my-4 ml-auto mr-4"
-              />
-            </div>
-          </Form>
-        </FormWrapper>
+      documentation={
+        <FormattedMessage
+          id="filter_text_form_description"
+          defaultMessage="<ul> <li>You can change the language of filter using the dropdown found at top right corner</li>
+        </ul>"
+          values={{
+            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            li: (chunk) => <li>{chunk} </li>,
+          }}
+        />
       }
-    />
+    >
+      <FormWrapper>
+        <Form form={form} className="border-slate-200 pt-2 lg:shadow">
+          <div>
+            <TextField
+              name="title"
+              id="title"
+              label={formatMessage({
+                id: 'title',
+                defaultMessage: 'Title',
+              })}
+              autoComplete="on"
+              className="mt-2 px-4 text-sm font-medium"
+            />
+          </div>
+
+          <div>
+            <TextField
+              name="subtitle"
+              id="subtitle"
+              label={formatMessage({
+                id: 'subtitle',
+                defaultMessage: 'Subtitle',
+              })}
+              autoComplete="on"
+              className="mt-2 px-4 text-sm font-medium"
+            />
+          </div>
+          <div className="flex">
+            <SubmitButton
+              hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
+              label={formatMessage({
+                id: 'update_filter',
+                defaultMessage: 'Update filter',
+              })}
+              className="my-4 ml-auto mr-4"
+            />
+          </div>
+        </Form>
+      </FormWrapper>
+    </SelfDocumentingView>
   );
 };
 

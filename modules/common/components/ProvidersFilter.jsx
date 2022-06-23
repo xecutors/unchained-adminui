@@ -1,12 +1,37 @@
+import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 const ProvidersFilter = ({ providerType, onProviderFilterChange }) => {
   const { formatMessage } = useIntl();
+
+  const router = useRouter();
+  const setType = (e) => {
+    const type = e.target.value;
+    if (onProviderFilterChange) {
+      onProviderFilterChange(e.target.value);
+      return;
+    }
+
+    const { type: filterType, ...query } = router.query;
+    if (type)
+      router.push({
+        query: {
+          ...query,
+          type,
+        },
+      });
+    else
+      router.push({
+        query: {
+          ...query,
+        },
+      });
+  };
   return (
     <div className="w-100 ml-2 mt-2">
       <div className="relative my-2 flex items-start">
         <select
-          onChange={(e) => onProviderFilterChange(e.target.value || null)}
+          onChange={setType}
           defaultValue={null}
           id="select-type"
           name="select-type"

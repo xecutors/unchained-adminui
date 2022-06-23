@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { DragDropContext } from 'react-beautiful-dnd';
 
@@ -10,6 +10,7 @@ import AssortmentFiltersList from './AssortmentFiltersList';
 import AssortmentFiltersForm from './AssortmentFiltersForm';
 import Loading from '../../common/components/Loading';
 import useReorderAssortmentFilters from '../hooks/useReorderAssortmentFilters';
+import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentFilters = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
@@ -97,55 +98,62 @@ const AssortmentFilters = ({ assortmentId }) => {
   };
 
   return (
-    <div className="mt-5 md:grid md:grid-cols-3 md:gap-6">
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'add_assortment_filter',
-              defaultMessage: 'Add Filters',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-      <div className="md:col-span-2">
+    <>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_filters_form_header',
+          defaultMessage: 'Filters',
+        })}
+        className="mt-2 sm:mt-0"
+        documentation={
+          <FormattedMessage
+            id="assortment_filter_form_description"
+            defaultMessage="<ul> <li>Assign filters that will be applied for the assortment </li>
+      </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
         <AssortmentFiltersForm assortmentId={assortmentId} />
-      </div>
-      <div className="md:col-span-1">
-        <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-            {formatMessage({
-              id: 'assigned_assortment_filters',
-              defaultMessage: 'Assigned filters',
-            })}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco
-          </p>
-        </div>
-      </div>
-      {loading ? (
-        <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2">
-          <Loading />
-        </div>
-      ) : (
-        <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2 bg-white">
-          <DragDropContext onDragEnd={handleDragEnd}>
-            <AssortmentFiltersList
-              filters={assortmentFilters}
-              onRemoveFilter={onRemoveFilter}
-            />
-          </DragDropContext>
-        </div>
-      )}
-    </div>
+      </SelfDocumentingView>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'assortment_filters_header',
+          defaultMessage: 'Assortment filters',
+        })}
+        className="sm:mt-4"
+        documentation={
+          <FormattedMessage
+            id="assortment_filter_list_description"
+            defaultMessage="<ul> <li>All filters that are applied when searching for this assortment </li>
+            <li> Drag and drop list items to sort filters order </li>
+          </ul>"
+            values={{
+              ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+              li: (chunk) => <li>{chunk} </li>,
+            }}
+          />
+        }
+      >
+        {loading ? (
+          <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2">
+            <Loading />
+          </div>
+        ) : (
+          <div className="ml-auto shadow dark:shadow-white w-full md:col-span-2 bg-white">
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <AssortmentFiltersList
+                filters={assortmentFilters}
+                onRemoveFilter={onRemoveFilter}
+              />
+            </DragDropContext>
+          </div>
+        )}
+      </SelfDocumentingView>
+    </>
   );
 };
 

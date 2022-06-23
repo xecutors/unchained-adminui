@@ -55,7 +55,6 @@ const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
     </Droppable>
   ) : (
     <>
-      <h1>hello</h1>
       <NoData
         message={formatMessage({
           id: 'linked_assortment',

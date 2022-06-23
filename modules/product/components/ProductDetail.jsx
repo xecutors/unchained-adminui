@@ -175,7 +175,10 @@ const ProductDetail = ({ product }) => {
         id: 'published',
         defaultMessage: 'Published',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'publish_product_description',
+        defaultMessage: 'Product will be discoverable and can be ordered',
+      }),
       current: status === 'ACTIVE',
       onClick: async () => {
         await publishProduct({ productId: product?._id });
@@ -194,7 +197,11 @@ const ProductDetail = ({ product }) => {
         id: 'draft',
         defaultMessage: 'Draft',
       }),
-      description: '',
+      description: formatMessage({
+        id: 'draft_product_description',
+        defaultMessage:
+          'Product will not be discoverable and can not be ordered',
+      }),
       current: status === 'DRAFT',
       selectedTitle: formatMessage({
         id: 'not_published',

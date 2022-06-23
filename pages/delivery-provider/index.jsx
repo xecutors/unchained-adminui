@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import useAuth from '../../modules/Auth/useAuth';
@@ -17,10 +18,13 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
 const DeliveryProviders = () => {
-  const [type, setType] = useState(null);
+  const router = useRouter();
+
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { deliveryProviders, loading } = useDeliveryProviders({ type });
+  const { deliveryProviders, loading } = useDeliveryProviders({
+    type: router.query?.type,
+  });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
   const { deliveryProviderType } = useDeliveryProviderTypes();
@@ -68,7 +72,6 @@ const DeliveryProviders = () => {
       >
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}
-          onProviderFilterChange={setType}
         />
       </ListHeader>
       {loading ? (
