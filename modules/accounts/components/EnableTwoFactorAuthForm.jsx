@@ -14,7 +14,7 @@ const EnableTwoFactorAuthForm = () => {
   const { enableTOTP } = useEnableTOTP();
   const { formatMessage } = useIntl();
   const [secretBase32, setBase32Secret] = useState();
-  const [enableToTp, setEnableToTp] = useState(false);
+  const [showEnableForm, setEnableFormVisible] = useState(false);
   const { buildTOTPAuthURL } = useBuildTOTPAuthURL();
 
   useEffect(() => {
@@ -23,10 +23,10 @@ const EnableTwoFactorAuthForm = () => {
       setBase32Secret(totpUrl);
     };
 
-    if (!secretBase32) {
+    if (showEnableForm) {
       setTotp();
     }
-  }, [buildTOTPAuthURL, secretBase32]);
+  }, [showEnableForm]);
 
   const onSubmit = async ({ code }) => {
     await enableTOTP({ secretBase32, code });
@@ -68,17 +68,17 @@ const EnableTwoFactorAuthForm = () => {
       <div className="w-full border-b  border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
         <div className="flex align-middle ">
           <Toggle
-            onToggle={() => setEnableToTp(!enableToTp)}
+            onToggle={() => setEnableFormVisible(!showEnableForm)}
             toggleText={formatMessage({
               id: 'enable_totp',
               defaultMessage: 'Enable TOTP',
             })}
             className="ml-2 my-3"
             toggleKey="totp"
-            active={enableToTp}
+            active={showEnableForm}
           />
         </div>
-        {enableToTp && (
+        {showEnableForm && (
           <Form form={form}>
             <div className="relative max-w-full p-3 sm:flex justify-between space-y-6 sm:p-6">
               <QRCode
