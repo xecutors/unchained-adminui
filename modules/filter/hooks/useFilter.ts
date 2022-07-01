@@ -2,9 +2,15 @@ import { useQuery, gql } from '@apollo/client';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FilterQuery = gql`
-  query Filter($filterId: ID) {
+  query Filter($filterId: ID, $forceLocale: String) {
     filter(filterId: $filterId) {
       ...FilterFragment
+      texts {
+        _id
+        title
+        subtitle
+        locale
+      }
     }
   }
   ${FilterFragment}

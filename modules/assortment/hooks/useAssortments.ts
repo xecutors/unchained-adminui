@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
@@ -12,6 +13,7 @@ export const AssortmentsQuery = gql`
     $includeInactive: Boolean
     $includeLeaves: Boolean
     $sort: [SortOptionInput!]
+    $forceLocale: String
   ) {
     assortments(
       queryString: $queryString
@@ -24,6 +26,13 @@ export const AssortmentsQuery = gql`
       sort: $sort
     ) {
       ...AssortmentFragment
+      texts(forceLocale: $forceLocale) {
+        _id
+        slug
+        title
+        subtitle
+        description
+      }
     }
     assortmentsCount(
       tags: $tags
@@ -44,6 +53,8 @@ const useAssortments = ({
   includeInactive = false,
   includeLeaves = false,
 } = {}) => {
+  const { locale } = useIntl();
+
   const { data, loading, error, fetchMore } = useQuery(AssortmentsQuery, {
     variables: {
       queryString,
@@ -54,6 +65,7 @@ const useAssortments = ({
       includeInactive,
       includeLeaves,
       sort: [{ key: 'sequence', value: 'ASC' }],
+      forceLocale: locale,
     },
   });
   const assortments = data?.assortments || [];

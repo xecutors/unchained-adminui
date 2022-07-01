@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { useIntl } from 'react-intl';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FiltersQuery = gql`
@@ -7,6 +8,7 @@ export const FiltersQuery = gql`
     $limit: Int
     $offset: Int
     $includeInactive: Boolean
+    $forceLocale: String
   ) {
     filters(
       queryString: $queryString
@@ -15,6 +17,12 @@ export const FiltersQuery = gql`
       includeInactive: $includeInactive
     ) {
       ...FilterFragment
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        locale
+      }
     }
     filtersCount(includeInactive: $includeInactive)
   }
@@ -27,8 +35,16 @@ const useFilters = ({
   offset = 0,
   includeInactive = false,
 } = {}) => {
+  const { locale } = useIntl();
+
   const { data, loading, error, fetchMore } = useQuery(FiltersQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: {
+      queryString,
+      limit,
+      offset,
+      includeInactive,
+      forceLocale: locale,
+    },
   });
   const filters = data?.filters || [];
   const filtersCount = data?.filtersCount;
