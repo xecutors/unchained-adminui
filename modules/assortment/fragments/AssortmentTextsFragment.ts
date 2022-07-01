@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const AssortmentTextsFragment = gql`
-  fragment AssortmentTextsFragment on AssortmentTexts {
+  fragment AssortmentTextsFragment on AssortmentTexts(forceLocale: $forceLocale) {
     _id
     locale
     slug

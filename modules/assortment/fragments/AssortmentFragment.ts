@@ -7,9 +7,12 @@ const AssortmentFragment = gql`
     created
     updated
     sequence
+<<<<<<< HEAD
     isBase
     isRoot
     tags
+=======
+>>>>>>> 89c5330a (force localiziation)
     texts(forceLocale: $forceLocale) {
       _id
       slug

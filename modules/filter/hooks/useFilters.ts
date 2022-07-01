@@ -9,7 +9,10 @@ export const FiltersQuery = gql`
     $offset: Int
     $includeInactive: Boolean
     $forceLocale: String
+<<<<<<< HEAD
     $sort: [SortOptionInput!]
+=======
+>>>>>>> 89c5330a (force localiziation)
   ) {
     filters(
       queryString: $queryString
@@ -47,7 +50,10 @@ const useFilters = ({
       offset,
       includeInactive,
       forceLocale: locale,
+<<<<<<< HEAD
       sort,
+=======
+>>>>>>> 89c5330a (force localiziation)
     },
   });
   const filters = data?.filters || [];

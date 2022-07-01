@@ -14,6 +14,10 @@ export const AssortmentQuery = gql`
 
 const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
   const { locale } = useIntl();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89c5330a (force localiziation)
   const { data, loading, error } = useQuery(AssortmentQuery, {
     skip: !assortmentId && !slug,
     variables: {
