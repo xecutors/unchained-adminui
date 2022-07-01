@@ -7,6 +7,13 @@ const AssortmentFragment = gql`
     created
     updated
     sequence
+    texts {
+      _id
+      slug
+      title
+      subtitle
+      description
+    }
     isBase
     isRoot
     tags

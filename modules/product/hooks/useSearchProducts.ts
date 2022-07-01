@@ -1,5 +1,4 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const SearchProductsQuery = gql`
@@ -12,7 +11,6 @@ export const SearchProductsQuery = gql`
     $ignoreChildAssortments: Boolean
     $limit: Int
     $offset: Int
-    $forceLocale: String
   ) {
     searchProducts(
       queryString: $queryString
@@ -42,8 +40,6 @@ const useSearchProducts = ({
   offset = 0,
   ignoreChildAssortments = false,
 } = {}) => {
-  const { locale } = useIntl();
-
   const { data, loading, error } = useQuery(SearchProductsQuery, {
     skip: !queryString && !assortmentId,
     variables: {
@@ -55,7 +51,6 @@ const useSearchProducts = ({
       assortmentId,
       orderBy,
       ignoreChildAssortments,
-      forceLocale: locale,
     },
   });
   const searchProducts = data?.searchProducts || {};

@@ -1,5 +1,4 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const ProductsQuery = gql`
@@ -11,7 +10,6 @@ export const ProductsQuery = gql`
     $offset: Int
     $includeDrafts: Boolean
     $sort: [SortOptionInput!]
-    $forceLocale: String
   ) {
     products(
       queryString: $queryString
@@ -37,7 +35,6 @@ const useProducts = ({
   includeDrafts = false,
   slugs = null,
 } = {}) => {
-  const { locale } = useIntl();
   const { data, loading, error } = useQuery(ProductsQuery, {
     variables: {
       queryString,
@@ -47,7 +44,6 @@ const useProducts = ({
       tags,
       slugs,
       sort: [{ key: 'sequence', value: 'ASC' }],
-      forceLocale: locale,
     },
   });
   const products = data?.products || [];

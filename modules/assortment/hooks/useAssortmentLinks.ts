@@ -1,13 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const AssortmentLinksQuery = gql`
-  query AssortmentLinks(
-    $assortmentId: ID
-    $slug: String
-    $forceLocale: String
-  ) {
+  query AssortmentLinks($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id
       linkedAssortments {
@@ -25,14 +20,11 @@ export const AssortmentLinksQuery = gql`
 `;
 
 const useAssortmentLinks = ({ assortmentId = null, slug = null } = {}) => {
-  const { locale } = useIntl();
-
   const { data, loading, error } = useQuery(AssortmentLinksQuery, {
     skip: !assortmentId && !slug,
     variables: {
       slug,
       assortmentId,
-      forceLocale: locale,
     },
   });
   const assortment = data?.assortment || {};

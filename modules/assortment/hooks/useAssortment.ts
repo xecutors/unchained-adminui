@@ -6,13 +6,6 @@ export const AssortmentQuery = gql`
   query Assortment($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       ...AssortmentFragment
-      texts {
-        _id
-        slug
-        title
-        subtitle
-        description
-      }
     }
   }
   ${AssortmentFragment}

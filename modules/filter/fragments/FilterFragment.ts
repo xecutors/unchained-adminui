@@ -7,6 +7,12 @@ const FilterFragment = gql`
     created
     key
     isActive
+    texts {
+      _id
+      title
+      subtitle
+      locale
+    }
     type
     options {
       _id
