@@ -7,7 +7,7 @@ const AssortmentFragment = gql`
     created
     updated
     sequence
-    texts {
+    texts(forceLocale: $forceLocale) {
       _id
       slug
       title
