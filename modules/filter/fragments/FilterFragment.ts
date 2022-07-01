@@ -7,7 +7,7 @@ const FilterFragment = gql`
     created
     key
     isActive
-    texts {
+    texts(forceLocale: $forceLocale) {
       _id
       title
       subtitle

@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { stopPropagation } from '../data/miscellaneous';
 
@@ -7,11 +6,8 @@ const LocaleSwitcher = () => {
   const { formatMessage } = useIntl();
   const { pathname, asPath, query, push, locale, locales } = useRouter();
 
-  const [selectedLocale, setSelectedLocale] = useState(locale);
-
   const handleOnChange = (e) => {
     stopPropagation(e);
-    setSelectedLocale(e.target.value);
     push({ pathname, query }, asPath, {
       locale: e.target.value,
     });
@@ -25,12 +21,12 @@ const LocaleSwitcher = () => {
           id: 'select_language',
           defaultMessage: 'Select language',
         })}
-        value={selectedLocale}
+        value={locale}
         onChange={handleOnChange}
       >
         {locales.map((language) => (
           <option key={language} value={language}>
-            {new Intl.DisplayNames(['en'], {
+            {new Intl.DisplayNames([locale], {
               type: 'language',
             }).of(language)}
           </option>

@@ -4,7 +4,7 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 export const keyMappings: any = {
   Query: {
     fields: {
-      assortments: {
+      Assortments: {
         keyArgs: [
           'limit',
           'includeLeaves',
@@ -13,36 +13,44 @@ export const keyMappings: any = {
           'tags',
           'queryString',
           'slugs',
+          'forceLocale',
         ],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      products: {
-        keyArgs: ['limit', 'includeDrafts', 'offset', 'tags', 'queryString'],
+      Products: {
+        keyArgs: [
+          'limit',
+          'includeDrafts',
+          'offset',
+          'tags',
+          'queryString',
+          'forceLocale',
+        ],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      countries: {
+      Countries: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      currencies: {
+      Currencies: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      enrollments: {
+      Enrollments: {
         keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      quotations: {
+      Quotations: {
         keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
@@ -54,13 +62,13 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      languages: {
+      Languages: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
         },
       },
-      events: {
+      Events: {
         keyArgs: ['limit', 'offset', 'types', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
@@ -72,7 +80,7 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      filters: {
+      Filters: {
         keyArgs: ['limit', 'offset', 'queryString'],
         merge(existing = [], incoming) {
           return [...existing, ...incoming];
