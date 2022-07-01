@@ -28,8 +28,8 @@ module.exports = withPWA({
     ignoreBuildErrors: false,
   },
   i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
+    locales: process.env.NEXT_PUBLIC_SUPPORTED_LANGUAGES.split(','),
+    defaultLocale: process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE,
     localeDetection: false,
   },
 
