@@ -26,6 +26,13 @@ export const AssortmentsQuery = gql`
       sort: $sort
     ) {
       ...AssortmentFragment
+      texts(forceLocale: $forceLocale) {
+        _id
+        slug
+        title
+        subtitle
+        description
+      }
     }
     assortmentsCount(
       tags: $tags
