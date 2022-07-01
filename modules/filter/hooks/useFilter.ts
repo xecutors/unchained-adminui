@@ -19,6 +19,10 @@ export const FilterQuery = gql`
 
 const useFilter = ({ filterId = null } = {}) => {
   const { locale } = useIntl();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89c5330a (force localiziation)
   const { data, loading, error } = useQuery(FilterQuery, {
     skip: !filterId,
     variables: { filterId, forceLocale: locale },
