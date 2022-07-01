@@ -17,6 +17,12 @@ export const FiltersQuery = gql`
       includeInactive: $includeInactive
     ) {
       ...FilterFragment
+      texts(forceLocale: $forceLocale) {
+        _id
+        title
+        subtitle
+        locale
+      }
     }
     filtersCount(includeInactive: $includeInactive)
   }

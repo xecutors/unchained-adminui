@@ -1,22 +1,25 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FilterQuery = gql`
   query Filter($filterId: ID, $forceLocale: String) {
     filter(filterId: $filterId) {
       ...FilterFragment
+      texts {
+        _id
+        title
+        subtitle
+        locale
+      }
     }
   }
   ${FilterFragment}
 `;
 
 const useFilter = ({ filterId = null } = {}) => {
-  const { locale } = useIntl();
-
   const { data, loading, error } = useQuery(FilterQuery, {
     skip: !filterId,
-    variables: { filterId, forceLocale: locale },
+    variables: { filterId },
   });
 
   return {
