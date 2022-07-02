@@ -72,6 +72,7 @@ const AssortmentsView = () => {
     }
   };
 
+<<<<<<< HEAD
   const sortFields = {
     isActive: formatMessage({
       id: 'isActive',
@@ -94,6 +95,26 @@ const AssortmentsView = () => {
       defaultMessage: 'Updated',
     }),
   };
+=======
+  const header = [
+    formatMessage({
+      id: 'name',
+      defaultMessage: 'name',
+    }),
+    formatMessage({
+      id: 'active',
+      defaultMessage: 'active',
+    }),
+    formatMessage({
+      id: 'root',
+      defaultMessage: 'root',
+    }),
+    formatMessage({
+      id: 'sequence',
+      defaultMessage: 'sequence',
+    }),
+  ];
+>>>>>>> Add sort and table mobile view
 
   return (
     <>
@@ -116,7 +137,12 @@ const AssortmentsView = () => {
           addPath={
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
+<<<<<<< HEAD
           sortFields={sortFields}
+=======
+          addSort
+          header={header}
+>>>>>>> Add sort and table mobile view
         >
           <div className="flex gap-4">
             <Toggle
@@ -156,7 +182,12 @@ const AssortmentsView = () => {
             tags,
             limit,
             offset,
+<<<<<<< HEAD
             sort,
+=======
+            sortKey,
+            sortDirection,
+>>>>>>> Add sort and table mobile view
           }}
         />
       </div>
