@@ -37,6 +37,8 @@ const Table = ({ className, ...props }) => {
     setRows(buildRows(props));
   }, [props.children]);
 
+  // console.log('header: ', rowsWithSort.header);
+
   return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(
@@ -45,12 +47,12 @@ const Table = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <thead className="bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
+      <thead className="hidden sm:table-header-group bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
         {rowsWithSort.header}
       </thead>
 
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y divide-slate-200 bg-white dark:bg-slate-600 sm:flex-none">
+        <tbody className="flex-1 divide-y space-y-4 sm:space-y-0 divide-slate-200 sm:bg-white dark:sm:bg-slate-600 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}
