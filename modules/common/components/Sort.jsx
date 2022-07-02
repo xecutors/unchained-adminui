@@ -1,4 +1,5 @@
 import { ChevronDownIcon, FilterIcon } from '@heroicons/react/outline';
+import { ChevronUpIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -36,16 +37,21 @@ const Sort = ({ header }) => {
       {show && (
         <div className="z-50 absolute top-full left-1/4 transition-all w-48">
           <div className="border-2 flex flex-col bg-white mt-2 rounded-md drop-shadow-md">
-            {header.map((title) => (
+            {Object.entries(header).map(([field, label]) => (
               <button
-                key={title}
+                key={field}
                 type="button"
-                onClick={() => handleOnClick(title)}
+                onClick={() => handleOnClick(field)}
                 className="py-2 px-3 w-full hover:bg-slate-100 flex items-center gap-2"
               >
-                <span className="capitalize">{title}</span>
+                <span className="capitalize">{label}</span>
                 <span>
-                  <ChevronDownIcon className="w-5 h-5" />
+                  {router.query?.sortKey === field &&
+                  router.query?.sortDirection === 'ASC' ? (
+                    <ChevronDownIcon className="w-5 h-5" />
+                  ) : (
+                    <ChevronUpIcon className="w-5 h-5" />
+                  )}
                 </span>
               </button>
             ))}
