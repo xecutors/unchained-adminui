@@ -4,7 +4,16 @@ import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
 
 const AssortmentListView = ({ options, queryString }) => {
-  const { includeInactive, includeLeaves, limit, offset, tags, slug } = options;
+  const {
+    includeInactive,
+    includeLeaves,
+    limit,
+    offset,
+    tags,
+    slug,
+    sortKey,
+    sortDirection,
+  } = options;
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     queryString,
@@ -14,6 +23,7 @@ const AssortmentListView = ({ options, queryString }) => {
     offset,
     tags,
     slugs: slug,
+    sort: { key: sortKey || 'sequence', value: sortDirection || 'ASC' },
   });
 
   return loading ? (

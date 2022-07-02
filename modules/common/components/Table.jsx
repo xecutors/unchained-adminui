@@ -37,6 +37,8 @@ const Table = ({ className, ...props }) => {
     setRows(buildRows(props));
   }, [props.children]);
 
+  // console.log('header: ', rowsWithSort.header);
+
   return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(

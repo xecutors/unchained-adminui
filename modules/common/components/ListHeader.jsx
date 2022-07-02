@@ -1,8 +1,9 @@
 import { PlusSmIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import Sort from './Sort';
 
-const ListHeader = ({ addPath, children, addButtonText }) => {
+const ListHeader = ({ addPath, children, addButtonText, addSort, header }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="px-2 py-3">
@@ -10,6 +11,8 @@ const ListHeader = ({ addPath, children, addButtonText }) => {
         <div className="mt-2">
           <h3 className="text-xs leading-6 text-slate-900">{children}</h3>
         </div>
+        {addSort && <Sort header={header} />}
+
         {addPath && (
           <div className="ml-4 mt-2 flex-shrink-0">
             <Link href={addPath}>
