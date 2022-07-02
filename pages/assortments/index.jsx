@@ -70,24 +70,28 @@ const AssortmentsView = () => {
     }
   };
 
-  const header = [
-    formatMessage({
-      id: 'name',
-      defaultMessage: 'name',
-    }),
-    formatMessage({
-      id: 'active',
+  const header = {
+    isActive: formatMessage({
+      id: 'isActive',
       defaultMessage: 'active',
     }),
-    formatMessage({
-      id: 'root',
+    isRoot: formatMessage({
+      id: 'isRoot',
       defaultMessage: 'root',
     }),
-    formatMessage({
+    sequence: formatMessage({
       id: 'sequence',
       defaultMessage: 'sequence',
     }),
-  ];
+    created: formatMessage({
+      id: 'date_created',
+      defaultMessage: 'Date Created',
+    }),
+    updated: formatMessage({
+      id: 'date_updated',
+      defaultMessage: 'Date Updated',
+    }),
+  };
 
   return (
     <>
