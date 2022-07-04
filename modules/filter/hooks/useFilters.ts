@@ -54,7 +54,6 @@ const useFilters = ({
   const filters = data?.filters || [];
   const filtersCount = data?.filtersCount;
   const hasMore = filters?.length < filtersCount;
-
   return {
     filters,
     filtersCount,
