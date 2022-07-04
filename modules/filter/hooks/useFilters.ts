@@ -66,7 +66,7 @@ const useFilters = ({
   const hasMore = filters?.length < filtersCount;
   const loadMore = () => {
     fetchMore({
-      variables: { offset: filters.length },
+      variables: { offset: filters.length, sort },
     });
   };
 
