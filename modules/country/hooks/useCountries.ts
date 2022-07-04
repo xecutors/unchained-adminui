@@ -7,12 +7,14 @@ export const CountriesQuery = gql`
     $limit: Int
     $offset: Int
     $includeInactive: Boolean
+    $sort: [SortOptionInput!]
   ) {
     countries(
       queryString: $queryString
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
+      sort: $sort
     ) {
       ...CountryFragment
     }
@@ -27,9 +29,10 @@ const useCountries = ({
   limit = 20,
   offset = 0,
   includeInactive = false,
+  sort = [],
 } = {}) => {
   const { data, loading, error, fetchMore }: any = useQuery(CountriesQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: { queryString, limit, offset, includeInactive, sort },
   });
 
   const countries = data?.countries || [];

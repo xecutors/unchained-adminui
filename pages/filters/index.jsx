@@ -17,6 +17,7 @@ import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -46,20 +47,14 @@ const FiltersListView = () => {
       });
   };
 
-  const sortKeys =
-    (sort !== '' &&
-      sort.split(',').map((field) => ({
-        key: field.split('_')[0],
-        value: field.split('_')[1],
-      }))) ||
-    [];
+  const sortKeys = getSortKeys(sort);
 
   const { filters, filtersCount, loading } = useFilters({
     queryString,
     limit,
     includeInactive,
     offset,
-    sort: sortKeys.length === 0 ? { key: 'sequence', value: 'ASC' } : sortKeys,
+    sort: sortKeys,
   });
 
   const { formatMessage } = useIntl();
@@ -134,7 +129,6 @@ const FiltersListView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}
-          addSort
           sortFields={sortFields}
         >
           <Toggle

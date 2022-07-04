@@ -19,12 +19,14 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const Country = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
+  const sort = query?.sort || '';
   const includeInactive = query?.includeInactive === 'true';
   const { hasRole } = useAuth();
 
@@ -45,11 +47,15 @@ const Country = () => {
         },
       });
   };
+
+  const sortKeys = getSortKeys(sort);
+
   const { countries, countriesCount, loading } = useCountries({
     queryString,
     limit,
     includeInactive,
     offset,
+    sort: sortKeys,
   });
 
   const { setModal } = useModal();
@@ -81,6 +87,15 @@ const Country = () => {
     );
   };
 
+  const sortFields = {
+    isoCode: formatMessage({
+      id: 'iso_code',
+      defaultMessage: 'ISO code',
+    }),
+    isActive: formatMessage({ id: 'active', defaultMessage: 'Active' }),
+    isBase: formatMessage({ id: 'is_base', defaultMessage: 'Base' }),
+  };
+
   return (
     <>
       <BreadCrumbs />
@@ -99,6 +114,7 @@ const Country = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}
+          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

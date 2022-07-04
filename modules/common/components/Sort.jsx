@@ -5,12 +5,13 @@ import {
 } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 const Sort = ({ sortFields }) => {
   const { formatMessage } = useIntl();
   const [show, setShow] = useState(false);
+  const [sortReducer, setSortReducer] = useState({});
   const router = useRouter();
 
   const sortKeys =
@@ -19,10 +20,14 @@ const Sort = ({ sortFields }) => {
       direction: field.split('_')[1],
     })) || [];
 
-  const sortReducer = sortKeys.reduce(
-    (acc, curr) => ({ ...acc, [curr.field]: curr.direction }),
-    {},
-  );
+  useEffect(() => {
+    setSortReducer(
+      sortKeys.reduce(
+        (acc, curr) => ({ ...acc, [curr.field]: curr.direction }),
+        {},
+      ),
+    );
+  }, []);
 
   const handleOnClick = () => {
     const sort = Object.keys(sortReducer)
@@ -39,7 +44,7 @@ const Sort = ({ sortFields }) => {
   };
 
   return (
-    <div className="ml-4 mt-2 flex-shrink-0 relative">
+    <div className="ml-4 mt-2 w-max relative">
       <button
         type="button"
         onClick={() => setShow(!show)}
@@ -50,7 +55,7 @@ const Sort = ({ sortFields }) => {
       </button>
 
       {show && (
-        <div className="z-50 absolute top-full left-1/4 transition-all w-48">
+        <div className="z-50 absolute top-full left-1/4 transition-all w-56">
           <div className="border-2 flex flex-col bg-white dark:bg-slate-500 mt-2 rounded-md drop-shadow-md">
             <div className="flex flex-col">
               {Object.entries(sortFields).map(([field, label]) => (
@@ -60,20 +65,20 @@ const Sort = ({ sortFields }) => {
                   onClick={() => {
                     // eslint-disable-next-line no-unused-expressions
                     sortReducer[field] === 'ASC'
-                      ? (sortReducer[field] = 'DESC')
-                      : (sortReducer[field] = 'ASC');
+                      ? setSortReducer({ ...sortReducer, [field]: 'DESC' })
+                      : setSortReducer({ ...sortReducer, [field]: 'ASC' });
                   }}
                   className={classNames(
-                    'py-2 px-3 w-full active:bg-indigo-300 focus:bg-indigo-300 hover:bg-slate-100 dark:hover:bg-slate-400 flex items-center gap-2',
+                    'py-2 px-3 w-full focus:bg-indigo-300 hover:bg-slate-100 dark:hover:bg-slate-400 flex items-center gap-2',
                     {
-                      'bg-indigo-300 active:bg-indigo-300': sortReducer[field],
+                      'bg-indigo-300': sortReducer[field],
                     },
                   )}
                 >
                   <span className="capitalize">{label}</span>
                   <span>
                     {sortReducer[field] === 'DESC' ? (
-                      <ChevronDownIcon className="w-5 h-5 text-yellow-600" />
+                      <ChevronDownIcon className="w-5 h-5 text-sky-600" />
                     ) : (
                       <ChevronUpIcon
                         className={classNames('w-5 h-5', {

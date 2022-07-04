@@ -9,6 +9,7 @@ export const WorkQueueQuery = gql`
     $status: [WorkStatus!]
     $types: [WorkType!]
     $created: DateFilterInput
+    $sort: [SortOptionInput!]
   ) {
     workQueue(
       queryString: $queryString
@@ -17,6 +18,7 @@ export const WorkQueueQuery = gql`
       status: $status
       types: $types
       created: $created
+      sort: $sort
     ) {
       ...WorkFragment
     }
@@ -32,6 +34,7 @@ const useWorkQueue = ({
   status = undefined,
   types = undefined,
   created = null,
+  sort = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
     variables: {
@@ -45,6 +48,7 @@ const useWorkQueue = ({
           .filter(([, value]) => value)
           .map(([key, value]) => [key, new Date(value.toString())]),
       ),
+      sort,
     },
   });
   const workQueue = data?.workQueue || [];

@@ -59,6 +59,17 @@ const normalizeCurrencyISOCode = (locale, isoCode, showIso = true) => {
   }
 };
 
+const getSortKeys = (sort) => {
+  return (
+    (sort !== '' &&
+      sort.split(',').map((field) => ({
+        key: field.split('_')[0],
+        value: field.split('_')[1],
+      }))) ||
+    []
+  );
+};
+
 export {
   useFormatPrice,
   getInterfaceLabel,
@@ -66,4 +77,5 @@ export {
   normalizeCurrencyISOCode,
   normalizeCountryISOCode,
   normalizeLanguageISOCode,
+  getSortKeys,
 };

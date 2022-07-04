@@ -113,7 +113,6 @@ const AssortmentsView = () => {
           addPath={
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
-          addSort
           sortFields={sortFields}
         >
           <div className="flex gap-4">

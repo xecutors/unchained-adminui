@@ -14,6 +14,7 @@ import useProducts from '../../modules/product/hooks/useProducts';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -43,13 +44,7 @@ const Products = () => {
       });
   };
 
-  const sortKeys =
-    (sort !== '' &&
-      sort.split(',').map((field) => ({
-        key: field.split('_')[0],
-        value: field.split('_')[1],
-      }))) ||
-    [];
+  const sortKeys = getSortKeys(sort);
 
   const { products, productsCount, loadMore, loading } = useProducts({
     queryString,
@@ -101,7 +96,6 @@ const Products = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
-          addSort
           sortFields={sortFields}
         >
           <Toggle
