@@ -47,13 +47,9 @@ const useProducts = ({
       includeDrafts,
       tags,
       slugs,
-<<<<<<< HEAD
       sort: sortOptions.length
         ? sortOptions
         : [{ key: 'sequence', value: 'ASC' }],
-=======
-      sort: [{ key: 'sequence', value: 'ASC' }],
->>>>>>> 89c5330a (force localiziation)
       forceLocale: locale,
     },
   });
