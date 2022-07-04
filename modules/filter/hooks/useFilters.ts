@@ -9,13 +9,14 @@ export const FiltersQuery = gql`
     $offset: Int
     $includeInactive: Boolean
     $forceLocale: String
-    $Sort: [SortOptionInput!]
+    $sort: [SortOptionInput!]
   ) {
     filters(
       queryString: $queryString
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
+      sort: $sort
     ) {
       ...FilterFragment
       texts(forceLocale: $forceLocale) {
@@ -46,6 +47,7 @@ const useFilters = ({
       offset,
       includeInactive,
       forceLocale: locale,
+      sort,
     },
   });
   const filters = data?.filters || [];
@@ -53,7 +55,7 @@ const useFilters = ({
   const hasMore = filters?.length < filtersCount;
   const loadMore = () => {
     fetchMore({
-      variables: { offset: filters.length, sort },
+      variables: { offset: filters.length },
     });
   };
 

@@ -16,6 +16,7 @@ import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -24,6 +25,7 @@ const Languages = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
+  const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -42,11 +44,15 @@ const Languages = () => {
         },
       });
   };
+
+  const sortKeys = getSortKeys(sort);
+
   const { languages, languagesCount, loading } = useLanguages({
     queryString,
     limit,
     includeInactive,
     offset,
+    sort: sortKeys,
   });
 
   const { setModal } = useModal();
@@ -78,6 +84,15 @@ const Languages = () => {
     );
   };
 
+  const sortFields = {
+    isoCode: formatMessage({
+      id: 'iso_code',
+      defaultMessage: 'ISO code',
+    }),
+    isActive: formatMessage({ id: 'active', defaultMessage: 'Active' }),
+    isBase: formatMessage({ id: 'base', defaultMessage: 'Base' }),
+  };
+
   return (
     <>
       <BreadCrumbs />
@@ -97,6 +112,7 @@ const Languages = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.languages.create) && '/language/new'}
+          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

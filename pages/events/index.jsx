@@ -13,12 +13,15 @@ import useEvents from '../../modules/event/hooks/useEvents';
 import useEventTypes from '../../modules/event/hooks/useEventTypes';
 import MultipleSelect from '../../modules/common/components/MultipleSelect';
 import { extractQuery } from '../../modules/common/utils/normalizeFilterKeys';
+import { getSortKeys } from '../../modules/common/utils/utils';
+import ListHeader from '../../modules/common/components/ListHeader';
 
 const Events = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
+  const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -37,6 +40,8 @@ const Events = () => {
         },
       });
   };
+
+  const sortKeys = getSortKeys(sort);
 
   const typeChangeHandler = (selectedTypes) => {
     const { types, ...rest } = query;
@@ -61,14 +66,22 @@ const Events = () => {
     types: query?.types?.split(','),
     offset,
     queryString,
+    sort: sortKeys,
   });
 
   const { eventsType } = useEventTypes();
 
+  const sortFields = {
+    created: formatMessage({
+      id: 'created',
+      defaultMessage: 'Created',
+    }),
+    type: formatMessage({ id: 'type', defaultMessage: 'Type' }),
+  };
+
   return (
     <>
       <BreadCrumbs />
-
       <div className="w-full py-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between">
           <PageHeader
@@ -110,13 +123,16 @@ const Events = () => {
           </>
         </div>
       </div>
+      <div className="min-w-full overflow-x-auto">
+        <ListHeader sortFields={sortFields} />
 
-      {loading ? (
-        <Loading />
-      ) : (
-        <EventList events={events} onSearch={setQueryString} />
-      )}
-      <Pagination data={events} total={eventsCount} />
+        {loading ? (
+          <Loading />
+        ) : (
+          <EventList events={events} onSearch={setQueryString} />
+        )}
+        <Pagination data={events} total={eventsCount} />
+      </div>
     </>
   );
 };

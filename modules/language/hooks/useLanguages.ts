@@ -7,12 +7,14 @@ export const LanguagesQuery = gql`
     $offset: Int
     $limit: Int
     $includeInactive: Boolean
+    $sort: [SortOptionInput!]
   ) {
     languages(
       queryString: $queryString
       offset: $offset
       limit: $limit
       includeInactive: $includeInactive
+      sort: $sort
     ) {
       ...LanguageFragment
     }
@@ -26,9 +28,10 @@ const useLanguages = ({
   limit = 20,
   offset = 0,
   includeInactive = false,
+  sort = [],
 } = {}) => {
   const { data, loading, error } = useQuery(LanguagesQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: { queryString, limit, offset, includeInactive, sort },
   });
   const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;

@@ -7,12 +7,14 @@ export const CurrenciesQuery = gql`
     $limit: Int
     $offset: Int
     $includeInactive: Boolean
+    $sort: [SortOptionInput!]
   ) {
     currencies(
       queryString: $queryString
       limit: $limit
       offset: $offset
       includeInactive: $includeInactive
+      sort: $sort
     ) {
       ...CurrencyFragment
     }
@@ -26,9 +28,10 @@ const useCurrencies = ({
   limit = 20,
   offset = 0,
   includeInactive = true,
+  sort = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(CurrenciesQuery, {
-    variables: { queryString, limit, offset, includeInactive },
+    variables: { queryString, limit, offset, includeInactive, sort },
   });
 
   const currencies = data?.currencies || [];
