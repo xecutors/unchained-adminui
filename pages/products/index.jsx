@@ -23,6 +23,7 @@ const Products = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
   const tags = query.tags?.split(',') || undefined;
+  const sort = query.sort || '';
   const { hasRole } = useAuth();
   const { queryString, ...restQuery } = query;
 
@@ -41,13 +42,43 @@ const Products = () => {
         },
       });
   };
+
+  const sortKeys =
+    (sort !== '' &&
+      sort.split(',').map((field) => ({
+        key: field.split('_')[0],
+        value: field.split('_')[1],
+      }))) ||
+    [];
+
   const { products, productsCount, loadMore, loading } = useProducts({
     queryString,
     includeDrafts,
     limit,
     offset,
     tags,
+    sort: sortKeys.length === 0 ? { key: 'sequence', value: 'ASC' } : sortKeys,
   });
+
+  const sortFields = {
+    status: formatMessage({
+      id: 'isActive',
+      defaultMessage: 'active',
+    }),
+    tags: formatMessage({ id: 'tags', defaultMessage: 'tags' }),
+    sequence: formatMessage({
+      id: 'sequence',
+      defaultMessage: 'sequence',
+    }),
+    created: formatMessage({
+      id: 'date_created',
+      defaultMessage: 'Date Created',
+    }),
+    updated: formatMessage({
+      id: 'date_updated',
+      defaultMessage: 'Date Updated',
+    }),
+  };
 
   return (
     <>
@@ -70,6 +101,8 @@ const Products = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
+          addSort
+          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

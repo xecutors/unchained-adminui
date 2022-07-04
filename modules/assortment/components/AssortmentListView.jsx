@@ -4,16 +4,16 @@ import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
 
 const AssortmentListView = ({ options, queryString }) => {
-  const {
-    includeInactive,
-    includeLeaves,
-    limit,
-    offset,
-    tags,
-    slug,
-    sortKey,
-    sortDirection,
-  } = options;
+  const { includeInactive, includeLeaves, limit, offset, tags, slug, sort } =
+    options;
+
+  const sortKeys =
+    (sort !== '' &&
+      sort.split(',').map((field) => ({
+        key: field.split('_')[0],
+        value: field.split('_')[1],
+      }))) ||
+    [];
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     queryString,
@@ -23,7 +23,8 @@ const AssortmentListView = ({ options, queryString }) => {
     offset,
     tags,
     slugs: slug,
-    sort: { key: sortKey || 'sequence', value: sortDirection || 'ASC' },
+    sort:
+      sortKeys.length === 0 ? [{ key: 'sequence', value: 'ASC' }] : sortKeys,
   });
 
   return loading ? (

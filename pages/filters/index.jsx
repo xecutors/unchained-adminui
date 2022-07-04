@@ -22,6 +22,7 @@ const FiltersListView = () => {
   const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
+  const sort = query?.sort || '';
   const { hasRole } = useAuth();
   const includeInactive = query?.includeInactive === 'true';
   const { setModal } = useModal();
@@ -45,11 +46,20 @@ const FiltersListView = () => {
       });
   };
 
+  const sortKeys =
+    (sort !== '' &&
+      sort.split(',').map((field) => ({
+        key: field.split('_')[0],
+        value: field.split('_')[1],
+      }))) ||
+    [];
+
   const { filters, filtersCount, loading } = useFilters({
     queryString,
     limit,
     includeInactive,
     offset,
+    sort: sortKeys.length === 0 ? { key: 'sequence', value: 'ASC' } : sortKeys,
   });
 
   const { formatMessage } = useIntl();
@@ -85,6 +95,26 @@ const FiltersListView = () => {
     );
   };
 
+  const sortFields = {
+    status: formatMessage({
+      id: 'isActive',
+      defaultMessage: 'active',
+    }),
+    tags: formatMessage({ id: 'tags', defaultMessage: 'tags' }),
+    sequence: formatMessage({
+      id: 'sequence',
+      defaultMessage: 'sequence',
+    }),
+    created: formatMessage({
+      id: 'date_created',
+      defaultMessage: 'Date Created',
+    }),
+    updated: formatMessage({
+      id: 'date_updated',
+      defaultMessage: 'Date Updated',
+    }),
+  };
+
   return (
     <>
       <BreadCrumbs />
@@ -104,6 +134,8 @@ const FiltersListView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}
+          addSort
+          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

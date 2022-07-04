@@ -1,23 +1,38 @@
-import { ChevronDownIcon, FilterIcon } from '@heroicons/react/outline';
-import { ChevronUpIcon } from '@heroicons/react/solid';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  FilterIcon,
+} from '@heroicons/react/outline';
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
-const Sort = ({ header }) => {
+const Sort = ({ sortFields }) => {
   const { formatMessage } = useIntl();
   const [show, setShow] = useState(false);
   const router = useRouter();
 
-  const handleOnClick = (sortKey) => {
+  const sortKeys =
+    router.query?.sort?.split(',').map((field) => ({
+      field: field.split('_')[0],
+      direction: field.split('_')[1],
+    })) || [];
+
+  const sortReducer = sortKeys.reduce(
+    (acc, curr) => ({ ...acc, [curr.field]: curr.direction }),
+    {},
+  );
+
+  const handleOnClick = () => {
+    const sort = Object.keys(sortReducer)
+      .map((field) => [field, sortReducer[field]].join('_'))
+      .join(',');
+
     router.push({
       query: {
         ...router.query,
-        sortKey,
-        sortDirection:
-          !router.query.sortDirection || router.query.sortDirection === 'ASC'
-            ? 'DESC'
-            : 'ASC',
+        sort,
       },
     });
     setShow(!show);
@@ -36,25 +51,47 @@ const Sort = ({ header }) => {
 
       {show && (
         <div className="z-50 absolute top-full left-1/4 transition-all w-48">
-          <div className="border-2 flex flex-col bg-white mt-2 rounded-md drop-shadow-md">
-            {Object.entries(header).map(([field, label]) => (
-              <button
-                key={field}
-                type="button"
-                onClick={() => handleOnClick(field)}
-                className="py-2 px-3 w-full hover:bg-slate-100 flex items-center gap-2"
-              >
-                <span className="capitalize">{label}</span>
-                <span>
-                  {router.query?.sortKey === field &&
-                  router.query?.sortDirection === 'ASC' ? (
-                    <ChevronDownIcon className="w-5 h-5" />
-                  ) : (
-                    <ChevronUpIcon className="w-5 h-5" />
+          <div className="border-2 flex flex-col bg-white dark:bg-slate-500 mt-2 rounded-md drop-shadow-md">
+            <div className="flex flex-col">
+              {Object.entries(sortFields).map(([field, label]) => (
+                <button
+                  key={field}
+                  type="button"
+                  onClick={() => {
+                    // eslint-disable-next-line no-unused-expressions
+                    sortReducer[field] === 'ASC'
+                      ? (sortReducer[field] = 'DESC')
+                      : (sortReducer[field] = 'ASC');
+                  }}
+                  className={classNames(
+                    'py-2 px-3 w-full active:bg-indigo-300 focus:bg-indigo-300 hover:bg-slate-100 dark:hover:bg-slate-400 flex items-center gap-2',
+                    {
+                      'bg-indigo-300 active:bg-indigo-300': sortReducer[field],
+                    },
                   )}
-                </span>
-              </button>
-            ))}
+                >
+                  <span className="capitalize">{label}</span>
+                  <span>
+                    {sortReducer[field] === 'DESC' ? (
+                      <ChevronDownIcon className="w-5 h-5 text-yellow-600" />
+                    ) : (
+                      <ChevronUpIcon
+                        className={classNames('w-5 h-5', {
+                          'text-yellow-600': sortReducer[field] === 'ASC',
+                        })}
+                      />
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={handleOnClick}
+              className="m-2 inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-3 py-3 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+            >
+              {formatMessage({ id: 'sort_btn', defaultMessage: 'Sort' })}
+            </button>
           </div>
         </div>
       )}
