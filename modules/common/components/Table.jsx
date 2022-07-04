@@ -52,7 +52,7 @@ const Table = ({ className, ...props }) => {
       </thead>
 
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y space-y-4 sm:space-y-0 divide-slate-200 sm:bg-white dark:sm:bg-slate-600 sm:flex-none">
+        <tbody className="flex-1 divide-y flex gap-y-4 flex-col sm:table-row-group sm:space-y-0 divide-slate-200 sm:bg-white dark:sm:bg-slate-600 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}

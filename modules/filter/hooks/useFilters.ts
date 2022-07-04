@@ -9,6 +9,7 @@ export const FiltersQuery = gql`
     $offset: Int
     $includeInactive: Boolean
     $forceLocale: String
+    $Sort: [SortOptionInput!]
   ) {
     filters(
       queryString: $queryString
@@ -34,6 +35,7 @@ const useFilters = ({
   limit = 20,
   offset = 0,
   includeInactive = false,
+  sort = [],
 } = {}) => {
   const { locale } = useIntl();
 
@@ -51,7 +53,7 @@ const useFilters = ({
   const hasMore = filters?.length < filtersCount;
   const loadMore = () => {
     fetchMore({
-      variables: { offset: filters.length },
+      variables: { offset: filters.length, sort },
     });
   };
 

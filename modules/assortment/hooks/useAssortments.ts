@@ -52,7 +52,7 @@ const useAssortments = ({
   offset = 0,
   includeInactive = false,
   includeLeaves = false,
-  sort = {},
+  sort = [],
 } = {}) => {
   const { locale } = useIntl();
 
@@ -65,7 +65,7 @@ const useAssortments = ({
       offset,
       includeInactive,
       includeLeaves,
-      sort: [sort],
+      sort,
       forceLocale: locale,
     },
   });

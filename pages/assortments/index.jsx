@@ -36,8 +36,7 @@ const AssortmentsView = () => {
   const tags = query?.tags?.split(',') || undefined;
   const graph = query?.viewGraph || false;
   const slug = query?.slug || '';
-  const sortKey = query?.sortKey || '';
-  const sortDirection = query?.sortDirection || '';
+  const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -70,7 +69,7 @@ const AssortmentsView = () => {
     }
   };
 
-  const header = {
+  const sortFields = {
     isActive: formatMessage({
       id: 'isActive',
       defaultMessage: 'active',
@@ -115,7 +114,7 @@ const AssortmentsView = () => {
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
           addSort
-          header={header}
+          sortFields={sortFields}
         >
           <div className="flex gap-4">
             <Toggle
@@ -154,8 +153,7 @@ const AssortmentsView = () => {
             tags,
             limit,
             offset,
-            sortKey,
-            sortDirection,
+            sort,
           }}
         />
       </div>

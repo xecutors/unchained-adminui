@@ -36,6 +36,7 @@ const useProducts = ({
   tags = null,
   includeDrafts = false,
   slugs = null,
+  sort = [],
 } = {}) => {
   const { locale } = useIntl();
   const { data, loading, error } = useQuery(ProductsQuery, {
@@ -46,7 +47,7 @@ const useProducts = ({
       includeDrafts,
       tags,
       slugs,
-      sort: [{ key: 'sequence', value: 'ASC' }],
+      sort,
       forceLocale: locale,
     },
   });
