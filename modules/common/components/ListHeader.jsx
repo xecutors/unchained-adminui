@@ -3,7 +3,13 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Sort from './Sort';
 
-const ListHeader = ({ addPath, children, addButtonText, sortFields }) => {
+const ListHeader = ({
+  addPath,
+  children,
+  addButtonText,
+  sortFields,
+  className,
+}) => {
   const { formatMessage } = useIntl();
   return (
     <div className="px-2 py-3">
@@ -14,7 +20,7 @@ const ListHeader = ({ addPath, children, addButtonText, sortFields }) => {
           </div>
         )}
 
-        {sortFields && <Sort sortFields={sortFields} />}
+        {sortFields && <Sort sortFields={sortFields} className={className} />}
 
         {addPath && (
           <div className="ml-4 mt-2 flex-shrink-0">

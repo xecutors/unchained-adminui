@@ -11,6 +11,7 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import OrderList from '../../modules/order/components/OrderList';
 import useOrders from '../../modules/order/hooks/useOrders';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -19,7 +20,9 @@ const Orders = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
+  const sort = query?.sort || '';
   const { queryString, ...restQuery } = query;
+
   const setQueryString = (searchString) => {
     if (searchString)
       push({
@@ -36,12 +39,46 @@ const Orders = () => {
       });
   };
 
+  const sortKeys = getSortKeys(sort);
+
   const { orders, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
     queryString,
     offset,
+    sort: sortKeys,
   });
+
+  const sortFields = {
+    orderNumber: formatMessage({
+      id: 'order_number',
+      defaultMessage: 'Order number',
+    }),
+    created: formatMessage({
+      id: 'created',
+      defaultMessage: 'Created',
+    }),
+    ordered: formatMessage({
+      id: 'ordered',
+      defaultMessage: 'ordered',
+    }),
+    confirmed: formatMessage({
+      id: 'confirmed',
+      defaultMessage: 'confirmed',
+    }),
+    fullfilled: formatMessage({
+      id: 'fullfilled',
+      defaultMessage: 'fullfilled',
+    }),
+    rejected: formatMessage({
+      id: 'rejected',
+      defaultMessage: 'Rejected',
+    }),
+    status: formatMessage({
+      id: 'status',
+      defaultMessage: 'Status',
+    }),
+  };
 
   return (
     <>
@@ -59,7 +96,7 @@ const Orders = () => {
         />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader>
+        <ListHeader sortFields={sortFields} className="mr-36">
           <Toggle
             toggleText={formatMessage({
               id: 'show_carts',

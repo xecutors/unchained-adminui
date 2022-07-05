@@ -70,6 +70,13 @@ const getSortKeys = (sort) => {
   );
 };
 
+const reducerToObject = (array) => {
+  return array.reduce(
+    (acc, curr) => ({ ...acc, [curr.field]: curr.direction }),
+    {},
+  );
+};
+
 export {
   useFormatPrice,
   getInterfaceLabel,
@@ -78,4 +85,5 @@ export {
   normalizeCountryISOCode,
   normalizeLanguageISOCode,
   getSortKeys,
+  reducerToObject,
 };

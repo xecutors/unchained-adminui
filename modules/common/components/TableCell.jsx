@@ -14,7 +14,7 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       {...props}
     >
       <div className="grid grid-cols-6 items-center gap-4 sm:inline">
-        <div className="col-span-2 sm:hidden">name</div>
+        <div className="col-span-2 sm:hidden">{}</div>
         <div className="sm:inline">{children}</div>
       </div>
     </Td>
