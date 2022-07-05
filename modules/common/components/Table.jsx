@@ -42,17 +42,17 @@ const Table = ({ className, ...props }) => {
   return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(
-        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg dark:rounded-none dark:border sm:bg-white dark:bg-slate-600',
+        'my-3 flex w-full flex-row flex-nowrap sm:divide-y sm:divide-slate-200 overflow-hidden shadow sm:rounded-lg dark:sm:rounded-none dark:sm:border sm:bg-white dark:bg-slate-600',
         className,
       )}
       {...props}
     >
-      <thead className="hidden sm:table-header-group bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
+      <thead className="hidden sm:table-header-group border-slate-600 bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
         {rowsWithSort.header}
       </thead>
 
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y flex gap-y-4 flex-col sm:table-row-group sm:space-y-0 divide-slate-200 sm:bg-white dark:sm:bg-slate-600 sm:flex-none">
+        <tbody className="flex-1 sm:divide-y flex gap-y-4 flex-col sm:table-row-group sm:space-y-0 sm:divide-slate-200 sm:bg-white dark:sm:bg-slate-600 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}

@@ -7,12 +7,14 @@ export const OrdersQuery = gql`
     $offset: Int
     $includeCarts: Boolean
     $queryString: String
+    $sort: [SortOptionInput!]
   ) {
     orders(
       limit: $limit
       offset: $offset
       includeCarts: $includeCarts
       queryString: $queryString
+      sort: $sort
     ) {
       ...OrderFragment
     }
@@ -26,9 +28,10 @@ const useOrders = ({
   offset = 0,
   includeCarts = false,
   queryString = '',
+  sort = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(OrdersQuery, {
-    variables: { limit, offset, includeCarts, queryString },
+    variables: { limit, offset, includeCarts, queryString, sort },
   });
   const orders = data?.orders || [];
   const ordersCount = data?.ordersCount;

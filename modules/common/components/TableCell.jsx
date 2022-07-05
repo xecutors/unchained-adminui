@@ -8,13 +8,13 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       className={classNames(
         header
           ? 'px-4 py-3 text-left font-medium tracking-wider text-slate-800 dark:text-white'
-          : 'whitespace-nowrap px-4 py-3 bg-white sm:bg-inherit text-slate-500 dark:text-white border-b sm:border-b-0',
+          : 'whitespace-nowrap px-4 py-3 bg-white sm:bg-inherit dark:bg-slate-600 text-slate-500 dark:text-white border-b last:border-b-0 sm:border-b-0',
         className,
       )}
       {...props}
     >
       <div className="grid grid-cols-6 items-center gap-4 sm:inline">
-        <div className="col-span-2 sm:hidden">name</div>
+        <div className="col-span-2 sm:hidden">{}</div>
         <div className="sm:inline">{children}</div>
       </div>
     </Td>
