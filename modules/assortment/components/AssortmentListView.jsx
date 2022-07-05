@@ -18,8 +18,7 @@ const AssortmentListView = ({ options, queryString }) => {
     offset,
     tags,
     slugs: slug,
-    sort:
-      sortKeys.length === 0 ? [{ key: 'sequence', value: 'ASC' }] : sortKeys,
+    sort: sortKeys,
   });
 
   return loading ? (
