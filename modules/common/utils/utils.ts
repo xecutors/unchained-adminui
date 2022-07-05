@@ -62,10 +62,13 @@ const normalizeCurrencyISOCode = (locale, isoCode, showIso = true) => {
 const getSortKeys = (sort) => {
   return (
     (sort !== '' &&
-      sort.split(',').map((field) => ({
-        key: field.split('_')[0],
-        value: field.split('_')[1],
-      }))) ||
+      sort.split(',').map((field) => {
+        const [key = null, value = null] = field?.split('_');
+        return {
+          key,
+          value,
+        };
+      })) ||
     []
   );
 };

@@ -6,7 +6,7 @@ import {
 import { XIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { stopPropagation } from '../data/miscellaneous';
 import { reducerToObject } from '../utils/utils';
@@ -17,29 +17,37 @@ const Sort = ({ sortFields, className }) => {
   const [sortReducer, setSortReducer] = useState({});
   const router = useRouter();
 
-  const sortKeys =
-    router.query?.sort?.split(',').map((field) => ({
+  const sortKeys = useMemo(() => {
+    return (router.query?.sort?.split(',') || []).map((field) => ({
       field: field.split('_')[0],
       direction: field.split('_')[1],
-    })) || [];
+    }));
+  }, [router.query?.sort]);
 
   const handleOnClick = () => {
     const sort = Object.keys(sortReducer)
       .map((field) => [field, sortReducer[field]].join('_'))
       .join(',');
-
-    router.push({
-      query: {
-        ...router.query,
-        sort,
-      },
-    });
+    const { sort: currentSort, ...rest } = router.query;
+    if (sort)
+      router.push({
+        query: {
+          ...rest,
+          sort,
+        },
+      });
+    else
+      router.push({
+        query: {
+          ...rest,
+        },
+      });
     setShow(false);
   };
 
   useEffect(() => {
     setSortReducer(reducerToObject(sortKeys));
-  }, []);
+  }, [sortKeys]);
 
   return (
     <div className={classNames('ml-4 mt-2 w-max relative', className)}>
@@ -83,13 +91,13 @@ const Sort = ({ sortFields, className }) => {
                   key={field}
                   type="button"
                   onClick={() => {
-                    // eslint-disable-next-line no-unused-expressions
-                    sortReducer[field] === 'ASC'
-                      ? setSortReducer({ ...sortReducer, [field]: 'DESC' })
-                      : setSortReducer({ ...sortReducer, [field]: 'ASC' });
+                    setSortReducer({
+                      ...sortReducer,
+                      [field]: sortReducer[field] === 'ASC' ? 'DESC' : 'ASC',
+                    });
                   }}
                   className={classNames(
-                    'py-2 px-3 w-full hover:bg-slate-100 dark:hover:bg-slate-400 flex items-center gap-2',
+                    'py-2 px-3 w-full hover:bg-slate-100 dark:hover:bg-slate-400 flex items-center gap-2 justify-between',
                     {
                       'text-indigo-600 dark:text-sky-400 bg-slate-50 dark:bg-slate-600':
                         sortReducer[field],
@@ -97,38 +105,42 @@ const Sort = ({ sortFields, className }) => {
                   )}
                 >
                   <span className="capitalize">{label}</span>
-                  <span>
-                    {sortReducer[field] === 'DESC' ? (
-                      <ChevronDownIcon
-                        className={classNames('w-5 h-5', {
-                          'text-yellow-600': sortReducer[field] === 'DESC',
-                        })}
-                      />
-                    ) : (
-                      <ChevronUpIcon
-                        className={classNames('w-5 h-5', {
-                          'text-indigo-600 dark:text-sky-400':
-                            sortReducer[field] === 'ASC',
-                        })}
-                      />
+                  <div className="flex">
+                    {sortReducer[field] && (
+                      <span className="mr-2">
+                        {sortReducer[field] === 'DESC' ? (
+                          <ChevronDownIcon
+                            className={classNames('w-5 h-5', {
+                              'text-yellow-600': sortReducer[field] === 'DESC',
+                            })}
+                          />
+                        ) : (
+                          <ChevronUpIcon
+                            className={classNames('w-5 h-5', {
+                              'text-indigo-600 dark:text-sky-400':
+                                sortReducer[field] === 'ASC',
+                            })}
+                          />
+                        )}
+                      </span>
                     )}
-                  </span>
-                  {sortReducer[field] && (
-                    <button
-                      type="button"
-                      className="ml-auto rounded-full hover:bg-red-200"
-                      onClick={(e) => {
-                        stopPropagation(e);
-                        setSortReducer((current) => {
-                          const copy = { ...current };
-                          delete copy[field];
-                          return copy;
-                        });
-                      }}
-                    >
-                      <XIcon className="w-5 h-5 text-red-400 " />
-                    </button>
-                  )}
+                    {sortReducer[field] && (
+                      <button
+                        type="button"
+                        className="rounded-full hover:bg-red-200"
+                        onClick={(e) => {
+                          stopPropagation(e);
+                          setSortReducer((current) => {
+                            const copy = { ...current };
+                            delete copy[field];
+                            return copy;
+                          });
+                        }}
+                      >
+                        <XIcon className="w-5 h-5 text-red-400 " />
+                      </button>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>

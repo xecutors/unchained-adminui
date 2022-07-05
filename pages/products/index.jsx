@@ -52,7 +52,7 @@ const Products = () => {
     limit,
     offset,
     tags,
-    sort: sortKeys.length === 0 ? { key: 'sequence', value: 'ASC' } : sortKeys,
+    sort: sortKeys,
   });
 
   const sortFields = {
@@ -60,7 +60,6 @@ const Products = () => {
       id: 'isActive',
       defaultMessage: 'active',
     }),
-    tags: formatMessage({ id: 'tags', defaultMessage: 'tags' }),
     sequence: formatMessage({
       id: 'sequence',
       defaultMessage: 'sequence',

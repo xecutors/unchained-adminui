@@ -95,7 +95,6 @@ const FiltersListView = () => {
       id: 'isActive',
       defaultMessage: 'active',
     }),
-    tags: formatMessage({ id: 'tags', defaultMessage: 'tags' }),
     sequence: formatMessage({
       id: 'sequence',
       defaultMessage: 'sequence',
