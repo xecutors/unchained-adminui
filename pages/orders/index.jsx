@@ -38,7 +38,6 @@ const Orders = () => {
   };
 
   const sortKeys = getSortKeys(sort);
-
   const { orders, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
