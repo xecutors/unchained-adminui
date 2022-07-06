@@ -87,7 +87,7 @@ export const keyMappings: any = {
         },
       },
     },
-    orders: {
+    Orders: {
       keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],
       merge(existing = [], incoming) {
         return [...existing, ...incoming];

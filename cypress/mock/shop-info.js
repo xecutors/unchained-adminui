@@ -1,0 +1,34 @@
+export const ShopInfoResponse = {
+  data: {
+    shopInfo: {
+      _id: 'test',
+      version: '1.0.0',
+      language: {
+        _id: 'test',
+        isoCode: 'de',
+        name: 'de (Base)',
+        __typename: 'Language',
+      },
+      country: {
+        _id: 'test',
+        isoCode: 'CH',
+        flagEmoji: '🇨🇭',
+        name: 'Schweiz',
+        defaultCurrency: {
+          _id: 'test',
+          isoCode: 'CHF',
+          __typename: 'Currency',
+        },
+        __typename: 'Country',
+      },
+      __typename: 'Shop',
+      externalLinks: [],
+    },
+  },
+};
+
+export const ShopInfoOperations = {
+  ShopInfo: 'ShopInfo',
+};
+
+export default { ShopInfoResponse, ShopInfoOperations };

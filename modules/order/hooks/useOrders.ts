@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import OrderFragment from '../fragments/OrderFragment';
 
 export const OrdersQuery = gql`
-  query orders(
+  query Orders(
     $limit: Int
     $offset: Int
     $includeCarts: Boolean
