@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import useAddWebAuth from '../hooks/useAddWebAuth';
 import useWebAuth from '../hooks/useWebAuth';
 
 const base64ToArrayBuffer = (b64) => {
@@ -15,7 +14,6 @@ const base64ToArrayBuffer = (b64) => {
 const AddWebAuth = ({ currentUser }) => {
   const { formatMessage } = useIntl();
   const { createWebAuth } = useWebAuth();
-  const { addWebAuth } = useAddWebAuth();
 
   const handleOnClick = async () => {
     const { data } = await createWebAuth({
@@ -35,8 +33,6 @@ const AddWebAuth = ({ currentUser }) => {
     const publicKeyCredentials = await navigator.credentials.create({
       publicKey,
     });
-
-    console.log('publicKeyCredentials: ', publicKeyCredentials);
 
     // const attestationObject = window.btoa(
     //   String.fromCharCode(
