@@ -8,7 +8,7 @@ export default defineConfig({
   },
   e2e: {
     defaultCommandTimeout: 4000,
-
+    projectId: 'jo7evx',
     baseUrl: 'http://localhost:3000',
     retries: {
       openMode: 2,
