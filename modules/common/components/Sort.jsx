@@ -61,10 +61,9 @@ const Sort = ({ sortFields, className }) => {
             setSortReducer(reducerToObject(sortKeys));
           }
         }}
-        className="relative inline-flex items-center px-8 py-3 border-2 border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="relative inline-flex items-center gap-4 px-8 py-3 border-2 border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
-        <FilterIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-        <span>{formatMessage({ id: 'sort', defaultMessage: 'Sort' })}</span>
+        <FilterIcon className="-ml-1 h-5 w-5" aria-hidden="true" />
         {Object.keys(sortReducer).length !== 0 && (
           <span className="absolute top-0 right-0 border inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-600 px-2 py-1 text-base leading-none text-white border-300">
             {Object.keys(sortReducer).length}
@@ -73,7 +72,7 @@ const Sort = ({ sortFields, className }) => {
       </button>
 
       {show && (
-        <div className="z-50 absolute top-full left-1/4 transition-all w-56">
+        <div className="z-50 absolute top-full right-0 sm:left-0 transition-all w-56">
           <div className="border-2 p-4 flex flex-col bg-white dark:bg-slate-500 mt-2 rounded-md drop-shadow-md relative">
             <button
               type="button"
