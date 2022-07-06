@@ -1,8 +1,8 @@
-exports.compile =  function (msgs) {
-  const results = {}
-  for (const [id, msg] of Object.entries(msgs)) {
-    results[id] = msg.defaultMessage
-  }
-  return results
+exports.compile = function (msgs) {
+  const results = {};
+  Object.entries(msgs).forEach(([id, msg]) => {
+    results[id] = msg.defaultMessage;
+  });
 
-} 
+  return results;
+};
