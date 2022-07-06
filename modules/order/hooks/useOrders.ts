@@ -2,17 +2,19 @@ import { useQuery, gql } from '@apollo/client';
 import OrderFragment from '../fragments/OrderFragment';
 
 export const OrdersQuery = gql`
-  query orders(
+  query Orders(
     $limit: Int
     $offset: Int
     $includeCarts: Boolean
     $queryString: String
+    $sort: [SortOptionInput!]
   ) {
     orders(
       limit: $limit
       offset: $offset
       includeCarts: $includeCarts
       queryString: $queryString
+      sort: $sort
     ) {
       ...OrderFragment
     }
@@ -26,9 +28,10 @@ const useOrders = ({
   offset = 0,
   includeCarts = false,
   queryString = '',
+  sort = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(OrdersQuery, {
-    variables: { limit, offset, includeCarts, queryString },
+    variables: { limit, offset, includeCarts, queryString, sort },
   });
   const orders = data?.orders || [];
   const ordersCount = data?.ordersCount;

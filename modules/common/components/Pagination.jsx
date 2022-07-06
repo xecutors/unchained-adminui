@@ -234,7 +234,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={!offset}
               onClick={() => changeOffset(offset - limit)}
-              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
+              className="relative inline-flex items-center rounded-md border border-slate-300 bg-white dark:text-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
             >
               {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
             </button>
@@ -259,7 +259,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
               type="button"
               disabled={offset + limit >= total}
               onClick={() => changeOffset(offset + limit)}
-              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
+              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 dark:text-white bg-white dark:bg-slate-600 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
             >
               {formatMessage({ id: 'next', defaultMessage: 'Next' })}
             </button>

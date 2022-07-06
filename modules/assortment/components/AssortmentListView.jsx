@@ -1,10 +1,14 @@
 import Loading from '../../common/components/Loading';
 import Pagination from '../../common/components/Pagination';
+import { getSortKeys } from '../../common/utils/utils';
 import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
 
 const AssortmentListView = ({ options, queryString }) => {
-  const { includeInactive, includeLeaves, limit, offset, tags, slug } = options;
+  const { includeInactive, includeLeaves, limit, offset, tags, slug, sort } =
+    options;
+
+  const sortKeys = getSortKeys(sort);
 
   const { assortments, assortmentsCount, loading } = useAssortments({
     queryString,
@@ -14,6 +18,7 @@ const AssortmentListView = ({ options, queryString }) => {
     offset,
     tags,
     slugs: slug,
+    sort: sortKeys,
   });
 
   return loading ? (

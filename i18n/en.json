@@ -351,7 +351,7 @@
   "new_user_header": "New user",
   "new_warehousing_provider_header": "New warehousing provider",
   "next": "Next",
-  "no_data_message": "<p>No&nbsp;<span> {message} available</span> </p>",
+  "no_data_message": "<p>No   <span> {message} available</span> </p>",
   "no_error": "Error",
   "no_internet_access": "You aren't connected to a working internet connection",
   "no_job": "sync report found",

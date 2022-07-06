@@ -1,11 +1,10 @@
 /* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 const fetch = require('cross-fetch');
 const fs = require('fs');
 
 const { GRAPHQL_ENDPOINT = 'https://engine.unchained.shop/graphql' } =
   process.env;
-
 fetch(GRAPHQL_ENDPOINT, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
@@ -30,6 +29,7 @@ fetch(GRAPHQL_ENDPOINT, {
   .then((result) => {
     const possibleTypes = {};
 
+    // eslint-disable-next-line no-underscore-dangle
     result.data.__schema.types.forEach((supertype) => {
       if (supertype.possibleTypes) {
         possibleTypes[supertype.name] = supertype.possibleTypes.map(

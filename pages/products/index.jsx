@@ -14,6 +14,7 @@ import useProducts from '../../modules/product/hooks/useProducts';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -23,6 +24,7 @@ const Products = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeDrafts = query?.includeDrafts === 'true';
   const tags = query.tags?.split(',') || undefined;
+  const sort = query.sort || '';
   const { hasRole } = useAuth();
   const { queryString, ...restQuery } = query;
 
@@ -41,13 +43,36 @@ const Products = () => {
         },
       });
   };
+
+  const sortKeys = getSortKeys(sort);
+
   const { products, productsCount, loadMore, loading } = useProducts({
     queryString,
     includeDrafts,
     limit,
     offset,
     tags,
+    sort: sortKeys,
   });
+
+  const sortFields = {
+    status: formatMessage({
+      id: 'isActive',
+      defaultMessage: 'active',
+    }),
+    sequence: formatMessage({
+      id: 'sequence',
+      defaultMessage: 'sequence',
+    }),
+    created: formatMessage({
+      id: 'date_created',
+      defaultMessage: 'Date Created',
+    }),
+    updated: formatMessage({
+      id: 'date_updated',
+      defaultMessage: 'Date Updated',
+    }),
+  };
 
   return (
     <>
@@ -70,6 +95,7 @@ const Products = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
+          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

@@ -36,6 +36,7 @@ const AssortmentsView = () => {
   const tags = query?.tags?.split(',') || undefined;
   const graph = query?.viewGraph || false;
   const slug = query?.slug || '';
+  const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -68,6 +69,29 @@ const AssortmentsView = () => {
     }
   };
 
+  const sortFields = {
+    isActive: formatMessage({
+      id: 'isActive',
+      defaultMessage: 'active',
+    }),
+    isRoot: formatMessage({
+      id: 'isRoot',
+      defaultMessage: 'root',
+    }),
+    sequence: formatMessage({
+      id: 'sequence',
+      defaultMessage: 'sequence',
+    }),
+    created: formatMessage({
+      id: 'date_created',
+      defaultMessage: 'Date Created',
+    }),
+    updated: formatMessage({
+      id: 'date_updated',
+      defaultMessage: 'Date Updated',
+    }),
+  };
+
   return (
     <>
       <BreadCrumbs />
@@ -89,6 +113,7 @@ const AssortmentsView = () => {
           addPath={
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
+          sortFields={sortFields}
         >
           <div className="flex gap-4">
             <Toggle
@@ -127,6 +152,7 @@ const AssortmentsView = () => {
             tags,
             limit,
             offset,
+            sort,
           }}
         />
       </div>

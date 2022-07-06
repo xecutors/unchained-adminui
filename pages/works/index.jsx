@@ -13,6 +13,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
+import { getSortKeys } from '../../modules/common/utils/utils';
 
 const WorkQueueView = () => {
   const { query, push } = useRouter();
@@ -30,6 +31,7 @@ const WorkQueueView = () => {
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
+  const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
 
@@ -49,12 +51,41 @@ const WorkQueueView = () => {
       });
   };
 
+  const sortKeys = getSortKeys(sort);
+
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
     queryString,
     limit,
     offset,
     ...filter,
+    sort: sortKeys,
   });
+
+  const sortFields = {
+    type: formatMessage({
+      id: 'work_type',
+      defaultMessage: 'Work Type',
+    }),
+    status: formatMessage({ id: 'status', defaultMessage: 'Status' }),
+    priority: formatMessage({ id: 'status', defaultMessage: 'priority' }),
+    worker: formatMessage({ id: 'status', defaultMessage: 'worker' }),
+    created: formatMessage({
+      id: 'created',
+      defaultMessage: 'Created',
+    }),
+    scheduled: formatMessage({
+      id: 'scheduled',
+      defaultMessage: 'Scheduled',
+    }),
+    started: formatMessage({
+      id: 'started',
+      defaultMessage: 'Started',
+    }),
+    finished: formatMessage({
+      id: 'finished',
+      defaultMessage: 'Finished',
+    }),
+  };
 
   return (
     <>
@@ -84,6 +115,7 @@ const WorkQueueView = () => {
             id: 'manage',
             defaultMessage: 'Manage',
           })}
+          sortFields={sortFields}
         />
 
         {loading ? <Loading /> : <WorkList workQueue={workQueue} />}
