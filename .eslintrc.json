@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "plugins": ["formatjs",  "react-hooks"],
+  "plugins": ["cypress","formatjs",  "react-hooks"],
   "extends": ["airbnb", "prettier", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
@@ -9,6 +9,7 @@
     "project": "tsconfig.json"
   },
   "env": {
+    "cypress/globals": true,
     "browser": true,
     "node": true,
     "es6": true
@@ -20,6 +21,7 @@
     "formatjs/enforce-default-message": "error",
     "formatjs/no-emoji": "error",
     "jsx-a11y/label-has-associated-control": [0],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "react/prop-types": [0],
     "react/jsx-props-no-spreading": [0],
     "no-underscore-dangle": [
