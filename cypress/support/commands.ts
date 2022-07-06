@@ -35,6 +35,27 @@
 //   }
 // }
 
+import hasOperationName from '../utils/hasOperationName';
+import { ShopInfoOperations, ShopInfoResponse } from '../mock/shop-info';
+import { CurrentUserResponse, UserOperations } from '../mock/user';
+import { OrderListResponse, OrderOperations } from '../mock/order';
+
 beforeEach(() => {
-  cy.visit('/');
+  cy.intercept('POST', '/api/graphql', (req) => {
+    if (hasOperationName(req, OrderOperations.Orders)) {
+      req.reply(OrderListResponse);
+    }
+
+    if (hasOperationName(req, UserOperations.CurrentUser)) {
+      req.reply(CurrentUserResponse);
+    }
+
+    if (hasOperationName(req, ShopInfoOperations.ShopInfo)) {
+      req.reply(ShopInfoResponse);
+    }
+  });
+});
+
+Cypress.on('uncaught:exception', () => {
+  return false;
 });
