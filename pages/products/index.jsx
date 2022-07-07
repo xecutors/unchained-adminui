@@ -58,11 +58,11 @@ const Products = () => {
   const sortFields = {
     status: formatMessage({
       id: 'isActive',
-      defaultMessage: 'active',
+      defaultMessage: 'Active',
     }),
     sequence: formatMessage({
       id: 'sequence',
-      defaultMessage: 'sequence',
+      defaultMessage: 'Sequence',
     }),
     created: formatMessage({
       id: 'date_created',

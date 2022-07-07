@@ -93,11 +93,7 @@ const FiltersListView = () => {
   const sortFields = {
     status: formatMessage({
       id: 'isActive',
-      defaultMessage: 'active',
-    }),
-    sequence: formatMessage({
-      id: 'sequence',
-      defaultMessage: 'sequence',
+      defaultMessage: 'Active',
     }),
     created: formatMessage({
       id: 'date_created',

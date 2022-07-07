@@ -63,12 +63,12 @@ const WorkQueueView = () => {
 
   const sortFields = {
     type: formatMessage({
-      id: 'work_type',
-      defaultMessage: 'Work Type',
+      id: 'type',
+      defaultMessage: 'Type',
     }),
     status: formatMessage({ id: 'status', defaultMessage: 'Status' }),
-    priority: formatMessage({ id: 'status', defaultMessage: 'priority' }),
-    worker: formatMessage({ id: 'status', defaultMessage: 'worker' }),
+    priority: formatMessage({ id: 'priority', defaultMessage: 'Priority' }),
+    worker: formatMessage({ id: 'worker', defaultMessage: 'Worker' }),
     created: formatMessage({
       id: 'created',
       defaultMessage: 'Created',

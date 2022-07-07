@@ -14,7 +14,7 @@ const OrderDetailHeader = ({ order }) => {
         <span className="text-sm block mr-3">
           {formatMessage({
             id: 'order_number',
-            defaultMessage: 'Order#',
+            defaultMessage: 'Order #',
           })}
           &nbsp;
         </span>
