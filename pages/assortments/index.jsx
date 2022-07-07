@@ -72,15 +72,15 @@ const AssortmentsView = () => {
   const sortFields = {
     isActive: formatMessage({
       id: 'isActive',
-      defaultMessage: 'active',
+      defaultMessage: 'Active',
     }),
     isRoot: formatMessage({
       id: 'isRoot',
-      defaultMessage: 'root',
+      defaultMessage: 'Root',
     }),
     sequence: formatMessage({
       id: 'sequence',
-      defaultMessage: 'sequence',
+      defaultMessage: 'Sequence',
     }),
     created: formatMessage({
       id: 'date_created',

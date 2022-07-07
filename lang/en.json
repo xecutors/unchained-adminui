@@ -309,6 +309,9 @@
   "confirm_password": {
     "defaultMessage": "Confirm password"
   },
+  "confirmed": {
+    "defaultMessage": "confirmed"
+  },
   "contact": {
     "defaultMessage": "Contact"
   },
@@ -400,8 +403,14 @@
   "date": {
     "defaultMessage": "Date"
   },
+  "date_created": {
+    "defaultMessage": "Date Created"
+  },
   "date_range": {
     "defaultMessage": "Date range"
+  },
+  "date_updated": {
+    "defaultMessage": "Date Updated"
   },
   "deactivate": {
     "defaultMessage": "Deactivate"
@@ -706,8 +715,53 @@
   "error_404": {
     "defaultMessage": "404 error"
   },
+  "error_commerce_quantity_null_required": {
+    "defaultMessage": "{label} should have one price with null max quantity"
+  },
+  "error_contract_address": {
+    "defaultMessage": "Invalid contract address"
+  },
+  "error_country_code": {
+    "defaultMessage": "Invalid country code"
+  },
+  "error_currency_code": {
+    "defaultMessage": "Invalid currency code"
+  },
+  "error_date_after": {
+    "defaultMessage": "{label} must be after {dateToCompare}."
+  },
+  "error_date_before": {
+    "defaultMessage": "{label} must be before {dateToCompare}."
+  },
+  "error_email": {
+    "defaultMessage": "{label} must be a valid email address"
+  },
+  "error_invalid_date": {
+    "defaultMessage": "{label} is not a valid date"
+  },
+  "error_language_code": {
+    "defaultMessage": "Invalid language code"
+  },
+  "error_number_not_int": {
+    "defaultMessage": "Invalid value please provide integer value"
+  },
+  "error_phone_number_invalid": {
+    "defaultMessage": "Invalid phone number"
+  },
+  "error_required": {
+    "defaultMessage": "{label} is a required field"
+  },
+  "error_same_product_prices": {
+    "defaultMessage": "{label} can not be equal for a price with the same country and currency"
+  },
   "error_server": {
     "defaultMessage": "{details}"
+  },
+  "error_tag_required": {
+    "defaultMessage": "{label} you must provide at least one tag"
+  },
+  "error_text_area_required": {
+    "defaultMessage": "{label} is required"
   },
   "event": {
     "defaultMessage": "Events"
@@ -817,6 +871,9 @@
   "full_name": {
     "defaultMessage": "Full name"
   },
+  "fullfilled": {
+    "defaultMessage": "fullfilled"
+  },
   "gender": {
     "defaultMessage": "Gender"
   },
@@ -886,6 +943,15 @@
   },
   "invalid_credential_error": {
     "defaultMessage": "Invalid credential, please try again"
+  },
+  "isActive": {
+    "defaultMessage": "Active"
+  },
+  "isRoot": {
+    "defaultMessage": "Root"
+  },
+  "is_base": {
+    "defaultMessage": "Base"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
@@ -1132,7 +1198,7 @@
     "defaultMessage": "Order Detail"
   },
   "order_number": {
-    "defaultMessage": "Order#"
+    "defaultMessage": "Order #"
   },
   "order_paid": {
     "defaultMessage": "Order payed successfully"
@@ -1145,6 +1211,9 @@
   },
   "order_total": {
     "defaultMessage": "Order total"
+  },
+  "ordered": {
+    "defaultMessage": "ordered"
   },
   "orders": {
     "defaultMessage": "Orders"
@@ -1377,6 +1446,9 @@
   "reject_rder_alert_button": {
     "defaultMessage": "Reject"
   },
+  "rejected": {
+    "defaultMessage": "Rejected"
+  },
   "removed_assortments": {
     "defaultMessage": "Removed Assortments"
   },
@@ -1539,6 +1611,12 @@
   "solr": {
     "defaultMessage": "Solr",
     "description": "Name"
+  },
+  "sort": {
+    "defaultMessage": "Sort"
+  },
+  "sort_btn": {
+    "defaultMessage": "Sort"
   },
   "star_reviews": {
     "defaultMessage": "Star reviews"

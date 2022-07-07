@@ -52,7 +52,7 @@ const Orders = () => {
   const sortFields = {
     orderNumber: formatMessage({
       id: 'order_number',
-      defaultMessage: 'Order number',
+      defaultMessage: 'Order #',
     }),
     created: formatMessage({
       id: 'created',
