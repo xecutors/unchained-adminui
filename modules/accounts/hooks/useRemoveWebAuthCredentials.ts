@@ -12,7 +12,6 @@ const useRemoveWebAuthnCredentials = () => {
   const [removeWebAuthnCredentialsMutation] = useMutation(
     RemoveWebAuthnCredentialsMutation,
   );
-
   const removeWebAuthnCredentials = async ({ credentialsId }) => {
     return removeWebAuthnCredentialsMutation({
       variables: { credentialsId },
