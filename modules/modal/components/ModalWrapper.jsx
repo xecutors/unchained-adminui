@@ -9,25 +9,26 @@ const ModalWrapper = ({ children }) => {
   const hideModal = () => setChildren(null);
   const [onClose, setOnClose] = useState(() => hideModal);
 
-  const setModal = (
-    newModalChildren,
-    { closeOnOutsideClick: newCloseOnOutsideClick = false } = {},
-  ) => {
-    return new Promise((resolve) => {
-      if (!newModalChildren) {
-        resolve(true);
-      }
+  const ctx = useMemo(() => {
+    const setModal = (
+      newModalChildren,
+      { closeOnOutsideClick: newCloseOnOutsideClick = false } = {},
+    ) => {
+      return new Promise((resolve) => {
+        if (!newModalChildren) {
+          resolve(true);
+        }
 
-      setCloseOnOutsideClick(newCloseOnOutsideClick);
-      setChildren(() => newModalChildren);
-      setOnClose(() => () => {
-        hideModal();
-        resolve(true);
+        setCloseOnOutsideClick(newCloseOnOutsideClick);
+        setChildren(() => newModalChildren);
+        setOnClose(() => () => {
+          hideModal();
+          resolve(true);
+        });
       });
-    });
-  };
-
-  const ctx = useMemo(() => ({ setModal }), []);
+    };
+    return { setModal };
+  }, []);
 
   return (
     <>

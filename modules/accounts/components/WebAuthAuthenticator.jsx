@@ -5,39 +5,30 @@ import FormWrapper from '../../common/components/FormWrapper';
 
 import useCreateWebAuthnCredentialRequestOptions from '../hooks/useCreateWebAuthnCredentialRequestOptions';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
-import useCreateWebAuthnCredentialCreationOptions from '../hooks/useCreateWebAuthnCredentialCreationOptions';
 import { storeLoginToken } from '../utils/store';
 import useCreateUser from '../hooks/useCreateUser';
+import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
+import base64ToArrayBuffer from '../../common/utils/base64ToArrayBuffer';
 
-const base64ToArrayBuffer = (b64) => {
-  const binaryString = window.atob(b64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i += 1) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-  return bytes.buffer;
-};
-
-const WebAuth = () => {
+const WebAuthAuthenticator = () => {
   const { formatMessage } = useIntl();
-  const { createWebAuthnCredentialCreationOptions } =
-    useCreateWebAuthnCredentialCreationOptions();
   const { createUser } = useCreateUser();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const [userEmail, setUserEmail] = useState();
-  const { createWebAuthnCredentialRequestOptions: createAuthReq } =
+  const { createWebAuthnCredentialRequestOptions } =
     useCreateWebAuthnCredentialRequestOptions();
 
+  const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
+
   const generateLoginCredentials = async () => {
-    const { data } = await createAuthReq({
+    const { data } = await createWebAuthnCredentialRequestOptions({
       username: userEmail,
     });
 
-    const { createWebAuthnCredentialRequestOptions } = data;
-
-    const publicKey = createWebAuthnCredentialRequestOptions;
+    const publicKey = data?.createWebAuthnCredentialRequestOptions;
     publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
+
+    const textEncoder = new TextEncoder('utf-8');
 
     publicKey.allowCredentials = publicKey.allowCredentials?.map(
       ({ id, ...rest }) => ({
@@ -45,7 +36,6 @@ const WebAuth = () => {
         ...rest,
       }),
     );
-    const textEncoder = new TextEncoder('utf-8');
 
     publicKey.user = {
       id: textEncoder.encode(userEmail),
@@ -93,60 +83,18 @@ const WebAuth = () => {
     };
   };
 
-  const generateWebAuthPublicKey = async (email) => {
-    const { data } = await createWebAuthnCredentialCreationOptions({
-      username: email,
-    });
-
-    const { createWebAuthnCredentialCreationOptions: publicKey } = data;
-
-    const textEncoder = new TextEncoder('utf-8');
-    publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
-    publicKey.user = {
-      id: textEncoder.encode(email),
-      name: email,
-      displayName: email,
-    };
-    console.log(publicKey);
-    const publicKeyCredentials = await navigator.credentials.create({
-      publicKey,
-    });
-
-    const attestationObject = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(publicKeyCredentials.response.attestationObject),
-      ),
-    );
-    const clientDataJSON = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(publicKeyCredentials.response.clientDataJSON),
-      ),
-    );
-    const rawId = window.btoa(
-      String.fromCharCode(...new Uint8Array(publicKeyCredentials.rawId)),
-    );
-
-    return {
-      id: rawId,
-      response: {
-        clientDataJSON,
-        attestationObject,
-      },
-    };
-  };
   const onSubmit = async () => {
     try {
-      console.log('user email ', userEmail);
-      const webAuthnPublicKeyCredentials = await generateWebAuthPublicKey(
-        userEmail,
-      );
-      console.log(' after user email ', userEmail);
+      const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
+        email: userEmail,
+      });
+
       const { data } = await createUser({
         email: userEmail,
         webAuthnPublicKeyCredentials,
         disableHashing: true,
       });
-      console.log(' after create user ', userEmail);
+
       const { id, token, tokenExpires } = data?.createUser;
       await storeLoginToken(id, token, new Date(tokenExpires));
     } catch (e) {
@@ -215,4 +163,4 @@ const WebAuth = () => {
   );
 };
 
-export default WebAuth;
+export default WebAuthAuthenticator;
