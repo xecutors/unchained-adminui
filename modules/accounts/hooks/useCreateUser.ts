@@ -8,6 +8,7 @@ const CreateUserMutation = gql`
     $password: HashedPasswordInput
     $plainPassword: String
     $profile: UserProfileInput
+    $webAuthnPublicKeyCredentials: JSON
   ) {
     createUser(
       username: $username
@@ -15,6 +16,7 @@ const CreateUserMutation = gql`
       password: $password
       plainPassword: $plainPassword
       profile: $profile
+      webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
     ) {
       id
       token
@@ -33,6 +35,7 @@ const useCreateUser = () => {
     password,
     profile,
     disableHashing = false,
+    webAuthnPublicKeyCredentials,
   }) => {
     const variables = {
       username,
@@ -40,6 +43,7 @@ const useCreateUser = () => {
       profile,
       plainPassword: null,
       password: null,
+      webAuthnPublicKeyCredentials,
     };
     if (disableHashing) {
       variables.plainPassword = password;

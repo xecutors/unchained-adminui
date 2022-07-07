@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Button from '../../common/components/Button';
 import FormWrapper from '../../common/components/FormWrapper';
-import useCreateUserWithWebAuth from '../hooks/useCreateUserWithWebAuth';
+
 import useCreateWebAuthnCredentialRequestOptions from '../hooks/useCreateWebAuthnCredentialRequestOptions';
-import useLoginWithWebAuth from '../hooks/useLoginWithWebAuth';
-import useWebAuth from '../hooks/useWebAuth';
+import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
+import useCreateWebAuthnCredentialCreationOptions from '../hooks/useCreateWebAuthnCredentialCreationOptions';
 import { storeLoginToken } from '../utils/store';
+import useCreateUser from '../hooks/useCreateUser';
 
 const base64ToArrayBuffer = (b64) => {
   const binaryString = window.atob(b64);
@@ -20,9 +21,10 @@ const base64ToArrayBuffer = (b64) => {
 
 const WebAuth = () => {
   const { formatMessage } = useIntl();
-  const { createWebAuth } = useWebAuth();
-  const { createUserWithWebAuth } = useCreateUserWithWebAuth();
-  const { logWithWebAuth } = useLoginWithWebAuth();
+  const { createWebAuthnCredentialCreationOptions } =
+    useCreateWebAuthnCredentialCreationOptions();
+  const { createUser } = useCreateUser();
+  const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const [userEmail, setUserEmail] = useState();
   const { createWebAuthnCredentialRequestOptions: createAuthReq } =
     useCreateWebAuthnCredentialRequestOptions();
@@ -43,8 +45,13 @@ const WebAuth = () => {
         ...rest,
       }),
     );
+    const textEncoder = new TextEncoder('utf-8');
 
-    publicKey.userVerification = 'discouraged';
+    publicKey.user = {
+      id: textEncoder.encode(userEmail),
+      name: userEmail,
+      displayName: userEmail,
+    };
 
     const PublicKeyCredentials = await navigator.credentials.get({
       publicKey,
@@ -87,7 +94,7 @@ const WebAuth = () => {
   };
 
   const generateWebAuthPublicKey = async (email) => {
-    const { data } = await createWebAuth({
+    const { data } = await createWebAuthnCredentialCreationOptions({
       username: email,
     });
 
@@ -100,7 +107,7 @@ const WebAuth = () => {
       name: email,
       displayName: email,
     };
-
+    console.log(publicKey);
     const publicKeyCredentials = await navigator.credentials.create({
       publicKey,
     });
@@ -128,22 +135,28 @@ const WebAuth = () => {
     };
   };
   const onSubmit = async () => {
-    const webAuthnPublicKeyCredentials = await generateWebAuthPublicKey(
-      userEmail,
-    );
-    const result = await createUserWithWebAuth({
-      email: userEmail,
-      webAuthnPublicKeyCredentials,
-    });
-    const { id, token, tokenExpires } = result?.data?.createUser;
-    await storeLoginToken(id, token, new Date(tokenExpires));
+    try {
+      console.log('user email ', userEmail);
+      const webAuthnPublicKeyCredentials = await generateWebAuthPublicKey(
+        userEmail,
+      );
+      console.log(' after user email ', userEmail);
+      const { data } = await createUser({
+        email: userEmail,
+        webAuthnPublicKeyCredentials,
+        disableHashing: true,
+      });
+      console.log(' after create user ', userEmail);
+      const { id, token, tokenExpires } = data?.createUser;
+      await storeLoginToken(id, token, new Date(tokenExpires));
+    } catch (e) {
+      alert(e.message);
+    }
   };
   const logInWithWebAuth = async () => {
     try {
-      const webAuthnPublicKeyCredentials = await generateLoginCredentials(
-        userEmail,
-      );
-      await logWithWebAuth({ webAuthnPublicKeyCredentials });
+      const webAuthnPublicKeyCredentials = await generateLoginCredentials();
+      await loginWithWebAuthn({ webAuthnPublicKeyCredentials });
     } catch (e) {
       alert(e.message);
     }

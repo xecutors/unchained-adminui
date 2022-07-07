@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import useWebAuth from '../hooks/useWebAuth';
+import useCreateWebAuthnCredentialCreationOptions from '../hooks/useCreateWebAuthnCredentialCreationOptions';
 
 const base64ToArrayBuffer = (b64) => {
   const binaryString = window.atob(b64);
@@ -13,10 +13,11 @@ const base64ToArrayBuffer = (b64) => {
 
 const AddWebAuth = ({ currentUser }) => {
   const { formatMessage } = useIntl();
-  const { createWebAuth } = useWebAuth();
+  const { createWebAuthnCredentialCreationOptions } =
+    useCreateWebAuthnCredentialCreationOptions();
 
   const handleOnClick = async () => {
-    const { data } = await createWebAuth({
+    const { data } = await createWebAuthnCredentialCreationOptions({
       username: currentUser?.email,
     });
 
