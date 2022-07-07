@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 import UserFragment from '../fragment/UserFragment';
 
-const AddWebAuthMutation = gql`
+const AddWebAuthnCredentialsMutation = gql`
   mutation AddWebAuthnCredentials($credentials: JSON) {
     addWebAuthnCredentials(credentials: $credentials) {
       ...UserFragment
@@ -19,16 +19,20 @@ const AddWebAuthMutation = gql`
   ${UserFragment}
 `;
 
-const useAddWebAuth = () => {
-  const [addWebAuthnCredentials] = useMutation(AddWebAuthMutation);
+const useAddWebAuthnCredentials = () => {
+  const [addWebAuthnCredentialsMutation] = useMutation(
+    AddWebAuthnCredentialsMutation,
+  );
 
-  const addWebAuth = async ({ credentials }) => {
-    return addWebAuthnCredentials({ variables: { credentials } });
+  const addWebAuthnCredentials = async ({ credentials }) => {
+    return addWebAuthnCredentialsMutation({
+      variables: { credentials },
+    });
   };
 
   return {
-    addWebAuth,
+    addWebAuthnCredentials,
   };
 };
 
-export default useAddWebAuth;
+export default useAddWebAuthnCredentials;
