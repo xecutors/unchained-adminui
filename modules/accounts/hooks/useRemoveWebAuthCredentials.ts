@@ -1,12 +1,11 @@
 import { useMutation, gql } from '@apollo/client';
 
 const RemoveWebAuthnCredentialsMutation = gql`
-  mutation RemoveWebAuthnCredentials {
-  removeWebAuthnCredentials(credentialsId: ID!) {
-    _id
-    
+  mutation RemoveWebAuthnCredentials($credentialsId: ID!) {
+    removeWebAuthnCredentials(credentialsId: $credentialsId) {
+      _id
+    }
   }
-}
 `;
 
 const useRemoveWebAuthnCredentials = () => {
@@ -14,10 +13,10 @@ const useRemoveWebAuthnCredentials = () => {
     RemoveWebAuthnCredentialsMutation,
   );
 
-  const removeWebAuthnCredentials = async ({ credentials }) => {
+  const removeWebAuthnCredentials = async ({ credentialsId }) => {
     return removeWebAuthnCredentialsMutation({
-      variables: { credentials },
-      refetchQueries: ['WebAuthnCredentials'],
+      variables: { credentialsId },
+      refetchQueries: ['UserWebAuthnCredentials'],
     });
   };
 

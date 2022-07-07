@@ -2,7 +2,7 @@ import { useMutation, gql } from '@apollo/client';
 import UserFragment from '../fragment/UserFragment';
 
 const AddWebAuthnCredentialsMutation = gql`
-  mutation AddWebAuthnCredentials($credentials: JSON) {
+  mutation AddWebAuthnCredentials($credentials: JSON!) {
     addWebAuthnCredentials(credentials: $credentials) {
       ...UserFragment
       webAuthnCredentials {

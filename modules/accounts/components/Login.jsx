@@ -17,7 +17,7 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import { storeLoginToken } from '../utils/store';
-import WebAuth from './WebAuth';
+import WebAuthAuthenticator from './WebAuthAuthenticator';
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
