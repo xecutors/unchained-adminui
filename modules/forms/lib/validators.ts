@@ -4,7 +4,7 @@ import isEmail from 'validator/lib/isEmail';
 import matches from 'validator/lib/matches';
 import { isValid as isValidDate, isAfter, isBefore, format } from 'date-fns';
 
-import { MessageDescriptor } from 'react-intl';
+import { MessageDescriptor, useIntl } from 'react-intl';
 import { PrimitiveType } from 'intl-messageformat';
 import parseDate from './parseDate';
 import {
@@ -221,4 +221,76 @@ export const validateProductCommerceOneNull = (values): Validator => {
       defaultMessage: '{label} should have one price with null max quantity',
     },
   };
+};
+
+export const useInitializeDefaultErrorMessages = () => {
+  const { formatMessage } = useIntl();
+
+  formatMessage({
+    id: 'error_email',
+    defaultMessage: '{label} must be a valid email address',
+  });
+  formatMessage({
+    id: 'error_language_code',
+    defaultMessage: 'Invalid language code',
+  });
+  formatMessage({
+    id: 'error_currency_code',
+    defaultMessage: 'Invalid currency code',
+  });
+  formatMessage({
+    id: 'error_contract_address',
+    defaultMessage: 'Invalid contract address',
+  });
+  formatMessage({
+    id: 'error_number_not_int',
+    defaultMessage: 'Invalid value please provide integer value',
+  });
+  formatMessage({
+    id: 'error_country_code',
+    defaultMessage: 'Invalid country code',
+  });
+  formatMessage({
+    id: 'error_required',
+    defaultMessage: '{label} is a required field',
+  });
+  formatMessage({
+    id: 'error_invalid_date',
+    defaultMessage: '{label} is not a valid date',
+  });
+  formatMessage({
+    id: 'error_date_before',
+    defaultMessage: '{label} must be before {dateToCompare}.',
+  });
+  formatMessage({
+    id: 'error_tag_required',
+    defaultMessage: '{label} you must provide at least one tag',
+  });
+
+  formatMessage({
+    id: 'error_date_after',
+    defaultMessage: '{label} must be after {dateToCompare}.',
+  });
+  formatMessage({
+    id: 'error_text_area_required',
+    defaultMessage: '{label} is required',
+  });
+  formatMessage({
+    id: 'error_phone_number_invalid',
+    defaultMessage: 'Invalid phone number',
+  });
+  formatMessage({
+    id: 'error_same_product_prices',
+    defaultMessage:
+      '{label} can not be equal for a price with the same country and currency',
+  });
+
+  formatMessage({
+    id: 'error_date_after',
+    defaultMessage: '{label} must be after {dateToCompare}.',
+  });
+  formatMessage({
+    id: 'error_commerce_quantity_null_required',
+    defaultMessage: '{label} should have one price with null max quantity',
+  });
 };
