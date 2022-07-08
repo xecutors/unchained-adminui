@@ -242,11 +242,11 @@ export const SingleProductResponse = {
     product: {
       _id: 'b01216259a4f9449de850c7d',
       sequence: 86,
-      status: 'DRAFT',
+      status: 'ACTIVE',
       created: '2022-07-06T12:44:42.005Z',
       tags: [],
       updated: '2022-07-06T12:44:42.045Z',
-      published: null,
+      published: '2022-07-06T12:44:42.045Z',
       texts: {
         _id: '6650fb29c79052c6d682dee5',
         slug: 'test-1',
