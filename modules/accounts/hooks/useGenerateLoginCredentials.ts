@@ -1,4 +1,4 @@
-import { base64url } from '../../common/utils/base64url';
+import base64ToArrayBuffer from '../../common/utils/base64ToArrayBuffer';
 import useCreateWebAuthnCredentialRequestOptions from './useCreateWebAuthnCredentialRequestOptions';
 
 const useGenerateLoginCredentials = () => {
@@ -10,31 +10,17 @@ const useGenerateLoginCredentials = () => {
     });
 
     const publicKey = data?.createWebAuthnCredentialRequestOptions;
-    // publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
-    publicKey.challenge = base64url.decode(publicKey.challenge);
-
-    // const textEncoder = new TextEncoder('utf-8');
+    publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
 
     publicKey.allowCredentials =
       publicKey.allowCredentials?.map(({ id, ...rest }) => ({
-        id: base64url.decode(id),
+        id: base64ToArrayBuffer(id),
         ...rest,
       })) || [];
 
-    publicKey.userVerification = 'preferred';
-    // publicKey.user = {
-    //   id: textEncoder.encode(email),
-    //   name: email,
-    //   displayName: email,
-    // };
-
-    console.log('publicKey: ', publicKey);
-
-    const PublicKeyCredentials = await navigator.credentials.get({
+    const PublicKeyCredentials: any = await navigator.credentials.get({
       publicKey,
     });
-
-    console.log('PublicKeyCredentials: ', PublicKeyCredentials);
 
     const authenticatorData = window.btoa(
       String.fromCharCode(
