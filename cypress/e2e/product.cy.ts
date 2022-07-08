@@ -30,11 +30,6 @@ describe('Product', () => {
   });
 
   it('Show Navigate to [PRODUCTS] page successfully', () => {
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, ProductOperations.GetProductList)) {
-        req.reply(ProductListResponse);
-      }
-    });
     cy.visit('/');
     cy.get('a[href="/products"]')
       .contains(localizations.en.products)
@@ -115,17 +110,6 @@ describe('Product', () => {
   });
 
   it('Show [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, ProductOperations.GetProductList)) {
-        req.reply(ProductListResponse);
-      }
-      if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
-        req.reply(SingleProductResponse);
-      }
-      if (hasOperationName(req, ProductOperations.GetTranslatedProductTexts)) {
-        req.reply(TranslatedProductTextResponse);
-      }
-    });
     const [firstProduct] = ProductListResponse.data.products;
     const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
     cy.visit('/');
@@ -144,15 +128,20 @@ describe('Product', () => {
 
   it('[PUBLISH] product successfully', () => {
     cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, ProductOperations.GetProductList)) {
-        req.reply(ProductListResponse);
-      }
       if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
-        req.reply(SingleProductResponse);
+        req.reply({
+          ...SingleProductResponse,
+          data: {
+            ...SingleProductResponse.data,
+            product: {
+              ...SingleProductResponse.data.product,
+              status: 'DRAFT',
+              published: null,
+            },
+          },
+        });
       }
-      if (hasOperationName(req, ProductOperations.GetTranslatedProductTexts)) {
-        req.reply(TranslatedProductTextResponse);
-      }
+
       if (hasOperationName(req, ProductOperations.PublishProduct)) {
         const { body } = req;
         expect(body.variables).to.haveOwnProperty('productId');
@@ -181,11 +170,8 @@ describe('Product', () => {
     cy.get('li[role="option"]').contains(localizations.en.publish).click();
   });
 
-  it('[UNPUBLISH] product successfully', () => {
+  it('Delete product button should be visible for unpublished/draft product', () => {
     cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, ProductOperations.GetProductList)) {
-        req.reply(ProductListResponse);
-      }
       if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
         req.reply({
           ...SingleProductResponse,
@@ -194,13 +180,90 @@ describe('Product', () => {
             product: {
               ...SingleProductResponse.data.product,
               published: null,
+              status: 'DRAFT',
             },
           },
         });
       }
-      if (hasOperationName(req, ProductOperations.GetTranslatedProductTexts)) {
-        req.reply(TranslatedProductTextResponse);
+    });
+
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+
+      .click({ force: true });
+
+    const [firstProduct] = ProductListResponse.data.products;
+
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+      .click({ force: true });
+
+    cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+    cy.get(
+      'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+    )
+      .contains(localizations.en.delete)
+      .should('be.visible');
+  });
+
+  it('Delete product button should [NOT] be visible for published product', () => {
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+
+      .click({ force: true });
+
+    const [firstProduct] = ProductListResponse.data.products;
+
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+      .click({ force: true });
+
+    cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+    cy.get(
+      'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
+    ).should('not.exist');
+  });
+
+  it('[UNPUBLISH] product successfully', () => {
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
+        const { body } = req;
+        expect(body.variables).to.haveOwnProperty('productId');
+        req.reply(PublishProductResponse); // because they both are the same
       }
+    });
+    const [firstProduct] = ProductListResponse.data.products;
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+      .click({ force: true });
+    cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+    cy.get('button#headlessui-listbox-button-14').click({
+      multiple: true,
+    });
+    cy.get('li[role="option"]').contains(localizations.en.draft).click();
+  });
+
+  it('[UNPUBLISH] product successfully', () => {
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
+        req.reply({
+          ...SingleProductResponse,
+          data: {
+            ...SingleProductResponse.data,
+            product: {
+              ...SingleProductResponse.data.product,
+              published: null,
+              status: 'DRAFT',
+            },
+          },
+        });
+      }
+
       if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
         const { body } = req;
         expect(body.variables).to.haveOwnProperty('productId');
@@ -216,6 +279,7 @@ describe('Product', () => {
     cy.get('.relative.inline-flex.items-center.bg-slate-500').click({
       multiple: true,
     });
+
     cy.get('li[role="option"]').contains(localizations.en.draft).click();
   });
 });
