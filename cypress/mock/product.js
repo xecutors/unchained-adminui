@@ -327,6 +327,7 @@ export const ProductOperations = {
   GetTranslatedProductTexts: 'TranslatedProductTexts',
   UpdateTexts: 'UpdateProductTexts',
   PublishProduct: 'PublishProduct',
+  UnpublishProduct: 'UnpublishProduct',
 };
 
 export default {

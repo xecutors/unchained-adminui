@@ -159,6 +159,13 @@ describe('Product', () => {
         req.reply(PublishProductResponse);
       }
     });
+
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+
+      .click({ force: true });
+
     const [firstProduct] = ProductListResponse.data.products;
 
     cy.visit('/');
@@ -167,11 +174,48 @@ describe('Product', () => {
       .click({ force: true });
 
     cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
-    cy.url().should('contain', `/products/${firstProduct.texts.slug}`);
 
     cy.get('.relative.inline-flex.items-center.bg-slate-500').click({
       multiple: true,
     });
     cy.get('li[role="option"]').contains(localizations.en.publish).click();
+  });
+
+  it('[UNPUBLISH] product successfully', () => {
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, ProductOperations.GetProductList)) {
+        req.reply(ProductListResponse);
+      }
+      if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
+        req.reply({
+          ...SingleProductResponse,
+          data: {
+            ...SingleProductResponse.data,
+            product: {
+              ...SingleProductResponse.data.product,
+              published: null,
+            },
+          },
+        });
+      }
+      if (hasOperationName(req, ProductOperations.GetTranslatedProductTexts)) {
+        req.reply(TranslatedProductTextResponse);
+      }
+      if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
+        const { body } = req;
+        expect(body.variables).to.haveOwnProperty('productId');
+        req.reply(PublishProductResponse); // because they both are the same
+      }
+    });
+    const [firstProduct] = ProductListResponse.data.products;
+    cy.visit('/');
+    cy.get('a[href="/products"]')
+      .contains(localizations.en.products)
+      .click({ force: true });
+    cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+    cy.get('.relative.inline-flex.items-center.bg-slate-500').click({
+      multiple: true,
+    });
+    cy.get('li[role="option"]').contains(localizations.en.draft).click();
   });
 });
