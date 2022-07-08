@@ -278,6 +278,7 @@ describe('Product', () => {
     cy.get('.relative.inline-flex.items-center.bg-slate-500').click({
       multiple: true,
     });
+
     cy.get('li[role="option"]').contains(localizations.en.draft).click();
   });
 });
