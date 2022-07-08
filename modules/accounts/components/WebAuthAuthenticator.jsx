@@ -1,89 +1,23 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+
 import Button from '../../common/components/Button';
 import FormWrapper from '../../common/components/FormWrapper';
-
-import useCreateWebAuthnCredentialRequestOptions from '../hooks/useCreateWebAuthnCredentialRequestOptions';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
 import useCreateUser from '../hooks/useCreateUser';
 import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
-import base64ToArrayBuffer from '../../common/utils/base64ToArrayBuffer';
+import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 
 const WebAuthAuthenticator = () => {
   const { formatMessage } = useIntl();
+  const [userEmail, setUserEmail] = useState();
   const { createUser } = useCreateUser();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
-  const [userEmail, setUserEmail] = useState();
-  const { createWebAuthnCredentialRequestOptions } =
-    useCreateWebAuthnCredentialRequestOptions();
-
   const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
+  const { generateLoginCredentials } = useGenerateLoginCredentials();
 
-  const generateLoginCredentials = async () => {
-    const { data } = await createWebAuthnCredentialRequestOptions({
-      username: userEmail,
-    });
-
-    const publicKey = data?.createWebAuthnCredentialRequestOptions;
-    publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
-
-    const textEncoder = new TextEncoder('utf-8');
-
-    publicKey.allowCredentials = publicKey.allowCredentials?.map(
-      ({ id, ...rest }) => ({
-        id: base64ToArrayBuffer(id),
-        ...rest,
-      }),
-    );
-
-    publicKey.user = {
-      id: textEncoder.encode(userEmail),
-      name: userEmail,
-      displayName: userEmail,
-    };
-
-    const PublicKeyCredentials = await navigator.credentials.get({
-      publicKey,
-    });
-
-    const authenticatorData = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(PublicKeyCredentials.response.authenticatorData),
-      ),
-    );
-    const signature = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(PublicKeyCredentials.response.signature),
-      ),
-    );
-    const userHandle = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(PublicKeyCredentials.response.userHandle),
-      ) || userEmail,
-    );
-    const clientDataJSON = window.btoa(
-      String.fromCharCode(
-        ...new Uint8Array(PublicKeyCredentials.response.clientDataJSON),
-      ),
-    );
-    const id = window.btoa(
-      String.fromCharCode(...new Uint8Array(PublicKeyCredentials.rawId)),
-    );
-
-    return {
-      requestId: publicKey.requestId,
-      id,
-      response: {
-        clientDataJSON,
-        authenticatorData,
-        signature,
-        userHandle,
-      },
-    };
-  };
-
-  const onSubmit = async () => {
+  const registerWithWebAuth = async () => {
     try {
       const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
         email: userEmail,
@@ -101,9 +35,13 @@ const WebAuthAuthenticator = () => {
       alert(e.message);
     }
   };
+
   const logInWithWebAuth = async () => {
     try {
-      const webAuthnPublicKeyCredentials = await generateLoginCredentials();
+      const webAuthnPublicKeyCredentials = await generateLoginCredentials({
+        email: userEmail,
+      });
+      console.log('webAuthnPublicKeyCredentials', webAuthnPublicKeyCredentials);
       await loginWithWebAuthn({ webAuthnPublicKeyCredentials });
     } catch (e) {
       alert(e.message);
@@ -121,14 +59,13 @@ const WebAuthAuthenticator = () => {
         </h3>
       </div>
 
-      <div>
+      <div className="mt-1">
         <input
           id="authEmail"
           name="authEmail"
-          className="mt-1"
+          className="relative mt-1 block w-full dark:placeholder:text-white dark:bg-slate-600 dark:text-white appearance-none rounded-md border-2 border-slate-200 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm placeholder:text-slate-400 focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400'"
           onChange={(e) => setUserEmail(e.target.value)}
           required
-          labelClassName="capitalize"
           label={formatMessage({
             id: 'user_name',
             defaultMessage: 'user name',
@@ -141,7 +78,7 @@ const WebAuthAuthenticator = () => {
       </div>
       <div className="flex items-center gap-4 mt-4">
         <Button
-          onClick={onSubmit}
+          onClick={registerWithWebAuth}
           disabled={!userEmail}
           className="flex-auto capitalize"
           text={formatMessage({

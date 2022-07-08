@@ -14,31 +14,30 @@ const RegisteredWebAuthItem = ({
 }) => {
   const { formatDateTime } = useFormatDateTime();
   return (
-    <li className="flex py-6">
-      <div className="ml-4 flex-1 flex flex-col sm:ml-6">
+    <li key={_id} className="flex py-6">
+      <div className="mx-4 flex-1 flex flex-col sm:mx-6">
         <div>
           <div className="flex justify-between">
             <h4 className="text-sm">
               <a
                 href="#"
-                className="font-medium text-gray-700 hover:text-gray-800"
+                className="font-medium text-slate-700 hover:text-slate-800 dark:text-white"
               >
-                {' '}
-                {aaguid}{' '}
+                {aaguid}
               </a>
             </h4>
-            <p className="ml-4 text-sm font-medium text-gray-900">
+            <p className="ml-4 text-sm font-medium">
               <Badge text={counter} />
             </p>
           </div>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">
             {JSON.stringify(md5Metadata)}
           </p>
-          <p className="mt-1 text-sm text-gray-500" />
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-300" />
         </div>
 
         <div className="mt-4 flex-1 flex items-end justify-between">
-          <p className="flex items-center text-sm text-gray-700 space-x-2">
+          <p className="flex items-center text-sm text-slate-700 dark:text-slate-300 space-x-2">
             <CheckIcon
               className="flex-shrink-0 h-5 w-5 text-green-500"
               xmlns="http://www.w3.org/2000/svg"
