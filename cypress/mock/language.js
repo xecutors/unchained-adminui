@@ -9,13 +9,49 @@ export const LanguagesResponse = {
         name: 'de (Base)',
         __typename: 'Language',
       },
+      {
+        _id: '3d8f7cff0b038f582c48417d',
+        isActive: true,
+        isBase: true,
+        isoCode: 'en',
+        name: 'en (Base)',
+        __typename: 'Language',
+      },
     ],
-    languagesCount: 1,
+    languagesCount: 2,
+  },
+};
+
+export const SingleLanguageResponse = {
+  data: {
+    language: {
+      _id: '401d3dcaffada1d7942a567c',
+      isoCode: 'de',
+      isActive: true,
+      isBase: true,
+      name: 'de (Base)',
+      __typename: 'Language',
+    },
+  },
+};
+
+export const CreateLanguageResponse = {
+  data: {
+    language: {
+      _id: '401d3dcaffada1d7942a567c',
+      isoCode: 'de',
+      isActive: true,
+      isBase: true,
+      name: 'de (Base)',
+      __typename: 'Language',
+    },
   },
 };
 
 export const LanguageOperations = {
   GetLanguagesList: 'Languages',
+  GetSingleLanguage: 'Language',
+  CreateLanguage: 'CreateLanguage',
 };
 
 export default { LanguagesResponse, LanguageOperations };
