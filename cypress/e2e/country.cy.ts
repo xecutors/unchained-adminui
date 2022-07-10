@@ -17,7 +17,10 @@ describe('Countries', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, CountryOperations.GetCountryList)) {
+<<<<<<< HEAD
         aliasQuery(req, CountryOperations.GetCountryList);
+=======
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
         req.reply(CountryListResponse);
       }
       if (hasOperationName(req, CountryOperations.GetSingleCountry)) {
@@ -41,7 +44,8 @@ describe('Countries', () => {
         req.reply(CurrencyListResponse);
       }
     });
-
+  });
+  it('Show Navigate to [COUNTRY] page successfully', () => {
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/country"]')
@@ -70,8 +74,19 @@ describe('Countries', () => {
     cy.get('tr').should('have.length', 4);
   });
 
+<<<<<<< HEAD
   it('[TOGGLE STATUS] should update route', () => {
     cy.location('pathname').should('eq', '/country');
+=======
+  it('Toggling status toggle should update route', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/country"]')
+      .contains(localizations.en.countries)
+      .click({ force: true });
+
+    cy.url().should('contain', '/country');
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
 
     cy.get('button[role="switch"]').click();
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(

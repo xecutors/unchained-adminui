@@ -13,7 +13,11 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
+<<<<<<< HEAD
 describe('Currencies', () => {
+=======
+describe('Languages', () => {
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, CurrencyOperations.GetCurrencyList)) {
@@ -37,6 +41,11 @@ describe('Currencies', () => {
         req.reply(RemoveCurrencyResponse);
       }
     });
+<<<<<<< HEAD
+=======
+  });
+  it('Show Navigate to [LANGUAGES] page successfully', () => {
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/currency"]')
@@ -67,6 +76,18 @@ describe('Currencies', () => {
     cy.location('pathname').should('eq', '/currency');
     cy.get('tr').should('have.length', 4);
   });
+<<<<<<< HEAD
+=======
+
+  it('Toggling status  toggle should update route', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
 
   it('Toggling status  toggle should update route', () => {
     cy.location('pathname').should('eq', '/currency');

@@ -36,6 +36,11 @@ describe('Languages', () => {
         req.reply(RemoveLanguageResponse);
       }
     });
+<<<<<<< HEAD
+=======
+  });
+  it('Show Navigate to [LANGUAGES] page successfully', () => {
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/language"]')
@@ -64,6 +69,7 @@ describe('Languages', () => {
   });
 
   it('Toggling active status should update route accordingly', () => {
+<<<<<<< HEAD
     cy.location('pathname').should('eq', '/language');
     cy.get('button[role="switch"]').click();
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
@@ -85,7 +91,15 @@ describe('Languages', () => {
         includeInactive: 'true',
       });
     });
+=======
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+>>>>>>> 54e4318e (Fix failing country test and adjust few more)
 
+    cy.url().should('contain', '/language');
     cy.get('button[role="switch"]').click();
 
     cy.location().then((loc) => {
