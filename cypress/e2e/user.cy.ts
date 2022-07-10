@@ -20,11 +20,6 @@ describe('User', () => {
   });
 
   it('Show Navigate to [USER] page successfully', () => {
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, UserOperations.GetUserList)) {
-        req.reply(UserListResponse);
-      }
-    });
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)

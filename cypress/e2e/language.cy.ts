@@ -7,13 +7,14 @@ import {
 import hasOperationName from '../utils/hasOperationName';
 
 describe('Languages', () => {
-  it('Show Navigate to [LANGUAGES] page successfully', () => {
+  beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         req.reply(LanguagesResponse);
       }
     });
-
+  });
+  it('Show Navigate to [LANGUAGES] page successfully', () => {
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/language"]')
@@ -22,7 +23,16 @@ describe('Languages', () => {
 
     cy.url().should('contain', '/language');
     cy.get('tr').should('have.length', 4);
+  });
 
+  it('Toggling active status should update route accordingly', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
     cy.get('button[role="switch"]').click();
     cy.url().should('contain', '/language?includeInactive=true');
   });

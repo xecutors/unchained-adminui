@@ -1,6 +1,6 @@
 export const CountryListResponse = {
   data: {
-    country: [
+    countries: [
       {
         _id: '2c134c37930db24fc9badcb2',
         isoCode: 'CH',
@@ -26,7 +26,7 @@ export const CountryListResponse = {
         __typename: 'Country',
       },
     ],
-    languagesCount: 2,
+    countriesCount: 2,
   },
 };
 
