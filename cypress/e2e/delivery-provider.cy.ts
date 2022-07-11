@@ -16,7 +16,7 @@ const ALIASES = {
   GetPickUpDeliveryProviders: 'GetPickUpDeliveryProviders',
   CreateProvider: 'CreateProvider',
 };
-describe('Countries', () => {
+describe('Delivery Provider', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       const { body } = req;
