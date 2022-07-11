@@ -35,7 +35,7 @@ export const SingleCountryResponse = {
     country: {
       _id: '075eba0a726acb6bea88d420',
       isoCode: 'DE',
-      isActive: true,
+      isActive: false,
       isBase: false,
       defaultCurrency: {
         _id: '54113f9f8d80b4edb0dc3447',
@@ -64,8 +64,26 @@ export const CreateCountryResponse = {
   },
 };
 
+export const UpdateCountryResponse = {
+  data: {
+    country: {
+      _id: '075eba0a726acb6bea88d420',
+      isoCode: 'DE',
+      isActive: true,
+      isBase: false,
+      defaultCurrency: {
+        _id: '54113f9f8d80b4edb0dc3447',
+        isoCode: 'CHF',
+        __typename: 'Currency',
+      },
+      __typename: 'Country',
+    },
+  },
+};
+
 export const CountryOperations = {
   GetCountryList: 'Countries',
   GetSingleCountry: 'Country',
   CreateCountry: 'CreateCountry',
+  UpdateCountry: 'UpdateCountry',
 };
