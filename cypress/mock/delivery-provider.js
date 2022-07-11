@@ -10,7 +10,7 @@ export const DeliveryProviderListResponse = {
         isActive: true,
         configuration: [],
         interface: {
-          _id: 'ch.orderly.delivery.pickup',
+          _id: 'ch.test.delivery.pickup',
           label: 'Pickup at Clerk',
           version: '1.0',
           __typename: 'DeliveryInterface',
@@ -32,7 +32,7 @@ export const DeliveryProviderListResponse = {
           },
         ],
         interface: {
-          _id: 'ch.orderly.delivery.runner',
+          _id: 'ch.test.delivery.runner',
           label: 'Delivery through Runner',
           version: '1.0',
           __typename: 'DeliveryInterface',
@@ -55,7 +55,7 @@ export const SingleDeliveryProviderResponse = {
       isActive: true,
       configuration: [],
       interface: {
-        _id: 'ch.orderly.delivery.pickup',
+        _id: 'ch.test.delivery.pickup',
         label: 'Pickup at Clerk',
         version: '1.0',
         __typename: 'DeliveryInterface',
