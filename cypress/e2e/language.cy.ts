@@ -36,11 +36,6 @@ describe('Languages', () => {
         req.reply(RemoveLanguageResponse);
       }
     });
-<<<<<<< HEAD
-=======
-  });
-  it('Show Navigate to [LANGUAGES] page successfully', () => {
->>>>>>> 54e4318e (Fix failing country test and adjust few more)
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/language"]')
@@ -69,7 +64,6 @@ describe('Languages', () => {
   });
 
   it('Toggling active status should update route accordingly', () => {
-<<<<<<< HEAD
     cy.location('pathname').should('eq', '/language');
     cy.get('button[role="switch"]').click();
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
@@ -91,13 +85,6 @@ describe('Languages', () => {
         includeInactive: 'true',
       });
     });
-=======
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/language"]')
-      .contains(localizations.en.languages)
-      .click({ force: true });
->>>>>>> 54e4318e (Fix failing country test and adjust few more)
 
     cy.url().should('contain', '/language');
     cy.get('button[role="switch"]').click();
@@ -322,5 +309,82 @@ describe('Languages', () => {
       },
     );
     cy.location('pathname').should('eq', '/language');
+  });
+
+  it('Show [INITIALIZE LANGUAGE] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input#isoCode').should('have.value', language.isoCode);
+    cy.get('input[type="checkbox"]#isActive');
+  });
+
+  it('Show [UPDATE LANGUAGE] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, LanguageOperations.UpdateLanguage)) {
+        const { body } = req;
+        expect(body.variables).to.deep.eq({
+          language: {
+            isoCode: language.isoCode,
+            isActive: false,
+          },
+          languageId: language._id,
+        });
+
+        req.reply(UpdateLanguageResponse);
+      }
+    });
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input[type="checkbox"]#isActive').uncheck();
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.update_language)
+      .click();
+  });
+
+  it('Show [DELETE COUNTRY] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input[type="checkbox"]#isActive');
+    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.url().should('contain', '/language');
+  });
+
+  it('Show [DELETE COUNTRY FROM LIST] successfully', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+    cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
+    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.url().should('contain', '/language');
   });
 });

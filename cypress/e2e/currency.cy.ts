@@ -13,11 +13,7 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-<<<<<<< HEAD
 describe('Currencies', () => {
-=======
-describe('Languages', () => {
->>>>>>> 54e4318e (Fix failing country test and adjust few more)
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, CurrencyOperations.GetCurrencyList)) {
@@ -40,12 +36,11 @@ describe('Languages', () => {
         aliasMutation(req, CurrencyOperations.RemoveCurrency);
         req.reply(RemoveCurrencyResponse);
       }
+      if (hasOperationName(req, CurrencyOperations.GetSingleCurrency)) {
+        req.reply(SingleCurrencyResponse);
+      }
     });
-<<<<<<< HEAD
-=======
-  });
-  it('Show Navigate to [LANGUAGES] page successfully', () => {
->>>>>>> 54e4318e (Fix failing country test and adjust few more)
+
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/currency"]')
@@ -76,18 +71,6 @@ describe('Languages', () => {
     cy.location('pathname').should('eq', '/currency');
     cy.get('tr').should('have.length', 4);
   });
-<<<<<<< HEAD
-=======
-
-  it('Toggling status  toggle should update route', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/language"]')
-      .contains(localizations.en.languages)
-      .click({ force: true });
-
-    cy.url().should('contain', '/language');
->>>>>>> 54e4318e (Fix failing country test and adjust few more)
 
   it('Toggling status  toggle should update route', () => {
     cy.location('pathname').should('eq', '/currency');
@@ -414,5 +397,92 @@ describe('Languages', () => {
       },
     );
     cy.location('pathname').should('eq', `/currency`);
+  });
+
+  it('Show [INITIALIZE CURRENCY] successfully', () => {
+    const { currency } = SingleCurrencyResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.get(`a[href="/currency/${currency._id}"]`).click();
+    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.get('input#isoCode').should('have.value', currency.isoCode);
+    cy.get('input#contractAddress').should(
+      'have.value',
+      currency.contractAddress,
+    );
+    cy.get('input[type="checkbox"]#is-active');
+    cy.get('button').contains(localizations.en.delete);
+    cy.get('input[type="submit"]').contains(localizations.en.update_currency);
+  });
+
+  it('Show [UPDATE CURRENCY] successfully', () => {
+    const { currency } = SingleCurrencyResponse.data;
+
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, CurrencyOperations.UpdateCurrency)) {
+        const { body } = req;
+        expect(body.variables).to.deep.eq({
+          currency: {
+            contractAddress: currency.contractAddress,
+            isoCode: currency.isoCode,
+            isActive: false,
+          },
+          currencyId: currency._id,
+        });
+
+        req.reply(UpdateCurrencyResponse);
+      }
+    });
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.get(`a[href="/currency/${currency._id}"]`).click();
+    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.get('input#contractAddress')
+      .clear()
+      .type('0x26b3E189B7DEE08EB86cCc698abc9D33980e39c6');
+    cy.get('input[type="checkbox"]#is-active').uncheck();
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.update_currency)
+      .click();
+  });
+
+  it('Show [DELETE CURRENCY] successfully', () => {
+    const { currency } = SingleCurrencyResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.get(`a[href="/currency/${currency._id}"]`).click();
+    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.get('input[type="checkbox"]#is-active');
+    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button').contains(localizations.en.delete_currency).click();
+    cy.url().should('contain', '/currency');
+  });
+
+  it('Show [DELETE CURRENCY FROM LIST] successfully', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.url().should('contain', '/currency');
+    cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
+    cy.get('button').contains(localizations.en.delete_currency).click();
+    cy.url().should('contain', '/currency');
   });
 });
