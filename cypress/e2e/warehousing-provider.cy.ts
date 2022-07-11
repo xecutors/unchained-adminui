@@ -117,7 +117,6 @@ describe('Warehousing Provider', () => {
     const { options } =
       WarehousingProvidersTypeResponse.data.warehousingProviderType;
     const [firstType] = options;
-
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/warehousing-provider"]')
