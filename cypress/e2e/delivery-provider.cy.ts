@@ -90,14 +90,6 @@ describe('Countries', () => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, DeliveryProviderOperations.CreateProvider)) {
         aliasMutation(req, ALIASES.CreateProvider);
-        const { body } = req;
-        expect(body.variables).to.deep.eq({
-          deliveryProvider: {
-            adapterKey: firstPickUpInterface._id,
-            type: firstType.value,
-          },
-        });
-
         req.reply(CreateDeliveryProviderResponse);
       }
     });
