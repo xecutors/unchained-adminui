@@ -33,17 +33,10 @@ export const CountryListResponse = {
 export const SingleCountryResponse = {
   data: {
     country: {
-<<<<<<< HEAD
       _id: '2c134c37930db24fc9badcb2',
       isoCode: 'CH',
       isActive: true,
       isBase: true,
-=======
-      _id: '075eba0a726acb6bea88d420',
-      isoCode: 'DE',
-      isActive: false,
-      isBase: false,
->>>>>>> 39af1e84 (Add country initialize and update tests)
       defaultCurrency: {
         _id: '54113f9f8d80b4edb0dc3447',
         isoCode: 'CHF',
@@ -81,30 +74,10 @@ export const RemoveCountryResponse = {
   },
 };
 
-export const UpdateCountryResponse = {
-  data: {
-    country: {
-      _id: '075eba0a726acb6bea88d420',
-      isoCode: 'DE',
-      isActive: true,
-      isBase: false,
-      defaultCurrency: {
-        _id: '54113f9f8d80b4edb0dc3447',
-        isoCode: 'CHF',
-        __typename: 'Currency',
-      },
-      __typename: 'Country',
-    },
-  },
-};
-
 export const CountryOperations = {
   GetCountryList: 'Countries',
   GetSingleCountry: 'Country',
   CreateCountry: 'CreateCountry',
   UpdateCountry: 'UpdateCountry',
-<<<<<<< HEAD
   RemoveCountry: 'RemoveCountry',
-=======
->>>>>>> 39af1e84 (Add country initialize and update tests)
 };
