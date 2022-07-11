@@ -8,6 +8,7 @@ import {
   UpdateCurrencyResponse,
 } from '../mock/currency';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
+import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -21,6 +22,11 @@ describe('Currencies', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, CurrencyOperations.GetCurrencyList)) {
+        const { body } = req;
+        if (body.variables?.includeInactive || body.variables?.queryString) {
+          aliasQuery(req, CurrencyOperations.GetCurrencyList);
+        }
+
         req.reply(CurrencyListResponse);
       }
       if (hasOperationName(req, CurrencyOperations.GetSingleCurrency)) {
@@ -62,7 +68,34 @@ describe('Currencies', () => {
     cy.url().should('contain', '/currency');
 
     cy.get('button[role="switch"]').click();
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
+      .its('request.body.variables.includeInactive')
+      .should('be.true');
     cy.url().should('contain', '/currency?includeInactive=true');
+    cy.get('button[role="switch"]').click();
+    cy.url().should('contain', '/currency?includeInactive=false');
+  });
+
+  it('should update data and route when [SEARCHING] accordingly', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.url().should('contain', '/currency');
+
+    cy.get('input[type="search"]').type('s');
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
+      .its('request.body.variables.queryString')
+      .should('eq', 's');
+    cy.url().should('contain', '/currency?queryString=s');
+    cy.get('input[type="search"]').type('a');
+    cy.wait(5000);
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
+      .its('request.body.variables.queryString')
+      .should('eq', 'sa');
+    cy.url().should('contain', '/currency?queryString=sa');
   });
 
   it('Show Navigate to [NEW CURRENCY] form page successfully', () => {
