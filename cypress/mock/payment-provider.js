@@ -70,6 +70,7 @@ export const SinglePaymentProviderResponse = {
         {
           key: 'marketplaceSplit',
           value: '19977;ch.test.discount.remove-test-fee',
+<<<<<<< HEAD
         },
       ],
       configurationError: null,
@@ -109,6 +110,8 @@ export const UpdatePaymentProviderResponse = {
         {
           key: 'marketplaceSplit',
           value: '19977;ch.test.discount.remove-test-fee',
+=======
+>>>>>>> cac48e3e (Remove orderly reference from mock data)
         },
       ],
       configurationError: null,
