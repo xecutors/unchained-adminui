@@ -106,7 +106,6 @@ describe('Payment Provider', () => {
       PaymentProvidersInterfaceResponse.data.paymentInterfaces;
     const { options } = PaymentProvidersTypeResponse.data.paymentProviderType;
     const [, , genericType] = options;
-
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/payment-provider"]')
