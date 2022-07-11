@@ -17,7 +17,7 @@ const ALIASES = {
   GetGenericProviders: 'GetGenericProviders',
   CreateProvider: 'CreateProvider',
 };
-describe('Countries', () => {
+describe('Payment Provider', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       const { body } = req;
