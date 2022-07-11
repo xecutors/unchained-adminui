@@ -1,9 +1,11 @@
 import hasOperationName from './hasOperationName';
 
-const aliasQuery = (req, operationName) => {
-  if (hasOperationName(req, operationName)) {
-    req.alias = `gql${operationName}Query`;
-  }
+export const aliasQuery = (req, alias) => {
+  req.alias = `gql${alias}Query`;
 };
 
-export default aliasQuery;
+export const fullAliasName = (alias) => {
+  return `@gql${alias}Query`;
+};
+
+export default { aliasQuery, fullAliasName };
