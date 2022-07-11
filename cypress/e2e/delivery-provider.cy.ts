@@ -8,7 +8,7 @@ import {
   DeliveryProvidersTypeResponse,
   SingleDeliveryProviderResponse,
 } from '../mock/delivery-provider';
-import aliasMutation, { fullAliasMutationName } from '../utils/aliasMutation';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 
@@ -27,6 +27,9 @@ describe('Countries', () => {
         }
         req.reply(DeliveryProviderListResponse);
       }
+      if (hasOperationName(req, DeliveryProviderOperations.GetSingleProvider)) {
+        req.reply(SingleDeliveryProviderResponse);
+      }
       if (hasOperationName(req, DeliveryProviderOperations.GetProvidersType)) {
         req.reply(DeliveryProvidersTypeResponse);
       }
@@ -36,11 +39,6 @@ describe('Countries', () => {
     });
   });
   it('Show Navigate to [DELIVERY PROVIDERS] page successfully', () => {
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, DeliveryProviderOperations.GetSingleProvider)) {
-        req.reply(SingleDeliveryProviderResponse);
-      }
-    });
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/delivery-provider"]')
@@ -123,13 +121,18 @@ describe('Countries', () => {
       `/delivery-provider/${CreateDeliveryProviderResponse.data.createDeliveryProvider._id}`,
     );
 
-    const mutation = cy.wait(fullAliasMutationName(ALIASES.CreateProvider));
-
-    mutation.its('request.body.variables').should('deep.include', {
-      deliveryProvider: {
-        adapterKey: firstPickUpInterface._id,
-        type: firstType.value,
+    cy.wait(fullAliasMutationName(ALIASES.CreateProvider)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          deliveryProvider: {
+            adapterKey: firstPickUpInterface._id,
+            type: firstType.value,
+          },
+        });
+        expect(currentSubject.response.body).to.deep.eq(
+          CreateDeliveryProviderResponse,
+        );
       },
-    });
+    );
   });
 });
