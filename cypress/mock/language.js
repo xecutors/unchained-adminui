@@ -48,10 +48,24 @@ export const CreateLanguageResponse = {
   },
 };
 
+export const UpdateLanguageResponse = {
+  data: {
+    language: {
+      _id: '401d3dcaffada1d7942a567c',
+      isoCode: 'de',
+      isActive: true,
+      isBase: true,
+      name: 'de (Base)',
+      __typename: 'Language',
+    },
+  },
+};
+
 export const LanguageOperations = {
   GetLanguagesList: 'Languages',
   GetSingleLanguage: 'Language',
   CreateLanguage: 'CreateLanguage',
+  UpdateLanguage: 'UpdateLanguage',
 };
 
 export default { LanguagesResponse, LanguageOperations };
