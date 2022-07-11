@@ -5,5 +5,3 @@ export const aliasMutation = (req, alias) => {
 export const fullAliasMutationName = (alias) => {
   return `@gql${alias}Mutation`;
 };
-
-export default { aliasMutation, fullAliasMutationName };

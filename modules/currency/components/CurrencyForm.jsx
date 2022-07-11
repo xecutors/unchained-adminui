@@ -13,7 +13,7 @@ const CurrencyForm = ({
   onSubmit,
   onSubmitSuccess,
   defaultValue = {},
-  isEdit = true,
+  isEdit = false,
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
