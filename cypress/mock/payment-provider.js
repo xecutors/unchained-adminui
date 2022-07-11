@@ -20,16 +20,16 @@ export const PaymentProvidersListResponse = {
             value: '1100035415',
           },
           {
-            key: 'orderlyCommission',
+            key: 'testCommission',
             value: '5',
           },
           {
-            key: 'orderlyService',
+            key: 'testService',
             value: '2',
           },
           {
             key: 'marketplaceSplit',
-            value: '19977;ch.orderly.discount.remove-orderly-fee',
+            value: '19977;ch.test.discount.remove-test-fee',
           },
         ],
         configurationError: null,
@@ -60,16 +60,16 @@ export const SinglePaymentProviderResponse = {
           value: '1100035415',
         },
         {
-          key: 'orderlyCommission',
+          key: 'testCommission',
           value: '5',
         },
         {
-          key: 'orderlyService',
+          key: 'testService',
           value: '2',
         },
         {
           key: 'marketplaceSplit',
-          value: '19977;ch.orderly.discount.remove-orderly-fee',
+          value: '19977;ch.test.discount.remove-test-fee',
         },
       ],
       configurationError: null,

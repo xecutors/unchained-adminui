@@ -91,7 +91,7 @@ export const ProductListResponse = {
             tags: [],
             file: {
               _id: '73Rksm0KvkEqvUI2kfQ4T5-thumbnail_salad.jpg',
-              url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/73Rksm0KvkEqvUI2kfQ4T5-thumbnail_salad.jpg',
+              url: 'https://unchained.shop/_next/static/media/logo.41b5589a.svg',
               __typename: 'Media',
             },
             __typename: 'ProductMedia',
