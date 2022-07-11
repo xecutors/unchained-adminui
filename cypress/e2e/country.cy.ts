@@ -361,7 +361,7 @@ describe('Countries', () => {
     cy.get(`a[href="/country/${country._id}"]`).click();
     cy.url().should('contain', `/country/${country._id}`);
     cy.get('input#isoCode').should('have.value', country.isoCode);
-    cy.get('select#defaultCurrencyId option:selected').should(
+    cy.get('select#defaultCurrencyId').should(
       'have.value',
       country.defaultCurrency._id,
     );
