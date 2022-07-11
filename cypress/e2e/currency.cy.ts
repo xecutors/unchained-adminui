@@ -39,8 +39,19 @@ describe('Currencies', () => {
       if (hasOperationName(req, CurrencyOperations.GetSingleCurrency)) {
         req.reply(SingleCurrencyResponse);
       }
+      if (hasOperationName(req, CurrencyOperations.CreateCurrency)) {
+        aliasMutation(req, ALIASES.CreateCurrency);
+        req.reply(CreateCurrencyResponse);
+      }
+      if (hasOperationName(req, CurrencyOperations.UpdateCurrency)) {
+        aliasMutation(req, ALIASES.UpdateCurrency);
+        req.reply(UpdateCurrencyResponse);
+      }
+      if (hasOperationName(req, CurrencyOperations.RemoveCurrency)) {
+        aliasMutation(req, ALIASES.RemoveCurrency);
+        req.reply(RemoveCurrencyResponse);
+      }
     });
-
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/currency"]')
@@ -408,6 +419,7 @@ describe('Currencies', () => {
       .contains(localizations.en.currencies)
       .click({ force: true });
 
+    cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
     cy.url().should('contain', `/currency/${currency._id}`);
     cy.get('input#isoCode').should('have.value', currency.isoCode);
@@ -416,28 +428,10 @@ describe('Currencies', () => {
       currency.contractAddress,
     );
     cy.get('input[type="checkbox"]#is-active');
-    cy.get('button').contains(localizations.en.delete);
-    cy.get('input[type="submit"]').contains(localizations.en.update_currency);
   });
 
   it('Show [UPDATE CURRENCY] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
-
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, CurrencyOperations.UpdateCurrency)) {
-        const { body } = req;
-        expect(body.variables).to.deep.eq({
-          currency: {
-            contractAddress: currency.contractAddress,
-            isoCode: currency.isoCode,
-            isActive: false,
-          },
-          currencyId: currency._id,
-        });
-
-        req.reply(UpdateCurrencyResponse);
-      }
-    });
 
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
@@ -450,10 +444,24 @@ describe('Currencies', () => {
     cy.get('input#contractAddress')
       .clear()
       .type('0x26b3E189B7DEE08EB86cCc698abc9D33980e39c6');
-    cy.get('input[type="checkbox"]#is-active').uncheck();
+    cy.get('input[type="checkbox"]#is-active').check();
     cy.get('input[type="submit"]')
       .contains(localizations.en.update_currency)
       .click();
+
+    cy.wait(fullAliasMutationName(ALIASES.UpdateCurrency)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          currency: {
+            // contractAddress: currency.contractAddress,
+            isoCode: currency.isoCode,
+            isActive: currency.isActive,
+          },
+          currencyId: currency._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(UpdateCurrencyResponse);
+      },
+    );
   });
 
   it('Show [DELETE CURRENCY] successfully', () => {
@@ -465,15 +473,27 @@ describe('Currencies', () => {
       .contains(localizations.en.currencies)
       .click({ force: true });
 
+    cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
     cy.url().should('contain', `/currency/${currency._id}`);
     cy.get('input[type="checkbox"]#is-active');
     cy.get('button').contains(localizations.en.delete).click();
     cy.get('button').contains(localizations.en.delete_currency).click();
     cy.url().should('contain', '/currency');
+
+    cy.wait(fullAliasMutationName(ALIASES.RemoveCurrency)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          currencyId: currency._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveCurrencyResponse);
+      },
+    );
   });
 
   it('Show [DELETE CURRENCY FROM LIST] successfully', () => {
+    const { currency } = SingleCurrencyResponse.data;
+
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/currency"]')
@@ -484,5 +504,14 @@ describe('Currencies', () => {
     cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
     cy.get('button').contains(localizations.en.delete_currency).click();
     cy.url().should('contain', '/currency');
+
+    cy.wait(fullAliasMutationName(ALIASES.RemoveCurrency)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          currencyId: currency._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveCurrencyResponse);
+      },
+    );
   });
 });
