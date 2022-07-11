@@ -56,9 +56,19 @@ export const UpdateCurrencyResponse = {
   },
 };
 
+export const RemoveCurrencyResponse = {
+  data: {
+    removeCurrency: {
+      _id: '54113f9f8d80b4edb0dc3447',
+      __typename: 'Currency',
+    },
+  },
+};
+
 export const CurrencyOperations = {
   GetCurrencyList: 'Currencies',
   GetSingleCurrency: 'Currency',
   CreateCurrency: 'CreateCurrency',
-  CurrencyCurrency: 'CurrencyCurrency',
+  UpdateCurrency: 'UpdateCurrency',
+  RemoveCurrency: 'RemoveCurrency',
 };

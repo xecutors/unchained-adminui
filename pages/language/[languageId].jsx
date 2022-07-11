@@ -44,7 +44,7 @@ const UpdateLanguage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeLanguage({});
+          await removeLanguage({ languageId });
           toast.success(
             formatMessage({
               id: 'language_deleted',
