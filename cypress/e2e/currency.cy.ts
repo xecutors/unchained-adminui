@@ -453,7 +453,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currency: {
-            // contractAddress: currency.contractAddress,
+            contractAddress: '0x26b3E189B7DEE08EB86cCc698abc9D33980e39c6',
             isoCode: currency.isoCode,
             isActive: currency.isActive,
           },
