@@ -13,10 +13,15 @@ const UpdateCurrencyMutation = gql`
 const useUpdateCurrency = () => {
   const [updateCurrencyMutation] = useMutation(UpdateCurrencyMutation);
 
-  const updateCurrency = async ({ isoCode, isActive, currencyId }) => {
+  const updateCurrency = async ({
+    isoCode,
+    isActive,
+    currencyId,
+    contractAddress,
+  }) => {
     return updateCurrencyMutation({
       variables: {
-        currency: { isoCode, isActive },
+        currency: { isoCode, isActive, contractAddress },
         currencyId,
       },
       refetchQueries: ['Currency', 'Currencies'],
