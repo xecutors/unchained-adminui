@@ -120,6 +120,45 @@ export const UpdatePaymentProviderResponse = {
   },
 };
 
+export const UpdatePaymentProviderResponse = {
+  data: {
+    paymentProvider: {
+      _id: 'ca246b09cf48cc2ef249a549',
+      created: '2022-04-11T14:36:45.096Z',
+      updated: '2022-05-23T15:04:45.648Z',
+      deleted: null,
+      isActive: true,
+      type: 'GENERIC',
+      interface: {
+        _id: 'shop.unchained.datatrans',
+        label: 'Datatrans (https://docs.datatrans.ch)',
+        version: '2.0.0',
+        __typename: 'PaymentInterface',
+      },
+      configuration: [
+        {
+          key: 'merchantId',
+          value: '1100035415',
+        },
+        {
+          key: 'testCommission',
+          value: '5',
+        },
+        {
+          key: 'testService',
+          value: '2',
+        },
+        {
+          key: 'marketplaceSplit',
+          value: '19977;ch.test.discount.remove-test-fee',
+        },
+      ],
+      configurationError: null,
+      __typename: 'PaymentProvider',
+    },
+  },
+};
+
 export const PaymentProvidersTypeResponse = {
   data: {
     paymentProviderType: {
