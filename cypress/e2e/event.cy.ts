@@ -19,6 +19,7 @@ describe('Events ', () => {
         req.reply(EventsListResponse);
       }
       if (hasOperationName(req, EventOperations.GetSingleEvent)) {
+        aliasQuery(req, EventOperations.GetSingleEvent);
         req.reply(SingleEventResponse);
       }
       if (hasOperationName(req, EventOperations.GetEventTypes)) {
@@ -114,5 +115,31 @@ describe('Events ', () => {
         `${eventTypes[0].value}`,
       )}&queryString=s`,
     );
+  });
+
+  it('Navigate to [EVENT DETAIL] successfully', () => {
+    const [firstEvent] = EventsListResponse.data.events;
+    cy.visit('/');
+    cy.get('button')
+      .contains(localizations.en.activities)
+      .click({ force: true });
+    cy.get('a[href="/events"]')
+      .contains(localizations.en.event)
+      .click({ force: true });
+
+    cy.url().should('contain', '/events');
+    cy.get(`a[href="/events/${firstEvent._id}"]`).click();
+    cy.wait(fullAliasName(EventOperations.GetSingleEvent)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          eventId: firstEvent._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(SingleEventResponse);
+      },
+    );
+
+    cy.url().should('contain', `/events/${firstEvent._id}`);
+    cy.contains(localizations.en.payload);
+    cy.contains(SingleEventResponse.data.event.type);
   });
 });
