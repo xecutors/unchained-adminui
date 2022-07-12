@@ -26,8 +26,8 @@ const UpdateCurrency = () => {
   const { currency, loading } = useCurrency({ currencyId });
   const { updateCurrency } = useUpdateCurrency();
   const { removeCurrency } = useRemoveCurrency();
-  const onSubmit = async ({ isActive, isoCode }) => {
-    await updateCurrency({ currencyId, isActive, isoCode });
+  const onSubmit = async ({ isActive, isoCode, contractAddress }) => {
+    await updateCurrency({ currencyId, isActive, isoCode, contractAddress });
     return true;
   };
 
