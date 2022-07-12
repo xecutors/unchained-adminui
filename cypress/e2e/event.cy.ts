@@ -139,7 +139,13 @@ describe('Events ', () => {
     );
 
     cy.url().should('contain', `/events/${firstEvent._id}`);
-    cy.contains(localizations.en.payload);
+    cy.get('textarea').should('not.exist');
+    cy.contains(localizations.en.payload).click({ multiple: true });
+    cy.get('textarea').should('be.visible');
     cy.contains(SingleEventResponse.data.event.type);
+    cy.get('textarea').should(
+      'contain.value',
+      JSON.stringify(SingleEventResponse.data.event.payload, null, 2),
+    );
   });
 });
