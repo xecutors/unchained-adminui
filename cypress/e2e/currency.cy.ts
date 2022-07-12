@@ -193,6 +193,7 @@ describe('Currencies', () => {
       .contains(localizations.en.currencies)
       .click({ force: true });
 
+    cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
     cy.url().should('contain', `/currency/${currency._id}`);
     cy.get('input#contractAddress')
@@ -218,6 +219,35 @@ describe('Currencies', () => {
     );
   });
 
+  it('Show [ERROR] when pattern of contract address fields are not correct in update currency', () => {
+    const { currency } = SingleCurrencyResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.url().should('contain', '/currency');
+    cy.get(`a[href="/currency/${currency._id}"]`).click();
+    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.get('input#contractAddress')
+      .clear()
+      .type('0x26b3E189B7DEE08EB86cCc698a');
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.update_currency)
+      .click();
+
+    cy.get('label[for="contractAddress"]').should(
+      'contain.text',
+      localizations.en.error_contract_address,
+    );
+
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.update_currency)
+      .should('be.disabled');
+  });
+
   it('Show [DELETE CURRENCY] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
 
@@ -230,7 +260,6 @@ describe('Currencies', () => {
     cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
     cy.url().should('contain', `/currency/${currency._id}`);
-    cy.get('input[type="checkbox"]#is-active');
     cy.get('button').contains(localizations.en.delete).click();
     cy.get('button').contains(localizations.en.delete_currency).click();
     cy.url().should('contain', '/currency');
