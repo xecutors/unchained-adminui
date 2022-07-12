@@ -107,6 +107,46 @@ export const SingleWarehousingProviderResponse = {
     },
   },
 };
+
+export const UpdateWarehousingProviderResponse = {
+  data: {
+    warehousingProvider: {
+      _id: '0167c4fde8e06c54f26532a2',
+      created: '2022-03-17T11:43:35.495Z',
+      updated: '2022-07-11T08:42:22.298Z',
+      deleted: null,
+      isActive: true,
+      type: 'PHYSICAL',
+      interface: {
+        _id: 'ch.test.clerk',
+        label: 'Imbissstand',
+        version: '1.0',
+        __typename: 'WarehousingInterface',
+      },
+      configuration: [
+        {
+          key: 'sector',
+          value: 'A',
+        },
+        {
+          key: 'online',
+          value: 'true',
+        },
+        {
+          key: 'available_delivery_provider',
+          value: 'runner',
+        },
+        {
+          key: 'available_delivery_provider',
+          value: 'pickup',
+        },
+      ],
+      configurationError: null,
+      __typename: 'WarehousingProvider',
+    },
+  },
+};
+
 export const WarehousingProvidersTypeResponse = {
   data: {
     warehousingProviderType: {
@@ -144,12 +184,23 @@ export const CreateWarehousingProviderResponse = {
   },
 };
 
+export const RemoveWarehousingProviderResponse = {
+  data: {
+    removeWarehousingProvider: {
+      _id: '2a08d2e5c3285356384234c1',
+      __typename: 'WarehousingProvider',
+    },
+  },
+};
+
 export const WarehousingProviderOperations = {
   GetProvidersList: 'WarehousingProviders',
   GetSingleProvider: 'WarehousingProvider',
   GetProvidersType: 'WarehousingProvidersType',
   GetInterfaces: 'WarehousingInterfaces',
   CreateProvider: 'CreateWarehousingProvider',
+  UpdateProvider: 'UpdateWarehousingProvider',
+  RemoveProvider: 'RemoveWarehousingProvider',
 };
 
 export default {

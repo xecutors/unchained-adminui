@@ -41,6 +41,10 @@ describe('Delivery Provider', () => {
       if (hasOperationName(req, DeliveryProviderOperations.GetInterfaces)) {
         req.reply(DeliveryProviderPickUpInterfaces);
       }
+      if (hasOperationName(req, DeliveryProviderOperations.CreateProvider)) {
+        aliasMutation(req, ALIASES.CreateProvider);
+        req.reply(CreateDeliveryProviderResponse);
+      }
       if (hasOperationName(req, DeliveryProviderOperations.UpdateProvider)) {
         aliasMutation(req, ALIASES.UpdateProvider);
         req.reply(UpdateDeliveryProviderResponse);
@@ -101,12 +105,7 @@ describe('Delivery Provider', () => {
       DeliveryProviderPickUpInterfaces.data.deliveryInterfaces;
     const { options } = DeliveryProvidersTypeResponse.data.deliveryProviderType;
     const [firstType] = options;
-    cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, DeliveryProviderOperations.CreateProvider)) {
-        aliasMutation(req, ALIASES.CreateProvider);
-        req.reply(CreateDeliveryProviderResponse);
-      }
-    });
+
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/delivery-provider"]')
@@ -211,18 +210,7 @@ describe('Delivery Provider', () => {
 
     cy.get('textarea#configuration')
       .clear()
-      .type(
-        `[
-  {
-    "key": "from",
-    "value": "noreply@unchained.local"
-  },
-  {
-    "key": "to",
-    "value": "orders@unchained.local"
-  }
-]`,
-      )
+      .type(JSON.stringify(deliveryProvider.configuration, null, 2))
       .blur();
 
     cy.get('input[type="submit"]')
@@ -233,16 +221,7 @@ describe('Delivery Provider', () => {
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           deliveryProvider: {
-            configuration: [
-              {
-                key: 'from',
-                value: 'noreply@unchained.local',
-              },
-              {
-                key: 'to',
-                value: 'orders@unchained.local',
-              },
-            ],
+            configuration: deliveryProvider.configuration,
           },
           deliveryProviderId: deliveryProvider._id,
         });
@@ -255,7 +234,7 @@ describe('Delivery Provider', () => {
     cy.url().should('contain', '/delivery-provider');
   });
 
-  it('Show [ERROR] when pattern of configuration fields are not correct in update currency', () => {
+  it('Show [ERROR] when pattern of configuration fields are not correct in update delivery provider', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
     cy.visit('/');
@@ -268,16 +247,7 @@ describe('Delivery Provider', () => {
     cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
     cy.url().should('contain', `/delivery-provider/${deliveryProvider._id}`);
 
-    cy.get('textarea#configuration')
-      .type(
-        `[
-  {
-    "key": "from",
-    "value": "noreply@unchained.local"
-  }
-]`,
-      )
-      .blur();
+    cy.get('textarea#configuration').type('l').blur();
 
     // cy.get('label[for="configuration"]').should(
     //   'contain.text',
