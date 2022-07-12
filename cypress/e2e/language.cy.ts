@@ -88,7 +88,6 @@ describe('Languages', () => {
       .should('eq', 's');
     cy.url().should('contain', '/language?queryString=s');
     cy.get('input[type="search"]').type('a');
-    cy.wait(5000);
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList))
       .its('request.body.variables.queryString')
       .should('eq', 'sa');
