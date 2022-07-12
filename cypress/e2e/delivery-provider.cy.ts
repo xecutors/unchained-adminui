@@ -249,11 +249,6 @@ describe('Delivery Provider', () => {
 
     cy.get('textarea#configuration').type('l').blur();
 
-    // cy.get('label[for="configuration"]').should(
-    //   'contain.text',
-    //   localizations.en.configuration_error,
-    // );
-
     cy.get('input[type="submit"]')
       .contains(localizations.en.update_configuration)
       .should('be.disabled');
