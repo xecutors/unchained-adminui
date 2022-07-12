@@ -48,12 +48,21 @@ export const SingleDeliveryProviderResponse = {
   data: {
     deliveryProvider: {
       _id: 'pickup',
-      created: '2022-03-17T11:28:39.047Z',
-      updated: null,
+      created: '2022-07-08T05:59:37.885Z',
+      updated: '2022-07-12T07:55:43.446Z',
       deleted: null,
       type: 'PICKUP',
       isActive: true,
-      configuration: [],
+      configuration: [
+        {
+          key: 'from',
+          value: 'noreply@unchained.local',
+        },
+        {
+          key: 'to',
+          value: 'orders@unchained.local',
+        },
+      ],
       interface: {
         _id: 'ch.test.delivery.pickup',
         label: 'Pickup at Clerk',
@@ -127,7 +136,47 @@ export const DeliveryProviderShippingInterfaces = {
 export const RemoveDeliveryProviderResponse = {
   data: {
     removeDeliveryProvider: {
+      _id: 'pickup',
+      __typename: 'DeliveryProvider',
+    },
+  },
+};
+
+export const CreateDeliveryProviderResponse = {
+  data: {
+    createDeliveryProvider: {
       _id: '81ed9049a6a8c6cce17f3999',
+      __typename: 'DeliveryProvider',
+    },
+  },
+};
+
+export const UpdateDeliveryProviderResponse = {
+  data: {
+    updateDeliveryProvider: {
+      _id: 'pickup',
+      created: '2022-07-08T05:59:37.885Z',
+      updated: '2022-07-12T07:55:43.446Z',
+      deleted: null,
+      type: 'PICKUP',
+      isActive: true,
+      configuration: [
+        {
+          key: 'from',
+          value: 'noreply@unchained.local',
+        },
+        {
+          key: 'to',
+          value: 'orders@unchained.local',
+        },
+      ],
+      interface: {
+        _id: 'ch.test.delivery.pickup',
+        label: 'Pickup at Clerk',
+        version: '1.0',
+        __typename: 'DeliveryInterface',
+      },
+      configurationError: null,
       __typename: 'DeliveryProvider',
     },
   },
@@ -140,15 +189,7 @@ export const DeliveryProviderOperations = {
   CreateProvider: 'CreateDeliveryProvider',
   GetInterfaces: 'DeliveryInterfaces',
   RemoveProvider: 'RemoveDeliveryProvider',
-};
-
-export const CreateDeliveryProviderResponse = {
-  data: {
-    createDeliveryProvider: {
-      _id: '81ed9049a6a8c6cce17f3999',
-      __typename: 'DeliveryProvider',
-    },
-  },
+  UpdateProvider: 'UpdateDeliveryProvider',
 };
 
 export default {
