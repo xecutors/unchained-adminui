@@ -7,8 +7,15 @@ export const EventQuery = gql`
     $limit: Int
     $offset: Int
     $sort: [SortOptionInput!]
+    $queryString: String
   ) {
-    events(types: $types, limit: $limit, offset: $offset, sort: $sort) {
+    events(
+      types: $types
+      limit: $limit
+      offset: $offset
+      sort: $sort
+      queryString: $queryString
+    ) {
       ...EventFragment
     }
     eventsCount
@@ -21,9 +28,10 @@ const useEvents = ({
   limit = 20,
   offset = 0,
   sort = [],
+  queryString = null,
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(EventQuery, {
-    variables: { types, limit, offset, sort },
+    variables: { types, limit, offset, sort, queryString },
   });
   const events = data?.events || [];
   const eventsCount = data?.eventsCount;

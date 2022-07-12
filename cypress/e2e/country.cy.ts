@@ -93,7 +93,6 @@ describe('Countries', () => {
       .should('eq', 's');
     cy.url().should('contain', '/country?queryString=s');
     cy.get('input[type="search"]').type('a');
-    cy.wait(5000);
     cy.wait(fullAliasName(CountryOperations.GetCountryList))
       .its('request.body.variables.queryString')
       .should('eq', 'sa');

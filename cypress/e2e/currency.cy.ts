@@ -91,7 +91,6 @@ describe('Currencies', () => {
       .should('eq', 's');
     cy.url().should('contain', '/currency?queryString=s');
     cy.get('input[type="search"]').type('a');
-    cy.wait(5000);
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
       .its('request.body.variables.queryString')
       .should('eq', 'sa');
