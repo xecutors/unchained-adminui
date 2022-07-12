@@ -11,7 +11,8 @@
     "format": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
     "extract-translation": "formatjs extract '(pages|modules)/**/*.{ts,tsx,jsx}' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
     "compile-translation": "formatjs compile  ./lang/en.json  --out-file ./i18n/en.json --format custom-formatter.js",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "test:e2e-record": "cypress run --browser chrome --record"
   },
   "engines": {
     "node": "14.x"
