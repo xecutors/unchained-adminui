@@ -291,6 +291,17 @@ export const UpdateFilterTextResponse = {
   },
 };
 
+export const RemoveFilterResponse = {
+  data: {
+    removeFilter: [
+      {
+        _id: 'g4zYQ6viLhdeRqbo9',
+        __typename: 'Filter',
+      },
+    ],
+  },
+};
+
 export default {
   FilterListResponse,
   SingleFilterResponse,
@@ -299,4 +310,5 @@ export default {
   FilterTypesResponse,
   CreateFilterResponse,
   UpdateFilterTextResponse,
+  RemoveFilterResponse,
 };

@@ -4,6 +4,7 @@ import {
   FilterListResponse,
   FilterOperations,
   FilterTypesResponse,
+  RemoveFilterResponse,
   SingleFilterResponse,
   TranslatedFilterTextResponse,
   UpdateFilterTextResponse,
@@ -38,6 +39,10 @@ describe('Filter', () => {
       if (hasOperationName(req, FilterOperations.UpdateFilterText)) {
         aliasMutation(req, FilterOperations.UpdateFilterText);
         req.reply(UpdateFilterTextResponse);
+      }
+      if (hasOperationName(req, FilterOperations.RemoveFilter)) {
+        aliasMutation(req, FilterOperations.RemoveFilter);
+        req.reply(RemoveFilterResponse);
       }
     });
   });
@@ -256,5 +261,55 @@ describe('Filter', () => {
     // Add options required test
 
     cy.get('input[type="submit"]').should('be.disabled');
+  });
+
+  it('Show [DELETE FILTER] successfully', () => {
+    const { filter } = SingleFilterResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+
+    cy.url().should('contain', '/filters');
+    cy.get(`a[href="/filters/${filter._id}"]`).click();
+    cy.url().should('contain', `/filters/${filter._id}`);
+    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button').contains(localizations.en.delete_filter).click();
+    cy.url().should('contain', '/filters');
+
+    cy.wait(fullAliasMutationName(FilterOperations.RemoveFilter)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          filterId: filter._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveFilterResponse);
+      },
+    );
+  });
+
+  it('Show [DELETE FILTER FROM LIST] successfully', () => {
+    const { filter } = SingleFilterResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+
+    cy.url().should('contain', '/filters');
+    cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
+    cy.get('button').contains(localizations.en.delete_filter).click();
+    cy.url().should('contain', '/filters');
+
+    cy.wait(fullAliasMutationName(FilterOperations.RemoveFilter)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          filterId: filter._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveFilterResponse);
+      },
+    );
   });
 });
