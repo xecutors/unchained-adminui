@@ -314,7 +314,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                       />
                     ) : (
                       <span className="flex-grow">
-                        {formatDateTime(profile.birthday, {
+                        {formatDateTime(profile?.birthday, {
                           dateStyle: 'short',
                         })}
                       </span>
