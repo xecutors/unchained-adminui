@@ -22,7 +22,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
 
   return (
     <div className="py-6">
-      <div className="lg:hidden">
+      <div className="mb-5 lg:hidden">
         <label htmlFor="selected-tab" className="sr-only">
           {formatMessage({
             id: 'select_tab',

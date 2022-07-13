@@ -740,10 +740,20 @@ export const createUserRequestVariables = {
   password: null,
 };
 
+export const SetUsernameResponse = {
+  data: {
+    setUsername: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      __typename: 'User',
+    },
+  },
+};
+
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
   GetUserList: 'users',
   GetSingle: 'User',
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
+  SetUsername: 'SetUsername',
 };
