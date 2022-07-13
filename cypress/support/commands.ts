@@ -39,6 +39,7 @@ import hasOperationName from '../utils/hasOperationName';
 import { ShopInfoOperations, ShopInfoResponse } from '../mock/shop-info';
 import { CurrentUserResponse, UserOperations } from '../mock/user';
 import { OrderListResponse, OrderOperations } from '../mock/order';
+import { LanguageOperations, LanguagesResponse } from '../mock/language';
 
 beforeEach(() => {
   cy.intercept('POST', '/api/graphql', (req) => {
@@ -52,6 +53,13 @@ beforeEach(() => {
 
     if (hasOperationName(req, ShopInfoOperations.ShopInfo)) {
       req.reply(ShopInfoResponse);
+    }
+
+    if (
+      hasOperationName(req, LanguageOperations.GetLanguagesList) &&
+      !req.headers.referer.includes('language')
+    ) {
+      req.reply(LanguagesResponse);
     }
   });
 });

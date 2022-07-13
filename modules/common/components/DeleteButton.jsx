@@ -1,5 +1,6 @@
 import { TrashIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 
 const DeleteButton = ({
   onClick,
@@ -7,9 +8,14 @@ const DeleteButton = ({
   icon = null,
   textRight = '',
   textLeft = '',
+  ariaLabel,
 } = {}) => {
+  const { formatMessage } = useIntl();
   return (
     <button
+      aria-label={
+        ariaLabel || formatMessage({ id: 'delete', defaultMessage: 'Delete' })
+      }
       type="button"
       onClick={onClick}
       className={classNames(
