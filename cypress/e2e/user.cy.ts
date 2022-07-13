@@ -3,7 +3,10 @@ import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   createUserRequestVariables,
   CreateUserResponse,
+<<<<<<< HEAD
   SetUsernameResponse,
+=======
+>>>>>>> 891f1c21 (Add tests for User)
   SingleUserResponse,
   UpdateUserResponse,
   UserListResponse,
@@ -17,7 +20,10 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 const ALIASES = {
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
+<<<<<<< HEAD
   SetUsername: 'SetUsername',
+=======
+>>>>>>> 891f1c21 (Add tests for User)
 };
 
 describe('User', () => {
@@ -44,14 +50,17 @@ describe('User', () => {
         aliasMutation(req, ALIASES.UpdateUser);
         req.reply(UpdateUserResponse);
       }
+<<<<<<< HEAD
       if (hasOperationName(req, UserOperations.SetUsername)) {
         aliasMutation(req, ALIASES.SetUsername);
         req.reply(SetUsernameResponse);
       }
+=======
+>>>>>>> 891f1c21 (Add tests for User)
     });
   });
 
-  it('Show Navigate to [USER] page successfully', () => {
+  xit('Show Navigate to [USER] page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -59,6 +68,7 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('li').should('have.length', 5);
+<<<<<<< HEAD
   });
 
   it('Toggling status toggle should update route', () => {
@@ -110,9 +120,62 @@ describe('User', () => {
       .should('eq', 'sa');
 
     cy.url().should('contain', '/users?queryString=sa');
+=======
+>>>>>>> 891f1c21 (Add tests for User)
   });
 
-  it('Show Navigate to [NEW USER] form page successfully', () => {
+  xit('Toggling status toggle should update route', () => {
+    cy.visit('/');
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get('button[role="switch"]').click();
+
+    cy.wait(fullAliasName(UserOperations.GetUserList))
+      .then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(UserListResponse);
+      })
+      .its('request.body.variables.includeGuests')
+      .should('be.true');
+
+    cy.url().should('contain', '/users?includeGuests=true');
+    cy.get('button[role="switch"]').click();
+    cy.url().should('contain', '/users?includeGuests=false');
+  });
+
+  xit('should update data and route when [SEARCHING] accordingly', () => {
+    cy.visit('/');
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+
+    cy.get('input[type="search"]').type('s');
+
+    cy.wait(fullAliasName(UserOperations.GetUserList))
+      .then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(UserListResponse);
+      })
+      .its('request.body.variables.queryString')
+      .should('eq', 's');
+
+    cy.url().should('contain', '/users?queryString=s');
+    cy.get('input[type="search"]').type('a');
+
+    cy.wait(fullAliasName(UserOperations.GetUserList))
+      .then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(UserListResponse);
+      })
+      .its('request.body.variables.queryString')
+      .should('eq', 'sa');
+
+    cy.url().should('contain', '/users?queryString=sa');
+  });
+
+  xit('Show Navigate to [NEW USER] form page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -123,7 +186,11 @@ describe('User', () => {
     cy.url().should('contain', '/users/new');
   });
 
+<<<<<<< HEAD
   it('Show [ADD USER] successfully', () => {
+=======
+  xit('Show [ADD USER] successfully', () => {
+>>>>>>> 891f1c21 (Add tests for User)
     const { enrollUser } = CreateUserResponse.data;
 
     cy.visit('/');
@@ -208,6 +275,7 @@ describe('User', () => {
     cy.url().should('contains', `/users/${enrollUser._id}`);
   });
 
+<<<<<<< HEAD
   it('Show [CANCEL USER] successfully on new user', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
@@ -228,6 +296,9 @@ describe('User', () => {
   });
 
   it('Show [ERROR] when required fields are not provided in add user', () => {
+=======
+  xit('Show [CANCEL USER] successfully on new user', () => {
+>>>>>>> 891f1c21 (Add tests for User)
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -236,6 +307,28 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
     cy.url().should('contain', '/users/new');
+<<<<<<< HEAD
+=======
+
+    cy.url().should('contain', '/users/new');
+    cy.get('input#email').type('redi@hotmail.com');
+    cy.get('input#firstName').type('Rediet');
+
+    cy.get('button').contains(localizations.en.cancel).click();
+
+    cy.url().should('contains', '/users');
+  });
+
+  xit('Show [ERROR] when required fields are not provided in add user', () => {
+    cy.visit('/');
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get('a[href="/users/new"]').click();
+    cy.url().should('contain', '/users/new');
+>>>>>>> 891f1c21 (Add tests for User)
     cy.get('input[name="birthday"]').clear();
     cy.get('input[type="submit"]')
       .contains(localizations.en.save)
@@ -263,7 +356,11 @@ describe('User', () => {
       .should('be.disabled');
   });
 
+<<<<<<< HEAD
   it('Show [INITIALIZE USER] successfully', () => {
+=======
+  xit('Show [INITIALIZE USER] successfully', () => {
+>>>>>>> 891f1c21 (Add tests for User)
     const { user } = SingleUserResponse.data;
 
     cy.visit('/');
@@ -362,6 +459,7 @@ describe('User', () => {
         expect(currentSubject.response.body).to.deep.eq(UpdateUserResponse);
       },
     );
+<<<<<<< HEAD
   });
 
   it('Show [CANCEL UPDATE USER] successfully on new user', () => {
@@ -527,5 +625,7 @@ describe('User', () => {
         localizations.en.username,
       ),
     );
+=======
+>>>>>>> 891f1c21 (Add tests for User)
   });
 });
