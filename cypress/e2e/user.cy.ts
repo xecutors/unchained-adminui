@@ -3,6 +3,7 @@ import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   createUserRequestVariables,
   CreateUserResponse,
+  SetUsernameResponse,
   SingleUserResponse,
   UpdateUserResponse,
   UserListResponse,
@@ -16,6 +17,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 const ALIASES = {
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
+  SetUsername: 'SetUsername',
 };
 
 describe('User', () => {
@@ -42,10 +44,14 @@ describe('User', () => {
         aliasMutation(req, ALIASES.UpdateUser);
         req.reply(UpdateUserResponse);
       }
+      if (hasOperationName(req, UserOperations.SetUsername)) {
+        aliasMutation(req, ALIASES.SetUsername);
+        req.reply(SetUsernameResponse);
+      }
     });
   });
 
-  xit('Show Navigate to [USER] page successfully', () => {
+  it('Show Navigate to [USER] page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -55,7 +61,7 @@ describe('User', () => {
     cy.get('li').should('have.length', 5);
   });
 
-  xit('Toggling status toggle should update route', () => {
+  it('Toggling status toggle should update route', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -76,7 +82,7 @@ describe('User', () => {
     cy.url().should('contain', '/users?includeGuests=false');
   });
 
-  xit('should update data and route when [SEARCHING] accordingly', () => {
+  it('should update data and route when [SEARCHING] accordingly', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -106,7 +112,7 @@ describe('User', () => {
     cy.url().should('contain', '/users?queryString=sa');
   });
 
-  xit('Show Navigate to [NEW USER] form page successfully', () => {
+  it('Show Navigate to [NEW USER] form page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -117,7 +123,7 @@ describe('User', () => {
     cy.url().should('contain', '/users/new');
   });
 
-  xit('Show [ADD USER] successfully', () => {
+  it('Show [ADD USER] successfully', () => {
     const { enrollUser } = CreateUserResponse.data;
 
     cy.visit('/');
@@ -202,7 +208,7 @@ describe('User', () => {
     cy.url().should('contains', `/users/${enrollUser._id}`);
   });
 
-  xit('Show [CANCEL USER] successfully on new user', () => {
+  it('Show [CANCEL USER] successfully on new user', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -221,7 +227,7 @@ describe('User', () => {
     cy.url().should('contains', '/users');
   });
 
-  xit('Show [ERROR] when required fields are not provided in add user', () => {
+  it('Show [ERROR] when required fields are not provided in add user', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -257,7 +263,7 @@ describe('User', () => {
       .should('be.disabled');
   });
 
-  xit('Show [INITIALIZE USER] successfully', () => {
+  it('Show [INITIALIZE USER] successfully', () => {
     const { user } = SingleUserResponse.data;
 
     cy.visit('/');
@@ -355,6 +361,171 @@ describe('User', () => {
         });
         expect(currentSubject.response.body).to.deep.eq(UpdateUserResponse);
       },
+    );
+  });
+
+  it('Show [CANCEL UPDATE USER] successfully on new user', () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+    cy.get('button')
+      .should('contain', localizations.en.update_profile)
+      .last()
+      .click();
+
+    cy.get('input#displayName').clear().type(user.profile.displayName);
+    cy.get('button').contains(localizations.en.cancel).last().click();
+
+    cy.url().should('contain', `/users/${user._id}`);
+  });
+
+  it('Show Navigate to [USER ACCOUNT] page successfully', () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+
+    cy.get(`a`).contains(localizations.en.account).click();
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+  });
+
+  it('Show Navigate to [USER ACCOUNT ON MOBILE] page successfully', () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1000, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+    cy.get(`select#selected-tab`).select(localizations.en.account);
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+  });
+
+  it("Show [INITIALIZE USER'S USERNAME ] successfully", () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+
+    cy.get(`a`).contains(localizations.en.account).click();
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+
+    cy.get('button.rounded-md.border.border-slate-300.bg-white')
+      .contains(localizations.en.update)
+      .click();
+    cy.get('input#username').should('have.value', user.username);
+  });
+
+  it("Show [UPDATE USER'S USERNAME ] successfully", () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+
+    cy.get(`a`).contains(localizations.en.account).click();
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+
+    cy.get('button.rounded-md.border.border-slate-300.bg-white')
+      .contains(localizations.en.update)
+      .click();
+    cy.get('input#username').clear().type(user.username);
+
+    cy.get('button[type="submit"]').contains(localizations.en.save).click();
+
+    cy.wait(fullAliasMutationName(ALIASES.SetUsername)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          username: user.username,
+          userId: user._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(SetUsernameResponse);
+      },
+    );
+
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+  });
+
+  it("Show [CANCEL USER'S USERNAME] successfully on new user", () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+    cy.get(`a`).contains(localizations.en.account).click();
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+
+    cy.get('button.rounded-md.border.border-slate-300.bg-white')
+      .contains(localizations.en.update)
+      .click();
+    cy.get('button').contains(localizations.en.cancel).first().click();
+
+    cy.url().should('contain', `/users/${user._id}`);
+  });
+
+  it("Show [ERROR] when required fields are not provided in update user's username", () => {
+    const { user } = SingleUserResponse.data;
+
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/users"]')
+      .contains(localizations.en.users)
+      .click({ force: true });
+
+    cy.url().should('contain', '/users');
+    cy.get(`a[href="/users/${user._id}"]`).click();
+    cy.url().should('contain', `/users/${user._id}`);
+    cy.get(`a`).contains(localizations.en.account).click();
+    cy.url().should('contain', `/users/${user._id}?tab=account`);
+
+    cy.get('button.rounded-md.border.border-slate-300.bg-white')
+      .contains(localizations.en.update)
+      .click();
+    cy.get('input#username').clear().blur();
+
+    cy.get('label[for="username"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.username,
+      ),
     );
   });
 });

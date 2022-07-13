@@ -1787,6 +1787,9 @@
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
   },
+  "update": {
+    "defaultMessage": "Update"
+  },
   "update_configuration": {
     "defaultMessage": "Update configuration"
   },

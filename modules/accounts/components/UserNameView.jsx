@@ -38,6 +38,8 @@ const UserNameView = ({ _id: userId, username }) => {
     },
   });
 
+  console.log('username: ', username);
+
   return (
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
@@ -59,7 +61,9 @@ const UserNameView = ({ _id: userId, username }) => {
                   })}
                 />
               ) : (
-                <div>{username}</div>
+                <div className="text-base font-medium text-slate-900 dark:text-white">
+                  {username}
+                </div>
               )}
             </span>
             <FormErrors />
@@ -72,7 +76,15 @@ const UserNameView = ({ _id: userId, username }) => {
                   'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
                 )}
               >
-                {isEdit ? 'Cancel' : 'Update'}
+                {isEdit
+                  ? formatMessage({
+                      id: 'cancel',
+                      defaultMessage: 'Cancel',
+                    })
+                  : formatMessage({
+                      id: 'update',
+                      defaultMessage: 'Update',
+                    })}
               </button>
               {isEdit && (
                 <button
