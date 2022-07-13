@@ -18,6 +18,7 @@ describe('Filter', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, FilterOperations.GetFiltersList)) {
+        aliasQuery(req, FilterOperations.GetFiltersList);
         req.reply(FilterListResponse);
       }
       if (hasOperationName(req, FilterOperations.GetSingleFilter)) {
@@ -81,6 +82,55 @@ describe('Filter', () => {
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('h2').should('contain', localizations.en.filter_detail);
+  });
+
+  it('Toggling status [ACTIVE/INACTIVE] toggle should update route', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+
+    cy.url().should('contain', '/filters');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+      (currentSubject) => {
+        const { request } = currentSubject;
+        expect(request.body.variables.includeInactive).to.eq(false);
+      },
+    );
+
+    cy.get('button[role="switch"]').click();
+    cy.url().should('contain', '/filters?includeInactive=true');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+      (currentSubject) => {
+        const { request } = currentSubject;
+        expect(request.body.variables.includeInactive).to.eq(true);
+      },
+    );
+
+    cy.get('button[role="switch"]').click();
+    cy.url().should('contain', '/filters?includeInactive=false');
+  });
+
+  it('should update data and route when [SEARCHING] accordingly', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+
+    cy.url().should('contain', '/filters');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList));
+    cy.get('input[type="search"]').type('s');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList))
+      .its('request.body.variables.queryString')
+      .should('eq', 's');
+    cy.url().should('contain', '/filters?queryString=s');
+    cy.get('input[type="search"]').type('a');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList))
+      .its('request.body.variables.queryString')
+      .should('eq', 'sa');
+    cy.url().should('contain', '/filters?queryString=sa');
   });
 
   it('Should navigate to [INITIALIZE FILTER TEXT] page successfully', () => {
