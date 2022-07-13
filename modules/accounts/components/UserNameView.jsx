@@ -38,6 +38,8 @@ const UserNameView = ({ _id: userId, username }) => {
     },
   });
 
+  console.log('username: ', username);
+
   return (
     <Form form={form}>
       <dl className="divide-y divide-slate-200">

@@ -739,7 +739,6 @@ export const createUserRequestVariables = {
   plainPassword: 'password',
   password: null,
 };
-<<<<<<< HEAD
 
 export const SetUsernameResponse = {
   data: {
@@ -749,8 +748,6 @@ export const SetUsernameResponse = {
     },
   },
 };
-=======
->>>>>>> 891f1c21 (Add tests for User)
 
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
@@ -759,7 +756,11 @@ export const UserOperations = {
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
 <<<<<<< HEAD
+<<<<<<< HEAD
   SetUsername: 'SetUsername',
 =======
 >>>>>>> 891f1c21 (Add tests for User)
+=======
+  SetUsername: 'SetUsername',
+>>>>>>> d7f2c286 (Add test on user account tab)
 };
