@@ -42,8 +42,17 @@ const UserWebAuthCredentials = ({ currentUser }) => {
   };
 
   const handleAddWebAuthCredential = async () => {
+    if (!currentUser.username) {
+      toast.error(
+        formatMessage({
+          id: 'web_auth_username_required',
+          defaultMessage: 'You have to set a username to use WebAuthn',
+        }),
+      );
+      return;
+    }
     const credentials = await generateWebAuthCredentials({
-      email: currentUser.email,
+      username: currentUser.username,
     });
 
     console.log('credentials: ', credentials);

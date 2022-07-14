@@ -4,9 +4,9 @@ import useCreateWebAuthnCredentialRequestOptions from './useCreateWebAuthnCreden
 const useGenerateLoginCredentials = () => {
   const { createWebAuthnCredentialRequestOptions } =
     useCreateWebAuthnCredentialRequestOptions();
-  const generateLoginCredentials = async ({ email }) => {
+  const generateLoginCredentials = async ({ username }) => {
     const { data } = await createWebAuthnCredentialRequestOptions({
-      username: email,
+      username,
     });
 
     const publicKey = data?.createWebAuthnCredentialRequestOptions;
@@ -37,7 +37,7 @@ const useGenerateLoginCredentials = () => {
     const userHandle = window.btoa(
       String.fromCharCode(
         ...new Uint8Array(PublicKeyCredentials.response.userHandle),
-      ) || email,
+      ) || username,
     );
 
     const clientDataJSON = window.btoa(
