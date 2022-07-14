@@ -5,9 +5,9 @@ const useGenerateWebAuthCredentials = () => {
   const { createWebAuthnCredentialCreationOptions } =
     useCreateWebAuthnCredentialCreationOptions();
 
-  const generateWebAuthCredentials = async ({ email }) => {
+  const generateWebAuthCredentials = async ({ username }) => {
     const { data } = await createWebAuthnCredentialCreationOptions({
-      username: email,
+      username,
     });
 
     const { createWebAuthnCredentialCreationOptions: publicKey } = data;
@@ -15,9 +15,9 @@ const useGenerateWebAuthCredentials = () => {
     const textEncoder = new TextEncoder();
     publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
     publicKey.user = {
-      id: textEncoder.encode(email),
-      name: email,
-      displayName: email,
+      id: textEncoder.encode(username),
+      name: username,
+      displayName: username,
     };
 
     const publicKeyCredentials: any = await navigator.credentials.create({
