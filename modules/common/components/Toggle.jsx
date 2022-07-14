@@ -92,7 +92,7 @@ const Toggle = ({
         </span>
       </button>
       <span className="ml-3" id="annual-billing-label">
-        <span className="text-sm font-medium text-slate-900 dark:text-white">
+        <span className="text-sm font-medium text-slate-900 dark:text-slate-200">
           {toggleText}
         </span>
       </span>

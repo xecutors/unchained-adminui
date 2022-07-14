@@ -19,7 +19,7 @@ class MyDocument extends Document {
             <link {...attr} />
           ))}
         </Head>
-        <body className="h-full bg-slate-100 dark:bg-slate-600 dark:text-white">
+        <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
           <noscript
             // eslint-disable-next-line
             dangerouslySetInnerHTML={{

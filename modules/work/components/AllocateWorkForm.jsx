@@ -83,7 +83,7 @@ const AllocateWorkForm = () => {
                       <div className="w-100 relative w-full space-y-1 rounded-md sm:pr-2">
                         <div className="max-w-4xl justify-between align-baseline sm:flex">
                           <SelectField
-                            className="w-full py-2 text-sm text-slate-500 dark:text-white sm:mt-0"
+                            className="w-full py-2 text-sm text-slate-500 dark:text-slate-200 sm:mt-0"
                             label={formatMessage({
                               id: 'type',
                               defaultMessage: 'Type',

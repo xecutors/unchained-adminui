@@ -16,7 +16,7 @@ const ActiveInActive = ({
         ? activeIcon || (
             <BadgeCheckIcon
               className={classNames(
-                'text-green-400 w-5 h-5',
+                'text-green-400 w-5 h-5 mr-2',
                 iconClassName,
                 activeClassName,
               )}
@@ -25,7 +25,7 @@ const ActiveInActive = ({
         : inActiveIcon || (
             <XCircleIcon
               className={classNames(
-                'text-red-400 w-5 h-5',
+                'text-red-400 w-5 h-5 mr-2',
                 iconClassName,
                 inActiveClassName,
               )}

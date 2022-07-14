@@ -40,12 +40,12 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
         ))}
       </div>
       <div>
-        <div className="mt-1 flex max-w-full rounded-md shadow-sm dark:text-white">
+        <div className="mt-1 flex max-w-full rounded-md shadow-sm dark:text-slate-200">
           <div className="relative flex flex-grow items-stretch focus-within:z-10">
             <select
               id="tag-input"
               placeholder={label}
-              className="mt-1 block w-full rounded-md dark:bg-slate-600 border-slate-300 py-2 pl-3 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+              className="mt-1 block w-full rounded-md dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 pl-3 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
               onChange={(e) => addTag(e.target.value)}
             >
               <option value="">
@@ -58,7 +58,7 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
                 <option
                   key={option.value}
                   value={option.value}
-                  className="dark:text-white"
+                  className="dark:text-slate-200"
                 >
                   {option.label}
                 </option>

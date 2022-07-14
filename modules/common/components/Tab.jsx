@@ -45,7 +45,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
         </select>
       </div>
       <div className="mb-5 hidden lg:block">
-        <div className="al border-b border-indigo-100">
+        <div className="al border-b border-indigo-100 dark:border-slate-700">
           <nav className="-mb-px flex flex-wrap gap-6">
             {tabItems.map((option) => (
               <a
@@ -53,10 +53,10 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-t-lg border border-indigo-200 border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:bg-slate-500':
+                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-500':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-white font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">

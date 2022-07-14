@@ -34,12 +34,12 @@ const AccountView = ({
             'This information will be displayed publicly so be careful what you share.',
         })}
       >
-        <div className="space-y-6 overflow-hidden rounded-md p-3 shadow bg-white dark:border-2 dark:bg-slate-600 sm:p-6">
+        <div className="space-y-6 overflow-hidden rounded-md p-3 shadow bg-white dark:bg-slate-800 sm:p-6">
           <UserNameView username={username} _id={_id} />
         </div>
       </SelfDocumentingView>
 
-      <div className="space-y-6 overflow-hidden rounded-md  border-slate-200 py-5">
+      <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
         <div className="mt-6">
           <EmailAddresses
             emails={emails}
@@ -51,7 +51,7 @@ const AccountView = ({
       </div>
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
-          <div className="border-t border-slate-200" />
+          <div className="border-t border-slate-200 dark:border-slate-800" />
         </div>
       </div>
       <SelfDocumentingView
@@ -60,7 +60,7 @@ const AccountView = ({
           defaultMessage: 'Tags',
         })}
       >
-        <div className="my-2 rounded-md px-4 py-5 shadow bg-white dark:border-2 dark:bg-slate-600 sm:p-6">
+        <div className="my-2 rounded-md px-4 py-5 shadow bg-white dark:bg-slate-900 sm:p-6">
           <UserTagsView
             tags={tags}
             userId={_id}
@@ -71,7 +71,7 @@ const AccountView = ({
       </SelfDocumentingView>
       <div className="hidden sm:block" aria-hidden="true">
         <div className="py-5">
-          <div className="border-t border-slate-200" />
+          <div className="border-t border-slate-200 dark:border-slate-800" />
         </div>
       </div>
       <SelfDocumentingView
@@ -80,7 +80,7 @@ const AccountView = ({
           defaultMessage: 'Roles',
         })}
       >
-        <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:border-2 dark:bg-slate-600 text-slate-900 dark:text-white border-slate-200 px-4 py-5 shadow  sm:p-6">
+        <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow  sm:p-6">
           <UserRolesView roles={roles} userId={_id} />
         </div>
       </SelfDocumentingView>
@@ -88,11 +88,11 @@ const AccountView = ({
         <>
           <div className="hidden sm:block" aria-hidden="true">
             <div className="py-5">
-              <div className="border-t border-slate-200" />
+              <div className="border-t border-slate-200 dark:border-slate-800" />
             </div>
           </div>
 
-          <div className="space-y-6 overflow-hidden rounded-md  border-slate-200 py-5">
+          <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
             <div className="mt-6">
               <SetPassword userId={_id} />
             </div>

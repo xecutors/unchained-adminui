@@ -30,13 +30,13 @@ const AddProduct = () => {
       />
       <div className="mt-6 lg:grid lg:grid-cols-3">
         <div className="lg:col-span-1 space-y-2">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'product_type',
               defaultMessage: 'Product type',
             })}
           </h3>
-          <div className="max-w-2xl text-sm text-slate-500 dark:text-white">
+          <div className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
             <FormattedMessage
               id="simple_product_definition"
               defaultMessage=" <h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"

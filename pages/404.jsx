@@ -12,7 +12,7 @@ const NotFound = () => {
   const { formatMessage } = useIntl();
   const logo = getLogo();
   return (
-    <div className="flex min-h-full flex-col bg-white dark:bg-slate-600 pt-16 pb-12 ">
+    <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
           <a href="/" className="inline-flex">
@@ -41,13 +41,13 @@ const NotFound = () => {
             <p className="text-sm font-semibold uppercase tracking-wide text-red-600">
               {formatMessage({ id: 'error_404', defaultMessage: '404 error' })}{' '}
             </p>
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
               {formatMessage({
                 id: 'page_not_found',
                 defaultMessage: 'Page not found.',
               })}
             </h1>
-            <p className="mt-2 text-base text-slate-500 dark:text-white">
+            <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
               {formatMessage({
                 id: 'not_found_message',
                 defaultMessage:

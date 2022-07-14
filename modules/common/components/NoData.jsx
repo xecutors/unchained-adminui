@@ -6,12 +6,12 @@ const NoData = ({ message, className = '', Icon }) => {
   return (
     <div
       className={classnames(
-        'flex w-full flex-col items-center justify-center py-8 bg-white dark:bg-slate-500 text-slate-500 dark:text-white',
+        'flex w-full flex-col items-center justify-center py-8 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400',
         className,
       )}
     >
       <div className="grid items-center justify-center">
-        <div className="flex items-center justify-center text-indigo-300 dark:text-white">
+        <div className="flex items-center justify-center text-indigo-300 dark:text-slate-200">
           {Icon || <BanIcon className="h-8 w-8" />}
         </div>
 

@@ -74,7 +74,7 @@ const MediaListItem = ({
                 {media?.tags.map((tag, i) => (
                   <span
                     key={`${tag}${i + 1}`}
-                    className="rounded border px-1 text-sm font-light capitalize text-slate-900 dark:text-white shadow-sm dark:shadow-white"
+                    className="rounded border px-1 text-sm font-light capitalize text-slate-900 dark:text-slate-200 shadow-sm dark:shadow-none"
                   >
                     {tag}
                   </span>
@@ -86,7 +86,7 @@ const MediaListItem = ({
           <div className="my-auto flex-1 basis-1/3">
             <Form form={form}>
               <div className="space-y-2 sm:flex sm:flex-col sm:items-start sm:justify-between">
-                <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium text-slate-900 dark:text-white">
+                <div className="flex flex-auto flex-col justify-center space-y-1 text-sm font-medium text-slate-900 dark:text-slate-200">
                   <h3>
                     {isEdit ? (
                       <TextField

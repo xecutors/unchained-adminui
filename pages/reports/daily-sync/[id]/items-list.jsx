@@ -87,7 +87,7 @@ const Wrapper = ({ selectedView, list }) => {
         <input
           type="text"
           name="search"
-          className="block w-full dark:bg-slate-600 text-slate-600 dark:text-white dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full dark:bg-slate-900 text-slate-600 dark:text-slate-200 dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
           onChange={handleOnChange}
           autoComplete="off"
           value={searchKey}

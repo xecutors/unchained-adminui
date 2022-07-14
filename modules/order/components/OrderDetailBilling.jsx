@@ -15,7 +15,7 @@ const OrderDetailBilling = ({ order }) => {
       </h2>
 
       <div className="md:grid md:grid-cols-2 md:gap-x-8">
-        <dl className="bg-white dark:bg-slate-600 p-4 shadow dark:shadow-white sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
+        <dl className="bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none sm:rounded-lg grid justify-center text-sm md:justify-start md:gap-x-8">
           <div>
             <span className="text-xl mb-5 block font-bold">
               {order?.billingAddress.firstName ||
@@ -41,7 +41,7 @@ const OrderDetailBilling = ({ order }) => {
           </div>
         </dl>
 
-        <dl className="bg-white dark:bg-slate-600 p-4 shadow dark:shadow-white sm:rounded-lg mt-4 divide-y divide-indigo-50 text-sm lg:mt-0">
+        <dl className="bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none sm:rounded-lg mt-4 divide-y divide-indigo-50 dark:divide-slate-700 text-sm lg:mt-0">
           <div className="flex items-center justify-between pb-3 text-lg">
             <dt className="font-bold">
               {formatMessage({
@@ -52,7 +52,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-bold">{formatPrice(order?.total)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
-            <dt className="text-slate-600 dark:text-white">
+            <dt className="text-slate-600 dark:text-slate-200">
               {formatMessage({
                 id: 'discount',
                 defaultMessage: 'Discount',
@@ -61,7 +61,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-medium">{formatPrice(order?.totalDiscount)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
-            <dt className="text-slate-600 dark:text-white">
+            <dt className="text-slate-600 dark:text-slate-200">
               {formatMessage({
                 id: 'shipping',
                 defaultMessage: 'Shipping',
@@ -70,7 +70,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-medium">{formatPrice(order?.totalDelivery)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
-            <dt className="text-slate-600 dark:text-white">
+            <dt className="text-slate-600 dark:text-slate-200">
               {formatMessage({
                 id: 'tax',
                 defaultMessage: 'Tax',
@@ -79,7 +79,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-medium">{formatPrice(order?.totalTax)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
-            <dt className="text-slate-600 dark:text-white">
+            <dt className="text-slate-600 dark:text-slate-200">
               {formatMessage({
                 id: 'order_payment_fees',
                 defaultMessage: 'Fees',
@@ -88,7 +88,7 @@ const OrderDetailBilling = ({ order }) => {
             <dd className="font-medium">{formatPrice(order?.totalPayment)}</dd>
           </div>
           <div className="flex items-center justify-between py-1">
-            <dt className="text-slate-600 dark:text-white">
+            <dt className="text-slate-600 dark:text-slate-200">
               {formatMessage({
                 id: 'subtotal',
                 defaultMessage: 'Subtotal',

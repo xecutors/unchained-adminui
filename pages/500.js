@@ -12,7 +12,7 @@ const InternalError = () => {
   const { formatMessage } = useIntl();
   const logo = getLogo();
   return (
-    <div className="flex min-h-full flex-col bg-white dark:bg-slate-600 pt-16 pb-12 ">
+    <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
           <a href="/" className="inline-flex">
@@ -44,13 +44,13 @@ const InternalError = () => {
                 defaultMessage: '500, unexpected error',
               })}
             </p>
-            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
               {formatMessage({
                 id: 'internal_server_error',
                 defaultMessage: '500 Internal Server Error.',
               })}
             </h1>
-            <p className="mt-2 text-base text-slate-500 dark:text-white">
+            <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
               {formatMessage({
                 id: 'not_found_message',
                 defaultMessage:

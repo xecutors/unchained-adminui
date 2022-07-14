@@ -17,8 +17,8 @@ const LogList = ({ discounts }) => {
   const { formatPrice } = useFormatPrice();
 
   return (
-    <div className="flex flex-auto flex-col bg-white dark:bg-slate-600 shadow dark:shadow-white sm:rounded-lg">
-      <h2 className="px-4 py-4 text-lg font-medium text-slate-900 dark:text-white sm:px-6">
+    <div className="flex flex-auto flex-col bg-white dark:bg-slate-800 shadow dark:shadow-none sm:rounded-lg">
+      <h2 className="px-4 py-4 text-lg font-medium text-slate-900 dark:text-slate-200 sm:px-6">
         {formatMessage({
           id: 'discount_information',
           defaultMessage: 'Discounts',
@@ -76,7 +76,7 @@ const LogList = ({ discounts }) => {
             id: 'discounts',
             defaultMessage: 'Discounts',
           })}
-          className="border-t border-indigo-50 px-4 py-4 sm:px-6"
+          className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6"
           icon={EmojiSadIcon}
         />
       )}

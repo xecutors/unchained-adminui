@@ -21,11 +21,11 @@ const EventDetail = ({ event }) => {
       <JSONView
         disabled
         value={JSON.stringify(event.payload, null, 2)}
-        className="bg-white dark:bg-slate-600 dark:text-white mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 shadow-sm sm:text-sm"
+        className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
       />
     ) : (
       <NoData
-        className="bg-white dark:bg-slate-600 rounded-lg capitalize border border-slate-200 shadow-md"
+        className="bg-white dark:bg-slate-900 rounded-lg capitalize border border-slate-200 dark:border-slate-800 shadow-md"
         message={formatMessage({
           id: `no_payload`,
           defaultMessage: 'Payload',
@@ -35,12 +35,12 @@ const EventDetail = ({ event }) => {
   };
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
   return (
     <>
       <div className="mb-5 w-full border-t border-slate-300" />
-      <div className="rounded-lg border border-slate-200 p-4 shadow-md sm:p-6 lg:p-8">
+      <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4 shadow-md sm:p-6 lg:p-8">
         <div className="flex justify-between ">
           <div className="my-1 pb-1 text-sm  font-bold">
             {formatMessage({

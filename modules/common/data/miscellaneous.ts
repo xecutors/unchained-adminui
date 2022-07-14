@@ -676,7 +676,7 @@ export const ColorLookupTable = {
     border: {
       50: 'border-slate-50',
       100: 'border-slate-100',
-      200: 'border-slate-200',
+      200: 'border-slate-200 dark:border-slate-800',
       300: 'border-slate-300',
       400: 'border-slate-400',
       500: 'border-slate-500',

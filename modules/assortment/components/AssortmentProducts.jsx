@@ -151,7 +151,7 @@ const AssortmentProducts = ({ assortmentId }) => {
             <Loading />
           </div>
         ) : (
-          <div className="ml-auto my-auto w-full rounded shadow dark:shadow-white md:col-span-2">
+          <div className="ml-auto my-auto w-full rounded shadow dark:shadow-none md:col-span-2">
             <DragDropContext onDragEnd={handleDragEnd}>
               <AssortmentProductList
                 products={linkedProducts}

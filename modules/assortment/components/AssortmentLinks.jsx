@@ -142,7 +142,7 @@ const AssortmentLinks = ({ assortmentId }) => {
         {loading ? (
           <Loading />
         ) : (
-          <div className="ml-auto shadow dark:shadow-white dark:bg-slate-600 w-full md:col-span-2 bg-white">
+          <div className="ml-auto shadow dark:shadow-none dark:bg-slate-900 w-full md:col-span-2 bg-white">
             <DragDropContext onDragEnd={handleDragEnd}>
               <AssortmentLinksList
                 currentAssortmentId={assortmentId}

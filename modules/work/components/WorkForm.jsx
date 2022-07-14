@@ -146,7 +146,7 @@ const WorkForm = () => {
                 defaultMessage: 'Scheduled',
               })}
               labelClassName="text-sm font-medium text-slate-500 mb-1"
-              className="w-full py-2 text-sm text-slate-900 dark:text-white dark:bg-slate-600 sm:mt-0 "
+              className="w-full py-2 text-sm text-slate-900 dark:text-slate-200 dark:bg-slate-900 sm:mt-0 "
               containerClassName="w-full py-2 text-sm text-slate-900 sm:mt-0"
               name="scheduled"
               placeholder={formatMessage({
@@ -164,7 +164,7 @@ const WorkForm = () => {
           <div>
             <JSONAreaField
               name="input"
-              className="dark:text-white"
+              className="dark:text-slate-200"
               labelClassName="font-sm text-slate-500 mb-1"
               label={formatMessage({
                 id: 'input',

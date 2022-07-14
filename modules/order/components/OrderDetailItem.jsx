@@ -20,7 +20,7 @@ const OrderDetailItem = ({ item }) => {
             </h2>
 
             <div className="space-y-8">
-              <div className="mb-2 rounded-lg border border-slate-200 bg-white dark:bg-slate-600 shadow dark:shadow-white dark:text-white hover:border hover:border-solid hover:border-blue-600">
+              <div className="mb-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow dark:shadow-none dark:text-slate-200 hover:border hover:border-solid hover:border-blue-600">
                 <div className="px-2 py-1">
                   <div className="flex items-center">
                     <div className="flex flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
@@ -43,7 +43,7 @@ const OrderDetailItem = ({ item }) => {
 
                     <div className="w-1/2 flex flex-col justify-center sm:mt-0 ml-3 sm:flex-auto">
                       <h3
-                        className="text-base font-medium text-slate-900 dark:text-white truncate"
+                        className="text-base font-medium text-slate-900 dark:text-slate-200 truncate"
                         // eslint-disable-next-line react/no-danger
                         dangerouslySetInnerHTML={{
                           __html:

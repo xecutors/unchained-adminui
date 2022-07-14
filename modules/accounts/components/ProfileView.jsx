@@ -126,17 +126,17 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
-        <div className="mt-6 overflow-hidden rounded-md bg-slate-100 dark:bg-slate-600">
+        <div className="mt-6 overflow-hidden rounded-md bg-slate-100 dark:bg-slate-900">
           <div className="lg:grid lg:grid-cols-3">
             <div className="mb-5 lg:col-span-1 lg:pr-5">
               <div className="space-y-2">
-                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
                   {formatMessage({
                     id: 'profile',
                     defaultMessage: 'Profile',
                   })}
                 </h3>
-                <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+                <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
                   {formatMessage({
                     id: 'profile_notice',
                     defaultMessage:
@@ -164,7 +164,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 ml-auto rounded-md px-6 shadow lg:w-full bg-white dark:border-2 dark:bg-slate-600">
+            <div className="col-span-2 ml-auto rounded-md px-6 shadow dark:shadow-none lg:w-full bg-white dark:bg-slate-800">
               <div className="py-4">
                 <div className="py-4 sm:grid sm:py-2">
                   <label className="text-slate-70 block text-sm font-medium">
@@ -223,14 +223,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-white">
+                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'displayName',
                         defaultMessage: 'Display Name',
                       })}
                   </label>
-                  <div className="mt-1 flex text-sm text-slate-900 dark:text-white sm:mt-0">
+                  <div className="mt-1 flex text-sm text-slate-900 dark:text-slate-200 sm:mt-0">
                     {isEdit ? (
                       <TextField
                         className="mt-0 w-full"
@@ -251,14 +251,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-white">
+                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'gender',
                         defaultMessage: 'Gender',
                       })}
                   </label>
-                  <div className="mt-1 flex text-sm text-slate-900 dark:text-white sm:mt-0">
+                  <div className="mt-1 flex text-sm text-slate-900 dark:text-slate-200 sm:mt-0">
                     {isEdit ? (
                       <SelectField
                         className="mt-0 w-full"
@@ -291,14 +291,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-white">
+                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'birthday',
                         defaultMessage: 'Birthday',
                       })}
                   </label>
-                  <div className="mt-1 flex text-sm text-slate-900 dark:text-white sm:mt-0">
+                  <div className="mt-1 flex text-sm text-slate-900 dark:text-slate-200 sm:mt-0">
                     {isEdit ? (
                       <DatePickerField
                         label={formatMessage({
@@ -323,14 +323,14 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </div>
 
                 <div className="py-4 sm:grid sm:gap-1 sm:py-1">
-                  <label className="text-sm font-medium text-slate-500 dark:text-white">
+                  <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
                     {!isEdit &&
                       formatMessage({
                         id: 'mobile_phone',
                         defaultMessage: 'Mobile phone',
                       })}
                   </label>
-                  <div className="mt-1 flex text-sm text-slate-900 dark:text-white sm:mt-0">
+                  <div className="mt-1 flex text-sm text-slate-900 dark:text-slate-200 sm:mt-0">
                     {isEdit ? (
                       <TextField
                         className="mt-0 w-full"
@@ -363,13 +363,13 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
           <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
             <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
               <div className="space-y-2">
-                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+                <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
                   {formatMessage({
                     id: 'address',
                     defaultMessage: 'Address',
                   })}
                 </h3>
-                <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+                <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
                   {formatMessage({
                     id: 'address_notice',
                     defaultMessage:
@@ -398,7 +398,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 w-full border-slate-200 px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full bg-white dark:border-2 dark:bg-slate-600 ">
+            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full bg-white dark:border dark:bg-slate-800 ">
               <AddressFields
                 isEdit={isEdit}
                 address={address}

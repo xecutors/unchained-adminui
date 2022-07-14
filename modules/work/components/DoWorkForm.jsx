@@ -44,13 +44,13 @@ const DoWorkForm = () => {
         <div className="relative max-w-full space-y-6 rounded-md p-6">
           <div className="w-full justify-between align-baseline sm:mr-10">
             <SelectField
-              className="w-full py-2 text-sm text-slate-900 dark:text-white sm:mt-0"
+              className="w-full py-2 text-sm text-slate-900 dark:text-slate-200 sm:mt-0"
               label={formatMessage({ id: 'type', defaultMessage: 'Type' })}
               placeholder={formatMessage({
                 id: 'type',
                 defaultMessage: 'Type',
               })}
-              labelClassName="text-sm font-medium text-slate-500 dark:text-white mb-2"
+              labelClassName="text-sm font-medium text-slate-500 dark:text-slate-200 mb-2"
               name="type"
               required
               options={convertArrayOfObjectToObject(

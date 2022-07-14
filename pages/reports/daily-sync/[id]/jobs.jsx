@@ -157,7 +157,7 @@ const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="border border-slate-200 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-600 text-slate-900 dark:text-white">
+    <div className="border border-slate-200 dark:border-slate-800 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200">
       <div className="py-5 sm:p-0">
         <dl className="divide-y divide-slate-300 px-7">
           <div className="py-4 sm:py-5">
@@ -236,7 +236,7 @@ const JobBody = ({ job }) => {
 };
 
 const headerCSS =
-  'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+  'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
 const SyncJobs = () => {
   const { formatMessage } = useIntl();
@@ -274,7 +274,7 @@ const SyncJobs = () => {
               id: 'no_job',
               defaultMessage: 'sync report found',
             })}
-            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
+            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-none"
           />
         ) : (
           <>

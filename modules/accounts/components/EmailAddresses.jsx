@@ -92,7 +92,7 @@ const EmailAddresses = ({
     >
       <div
         className={classNames(
-          'rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:border-2 dark:bg-slate-600',
+          'rounded-md shadow px-4 py-5 sm:p-6 bg-white  dark:bg-slate-900',
           emailBodyContainer,
         )}
       >
@@ -101,7 +101,7 @@ const EmailAddresses = ({
             <li className="py-4" key={address}>
               <div className="flex flex-wrap items-center justify-between">
                 <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
-                  <div className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                  <div className="truncate text-sm font-medium text-slate-900 dark:text-slate-200">
                     {address}
                   </div>
                   <ActiveInActive isActive={verified} />

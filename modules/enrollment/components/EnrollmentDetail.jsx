@@ -256,7 +256,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </div>
               </div>
 
-              <div className="flex-auto border-t border-slate-200 pt-4 lg:col-span-6 lg:border-0">
+              <div className="flex-auto border-t border-slate-200 dark:border-slate-800 pt-4 lg:col-span-6 lg:border-0">
                 <Form form={form}>
                   <JSONAreaField
                     disabled
@@ -278,7 +278,7 @@ const EnrollmentDetail = ({ enrollment }) => {
             </div>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 lg:col-span-2 lg:grid-cols-2 lg:gap-x-8">
-              <div className="border-t border-slate-200 pt-4">
+              <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'payment_provider',
@@ -296,7 +296,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </dd>
               </div>
 
-              <div className="border-t border-slate-200 pt-4">
+              <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'delivery_provider',
@@ -316,7 +316,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </dd>
               </div>
 
-              <div className="col-span-1 border-t border-slate-200 pt-4">
+              <div className="col-span-1 border-t border-slate-200 dark:border-slate-800 pt-4">
                 <dt className="font-medium text-slate-900">
                   {formatMessage({
                     id: 'contact',
@@ -342,7 +342,7 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
             </div>
 
-            <div className="border-t border-slate-200 pt-4">
+            <div className="border-t border-slate-200 dark:border-slate-800 pt-4">
               <dt className="font-medium text-slate-900">
                 {formatMessage({
                   id: 'billing_address',

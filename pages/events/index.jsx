@@ -89,7 +89,7 @@ const Events = () => {
             viewBox="0 0 24 24"
             fill="none"
           />
-          <p className="text-xl font-medium leading-5 text-slate-800 dark:text-white lg:leading-6 ">
+          <p className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
             {formatMessage({ id: 'type', defaultMessage: 'Type' })}
           </p>
         </div>
@@ -97,7 +97,7 @@ const Events = () => {
           <>
             <div className="mt-4">
               <MultipleSelect
-                className="text-sm text-slate-900 dark:text-white"
+                className="text-sm text-slate-900 dark:text-slate-200"
                 label={formatMessage({
                   id: 'select_type',
                   defaultMessage: 'Select type',

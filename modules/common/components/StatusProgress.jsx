@@ -46,7 +46,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                   <div className="ml-4 flex min-w-0 flex-1 items-center justify-between">
                     <div className="flex-auto">
                       <p className="text-sm text-slate-500">
-                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900 dark:text-white">
+                        <span className="flex w-full items-center justify-between font-medium capitalize text-slate-900 dark:text-slate-200">
                           {value}
                           {timeline[value]?.Component &&
                             timeline[value].Component}
@@ -54,7 +54,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       </p>
                     </div>
                     {currentId >= timeline[value].id ? (
-                      <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-white ml-4">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-slate-200 ml-4">
                         {data[timeline[value].content]
                           ? formatDateTime(data[timeline[value].content], {
                               dateStyle: 'short',
@@ -121,7 +121,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       ? timeline[value].Component
                       : value}
                   </span>
-                  <span className="block text-slate-900 dark:text-white">
+                  <span className="block text-slate-900 dark:text-slate-200">
                     {currentId >= timeline[value].id
                       ? formatDateTime(data[timeline[value].content], {
                           dateStyle: 'short',

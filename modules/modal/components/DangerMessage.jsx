@@ -35,14 +35,14 @@ const DangerMessage = ({
         )}
         <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
           <h3
-            className="text-lg font-medium leading-6 text-slate-900 dark:text-white"
+            className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200"
             id="modal-title"
           >
             {headerText ||
               formatMessage({ id: 'warning', defaultMessage: 'Warning!' })}
           </h3>
           <div className="mt-2">
-            <p className="text-sm text-slate-500 dark:text-white">
+            <p className="text-sm text-slate-500 dark:text-slate-200">
               {message ||
                 formatMessage({
                   id: 'are_you_sure',

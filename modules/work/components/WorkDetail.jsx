@@ -35,7 +35,7 @@ const WorkDetail = ({ work }) => {
             />
           ) : (
             <NoData
-              className="bg-white dark:bg-slate-600 rounded-md capitalize border-2 border-slate-200"
+              className="bg-white dark:bg-slate-900 rounded-md capitalize border-2 border-slate-200 dark:border-slate-800"
               message={formatMessage({
                 id: 'no_result',
                 defaultMessage: 'Result',
@@ -61,7 +61,7 @@ const WorkDetail = ({ work }) => {
             />
           ) : (
             <NoData
-              className="bg-white dark:bg-slate-600 rounded-lg capitalize border-2 border-slate-200"
+              className="bg-white dark:bg-slate-900 rounded-lg capitalize border-2 border-slate-200 dark:border-slate-800"
               message={formatMessage({
                 id: 'no_result',
                 defaultMessage: 'Result',
@@ -88,7 +88,7 @@ const WorkDetail = ({ work }) => {
             />
           ) : (
             <NoData
-              className="bg-white dark:bg-slate-600 rounded-lg capitalize border-2 border-slate-200"
+              className="bg-white dark:bg-slate-900 rounded-lg capitalize border-2 border-slate-200 dark:border-slate-800"
               message={formatMessage({
                 id: 'no_error',
                 defaultMessage: 'Error',
@@ -101,15 +101,15 @@ const WorkDetail = ({ work }) => {
   ];
 
   const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
   return (
     <>
       <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="max-h-fit col-span-2 rounded-lg border border-slate-200 bg-white dark:bg-slate-600 p-4 shadow-md dark:shadow-white sm:p-6 lg:col-span-1 lg:p-8 ">
+          <div className="max-h-fit col-span-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8 ">
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_type',
                   defaultMessage: 'Work type',
@@ -121,7 +121,7 @@ const WorkDetail = ({ work }) => {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_status',
                   defaultMessage: 'Work Status',
@@ -137,7 +137,7 @@ const WorkDetail = ({ work }) => {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_priority',
                   defaultMessage: 'Priority',
@@ -149,7 +149,7 @@ const WorkDetail = ({ work }) => {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'work_retries',
                   defaultMessage: 'Retries',
@@ -161,7 +161,7 @@ const WorkDetail = ({ work }) => {
             </div>
 
             <div className="mb-2 flex flex-wrap items-center justify-between">
-              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+              <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
                   id: 'worker',
                   defaultMessage: 'Worker',
@@ -189,7 +189,7 @@ const WorkDetail = ({ work }) => {
             </div>
             {work?.retries ? (
               <div className="mb-2 flex flex-wrap items-center justify-between">
-                <div className="mr-4 text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_original',
                     defaultMessage: 'Original Work',
@@ -208,10 +208,10 @@ const WorkDetail = ({ work }) => {
             )}
           </div>
 
-          <div className="col-span-2 rounded-lg border border-slate-200 bg-white dark:bg-slate-600 p-4 shadow-md dark:shadow-white sm:p-6 lg:col-span-1 lg:p-8">
+          <div className="col-span-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-md dark:shadow-none sm:p-6 lg:col-span-1 lg:p-8">
             <div className="grid grid-cols-2 gap-5">
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_created',
                     defaultMessage: 'Created',
@@ -222,7 +222,7 @@ const WorkDetail = ({ work }) => {
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_scheduled',
                     defaultMessage: 'Scheduled',
@@ -233,7 +233,7 @@ const WorkDetail = ({ work }) => {
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_started',
                     defaultMessage: 'Started',
@@ -244,7 +244,7 @@ const WorkDetail = ({ work }) => {
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_finished',
                     defaultMessage: 'Finished',
@@ -255,7 +255,7 @@ const WorkDetail = ({ work }) => {
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'work_updated',
                     defaultMessage: 'Updated',
@@ -266,7 +266,7 @@ const WorkDetail = ({ work }) => {
                 </div>
               </div>
               <div className="sm:col-span-1">
-                <div className="flex text-base font-semibold text-slate-500 dark:text-white sm:text-lg sm:font-bold">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                   {formatMessage({
                     id: 'deleted',
                     defaultMessage: 'Deleted',

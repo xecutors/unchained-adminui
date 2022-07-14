@@ -226,7 +226,7 @@ const Layout = ({
           aria-hidden="true"
         />
 
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-600">
+        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
               type="button"
@@ -282,14 +282,14 @@ const Layout = ({
               onClick={() => setHideNav(!hideNav)}
             />
           </div>
-          <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
+          <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
       </div>
 
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-800 dark:text-white">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 bg-white dark:bg-slate-600">
+      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
@@ -311,7 +311,7 @@ const Layout = ({
             </div>
             <SideNav navigation={defaultNavigation} />
           </div>
-          <div className="flex flex-shrink-0 border-t border-slate-200 p-4">
+          <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
           </div>
         </div>
@@ -321,7 +321,7 @@ const Layout = ({
           <button
             type="button"
             onClick={() => setHideNav(!hideNav)}
-            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-white"
+            className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-slate-200"
           >
             <span className="sr-only">
               {formatMessage({

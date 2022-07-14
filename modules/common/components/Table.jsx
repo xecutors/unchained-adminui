@@ -40,17 +40,17 @@ const Table = ({ className, ...props }) => {
   return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(
-        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 overflow-hidden shadow sm:rounded-lg dark:rounded-none dark:border sm:bg-white dark:bg-slate-600',
+        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 dark:divide-slate-600 overflow-hidden shadow sm:rounded-lg sm:bg-white dark:bg-slate-800/25',
         className,
       )}
       {...props}
     >
-      <thead className="bg-slate-50 dark:bg-slate-500 text-sm text-slate-700 dark:text-white">
+      <thead className="bg-slate-50 dark:bg-slate-900 text-sm text-slate-700 dark:text-slate-200">
         {rowsWithSort.header}
       </thead>
 
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y divide-slate-200 bg-white dark:bg-slate-600 sm:flex-none">
+        <tbody className="flex-1 divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}
@@ -62,7 +62,7 @@ const Table = ({ className, ...props }) => {
         id: 'data',
         defaultMessage: 'Data',
       })}
-      className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
+      className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-none"
     />
   );
 };

@@ -117,7 +117,7 @@ export default function LogInForm() {
               defaultMessage: 'Unchained Logo',
             })}
           />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'login_header',
               defaultMessage: 'Log in to your account',
@@ -219,7 +219,7 @@ export default function LogInForm() {
                 {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
               </button>
             </div>
-            <div className="text-sm text-slate-400 dark:text-white">
+            <div className="text-sm text-slate-400 dark:text-slate-200">
               {formatMessage({
                 id: 'create_new_account',
                 defaultMessage: 'Create new account?',

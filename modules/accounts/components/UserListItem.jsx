@@ -14,7 +14,7 @@ const UserListItem = ({ user }) => {
   return (
     <li>
       <Link href={`/users/${user._id}`}>
-        <a className="block border-b border-b-slate-200 hover:bg-slate-50 dark:hover:bg-slate-500">
+        <a className="block border-b border-b-slate-200 dark:border-b-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 dark:bg-slate-800">
           <div className="flex items-center px-4 py-4 sm:px-6">
             <div className="flex min-w-0 flex-1 items-center">
               <div className="flex-shrink-0">
@@ -26,12 +26,12 @@ const UserListItem = ({ user }) => {
               </div>
               <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                 <div>
-                  <div className="truncate text-sm font-medium text-indigo-600">
+                  <div className="truncate text-sm font-medium text-indigo-600 dark:text-indigo-400">
                     {user.name}
                   </div>
-                  <div className="flex items-center text-sm text-slate-500 dark:text-white">
+                  <div className="flex items-center text-sm text-slate-500 dark:text-slate-200">
                     <svg
-                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400 dark:text-white"
+                      className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400 dark:text-slate-200"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -65,7 +65,7 @@ const UserListItem = ({ user }) => {
                         />
                       )}
                     </div>
-                    <div className="mt-2 flex items-center text-sm text-slate-500 dark:text-white">
+                    <div className="mt-2 flex items-center text-sm text-slate-500 dark:text-slate-200">
                       <ActiveInActive isActive={isVerified} />
                       {UserTypes[isVerified]}
                     </div>

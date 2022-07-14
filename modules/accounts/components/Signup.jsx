@@ -50,7 +50,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                 defaultMessage: 'Unchained Logo',
               })}
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'sign_up_header',
                 defaultMessage: 'Create new account',
@@ -119,7 +119,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                 </button>
               </div>
 
-              <div className="text-sm text-slate-400 dark:text-white">
+              <div className="text-sm text-slate-400 dark:text-slate-200">
                 {formatMessage({
                   id: 'already_got_a_user',
                   defaultMessage: 'Already got a user?',

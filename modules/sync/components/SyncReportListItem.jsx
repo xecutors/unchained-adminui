@@ -31,7 +31,7 @@ const SyncReportListItem = ({ data }) => {
                 )}
               </div>
               <div className="min-w-0 flex-1 px-4">
-                <div className="text-slate-900 dark:text-white md:block">
+                <div className="text-slate-900 dark:text-slate-200 md:block">
                   <div>
                     <p className="text-sm ">
                       {formatMessage(

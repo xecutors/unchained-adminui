@@ -38,15 +38,15 @@ const DisableTwoFactorAuthForm = ({ userId }) => {
 
   return (
     <div className="overflow-hidden lg:flex">
-      <div className="mb-7 border-slate-200 pb-2 sm:flex sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+      <div className="mb-7 border-slate-200 dark:border-slate-800 pb-2 sm:flex sm:justify-between">
+        <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
           {formatMessage({
             id: 'disable_2fa_auth_header',
             defaultMessage: 'Disable 2FA authentication',
           })}
         </h3>
       </div>
-      <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
+      <div className="w-full border-b border-slate-200 dark:border-slate-800 bg-white  dark:bg-slate-900 rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
           <div className="relative max-w-full p-3 space-y-6 sm:p-6">
             <TextField

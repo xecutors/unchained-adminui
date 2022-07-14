@@ -56,7 +56,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
   return (
     <FormWrapper>
       <Form form={form}>
-        <div className="shadow dark:shadow-white sm:rounded-md">
+        <div className="shadow dark:shadow-none sm:rounded-md">
           <div className="grid gap-6 px-4 py-5 sm:p-6">
             <div className="col-span-12">
               <TagInputField
@@ -80,7 +80,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
               />
             </div>
           </div>
-          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 px-4 py-5 text-right sm:px-6">
+          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
             <SubmitButton
               hidden={!hasRole(ACTION_ROLES.assortments.addProduct)}
               label={formatMessage({

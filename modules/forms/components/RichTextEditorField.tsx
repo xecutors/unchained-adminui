@@ -18,7 +18,7 @@ const RichTextEditorField = ({ ...props }: FieldHookProps) => {
     <FieldWrapper {...field}>
       <ReactQuill
         className={classnames(
-          'mt-1 focus rounded-md rounded-b-md border-2 border-slate-200 sm:text-sm shadow-sm',
+          'mt-1 focus rounded-md rounded-b-md border-2 border-slate-200 dark:border-slate-800 sm:text-sm shadow-sm',
           props.className,
           {
             'quill-error-border': !!field.error,

@@ -10,18 +10,18 @@ const ShopInformation = () => {
   if (loading) return <Loading />;
   return (
     <>
-      <h2 className="ml-4 text-xl text-slate-700 dark:text-white">
+      <h2 className="ml-4 text-xl text-slate-700 dark:text-slate-200">
         {formatMessage({
           id: 'system_information',
           defaultMessage: 'System Information',
         })}
       </h2>
       <div className="mt-2 text-right ">
-        <div className="bg-white dark:bg-slate-600 p-4 shadow sm:rounded-lg sm:px-4  dark:border-2">
-          <ul className="-my-3 divide-y divide-slate-200">
+        <div className="bg-white dark:bg-slate-800 p-4 shadow dark:shadow-none sm:rounded-lg sm:px-4">
+          <ul className="-my-3 divide-y divide-slate-200 dark:divide-slate-700">
             <li className="py-4">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 dark:text-slate-400">
                   {formatMessage({
                     id: 'engine_version',
                     defaultMessage: 'Engine version',
@@ -34,7 +34,7 @@ const ShopInformation = () => {
             </li>
             <li className="py-4">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 dark:text-slate-400">
                   {formatMessage({
                     id: 'resolved_language',
                     defaultMessage: 'Resolved language',
@@ -52,7 +52,7 @@ const ShopInformation = () => {
             </li>
             <li className="py-4">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 dark:text-slate-400">
                   {formatMessage({
                     id: 'resolved_country',
                     defaultMessage: 'Resolved country',
@@ -71,7 +71,7 @@ const ShopInformation = () => {
             </li>
             <li className="py-4">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 dark:text-slate-400">
                   {formatMessage({
                     id: 'default_currency',
                     defaultMessage: 'Default currency',

@@ -165,7 +165,7 @@ const QuotationDetail = ({ quotation }) => {
         timeline={timeline}
       />
       <section aria-labelledby="products-heading" className="my-6">
-        <div className="rounded-lg border-t border-b border-slate-200 bg-white shadow-sm sm:border">
+        <div className="rounded-lg border-t border-b border-slate-200 dark:border-slate-800 bg-white shadow-sm sm:border">
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
             <div className="sm:col-span-4 md:col-span-5 md:row-span-2 md:row-end-2">
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">

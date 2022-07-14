@@ -58,7 +58,7 @@ const ProductReviewsItem = ({ review }) => {
           'border-2 border-solid border-red-200': review.deleted,
         },
         {
-          'border-2 border-solid border-slate-200': !review.deleted,
+          'border-2 border-solid border-slate-200 dark:border-slate-800': !review.deleted,
         },
       )}
     >
@@ -107,7 +107,7 @@ const ProductReviewsItem = ({ review }) => {
         )}
       </div>
 
-      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-white">
+      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-200">
         <h3 className="text-sm font-medium">{review.title}</h3>
         <p>{review.review}</p>
       </div>

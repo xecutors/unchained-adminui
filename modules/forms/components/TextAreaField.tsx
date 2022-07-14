@@ -25,7 +25,7 @@ const TextAreaField = ({
     <FieldWrapper {...field}>
       <JSONView
         className={classnames(
-          'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
+          'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 dark:border-slate-800 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
           {
             'border-red-300 text-red-600': !!field.error,
           },

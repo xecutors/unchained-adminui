@@ -81,13 +81,13 @@ const CommerceForm = ({ productId }) => {
     <div className="flex flex-col ">
       <div className="md:col-span-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+          <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
             {formatMessage({
               id: 'texts',
               defaultMessage: 'Texts',
             })}
           </h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-white">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-200">
             {formatMessage({
               id: 'product_commerce_info',
               defaultMessage:
@@ -102,7 +102,7 @@ const CommerceForm = ({ productId }) => {
             <div className="relative max-w-full p-3 sm:p-5">
               <div className="max-w-full justify-between align-baseline" />
 
-              <label className="sr-only flex w-full font-sans text-sm text-black dark:text-white lg:not-sr-only">
+              <label className="sr-only flex w-full font-sans text-sm text-black dark:text-slate-200 lg:not-sr-only">
                 <span className="flex w-full">
                   <span className="w-full">
                     {formatMessage({

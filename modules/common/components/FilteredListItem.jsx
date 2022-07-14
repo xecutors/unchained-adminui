@@ -5,7 +5,7 @@ import NoImage from './NoImage';
 const FilteredListItem = ({ item, onSelected }) => {
   return (
     <a
-      className="w-full cursor-pointer border-b bg-white dark:bg-slate-600 border-slate-100 hover:bg-teal-100 dark:hover:bg-slate-500"
+      className="w-full cursor-pointer border-b bg-white dark:bg-slate-900 border-slate-100 hover:bg-teal-100 dark:hover:bg-slate-500"
       onClick={() => onSelected(item)}
     >
       <div className="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2 hover:border-teal-100 dark:hover:bg-slate-500">
@@ -32,18 +32,18 @@ const FilteredListItem = ({ item, onSelected }) => {
         )}
         <div className="flex w-full shrink grow basis-4/5 items-center justify-between overflow-x-hidden">
           <div
-            className="mx-2 -mt-1 w-2/3 break-words dark:text-white" // eslint-disable-next-line react/no-danger
+            className="mx-2 -mt-1 w-2/3 break-words dark:text-slate-200" // eslint-disable-next-line react/no-danger
           >
             {item?.title}
             <div
-              className="-mt-1 w-full break-words text-xs font-normal normal-case text-slate-500 dark:text-white"
+              className="-mt-1 w-full break-words text-xs font-normal normal-case text-slate-500 dark:text-slate-200"
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: item?.subtitle }}
             />
           </div>
           {item?.tag ? (
             <div className="flex w-1/3">
-              <div className="m-1 ml-auto flex items-center justify-center rounded-full border border-teal-300 dark:hover:bg-slate-500 py-1 px-2 font-medium text-teal-700 dark:text-white">
+              <div className="m-1 ml-auto flex items-center justify-center rounded-full border border-teal-300 dark:hover:bg-slate-500 py-1 px-2 font-medium text-teal-700 dark:text-slate-200">
                 <div className="max-w-full flex-initial text-xs font-normal leading-none">
                   {item?.tag}
                 </div>

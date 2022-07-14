@@ -47,7 +47,7 @@ const OrderDetailDelivery = ({ order }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-600 shadow dark:shadow-white sm:rounded-lg">
+    <div className="bg-white dark:bg-slate-800 shadow dark:shadow-none sm:rounded-lg">
       <div className="flex items-center justify-between px-4 sm:px-6">
         <h2 className="py-4 text-lg font-medium">
           {formatMessage({
@@ -67,7 +67,7 @@ const OrderDetailDelivery = ({ order }) => {
           })}
         </span>
       </div>
-      <div className="border-t border-indigo-50 px-4 py-4 sm:px-6">
+      <div className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6">
         <span className="mb-5 block">
           <Link href={`/delivery-provider/${order?.delivery?.provider._id}`}>
             <a className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
@@ -76,7 +76,7 @@ const OrderDetailDelivery = ({ order }) => {
           </Link>
         </span>
 
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-white">
+        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'method',
             defaultMessage: 'Method',
@@ -93,7 +93,7 @@ const OrderDetailDelivery = ({ order }) => {
           ))}
         </span>
 
-        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-white">
+        <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">
           {formatMessage({
             id: 'status',
             defaultMessage: 'Status',

@@ -44,7 +44,7 @@ const ProductVariationForm = ({ onSubmit }) => {
             })}
             required
             autoComplete="on"
-            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-white sm:ml-1"
+            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-slate-200 sm:ml-1"
           />
           <TextField
             name="key"
@@ -55,12 +55,12 @@ const ProductVariationForm = ({ onSubmit }) => {
             })}
             required
             autoComplete="on"
-            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-white sm:ml-1"
+            className="mt-1 w-full py-2 text-sm font-medium text-slate-500 dark:text-slate-200 sm:ml-1"
           />
         </div>
         <SelectField
           required
-          className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500 dark:text-white"
+          className="mt-2.5  w-full py-1.5 text-sm font-medium text-slate-500 dark:text-slate-200"
           label={formatMessage({
             id: 'type',
             defaultMessage: 'Type',

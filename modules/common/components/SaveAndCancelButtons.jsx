@@ -14,7 +14,7 @@ const SaveAndCancelButtons = ({
   return (
     <span
       className={classNames(
-        'flex flex-shrink-0 items-center space-x-4 p-5 dark:bg-slate-500 ',
+        'flex flex-shrink-0 items-center space-x-4 p-5 dark:bg-slate-800',
         className,
       )}
     >

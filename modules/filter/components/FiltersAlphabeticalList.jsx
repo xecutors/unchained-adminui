@@ -39,7 +39,7 @@ const FiltersAlphabeticalList = ({
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 dark:bg-slate-400 px-6 py-1 text-sm font-medium text-white dark:text-slate-900">
+              <div className="sticky top-0 z-10 border-t border-b border-slate-200 dark:border-slate-800 bg-slate-300 dark:bg-slate-400 px-6 py-1 text-sm font-medium text-white dark:text-slate-900">
                 <h3>{letter}</h3>
               </div>
               <ul className="relative z-0 divide-y divide-slate-200">

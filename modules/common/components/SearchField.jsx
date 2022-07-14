@@ -30,7 +30,7 @@ const SearchField = ({ inputText, onInputChange, defaultValue }) => {
             id="search"
             defaultValue={defaultValue}
             name="search"
-            className="block w-full max-w-lg rounded-md border-2 border-slate-300 bg-white dark:placeholder:text-slate-200 dark:bg-slate-600 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-white"
+            className="block w-full max-w-lg rounded-md border-2 border-slate-300 dark:border-slate-700 bg-white dark:placeholder:text-slate-400 dark:bg-slate-800 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-none"
             placeholder={formatMessage({
               id: 'search',
               defaultMessage: 'Search',

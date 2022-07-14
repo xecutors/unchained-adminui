@@ -61,13 +61,13 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
       <div className="space-y-4 overflow-hidden rounded-md border-b lg:grid lg:grid-cols-3">
         <div className="flex justify-between pt-5 sm:col-span-1">
           <div className="space-y-1">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'profile',
                 defaultMessage: 'Profile',
               })}
             </h3>
-            <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+            <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
               {formatMessage({
                 id: 'profile_notice',
                 defaultMessage:
@@ -78,7 +78,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           <span className="ml-4 flex flex-shrink-0 items-start space-x-4" />
         </div>
 
-        <div className="mt-1 rounded-md border-slate-200 bg-white dark:bg-slate-600 pt-5 shadow dark:shadow-white lg:col-span-2">
+        <div className="mt-1 rounded-md border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 pt-5 shadow dark:shadow-none lg:col-span-2">
           <div className="px-6 space-y-4">
             <div>
               <EmailField
@@ -185,13 +185,13 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
         <div className="flex justify-between pt-6 lg:col-span-1">
           <div className="space-y-1 ">
-            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
+            <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
               {formatMessage({
                 id: 'address',
                 defaultMessage: 'Address',
               })}
             </h3>
-            <p className="max-w-2xl text-sm text-slate-500 dark:text-white">
+            <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
               {formatMessage({
                 id: 'address_notice',
                 defaultMessage:
@@ -201,7 +201,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
           </div>
         </div>
 
-        <div className="rounded-md bg-white dark:bg-slate-600 pt-5 mb-5 shadow dark:shadow-white lg:col-span-2">
+        <div className="rounded-md bg-white dark:bg-slate-900 pt-5 mb-5 shadow dark:shadow-none lg:col-span-2">
           <div className="px-5 space-y-4">
             <div className="mt-1 flex text-sm sm:mt-0">
               <div className="flex w-full">

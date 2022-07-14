@@ -21,7 +21,7 @@ const SelectField = (props: SelectFieldProps) => {
       <div className="select-wrap">
         <select
           className={classnames(
-            'mt-1 block w-full dark:bg-slate-600 rounded-md border-2 border-slate-200 py-2.5 pl-3 pr-10 text-base text-slate-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
+            'mt-1 block w-full dark:bg-slate-900 rounded-md border-2 border-slate-200 dark:border-slate-800 py-2.5 pl-3 pr-10 text-base text-slate-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
             className,
             {
               'border-red-300 text-red-600': !!field.error,
@@ -36,7 +36,7 @@ const SelectField = (props: SelectFieldProps) => {
         >
           {(!!field.placeholder || !field.required) && (
             <option
-              className="dark:text-white"
+              className="dark:text-slate-200"
               value=""
               disabled={field.required}
               hidden={field.required}
@@ -45,7 +45,7 @@ const SelectField = (props: SelectFieldProps) => {
             </option>
           )}
           {Object.entries(options).map(([value, display]) => (
-            <option className="dark:text-white" key={value} value={value}>
+            <option className="dark:text-slate-200" key={value} value={value}>
               {display}
             </option>
           ))}

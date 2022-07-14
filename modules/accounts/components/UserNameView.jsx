@@ -42,7 +42,7 @@ const UserNameView = ({ _id: userId, username }) => {
     <Form form={form}>
       <dl className="divide-y divide-slate-200">
         <div className="flex flex-wrap items-center sm:grid sm:grid-cols-3 sm:gap-4">
-          <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500 dark:text-white">
+          <div className="shrink grow basis-2/5 text-sm font-medium text-slate-500 dark:text-slate-200">
             {!isEdit &&
               formatMessage({ id: 'username', defaultMessage: 'Username' })}
           </div>

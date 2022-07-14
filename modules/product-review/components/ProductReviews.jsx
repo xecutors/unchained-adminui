@@ -14,7 +14,7 @@ const ProductReviews = ({ productId }) => {
   return (
     <div className="mt-5 sm:max-w-full">
       {productReviews?.length ? (
-        <div className="rounded bg-white dark:bg-slate-600 shadow text-slate-900 dark:shadow-white dark:text-white">
+        <div className="rounded bg-white dark:bg-slate-900 shadow text-slate-900 dark:shadow-none dark:text-slate-200">
           <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
             <ProductReviewsReport productReviews={productReviews} />
 
