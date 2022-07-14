@@ -37,15 +37,10 @@ const FilterDetailPage = () => {
           setModal('');
           await removeFilter({ filterId });
           toast.success(
-            formatMessage(
-              {
-                id: 'filter_deleted',
-                defaultMessage: 'Filter {filterId} deleted successfully',
-              },
-              {
-                filterId,
-              },
-            ),
+            formatMessage({
+              id: 'filter_deleted',
+              defaultMessage: 'Filter deleted successfully',
+            }),
           );
           router.push('/filters');
         }}

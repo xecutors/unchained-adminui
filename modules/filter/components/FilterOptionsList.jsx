@@ -23,15 +23,10 @@ function FilterListView({ filterId, options, selectedLocale }) {
           setModal('');
           await removeFilterOption({ filterId, filterOptionValue });
           toast.success(
-            formatMessage(
-              {
-                id: 'filter_deleted',
-                defaultMessage: 'Filter {filterId} deleted successfully',
-              },
-              {
-                filterId,
-              },
-            ),
+            formatMessage({
+              id: 'filter_deleted',
+              defaultMessage: 'Filter deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

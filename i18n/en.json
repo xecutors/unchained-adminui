@@ -268,7 +268,7 @@
   "filter_by_type": "Filter by type",
   "filter_created": "Filter created successfully!",
   "filter_deactivated": "Filter deactivated!",
-  "filter_deleted": "Filter {filterId} deleted successfully",
+  "filter_deleted": "Filter deleted successfully",
   "filter_detail": "Filter Detail",
   "filter_key": "Key",
   "filter_option_added_success": "Filter option added successfully",

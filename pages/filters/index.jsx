@@ -71,15 +71,10 @@ const FiltersListView = () => {
           setModal('');
           await removeFilter({ filterId });
           toast.success(
-            formatMessage(
-              {
-                id: 'filter_deleted',
-                defaultMessage: 'Filter {filterId} deleted successfully',
-              },
-              {
-                filterId,
-              },
-            ),
+            formatMessage({
+              id: 'filter_deleted',
+              defaultMessage: 'Filter deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

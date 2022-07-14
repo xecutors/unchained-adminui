@@ -811,7 +811,7 @@
     "description": "shown on successful toggle of filter status"
   },
   "filter_deleted": {
-    "defaultMessage": "Filter {filterId} deleted successfully"
+    "defaultMessage": "Filter deleted successfully"
   },
   "filter_detail": {
     "defaultMessage": "Filter Detail"
