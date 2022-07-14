@@ -10,11 +10,11 @@ const UserAvatar = ({ avatar, username, onLogout, profile }) => {
         <>
           {avatar ? (
             <Image
-              className="mx-auto h-12 w-auto"
               src={avatar?.url}
               loader={defaultNextImageLoader}
-              width={100}
-              height={100}
+              width={36}
+              height={36}
+              className="rounded"
               placeholder="blur"
               blurDataURL="/placeholder.png"
               alt={formatMessage({

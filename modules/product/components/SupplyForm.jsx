@@ -86,7 +86,7 @@ const SupplyForm = ({ productId }) => {
           id="product_supply_form_description"
           defaultMessage="<ul><li> Information that will be used to identify dimensions of a product  </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />

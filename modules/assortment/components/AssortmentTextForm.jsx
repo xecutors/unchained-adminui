@@ -79,7 +79,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
          <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
           values={{
-            ul: (chunk) => <ul className="list-disc">{chunk} </ul>,
+            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
           }}
         />

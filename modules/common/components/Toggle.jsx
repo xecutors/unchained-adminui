@@ -27,7 +27,7 @@ const Toggle = ({
         className={classNames(
           ' relative inline-flex h-4 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
           {
-            'bg-slate-200': !toggleState,
+            'bg-slate-200 dark:bg-slate-700': !toggleState,
             'bg-indigo-500': toggleState,
           },
         )}
