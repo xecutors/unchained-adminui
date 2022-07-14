@@ -24,7 +24,6 @@ const useSearchAssortments = ({
   offset = 0,
 } = {}) => {
   const { locale } = useIntl();
-
   const { data, loading, error } = useQuery(SearchAssortmentsQuery, {
     skip: !queryString,
     variables: {

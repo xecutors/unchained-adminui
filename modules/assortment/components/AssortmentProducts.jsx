@@ -34,15 +34,10 @@ const AssortmentProducts = ({ assortmentId }) => {
           setModal('');
           await removeAssortmentProduct({ assortmentProductId });
           toast.success(
-            formatMessage(
-              {
-                id: 'product_deleted',
-                defaultMessage: 'product {id} deleted successfully',
-              },
-              {
-                id: assortmentId,
-              },
-            ),
+            formatMessage({
+              id: 'product_deleted',
+              defaultMessage: 'Product deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

@@ -1312,7 +1312,7 @@
     "defaultMessage": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified"
   },
   "product_deleted": {
-    "defaultMessage": "product {id} deleted successfully"
+    "defaultMessage": "Product deleted successfully"
   },
   "product_deleted_success": {
     "defaultMessage": "Deleted successfully"

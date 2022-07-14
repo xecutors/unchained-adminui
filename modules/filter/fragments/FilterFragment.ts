@@ -10,7 +10,7 @@ const FilterFragment = gql`
     type
     options {
       _id
-      texts {
+      texts(forceLocale: $forceLocale) {
         _id
         title
         subtitle

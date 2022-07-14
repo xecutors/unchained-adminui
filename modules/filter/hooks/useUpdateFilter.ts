@@ -14,7 +14,7 @@ const useUpdateFilter = () => {
   const updateFilter = async ({ filterId, isActive, key }) => {
     return updateFilterMutation({
       variables: { filter: { isActive, key }, filterId },
-      refetchQueries: ['Filters'],
+      refetchQueries: ['Filters', 'Filter'],
     });
   };
 

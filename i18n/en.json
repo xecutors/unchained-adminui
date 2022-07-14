@@ -434,7 +434,7 @@
   "product": "Product",
   "product_added": "Product added successfully!",
   "product_commerce_info": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified",
-  "product_deleted": "product {id} deleted successfully",
+  "product_deleted": "Product deleted successfully",
   "product_deleted_success": "Deleted successfully",
   "product_detail_header": "Product detail <b>({id})</b>",
   "product_drafted": "Drafted successfully",

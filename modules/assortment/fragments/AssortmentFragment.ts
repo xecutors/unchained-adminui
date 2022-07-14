@@ -10,6 +10,14 @@ const AssortmentFragment = gql`
     isBase
     isRoot
     tags
+
+    texts(forceLocale: $forceLocale) {
+      _id
+      slug
+      title
+      subtitle
+      description
+    }
     childrenCount
     media {
       _id
