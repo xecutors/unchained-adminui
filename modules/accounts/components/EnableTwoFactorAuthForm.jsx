@@ -105,7 +105,7 @@ const EnableTwoFactorAuthForm = () => {
               />
             </div>
             <FormErrors />
-            <div className="border-t-indigo-50 border-t space-y-6 bg-slate-50 dark:bg-slate-500 text-right sm:p-6">
+            <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
               <SubmitButton
                 label={formatMessage({
                   id: 'enable',

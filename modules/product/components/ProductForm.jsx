@@ -69,7 +69,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
         />
       </div>
 
-      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 bg-slate-50 dark:bg-slate-500 p-5 text-right">
+      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.products.create)}
           label={formatMessage({

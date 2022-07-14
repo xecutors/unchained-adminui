@@ -39,7 +39,7 @@ const EventDetail = ({ event }) => {
 
   return (
     <>
-      <div className="mb-5 w-full border-t border-slate-300" />
+      <div className="mb-5 w-full border-t border-slate-300 dark:border-slate-700" />
       <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4 shadow-md sm:p-6 lg:p-8">
         <div className="flex justify-between ">
           <div className="my-1 pb-1 text-sm  font-bold">

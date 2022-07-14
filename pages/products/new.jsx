@@ -36,41 +36,49 @@ const AddProduct = () => {
               defaultMessage: 'Product type',
             })}
           </h3>
-          <div className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
-            <FormattedMessage
-              id="simple_product_definition"
-              defaultMessage=" <h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
-              values={{
-                h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
-                p: (chunks) => <p>{chunks}</p>,
-              }}
-            />
-            <FormattedMessage
-              id="plan_product_definition"
-              defaultMessage=" <h3>Plan</h3> <p>Plan product is use when you have a product that is offered per subscription base. Since for this type of product the payment is usually recurring, you can adjust the interval of payment calculation.
+          <div className="divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
+            <div className="my-2 py-2">
+              <FormattedMessage
+                id="simple_product_definition"
+                defaultMessage=" <h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
+                values={{
+                  h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
+                  p: (chunks) => <p>{chunks}</p>,
+                }}
+              />
+            </div>
+            <div className="my-2 py-2">
+              <FormattedMessage
+                id="plan_product_definition"
+                defaultMessage=" <h3>Plan</h3> <p>Plan product is use when you have a product that is offered per subscription base. Since for this type of product the payment is usually recurring, you can adjust the interval of payment calculation.
 
               </p>"
-              values={{
-                h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
-                p: (chunks) => <p>{chunks}</p>,
-              }}
-            />
-            <FormattedMessage
-              id="bundle_product_definition"
-              defaultMessage=" <h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example.  </p>"
-              values={{
-                h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
-                p: (chunks) => <p>{chunks}</p>,
-              }}
-            />
-            <FormattedMessage
-              id="configurable_product_definition"
-              defaultMessage=" <h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>"
-              values={{
-                h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
-                p: (chunks) => <p>{chunks}</p>,
-              }}
-            />
+                values={{
+                  h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
+                  p: (chunks) => <p>{chunks}</p>,
+                }}
+              />
+            </div>
+            <div className="my-2 py-2">
+              <FormattedMessage
+                id="bundle_product_definition"
+                defaultMessage=" <h3>Bundle</h3> <p>As the name suggest this product type enables you to create a collection/bundle of products as one and set the price accordingly. This type of product is useful if you have christmas package for example.  </p>"
+                values={{
+                  h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
+                  p: (chunks) => <p>{chunks}</p>,
+                }}
+              />
+            </div>
+            <div className="my-2 py-2">
+              <FormattedMessage
+                id="configurable_product_definition"
+                defaultMessage=" <h3>Configurable</h3> <p>Configurable Product is used to organize varieties of a product. A product might have a variation in color, size or other distinct property in that case you can use a configurable product type to organize all the variation under one category and outline there difference. </p>"
+                values={{
+                  h3: (chunks) => <h3 className="font-bold ">{chunks}</h3>,
+                  p: (chunks) => <p>{chunks}</p>,
+                }}
+              />
+            </div>
           </div>
         </div>
 

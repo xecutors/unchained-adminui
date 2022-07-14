@@ -22,7 +22,7 @@ const Profile = () => {
       />
       <div className="max-w-7xl">
         <ProfileView {...currentUser} />
-        <div className="space-y-6 overflow-hidden rounded-md border-b sm:p-6">
+        <div className="space-y-6 overflow-hidden rounded-md border-b dark:border-none sm:p-6">
           <ChangePassword />
           <EmailAddresses emails={currentUser?.emails} enableVerification />
           {!currentUser?.isTwoFactorEnabled && <EnableTwoFactorAuthForm />}

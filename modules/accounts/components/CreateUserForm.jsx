@@ -58,7 +58,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
 
   return (
     <Form form={form} className="max-w-6xl">
-      <div className="space-y-4 overflow-hidden rounded-md border-b lg:grid lg:grid-cols-3">
+      <div className="space-y-4 overflow-hidden rounded-md border-b dark:border-none lg:grid lg:grid-cols-3">
         <div className="flex justify-between pt-5 sm:col-span-1">
           <div className="space-y-1">
             <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
@@ -67,7 +67,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 defaultMessage: 'Profile',
               })}
             </h3>
-            <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
+            <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
               {formatMessage({
                 id: 'profile_notice',
                 defaultMessage:
@@ -175,7 +175,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
             </div>
           </div>
 
-          <div className="border-t-indigo-50 border-t bg-slate-50 dark:bg-slate-500 sm:px-15 mt-5">
+          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-500 sm:px-15 mt-5">
             <FormErrors />
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
@@ -191,7 +191,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
                 defaultMessage: 'Address',
               })}
             </h3>
-            <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
+            <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
               {formatMessage({
                 id: 'address_notice',
                 defaultMessage:
@@ -337,7 +337,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
               </div>
             </div>
           </div>
-          <div className="border border-indigo-50 bg-slate-50 dark:bg-slate-500 sm:px-15 mt-5">
+          <div className="border-t border-indigo-50 dark:border-slate-700 bg-slate-50 dark:bg-slate-500 sm:px-15 mt-5">
             <SaveAndCancelButtons className="justify-end" onCancel={back} />
           </div>
         </div>

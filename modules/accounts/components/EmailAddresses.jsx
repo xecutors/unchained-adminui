@@ -96,7 +96,7 @@ const EmailAddresses = ({
           emailBodyContainer,
         )}
       >
-        <ul className="-my-5 divide-y divide-slate-200">
+        <ul className="-my-5 divide-y divide-slate-200 dark:divide-slate-700">
           {(emails || []).map(({ address, verified }) => (
             <li className="py-4" key={address}>
               <div className="flex flex-wrap items-center justify-between">
@@ -132,7 +132,7 @@ const EmailAddresses = ({
           ))}
         </ul>
         <Form form={form}>
-          <div className="mt-4 border-t">
+          <div className="mt-4 border-t dark:border-t-slate-700">
             <div className="items-between mt-4 flex space-x-4">
               <TextField
                 className="mt-0"

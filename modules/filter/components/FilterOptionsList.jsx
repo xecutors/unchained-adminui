@@ -44,7 +44,7 @@ function FilterListView({ filterId, options, selectedLocale }) {
 
   return (
     <div>
-      <ul className="-my-5 divide-y divide-slate-200 pb-3 ">
+      <ul className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 pb-3 ">
         {options.map((option) => (
           <FilterOptionsListItem
             filterId={filterId}

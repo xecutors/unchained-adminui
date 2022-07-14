@@ -136,7 +136,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     defaultMessage: 'Profile',
                   })}
                 </h3>
-                <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
+                <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
                   {formatMessage({
                     id: 'profile_notice',
                     defaultMessage:
@@ -211,7 +211,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                       <button
                         onClick={() => fileInputRef.current.click()}
                         type="button"
-                        className="rounded-md border border-slate-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         {formatMessage({
                           id: 'change',
@@ -352,7 +352,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-t-indigo-50 -mx-6 bg-slate-50 dark:bg-slate-500 flex flex-shrink-0 items-center justify-end space-x-4">
+              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-500 flex flex-shrink-0 items-center justify-end space-x-4">
                 {isEdit ? (
                   <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
                 ) : null}
@@ -360,7 +360,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
             </div>
           </div>
 
-          <div className="my-7 border-t pt-6 lg:grid lg:grid-cols-3">
+          <div className="my-7 border-t dark:border-t-slate-800 pt-6 lg:grid lg:grid-cols-3">
             <div className="col-span-1 space-y-1 py-3 lg:py-0 ">
               <div className="space-y-2">
                 <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
@@ -369,7 +369,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     defaultMessage: 'Address',
                   })}
                 </h3>
-                <p className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
+                <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
                   {formatMessage({
                     id: 'address_notice',
                     defaultMessage:
@@ -398,7 +398,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
               )}
             </div>
 
-            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow lg:ml-auto lg:w-full bg-white dark:border dark:bg-slate-800 ">
+            <div className="col-span-2 w-full border-slate-200 dark:border-slate-800 px-6 py-6 rounded-md shadow dark:shadow-none lg:ml-auto lg:w-full bg-white dark:bg-slate-800 ">
               <AddressFields
                 isEdit={isEdit}
                 address={address}

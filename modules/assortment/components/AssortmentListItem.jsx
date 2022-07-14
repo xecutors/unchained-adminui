@@ -87,7 +87,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
       <Table.Cell>
         <input
           type="number"
-          className="w-24 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
+          className="w-24 shadow-sm focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={assortment?.sequence}
           onBlur={updateAssortmentSequence}
         />

@@ -62,7 +62,7 @@ const Table = ({ className, ...props }) => {
         id: 'data',
         defaultMessage: 'Data',
       })}
-      className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-none"
+      className="border border-slate-300 dark:border-slate-700 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-none"
     />
   );
 };

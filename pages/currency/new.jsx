@@ -31,7 +31,7 @@ const AddCurrency = () => {
       />
       <div className="mt-6 lg:grid lg:grid-cols-3">
         <div className="lg:col-span-1 space-y-2">
-          <div className="max-w-2xl text-sm text-slate-500 dark:text-slate-200">
+          <div className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
             {formatMessage({
               id: 'currency_contract_address_description',
               defaultMessage:
