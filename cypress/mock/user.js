@@ -1,7 +1,7 @@
 export const CurrentUserResponse = {
   data: {
     me: {
-      _id: 'BKHrbTkHeGRtou5kc',
+      _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
       isTwoFactorEnabled: false,
       avatar: null,
@@ -378,7 +378,7 @@ export const SingleUserResponse = {
     user: {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
-      isTwoFactorEnabled: true,
+      isTwoFactorEnabled: false,
       avatar: null,
       allowedActions: [
         'answerQuotation',
@@ -821,7 +821,20 @@ export const SetRolesResponse = {
 
 export const SetPasswordResponse = {
   data: {
-    setPassword: {
+    setPassword: SingleUserResponse.data.user,
+  },
+};
+
+export const BuildSecretTOTPAuthURLResponse = {
+  data: {
+    buildSecretTOTPAuthURL:
+      'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
+  },
+};
+
+export const EnableTOTPResponse = {
+  data: {
+    enableTOTP: {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
       isTwoFactorEnabled: true,
@@ -959,6 +972,22 @@ export const SetPasswordResponse = {
   },
 };
 
+export const DisableTOTPResponse = {
+  data: {
+    disableTOTP: SingleUserResponse.data.user,
+  },
+};
+
+export const SystemRolesResponse = {
+  data: {
+    shopInfo: {
+      _id: 'root',
+      userRoles: ['admin'],
+      __typename: 'Shop',
+    },
+  },
+};
+
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
   GetUserList: 'users',
@@ -972,4 +1001,8 @@ export const UserOperations = {
   SetUserTags: 'setUserTags',
   SetRoles: 'SetRoles',
   SetPassword: 'SetPassword',
+  BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
+  EnableTOTP: 'EnableTOTP',
+  DisableTOTP: 'DisableTOTP',
+  SystemRoles: 'SystemRoles',
 };
