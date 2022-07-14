@@ -378,7 +378,7 @@ export const SingleUserResponse = {
     user: {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
-      isTwoFactorEnabled: false,
+      isTwoFactorEnabled: true,
       avatar: null,
       allowedActions: [
         'answerQuotation',
@@ -473,8 +473,13 @@ export const SingleUserResponse = {
       },
       emails: [
         {
-          verified: false,
+          verified: true,
           address: 'admin@unchained.local',
+          __typename: 'UserEmail',
+        },
+        {
+          verified: false,
+          address: 'red@unchained.local',
           __typename: 'UserEmail',
         },
       ],
@@ -749,18 +754,222 @@ export const SetUsernameResponse = {
   },
 };
 
+export const SendVerificationEmailResponse = {
+  data: {
+    sendVerificationEmail: {
+      success: true,
+      __typename: 'SuccessResponse',
+    },
+  },
+};
+
+export const RemoveEmailResponse = {
+  data: {
+    removeEmail: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      emails: [
+        {
+          verified: false,
+          address: 'admin@unchained.local',
+          __typename: 'UserEmail',
+        },
+      ],
+      __typename: 'User',
+    },
+  },
+};
+
+export const AddEmailResponse = {
+  data: {
+    addEmail: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      emails: [
+        {
+          verified: true,
+          address: 'admin@unchained.local',
+          __typename: 'UserEmail',
+        },
+        {
+          verified: false,
+          address: 'red@unchained.local',
+          __typename: 'UserEmail',
+        },
+      ],
+      __typename: 'User',
+    },
+  },
+};
+
+export const SetUserTagsResponse = {
+  data: {
+    setUserTags: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      tags: ['new'],
+      __typename: 'User',
+    },
+  },
+};
+
+export const SetRolesResponse = {
+  data: {
+    setRoles: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      __typename: 'User',
+    },
+  },
+};
+
+export const SetPasswordResponse = {
+  data: {
+    setPassword: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      email: 'admin@unchained.local',
+      isTwoFactorEnabled: true,
+      avatar: null,
+      allowedActions: [
+        'answerQuotation',
+        'authTwoFactor',
+        'bookmarkProduct',
+        'bulkImport',
+        'createCart',
+        'createEnrollment',
+        'impersonate',
+        'manageAssortments',
+        'manageBookmarks',
+        'manageCountries',
+        'manageCurrencies',
+        'manageDeliveryProviders',
+        'manageFilters',
+        'manageLanguages',
+        'managePaymentCredentials',
+        'managePaymentProviders',
+        'manageProductReviews',
+        'manageProducts',
+        'manageQuotations',
+        'manageTwoFactor',
+        'manageUsers',
+        'manageWarehousingProviders',
+        'manageWorker',
+        'markOrderConfirmed',
+        'markOrderDelivered',
+        'markOrderPaid',
+        'markOrderRejected',
+        'registerPaymentCredentials',
+        'requestQuotation',
+        'reviewProduct',
+        'search',
+        'sendEmail',
+        'updateCart',
+        'updateEnrollment',
+        'updateOrder',
+        'updateOrderDelivery',
+        'updateOrderDiscount',
+        'updateOrderItem',
+        'updateOrderPayment',
+        'updateProductReview',
+        'updateUser',
+        'updateUsername',
+        'viewAssortment',
+        'viewAssortments',
+        'viewCountries',
+        'viewCountry',
+        'viewCurrencies',
+        'viewCurrency',
+        'viewDeliveryInterfaces',
+        'viewDeliveryProvider',
+        'viewDeliveryProviders',
+        'viewEnrollment',
+        'viewEnrollments',
+        'viewEvent',
+        'viewEvents',
+        'viewFilter',
+        'viewFilters',
+        'viewLanguage',
+        'viewLanguages',
+        'viewLogs',
+        'viewOrder',
+        'viewOrders',
+        'viewPaymentInterfaces',
+        'viewPaymentProvider',
+        'viewPaymentProviders',
+        'viewProduct',
+        'viewProducts',
+        'viewQuotation',
+        'viewQuotations',
+        'viewShopInfo',
+        'viewTranslations',
+        'viewUser',
+        'viewUserEnrollments',
+        'viewUserOrders',
+        'viewUserPrivateInfos',
+        'viewUserPublicInfos',
+        'viewUserQuotations',
+        'viewUserRoles',
+        'viewUsers',
+        'viewWarehousingInterfaces',
+        'viewWarehousingProvider',
+        'viewWarehousingProviders',
+        'voteProductReview',
+      ],
+      paymentCredentials: [],
+      primaryEmail: {
+        address: 'admin@unchained.local',
+        verified: false,
+        __typename: 'UserEmail',
+      },
+      emails: [
+        {
+          verified: true,
+          address: 'admin@unchained.local',
+          __typename: 'UserEmail',
+        },
+        {
+          verified: false,
+          address: 'red@unchained.local',
+          __typename: 'UserEmail',
+        },
+      ],
+      profile: {
+        displayName: 'Rediet',
+        phoneMobile: '+251123456789',
+        gender: 'M',
+        address: {
+          firstName: 'Rediet',
+          lastName: 'Tekola',
+          company: 'Bioinc',
+          addressLine: 'GERJI',
+          addressLine2: 'Saris',
+          postalCode: '0000',
+          countryCode: 'ETH',
+          regionCode: 'Addis Abeba',
+          city: 'ADDIS ABABA',
+          __typename: 'Address',
+        },
+        birthday: '2022-07-13',
+        __typename: 'UserProfile',
+      },
+      username: 'admin',
+      isGuest: false,
+      isInitialPassword: true,
+      name: 'admin@unchained.local',
+      roles: ['admin'],
+      tags: null,
+      __typename: 'User',
+    },
+  },
+};
+
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
   GetUserList: 'users',
   GetSingle: 'User',
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
-<<<<<<< HEAD
-<<<<<<< HEAD
   SetUsername: 'SetUsername',
-=======
->>>>>>> 891f1c21 (Add tests for User)
-=======
-  SetUsername: 'SetUsername',
->>>>>>> d7f2c286 (Add test on user account tab)
+  SendVerificationEmail: 'SendVerificationEmail',
+  RemoveEmail: 'RemoveEmail',
+  AddEmail: 'AddEmail',
+  SetUserTags: 'setUserTags',
+  SetRoles: 'SetRoles',
+  SetPassword: 'SetPassword',
 };
