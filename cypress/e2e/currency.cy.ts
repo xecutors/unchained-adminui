@@ -129,6 +129,38 @@ describe('Currencies', () => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currency: {
             isoCode: 'de',
+            contractAddress: null,
+          },
+        });
+        expect(currentSubject.response.body).to.deep.eq(SingleCurrencyResponse);
+      },
+    );
+  });
+
+  it('Show [ADD TOKEN as CURRENCY]  successfully', () => {
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/currency"]')
+      .contains(localizations.en.currencies)
+      .click({ force: true });
+
+    cy.url().should('contain', '/currency');
+    cy.get('a[href="/currency/new"]').click();
+    cy.url().should('contain', '/currency/new');
+    cy.get('input#isoCode').type('de');
+    cy.get('input#contractAddress').type(
+      '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
+    );
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_currency)
+      .click();
+
+    cy.wait(fullAliasMutationName(ALIASES.CreateCurrency)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          currency: {
+            isoCode: 'de',
+            contractAddress: '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
           },
         });
         expect(currentSubject.response.body).to.deep.eq(SingleCurrencyResponse);
