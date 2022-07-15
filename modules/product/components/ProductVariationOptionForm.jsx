@@ -45,7 +45,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
             hidden={!hasRole(ACTION_ROLES.products.createVariationOption)}
             className="p-0"
             label={formatMessage({
-              id: 'add_options',
+              id: 'add_option',
               defaultMessage: 'Add option',
             })}
           />

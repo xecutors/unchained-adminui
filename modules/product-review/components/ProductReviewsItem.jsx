@@ -58,7 +58,8 @@ const ProductReviewsItem = ({ review }) => {
           'border-2 border-solid border-red-200': review.deleted,
         },
         {
-          'border-2 border-solid border-slate-200 dark:border-slate-800': !review.deleted,
+          'border-2 border-solid border-slate-200 dark:border-slate-800':
+            !review.deleted,
         },
       )}
     >

@@ -49,6 +49,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           <nav className="-mb-px flex flex-wrap gap-6">
             {tabItems.map((option) => (
               <a
+                id={option.id}
                 key={option.id}
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(

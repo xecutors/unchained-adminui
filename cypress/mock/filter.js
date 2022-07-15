@@ -237,6 +237,53 @@ export const TranslatedFilterTextResponse = {
   },
 };
 
+export const FilterOptionsResponse = {
+  data: {
+    filter: {
+      _id: '__root_assortment',
+      options: [
+        {
+          _id: '__root_assortment:snacks',
+          texts: {
+            _id: '4a0c61bd4863627f5b259d54',
+            title: 'Snacks',
+            subtitle: null,
+            locale: 'de',
+            __typename: 'FilterTexts',
+          },
+          value: 'snacks',
+          __typename: 'FilterOption',
+        },
+        {
+          _id: '__root_assortment:soft-drinks',
+          texts: {
+            _id: 'eb961acb6aec37a3f6cc0f2e',
+            title: 'Süssgetränke',
+            subtitle: null,
+            locale: 'de',
+            __typename: 'FilterTexts',
+          },
+          value: 'soft-drinks',
+          __typename: 'FilterOption',
+        },
+        {
+          _id: '__root_assortment:beer',
+          texts: {
+            _id: '61a9de5db0c2080ff1c09cc2',
+            title: 'Bier',
+            subtitle: null,
+            locale: 'de',
+            __typename: 'FilterTexts',
+          },
+          value: 'beer',
+          __typename: 'FilterOption',
+        },
+      ],
+      __typename: 'Filter',
+    },
+  },
+};
+
 export const FilterTypesResponse = {
   data: {
     filterTypes: {
@@ -260,15 +307,6 @@ export const FilterTypesResponse = {
       __typename: '__Type',
     },
   },
-};
-export const FilterOperations = {
-  GetFiltersList: 'Filters',
-  GetSingleFilter: 'Filter',
-  CreateFiler: 'CreateFilter',
-  GetTranslatedFilterText: 'TranslatedFilterTexts',
-  GetFilterType: 'FilterTypes',
-  UpdateFilterText: 'UpdateFilterTexts',
-  RemoveFilter: 'RemoveFilter',
 };
 
 export const CreateFilterResponse = {
@@ -302,6 +340,46 @@ export const RemoveFilterResponse = {
   },
 };
 
+export const UpdateFilterResponse = {
+  data: {
+    updateFilter: {
+      _id: '__root_assortment',
+      __typename: 'Filter',
+    },
+  },
+};
+
+export const RemoveFilterOptionResponse = {
+  data: {
+    removeFilterOption: {
+      _id: '__root_assortment',
+      __typename: 'Filter',
+    },
+  },
+};
+export const CreateFilterOptionResponse = {
+  data: {
+    createFilterOption: {
+      _id: '__root_assortment',
+      __typename: 'FilterOption',
+    },
+  },
+};
+
+export const FilterOperations = {
+  GetFiltersList: 'Filters',
+  GetSingleFilter: 'Filter',
+  CreateFiler: 'CreateFilter',
+  GetTranslatedFilterText: 'TranslatedFilterTexts',
+  GetFilterType: 'FilterTypes',
+  UpdateFilterText: 'UpdateFilterTexts',
+  RemoveFilter: 'RemoveFilter',
+  GetFilterOptions: 'FilterOptions',
+  UpdateFilter: 'UpdateFilter',
+  RemoveFilerOption: 'RemoveFilterOption',
+  CreateFilterOption: 'CreateFilterOption',
+};
+
 export default {
   FilterListResponse,
   SingleFilterResponse,
@@ -311,4 +389,8 @@ export default {
   CreateFilterResponse,
   UpdateFilterTextResponse,
   RemoveFilterResponse,
+  FilterOptionsResponse,
+  UpdateFilterResponse,
+  RemoveFilterOptionResponse,
+  CreateFilterOptionResponse,
 };

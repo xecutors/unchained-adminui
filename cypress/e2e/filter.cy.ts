@@ -1,12 +1,15 @@
 import localizations from '../../i18n';
 import {
+  CreateFilterOptionResponse,
   CreateFilterResponse,
   FilterListResponse,
   FilterOperations,
+  FilterOptionsResponse,
   FilterTypesResponse,
   RemoveFilterResponse,
   SingleFilterResponse,
   TranslatedFilterTextResponse,
+  UpdateFilterResponse,
   UpdateFilterTextResponse,
 } from '../mock/filter';
 import { LanguagesResponse } from '../mock/language';
@@ -45,6 +48,20 @@ describe('Filter', () => {
       if (hasOperationName(req, FilterOperations.RemoveFilter)) {
         aliasMutation(req, FilterOperations.RemoveFilter);
         req.reply(RemoveFilterResponse);
+      }
+
+      if (hasOperationName(req, FilterOperations.GetFilterOptions)) {
+        aliasQuery(req, FilterOperations.GetFilterOptions);
+        req.reply(FilterOptionsResponse);
+      }
+
+      if (hasOperationName(req, FilterOperations.UpdateFilter)) {
+        aliasMutation(req, FilterOperations.UpdateFilter);
+        req.reply(UpdateFilterResponse);
+      }
+      if (hasOperationName(req, FilterOperations.CreateFilterOption)) {
+        aliasMutation(req, FilterOperations.CreateFilterOption);
+        req.reply(CreateFilterOptionResponse);
       }
     });
   });
@@ -539,5 +556,209 @@ describe('Filter', () => {
         expect(currentSubject.response.body).to.deep.eq(RemoveFilterResponse);
       },
     );
+  });
+
+  it('Should navigate to [FILTER OPTIONS TAB] successfully', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+
+    cy.wait(fullAliasName(FilterOperations.GetFilterOptions)).then(
+      (currentSelection) => {
+        const { request, response } = currentSelection;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+        });
+
+        expect(response.body).to.deep.eq(FilterOptionsResponse);
+      },
+    );
+    cy.get('form li').should(
+      'have.length',
+      FilterOptionsResponse.data.filter.options.length,
+    );
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
+    );
+  });
+
+  it('Should [DEACTIVATE FILTER] successfully', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('.relative.inline-flex.items-center').click({
+      multiple: true,
+    });
+
+    cy.get('li[role="option"]').contains(localizations.en.deactivate).click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.UpdateFilter)).then(
+      (currentSelection) => {
+        const { request, response } = currentSelection;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          filter: { isActive: false },
+        });
+
+        expect(response.body).to.deep.eq(UpdateFilterResponse);
+      },
+    );
+  });
+
+  it('Should [ACTIVATE FILTER] successfully', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('.relative.inline-flex.items-center').click({
+      multiple: true,
+    });
+
+    cy.get('li[role="option"]').contains(localizations.en.activate).click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.UpdateFilter)).then(
+      (currentSelection) => {
+        const { request, response } = currentSelection;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          filter: { isActive: true },
+        });
+
+        expect(response.body).to.deep.eq(UpdateFilterResponse);
+      },
+    );
+  });
+
+  it('Should [ADD FILTER OPTION] successfully', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
+    );
+
+    cy.get('button[type="button"].fixed.top-0.right-0')
+      .should('contain.text', localizations.en.add_option)
+      .click({ multiple: true });
+
+    cy.get('input[name="value"]').type('option value');
+    cy.get('input[name="title"]').type('option title');
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_option)
+      .click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.CreateFilterOption)).then(
+      (currentSelection) => {
+        const { request, response } = currentSelection;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          option: { title: 'option title', value: 'option value' },
+        });
+
+        expect(response.body).to.deep.eq(CreateFilterOptionResponse);
+      },
+    );
+  });
+
+  it('Should [SHOW ERROR FOR REQUIRED FILTER OPTION] successfully', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
+    );
+
+    cy.get('button[type="button"].fixed.top-0.right-0')
+      .should('contain.text', localizations.en.add_option)
+      .click({ multiple: true });
+
+    cy.get('input[name="title"]').type('option title');
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_option)
+      .click();
+    cy.get('label[for="value"]').contains(
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.value,
+      ),
+    );
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_option)
+      .should('be.disabled');
   });
 });
