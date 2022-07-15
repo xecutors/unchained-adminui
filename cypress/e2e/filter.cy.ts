@@ -18,6 +18,16 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
+const UpdateFilterOptionVariables = {
+  filterOptionValue: 'option value',
+  filterId: '__root_assortment',
+  texts: {
+    locale: 'de',
+    title: 'updated option title',
+    subtitle: 'updated option subtitle',
+  },
+};
+
 describe('Filter', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
@@ -798,5 +808,125 @@ describe('Filter', () => {
       .click({ multiple: true });
     cy.get('form button').contains(localizations.en.cancel).click();
     cy.get('div[aria-modal="modal"]').should('to.be', undefined);
+  });
+
+  it('Should [UPDATE FILTER Option TEXT WITH] successfully', () => {
+    cy.viewport(1200, 800);
+    cy.visit('/');
+    const [firstLanguage] = LanguagesResponse.data.languages;
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.get(`select[id="locale-wrapper"]`).select(firstLanguage.isoCode);
+    cy.get(`div[role="button"][aria-label="${localizations.en.edit}"]`)
+      .first()
+      .click();
+    cy.get('input[name="title"]')
+      .clear()
+      .type(UpdateFilterOptionVariables.texts.title);
+    cy.get('input[name="subtitle"]')
+      .clear()
+      .type(UpdateFilterOptionVariables.texts.subtitle);
+
+    cy.get('button[type="submit"]')
+      .should('have.text', localizations.en.save)
+      .click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.UpdateFilterText)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          filterOptionValue: FilterOptionsResponse.data.filter.options[0].value,
+          texts: {
+            ...UpdateFilterOptionVariables.texts,
+            locale: firstLanguage.isoCode,
+          },
+        });
+        expect(response.body).to.deep.eq(UpdateFilterTextResponse);
+      },
+    );
+    cy.get('input[name="title"]').should('to.be', undefined);
+    cy.get('input[name="subtitle"]').should('to.be', undefined);
+  });
+
+  it('Should [SHOW REQUIRED] when filter option title is empty on [UPDATE]', () => {
+    cy.viewport(1200, 800);
+    cy.visit('/');
+    const [firstLanguage] = LanguagesResponse.data.languages;
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.get(`select[id="locale-wrapper"]`).select(firstLanguage.isoCode);
+    cy.get(`div[role="button"][aria-label="${localizations.en.edit}"]`)
+      .first()
+      .click();
+    cy.get('input[name="title"]').clear();
+
+    cy.get('input[name="subtitle"]')
+      .type('Updated filter option subtitle')
+      .clear()
+      .type(UpdateFilterOptionVariables.texts.subtitle);
+
+    cy.get('label[for="title"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.title,
+      ),
+    );
+    cy.get('button[type="submit"]')
+      .contains(localizations.en.save)
+      .should('have.attr', 'disabled');
+  });
+
+  it('[CANCEL] should [HIDE]  [FILTER OPTION FORM]', () => {
+    cy.viewport(1200, 800);
+    cy.visit('/');
+    const [firstLanguage] = LanguagesResponse.data.languages;
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.get(`select[id="locale-wrapper"]`).select(firstLanguage.isoCode);
+    cy.get(`div[role="button"][aria-label="${localizations.en.edit}"]`)
+      .first()
+      .click();
+
+    cy.get('button[type="button"]').contains(localizations.en.cancel).click();
+    cy.get('input[name="title"]').should('to.be', undefined);
+    cy.get('input[name="subtitle"]').should('to.be', undefined);
   });
 });

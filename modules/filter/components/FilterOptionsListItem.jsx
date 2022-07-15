@@ -110,6 +110,7 @@ const FilterOptionsListItem = ({
                     })}
                   </button>
                   <button
+                    disabled={!form.formik.isValid}
                     type="submit"
                     className="rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
@@ -121,7 +122,15 @@ const FilterOptionsListItem = ({
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <div onClick={() => setIsEdit(!isEdit)}>
+                  <div
+                    onClick={() => setIsEdit(!isEdit)}
+                    tabIndex="-1"
+                    role="button"
+                    aria-label={formatMessage({
+                      id: 'edit',
+                      defaultMessage: 'Edit',
+                    })}
+                  >
                     <EditIcon />
                   </div>
 
