@@ -1170,74 +1170,76 @@ export const SingleOrderResponse = {
   },
 };
 
+export const OrderStatusResponse = {
+  data: {
+    orderStatusType: {
+      options: [
+        {
+          value: 'OPEN',
+          label: 'Open Order / Cart',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'PENDING',
+          label: 'Order has been sent but confirmation awaiting',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'REJECTED',
+          label: 'Order has been rejected',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'CONFIRMED',
+          label: 'Order has been confirmed',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'FULLFILLED',
+          label:
+            'Order has been fulfilled completely (all positions in delivery)',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
 export const UserQuotationsListResponse = {
   data: {
     user: {
       _id: 'SIgmXcECVYiDTVeh0',
       quotations: [
         {
-          _id: 'e477cc2b-0153-4a0a-831f-0aa57cfc6952',
-          user: {
-            _id: 'SIgmXcECVYiDTVeh0',
-            username: 'fvedeneev0',
-            avatar: {
-              url: 'https://robohash.org/facilisodioquis.png?size=50x50&set=set1',
-            },
-          },
-          product: {
-            _id: '94e72912-b140-43df-a511-93f6268f122c',
-            texts: {
-              title: 'Pate - Liver',
-            },
-            media: {
-              file: {
-                url: 'http://dummyimage.com/189x100.png/5fa2dd/ffffff',
-              },
-            },
-          },
-          created: 1644413020000,
-          expires: 1631637304000,
-          status: 'PROPOSED',
-          isExpired: true,
-          quotationNumber: '1746117389',
-          fullfilled: 1633618580000,
-          rejected: 1644883342000,
-          updated: 1638932563000,
-          country: {
-            _id: '2c829496-98b0-401d-b819-11f46a177df3',
-            isoCode: 'RS',
-            flagEmoji: 'Serbia',
-          },
-          currency: {
-            isoCode: 'RSD',
-            isActive: true,
-            _id: '3f163d87-88cc-4da3-9495-beca4b06b195',
-          },
-          logs: [],
-          configuration: {
-            value: 'Jerde and Sons',
-            compony: 'Flipbug',
-            domain: 'livejournal.com',
-            TLD: 'name',
-          },
-          documents: [],
-        },
-        {
           _id: '9f9535d8-af23-4773-9a0c-2da2c902a6ad',
           user: {
             _id: 'SIgmXcECVYiDTVeh0',
-            username: 'bskeels1',
+            username: 'admin',
+            name: null,
             avatar: {
+              _id: 'a-1',
               url: 'https://robohash.org/numquamarchitectoofficiis.png?size=50x50&set=set1',
+            },
+            primaryEmail: {
+              verified: false,
+              address: 'rdt7992@gmail.com',
             },
           },
           product: {
             _id: '91fe4bbb-4a1b-4bfc-a05a-bf637447a7e7',
             texts: {
+              _id: 'texts-123',
               title: 'Table Cloth 62x120 Colour',
+              slug: 'slug',
+              subtitle: 'subtitle',
+              description: 'description',
             },
             media: {
+              _id: 'media-1',
               file: {
+                _id: 'file-1',
+                type: 'png',
                 url: 'http://dummyimage.com/231x100.png/ff4444/ffffff',
               },
             },
@@ -1250,24 +1252,6 @@ export const UserQuotationsListResponse = {
           fullfilled: 1642902841000,
           rejected: 1643937746000,
           updated: 1629458129000,
-          country: {
-            _id: '6b5c3b48-bf7f-4a09-97be-abe68aad8298',
-            isoCode: 'CN',
-            flagEmoji: 'China',
-          },
-          currency: {
-            isoCode: 'CNY',
-            isActive: true,
-            _id: 'bb692574-eedb-4e0a-9353-c8ea8ddcdf86',
-          },
-          logs: [],
-          configuration: {
-            value: 'Keeling and Sons',
-            compony: 'Midel',
-            domain: 'wufoo.com',
-            TLD: 'com',
-          },
-          documents: [],
         },
       ],
       __typename: 'User',
@@ -1440,6 +1424,298 @@ export const UserEnrollmentsListResponse = {
   },
 };
 
+export const OrderPaymentStatusResponse = {
+  data: {
+    paymentStatusTypes: {
+      options: [
+        {
+          value: 'OPEN',
+          label: 'Unpaid Order',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'PAID',
+          label: 'Order has been paid',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'REFUNDED',
+          label: 'Order has been refunded',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const PaymentProvidersTypeResponse = {
+  data: {
+    paymentProviderType: {
+      options: [
+        {
+          value: 'CARD',
+          label: 'Card',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'INVOICE',
+          label: 'Invoice',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'GENERIC',
+          label: 'Generic',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const OrderDeliveryStatusResponse = {
+  data: {
+    deliveryStatusType: {
+      options: [
+        {
+          value: 'OPEN',
+          label: 'Order is not delivered',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'DELIVERED',
+          label: 'Delivery complete',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'RETURNED',
+          label: 'Delivery returned',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const DeliveryProvidersTypeResponse = {
+  data: {
+    deliveryProviderType: {
+      options: [
+        {
+          value: 'PICKUP',
+          label: 'Pick-Up',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'SHIPPING',
+          label: 'Shipping',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const GetSingleOrderResponse = {
+  data: {
+    order: {
+      _id: 'f36667390e7a80e374e9c993',
+      totalTax: {
+        amount: 29,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      itemsTotal: {
+        amount: 1190,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalDiscount: {
+        amount: 0,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalPayment: {
+        amount: 116,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalDelivery: {
+        amount: 0,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      user: {
+        _id: 'BKHrbTkHeGRtou5kc',
+        username: 'admin',
+        isGuest: false,
+        avatar: {
+          _id: '3uCHApRLUe9x56TN0alwDZ-th-4282253937.jpeg',
+          url: 'https://orderly.xn--nd-fka.live/gridfs/user-avatars/3uCHApRLUe9x56TN0alwDZ-th-4282253937.jpeg',
+          __typename: 'Media',
+        },
+        __typename: 'User',
+      },
+      discounts: [
+        {
+          _id: 'd46776c05ad8c799100c52a9',
+          trigger: 'SYSTEM',
+          code: null,
+          interface: {
+            _id: 'ch.orderly.discount.depot',
+            label: 'Depotgebühren',
+            version: '1.0',
+            __typename: 'DiscountInterface',
+          },
+          total: {
+            amount: 0,
+            currency: 'CHF',
+            isTaxable: false,
+            isNetPrice: false,
+            __typename: 'Price',
+          },
+          discounted: [],
+          __typename: 'OrderDiscount',
+        },
+      ],
+      payment: {
+        _id: 'eb08e247383a82654ae4ef6f',
+        provider: {
+          _id: 'ca246b09cf48cc2ef249a549',
+          type: 'GENERIC',
+          interface: {
+            _id: 'shop.unchained.datatrans',
+            label: 'Datatrans (https://docs.datatrans.ch)',
+            version: '2.0.0',
+            __typename: 'PaymentInterface',
+          },
+          __typename: 'PaymentProvider',
+        },
+        status: 'OPEN',
+        fee: null,
+        paid: null,
+        __typename: 'OrderPaymentGeneric',
+      },
+      delivery: {
+        _id: 'e865e278aedcafb71885abc2',
+        status: 'OPEN',
+        provider: {
+          _id: 'pickup',
+          type: 'PICKUP',
+          interface: {
+            _id: 'ch.orderly.delivery.pickup',
+            label: 'Pickup at Clerk',
+            version: '1.0',
+            __typename: 'DeliveryInterface',
+          },
+          __typename: 'DeliveryProvider',
+          created: '2022-03-17T11:28:39.047Z',
+          updated: null,
+          deleted: null,
+          configuration: [],
+        },
+        delivered: null,
+        __typename: 'OrderDeliveryPickUp',
+        fee: null,
+        discounts: [],
+      },
+      orderNumber: '20220428-16',
+      status: 'REJECTED',
+      created: '2022-04-28T12:05:52.504Z',
+      updated: '2022-05-24T18:05:30.003Z',
+      ordered: '2022-04-28T12:48:47.490Z',
+      confirmed: '2022-05-24T18:05:30.003Z',
+      fullfilled: null,
+      contact: {
+        telNumber: '+41782057916',
+        emailAddress: null,
+        __typename: 'Contact',
+      },
+      country: {
+        _id: '2c134c37930db24fc9badcb2',
+        isoCode: 'CH',
+        flagEmoji: '🇨🇭',
+        name: 'Schweiz',
+        __typename: 'Country',
+      },
+      currency: {
+        _id: 'dfe2c5c1003782e1ed4d66df',
+        isoCode: 'CHF',
+        isActive: true,
+        __typename: 'Currency',
+      },
+      billingAddress: {
+        firstName: null,
+        lastName: null,
+        company: null,
+        addressLine: null,
+        addressLine2: null,
+        postalCode: null,
+        countryCode: null,
+        regionCode: null,
+        city: null,
+        __typename: 'Address',
+      },
+      total: {
+        isTaxable: false,
+        amount: 1306,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      documents: [],
+      items: [
+        {
+          _id: '2f0a12f93cde312d027c28c6',
+          product: {
+            _id: 'cheeseburger',
+            texts: {
+              _id: 'deaa4ef7d20a8e8d0d3150d4',
+              slug: 'cheeseburger',
+              brand: 'Fat & Toasty',
+              vendor: 'Burger Meister',
+              title: 'Cheeseburger mit Pommes-Frites',
+              subtitle: null,
+              __typename: 'ProductTexts',
+            },
+            media: [
+              {
+                _id: '052ffb386e17bd1a1e637cdd',
+                file: {
+                  _id: '3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                  url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                  __typename: 'Media',
+                },
+                __typename: 'ProductMedia',
+              },
+            ],
+            __typename: 'SimpleProduct',
+          },
+          quantity: 1,
+          unitPrice: {
+            amount: 1190,
+            isTaxable: true,
+            isNetPrice: false,
+            currency: 'CHF',
+            __typename: 'Price',
+          },
+          total: {
+            amount: 1190,
+            isTaxable: false,
+            isNetPrice: false,
+            currency: 'CHF',
+            __typename: 'Price',
+          },
+          __typename: 'OrderItem',
+        },
+      ],
+      __typename: 'Order',
+    },
+  },
+};
+
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
   GetUserList: 'users',
@@ -1460,4 +1736,10 @@ export const UserOperations = {
   UserOrder: 'UserOrder',
   UserQuotations: 'UserQuotations',
   UserEnrollments: 'UserEnrollments',
+  OrderStatus: 'OrderStatus',
+  OrderPaymentStatus: 'OrderPaymentStatus',
+  PaymentProvidersType: 'PaymentProvidersType',
+  OrderDeliveryStatus: 'OrderDeliveryStatus',
+  DeliveryProvidersType: 'DeliveryProvidersType',
+  GetSingleOrder: 'Order',
 };
