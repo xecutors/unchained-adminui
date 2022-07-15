@@ -9,6 +9,7 @@ import {
   TranslatedFilterTextResponse,
   UpdateFilterTextResponse,
 } from '../mock/filter';
+import { LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
@@ -134,7 +135,9 @@ describe('Filter', () => {
   });
 
   it('Should navigate to [INITIALIZE FILTER TEXT] page successfully', () => {
+    const [fistLanguage] = LanguagesResponse.data.languages;
     cy.visit('/');
+
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
@@ -157,14 +160,46 @@ describe('Filter', () => {
         );
       },
     );
+    cy.get('select[id="locale-wrapper"]').select(fistLanguage.isoCode);
 
     cy.get('input[name="title"]').should(
       'have.value',
-      TranslatedFilterTextResponse.data.translatedFilterTexts[0].title,
+      TranslatedFilterTextResponse.data.translatedFilterTexts.find(
+        (text) => text.locale === fistLanguage.isoCode,
+      ).title,
     );
     cy.get('input[name="subtitle"]').should(
       'have.value',
-      TranslatedFilterTextResponse.data.translatedFilterTexts[0].subtitle,
+      TranslatedFilterTextResponse.data.translatedFilterTexts.find(
+        (text) => text.locale === fistLanguage.isoCode,
+      ).subtitle,
+    );
+  });
+
+  it('Should navigate to [RE-INITIALIZE FILTER TEXT WITH SELECTED LOCALE] page successfully', () => {
+    const [, secondLanguage] = LanguagesResponse.data.languages;
+    cy.visit('/');
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+
+    cy.get('select[id="locale-wrapper"]').select(secondLanguage.isoCode);
+    cy.get('input[name="title"]').should(
+      'have.value',
+      TranslatedFilterTextResponse.data.translatedFilterTexts.find(
+        (text) => text.locale === secondLanguage.isoCode,
+      ).title,
+    );
+    cy.get('input[name="subtitle"]').should(
+      'have.value',
+      TranslatedFilterTextResponse.data.translatedFilterTexts.find(
+        (text) => text.locale === secondLanguage.isoCode,
+      ).subtitle,
     );
   });
 
@@ -192,7 +227,7 @@ describe('Filter', () => {
     cy.get('h2').should('contain', localizations.en.new_filter_header);
   });
 
-  it('Should [CREATE FILTER] successfully', () => {
+  it('Should [CREATE FILTER without OPTION] successfully', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
     cy.visit('/');
     cy.get('a[href="/filters"]')
@@ -229,6 +264,79 @@ describe('Filter', () => {
     cy.url().should(
       'contain',
       `/filters/${CreateFilterResponse.data.createFilter._id}`,
+    );
+  });
+
+  it('Should [CREATE FILTER with 2 OPTIONS] successfully', () => {
+    const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
+    cy.visit('/');
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+
+    cy.get('a[href="/filters/new"]').click();
+    cy.url().should('contain', '/filters/new');
+    cy.get('h2').should('contain', localizations.en.new_filter_header);
+    cy.get('input[name="title"]').type(
+      SingleFilterResponse.data.filter.texts.title,
+    );
+    cy.get('input[name="key"]').type(SingleFilterResponse.data.filter.key);
+    cy.get('select[name="type"]').select(firstFilterType.value);
+    cy.get('input[name="options[0]"]').type('option 1');
+    cy.get('button[type="button"]')
+      .contains(localizations.en.add_option)
+      .click();
+    cy.get('input[name="options[1]"]').type('option 2');
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.create_filter)
+      .click();
+    cy.wait(fullAliasMutationName(FilterOperations.CreateFiler)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          filter: {
+            key: SingleFilterResponse.data.filter.key,
+            title: SingleFilterResponse.data.filter.texts.title,
+            type: firstFilterType.value,
+            options: ['option 1', 'option 2'],
+          },
+        });
+        expect(response.body).to.deep.eq(CreateFilterResponse);
+      },
+    );
+    cy.url().should(
+      'contain',
+      `/filters/${CreateFilterResponse.data.createFilter._id}`,
+    );
+  });
+
+  it('Should [SHOW ERROR] if option field is left empty successfully', () => {
+    const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
+    cy.visit('/');
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+
+    cy.get('a[href="/filters/new"]').click();
+    cy.url().should('contain', '/filters/new');
+    cy.get('h2').should('contain', localizations.en.new_filter_header);
+    cy.get('input[name="title"]').type(
+      SingleFilterResponse.data.filter.texts.title,
+    );
+    cy.get('input[name="key"]').type(SingleFilterResponse.data.filter.key);
+    cy.get('select[name="type"]').select(firstFilterType.value);
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.create_filter)
+      .click();
+
+    cy.get('label[for="options[0]"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.option,
+      ),
     );
   });
 
@@ -311,6 +419,76 @@ describe('Filter', () => {
     // Add options required test
 
     cy.get('input[type="submit"]').should('be.disabled');
+  });
+
+  it('Should [UPDATE FILTER TEXT] successfully', () => {
+    cy.visit('/');
+    const [fistLanguage] = LanguagesResponse.data.languages;
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+
+    cy.get('input[name="title"]').clear().type('Updated filter title');
+    cy.get('input[name="subtitle"]').clear().type('Updated filter subtitle');
+    cy.get(`select[id="locale-wrapper"]`).select(fistLanguage.isoCode);
+    cy.get('input[type="submit"]')
+      .should('have.value', localizations.en.update_filter)
+      .click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.UpdateFilterText)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          texts: {
+            locale: fistLanguage.isoCode,
+            title: 'Updated filter title',
+            subtitle: 'Updated filter subtitle',
+          },
+        });
+        expect(response.body).to.deep.eq(UpdateFilterTextResponse);
+      },
+    );
+  });
+
+  it('Should [UPDATE FILTER TEXT WITH SELECTED LOCALE] successfully', () => {
+    cy.visit('/');
+    const [, secondLanguage] = LanguagesResponse.data.languages;
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get(`select[id="locale-wrapper"]`).select(secondLanguage.isoCode);
+    cy.get('input[name="title"]').clear().type('Updated filter title');
+    cy.get('input[name="subtitle"]').clear().type('Updated filter subtitle');
+
+    cy.get('input[type="submit"]')
+      .should('have.value', localizations.en.update_filter)
+      .click();
+
+    cy.wait(fullAliasMutationName(FilterOperations.UpdateFilterText)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          texts: {
+            locale: secondLanguage.isoCode,
+            title: 'Updated filter title',
+            subtitle: 'Updated filter subtitle',
+          },
+        });
+        expect(response.body).to.deep.eq(UpdateFilterTextResponse);
+      },
+    );
   });
 
   it('Show [DELETE FILTER] successfully', () => {
