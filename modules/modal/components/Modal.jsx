@@ -36,7 +36,7 @@ const Modal = ({
 
   return visible ? (
     <ModalInner>
-      <div className="fixed inset-0 z-10 overflow-y-auto" role="button">
+      <div className="fixed inset-0 z-10 overflow-y-auto" aria-modal="true">
         <div
           className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
           tabIndex={-1}

@@ -705,7 +705,7 @@ describe('Filter', () => {
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_option)
       .click();
-
+    cy.get('div[aria-modal="modal"]').should('not.to.be', undefined);
     cy.wait(fullAliasMutationName(FilterOperations.CreateFilterOption)).then(
       (currentSelection) => {
         const { request, response } = currentSelection;
@@ -713,7 +713,7 @@ describe('Filter', () => {
           filterId: SingleFilterResponse.data.filter._id,
           option: { title: 'option title', value: 'option value' },
         });
-
+        cy.get('div[aria-modal="modal"]').should('to.be', undefined);
         expect(response.body).to.deep.eq(CreateFilterOptionResponse);
       },
     );
@@ -747,7 +747,7 @@ describe('Filter', () => {
       .should('contain.text', localizations.en.add_option)
       .click({ multiple: true });
 
-    cy.get('input[name="title"]').type('option title');
+    cy.get('div[aria-modal="modal"]').should('not.to.be', undefined);
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_option)
       .click();
@@ -757,8 +757,46 @@ describe('Filter', () => {
         localizations.en.value,
       ),
     );
+    cy.get('label[for="title"]').contains(
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.title,
+      ),
+    );
+    cy.get('div[aria-modal="modal"]').should('not.to.be', undefined);
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_option)
       .should('be.disabled');
+  });
+
+  it('[CANCEL] should close filter option modal', () => {
+    cy.visit('/');
+    cy.viewport(1280, 800);
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get('h2').should('contain.text', localizations.en.filters);
+
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
+    );
+
+    cy.get('button[type="button"].fixed.top-0.right-0')
+      .should('contain.text', localizations.en.add_option)
+      .click({ multiple: true });
+    cy.get('form button').contains(localizations.en.cancel).click();
+    cy.get('div[aria-modal="modal"]').should('to.be', undefined);
   });
 });
