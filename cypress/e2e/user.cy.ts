@@ -506,11 +506,11 @@ describe('User', () => {
       cy.get('tr').should('have.length', 2);
     });
 
-    xit('Show Navigate to [USER ORDER ON MOBILE] page successfully', () => {
+    it('Show Navigate to [USER ORDER ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
-      cy.viewport(1000, 800);
+      cy.viewport(400, 800);
       cy.get('a[href="/users"]')
         .contains(localizations.en.users)
         .click({ force: true });
@@ -523,7 +523,7 @@ describe('User', () => {
       cy.get('tr').should('have.length', 2);
     });
 
-    xit('Show Navigate to [ORDER] page successfully', () => {
+    it('Show Navigate to [ORDER] page successfully', () => {
       const { user } = SingleUserResponse.data;
       const { order } = SingleOrderResponse.data;
 
@@ -544,7 +544,7 @@ describe('User', () => {
       cy.url().should('contain', `/orders/${order._id}`);
     });
 
-    xit('should update data and route when [SEARCHING] accordingly', () => {
+    it('should update data and route when [SEARCHING] accordingly', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -615,7 +615,7 @@ describe('User', () => {
       cy.get('tr').should('have.length', 2);
     });
 
-    xit('Show Navigate to [USER QUOTATIONS ON MOBILE] page successfully', () => {
+    it('Show Navigate to [USER QUOTATIONS ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -632,7 +632,7 @@ describe('User', () => {
       cy.get('tr').should('have.length', 4);
     });
 
-    xit('should update data and route when [SEARCHING] accordingly', () => {
+    it('should update data and route when [SEARCHING] accordingly', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -679,7 +679,7 @@ describe('User', () => {
       );
     });
 
-    xit('Show Navigate to [QUOTATIONS] page successfully', () => {
+    it('Show Navigate to [QUOTATIONS] page successfully', () => {
       const { user } = SingleUserResponse.data;
       // const quotation = UserQuotationsListResponse.data.user.quotations[0];
 
@@ -702,7 +702,7 @@ describe('User', () => {
   });
 
   context('Enrollments Tab', () => {
-    xit('Show Navigate to [USER ENROLLMENTS] page successfully', () => {
+    it('Show Navigate to [USER ENROLLMENTS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -720,7 +720,7 @@ describe('User', () => {
       cy.get('tr').should('have.length', 4);
     });
 
-    xit('Show Navigate to [USER ENROLLMENTS ON MOBILE] page successfully', () => {
+    it('Show Navigate to [USER ENROLLMENTS ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -738,7 +738,7 @@ describe('User', () => {
   });
 
   context('Payment Credentials Tab', () => {
-    xit('Show Navigate to [USER PAYMENT CREDENTIALS] page successfully', () => {
+    it('Show Navigate to [USER PAYMENT CREDENTIALS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -756,7 +756,7 @@ describe('User', () => {
       cy.get('li.py-4').should('have.length', 3);
     });
 
-    xit('Show Navigate to [USER PAYMENT CREDENTIALS ON MOBILE] page successfully', () => {
+    it('Show Navigate to [USER PAYMENT CREDENTIALS ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');

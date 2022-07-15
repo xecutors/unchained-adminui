@@ -131,7 +131,7 @@ describe('User', () => {
     const { user } = SingleUserResponse.data;
 
     cy.visit('/');
-    cy.viewport(1000, 800);
+    cy.viewport(700, 800);
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
       .click({ force: true });
