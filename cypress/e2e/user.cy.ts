@@ -1,8 +1,14 @@
 import localizations from '../../i18n';
+import { DeliveryProvidersTypeResponse } from '../mock/delivery-provider';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
+import { PaymentProvidersTypeResponse } from '../mock/payment-provider';
 import {
   createUserRequestVariables,
   CreateUserResponse,
+  GetSingleOrderResponse,
+  OrderDeliveryStatusResponse,
+  OrderPaymentStatusResponse,
+  OrderStatusResponse,
   SetUsernameResponse,
   SingleOrderResponse,
   SingleUserResponse,
@@ -52,10 +58,29 @@ describe('User', () => {
         req.reply(UserOrderListResponse);
       }
       if (hasOperationName(req, UserOperations.UserQuotations)) {
+        aliasQuery(req, UserOperations.UserQuotations);
         req.reply(UserQuotationsListResponse);
       }
       if (hasOperationName(req, UserOperations.UserEnrollments)) {
         req.reply(UserEnrollmentsListResponse);
+      }
+      if (hasOperationName(req, UserOperations.OrderStatus)) {
+        req.reply(OrderStatusResponse);
+      }
+      if (hasOperationName(req, UserOperations.OrderPaymentStatus)) {
+        req.reply(OrderPaymentStatusResponse);
+      }
+      if (hasOperationName(req, UserOperations.PaymentProvidersType)) {
+        req.reply(PaymentProvidersTypeResponse);
+      }
+      if (hasOperationName(req, UserOperations.OrderDeliveryStatus)) {
+        req.reply(OrderDeliveryStatusResponse);
+      }
+      if (hasOperationName(req, UserOperations.DeliveryProvidersType)) {
+        req.reply(DeliveryProvidersTypeResponse);
+      }
+      if (hasOperationName(req, UserOperations.GetSingleOrder)) {
+        req.reply(GetSingleOrderResponse);
       }
     });
   });
@@ -516,7 +541,7 @@ describe('User', () => {
       cy.url().should('contain', `/users/${user._id}?tab=orders`);
       cy.get(`a[href="/orders/${order._id}"]`).click();
 
-      // cy.url().should('contain', `/order/${order._id}`);
+      cy.url().should('contain', `/orders/${order._id}`);
     });
 
     xit('should update data and route when [SEARCHING] accordingly', () => {
@@ -565,7 +590,7 @@ describe('User', () => {
   });
 
   context('Quotations Tab', () => {
-    xit('Show Navigate to [USER QUOTATIONS] page successfully', () => {
+    it('Show Navigate to [USER QUOTATIONS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -578,9 +603,16 @@ describe('User', () => {
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
 
-      cy.get(`a`).contains(localizations.en.quotations).click();
+      cy.get('a').contains(localizations.en.quotations).click();
       cy.url().should('contain', `/users/${user._id}?tab=quotations`);
-      cy.get('tr').should('have.length', 4);
+      cy.wait(fullAliasName(UserOperations.UserQuotations)).then(
+        (currentSelection) => {
+          expect(currentSelection.response.body).to.deep.eq(
+            UserQuotationsListResponse,
+          );
+        },
+      );
+      cy.get('tr').should('have.length', 2);
     });
 
     xit('Show Navigate to [USER QUOTATIONS ON MOBILE] page successfully', () => {
@@ -600,7 +632,54 @@ describe('User', () => {
       cy.get('tr').should('have.length', 4);
     });
 
-    it('Show Navigate to [QUOTATIONS] page successfully', () => {
+    xit('should update data and route when [SEARCHING] accordingly', () => {
+      const { user } = SingleUserResponse.data;
+
+      cy.visit('/');
+      cy.viewport(1280, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+
+      cy.get(`a`).contains(localizations.en.quotations).click();
+      cy.url().should('contain', `/users/${user._id}?tab=quotations`);
+
+      cy.get('input[type="search"]').type('s');
+      cy.wait(fullAliasName(UserOperations.UserQuotations))
+        .then((currentSubject) => {
+          expect(currentSubject.response.body).to.deep.eq(
+            UserQuotationsListResponse,
+          );
+        })
+        .its('request.body.variables.queryString')
+        .should('eq', 's');
+
+      cy.url().should(
+        'contain',
+        `/users/${user._id}?tab=quotations&queryString=s`,
+      );
+      cy.get('input[type="search"]').type('a');
+
+      cy.wait(fullAliasName(UserOperations.UserQuotations))
+        .then((currentSubject) => {
+          expect(currentSubject.response.body).to.deep.eq(
+            UserQuotationsListResponse,
+          );
+        })
+        .its('request.body.variables.queryString')
+        .should('eq', 'sa');
+
+      cy.url().should(
+        'contain',
+        `/users/${user._id}?tab=quotations&queryString=sa`,
+      );
+    });
+
+    xit('Show Navigate to [QUOTATIONS] page successfully', () => {
       const { user } = SingleUserResponse.data;
       // const quotation = UserQuotationsListResponse.data.user.quotations[0];
 
@@ -616,7 +695,6 @@ describe('User', () => {
 
       cy.get(`a`).contains(localizations.en.quotations).click();
       cy.url().should('contain', `/users/${user._id}?tab=quotations`);
-      // cy.get('tr').should('have.length', 4);
       // cy.get(`a[href="/quotations/${quotation._id}"]`).click();
 
       // cy.url().should('contain', `/quotations/${quotations._id}`);

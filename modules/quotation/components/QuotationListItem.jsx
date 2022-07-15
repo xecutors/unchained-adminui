@@ -14,16 +14,16 @@ const QUOTATION_STATUS = {
   FULLFILLED: 'green',
 };
 
-const QuotationListItem = ({ quotation }) => {
+const QuotationListItem = ({ quotation, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
     <Table.Row>
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          <Link href={`/quotations/${quotation._id}`}>
+          <Link href={`/quotations/${quotation?._id}`}>
             <a className="text-blue-600 dark:text-blue-400">
-              {quotation?.orderNumber || quotation._id?.substr(0, 10)}
+              {quotation?.orderNumber || quotation?._id?.substr(0, 10)}
             </a>
           </Link>
         </div>
@@ -45,7 +45,7 @@ const QuotationListItem = ({ quotation }) => {
             timeStyle: 'short',
           })}
 
-          {!quotation.isExpired && (
+          {!quotation?.isExpired && (
             <Badge
               className="ml-1 p-1"
               text={formatMessage({
@@ -57,37 +57,38 @@ const QuotationListItem = ({ quotation }) => {
           )}
         </div>
       </Table.Cell>
-
-      <Table.Cell>
-        <Link href={`/users/${quotation.user._id}`}>
-          <a className="flex text-blue-500 dark:text-blue-400">
-            <Image
-              loader={defaultNextImageLoader}
-              src={quotation.user?.avatar?.url}
-              width={40}
-              height={20}
-              placeholder="blur"
-              blurDataURL="/placeholder.png"
-            />
-            <span className="ml-2 self-end">{quotation.user?.username}</span>
-          </a>
-        </Link>
-      </Table.Cell>
+      {showUser && (
+        <Table.Cell>
+          <Link href={`/users/${quotation.user?._id}`}>
+            <a className="flex text-blue-500 dark:text-blue-400">
+              <Image
+                loader={defaultNextImageLoader}
+                src={quotation.user?.avatar?.url}
+                width={40}
+                height={20}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
+              />
+              <span className="ml-2 self-end">{quotation.user?.username}</span>
+            </a>
+          </Link>
+        </Table.Cell>
+      )}
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          <Link href={`/products/${quotation.product._id}`}>
+          <Link href={`/products/${quotation?.product?._id}`}>
             <a className="flex text-blue-600 dark:text-blue-400">
               <Image
                 loader={defaultNextImageLoader}
-                src={quotation.product?.media?.file.url}
+                src={quotation?.product?.media?.file.url}
                 width={40}
                 height={20}
                 placeholder="blur"
                 blurDataURL="/placeholder.png"
               />
               <span className="ml-2 self-end">
-                {quotation?.product.texts.title}
+                {quotation?.product?.texts?.title}
               </span>
             </a>
           </Link>
@@ -97,7 +98,7 @@ const QuotationListItem = ({ quotation }) => {
       <Table.Cell>
         <Badge
           text={quotation?.status}
-          color={QUOTATION_STATUS[quotation.status]}
+          color={QUOTATION_STATUS[quotation?.status]}
           square
         />
       </Table.Cell>
