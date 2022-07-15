@@ -80,7 +80,7 @@ const FilterDetail = ({ filter }) => {
           }),
         );
       },
-      description: 'some description',
+
       current: isActive,
       bgColor: 'green',
     },
@@ -107,7 +107,7 @@ const FilterDetail = ({ filter }) => {
         id: 'deactivated',
         defaultMessage: 'Deactivated',
       }),
-      description: 'some description',
+
       current: !isActive,
       bgColor: 'slate',
     },

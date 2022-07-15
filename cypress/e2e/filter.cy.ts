@@ -6,6 +6,7 @@ import {
   FilterOperations,
   FilterOptionsResponse,
   FilterTypesResponse,
+  RemoveFilterOptionResponse,
   RemoveFilterResponse,
   SingleFilterResponse,
   TranslatedFilterTextResponse,
@@ -72,6 +73,10 @@ describe('Filter', () => {
       if (hasOperationName(req, FilterOperations.CreateFilterOption)) {
         aliasMutation(req, FilterOperations.CreateFilterOption);
         req.reply(CreateFilterOptionResponse);
+      }
+      if (hasOperationName(req, FilterOperations.RemoveFilerOption)) {
+        aliasMutation(req, FilterOperations.RemoveFilerOption);
+        req.reply(RemoveFilterOptionResponse);
       }
     });
   });
@@ -928,5 +933,70 @@ describe('Filter', () => {
     cy.get('button[type="button"]').contains(localizations.en.cancel).click();
     cy.get('input[name="title"]').should('to.be', undefined);
     cy.get('input[name="subtitle"]').should('to.be', undefined);
+  });
+
+  it('Should [DELETE FILTER OPTION] successfully', () => {
+    cy.viewport(1200, 800);
+    cy.visit('/');
+
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.get(`button[type="button"][aria-label="${localizations.en.delete}"]`)
+      .first()
+      .click();
+    cy.get('div[aria-modal="true"]').should('not.to.be', undefined);
+    cy.get('button[type="button"]')
+      .contains(localizations.en.delete_filter_option)
+      .click();
+    cy.wait(fullAliasMutationName(FilterOperations.RemoveFilerOption)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          filterId: SingleFilterResponse.data.filter._id,
+          filterOptionValue: FilterOptionsResponse.data.filter.options[0].value,
+        });
+        expect(response.body).to.deep.eq(RemoveFilterOptionResponse);
+      },
+    );
+    cy.get('div[aria-modal="true"]').should('to.be', undefined);
+  });
+
+  it('Should [CANCEL DELETE FILTER OPTION] should abort deletion', () => {
+    cy.viewport(1200, 800);
+    cy.visit('/');
+
+    cy.get('a[href="/filters"]')
+      .contains(localizations.en.filters)
+      .click({ force: true });
+    cy.url().should('match', /\/filters$/);
+    cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
+      .contains(SingleFilterResponse.data.filter.texts.title)
+      .first()
+      .click();
+    cy.get('h2').should('contain.text', localizations.en.filter_detail);
+    cy.url().should(
+      'contain',
+      `/filters/${SingleFilterResponse.data.filter._id}`,
+    );
+    cy.get('a[id="options"]').click({ multiple: true });
+    cy.get(`button[type="button"][aria-label="${localizations.en.delete}"]`)
+      .first()
+      .click();
+    cy.get('div[aria-modal="true"]').should('not.to.be', undefined);
+    cy.get('button[type="button"]').contains(localizations.en.cancel).click();
+
+    cy.get('div[aria-modal="true"]').should('to.be', undefined);
   });
 });

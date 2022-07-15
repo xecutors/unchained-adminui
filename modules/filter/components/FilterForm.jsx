@@ -131,7 +131,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
                       <span className="ml-2">
                         {formatMessage({
                           id: 'add_option',
-                          defaultMessage: 'Add Option',
+                          defaultMessage: 'Add option',
                         })}{' '}
                       </span>
                     </button>
