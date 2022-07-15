@@ -465,7 +465,59 @@ export const SingleUserResponse = {
         'viewWarehousingProviders',
         'voteProductReview',
       ],
-      paymentCredentials: [],
+      paymentCredentials: [
+        {
+          _id: 'd656bdbf413489cf44d53348',
+          created: '2022-07-14T08:02:59.888Z',
+          updated: null,
+          deleted: null,
+          isActive: true,
+          type: 'INVOICE',
+          interface: {
+            _id: 'shop.unchained.invoice',
+            label: 'Invoice (manually)',
+            version: '1.0',
+            __typename: 'PaymentInterface',
+          },
+          configuration: [],
+          configurationError: null,
+          __typename: 'PaymentProvider',
+        },
+        {
+          _id: 'dd382abb5117500eb3fe75de',
+          created: '2022-07-15T09:52:22.658Z',
+          updated: null,
+          deleted: null,
+          isActive: true,
+          type: 'INVOICE',
+          interface: {
+            _id: 'shop.unchained.invoice-prepaid',
+            label: 'Invoice Prepaid (manually)',
+            version: '1.0',
+            __typename: 'PaymentInterface',
+          },
+          configuration: [],
+          configurationError: null,
+          __typename: 'PaymentProvider',
+        },
+        {
+          _id: '30801f99e824cd419f76e002',
+          created: '2022-07-15T09:52:44.021Z',
+          updated: null,
+          deleted: null,
+          isActive: false,
+          type: 'GENERIC',
+          interface: {
+            _id: 'shop.unchained.payment.stripe',
+            label: 'Stripe',
+            version: '2.0',
+            __typename: 'PaymentInterface',
+          },
+          configuration: [],
+          configurationError: 'INCOMPLETE_CONFIGURATION',
+          __typename: 'PaymentProvider',
+        },
+      ],
       primaryEmail: {
         address: 'admin@unchained.local',
         verified: false,
@@ -834,142 +886,21 @@ export const BuildSecretTOTPAuthURLResponse = {
 
 export const EnableTOTPResponse = {
   data: {
-    enableTOTP: {
-      _id: 'SIgmXcECVYiDTVeh0',
-      email: 'admin@unchained.local',
-      isTwoFactorEnabled: true,
-      avatar: null,
-      allowedActions: [
-        'answerQuotation',
-        'authTwoFactor',
-        'bookmarkProduct',
-        'bulkImport',
-        'createCart',
-        'createEnrollment',
-        'impersonate',
-        'manageAssortments',
-        'manageBookmarks',
-        'manageCountries',
-        'manageCurrencies',
-        'manageDeliveryProviders',
-        'manageFilters',
-        'manageLanguages',
-        'managePaymentCredentials',
-        'managePaymentProviders',
-        'manageProductReviews',
-        'manageProducts',
-        'manageQuotations',
-        'manageTwoFactor',
-        'manageUsers',
-        'manageWarehousingProviders',
-        'manageWorker',
-        'markOrderConfirmed',
-        'markOrderDelivered',
-        'markOrderPaid',
-        'markOrderRejected',
-        'registerPaymentCredentials',
-        'requestQuotation',
-        'reviewProduct',
-        'search',
-        'sendEmail',
-        'updateCart',
-        'updateEnrollment',
-        'updateOrder',
-        'updateOrderDelivery',
-        'updateOrderDiscount',
-        'updateOrderItem',
-        'updateOrderPayment',
-        'updateProductReview',
-        'updateUser',
-        'updateUsername',
-        'viewAssortment',
-        'viewAssortments',
-        'viewCountries',
-        'viewCountry',
-        'viewCurrencies',
-        'viewCurrency',
-        'viewDeliveryInterfaces',
-        'viewDeliveryProvider',
-        'viewDeliveryProviders',
-        'viewEnrollment',
-        'viewEnrollments',
-        'viewEvent',
-        'viewEvents',
-        'viewFilter',
-        'viewFilters',
-        'viewLanguage',
-        'viewLanguages',
-        'viewLogs',
-        'viewOrder',
-        'viewOrders',
-        'viewPaymentInterfaces',
-        'viewPaymentProvider',
-        'viewPaymentProviders',
-        'viewProduct',
-        'viewProducts',
-        'viewQuotation',
-        'viewQuotations',
-        'viewShopInfo',
-        'viewTranslations',
-        'viewUser',
-        'viewUserEnrollments',
-        'viewUserOrders',
-        'viewUserPrivateInfos',
-        'viewUserPublicInfos',
-        'viewUserQuotations',
-        'viewUserRoles',
-        'viewUsers',
-        'viewWarehousingInterfaces',
-        'viewWarehousingProvider',
-        'viewWarehousingProviders',
-        'voteProductReview',
-      ],
-      paymentCredentials: [],
-      primaryEmail: {
-        address: 'admin@unchained.local',
-        verified: false,
-        __typename: 'UserEmail',
-      },
-      emails: [
-        {
-          verified: true,
-          address: 'admin@unchained.local',
-          __typename: 'UserEmail',
-        },
-        {
-          verified: false,
-          address: 'red@unchained.local',
-          __typename: 'UserEmail',
-        },
-      ],
-      profile: {
-        displayName: 'Rediet',
-        phoneMobile: '+251123456789',
-        gender: 'M',
-        address: {
-          firstName: 'Rediet',
-          lastName: 'Tekola',
-          company: 'Bioinc',
-          addressLine: 'GERJI',
-          addressLine2: 'Saris',
-          postalCode: '0000',
-          countryCode: 'ETH',
-          regionCode: 'Addis Abeba',
-          city: 'ADDIS ABABA',
-          __typename: 'Address',
-        },
-        birthday: '2022-07-13',
-        __typename: 'UserProfile',
-      },
-      username: 'admin',
-      isGuest: false,
-      isInitialPassword: true,
-      name: 'admin@unchained.local',
-      roles: ['admin'],
-      tags: null,
-      __typename: 'User',
-    },
+    enableTOTP: SingleUserResponse.data.user,
   },
+};
+
+export const UnsuccessfulEnableTOTPResponse = {
+  data: { enableTOTP: null },
+  errors: [
+    {
+      message: "2FA code didn't match",
+      path: ['enableTOTP'],
+      extensions: {
+        code: 'INTERNAL_SERVER_ERROR',
+      },
+    },
+  ],
 };
 
 export const DisableTOTPResponse = {
@@ -978,12 +909,533 @@ export const DisableTOTPResponse = {
   },
 };
 
+export const UnsuccessfulDisableTOTPResponse = {
+  data: { disableTOTP: null },
+  errors: [
+    {
+      message: "2FA code didn't match",
+      path: ['disableTOTP'],
+      extensions: {
+        code: 'INTERNAL_SERVER_ERROR',
+      },
+    },
+  ],
+};
+
 export const SystemRolesResponse = {
   data: {
     shopInfo: {
       _id: 'root',
       userRoles: ['admin'],
       __typename: 'Shop',
+    },
+  },
+};
+
+export const UserOrderListResponse = {
+  data: {
+    user: {
+      orders: [
+        {
+          _id: 'f36667390e7a80e374e9c993',
+          status: 'REJECTED',
+          created: '2022-04-20T12:48:46.291Z',
+          updated: '2022-04-25T20:00:30.870Z',
+          ordered: '2022-04-21T14:42:31.368Z',
+          orderNumber: '20220421-11',
+          confirmed: '2022-04-25T20:00:30.870Z',
+          fullfilled: null,
+          contact: {
+            telNumber: '+41763106487',
+            emailAddress: null,
+            __typename: 'Contact',
+          },
+          total: {
+            _id: 'd6e0d4d6941b6ccaf2eb7ed560a8fb258beb81cb62daf2cad02353faf150d2f0',
+            isTaxable: false,
+            isNetPrice: false,
+            amount: 30924,
+            currency: 'CHF',
+            __typename: 'Price',
+          },
+          user: {
+            _id: 'SIgmXcECVYiDTVeh0',
+            username: 'admin',
+            isGuest: false,
+            avatar: null,
+            __typename: 'User',
+          },
+          __typename: 'Order',
+        },
+      ],
+      __typename: 'User',
+    },
+  },
+};
+
+export const SingleOrderResponse = {
+  data: {
+    order: {
+      _id: 'f36667390e7a80e374e9c993',
+      totalTax: {
+        amount: 29,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      itemsTotal: {
+        amount: 1190,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalDiscount: {
+        amount: 0,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalPayment: {
+        amount: 116,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      totalDelivery: {
+        amount: 0,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      user: {
+        _id: 'BKHrbTkHeGRtou5kc',
+        username: 'admin',
+        isGuest: false,
+        avatar: {
+          _id: '1ghdBZmJQvFoobiAOK1GQN-grim.jpg',
+          url: 'https://orderly.xn--nd-fka.live/gridfs/user-avatars/1ghdBZmJQvFoobiAOK1GQN-grim.jpg',
+          __typename: 'Media',
+        },
+        __typename: 'User',
+      },
+      discounts: [
+        {
+          _id: 'd46776c05ad8c799100c52a9',
+          trigger: 'SYSTEM',
+          code: null,
+          interface: {
+            _id: 'ch.orderly.discount.depot',
+            label: 'Depotgebühren',
+            version: '1.0',
+            __typename: 'DiscountInterface',
+          },
+          total: {
+            amount: 0,
+            currency: 'CHF',
+            isTaxable: false,
+            isNetPrice: false,
+            __typename: 'Price',
+          },
+          discounted: [],
+          __typename: 'OrderDiscount',
+        },
+      ],
+      payment: {
+        _id: 'eb08e247383a82654ae4ef6f',
+        provider: {
+          _id: 'ca246b09cf48cc2ef249a549',
+          type: 'GENERIC',
+          interface: {
+            _id: 'shop.unchained.datatrans',
+            label: 'Datatrans (https://docs.datatrans.ch)',
+            version: '2.0.0',
+            __typename: 'PaymentInterface',
+          },
+          __typename: 'PaymentProvider',
+        },
+        status: 'OPEN',
+        fee: null,
+        paid: null,
+        __typename: 'OrderPaymentGeneric',
+      },
+      delivery: {
+        _id: 'e865e278aedcafb71885abc2',
+        status: 'OPEN',
+        provider: {
+          _id: 'pickup',
+          type: 'PICKUP',
+          interface: {
+            _id: 'ch.orderly.delivery.pickup',
+            label: 'Pickup at Clerk',
+            version: '1.0',
+            __typename: 'DeliveryInterface',
+          },
+          __typename: 'DeliveryProvider',
+          created: '2022-03-17T11:28:39.047Z',
+          updated: null,
+          deleted: null,
+          configuration: [],
+        },
+        delivered: null,
+        __typename: 'OrderDeliveryPickUp',
+        fee: null,
+        discounts: [],
+      },
+      orderNumber: '20220428-16',
+      status: 'REJECTED',
+      created: '2022-04-28T12:05:52.504Z',
+      updated: '2022-05-24T18:05:30.003Z',
+      ordered: '2022-04-28T12:48:47.490Z',
+      confirmed: '2022-05-24T18:05:30.003Z',
+      fullfilled: null,
+      contact: {
+        telNumber: '+41782057916',
+        emailAddress: null,
+        __typename: 'Contact',
+      },
+      country: {
+        _id: '2c134c37930db24fc9badcb2',
+        isoCode: 'CH',
+        flagEmoji: '🇨🇭',
+        name: 'Schweiz',
+        __typename: 'Country',
+      },
+      currency: {
+        _id: 'dfe2c5c1003782e1ed4d66df',
+        isoCode: 'CHF',
+        isActive: true,
+        __typename: 'Currency',
+      },
+      billingAddress: {
+        firstName: null,
+        lastName: null,
+        company: null,
+        addressLine: null,
+        addressLine2: null,
+        postalCode: null,
+        countryCode: null,
+        regionCode: null,
+        city: null,
+        __typename: 'Address',
+      },
+      total: {
+        isTaxable: false,
+        amount: 1306,
+        currency: 'CHF',
+        __typename: 'Price',
+      },
+      documents: [],
+      items: [
+        {
+          _id: '2f0a12f93cde312d027c28c6',
+          product: {
+            _id: 'cheeseburger',
+            texts: {
+              _id: 'deaa4ef7d20a8e8d0d3150d4',
+              slug: 'cheeseburger',
+              brand: 'Fat & Toasty',
+              vendor: 'Burger Meister',
+              title: 'Cheeseburger mit Pommes-Frites',
+              subtitle: null,
+              __typename: 'ProductTexts',
+            },
+            media: [
+              {
+                _id: '052ffb386e17bd1a1e637cdd',
+                file: {
+                  _id: '3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                  url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                  __typename: 'Media',
+                },
+                __typename: 'ProductMedia',
+              },
+            ],
+            __typename: 'SimpleProduct',
+          },
+          quantity: 1,
+          unitPrice: {
+            amount: 1190,
+            isTaxable: true,
+            isNetPrice: false,
+            currency: 'CHF',
+            __typename: 'Price',
+          },
+          total: {
+            amount: 1190,
+            isTaxable: false,
+            isNetPrice: false,
+            currency: 'CHF',
+            __typename: 'Price',
+          },
+          __typename: 'OrderItem',
+        },
+      ],
+      __typename: 'Order',
+    },
+  },
+};
+
+export const UserQuotationsListResponse = {
+  data: {
+    user: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      quotations: [
+        {
+          _id: 'e477cc2b-0153-4a0a-831f-0aa57cfc6952',
+          user: {
+            _id: 'SIgmXcECVYiDTVeh0',
+            username: 'fvedeneev0',
+            avatar: {
+              url: 'https://robohash.org/facilisodioquis.png?size=50x50&set=set1',
+            },
+          },
+          product: {
+            _id: '94e72912-b140-43df-a511-93f6268f122c',
+            texts: {
+              title: 'Pate - Liver',
+            },
+            media: {
+              file: {
+                url: 'http://dummyimage.com/189x100.png/5fa2dd/ffffff',
+              },
+            },
+          },
+          created: 1644413020000,
+          expires: 1631637304000,
+          status: 'PROPOSED',
+          isExpired: true,
+          quotationNumber: '1746117389',
+          fullfilled: 1633618580000,
+          rejected: 1644883342000,
+          updated: 1638932563000,
+          country: {
+            _id: '2c829496-98b0-401d-b819-11f46a177df3',
+            isoCode: 'RS',
+            flagEmoji: 'Serbia',
+          },
+          currency: {
+            isoCode: 'RSD',
+            isActive: true,
+            _id: '3f163d87-88cc-4da3-9495-beca4b06b195',
+          },
+          logs: [],
+          configuration: {
+            value: 'Jerde and Sons',
+            compony: 'Flipbug',
+            domain: 'livejournal.com',
+            TLD: 'name',
+          },
+          documents: [],
+        },
+        {
+          _id: '9f9535d8-af23-4773-9a0c-2da2c902a6ad',
+          user: {
+            _id: 'SIgmXcECVYiDTVeh0',
+            username: 'bskeels1',
+            avatar: {
+              url: 'https://robohash.org/numquamarchitectoofficiis.png?size=50x50&set=set1',
+            },
+          },
+          product: {
+            _id: '91fe4bbb-4a1b-4bfc-a05a-bf637447a7e7',
+            texts: {
+              title: 'Table Cloth 62x120 Colour',
+            },
+            media: {
+              file: {
+                url: 'http://dummyimage.com/231x100.png/ff4444/ffffff',
+              },
+            },
+          },
+          created: 1631016511000,
+          expires: 1638527014000,
+          status: 'REQUESTED',
+          isExpired: false,
+          quotationNumber: '0097816221',
+          fullfilled: 1642902841000,
+          rejected: 1643937746000,
+          updated: 1629458129000,
+          country: {
+            _id: '6b5c3b48-bf7f-4a09-97be-abe68aad8298',
+            isoCode: 'CN',
+            flagEmoji: 'China',
+          },
+          currency: {
+            isoCode: 'CNY',
+            isActive: true,
+            _id: 'bb692574-eedb-4e0a-9353-c8ea8ddcdf86',
+          },
+          logs: [],
+          configuration: {
+            value: 'Keeling and Sons',
+            compony: 'Midel',
+            domain: 'wufoo.com',
+            TLD: 'com',
+          },
+          documents: [],
+        },
+      ],
+      __typename: 'User',
+    },
+  },
+};
+
+export const UserEnrollmentsListResponse = {
+  data: {
+    user: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      enrollments: [
+        {
+          _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
+          user: {
+            username: 'bgarvey0',
+            avatar: {
+              url: 'https://robohash.org/invelitut.png?size=50x50&set=set1',
+            },
+          },
+          plan: {
+            product: {
+              texts: {
+                _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
+                title: 'Stronghold',
+              },
+              media: {
+                file: {
+                  url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAInSURBVDjLY/j//z8DJZiBZgY4tN9wcO6+0erZd2uKc+fNfoeWGxMcW27Msiq+3GWUdIZXL/okI14D7JqvB+csf3Rv4p6X//t3Pf/fvf35/8Ilj3471V3bph9zmougC6xrr8mETbu7q3jl40/FKx5+LVzy8Ltd+eUZBvGnOYjygk3llfKCZY++u3fcWutcd21B07on/61yz88kKgwsCi8qJc++9yhu2p37ppnnQ4C4oWblo/9WOReXEjTANOsCs1PD9VVZ8+9/N0k7m6Yfe5LLOPFMR+Wyh/9dqq5eUvc6xIbXALOs8zEZc+9/C+q+ddEw/rSfXuRxLfP0swuqgAYEt934pOq2nxenAUbJZ0TjJt9+Vbn80X+v5huXrbLOb7LMOLfVterqjYVNbf+3BKv+2+PE8m+nK/MjIK5AMcAg9jSjfcnl2SC/mqedQQmstpjsq+dLbP5/39r7/9+1Hf+/rij6fzpb988uZ5ZcsAL9mFNcwOhxKV3y8H9Ez603OkHHbGGaVVz3C693EXz3Daj5/yTf///LBf//b1P8/7rL4f9OF+Z7kFDPOLcutv/Wv4QJt/8HNF9/qx1wpFfZaa+Akv0eLW3fw4v2OLH+/3d23X9k8L5e4j/IO0Sld6B/H3+Zm/z/P1DTjzKG/++A+GEG83+g+BOiDDgcLtVwMkX197Nyxf+vKln/301h/L/Xl+XPDlfmKqJz3ZFw2QqgjfehsfAYpBkkDgCxi6Nciw8o3QAAAABJRU5ErkJggg==',
+                },
+              },
+            },
+            configuration: {
+              value: 'Meezzy',
+              compony: 'Raynor, Shanahan and Runte',
+              domain: 'miitbeian.gov.cn',
+              TLD: 'mil',
+            },
+          },
+          payment: {
+            provider: {
+              interface: {
+                label: 'Uraeginthus angolensis',
+                version: '4.1',
+              },
+            },
+          },
+          delivery: {
+            provider: {
+              interface: {
+                label: 'Justicia pilosella (Nees) Hilsenb.',
+                version: '0.6.8',
+              },
+            },
+          },
+          created: 1615432241000,
+          expires: 1624639687000,
+          updated: 1644506966000,
+          status: 'INITIAL',
+          isExpired: true,
+          enrollmentNumber: '8024407485',
+          periods: [],
+          contact: {
+            telNumber: '229-712-0153',
+            emailAddress: 'bgarvey0@google.com',
+          },
+          billingAddress: {
+            firstName: 'Benito',
+            lastName: 'Garvey',
+            company: 'Schneider-Huel',
+            addressLine: '7 Ridge Oak Terrace',
+            addressLine2: '39 Northview Pass',
+            postalCode: null,
+            countryCode: 'CN',
+            regionCode: 'AR',
+            city: 'Xiangcunxiang',
+          },
+          country: {
+            _id: '03b35eb3-c893-44b9-8080-cad544b73892',
+            isoCode: 'CNY',
+            flagEmoji: 'China',
+            name: 'Argentina',
+          },
+          currency: {
+            isoCode: 'ARS',
+            isActive: true,
+          },
+          logs: [],
+        },
+        {
+          _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
+          user: {
+            username: 'aglennie1',
+            avatar: {
+              url: 'https://robohash.org/corporisperspiciatiseos.png?size=50x50&set=set1',
+            },
+          },
+          plan: {
+            product: {
+              _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
+              texts: {
+                title: 'Fixflex',
+              },
+              media: {
+                file: {
+                  url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJeSURBVDjLzVNbSJNRHBd660Go597qJQrEl4qgCIoopyk0ZstN0G22EZu1dAuEbA/Otb0Iu+jciinsaUiI7uJgF4cojkIdXtYG0TbYFuk86Ly0+e3X+QY9CCZEL33we/nOOb//+V1ODYCaf0HN/0FQed3TRrFFQVgwvUrCKLvJkfw5KcuekZJYRH62t5PDJ3xy8JhL9hubN4v3HwqqBPQAj6KIGR8wPw+srADJJLC+DiYcwqbTicL4OHYcDmxbR5EZGkLmTT92b98t7ty41cwSfMJ7GzA1BbhcwNoasLwMTEyA6e1FRipFVixGQSTCD4EAn5uaENfpkOx+CVJ/PcMS1FVUymjlnRag05BKofrNzoLhcpHlcPC9oQF+txvT09PYGBjAV3EXSN213Pblel7VA6r3HNXrYd72A5OTQC4HLC3hm8GAgNeLTEcHwuEwgsEgYj0qfBy1lV1mi+tYCmVpV22ps9N9pFYDCwvA6ir8fj8SiQRCoRC1ZB3xeBw+n48urUJHZWi12rPHIjlsE9Qe8FrdJZW6SrAxPIxYLEatcUGj0UCv11dlRKNRGI3GDyf2YP9RS+3eA47/98Z8Ps9OAtV7ULh0tcViseyl02l4PB4MDg6eXI7dO/cuOKmhXqo/RU212+3YuniFx66ZzWayRpOyWq2QSCR/btgX3tObsy9eZRcXFxEIBDAyMrJnMpmIm6YRiUQgl8vtlOD8qTV10PKwBOxtWDnswbGxMczNzbEEUCgUZ04loBptMpkMfX19jeO0jQYaK53aKhQKGT6fP/NXj0mpVEIgYOt//P8vZQLgm35VBV4AAAAASUVORK5CYII=',
+                },
+              },
+            },
+            configuration: {
+              value: 'Yacero',
+              compony: 'Hayes-Walker',
+              domain: 'vimeo.com',
+              TLD: 'info',
+            },
+          },
+          payment: {
+            provider: {
+              interface: {
+                label: 'Megaderma spasma',
+                version: '9.13',
+              },
+            },
+          },
+          delivery: {
+            provider: {
+              interface: {
+                label: 'Centromadia pungens (Hook. & Arn.) Greene ssp. pungens',
+                version: '2.32',
+              },
+            },
+          },
+          created: 1625930065000,
+          expires: 1619519649000,
+          updated: 1623525074000,
+          status: 'ACTIVE',
+          isExpired: false,
+          enrollmentNumber: '8118115232',
+          periods: [],
+          contact: {
+            telNumber: '244-335-1566',
+            emailAddress: 'aglennie1@instagram.com',
+          },
+          billingAddress: {
+            firstName: 'Ardelia',
+            lastName: 'Glennie',
+            company: 'Walter-Buckridge',
+            addressLine: '4 Armistice Hill',
+            addressLine2: '1526 Susan Pass',
+            postalCode: '679 61',
+            countryCode: 'CZ',
+            regionCode: 'MG',
+            city: 'Letovice',
+          },
+          country: {
+            _id: '2c5d3392-3b96-4e8c-8081-daba4bf76725',
+            isoCode: 'CZK',
+            flagEmoji: 'Czech Republic',
+            name: 'Madagascar',
+          },
+          currency: {
+            isoCode: 'MGA',
+            isActive: false,
+          },
+          logs: [],
+        },
+      ],
+      __typename: 'User',
     },
   },
 };
@@ -1005,4 +1457,7 @@ export const UserOperations = {
   EnableTOTP: 'EnableTOTP',
   DisableTOTP: 'DisableTOTP',
   SystemRoles: 'SystemRoles',
+  UserOrder: 'UserOrder',
+  UserQuotations: 'UserQuotations',
+  UserEnrollments: 'UserEnrollments',
 };

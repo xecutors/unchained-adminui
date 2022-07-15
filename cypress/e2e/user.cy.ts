@@ -1,26 +1,20 @@
 import localizations from '../../i18n';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
-  AddEmailResponse,
-  BuildSecretTOTPAuthURLResponse,
   createUserRequestVariables,
   CreateUserResponse,
-  CurrentUserResponse,
-  DisableTOTPResponse,
-  EnableTOTPResponse,
-  RemoveEmailResponse,
-  SendVerificationEmailResponse,
-  SetPasswordResponse,
-  SetRolesResponse,
   SetUsernameResponse,
-  SetUserTagsResponse,
+  SingleOrderResponse,
   SingleUserResponse,
   SystemRolesResponse,
   UpdateUserResponse,
+  UserEnrollmentsListResponse,
   UserListResponse,
   UserOperations,
+  UserOrderListResponse,
+  UserQuotationsListResponse,
 } from '../mock/user';
-import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
+import { fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
@@ -29,15 +23,6 @@ const ALIASES = {
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',
   SetUsername: 'SetUsername',
-  SendVerificationEmail: 'SendVerificationEmail',
-  RemoveEmail: 'RemoveEmail',
-  AddEmail: 'AddEmail',
-  SetUserTags: 'setUserTags',
-  SetRoles: 'SetRoles',
-  SetPassword: 'SetPassword',
-  BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
-  EnableTOTP: 'EnableTOTP',
-  DisableTOTP: 'DisableTOTP',
 };
 
 describe('User', () => {
@@ -59,64 +44,18 @@ describe('User', () => {
       if (hasOperationName(req, UserOperations.SystemRoles)) {
         req.reply(SystemRolesResponse);
       }
-      if (hasOperationName(req, UserOperations.CreateUser)) {
-        aliasMutation(req, ALIASES.CreateUser);
-        req.reply(CreateUserResponse);
-      }
-      if (hasOperationName(req, UserOperations.UpdateUser)) {
-        aliasMutation(req, ALIASES.UpdateUser);
-        req.reply(UpdateUserResponse);
-      }
-      if (hasOperationName(req, UserOperations.SetUsername)) {
-        aliasMutation(req, ALIASES.SetUsername);
-        req.reply(SetUsernameResponse);
-      }
-      if (hasOperationName(req, UserOperations.SendVerificationEmail)) {
-        aliasMutation(req, ALIASES.SendVerificationEmail);
-        req.reply(SendVerificationEmailResponse);
-      }
-      if (hasOperationName(req, UserOperations.RemoveEmail)) {
-        aliasMutation(req, ALIASES.RemoveEmail);
-        req.reply(RemoveEmailResponse);
-      }
-      if (hasOperationName(req, UserOperations.AddEmail)) {
-        aliasMutation(req, ALIASES.AddEmail);
-        req.reply(AddEmailResponse);
-      }
-      if (hasOperationName(req, UserOperations.SetUserTags)) {
-        aliasMutation(req, ALIASES.SetUserTags);
-        req.reply(SetUserTagsResponse);
-      }
-      if (hasOperationName(req, UserOperations.SetRoles)) {
-        aliasMutation(req, ALIASES.SetRoles);
-        req.reply(SetRolesResponse);
-      }
-      if (hasOperationName(req, UserOperations.SetPassword)) {
-        aliasMutation(req, ALIASES.SetPassword);
-        req.reply(SetPasswordResponse);
-      }
-      if (hasOperationName(req, UserOperations.BuildSecretTOTPAuthURL)) {
-        aliasMutation(req, ALIASES.BuildSecretTOTPAuthURL);
-        req.reply(BuildSecretTOTPAuthURLResponse);
-      }
-      if (hasOperationName(req, UserOperations.EnableTOTP)) {
+      if (hasOperationName(req, UserOperations.UserOrder)) {
         const { body } = req;
-        if (body.variables?.code?.length === 6) {
-          aliasMutation(req, ALIASES.EnableTOTP);
-          req.reply(EnableTOTPResponse);
-        } else {
-          aliasMutation(req, ALIASES.EnableTOTP);
-          req.reply({ data: { enableTOTP: null } });
+        if (body.variables?.queryString) {
+          aliasQuery(req, UserOperations.UserOrder);
         }
+        req.reply(UserOrderListResponse);
       }
-      if (hasOperationName(req, UserOperations.DisableTOTP)) {
-        if (req.body.variables?.code?.length === 6) {
-          aliasMutation(req, ALIASES.DisableTOTP);
-          req.reply(DisableTOTPResponse);
-        } else {
-          aliasMutation(req, ALIASES.DisableTOTP);
-          req.reply({ data: { disableTOTP: null } });
-        }
+      if (hasOperationName(req, UserOperations.UserQuotations)) {
+        req.reply(UserQuotationsListResponse);
+      }
+      if (hasOperationName(req, UserOperations.UserEnrollments)) {
+        req.reply(UserEnrollmentsListResponse);
       }
     });
   });
@@ -537,11 +476,12 @@ describe('User', () => {
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
 
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
+      cy.get(`a`).contains(localizations.en.orders).click();
+      cy.url().should('contain', `/users/${user._id}?tab=orders`);
+      cy.get('tr').should('have.length', 2);
     });
 
-    xit('Show Navigate to [USER ACCOUNT ON MOBILE] page successfully', () => {
+    xit('Show Navigate to [USER ORDER ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -553,11 +493,33 @@ describe('User', () => {
       cy.url().should('contain', '/users');
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`select#selected-tab`).select(localizations.en.account);
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
+      cy.get(`select#selected-tab`).select(localizations.en.orders);
+      cy.url().should('contain', `/users/${user._id}?tab=orders`);
+      cy.get('tr').should('have.length', 2);
     });
 
-    xit("Show [INITIALIZE USER'S USERNAME ] successfully", () => {
+    xit('Show Navigate to [ORDER] page successfully', () => {
+      const { user } = SingleUserResponse.data;
+      const { order } = SingleOrderResponse.data;
+
+      cy.visit('/');
+      cy.viewport(1280, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+
+      cy.get(`a`).contains(localizations.en.orders).click();
+      cy.url().should('contain', `/users/${user._id}?tab=orders`);
+      cy.get(`a[href="/orders/${order._id}"]`).click();
+
+      // cy.url().should('contain', `/order/${order._id}`);
+    });
+
+    xit('should update data and route when [SEARCHING] accordingly', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -570,104 +532,40 @@ describe('User', () => {
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
 
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
+      cy.get(`a`).contains(localizations.en.orders).click();
+      cy.url().should('contain', `/users/${user._id}?tab=orders`);
 
-      cy.get('button.rounded-md.border.border-slate-300.bg-white')
-        .contains(localizations.en.update)
-        .click();
-      cy.get('input#username').should('have.value', user.username);
-    });
+      cy.get('input[type="search"]').type('s');
+      cy.wait(fullAliasName(UserOperations.UserOrder))
+        .then((currentSubject) => {
+          expect(currentSubject.response.body).to.deep.eq(
+            UserOrderListResponse,
+          );
+        })
+        .its('request.body.variables.queryString')
+        .should('eq', 's');
 
-    xit("Show [UPDATE USER'S USERNAME ] successfully", () => {
-      const { user } = SingleUserResponse.data;
+      cy.url().should('contain', `/users/${user._id}?tab=orders&queryString=s`);
+      cy.get('input[type="search"]').type('a');
 
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
+      cy.wait(fullAliasName(UserOperations.UserOrder))
+        .then((currentSubject) => {
+          expect(currentSubject.response.body).to.deep.eq(
+            UserOrderListResponse,
+          );
+        })
+        .its('request.body.variables.queryString')
+        .should('eq', 'sa');
 
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('button.rounded-md.border.border-slate-300.bg-white')
-        .contains(localizations.en.update)
-        .click();
-      cy.get('input#username').clear().type(user.username);
-
-      cy.get('button[type="submit"]').contains(localizations.en.save).click();
-
-      cy.wait(fullAliasMutationName(ALIASES.SetUsername)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            username: user.username,
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(SetUsernameResponse);
-        },
-      );
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit("Show [CANCEL USER'S USERNAME] successfully on new user", () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('button.rounded-md.border.border-slate-300.bg-white')
-        .contains(localizations.en.update)
-        .click();
-      cy.get('button').contains(localizations.en.cancel).first().click();
-
-      cy.url().should('contain', `/users/${user._id}`);
-    });
-
-    xit("Show [ERROR] when required fields are not provided in update user's username", () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('button.rounded-md.border.border-slate-300.bg-white')
-        .contains(localizations.en.update)
-        .click();
-      cy.get('input#username').clear().blur();
-
-      cy.get('label[for="username"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.username,
-        ),
+      cy.url().should(
+        'contain',
+        `/users/${user._id}?tab=orders&queryString=sa`,
       );
     });
+  });
 
-    xit('Show [SEND VERIFICATION EMAIL] button is visible successfully', () => {
+  context('Quotations Tab', () => {
+    xit('Show Navigate to [USER QUOTATIONS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -679,25 +577,17 @@ describe('User', () => {
       cy.url().should('contain', '/users');
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-      // eslint-disable-next-line array-callback-return
-      user?.emails?.map((email) => {
-        if (!email.verified) {
-          cy.get('a')
-            .contains(localizations.en.send_verification_mail)
-            .should('be.visible');
-        }
-        cy.get('button.rounded-full.bg-white.px-1.py-1').should('be.visible');
-      });
+      cy.get(`a`).contains(localizations.en.quotations).click();
+      cy.url().should('contain', `/users/${user._id}?tab=quotations`);
+      cy.get('tr').should('have.length', 4);
     });
 
-    xit('Show [SEND VERIFICATION EMAIL] successfully', () => {
+    xit('Show Navigate to [USER QUOTATIONS ON MOBILE] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
-      cy.viewport(1280, 800);
+      cy.viewport(1000, 800);
       cy.get('a[href="/users"]')
         .contains(localizations.en.users)
         .click({ force: true });
@@ -705,29 +595,36 @@ describe('User', () => {
       cy.url().should('contain', '/users');
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (!user?.emails?.every((email) => email.verified === true)) {
-        cy.contains(localizations.en.send_verification_mail).click();
-
-        cy.wait(fullAliasMutationName(ALIASES.SendVerificationEmail)).then(
-          (currentSubject) => {
-            expect(currentSubject.request.body.variables).to.deep.eq({
-              email: user?.emails?.find((email) => email.verified === false)
-                .address,
-            });
-            expect(currentSubject.response.body).to.deep.eq(
-              SendVerificationEmailResponse,
-            );
-          },
-        );
-      }
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
+      cy.get(`select#selected-tab`).select(localizations.en.quotations);
+      cy.url().should('contain', `/users/${user._id}?tab=quotations`);
+      cy.get('tr').should('have.length', 4);
     });
 
-    xit('Show [DELETE EMAIL] successfully', () => {
+    it('Show Navigate to [QUOTATIONS] page successfully', () => {
+      const { user } = SingleUserResponse.data;
+      // const quotation = UserQuotationsListResponse.data.user.quotations[0];
+
+      cy.visit('/');
+      cy.viewport(1280, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+
+      cy.get(`a`).contains(localizations.en.quotations).click();
+      cy.url().should('contain', `/users/${user._id}?tab=quotations`);
+      // cy.get('tr').should('have.length', 4);
+      // cy.get(`a[href="/quotations/${quotation._id}"]`).click();
+
+      // cy.url().should('contain', `/quotations/${quotations._id}`);
+    });
+  });
+
+  context('Enrollments Tab', () => {
+    xit('Show Navigate to [USER ENROLLMENTS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
       cy.visit('/');
@@ -739,510 +636,66 @@ describe('User', () => {
       cy.url().should('contain', '/users');
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-      cy.get('button.rounded-full.bg-white.px-1.py-1.text-sm.text-red-500')
-        .first()
-        .click();
+      cy.get(`a`).contains(localizations.en.enrollments).click();
+      cy.url().should('contain', `/users/${user._id}?tab=enrollments`);
+      cy.get('tr').should('have.length', 4);
+    });
 
-      cy.contains(localizations.en.delete_email).click();
+    xit('Show Navigate to [USER ENROLLMENTS ON MOBILE] page successfully', () => {
+      const { user } = SingleUserResponse.data;
 
-      cy.wait(fullAliasMutationName(ALIASES.RemoveEmail)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            email: user?.email,
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(RemoveEmailResponse);
-        },
+      cy.visit('/');
+      cy.viewport(1000, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+      cy.get(`select#selected-tab`).select(localizations.en.enrollments);
+      cy.url().should('contain', `/users/${user._id}?tab=enrollments`);
+    });
+  });
+
+  context('Payment Credentials Tab', () => {
+    xit('Show Navigate to [USER PAYMENT CREDENTIALS] page successfully', () => {
+      const { user } = SingleUserResponse.data;
+
+      cy.visit('/');
+      cy.viewport(1280, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+
+      cy.get(`a`).contains(localizations.en.payment_credentials).click();
+      cy.url().should('contain', `/users/${user._id}?tab=payment_credentials`);
+      cy.get('li.py-4').should('have.length', 3);
+    });
+
+    xit('Show Navigate to [USER PAYMENT CREDENTIALS ON MOBILE] page successfully', () => {
+      const { user } = SingleUserResponse.data;
+
+      cy.visit('/');
+      cy.viewport(1000, 800);
+      cy.get('a[href="/users"]')
+        .contains(localizations.en.users)
+        .click({ force: true });
+
+      cy.url().should('contain', '/users');
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.url().should('contain', `/users/${user._id}`);
+      cy.get(`select#selected-tab`).select(
+        localizations.en.payment_credentials,
+        { force: true },
       );
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit('Show [ADD EMAIL] successfully', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('input#email').type(user.email);
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.add_email)
-        .click();
-
-      cy.wait(fullAliasMutationName(ALIASES.AddEmail)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            email: user?.email,
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(AddEmailResponse);
-        },
-      );
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit('Show [ERROR] when required fields are not provided in add email', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('input#email').clear().blur();
-
-      cy.get('label[for="email"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.email,
-        ),
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.add_email)
-        .should('be.disabled');
-    });
-
-    xit('Show [ADD TAGS] successfully', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('button.inline-flex.items-center.border.bg-indigo-500').click();
-      cy.get('input#tags').type('new');
-      cy.contains(localizations.en.add_tag).click();
-
-      cy.get('input[type="submit"]').contains(localizations.en.save).click();
-
-      cy.wait(fullAliasMutationName(ALIASES.SetUserTags)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            tags: ['new'],
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(SetUserTagsResponse);
-        },
-      );
-
-      cy.contains(localizations.en.cancel).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit('Show [UPDATE ROLES] successfully', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.update_role)
-        .click();
-
-      cy.wait(fullAliasMutationName(ALIASES.SetRoles)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            roles: ['admin'],
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(SetRolesResponse);
-        },
-      );
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit('Show [UPDATE PASSWORD] successfully', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('input#newPassword').type('password');
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.change_password)
-        .click();
-
-      cy.wait(fullAliasMutationName(ALIASES.SetPassword)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
-            newPassword: null,
-            newPlainPassword: 'password',
-            userId: user._id,
-          });
-          expect(currentSubject.response.body).to.deep.eq(SetPasswordResponse);
-        },
-      );
-
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-    });
-
-    xit('Show [ERROR] when required fields are not provided in change password', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 800);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      cy.get('input#newPassword').clear().blur();
-
-      cy.get('label[for="newPassword"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.new_password,
-        ),
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.change_password)
-        .should('be.disabled');
-    });
-
-    xit('Show [TOTP] successfully', () => {
-      const { user } = SingleUserResponse.data;
-      const { me } = CurrentUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
-        cy.get('input#code');
-        cy.get('input[type="submit"]').should(
-          'contain',
-          localizations.en.disable_totp,
-        );
-      }
-      if (me._id === user._id && !user.isTwoFactorEnabled) {
-        cy.get('button[role="switch"]').click();
-
-        cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-          (currentSubject) => {
-            expect(currentSubject.response.body).to.deep.eq(
-              BuildSecretTOTPAuthURLResponse,
-            );
-          },
-        );
-
-        cy.get('input#code');
-        cy.get('input[type="submit"]').should(
-          'contain',
-          localizations.en.enable,
-        );
-      }
-    });
-
-    xit('Show [ENABLE TOTP] successfully', () => {
-      const { user } = SingleUserResponse.data;
-      const { me } = CurrentUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (me._id === user._id && !user.isTwoFactorEnabled) {
-        cy.get('button[role="switch"]').click();
-
-        cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-          (currentSubject) => {
-            expect(currentSubject.response.body).to.deep.eq(
-              BuildSecretTOTPAuthURLResponse,
-            );
-          },
-        );
-
-        cy.get('input#code').type('213746');
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.enable)
-          .click();
-
-        cy.wait(fullAliasMutationName(ALIASES.EnableTOTP)).then(
-          (currentSubject) => {
-            expect(currentSubject.request.body.variables).to.deep.eq({
-              code: '213746',
-              secretBase32:
-                'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
-            });
-            expect(currentSubject.response.body).to.deep.eq(EnableTOTPResponse);
-          },
-        );
-      }
-    });
-
-    it('Show [ERROR] when required fields are not provided in enable totp', () => {
-      const { user } = SingleUserResponse.data;
-      const { me } = CurrentUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (me._id === user._id && !user.isTwoFactorEnabled) {
-        cy.get('button[role="switch"]').click();
-
-        cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-          (currentSubject) => {
-            expect(currentSubject.response.body).to.deep.eq(
-              BuildSecretTOTPAuthURLResponse,
-            );
-          },
-        );
-
-        cy.get('input#code').type('1234').clear().blur();
-        cy.get('label[for="code"]').should(
-          'contain.text',
-          replaceIntlPlaceholder(
-            localizations.en.error_required,
-            localizations.en.totp_code,
-          ),
-        );
-
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.enable)
-          .should('be.disabled');
-      }
-    });
-
-    xit('Show [ERROR] when enable totp unsuccessful', () => {
-      const { user } = SingleUserResponse.data;
-      const { me } = CurrentUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (me._id === user._id && !user.isTwoFactorEnabled) {
-        cy.get('button[role="switch"]').click();
-
-        cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-          (currentSubject) => {
-            expect(currentSubject.response.body).to.deep.eq(
-              BuildSecretTOTPAuthURLResponse,
-            );
-          },
-        );
-
-        cy.get('input#code').type('213');
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.enable)
-          .click();
-
-        cy.wait(fullAliasMutationName(ALIASES.EnableTOTP)).then(
-          (currentSubject) => {
-            expect(currentSubject.request.body.variables).to.deep.eq({
-              code: '213',
-              secretBase32:
-                'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
-            });
-            expect(currentSubject.response.body).to.deep.eq({
-              data: { enableTOTP: null },
-            });
-          },
-        );
-
-        cy.get('label[for="code"]').should(
-          'contain.text',
-          replaceIntlPlaceholder(
-            localizations.en.error_required,
-            localizations.en.totp_code,
-          ),
-        );
-
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.enable)
-          .should('be.disable');
-      }
-    });
-
-    xit('Show [DISABLE TOTP] successfully', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
-        cy.get('input#code').type('213746');
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.disable_totp)
-          .click();
-
-        cy.wait(fullAliasMutationName(ALIASES.DisableTOTP)).then(
-          (currentSubject) => {
-            expect(currentSubject.request.body.variables).to.deep.eq({
-              code: '213746',
-              userId: user._id,
-            });
-            expect(currentSubject.response.body).to.deep.eq(
-              DisableTOTPResponse,
-            );
-          },
-        );
-      }
-    });
-
-    xit('Show [ERROR] when required fields are not provided in disable totp', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
-        cy.get('input#code').type('2137').clear().blur();
-
-        cy.get('label[for="code"]').should(
-          'contain.text',
-          replaceIntlPlaceholder(
-            localizations.en.error_required,
-            localizations.en.totp_code,
-          ),
-        );
-
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.disable_totp)
-          .should('be.disabled');
-      }
-    });
-
-    xit('Show [ERROR] when disable totp unsuccessful', () => {
-      const { user } = SingleUserResponse.data;
-
-      cy.visit('/');
-      cy.viewport(1280, 1000);
-      cy.get('a[href="/users"]')
-        .contains(localizations.en.users)
-        .click({ force: true });
-
-      cy.url().should('contain', '/users');
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.url().should('contain', `/users/${user._id}`);
-      cy.get(`a`).contains(localizations.en.account).click();
-      cy.url().should('contain', `/users/${user._id}?tab=account`);
-
-      if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
-        cy.get('input#code').type('213');
-        cy.get('input[type="submit"]')
-          .contains(localizations.en.disable_totp)
-          .click();
-
-        cy.wait(fullAliasMutationName(ALIASES.DisableTOTP)).then(
-          (currentSubject) => {
-            expect(currentSubject.request.body.variables).to.deep.eq({
-              code: '213',
-              userId: user._id,
-            });
-            expect(currentSubject.response.body).to.deep.eq({
-              data: { disableTOTP: null },
-            });
-          },
-        );
-      }
+      cy.url().should('contain', `/users/${user._id}?tab=payment_credentials`);
+      cy.get('li.py-4').should('have.length', 3);
     });
   });
 
