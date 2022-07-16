@@ -62,6 +62,7 @@ const Modal = ({
             <div className="absolute top-0 right-0 pt-4 pr-4 sm:block">
               <button
                 type="button"
+                id="modal_close"
                 onClick={close}
                 className="rounded-md bg-white text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               >
