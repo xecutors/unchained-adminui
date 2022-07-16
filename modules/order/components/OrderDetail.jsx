@@ -60,7 +60,7 @@ const OrderDetail = ({ order }) => {
     await setModal(
       <DangerMessage
         buttonText={formatMessage({
-          id: 'reject_rder_alert_button',
+          id: 'reject_order_alert_button',
           defaultMessage: 'Reject',
         })}
         headerText={formatMessage({

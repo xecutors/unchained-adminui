@@ -497,6 +497,30 @@ export const ConfirmOrderResponse = {
   },
 };
 
+export const RejectOrderResponse = {
+  data: {
+    rejectOrder: {
+      _id: '9fe0b596d998a414da282b47',
+    },
+  },
+};
+
+export const DeliverOrderResponse = {
+  data: {
+    deliverOrder: {
+      _id: '9fe0b596d998a414da282b47',
+    },
+  },
+};
+
+export const PayOrderResponse = {
+  data: {
+    payOrder: {
+      _id: '9fe0b596d998a414da282b47',
+    },
+  },
+};
+
 export const OrderOperations = {
   Orders: 'Orders',
   OrderStatus: 'OrderStatus',
@@ -506,6 +530,9 @@ export const OrderOperations = {
   DeliveryProvidersType: 'DeliveryProvidersType',
   GetSingleOrder: 'Order',
   ConfirmOrder: 'ConfirmOrder',
+  RejectOrder: 'RejectOrder',
+  DeliverOrder: 'DeliverOrder',
+  PayOrder: 'PayOrder',
 };
 
 export default { OrderListResponse, OrderOperations };
