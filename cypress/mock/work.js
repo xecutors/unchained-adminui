@@ -474,9 +474,60 @@ export const DeleteWorkResponse = {
   },
 };
 
+export const AllocateWorkResponse = {
+  data: {
+    addWork: {
+      _id: '08831a11c0326c7987f1acb2',
+      __typename: 'Work',
+    },
+  },
+};
+
 export const WorkOperations = {
   GetWorkQueue: 'WorkQueue',
   GetWork: 'Work',
+  AllocateWork: 'AddWork',
+  GetWorkTypes: 'WorkTypes',
+};
+
+export const WorkTypesResponse = {
+  data: {
+    registeredWorkTypes: {
+      options: [
+        {
+          value: 'UNKNOWN',
+          label: 'UNKNOWN',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'ENROLLMENT_ORDER_GENERATOR',
+          label: 'ENROLLMENT_ORDER_GENERATOR',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'BULK_IMPORT',
+          label: 'BULK_IMPORT',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'ZOMBIE_KILLER',
+          label: 'ZOMBIE_KILLER',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'MESSAGE',
+          label: 'MESSAGE',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'ORDERLY_KITCHEN_CLOSE',
+          label: 'ORDERLY_KITCHEN_CLOSE',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
 };
 
 export default {
@@ -488,4 +539,6 @@ export default {
   DeleteResponse,
   DeleteWorkResponse,
   AllocatedWorkResponse,
+  AllocateWorkResponse,
+  WorkTypesResponse,
 };

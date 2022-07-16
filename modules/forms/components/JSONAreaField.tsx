@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { useIntl } from 'react-intl';
 import JSONView from '../../common/components/JSONView';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
@@ -82,4 +83,11 @@ const JSONAreaField = ({
   );
 };
 
+export const useIntlMessageValues = () => {
+  const { formatMessage } = useIntl();
+  formatMessage({
+    id: 'invalid_json_input',
+    defaultMessage: 'Invalid JSON input',
+  });
+};
 export default JSONAreaField;

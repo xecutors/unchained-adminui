@@ -660,5 +660,7 @@
   "work_type": "Work type",
   "work_updated": "Updated",
   "worker": "Worker",
-  "worker_dynamic": "{worker}"
+  "worker_dynamic": "{worker}",
+  "invalid_json_input": "Invalid JSON input"
+
 }

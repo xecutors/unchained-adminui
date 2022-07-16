@@ -1,11 +1,16 @@
 import localizations from '../../i18n';
 import {
   AllocatedWorkResponse,
+  AllocateWorkResponse,
+  SuccessResponse,
   WorkOperations,
   WorkQueueResponse,
+  WorkTypesResponse,
 } from '../mock/work';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
+import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('WorkQueue', () => {
   beforeEach(() => {
@@ -18,18 +23,26 @@ describe('WorkQueue', () => {
         aliasQuery(req, WorkOperations.GetWork);
         req.reply(AllocatedWorkResponse);
       }
+      if (hasOperationName(req, WorkOperations.GetWorkTypes)) {
+        aliasQuery(req, WorkOperations.GetWorkTypes);
+        req.reply(WorkTypesResponse);
+      }
+      if (hasOperationName(req, WorkOperations.AllocateWork)) {
+        aliasMutation(req, WorkOperations.AllocateWork);
+        req.reply(AllocateWorkResponse);
+      }
     });
-  });
 
-  it('Should return [WORK QUEUE LIST] successfully', () => {
     cy.visit('/');
-
     cy.get('button')
       .contains(localizations.en.activities)
       .click({ force: true });
     cy.get('a[href="/works"]')
       .contains(localizations.en.work_queue)
       .click({ force: true });
+  });
+
+  it('Should return [WORK QUEUE LIST] successfully', () => {
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -49,15 +62,6 @@ describe('WorkQueue', () => {
   });
 
   it('Should  [HAVE, ALLOCATED, NEW, FAILED & SELECTED] checked initially', () => {
-    cy.visit('/');
-
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
-
     cy.url().should('contain', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`input[type="checkbox"][value="ALLOCATED"]`).should('be.checked');
@@ -68,15 +72,6 @@ describe('WorkQueue', () => {
   });
 
   it('Should [FILTER] with selected [STATUS] only [NEW, SUCCESS, FAILED & DELETED]', () => {
-    cy.visit('/');
-
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
-
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -137,14 +132,7 @@ describe('WorkQueue', () => {
   });
 
   it('Should [FILTER] with selected [TYPE] only', () => {
-    cy.visit('/');
     const { activeWorkTypes } = WorkQueueResponse.data;
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -205,13 +193,6 @@ describe('WorkQueue', () => {
   });
 
   it('Should [SEARCH] with [QUERY STRING] only', () => {
-    cy.visit('/');
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
     cy.url().should('contain', '/works');
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -229,14 +210,7 @@ describe('WorkQueue', () => {
   });
 
   it('Should [FILTER] with multiple fields [TYPE & STATUS] only', () => {
-    cy.visit('/');
     const { activeWorkTypes } = WorkQueueResponse.data;
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -300,15 +274,6 @@ describe('WorkQueue', () => {
   });
 
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
-    cy.visit('/');
-
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
-
     cy.url().should('contain', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
@@ -328,15 +293,6 @@ describe('WorkQueue', () => {
   });
 
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
-    cy.visit('/');
-
-    cy.get('button')
-      .contains(localizations.en.activities)
-      .click({ force: true });
-    cy.get('a[href="/works"]')
-      .contains(localizations.en.work_queue)
-      .click({ force: true });
-
     cy.url().should('contain', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
@@ -353,5 +309,147 @@ describe('WorkQueue', () => {
 
     cy.url().should('contain', `/works/${AllocatedWorkResponse.data.work._id}`);
     cy.get('h2').should('contain', localizations.en.work_detail);
+  });
+
+  it('Should navigate [WORK MANAGEMENT] page successfully', () => {
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+  });
+
+  it('Should [ALLOCATE WORK] successfully', () => {
+    cy.viewport(1200, 800);
+    const [firstType] = WorkTypesResponse.data.registeredWorkTypes.options;
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+
+    cy.get('a[id="add_work"]').click();
+
+    cy.get('select[name="type"]').select(firstType.value);
+    cy.get('input[name="priority"]').type('1');
+    cy.get('input[name="retries"]').type('1');
+    cy.get('input[name="originalWorkId"]').type('allocation-test');
+
+    cy.get('input[name="scheduled"]').focus();
+    cy.get('select.react-datepicker__month-select').select(4);
+    cy.get('select.react-datepicker__year-select').select('1990');
+    cy.get('div.react-datepicker__day.react-datepicker__day--013').click();
+    cy.get('textarea[name="input"]')
+      .clear()
+      .type(JSON.stringify(SuccessResponse.data.work.input, null, 2));
+    cy.get('textarea[name="input"]').blur();
+    cy.get(`input[type="submit"][aria-label="${localizations.en.add_work}"]`)
+      .contains(localizations.en.add_work)
+      .click();
+
+    cy.wait(fullAliasMutationName(WorkOperations.AllocateWork)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect({ ...request.body.variables, scheduled: null }).to.deep.eq({
+          type: firstType.value,
+          priority: 1,
+          retries: 1,
+          scheduled: null,
+          originalWorkId: 'allocation-test',
+          input: SuccessResponse.data.work.input,
+        });
+        // eslint-disable-next-line no-unused-expressions
+        expect(request.body.variables.scheduled).not.to.be.null;
+        expect(response.body).to.deep.eq(AllocateWorkResponse);
+      },
+    );
+  });
+
+  it('Should show[ERROR] when required fields are missing', () => {
+    cy.viewport(1200, 800);
+
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+
+    cy.get('a[id="add_work"]').click();
+
+    cy.get(`input[type="submit"][aria-label="${localizations.en.add_work}"]`)
+      .contains(localizations.en.add_work)
+      .click();
+    cy.get('label[for="type"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.type,
+      ),
+    );
+    cy.get('label[for="priority"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.priority,
+      ),
+    );
+    cy.get('label[for="retries"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.retries,
+      ),
+    );
+    cy.get('label[for="scheduled"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_invalid_date,
+        localizations.en.scheduled,
+      ),
+    );
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.add_work}"]`,
+    ).should('be.disabled');
+  });
+
+  it('Should show [ERROR] when input field provided invalid JSON', () => {
+    cy.viewport(1200, 800);
+    const [firstType] = WorkTypesResponse.data.registeredWorkTypes.options;
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+
+    cy.get('a[id="add_work"]').click();
+
+    cy.get('select[name="type"]').select(firstType.value);
+    cy.get('input[name="priority"]').type('1');
+    cy.get('input[name="retries"]').type('1');
+    cy.get('input[name="originalWorkId"]').type('allocation-test');
+
+    cy.get('input[name="scheduled"]').focus();
+    cy.get('select.react-datepicker__month-select').select(4);
+    cy.get('select.react-datepicker__year-select').select('1990');
+    cy.get('div.react-datepicker__day.react-datepicker__day--013').click();
+    cy.get('textarea[name="input"]').clear().type('invalid}');
+    cy.get('textarea[name="input"]');
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.add_work}"]`,
+    ).should('be.disabled');
+
+    cy.get('label[for="input"]').contains(localizations.en.invalid_json_input);
   });
 });
