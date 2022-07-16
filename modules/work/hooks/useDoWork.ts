@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 
 const DoWorkMutation = gql`
-  mutation doWork($type: WorkType!, $input: JSON) {
+  mutation DoWork($type: WorkType!, $input: JSON) {
     doWork(type: $type, input: $input) {
       result
       error

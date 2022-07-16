@@ -474,7 +474,7 @@ export const DeleteWorkResponse = {
   },
 };
 
-export const AllocateWorkResponse = {
+export const AddWorkResponse = {
   data: {
     addWork: {
       _id: '08831a11c0326c7987f1acb2',
@@ -486,8 +486,10 @@ export const AllocateWorkResponse = {
 export const WorkOperations = {
   GetWorkQueue: 'WorkQueue',
   GetWork: 'Work',
-  AllocateWork: 'AddWork',
+  AddWork: 'AddWork',
   GetWorkTypes: 'WorkTypes',
+  DoWork: 'DoWork',
+  AllocateWork: 'AllocateWork',
 };
 
 export const WorkTypesResponse = {
@@ -530,6 +532,21 @@ export const WorkTypesResponse = {
   },
 };
 
+export const DoWorkResponse = {
+  data: {
+    doWork: {
+      result: {
+        deletedProductMediaCount: 0,
+        deletedAssortmentMediaCount: 0,
+        deletedFilesCount: 0,
+      },
+      error: null,
+      success: true,
+      __typename: 'WorkOutput',
+    },
+  },
+};
+
 export default {
   WorkOperations,
   WorkQueueResponse,
@@ -539,6 +556,7 @@ export default {
   DeleteResponse,
   DeleteWorkResponse,
   AllocatedWorkResponse,
-  AllocateWorkResponse,
+  AddWorkResponse,
   WorkTypesResponse,
+  DoWorkResponse,
 };

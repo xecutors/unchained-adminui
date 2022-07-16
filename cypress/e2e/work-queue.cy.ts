@@ -1,7 +1,8 @@
 import localizations from '../../i18n';
 import {
+  AddWorkResponse,
   AllocatedWorkResponse,
-  AllocateWorkResponse,
+  DoWorkResponse,
   SuccessResponse,
   WorkOperations,
   WorkQueueResponse,
@@ -27,9 +28,13 @@ describe('WorkQueue', () => {
         aliasQuery(req, WorkOperations.GetWorkTypes);
         req.reply(WorkTypesResponse);
       }
-      if (hasOperationName(req, WorkOperations.AllocateWork)) {
-        aliasMutation(req, WorkOperations.AllocateWork);
-        req.reply(AllocateWorkResponse);
+      if (hasOperationName(req, WorkOperations.AddWork)) {
+        aliasMutation(req, WorkOperations.AddWork);
+        req.reply(AddWorkResponse);
+      }
+      if (hasOperationName(req, WorkOperations.DoWork)) {
+        aliasMutation(req, WorkOperations.DoWork);
+        req.reply(DoWorkResponse);
       }
     });
 
@@ -322,7 +327,7 @@ describe('WorkQueue', () => {
     );
   });
 
-  it('Should [ALLOCATE WORK] successfully', () => {
+  it('Should [ADD WORK] successfully', () => {
     cy.viewport(1200, 800);
     const [firstType] = WorkTypesResponse.data.registeredWorkTypes.options;
     cy.get('a[href="/works/management"]')
@@ -353,7 +358,7 @@ describe('WorkQueue', () => {
       .contains(localizations.en.add_work)
       .click();
 
-    cy.wait(fullAliasMutationName(WorkOperations.AllocateWork)).then(
+    cy.wait(fullAliasMutationName(WorkOperations.AddWork)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect({ ...request.body.variables, scheduled: null }).to.deep.eq({
@@ -366,9 +371,10 @@ describe('WorkQueue', () => {
         });
         // eslint-disable-next-line no-unused-expressions
         expect(request.body.variables.scheduled).not.to.be.null;
-        expect(response.body).to.deep.eq(AllocateWorkResponse);
+        expect(response.body).to.deep.eq(AddWorkResponse);
       },
     );
+    cy.url().should('contain', `/works/${AddWorkResponse.data.addWork._id}`);
   });
 
   it('Should show[ERROR] when required fields are missing', () => {
@@ -451,5 +457,69 @@ describe('WorkQueue', () => {
     ).should('be.disabled');
 
     cy.get('label[for="input"]').contains(localizations.en.invalid_json_input);
+  });
+
+  it('Should [DO WORK] successfully', () => {
+    cy.viewport(1200, 800);
+    const [firstType] = WorkTypesResponse.data.registeredWorkTypes.options;
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+
+    cy.get('a[id="do_work"]').click();
+    cy.url().should('contain', '/works/management?tab=do_work');
+
+    cy.get('select[name="type"]').select(firstType.value);
+    cy.get('textarea[name="input"]')
+      .clear()
+      .type(JSON.stringify(SuccessResponse.data.work.input, null, 2));
+    cy.get('textarea[name="input"]').blur();
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
+    ).click();
+    cy.wait(fullAliasMutationName(WorkOperations.DoWork)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          type: firstType.value,
+          input: SuccessResponse.data.work.input,
+        });
+        expect(response.body).to.deep.eq(DoWorkResponse);
+      },
+    );
+  });
+
+  it('Should show [ERROR] when required fields are missing in do work form', () => {
+    cy.viewport(1200, 800);
+
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('a[id="do_work"]').click();
+    cy.url().should('contain', '/works/management?tab=do_work');
+
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
+    ).click();
+    cy.get('label[for="type"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.type,
+      ),
+    );
+    cy.get('label[for="input"]').should(
+      'contain.text',
+      localizations.en.invalid_json_input,
+    );
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
+    ).should('be.disabled');
   });
 });
