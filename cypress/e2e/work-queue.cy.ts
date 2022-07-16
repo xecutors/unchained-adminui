@@ -522,4 +522,29 @@ describe('WorkQueue', () => {
       `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
     ).should('be.disabled');
   });
+
+  it('Should show [ERROR] when input field provided invalid JSON in [DO WORK]', () => {
+    cy.viewport(1200, 800);
+    const [firstType] = WorkTypesResponse.data.registeredWorkTypes.options;
+    cy.get('a[href="/works/management"]')
+      .contains(localizations.en.manage)
+      .click();
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.work_management_setting_list_header,
+    );
+
+    cy.get('a[id="do_work"]').click();
+
+    cy.get('select[name="type"]').select(firstType.value);
+
+    cy.get('textarea[name="input"]').clear().type('invalid}');
+    cy.get('textarea[name="input"]');
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
+    ).should('be.disabled');
+
+    cy.get('label[for="input"]').contains(localizations.en.invalid_json_input);
+  });
 });
