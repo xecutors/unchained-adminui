@@ -67,6 +67,7 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('button[role="switch"]').click();
+    cy.wait(3000);
 
     cy.wait(fullAliasName(UserOperations.GetUserList))
       .then((currentSubject) => {
@@ -87,9 +88,8 @@ describe('User', () => {
       .click({ force: true });
 
     cy.url().should('contain', '/users');
-
     cy.get('input[type="search"]').type('s');
-
+    cy.wait(3000);
     cy.wait(fullAliasName(UserOperations.GetUserList))
       .then((currentSubject) => {
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
@@ -132,6 +132,7 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
     cy.url().should('contain', '/users/new');
+    cy.wait(3000);
 
     cy.url().should('contain', '/users/new');
     cy.get('input#email').type(createUserRequestVariables.email);
@@ -214,9 +215,9 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
+    cy.wait(3000);
     cy.url().should('contain', '/users/new');
 
-    cy.url().should('contain', '/users/new');
     cy.get('input#email').type('redi@hotmail.com');
     cy.get('input#firstName').type('Rediet');
 
@@ -233,6 +234,9 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
+    cy.url().should('contain', '/users/new');
+    cy.wait(3000);
+
     cy.url().should('contain', '/users/new');
     cy.get('input[name="birthday"]').clear();
     cy.get('input[type="submit"]')
@@ -272,10 +276,9 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.get('button')
-      .should('contain', localizations.en.update_profile)
-      .last()
-      .click();
+    cy.wait(3000);
+
+    cy.get('button#update_cancel').first().click({ force: true });
 
     cy.get('input#displayName').should('have.value', user.profile.displayName);
     cy.get('select#gender').should('have.value', user.profile.gender);
@@ -328,10 +331,8 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.get('button')
-      .should('contain', localizations.en.update_profile)
-      .last()
-      .click();
+    cy.wait(3000);
+    cy.get('button#update_cancel').first().click();
 
     cy.get('input#displayName').clear().type(user.profile.displayName);
 
@@ -376,11 +377,9 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.get('button')
-      .should('contain', localizations.en.update_profile)
-      .last()
-      .click();
+    cy.wait(3000);
 
+    cy.get('button#update_cancel').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 

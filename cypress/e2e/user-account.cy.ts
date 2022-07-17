@@ -123,23 +123,26 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
 
-    cy.get(`a`).contains(localizations.en.account).click();
+    cy.get('a').contains(localizations.en.account).click();
     cy.url().should('contain', `/users/${user._id}?tab=account`);
   });
 
-  it('Show Navigate to [USER ACCOUNT ON MOBILE] page successfully', () => {
+  xit('Show Navigate to [USER ACCOUNT ON MOBILE] page successfully', () => {
     const { user } = SingleUserResponse.data;
 
     cy.visit('/');
-    cy.viewport(700, 800);
+    cy.viewport(500, 800);
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
       .click({ force: true });
 
+    cy.get('button#close_sidebar').click();
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.get(`select#selected-tab`).select(localizations.en.account);
+    cy.get('select#selected-tab').select(localizations.en.account);
+    cy.wait(3000);
+    // cy.pause();
     cy.url().should('contain', `/users/${user._id}?tab=account`);
   });
 
@@ -156,12 +159,11 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
 
+    cy.wait(3000);
     cy.get(`a`).contains(localizations.en.account).click();
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-    cy.get('button.rounded-md.border.border-slate-300.bg-white')
-      .contains(localizations.en.update)
-      .click();
+    cy.get('button#cancel_update').click();
     cy.get('input#username').should('have.value', user.username);
   });
 
@@ -177,13 +179,11 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-    cy.get('button.rounded-md.border.border-slate-300.bg-white')
-      .contains(localizations.en.update)
-      .click();
+    cy.get('button#cancel_update').click();
     cy.get('input#username').clear().type(user.username);
 
     cy.get('button[type="submit"]').contains(localizations.en.save).click();
@@ -213,13 +213,12 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.get(`a`).contains(localizations.en.account).click();
+    cy.get('a#account').contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-    cy.get('button.rounded-md.border.border-slate-300.bg-white')
-      .contains(localizations.en.update)
-      .click();
-    cy.get('button').contains(localizations.en.cancel).first().click();
+    cy.get('button#cancel_update').click();
+    cy.get('button#cancel_update').click();
 
     cy.url().should('contain', `/users/${user._id}`);
   });
@@ -237,11 +236,10 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-    cy.get('button.rounded-md.border.border-slate-300.bg-white')
-      .contains(localizations.en.update)
-      .click();
+    cy.get('button#cancel_update').click();
     cy.get('input#username').clear().blur();
 
     cy.get('label[for="username"]').should(
@@ -266,16 +264,17 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     // eslint-disable-next-line array-callback-return
     user?.emails?.map((email) => {
       if (!email.verified) {
-        cy.get('a')
+        cy.get('a#send_verification_mail')
           .contains(localizations.en.send_verification_mail)
           .should('be.visible');
       }
-      cy.get('button.rounded-full.bg-white.px-1.py-1').should('be.visible');
+      cy.get('button#delete_button').should('be.visible');
     });
   });
 
@@ -292,10 +291,13 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (!user?.emails?.every((email) => email.verified === true)) {
-      cy.contains(localizations.en.send_verification_mail).click();
+      cy.get('a#send_verification_mail')
+        .contains(localizations.en.send_verification_mail)
+        .click();
 
       cy.wait(fullAliasMutationName(ALIASES.SendVerificationEmail)).then(
         (currentSubject) => {
@@ -326,13 +328,14 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
-    cy.get('button.rounded-full.bg-white.px-1.py-1.text-sm.text-red-500')
-      .first()
-      .click();
+    cy.get('button#delete_button').first().click();
 
-    cy.contains(localizations.en.delete_email).click();
+    cy.get('button#danger_continue')
+      .contains(localizations.en.delete_email)
+      .click();
 
     cy.wait(fullAliasMutationName(ALIASES.RemoveEmail)).then(
       (currentSubject) => {
@@ -360,6 +363,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('input#email').type(user.email);
@@ -389,6 +393,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('input#email').clear().blur();
@@ -419,6 +424,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('button.inline-flex.items-center.border.bg-indigo-500').click();
@@ -437,7 +443,7 @@ describe('User', () => {
       },
     );
 
-    cy.contains(localizations.en.cancel).click();
+    cy.get('button#cancel_update').click();
     cy.url().should('contain', `/users/${user._id}?tab=account`);
   });
 
@@ -454,6 +460,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('input[type="submit"]')
@@ -484,6 +491,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('input#newPassword').type('password');
@@ -518,6 +526,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     cy.get('input#newPassword').clear().blur();
@@ -549,6 +558,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
@@ -588,6 +598,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (me._id === user._id && !user.isTwoFactorEnabled) {
@@ -631,6 +642,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (me._id === user._id && !user.isTwoFactorEnabled) {
@@ -673,6 +685,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (me._id === user._id && !user.isTwoFactorEnabled) {
@@ -726,6 +739,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
@@ -759,6 +773,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
@@ -791,6 +806,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
     cy.get(`a`).contains(localizations.en.account).click();
+    cy.wait(3000);
     cy.url().should('contain', `/users/${user._id}?tab=account`);
 
     if (user.isTwoFactorEnabled && user.roles.includes('admin')) {
