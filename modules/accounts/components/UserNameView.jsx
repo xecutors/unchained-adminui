@@ -68,6 +68,7 @@ const UserNameView = ({ _id: userId, username }) => {
             <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
               <button
                 onClick={() => setIsEdit(!isEdit)}
+                id="cancel_update"
                 type="button"
                 className={classNames(
                   isEdit ? '' : 'focus:ring-indigo-400',
