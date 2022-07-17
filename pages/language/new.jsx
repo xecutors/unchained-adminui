@@ -20,7 +20,7 @@ const AddLanguage = () => {
   const onSubmit = async ({ isoCode }) => {
     const { data, errors } = await createLanguage({ isoCode });
     if (errors?.length) return false;
-    return { success: true, data: data?.createCurrency };
+    return { success: true, data: data?.createLanguage };
   };
 
   return (

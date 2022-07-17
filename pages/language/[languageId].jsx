@@ -24,9 +24,7 @@ const UpdateLanguage = () => {
   const { removeLanguage } = useRemoveLanguage();
   const { language, loading } = useLanguage({ languageId });
   const { hasRole } = useAuth();
-  const onSubmitSuccess = () => {
-    push('/language');
-  };
+
   const { formatMessage, locale } = useIntl();
 
   const onSubmit = async ({ isoCode, isActive }) => {
@@ -85,12 +83,7 @@ const UpdateLanguage = () => {
       ) : (
         <div className="mx-auto mt-6 sm:max-w-xl">
           <FormWrapper>
-            <LanguageForm
-              isEdit
-              defaultValue={language}
-              onSubmit={onSubmit}
-              onSubmitSuccess={onSubmitSuccess}
-            />
+            <LanguageForm isEdit defaultValue={language} onSubmit={onSubmit} />
           </FormWrapper>
         </div>
       )}

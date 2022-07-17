@@ -31,10 +31,6 @@ const UpdateCurrency = () => {
     return true;
   };
 
-  const onSubmitSuccess = () => {
-    push('/currency');
-  };
-
   const onDelete = async () => {
     await setModal(
       <DangerMessage
@@ -80,12 +76,7 @@ const UpdateCurrency = () => {
       ) : (
         <div className="mx-auto mt-6 sm:max-w-xl">
           <FormWrapper>
-            <CurrencyForm
-              onSubmit={onSubmit}
-              onSubmitSuccess={onSubmitSuccess}
-              defaultValue={currency}
-              isEdit
-            />
+            <CurrencyForm onSubmit={onSubmit} defaultValue={currency} isEdit />
           </FormWrapper>
         </div>
       )}

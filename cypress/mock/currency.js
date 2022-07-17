@@ -34,23 +34,17 @@ export const SingleCurrencyResponse = {
 
 export const CreateCurrencyResponse = {
   data: {
-    currency: {
-      _id: '54113f9f8d80b4edb0dc3447',
-      isoCode: 'CHF',
-      isActive: true,
-      contractAddress: '0x26b3e189b7dee08eb86ccc698abc9d33980e39c6',
-      __typename: 'Currency',
+    createCurrency: {
+      _id: 'e2b0b1852edbe9697f02c38b',
+      __typename: 'Country',
     },
   },
 };
 
 export const UpdateCurrencyResponse = {
   data: {
-    currency: {
+    updateCurrency: {
       _id: '54113f9f8d80b4edb0dc3447',
-      isoCode: 'CHF',
-      isActive: true,
-      contractAddress: '0x26b3e189b7dee08eb86ccc698abc9d33980e39c6',
       __typename: 'Currency',
     },
   },

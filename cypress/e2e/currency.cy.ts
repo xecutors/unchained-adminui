@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import {
   CreateCurrencyResponse,
   CurrencyListResponse,
@@ -12,119 +13,188 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-const ALIASES = {
-  CreateCurrency: 'CreateCurrency',
-  UpdateCurrency: 'UpdateCurrency',
-  RemoveCurrency: 'RemoveCurrency',
-};
-
 describe('Currencies', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, CurrencyOperations.GetCurrencyList)) {
-        const { body } = req;
-        if (body.variables?.includeInactive || body.variables?.queryString) {
-          aliasQuery(req, CurrencyOperations.GetCurrencyList);
-        }
-
+        aliasQuery(req, CurrencyOperations.GetCurrencyList);
         req.reply(CurrencyListResponse);
       }
       if (hasOperationName(req, CurrencyOperations.GetSingleCurrency)) {
+        aliasQuery(req, CurrencyOperations.GetSingleCurrency);
         req.reply(SingleCurrencyResponse);
       }
       if (hasOperationName(req, CurrencyOperations.CreateCurrency)) {
-        aliasMutation(req, ALIASES.CreateCurrency);
+        aliasMutation(req, CurrencyOperations.CreateCurrency);
         req.reply(CreateCurrencyResponse);
       }
       if (hasOperationName(req, CurrencyOperations.UpdateCurrency)) {
-        aliasMutation(req, ALIASES.UpdateCurrency);
+        aliasMutation(req, CurrencyOperations.UpdateCurrency);
         req.reply(UpdateCurrencyResponse);
       }
       if (hasOperationName(req, CurrencyOperations.RemoveCurrency)) {
-        aliasMutation(req, ALIASES.RemoveCurrency);
+        aliasMutation(req, CurrencyOperations.RemoveCurrency);
         req.reply(RemoveCurrencyResponse);
       }
     });
-  });
-
-  it('Show Navigate to [CURRENCY] page successfully', () => {
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/currency"]')
       .contains(localizations.en.currencies)
       .click({ force: true });
 
-    cy.url().should('contain', '/currency');
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: false,
+          limit: 50,
+          offset: 0,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(CurrencyListResponse);
+      },
+    );
+
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.currencies_list_header,
+    );
+  });
+
+  it('Show [DISPLAY CURRENCY] page successfully', () => {
+    cy.location('pathname').should('eq', '/currency');
     cy.get('tr').should('have.length', 4);
   });
 
   it('Toggling status  toggle should update route', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
-
+    cy.location('pathname').should('eq', '/currency');
     cy.get('button[role="switch"]').click();
-    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
-      .its('request.body.variables.includeInactive')
-      .should('be.true');
-    cy.url().should('contain', '/currency?includeInactive=true');
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: true,
+          limit: 50,
+          offset: 0,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(CurrencyListResponse);
+      },
+    );
+    cy.location().then((loc) => {
+      expect(loc.pathname).to.eq('/currency');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeInactive: 'true',
+      });
+    });
     cy.get('button[role="switch"]').click();
-    cy.url().should('contain', '/currency?includeInactive=false');
+    cy.location().then((loc) => {
+      expect(loc.pathname).to.eq('/currency');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeInactive: 'false',
+      });
+    });
   });
 
-  it('should update data and route when [SEARCHING] accordingly', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
-
+  it('Should update data and route when [SEARCHING] accordingly', () => {
+    cy.location('pathname').should('eq', '/currency');
     cy.get('input[type="search"]').type('s');
-    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
-      .its('request.body.variables.queryString')
-      .should('eq', 's');
-    cy.url().should('contain', '/currency?queryString=s');
+
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: false,
+          limit: 50,
+          offset: 0,
+          queryString: 's',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(CurrencyListResponse);
+      },
+    );
+    cy.location().then((loc) => {
+      expect(loc.pathname).to.eq('/currency');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 's',
+      });
+    });
     cy.get('input[type="search"]').type('a');
-    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList))
-      .its('request.body.variables.queryString')
-      .should('eq', 'sa');
-    cy.url().should('contain', '/currency?queryString=sa');
+
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: false,
+          limit: 50,
+          offset: 0,
+          queryString: 'sa',
+          sort: [],
+        });
+
+        expect(response.body).to.deep.eq(CurrencyListResponse);
+      },
+    );
+    cy.location().then((loc) => {
+      expect(loc.pathname).to.eq('/currency');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'sa',
+      });
+    });
+  });
+
+  it('Should [FILTER] with multiple keys [SEARCH, STATUS]', () => {
+    cy.location('pathname').should('eq', '/currency');
+
+    cy.get('button[role="switch"]').click();
+
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList));
+
+    cy.get('input[type="search"]').type('a');
+    cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: true,
+          limit: 50,
+          offset: 0,
+          queryString: 'a',
+          sort: [],
+        });
+
+        expect(response.body).to.deep.eq(CurrencyListResponse);
+      },
+    );
+    cy.location().then((loc) => {
+      expect(loc.pathname).to.eq('/currency');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'a',
+        includeInactive: 'true',
+      });
+    });
   });
 
   it('Show Navigate to [NEW CURRENCY] form page successfully', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get('a[href="/currency/new"]').click();
-    cy.url().should('contain', '/currency/new');
+    cy.get('h2').should('contain.text', localizations.en.new_currency_header);
+    cy.location('pathname').should('eq', '/currency/new');
   });
 
   it('Show [ADD CURRENCY]  successfully', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get('a[href="/currency/new"]').click();
-    cy.url().should('contain', '/currency/new');
+    cy.get('h2').should('contain.text', localizations.en.new_currency_header);
+    cy.location('pathname').should('eq', '/currency/new');
     cy.get('input#isoCode').type('de');
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_currency)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.CreateCurrency)).then(
+    cy.wait(fullAliasMutationName(CurrencyOperations.CreateCurrency)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currency: {
@@ -132,21 +202,21 @@ describe('Currencies', () => {
             contractAddress: null,
           },
         });
-        expect(currentSubject.response.body).to.deep.eq(SingleCurrencyResponse);
+        expect(currentSubject.response.body).to.deep.eq(CreateCurrencyResponse);
       },
+    );
+
+    cy.location('pathname').should(
+      'eq',
+      `/currency/${CreateCurrencyResponse.data.createCurrency._id}`,
     );
   });
 
   it('Show [ADD TOKEN as CURRENCY]  successfully', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get('a[href="/currency/new"]').click();
-    cy.url().should('contain', '/currency/new');
+    cy.get('h2').should('contain.text', localizations.en.new_currency_header);
+    cy.location('pathname').should('eq', '/currency/new');
     cy.get('input#isoCode').type('de');
     cy.get('input#contractAddress').type(
       '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
@@ -155,7 +225,7 @@ describe('Currencies', () => {
       .contains(localizations.en.add_currency)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.CreateCurrency)).then(
+    cy.wait(fullAliasMutationName(CurrencyOperations.CreateCurrency)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currency: {
@@ -163,21 +233,19 @@ describe('Currencies', () => {
             contractAddress: '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
           },
         });
-        expect(currentSubject.response.body).to.deep.eq(SingleCurrencyResponse);
+        expect(currentSubject.response.body).to.deep.eq(CreateCurrencyResponse);
       },
+    );
+    cy.location('pathname').should(
+      'eq',
+      `/currency/${CreateCurrencyResponse.data.createCurrency._id}`,
     );
   });
 
   it('Show [ERROR] when required fields are not provided in add currency', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get('a[href="/currency/new"]').click();
-    cy.url().should('contain', '/currency/new');
+    cy.location('pathname').should('eq', '/currency/new');
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_currency)
       .click();
@@ -198,15 +266,21 @@ describe('Currencies', () => {
   it('Show [INITIALIZE CURRENCY] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
+    cy.location('pathname').should('eq', '/currency');
 
-    cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.url().should('contain', `/currency/${currency._id}`);
+
+    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.wait(fullAliasName(CurrencyOperations.GetSingleCurrency)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          currencyId: currency._id,
+        });
+        expect(response.body).to.deep.eq(SingleCurrencyResponse);
+      },
+    );
+
     cy.get('input#isoCode').should('have.value', currency.isoCode);
     cy.get('input#contractAddress').should(
       'have.value',
@@ -218,15 +292,18 @@ describe('Currencies', () => {
   it('Show [UPDATE CURRENCY] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.location('pathname').should('eq', `/currency/${currency._id}`);
+    cy.wait(fullAliasName(CurrencyOperations.GetSingleCurrency)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          currencyId: currency._id,
+        });
+        expect(response.body).to.deep.eq(SingleCurrencyResponse);
+      },
+    );
     cy.get('input#contractAddress')
       .clear()
       .type('0x26b3E189B7DEE08EB86cCc698abc9D33980e39c6');
@@ -235,7 +312,7 @@ describe('Currencies', () => {
       .contains(localizations.en.update_currency)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.UpdateCurrency)).then(
+    cy.wait(fullAliasMutationName(CurrencyOperations.UpdateCurrency)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currency: {
@@ -248,20 +325,19 @@ describe('Currencies', () => {
         expect(currentSubject.response.body).to.deep.eq(UpdateCurrencyResponse);
       },
     );
+    cy.location('pathname').should(
+      'eq',
+      `/currency/${SingleCurrencyResponse.data.currency._id}`,
+    );
   });
 
   it('Show [ERROR] when pattern of contract address fields are not correct in update currency', () => {
     const { currency } = SingleCurrencyResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
+    cy.location('pathname').should('eq', '/currency');
 
-    cy.url().should('contain', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.location('pathname').should('eq', `/currency/${currency._id}`);
     cy.get('input#contractAddress')
       .clear()
       .type('0x26b3E189B7DEE08EB86cCc698a');
@@ -282,20 +358,14 @@ describe('Currencies', () => {
   it('Show [DELETE CURRENCY] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
-    cy.url().should('contain', `/currency/${currency._id}`);
+    cy.location('pathname').should('eq', `/currency/${currency._id}`);
     cy.get('button').contains(localizations.en.delete).click();
     cy.get('button').contains(localizations.en.delete_currency).click();
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
 
-    cy.wait(fullAliasMutationName(ALIASES.RemoveCurrency)).then(
+    cy.wait(fullAliasMutationName(CurrencyOperations.RemoveCurrency)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currencyId: currency._id,
@@ -303,23 +373,18 @@ describe('Currencies', () => {
         expect(currentSubject.response.body).to.deep.eq(RemoveCurrencyResponse);
       },
     );
+    cy.location('pathname').should('eq', `/currency`);
   });
 
   it('Show [DELETE CURRENCY FROM LIST] successfully', () => {
     const { currency } = SingleCurrencyResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/currency"]')
-      .contains(localizations.en.currencies)
-      .click({ force: true });
-
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
     cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
     cy.get('button').contains(localizations.en.delete_currency).click();
-    cy.url().should('contain', '/currency');
+    cy.location('pathname').should('eq', '/currency');
 
-    cy.wait(fullAliasMutationName(ALIASES.RemoveCurrency)).then(
+    cy.wait(fullAliasMutationName(CurrencyOperations.RemoveCurrency)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           currencyId: currency._id,
@@ -327,5 +392,6 @@ describe('Currencies', () => {
         expect(currentSubject.response.body).to.deep.eq(RemoveCurrencyResponse);
       },
     );
+    cy.location('pathname').should('eq', `/currency`);
   });
 });

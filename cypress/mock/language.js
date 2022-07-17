@@ -37,12 +37,8 @@ export const SingleLanguageResponse = {
 
 export const CreateLanguageResponse = {
   data: {
-    language: {
+    createLanguage: {
       _id: '401d3dcaffada1d7942a567c',
-      isoCode: 'de',
-      isActive: true,
-      isBase: true,
-      name: 'de (Base)',
       __typename: 'Language',
     },
   },
@@ -50,12 +46,8 @@ export const CreateLanguageResponse = {
 
 export const UpdateLanguageResponse = {
   data: {
-    language: {
+    updateLanguage: {
       _id: '401d3dcaffada1d7942a567c',
-      isoCode: 'de',
-      isActive: true,
-      isBase: true,
-      name: 'de (Base)',
       __typename: 'Language',
     },
   },
