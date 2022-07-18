@@ -24,10 +24,6 @@ const useSearchAssortments = ({
   offset = 0,
 } = {}) => {
   const { locale } = useIntl();
-<<<<<<< HEAD
-=======
-
->>>>>>> 89c5330a (force localiziation)
   const { data, loading, error } = useQuery(SearchAssortmentsQuery, {
     skip: !queryString,
     variables: {

@@ -62,15 +62,6 @@ export const RemoveLanguageResponse = {
   },
 };
 
-export const RemoveLanguageResponse = {
-  data: {
-    removeLanguage: {
-      _id: '401d3dcaffada1d7942a567c',
-      __typename: 'Language',
-    },
-  },
-};
-
 export const LanguageOperations = {
   GetLanguagesList: 'Languages',
   GetSingleLanguage: 'Language',

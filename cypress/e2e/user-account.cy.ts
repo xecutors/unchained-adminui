@@ -441,7 +441,7 @@ describe('User', () => {
       },
     );
 
-    cy.get('button#cancel_update').click();
+    cy.get('button#cancel_update').click({ force: true });
     cy.url().should('contain', `/users/${user._id}?tab=account`);
   });
 
