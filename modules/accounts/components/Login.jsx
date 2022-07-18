@@ -101,8 +101,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
-  const { loginWithWebAuthn, error: webAuthLoginError } =
-    useLoginWithWebAuthn();
+  const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const router = useRouter();
   const goToNext = () => {
     router.push({
@@ -135,23 +134,23 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
     if (router.query.step === '1') {
       try {
         await logInWithWebAuth(usernameOrEmail);
-        if (webAuthLoginError) {
-          alert(webAuthLoginError.message);
-        }
       } catch (e) {
         goToNext();
       }
     } else if (router.query.step === '2') {
-      const result = await logInWithPassword({
+      const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
         disableHashing: true,
       });
 
-      if (result.errors?.length) {
+      if (errors?.length > 1) {
         return false;
       }
-      router.push('/');
+      const { id, token, tokenExpires, user } = data.loginWithPassword || {};
+      await storeLoginToken(id, token, new Date(tokenExpires));
+
+      if (user?._id && !user?.roles?.includes('admin')) return true;
 
       return true;
     } else if (router.query.step === '3') {
@@ -164,18 +163,11 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
       if (result.errors.length) {
         return false;
       }
-
-      router.push('/');
     }
     return false;
   };
 
-  const onSubmitSuccess = async (_, { loginWithPassword }) => {
-    const { id, token, tokenExpires, user } = loginWithPassword || {};
-    await storeLoginToken(id, token, new Date(tokenExpires));
-
-    if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
-
+  const onSubmitSuccess = async () => {
     router.push('/');
   };
 

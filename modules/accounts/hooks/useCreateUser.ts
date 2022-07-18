@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import isEmail from '../../common/utils/isEmail';
 import hashPassword from '../utils/hashPassword';
 
 const CreateUserMutation = gql`
@@ -30,21 +31,25 @@ const useCreateUser = () => {
     useMutation(CreateUserMutation);
 
   const createUser = async ({
-    username,
-    email,
+    usernameOrEmail,
     password,
     profile,
     disableHashing = false,
     webAuthnPublicKeyCredentials,
   }) => {
     const variables = {
-      username,
-      email,
+      username: null,
+      email: null,
       profile,
       plainPassword: null,
       password: null,
       webAuthnPublicKeyCredentials,
     };
+    if (isEmail(usernameOrEmail)) {
+      variables.email = usernameOrEmail;
+    } else if (typeof usernameOrEmail === 'string') {
+      variables.username = usernameOrEmail;
+    }
     if (disableHashing) {
       variables.plainPassword = password;
     } else {
