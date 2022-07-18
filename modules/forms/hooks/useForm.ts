@@ -45,17 +45,46 @@ const useForm = ({
   const [submitError, setSubmitError] = useState('');
 
   const parseError = (error) => {
-    if (error && error?.toLowerCase()?.includes('email already exists')) {
-      return intl.formatMessage({
-        id: 'email_exists_error',
-        defaultMessage: 'Email already exists',
-      });
-    }
-    if (error && error?.toLowerCase()?.includes('permission')) {
-      return intl.formatMessage({
-        id: 'permission_missing',
-        defaultMessage: "You don't have the required permission",
-      });
+    if (error) {
+      if (
+        error &&
+        typeof error === 'string' &&
+        error?.toLowerCase()?.includes('email already exists')
+      )
+        return intl.formatMessage({
+          id: 'email_exists_error',
+          defaultMessage: 'Email already exists',
+        });
+
+      if (
+        error &&
+        typeof error === 'string' &&
+        error?.toLowerCase()?.includes('permission')
+      ) {
+        return intl.formatMessage({
+          id: 'permission_missing',
+          defaultMessage: "You don't have the required permission",
+        });
+      }
+
+      if (
+        error?.message &&
+        error?.message?.toLowerCase()?.includes('email already exists')
+      )
+        return intl.formatMessage({
+          id: 'email_exists_error',
+          defaultMessage: 'Email already exists',
+        });
+
+      if (
+        error?.message &&
+        error?.message?.toLowerCase()?.includes('permission')
+      ) {
+        return intl.formatMessage({
+          id: 'permission_missing',
+          defaultMessage: "You don't have the required permission",
+        });
+      }
     }
 
     return intl.formatMessage(
