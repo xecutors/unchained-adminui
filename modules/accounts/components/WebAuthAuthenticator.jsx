@@ -18,37 +18,29 @@ const WebAuthAuthenticator = () => {
   const { generateLoginCredentials } = useGenerateLoginCredentials();
 
   const registerWithWebAuth = async () => {
-    try {
-      const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
-        username,
-      });
+    const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
+      username,
+    });
 
-      const { data } = await createUser({
-        username,
-        webAuthnPublicKeyCredentials,
-        disableHashing: true,
-      });
+    const { data } = await createUser({
+      username,
+      webAuthnPublicKeyCredentials,
+      disableHashing: true,
+    });
 
-      const { id, token, tokenExpires } = data?.createUser;
-      await storeLoginToken(id, token, new Date(tokenExpires));
-    } catch (e) {
-      console.log(e.message);
-    }
+    const { id, token, tokenExpires } = data?.createUser;
+    await storeLoginToken(id, token, new Date(tokenExpires));
   };
 
   const logInWithWebAuth = async () => {
-    try {
-      const webAuthnPublicKeyCredentials = await generateLoginCredentials({
-        username,
-      });
-      const { data } = await loginWithWebAuthn({
-        webAuthnPublicKeyCredentials,
-      });
-      const { id, token, tokenExpires } = data?.loginWithWebAuthn;
-      await storeLoginToken(id, token, new Date(tokenExpires));
-    } catch (e) {
-      console.log(e.message);
-    }
+    const webAuthnPublicKeyCredentials = await generateLoginCredentials({
+      username,
+    });
+    const { data } = await loginWithWebAuthn({
+      webAuthnPublicKeyCredentials,
+    });
+    const { id, token, tokenExpires } = data?.loginWithWebAuthn;
+    await storeLoginToken(id, token, new Date(tokenExpires));
   };
 
   return (
