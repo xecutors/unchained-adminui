@@ -9,18 +9,7 @@ export const FiltersQuery = gql`
     $offset: Int
     $includeInactive: Boolean
     $forceLocale: String
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     $sort: [SortOptionInput!]
-=======
->>>>>>> 89c5330a (force localiziation)
-=======
-    $Sort: [SortOptionInput!]
->>>>>>> f382ae7f (Add multiple sort option.)
-=======
-    $sort: [SortOptionInput!]
->>>>>>> 67cf36a8 (Add sort)
   ) {
     filters(
       queryString: $queryString
