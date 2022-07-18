@@ -126,6 +126,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
     const { data } = await loginWithWebAuthn({
       webAuthnPublicKeyCredentials,
     });
+
     const { id, token, tokenExpires } = data?.loginWithWebAuthn;
 
     await storeLoginToken(id, token, new Date(tokenExpires));
@@ -135,45 +136,45 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
     if (router.query.step === '1') {
       try {
         await logInWithWebAuth(usernameOrEmail);
+        return { success: true };
       } catch (e) {
         goToNext();
       }
     } else if (router.query.step === '2') {
-      try {
-        const { data, errors } = await logInWithPassword({
-          usernameOrEmail,
-          password,
-          disableHashing: true,
-        });
+      const { data, errors } = await logInWithPassword({
+        usernameOrEmail,
+        password,
+        disableHashing: true,
+      });
+      if (!errors?.length) {
+        const { id, token, tokenExpires, user } = data.loginWithPassword;
 
-        if (errors?.length > 1) {
-          return false;
-        }
-        const { id, token, tokenExpires } = data.loginWithPassword;
         await storeLoginToken(id, token, new Date(tokenExpires));
-        goToNext();
-        return true;
-      } catch {
-        goToNext();
+        if (user.isTwoFactorEnabled) goToNext();
+        return { success: Boolean(id), ...data.loginWithPassword };
       }
+      return { success: false, errors };
     } else if (router.query.step === '3') {
-      const result = await logInWithPassword({
+      const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
         disableHashing: true,
         totpCode,
       });
-      if (result.errors.length) {
-        return false;
+      if (!errors?.length) {
+        const { id, token, tokenExpires, user } = data.loginWithPassword;
+
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        if (user.isTwoFactorEnabled) goToNext();
+        return { success: Boolean(id), ...data.loginWithPassword };
       }
+      return { success: false };
     }
     return false;
   };
 
   const onSubmitSuccess = async () => {
-    setTimeout(() => {
-      router.push('/');
-    }, 3000);
+    router.push('/');
   };
 
   const form = useForm({
@@ -197,16 +198,9 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
         );
       }
       if (error?.message?.toLowerCase()?.includes('no password set')) {
-        form.formik.setFieldError(
-          'password',
-          formatMessage({
-            id: 'user_password_not_set',
-            defaultMessage: 'User password not set',
-          }),
-        );
         return formatMessage({
-          id: 'two_factor_authentication_required',
-          defaultMessage: 'Two factor authentication code required',
+          id: 'user_password_not_set',
+          defaultMessage: 'User password not set',
         });
       }
       if (error?.message?.includes("2FA code didn't match")) {
@@ -235,7 +229,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           step: 1,
         },
       });
-  }, [router.query.step]);
+  }, []);
 
   const logo = getLogo();
   if (isAuthenticated()) {
@@ -251,7 +245,6 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           connection={connection}
         />
       ) : null}
-
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
