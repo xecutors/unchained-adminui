@@ -515,6 +515,7 @@ describe('User', () => {
         .contains(localizations.en.users)
         .click({ force: true });
 
+      cy.get('button#close_sidebar').click();
       cy.url().should('contain', '/users');
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.url().should('contain', `/users/${user._id}`);
@@ -539,8 +540,9 @@ describe('User', () => {
 
       cy.get(`a`).contains(localizations.en.orders).click();
       cy.url().should('contain', `/users/${user._id}?tab=orders`);
-      cy.get(`a[href="/orders/${order._id}"]`).click();
+      cy.wait(100);
 
+      cy.get(`a[href="/orders/${order._id}"]`).click();
       cy.url().should('contain', `/orders/${order._id}`);
     });
 
@@ -560,7 +562,7 @@ describe('User', () => {
       cy.get(`a`).contains(localizations.en.orders).click();
       cy.url().should('contain', `/users/${user._id}?tab=orders`);
 
-      cy.get('input[type="search"]').type('s');
+      cy.get('input[type="search"]').focus().type('s');
       cy.wait(fullAliasName(UserOperations.UserOrder))
         .then((currentSubject) => {
           expect(currentSubject.response.body).to.deep.eq(
@@ -571,8 +573,7 @@ describe('User', () => {
         .should('eq', 's');
 
       cy.url().should('contain', `/users/${user._id}?tab=orders&queryString=s`);
-      cy.get('input[type="search"]').type('a');
-
+      cy.get('input[type="search"]').focus().type('a');
       cy.wait(fullAliasName(UserOperations.UserOrder))
         .then((currentSubject) => {
           expect(currentSubject.response.body).to.deep.eq(
@@ -613,6 +614,7 @@ describe('User', () => {
         },
       );
       cy.get('tr').should('have.length', 2);
+      cy.pause();
     });
 
     it('Show Navigate to [USER QUOTATIONS ON MOBILE] page successfully', () => {
@@ -770,7 +772,6 @@ describe('User', () => {
       cy.url().should('contain', `/users/${user._id}`);
       cy.get(`select#selected-tab`).select(
         localizations.en.payment_credentials,
-        { force: true },
       );
       cy.url().should('contain', `/users/${user._id}?tab=payment_credentials`);
       cy.get('li.py-4').should('have.length', 3);
