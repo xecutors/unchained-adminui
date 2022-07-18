@@ -1,11 +1,6 @@
 import { useMutation, gql } from '@apollo/client';
+import isEmail from '../../common/utils/isEmail';
 import hashPassword from '../utils/hashPassword';
-
-const isEmail = (str) => {
-  const regexExp =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
-  return regexExp.test(str);
-};
 
 const LogInWithPasswordMutation = gql`
   mutation LoginWithPassword(

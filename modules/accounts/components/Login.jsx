@@ -132,42 +132,42 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   };
 
   const onSubmit = async ({ usernameOrEmail, password, totpCode }) => {
-    try {
-      if (router.query.step === '1') {
-        await logInWithWebAuth();
+    if (router.query.step === '1') {
+      try {
+        await logInWithWebAuth(usernameOrEmail);
         if (webAuthLoginError) {
           alert(webAuthLoginError.message);
         }
-      } else if (router.query.step === '2') {
-        const result = await logInWithPassword({
-          usernameOrEmail,
-          password,
-          disableHashing: true,
-        });
-
-        if (result.errors.length) {
-          goToNext();
-          return false;
-        }
-        return false;
-      } else if (router.query.step === '3') {
-        const result = await logInWithPassword({
-          usernameOrEmail,
-          password,
-          disableHashing: true,
-          totpCode,
-        });
-        if (result.errors.length) {
-          goToNext();
-          return false;
-        }
-        return result;
+      } catch (e) {
+        goToNext();
       }
+    } else if (router.query.step === '2') {
+      const result = await logInWithPassword({
+        usernameOrEmail,
+        password,
+        disableHashing: true,
+      });
+
+      if (result.errors?.length) {
+        return false;
+      }
+      router.push('/');
+
       return true;
-    } catch (e) {
-      console.error(e.message);
-      return false;
+    } else if (router.query.step === '3') {
+      const result = await logInWithPassword({
+        usernameOrEmail,
+        password,
+        disableHashing: true,
+        totpCode,
+      });
+      if (result.errors.length) {
+        return false;
+      }
+
+      router.push('/');
     }
+    return false;
   };
 
   const onSubmitSuccess = async (_, { loginWithPassword }) => {
@@ -190,7 +190,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           defaultMessage: 'Invalid credential, please try again',
         });
 
-      if (error.message.includes('2FA code required')) {
+      if (error?.message?.includes('2FA code required')) {
         form.formik.setFieldError(
           'totpCode',
           formatMessage({
@@ -199,7 +199,20 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           }),
         );
       }
-      if (error.message.includes("2FA code didn't match")) {
+      if (error?.message?.toLowerCase()?.includes('no password set')) {
+        form.formik.setFieldError(
+          'password',
+          formatMessage({
+            id: 'user_password_not_set',
+            defaultMessage: 'User password not set',
+          }),
+        );
+        return formatMessage({
+          id: 'two_factor_authentication_required',
+          defaultMessage: 'Two factor authentication code required',
+        });
+      }
+      if (error?.message?.includes("2FA code didn't match")) {
         form.formik.setFieldError(
           'totpCode',
           formatMessage({
@@ -208,7 +221,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           }),
         );
       }
-      goToNext();
+
       return '';
     },
     initialValues: {

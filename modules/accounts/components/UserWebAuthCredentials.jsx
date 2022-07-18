@@ -55,8 +55,6 @@ const UserWebAuthCredentials = ({ currentUser }) => {
       username: currentUser.username,
     });
 
-    console.log('credentials: ', credentials);
-
     await addWebAuthnCredentials({
       credentials,
     });
