@@ -75,7 +75,7 @@ const UserWebAuthCredentials = ({ currentUser }) => {
 
       <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
         <div>
-          <ul className="border-t border-b border-gray-200 divide-y divide-gray-200">
+          <ul className="border-t border-b border-slate-200 divide-y divide-slate-200">
             {webAuthnCredentials?.map((credential) => (
               <RegisteredWebAuthItem
                 {...credential}

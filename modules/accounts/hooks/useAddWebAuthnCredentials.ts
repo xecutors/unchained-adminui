@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
 import UserFragment from '../fragment/UserFragment';
 
 const AddWebAuthnCredentialsMutation = gql`
@@ -11,12 +12,13 @@ const AddWebAuthnCredentialsMutation = gql`
         aaguid
         counter
         mdsMetadata {
-          legalHeader
+          ...MD5MetaDataFragment
         }
       }
     }
   }
   ${UserFragment}
+  ${MD5MetaDataFragment}
 `;
 
 const useAddWebAuthnCredentials = () => {

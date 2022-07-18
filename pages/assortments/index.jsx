@@ -117,7 +117,6 @@ const AssortmentsView = () => {
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
           sortFields={sortFields}
-          header={header}
         >
           <div className="flex gap-4">
             <Toggle

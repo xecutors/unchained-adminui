@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
 
 export const UserWebAuthnCredentialsQuery = gql`
   query UserWebAuthnCredentials($userId: ID!) {
@@ -10,26 +11,12 @@ export const UserWebAuthnCredentialsQuery = gql`
         aaguid
         counter
         mdsMetadata {
-          legalHeader
-          description
-          authenticatorVersion
-          protocolFamily
-          schema
-          authenticationAlgorithms
-          publicKeyAlgAndEncodings
-          attestationTypes
-          keyProtection
-          upv
-          tcDisplay
-
-          authenticationAlgorithms
-          publicKeyAlgAndEncodings
-          icon
-          authenticatorGetInfo
+          ...MD5MetaDataFragment
         }
       }
     }
   }
+  ${MD5MetaDataFragment}
 `;
 
 const useUserWebAuthnCredentials = ({ userId }) => {

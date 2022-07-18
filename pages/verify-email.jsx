@@ -50,7 +50,7 @@ const VerifyEmail = () => {
         className={classNames(
           'max-w-xl p-8 text-center  bg-white shadow-xl lg:max-w-3xl rounded-3xl lg:p-12',
           {
-            'text-gray-800': result.success,
+            'text-slate-800': result.success,
             'text-red-800': !result.success,
           },
         )}
