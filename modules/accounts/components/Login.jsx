@@ -103,10 +103,18 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   const { isAuthenticated } = useAuth();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const router = useRouter();
-  const goToNext = () => {
+  const nextStep = () => {
     router.push({
       query: {
         step: parseInt(router.query.step, 10) + 1,
+      },
+    });
+  };
+
+  const previousStep = () => {
+    router.push({
+      query: {
+        step: parseInt(router.query.step, 10) - 1,
       },
     });
   };
@@ -123,24 +131,24 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
     const webAuthnPublicKeyCredentials = await generateLoginCredentials({
       username,
     });
-    const { data } = await loginWithWebAuthn({
-      webAuthnPublicKeyCredentials,
-    });
+    if (webAuthnPublicKeyCredentials) {
+      const { data } = await loginWithWebAuthn({
+        webAuthnPublicKeyCredentials,
+      });
 
-    const { id, token, tokenExpires } = data?.loginWithWebAuthn;
-
-    await storeLoginToken(id, token, new Date(tokenExpires));
+      const { id, token, tokenExpires } = data?.loginWithWebAuthn;
+      await storeLoginToken(id, token, new Date(tokenExpires));
+      return true;
+    }
+    return false;
   };
 
   const onSubmit = async ({ usernameOrEmail, password, totpCode }) => {
     if (router.query.step === '1') {
-      try {
-        await logInWithWebAuth(usernameOrEmail);
-        return { success: true };
-      } catch (e) {
-        goToNext();
-      }
-    } else if (router.query.step === '2') {
+      const success = await logInWithWebAuth(usernameOrEmail);
+      if (!success) nextStep();
+    }
+    if (router.query.step === '2') {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -150,11 +158,12 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
 
         await storeLoginToken(id, token, new Date(tokenExpires));
-        if (user.isTwoFactorEnabled) goToNext();
+        if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
       return { success: false, errors };
-    } else if (router.query.step === '3') {
+    }
+    if (router.query.step === '3') {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -165,7 +174,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
 
         await storeLoginToken(id, token, new Date(tokenExpires));
-        if (user.isTwoFactorEnabled) goToNext();
+        if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
       return { success: false };
@@ -245,6 +254,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           connection={connection}
         />
       ) : null}
+
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
@@ -274,8 +284,24 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
               className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
             >
               <GetCurrentStep step={router.query.step} />
+
               <FormErrors />
-              <div className="my-2">
+              <div className="flex items-center gap-4 mt-4">
+                {router.query.step !== '1' && (
+                  <button
+                    type="button"
+                    id="previous-button"
+                    name="previous-button"
+                    onClick={previousStep}
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3" />
+                    {formatMessage({
+                      id: 'previous',
+                      defaultMessage: 'Previous',
+                    })}
+                  </button>
+                )}
                 <button
                   type="submit"
                   id="submit"
@@ -298,7 +324,10 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
                       />
                     </svg>
                   </span>
-                  {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
+                  {formatMessage({
+                    id: 'continue',
+                    defaultMessage: 'Continue',
+                  })}
                 </button>
               </div>
               <div className="text-sm text-slate-400 dark:text-slate-200">

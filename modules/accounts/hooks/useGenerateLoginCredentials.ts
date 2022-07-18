@@ -10,6 +10,8 @@ const useGenerateLoginCredentials = () => {
     });
 
     const publicKey = data?.createWebAuthnCredentialRequestOptions;
+    if (!publicKey?.allowCredentials?.length) return null;
+
     publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
 
     publicKey.allowCredentials =
