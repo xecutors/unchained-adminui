@@ -56,7 +56,7 @@ const useLoginWithPassword = () => {
     }
     return logInWithPasswordMutation({
       variables,
-      refetchQueries: ['CurrentUser'],
+      notifyOnNetworkStatusChange: true,
     });
   };
 
