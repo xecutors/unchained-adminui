@@ -32,7 +32,7 @@ const WebAuthAuthenticator = () => {
       const { id, token, tokenExpires } = data?.createUser;
       await storeLoginToken(id, token, new Date(tokenExpires));
     } catch (e) {
-      alert(e.message);
+      console.log(e.message);
     }
   };
 
@@ -47,7 +47,7 @@ const WebAuthAuthenticator = () => {
       const { id, token, tokenExpires } = data?.loginWithWebAuthn;
       await storeLoginToken(id, token, new Date(tokenExpires));
     } catch (e) {
-      alert(e.message);
+      console.log(e.message);
     }
   };
 
