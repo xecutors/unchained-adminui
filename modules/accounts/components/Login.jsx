@@ -2,22 +2,96 @@ import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+
 import FormWrapper from '../../common/components/FormWrapper';
 import SandboxInput from '../../common/components/SandboxInput';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
-import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
+import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
+import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
-import WebAuthAuthenticator from './WebAuthAuthenticator';
+
+const GetCurrentStep = ({ step }) => {
+  const { formatMessage } = useIntl();
+
+  switch (parseInt(step, 10)) {
+    case 2:
+      return (
+        <>
+          <PasswordField
+            id="password"
+            name="password"
+            autoComplete="current-password"
+            required
+            label={formatMessage({
+              id: 'password',
+              defaultMessage: 'Password',
+            })}
+            placeholder={formatMessage({
+              id: 'password',
+              defaultMessage: 'Password',
+            })}
+          />
+
+          <div className="my-1 text-sm sm:my-0 text-left">
+            <Link href="/account/forgot-password">
+              <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                {formatMessage({
+                  id: 'forget_password',
+                  defaultMessage: 'Forgot your password?',
+                })}
+              </a>
+            </Link>
+          </div>
+        </>
+      );
+    case 3:
+      return (
+        <TextField
+          id="totp-code"
+          name="totpCode"
+          autoComplete="off"
+          label={formatMessage({
+            id: 'totp_code',
+            defaultMessage: 'TOTP code',
+          })}
+          placeholder={formatMessage({
+            id: 'totp_code',
+            defaultMessage: 'TOTP code',
+          })}
+        />
+      );
+    default:
+      return (
+        <TextField
+          id="username-or-email"
+          name="usernameOrEmail"
+          className="mt-1"
+          type="text"
+          autoComplete="email"
+          required
+          label={formatMessage({
+            id: 'username_or_email',
+            defaultMessage: 'Username/Email',
+          })}
+          placeholder={formatMessage({
+            id: 'username_or_email',
+            defaultMessage: 'Username/Email',
+          })}
+        />
+      );
+  }
+};
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
@@ -27,23 +101,73 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
-
+  const { loginWithWebAuthn, error: webAuthLoginError } =
+    useLoginWithWebAuthn();
   const router = useRouter();
+  const goToNext = () => {
+    router.push({
+      query: {
+        step: parseInt(router.query.step, 10) + 1,
+      },
+    });
+  };
+
+  const { generateLoginCredentials } = useGenerateLoginCredentials();
+
   const { formatMessage } = useIntl();
   const successMessage = formatMessage({
     id: 'welcome',
     defaultMessage: 'Welcome!',
   });
 
-  const onSubmit = async ({ email, password, totpCode }) => {
-    const result = await logInWithPassword({
-      email,
-      password,
-      disableHashing: true,
-      totpCode,
+  const logInWithWebAuth = async (username) => {
+    const webAuthnPublicKeyCredentials = await generateLoginCredentials({
+      username,
     });
+    const { data } = await loginWithWebAuthn({
+      webAuthnPublicKeyCredentials,
+    });
+    const { id, token, tokenExpires } = data?.loginWithWebAuthn;
+    await storeLoginToken(id, token, new Date(tokenExpires));
+  };
 
-    return result;
+  const onSubmit = async ({ usernameOrEmail, password, totpCode }) => {
+    try {
+      if (router.query.step === '1') {
+        await logInWithWebAuth();
+        if (webAuthLoginError) {
+          alert(webAuthLoginError.message);
+        }
+      } else if (router.query.step === '2') {
+        const result = await logInWithPassword({
+          usernameOrEmail,
+          password,
+          disableHashing: true,
+        });
+
+        if (result.errors.length) {
+          goToNext();
+          return false;
+        }
+        return false;
+      } else if (router.query.step === '3') {
+        const result = await logInWithPassword({
+          usernameOrEmail,
+          password,
+          disableHashing: true,
+          totpCode,
+        });
+        if (result.errors.length) {
+          goToNext();
+          return false;
+        }
+        return result;
+      }
+      return true;
+    } catch (e) {
+      console.error(e.message);
+      return false;
+    }
   };
 
   const onSubmitSuccess = async (_, { loginWithPassword }) => {
@@ -84,15 +208,24 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           }),
         );
       }
-
+      goToNext();
       return '';
     },
     initialValues: {
-      email: null,
+      usernameOrEmail: null,
       password: null,
       totpCode: null,
     },
   });
+
+  useEffect(() => {
+    if (!router.query.step)
+      router.push({
+        query: {
+          step: 1,
+        },
+      });
+  }, [router.query.step]);
 
   const logo = getLogo();
   if (isAuthenticated()) {
@@ -108,6 +241,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           connection={connection}
         />
       ) : null}
+
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
@@ -136,70 +270,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
               form={form}
               className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
             >
-              <input type="hidden" name="remember" value="true" />
-              <div className="space-y-6 rounded-md shadow-sm">
-                <div>
-                  <EmailField
-                    id="email-address"
-                    name="email"
-                    className="mt-1"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    label={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                  />
-                </div>
-                <div>
-                  <PasswordField
-                    id="password"
-                    name="password"
-                    autoComplete="current-password"
-                    required
-                    label={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="totp-code"
-                    name="totpCode"
-                    autoComplete="off"
-                    label={formatMessage({
-                      id: 'totp_code',
-                      defaultMessage: 'TOTP code',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'totp_code',
-                      defaultMessage: 'TOTP code',
-                    })}
-                  />
-                </div>
-              </div>
-
-              <div className="my-1 text-sm sm:my-0 text-left">
-                <Link href="/account/forgot-password">
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                    {formatMessage({
-                      id: 'forget_password',
-                      defaultMessage: 'Forgot your password?',
-                    })}
-                  </a>
-                </Link>
-              </div>
-
+              <GetCurrentStep step={router.query.step} />
               <FormErrors />
               <div className="my-2">
                 <button
