@@ -127,6 +127,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
       webAuthnPublicKeyCredentials,
     });
     const { id, token, tokenExpires } = data?.loginWithWebAuthn;
+
     await storeLoginToken(id, token, new Date(tokenExpires));
   };
 
@@ -138,21 +139,23 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
         goToNext();
       }
     } else if (router.query.step === '2') {
-      const { data, errors } = await logInWithPassword({
-        usernameOrEmail,
-        password,
-        disableHashing: true,
-      });
+      try {
+        const { data, errors } = await logInWithPassword({
+          usernameOrEmail,
+          password,
+          disableHashing: true,
+        });
 
-      if (errors?.length > 1) {
-        return false;
+        if (errors?.length > 1) {
+          return false;
+        }
+        const { id, token, tokenExpires } = data.loginWithPassword;
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        goToNext();
+        return true;
+      } catch {
+        goToNext();
       }
-      const { id, token, tokenExpires, user } = data.loginWithPassword || {};
-      await storeLoginToken(id, token, new Date(tokenExpires));
-
-      if (user?._id && !user?.roles?.includes('admin')) return true;
-
-      return true;
     } else if (router.query.step === '3') {
       const result = await logInWithPassword({
         usernameOrEmail,
@@ -168,7 +171,9 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   };
 
   const onSubmitSuccess = async () => {
-    router.push('/');
+    setTimeout(() => {
+      router.push('/');
+    }, 3000);
   };
 
   const form = useForm({
@@ -224,7 +229,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   });
 
   useEffect(() => {
-    if (!router.query.step)
+    if (router.query?.step === undefined || router.query?.step === null)
       router.push({
         query: {
           step: 1,
