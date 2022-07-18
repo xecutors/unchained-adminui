@@ -25,7 +25,6 @@ const UserQuotations = ({ _id: userId }) => {
   };
 
   const { quotations, loading } = useUserQuotations({ userId, queryString });
-
   if (loading) return <Loading />;
   return (
     <div className="space-y-4 mt-4">
