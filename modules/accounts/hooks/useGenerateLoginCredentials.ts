@@ -8,7 +8,7 @@ const useGenerateLoginCredentials = () => {
     const { data } = await createWebAuthnCredentialRequestOptions({
       username,
     });
-    alert(JSON.stringify(data?.createWebAuthnCredentialRequestOptions));
+
     const publicKey = data?.createWebAuthnCredentialRequestOptions;
     publicKey.challenge = base64ToArrayBuffer(publicKey.challenge);
 

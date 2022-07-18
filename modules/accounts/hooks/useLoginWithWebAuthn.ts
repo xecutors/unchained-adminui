@@ -13,15 +13,14 @@ const LogWithWebAuthnMutation = gql`
 `;
 
 const useLoginWithWebAuthn = () => {
-  const [loginWithWebAuthnMutation, { error, reset, data, loading }] =
-    useMutation(LogWithWebAuthnMutation);
+  const [loginWithWebAuthnMutation] = useMutation(LogWithWebAuthnMutation);
 
   const loginWithWebAuthn = async ({ webAuthnPublicKeyCredentials }) => {
     return loginWithWebAuthnMutation({
       variables: { webAuthnPublicKeyCredentials },
     });
   };
-  return { loginWithWebAuthn, error, reset, data, loading };
+  return { loginWithWebAuthn };
 };
 
 export default useLoginWithWebAuthn;

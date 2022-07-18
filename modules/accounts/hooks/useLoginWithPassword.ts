@@ -24,6 +24,7 @@ const LogInWithPasswordMutation = gql`
         _id
         allowedActions
         roles
+        isTwoFactorEnabled
       }
     }
   }
