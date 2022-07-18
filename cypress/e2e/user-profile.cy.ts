@@ -67,7 +67,6 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('button[role="switch"]').click();
-    cy.wait(3000);
 
     cy.wait(fullAliasName(UserOperations.GetUserList))
       .then((currentSubject) => {
@@ -89,7 +88,7 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('input[type="search"]').type('s');
-    cy.wait(3000);
+    cy.wait(100);
     cy.wait(fullAliasName(UserOperations.GetUserList))
       .then((currentSubject) => {
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
@@ -132,7 +131,6 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
     cy.url().should('contain', '/users/new');
-    cy.wait(3000);
 
     cy.url().should('contain', '/users/new');
     cy.get('input#email').type(createUserRequestVariables.email);
@@ -215,7 +213,6 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
-    cy.wait(3000);
     cy.url().should('contain', '/users/new');
 
     cy.get('input#email').type('redi@hotmail.com');
@@ -235,7 +232,6 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get('a[href="/users/new"]').click();
     cy.url().should('contain', '/users/new');
-    cy.wait(3000);
 
     cy.url().should('contain', '/users/new');
     cy.get('input[name="birthday"]').clear();
@@ -276,10 +272,9 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.wait(3000);
+    cy.wait(100);
 
-    cy.get('button#update_cancel').first().click({ force: true });
-
+    cy.get('button#update_cancel').first().click();
     cy.get('input#displayName').should('have.value', user.profile.displayName);
     cy.get('select#gender').should('have.value', user.profile.gender);
     // cy.get('input[name="birthday"]').should(
@@ -331,11 +326,11 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.wait(3000);
+    cy.wait(100);
+
     cy.get('button#update_cancel').first().click();
 
     cy.get('input#displayName').clear().type(user.profile.displayName);
-
     cy.get('input[name="birthday"]').focus();
     cy.get('select.react-datepicker__month-select').select(3);
     cy.get('select.react-datepicker__year-select').select('1992');
@@ -366,7 +361,7 @@ describe('User', () => {
     );
   });
 
-  it('Show [CANCEL UPDATE USER] successfully on new user', () => {
+  it('Show [CANCEL UPDATE USER] successfully', () => {
     const { user } = SingleUserResponse.data;
 
     cy.visit('/');
@@ -377,7 +372,7 @@ describe('User', () => {
     cy.url().should('contain', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.url().should('contain', `/users/${user._id}`);
-    cy.wait(3000);
+    cy.wait(100);
 
     cy.get('button#update_cancel').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);

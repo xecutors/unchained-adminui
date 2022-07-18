@@ -1,10 +1,8 @@
 import { PencilAltIcon, TagIcon } from '@heroicons/react/outline';
-
 import { useIntl } from 'react-intl';
-import useModal from '../../modal/hooks/useModal';
 
+import useModal from '../../modal/hooks/useModal';
 import Badge from './Badge';
-import Button from './Button';
 import TagListForm from './TagListForm';
 
 const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
@@ -33,9 +31,10 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         )}
       </div>
       {enableEdit && (
-        <Button
-          className="h-12 w-12 rounded-full"
-          text={<PencilAltIcon className="h-5 w-5" />}
+        <button
+          type="button"
+          id="add_tag"
+          className="h-12 w-12 rounded-full inline-flex items-center border border-transparent bg-indigo-500 px-3 py-5 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
           onClick={() =>
             setModal(
               <TagListForm
@@ -45,7 +44,9 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
               />,
             )
           }
-        />
+        >
+          <PencilAltIcon className="h-5 w-5" />
+        </button>
       )}
     </div>
   );
