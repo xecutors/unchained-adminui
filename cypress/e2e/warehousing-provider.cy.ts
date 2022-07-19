@@ -17,16 +17,6 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-const ALIASES = {
-  GetProvidersList: 'WarehousingProviders',
-  GetSingleProvider: 'WarehousingProvider',
-  GetPickUpWarehousingProviders: 'GetPickUpWarehousingProviders',
-  GetProvidersType: 'WarehousingProvidersType',
-  GetInterfaces: 'WarehousingInterfaces',
-  CreateProvider: 'CreateProvider',
-  UpdateProvider: 'UpdateWarehousingProvider',
-  RemoveProvider: 'RemoveWarehousingProvider',
-};
 describe('Warehousing Provider', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
@@ -36,38 +26,41 @@ describe('Warehousing Provider', () => {
       ) {
         const { variables } = body;
         if (variables?.type === 'PHYSICAL') {
-          aliasQuery(req, ALIASES.GetPickUpWarehousingProviders);
+          aliasQuery(
+            req,
+            WarehousingProviderOperations.GetPickUpWarehousingProviders,
+          );
         } else {
-          aliasQuery(req, ALIASES.GetProvidersList);
+          aliasQuery(req, WarehousingProviderOperations.GetProvidersList);
         }
         req.reply(WarehousingProvidersListResponse);
       }
       if (
         hasOperationName(req, WarehousingProviderOperations.GetSingleProvider)
       ) {
-        aliasQuery(req, ALIASES.GetSingleProvider);
+        aliasQuery(req, WarehousingProviderOperations.GetSingleProvider);
         req.reply(SingleWarehousingProviderResponse);
       }
       if (
         hasOperationName(req, WarehousingProviderOperations.GetProvidersType)
       ) {
-        aliasQuery(req, ALIASES.GetProvidersType);
+        aliasQuery(req, WarehousingProviderOperations.GetProvidersType);
         req.reply(WarehousingProvidersTypeResponse);
       }
       if (hasOperationName(req, WarehousingProviderOperations.GetInterfaces)) {
-        aliasQuery(req, ALIASES.GetInterfaces);
+        aliasQuery(req, WarehousingProviderOperations.GetInterfaces);
         req.reply(WarehousingProviderInterfacesResponse);
       }
       if (hasOperationName(req, WarehousingProviderOperations.CreateProvider)) {
-        aliasMutation(req, ALIASES.CreateProvider);
+        aliasMutation(req, WarehousingProviderOperations.CreateProvider);
         req.reply(CreateWarehousingProviderResponse);
       }
       if (hasOperationName(req, WarehousingProviderOperations.UpdateProvider)) {
-        aliasMutation(req, ALIASES.UpdateProvider);
+        aliasMutation(req, WarehousingProviderOperations.UpdateProvider);
         req.reply(UpdateWarehousingProviderResponse);
       }
       if (hasOperationName(req, WarehousingProviderOperations.RemoveProvider)) {
-        aliasMutation(req, ALIASES.RemoveProvider);
+        aliasMutation(req, WarehousingProviderOperations.RemoveProvider);
         req.reply(RemoveWarehousingProviderResponse);
       }
     });
@@ -78,17 +71,24 @@ describe('Warehousing Provider', () => {
       .contains(localizations.en.warehousing_provider)
       .click({ force: true });
 
-    cy.wait(fullAliasName(ALIASES.GetProvidersList)).then((currentSubject) => {
-      expect(currentSubject.response.body).to.deep.eq(
-        WarehousingProvidersListResponse,
-      );
-    });
+    cy.wait(fullAliasName(WarehousingProviderOperations.GetProvidersList)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          type: null,
+        });
+        expect(currentSubject.response.body).to.deep.eq(
+          WarehousingProvidersListResponse,
+        );
+      },
+    );
 
-    cy.wait(fullAliasName(ALIASES.GetProvidersType)).then((currentSubject) => {
-      expect(currentSubject.response.body).to.deep.eq(
-        WarehousingProvidersTypeResponse,
-      );
-    });
+    cy.wait(fullAliasName(WarehousingProviderOperations.GetProvidersType)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          WarehousingProvidersTypeResponse,
+        );
+      },
+    );
 
     cy.get('h2').should(
       'contain.text',
@@ -97,7 +97,7 @@ describe('Warehousing Provider', () => {
   });
 
   it('Show Navigate to [WAREHOUSING PROVIDERS] page successfully', () => {
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('tr').should('have.length', 4);
   });
 
@@ -106,7 +106,7 @@ describe('Warehousing Provider', () => {
       WarehousingProvidersTypeResponse.data.warehousingProviderType;
     const [firstOption] = options;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('tr').should('have.length', 4);
     cy.get('select#select-type').contains(localizations.en.filter_by_type);
     cy.get('select#select-type').select(firstOption.value);
@@ -117,27 +117,38 @@ describe('Warehousing Provider', () => {
       });
     });
 
-    cy.wait(fullAliasName(ALIASES.GetPickUpWarehousingProviders))
-      .its('request.body.variables.type')
-      .should('eq', firstOption.value);
-
-    cy.location('pathname').should('contain', '/warehousing-provider');
-  });
-
-  it('Show Navigate to [NEW WAREHOUSING PROVIDER] form page successfully', () => {
-    cy.location('pathname').should('contain', '/warehousing-provider');
-    cy.get('a[href="/warehousing-provider/new"]').click();
-
-    cy.wait(fullAliasName(ALIASES.GetInterfaces)).then((currentSubject) => {
+    cy.wait(
+      fullAliasName(
+        WarehousingProviderOperations.GetPickUpWarehousingProviders,
+      ),
+    ).then((currentSubject) => {
       expect(currentSubject.request.body.variables).to.deep.eq({
-        providerType: 'PHYSICAL',
+        type: firstOption.value,
       });
       expect(currentSubject.response.body).to.deep.eq(
-        WarehousingProviderInterfacesResponse,
+        WarehousingProvidersListResponse,
       );
     });
 
-    cy.location('pathname').should('contain', '/warehousing-provider/new');
+    cy.location('pathname').should('eq', '/warehousing-provider');
+  });
+
+  it('Show Navigate to [NEW WAREHOUSING PROVIDER] form page successfully', () => {
+    cy.location('pathname').should('eq', '/warehousing-provider');
+    cy.get('a[href="/warehousing-provider/new"]').click();
+
+    cy.wait(fullAliasName(WarehousingProviderOperations.GetInterfaces)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          providerType: 'PHYSICAL',
+        });
+        expect(currentSubject.response.body).to.deep.eq(
+          WarehousingProviderInterfacesResponse,
+        );
+      },
+    );
+
+    cy.location('pathname').should('eq', '/warehousing-provider/new');
     cy.get('h2').should(
       'contain.text',
       localizations.en.new_warehousing_provider_header,
@@ -151,19 +162,21 @@ describe('Warehousing Provider', () => {
       WarehousingProvidersTypeResponse.data.warehousingProviderType;
     const [firstType] = options;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('a[href="/warehousing-provider/new"]').click();
 
-    cy.wait(fullAliasName(ALIASES.GetInterfaces)).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
-        providerType: 'PHYSICAL',
-      });
-      expect(currentSubject.response.body).to.deep.eq(
-        WarehousingProviderInterfacesResponse,
-      );
-    });
+    cy.wait(fullAliasName(WarehousingProviderOperations.GetInterfaces)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          providerType: 'PHYSICAL',
+        });
+        expect(currentSubject.response.body).to.deep.eq(
+          WarehousingProviderInterfacesResponse,
+        );
+      },
+    );
 
-    cy.location('pathname').should('contain', '/warehousing-provider/new');
+    cy.location('pathname').should('eq', '/warehousing-provider/new');
     cy.get('h2').should(
       'contain.text',
       localizations.en.new_warehousing_provider_header,
@@ -171,14 +184,16 @@ describe('Warehousing Provider', () => {
     cy.get('select#type').select(firstType.value);
 
     if (firstType.value !== 'PHYSICAL') {
-      cy.wait(fullAliasName(ALIASES.GetInterfaces)).then((currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          providerType: firstType.value,
-        });
-        expect(currentSubject.response.body).to.deep.eq(
-          WarehousingProviderInterfacesResponse,
-        );
-      });
+      cy.wait(fullAliasName(WarehousingProviderOperations.GetInterfaces)).then(
+        (currentSubject) => {
+          expect(currentSubject.request.body.variables).to.deep.eq({
+            providerType: firstType.value,
+          });
+          expect(currentSubject.response.body).to.deep.eq(
+            WarehousingProviderInterfacesResponse,
+          );
+        },
+      );
     }
 
     cy.get('select#adapterKey').select(firstPickUpInterface.value);
@@ -186,22 +201,22 @@ describe('Warehousing Provider', () => {
       .contains(localizations.en.create_provider)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.CreateProvider)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          warehousingProvider: {
-            adapterKey: firstPickUpInterface._id,
-            type: firstType.value,
-          },
-        });
-        expect(currentSubject.response.body).to.deep.eq(
-          CreateWarehousingProviderResponse,
-        );
-      },
-    );
+    cy.wait(
+      fullAliasMutationName(WarehousingProviderOperations.CreateProvider),
+    ).then((currentSubject) => {
+      expect(currentSubject.request.body.variables).to.deep.eq({
+        warehousingProvider: {
+          adapterKey: firstPickUpInterface._id,
+          type: firstType.value,
+        },
+      });
+      expect(currentSubject.response.body).to.deep.eq(
+        CreateWarehousingProviderResponse,
+      );
+    });
 
     cy.location('pathname').should(
-      'contain',
+      'eq',
       `/warehousing-provider/${CreateWarehousingProviderResponse.data.createWarehousingProvider._id}`,
     );
   });
@@ -211,19 +226,21 @@ describe('Warehousing Provider', () => {
       WarehousingProvidersTypeResponse.data.warehousingProviderType;
     const [firstType] = options;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('a[href="/warehousing-provider/new"]').click();
 
-    cy.wait(fullAliasName(ALIASES.GetInterfaces)).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
-        providerType: firstType.value,
-      });
-      expect(currentSubject.response.body).to.deep.eq(
-        WarehousingProviderInterfacesResponse,
-      );
-    });
+    cy.wait(fullAliasName(WarehousingProviderOperations.GetInterfaces)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          providerType: firstType.value,
+        });
+        expect(currentSubject.response.body).to.deep.eq(
+          WarehousingProviderInterfacesResponse,
+        );
+      },
+    );
 
-    cy.location('pathname').should('contain', '/warehousing-provider/new');
+    cy.location('pathname').should('eq', '/warehousing-provider/new');
     cy.get('h2').should(
       'contain.text',
       localizations.en.new_warehousing_provider_header,
@@ -252,18 +269,20 @@ describe('Warehousing Provider', () => {
       .contains(localizations.en.create_provider)
       .should('be.disabled');
 
-    cy.location('pathname').should('contain', '/warehousing-provider/new');
+    cy.location('pathname').should('eq', '/warehousing-provider/new');
   });
 
   it('Show [INITIALIZE WAREHOUSING PROVIDER] successfully', () => {
     const { warehousingProvider } = SingleWarehousingProviderResponse.data;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
       `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
     ).click();
 
-    cy.wait(fullAliasName(ALIASES.GetSingleProvider)).then((currentSubject) => {
+    cy.wait(
+      fullAliasName(WarehousingProviderOperations.GetSingleProvider),
+    ).then((currentSubject) => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         warehousingProviderId: warehousingProvider._id,
@@ -272,7 +291,7 @@ describe('Warehousing Provider', () => {
     });
 
     cy.location('pathname').should(
-      'contain',
+      'eq',
       `/warehousing-provider/${warehousingProvider._id}`,
     );
     cy.get('h2').should(
@@ -289,12 +308,14 @@ describe('Warehousing Provider', () => {
   it('Show [UPDATE DELIVERY PROVIDER] successfully', () => {
     const { warehousingProvider } = SingleWarehousingProviderResponse.data;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
       `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
     ).click();
 
-    cy.wait(fullAliasName(ALIASES.GetSingleProvider)).then((currentSubject) => {
+    cy.wait(
+      fullAliasName(WarehousingProviderOperations.GetSingleProvider),
+    ).then((currentSubject) => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         warehousingProviderId: warehousingProvider._id,
@@ -303,7 +324,7 @@ describe('Warehousing Provider', () => {
     });
 
     cy.location('pathname').should(
-      'contain',
+      'eq',
       `/warehousing-provider/${warehousingProvider._id}`,
     );
     cy.get('h2').should(
@@ -320,32 +341,34 @@ describe('Warehousing Provider', () => {
       .contains(localizations.en.update_configuration)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.UpdateProvider)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          warehousingProvider: {
-            configuration: warehousingProvider.configuration,
-          },
-          warehousingProviderId: warehousingProvider._id,
-        });
-        expect(currentSubject.response.body).to.deep.eq(
-          UpdateWarehousingProviderResponse,
-        );
-      },
-    );
+    cy.wait(
+      fullAliasMutationName(WarehousingProviderOperations.UpdateProvider),
+    ).then((currentSubject) => {
+      expect(currentSubject.request.body.variables).to.deep.eq({
+        warehousingProvider: {
+          configuration: warehousingProvider.configuration,
+        },
+        warehousingProviderId: warehousingProvider._id,
+      });
+      expect(currentSubject.response.body).to.deep.eq(
+        UpdateWarehousingProviderResponse,
+      );
+    });
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
   });
 
   it('Show [ERROR] when pattern of configuration fields are not correct in update warehousing provider', () => {
     const { warehousingProvider } = SingleWarehousingProviderResponse.data;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
       `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
     ).click();
 
-    cy.wait(fullAliasName(ALIASES.GetSingleProvider)).then((currentSubject) => {
+    cy.wait(
+      fullAliasName(WarehousingProviderOperations.GetSingleProvider),
+    ).then((currentSubject) => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         warehousingProviderId: warehousingProvider._id,
@@ -354,7 +377,7 @@ describe('Warehousing Provider', () => {
     });
 
     cy.location('pathname').should(
-      'contain',
+      'eq',
       `/warehousing-provider/${warehousingProvider._id}`,
     );
     cy.get('h2').should(
@@ -372,12 +395,14 @@ describe('Warehousing Provider', () => {
   it('Show [DELETE WAREHOUSING PROVIDER] successfully', () => {
     const { warehousingProvider } = SingleWarehousingProviderResponse.data;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
       `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
     ).click();
 
-    cy.wait(fullAliasName(ALIASES.GetSingleProvider)).then((currentSubject) => {
+    cy.wait(
+      fullAliasName(WarehousingProviderOperations.GetSingleProvider),
+    ).then((currentSubject) => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         warehousingProviderId: warehousingProvider._id,
@@ -386,7 +411,7 @@ describe('Warehousing Provider', () => {
     });
 
     cy.location('pathname').should(
-      'contain',
+      'eq',
       `/warehousing-provider/${warehousingProvider._id}`,
     );
     cy.get('h2').should(
@@ -399,40 +424,40 @@ describe('Warehousing Provider', () => {
       .contains(localizations.en.delete_warehousing_provider)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.RemoveProvider)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          warehousingProviderId: warehousingProvider._id,
-        });
-        expect(currentSubject.response.body).to.deep.eq(
-          RemoveWarehousingProviderResponse,
-        );
-      },
-    );
+    cy.wait(
+      fullAliasMutationName(WarehousingProviderOperations.RemoveProvider),
+    ).then((currentSubject) => {
+      expect(currentSubject.request.body.variables).to.deep.eq({
+        warehousingProviderId: warehousingProvider._id,
+      });
+      expect(currentSubject.response.body).to.deep.eq(
+        RemoveWarehousingProviderResponse,
+      );
+    });
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
   });
 
   it('Show [DELETE WAREHOUSING PROVIDER FROM LIST] successfully', () => {
     const { warehousingProvider } = SingleWarehousingProviderResponse.data;
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get('button#delete_button').first().click();
     cy.get('button')
       .contains(localizations.en.delete_warehousing_provider)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.RemoveProvider)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          warehousingProviderId: warehousingProvider._id,
-        });
-        expect(currentSubject.response.body).to.deep.eq(
-          RemoveWarehousingProviderResponse,
-        );
-      },
-    );
+    cy.wait(
+      fullAliasMutationName(WarehousingProviderOperations.RemoveProvider),
+    ).then((currentSubject) => {
+      expect(currentSubject.request.body.variables).to.deep.eq({
+        warehousingProviderId: warehousingProvider._id,
+      });
+      expect(currentSubject.response.body).to.deep.eq(
+        RemoveWarehousingProviderResponse,
+      );
+    });
 
-    cy.location('pathname').should('contain', '/warehousing-provider');
+    cy.location('pathname').should('eq', '/warehousing-provider');
   });
 });
