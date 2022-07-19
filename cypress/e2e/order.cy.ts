@@ -15,145 +15,313 @@ import {
 } from '../mock/order';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
-
-const ALIASES = {
-  ConfirmOrder: 'ConfirmOrder',
-  RejectOrder: 'RejectOrder',
-  DeliverOrder: 'DeliverOrder',
-  PayOrder: 'PayOrder',
-};
 
 describe('Order', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
-      if (hasOperationName(req, OrderOperations.Orders)) {
-        const { body } = req;
-        if (body.variables?.includeCarts || body.variables?.queryString) {
-          aliasQuery(req, OrderOperations.Orders);
-        }
+      if (hasOperationName(req, OrderOperations.GetOrderList)) {
+        aliasQuery(req, OrderOperations.GetOrderList);
         req.reply(OrderListResponse);
       }
+      if (hasOperationName(req, OrderOperations.GetSingleOrder)) {
+        aliasQuery(req, OrderOperations.GetSingleOrder);
+        req.reply(SingleOrderResponse);
+      }
       if (hasOperationName(req, OrderOperations.OrderStatus)) {
+        aliasQuery(req, OrderOperations.OrderStatus);
         req.reply(OrderStatusResponse);
       }
       if (hasOperationName(req, OrderOperations.OrderPaymentStatus)) {
+        aliasQuery(req, OrderOperations.OrderPaymentStatus);
         req.reply(OrderPaymentStatusResponse);
       }
       if (hasOperationName(req, OrderOperations.PaymentProvidersType)) {
+        aliasQuery(req, OrderOperations.PaymentProvidersType);
         req.reply(PaymentProvidersTypeResponse);
       }
       if (hasOperationName(req, OrderOperations.OrderDeliveryStatus)) {
+        aliasQuery(req, OrderOperations.OrderDeliveryStatus);
         req.reply(OrderDeliveryStatusResponse);
       }
       if (hasOperationName(req, OrderOperations.DeliveryProvidersType)) {
+        aliasQuery(req, OrderOperations.DeliveryProvidersType);
         req.reply(DeliveryProvidersTypeResponse);
       }
-      if (hasOperationName(req, OrderOperations.GetSingleOrder)) {
-        req.reply(SingleOrderResponse);
-      }
       if (hasOperationName(req, OrderOperations.ConfirmOrder)) {
-        aliasMutation(req, ALIASES.ConfirmOrder);
+        aliasMutation(req, OrderOperations.ConfirmOrder);
         req.reply(ConfirmOrderResponse);
       }
       if (hasOperationName(req, OrderOperations.RejectOrder)) {
-        aliasMutation(req, ALIASES.RejectOrder);
+        aliasMutation(req, OrderOperations.RejectOrder);
         req.reply(RejectOrderResponse);
       }
       if (hasOperationName(req, OrderOperations.DeliverOrder)) {
-        aliasMutation(req, ALIASES.DeliverOrder);
+        aliasMutation(req, OrderOperations.DeliverOrder);
         req.reply(DeliverOrderResponse);
       }
       if (hasOperationName(req, OrderOperations.PayOrder)) {
-        aliasMutation(req, ALIASES.PayOrder);
+        aliasMutation(req, OrderOperations.PayOrder);
         req.reply(PayOrderResponse);
       }
     });
-  });
 
-  it('Show Navigate to [ORDERS] page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/orders"]')
       .contains(localizations.en.orders)
       .click({ force: true });
-    cy.url().should('contain', '/orders');
 
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
+
+    cy.get('h2').should('contain.text', localizations.en.orders_list_header);
+  });
+
+  it('Show Navigate to [ORDERS] page successfully', () => {
+    cy.location('pathname').should('eq', '/orders');
     cy.get('tr').should('have.length', 10);
   });
 
   it('Toggling status toggle should update route', () => {
-    cy.visit('/');
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
+    cy.location('pathname').should('eq', '/orders');
     cy.get('button[role="switch"]').click();
 
-    cy.wait(fullAliasName(OrderOperations.Orders))
-      .then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(OrderListResponse);
-      })
-      .its('request.body.variables.includeCarts')
-      .should('be.true');
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: true,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
 
-    cy.url().should('contain', '/orders?includeCarts=true');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeCarts: 'true',
+      });
+    });
     cy.get('button[role="switch"]').click();
-    cy.url().should('contain', '/orders?includeCarts=false');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeCarts: 'false',
+      });
+    });
   });
 
   it('should update data and route when [SEARCHING] accordingly', () => {
-    cy.visit('/');
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
+    cy.location('pathname').should('eq', '/orders');
     cy.get('input#search').type('s');
 
-    cy.wait(fullAliasName(OrderOperations.Orders))
-      .then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(OrderListResponse);
-      })
-      .its('request.body.variables.queryString')
-      .should('eq', 's');
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: 's',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
 
-    cy.url().should('contain', '/orders?queryString=s');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 's',
+      });
+    });
     cy.get('input[type="search"]').type('a');
 
-    cy.wait(fullAliasName(OrderOperations.Orders))
-      .then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(OrderListResponse);
-      })
-      .its('request.body.variables.queryString')
-      .should('eq', 'sa');
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: 'sa',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
 
-    cy.url().should('contain', '/orders?queryString=sa');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'sa',
+      });
+    });
+  });
+
+  it('Should [FILTER] by multiple fields [STATUS & QUERY STRING]', () => {
+    cy.location('pathname').should('eq', '/orders');
+
+    cy.get('button[role="switch"]').click();
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: true,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
+
+    cy.get('input[type="search"]').type('s');
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: true,
+          queryString: 's',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeCarts: 'true',
+        queryString: 's',
+      });
+    });
   });
 
   it('Show Navigate to [ORDER DETAIL] page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.DeliveryProvidersType)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          DeliveryProvidersTypeResponse,
+        );
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.OrderDeliveryStatus)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          OrderDeliveryStatusResponse,
+        );
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.PaymentProvidersType)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          PaymentProvidersTypeResponse,
+        );
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.OrderStatus)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(OrderStatusResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.OrderPaymentStatus)).then(
+      (currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          OrderPaymentStatusResponse,
+        );
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
+  });
+
+  it('Show [ORDER NUMBER] in detail page successfully', () => {
+    const { order } = SingleOrderResponse.data;
+
+    cy.location('pathname').should('eq', '/orders');
+    cy.get(`a[href="/orders/${order._id}"]`).click();
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
+
+    if (order?.status === 'OPEN') {
+      cy.get('span#order_number_badge').should(
+        'contain',
+        localizations.en.cart,
+      );
+    } else {
+      cy.get('span#order_number_badge').should('contain', order.orderNumber);
+    }
   });
 
   it('Show [CONFIRM ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.status === 'PENDING') {
       cy.get('button#confirm_order')
@@ -166,7 +334,7 @@ describe('Order', () => {
           force: true,
         });
 
-      cy.wait(fullAliasMutationName(ALIASES.ConfirmOrder)).then(
+      cy.wait(fullAliasMutationName(OrderOperations.ConfirmOrder)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             orderId: order._id,
@@ -175,20 +343,28 @@ describe('Order', () => {
         },
       );
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show cancel [CONFIRM ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.status === 'PENDING') {
       cy.get('button#confirm_order')
@@ -199,20 +375,28 @@ describe('Order', () => {
         force: true,
       });
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show [REJECT ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.status === 'PENDING') {
       cy.get('button#reject_order')
@@ -225,7 +409,7 @@ describe('Order', () => {
           force: true,
         });
 
-      cy.wait(fullAliasMutationName(ALIASES.RejectOrder)).then(
+      cy.wait(fullAliasMutationName(OrderOperations.RejectOrder)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             orderId: order._id,
@@ -234,20 +418,28 @@ describe('Order', () => {
         },
       );
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show cancel [REJECT ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.status === 'PENDING') {
       cy.get('button#reject_order')
@@ -258,20 +450,28 @@ describe('Order', () => {
         force: true,
       });
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show [DELIVER ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.delivery.status === 'OPEN') {
       cy.get('button#deliver')
@@ -282,7 +482,7 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.wait(fullAliasMutationName(ALIASES.DeliverOrder)).then(
+      cy.wait(fullAliasMutationName(OrderOperations.DeliverOrder)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             orderId: order._id,
@@ -291,20 +491,28 @@ describe('Order', () => {
         },
       );
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show cancel [DELIVERY ORDER ] on order detail page successfully', () => {
     const { order } = SingleOrderResponse.data;
 
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/orders"]')
-      .contains(localizations.en.orders)
-      .click({ force: true });
-    cy.url().should('contain', '/orders');
-
+    cy.location('pathname').should('eq', '/orders');
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.delivery.status === 'OPEN') {
       cy.get('button#deliver')
@@ -315,6 +523,8 @@ describe('Order', () => {
         force: true,
       });
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show [PAY ORDER ] on order detail page successfully', () => {
@@ -325,10 +535,22 @@ describe('Order', () => {
     cy.get('a[href="/orders"]')
       .contains(localizations.en.orders)
       .click({ force: true });
-    cy.url().should('contain', '/orders');
+    cy.location('pathname').should('eq', '/orders');
 
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.payment.status === 'OPEN') {
       cy.get('button#pay')
@@ -339,7 +561,7 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.wait(fullAliasMutationName(ALIASES.PayOrder)).then(
+      cy.wait(fullAliasMutationName(OrderOperations.PayOrder)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             orderId: order._id,
@@ -348,6 +570,8 @@ describe('Order', () => {
         },
       );
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 
   it('Show cancel [PAY ORDER ] on order detail page successfully', () => {
@@ -358,10 +582,22 @@ describe('Order', () => {
     cy.get('a[href="/orders"]')
       .contains(localizations.en.orders)
       .click({ force: true });
-    cy.url().should('contain', '/orders');
+    cy.location('pathname').should('eq', '/orders');
 
     cy.get(`a[href="/orders/${order._id}"]`).click();
-    cy.url().should('contain', `/orders/${order._id}`);
+
+    cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          orderId: order._id,
+        });
+        expect(response.body).to.deep.eq(SingleOrderResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     if (order.payment.status === 'OPEN') {
       cy.get('button#pay')
@@ -372,5 +608,7 @@ describe('Order', () => {
         force: true,
       });
     }
+
+    cy.location('pathname').should('eq', `/orders/${order._id}`);
   });
 });

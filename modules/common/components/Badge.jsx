@@ -13,6 +13,7 @@ const Badge = ({
 
   return (
     <span
+      id="badge"
       className={classnames(
         `inline-flex items-center shadow-sm border ${borderColor(
           normalizedColor,
