@@ -522,13 +522,13 @@ export const PayOrderResponse = {
 };
 
 export const OrderOperations = {
-  Orders: 'Orders',
+  GetOrderList: 'Orders',
+  GetSingleOrder: 'Order',
   OrderStatus: 'OrderStatus',
   OrderPaymentStatus: 'OrderPaymentStatus',
   PaymentProvidersType: 'PaymentProvidersType',
   OrderDeliveryStatus: 'OrderDeliveryStatus',
   DeliveryProvidersType: 'DeliveryProvidersType',
-  GetSingleOrder: 'Order',
   ConfirmOrder: 'ConfirmOrder',
   RejectOrder: 'RejectOrder',
   DeliverOrder: 'DeliverOrder',
