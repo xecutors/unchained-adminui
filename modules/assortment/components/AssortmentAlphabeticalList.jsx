@@ -32,7 +32,7 @@ const AssortmentAlphabeticalList = ({ dictionary = {} }) => {
               </div>
               <ul className="relative z-0 divide-y divide-slate-200">
                 {values.map((item) => (
-                  <li key={item._id} className="bg-white dark:bg-slate-500">
+                  <li key={item._id} className="bg-white dark:bg-slate-800">
                     <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-400">
                       {item?.media && (
                         <div className="flex-shrink-0">

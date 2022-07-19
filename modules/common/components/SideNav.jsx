@@ -46,7 +46,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
                     className={classNames(
                       'group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900',
                       {
-                        ' dark:bg-slate-700 text-slate-900 dark:text-slate-400 bg-slate-600':
+                        ' dark:bg-slate-700 text-slate-900 dark:text-slate-400 bg-slate-200 hover:bg-slate-300':
                           router.asPath === subItem.href,
                       },
                     )}

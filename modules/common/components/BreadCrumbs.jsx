@@ -1,15 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const BreadCrumbs = ({ routeName, currentPageTitle }) => {
+const BreadCrumbs = ({ routeName, currentPageTitle, depth }) => {
   const router = useRouter();
   const pathArr = router.asPath
 
     .split('/')
     .filter((name, i) => router.asPath.split('/').indexOf(name) === i);
   if (pathArr.length === 1) return '';
-  let currentRoute = '';
 
+  let currentRoute = '';
+  // location of the page, used when supporting  non-url safe urls that may have / in them to tell it where the page is located on the page hierarchy
+  if (depth) pathArr.splice(depth);
   // if current page name is provided use it as the last item of breadcrumb
   if (routeName) pathArr[pathArr.length - 1] = routeName;
 

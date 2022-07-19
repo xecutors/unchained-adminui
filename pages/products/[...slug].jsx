@@ -22,9 +22,9 @@ const ProductDetailPage = () => {
   const { query } = useRouter();
   const { setModal } = useModal();
 
-  const { slug = '' } = query || {};
-
-  const { product, loading } = useProduct({ slug });
+  const { slug = [] } = query || {};
+  const normalizedSlug = slug.join('/');
+  const { product, loading } = useProduct({ slug: normalizedSlug });
   const { removeProduct } = useRemoveProduct();
 
   const handleOnClick = async () => {
@@ -51,7 +51,7 @@ const ProductDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs />
+      <BreadCrumbs routeName={normalizedSlug} depth={3} />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={
