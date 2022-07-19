@@ -111,7 +111,9 @@ const AssortmentFilters = ({ assortmentId }) => {
             defaultMessage="<ul> <li>Assign filters that will be applied for the assortment </li>
       </ul>"
             values={{
-              ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+              ul: (chunk) => (
+                <ul className="list-disc list-inside">{chunk} </ul>
+              ),
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -132,7 +134,9 @@ const AssortmentFilters = ({ assortmentId }) => {
             <li> Drag and drop list items to sort filters order </li>
           </ul>"
             values={{
-              ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+              ul: (chunk) => (
+                <ul className="list-disc list-inside">{chunk} </ul>
+              ),
               li: (chunk) => <li>{chunk} </li>,
             }}
           />

@@ -56,6 +56,7 @@ const useLoginWithPassword = () => {
     }
     return logInWithPasswordMutation({
       variables,
+      notifyOnNetworkStatusChange: true,
     });
   };
 

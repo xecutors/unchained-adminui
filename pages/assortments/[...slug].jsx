@@ -10,12 +10,15 @@ import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 const AssortmentDetailPage = () => {
   const { formatDateTime } = useFormatDateTime();
   const { query } = useRouter();
-  const { slug = '' } = query || {};
-  const { assortment, loading } = useAssortment({ slug });
+  const { slug = [] } = query || {};
+  const normalizedSlug = slug?.join('/');
+  const { assortment, loading } = useAssortment({
+    slug: normalizedSlug,
+  });
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs />
+      <BreadCrumbs routeName={slug.join('/')} depth={3} />
       <PageHeader
         headerText={
           <FormattedMessage

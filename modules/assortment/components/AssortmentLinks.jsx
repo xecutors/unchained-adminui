@@ -111,7 +111,9 @@ const AssortmentLinks = ({ assortmentId }) => {
             defaultMessage="<ul> <li>Assign assortment that are direct child of this assortment </li>
           </ul>"
             values={{
-              ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+              ul: (chunk) => (
+                <ul className="list-disc list-inside">{chunk} </ul>
+              ),
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
@@ -133,7 +135,9 @@ const AssortmentLinks = ({ assortmentId }) => {
          <li> Parents are assortments found in the ancestors tree on any level </li>
          <li> Descendants are assortments found in the children tree on any level </li> </ul>"
             values={{
-              ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
+              ul: (chunk) => (
+                <ul className="list-disc list-inside">{chunk} </ul>
+              ),
               li: (chunk) => <li>{chunk} </li>,
             }}
           />
