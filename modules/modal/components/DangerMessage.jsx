@@ -64,6 +64,7 @@ const DangerMessage = ({
             formatMessage({ id: 'continue', defaultMessage: 'Continue' })}
         </button>
         <button
+          id="danger_cancel"
           onClick={onCancelClick || close}
           type="button"
           className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
