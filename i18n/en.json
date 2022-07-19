@@ -311,6 +311,7 @@
   "input": "Input",
   "interface": "Interface",
   "invalid_credential_error": "Invalid credential, please try again",
+  "invalid_json_input": "Invalid JSON input",
   "isActive": "Active",
   "isRoot": "Root",
   "is_base": "Base",
@@ -526,7 +527,6 @@
   "show_carts": "Show carts",
   "show_guests": "Show Guests",
   "show_inactive": "Show Inactive",
-  "sign-up": "Sign Up",
   "sign_up": "Sign up",
   "sign_up_header": "Create new account",
   "simple_product_definition": "<h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>",
@@ -584,7 +584,6 @@
   "trial_interval_unit": "Trial interval unit",
   "trial_unit": "Trial Unit",
   "two_factor_auth_enabled": "2FA Enabled",
-  "two_factor_authentication_required": "Two factor authentication code required",
   "two_factor_code_not_match": "Two factor authentication code did not match",
   "type": "Type",
   "type_colon": "Type:",
@@ -660,7 +659,5 @@
   "work_type": "Work type",
   "work_updated": "Updated",
   "worker": "Worker",
-  "worker_dynamic": "{worker}",
-  "invalid_json_input": "Invalid JSON input"
-
+  "worker_dynamic": "{worker}"
 }

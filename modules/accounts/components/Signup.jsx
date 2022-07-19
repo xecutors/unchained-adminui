@@ -113,8 +113,8 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                   </span>
 
                   {formatMessage({
-                    id: 'sign-up',
-                    defaultMessage: 'Sign Up',
+                    id: 'sign_up',
+                    defaultMessage: 'Sign up',
                   })}
                 </button>
               </div>

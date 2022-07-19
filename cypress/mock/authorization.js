@@ -155,11 +155,39 @@ export const ForgotPasswordSuccessResponse = {
 export const AuthenticationOperations = {
   LoginWithPassword: 'LoginWithPassword',
   ForgotPassword: 'ForgotPassword',
+  CreateUser: 'CreateUser',
 };
 
+export const EmailExistsEnrollmentErrorResponse = {
+  errors: [
+    {
+      message: 'Email already exists',
+      path: ['createUser'],
+      extensions: {
+        code: 'INTERNAL_SERVER_ERROR',
+      },
+    },
+  ],
+  data: {
+    createUser: null,
+  },
+};
+
+export const EnrollmentSuccessResponse = {
+  data: {
+    createUser: {
+      id: 'M2ppf7NolNW858CUv',
+      token: '2e804e2ceb0a98fc914acb21dffb37802258b432ae9',
+      tokenExpires: '2030-01-15T19:09:54.700Z',
+      __typename: 'LoginMethodResponse',
+    },
+  },
+};
 export default {
   LogInSuccessResponse,
   InvalidCredentialErrorResponse,
   ForgotPasswordFailedResponse,
   ForgotPasswordSuccessResponse,
+  EmailExistsEnrollmentErrorResponse,
+  EnrollmentSuccessResponse,
 };

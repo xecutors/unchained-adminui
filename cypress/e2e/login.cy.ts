@@ -116,4 +116,18 @@ describe('Login', () => {
     );
     cy.location('pathname').should('eq', '/log-in');
   });
+
+  it('Should  navigate to [SIGN UP PAGE] successfully ', () => {
+    cy.get('a[href="/sign-up"]')
+      .should('contain.text', localizations.en.sign_up)
+      .click();
+    cy.location('pathname').should('eq', '/sign-up');
+  });
+
+  it('Should  navigate to [FORGOT PASSWORD PAGE] successfully ', () => {
+    cy.get('a[href="/account/forgot-password"]')
+      .should('contain.text', localizations.en.forget_password)
+      .click();
+    cy.location('pathname').should('eq', '/account/forgot-password');
+  });
 });

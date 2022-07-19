@@ -85,4 +85,11 @@ describe('Forgot password', () => {
       ),
     );
   });
+
+  it('Should  navigate to [SIGN UP PAGE] successfully ', () => {
+    cy.get('a[href="/sign-up"]')
+      .should('contain.text', localizations.en.sign_up)
+      .click();
+    cy.location('pathname').should('eq', '/sign-up');
+  });
 });

@@ -941,6 +941,9 @@
   "invalid_credential_error": {
     "defaultMessage": "Invalid credential, please try again"
   },
+  "invalid_json_input": {
+    "defaultMessage": "Invalid JSON input"
+  },
   "isActive": {
     "defaultMessage": "Active"
   },
@@ -1587,9 +1590,6 @@
   "show_inactive": {
     "defaultMessage": "Show Inactive"
   },
-  "sign-up": {
-    "defaultMessage": "Sign Up"
-  },
   "sign_up": {
     "defaultMessage": "Sign up"
   },
@@ -1762,9 +1762,6 @@
   },
   "two_factor_auth_enabled": {
     "defaultMessage": "2FA Enabled"
-  },
-  "two_factor_authentication_required": {
-    "defaultMessage": "Two factor authentication code required"
   },
   "two_factor_code_not_match": {
     "defaultMessage": "Two factor authentication code did not match"
