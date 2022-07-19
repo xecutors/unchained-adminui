@@ -25,19 +25,6 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-const ALIASES = {
-  SetUsername: 'SetUsername',
-  SendVerificationEmail: 'SendVerificationEmail',
-  RemoveEmail: 'RemoveEmail',
-  AddEmail: 'AddEmail',
-  SetUserTags: 'setUserTags',
-  SetRoles: 'SetRoles',
-  SetPassword: 'SetPassword',
-  BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
-  EnableTOTP: 'EnableTOTP',
-  DisableTOTP: 'DisableTOTP',
-};
-
 describe('User', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
@@ -58,53 +45,53 @@ describe('User', () => {
         req.reply(SystemRolesResponse);
       }
       if (hasOperationName(req, UserOperations.SetUsername)) {
-        aliasMutation(req, ALIASES.SetUsername);
+        aliasMutation(req, UserOperations.SetUsername);
         req.reply(SetUsernameResponse);
       }
       if (hasOperationName(req, UserOperations.SendVerificationEmail)) {
-        aliasMutation(req, ALIASES.SendVerificationEmail);
+        aliasMutation(req, UserOperations.SendVerificationEmail);
         req.reply(SendVerificationEmailResponse);
       }
       if (hasOperationName(req, UserOperations.RemoveEmail)) {
-        aliasMutation(req, ALIASES.RemoveEmail);
+        aliasMutation(req, UserOperations.RemoveEmail);
         req.reply(RemoveEmailResponse);
       }
       if (hasOperationName(req, UserOperations.AddEmail)) {
-        aliasMutation(req, ALIASES.AddEmail);
+        aliasMutation(req, UserOperations.AddEmail);
         req.reply(AddEmailResponse);
       }
       if (hasOperationName(req, UserOperations.SetUserTags)) {
-        aliasMutation(req, ALIASES.SetUserTags);
+        aliasMutation(req, UserOperations.SetUserTags);
         req.reply(SetUserTagsResponse);
       }
       if (hasOperationName(req, UserOperations.SetRoles)) {
-        aliasMutation(req, ALIASES.SetRoles);
+        aliasMutation(req, UserOperations.SetRoles);
         req.reply(SetRolesResponse);
       }
       if (hasOperationName(req, UserOperations.SetPassword)) {
-        aliasMutation(req, ALIASES.SetPassword);
+        aliasMutation(req, UserOperations.SetPassword);
         req.reply(SetPasswordResponse);
       }
       if (hasOperationName(req, UserOperations.BuildSecretTOTPAuthURL)) {
-        aliasMutation(req, ALIASES.BuildSecretTOTPAuthURL);
+        aliasMutation(req, UserOperations.BuildSecretTOTPAuthURL);
         req.reply(BuildSecretTOTPAuthURLResponse);
       }
       if (hasOperationName(req, UserOperations.EnableTOTP)) {
         const { body } = req;
         if (body.variables?.code?.length === 6) {
-          aliasMutation(req, ALIASES.EnableTOTP);
+          aliasMutation(req, UserOperations.EnableTOTP);
           req.reply(EnableTOTPResponse);
         } else {
-          aliasMutation(req, ALIASES.EnableTOTP);
+          aliasMutation(req, UserOperations.EnableTOTP);
           req.reply(UnsuccessfulEnableTOTPResponse);
         }
       }
       if (hasOperationName(req, UserOperations.DisableTOTP)) {
         if (req.body.variables?.code?.length === 6) {
-          aliasMutation(req, ALIASES.DisableTOTP);
+          aliasMutation(req, UserOperations.DisableTOTP);
           req.reply(DisableTOTPResponse);
         } else {
-          aliasMutation(req, ALIASES.DisableTOTP);
+          aliasMutation(req, UserOperations.DisableTOTP);
           req.reply(UnsuccessfulDisableTOTPResponse);
         }
       }
@@ -209,7 +196,7 @@ describe('User', () => {
 
     cy.get('button[type="submit"]').contains(localizations.en.save).click();
 
-    cy.wait(fullAliasMutationName(ALIASES.SetUsername)).then(
+    cy.wait(fullAliasMutationName(UserOperations.SetUsername)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           username: user.username,
@@ -345,7 +332,7 @@ describe('User', () => {
         .contains(localizations.en.send_verification_mail)
         .click();
 
-      cy.wait(fullAliasMutationName(ALIASES.SendVerificationEmail)).then(
+      cy.wait(fullAliasMutationName(UserOperations.SendVerificationEmail)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             email: user?.emails?.find((email) => email.verified === false)
@@ -393,7 +380,7 @@ describe('User', () => {
       .contains(localizations.en.delete_email)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.RemoveEmail)).then(
+    cy.wait(fullAliasMutationName(UserOperations.RemoveEmail)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           email: user?.email,
@@ -435,13 +422,15 @@ describe('User', () => {
     cy.get('input#email').type(user.email);
     cy.get('input[type="submit"]').contains(localizations.en.add_email).click();
 
-    cy.wait(fullAliasMutationName(ALIASES.AddEmail)).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
-        email: user?.email,
-        userId: user._id,
-      });
-      expect(currentSubject.response.body).to.deep.eq(AddEmailResponse);
-    });
+    cy.wait(fullAliasMutationName(UserOperations.AddEmail)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          email: user?.email,
+          userId: user._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(AddEmailResponse);
+      },
+    );
 
     cy.location().then((current) => {
       expect(current.pathname).to.eq(`/users/${user._id}`);
@@ -513,7 +502,7 @@ describe('User', () => {
     cy.contains(localizations.en.add_tag).click();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
-    cy.wait(fullAliasMutationName(ALIASES.SetUserTags)).then(
+    cy.wait(fullAliasMutationName(UserOperations.SetUserTags)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           tags: ['new'],
@@ -557,13 +546,15 @@ describe('User', () => {
       .contains(localizations.en.update_role)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.SetRoles)).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
-        roles: ['admin'],
-        userId: user._id,
-      });
-      expect(currentSubject.response.body).to.deep.eq(SetRolesResponse);
-    });
+    cy.wait(fullAliasMutationName(UserOperations.SetRoles)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          roles: ['admin'],
+          userId: user._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(SetRolesResponse);
+      },
+    );
 
     cy.location().then((current) => {
       expect(current.pathname).to.eq(`/users/${user._id}`);
@@ -599,7 +590,7 @@ describe('User', () => {
       .contains(localizations.en.change_password)
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.SetPassword)).then(
+    cy.wait(fullAliasMutationName(UserOperations.SetPassword)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           newPassword: null,
@@ -686,13 +677,13 @@ describe('User', () => {
     if (me._id === user._id && !user.isTwoFactorEnabled) {
       cy.get('button[role="switch"]').click();
 
-      cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-        (currentSubject) => {
-          expect(currentSubject.response.body).to.deep.eq(
-            BuildSecretTOTPAuthURLResponse,
-          );
-        },
-      );
+      cy.wait(
+        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
+      ).then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          BuildSecretTOTPAuthURLResponse,
+        );
+      });
 
       cy.get('input#code');
       cy.get('input[type="submit"]').should('contain', localizations.en.enable);
@@ -724,18 +715,18 @@ describe('User', () => {
     if (me._id === user._id && !user.isTwoFactorEnabled) {
       cy.get('button[role="switch"]').click();
 
-      cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-        (currentSubject) => {
-          expect(currentSubject.response.body).to.deep.eq(
-            BuildSecretTOTPAuthURLResponse,
-          );
-        },
-      );
+      cy.wait(
+        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
+      ).then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          BuildSecretTOTPAuthURLResponse,
+        );
+      });
 
       cy.get('input#code').type('213746');
       cy.get('input[type="submit"]').contains(localizations.en.enable).click();
 
-      cy.wait(fullAliasMutationName(ALIASES.EnableTOTP)).then(
+      cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             code: '213746',
@@ -773,13 +764,13 @@ describe('User', () => {
     if (me._id === user._id && !user.isTwoFactorEnabled) {
       cy.get('button[role="switch"]').click();
 
-      cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-        (currentSubject) => {
-          expect(currentSubject.response.body).to.deep.eq(
-            BuildSecretTOTPAuthURLResponse,
-          );
-        },
-      );
+      cy.wait(
+        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
+      ).then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          BuildSecretTOTPAuthURLResponse,
+        );
+      });
 
       cy.get('input#code').type('1234').clear().blur();
       cy.get('label[for="code"]').should(
@@ -821,18 +812,18 @@ describe('User', () => {
     if (me._id === user._id && !user.isTwoFactorEnabled) {
       cy.get('button[role="switch"]').click();
 
-      cy.wait(fullAliasMutationName(ALIASES.BuildSecretTOTPAuthURL)).then(
-        (currentSubject) => {
-          expect(currentSubject.response.body).to.deep.eq(
-            BuildSecretTOTPAuthURLResponse,
-          );
-        },
-      );
+      cy.wait(
+        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
+      ).then((currentSubject) => {
+        expect(currentSubject.response.body).to.deep.eq(
+          BuildSecretTOTPAuthURLResponse,
+        );
+      });
 
       cy.get('input#code').type('213');
       cy.get('input[type="submit"]').contains(localizations.en.enable).click();
 
-      cy.wait(fullAliasMutationName(ALIASES.EnableTOTP)).then(
+      cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             code: '213',
@@ -883,7 +874,7 @@ describe('User', () => {
         .contains(localizations.en.disable_totp)
         .click();
 
-      cy.wait(fullAliasMutationName(ALIASES.DisableTOTP)).then(
+      cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             code: '213746',
@@ -960,7 +951,7 @@ describe('User', () => {
         .contains(localizations.en.disable_totp)
         .click();
 
-      cy.wait(fullAliasMutationName(ALIASES.DisableTOTP)).then(
+      cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
         (currentSubject) => {
           expect(currentSubject.request.body.variables).to.deep.eq({
             code: '213',

@@ -20,7 +20,7 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 
-describe('User [DESKTOP]', () => {
+describe('User', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
