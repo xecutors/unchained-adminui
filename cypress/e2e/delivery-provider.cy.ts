@@ -105,7 +105,6 @@ describe('Delivery Provider', () => {
       DeliveryProviderPickUpInterfaces.data.deliveryInterfaces;
     const { options } = DeliveryProvidersTypeResponse.data.deliveryProviderType;
     const [firstType] = options;
-
     cy.visit('/');
     cy.get('button').contains(localizations.en.system).click({ force: true });
     cy.get('a[href="/delivery-provider"]')

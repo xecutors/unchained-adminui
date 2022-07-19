@@ -60,7 +60,7 @@ const OrderDetail = ({ order }) => {
     await setModal(
       <DangerMessage
         buttonText={formatMessage({
-          id: 'reject_rder_alert_button',
+          id: 'reject_order_alert_button',
           defaultMessage: 'Reject',
         })}
         headerText={formatMessage({
@@ -94,6 +94,7 @@ const OrderDetail = ({ order }) => {
         <>
           <button
             onClick={onConfirmOrder}
+            id="confirm_order"
             type="button"
             className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-sm font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
           >
@@ -104,6 +105,7 @@ const OrderDetail = ({ order }) => {
           </button>
           <button
             onClick={onRejectOrder}
+            id="reject_order"
             type="button"
             className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-sm font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
           >

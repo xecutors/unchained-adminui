@@ -12,6 +12,12 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 
+const ALIASES = {
+  CreateLanguage: 'CreateLanguage',
+  UpdateLanguage: 'UpdateLanguage',
+  RemoveLanguage: 'RemoveLanguage',
+};
+
 describe('Languages', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
@@ -86,6 +92,7 @@ describe('Languages', () => {
       });
     });
 
+    cy.url().should('contain', '/language');
     cy.get('button[role="switch"]').click();
 
     cy.location().then((loc) => {
@@ -308,5 +315,104 @@ describe('Languages', () => {
       },
     );
     cy.location('pathname').should('eq', '/language');
+  });
+
+  it('Show [INITIALIZE LANGUAGE] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input#isoCode').should('have.value', language.isoCode);
+    cy.get('input[type="checkbox"]#isActive');
+  });
+
+  it('Show [UPDATE LANGUAGE] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input[type="checkbox"]#isActive').uncheck();
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.update_language)
+      .click();
+
+    cy.wait(fullAliasMutationName(ALIASES.UpdateLanguage)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          language: {
+            isoCode: language.isoCode,
+            isActive: false,
+          },
+          languageId: language._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(UpdateLanguageResponse);
+      },
+    );
+  });
+
+  it('Show [DELETE COUNTRY] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+    cy.get(`a[href="/language/${language._id}"]`).click();
+    cy.url().should('contain', `/language/${language._id}`);
+    cy.get('input[type="checkbox"]#isActive');
+    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.url().should('contain', '/language');
+
+    cy.wait(fullAliasMutationName(ALIASES.RemoveLanguage)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          languageId: language._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveLanguageResponse);
+      },
+    );
+  });
+
+  it('Show [DELETE COUNTRY FROM LIST] successfully', () => {
+    const { language } = SingleLanguageResponse.data;
+
+    cy.visit('/');
+    cy.get('button').contains(localizations.en.system).click({ force: true });
+    cy.get('a[href="/language"]')
+      .contains(localizations.en.languages)
+      .click({ force: true });
+
+    cy.url().should('contain', '/language');
+    cy.url().should('contain', '/language');
+    cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
+    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.url().should('contain', '/language');
+
+    cy.wait(fullAliasMutationName(ALIASES.RemoveLanguage)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          languageId: language._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(RemoveLanguageResponse);
+      },
+    );
   });
 });

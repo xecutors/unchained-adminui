@@ -263,7 +263,6 @@ describe('Product', () => {
           },
         });
       }
-
       if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
         const { body } = req;
         expect(body.variables).to.haveOwnProperty('productId');

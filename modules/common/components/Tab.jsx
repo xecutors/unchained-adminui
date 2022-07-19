@@ -34,7 +34,7 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+          className="mt-1 block w-full text-slate-900 rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           value={tab}
         >
           {tabItems.map((value) => (
@@ -54,10 +54,10 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-500':
+                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-100 dark:bg-slate-500':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-200 font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">

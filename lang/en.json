@@ -1437,11 +1437,11 @@
   "reject_order": {
     "defaultMessage": "Reject order"
   },
+  "reject_order_alert_button": {
+    "defaultMessage": "Reject"
+  },
   "reject_order_alert_header": {
     "defaultMessage": "Reject order?"
-  },
-  "reject_rder_alert_button": {
-    "defaultMessage": "Reject"
   },
   "rejected": {
     "defaultMessage": "Rejected"

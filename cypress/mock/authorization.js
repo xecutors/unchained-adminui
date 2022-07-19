@@ -1,10 +1,10 @@
 export const LogInSuccessResponse = {
   loginWithPassword: {
-    id: 'BKHrbTkHeGRtou5kc',
+    id: 'SIgmXcECVYiDTVeh0',
     token: '54256db66c640f613b853ac69914288aeca5bb2460b',
     tokenExpires: '2030-01-02T06:20:16.455Z',
     user: {
-      _id: 'BKHrbTkHeGRtou5kc',
+      _id: 'SIgmXcECVYiDTVeh0',
       allowedActions: [
         'answerQuotation',
         'authTwoFactor',
