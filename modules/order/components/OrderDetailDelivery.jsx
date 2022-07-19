@@ -110,6 +110,7 @@ const OrderDetailDelivery = ({ order }) => {
                 order?.delivery?.status === 'OPEN' &&
                 type.value === 'DELIVERED' && (
                   <button
+                    id="deliver"
                     type="button"
                     onClick={markAsDelivered}
                     className="my-2  mr-2  inline-flex  h-full  items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"

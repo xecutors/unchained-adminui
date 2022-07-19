@@ -40,14 +40,17 @@ import { ShopInfoOperations, ShopInfoResponse } from '../mock/shop-info';
 import { CurrentUserResponse, UserOperations } from '../mock/user';
 import { OrderListResponse, OrderOperations } from '../mock/order';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
+import { aliasQuery } from '../utils/aliasQuery';
 
 beforeEach(() => {
   cy.intercept('POST', '/api/graphql', (req) => {
     if (hasOperationName(req, OrderOperations.Orders)) {
+      aliasQuery(req, `global${OrderOperations.Orders}`);
       req.reply(OrderListResponse);
     }
 
-    if (hasOperationName(req, `global${UserOperations.CurrentUser}`)) {
+    if (hasOperationName(req, UserOperations.CurrentUser)) {
+      aliasQuery(req, `global${UserOperations.CurrentUser}`);
       req.reply(CurrentUserResponse);
     }
 
