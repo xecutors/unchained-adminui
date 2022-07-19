@@ -15,11 +15,6 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-const ALIASES = {
-  CreateUser: 'EnrollUser',
-  UpdateUser: 'UpdateUserProfile',
-};
-
 describe('User', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
@@ -38,11 +33,11 @@ describe('User', () => {
         req.reply(SystemRolesResponse);
       }
       if (hasOperationName(req, UserOperations.CreateUser)) {
-        aliasMutation(req, ALIASES.CreateUser);
+        aliasMutation(req, UserOperations.CreateUser);
         req.reply(CreateUserResponse);
       }
       if (hasOperationName(req, UserOperations.UpdateUser)) {
-        aliasMutation(req, ALIASES.UpdateUser);
+        aliasMutation(req, UserOperations.UpdateUser);
         req.reply(UpdateUserResponse);
       }
     });
@@ -236,7 +231,7 @@ describe('User', () => {
       .last()
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.CreateUser)).then(
+    cy.wait(fullAliasMutationName(UserOperations.CreateUser)).then(
       (currentSubject) => {
         expect({
           ...currentSubject.request.body.variables,
@@ -383,7 +378,7 @@ describe('User', () => {
       .last()
       .click();
 
-    cy.wait(fullAliasMutationName(ALIASES.UpdateUser)).then(
+    cy.wait(fullAliasMutationName(UserOperations.UpdateUser)).then(
       (currentSubject) => {
         expect({
           ...currentSubject.request.body.variables,
