@@ -31,7 +31,8 @@ const ForgotPassword = () => {
     }
   };
   const onSubmit = async ({ email }) => {
-    return forgotPassword({ email });
+    const { data } = await forgotPassword({ email });
+    return data.forgotPassword;
   };
 
   const logo = getLogo();

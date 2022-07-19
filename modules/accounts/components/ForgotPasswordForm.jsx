@@ -14,10 +14,13 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
     submit: onSubmit,
     onSubmitSuccess,
     getSubmitErrorMessage: async () => {
-      return formatMessage({
-        id: 'email_address_not_exist',
-        defaultMessage: 'Provided email does not exist',
-      });
+      form.formik.setFieldError(
+        'email',
+        formatMessage({
+          id: 'email_address_not_exist',
+          defaultMessage: 'Provided email does not exist',
+        }),
+      );
     },
     initialValues: {
       email: '',

@@ -134,8 +134,32 @@ export const InvalidCredentialErrorResponse = {
   },
 };
 
-export const AuthenticationOperations = {
-  LoginWithPassword: 'LoginWithPassword',
+export const ForgotPasswordFailedResponse = {
+  data: {
+    forgotPassword: {
+      success: false,
+      __typename: 'SuccessResponse',
+    },
+  },
 };
 
-export default { LogInSuccessResponse, InvalidCredentialErrorResponse };
+export const ForgotPasswordSuccessResponse = {
+  data: {
+    forgotPassword: {
+      success: true,
+      __typename: 'SuccessResponse',
+    },
+  },
+};
+
+export const AuthenticationOperations = {
+  LoginWithPassword: 'LoginWithPassword',
+  ForgotPassword: 'ForgotPassword',
+};
+
+export default {
+  LogInSuccessResponse,
+  InvalidCredentialErrorResponse,
+  ForgotPasswordFailedResponse,
+  ForgotPasswordSuccessResponse,
+};

@@ -5,7 +5,8 @@ import {
   LogInSuccessResponse,
 } from '../mock/authorization';
 import { CurrentUserResponse, UserOperations } from '../mock/user';
-import { aliasMutation } from '../utils/aliasMutation';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
+import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -24,6 +25,7 @@ describe('Login', () => {
       }
 
       if (hasOperationName(req, UserOperations.CurrentUser)) {
+        aliasQuery(req, UserOperations.CurrentUser);
         if (req.headers?.cookie && req.headers?.cookie.includes('token')) {
           req.reply(CurrentUserResponse);
         } else req.reply({ data: { me: null } });
@@ -38,9 +40,36 @@ describe('Login', () => {
 
   it('Should [LOGIN] successfully', () => {
     cy.location('pathname').should('eq', '/log-in');
+    cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
+      (currentSubject) => {
+        const { response } = currentSubject;
+
+        expect(response.body).to.deep.eq({ data: { me: null } });
+      },
+    );
     cy.get('input[name="email"]').type('admin@unchained.local');
     cy.get('input[name="password"]').type('correct');
     cy.get('button[type="submit"]').contains(localizations.en.log_in).click();
+    cy.wait(
+      fullAliasMutationName(AuthenticationOperations.LoginWithPassword),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        email: 'admin@unchained.local',
+        password: null,
+        plainPassword: 'correct',
+        totpCode: null,
+      });
+      expect(response.body).to.deep.eq(LogInSuccessResponse);
+    });
+
+    cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
+      (currentSubject) => {
+        const { response } = currentSubject;
+
+        expect(response.body).to.deep.eq(CurrentUserResponse);
+      },
+    );
     cy.location('pathname').should('eq', '/');
   });
 
@@ -49,7 +78,21 @@ describe('Login', () => {
     cy.get('input[name="email"]').type('admin@unchained.local');
     cy.get('input[name="password"]').type('wrong-password');
     cy.get('button[type="submit"]').contains(localizations.en.log_in).click();
+
+    cy.wait(
+      fullAliasMutationName(AuthenticationOperations.LoginWithPassword),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        email: 'admin@unchained.local',
+        password: null,
+        plainPassword: 'wrong-password',
+        totpCode: null,
+      });
+      expect(response.body).to.deep.eq(InvalidCredentialErrorResponse);
+    });
     cy.location('pathname').should('eq', '/log-in');
+
     cy.get('li span').contains(localizations.en.invalid_credential_error);
   });
 
