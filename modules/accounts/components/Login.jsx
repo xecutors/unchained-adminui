@@ -67,10 +67,6 @@ export default function LogInForm() {
             defaultMessage: 'TOTP code is required',
           }),
         );
-        return formatMessage({
-          id: 'two_factor_authentication_required',
-          defaultMessage: 'Two factor authentication code required',
-        });
       }
       if (error.message.includes("2FA code didn't match")) {
         form.formik.setFieldError(
@@ -80,10 +76,6 @@ export default function LogInForm() {
             defaultMessage: 'TOTP code did not match',
           }),
         );
-        return formatMessage({
-          id: 'two_factor_code_not_match',
-          defaultMessage: 'Two factor authentication code did not match',
-        });
       }
 
       return '';
@@ -99,6 +91,8 @@ export default function LogInForm() {
   if (isAuthenticated()) {
     router.replace('/');
   }
+
+  console.log(form);
 
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -198,6 +192,7 @@ export default function LogInForm() {
               <button
                 type="submit"
                 id="submit"
+                disabled={!form.formik.isValid}
                 name="submit"
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               >
