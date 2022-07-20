@@ -2,7 +2,7 @@ export const AssortmentListResponse = {
   data: {
     assortments: [
       {
-        _id: 'snacks',
+        _id: 'e38361a29cf8e3a6036c837a',
         isActive: true,
         created: '2022-03-22T13:47:05.168Z',
         updated: '2022-07-19T14:26:46.565Z',
@@ -134,32 +134,14 @@ export const AssortmentListResponse = {
   },
 };
 
-const SingleTranslatedAssortmentResponse = {
+export const SingleTranslatedAssortmentTextsResponse = {
   data: {
     translatedAssortmentTexts: [
       {
-        _id: 'c0a1b807e33d2d36b2022fae',
-        locale: 'fr',
-        slug: 'snacks',
-        title: null,
-        subtitle: null,
-        description: null,
-        __typename: 'AssortmentTexts',
-      },
-      {
         _id: '8f7dcfdeb42f704b56248d1e',
-        locale: 'de',
+        locale: 'en',
         slug: 'snacks',
         title: 'Snacks',
-        subtitle: null,
-        description: null,
-        __typename: 'AssortmentTexts',
-      },
-      {
-        _id: 'db2de60d0793e3de3074f6ab',
-        locale: 'it',
-        slug: 'snacks',
-        title: null,
         subtitle: null,
         description: null,
         __typename: 'AssortmentTexts',
@@ -227,6 +209,20 @@ export const AssortmentPathsResponse = {
   },
 };
 
+export const CreateAssortmentResponse = {
+  data: {
+    createAssortment: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      texts: {
+        _id: '8f7dcfdeb42f704b56248d1e',
+        slug: 'snacks',
+        __typename: 'AssortmentTexts',
+      },
+      __typename: 'Assortment',
+    },
+  },
+};
+
 export const UpdateAssortmentResponse = {
   data: {
     updateAssortment: {
@@ -236,8 +232,37 @@ export const UpdateAssortmentResponse = {
   },
 };
 
+export const SingleAssortmentResponse = {
+  data: {
+    assortment: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      isActive: true,
+      created: '2022-07-20T13:11:52.769Z',
+      updated: '2022-07-20T13:11:52.774Z',
+      sequence: 18,
+      isBase: false,
+      isRoot: true,
+      tags: [],
+      texts: {
+        _id: '8f7dcfdeb42f704b56248d1e',
+        slug: 'snacks',
+        title: 'Snacks',
+        subtitle: null,
+        description: null,
+        __typename: 'AssortmentTexts',
+      },
+      childrenCount: 6,
+      media: [],
+      __typename: 'Assortment',
+    },
+  },
+};
+
 export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
+  GetSingleAssortment: 'Assortment',
   GetAssortmentPaths: 'AssortmentPaths',
+  GetTranslatedAssortmentTexts: 'TranslatedAssortmentTexts',
+  CreateAssortment: 'CreateAssortment',
   UpdateAssortment: 'UpdateAssortment',
 };

@@ -91,7 +91,10 @@ const TangleTree = ({ data, options = {} }) => {
             >
               <div xmlns="http://www.w3.org/1999/xhtml">
                 <Link href={`/assortments/${n?.slug}`}>
-                  <a className='className="selectable text-indigo-600 hover:text-indigo-800 dark:text-lime-400 dark:hover:text-lime-500 text-base'>
+                  <a
+                    id="root"
+                    className='className="selectable text-indigo-600 hover:text-indigo-800 dark:text-lime-400 dark:hover:text-lime-500 text-base'
+                  >
                     {n?.title}
                   </a>
                 </Link>

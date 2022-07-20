@@ -3,11 +3,16 @@ import {
   AssortmentListResponse,
   AssortmentOperation,
   AssortmentPathsResponse,
+  CreateAssortmentResponse,
+  SingleAssortmentResponse,
+  SingleTranslatedAssortmentTextsResponse,
   UpdateAssortmentResponse,
 } from '../mock/assortment';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
+import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 const assortmentRequestVariables = {
   forceLocale: 'en',
@@ -37,9 +42,23 @@ describe('Assortment', () => {
         aliasQuery(req, AssortmentOperation.GetAssortmentPaths);
         req.reply(AssortmentPathsResponse);
       }
+      if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
+        aliasQuery(req, AssortmentOperation.GetSingleAssortment);
+        req.reply(SingleAssortmentResponse);
+      }
+      if (
+        hasOperationName(req, AssortmentOperation.GetTranslatedAssortmentTexts)
+      ) {
+        aliasQuery(req, AssortmentOperation.GetTranslatedAssortmentTexts);
+        req.reply(SingleTranslatedAssortmentTextsResponse);
+      }
       if (hasOperationName(req, AssortmentOperation.UpdateAssortment)) {
-        aliasQuery(req, AssortmentOperation.UpdateAssortment);
+        aliasMutation(req, AssortmentOperation.UpdateAssortment);
         req.reply(UpdateAssortmentResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.CreateAssortment)) {
+        aliasMutation(req, AssortmentOperation.CreateAssortment);
+        req.reply(CreateAssortmentResponse);
       }
     });
 
@@ -50,10 +69,9 @@ describe('Assortment', () => {
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq(
-          assortmentRequestVariables,
-        );
-        expect(currentSubject.response.body).to.deep.eq(AssortmentListResponse);
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
 
@@ -71,7 +89,9 @@ describe('Assortment', () => {
   it('[TOGGLE INACTIVE STATUS] should update route', () => {
     cy.location('pathname').should('eq', '/assortments');
 
-    cy.get('button#includeInactive').click();
+    cy.get('button#includeInactive')
+      .contains(localizations.en.include_inactive)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -88,7 +108,9 @@ describe('Assortment', () => {
         includeInactive: 'true',
       });
     });
-    cy.get('button#includeInactive').click();
+    cy.get('button#includeInactive')
+      .contains(localizations.en.include_inactive)
+      .click({ force: true });
 
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
@@ -101,7 +123,9 @@ describe('Assortment', () => {
   it('[TOGGLE LEAF STATUS] should update route', () => {
     cy.location('pathname').should('eq', '/assortments');
 
-    cy.get('button#includeLeaves').click();
+    cy.get('button#includeLeaves')
+      .contains(localizations.en.include_leaf)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -118,7 +142,9 @@ describe('Assortment', () => {
         includeLeaves: 'true',
       });
     });
-    cy.get('button#includeLeaves').click();
+    cy.get('button#includeLeaves')
+      .contains(localizations.en.include_leaf)
+      .click({ force: true });
 
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
@@ -131,7 +157,9 @@ describe('Assortment', () => {
   it('Show Navigate to [TANGLE TREE] successfully', () => {
     cy.location('pathname').should('eq', '/assortments');
 
-    cy.get('button#viewGraph').click();
+    cy.get('button#viewGraph')
+      .contains(localizations.en.display_as_graph)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -144,6 +172,13 @@ describe('Assortment', () => {
       },
     );
     cy.get('svg#tangle-tree').should('be.visible');
+    cy.get('svg#tangle-tree').within(() => {
+      cy.get('a#root').should(
+        'have.length',
+        AssortmentListResponse.data.assortmentsCount,
+      );
+    });
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -155,7 +190,9 @@ describe('Assortment', () => {
   it('[TOGGLE GRAPH STATUS] should update route', () => {
     cy.location('pathname').should('eq', '/assortments');
 
-    cy.get('button#viewGraph').click();
+    cy.get('button#viewGraph')
+      .contains(localizations.en.display_as_graph)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -173,9 +210,70 @@ describe('Assortment', () => {
         viewGraph: 'true',
       });
     });
-    cy.get('button#viewGraph').click();
+    cy.get('button#viewGraph')
+      .contains(localizations.en.display_as_graph)
+      .click({ force: true });
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
+    });
+  });
+
+  it('[TOGGLE INACTIVE STATUS] should update route and assortment paths', () => {
+    cy.location('pathname').should('eq', '/assortments');
+
+    cy.get('button#viewGraph')
+      .contains(localizations.en.display_as_graph)
+      .click({ force: true });
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slugs: null,
+          includeInactive: false,
+          includeLeaves: false,
+        });
+        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+      },
+    );
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/assortments');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        viewGraph: 'true',
+      });
+    });
+
+    cy.get('button#includeInactive')
+      .contains(localizations.en.include_inactive)
+      .click({ force: true });
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slugs: null,
+          includeInactive: true,
+          includeLeaves: false,
+        });
+        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+      },
+    );
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/assortments');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeInactive: 'true',
+        viewGraph: 'true',
+      });
+    });
+    cy.get('button#includeInactive')
+      .contains(localizations.en.include_inactive)
+      .click({ force: true });
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/assortments');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeInactive: 'false',
+        viewGraph: 'true',
+      });
     });
   });
 
@@ -297,16 +395,24 @@ describe('Assortment', () => {
     cy.location('pathname').should('eq', '/assortments');
 
     cy.get('input#sequence').first().clear().type('50').blur();
-    cy.wait(fullAliasName(AssortmentOperation.UpdateAssortment)).then(
+    cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortment: {
             sequence: 50,
           },
-          assortmentId: 'snacks',
+          assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
         expect(response.body).to.deep.eq(UpdateAssortmentResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
 
@@ -317,7 +423,9 @@ describe('Assortment', () => {
     cy.location('pathname').should('eq', '/assortments');
 
     // toggle inactive
-    cy.get('button#includeInactive').click();
+    cy.get('button#includeInactive')
+      .contains(localizations.en.include_inactive)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -336,7 +444,9 @@ describe('Assortment', () => {
     });
 
     // toggle leafs
-    cy.get('button#includeLeaves').click();
+    cy.get('button#includeLeaves')
+      .contains(localizations.en.include_leaf)
+      .click({ force: true });
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -407,5 +517,90 @@ describe('Assortment', () => {
         queryString: 's',
       });
     });
+  });
+
+  it('Show Navigate to [NEW ASSORTMENT] form page successfully', () => {
+    cy.location('pathname').should('eq', '/assortments');
+    cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
+    cy.location('pathname').should('eq', '/assortments/new');
+    cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
+  });
+
+  it('Show [ADD ASSORTMENT]  successfully', () => {
+    cy.location('pathname').should('eq', '/assortments');
+    cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
+    cy.location('pathname').should('eq', '/assortments/new');
+    cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
+
+    cy.get('input#title').type('mobile');
+    cy.get('input#tags').type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('input#isRoot').check();
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_assortment)
+      .click();
+
+    cy.wait(fullAliasMutationName(AssortmentOperation.CreateAssortment)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortment: {
+            isRoot: true,
+            title: 'mobile',
+            tags: ['new'],
+          },
+        });
+        expect(response.body).to.deep.eq(CreateAssortmentResponse);
+      },
+    );
+
+    cy.location('pathname').should(
+      'eq',
+      `/assortments/${CreateAssortmentResponse.data.createAssortment.texts.slug}`,
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: CreateAssortmentResponse.data.createAssortment.texts.slug,
+          assortmentId: null,
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+      },
+    );
+
+    cy.wait(
+      fullAliasName(AssortmentOperation.GetTranslatedAssortmentTexts),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        assortmentId: SingleAssortmentResponse.data.assortment._id,
+      });
+      expect(response.body).to.deep.eq(SingleTranslatedAssortmentTextsResponse);
+    });
+  });
+
+  it('Show [ERROR] when required fields are not provided in add assortment', () => {
+    cy.location('pathname').should('eq', '/assortments');
+    cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
+    cy.location('pathname').should('eq', '/assortments/new');
+    cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_assortment)
+      .click();
+
+    cy.get('label[for="title"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.title,
+      ),
+    );
+
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.add_assortment)
+      .should('be.disabled');
   });
 });
