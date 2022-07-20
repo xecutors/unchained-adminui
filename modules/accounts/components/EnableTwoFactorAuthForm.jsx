@@ -68,6 +68,7 @@ const EnableTwoFactorAuthForm = () => {
       <div className="w-full border-b  border-slate-200 dark:border-slate-800 bg-white  dark:bg-slate-900 rounded-md lg:ml-auto lg:w-4/6">
         <div className="flex align-middle ">
           <Toggle
+            id="totp-toggle"
             onToggle={() => setEnableFormVisible(!showEnableForm)}
             toggleText={formatMessage({
               id: 'enable_totp',
