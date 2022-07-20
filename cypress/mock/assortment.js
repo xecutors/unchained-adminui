@@ -134,6 +134,66 @@ export const AssortmentListResponse = {
   },
 };
 
+export const AssortmentPathsResponse = {
+  data: {
+    assortments: [
+      {
+        _id: 'snacks',
+        texts: {
+          _id: '8f7dcfdeb42f704b56248d1e',
+          slug: 'snacks',
+          title: 'Snacks',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 4,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: '1fed9af2ed7fd71548955f6d',
+        texts: {
+          _id: '68b451c9e4b4d85a4e99de76',
+          slug: 'Hamburger',
+          title: 'Hamburger',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 4,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: 'e66542656a6887e64d0d7cb9',
+        texts: {
+          _id: '7f04569c0eb84dd41ddd812a',
+          slug: 'Süssgetränke',
+          title: 'Süssgetränke',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 4,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: '0de23bbadc6a2d8da8a73a98',
+        texts: {
+          _id: 'e98aaa56ab14e5f73708ca28',
+          slug: 'bier-1',
+          title: 'Bier',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 4,
+        __typename: 'Assortment',
+        children: [],
+      },
+    ],
+  },
+};
+
 export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
+  GetAssortmentPaths: 'AssortmentPaths',
 };

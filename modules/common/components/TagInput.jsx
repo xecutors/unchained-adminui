@@ -93,6 +93,7 @@ const TagInput = ({
           </div>
 
           <Button
+            id="add-tag"
             onClick={addTag}
             text={
               buttonText ||
