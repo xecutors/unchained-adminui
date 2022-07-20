@@ -109,6 +109,7 @@ const EmailAddresses = ({
                 <div className="my-1 flex items-center cursor-pointer">
                   {enableVerification && !verified && (
                     <a
+                      id="send_verification_mail"
                       onClick={async () => {
                         await onSendVerification({ email: address });
                       }}

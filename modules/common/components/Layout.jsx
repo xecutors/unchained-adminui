@@ -229,6 +229,7 @@ const Layout = ({
         <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white dark:bg-slate-900">
           <div className="absolute top-0 right-0 -mr-12 pt-2">
             <button
+              id="close_sidebar"
               type="button"
               onClick={() => setHideNav(!hideNav)}
               className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"

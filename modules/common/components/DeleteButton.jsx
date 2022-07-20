@@ -16,6 +16,7 @@ const DeleteButton = ({
       aria-label={
         ariaLabel || formatMessage({ id: 'delete', defaultMessage: 'Delete' })
       }
+      id="delete_button"
       type="button"
       onClick={onClick}
       className={classNames(
