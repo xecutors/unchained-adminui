@@ -134,6 +134,40 @@ export const AssortmentListResponse = {
   },
 };
 
+const SingleTranslatedAssortmentResponse = {
+  data: {
+    translatedAssortmentTexts: [
+      {
+        _id: 'c0a1b807e33d2d36b2022fae',
+        locale: 'fr',
+        slug: 'snacks',
+        title: null,
+        subtitle: null,
+        description: null,
+        __typename: 'AssortmentTexts',
+      },
+      {
+        _id: '8f7dcfdeb42f704b56248d1e',
+        locale: 'de',
+        slug: 'snacks',
+        title: 'Snacks',
+        subtitle: null,
+        description: null,
+        __typename: 'AssortmentTexts',
+      },
+      {
+        _id: 'db2de60d0793e3de3074f6ab',
+        locale: 'it',
+        slug: 'snacks',
+        title: null,
+        subtitle: null,
+        description: null,
+        __typename: 'AssortmentTexts',
+      },
+    ],
+  },
+};
+
 export const AssortmentPathsResponse = {
   data: {
     assortments: [
@@ -193,7 +227,17 @@ export const AssortmentPathsResponse = {
   },
 };
 
+export const UpdateAssortmentResponse = {
+  data: {
+    updateAssortment: {
+      _id: 'snacks',
+      __typename: 'Assortment',
+    },
+  },
+};
+
 export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
   GetAssortmentPaths: 'AssortmentPaths',
+  UpdateAssortment: 'UpdateAssortment',
 };

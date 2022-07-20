@@ -13,6 +13,7 @@ const Badge = ({
 
   return (
     <span
+      id="badge"
       className={classnames(
         `inline-flex items-center shadow-sm border ${borderColor(
           normalizedColor,
@@ -40,6 +41,7 @@ const Badge = ({
       {text}
       {onClick && (
         <button
+          id="badge-x-button"
           type="button"
           onClick={onClick}
           className={`ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${textColor(

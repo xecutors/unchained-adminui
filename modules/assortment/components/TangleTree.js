@@ -34,6 +34,7 @@ const TangleTree = ({ data, options = {} }) => {
       </span>
 
       <svg
+        id="tangle-tree"
         width="100%"
         height={`${tangleLayout.layout.height + 6}`}
         className="fill-transparent pt-2 mx-10 w-full"
