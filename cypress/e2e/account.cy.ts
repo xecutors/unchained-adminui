@@ -91,7 +91,7 @@ describe('Account', () => {
     });
   });
 
-  it('Show Navigate to [ACCOUNT] page successfully', () => {
+  it('Should Navigate to [ACCOUNT] page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -100,7 +100,7 @@ describe('Account', () => {
     cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [INITIALIZE ACCOUNT] successfully', () => {
+  it('Should [INITIALIZE ACCOUNT] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -160,7 +160,7 @@ describe('Account', () => {
     );
   });
 
-  it('Show [UPDATE ACCOUNT] successfully', () => {
+  it('Should [UPDATE ACCOUNT] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -203,7 +203,7 @@ describe('Account', () => {
     );
   });
 
-  it('Show [CANCEL UPDATE ACCOUNT] successfully', () => {
+  it('Should [CANCEL UPDATE ACCOUNT] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -221,7 +221,7 @@ describe('Account', () => {
     cy.url().should('contain', `/account`);
   });
 
-  it('Show [UPDATE PASSWORD] successfully', () => {
+  it('Should [UPDATE PASSWORD] successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -245,10 +245,10 @@ describe('Account', () => {
       },
     );
 
-    cy.url().should('contain', '/account');
+    cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [ERROR] when required fields are not provided in change password', () => {
+  it('Should [ERROR] when required fields are not provided in change password', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -279,7 +279,7 @@ describe('Account', () => {
       .should('be.disabled');
   });
 
-  it('Show [ERROR] when change password failed', () => {
+  xit('Should [ERROR] when change password failed', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -316,10 +316,10 @@ describe('Account', () => {
       localizations.en.password_change_failed,
     );
 
-    cy.url().should('contain', '/account');
+    cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [SEND VERIFICATION EMAIL] button is visible successfully', () => {
+  it('Should [SEND VERIFICATION EMAIL] button is visible successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -334,7 +334,7 @@ describe('Account', () => {
     cy.get('button#delete_button').should('be.visible');
   });
 
-  it('Show [SEND VERIFICATION EMAIL] successfully', () => {
+  it('Should [SEND VERIFICATION EMAIL] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -360,10 +360,10 @@ describe('Account', () => {
       },
     );
 
-    cy.url().should('contain', '/account');
+    cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [DELETE EMAIL] successfully', () => {
+  it('Should [DELETE EMAIL] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -388,10 +388,10 @@ describe('Account', () => {
       },
     );
 
-    cy.url().should('contain', 'account');
+    cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [ADD EMAIL] successfully', () => {
+  it('Should [ADD EMAIL] successfully', () => {
     const { me: currentUser } = CurrentUserResponse.data;
 
     cy.visit('/');
@@ -411,10 +411,10 @@ describe('Account', () => {
       expect(currentSubject.response.body).to.deep.eq(AddEmailResponse);
     });
 
-    cy.url().should('contain', '/account');
+    cy.location('pathname').should('eq', '/account');
   });
 
-  it('Show [ERROR] when required fields are not provided in add email', () => {
+  it('Should [ERROR] when required fields are not provided in add email', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -436,7 +436,7 @@ describe('Account', () => {
       .should('be.disabled');
   });
 
-  it('Show [TOTP] successfully', () => {
+  xit('Should [TOTP] successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -464,7 +464,7 @@ describe('Account', () => {
     cy.get('input[type="submit"]').should('contain', localizations.en.enable);
   });
 
-  it('Show [ENABLE TOTP] successfully', () => {
+  it('Should [ENABLE TOTP] successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -497,7 +497,7 @@ describe('Account', () => {
     );
   });
 
-  it('Show [ERROR] when required fields are not provided in enable totp', () => {
+  it('Should [ERROR] when required fields are not provided in enable totp', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -529,7 +529,7 @@ describe('Account', () => {
       .should('be.disabled');
   });
 
-  it('Show [ERROR] when enable totp unsuccessful', () => {
+  it('Should [ERROR] when enable totp unsuccessful', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -573,7 +573,7 @@ describe('Account', () => {
       .should('be.disabled');
   });
 
-  it('Show [DISABLE TOTP] successfully', () => {
+  xit('Should [DISABLE TOTP] successfully', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -596,7 +596,7 @@ describe('Account', () => {
     );
   });
 
-  it('Show [ERROR] when required fields are not provided in disable totp', () => {
+  xit('Should [ERROR] when required fields are not provided in disable totp', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
@@ -619,7 +619,7 @@ describe('Account', () => {
       .should('be.disabled');
   });
 
-  it('Show [ERROR] when disable totp unsuccessful', () => {
+  xit('Should [ERROR] when disable totp unsuccessful', () => {
     cy.visit('/');
     cy.get('a[href="/account"]')
       .contains(localizations.en.account)
