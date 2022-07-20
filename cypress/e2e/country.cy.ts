@@ -61,12 +61,11 @@ describe('Countries', () => {
         expect(response.body).to.deep.eq(CountryListResponse);
       },
     );
+    cy.get('h2').should('contain.text', localizations.en.countries);
+    cy.location('pathname').should('eq', '/country');
   });
 
   it('Show Navigate to [COUNTRY] page successfully', () => {
-    cy.location('pathname').should('eq', '/country');
-    cy.get('h2').should('contain.text', localizations.en.countries);
-
     cy.get('tr').should('have.length', 4);
   });
 

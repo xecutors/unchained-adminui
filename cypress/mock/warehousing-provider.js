@@ -156,7 +156,13 @@ export const WarehousingProvidersTypeResponse = {
           label: 'Physical',
           __typename: '__EnumValue',
         },
+        {
+          value: 'VIRTUAL',
+          label: 'Virtual',
+          __typename: '__EnumValue',
+        },
       ],
+
       __typename: '__Type',
     },
   },
@@ -201,6 +207,7 @@ export const WarehousingProviderOperations = {
   CreateProvider: 'CreateWarehousingProvider',
   UpdateProvider: 'UpdateWarehousingProvider',
   RemoveProvider: 'RemoveWarehousingProvider',
+  GetPickUpWarehousingProviders: 'GetPickUpWarehousingProviders',
 };
 
 export default {

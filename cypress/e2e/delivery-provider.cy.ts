@@ -66,20 +66,18 @@ describe('Delivery Provider', () => {
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetProvidersList)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
           type: null,
         });
-        expect(currentSubject.response.body).to.deep.eq(
-          DeliveryProviderListResponse,
-        );
+        expect(response.body).to.deep.eq(DeliveryProviderListResponse);
       },
     );
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetProvidersType)).then(
       (currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(
-          DeliveryProvidersTypeResponse,
-        );
+        const { response } = currentSubject;
+        expect(response.body).to.deep.eq(DeliveryProvidersTypeResponse);
       },
     );
 
@@ -87,11 +85,10 @@ describe('Delivery Provider', () => {
       'contain.text',
       localizations.en.delivery_providers_header,
     );
+    cy.location('pathname').should('eq', '/delivery-provider');
   });
 
   it('Show Navigate to [DELIVERY PROVIDERS] page successfully', () => {
-    cy.location('pathname').should('eq', '/delivery-provider');
-
     cy.get('tr').should('have.length', 4);
   });
 
@@ -99,7 +96,6 @@ describe('Delivery Provider', () => {
     const { options } = DeliveryProvidersTypeResponse.data.deliveryProviderType;
     const [firstOption] = options;
 
-    cy.location('pathname').should('eq', '/delivery-provider');
     cy.get('tr').should('have.length', 4);
     cy.get('select#select-type').contains(localizations.en.filter_by_type);
     cy.get('select#select-type').select(firstOption.value);
@@ -124,17 +120,17 @@ describe('Delivery Provider', () => {
   });
 
   it('Show Navigate to [NEW DELIVERY PROVIDER] form page successfully', () => {
-    cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get('a[href="/delivery-provider/new"]').click();
+    cy.get('a[href="/delivery-provider/new"]')
+      .should('contain.text', localizations.en.add)
+      .click();
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetInterfaces)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
           providerType: 'SHIPPING',
         });
-        expect(currentSubject.response.body).to.deep.eq(
-          DeliveryProviderPickUpInterfaces,
-        );
+        expect(response.body).to.deep.eq(DeliveryProviderPickUpInterfaces);
       },
     );
 
@@ -148,18 +144,16 @@ describe('Delivery Provider', () => {
     const { options } = DeliveryProvidersTypeResponse.data.deliveryProviderType;
     const [firstType] = options;
 
-    cy.location('pathname').should('eq', '/delivery-provider');
     cy.get('a[href="/delivery-provider/new"]').click();
     cy.location('pathname').should('eq', '/delivery-provider/new');
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetInterfaces)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
           providerType: 'SHIPPING',
         });
-        expect(currentSubject.response.body).to.deep.eq(
-          DeliveryProviderPickUpInterfaces,
-        );
+        expect(response.body).to.deep.eq(DeliveryProviderPickUpInterfaces);
       },
     );
 
@@ -169,12 +163,11 @@ describe('Delivery Provider', () => {
     if (firstType.value !== 'SHIPPING') {
       cy.wait(fullAliasName(DeliveryProviderOperations.GetInterfaces)).then(
         (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             providerType: firstType.value,
           });
-          expect(currentSubject.response.body).to.deep.eq(
-            DeliveryProviderPickUpInterfaces,
-          );
+          expect(response.body).to.deep.eq(DeliveryProviderPickUpInterfaces);
         },
       );
     }
@@ -187,15 +180,14 @@ describe('Delivery Provider', () => {
     cy.wait(
       fullAliasMutationName(DeliveryProviderOperations.CreateProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         deliveryProvider: {
           adapterKey: firstPickUpInterface._id,
           type: firstType.value,
         },
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        CreateDeliveryProviderResponse,
-      );
+      expect(response.body).to.deep.eq(CreateDeliveryProviderResponse);
     });
 
     cy.location('pathname').should(
@@ -206,23 +198,25 @@ describe('Delivery Provider', () => {
 
   it('Show [ERROR] when required fields are not provided in new delivery provider', () => {
     cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get('a[href="/delivery-provider/new"]').click();
+    cy.get('a[href="/delivery-provider/new"]')
+      .contains(localizations.en.add)
+      .click();
     cy.location('pathname').should('eq', '/delivery-provider/new');
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetInterfaces)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
           providerType: 'SHIPPING',
         });
-        expect(currentSubject.response.body).to.deep.eq(
-          DeliveryProviderPickUpInterfaces,
-        );
+        expect(response.body).to.deep.eq(DeliveryProviderPickUpInterfaces);
       },
     );
 
     cy.get('h2').should('contain.text', localizations.en.new_delivery_provider);
     cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+      .should('contain.value', localizations.en.create_provider)
+
       .click();
 
     cy.get('label[for="type"]').should(
@@ -242,7 +236,7 @@ describe('Delivery Provider', () => {
     );
 
     cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+      .should('contain.value', localizations.en.create_provider)
       .should('be.disabled');
 
     cy.location('pathname').should('eq', '/delivery-provider/new');
@@ -316,15 +310,14 @@ describe('Delivery Provider', () => {
     cy.wait(
       fullAliasMutationName(DeliveryProviderOperations.UpdateProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         deliveryProvider: {
           configuration: deliveryProvider.configuration,
         },
         deliveryProviderId: deliveryProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        UpdateDeliveryProviderResponse,
-      );
+      expect(response.body).to.deep.eq(UpdateDeliveryProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/delivery-provider');
@@ -358,16 +351,14 @@ describe('Delivery Provider', () => {
     cy.get('textarea#configuration').type('l').blur();
 
     cy.get('input[type="submit"]')
-      .contains(localizations.en.update_configuration)
+      .should('have.value', localizations.en.update_configuration)
       .should('be.disabled');
   });
 
   it('Show [DELETE DELIVERY PROVIDER] successfully', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/delivery-provider');
     cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
-
     cy.wait(fullAliasName(DeliveryProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -386,21 +377,19 @@ describe('Delivery Provider', () => {
       'contain.text',
       localizations.en.update_delivery_configuration,
     );
-
-    cy.get('button').contains(localizations.en.delete).click();
-    cy.get('button')
+    cy.get('button[type="button"]').contains(localizations.en.delete).click();
+    cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_delivery_provider)
       .click();
 
     cy.wait(
       fullAliasMutationName(DeliveryProviderOperations.RemoveProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         deliveryProviderId: deliveryProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        RemoveDeliveryProviderResponse,
-      );
+      expect(response.body).to.deep.eq(RemoveDeliveryProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/delivery-provider');
@@ -409,21 +398,19 @@ describe('Delivery Provider', () => {
   it('Show [DELETE DELIVERY PROVIDER FROM LIST] successfully', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get('button#delete_button').first().click();
-    cy.get('button')
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_delivery_providers)
       .click();
 
     cy.wait(
       fullAliasMutationName(DeliveryProviderOperations.RemoveProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         deliveryProviderId: deliveryProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        RemoveDeliveryProviderResponse,
-      );
+      expect(response.body).to.deep.eq(RemoveDeliveryProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/delivery-provider');

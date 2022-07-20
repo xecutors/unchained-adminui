@@ -64,22 +64,21 @@ describe('Payment Provider', () => {
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetProvidersList)).then(
       (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
           type: null,
         });
-        expect(currentSubject.response.body).to.deep.eq(
-          PaymentProvidersListResponse,
-        );
+        expect(response.body).to.deep.eq(PaymentProvidersListResponse);
       },
     );
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetProvidersType)).then(
       (currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(
-          PaymentProvidersTypeResponse,
-        );
+        const { response } = currentSubject;
+        expect(response.body).to.deep.eq(PaymentProvidersTypeResponse);
       },
     );
+    cy.location('pathname').should('eq', '/payment-provider');
 
     cy.get('h2').should(
       'contain.text',
@@ -87,8 +86,7 @@ describe('Payment Provider', () => {
     );
   });
 
-  it('Show Navigate to [PAYMENT PROVIDERS] page successfully', () => {
-    cy.location('pathname').should('eq', '/payment-provider');
+  it('Should Navigate to [PAYMENT PROVIDERS] page successfully', () => {
     cy.get('tr').should('have.length', 2);
   });
 
@@ -96,7 +94,6 @@ describe('Payment Provider', () => {
     const { options } = PaymentProvidersTypeResponse.data.paymentProviderType;
     const [, , genericOption] = options;
 
-    cy.location('pathname').should('eq', '/payment-provider');
     cy.get('tr').should('have.length', 2);
     cy.get('select#select-type').contains(localizations.en.filter_by_type);
     cy.get('select#select-type').select(genericOption.value);
@@ -121,9 +118,10 @@ describe('Payment Provider', () => {
     cy.location('pathname').should('eq', '/payment-provider');
   });
 
-  it('Show Navigate to [NEW DELIVERY PROVIDER] form page successfully', () => {
-    cy.location('pathname').should('eq', '/payment-provider');
-    cy.get('a[href="/payment-provider/new"]').click();
+  it('Should Navigate to [NEW DELIVERY PROVIDER] form page successfully', () => {
+    cy.get('a[href="/payment-provider/new"]')
+      .should('contain.text', localizations.en.add)
+      .click();
     cy.location('pathname').should('eq', '/payment-provider/new');
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetInterfaces)).then(
@@ -142,14 +140,15 @@ describe('Payment Provider', () => {
     );
   });
 
-  it('Show [ADD NEW DELIVERY PROVIDER] successfully', () => {
+  it('Should [ADD NEW DELIVERY PROVIDER] successfully', () => {
     const [firstPickUpInterface] =
       PaymentProvidersInterfaceResponse.data.paymentInterfaces;
     const { options } = PaymentProvidersTypeResponse.data.paymentProviderType;
     const [, , genericType] = options;
 
-    cy.location('pathname').should('eq', '/payment-provider');
-    cy.get('a[href="/payment-provider/new"]').click();
+    cy.get('a[href="/payment-provider/new"]')
+      .should('have.text', localizations.en.add)
+      .click();
     cy.location('pathname').should('eq', '/payment-provider/new');
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetInterfaces)).then(
@@ -168,35 +167,32 @@ describe('Payment Provider', () => {
     );
     cy.get('select#type').select(genericType.value);
 
-    if (genericType.value !== 'INVOICE') {
-      cy.wait(fullAliasName(PaymentProviderOperations.GetInterfaces)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            providerType: genericType.value,
-          });
-          expect(response.body).to.deep.eq(PaymentProvidersInterfaceResponse);
-        },
-      );
-    }
+    cy.wait(fullAliasName(PaymentProviderOperations.GetInterfaces)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          providerType: genericType.value,
+        });
+        expect(response.body).to.deep.eq(PaymentProvidersInterfaceResponse);
+      },
+    );
 
     cy.get('select#adapterKey').select(firstPickUpInterface.value);
     cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+      .should('contain.value', localizations.en.create_provider)
       .click();
 
     cy.wait(
       fullAliasMutationName(PaymentProviderOperations.CreateProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         paymentProvider: {
           adapterKey: firstPickUpInterface._id,
           type: genericType.value,
         },
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        CreatePaymentProviderResponse,
-      );
+      expect(response.body).to.deep.eq(CreatePaymentProviderResponse);
     });
 
     cy.location('pathname').should(
@@ -205,9 +201,10 @@ describe('Payment Provider', () => {
     );
   });
 
-  it('Show [ERROR] when required fields are not provided in new payment provider', () => {
-    cy.location('pathname').should('eq', '/payment-provider');
-    cy.get('a[href="/payment-provider/new"]').click();
+  it('Should [ERROR] when required fields are not provided in new payment provider', () => {
+    cy.get('a[href="/payment-provider/new"]')
+      .should('contain.text', localizations.en.add)
+      .click();
     cy.location('pathname').should('eq', '/payment-provider/new');
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetInterfaces)).then(
@@ -251,11 +248,14 @@ describe('Payment Provider', () => {
     cy.location('pathname').should('eq', '/payment-provider/new');
   });
 
-  it('Show [INITIALIZE PAYMENT PROVIDER] successfully', () => {
+  it('Should [INITIALIZE PAYMENT PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/payment-provider');
     cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.location('pathname').should(
+      'eq',
+      `/payment-provider/${paymentProvider._id}`,
+    );
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -267,10 +267,6 @@ describe('Payment Provider', () => {
       },
     );
 
-    cy.location('pathname').should(
-      'eq',
-      `/payment-provider/${paymentProvider._id}`,
-    );
     cy.get('h2').should(
       'contain.text',
       localizations.en.update_payment_provider_header,
@@ -282,12 +278,14 @@ describe('Payment Provider', () => {
     );
   });
 
-  it('Show [UPDATE DELIVERY PROVIDER] successfully', () => {
+  it('Should [UPDATE DELIVERY PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/payment-provider');
     cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
-
+    cy.location('pathname').should(
+      'eq',
+      `/payment-provider/${paymentProvider._id}`,
+    );
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -298,10 +296,6 @@ describe('Payment Provider', () => {
       },
     );
 
-    cy.location('pathname').should(
-      'eq',
-      `/payment-provider/${paymentProvider._id}`,
-    );
     cy.get('h2').should(
       'contain.text',
       localizations.en.update_payment_provider_header,
@@ -313,32 +307,33 @@ describe('Payment Provider', () => {
       .blur();
 
     cy.get('input[type="submit"]')
-      .contains(localizations.en.update_configuration)
+      .should('have.value', localizations.en.update_configuration)
       .click();
 
     cy.wait(
       fullAliasMutationName(PaymentProviderOperations.UpdateProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         paymentProvider: {
           configuration: paymentProvider.configuration,
         },
         paymentProviderId: paymentProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        UpdatePaymentProviderResponse,
-      );
+      expect(response.body).to.deep.eq(UpdatePaymentProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/payment-provider');
   });
 
-  it('Show [ERROR] when pattern of configuration fields are not correct in update provider', () => {
+  it('Should [ERROR] when pattern of configuration fields are not correct in update provider', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/payment-provider');
     cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
-
+    cy.location('pathname').should(
+      'eq',
+      `/payment-provider/${paymentProvider._id}`,
+    );
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -349,10 +344,6 @@ describe('Payment Provider', () => {
       },
     );
 
-    cy.location('pathname').should(
-      'eq',
-      `/payment-provider/${paymentProvider._id}`,
-    );
     cy.get('h2').should(
       'contain.text',
       localizations.en.update_payment_provider_header,
@@ -361,15 +352,18 @@ describe('Payment Provider', () => {
     cy.get('textarea#configuration').type('l').blur();
 
     cy.get('input[type="submit"]')
-      .contains(localizations.en.update_configuration)
+      .should('have.value', localizations.en.update_configuration)
       .should('be.disabled');
   });
 
-  it('Show [DELETE PAYMENT PROVIDER] successfully', () => {
+  it('Should [DELETE PAYMENT PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/payment-provider');
     cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.location('pathname').should(
+      'eq',
+      `/payment-provider/${paymentProvider._id}`,
+    );
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -381,48 +375,45 @@ describe('Payment Provider', () => {
       },
     );
 
-    cy.location('pathname').should(
-      'eq',
-      `/payment-provider/${paymentProvider._id}`,
-    );
     cy.get('h2').should(
       'contain.text',
       localizations.en.update_payment_provider_header,
     );
 
-    cy.get('button').contains(localizations.en.delete).click();
-    cy.get('button').contains(localizations.en.delete_payment_provider).click();
+    cy.get('button[type="button"]').contains(localizations.en.delete).click();
+    cy.get('button[type="button"]#danger_continue')
+      .contains(localizations.en.delete_payment_provider)
+      .click();
 
     cy.wait(
       fullAliasMutationName(PaymentProviderOperations.RemoveProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         paymentProviderId: paymentProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        RemovePaymentProviderResponse,
-      );
+      expect(response.body).to.deep.eq(RemovePaymentProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/payment-provider');
   });
 
-  it('Show [DELETE PAYMENT PROVIDER FROM LIST] successfully', () => {
+  it('Should [DELETE PAYMENT PROVIDER FROM LIST] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.location('pathname').should('eq', '/payment-provider');
-    cy.get('button#delete_button').first().click();
-    cy.get('button').contains(localizations.en.delete_payment_provider).click();
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_continue')
+      .contains(localizations.en.delete_payment_provider)
+      .click();
 
     cy.wait(
       fullAliasMutationName(PaymentProviderOperations.RemoveProvider),
     ).then((currentSubject) => {
-      expect(currentSubject.request.body.variables).to.deep.eq({
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
         paymentProviderId: paymentProvider._id,
       });
-      expect(currentSubject.response.body).to.deep.eq(
-        RemovePaymentProviderResponse,
-      );
+      expect(response.body).to.deep.eq(RemovePaymentProviderResponse);
     });
 
     cy.location('pathname').should('eq', '/payment-provider');
