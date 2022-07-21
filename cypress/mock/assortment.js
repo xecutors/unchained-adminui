@@ -258,6 +258,23 @@ export const SingleAssortmentResponse = {
   },
 };
 
+export const assortmentRequestVariables = {
+  forceLocale: 'en',
+  includeInactive: false,
+  includeLeaves: false,
+  limit: 50,
+  offset: 0,
+  queryString: '',
+  slugs: null,
+  sort: [
+    {
+      key: 'sequence',
+      value: 'ASC',
+    },
+  ],
+  tags: null,
+};
+
 export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
   GetSingleAssortment: 'Assortment',

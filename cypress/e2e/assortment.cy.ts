@@ -3,6 +3,7 @@ import {
   AssortmentListResponse,
   AssortmentOperation,
   AssortmentPathsResponse,
+  assortmentRequestVariables,
   CreateAssortmentResponse,
   SingleAssortmentResponse,
   SingleTranslatedAssortmentTextsResponse,
@@ -13,23 +14,6 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
-
-const assortmentRequestVariables = {
-  forceLocale: 'en',
-  includeInactive: false,
-  includeLeaves: false,
-  limit: 50,
-  offset: 0,
-  queryString: '',
-  slugs: null,
-  sort: [
-    {
-      key: 'sequence',
-      value: 'ASC',
-    },
-  ],
-  tags: null,
-};
 
 describe('Assortment', () => {
   beforeEach(() => {
