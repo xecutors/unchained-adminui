@@ -21,7 +21,7 @@ const TagListForm = ({ tags, onSubmit, onCancel }) => {
     },
   });
   return (
-    <Form form={form}>
+    <Form form={form} id="add_tag_form">
       <div>
         <TagInputField
           name="tags"

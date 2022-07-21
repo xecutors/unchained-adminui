@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 
-const Button = ({ text, onClick, className }) => {
+const Button = ({ text, onClick, className, id }) => {
   return (
     <button
+      id={id}
       type="button"
       onClick={onClick}
       className={classNames(

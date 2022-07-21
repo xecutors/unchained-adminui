@@ -47,7 +47,7 @@ beforeEach(() => {
       req.reply(OrderListResponse);
     }
 
-    if (hasOperationName(req, `global${UserOperations.CurrentUser}`)) {
+    if (hasOperationName(req, UserOperations.CurrentUser)) {
       req.reply(CurrentUserResponse);
     }
 

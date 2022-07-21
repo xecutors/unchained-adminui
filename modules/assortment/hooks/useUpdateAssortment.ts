@@ -14,9 +14,18 @@ const UpdateAssortmentMutation = gql`
 const useUpdateAssortment = () => {
   const [updateAssortmentMutation] = useMutation(UpdateAssortmentMutation);
 
-  const updateAssortment = async ({ isRoot, assortmentId, tags, sequence }) => {
+  const updateAssortment = async ({
+    isRoot,
+    assortmentId,
+    tags,
+    sequence,
+    isActive,
+  }) => {
     return updateAssortmentMutation({
-      variables: { assortment: { isRoot, tags, sequence }, assortmentId },
+      variables: {
+        assortment: { isRoot, tags, sequence, isActive },
+        assortmentId,
+      },
       refetchQueries: ['Assortment', 'Assortments'],
     });
   };
