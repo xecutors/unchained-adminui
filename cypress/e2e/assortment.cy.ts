@@ -256,14 +256,14 @@ describe('Assortment', () => {
   });
 
   it('Should update data and route when [SEARCHING] accordingly', () => {
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          queryString: 's',
+          queryString: 'search',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -272,17 +272,17 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          queryString: 'sa',
+          queryString: 'search input',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -291,7 +291,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
@@ -467,7 +467,7 @@ describe('Assortment', () => {
     });
 
     // search
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
@@ -477,7 +477,7 @@ describe('Assortment', () => {
           includeInactive: true,
           includeLeaves: true,
           tags: ['new'],
-          queryString: 's',
+          queryString: 'search',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -489,7 +489,7 @@ describe('Assortment', () => {
         includeInactive: 'true',
         includeLeaves: 'true',
         tags: 'new',
-        queryString: 's',
+        queryString: 'search',
       });
     });
   });

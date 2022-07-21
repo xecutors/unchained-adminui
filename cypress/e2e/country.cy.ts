@@ -106,7 +106,7 @@ describe('Countries', () => {
   it('should update data and route when [SEARCHING] accordingly', () => {
     cy.location('pathname').should('eq', '/country');
 
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -114,7 +114,7 @@ describe('Countries', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(CountryListResponse);
@@ -124,10 +124,10 @@ describe('Countries', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -135,7 +135,7 @@ describe('Countries', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 'sa',
+          queryString: 'search input',
           sort: [],
         });
         expect(response.body).to.deep.eq(CountryListResponse);
@@ -145,7 +145,7 @@ describe('Countries', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
@@ -154,7 +154,7 @@ describe('Countries', () => {
     cy.location('pathname').should('eq', '/country');
 
     cy.get('button[role="switch"]').click();
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(CountryOperations.GetCountryList));
 
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
@@ -164,7 +164,7 @@ describe('Countries', () => {
           includeInactive: true,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(CountryListResponse);
@@ -175,7 +175,7 @@ describe('Countries', () => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         includeInactive: 'true',
-        queryString: 's',
+        queryString: 'search',
       });
     });
   });

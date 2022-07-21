@@ -47,10 +47,6 @@ const UpdateCountry = () => {
     return true;
   };
 
-  const onSubmitSuccess = () => {
-    push('/country');
-  };
-
   const onDelete = async () => {
     await setModal(
       <DangerMessage
@@ -99,7 +95,6 @@ const UpdateCountry = () => {
             <CountryForm
               isEdit
               defaultValue={normalizeCountry(country)}
-              onSubmitSuccess={onSubmitSuccess}
               onSubmit={onSubmit}
             />
           </FormWrapper>

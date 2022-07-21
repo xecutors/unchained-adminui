@@ -16,6 +16,7 @@ import {
 import { LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -79,24 +80,36 @@ describe('Filter', () => {
         req.reply(RemoveFilterOptionResponse);
       }
     });
-  });
 
-  it('Should navigate to [FILTER LIST] page successfully', () => {
     cy.visit('/');
+    cy.viewport(1200, 800);
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
+
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: '',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FilterListResponse);
+      },
+    );
     cy.get('h2').should('contain', localizations.en.filters);
+  });
+
+  it('Should navigate to [FILTER LIST] page successfully', () => {
     cy.get('tr').should('have.length', 4);
   });
 
   it('Should navigate to [FILTER DETAIL] page successfully', () => {
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -118,20 +131,6 @@ describe('Filter', () => {
   });
 
   it('Toggling status [ACTIVE/INACTIVE] toggle should update route', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-
-    cy.url().should('contain', '/filters');
-    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
-      (currentSubject) => {
-        const { request } = currentSubject;
-        expect(request.body.variables.includeInactive).to.eq(false);
-      },
-    );
-
     cy.get('button[role="switch"]').click();
     cy.url().should('contain', '/filters?includeInactive=true');
     cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
@@ -146,45 +145,58 @@ describe('Filter', () => {
   });
 
   it('should update data and route when [SEARCHING] accordingly', () => {
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
+    cy.get('input[type="search"]').type('search');
 
-    cy.url().should('contain', '/filters');
-    cy.wait(fullAliasName(FilterOperations.GetFiltersList));
-    cy.get('input[type="search"]').type('s');
-    cy.wait(fullAliasName(FilterOperations.GetFiltersList))
-      .its('request.body.variables.queryString')
-      .should('eq', 's');
-    cy.url().should('contain', '/filters?queryString=s');
-    cy.get('input[type="search"]').type('a');
-    cy.wait(fullAliasName(FilterOperations.GetFiltersList))
-      .its('request.body.variables.queryString')
-      .should('eq', 'sa');
-    cy.url().should('contain', '/filters?queryString=sa');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: 'search',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FilterListResponse);
+      },
+    );
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/filters');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        queryString: 'search',
+      });
+    });
+
+    cy.get('input[type="search"]').type(' input');
+    cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: 'search input',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FilterListResponse);
+      },
+    );
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/filters');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        queryString: 'search input',
+      });
+    });
   });
 
   it('Should navigate to [INITIALIZE FILTER TEXT] page successfully', () => {
     const [fistLanguage] = LanguagesResponse.data.languages;
-    cy.visit('/');
-
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
-
-    cy.wait(fullAliasName(FilterOperations.GetSingleFilter)).then(
-      (currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(SingleFilterResponse);
-      },
-    );
-
     cy.wait(fullAliasName(FilterOperations.GetTranslatedFilterText)).then(
       (currentSubject) => {
         expect(currentSubject.response.body).to.deep.eq(
@@ -210,11 +222,6 @@ describe('Filter', () => {
 
   it('Should navigate to [RE-INITIALIZE FILTER TEXT WITH SELECTED LOCALE] page successfully', () => {
     const [, secondLanguage] = LanguagesResponse.data.languages;
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -236,24 +243,12 @@ describe('Filter', () => {
   });
 
   it('Should navigate to [NEW FILTER FORM] page successfully', () => {
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
-
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
   });
 
   it('Should navigate to [NEW FILTER FORM] page successfully', () => {
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
-
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
@@ -261,11 +256,6 @@ describe('Filter', () => {
 
   it('Should [CREATE FILTER without OPTION] successfully', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
 
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
@@ -301,11 +291,6 @@ describe('Filter', () => {
 
   it('Should [CREATE FILTER with 2 OPTIONS] successfully', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
 
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
@@ -345,11 +330,6 @@ describe('Filter', () => {
 
   it('Should [SHOW ERROR] if option field is left empty successfully', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
 
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
@@ -374,11 +354,6 @@ describe('Filter', () => {
 
   it('Should Display [ERROR when CREATE FILTER] required fields are missing', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
 
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
@@ -413,12 +388,6 @@ describe('Filter', () => {
   });
 
   it('Should Display [ERROR when CREATE FILTER] required fields are missing', () => {
-    cy.visit('/');
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
-
     cy.get('a[href="/filters/new"]').click();
     cy.url().should('contain', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
@@ -459,7 +428,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -494,7 +463,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -526,13 +495,6 @@ describe('Filter', () => {
   it('Show [DELETE FILTER] successfully', () => {
     const { filter } = SingleFilterResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-
-    cy.url().should('contain', '/filters');
     cy.get(`a[href="/filters/${filter._id}"]`).click();
     cy.url().should('contain', `/filters/${filter._id}`);
     cy.get('button').contains(localizations.en.delete).click();
@@ -552,13 +514,6 @@ describe('Filter', () => {
   it('Show [DELETE FILTER FROM LIST] successfully', () => {
     const { filter } = SingleFilterResponse.data;
 
-    cy.visit('/');
-    cy.get('button').contains(localizations.en.system).click({ force: true });
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-
-    cy.url().should('contain', '/filters');
     cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
     cy.get('button').contains(localizations.en.delete_filter).click();
     cy.url().should('contain', '/filters');
@@ -579,7 +534,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -619,7 +574,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -656,7 +611,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -693,7 +648,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -740,7 +695,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -790,7 +745,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get('h2').should('contain.text', localizations.en.filters);
 
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
@@ -822,7 +777,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -873,7 +828,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -914,7 +869,7 @@ describe('Filter', () => {
     cy.get('a[href="/filters"]')
       .contains(localizations.en.filters)
       .click({ force: true });
-    cy.url().should('match', /\/filters$/);
+    cy.location('pathname').should('eq', '/filters');
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -937,16 +892,11 @@ describe('Filter', () => {
 
   it('Should [DELETE FILTER OPTION] successfully', () => {
     cy.viewport(1200, 800);
-    cy.visit('/');
-
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
+
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
     cy.url().should(
       'contain',
@@ -975,12 +925,6 @@ describe('Filter', () => {
 
   it('Should [CANCEL DELETE FILTER OPTION] should abort deletion', () => {
     cy.viewport(1200, 800);
-    cy.visit('/');
-
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.url().should('match', /\/filters$/);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()

@@ -12,7 +12,7 @@ import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
-
+// add search test
 describe('WorkQueue', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {

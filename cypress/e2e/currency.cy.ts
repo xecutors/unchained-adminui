@@ -101,7 +101,7 @@ describe('Currencies', () => {
 
   it('Should update data and route when [SEARCHING] accordingly', () => {
     cy.location('pathname').should('eq', '/currency');
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
 
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
       (currentSubject) => {
@@ -110,7 +110,7 @@ describe('Currencies', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(CurrencyListResponse);
@@ -119,10 +119,10 @@ describe('Currencies', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
 
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
       (currentSubject) => {
@@ -131,7 +131,7 @@ describe('Currencies', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 'sa',
+          queryString: 'search input',
           sort: [],
         });
 
@@ -141,7 +141,7 @@ describe('Currencies', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
@@ -153,7 +153,7 @@ describe('Currencies', () => {
 
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList));
 
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -161,7 +161,7 @@ describe('Currencies', () => {
           includeInactive: true,
           limit: 50,
           offset: 0,
-          queryString: 'a',
+          queryString: 'search',
           sort: [],
         });
 
@@ -171,7 +171,7 @@ describe('Currencies', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'a',
+        queryString: 'search',
         includeInactive: 'true',
       });
     });

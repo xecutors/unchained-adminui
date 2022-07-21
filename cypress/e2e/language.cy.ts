@@ -56,6 +56,7 @@ describe('Languages', () => {
         expect(response.body).to.deep.eq(LanguagesResponse);
       },
     );
+    cy.location('pathname').should('eq', '/language');
   });
 
   it('Show Navigate to [LANGUAGES] page successfully', () => {
@@ -99,7 +100,7 @@ describe('Languages', () => {
   it('Should update data and route accordingly when [SEARCHING]', () => {
     cy.location('pathname').should('eq', '/language');
 
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -107,7 +108,7 @@ describe('Languages', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(LanguagesResponse);
@@ -116,10 +117,10 @@ describe('Languages', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/language');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -127,7 +128,7 @@ describe('Languages', () => {
           includeInactive: false,
           limit: 50,
           offset: 0,
-          queryString: 'sa',
+          queryString: 'search input',
           sort: [],
         });
         expect(response.body).to.deep.eq(LanguagesResponse);
@@ -136,7 +137,7 @@ describe('Languages', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/language');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
@@ -145,8 +146,6 @@ describe('Languages', () => {
     cy.location('pathname').should('eq', '/language');
 
     cy.get('button[role="switch"]').click();
-    cy.wait(fullAliasName(LanguageOperations.GetLanguagesList));
-    cy.get('input[type="search"]').type('a');
     cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -154,7 +153,21 @@ describe('Languages', () => {
           includeInactive: true,
           limit: 50,
           offset: 0,
-          queryString: 'a',
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(LanguagesResponse);
+      },
+    );
+    cy.get('input[type="search"]').type('search');
+    cy.wait(fullAliasName(LanguageOperations.GetLanguagesList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          includeInactive: true,
+          limit: 50,
+          offset: 0,
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(LanguagesResponse);
@@ -164,7 +177,7 @@ describe('Languages', () => {
       expect(loc.pathname).to.eq('/language');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         includeInactive: 'true',
-        queryString: 'a',
+        queryString: 'search',
       });
     });
   });

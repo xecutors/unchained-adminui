@@ -11,6 +11,7 @@ import {
 } from '../mock/user';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -90,26 +91,49 @@ describe('User', () => {
 
     cy.url().should('contain', '/users');
 
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
 
-    cy.wait(fullAliasName(UserOperations.GetUserList))
-      .then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(UserListResponse);
-      })
-      .its('request.body.variables.queryString')
-      .should('eq', 's');
+    cy.wait(fullAliasName(UserOperations.GetUserList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(response.body).to.deep.eq(UserListResponse);
+        expect(request.body.variables).to.deep.eq({
+          includeGuests: false,
+          limit: 50,
+          offset: 0,
+          queryString: 'search',
+        });
+      },
+    );
 
-    cy.url().should('contain', '/users?queryString=s');
-    cy.get('input[type="search"]').type('a');
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/users');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        queryString: 'search',
+      });
+    });
 
-    cy.wait(fullAliasName(UserOperations.GetUserList))
-      .then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(UserListResponse);
-      })
-      .its('request.body.variables.queryString')
-      .should('eq', 'sa');
+    cy.get('input[type="search"]').type(' input');
 
-    cy.url().should('contain', '/users?queryString=sa');
+    cy.wait(fullAliasName(UserOperations.GetUserList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(response.body).to.deep.eq(UserListResponse);
+        expect(request.body.variables).to.deep.eq({
+          includeGuests: false,
+          limit: 50,
+          offset: 0,
+          queryString: 'search input',
+        });
+      },
+    );
+
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/users');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        queryString: 'search input',
+      });
+    });
   });
 
   it('Show Navigate to [NEW USER] form page successfully', () => {
