@@ -1,7 +1,9 @@
 import { useIntl } from 'react-intl';
+import deBounce from '../utils/deBounce';
 
 const SearchField = ({ inputText, onInputChange, defaultValue }) => {
   const { formatMessage } = useIntl();
+  const deBouncedInput = deBounce()(onInputChange);
   return (
     <div className="md:max-w-3xl lg:max-w-none">
       <div className="w-full">
@@ -26,7 +28,7 @@ const SearchField = ({ inputText, onInputChange, defaultValue }) => {
             </svg>
           </div>
           <input
-            onChange={(e) => onInputChange(e.target.value)}
+            onChange={(e) => deBouncedInput(e.target.value)}
             id="search"
             defaultValue={defaultValue}
             name="search"
