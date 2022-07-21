@@ -151,7 +151,7 @@ const AssortmentDetail = ({ assortment }) => {
   const updateAssortmentTags = async ({ tags }) => {
     await updateAssortment({
       assortmentId: assortment?._id,
-      assortment: { tags },
+      tags,
     });
     return true;
   };
@@ -159,7 +159,7 @@ const AssortmentDetail = ({ assortment }) => {
   const setActive = async (value) => {
     await updateAssortment({
       assortmentId: assortment?._id,
-      assortment: { isActive: value },
+      isActive: value,
     });
     return true;
   };

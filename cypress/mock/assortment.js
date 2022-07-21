@@ -11,8 +11,8 @@ export const AssortmentListResponse = {
           _id: '8f7dcfdeb42f704b56248d1e',
           slug: 'snacks',
           title: 'Snacks',
-          subtitle: null,
-          description: null,
+          subtitle: 'Snacks',
+          description: 'Snacks',
           __typename: 'AssortmentTexts',
         },
         isBase: true,
@@ -73,7 +73,7 @@ export const AssortmentListResponse = {
         sequence: 17,
         texts: {
           _id: '7f04569c0eb84dd41ddd812a',
-          slug: 'Süssgetränke',
+          slug: 'Sussgetranke',
           title: 'Süssgetränke',
           subtitle: null,
           description: null,
@@ -134,6 +134,43 @@ export const AssortmentListResponse = {
   },
 };
 
+export const BaseAssortmentResponse = {
+  data: {
+    assortment: {
+      _id: 'not-base',
+      isActive: true,
+      created: '2022-04-20T14:47:53.670Z',
+      updated: '2022-07-19T14:26:50.221Z',
+      sequence: 17,
+      texts: {
+        _id: '7f04569c0eb84dd41ddd812a',
+        slug: 'Sussgetranke',
+        title: 'Süssgetränke',
+        subtitle: null,
+        description: null,
+        __typename: 'AssortmentTexts',
+      },
+      isBase: true,
+      isRoot: true,
+      tags: [],
+      childrenCount: 4,
+      media: [
+        {
+          _id: '5595435cf99a9e936edce88c',
+          tags: [],
+          file: {
+            _id: '5atbwLOqPVJZatoh45CFAk-02_popsoda.jpg',
+            url: 'https://orderly.xn--nd-fka.live/gridfs/assortment-media/5atbwLOqPVJZatoh45CFAk-02_popsoda.jpg',
+            __typename: 'Media',
+          },
+          __typename: 'AssortmentMedia',
+        },
+      ],
+      __typename: 'Assortment',
+    },
+  },
+};
+
 export const SingleTranslatedAssortmentTextsResponse = {
   data: {
     translatedAssortmentTexts: [
@@ -142,8 +179,8 @@ export const SingleTranslatedAssortmentTextsResponse = {
         locale: 'en',
         slug: 'snacks',
         title: 'Snacks',
-        subtitle: null,
-        description: null,
+        subtitle: 'Snacks',
+        description: 'Snacks',
         __typename: 'AssortmentTexts',
       },
     ],
@@ -244,8 +281,8 @@ export const SingleAssortmentResponse = {
         _id: '8f7dcfdeb42f704b56248d1e',
         slug: 'snacks',
         title: 'Snacks',
-        subtitle: null,
-        description: null,
+        subtitle: 'Snacks',
+        description: 'Snacks',
         __typename: 'AssortmentTexts',
       },
       isBase: true,
@@ -278,6 +315,17 @@ export const SetBaseAssortmentResponse = {
   },
 };
 
+export const UpdateAssortmentTextsResponse = {
+  data: {
+    updateAssortmentTexts: [
+      {
+        _id: 'e38361a29cf8e3a6036c837a',
+        __typename: 'AssortmentTexts',
+      },
+    ],
+  },
+};
+
 export const assortmentRequestVariables = {
   forceLocale: 'en',
   includeInactive: false,
@@ -303,4 +351,5 @@ export const AssortmentOperation = {
   CreateAssortment: 'CreateAssortment',
   UpdateAssortment: 'UpdateAssortment',
   SetBaseAssortment: 'SetBaseAssortment',
+  UpdateAssortmentTexts: 'updateAssortmentTexts',
 };
