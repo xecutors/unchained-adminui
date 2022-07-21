@@ -283,6 +283,7 @@ const AssortmentDetail = ({ assortment }) => {
           enableEdit={hasRole(ACTION_ROLES.assortments.update)}
         />
         <input
+          id="sequence"
           type="number"
           className="w-24 shadow-sm focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={assortment?.sequence}
@@ -290,7 +291,10 @@ const AssortmentDetail = ({ assortment }) => {
         />
         <div>
           {isBase ? (
-            <span className="py-2.5 px-8 text-sm font-medium text-white bg-green-500 white inline-flex items-center shadow-md border rounded-md">
+            <span
+              id="is_base"
+              className="py-2.5 px-8 text-sm font-medium text-white bg-green-500 white inline-flex items-center shadow-md border rounded-md"
+            >
               {formatMessage({
                 id: 'base',
                 defaultMessage: 'Base',
@@ -298,6 +302,7 @@ const AssortmentDetail = ({ assortment }) => {
             </span>
           ) : (
             <Button
+              id="not_base"
               text={formatMessage({
                 id: 'not_base',
                 defaultMessage: 'Mark as Base',

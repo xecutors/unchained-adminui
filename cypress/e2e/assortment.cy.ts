@@ -574,5 +574,7 @@ describe('Assortment', () => {
     cy.get('input[type="submit"]')
       .contains(localizations.en.add_assortment)
       .should('be.disabled');
+
+    cy.location('pathname').should('eq', '/assortments/new');
   });
 });

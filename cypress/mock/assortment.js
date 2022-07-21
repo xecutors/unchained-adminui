@@ -15,7 +15,7 @@ export const AssortmentListResponse = {
           description: null,
           __typename: 'AssortmentTexts',
         },
-        isBase: false,
+        isBase: true,
         isRoot: true,
         tags: [],
         childrenCount: 4,
@@ -34,8 +34,8 @@ export const AssortmentListResponse = {
         __typename: 'Assortment',
       },
       {
-        _id: '1fed9af2ed7fd71548955f6d',
-        isActive: true,
+        _id: 'not-active',
+        isActive: false,
         created: '2022-03-29T20:50:58.529Z',
         updated: '2022-07-19T14:26:47.723Z',
         sequence: 13,
@@ -47,7 +47,7 @@ export const AssortmentListResponse = {
           description: null,
           __typename: 'AssortmentTexts',
         },
-        isBase: false,
+        isBase: true,
         isRoot: true,
         tags: [],
         childrenCount: 4,
@@ -66,7 +66,7 @@ export const AssortmentListResponse = {
         __typename: 'Assortment',
       },
       {
-        _id: 'e66542656a6887e64d0d7cb9',
+        _id: 'not-base',
         isActive: true,
         created: '2022-04-20T14:47:53.670Z',
         updated: '2022-07-19T14:26:50.221Z',
@@ -98,7 +98,7 @@ export const AssortmentListResponse = {
         __typename: 'Assortment',
       },
       {
-        _id: '0de23bbadc6a2d8da8a73a98',
+        _id: 'not-root',
         isActive: true,
         created: '2022-06-22T07:46:19.990Z',
         updated: '2022-07-19T14:26:22.386Z',
@@ -111,8 +111,8 @@ export const AssortmentListResponse = {
           description: null,
           __typename: 'AssortmentTexts',
         },
-        isBase: false,
-        isRoot: true,
+        isBase: true,
+        isRoot: false,
         tags: [],
         childrenCount: 4,
         media: [
@@ -154,7 +154,7 @@ export const AssortmentPathsResponse = {
   data: {
     assortments: [
       {
-        _id: 'snacks',
+        _id: 'e38361a29cf8e3a6036c837a',
         texts: {
           _id: '8f7dcfdeb42f704b56248d1e',
           slug: 'snacks',
@@ -226,7 +226,7 @@ export const CreateAssortmentResponse = {
 export const UpdateAssortmentResponse = {
   data: {
     updateAssortment: {
-      _id: 'snacks',
+      _id: 'e38361a29cf8e3a6036c837a',
       __typename: 'Assortment',
     },
   },
@@ -237,12 +237,9 @@ export const SingleAssortmentResponse = {
     assortment: {
       _id: 'e38361a29cf8e3a6036c837a',
       isActive: true,
-      created: '2022-07-20T13:11:52.769Z',
-      updated: '2022-07-20T13:11:52.774Z',
-      sequence: 18,
-      isBase: false,
-      isRoot: true,
-      tags: [],
+      created: '2022-03-22T13:47:05.168Z',
+      updated: '2022-07-19T14:26:46.565Z',
+      sequence: 12,
       texts: {
         _id: '8f7dcfdeb42f704b56248d1e',
         slug: 'snacks',
@@ -251,8 +248,31 @@ export const SingleAssortmentResponse = {
         description: null,
         __typename: 'AssortmentTexts',
       },
-      childrenCount: 6,
-      media: [],
+      isBase: true,
+      isRoot: true,
+      tags: [],
+      childrenCount: 4,
+      media: [
+        {
+          _id: 'a057db39dcd83bb5795ef38f',
+          tags: [],
+          file: {
+            _id: '26iqNJ2HWF5bI6Tpz5i7JW-07_snacks.jpg',
+            url: 'https://orderly.xn--nd-fka.live/gridfs/assortment-media/26iqNJ2HWF5bI6Tpz5i7JW-07_snacks.jpg',
+            __typename: 'Media',
+          },
+          __typename: 'AssortmentMedia',
+        },
+      ],
+      __typename: 'Assortment',
+    },
+  },
+};
+
+export const SetBaseAssortmentResponse = {
+  data: {
+    setBaseAssortment: {
+      _id: 'e38361a29cf8e3a6036c837a',
       __typename: 'Assortment',
     },
   },
@@ -282,4 +302,5 @@ export const AssortmentOperation = {
   GetTranslatedAssortmentTexts: 'TranslatedAssortmentTexts',
   CreateAssortment: 'CreateAssortment',
   UpdateAssortment: 'UpdateAssortment',
+  SetBaseAssortment: 'SetBaseAssortment',
 };

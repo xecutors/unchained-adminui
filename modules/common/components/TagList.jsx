@@ -34,6 +34,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
       </div>
       {enableEdit && (
         <Button
+          id="add_tag"
           className="h-12 w-12 rounded-full"
           text={<PencilAltIcon className="h-5 w-5" />}
           onClick={() =>
