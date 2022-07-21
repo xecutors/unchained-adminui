@@ -75,23 +75,22 @@ describe('Assortment', () => {
       },
     );
 
+    cy.location('pathname').should('eq', '/assortments');
     cy.get('h2').should(
       'contain.text',
       localizations.en.assortments_list_header,
     );
   });
 
-  it('Show Navigate to [ASSORTMENTS] page successfully', () => {
-    cy.location('pathname').should('eq', '/assortments');
+  it('Should Navigate to [ASSORTMENTS] page successfully', () => {
     cy.get('tr').should('have.length', 8);
   });
 
   it('[TOGGLE INACTIVE STATUS] should update route', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
     cy.get('button#includeInactive')
       .contains(localizations.en.include_inactive)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -102,6 +101,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -111,7 +111,6 @@ describe('Assortment', () => {
     cy.get('button#includeInactive')
       .contains(localizations.en.include_inactive)
       .click({ force: true });
-
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -121,11 +120,10 @@ describe('Assortment', () => {
   });
 
   it('[TOGGLE LEAF STATUS] should update route', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
     cy.get('button#includeLeaves')
       .contains(localizations.en.include_leaf)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -136,6 +134,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -145,7 +144,6 @@ describe('Assortment', () => {
     cy.get('button#includeLeaves')
       .contains(localizations.en.include_leaf)
       .click({ force: true });
-
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -154,12 +152,11 @@ describe('Assortment', () => {
     });
   });
 
-  it('Show Navigate to [TANGLE TREE] successfully', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('Should Navigate to [TANGLE TREE] successfully', () => {
     cy.get('button#viewGraph')
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -171,14 +168,12 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
     );
-    cy.get('svg#tangle-tree').should('be.visible');
-    cy.get('svg#tangle-tree').within(() => {
-      cy.get('a#root').should(
-        'have.length',
-        AssortmentListResponse.data.assortmentsCount,
-      );
-    });
 
+    cy.get('svg#tangle-tree').should('be.visible');
+    cy.get('a#root').should(
+      'have.length',
+      AssortmentListResponse.data.assortmentsCount,
+    );
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -188,11 +183,10 @@ describe('Assortment', () => {
   });
 
   it('[TOGGLE GRAPH STATUS] should update route', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
     cy.get('button#viewGraph')
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -204,6 +198,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -218,12 +213,11 @@ describe('Assortment', () => {
     });
   });
 
-  it('[TOGGLE INACTIVE STATUS] should update route and assortment paths', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('[TOGGLE INACTIVE STATUS] should update route and assortment paths data', () => {
     cy.get('button#viewGraph')
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -242,10 +236,10 @@ describe('Assortment', () => {
         viewGraph: 'true',
       });
     });
-
     cy.get('button#includeInactive')
       .contains(localizations.en.include_inactive)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -257,6 +251,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -267,7 +262,6 @@ describe('Assortment', () => {
     cy.get('button#includeInactive')
       .contains(localizations.en.include_inactive)
       .click({ force: true });
-
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -277,10 +271,9 @@ describe('Assortment', () => {
     });
   });
 
-  it('should update data and route when [SEARCHING] accordingly', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('Should update data and route when [SEARCHING] accordingly', () => {
     cy.get('input[type="search"]').type('s');
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -299,6 +292,7 @@ describe('Assortment', () => {
       });
     });
     cy.get('input[type="search"]').type('a');
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -318,9 +312,7 @@ describe('Assortment', () => {
     });
   });
 
-  it('should update data and route when [ADD TAG] accordingly', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('Should update data and route when [ADD TAG] accordingly', () => {
     cy.get('input#tag-input').type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
 
@@ -363,9 +355,7 @@ describe('Assortment', () => {
     });
   });
 
-  it('should update data and route when [REMOVE TAGS IN ADD TAG] accordingly', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('Should update data and route when [REMOVE TAG IN ADD TAG] accordingly', () => {
     cy.get('input#tag-input').type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
 
@@ -386,15 +376,13 @@ describe('Assortment', () => {
         tags: 'new',
       });
     });
-
     cy.get('button#badge-x-button').click();
     cy.location('pathname').should('eq', '/assortments');
   });
 
-  it('should update data  when [ADD SEQUENCE] accordingly', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
+  it('Should update data when [SEQUENCING] accordingly', () => {
     cy.get('input#sequence').first().clear().type('50').blur();
+
     cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -420,12 +408,11 @@ describe('Assortment', () => {
   });
 
   it('Should [FILTER] by multiple fields [INACTIVE, LEAFS, TAGS & QUERY STRING]', () => {
-    cy.location('pathname').should('eq', '/assortments');
-
     // toggle inactive
     cy.get('button#includeInactive')
       .contains(localizations.en.include_inactive)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -436,6 +423,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -447,6 +435,7 @@ describe('Assortment', () => {
     cy.get('button#includeLeaves')
       .contains(localizations.en.include_leaf)
       .click({ force: true });
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -458,6 +447,7 @@ describe('Assortment', () => {
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -494,6 +484,7 @@ describe('Assortment', () => {
 
     // search
     cy.get('input[type="search"]').type('s');
+
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -519,15 +510,13 @@ describe('Assortment', () => {
     });
   });
 
-  it('Show Navigate to [NEW ASSORTMENT] form page successfully', () => {
-    cy.location('pathname').should('eq', '/assortments');
+  it('Should Navigate to [NEW ASSORTMENT] form page successfully', () => {
     cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
     cy.location('pathname').should('eq', '/assortments/new');
     cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
   });
 
-  it('Show [ADD ASSORTMENT]  successfully', () => {
-    cy.location('pathname').should('eq', '/assortments');
+  it('Should [ADD ASSORTMENT] successfully', () => {
     cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
     cy.location('pathname').should('eq', '/assortments/new');
     cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
@@ -583,7 +572,6 @@ describe('Assortment', () => {
   });
 
   it('Show [ERROR] when required fields are not provided in add assortment', () => {
-    cy.location('pathname').should('eq', '/assortments');
     cy.get('a[href="/assortments/new"]').contains(localizations.en.add).click();
     cy.location('pathname').should('eq', '/assortments/new');
     cy.get('h2').should('contain.text', localizations.en.new_assortment_header);
