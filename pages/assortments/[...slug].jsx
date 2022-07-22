@@ -32,7 +32,7 @@ const AssortmentDetailPage = () => {
           />
         }
       >
-        <div>
+        <div id="date">
           {assortment?.created && (
             <FormattedMessage
               id="added_date"

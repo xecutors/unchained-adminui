@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import getContent from '../../modules/common/utils/utils';
 import {
   AssortmentListResponse,
   AssortmentOperation,
@@ -11,7 +12,7 @@ import {
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
-import getContent from '../utils/getContent';
+import formatDateTime from '../utils/formatDateTime';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -124,10 +125,26 @@ describe('Assortment Detail', () => {
     });
 
     it('Should Navigate to [ASSORTMENT DETAIL] page successfully', () => {
-      cy.location('pathname').should(
-        'eq',
-        `/assortments/${SingleAssortmentResponse.data.assortment.texts.slug}`,
-      );
+      const { assortment } = SingleAssortmentResponse.data;
+
+      cy.get('input#sequence').should('have.value', assortment.sequence);
+      cy.get('div#date').within(() => {
+        cy.get('div')
+          .first()
+          .should(
+            'contain.text',
+            getContent(
+              replaceIntlPlaceholder(
+                localizations.en.added_date,
+                formatDateTime('en', assortment.created, {
+                  dateStyle: 'long',
+                  timeStyle: 'short',
+                }),
+                'created',
+              ),
+            ),
+          );
+      });
     });
 
     it('Should be visible [ADD TAGS] form successfully', () => {
@@ -250,6 +267,30 @@ describe('Assortment Detail', () => {
         'eq',
         `/assortments/${assortment.texts.slug}`,
       );
+    });
+
+    it('Show [ERROR] when required fields are not provided in update assortment text', () => {
+      cy.get('input#slug').clear();
+      cy.get('input#title').clear().blur();
+
+      cy.get('label[for="slug"]').should(
+        'contain.text',
+        replaceIntlPlaceholder(
+          localizations.en.error_required,
+          localizations.en.slug,
+        ),
+      );
+      cy.get('label[for="title"]').should(
+        'contain.text',
+        replaceIntlPlaceholder(
+          localizations.en.error_required,
+          localizations.en.title,
+        ),
+      );
+
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.save)
+        .should('be.disabled');
     });
   });
 
