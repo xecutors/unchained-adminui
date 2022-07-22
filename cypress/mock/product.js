@@ -320,6 +320,22 @@ export const PublishProductResponse = {
   },
 };
 
+export const ProductFilterRequest = {
+  queryString: '',
+  limit: 50,
+  offset: 0,
+  includeDrafts: false,
+  tags: null,
+  slugs: null,
+  sort: [
+    {
+      key: 'sequence',
+      value: 'ASC',
+    },
+  ],
+  forceLocale: 'en',
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -336,4 +352,5 @@ export default {
   SingleProductResponse,
   CreateProductResponse,
   UpdateProductTextsResponse,
+  ProductFilterRequest,
 };
