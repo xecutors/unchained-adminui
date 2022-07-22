@@ -11,6 +11,7 @@ import {
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import getContent from '../utils/getContent';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
@@ -107,17 +108,19 @@ describe('Assortment Detail', () => {
         'eq',
         `/assortments/${assortment.texts.slug}`,
       );
-
-      // cy.get('h2').within(() => {
-      //   cy.get('span').should(
-      //     'contain.html',
-      //     replaceIntlPlaceholder(
-      //       localizations.en.assortment_detail_header,
-      //       assortment._id,
-      //       'id',
-      //     ),
-      //   );
-      // });
+      cy.get('h2').within(() => {
+        cy.get('span').should(
+          'contain.text',
+          getContent(
+            replaceIntlPlaceholder(
+              localizations.en.assortment_detail_header,
+              assortment._id,
+              'id',
+            ),
+          ),
+        );
+      });
+      cy.get('select#locale-wrapper').select('en');
     });
 
     it('Should Navigate to [ASSORTMENT DETAIL] page successfully', () => {
@@ -206,7 +209,6 @@ describe('Assortment Detail', () => {
     it('Should initialize assortment text form', () => {
       const { assortment } = SingleAssortmentResponse.data;
 
-      cy.get('select#locale-wrapper').select('en');
       cy.get('input#slug').should('have.value', assortment.texts.slug);
       cy.get('input#title').should('have.value', assortment.texts.title);
       cy.get('input#subtitle').should('have.value', assortment.texts.subtitle);
@@ -223,10 +225,8 @@ describe('Assortment Detail', () => {
     it('Should update assortment text form', () => {
       const { assortment } = SingleAssortmentResponse.data;
 
-      cy.get('select#locale-wrapper').select('en');
       cy.get('input#title').clear().type(assortment.texts.title);
       cy.get('input#subtitle').clear().type(assortment.texts.subtitle);
-
       cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
       cy.wait(
@@ -239,7 +239,7 @@ describe('Assortment Detail', () => {
             slug: assortment.texts.slug,
             title: assortment.texts.title,
             subtitle: assortment.texts.subtitle,
-            description: `<p>${assortment.texts.description}</p>`,
+            description: assortment.texts.description,
           },
           assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
@@ -295,6 +295,19 @@ describe('Assortment Detail', () => {
         'eq',
         `/assortments/${assortment.texts.slug}`,
       );
+      cy.get('h2').within(() => {
+        cy.get('span').should(
+          'contain.text',
+          getContent(
+            replaceIntlPlaceholder(
+              localizations.en.assortment_detail_header,
+              assortment._id,
+              'id',
+            ),
+          ),
+        );
+      });
+      cy.get('select#locale-wrapper').select('en');
 
       cy.get('button#not_base').contains(localizations.en.not_base).click();
       cy.get('button#alert_ok').contains(localizations.en.mark_as_base).click();
@@ -372,6 +385,19 @@ describe('Assortment Detail', () => {
         'eq',
         `/assortments/${assortment.texts.slug}`,
       );
+      cy.get('h2').within(() => {
+        cy.get('span').should(
+          'contain.text',
+          getContent(
+            replaceIntlPlaceholder(
+              localizations.en.assortment_detail_header,
+              assortment._id,
+              'id',
+            ),
+          ),
+        );
+      });
+      cy.get('select#locale-wrapper').select('en');
 
       cy.get('button#headlessui-listbox-button-14')
         .contains(
@@ -459,6 +485,19 @@ describe('Assortment Detail', () => {
         'eq',
         `/assortments/${assortment.texts.slug}`,
       );
+      cy.get('h2').within(() => {
+        cy.get('span').should(
+          'contain.text',
+          getContent(
+            replaceIntlPlaceholder(
+              localizations.en.assortment_detail_header,
+              assortment._id,
+              'id',
+            ),
+          ),
+        );
+      });
+      cy.get('select#locale-wrapper').select('en');
 
       cy.get('button#headlessui-listbox-button-16')
         .contains(

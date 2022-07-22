@@ -80,6 +80,14 @@ const reducerToObject = (array) => {
   );
 };
 
+const getContent = (content) => {
+  const span = document.createElement('span');
+  span.innerHTML = content;
+  return span.textContent || span.innerText;
+};
+
+export default getContent;
+
 export {
   useFormatPrice,
   getInterfaceLabel,
@@ -89,4 +97,5 @@ export {
   normalizeLanguageISOCode,
   getSortKeys,
   reducerToObject,
+  getContent,
 };
