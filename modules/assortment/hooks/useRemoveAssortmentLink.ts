@@ -16,7 +16,7 @@ const useRemoveAssortmentLink = () => {
   const removeAssortmentLink = async ({ assortmentLinkId }) => {
     return removeAssortmentLinkMutation({
       variables: { assortmentLinkId },
-      refetchQueries: ['Assortments'],
+      refetchQueries: ['AssortmentLinks', 'Assortments'],
     });
   };
 

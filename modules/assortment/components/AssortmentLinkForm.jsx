@@ -55,9 +55,12 @@ const AssortmentLinkForm = ({ assortmentId }) => {
     },
   });
 
+  console.log('assortment: ', assortments);
+  console.log('normalizeAssortments: ', normalizeAssortments(assortments));
+
   return (
     <FormWrapper>
-      <Form form={form}>
+      <Form form={form} id="assortment_link_form">
         <div className="sm:rounded-md">
           <div className="grid gap-6 px-4 py-5 sm:p-6">
             <div className="col-span-12">
