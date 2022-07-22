@@ -67,6 +67,7 @@ const UserNameView = ({ _id: userId, username }) => {
             <FormErrors />
             <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
               <button
+                id="cancel_update"
                 onClick={() => setIsEdit(!isEdit)}
                 type="button"
                 className={classNames(

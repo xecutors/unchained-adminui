@@ -7,6 +7,7 @@ const Toggle = ({
   onToggle,
   active,
   className,
+  ...props
 }) => {
   const router = useRouter();
 
@@ -35,6 +36,7 @@ const Toggle = ({
         role="switch"
         onClick={onToggle || toggle}
         aria-checked={toggleState ? 'true' : 'false'}
+        {...props}
       >
         <span className="sr-only">{toggleText}</span>
 

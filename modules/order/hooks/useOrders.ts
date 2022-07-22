@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { DefaultLimit } from '../../common/data/miscellaneous';
 import OrderFragment from '../fragments/OrderFragment';
 
 export const OrdersQuery = gql`
@@ -24,7 +25,7 @@ export const OrdersQuery = gql`
 `;
 
 const useOrders = ({
-  limit = 20,
+  limit = DefaultLimit,
   offset = 0,
   includeCarts = false,
   queryString = '',

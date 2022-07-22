@@ -110,6 +110,7 @@ const OrderDetailPayment = ({ order }) => {
                 order.payment.status === 'OPEN' &&
                 type.value === 'PAID' && (
                   <button
+                    id="pay"
                     type="button"
                     onClick={markAsPaid}
                     className="my-2 mr-2 inline-flex h-full items-center justify-center  rounded border border-slate-300 border-transparent bg-blue-600 py-1 px-2 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
