@@ -139,6 +139,7 @@ const MediaListItem = ({
                   />
                 ) : (
                   <button
+                    id="edit"
                     type={isEdit ? 'button' : 'submit'}
                     onClick={(e) => {
                       stopPropagation(e);

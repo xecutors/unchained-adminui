@@ -564,6 +564,73 @@ export const RemoveAssortmentLinkResponse = {
   },
 };
 
+export const AssortmentMediaResponse = {
+  data: {
+    assortment: {
+      _id: 'snacks',
+      media: [
+        {
+          _id: 'a057db39dcd83bb5795ef38f',
+          tags: [],
+          texts: null,
+          file: {
+            _id: '26iqNJ2HWF5bI6Tpz5i7JW-07_snacks.jpg',
+            url: 'https://orderly.xn--nd-fka.live/gridfs/assortment-media/26iqNJ2HWF5bI6Tpz5i7JW-07_snacks.jpg',
+            name: '07_snacks.jpg',
+            size: 89583,
+            type: 'image/jpeg',
+            __typename: 'Media',
+          },
+          sortKey: 1,
+          __typename: 'AssortmentMedia',
+        },
+      ],
+      __typename: 'Assortment',
+    },
+  },
+};
+
+export const TranslatedAssortmentMediaTextsResponse = {
+  data: {
+    translatedAssortmentMediaTexts: [
+      {
+        _id: 'f4f14c69de872a515f48dcc7',
+        locale: 'en',
+        title: 'moniter',
+        subtitle: 'moniter',
+        __typename: 'AssortmentMediaTexts',
+      },
+      {
+        _id: '5eac9ac1a125b74ce7816b3b',
+        locale: 'de',
+        title: 'moniter',
+        subtitle: 'moniter',
+        __typename: 'AssortmentMediaTexts',
+      },
+    ],
+  },
+};
+
+export const RemoveAssortmentMediaResponse = {
+  data: {
+    removeAssortmentMedia: {
+      _id: 'f4f14c69de872a515f48dcc7',
+      __typename: 'AssortmentMedia',
+    },
+  },
+};
+
+export const UpdateAssortmentMediaTextsResponse = {
+  data: {
+    updateAssortmentMediaTexts: [
+      {
+        _id: '5eac9ac1a125b74ce7816b3b',
+        __typename: 'AssortmentMediaTexts',
+      },
+    ],
+  },
+};
+
 export const assortmentRequestVariables = {
   forceLocale: 'en',
   includeInactive: false,
@@ -585,7 +652,7 @@ export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
   GetSingleAssortment: 'Assortment',
   GetAssortmentPaths: 'AssortmentPaths',
-  GetTranslatedAssortmentTexts: 'TranslatedAssortmentTexts',
+  GetTranslatedTexts: 'TranslatedAssortmentTexts',
   CreateAssortment: 'CreateAssortment',
   UpdateAssortment: 'UpdateAssortment',
   SetBaseAssortment: 'SetBaseAssortment',
@@ -594,4 +661,8 @@ export const AssortmentOperation = {
   SearchAssortments: 'SearchAssortments',
   AddAssortmentLink: 'AddAssortmentLink',
   RemoveAssortmentLink: 'RemoveAssortmentLink',
+  AssortmentMedia: 'AssortmentMedia',
+  GetMediaTexts: 'TranslatedAssortmentMediaTexts',
+  RemoveMedia: 'RemoveAssortmentMedia',
+  UpdateMediaTexts: 'UpdateAssortmentMediaTexts',
 };

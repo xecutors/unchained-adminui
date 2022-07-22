@@ -33,10 +33,8 @@ describe('Assortment Detail', () => {
           },
         });
       }
-      if (
-        hasOperationName(req, AssortmentOperation.GetTranslatedAssortmentTexts)
-      ) {
-        aliasQuery(req, AssortmentOperation.GetTranslatedAssortmentTexts);
+      if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
+        aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
         req.reply(SingleTranslatedAssortmentTextsResponse);
       }
       if (hasOperationName(req, AssortmentOperation.UpdateAssortment)) {
@@ -93,17 +91,17 @@ describe('Assortment Detail', () => {
         },
       );
 
-      cy.wait(
-        fullAliasName(AssortmentOperation.GetTranslatedAssortmentTexts),
-      ).then((currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: SingleAssortmentResponse.data.assortment._id,
-        });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
-      });
+      cy.wait(fullAliasName(AssortmentOperation.GetTranslatedTexts)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            assortmentId: SingleAssortmentResponse.data.assortment._id,
+          });
+          expect(response.body).to.deep.eq(
+            SingleTranslatedAssortmentTextsResponse,
+          );
+        },
+      );
 
       cy.location('pathname').should(
         'eq',
@@ -320,17 +318,17 @@ describe('Assortment Detail', () => {
         },
       );
 
-      cy.wait(
-        fullAliasName(AssortmentOperation.GetTranslatedAssortmentTexts),
-      ).then((currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
-      });
+      cy.wait(fullAliasName(AssortmentOperation.GetTranslatedTexts)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            assortmentId: assortment._id,
+          });
+          expect(response.body).to.deep.eq(
+            SingleTranslatedAssortmentTextsResponse,
+          );
+        },
+      );
 
       cy.location('pathname').should(
         'eq',
@@ -410,17 +408,17 @@ describe('Assortment Detail', () => {
         },
       );
 
-      cy.wait(
-        fullAliasName(AssortmentOperation.GetTranslatedAssortmentTexts),
-      ).then((currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
-      });
+      cy.wait(fullAliasName(AssortmentOperation.GetTranslatedTexts)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            assortmentId: assortment._id,
+          });
+          expect(response.body).to.deep.eq(
+            SingleTranslatedAssortmentTextsResponse,
+          );
+        },
+      );
 
       cy.location('pathname').should(
         'eq',
@@ -510,17 +508,17 @@ describe('Assortment Detail', () => {
         },
       );
 
-      cy.wait(
-        fullAliasName(AssortmentOperation.GetTranslatedAssortmentTexts),
-      ).then((currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
-      });
+      cy.wait(fullAliasName(AssortmentOperation.GetTranslatedTexts)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            assortmentId: assortment._id,
+          });
+          expect(response.body).to.deep.eq(
+            SingleTranslatedAssortmentTextsResponse,
+          );
+        },
+      );
 
       cy.location('pathname').should(
         'eq',
