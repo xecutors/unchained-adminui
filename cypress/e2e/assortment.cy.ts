@@ -365,7 +365,8 @@ describe('Assortment', () => {
   });
 
   it('Should update data when [SEQUENCING] accordingly', () => {
-    cy.get('input#sequence').first().clear().type('50').blur();
+    const { _id } = SingleAssortmentResponse.data.assortment;
+    cy.get(`input#${_id}-sequence`).first().clear().type('50').blur();
 
     cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(
       (currentSubject) => {
@@ -374,7 +375,7 @@ describe('Assortment', () => {
           assortment: {
             sequence: 50,
           },
-          assortmentId: SingleAssortmentResponse.data.assortment._id,
+          assortmentId: _id,
         });
         expect(response.body).to.deep.eq(UpdateAssortmentResponse);
       },

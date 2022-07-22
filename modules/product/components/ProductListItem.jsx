@@ -34,22 +34,37 @@ const ProductListItem = ({ product, showAvatar }) => {
               className="mr-2"
             />
           )}
-          <Link href={`/products/${slug}`}>
-            <a className="text-blue-600 dark:text-blue-400">
-              {product?.texts.title || (
-                <>
-                  {product._id}{' '}
-                  <Badge
-                    color="yellow"
-                    text={formatMessage({
-                      id: 'title_not_found',
-                      defaultMessage: 'Title not found',
-                    })}
-                  />
-                </>
-              )}
-            </a>
-          </Link>
+          {product?.status !== 'DELETED' ? (
+            <Link href={`/products/${slug}`}>
+              <a className="text-blue-600 dark:text-blue-400">
+                {product?.texts.title || (
+                  <>
+                    {product._id}{' '}
+                    <Badge
+                      color="yellow"
+                      text={formatMessage({
+                        id: 'title_not_found',
+                        defaultMessage: 'Title not found',
+                      })}
+                    />
+                  </>
+                )}
+              </a>
+            </Link>
+          ) : (
+            product?.texts.title || (
+              <>
+                {product._id}{' '}
+                <Badge
+                  color="yellow"
+                  text={formatMessage({
+                    id: 'title_not_found',
+                    defaultMessage: 'Title not found',
+                  })}
+                />
+              </>
+            )
+          )}
         </div>
       </Table.Cell>
 
@@ -70,6 +85,7 @@ const ProductListItem = ({ product, showAvatar }) => {
       <Table.Cell>
         <input
           type="number"
+          id={`${product?._id}-sequence`}
           className="w-24 shadow-sm focus:ring-indigo-500 dark:bg-slate-800 dark:border-slate-700 focus:border-indigo-500 block text-sm  border-gray-300 rounded-full mr-2 font-bold text-indigo-500"
           defaultValue={product?.sequence}
           onBlur={updateProductSequence}

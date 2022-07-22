@@ -11,12 +11,7 @@ const UpdateProductMutation = gql`
 const useUpdateProduct = () => {
   const [updateProductMutation] = useMutation(UpdateProductMutation);
 
-  const updateProduct = async ({
-    productId,
-    tags = [],
-    sequence = null,
-    meta,
-  }) => {
+  const updateProduct = async ({ productId, tags, sequence, meta }) => {
     return updateProductMutation({
       variables: {
         productId,

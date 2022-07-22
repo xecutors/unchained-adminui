@@ -2,7 +2,7 @@ export const ProductListResponse = {
   data: {
     products: [
       {
-        _id: '2fa5d98415e91a3b68eafe10',
+        _id: 'active-product',
         sequence: 46,
         status: 'ACTIVE',
         tags: [],
@@ -10,7 +10,7 @@ export const ProductListResponse = {
         published: '2022-04-20T12:19:26.182Z',
         texts: {
           _id: '518c17a1f4f78ec1a8c37c97',
-          slug: 'ostschweizer-freiland-gggeli',
+          slug: 'active-product-slug',
           title: 'Ostschweizer Freiland Güggeli:',
           subtitle: null,
           description: null,
@@ -24,15 +24,15 @@ export const ProductListResponse = {
         __typename: 'SimpleProduct',
       },
       {
-        _id: 'f1a6fc2f97c3593fb1e69777',
+        _id: 'draft-product',
         sequence: 48,
-        status: 'ACTIVE',
+        status: 'DRAFT',
         tags: [],
         updated: '2022-04-20T12:20:56.274Z',
-        published: '2022-04-20T12:20:56.274Z',
+        published: null,
         texts: {
           _id: '5d1c28ff198cea8606a979dd',
-          slug: 'meat-balls-vegetarisch-falafel',
+          slug: 'draft-product-slug',
           title: 'Meat Balls Vegetarisch / Falafel',
           subtitle: null,
           description: null,
@@ -46,15 +46,15 @@ export const ProductListResponse = {
         __typename: 'SimpleProduct',
       },
       {
-        _id: 'da8b44c06c72a9463ee1fa7d',
+        _id: 'deleted-product',
         sequence: 49,
-        status: 'ACTIVE',
+        status: 'DELETED',
         tags: [],
         updated: '2022-06-16T10:29:30.114Z',
-        published: '2022-04-20T12:22:39.944Z',
+        published: null,
         texts: {
           _id: '2da08434aa7df52589772086',
-          slug: 'asia-wok-kitchen',
+          slug: 'deleted-product-slug',
           title: 'ASIA WOK Kitchen',
           subtitle: null,
           description: null,
@@ -266,13 +266,17 @@ export const SingleProductResponse = {
   },
 };
 
+export const ACTIVE_PRODUCT_SLUG = 'active-product-slug';
+export const DRAFT_PRODUCT_SLUG = 'draft-product-slug';
+export const DELETED_PRODUCT_SLUG = 'deleted-product-slug';
+
 export const CreateProductResponse = {
   data: {
     createProduct: {
       _id: 'b01216259a4f9449de850c7d',
       texts: {
         _id: '6650fb29c79052c6d682dee5',
-        slug: 'test-1',
+        slug: DRAFT_PRODUCT_SLUG,
         __typename: 'ProductTexts',
       },
       __typename: 'SimpleProduct',
@@ -286,7 +290,7 @@ export const TranslatedProductTextResponse = {
       {
         _id: '6650fb29c79052c6d682dee5',
         locale: 'de',
-        slug: 'test-1',
+        slug: DRAFT_PRODUCT_SLUG,
         title: 'test',
         subtitle: 'test subtitle',
         description: 'test-description',
@@ -320,6 +324,16 @@ export const PublishProductResponse = {
   },
 };
 
+export const UnpublishProductResponse = {
+  data: {
+    unpublishProduct: {
+      _id: 'b01216259a4f9449de850c7d',
+      status: 'DRAFT',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
 export const ProductFilterRequest = {
   queryString: '',
   limit: 50,
@@ -336,6 +350,24 @@ export const ProductFilterRequest = {
   forceLocale: 'en',
 };
 
+export const UpdateProductResponse = {
+  data: {
+    updateProduct: {
+      _id: '801c194add2ad93b436d1ecc',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const RemoveProductResponse = {
+  data: {
+    removeProduct: {
+      _id: '801c194add2ad93b436d1ecc',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -344,6 +376,8 @@ export const ProductOperations = {
   UpdateTexts: 'UpdateProductTexts',
   PublishProduct: 'PublishProduct',
   UnpublishProduct: 'UnpublishProduct',
+  UpdateProduct: 'UpdateProduct',
+  RemoveProduct: 'RemoveProduct',
 };
 
 export default {
@@ -353,4 +387,6 @@ export default {
   CreateProductResponse,
   UpdateProductTextsResponse,
   ProductFilterRequest,
+  RemoveProductResponse,
+  UnpublishProductResponse,
 };

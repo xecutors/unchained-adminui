@@ -19,7 +19,7 @@ const ProductDetailPage = () => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   const { hasRole } = useAuth();
-  const { query } = useRouter();
+  const { query, ...router } = useRouter();
   const { setModal } = useModal();
 
   const { slug = [] } = query || {};
@@ -44,6 +44,7 @@ const ProductDetailPage = () => {
               defaultMessage: 'Deleted successfully ',
             }),
           );
+          router.push('/products');
         }}
       />,
     );
