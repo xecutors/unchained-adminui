@@ -173,8 +173,10 @@ describe('Delivery Provider', () => {
     }
 
     cy.get('select#adapterKey').select(firstPickUpInterface.value);
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
+      .should('have.value', localizations.en.create_provider)
       .click();
 
     cy.wait(
@@ -214,9 +216,10 @@ describe('Delivery Provider', () => {
     );
 
     cy.get('h2').should('contain.text', localizations.en.new_delivery_provider);
-    cy.get('input[type="submit"]')
-      .should('contain.value', localizations.en.create_provider)
-
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
+      .should('have.value', localizations.en.create_provider)
       .click();
 
     cy.get('label[for="type"]').should(
@@ -303,8 +306,10 @@ describe('Delivery Provider', () => {
       .type(JSON.stringify(deliveryProvider.configuration, null, 2))
       .blur();
 
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.update_configuration)
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
+      .should('have.value', localizations.en.update_configuration)
       .click();
 
     cy.wait(
@@ -350,7 +355,9 @@ describe('Delivery Provider', () => {
 
     cy.get('textarea#configuration').type('l').blur();
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
       .should('have.value', localizations.en.update_configuration)
       .should('be.disabled');
   });

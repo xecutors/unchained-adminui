@@ -169,7 +169,9 @@ describe('Warehousing Provider', () => {
     cy.get('select#type').select(firstType.value);
 
     cy.get('select#adapterKey').select(firstPickUpInterface.value);
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
       .should('have.value', localizations.en.create_provider)
       .click();
 
@@ -203,7 +205,9 @@ describe('Warehousing Provider', () => {
       'contain.text',
       localizations.en.new_warehousing_provider_header,
     );
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
       .should('have.value', localizations.en.create_provider)
       .click();
 
@@ -223,7 +227,9 @@ describe('Warehousing Provider', () => {
       ),
     );
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
       .should('have.value', localizations.en.create_provider)
       .should('be.disabled');
 
@@ -295,7 +301,9 @@ describe('Warehousing Provider', () => {
       .type(JSON.stringify(warehousingProvider.configuration || {}, null, 2))
       .blur();
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
       .should('have.value', localizations.en.update_configuration)
       .click();
 
@@ -344,7 +352,9 @@ describe('Warehousing Provider', () => {
 
     cy.get('textarea#configuration').type('l').blur();
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
       .should('have.value', localizations.en.update_configuration)
       .should('be.disabled');
   });

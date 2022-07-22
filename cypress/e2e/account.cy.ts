@@ -81,6 +81,7 @@ describe('Account', () => {
       .click({ force: true });
 
     cy.location('pathname').should('eq', '/account');
+    cy.get('h2').contains(localizations.en.account);
   });
 
   context('General', () => {

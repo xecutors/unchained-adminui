@@ -178,8 +178,10 @@ describe('Payment Provider', () => {
     );
 
     cy.get('select#adapterKey').select(firstPickUpInterface.value);
-    cy.get('input[type="submit"]')
-      .should('contain.value', localizations.en.create_provider)
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
+      .should('have.value', localizations.en.create_provider)
       .click();
 
     cy.wait(
@@ -221,8 +223,10 @@ describe('Payment Provider', () => {
       'contain.text',
       localizations.en.new_payment_provider_header,
     );
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
+      .should('have.value', localizations.en.create_provider)
       .click();
 
     cy.get('label[for="type"]').should(
@@ -241,8 +245,10 @@ describe('Payment Provider', () => {
       ),
     );
 
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.create_provider)
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.create_provider}"]`,
+    )
+      .should('have.value', localizations.en.create_provider)
       .should('be.disabled');
 
     cy.location('pathname').should('eq', '/payment-provider/new');
@@ -306,7 +312,9 @@ describe('Payment Provider', () => {
       .type(JSON.stringify(paymentProvider.configuration, null, 2))
       .blur();
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
       .should('have.value', localizations.en.update_configuration)
       .click();
 
@@ -351,7 +359,9 @@ describe('Payment Provider', () => {
 
     cy.get('textarea#configuration').type('l').blur();
 
-    cy.get('input[type="submit"]')
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.update_configuration}"]`,
+    )
       .should('have.value', localizations.en.update_configuration)
       .should('be.disabled');
   });
