@@ -631,6 +631,249 @@ export const UpdateAssortmentMediaTextsResponse = {
   },
 };
 
+export const AssortmentProductsResponse = {
+  data: {
+    assortment: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      productAssignments: [
+        {
+          _id: 'fee3ae6e702679cde6f0f1aa',
+          sortKey: 1,
+          tags: [],
+          product: {
+            _id: 'da14952a433f1c48ba092a8e',
+            sequence: 1,
+            status: 'ACTIVE',
+            tags: ['popular'],
+            updated: '2022-06-21T14:03:44.332Z',
+            published: '2022-06-21T14:02:33.074Z',
+            texts: {
+              _id: '1d08f4f5516ec3c7d4b6f935',
+              slug: 'pommes-frites',
+              title: 'Pommes frites',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            media: [
+              {
+                _id: '9a61b8619dda1bf91fa67a89',
+                tags: [],
+                file: {
+                  _id: '7sHT7jxTATrAgMNdrf5w92-thumbnail_pommes.jpg',
+                  url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/7sHT7jxTATrAgMNdrf5w92-thumbnail_pommes.jpg',
+                  __typename: 'Media',
+                },
+                __typename: 'ProductMedia',
+              },
+            ],
+            reviews: [],
+            __typename: 'SimpleProduct',
+          },
+          __typename: 'AssortmentProduct',
+        },
+        {
+          _id: 'd9906ee2139a4ff3e60716cb',
+          sortKey: 2,
+          tags: [],
+          product: {
+            _id: 'c91f610f6daf24ddb13fdee9',
+            sequence: 1,
+            status: 'ACTIVE',
+            tags: ['popular'],
+            updated: '2022-06-16T14:11:47.359Z',
+            published: '2022-04-20T12:12:30.677Z',
+            texts: {
+              _id: '33c20753a0ba4bb90cef3ab2',
+              slug: 'chicken-nuggets',
+              title: 'Chicken Nuggets',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            media: [
+              {
+                _id: '37729d254cf2781300c8a4c8',
+                tags: [],
+                file: {
+                  _id: '7vfWmbKD8Gxdfvh0EpHcoC-thumbnail_fisch.jpg',
+                  url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/7vfWmbKD8Gxdfvh0EpHcoC-thumbnail_fisch.jpg',
+                  __typename: 'Media',
+                },
+                __typename: 'ProductMedia',
+              },
+            ],
+            reviews: [],
+            __typename: 'SimpleProduct',
+          },
+          __typename: 'AssortmentProduct',
+        },
+        {
+          _id: 'dd2a0841af3e4e081f47061c',
+          sortKey: 3,
+          tags: [],
+          product: {
+            _id: 'f1a6fc2f97c3593fb1e69777',
+            sequence: 48,
+            status: 'ACTIVE',
+            tags: [],
+            updated: '2022-04-20T12:20:56.274Z',
+            published: '2022-04-20T12:20:56.274Z',
+            texts: {
+              _id: '5d1c28ff198cea8606a979dd',
+              slug: 'meat-balls-vegetarisch-falafel',
+              title: 'Meat Balls Vegetarisch / Falafel',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            media: [],
+            reviews: [],
+            __typename: 'SimpleProduct',
+          },
+          __typename: 'AssortmentProduct',
+        },
+        {
+          _id: '7e2c4b4928de4143ae772b29',
+          sortKey: 4,
+          tags: [],
+          product: {
+            _id: '82801617c8350ae3c8ed087a',
+            sequence: 50,
+            status: 'ACTIVE',
+            tags: [],
+            updated: '2022-06-23T15:15:27.113Z',
+            published: '2022-06-23T15:15:27.113Z',
+            texts: {
+              _id: 'a24d003ca35fef3795ebc15b',
+              slug: 'salad-bowls',
+              title: 'Salad Bowls',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            media: [
+              {
+                _id: '1b8692f8b18bdfc5e5e0342b',
+                tags: [],
+                file: {
+                  _id: '73Rksm0KvkEqvUI2kfQ4T5-thumbnail_salad.jpg',
+                  url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/73Rksm0KvkEqvUI2kfQ4T5-thumbnail_salad.jpg',
+                  __typename: 'Media',
+                },
+                __typename: 'ProductMedia',
+              },
+            ],
+            reviews: [],
+            __typename: 'SimpleProduct',
+          },
+          __typename: 'AssortmentProduct',
+        },
+      ],
+      __typename: 'Assortment',
+    },
+  },
+};
+
+export const SearchProductsResponse = {
+  data: {
+    searchProducts: {
+      productsCount: 2,
+      filteredProductsCount: 2,
+      products: [
+        {
+          _id: 'da14952a433f1c48ba092a8e',
+          sequence: 1,
+          status: 'ACTIVE',
+          tags: ['popular'],
+          updated: '2022-06-21T14:03:44.332Z',
+          published: '2022-06-21T14:02:33.074Z',
+          texts: {
+            _id: '1d08f4f5516ec3c7d4b6f935',
+            slug: 'pommes-frites',
+            title: 'Pommes frites',
+            subtitle: null,
+            description: null,
+            vendor: null,
+            brand: null,
+            labels: null,
+            __typename: 'ProductTexts',
+          },
+          media: [
+            {
+              _id: '9a61b8619dda1bf91fa67a89',
+              tags: [],
+              file: {
+                _id: '7sHT7jxTATrAgMNdrf5w92-thumbnail_pommes.jpg',
+                url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/7sHT7jxTATrAgMNdrf5w92-thumbnail_pommes.jpg',
+                __typename: 'Media',
+              },
+              __typename: 'ProductMedia',
+            },
+          ],
+          reviews: [],
+          __typename: 'SimpleProduct',
+        },
+        {
+          _id: 'cheeseburger',
+          sequence: 14,
+          status: 'ACTIVE',
+          tags: ['popular', 'swiss-tax-category:reduced'],
+          updated: '2022-06-22T08:46:10.645Z',
+          published: '2022-05-24T18:17:43.109Z',
+          texts: {
+            _id: 'deaa4ef7d20a8e8d0d3150d4',
+            slug: 'cheeseburger',
+            title: 'Cheeseburger mit Pommes-Frites',
+            subtitle: null,
+            description: '<p>Schweizer Fleisch</p>',
+            vendor: 'Burger Meister',
+            brand: 'Fat & Toasty',
+            labels: [],
+            __typename: 'ProductTexts',
+          },
+          media: [
+            {
+              _id: '052ffb386e17bd1a1e637cdd',
+              tags: [],
+              file: {
+                _id: '3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                url: 'https://orderly.xn--nd-fka.live/gridfs/product-media/3JTrNe0Z467xHiM9Yuay2p-thumbnail_burger.jpg',
+                __typename: 'Media',
+              },
+              __typename: 'ProductMedia',
+            },
+          ],
+          reviews: [],
+          __typename: 'SimpleProduct',
+        },
+      ],
+      __typename: 'ProductSearchResult',
+    },
+  },
+};
+
+export const RemoveAssortmentProductResponse = {
+  data: {
+    removeAssortmentProduct: {
+      _id: '0e3de7044f3df7ce3e1b5c89',
+      __typename: 'AssortmentProduct',
+    },
+  },
+};
+
 export const assortmentRequestVariables = {
   forceLocale: 'en',
   includeInactive: false,
@@ -665,4 +908,7 @@ export const AssortmentOperation = {
   GetMediaTexts: 'TranslatedAssortmentMediaTexts',
   RemoveMedia: 'RemoveAssortmentMedia',
   UpdateMediaTexts: 'UpdateAssortmentMediaTexts',
+  AssortmentProducts: 'AssortmentProducts',
+  SearchProducts: 'SearchProducts',
+  RemoveProduct: 'RemoveAssortmentProduct',
 };

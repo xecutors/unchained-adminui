@@ -17,7 +17,7 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-describe('Assortment Detail', () => {
+describe('Assortment Detail Media', () => {
   beforeEach(() => {
     const { assortment } = SingleAssortmentResponse.data;
 
@@ -152,7 +152,7 @@ describe('Assortment Detail', () => {
     cy.get('select#locale-wrapper').select('en');
   });
 
-  it('Should Navigate to [ASSORTMENT DETAIL LINKS] tab successfully', () => {
+  it('Should Navigate to [ASSORTMENT DETAIL MEDIA] tab successfully', () => {
     cy.get('div#media_uploader').should('be.visible');
   });
 
