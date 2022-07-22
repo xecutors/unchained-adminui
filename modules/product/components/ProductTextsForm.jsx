@@ -98,6 +98,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               <div className="col-span-6 sm:col-span-3">
                 <TextField
                   name="slug"
+                  required
                   id="slug"
                   label={formatMessage({
                     id: 'slug',
@@ -110,6 +111,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               <div className="col-span-6 sm:col-span-3">
                 <TextField
                   name="title"
+                  required
                   id="title"
                   label={formatMessage({
                     id: 'title',

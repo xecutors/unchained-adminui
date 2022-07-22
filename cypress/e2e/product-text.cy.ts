@@ -1,17 +1,27 @@
 import localizations from '../../i18n';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
+  ACTIVE_PRODUCT_SLUG,
   ProductFilterRequest,
   ProductListResponse,
   ProductOperations,
   TranslatedProductTextResponse,
   UpdateProductTextsResponse,
 } from '../mock/product';
-import { aliasMutation } from '../utils/aliasMutation';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import hasOperationName from '../utils/hasOperationName';
+import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Product Text', () => {
+  const product = ProductListResponse.data.products.find(
+    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+  );
+  const CurrentProductResponse = {
+    data: {
+      product,
+    },
+  };
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
@@ -22,18 +32,11 @@ describe('Product Text', () => {
         req.reply(ProductListResponse);
       }
       if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
-        const { body } = req;
-
-        req.reply({
-          data: {
-            product: ProductListResponse.data.products.find(
-              ({ texts: { slug } }) => slug === body.variables.slug,
-            ),
-          },
-        });
+        aliasQuery(req, ProductOperations.GetSingleProduct);
+        req.reply(CurrentProductResponse);
       }
       if (hasOperationName(req, ProductOperations.GetTranslatedProductTexts)) {
-        aliasMutation(req, ProductOperations.GetTranslatedProductTexts);
+        aliasQuery(req, ProductOperations.GetTranslatedProductTexts);
         req.reply(TranslatedProductTextResponse);
       }
       if (hasOperationName(req, ProductOperations.UpdateTexts)) {
@@ -55,21 +58,118 @@ describe('Product Text', () => {
       },
     );
     cy.get('h2').should('contain.text', localizations.en.products);
+
+    cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+    cy.location('pathname').should('eq', `/products/${ACTIVE_PRODUCT_SLUG}`);
+    cy.wait(fullAliasName(ProductOperations.GetSingleProduct)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          productId: null,
+          slug: ACTIVE_PRODUCT_SLUG,
+        });
+        expect(response.body).to.deep.eq(CurrentProductResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(ProductOperations.GetTranslatedProductTexts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          productId: product._id,
+        });
+        expect(response.body).to.deep.eq(TranslatedProductTextResponse);
+      },
+    );
   });
 
-  it('Show [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
-    const [firstProduct] = ProductListResponse.data.products;
+  it('Should [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
     const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
+    cy.get('input[name="title"]').should('have.value', de.title);
+    cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
+    cy.get('input[name="brand"]').should('have.value', de.brand);
+    cy.get('input[name="vendor"]').should('have.value', de.vendor);
+    cy.get('input[name="labels"]').should('have.value', de.labels);
+    /* cy.get('input[name="description"]').should('have.value', de.description); */
+  });
 
-    cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
-    cy.location('pathname').should(
-      'eq',
-      `/products/${firstProduct.texts.slug}`,
+  it('Should [RE-INITIALIZE PRODUCT TEXT FORM] when locale is changed successfully', () => {
+    const [deLocale, enLocale] = LanguagesResponse.data.languages;
+    const [de, en] = TranslatedProductTextResponse.data.translatedProductTexts;
+    cy.get('select[id="locale-wrapper"]').select(deLocale.isoCode);
+    cy.get('input[name="title"]').should('have.value', de.title);
+    cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
+    cy.get('input[name="brand"]').should('have.value', de.brand);
+    cy.get('input[name="vendor"]').should('have.value', de.vendor);
+    cy.get('input[name="labels"]').should('have.value', de.labels);
+    /* cy.get('input[name="description"]').should('contain.text', de.description); */
+
+    cy.get('select[id="locale-wrapper"]').select(enLocale.isoCode);
+
+    cy.get('input[name="title"]').should('have.value', en.title);
+    cy.get('input[name="subtitle"]').should('have.value', en.subtitle);
+    cy.get('input[name="brand"]').should('have.value', en.brand);
+    cy.get('input[name="vendor"]').should('have.value', en.vendor);
+    cy.get('input[name="labels"]').should('have.value', en.labels);
+    /* cy.get('input[name="description"]').should('contain.text', en.description); */
+  });
+
+  it('Should [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
+    const [deLocale] = LanguagesResponse.data.languages;
+    const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
+    cy.get('input[name="title"]').clear().type('updated title');
+    cy.get('input[name="slug"]').clear().type('updated slug');
+    cy.get('input[name="subtitle"]').clear().type('updated subtitle');
+    cy.get('input[name="brand"]').clear().type('updated brand');
+    cy.get('input[name="vendor"]').clear().type('updated vendor');
+    cy.get('input[name="labels"]').clear().type('updated label');
+    cy.get(`input[type="submit"][aria-label="${localizations.en.save}"]`)
+      .should('have.value', localizations.en.save)
+      .click();
+    cy.wait(fullAliasMutationName(ProductOperations.UpdateTexts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          productId: product._id,
+          texts: {
+            title: 'updated title',
+            slug: 'updated slug',
+            subtitle: 'updated subtitle',
+            brand: 'updated brand',
+            vendor: 'updated vendor',
+            labels: 'updated label',
+            locale: deLocale.isoCode,
+            description: `<p>${de.description}</p>`,
+          },
+        });
+        expect(response.body).to.deep.eq(UpdateProductTextsResponse);
+      },
     );
-    cy.get('input#title').should('have.value', de.title);
-    cy.get('input#subtitle').should('have.value', de.subtitle);
-    cy.get('input#brand').should('have.value', de.brand);
-    cy.get('input#vendor').should('have.value', de.vendor);
-    cy.get('input#labels').should('have.value', de.labels);
+  });
+  it('Show [ERROR] when required fields are missing', () => {
+    cy.get('input[name="title"]').clear();
+    cy.get('input[name="slug"]').clear();
+    cy.get('input[name="subtitle"]').clear();
+    cy.get('input[name="brand"]').clear();
+    cy.get('input[name="vendor"]').clear();
+    cy.get('input[name="labels"]').clear();
+    cy.get(
+      `input[type="submit"][aria-label="${localizations.en.save}"]`,
+    ).should('be.disabled');
+
+    cy.get('label[for="title"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.title,
+      ),
+    );
+    cy.get('label[for="slug"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.slug,
+      ),
+    );
   });
 });
