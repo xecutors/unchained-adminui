@@ -20,7 +20,6 @@ const SaveAndCancelButtons = ({
     >
       {showCancel ? (
         <button
-          id="update_cancel"
           onClick={onCancel}
           id="cancel_update"
           type="button"

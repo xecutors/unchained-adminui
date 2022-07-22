@@ -97,14 +97,14 @@ describe('User', () => {
   });
 
   it('should update data and route when [SEARCHING] accordingly', () => {
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
           includeGuests: false,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
         });
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
       },
@@ -113,10 +113,10 @@ describe('User', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/users');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
 
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
@@ -124,7 +124,7 @@ describe('User', () => {
           includeGuests: false,
           limit: 50,
           offset: 0,
-          queryString: 'sa',
+          queryString: 'search input',
         });
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
       },
@@ -133,7 +133,7 @@ describe('User', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/users');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
@@ -152,7 +152,7 @@ describe('User', () => {
         expect(response.body).to.deep.eq(UserListResponse);
       },
     );
-    cy.get('input[type="search"]').type('s');
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -160,7 +160,7 @@ describe('User', () => {
           includeGuests: true,
           limit: 50,
           offset: 0,
-          queryString: 's',
+          queryString: 'search',
         });
         expect(response.body).to.deep.eq(UserListResponse);
       },
@@ -170,7 +170,7 @@ describe('User', () => {
       expect(loc.pathname).to.eq('/users');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         includeGuests: 'true',
-        queryString: 's',
+        queryString: 'search',
       });
     });
   });
@@ -233,10 +233,11 @@ describe('User', () => {
 
     cy.wait(fullAliasMutationName(UserOperations.CreateUser)).then(
       (currentSubject) => {
+        const { request, response } = currentSubject;
         expect({
-          ...currentSubject.request.body.variables,
+          ...request.body.variables,
           profile: {
-            ...currentSubject.request.body.variables.profile,
+            ...request.body.variables.profile,
             birthday: null,
           },
         }).to.deep.eq({
@@ -248,10 +249,9 @@ describe('User', () => {
         });
 
         // eslint-disable-next-line no-unused-expressions
-        expect(currentSubject.request.body.variables.profile.birthday).to.not.be
-          .null;
+        expect(request.body.variables.profile.birthday).to.not.be.null;
 
-        expect(currentSubject.response.body).to.deep.eq(CreateUserResponse);
+        expect(response.body).to.deep.eq(CreateUserResponse);
       },
     );
 
@@ -320,7 +320,7 @@ describe('User', () => {
       expect(response.body).to.deep.eq(SingleUserResponse);
     });
 
-    cy.get('button#update_cancel').first().click();
+    cy.get('button#cancel_update').first().click();
     cy.get('input#displayName').should('have.value', user.profile.displayName);
     cy.get('select#gender').should('have.value', user.profile.gender);
     cy.get('input#phoneMobile').should('have.value', user.profile.phoneMobile);
@@ -365,7 +365,7 @@ describe('User', () => {
     cy.location('pathname').should('contain', `/users/${user._id}`);
     cy.wait(100);
 
-    cy.get('button#update_cancel').first().click();
+    cy.get('button#cancel_update').first().click();
 
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('input[name="birthday"]').focus();
@@ -406,7 +406,7 @@ describe('User', () => {
     cy.location('pathname').should('contain', `/users/${user._id}`);
     cy.wait(100);
 
-    cy.get('button#update_cancel').last().click();
+    cy.get('button#cancel_update').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 

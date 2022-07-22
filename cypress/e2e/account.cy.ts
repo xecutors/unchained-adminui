@@ -109,7 +109,7 @@ describe('Account', () => {
       .click({ force: true });
 
     cy.location('pathname').should('eq', '/account');
-    cy.get('button#update_cancel').first().click();
+    cy.get('button#cancel_update').first().click();
 
     cy.get('input#displayName').should(
       'have.value',
@@ -170,7 +170,7 @@ describe('Account', () => {
 
     cy.location('pathname').should('eq', '/account');
     cy.wait(100);
-    cy.get('button#update_cancel').first().click();
+    cy.get('button#cancel_update').first().click();
 
     cy.get('input#displayName').clear().type(currentUser.profile.displayName);
     cy.get('input[name="birthday"]').focus();
@@ -214,7 +214,7 @@ describe('Account', () => {
     cy.location('pathname').should('eq', '/account');
     cy.wait(100);
 
-    cy.get('button#update_cancel').last().click();
+    cy.get('button#cancel_update').last().click();
     cy.get('input#displayName').clear().type(currentUser.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 

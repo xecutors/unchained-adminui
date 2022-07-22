@@ -109,502 +109,371 @@ describe('User', () => {
     cy.get('h2').should('contain.text', localizations.en.users);
   });
 
-  it('Should Navigate to [USER ACCOUNT] page successfully', () => {
+  context('Username', () => {
     const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-  });
+    beforeEach(() => {
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+      cy.get(`a#account`).contains(localizations.en.account).click();
 
-  it("Should [INITIALIZE USER'S USERNAME ] successfully", () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
+      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
+        (currentSubject) => {
+          const { response } = currentSubject;
+          expect(response.body).to.deep.eq(SystemRolesResponse);
+        },
+      );
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    cy.get('button#cancel_update').click();
-    cy.get('input#username').should('have.value', user.username);
-  });
-
-  it("Should [UPDATE USER'S USERNAME ] successfully", () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    cy.get('button#cancel_update').click();
-    cy.get('input#username').clear().type(user.username);
-
-    cy.get('button[type="submit"]').contains(localizations.en.save).click();
-
-    cy.wait(fullAliasMutationName(UserOperations.SetUsername)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          username: user.username,
-          userId: user._id,
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(SetUsernameResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
       });
+    });
+
+    it("Should [INITIALIZE USER'S USERNAME ] successfully", () => {
+      cy.get('button#cancel_update').click();
+      cy.get('input#username').should('have.value', user.username);
+    });
+
+    it("Should [UPDATE USER'S USERNAME ] successfully", () => {
+      cy.get('button#cancel_update').click();
+      cy.get('input#username').clear().type(user.username);
+
+      cy.get('button[type="submit"]').contains(localizations.en.save).click();
+
+      cy.wait(fullAliasMutationName(UserOperations.SetUsername)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            username: user.username,
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(SetUsernameResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
+      });
+    });
+
+    it("Should [CANCEL USER'S USERNAME] successfully on new user", () => {
+      cy.get('button#cancel_update').click();
+      cy.get('button#cancel_update').click();
+
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+    });
+
+    it("Should [ERROR] when required fields are not provided in update user's username", () => {
+      cy.get('button#cancel_update').click();
+      cy.get('input#username').clear().blur();
+
+      cy.get('label[for="username"]').should(
+        'contain.text',
+        replaceIntlPlaceholder(
+          localizations.en.error_required,
+          localizations.en.username,
+        ),
+      );
     });
   });
 
-  it("Should [CANCEL USER'S USERNAME] successfully on new user", () => {
+  context('Email', () => {
     const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
+    beforeEach(() => {
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+      cy.get(`a#account`).contains(localizations.en.account).click();
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
+      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
+        (currentSubject) => {
+          const { response } = currentSubject;
+          expect(response.body).to.deep.eq(SystemRolesResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
       });
     });
 
-    cy.get('button#cancel_update').click();
-    cy.get('button#cancel_update').click();
-
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-  });
-
-  it("Should [ERROR] when required fields are not provided in update user's username", () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
+    it('Should [SEND VERIFICATION EMAIL] button is visible successfully', () => {
+      // eslint-disable-next-line array-callback-return
+      user?.emails?.map((email) => {
+        if (!email.verified) {
+          cy.get('a#send_verification_mail')
+            .contains(localizations.en.send_verification_mail)
+            .should('be.visible');
+        }
+        cy.get('button#delete_button').should('be.visible');
       });
     });
 
-    cy.get('button#cancel_update').click();
-    cy.get('input#username').clear().blur();
-
-    cy.get('label[for="username"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_required,
-        localizations.en.username,
-      ),
-    );
-  });
-
-  it('Should [SEND VERIFICATION EMAIL] button is visible successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    // eslint-disable-next-line array-callback-return
-    user?.emails?.map((email) => {
-      if (!email.verified) {
+    it('Should [SEND VERIFICATION EMAIL] successfully', () => {
+      if (!user?.emails?.every((email) => email.verified === true)) {
         cy.get('a#send_verification_mail')
           .contains(localizations.en.send_verification_mail)
-          .should('be.visible');
-      }
-      cy.get('button#delete_button').should('be.visible');
-    });
-  });
+          .click();
 
-  it('Should [SEND VERIFICATION EMAIL] successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    if (!user?.emails?.every((email) => email.verified === true)) {
-      cy.get('a#send_verification_mail')
-        .contains(localizations.en.send_verification_mail)
-        .click();
-
-      cy.wait(fullAliasMutationName(UserOperations.SendVerificationEmail)).then(
-        (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+        cy.wait(
+          fullAliasMutationName(UserOperations.SendVerificationEmail),
+        ).then((currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             email: user?.emails?.find((email) => email.verified === false)
               .address,
           });
-          expect(currentSubject.response.body).to.deep.eq(
-            SendVerificationEmailResponse,
-          );
+          expect(response.body).to.deep.eq(SendVerificationEmailResponse);
+        });
+      }
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
+      });
+    });
+
+    it('Should [DELETE EMAIL] successfully', () => {
+      cy.get('button#delete_button').first().click();
+
+      cy.get('button#danger_continue')
+        .contains(localizations.en.delete_email)
+        .click();
+
+      cy.wait(fullAliasMutationName(UserOperations.RemoveEmail)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            email: user?.email,
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(RemoveEmailResponse);
         },
       );
-    }
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-  });
-
-  it('Should [DELETE EMAIL] successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    cy.get('button#delete_button').first().click();
-
-    cy.get('button#danger_continue')
-      .contains(localizations.en.delete_email)
-      .click();
-
-    cy.wait(fullAliasMutationName(UserOperations.RemoveEmail)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          email: user?.email,
-          userId: user._id,
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(RemoveEmailResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-  });
-
-  it('Should [ADD EMAIL] successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
       });
     });
 
-    cy.get('input#email').type(user.email);
-    cy.get('input[type="submit"]').contains(localizations.en.add_email).click();
+    it('Should [ADD EMAIL] successfully', () => {
+      cy.get('input#email').type(user.email);
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.add_email)
+        .click();
 
-    cy.wait(fullAliasMutationName(UserOperations.AddEmail)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          email: user?.email,
-          userId: user._id,
+      cy.wait(fullAliasMutationName(UserOperations.AddEmail)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            email: user?.email,
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(AddEmailResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(AddEmailResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
       });
+    });
+
+    it('Should [ERROR] when required fields are not provided in add email', () => {
+      cy.get('input#email').clear().blur();
+
+      cy.get('label[for="email"]').should(
+        'contain.text',
+        replaceIntlPlaceholder(
+          localizations.en.error_required,
+          localizations.en.email,
+        ),
+      );
+
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.add_email)
+        .should('be.disabled');
     });
   });
 
-  it('Should [ERROR] when required fields are not provided in add email', () => {
+  context('Tags', () => {
     const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
+    beforeEach(() => {
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+      cy.get(`a#account`).contains(localizations.en.account).click();
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
+      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
+        (currentSubject) => {
+          const { response } = currentSubject;
+          expect(response.body).to.deep.eq(SystemRolesResponse);
+        },
+      );
 
-    cy.get('input#email').clear().blur();
-
-    cy.get('label[for="email"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_required,
-        localizations.en.email,
-      ),
-    );
-
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.add_email)
-      .should('be.disabled');
-  });
-
-  it('Should [ADD TAGS] successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-
-    cy.get('button#add_tag').click();
-    cy.get('input#tags').type('new');
-    cy.contains(localizations.en.add_tag).click();
-    cy.get('input[type="submit"]').contains(localizations.en.save).click();
-
-    cy.wait(fullAliasMutationName(UserOperations.SetUserTags)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          tags: ['new'],
-          userId: user._id,
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(SetUserTagsResponse);
-      },
-    );
-
-    cy.get('button#cancel_update').click({ force: true });
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
-  });
-
-  it('Should [UPDATE ROLES] successfully', () => {
-    const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
       });
     });
 
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.update_role)
-      .click();
+    it('Should [ADD TAGS] successfully', () => {
+      cy.get('button#add_tag').click();
+      cy.get('input#tags').type('new');
+      cy.contains(localizations.en.add_tag).click();
+      cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
-    cy.wait(fullAliasMutationName(UserOperations.SetRoles)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          roles: ['admin'],
-          userId: user._id,
+      cy.wait(fullAliasMutationName(UserOperations.SetUserTags)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            tags: ['new'],
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(SetUserTagsResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(SetRolesResponse);
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
       });
     });
   });
 
-  it('Should [UPDATE PASSWORD] successfully', () => {
+  context('Role', () => {
     const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
+    beforeEach(() => {
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+      cy.get(`a#account`).contains(localizations.en.account).click();
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
-      });
-    });
+      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
+        (currentSubject) => {
+          const { response } = currentSubject;
+          expect(response.body).to.deep.eq(SystemRolesResponse);
+        },
+      );
 
-    cy.get('input#newPassword').type('password');
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.change_password)
-      .click();
-
-    cy.wait(fullAliasMutationName(UserOperations.SetPassword)).then(
-      (currentSubject) => {
-        expect(currentSubject.request.body.variables).to.deep.eq({
-          newPassword: null,
-          newPlainPassword: 'password',
-          userId: user._id,
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
         });
-        expect(currentSubject.response.body).to.deep.eq(SetPasswordResponse);
-      },
-    );
+      });
+    });
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
+    it('Should [UPDATE ROLES] successfully', () => {
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.update_role)
+        .click();
+
+      cy.wait(fullAliasMutationName(UserOperations.SetRoles)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            roles: ['admin'],
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(SetRolesResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
       });
     });
   });
 
-  it('Should [ERROR] when required fields are not provided in change password', () => {
+  context('Change password', () => {
     const { user } = SingleUserResponse.data;
-    cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('eq', `/users/${user._id}`);
-    cy.get(`a#account`).contains(localizations.en.account).click();
-    cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(SystemRolesResponse);
-      },
-    );
+    beforeEach(() => {
+      cy.get(`a[href="/users/${user._id}"]`).click();
+      cy.location('pathname').should('eq', `/users/${user._id}`);
+      cy.get(`a#account`).contains(localizations.en.account).click();
 
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq(`/users/${user._id}`);
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        tab: 'account',
+      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
+        (currentSubject) => {
+          const { response } = currentSubject;
+          expect(response.body).to.deep.eq(SystemRolesResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
       });
     });
 
-    cy.get('input#newPassword').clear().blur();
+    it('Should [UPDATE PASSWORD] successfully', () => {
+      cy.get('input#newPassword').type('password');
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.change_password)
+        .click();
 
-    cy.get('label[for="newPassword"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_required,
-        localizations.en.new_password,
-      ),
-    );
+      cy.wait(fullAliasMutationName(UserOperations.SetPassword)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
 
-    cy.get('input[type="submit"]')
-      .contains(localizations.en.change_password)
-      .should('be.disabled');
+          expect(request.body.variables).to.deep.eq({
+            newPassword: null,
+            newPlainPassword: 'password',
+            userId: user._id,
+          });
+          expect(response.body).to.deep.eq(SetPasswordResponse);
+        },
+      );
+
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'account',
+        });
+      });
+    });
+
+    it('Should [ERROR] when required fields are not provided in change password', () => {
+      cy.get('input#newPassword').clear().blur();
+
+      cy.get('label[for="newPassword"]').should(
+        'contain.text',
+        replaceIntlPlaceholder(
+          localizations.en.error_required,
+          localizations.en.new_password,
+        ),
+      );
+
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.change_password)
+        .should('be.disabled');
+    });
   });
+
   context('TOTP Disabled', () => {
     const { user } = SingleUserResponse.data;
-
     beforeEach(() => {
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.location('pathname').should('eq', `/users/${user._id}`);
@@ -631,9 +500,8 @@ describe('User', () => {
       cy.wait(
         fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
       ).then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(
-          BuildSecretTOTPAuthURLResponse,
-        );
+        const { response } = currentSubject;
+        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
       });
 
       cy.get('input#code').type('123456');
@@ -641,12 +509,13 @@ describe('User', () => {
 
       cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
         (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             code: '123456',
             secretBase32:
               BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL,
           });
-          expect(currentSubject.response.body).to.deep.eq(EnableTOTPResponse);
+          expect(response.body).to.deep.eq(EnableTOTPResponse);
         },
       );
     });
@@ -657,9 +526,8 @@ describe('User', () => {
       cy.wait(
         fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
       ).then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(
-          BuildSecretTOTPAuthURLResponse,
-        );
+        const { response } = currentSubject;
+        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
       });
 
       cy.get('input#code').type('1234').clear().blur();
@@ -682,9 +550,8 @@ describe('User', () => {
       cy.wait(
         fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
       ).then((currentSubject) => {
-        expect(currentSubject.response.body).to.deep.eq(
-          BuildSecretTOTPAuthURLResponse,
-        );
+        const { response } = currentSubject;
+        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
       });
 
       cy.get('input#code').type('213');
@@ -692,14 +559,13 @@ describe('User', () => {
 
       cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
         (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             code: '213',
             secretBase32:
               BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL,
           });
-          expect(currentSubject.response.body).to.deep.eq(
-            UnsuccessfulEnableTOTPResponse,
-          );
+          expect(response.body).to.deep.eq(UnsuccessfulEnableTOTPResponse);
         },
       );
 
@@ -742,11 +608,12 @@ describe('User', () => {
 
       cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
         (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             code: '123456',
             userId: user._id,
           });
-          expect(currentSubject.response.body).to.deep.eq(DisableTOTPResponse);
+          expect(response.body).to.deep.eq(DisableTOTPResponse);
         },
       );
     });
@@ -775,13 +642,12 @@ describe('User', () => {
 
       cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
         (currentSubject) => {
-          expect(currentSubject.request.body.variables).to.deep.eq({
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
             code: '213',
             userId: user._id,
           });
-          expect(currentSubject.response.body).to.deep.eq(
-            UnsuccessfulDisableTOTPResponse,
-          );
+          expect(response.body).to.deep.eq(UnsuccessfulDisableTOTPResponse);
         },
       );
 
