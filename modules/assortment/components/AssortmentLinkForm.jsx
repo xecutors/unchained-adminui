@@ -55,9 +55,6 @@ const AssortmentLinkForm = ({ assortmentId }) => {
     },
   });
 
-  console.log('assortment: ', assortments);
-  console.log('normalizeAssortments: ', normalizeAssortments(assortments));
-
   return (
     <FormWrapper>
       <Form form={form} id="assortment_link_form">

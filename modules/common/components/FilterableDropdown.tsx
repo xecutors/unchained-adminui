@@ -25,8 +25,6 @@ const FilterableDropdown = ({
 }: FilterableDropdownProps) => {
   const field = useField({ ...props });
 
-  console.log('FilterableDropdown data: ', data);
-
   return (
     <div className="relative flex flex-col items-center">
       <div className="w-full">

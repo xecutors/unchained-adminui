@@ -133,11 +133,11 @@ describe('Assortment Detail', () => {
     );
   });
 
-  xit('Should Navigate to [ASSORTMENT DETAIL LINKS] tab successfully', () => {
+  it('Should Navigate to [ASSORTMENT DETAIL LINKS] tab successfully', () => {
     cy.get('form#assortment_link_form').should('be.visible');
   });
 
-  xit('Should [ADD TAG] successfully', () => {
+  it('Should [ADD TAG] successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('input#tags').clear().type('new');
@@ -152,7 +152,7 @@ describe('Assortment Detail', () => {
     });
   });
 
-  xit('Should [REMOVE TAG] successfully', () => {
+  it('Should [REMOVE TAG] successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('input#tags').clear().type('new');
@@ -210,7 +210,7 @@ describe('Assortment Detail', () => {
     });
   });
 
-  xit('Should [ADD ASSORTMENT LINK] successfully', () => {
+  it('Should [ADD ASSORTMENT LINK] successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('input#react-select-2-input').clear().type('m');
@@ -236,7 +236,7 @@ describe('Assortment Detail', () => {
     });
   });
 
-  xit('Should [ERROR] when required fields are not provided in add sub-assortment link', () => {
+  it('Should [ERROR] when required fields are not provided in add sub-assortment link', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('input#react-select-2-input').clear();
@@ -262,7 +262,7 @@ describe('Assortment Detail', () => {
     });
   });
 
-  xit('should [DELETE] sub-assortment successfully', () => {
+  it('should [DELETE] sub-assortment successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('button[type="button"]#delete').first().click();
@@ -300,7 +300,7 @@ describe('Assortment Detail', () => {
     });
   });
 
-  xit('Should [CANCEL DELETE] sub-assortment successfully', () => {
+  it('Should [CANCEL DELETE] sub-assortment successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
     cy.get('button[type="button"]#delete').first().click();
