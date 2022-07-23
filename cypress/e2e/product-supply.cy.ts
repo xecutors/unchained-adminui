@@ -142,6 +142,29 @@ describe('Product Supply', () => {
     );
   });
 
+  it('Should [INITIALIZE FORM] successfully', () => {
+    const { dimensions } = ProductSupplyResponse.data.product;
+    cy.get('input[name="width"][type="number"]').should(
+      'have.value',
+      dimensions.width,
+    );
+    cy.get('input[name="height"][type="number"]').should(
+      'have.value',
+      dimensions.height,
+    );
+    cy.get('input[name="weight"][type="number"]').should(
+      'have.value',
+      dimensions.weight,
+    );
+    cy.get('input[name="length"][type="number"]').should(
+      'have.value',
+      dimensions.length,
+    );
+    cy.get(`input[type="submit"][aria-label="${localizations.en.save}"]`)
+      .should('have.value', localizations.en.save)
+      .should('not.be.disabled');
+  });
+
   it('Should [ERROR] when  valid integer value is not provided', () => {
     cy.get('input[name="width"][type="number"]').clear();
     cy.get('input[name="height"][type="number"]').clear();

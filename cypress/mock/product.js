@@ -380,17 +380,37 @@ export const RemoveProductResponse = {
   },
 };
 
+export const ProductWarehousingResponse = {
+  data: {
+    product: {
+      _id: '29f0305649da4ca15a8292c9',
+      sku: 'SKU 001',
+      baseUnit: 'KG',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
 export const ProductSupplyResponse = {
   data: {
     product: {
       _id: '29f0305649da4ca15a8292c9',
       dimensions: {
         weight: 12,
-        length: 12,
-        width: 12,
-        height: 12,
+        length: 13,
+        width: 14,
+        height: 15,
         __typename: 'Dimensions',
       },
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const UpdateProductWarehousingResponse = {
+  data: {
+    updateProductWarehousing: {
+      _id: '29f0305649da4ca15a8292c9',
       __typename: 'SimpleProduct',
     },
   },
@@ -412,6 +432,8 @@ export const ProductOperations = {
   GetMediaTexts: 'TranslatedProductMediaTexts',
   UpdateProductSupply: 'UpdateProductSupply',
   GetProductSupply: 'ProductSupply',
+  GetProductWarehousing: 'ProductWarehousing',
+  UpdateProductWarehousing: 'UpdateProductWarehousing',
 };
 
 export const TranslatedProductMediaTextsResponse = {
