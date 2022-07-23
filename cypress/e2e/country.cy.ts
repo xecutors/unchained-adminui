@@ -153,9 +153,8 @@ describe('Countries', () => {
     cy.location('pathname').should('eq', '/country');
 
     cy.get('button[role="switch"]').click();
-    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(CountryOperations.GetCountryList));
-
+    cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;

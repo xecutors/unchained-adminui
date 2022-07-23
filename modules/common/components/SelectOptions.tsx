@@ -34,7 +34,7 @@ export default function SelectOptions({
   return (
     <Listbox value={select} onChange={setSelected}>
       {({ open }) => (
-        <>
+        <div id={select.id}>
           <Listbox.Label className="sr-only">
             {formatMessage(
               {
@@ -163,7 +163,7 @@ export default function SelectOptions({
               </Listbox.Options>
             </Transition>
           </div>
-        </>
+        </div>
       )}
     </Listbox>
   );

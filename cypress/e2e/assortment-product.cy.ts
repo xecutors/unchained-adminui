@@ -276,7 +276,7 @@ describe('Assortment Detail', () => {
   it('should [DELETE] product successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('button[type="button"]#delete').first().click();
+    cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_product)
       .click();
@@ -314,8 +314,8 @@ describe('Assortment Detail', () => {
   it('Should [CANCEL DELETE] product successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('button[type="button"]#delete').first().click();
-    cy.get('button[type="button"]#cancel')
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_cancel')
       .contains(localizations.en.cancel)
       .click();
 

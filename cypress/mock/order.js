@@ -157,7 +157,7 @@ export const OrderListResponse = {
         __typename: 'Order',
       },
     ],
-    ordersCount: 10,
+    ordersCount: 5,
   },
 };
 
