@@ -13,7 +13,7 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 
-describe('Product Supply', () => {
+describe('Product Warehousing', () => {
   const product = ProductListResponse.data.products.find(
     ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
   );

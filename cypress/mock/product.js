@@ -416,6 +416,82 @@ export const UpdateProductWarehousingResponse = {
   },
 };
 
+export const ProductPlanConfigurationOptionsResponse = {
+  data: {
+    usageCalculationTypes: {
+      options: [
+        {
+          value: 'LICENSED',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'METERED',
+          label: null,
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+    configurationIntervals: {
+      options: [
+        {
+          value: 'HOUR',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'DAY',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'WEEK',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'MONTH',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'YEAR',
+          label: null,
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const ProductPlanResponse = {
+  data: {
+    product: {
+      _id: 'f410d59151f53a827752c375',
+      plan: {
+        usageCalculationType: 'LICENSED',
+        billingInterval: 'HOUR',
+        trialInterval: 'DAY',
+        trialIntervalCount: 12,
+        billingIntervalCount: 2,
+        __typename: 'ProductPlanConfiguration',
+      },
+      __typename: 'PlanProduct',
+    },
+  },
+};
+
+export const UpdateProductPlanResponse = {
+  data: {
+    updateProductPlan: {
+      _id: 'f410d59151f53a827752c375',
+      __typename: 'PlanProduct',
+    },
+  },
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -434,6 +510,9 @@ export const ProductOperations = {
   GetProductSupply: 'ProductSupply',
   GetProductWarehousing: 'ProductWarehousing',
   UpdateProductWarehousing: 'UpdateProductWarehousing',
+  GetProductPlan: 'ProductPlan',
+  GetProductPlanConfigurationOption: 'ProductPlanConfigurationOptions',
+  UpdateProductPlan: 'UpdateProductPlan',
 };
 
 export const TranslatedProductMediaTextsResponse = {
@@ -512,6 +591,7 @@ export const UpdateProductSupplyResponse = {
   },
 };
 export default {
+  UpdateProductPlanResponse,
   ProductListResponse,
   ProductOperations,
   SingleProductResponse,
@@ -520,4 +600,6 @@ export default {
   ProductFilterRequest,
   RemoveProductResponse,
   UnpublishProductResponse,
+  ProductPlanConfigurationOptionsResponse,
+  ProductPlanResponse,
 };
