@@ -77,6 +77,7 @@ const MediaUploader = ({
       )}
       {enableDragAndDrop && (
         <div
+          id="media_uploader"
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragEnter={handleDragEnter}
