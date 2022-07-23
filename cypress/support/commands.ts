@@ -44,8 +44,8 @@ import { aliasQuery } from '../utils/aliasQuery';
 
 beforeEach(() => {
   cy.intercept('POST', '/api/graphql', (req) => {
-    if (hasOperationName(req, OrderOperations.Orders)) {
-      aliasQuery(req, `global${OrderOperations.Orders}`);
+    if (hasOperationName(req, OrderOperations.GetOrderList)) {
+      aliasQuery(req, `global${OrderOperations.GetOrderList}`);
       req.reply(OrderListResponse);
     }
 

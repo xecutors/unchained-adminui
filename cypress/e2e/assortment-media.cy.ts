@@ -159,7 +159,7 @@ describe('Assortment Detail Media', () => {
   it('Should [DELETE] media successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('button[type="button"]#delete').first().click();
+    cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_assortment_media)
       .click();
@@ -197,8 +197,8 @@ describe('Assortment Detail Media', () => {
   it('Should [CANCEL] delete media successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('button[type="button"]#delete').first().click();
-    cy.get('button[type="button"]#cancel')
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_cancel')
       .contains(localizations.en.cancel)
       .click();
 

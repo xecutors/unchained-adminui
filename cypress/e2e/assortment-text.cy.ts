@@ -438,15 +438,17 @@ describe('Assortment Detail', () => {
       });
       cy.get('select#locale-wrapper').select('en');
 
-      cy.get('button#headlessui-listbox-button-14')
-        .contains(
-          replaceIntlPlaceholder(
-            localizations.en.select_options_toggle,
-            'Assortment',
-            'type',
-          ),
-        )
-        .click({ force: true });
+      cy.get('div#leaf').within(() => {
+        cy.get('button[type="button"]')
+          .contains(
+            replaceIntlPlaceholder(
+              localizations.en.select_options_toggle,
+              'Assortment',
+              'type',
+            ),
+          )
+          .click({ force: true });
+      });
       cy.get('ul li:first').contains(localizations.en.make_root).click();
 
       cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(
@@ -538,15 +540,17 @@ describe('Assortment Detail', () => {
       });
       cy.get('select#locale-wrapper').select('en');
 
-      cy.get('button#headlessui-listbox-button-16')
-        .contains(
-          replaceIntlPlaceholder(
-            localizations.en.select_options_toggle,
-            'Assortment',
-            'type',
-          ),
-        )
-        .click({ force: true });
+      cy.get('div#in-active').within(() => {
+        cy.get('button[type="button"]')
+          .contains(
+            replaceIntlPlaceholder(
+              localizations.en.select_options_toggle,
+              'Assortment',
+              'type',
+            ),
+          )
+          .click({ force: true });
+      });
       cy.get('ul li:first').contains(localizations.en.activate).click();
 
       cy.wait(fullAliasMutationName(AssortmentOperation.UpdateAssortment)).then(

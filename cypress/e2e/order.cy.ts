@@ -327,7 +327,7 @@ describe('Order', () => {
         .contains(localizations.en.confirm_order)
         .click({ force: true });
 
-      cy.get('button#alert_modal')
+      cy.get('button#alert_ok')
         .contains(localizations.en.confirm_order_alert_button)
         .click({
           force: true,
@@ -477,7 +477,7 @@ describe('Order', () => {
         .contains(localizations.en.mark_as_delivered)
         .click({ force: true });
 
-      cy.get('button#alert_modal').contains(localizations.en.delivered).click({
+      cy.get('button#alert_ok').contains(localizations.en.delivered).click({
         force: true,
       });
 
@@ -556,7 +556,7 @@ describe('Order', () => {
         .contains(localizations.en.mark_as_paid)
         .click({ force: true });
 
-      cy.get('button#alert_modal').contains(localizations.en.pay).click({
+      cy.get('button#alert_ok').contains(localizations.en.pay).click({
         force: true,
       });
 
