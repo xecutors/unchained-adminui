@@ -12,7 +12,6 @@ import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
-import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Product Supply', () => {
   const product = ProductListResponse.data.products.find(

@@ -562,4 +562,27 @@ describe('Product', () => {
         .click();
     });
   });
+
+  context('Detail page sequence update', () => {
+    it('[UPDATE SEQUENCE] successfully', () => {
+      cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+      const { _id } = ProductListResponse.data.products[0];
+      cy.get(`input#sequence-input`).clear().type('50').blur();
+
+      cy.wait(fullAliasMutationName(ProductOperations.UpdateProduct)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            product: {
+              sequence: 50,
+            },
+            productId: _id,
+          });
+          expect(response.body).to.deep.eq(UpdateProductResponse);
+        },
+      );
+
+      cy.location('pathname').should('eq', `/products/${ACTIVE_PRODUCT_SLUG}`);
+    });
+  });
 });
