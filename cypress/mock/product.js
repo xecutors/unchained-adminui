@@ -380,6 +380,22 @@ export const RemoveProductResponse = {
   },
 };
 
+export const ProductSupplyResponse = {
+  data: {
+    product: {
+      _id: '29f0305649da4ca15a8292c9',
+      dimensions: {
+        weight: 12,
+        length: 12,
+        width: 12,
+        height: 12,
+        __typename: 'Dimensions',
+      },
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -394,6 +410,8 @@ export const ProductOperations = {
   UpdateProductMediaTexts: 'UpdateProductMediaTexts',
   RemoveMedia: 'RemoveProductMedia',
   GetMediaTexts: 'TranslatedProductMediaTexts',
+  UpdateProductSupply: 'UpdateProductSupply',
+  GetProductSupply: 'ProductSupply',
 };
 
 export const TranslatedProductMediaTextsResponse = {
