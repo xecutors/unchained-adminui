@@ -138,7 +138,7 @@ describe('Product Subscription', () => {
     });
   });
 
-  it('Should [UPDATE SUPPLY] successfully ', () => {
+  it('Should [UPDATE SUBSCRIPTION] successfully ', () => {
     const [calculation1] =
       ProductPlanConfigurationOptionsResponse.data.usageCalculationTypes
         .options;

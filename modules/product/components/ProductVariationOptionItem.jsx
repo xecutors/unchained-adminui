@@ -43,7 +43,7 @@ const ProductVariationOptionItem = ({
   return (
     <Form form={form} className="last:pb-2">
       <div className="my-2 flow-root rounded border sm:mx-4 ">
-        <li className="list-none py-2 dark:bg-slate-900 dark:text-slate-200 pl-2 pr-2">
+        <li className="list-none py-2 dark:bg-slate-500 dark:text-slate-200 pl-2 pr-2">
           <div className="grid grid-cols-6 items-center gap-2">
             <span className="col-span-1">
               <Badge text={option?.value} color="slate" />

@@ -541,6 +541,7 @@
   "started": "Started",
   "started_at": "Started: {time}",
   "status": "Status",
+  "submit": "Submit",
   "subscription": "Subscription",
   "subscription_message": "Subscription",
   "subscription_product_type_not_valid": "Status of the product does not allow this operation",

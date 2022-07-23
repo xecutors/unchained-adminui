@@ -492,6 +492,98 @@ export const UpdateProductPlanResponse = {
   },
 };
 
+export const CreateProductBundleItemResponse = {
+  data: {
+    createProductBundleItem: {
+      _id: 'f6eb34e057164ec0fd1df951',
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
+export const ProductBundleItemsResponse = {
+  data: {
+    product: {
+      _id: 'active-product',
+      bundleItems: [
+        {
+          product: {
+            texts: {
+              _id: '86dec068cec443dde8cc952f',
+              slug: 'test-1',
+              title: 'test',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            __typename: 'SimpleProduct',
+            _id: 'bundle-item-1',
+            sequence: 59,
+            status: 'DRAFT',
+            tags: [],
+            updated: '2022-07-23T18:24:25.517Z',
+            published: null,
+            media: [],
+            reviews: [],
+          },
+          quantity: 1,
+          __typename: 'ProductBundleItem',
+        },
+        {
+          product: {
+            texts: {
+              _id: '86dec068cec443dde8cc952f',
+              slug: 'test-1',
+              title: 'test',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            __typename: 'SimpleProduct',
+            _id: 'bundle-item-2',
+            sequence: 59,
+            status: 'DRAFT',
+            tags: [],
+            updated: '2022-07-23T18:24:25.517Z',
+            published: null,
+            media: [],
+            reviews: [],
+          },
+          quantity: 10,
+          __typename: 'ProductBundleItem',
+        },
+      ],
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
+export const SearchProductResponse = {
+  data: {
+    searchProducts: {
+      productsCount: 0,
+      filteredProductsCount: 0,
+      products: ProductListResponse.data.products.slice(3, 6),
+      __typename: 'ProductSearchResult',
+    },
+  },
+};
+
+export const RemoveBundleItemResponse = {
+  data: {
+    removeBundleItem: {
+      _id: 'f6eb34e057164ec0fd1df951',
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -513,6 +605,10 @@ export const ProductOperations = {
   GetProductPlan: 'ProductPlan',
   GetProductPlanConfigurationOption: 'ProductPlanConfigurationOptions',
   UpdateProductPlan: 'UpdateProductPlan',
+  CreateProductBundleItem: 'CreateProductBundleItem',
+  GetProductBundleItems: 'ProductBundleItems',
+  SearchProducts: 'SearchProducts',
+  RemoveBundleItem: 'RemoveBundleItem',
 };
 
 export const TranslatedProductMediaTextsResponse = {
@@ -602,4 +698,5 @@ export default {
   UnpublishProductResponse,
   ProductPlanConfigurationOptionsResponse,
   ProductPlanResponse,
+  SearchProductResponse,
 };

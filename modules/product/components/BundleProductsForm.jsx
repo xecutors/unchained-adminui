@@ -67,10 +67,12 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
       <TextField
         name="quantity"
         type="number"
+        required
         label={formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
       />
       <SubmitButton
         hidden={!hasRole(ACTION_ROLES.products.createBundleItem)}
+        label={formatMessage({ id: 'submit', defaultMessage: 'Submit' })}
         className="mt-2"
       />
     </Form>

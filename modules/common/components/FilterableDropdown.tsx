@@ -26,7 +26,7 @@ const FilterableDropdown = ({
   const field = useField({ ...props });
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center dark:text-slate-900">
       <div className="w-full">
         <div
           className={classNames(
