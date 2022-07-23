@@ -9,56 +9,6 @@ const ProductDetailFragment = gql`
     tags
     updated
     published
-    sequence
-    ... on SimpleProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on ConfigurableProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on BundleProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on PlanProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-
     media {
       _id
       tags

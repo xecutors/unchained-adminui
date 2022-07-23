@@ -462,6 +462,15 @@ export const ProductMediaResponse = {
     },
   },
 };
+
+export const UpdateProductSupplyResponse = {
+  data: {
+    updateProductSupply: {
+      _id: '29f0305649da4ca15a8292c9',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
 export default {
   ProductListResponse,
   ProductOperations,

@@ -20,9 +20,17 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
+const ProductTypes = {
+  ConfigurableProduct: 'ConfigurableProduct',
+  SimpleProduct: 'SimpleProduct',
+  PlanProduct: 'PlanProduct',
+  BundleProduct: 'BundleProduct',
+};
+
 describe('Product', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
+      const { body } = req;
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         req.reply(LanguagesResponse);
       }
@@ -31,8 +39,6 @@ describe('Product', () => {
         req.reply(ProductListResponse);
       }
       if (hasOperationName(req, ProductOperations.GetSingleProduct)) {
-        const { body } = req;
-
         req.reply({
           data: {
             product: ProductListResponse.data.products.find(
@@ -45,7 +51,10 @@ describe('Product', () => {
         req.reply(TranslatedProductTextResponse);
       }
       if (hasOperationName(req, ProductOperations.CreateProduct)) {
+        const { variables } = body;
         aliasMutation(req, ProductOperations.CreateProduct);
+        CreateProductResponse.data.createProduct.__typename =
+          ProductTypes[variables.product.type];
         req.reply(CreateProductResponse);
       }
       if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
@@ -286,9 +295,9 @@ describe('Product', () => {
       cy.location('pathname').should('eq', '/products/new');
     });
 
-    it('Show [ADD PRODUCT]  successfully', () => {
+    it('Show [ADD PRODUCT]  successfully [SimpleProduct]', () => {
       cy.get('input#title').type('test');
-      cy.get('select#type').select('SimpleProduct');
+      cy.get('select#type').select(ProductTypes.SimpleProduct);
       cy.get('input[name="tags"]').type('test');
       cy.get('button').contains(localizations.en.add_tag).click();
       cy.get('input[type="submit"]').click();
@@ -298,11 +307,122 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: 'SimpleProduct',
+              type: ProductTypes.SimpleProduct,
               tags: ['test'],
             },
           });
-          expect(response.body).to.deep.eq(CreateProductResponse);
+          expect(response.body).to.deep.eq({
+            ...CreateProductResponse,
+            data: {
+              ...CreateProductResponse.data,
+              createProduct: {
+                ...CreateProductResponse.data.createProduct,
+                __typename: ProductTypes.SimpleProduct,
+              },
+            },
+          });
+        },
+      );
+      cy.location('pathname').should(
+        'eq',
+        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+      );
+    });
+
+    it('Show [ADD PRODUCT]  successfully [BundleProduct]', () => {
+      cy.get('input#title').type('test');
+      cy.get('select#type').select(ProductTypes.BundleProduct);
+      cy.get('input[name="tags"]').type('test');
+      cy.get('button').contains(localizations.en.add_tag).click();
+      cy.get('input[type="submit"]').click();
+      cy.wait(fullAliasMutationName(ProductOperations.CreateProduct)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            product: {
+              title: 'test',
+              type: ProductTypes.BundleProduct,
+              tags: ['test'],
+            },
+          });
+          expect(response.body).to.deep.eq({
+            ...CreateProductResponse,
+            data: {
+              ...CreateProductResponse.data,
+              createProduct: {
+                ...CreateProductResponse.data.createProduct,
+                __typename: ProductTypes.BundleProduct,
+              },
+            },
+          });
+        },
+      );
+      cy.location('pathname').should(
+        'eq',
+        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+      );
+    });
+
+    it('Show [ADD PRODUCT]  successfully [ConfigurableProduct]', () => {
+      cy.get('input#title').type('test');
+      cy.get('select#type').select(ProductTypes.ConfigurableProduct);
+      cy.get('input[name="tags"]').type('test');
+      cy.get('button').contains(localizations.en.add_tag).click();
+      cy.get('input[type="submit"]').click();
+      cy.wait(fullAliasMutationName(ProductOperations.CreateProduct)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            product: {
+              title: 'test',
+              type: ProductTypes.ConfigurableProduct,
+              tags: ['test'],
+            },
+          });
+          expect(response.body).to.deep.eq({
+            ...CreateProductResponse,
+            data: {
+              ...CreateProductResponse.data,
+              createProduct: {
+                ...CreateProductResponse.data.createProduct,
+                __typename: ProductTypes.ConfigurableProduct,
+              },
+            },
+          });
+        },
+      );
+      cy.location('pathname').should(
+        'eq',
+        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+      );
+    });
+
+    it('Show [ADD PRODUCT]  successfully [PlanProduct]', () => {
+      cy.get('input#title').type('test');
+      cy.get('select#type').select(ProductTypes.PlanProduct);
+      cy.get('input[name="tags"]').type('test');
+      cy.get('button').contains(localizations.en.add_tag).click();
+      cy.get('input[type="submit"]').click();
+      cy.wait(fullAliasMutationName(ProductOperations.CreateProduct)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            product: {
+              title: 'test',
+              type: ProductTypes.PlanProduct,
+              tags: ['test'],
+            },
+          });
+          expect(response.body).to.deep.eq({
+            ...CreateProductResponse,
+            data: {
+              ...CreateProductResponse.data,
+              createProduct: {
+                ...CreateProductResponse.data.createProduct,
+                __typename: ProductTypes.PlanProduct,
+              },
+            },
+          });
         },
       );
       cy.location('pathname').should(

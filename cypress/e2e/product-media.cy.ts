@@ -84,7 +84,6 @@ describe('Product Media', () => {
         expect(request.body.variables).to.deep.eq({
           slug: product.texts.slug,
           productId: null,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
