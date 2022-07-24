@@ -6,7 +6,7 @@ import {
   assortmentRequestVariables,
   CreateAssortmentResponse,
   SingleAssortmentResponse,
-  SingleTranslatedAssortmentTextsResponse,
+  TranslatedAssortmentTextsResponse,
   UpdateAssortmentResponse,
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -32,7 +32,7 @@ describe('Assortment', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
-        req.reply(SingleTranslatedAssortmentTextsResponse);
+        req.reply(TranslatedAssortmentTextsResponse);
       }
       if (hasOperationName(req, AssortmentOperation.UpdateAssortment)) {
         aliasMutation(req, AssortmentOperation.UpdateAssortment);
@@ -549,9 +549,7 @@ describe('Assortment', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
+        expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },
     );
   });

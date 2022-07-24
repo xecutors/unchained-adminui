@@ -7,7 +7,7 @@ import {
   assortmentRequestVariables,
   RemoveAssortmentMediaResponse,
   SingleAssortmentResponse,
-  SingleTranslatedAssortmentTextsResponse,
+  TranslatedAssortmentTextsResponse,
   TranslatedAssortmentMediaTextsResponse,
   UpdateAssortmentMediaTextsResponse,
 } from '../mock/assortment';
@@ -32,7 +32,7 @@ describe('Assortment Detail Media', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
-        req.reply(SingleTranslatedAssortmentTextsResponse);
+        req.reply(TranslatedAssortmentTextsResponse);
       }
       if (hasOperationName(req, AssortmentOperation.AssortmentMedia)) {
         aliasQuery(req, AssortmentOperation.AssortmentMedia);
@@ -94,9 +94,7 @@ describe('Assortment Detail Media', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
+        expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },
     );
 

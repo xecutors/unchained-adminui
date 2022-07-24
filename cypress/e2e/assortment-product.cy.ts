@@ -1,6 +1,7 @@
 import localizations from '../../i18n';
 import getContent from '../../modules/common/utils/utils';
 import {
+  AddAssortmentProductResponse,
   AssortmentListResponse,
   AssortmentOperation,
   AssortmentProductsResponse,
@@ -8,7 +9,7 @@ import {
   RemoveAssortmentProductResponse,
   SearchProductsResponse,
   SingleAssortmentResponse,
-  SingleTranslatedAssortmentTextsResponse,
+  TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
@@ -16,7 +17,7 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-describe('Assortment Detail', () => {
+describe('Assortment Detail Products', () => {
   beforeEach(() => {
     const { assortment } = SingleAssortmentResponse.data;
 
@@ -35,11 +36,15 @@ describe('Assortment Detail', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
-        req.reply(SingleTranslatedAssortmentTextsResponse);
+        req.reply(TranslatedAssortmentTextsResponse);
       }
       if (hasOperationName(req, AssortmentOperation.SearchProducts)) {
         aliasQuery(req, AssortmentOperation.SearchProducts);
         req.reply(SearchProductsResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.AddProduct)) {
+        aliasMutation(req, AssortmentOperation.AddProduct);
+        req.reply(AddAssortmentProductResponse);
       }
       if (hasOperationName(req, AssortmentOperation.RemoveProduct)) {
         aliasMutation(req, AssortmentOperation.RemoveProduct);
@@ -89,9 +94,7 @@ describe('Assortment Detail', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
+        expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },
     );
 
@@ -133,6 +136,11 @@ describe('Assortment Detail', () => {
     );
   });
 
+  it('Should Navigate to [ASSORTMENT DETAIL PRODUCT] tab successfully', () => {
+    cy.get('form#assortment_product_form').should('be.visible');
+    cy.get('div[draggable="true"]').should('have.length', 4);
+  });
+
   it('Should [ADD TAG] successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
@@ -168,7 +176,7 @@ describe('Assortment Detail', () => {
   it('Should [SEARCH] product successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('input#react-select-2-input').clear().type('m');
+    cy.get('input#react-select-2-input').clear().type('f');
 
     cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
       (currentSubject) => {
@@ -177,7 +185,7 @@ describe('Assortment Detail', () => {
           limit: 10,
           offset: 0,
           includeInactive: true,
-          queryString: 'm',
+          queryString: 'f',
           filterQuery: [],
           assortmentId: null,
           orderBy: null,
@@ -188,7 +196,11 @@ describe('Assortment Detail', () => {
       },
     );
 
-    cy.get('input#react-select-2-input').clear().type('mo');
+    cy.get('div#react-select-2-listbox div:first').within(() => {
+      cy.get('div').should('have.length', 2);
+    });
+
+    cy.get('input#react-select-2-input').type('r');
 
     cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
       (currentSubject) => {
@@ -197,7 +209,7 @@ describe('Assortment Detail', () => {
           limit: 10,
           offset: 0,
           includeInactive: true,
-          queryString: 'mo',
+          queryString: 'fr',
           filterQuery: [],
           assortmentId: null,
           orderBy: null,
@@ -208,6 +220,9 @@ describe('Assortment Detail', () => {
       },
     );
 
+    cy.get('div#react-select-2-listbox div:first').within(() => {
+      cy.get('div').should('have.length', 2);
+    });
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -219,7 +234,7 @@ describe('Assortment Detail', () => {
   it('Should [ADD PRODUCT] successfully', () => {
     const { assortment } = SingleAssortmentResponse.data;
 
-    cy.get('input#react-select-2-input').clear().type('m');
+    cy.get('input#react-select-2-input').type('f');
 
     cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
       (currentSubject) => {
@@ -228,7 +243,7 @@ describe('Assortment Detail', () => {
           limit: 10,
           offset: 0,
           includeInactive: true,
-          queryString: 'm',
+          queryString: 'f',
           filterQuery: [],
           assortmentId: null,
           orderBy: null,
@@ -236,6 +251,35 @@ describe('Assortment Detail', () => {
           forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SearchProductsResponse);
+      },
+    );
+
+    cy.get('div#react-select-2-listbox div:first').within(() => {
+      cy.get('div').first().click();
+    });
+    cy.get('input[type="submit"]').contains(localizations.en.save).click();
+
+    cy.wait(fullAliasMutationName(AssortmentOperation.AddProduct)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          productId: SearchProductsResponse.data.searchProducts.products[0]._id,
+          assortmentId: assortment._id,
+          tags: [],
+        });
+        expect(response.body).to.deep.eq(AddAssortmentProductResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.AssortmentProducts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: null,
+          forceLocale: 'en',
+          assortmentId: assortment._id,
+        });
+        expect(response.body).to.deep.eq(AssortmentProductsResponse);
       },
     );
 
