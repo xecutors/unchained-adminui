@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 
 const RemoveProductVariationOptionMutation = gql`
-  mutation removeProductVariationOption(
+  mutation RemoveProductVariationOption(
     $productVariationId: ID!
     $productVariationOptionValue: String!
   ) {

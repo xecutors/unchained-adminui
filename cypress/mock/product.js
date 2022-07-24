@@ -584,31 +584,92 @@ export const RemoveBundleItemResponse = {
   },
 };
 
-export const ProductOperations = {
-  GetProductList: 'Products',
-  GetSingleProduct: 'Product',
-  CreateProduct: 'CreateProduct',
-  GetTranslatedProductTexts: 'TranslatedProductTexts',
-  UpdateTexts: 'UpdateProductTexts',
-  PublishProduct: 'PublishProduct',
-  UnpublishProduct: 'UnpublishProduct',
-  UpdateProduct: 'UpdateProduct',
-  RemoveProduct: 'RemoveProduct',
-  ProductMedia: 'ProductMedia',
-  UpdateProductMediaTexts: 'UpdateProductMediaTexts',
-  RemoveMedia: 'RemoveProductMedia',
-  GetMediaTexts: 'TranslatedProductMediaTexts',
-  UpdateProductSupply: 'UpdateProductSupply',
-  GetProductSupply: 'ProductSupply',
-  GetProductWarehousing: 'ProductWarehousing',
-  UpdateProductWarehousing: 'UpdateProductWarehousing',
-  GetProductPlan: 'ProductPlan',
-  GetProductPlanConfigurationOption: 'ProductPlanConfigurationOptions',
-  UpdateProductPlan: 'UpdateProductPlan',
-  CreateProductBundleItem: 'CreateProductBundleItem',
-  GetProductBundleItems: 'ProductBundleItems',
-  SearchProducts: 'SearchProducts',
-  RemoveBundleItem: 'RemoveBundleItem',
+export const ProductVariationTypesResponse = {
+  data: {
+    variationTypes: {
+      options: [
+        {
+          value: 'COLOR',
+          label: 'Color Picker',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'TEXT',
+          label: 'Text Answers',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const ProductVariationsResponse = {
+  data: {
+    product: {
+      _id: '796208e0a6e2e173cf4470cc',
+      variations: [
+        {
+          _id: '92295b80b73e2f559afcf292',
+          type: 'COLOR',
+          key: 'second-color-key',
+          texts: {
+            _id: '29d2a11f25a3b1e5d06e9adc',
+            locale: 'de',
+            title: 'second color variation',
+            subtitle: null,
+            __typename: 'ProductVariationTexts',
+          },
+          options: [],
+          __typename: 'ProductVariation',
+        },
+        {
+          _id: '4b627732fb356aadf43b0695',
+          type: 'TEXT',
+          key: 'first-text-key',
+          texts: {
+            _id: '54f85c67dea0db3c9365b1f5',
+            locale: 'de',
+            title: 'first text variation',
+            subtitle: null,
+            __typename: 'ProductVariationTexts',
+          },
+          options: [],
+          __typename: 'ProductVariation',
+        },
+      ],
+      __typename: 'ConfigurableProduct',
+    },
+  },
+};
+
+export const UpdateProductVariationTextResponse = {
+  data: {
+    updateProductVariationTexts: [
+      {
+        _id: '54f85c67dea0db3c9365b1f5',
+        __typename: 'ProductVariationTexts',
+      },
+    ],
+  },
+};
+
+export const CreateProductVariationResponse = {
+  data: {
+    createProductVariation: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+
+export const RemoveProductVariationResponse = {
+  data: {
+    removeProductVariation: {
+      _id: 'e5ab7fbbf40dc3fda47c6ad3',
+      __typename: 'ProductVariation',
+    },
+  },
 };
 
 export const TranslatedProductMediaTextsResponse = {
@@ -686,6 +747,59 @@ export const UpdateProductSupplyResponse = {
     },
   },
 };
+
+export const CreateProductVariationOptionResponse = {
+  data: {
+    createProductVariationOption: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+
+export const RemoveProductVariationOptionResponse = {
+  data: {
+    removeProductVariationOption: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+export const ProductOperations = {
+  GetProductList: 'Products',
+  GetSingleProduct: 'Product',
+  CreateProduct: 'CreateProduct',
+  GetTranslatedProductTexts: 'TranslatedProductTexts',
+  UpdateTexts: 'UpdateProductTexts',
+  PublishProduct: 'PublishProduct',
+  UnpublishProduct: 'UnpublishProduct',
+  UpdateProduct: 'UpdateProduct',
+  RemoveProduct: 'RemoveProduct',
+  ProductMedia: 'ProductMedia',
+  UpdateProductMediaTexts: 'UpdateProductMediaTexts',
+  RemoveMedia: 'RemoveProductMedia',
+  GetMediaTexts: 'TranslatedProductMediaTexts',
+  UpdateProductSupply: 'UpdateProductSupply',
+  GetProductSupply: 'ProductSupply',
+  GetProductWarehousing: 'ProductWarehousing',
+  UpdateProductWarehousing: 'UpdateProductWarehousing',
+  GetProductPlan: 'ProductPlan',
+  GetProductPlanConfigurationOption: 'ProductPlanConfigurationOptions',
+  UpdateProductPlan: 'UpdateProductPlan',
+  CreateProductBundleItem: 'CreateProductBundleItem',
+  GetProductBundleItems: 'ProductBundleItems',
+  SearchProducts: 'SearchProducts',
+  RemoveBundleItem: 'RemoveBundleItem',
+  GetProductVariations: 'ProductVariations',
+  UpdateProductVariationTexts: 'UpdateProductVariationTexts',
+  CreateProductVariation: 'CreateProductVariation',
+  RemoveProductVariation: 'RemoveProductVariation',
+  ProductVariationType: 'ProductVariationType',
+  GetProductVariationType: 'ProductVariationType',
+  CreateProductVariationOption: 'CreateProductVariationOption',
+  RemoveProductVariationOption: 'RemoveProductVariationOption',
+};
+
 export default {
   UpdateProductPlanResponse,
   ProductListResponse,
@@ -699,4 +813,11 @@ export default {
   ProductPlanConfigurationOptionsResponse,
   ProductPlanResponse,
   SearchProductResponse,
+  ProductVariationsResponse,
+  RemoveBundleItemResponse,
+  RemoveProductVariationResponse,
+  CreateProductBundleItemResponse,
+  CreateProductVariationResponse,
+  UpdateProductMediaTextsResponse,
+  UpdateProductVariationTextResponse,
 };

@@ -41,7 +41,7 @@ const ProductVariationOptionItem = ({
     },
   });
   return (
-    <Form form={form} className="last:pb-2">
+    <Form form={form} className="last:pb-2" id="variation-option-update-form">
       <div className="my-2 flow-root rounded border sm:mx-4 ">
         <li className="list-none py-2 dark:bg-slate-500 dark:text-slate-200 pl-2 pr-2">
           <div className="grid grid-cols-6 items-center gap-2">
@@ -80,12 +80,15 @@ const ProductVariationOptionItem = ({
                 )}
               </p>
             </div>
-
             <div className="col-span-1">
               {isEdit ? (
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={() => setIsEdit(!isEdit)}
+                    aria-label={formatMessage({
+                      id: 'cancel',
+                      defaultMessage: 'Cancel',
+                    })}
                     type="button"
                     className="rounded-md bg-white font-medium text-red-500 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
@@ -97,6 +100,10 @@ const ProductVariationOptionItem = ({
 
                   <button
                     type="submit"
+                    aria-label={formatMessage({
+                      id: 'save',
+                      defaultMessage: 'Save',
+                    })}
                     className="rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                   >
                     {formatMessage({

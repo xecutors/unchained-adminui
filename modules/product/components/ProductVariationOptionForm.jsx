@@ -25,7 +25,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
   });
 
   return (
-    <Form form={form}>
+    <Form form={form} id="variation-option-form">
       <div className="mt-2 flex gap-2 px-2 pt-2 sm:px-4">
         <TextField
           className="mt-0 shrink grow basis-1/3 py-1"
@@ -39,7 +39,6 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
           label={formatMessage({ id: 'value', defaultMessage: 'Value' })}
           required
         />
-
         <span className="flex-auto self-end">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.products.createVariationOption)}
