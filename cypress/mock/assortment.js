@@ -134,12 +134,21 @@ export const AssortmentListResponse = {
   },
 };
 
-export const SingleTranslatedAssortmentTextsResponse = {
+export const TranslatedAssortmentTextsResponse = {
   data: {
     translatedAssortmentTexts: [
       {
-        _id: '8f7dcfdeb42f704b56248d1e',
+        _id: 'c0a1b807e33d2d36b2022fae',
         locale: 'en',
+        slug: 'snacks',
+        title: 'Snacks',
+        subtitle: 'Snacks',
+        description: 'Snacks',
+        __typename: 'AssortmentTexts',
+      },
+      {
+        _id: '8f7dcfdeb42f704b56248d1e',
+        locale: 'de',
         slug: 'snacks',
         title: 'Snacks',
         subtitle: 'Snacks',
