@@ -55,7 +55,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
 
   return (
     <FormWrapper>
-      <Form form={form}>
+      <Form form={form} id="assortment_product_form">
         <div className="shadow dark:shadow-none sm:rounded-md">
           <div className="grid gap-6 px-4 py-5 sm:p-6">
             <div className="col-span-12">

@@ -16,7 +16,7 @@ import formatDateTime from '../utils/formatDateTime';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-describe('Assortment Detail', () => {
+describe('Assortment Detail Texts', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {

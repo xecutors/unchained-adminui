@@ -9,7 +9,7 @@ import {
   FiltersListResponse,
   RemoveAssortmentFilterResponse,
   SingleAssortmentResponse,
-  SingleTranslatedAssortmentTextsResponse,
+  TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
@@ -17,7 +17,7 @@ import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
-describe('Assortment Detail', () => {
+describe('Assortment Detail Filters', () => {
   beforeEach(() => {
     const { assortment } = SingleAssortmentResponse.data;
 
@@ -32,7 +32,7 @@ describe('Assortment Detail', () => {
       }
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
-        req.reply(SingleTranslatedAssortmentTextsResponse);
+        req.reply(TranslatedAssortmentTextsResponse);
       }
       if (hasOperationName(req, AssortmentOperation.FiltersList)) {
         aliasQuery(req, AssortmentOperation.FiltersList);
@@ -94,9 +94,7 @@ describe('Assortment Detail', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentId: SingleAssortmentResponse.data.assortment._id,
         });
-        expect(response.body).to.deep.eq(
-          SingleTranslatedAssortmentTextsResponse,
-        );
+        expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
       },
     );
 
@@ -149,6 +147,7 @@ describe('Assortment Detail', () => {
       },
     );
   });
+
   it('Should Navigate to [ASSORTMENT DETAIL FILTERS] tab successfully', () => {
     cy.get('form#assortment_filter_form').should('be.visible');
     cy.get('div[draggable="true"]').should('have.length', 2);

@@ -874,6 +874,15 @@ export const SearchProductsResponse = {
   },
 };
 
+export const AddAssortmentProductResponse = {
+  data: {
+    addAssortmentProduct: {
+      _id: 'da14952a433f1c48ba092a8e',
+      __typename: 'AssortmentProduct',
+    },
+  },
+};
+
 export const RemoveAssortmentProductResponse = {
   data: {
     removeAssortmentProduct: {
@@ -1033,6 +1042,7 @@ export const AssortmentOperation = {
   UpdateMediaTexts: 'UpdateAssortmentMediaTexts',
   AssortmentProducts: 'AssortmentProducts',
   SearchProducts: 'SearchProducts',
+  AddProduct: 'AddAssortmentProduct',
   RemoveProduct: 'RemoveAssortmentProduct',
   FiltersList: 'FiltersList',
   AssortmentFilters: 'AssortmentFilters',
