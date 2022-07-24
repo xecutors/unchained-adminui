@@ -868,8 +868,122 @@ export const SearchProductsResponse = {
 export const RemoveAssortmentProductResponse = {
   data: {
     removeAssortmentProduct: {
-      _id: '0e3de7044f3df7ce3e1b5c89',
+      _id: 'e38361a29cf8e3a6036c837a',
       __typename: 'AssortmentProduct',
+    },
+  },
+};
+
+export const FiltersListResponse = {
+  data: {
+    filters: [
+      {
+        _id: '9578c8348c354fa34b98fce7',
+        key: 'color',
+        isActive: true,
+        texts: {
+          _id: '166f4510bba04f6263a356af',
+          title: 'some title',
+          subtitle: null,
+          __typename: 'FilterTexts',
+        },
+        type: 'SINGLE_CHOICE',
+        __typename: 'Filter',
+      },
+      {
+        _id: '2ec75fcfc72795c9cff29740',
+        key: 'size',
+        isActive: true,
+        texts: {
+          _id: '2a46fe90e5181c92b9731081',
+          title: 'By color',
+          subtitle: null,
+          __typename: 'FilterTexts',
+        },
+        type: 'MULTI_CHOICE',
+        __typename: 'Filter',
+      },
+    ],
+  },
+};
+
+export const AssortmentFiltersResponse = {
+  data: {
+    assortment: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      filterAssignments: [
+        {
+          _id: '96eabe8bf4e195962a4dd569',
+          sortKey: 1,
+          tags: [],
+          filter: {
+            _id: '9578c8348c354fa34b98fce7',
+            updated: '2022-07-23T11:45:09.648Z',
+            created: '2022-07-23T11:44:40.298Z',
+            key: 'color',
+            isActive: true,
+            type: 'SINGLE_CHOICE',
+            options: [
+              {
+                _id: '9578c8348c354fa34b98fce7:some',
+                texts: null,
+                value: 'some',
+                __typename: 'FilterOption',
+              },
+              {
+                _id: '9578c8348c354fa34b98fce7:title',
+                texts: null,
+                value: 'title',
+                __typename: 'FilterOption',
+              },
+            ],
+            __typename: 'Filter',
+          },
+          __typename: 'AssortmentFilter',
+        },
+        {
+          _id: '48150ba46e9b54d18a83f8ff',
+          sortKey: 2,
+          tags: [],
+          filter: {
+            _id: '2ec75fcfc72795c9cff29740',
+            updated: '2022-07-23T11:45:51.809Z',
+            created: '2022-07-23T11:45:47.228Z',
+            key: 'size',
+            isActive: true,
+            type: 'MULTI_CHOICE',
+            options: [
+              {
+                _id: '2ec75fcfc72795c9cff29740:some',
+                texts: null,
+                value: 'some',
+                __typename: 'FilterOption',
+              },
+            ],
+            __typename: 'Filter',
+          },
+          __typename: 'AssortmentFilter',
+        },
+      ],
+      __typename: 'Assortment',
+    },
+  },
+};
+
+export const AddAssortmentFilterResponse = {
+  data: {
+    addAssortmentFilter: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      __typename: 'AssortmentFilter',
+    },
+  },
+};
+
+export const RemoveAssortmentFilterResponse = {
+  data: {
+    removeAssortmentFilter: {
+      _id: 'e38361a29cf8e3a6036c837a',
+      __typename: 'AssortmentFilter',
     },
   },
 };
@@ -911,4 +1025,8 @@ export const AssortmentOperation = {
   AssortmentProducts: 'AssortmentProducts',
   SearchProducts: 'SearchProducts',
   RemoveProduct: 'RemoveAssortmentProduct',
+  FiltersList: 'FiltersList',
+  AssortmentFilters: 'AssortmentFilters',
+  RemoveFilter: 'RemoveAssortmentFilter',
+  AddFilter: 'AddAssortmentFilter',
 };
