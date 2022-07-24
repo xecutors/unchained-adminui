@@ -208,14 +208,52 @@ describe('Assortment Detail Media', () => {
     });
   });
 
-  it('Should [UPDATE] media texts successfully', () => {
+  it('Should [INITIALIZE] assortment text form', () => {
     const { assortment } = SingleAssortmentResponse.data;
-    const { translatedAssortmentMediaTexts: mediaTexts } =
-      TranslatedAssortmentMediaTextsResponse.data;
+    const [firstText] =
+      TranslatedAssortmentMediaTextsResponse.data
+        .translatedAssortmentMediaTexts;
 
     cy.get('button#edit').first().click();
-    cy.get('input#title').clear().type(mediaTexts[0].title);
-    cy.get('input#subtitle').clear().type(mediaTexts[0].subtitle);
+    cy.get('input#title').should('have.value', firstText.title);
+    cy.get('input#subtitle').should('have.value', firstText.subtitle);
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'media',
+      });
+    });
+  });
+
+  it('Should [RE-INITIALIZE WITH SELECTED LOCALE] assortment tex successfully', () => {
+    const { assortment } = SingleAssortmentResponse.data;
+    const [, secondTexts] =
+      TranslatedAssortmentMediaTextsResponse.data
+        .translatedAssortmentMediaTexts;
+
+    cy.get('select#locale-wrapper').select('de');
+    cy.get('button#edit').first().click();
+    cy.get('input#title').should('have.value', secondTexts.title);
+    cy.get('input#subtitle').should('have.value', secondTexts.subtitle);
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'media',
+      });
+    });
+  });
+
+  it('Should [UPDATE] media texts successfully', () => {
+    const { assortment } = SingleAssortmentResponse.data;
+    const [firstText] =
+      TranslatedAssortmentMediaTextsResponse.data
+        .translatedAssortmentMediaTexts;
+
+    cy.get('button#edit').first().click();
+    cy.get('input#title').clear().type(firstText.title);
+    cy.get('input#subtitle').clear().type(firstText.subtitle);
 
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
@@ -226,9 +264,59 @@ describe('Assortment Detail Media', () => {
           assortmentMediaId:
             AssortmentMediaResponse.data.assortment.media[0]._id,
           texts: {
-            locale: 'en',
-            title: mediaTexts[0].title,
-            subtitle: mediaTexts[0].title,
+            locale: firstText.locale,
+            title: firstText.title,
+            subtitle: firstText.subtitle,
+          },
+        });
+        expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetMediaTexts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortmentMediaId:
+            AssortmentMediaResponse.data.assortment.media[0]._id,
+        });
+        expect(response.body).to.deep.eq(
+          TranslatedAssortmentMediaTextsResponse,
+        );
+      },
+    );
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'media',
+      });
+    });
+  });
+
+  it('Should [UPDATE WITH SELECTED LOCALE] media texts successfully', () => {
+    const { assortment } = SingleAssortmentResponse.data;
+    const [, secondTexts] =
+      TranslatedAssortmentMediaTextsResponse.data
+        .translatedAssortmentMediaTexts;
+
+    cy.get('select#locale-wrapper').select('de');
+    cy.get('button#edit').first().click();
+    cy.get('input#title').clear().type(secondTexts.title);
+    cy.get('input#subtitle').clear().type(secondTexts.subtitle);
+
+    cy.get('input[type="submit"]').contains(localizations.en.save).click();
+
+    cy.wait(fullAliasMutationName(AssortmentOperation.UpdateMediaTexts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortmentMediaId:
+            AssortmentMediaResponse.data.assortment.media[0]._id,
+          texts: {
+            locale: secondTexts.locale,
+            title: secondTexts.title,
+            subtitle: secondTexts.subtitle,
           },
         });
         expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
