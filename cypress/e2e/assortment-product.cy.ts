@@ -18,9 +18,8 @@ import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Assortment Detail Products', () => {
+  const { assortment } = SingleAssortmentResponse.data;
   beforeEach(() => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
         aliasQuery(req, AssortmentOperation.GetAssortmentList);
@@ -116,12 +115,6 @@ describe('Assortment Detail Products', () => {
     });
 
     cy.get('a#products').contains(localizations.en.products).click();
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
 
     cy.wait(fullAliasName(AssortmentOperation.AssortmentProducts)).then(
       (currentSubject) => {
@@ -136,46 +129,35 @@ describe('Assortment Detail Products', () => {
     );
   });
 
+  afterEach(() => {
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'products',
+      });
+    });
+  });
+
   it('Should Navigate to [ASSORTMENT DETAIL PRODUCT] tab successfully', () => {
     cy.get('form#assortment_product_form').should('be.visible');
     cy.get('div[draggable="true"]').should('have.length', 4);
   });
 
   it('Should [ADD TAG] successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('input#tags').clear().type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
     cy.get('span#badge').should('contain.text', 'new');
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('Should [REMOVE TAG] successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('input#tags').clear().type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
     cy.get('span#badge').within(() => {
       cy.get('button#badge-x-button').click();
     });
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('Should [SEARCH] product successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('input#react-select-2-input').clear().type('f');
 
     cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
@@ -223,17 +205,9 @@ describe('Assortment Detail Products', () => {
     cy.get('div#react-select-2-listbox div:first').within(() => {
       cy.get('div').should('have.length', 2);
     });
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('Should [ADD PRODUCT] successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('input#react-select-2-input').type('f');
 
     cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
@@ -282,18 +256,9 @@ describe('Assortment Detail Products', () => {
         expect(response.body).to.deep.eq(AssortmentProductsResponse);
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('Should [ERROR] when required fields are not provided in add product', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('input#react-select-2-input').clear();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
@@ -308,18 +273,9 @@ describe('Assortment Detail Products', () => {
     cy.get('input[type="submit"]')
       .contains(localizations.en.save)
       .should('be.disabled');
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('should [DELETE] product successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_product)
@@ -346,28 +302,12 @@ describe('Assortment Detail Products', () => {
         expect(response.body).to.deep.eq(AssortmentProductsResponse);
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 
   it('Should [CANCEL DELETE] product successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_cancel')
       .contains(localizations.en.cancel)
       .click();
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'products',
-      });
-    });
   });
 });

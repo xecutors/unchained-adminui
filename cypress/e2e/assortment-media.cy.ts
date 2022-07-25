@@ -18,9 +18,8 @@ import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Assortment Detail Media', () => {
+  const { assortment } = SingleAssortmentResponse.data;
   beforeEach(() => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
         aliasQuery(req, AssortmentOperation.GetAssortmentList);
@@ -116,12 +115,6 @@ describe('Assortment Detail Media', () => {
     });
 
     cy.get('a#media').contains(localizations.en.media).click();
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
 
     cy.wait(fullAliasName(AssortmentOperation.AssortmentMedia)).then(
       (currentSubject) => {
@@ -150,6 +143,15 @@ describe('Assortment Detail Media', () => {
     cy.get('select#locale-wrapper').select('en');
   });
 
+  afterEach(() => {
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'media',
+      });
+    });
+  });
+
   it('Should Navigate to [ASSORTMENT DETAIL MEDIA] tab successfully', () => {
     cy.get('div#media_uploader').should('be.visible');
     cy.get('ul[data-rbd-droppable-id="assortment-media"] li').should(
@@ -159,8 +161,6 @@ describe('Assortment Detail Media', () => {
   });
 
   it('Should [DELETE] media successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_assortment_media)
@@ -187,33 +187,16 @@ describe('Assortment Detail Media', () => {
         expect(response.body).to.deep.eq(AssortmentMediaResponse);
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [CANCEL] delete media successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_cancel')
       .contains(localizations.en.cancel)
       .click();
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [INITIALIZE] assortment text form', () => {
-    const { assortment } = SingleAssortmentResponse.data;
     const [firstText] =
       TranslatedAssortmentMediaTextsResponse.data
         .translatedAssortmentMediaTexts;
@@ -221,17 +204,9 @@ describe('Assortment Detail Media', () => {
     cy.get('button#edit').first().click();
     cy.get('input#title').should('have.value', firstText.title);
     cy.get('input#subtitle').should('have.value', firstText.subtitle);
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [RE-INITIALIZE WITH SELECTED LOCALE] assortment tex successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
     const [, secondTexts] =
       TranslatedAssortmentMediaTextsResponse.data
         .translatedAssortmentMediaTexts;
@@ -240,17 +215,9 @@ describe('Assortment Detail Media', () => {
     cy.get('button#edit').first().click();
     cy.get('input#title').should('have.value', secondTexts.title);
     cy.get('input#subtitle').should('have.value', secondTexts.subtitle);
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [UPDATE] media texts successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
     const [firstText] =
       TranslatedAssortmentMediaTextsResponse.data
         .translatedAssortmentMediaTexts;
@@ -289,17 +256,9 @@ describe('Assortment Detail Media', () => {
         );
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [UPDATE WITH SELECTED LOCALE] media texts successfully', () => {
-    const { assortment } = SingleAssortmentResponse.data;
     const [, secondTexts] =
       TranslatedAssortmentMediaTextsResponse.data
         .translatedAssortmentMediaTexts;
@@ -339,29 +298,13 @@ describe('Assortment Detail Media', () => {
         );
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 
   it('Should [CANCEL] in media texts update form', () => {
-    const { assortment } = SingleAssortmentResponse.data;
-
     cy.get('button#edit').first().click();
     cy.get('input#title').clear().type('title');
     cy.get('button[type="button"]#cancel_update')
       .contains(localizations.en.cancel)
       .click();
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        tab: 'media',
-      });
-    });
   });
 });
