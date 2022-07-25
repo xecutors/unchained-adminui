@@ -34,11 +34,11 @@ const TabComponent = ({ children, tabItems, defaultTab }) => {
           onChange={(e) => onTabSelected(e.target.value)}
           id="selected-tab"
           name="selected-tab"
-          className="mt-1 block dark:text-slate-900 w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+          className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           value={tab}
         >
           {tabItems.map((value) => (
-            <option key={value.id} value={value.id}>
+            <option key={value.id} value={value.id} className="dark:text-white">
               {value?.title || value?.id}
             </option>
           ))}

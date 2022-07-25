@@ -22,16 +22,6 @@ a {
   line-height: 1.15 !important;
 }
 
-.hide-show {
-  position: absolute;
-  top: 0;
-  display: block;
-  margin-top: 2.375rem;
-  right: 0.75rem;
-  outline: none;
-  z-index: 9999;
-}
-
 @media (min-width: 640px) {
   table {
     display: inline-table !important;
@@ -102,6 +92,22 @@ a {
 .ql-editor:focus {
   outline: 3px solid #818cf8;
   border-radius: 0.25rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: rgb(15 23 42);
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@layer utilities {
+  .autofill {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(15 23 42) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 /* Chrome, Safari, Edge, Opera */
