@@ -1,7 +1,6 @@
 import {
   ChevronDownIcon,
   ChevronUpIcon,
-  FilterIcon,
   SortDescendingIcon,
 } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
@@ -62,10 +61,9 @@ const Sort = ({ sortFields, className }) => {
             setSortReducer(reducerToObject(sortKeys));
           }
         }}
-        className="relative inline-flex items-center px-4 py-2 border-2 border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="relative inline-flex items-center px-1 py-1 border-2 border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         <span className="flex items-center gap-2">
-          <FilterIcon className="h-6 w-6" aria-hidden="true" />
           <SortDescendingIcon className="h-6 w-6" aria-hidden="true" />
         </span>
         {Object.keys(sortReducer).length !== 0 && (
