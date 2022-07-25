@@ -11,6 +11,9 @@ import DeleteButton from '../../common/components/DeleteButton';
 import useProductAssignments from '../hooks/useProductAssignments';
 import Table from '../../common/components/Table';
 import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
+import useModal from '../../modal/hooks/useModal';
+import DangerMessage from '../../modal/components/DangerMessage';
+import deBounce from '../../common/utils/deBounce';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -49,9 +52,10 @@ const ProductAssignmentForm = ({ proxyId }) => {
   const { formatMessage } = useIntl();
   const { addProductAssignment } = useAddProductAssignment();
   const { removeProductAssignment } = useRemoveProductAssignment();
+  const { setModal } = useModal();
 
   const [queryString, setQueryString] = useState('');
-  const { products } = useSearchProducts({
+  const { products, loading } = useSearchProducts({
     queryString,
     limit: 50,
   });
@@ -123,11 +127,28 @@ const ProductAssignmentForm = ({ proxyId }) => {
 
   const handleRemoveAssignment = (context) => {
     const removeAssignment = async () => {
-      const vectors = context.map(getRowVector);
-      await removeProductAssignment({ proxyId, vectors });
+      await setModal(
+        <DangerMessage
+          message={formatMessage({
+            id: 'delete_product_assignment',
+            defaultMessage:
+              'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this assignment? ',
+          })}
+          onOkClick={async () => {
+            setModal('');
+            const vectors = context.map(getRowVector);
+            await removeProductAssignment({ proxyId, vectors });
+          }}
+          okText={formatMessage({
+            id: 'delete_variation_assignment',
+            defaultMessage: 'Delete assignment',
+          })}
+        />,
+      );
     };
     return removeAssignment;
   };
+  const debouncedQuery = deBounce(200)(setQueryString);
 
   return (
     <FormWrapper>
@@ -144,13 +165,18 @@ const ProductAssignmentForm = ({ proxyId }) => {
                 variationProduct?.texts?.title
               ) : (
                 <Select
-                  name="productId"
+                  name={`productId-${_id}`}
+                  isLoading={loading}
+                  loadingMessage={formatMessage({
+                    id: 'loading',
+                    defaultMessage: 'Loading ...',
+                  })}
                   placeholder={formatMessage({
                     id: 'search_product',
                     defaultMessage: 'Search product',
                   })}
                   onChange={handleProductAssignment(columns)}
-                  onInputChange={setQueryString}
+                  onInputChange={debouncedQuery}
                   options={(products || []).map(normalizeProduct)}
                   className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
                 />

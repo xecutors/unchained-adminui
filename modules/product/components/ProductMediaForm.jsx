@@ -45,7 +45,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
         message={formatMessage({
           id: 'delete_product_media_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this media? ',
         })}
         onOkClick={async () => {
           setModal('');

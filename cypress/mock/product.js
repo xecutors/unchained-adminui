@@ -6,6 +6,7 @@ export const ProductListResponse = {
         sequence: 46,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:19:26.182Z',
         published: '2022-04-20T12:19:26.182Z',
         texts: {
@@ -28,6 +29,7 @@ export const ProductListResponse = {
         sequence: 48,
         status: 'DRAFT',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:20:56.274Z',
         published: null,
         texts: {
@@ -50,6 +52,7 @@ export const ProductListResponse = {
         sequence: 49,
         status: 'DELETED',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-06-16T10:29:30.114Z',
         published: null,
         texts: {
@@ -72,6 +75,7 @@ export const ProductListResponse = {
         sequence: 50,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-06-23T15:15:27.113Z',
         published: '2022-06-23T15:15:27.113Z',
         texts: {
@@ -105,6 +109,7 @@ export const ProductListResponse = {
         sequence: 51,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:26:06.469Z',
         published: '2022-04-20T12:26:06.469Z',
         texts: {
@@ -127,6 +132,7 @@ export const ProductListResponse = {
         sequence: 53,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:27:02.937Z',
         published: '2022-04-20T12:27:02.937Z',
         texts: {
@@ -149,6 +155,7 @@ export const ProductListResponse = {
         sequence: 54,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:27:47.759Z',
         published: '2022-04-20T12:27:46.728Z',
         texts: {
@@ -172,6 +179,7 @@ export const ProductListResponse = {
         status: 'ACTIVE',
         tags: [],
         updated: '2022-04-20T12:31:12.369Z',
+        created: '2022-04-20T12:31:12.369Z',
         published: '2022-04-20T12:31:12.369Z',
         texts: {
           _id: 'e3fb1e2a9fc77a055cf8999c',
@@ -193,6 +201,7 @@ export const ProductListResponse = {
         sequence: 56,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:54.186Z',
         updated: '2022-04-20T12:31:54.186Z',
         published: '2022-04-20T12:31:53.093Z',
         texts: {
@@ -215,6 +224,7 @@ export const ProductListResponse = {
         sequence: 57,
         status: 'ACTIVE',
         tags: [],
+        created: '2022-04-20T12:31:12.369Z',
         updated: '2022-04-20T12:30:08.028Z',
         published: '2022-04-20T12:30:08.028Z',
         texts: {
@@ -567,7 +577,7 @@ export const ProductBundleItemsResponse = {
 export const SearchProductResponse = {
   data: {
     searchProducts: {
-      productsCount: 0,
+      productsCount: 3,
       filteredProductsCount: 0,
       products: ProductListResponse.data.products.slice(3, 6),
       __typename: 'ProductSearchResult',
@@ -804,6 +814,142 @@ export const RemoveProductVariationOptionResponse = {
     },
   },
 };
+
+export const AddProductAssignmentResponse = {
+  data: {
+    addProductAssignment: {
+      _id: '699a8f77e93d02147ec1e944',
+      __typename: 'ConfigurableProduct',
+    },
+  },
+};
+
+export const ProductAssignmentsResponse = {
+  data: {
+    product: {
+      _id: '699a8f77e93d02147ec1e944',
+      texts: {
+        _id: 'bc991b495381d89aafb7d2c6',
+        subtitle: null,
+        slug: 'configurable',
+        title: 'configurable',
+        __typename: 'ProductTexts',
+      },
+      variations: [
+        {
+          _id: '61b66f9d1f20b1c6095bf50f',
+          key: 'test-variation',
+          texts: {
+            _id: '207c2b66a59164c8987abbd6',
+            title: 'first variation',
+            __typename: 'ProductVariationTexts',
+          },
+          options: [
+            {
+              _id: '61b66f9d1f20b1c6095bf50f:first option value',
+              value: 'first option value',
+              texts: {
+                _id: '1be0908b9fbfd71edc0bca7d',
+                title: 'first option',
+                __typename: 'ProductVariationTexts',
+              },
+              __typename: 'ProductVariationOption',
+            },
+            {
+              _id: '61b66f9d1f20b1c6095bf50f:second option value',
+              value: 'second option value',
+              texts: {
+                _id: 'ec7698713a6169feaa5db756',
+                title: 'second option',
+                __typename: 'ProductVariationTexts',
+              },
+              __typename: 'ProductVariationOption',
+            },
+          ],
+          __typename: 'ProductVariation',
+        },
+        {
+          _id: '3ea6626d4be3b1340c40b714',
+          key: 'test-variation 2',
+          texts: {
+            _id: '4255cec419f3f64704b02c19',
+            title: 'second variation',
+            __typename: 'ProductVariationTexts',
+          },
+          options: [
+            {
+              _id: '3ea6626d4be3b1340c40b714:another',
+              value: 'another',
+              texts: {
+                _id: '6dfe1f594bc4246fc39e6eae',
+                title: 'another',
+                __typename: 'ProductVariationTexts',
+              },
+              __typename: 'ProductVariationOption',
+            },
+          ],
+          __typename: 'ProductVariation',
+        },
+      ],
+      assignments: [
+        {
+          _id: '699a8f77e93d02147ec1e944:second option value',
+          vectors: [
+            {
+              _id: '699a8f77e93d02147ec1e944:test-variation=second option value',
+              option: {
+                _id: '61b66f9d1f20b1c6095bf50f:second option value',
+                value: 'second option value',
+                texts: {
+                  _id: 'ec7698713a6169feaa5db756',
+                  title: 'second option',
+                  subtitle: null,
+                  __typename: 'ProductVariationTexts',
+                },
+                __typename: 'ProductVariationOption',
+              },
+              variation: {
+                _id: '61b66f9d1f20b1c6095bf50f',
+                key: 'test-variation',
+                texts: {
+                  _id: '207c2b66a59164c8987abbd6',
+                  locale: 'de',
+                  title: 'first variation',
+                  __typename: 'ProductVariationTexts',
+                },
+                __typename: 'ProductVariation',
+              },
+              __typename: 'ProductVariationAssignmentVector',
+            },
+          ],
+          product: {
+            _id: 'e62204bcb900c5c8d761d63a',
+            texts: {
+              _id: '88dc080973761b11c57bc0c6',
+              title: 'Hawaii Zack Zack',
+              slug: 'hawaii-zack-zack',
+              subtitle: null,
+              __typename: 'ProductTexts',
+            },
+            __typename: 'SimpleProduct',
+          },
+          __typename: 'ProductVariationAssignment',
+        },
+      ],
+      __typename: 'ConfigurableProduct',
+    },
+  },
+};
+
+export const RemoveProductAssignmentResponse = {
+  data: {
+    removeProductAssignment: {
+      _id: '699a8f77e93d02147ec1e944',
+      __typename: 'ConfigurableProduct',
+    },
+  },
+};
+
 export const ProductOperations = {
   GetProductList: 'Products',
   GetSingleProduct: 'Product',
@@ -837,6 +983,9 @@ export const ProductOperations = {
   GetProductVariationType: 'ProductVariationType',
   CreateProductVariationOption: 'CreateProductVariationOption',
   RemoveProductVariationOption: 'RemoveProductVariationOption',
+  AddProductAssignment: 'AddProductAssignment',
+  GetProductAssignments: 'ProductAssignments',
+  RemoveProductAssignment: 'RemoveProductAssignment',
 };
 
 export default {
@@ -859,4 +1008,5 @@ export default {
   CreateProductVariationResponse,
   UpdateProductMediaTextsResponse,
   UpdateProductVariationTextResponse,
+  ProductAssignmentsResponse,
 };

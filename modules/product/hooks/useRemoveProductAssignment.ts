@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 
 const RemoveProductAssignmentMutation = gql`
-  mutation removeProductAssignment(
+  mutation RemoveProductAssignment(
     $proxyId: ID!
     $vectors: [ProductAssignmentVectorInput!]!
   ) {
