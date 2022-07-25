@@ -45,12 +45,12 @@ const Table = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <thead className="bg-slate-50 dark:bg-slate-900 text-sm text-slate-700 dark:text-slate-200">
+      <thead className="hidden sm:table-header-group bg-slate-50 dark:bg-slate-900 text-sm text-slate-700 dark:text-slate-200">
         {rowsWithSort.header}
       </thead>
 
       {rowsWithSort.body.length ? (
-        <tbody className="flex-1 divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-slate-800 sm:flex-none">
+        <tbody className="space-y-4 sm:space-y-0 flex-1 sm:divide-y divide-slate-200 dark:divide-slate-700 sm:bg-white dark:sm:bg-slate-800 sm:flex-none">
           {rowsWithSort.body}
         </tbody>
       ) : null}
