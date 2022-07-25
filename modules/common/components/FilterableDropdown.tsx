@@ -4,6 +4,7 @@ import Select from 'react-select';
 import FieldWrapper from '../../forms/components/FieldWrapper';
 import { TextFieldProps } from '../../forms/components/TextField';
 import useField from '../../forms/hooks/useField';
+import deBounce from '../utils/deBounce';
 
 interface FilterableData {
   id: string;
@@ -24,6 +25,7 @@ const FilterableDropdown = ({
   ...props
 }: FilterableDropdownProps) => {
   const field = useField({ ...props });
+  const debouncedFilter = deBounce(500)(onFilter);
 
   return (
     <div className="relative flex flex-col items-center dark:text-slate-900">
@@ -41,9 +43,9 @@ const FilterableDropdown = ({
                 id={field.id}
                 name={field.name}
                 onBlur={field.onBlur}
-                onInputChange={onFilter}
-                onChange={(e) => {
-                  field.setValue(e.value, true);
+                onInputChange={debouncedFilter}
+                onChange={({ value }) => {
+                  field.setValue(value, true);
                 }}
                 placeholder={field.placeholder}
                 options={data?.map((item) => ({
