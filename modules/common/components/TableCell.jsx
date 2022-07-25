@@ -14,7 +14,6 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       {...props}
     >
       <div className="grid grid-cols-6">
-        <div className="sm:col-span-2 hidden sm:visible" />
         <div className="sm:inline">{children}</div>
       </div>
     </Td>
