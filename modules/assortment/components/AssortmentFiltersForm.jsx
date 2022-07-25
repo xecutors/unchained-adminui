@@ -8,13 +8,14 @@ import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentFilter from '../hooks/useAddAssortmentFilter';
 
 import FilterableDropdown from '../../common/components/FilterableDropdown';
-import useFiltersList from '../../filter/hooks/useFiltersList';
+
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import FormErrors from '../../forms/components/FormErrors';
+import useFilters from '../../filter/hooks/useFilters';
 
 const normalizeFilters = (filterList) => {
   return filterList?.map(({ _id, texts, key }) => ({
@@ -27,9 +28,10 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { addAssortmentFilter } = useAddAssortmentFilter();
   const { hasRole } = useAuth();
-  const { filters } = useFiltersList({ limit: 300 });
 
   const [queryString, setQueryString] = useState('');
+  const { filters } = useFilters({ limit: 50, queryString });
+
   const [filteredFilters, setFilteredFilters] = useState(() =>
     normalizeFilters(filters),
   );

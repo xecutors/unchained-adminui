@@ -221,7 +221,7 @@ const ProductDetail = ({ product }) => {
   ];
 
   const onUpdateTags = async ({ tags }) => {
-    await updateProduct({ productId: product?._id, tags, sequence: 1 });
+    await updateProduct({ productId: product?._id, tags });
     return true;
   };
 

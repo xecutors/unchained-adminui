@@ -6,6 +6,7 @@ import {
   ProductListResponse,
   ProductOperations,
   TranslatedProductTextResponse,
+  UpdateProductResponse,
   UpdateProductTextsResponse,
 } from '../mock/product';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -42,6 +43,10 @@ describe('Product Text', () => {
       if (hasOperationName(req, ProductOperations.UpdateTexts)) {
         aliasMutation(req, ProductOperations.UpdateTexts);
         req.reply(UpdateProductTextsResponse);
+      }
+      if (hasOperationName(req, ProductOperations.UpdateProduct)) {
+        aliasMutation(req, ProductOperations.UpdateProduct);
+        req.reply(UpdateProductResponse);
       }
     });
     cy.visit('/');
@@ -114,7 +119,7 @@ describe('Product Text', () => {
     /* cy.get('input[name="description"]').should('contain.text', en.description); */
   });
 
-  it('Should [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
+  it('Should [UPDATE PRODUCT TEXT FORM] successfully', () => {
     const [deLocale] = LanguagesResponse.data.languages;
     const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
     cy.get('input[name="title"]').clear().type('updated title');
@@ -139,13 +144,46 @@ describe('Product Text', () => {
             vendor: 'updated vendor',
             labels: 'updated label',
             locale: deLocale.isoCode,
-            description: `<p>${de.description}</p>`,
+            description: de.description,
           },
         });
         expect(response.body).to.deep.eq(UpdateProductTextsResponse);
       },
     );
   });
+
+  it('Should be visible [ADD TAGS] form successfully', () => {
+    cy.get('button#add_tag').click();
+    cy.get('form#add_tag_form').should('be.visible');
+  });
+
+  it('Should [ADD TAGS] successfully', () => {
+    cy.get('button#add_tag').click();
+    cy.get('input#tags').type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('form#add_tag_form').within(() => {
+      cy.get('input[type="submit"]').contains(localizations.en.save).click();
+    });
+
+    cy.wait(fullAliasMutationName(ProductOperations.UpdateProduct)).then(
+      (currentSubject) => {
+        expect(currentSubject.request.body.variables).to.deep.eq({
+          product: { tags: ['new'] },
+          productId: product._id,
+        });
+        expect(currentSubject.response.body).to.deep.eq(UpdateProductResponse);
+      },
+    );
+  });
+
+  it('Should cancel [ADD TAGS] form successfully', () => {
+    cy.get('button#add_tag').click();
+    cy.get('button#cancel_update')
+      .contains(localizations.en.cancel)
+      .click({ force: true });
+    cy.location('pathname').should('eq', `/products/${product.texts.slug}`);
+  });
+
   it('Show [ERROR] when required fields are missing', () => {
     cy.get('input[name="title"]').clear();
     cy.get('input[name="slug"]').clear();

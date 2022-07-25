@@ -8,6 +8,7 @@ import {
   assortmentRequestVariables,
   FiltersListResponse,
   RemoveAssortmentFilterResponse,
+  SearchAssortmentsResponse,
   SingleAssortmentResponse,
   TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
@@ -29,6 +30,12 @@ describe('Assortment Detail Filters', () => {
         aliasQuery(req, AssortmentOperation.GetSingleAssortment);
         req.reply(SingleAssortmentResponse);
       }
+
+      if (hasOperationName(req, AssortmentOperation.SearchAssortments)) {
+        aliasQuery(req, AssortmentOperation.SearchAssortments);
+        req.reply(SearchAssortmentsResponse);
+      }
+
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
         req.reply(TranslatedAssortmentTextsResponse);
@@ -120,9 +127,10 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 300,
+          limit: 50,
           offset: 0,
           includeInactive: false,
+          queryString: '',
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -182,6 +190,18 @@ describe('Assortment Detail Filters', () => {
     cy.get('span#badge').should('contain.text', 'new');
 
     cy.get('input#react-select-2-input').clear().type('color');
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          queryString: 'color',
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
     cy.get('div#react-select-2-listbox div:first').within(() => {
       cy.get('div').first().click();
     });
