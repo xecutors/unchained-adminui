@@ -33,7 +33,11 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   });
 
   return (
-    <Form form={form}>
+    <Form
+      form={form}
+      className="variation-update-form"
+      data-variationId={variation._id}
+    >
       <div className="flow-root ">
         <li className="list-none">
           <div

@@ -1,9 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 export const ProductQuery = gql`
-  query Product($productId: ID, $slug: String, $forceLocale: String) {
+  query Product($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       ...ProductDetailFragment
     }
@@ -12,10 +11,9 @@ export const ProductQuery = gql`
 `;
 
 const useProduct = ({ productId = null, slug = null } = {}) => {
-  const { locale } = useIntl();
   const { data, loading, error } = useQuery(ProductQuery, {
     skip: !productId && !slug,
-    variables: { productId, slug, forceLocale: locale },
+    variables: { productId, slug },
   });
 
   return {

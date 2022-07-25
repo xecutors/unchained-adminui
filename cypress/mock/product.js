@@ -380,20 +380,296 @@ export const RemoveProductResponse = {
   },
 };
 
-export const ProductOperations = {
-  GetProductList: 'Products',
-  GetSingleProduct: 'Product',
-  CreateProduct: 'CreateProduct',
-  GetTranslatedProductTexts: 'TranslatedProductTexts',
-  UpdateTexts: 'UpdateProductTexts',
-  PublishProduct: 'PublishProduct',
-  UnpublishProduct: 'UnpublishProduct',
-  UpdateProduct: 'UpdateProduct',
-  RemoveProduct: 'RemoveProduct',
-  ProductMedia: 'ProductMedia',
-  UpdateProductMediaTexts: 'UpdateProductMediaTexts',
-  RemoveMedia: 'RemoveProductMedia',
-  GetMediaTexts: 'TranslatedProductMediaTexts',
+export const ProductWarehousingResponse = {
+  data: {
+    product: {
+      _id: '29f0305649da4ca15a8292c9',
+      sku: 'SKU 001',
+      baseUnit: 'KG',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const ProductSupplyResponse = {
+  data: {
+    product: {
+      _id: '29f0305649da4ca15a8292c9',
+      dimensions: {
+        weight: 12,
+        length: 13,
+        width: 14,
+        height: 15,
+        __typename: 'Dimensions',
+      },
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const UpdateProductWarehousingResponse = {
+  data: {
+    updateProductWarehousing: {
+      _id: '29f0305649da4ca15a8292c9',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const ProductPlanConfigurationOptionsResponse = {
+  data: {
+    usageCalculationTypes: {
+      options: [
+        {
+          value: 'LICENSED',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'METERED',
+          label: null,
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+    configurationIntervals: {
+      options: [
+        {
+          value: 'HOUR',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'DAY',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'WEEK',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'MONTH',
+          label: null,
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'YEAR',
+          label: null,
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const ProductPlanResponse = {
+  data: {
+    product: {
+      _id: 'f410d59151f53a827752c375',
+      plan: {
+        usageCalculationType: 'LICENSED',
+        billingInterval: 'HOUR',
+        trialInterval: 'DAY',
+        trialIntervalCount: 12,
+        billingIntervalCount: 2,
+        __typename: 'ProductPlanConfiguration',
+      },
+      __typename: 'PlanProduct',
+    },
+  },
+};
+
+export const UpdateProductPlanResponse = {
+  data: {
+    updateProductPlan: {
+      _id: 'f410d59151f53a827752c375',
+      __typename: 'PlanProduct',
+    },
+  },
+};
+
+export const CreateProductBundleItemResponse = {
+  data: {
+    createProductBundleItem: {
+      _id: 'f6eb34e057164ec0fd1df951',
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
+export const ProductBundleItemsResponse = {
+  data: {
+    product: {
+      _id: 'active-product',
+      bundleItems: [
+        {
+          product: {
+            texts: {
+              _id: '86dec068cec443dde8cc952f',
+              slug: 'test-1',
+              title: 'test',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            __typename: 'SimpleProduct',
+            _id: 'bundle-item-1',
+            sequence: 59,
+            status: 'DRAFT',
+            tags: [],
+            updated: '2022-07-23T18:24:25.517Z',
+            published: null,
+            media: [],
+            reviews: [],
+          },
+          quantity: 1,
+          __typename: 'ProductBundleItem',
+        },
+        {
+          product: {
+            texts: {
+              _id: '86dec068cec443dde8cc952f',
+              slug: 'test-1',
+              title: 'test',
+              subtitle: null,
+              description: null,
+              vendor: null,
+              brand: null,
+              labels: null,
+              __typename: 'ProductTexts',
+            },
+            __typename: 'SimpleProduct',
+            _id: 'bundle-item-2',
+            sequence: 59,
+            status: 'DRAFT',
+            tags: [],
+            updated: '2022-07-23T18:24:25.517Z',
+            published: null,
+            media: [],
+            reviews: [],
+          },
+          quantity: 10,
+          __typename: 'ProductBundleItem',
+        },
+      ],
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
+export const SearchProductResponse = {
+  data: {
+    searchProducts: {
+      productsCount: 0,
+      filteredProductsCount: 0,
+      products: ProductListResponse.data.products.slice(3, 6),
+      __typename: 'ProductSearchResult',
+    },
+  },
+};
+
+export const RemoveBundleItemResponse = {
+  data: {
+    removeBundleItem: {
+      _id: 'f6eb34e057164ec0fd1df951',
+      __typename: 'BundleProduct',
+    },
+  },
+};
+
+export const ProductVariationTypesResponse = {
+  data: {
+    variationTypes: {
+      options: [
+        {
+          value: 'COLOR',
+          label: 'Color Picker',
+          __typename: '__EnumValue',
+        },
+        {
+          value: 'TEXT',
+          label: 'Text Answers',
+          __typename: '__EnumValue',
+        },
+      ],
+      __typename: '__Type',
+    },
+  },
+};
+
+export const ProductVariationsResponse = {
+  data: {
+    product: {
+      _id: '796208e0a6e2e173cf4470cc',
+      variations: [
+        {
+          _id: '92295b80b73e2f559afcf292',
+          type: 'COLOR',
+          key: 'second-color-key',
+          texts: {
+            _id: '29d2a11f25a3b1e5d06e9adc',
+            locale: 'de',
+            title: 'second color variation',
+            subtitle: null,
+            __typename: 'ProductVariationTexts',
+          },
+          options: [],
+          __typename: 'ProductVariation',
+        },
+        {
+          _id: '4b627732fb356aadf43b0695',
+          type: 'TEXT',
+          key: 'first-text-key',
+          texts: {
+            _id: '54f85c67dea0db3c9365b1f5',
+            locale: 'de',
+            title: 'first text variation',
+            subtitle: null,
+            __typename: 'ProductVariationTexts',
+          },
+          options: [],
+          __typename: 'ProductVariation',
+        },
+      ],
+      __typename: 'ConfigurableProduct',
+    },
+  },
+};
+
+export const UpdateProductVariationTextResponse = {
+  data: {
+    updateProductVariationTexts: [
+      {
+        _id: '54f85c67dea0db3c9365b1f5',
+        __typename: 'ProductVariationTexts',
+      },
+    ],
+  },
+};
+
+export const CreateProductVariationResponse = {
+  data: {
+    createProductVariation: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+
+export const RemoveProductVariationResponse = {
+  data: {
+    removeProductVariation: {
+      _id: 'e5ab7fbbf40dc3fda47c6ad3',
+      __typename: 'ProductVariation',
+    },
+  },
 };
 
 export const TranslatedProductMediaTextsResponse = {
@@ -462,7 +738,70 @@ export const ProductMediaResponse = {
     },
   },
 };
+
+export const UpdateProductSupplyResponse = {
+  data: {
+    updateProductSupply: {
+      _id: '29f0305649da4ca15a8292c9',
+      __typename: 'SimpleProduct',
+    },
+  },
+};
+
+export const CreateProductVariationOptionResponse = {
+  data: {
+    createProductVariationOption: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+
+export const RemoveProductVariationOptionResponse = {
+  data: {
+    removeProductVariationOption: {
+      _id: '92295b80b73e2f559afcf292',
+      __typename: 'ProductVariation',
+    },
+  },
+};
+export const ProductOperations = {
+  GetProductList: 'Products',
+  GetSingleProduct: 'Product',
+  CreateProduct: 'CreateProduct',
+  GetTranslatedProductTexts: 'TranslatedProductTexts',
+  UpdateTexts: 'UpdateProductTexts',
+  PublishProduct: 'PublishProduct',
+  UnpublishProduct: 'UnpublishProduct',
+  UpdateProduct: 'UpdateProduct',
+  RemoveProduct: 'RemoveProduct',
+  ProductMedia: 'ProductMedia',
+  UpdateProductMediaTexts: 'UpdateProductMediaTexts',
+  RemoveMedia: 'RemoveProductMedia',
+  GetMediaTexts: 'TranslatedProductMediaTexts',
+  UpdateProductSupply: 'UpdateProductSupply',
+  GetProductSupply: 'ProductSupply',
+  GetProductWarehousing: 'ProductWarehousing',
+  UpdateProductWarehousing: 'UpdateProductWarehousing',
+  GetProductPlan: 'ProductPlan',
+  GetProductPlanConfigurationOption: 'ProductPlanConfigurationOptions',
+  UpdateProductPlan: 'UpdateProductPlan',
+  CreateProductBundleItem: 'CreateProductBundleItem',
+  GetProductBundleItems: 'ProductBundleItems',
+  SearchProducts: 'SearchProducts',
+  RemoveBundleItem: 'RemoveBundleItem',
+  GetProductVariations: 'ProductVariations',
+  UpdateProductVariationTexts: 'UpdateProductVariationTexts',
+  CreateProductVariation: 'CreateProductVariation',
+  RemoveProductVariation: 'RemoveProductVariation',
+  ProductVariationType: 'ProductVariationType',
+  GetProductVariationType: 'ProductVariationType',
+  CreateProductVariationOption: 'CreateProductVariationOption',
+  RemoveProductVariationOption: 'RemoveProductVariationOption',
+};
+
 export default {
+  UpdateProductPlanResponse,
   ProductListResponse,
   ProductOperations,
   SingleProductResponse,
@@ -471,4 +810,14 @@ export default {
   ProductFilterRequest,
   RemoveProductResponse,
   UnpublishProductResponse,
+  ProductPlanConfigurationOptionsResponse,
+  ProductPlanResponse,
+  SearchProductResponse,
+  ProductVariationsResponse,
+  RemoveBundleItemResponse,
+  RemoveProductVariationResponse,
+  CreateProductBundleItemResponse,
+  CreateProductVariationResponse,
+  UpdateProductMediaTextsResponse,
+  UpdateProductVariationTextResponse,
 };

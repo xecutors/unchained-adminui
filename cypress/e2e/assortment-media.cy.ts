@@ -152,6 +152,10 @@ describe('Assortment Detail Media', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL MEDIA] tab successfully', () => {
     cy.get('div#media_uploader').should('be.visible');
+    cy.get('ul[data-rbd-droppable-id="assortment-media"] li').should(
+      'have.length',
+      1,
+    );
   });
 
   it('Should [DELETE] media successfully', () => {
