@@ -22,16 +22,6 @@ a {
   line-height: 1.15 !important;
 }
 
-.hide-show {
-  position: absolute;
-  top: 0;
-  display: block;
-  margin-top: 2.375rem;
-  right: 0.75rem;
-  outline: none;
-  z-index: 9999;
-}
-
 @media (min-width: 640px) {
   table {
     display: inline-table !important;
