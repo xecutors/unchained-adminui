@@ -61,7 +61,7 @@ const Sort = ({ sortFields, className }) => {
             setSortReducer(reducerToObject(sortKeys));
           }
         }}
-        className="relative inline-flex items-center px-1 py-1 border-2 border-slate-300 shadow-sm text-sm font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="relative inline-flex items-center px-1 py-1 border-2 border-indigo-300 shadow-sm text-sm font-medium rounded-md text-slate-200 bg-indigo-500 hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         <span className="flex items-center gap-2">
           <SortDescendingIcon className="h-6 w-6" aria-hidden="true" />
