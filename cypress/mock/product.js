@@ -620,7 +620,32 @@ export const ProductVariationsResponse = {
             subtitle: null,
             __typename: 'ProductVariationTexts',
           },
-          options: [],
+          options: [
+            {
+              _id: '92295b80b73e2f559afcf292:test value',
+              texts: {
+                _id: '5619a066d4b64f96f0ac302b',
+                locale: 'de',
+                title: 'test',
+                subtitle: null,
+                __typename: 'ProductVariationTexts',
+              },
+              value: 'test value',
+              __typename: 'ProductVariationOption',
+            },
+            {
+              _id: '92295b80b73e2f559afcf292:value',
+              texts: {
+                _id: 'bb686e0f10d1abe71205cef6',
+                locale: 'de',
+                title: 'another',
+                subtitle: null,
+                __typename: 'ProductVariationTexts',
+              },
+              value: 'value',
+              __typename: 'ProductVariationOption',
+            },
+          ],
           __typename: 'ProductVariation',
         },
         {
@@ -630,7 +655,21 @@ export const ProductVariationsResponse = {
           texts: {
             _id: '54f85c67dea0db3c9365b1f5',
             locale: 'de',
-            title: 'first text variation',
+            title: 'first text variation updated',
+            subtitle: 'first text variation subtitle updated',
+            __typename: 'ProductVariationTexts',
+          },
+          options: [],
+          __typename: 'ProductVariation',
+        },
+        {
+          _id: '050eeef8f4ff268d9fdec6d4',
+          type: 'COLOR',
+          key: 'haha',
+          texts: {
+            _id: '64f005ef69cd51254a8678e4',
+            locale: 'de',
+            title: 'testrrr',
             subtitle: null,
             __typename: 'ProductVariationTexts',
           },

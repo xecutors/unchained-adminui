@@ -1,8 +1,8 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import EditIcon from '../../common/components/EditIcon';
 
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
@@ -41,7 +41,7 @@ const ProductVariationOptionItem = ({
     },
   });
   return (
-    <Form form={form} className="last:pb-2" id="variation-option-update-form">
+    <Form form={form} className="last:pb-2 variation-option-update-form">
       <div className="my-2 flow-root rounded border sm:mx-4 ">
         <li className="list-none py-2 dark:bg-slate-500 dark:text-slate-200 pl-2 pr-2">
           <div className="grid grid-cols-6 items-center gap-2">
@@ -114,8 +114,12 @@ const ProductVariationOptionItem = ({
                 </div>
               ) : (
                 <div className="flex items-center space-x-2">
-                  <div onClick={() => setIsEdit(!isEdit)}>
-                    <PencilAltIcon className="h-5 w-5 cursor-pointer text-indigo-400" />
+                  <div
+                    onClick={() => setIsEdit(!isEdit)}
+                    data-optionValue={option?.value}
+                    id="edit_variation_option"
+                  >
+                    <EditIcon />
                   </div>
 
                   <DeleteButton

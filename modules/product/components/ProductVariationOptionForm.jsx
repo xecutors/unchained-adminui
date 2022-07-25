@@ -25,7 +25,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
   });
 
   return (
-    <Form form={form} id="variation-option-form">
+    <Form form={form} className="variation-option-form">
       <div className="mt-2 flex gap-2 px-2 pt-2 sm:px-4">
         <TextField
           className="mt-0 shrink grow basis-1/3 py-1"

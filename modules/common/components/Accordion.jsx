@@ -8,11 +8,13 @@ const Accordion = ({
   headerCSS,
   bodyCSS,
   itemContainerCSS,
+  ...rest
 }) => {
   return (
-    <div className={classNames('my-3', containerCSS)}>
+    <div className={classNames('my-3', containerCSS)} {...rest}>
       {data.map(({ header, body }, key) => (
         <AccordionItem
+          itemIndex={key}
           header={header}
           body={body}
           // eslint-disable-next-line react/no-array-index-key
@@ -32,10 +34,14 @@ const AccordionItem = ({
   headerCSS,
   bodyCSS,
   itemContainerCSS,
+  itemIndex,
 }) => {
   const [show, setShow] = useState(false);
   return (
-    <div className={classNames('mt-3', itemContainerCSS)}>
+    <div
+      className={classNames('mt-3', itemContainerCSS)}
+      data-itemIndex={itemIndex}
+    >
       <button
         type="button"
         onClick={() => setShow(!show)}
