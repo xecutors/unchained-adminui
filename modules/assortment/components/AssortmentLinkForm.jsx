@@ -57,7 +57,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
 
   return (
     <FormWrapper>
-      <Form form={form}>
+      <Form form={form} id="assortment_link_form">
         <div className="sm:rounded-md">
           <div className="grid gap-6 px-4 py-5 sm:p-6">
             <div className="col-span-12">

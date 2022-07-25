@@ -1,0 +1,293 @@
+import localizations from '../../i18n';
+import getContent from '../../modules/common/utils/utils';
+import {
+  AddAssortmentFilterResponse,
+  AssortmentFiltersResponse,
+  AssortmentListResponse,
+  AssortmentOperation,
+  assortmentRequestVariables,
+  FiltersListResponse,
+  RemoveAssortmentFilterResponse,
+  SingleAssortmentResponse,
+  TranslatedAssortmentTextsResponse,
+} from '../mock/assortment';
+import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
+import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
+import hasOperationName from '../utils/hasOperationName';
+import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
+
+describe('Assortment Detail Filters', () => {
+  const { assortment } = SingleAssortmentResponse.data;
+  beforeEach(() => {
+    cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, AssortmentOperation.GetAssortmentList)) {
+        aliasQuery(req, AssortmentOperation.GetAssortmentList);
+        req.reply(AssortmentListResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
+        aliasQuery(req, AssortmentOperation.GetSingleAssortment);
+        req.reply(SingleAssortmentResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
+        aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
+        req.reply(TranslatedAssortmentTextsResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.FiltersList)) {
+        aliasQuery(req, AssortmentOperation.FiltersList);
+        req.reply(FiltersListResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.AssortmentFilters)) {
+        aliasQuery(req, AssortmentOperation.AssortmentFilters);
+        req.reply(AssortmentFiltersResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.AddFilter)) {
+        aliasMutation(req, AssortmentOperation.AddFilter);
+        req.reply(AddAssortmentFilterResponse);
+      }
+      if (hasOperationName(req, AssortmentOperation.RemoveFilter)) {
+        aliasMutation(req, AssortmentOperation.RemoveFilter);
+        req.reply(RemoveAssortmentFilterResponse);
+      }
+    });
+
+    cy.viewport(1200, 800);
+    cy.visit('/');
+    cy.get('a[href="/assortments"]')
+      .contains(localizations.en.assortments)
+      .click({ force: true });
+
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', '/assortments');
+    cy.get('h2').should(
+      'contain.text',
+      localizations.en.assortments_list_header,
+    );
+
+    cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+      .contains(assortment?.texts?.title)
+      .click();
+
+    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: assortment.texts.slug,
+          assortmentId: null,
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetTranslatedTexts)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortmentId: SingleAssortmentResponse.data.assortment._id,
+        });
+        expect(response.body).to.deep.eq(TranslatedAssortmentTextsResponse);
+      },
+    );
+
+    cy.location('pathname').should(
+      'eq',
+      `/assortments/${assortment.texts.slug}`,
+    );
+    cy.get('h2').within(() => {
+      cy.get('span').should(
+        'contain.text',
+        getContent(
+          replaceIntlPlaceholder(
+            localizations.en.assortment_detail_header,
+            assortment._id,
+            'id',
+          ),
+        ),
+      );
+    });
+
+    cy.get('a#filters').contains(localizations.en.filters).click();
+
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 300,
+          offset: 0,
+          includeInactive: false,
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.AssortmentFilters)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: null,
+          assortmentId: assortment._id,
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(AssortmentFiltersResponse);
+      },
+    );
+  });
+
+  afterEach(() => {
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        tab: 'filters',
+      });
+    });
+  });
+  it('Should Navigate to [ASSORTMENT DETAIL FILTERS] tab successfully', () => {
+    cy.get('form#assortment_filter_form').should('be.visible');
+    cy.get('div[draggable="true"]').should('have.length', 2);
+  });
+
+  it('Should [ADD TAG] successfully', () => {
+    cy.get('input#tags').clear().type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('span#badge').should('contain.text', 'new');
+  });
+
+  it('Should [REMOVE TAG] successfully', () => {
+    cy.get('input#tags').clear().type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('span#badge').within(() => {
+      cy.get('button#badge-x-button').click();
+    });
+  });
+
+  it('Should [SEARCH] filter successfully', () => {
+    cy.get('input#react-select-2-input').clear().type('color');
+
+    cy.get('div#react-select-2-listbox div:first').within(() => {
+      cy.get('div').should('have.length', 2);
+    });
+  });
+
+  it('Should [ADD FILTER] successfully', () => {
+    cy.get('input#tags').clear().type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('span#badge').should('contain.text', 'new');
+
+    cy.get('input#react-select-2-input').clear().type('color');
+    cy.get('div#react-select-2-listbox div:first').within(() => {
+      cy.get('div').first().click();
+    });
+    cy.get('input[type="submit"]').contains(localizations.en.save).click();
+
+    cy.wait(fullAliasMutationName(AssortmentOperation.AddFilter)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortmentId: assortment._id,
+          filterId: FiltersListResponse.data.filters[0]._id,
+          tags: ['new'],
+        });
+        expect(response.body).to.deep.eq(AddAssortmentFilterResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: assortment.texts.slug,
+          assortmentId: null,
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.AssortmentFilters)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: null,
+          forceLocale: 'en',
+          assortmentId: assortment._id,
+        });
+        expect(response.body).to.deep.eq(AssortmentFiltersResponse);
+      },
+    );
+  });
+
+  it('Should [ERROR] when required fields are not provided in add filter', () => {
+    cy.get('input#react-select-2-input').clear();
+    cy.get('input[type="submit"]').contains(localizations.en.save).click();
+
+    cy.get('label[for="filterId"]').should(
+      'contain.text',
+      replaceIntlPlaceholder(
+        localizations.en.error_required,
+        localizations.en.filter,
+      ),
+    );
+
+    cy.get('input[type="submit"]')
+      .contains(localizations.en.save)
+      .should('be.disabled');
+  });
+
+  it('should [DELETE] filter successfully', () => {
+    const { filterAssignments } = AssortmentFiltersResponse.data.assortment;
+
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_continue')
+      .contains(localizations.en.delete_filter)
+      .click();
+
+    cy.wait(fullAliasMutationName(AssortmentOperation.RemoveFilter)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          assortmentFilterId: filterAssignments[0]._id,
+        });
+        expect(response.body).to.deep.eq(RemoveAssortmentFilterResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: assortment.texts.slug,
+          assortmentId: null,
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(SingleAssortmentResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(AssortmentOperation.AssortmentFilters)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          slug: null,
+          forceLocale: 'en',
+          assortmentId: assortment._id,
+        });
+        expect(response.body).to.deep.eq(AssortmentFiltersResponse);
+      },
+    );
+  });
+
+  it('Should [CANCEL DELETE] filter successfully', () => {
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('button[type="button"]#danger_cancel')
+      .contains(localizations.en.cancel)
+      .click();
+  });
+});
