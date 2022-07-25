@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 
 import dynamic from 'next/dynamic';
-import getContent from '../../common/utils/utils';
 
 import useField, { FieldHookProps } from '../hooks/useField';
 import { validateRequiredTextArea } from '../lib/validators';
@@ -26,7 +25,7 @@ const RichTextEditorField = ({ ...props }: FieldHookProps) => {
           },
         )}
         id={field.id}
-        onChange={(val) => field.setValue(getContent(val))}
+        onChange={(val) => field.setValue(val)}
         value={field.value}
       />
     </FieldWrapper>

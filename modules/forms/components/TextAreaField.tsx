@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { validateMaxLength } from '../lib/validators';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
-import JSONView from '../../common/components/JSONView';
 
 interface TextAreaFieldProps extends FieldHookProps {
   autoComplete?: 'on' | 'off';
@@ -23,22 +22,23 @@ const TextAreaField = ({
 
   return (
     <FieldWrapper {...field}>
-      <JSONView
+      <textarea
         className={classnames(
-          'mt-1 block w-full max-w-full rounded-md border-2 border-slate-200 dark:border-slate-800 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm',
+          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 border-slate-200 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm placeholder:text-slate-400 focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400',
+          props.className,
           {
-            'border-red-300 text-red-600': !!field.error,
+            'border-2 border-red-300 placeholder:text-red-300': !!field.error,
           },
         )}
         disabled={field.disabled}
         id={field.name}
         name={field.name}
+        rows={rows}
         onChange={field.onChange}
         onBlur={field.onBlur}
         placeholder={field.placeholder}
         autoComplete={field.autoComplete}
         value={field.value}
-        rows={rows}
       />
     </FieldWrapper>
   );
