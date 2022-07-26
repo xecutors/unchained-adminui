@@ -18,12 +18,12 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
           })}
         </h2>
 
-        <div className="flow-root">
+        <div className="flow-root dark:bg-slate-800">
           <Droppable droppableId="product-media" mode="standard">
             {(provided, snapshot) => (
               <ul
                 className={classNames(
-                  'space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200',
+                  'space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ',
                   { 'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver },
                 )}
                 ref={provided.innerRef}

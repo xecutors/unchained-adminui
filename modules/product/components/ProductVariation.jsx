@@ -32,9 +32,9 @@ const ProductVariation = ({ productId, selectedLocale }) => {
           <div className="flex flex-col gap-y-2">
             {!variations?.length ? (
               <NoData
-                className={formatMessage({
+                message={formatMessage({
                   id: 'variation',
-                  defaultMessage: 'Variation',
+                  defaultMessage: 'Variation product',
                 })}
               />
             ) : (

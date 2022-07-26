@@ -24,7 +24,9 @@ const NoData = ({ message, className = '', Icon }) => {
                 {chunks}
               </p>
             ),
-            span: (chunks) => <span className="capitalize"> {chunks} </span>,
+            span: (chunks) => (
+              <span className="capitalize ml-1"> {chunks} </span>
+            ),
             message,
           }}
         />
