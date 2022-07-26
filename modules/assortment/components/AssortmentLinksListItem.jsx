@@ -17,7 +17,7 @@ const AssortmentLinksListItem = ({
           className={classNames(
             'flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 last:border-none hover:cursor-move',
             {
-              'bg-slate-100 dark:bg-slate-500 border-2 border-b-2 rounded':
+              'bg-slate-100 dark:bg-slate-600 border-2 border-b-2 rounded':
                 snapshot.isDragging,
             },
           )}

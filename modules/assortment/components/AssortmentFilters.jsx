@@ -147,7 +147,7 @@ const AssortmentFilters = ({ assortmentId }) => {
             <Loading />
           </div>
         ) : (
-          <div className="ml-auto shadow dark:shadow-none w-full md:col-span-2 bg-white">
+          <div className="ml-auto shadow dark:shadow-none w-full md:col-span-2 bg-white dark:bg-slate-800">
             <DragDropContext onDragEnd={handleDragEnd}>
               <AssortmentFiltersList
                 filters={assortmentFilters}

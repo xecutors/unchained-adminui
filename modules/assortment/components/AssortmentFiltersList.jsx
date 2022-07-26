@@ -14,7 +14,7 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
           className={classNames(
             'space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200',
             {
-              'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver,
+              'bg-slate-100 dark:bg-slate-700': snapshot.isDraggingOver,
             },
           )}
           ref={provided.innerRef}
