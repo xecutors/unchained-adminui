@@ -28,8 +28,8 @@ const ProductVariation = ({ productId, selectedLocale }) => {
         <div className="mb-5 lg:col-span-5 lg:pr-5 ">
           <ProductVariationForm onSubmit={onSubmit} />
         </div>
-        <div className="ml-auto rounded border-slate-200 dark:border-slate-800 shadow-md sm:pl-2 pr-2 lg:col-span-7 lg:w-full bg-white dark:bg-slate-500">
-          <div className="divide-y divide-slate-200 py-4">
+        <div className="lg:col-span-7 lg:w-full">
+          <div className="flex flex-col gap-y-2">
             {!variations?.length ? (
               <NoData
                 className={formatMessage({
