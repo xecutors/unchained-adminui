@@ -55,7 +55,7 @@ const MediaListItem = ({
           className={classNames(
             'flex flex-wrap gap-4 rounded hover:cursor-move',
             {
-              'bg-slate-100 dark:bg-slate-400 border-2 rounded':
+              'bg-slate-100 dark:bg-slate-500 border-2 rounded':
                 snapshot.isDragging,
             },
           )}

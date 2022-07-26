@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import Loading from '../../common/components/Loading';
+import NoData from '../../common/components/NoData';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useProductBundleItems from '../hooks/useProductBundleItems';
@@ -42,14 +43,23 @@ const BundleProductList = ({ productId }) => {
 
   if (loading) return <Loading />;
 
-  return bundleItems.map((product, index) => (
-    <ProductBundleItemsListItem
-      key={product._id}
-      index={index}
-      item={product}
-      onDelete={onRemoveBundleItem}
+  return bundleItems.length ? (
+    bundleItems.map((product, index) => (
+      <ProductBundleItemsListItem
+        key={product._id}
+        index={index}
+        item={product}
+        onDelete={onRemoveBundleItem}
+      />
+    ))
+  ) : (
+    <NoData
+      message={formatMessage({
+        id: 'bundle',
+        defaultMessage: 'Bundle product',
+      })}
     />
-  ));
+  );
 };
 
 export default BundleProductList;
