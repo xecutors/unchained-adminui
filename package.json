@@ -15,7 +15,7 @@
     "test:e2e-record": "cypress run --browser chrome --record"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "contributors": [
     "Vedran Rudelj <vedran@unchained.shop> (http://www.unchained.shop)",
