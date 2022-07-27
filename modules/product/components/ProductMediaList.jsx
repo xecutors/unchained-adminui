@@ -9,7 +9,7 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="rounded-md shadow dark:shadow-none lg:col-span-6 px-6 lg:px-0">
+    <div className="rounded-md lg:shadow dark:shadow-none lg:col-span-6 px-6 lg:px-0">
       <div className="mx-auto max-w-7xl overflow-hidden">
         <h2 className="sr-only">
           {formatMessage({
@@ -18,12 +18,12 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
           })}
         </h2>
 
-        <div className="flow-root dark:bg-slate-800">
+        <div className="flow-root dark:bg-slate-800 rounded-md">
           <Droppable droppableId="product-media" mode="standard">
             {(provided, snapshot) => (
               <ul
                 className={classNames(
-                  'space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ',
+                  'p-5 rounded-md transition-[background-color] ease-in-out delay-200 divide-y divide-slate-200 dark:divide-slate-600',
                   { 'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver },
                 )}
                 ref={provided.innerRef}

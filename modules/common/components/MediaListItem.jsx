@@ -53,7 +53,7 @@ const MediaListItem = ({
           {...provided.dragHandleProps}
           draggable="true"
           className={classNames(
-            'flex flex-wrap gap-4 rounded hover:cursor-move',
+            'flex flex-wrap gap-4 rounded hover:cursor-move py-4',
             {
               'bg-slate-100 dark:bg-slate-500 border-2 rounded':
                 snapshot.isDragging,
