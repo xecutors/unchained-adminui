@@ -123,8 +123,8 @@ describe('Filter', () => {
       },
     );
 
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('h2').should('contain', localizations.en.filter_detail);
@@ -132,7 +132,13 @@ describe('Filter', () => {
 
   it('Toggling status [ACTIVE/INACTIVE] toggle should update route', () => {
     cy.get('button[role="switch"]').click();
-    cy.url().should('contain', '/filters?includeInactive=true');
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/filters');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        includeInactive: 'true',
+      });
+    });
+
     cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
       (currentSubject) => {
         const { request } = currentSubject;
@@ -141,10 +147,15 @@ describe('Filter', () => {
     );
 
     cy.get('button[role="switch"]').click();
-    cy.url().should('contain', '/filters?includeInactive=false');
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq('/filters');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        includeInactive: 'false',
+      });
+    });
   });
 
-  it('should update data and route when [SEARCHING] accordingly', () => {
+  it('Should update data and route when [SEARCHING] accordingly', () => {
     cy.get('input[type="search"]').type('search');
 
     cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
@@ -244,13 +255,13 @@ describe('Filter', () => {
 
   it('Should navigate to [NEW FILTER FORM] page successfully', () => {
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
   });
 
   it('Should navigate to [NEW FILTER FORM] page successfully', () => {
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
   });
 
@@ -258,7 +269,7 @@ describe('Filter', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
 
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
     cy.get('input[name="title"]').type(
       SingleFilterResponse.data.filter.texts.title,
@@ -283,8 +294,8 @@ describe('Filter', () => {
         expect(response.body).to.deep.eq(CreateFilterResponse);
       },
     );
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${CreateFilterResponse.data.createFilter._id}`,
     );
   });
@@ -293,7 +304,7 @@ describe('Filter', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
 
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
     cy.get('input[name="title"]').type(
       SingleFilterResponse.data.filter.texts.title,
@@ -322,8 +333,8 @@ describe('Filter', () => {
         expect(response.body).to.deep.eq(CreateFilterResponse);
       },
     );
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${CreateFilterResponse.data.createFilter._id}`,
     );
   });
@@ -332,7 +343,7 @@ describe('Filter', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
 
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
     cy.get('input[name="title"]').type(
       SingleFilterResponse.data.filter.texts.title,
@@ -356,7 +367,7 @@ describe('Filter', () => {
     const [firstFilterType] = FilterTypesResponse.data.filterTypes.options;
 
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
     cy.get('input[name="title"]').type(
       SingleFilterResponse.data.filter.texts.title,
@@ -381,15 +392,15 @@ describe('Filter', () => {
         expect(response.body).to.deep.eq(CreateFilterResponse);
       },
     );
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${CreateFilterResponse.data.createFilter._id}`,
     );
   });
 
   it('Should Display [ERROR when CREATE FILTER] required fields are missing', () => {
     cy.get('a[href="/filters/new"]').click();
-    cy.url().should('contain', '/filters/new');
+    cy.location('pathname').should('eq', '/filters/new');
     cy.get('h2').should('contain', localizations.en.new_filter_header);
     cy.get('input[type="submit"]')
       .contains(localizations.en.create_filter)
@@ -423,20 +434,17 @@ describe('Filter', () => {
   });
 
   it('Should [UPDATE FILTER TEXT] successfully', () => {
-    cy.visit('/');
     const [fistLanguage] = LanguagesResponse.data.languages;
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
+
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
-
+    cy.get(`select[id="locale-wrapper"]`).select(fistLanguage.isoCode);
+    cy.wait(50);
     cy.get('input[name="title"]').clear().type('Updated filter title');
     cy.get('input[name="subtitle"]').clear().type('Updated filter subtitle');
-    cy.get(`select[id="locale-wrapper"]`).select(fistLanguage.isoCode);
+
     cy.get('input[type="submit"]')
       .should('have.value', localizations.en.update_filter)
       .click();
@@ -458,12 +466,8 @@ describe('Filter', () => {
   });
 
   it('Should [UPDATE FILTER TEXT WITH SELECTED LOCALE] successfully', () => {
-    cy.visit('/');
     const [, secondLanguage] = LanguagesResponse.data.languages;
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
+
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
@@ -496,10 +500,10 @@ describe('Filter', () => {
     const { filter } = SingleFilterResponse.data;
 
     cy.get(`a[href="/filters/${filter._id}"]`).click();
-    cy.url().should('contain', `/filters/${filter._id}`);
+    cy.location('pathname').should('eq', `/filters/${filter._id}`);
     cy.get('button').contains(localizations.en.delete).click();
     cy.get('button').contains(localizations.en.delete_filter).click();
-    cy.url().should('contain', '/filters');
+    cy.location('pathname').should('contain', '/filters');
 
     cy.wait(fullAliasMutationName(FilterOperations.RemoveFilter)).then(
       (currentSubject) => {
@@ -516,7 +520,7 @@ describe('Filter', () => {
 
     cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
     cy.get('button').contains(localizations.en.delete_filter).click();
-    cy.url().should('contain', '/filters');
+    cy.location('pathname').should('contain', '/filters');
 
     cy.wait(fullAliasMutationName(FilterOperations.RemoveFilter)).then(
       (currentSubject) => {
@@ -529,21 +533,13 @@ describe('Filter', () => {
   });
 
   it('Should navigate to [FILTER OPTIONS TAB] successfully', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
@@ -562,28 +558,25 @@ describe('Filter', () => {
       'have.length',
       FilterOptionsResponse.data.filter.options.length,
     );
-    cy.url().should(
-      'contain',
-      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
-    );
+
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq(
+        `/filters/${SingleFilterResponse.data.filter._id}`,
+      );
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'options',
+      });
+    });
   });
 
   it('Should [DEACTIVATE FILTER] successfully', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('.relative.inline-flex.items-center').click({
@@ -606,21 +599,13 @@ describe('Filter', () => {
   });
 
   it('Should [ACTIVATE FILTER] successfully', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('.relative.inline-flex.items-center').click({
@@ -643,28 +628,24 @@ describe('Filter', () => {
   });
 
   it('Should [ADD FILTER OPTION] successfully', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
-    cy.url().should(
-      'contain',
-      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
-    );
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq(
+        `/filters/${SingleFilterResponse.data.filter._id}`,
+      );
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'options',
+      });
+    });
 
     cy.get('button[type="button"].fixed.top-0.right-0')
       .should('contain.text', localizations.en.add_option)
@@ -690,28 +671,24 @@ describe('Filter', () => {
   });
 
   it('Should [SHOW ERROR FOR REQUIRED FILTER OPTION] successfully', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
-    cy.url().should(
-      'contain',
-      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
-    );
+    cy.location().should((current) => {
+      expect(current.pathname).to.eq(
+        `/filters/${SingleFilterResponse.data.filter._id}`,
+      );
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'options',
+      });
+    });
 
     cy.get('button[type="button"].fixed.top-0.right-0')
       .should('contain.text', localizations.en.add_option)
@@ -740,28 +717,24 @@ describe('Filter', () => {
   });
 
   it('[CANCEL] should close filter option modal', () => {
-    cy.visit('/');
-    cy.viewport(1280, 800);
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
-    cy.get('h2').should('contain.text', localizations.en.filters);
-
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
-    cy.url().should(
-      'contain',
-      `/filters/${SingleFilterResponse.data.filter._id}?tab=options`,
-    );
+    cy.location().then((current) => {
+      expect(current.pathname).to.eq(
+        `/filters/${SingleFilterResponse.data.filter._id}`,
+      );
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'options',
+      });
+    });
 
     cy.get('button[type="button"].fixed.top-0.right-0')
       .should('contain.text', localizations.en.add_option)
@@ -771,20 +744,15 @@ describe('Filter', () => {
   });
 
   it('Should [UPDATE FILTER Option TEXT WITH] successfully', () => {
-    cy.viewport(1200, 800);
-    cy.visit('/');
     const [firstLanguage] = LanguagesResponse.data.languages;
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
+
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
@@ -822,20 +790,15 @@ describe('Filter', () => {
   });
 
   it('Should [SHOW REQUIRED] when filter option title is empty on [UPDATE]', () => {
-    cy.viewport(1200, 800);
-    cy.visit('/');
     const [firstLanguage] = LanguagesResponse.data.languages;
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
+
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
@@ -863,20 +826,15 @@ describe('Filter', () => {
   });
 
   it('[CANCEL] should [HIDE]  [FILTER OPTION FORM]', () => {
-    cy.viewport(1200, 800);
-    cy.visit('/');
     const [firstLanguage] = LanguagesResponse.data.languages;
-    cy.get('a[href="/filters"]')
-      .contains(localizations.en.filters)
-      .click({ force: true });
-    cy.location('pathname').should('eq', '/filters');
+
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
     cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
@@ -891,15 +849,12 @@ describe('Filter', () => {
   });
 
   it('Should [DELETE FILTER OPTION] successfully', () => {
-    cy.viewport(1200, 800);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
-
-    cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });
@@ -924,14 +879,12 @@ describe('Filter', () => {
   });
 
   it('Should [CANCEL DELETE FILTER OPTION] should abort deletion', () => {
-    cy.viewport(1200, 800);
     cy.get(`a[href="/filters/${SingleFilterResponse.data.filter._id}"]`)
       .contains(SingleFilterResponse.data.filter.texts.title)
       .first()
       .click();
-    cy.get('h2').should('contain.text', localizations.en.filter_detail);
-    cy.url().should(
-      'contain',
+    cy.location('pathname').should(
+      'eq',
       `/filters/${SingleFilterResponse.data.filter._id}`,
     );
     cy.get('a[id="options"]').click({ multiple: true });

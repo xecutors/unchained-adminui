@@ -25,7 +25,7 @@ const FilterableDropdown = ({
   ...props
 }: FilterableDropdownProps) => {
   const field = useField({ ...props });
-  const debouncedFilter = deBounce(500)(onFilter);
+  const debouncedFilter = deBounce(200)(onFilter);
 
   return (
     <div className="relative flex flex-col items-center dark:text-slate-900">

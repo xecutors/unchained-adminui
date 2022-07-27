@@ -310,7 +310,7 @@ describe('User', () => {
 
     cy.location('pathname').should('eq', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('contain', `/users/${user._id}`);
+    cy.location('pathname').should('eq', `/users/${user._id}`);
 
     cy.wait(fullAliasName(UserOperations.GetSingle)).then((currentSubject) => {
       const { request, response } = currentSubject;
@@ -362,8 +362,7 @@ describe('User', () => {
 
     cy.location('pathname').should('eq', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('contain', `/users/${user._id}`);
-    cy.wait(100);
+    cy.location('pathname').should('eq', `/users/${user._id}`);
 
     cy.get('button#cancel_update').first().click();
 
@@ -403,13 +402,12 @@ describe('User', () => {
 
     cy.location('pathname').should('eq', '/users');
     cy.get(`a[href="/users/${user._id}"]`).click();
-    cy.location('pathname').should('contain', `/users/${user._id}`);
-    cy.wait(100);
+    cy.location('pathname').should('eq', `/users/${user._id}`);
 
     cy.get('button#cancel_update').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 
-    cy.location('pathname').should('contain', `/users/${user._id}`);
+    cy.location('pathname').should('eq', `/users/${user._id}`);
   });
 });

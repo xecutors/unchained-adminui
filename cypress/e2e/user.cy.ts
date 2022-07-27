@@ -27,10 +27,7 @@ describe('User', () => {
         req.reply(LanguagesResponse);
       }
       if (hasOperationName(req, UserOperations.GetUserList)) {
-        const { body } = req;
-        if (body.variables?.includeGuests || body.variables?.queryString) {
-          aliasQuery(req, UserOperations.GetUserList);
-        }
+        aliasQuery(req, UserOperations.GetUserList);
         req.reply(UserListResponse);
       }
       if (hasOperationName(req, UserOperations.GetSingle)) {
@@ -76,59 +73,6 @@ describe('User', () => {
     });
 
     cy.viewport(1200, 800);
-    cy.visit('/');
-    cy.get('a[href="/users"]')
-      .contains(localizations.en.users)
-      .click({ force: true });
-
-    cy.url().should('contain', '/users');
-
-    cy.get('input[type="search"]').type('search');
-
-    cy.wait(fullAliasName(UserOperations.GetUserList)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(response.body).to.deep.eq(UserListResponse);
-        expect(request.body.variables).to.deep.eq({
-          includeGuests: false,
-          limit: 50,
-          offset: 0,
-          queryString: 'search',
-        });
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq('/users');
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        queryString: 'search',
-      });
-    });
-
-    cy.get('input[type="search"]').type(' input');
-
-    cy.wait(fullAliasName(UserOperations.GetUserList)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(response.body).to.deep.eq(UserListResponse);
-        expect(request.body.variables).to.deep.eq({
-          includeGuests: false,
-          limit: 50,
-          offset: 0,
-          queryString: 'search input',
-        });
-      },
-    );
-
-    cy.location().then((current) => {
-      expect(current.pathname).to.eq('/users');
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        queryString: 'search input',
-      });
-    });
-  });
-
-  it('Show Navigate to [NEW USER] form page successfully', () => {
     cy.visit('/');
     cy.get('a[href="/users"]')
       .contains(localizations.en.users)
@@ -440,7 +384,6 @@ describe('User', () => {
   });
 
   context('Payment Credentials Tab', () => {
-    beforeEach(() => {});
     it('Show Navigate to [USER PAYMENT CREDENTIALS] page successfully', () => {
       const { user } = SingleUserResponse.data;
 
