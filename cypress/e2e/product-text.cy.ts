@@ -89,7 +89,7 @@ describe('Product Text', () => {
   });
 
   it('Should [INITIALIZE PRODUCT TEXT FORM] successfully', () => {
-    const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
+    const [, de] = TranslatedProductTextResponse.data.translatedProductTexts;
     cy.get('input[name="title"]').should('have.value', de.title);
     cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
     cy.get('input[name="brand"]').should('have.value', de.brand);
@@ -100,7 +100,7 @@ describe('Product Text', () => {
 
   it('Should [RE-INITIALIZE PRODUCT TEXT FORM] when locale is changed successfully', () => {
     const [deLocale, enLocale] = LanguagesResponse.data.languages;
-    const [de, en] = TranslatedProductTextResponse.data.translatedProductTexts;
+    const [en, de] = TranslatedProductTextResponse.data.translatedProductTexts;
     cy.get('select[id="locale-wrapper"]').select(deLocale.isoCode);
     cy.get('input[name="title"]').should('have.value', de.title);
     cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
