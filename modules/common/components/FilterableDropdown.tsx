@@ -41,6 +41,7 @@ const FilterableDropdown = ({
               <Select
                 isDisabled={!!field.disabled}
                 id={field.id}
+                isLoading={props.isLoading}
                 name={field.name}
                 onBlur={field.onBlur}
                 onInputChange={debouncedFilter}

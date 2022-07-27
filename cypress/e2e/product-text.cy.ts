@@ -121,7 +121,7 @@ describe('Product Text', () => {
 
   it('Should [UPDATE PRODUCT TEXT FORM] successfully', () => {
     const [deLocale] = LanguagesResponse.data.languages;
-    const [de] = TranslatedProductTextResponse.data.translatedProductTexts;
+
     cy.get('input[name="title"]').clear().type('updated title');
     cy.get('input[name="slug"]').clear().type('updated slug');
     cy.get('input[name="subtitle"]').clear().type('updated subtitle');
@@ -134,7 +134,10 @@ describe('Product Text', () => {
     cy.wait(fullAliasMutationName(ProductOperations.UpdateTexts)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
+        expect({
+          ...request.body.variables,
+          texts: { ...request.body.variables.texts, description: null },
+        }).to.deep.eq({
           productId: product._id,
           texts: {
             title: 'updated title',
@@ -144,7 +147,7 @@ describe('Product Text', () => {
             vendor: 'updated vendor',
             labels: 'updated label',
             locale: deLocale.isoCode,
-            description: de.description,
+            description: null,
           },
         });
         expect(response.body).to.deep.eq(UpdateProductTextsResponse);

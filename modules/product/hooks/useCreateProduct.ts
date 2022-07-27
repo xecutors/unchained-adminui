@@ -20,7 +20,7 @@ const useCreateProduct = () => {
   const createProduct = async ({ type, title, tags }) => {
     return createProductMutation({
       variables: { product: { title, type, tags } },
-      refetchQueries: ['Products', 'Product'],
+      refetchQueries: ['Products'],
     });
   };
   const newProduct = data?.createProduct;

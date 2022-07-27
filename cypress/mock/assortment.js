@@ -1044,7 +1044,7 @@ export const AssortmentOperation = {
   SearchProducts: 'SearchProducts',
   AddProduct: 'AddAssortmentProduct',
   RemoveProduct: 'RemoveAssortmentProduct',
-  FiltersList: 'FiltersList',
+  FiltersList: 'Filters',
   AssortmentFilters: 'AssortmentFilters',
   RemoveFilter: 'RemoveAssortmentFilter',
   AddFilter: 'AddAssortmentFilter',

@@ -127,10 +127,12 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
+          queryString: '',
           limit: 50,
           offset: 0,
           includeInactive: false,
-          queryString: '',
+          forceLocale: 'en',
+          sort: [],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -177,7 +179,36 @@ describe('Assortment Detail Filters', () => {
   });
 
   it('Should [SEARCH] filter successfully', () => {
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: '',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
     cy.get('input#react-select-2-input').clear().type('color');
+
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: 'color',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
 
     cy.get('div#react-select-2-listbox div:first').within(() => {
       cy.get('div').should('have.length', 2);
@@ -185,26 +216,41 @@ describe('Assortment Detail Filters', () => {
   });
 
   it('Should [ADD FILTER] successfully', () => {
-    cy.get('input#tags').clear().type('new');
-    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
-    cy.get('span#badge').should('contain.text', 'new');
-
-    cy.get('input#react-select-2-input').clear().type('color');
     cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
+          queryString: '',
           limit: 50,
           offset: 0,
           includeInactive: false,
-          queryString: 'color',
+          forceLocale: 'en',
+          sort: [],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
     );
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').first().click();
-    });
+    cy.get('input#tags').clear().type('new');
+    cy.get('button#add-tag').contains(localizations.en.add_tag).click();
+    cy.get('span#badge').should('contain.text', 'new');
+
+    cy.get('input#react-select-2-input').clear().type('t');
+
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: 't',
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
+    cy.get('#react-select-2-option-0').click();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.wait(fullAliasMutationName(AssortmentOperation.AddFilter)).then(

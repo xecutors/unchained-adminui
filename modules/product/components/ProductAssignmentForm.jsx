@@ -167,10 +167,6 @@ const ProductAssignmentForm = ({ proxyId }) => {
                 <Select
                   name={`productId-${_id}`}
                   isLoading={loading}
-                  loadingMessage={formatMessage({
-                    id: 'loading',
-                    defaultMessage: 'Loading ...',
-                  })}
                   placeholder={formatMessage({
                     id: 'search_product',
                     defaultMessage: 'Search product',
