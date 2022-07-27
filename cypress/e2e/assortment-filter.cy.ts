@@ -127,10 +127,12 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
+          forceLocale: 'en',
           limit: 50,
           offset: 0,
           includeInactive: false,
           queryString: '',
+          sort: [],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -177,7 +179,22 @@ describe('Assortment Detail Filters', () => {
   });
 
   it('Should [SEARCH] filter successfully', () => {
-    cy.get('input#react-select-2-input').clear().type('color');
+    cy.get('input#react-select-2-input').clear().type('title');
+
+    cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeInactive: false,
+          queryString: 'title',
+          forceLocale: 'en',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(FiltersListResponse);
+      },
+    );
 
     cy.get('div#react-select-2-listbox div:first').within(() => {
       cy.get('div').should('have.length', 2);
@@ -189,7 +206,7 @@ describe('Assortment Detail Filters', () => {
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
     cy.get('span#badge').should('contain.text', 'new');
 
-    cy.get('input#react-select-2-input').clear().type('color');
+    cy.get('input#react-select-2-input').clear().type('title');
     cy.wait(fullAliasName(AssortmentOperation.FiltersList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -197,7 +214,9 @@ describe('Assortment Detail Filters', () => {
           limit: 50,
           offset: 0,
           includeInactive: false,
-          queryString: 'color',
+          queryString: 'title',
+          forceLocale: 'en',
+          sort: [],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
