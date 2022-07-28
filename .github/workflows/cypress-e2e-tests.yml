@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    - name: UI cache
+      - name: UI cache
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next/cache
