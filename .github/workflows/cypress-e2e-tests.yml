@@ -7,6 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+    - name: UI cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
@@ -17,3 +22,4 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_SOURCE_MAP: true
+ 

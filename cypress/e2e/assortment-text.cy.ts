@@ -305,13 +305,16 @@ describe('Assortment Detail Texts', () => {
         fullAliasMutationName(AssortmentOperation.UpdateAssortmentTexts),
       ).then((currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
+        expect({
+          ...request.body.variables,
+          texts: { ...request.body.variables.texts, description: null },
+        }).to.deep.eq({
           texts: {
             locale: secondText.locale,
             slug: secondText.slug,
             title: secondText.title,
             subtitle: secondText.subtitle,
-            description: secondText.description,
+            description: null,
           },
           assortmentId: assortment._id,
         });

@@ -102,7 +102,7 @@ describe('Countries', () => {
     });
   });
 
-  it('should update data and route when [SEARCHING] accordingly', () => {
+  it('Should update data and route when [SEARCHING] accordingly', () => {
     cy.location('pathname').should('eq', '/country');
 
     cy.get('input[type="search"]').type('search');
@@ -126,6 +126,7 @@ describe('Countries', () => {
         queryString: 'search',
       });
     });
+
     cy.get('input[type="search"]').type(' input');
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
       (currentSubject) => {

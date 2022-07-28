@@ -282,15 +282,19 @@ describe('Languages', () => {
     );
   });
 
-  it('Show [DELETE COUNTRY] successfully', () => {
+  it('Show [DELETE LANGUAGE] successfully', () => {
     const { language } = SingleLanguageResponse.data;
 
     cy.location('pathname').should('eq', '/language');
     cy.get(`a[href="/language/${language._id}"]`).click();
     cy.location('pathname').should('eq', `/language/${language._id}`);
     cy.get('input[type="checkbox"]#isActive');
-    cy.get('button').contains(localizations.en.delete).click();
-    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.get('[aria-label="true"]').should('not.to.be', undefined);
+    cy.get('button[type="button"]').contains(localizations.en.delete).click();
+    cy.get('[aria-label="true"]').should('to.be', undefined);
+    cy.get('button[type="button"]#danger_continue')
+      .contains(localizations.en.delete_language)
+      .click();
     cy.location('pathname').should('eq', '/language');
 
     cy.wait(fullAliasMutationName(LanguageOperations.RemoveLanguage)).then(
@@ -304,12 +308,16 @@ describe('Languages', () => {
     cy.location('pathname').should('eq', '/language');
   });
 
-  it('Show [DELETE COUNTRY FROM LIST] successfully', () => {
+  it('Show [DELETE LANGUAGE FROM LIST] successfully', () => {
     const { language } = SingleLanguageResponse.data;
 
     cy.location('pathname').should('eq', '/language');
-    cy.get('button.rounded-full.bg-white.px-1.py-1').first().click();
-    cy.get('button').contains(localizations.en.delete_language).click();
+    cy.get('button[type="button"]#delete_button').first().click();
+    cy.get('[aria-label="true"]').should('not.to.be', undefined);
+    cy.get('button[type="button"]#danger_continue')
+      .contains(localizations.en.delete_language)
+      .click();
+    cy.get('[aria-label="true"]').should('to.be', undefined);
     cy.location('pathname').should('eq', '/language');
 
     cy.wait(fullAliasMutationName(LanguageOperations.RemoveLanguage)).then(
