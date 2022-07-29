@@ -65,6 +65,10 @@ const Quotations = () => {
       id: 'status',
       defaultMessage: 'Status',
     }),
+    updated: formatMessage({
+      id: 'updated',
+      defaultMessage: 'Updated',
+    }),
   };
 
   return (

@@ -237,6 +237,9 @@
   "brand": {
     "defaultMessage": "Brand"
   },
+  "bundle": {
+    "defaultMessage": "Bundle product"
+  },
   "bundle_item_added": {
     "defaultMessage": "Bundle product added successfully"
   },
@@ -400,14 +403,8 @@
   "date": {
     "defaultMessage": "Date"
   },
-  "date_created": {
-    "defaultMessage": "Date Created"
-  },
   "date_range": {
     "defaultMessage": "Date range"
-  },
-  "date_updated": {
-    "defaultMessage": "Date Updated"
   },
   "deactivate": {
     "defaultMessage": "Deactivate"
@@ -1820,6 +1817,9 @@
   "update_warehousing_provider_header": {
     "defaultMessage": "Update warehousing provider"
   },
+  "updated": {
+    "defaultMessage": "Updated"
+  },
   "updated_assortments": {
     "defaultMessage": "Updated Assortments"
   },
@@ -1878,7 +1878,7 @@
     "defaultMessage": "Value"
   },
   "variation": {
-    "defaultMessage": "Variation"
+    "defaultMessage": "Variation product"
   },
   "variation_option_added": {
     "defaultMessage": "Variation option added successfully!"

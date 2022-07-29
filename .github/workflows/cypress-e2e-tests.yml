@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [12, 14, 16, 18]
+        node: [14, 16, 18]
     name: Admin UI e2e test on v${{ matrix.node }}
     steps:
       - name: Checkout 🛎
@@ -27,6 +27,7 @@ jobs:
           start: npm run start
           wait-on: 'http://localhost:3000'
           record: true
+          headed: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -78,6 +78,10 @@ const Orders = () => {
       id: 'status',
       defaultMessage: 'Status',
     }),
+    updated: formatMessage({
+      id: 'updated',
+      defaultMessage: 'Updated',
+    }),
   };
 
   return (

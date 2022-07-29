@@ -67,7 +67,7 @@ const Sort = ({ sortFields, className }) => {
           <SortDescendingIcon className="h-6 w-6" aria-hidden="true" />
         </span>
         {Object.keys(sortReducer).length !== 0 && (
-          <span className="absolute top-0 right-0 border inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-600 px-2 py-1 text-base leading-none text-white border-300">
+          <span className="absolute top-0 right-0 border inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-red-600 border-red-600 px-2 py-1 text-base leading-none text-white border-300">
             {Object.keys(sortReducer).length}
           </span>
         )}

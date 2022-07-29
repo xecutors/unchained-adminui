@@ -65,12 +65,12 @@ const Products = () => {
       defaultMessage: 'Sequence',
     }),
     created: formatMessage({
-      id: 'date_created',
-      defaultMessage: 'Date Created',
+      id: 'created',
+      defaultMessage: 'Created',
     }),
     updated: formatMessage({
-      id: 'date_updated',
-      defaultMessage: 'Date Updated',
+      id: 'updated',
+      defaultMessage: 'Updated',
     }),
   };
 

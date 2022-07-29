@@ -85,6 +85,10 @@ const WorkQueueView = () => {
       id: 'finished',
       defaultMessage: 'Finished',
     }),
+    updated: formatMessage({
+      id: 'updated',
+      defaultMessage: 'Updated',
+    }),
   };
 
   return (
