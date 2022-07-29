@@ -3,20 +3,25 @@ on: [push]
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
-    name: Admin UI e2e test
+    strategy:
+      matrix:
+        node: [12, 14, 16, 18]
+    name: Admin UI e2e test on v${{ matrix.node }}
     steps:
-      - name: Checkout
+      - name: Checkout 🛎
         uses: actions/checkout@v2
       - name: UI cache
         uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
-      - name: Cypress run
+          key: ${{ runner.os }}-admin-ui-${{ hashFiles('package-lock.json') }}
+      - name: Cypress run 🧪
         uses: cypress-io/github-action@v4
         with:
+          browser: firefox
           build: npm run build
           start: npm run start
+          wait-on: 'http://localhost:3000'
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
