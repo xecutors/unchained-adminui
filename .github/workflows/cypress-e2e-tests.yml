@@ -13,8 +13,12 @@ jobs:
       - name: UI cache
         uses: actions/cache@v2
         with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-admin-ui-${{ hashFiles('package-lock.json') }}
+          path: |
+              ~/.npm 
+              ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+              ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v4
         with:
