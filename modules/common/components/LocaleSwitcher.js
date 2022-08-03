@@ -14,7 +14,7 @@ const LocaleSwitcher = () => {
   };
 
   return (
-    <div className="absolute top-16 right-16 sm:right-20 md:right-24 md:top-8">
+    <div className="ml-auto">
       <select
         className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
         placeholder={formatMessage({
