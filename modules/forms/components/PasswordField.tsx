@@ -26,7 +26,7 @@ const PasswordField = ({ autoComplete = 'on', ...props }: any) => {
           role="button"
           tabIndex={-1}
           aria-label="toggle password visibility"
-          className="absolute translate-y-[-150%] outline-none z-[9999] block right-3"
+          className="absolute translate-y-[-150%] outline-none block right-3"
           onClick={togglePassword}
           onKeyUp={togglePassword}
         >

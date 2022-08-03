@@ -68,7 +68,7 @@ const SetPassword = ({ userId }) => {
       </div>
       <div className="w-full border-b border-slate-200 dark:border-slate-800 bg-white  dark:bg-slate-900 rounded-md lg:ml-auto lg:w-4/6">
         <Form form={form}>
-          <div className="relative max-w-full p-3 space-y-6 sm:p-6">
+          <div className="relative max-w-full mb-4 p-3 space-y-6 sm:p-6">
             <PasswordField
               label={formatMessage({
                 id: 'new_password',
@@ -81,7 +81,7 @@ const SetPassword = ({ userId }) => {
               name="newPassword"
               id="newPassword"
               required
-              className="mb-4 text-sm"
+              className="text-sm"
             />
           </div>
           <FormErrors />
