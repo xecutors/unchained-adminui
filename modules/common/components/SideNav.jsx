@@ -74,7 +74,7 @@ const SideNav = ({ navigation, onClick = () => true }) => {
         <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 dark:text-slate-400 lg:px-4 2xl:px-6 ">
           {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
         </h1>
-        <div className="ml-auto mr-8">
+        <div className="ml-auto mr-8 hidden md:block">
           <ThemeToggle />
         </div>
       </div>
