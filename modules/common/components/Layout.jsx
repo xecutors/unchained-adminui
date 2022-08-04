@@ -28,6 +28,8 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import getLogo from '../utils/getLogo';
+import LocaleSwitcher from './LocaleSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -290,7 +292,7 @@ const Layout = ({
       </div>
 
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col 2xl:w-96 dark:bg-slate-900 dark:text-slate-200">
-        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
@@ -314,11 +316,14 @@ const Layout = ({
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
             <UserAvatar {...currentUser} onLogout={onLogout} />
+            <div className="ml-auto self-center">
+              <LocaleSwitcher />
+            </div>
           </div>
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="sticky top-0 z-10 bg-white dark:bg-slate-500  pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+        <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-500  pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
           <button
             type="button"
             onClick={() => setHideNav(!hideNav)}
@@ -338,6 +343,10 @@ const Layout = ({
               aria-hidden="true"
             />
           </button>
+          <div className="flex items-center gap-4 pr-4">
+            <LocaleSwitcher />
+            <ThemeToggle />
+          </div>
         </div>
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">

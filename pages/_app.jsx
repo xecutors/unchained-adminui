@@ -15,8 +15,7 @@ import Layout from '../modules/common/components/Layout';
 
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
-import ThemeToggle from '../modules/common/components/ThemeToggle';
-import LocaleSwitcher from '../modules/common/components/LocaleSwitcher';
+import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
@@ -42,18 +41,20 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
         key="intl-provider"
       >
         <AuthWrapper>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <LocaleSwitcher />
-          <ThemeToggle />
-          <ModalWrapper>{getLayout(<Component {...pageProps} />)}</ModalWrapper>
+          <ThemeWrapper>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            <ModalWrapper>
+              {getLayout(<Component {...pageProps} />)}
+            </ModalWrapper>
+          </ThemeWrapper>
         </AuthWrapper>
       </IntlWrapper>
     </ApolloProvider>

@@ -1,48 +1,20 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useTheme from '../hooks/useTheme';
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [theme, setTheme] = useLocalStorage('theme', 'light');
-
-  useEffect(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.getElementsByTagName('html')[0].classList.add('dark');
-      setIsDark(true);
-    } else {
-      document.getElementsByTagName('html')[0].classList.remove('dark');
-      setIsDark(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.getElementsByTagName('html')[0].classList.add('dark');
-      localStorage.theme = 'dark';
-    } else {
-      document.getElementsByTagName('html')[0].classList.remove('dark');
-      localStorage.theme = 'light';
-    }
-  }, [theme]);
+  const [theme, setTheme] = useTheme();
 
   const handleToggleTheme = () => {
     if (theme === 'dark') {
       setTheme('light');
-      setIsDark(false);
     } else {
       setTheme('dark');
-      setIsDark(true);
     }
   };
 
   return (
-    <div className="absolute top-16 md:top-8 right-4 sm:right-8 md:right-10 flex items-center z-50">
+    <div className="inline-flex items-center z-50">
       <button
         type="button"
         className="hover:cursor-pointer"
@@ -56,7 +28,7 @@ const ThemeToggle = () => {
           className={classNames(
             'w-8 h-8 text-slate-900 transition-all ease-out delay-1000',
             {
-              hidden: isDark,
+              hidden: theme === 'dark',
             },
           )}
         />
@@ -64,7 +36,7 @@ const ThemeToggle = () => {
           className={classNames(
             'w-8 h-8 text-white transition-all ease-out delay-1000',
             {
-              hidden: !isDark,
+              hidden: theme === 'light',
             },
           )}
         />

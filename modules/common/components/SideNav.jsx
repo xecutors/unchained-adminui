@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+import ThemeToggle from './ThemeToggle';
 
 const ChildrenNav = ({ item, hasRole, onSelected }) => {
   const router = useRouter();
@@ -69,9 +70,14 @@ const SideNav = ({ navigation, onClick = () => true }) => {
 
   return (
     <div className="mt-1 flex flex-grow flex-col dark:bg-slate-900">
-      <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 dark:text-slate-400 lg:px-4 2xl:px-6 ">
-        {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
-      </h1>
+      <div className="flex">
+        <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 dark:text-slate-400 lg:px-4 2xl:px-6 ">
+          {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
+        </h1>
+        <div className="ml-auto mr-8 hidden md:block">
+          <ThemeToggle />
+        </div>
+      </div>
       <nav
         className="flex-1 space-y-1 bg-white dark:bg-slate-900 px-2 lg:px-4 2xl:px-6"
         aria-label="Sidebar"
