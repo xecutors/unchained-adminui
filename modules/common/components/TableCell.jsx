@@ -13,7 +13,7 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       )}
       {...props}
     >
-      <div className="grid grid-cols-6">
+      <div>
         <div className="sm:inline">{children}</div>
       </div>
     </Td>
