@@ -28,14 +28,19 @@ const Sort = ({ sortFields, className }) => {
     const sort = Object.keys(sortReducer)
       .map((field) => [field, sortReducer[field]].join('_'))
       .join(',');
+
     const { sort: currentSort, ...rest } = router.query;
-    if (sort)
-      router.push({
-        query: {
-          ...rest,
-          sort,
-        },
-      });
+
+    const newRest = Object.keys(rest)
+      .map((key) => [key, rest[key]].join('='))
+      .join('&');
+
+    const newURL =
+      rest === {}
+        ? `${router.basePath}?sort=${sort}`
+        : `${router.basePath}?${newRest}&sort=${sort}`;
+
+    if (sort) router.push(newURL);
     else
       router.push({
         query: {
