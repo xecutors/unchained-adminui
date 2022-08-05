@@ -46,7 +46,7 @@ const Products = () => {
 
   const sortKeys = getSortKeys(sort);
 
-  const { products, productsCount, loadMore, loading } = useProducts({
+  const { products, productsCount, loading } = useProducts({
     queryString,
     includeDrafts,
     limit,
@@ -107,11 +107,7 @@ const Products = () => {
         </ListHeader>
         {loading ? <Loading /> : <ProductList products={products} />}
 
-        <Pagination
-          onLoadMore={loadMore}
-          data={products}
-          total={productsCount}
-        />
+        <Pagination data={products} total={productsCount} />
       </div>
     </>
   );

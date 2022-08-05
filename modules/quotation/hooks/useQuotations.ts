@@ -27,17 +27,12 @@ const useQuotations = ({
   queryString = '',
   sort = [],
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(QuotationsQuery, {
+  const { data, loading, error } = useQuery(QuotationsQuery, {
     variables: { limit, offset, queryString, sort },
   });
   const quotations = data?.quotations || [];
   const quotationsCount = data?.quotationsCount;
   const hasMore = quotations?.length < quotationsCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: quotations.length },
-    });
-  };
 
   return {
     quotations,
@@ -45,7 +40,6 @@ const useQuotations = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

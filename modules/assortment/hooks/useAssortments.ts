@@ -49,7 +49,7 @@ const useAssortments = ({
 } = {}) => {
   const { locale } = useIntl();
 
-  const { data, loading, error, fetchMore } = useQuery(AssortmentsQuery, {
+  const { data, loading, error } = useQuery(AssortmentsQuery, {
     variables: {
       queryString,
       tags,
@@ -68,15 +68,9 @@ const useAssortments = ({
   const assortmentsCount = data?.assortmentsCount;
   const hasMore = assortments?.length < assortmentsCount;
 
-  const loadMore = () =>
-    fetchMore({
-      variables: { offset: assortments?.length },
-    });
-
   return {
     loading,
     error,
-    loadMore,
     assortmentsCount,
     hasMore,
     assortments: data?.assortments || [],

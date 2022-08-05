@@ -30,17 +30,13 @@ const useCurrencies = ({
   includeInactive = true,
   sort = [],
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(CurrenciesQuery, {
+  const { data, loading, error } = useQuery(CurrenciesQuery, {
     variables: { queryString, limit, offset, includeInactive, sort },
   });
 
   const currencies = data?.currencies || [];
   const currenciesCount = data?.currenciesCount;
   const hasMore = currencies?.length < currenciesCount;
-  const loadMore = () =>
-    fetchMore({
-      variables: { offset: currencies.length },
-    });
 
   return {
     currencies,
@@ -48,7 +44,6 @@ const useCurrencies = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

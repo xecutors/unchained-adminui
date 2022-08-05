@@ -27,7 +27,7 @@ const useUsers = ({
   includeGuests = false,
   queryString = null,
 }) => {
-  const { data, loading, error, fetchMore } = useQuery(UsersQuery, {
+  const { data, loading, error } = useQuery(UsersQuery, {
     variables: { limit, offset, includeGuests, queryString },
   });
 
@@ -35,16 +35,10 @@ const useUsers = ({
   const usersCount = data?.usersCount;
   const hasMore = users?.length < usersCount;
 
-  const loadMore = () =>
-    fetchMore({
-      variables: { offset: users?.length },
-    });
-
   return {
     users,
     usersCount,
     hasMore,
-    loadMore,
     loading,
     error,
   };

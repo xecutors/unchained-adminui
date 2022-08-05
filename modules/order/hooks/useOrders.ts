@@ -31,17 +31,12 @@ const useOrders = ({
   queryString = '',
   sort = [],
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(OrdersQuery, {
+  const { data, loading, error } = useQuery(OrdersQuery, {
     variables: { limit, offset, includeCarts, queryString, sort },
   });
   const orders = data?.orders || [];
   const ordersCount = data?.ordersCount;
   const hasMore = orders?.length < ordersCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: orders.length },
-    });
-  };
 
   return {
     orders,
@@ -49,7 +44,6 @@ const useOrders = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

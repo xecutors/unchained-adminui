@@ -27,17 +27,12 @@ const useEnrollments = ({
   queryString = '',
   sort = [],
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(EnrollmentsQuery, {
+  const { data, loading, error } = useQuery(EnrollmentsQuery, {
     variables: { limit, offset, queryString, sort },
   });
   const enrollments = data?.enrollments || [];
   const enrollmentsCount = data?.enrollmentsCount;
   const hasMore = enrollments?.length < enrollmentsCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: enrollments.length },
-    });
-  };
 
   return {
     enrollments,
@@ -45,7 +40,6 @@ const useEnrollments = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

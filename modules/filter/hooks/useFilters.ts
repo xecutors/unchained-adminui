@@ -40,7 +40,7 @@ const useFilters = ({
 } = {}) => {
   const { locale } = useIntl();
 
-  const { data, loading, error, fetchMore } = useQuery(FiltersQuery, {
+  const { data, loading, error } = useQuery(FiltersQuery, {
     variables: {
       queryString,
       limit,
@@ -53,11 +53,6 @@ const useFilters = ({
   const filters = data?.filters || [];
   const filtersCount = data?.filtersCount;
   const hasMore = filters?.length < filtersCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: filters.length },
-    });
-  };
 
   return {
     filters,
@@ -65,7 +60,6 @@ const useFilters = ({
     hasMore,
     loading,
     error,
-    loadMore,
   };
 };
 

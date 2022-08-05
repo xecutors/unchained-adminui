@@ -30,23 +30,17 @@ const useEvents = ({
   sort = [],
   queryString = null,
 } = {}) => {
-  const { data, loading, error, fetchMore } = useQuery(EventQuery, {
+  const { data, loading, error } = useQuery(EventQuery, {
     variables: { types, limit, offset, sort, queryString },
   });
   const events = data?.events || [];
   const eventsCount = data?.eventsCount;
 
   const hasMore = events?.length < eventsCount;
-  const loadMore = () => {
-    fetchMore({
-      variables: { offset: events.length },
-    });
-  };
 
   return {
     events,
     hasMore,
-    loadMore,
     eventsCount,
     loading,
     error,
