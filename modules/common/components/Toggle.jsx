@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { normalizeQuery } from '../utils/utils';
 
 const Toggle = ({
   toggleText = '',
@@ -14,12 +15,18 @@ const Toggle = ({
   const toggleState = router?.query?.[toggleKey] === 'true' || active;
 
   const toggle = () => {
-    router.push({
-      query: {
-        ...router.query,
-        [toggleKey]: !toggleState,
-      },
-    });
+    if (router?.query?.sort) {
+      router.push({
+        query: normalizeQuery(router.query, !toggleState, toggleKey),
+      });
+    } else {
+      router.push({
+        query: {
+          ...router.query,
+          [toggleKey]: !toggleState,
+        },
+      });
+    }
   };
   return (
     <div className={classNames('ml-1', className)}>

@@ -13,6 +13,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
+import { normalizeQuery } from '../../modules/common/utils/utils';
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
@@ -26,9 +27,10 @@ const GetCurrentView = ({ options, queryString }) => {
 
 const AssortmentsView = () => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const router = useRouter();
   const { hasRole } = useAuth();
 
+  const { query, push } = router;
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const includeInactive = query?.includeInactive === 'true';
@@ -41,19 +43,26 @@ const AssortmentsView = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
-    if (searchString)
+    if (searchString) {
+      if (sort) {
+        push({ query: normalizeQuery(query, searchString, 'queryString') });
+      } else {
+        push({
+          query: {
+            ...restQuery,
+            queryString: searchString,
+          },
+        });
+      }
+    } else if (sort) {
+      push({ query: normalizeQuery(query, searchString, 'queryString') });
+    } else {
       push({
         query: {
           ...restQuery,
-          queryString: searchString,
         },
       });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
+    }
   };
 
   const onViewGraph = () => {
