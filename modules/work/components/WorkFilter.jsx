@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import MultipleSelect from '../../common/components/MultipleSelect';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import { normalizeQuery } from '../../common/utils/utils';
 
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
@@ -18,16 +19,11 @@ const WorkFilter = ({ workTypes = [] }) => {
     const { types, ...rest } = router.query;
     if (selectedTypes?.length) {
       router.push({
-        query: {
-          ...rest,
-          types: selectedTypes?.join(','),
-        },
+        query: normalizeQuery(rest, selectedTypes?.join(','), 'types'),
       });
     } else {
       router.push({
-        query: {
-          ...rest,
-        },
+        query: normalizeQuery(rest),
       });
     }
   };
@@ -37,14 +33,13 @@ const WorkFilter = ({ workTypes = [] }) => {
 
     if (e.target.checked) {
       const newStatus = [...extractQuery(status), e.target.name];
+      const newStatusValue =
+        newStatus.length === 1 && e.target.value === 'DELETED'
+          ? WORK_STATUSES.join(',')
+          : newStatus?.join(',');
+
       router.push({
-        query: {
-          ...rest,
-          status:
-            newStatus.length === 1 && e.target.value === 'DELETED'
-              ? WORK_STATUSES.join(',')
-              : newStatus?.join(','),
-        },
+        query: normalizeQuery(rest, newStatusValue, 'status'),
       });
     } else {
       const newStatus = [...extractQuery(status)].filter(
@@ -53,21 +48,18 @@ const WorkFilter = ({ workTypes = [] }) => {
 
       if (newStatus.length)
         router.push({
-          query: {
-            ...router.query,
-            status: newStatus?.join(','),
-          },
+          query: normalizeQuery(router.query, newStatus?.join(','), 'status'),
         });
       // initial query or to replicate the behavior in the engine when no status is selected
-      else
+      else {
+        const newWorkerStatus = WORK_STATUSES.filter(
+          (stat) => stat !== e.target.value && stat !== 'DELETED',
+        ).join(',');
+
         router.push({
-          query: {
-            ...rest,
-            status: WORK_STATUSES.filter(
-              (stat) => stat !== e.target.value && stat !== 'DELETED',
-            ).join(','),
-          },
+          query: normalizeQuery(rest, newWorkerStatus, 'status'),
         });
+      }
     }
   };
 
@@ -93,12 +85,13 @@ const WorkFilter = ({ workTypes = [] }) => {
                 id="work-start"
                 onChange={(value) => {
                   router.push({
-                    query: {
-                      ...router.query,
-                      start: formatDateTime(value, {
+                    query: normalizeQuery(
+                      router.query,
+                      formatDateTime(value, {
                         dateStyle: 'short',
                       }),
-                    },
+                      'start',
+                    ),
                   });
                 }}
                 placeholderText={formatMessage({
@@ -123,12 +116,13 @@ const WorkFilter = ({ workTypes = [] }) => {
                 id="work-end"
                 onChange={(value) =>
                   router.push({
-                    query: {
-                      ...router.query,
-                      end: formatDateTime(value, {
+                    query: normalizeQuery(
+                      router.query,
+                      formatDateTime(value, {
                         dateStyle: 'short',
                       }),
-                    },
+                      'end',
+                    ),
                   })
                 }
                 placeholderText={formatMessage({

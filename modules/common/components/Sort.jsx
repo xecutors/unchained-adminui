@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { stopPropagation } from '../data/miscellaneous';
-import { reducerToObject } from '../utils/utils';
+import { normalizeQuery, reducerToObject } from '../utils/utils';
 
 const Sort = ({ sortFields, className }) => {
   const { formatMessage } = useIntl();
@@ -43,9 +43,7 @@ const Sort = ({ sortFields, className }) => {
     if (sort) router.push(newURL);
     else
       router.push({
-        query: {
-          ...rest,
-        },
+        query: normalizeQuery(rest),
       });
     setShow(false);
   };

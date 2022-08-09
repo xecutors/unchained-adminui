@@ -17,7 +17,7 @@ import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -33,16 +33,11 @@ const Currencies = () => {
   const setQueryString = (searchString) => {
     if (searchString)
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery, searchString, 'queryString'),
       });
     else
       push({
-        query: {
-          ...restQuery,
-        },
+        query: normalizeQuery(restQuery),
       });
   };
   const sortKeys = getSortKeys(sort);

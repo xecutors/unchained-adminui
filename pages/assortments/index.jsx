@@ -44,24 +44,9 @@ const AssortmentsView = () => {
 
   const setQueryString = (searchString) => {
     if (searchString) {
-      if (sort) {
-        push({ query: normalizeQuery(query, searchString, 'queryString') });
-      } else {
-        push({
-          query: {
-            ...restQuery,
-            queryString: searchString,
-          },
-        });
-      }
-    } else if (sort) {
       push({ query: normalizeQuery(query, searchString, 'queryString') });
     } else {
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
+      push({ query: normalizeQuery(restQuery) });
     }
   };
 

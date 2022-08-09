@@ -11,7 +11,7 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import OrderList from '../../modules/order/components/OrderList';
 import useOrders from '../../modules/order/hooks/useOrders';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -24,19 +24,13 @@ const Orders = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
-    if (searchString)
+    if (searchString) {
+      push({ query: normalizeQuery(query, searchString, 'queryString') });
+    } else {
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery),
       });
-    else
-      push({
-        query: {
-          ...restQuery,
-        },
-      });
+    }
   };
 
   const sortKeys = getSortKeys(sort);

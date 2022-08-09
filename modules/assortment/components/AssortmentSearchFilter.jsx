@@ -8,31 +8,14 @@ const AssortmentSearchFilter = () => {
 
   const handleOnChange = (value) => {
     if (isTruthy(value)) {
-      if (router?.query?.sort) {
-        router.push({
-          query: normalizeQuery(router.query, value.join(','), 'tags'),
-        });
-      } else {
-        router.push({
-          query: {
-            ...router.query,
-            tags: value?.join(','),
-          },
-        });
-      }
+      router.push({
+        query: normalizeQuery(router.query, value.join(','), 'tags'),
+      });
     } else {
       delete router.query?.tags;
-      if (router?.query?.sort) {
-        router.push({
-          query: normalizeQuery(router.query),
-        });
-      } else {
-        router.push({
-          query: {
-            ...router.query,
-          },
-        });
-      }
+      router.push({
+        query: normalizeQuery(router.query),
+      });
     }
   };
 

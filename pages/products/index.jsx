@@ -14,7 +14,7 @@ import useProducts from '../../modules/product/hooks/useProducts';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -29,19 +29,15 @@ const Products = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
-    if (searchString)
+    if (searchString) {
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery, searchString, 'queryString'),
       });
-    else
+    } else {
       push({
-        query: {
-          ...restQuery,
-        },
+        query: normalizeQuery(restQuery),
       });
+    }
   };
 
   const sortKeys = getSortKeys(sort);

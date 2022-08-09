@@ -19,7 +19,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -35,16 +35,11 @@ const Country = () => {
   const setQueryString = (searchString) => {
     if (searchString)
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery, searchString, 'queryString'),
       });
     else
       push({
-        query: {
-          ...restQuery,
-        },
+        query: normalizeQuery(restQuery),
       });
   };
 

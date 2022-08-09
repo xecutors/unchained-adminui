@@ -15,19 +15,11 @@ const Toggle = ({
   const toggleState = router?.query?.[toggleKey] === 'true' || active;
 
   const toggle = () => {
-    if (router?.query?.sort) {
-      router.push({
-        query: normalizeQuery(router.query, !toggleState, toggleKey),
-      });
-    } else {
-      router.push({
-        query: {
-          ...router.query,
-          [toggleKey]: !toggleState,
-        },
-      });
-    }
+    router.push({
+      query: normalizeQuery(router.query, !toggleState, toggleKey),
+    });
   };
+
   return (
     <div className={classNames('ml-1', className)}>
       <button
