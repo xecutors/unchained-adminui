@@ -115,4 +115,5 @@ export {
   normalizeObjectToString,
   normalizeQuery,
   getContent,
+  getEndPoint,
 };

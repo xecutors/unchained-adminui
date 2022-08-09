@@ -5,7 +5,7 @@
   "display": "standalone",
   "short_name": "Admin UI",
   "start_url": "/",
-  "background_color": "#fffff",
+  "background_color": "#ffffff",
   "theme_color": "#537bd8",
   "icons": [
     {

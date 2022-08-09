@@ -4,6 +4,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/client/link/error';
 import { onTokenChange } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
+import { getEndPoint } from '../../common/utils/utils';
 
 export function parseCookies(ctx = {}, options = {}) {
   return cookie.parse(
@@ -16,7 +17,11 @@ export function parseCookies(ctx = {}, options = {}) {
   );
 }
 
-const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
+const getApolloClient = ({
+  headers: headersOverride = {},
+  locale,
+  endpoint,
+}) => {
   const middlewareLink = new ApolloLink((operation, forward) => {
     // add the authorization to the headers
     const headers = {};
@@ -32,9 +37,11 @@ const getApolloClient = ({ headers: headersOverride = {}, locale }) => {
     return forward(operation);
   });
 
-  const uri = process.browser
-    ? `${window.location.origin}/api/graphql`
-    : process.env.GRAPHQL_ENDPOINT;
+  const uri =
+    getEndPoint(endpoint) ||
+    (process.browser
+      ? `${window.location.origin}/api/graphql`
+      : process.env.GRAPHQL_ENDPOINT);
 
   const httpLink = createUploadLink({
     uri,

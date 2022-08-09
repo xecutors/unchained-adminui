@@ -10,13 +10,14 @@ let apolloClient;
 
 export function initializeApollo(
   initialState = null,
-  { headers = {}, locale } = {},
+  { headers = {}, locale, endpoint } = {},
 ) {
   const client =
     apolloClient ??
     createApolloClient({
       headers,
       locale,
+      endpoint,
     });
 
   if (initialState) {

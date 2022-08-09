@@ -20,8 +20,9 @@ import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
+  const endpoint = router.query?.endpoint;
 
-  const apollo = useApollo(pageProps, { locale });
+  const apollo = useApollo(pageProps, { locale, endpoint });
 
   const getLayout =
     Component.getLayout ||
