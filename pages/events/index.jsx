@@ -13,7 +13,7 @@ import useEvents from '../../modules/event/hooks/useEvents';
 import useEventTypes from '../../modules/event/hooks/useEventTypes';
 import MultipleSelect from '../../modules/common/components/MultipleSelect';
 import { extractQuery } from '../../modules/common/utils/normalizeFilterKeys';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
 
 const Events = () => {
@@ -28,16 +28,11 @@ const Events = () => {
   const setQueryString = (searchString) => {
     if (searchString)
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery, searchString, 'queryString'),
       });
     else
       push({
-        query: {
-          ...restQuery,
-        },
+        query: normalizeQuery(restQuery),
       });
   };
 
@@ -47,16 +42,11 @@ const Events = () => {
     const { types, ...rest } = query;
     if (selectedTypes?.length) {
       push({
-        query: {
-          ...rest,
-          types: selectedTypes?.join(','),
-        },
+        query: normalizeQuery(rest, selectedTypes?.join(','), 'types'),
       });
     } else {
       push({
-        query: {
-          ...rest,
-        },
+        query: normalizeQuery(rest),
       });
     }
   };

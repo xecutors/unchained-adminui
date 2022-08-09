@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { stopPropagation } from '../data/miscellaneous';
-import { reducerToObject } from '../utils/utils';
+import { normalizeQuery, reducerToObject } from '../utils/utils';
 
 const Sort = ({ sortFields, className }) => {
   const { formatMessage } = useIntl();
@@ -28,19 +28,22 @@ const Sort = ({ sortFields, className }) => {
     const sort = Object.keys(sortReducer)
       .map((field) => [field, sortReducer[field]].join('_'))
       .join(',');
+
     const { sort: currentSort, ...rest } = router.query;
-    if (sort)
-      router.push({
-        query: {
-          ...rest,
-          sort,
-        },
-      });
+
+    const newRest = Object.keys(rest)
+      .map((key) => [key, rest[key]].join('='))
+      .join('&');
+
+    const newURL =
+      rest === {}
+        ? `${router.basePath}?sort=${sort}`
+        : `${router.basePath}?${newRest}&sort=${sort}`;
+
+    if (sort) router.push(newURL);
     else
       router.push({
-        query: {
-          ...rest,
-        },
+        query: normalizeQuery(rest),
       });
     setShow(false);
   };

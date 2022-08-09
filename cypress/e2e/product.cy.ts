@@ -506,8 +506,18 @@ describe('Product', () => {
         ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
       );
       cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
-      cy.get('button#headlessui-listbox-button-14').click({
-        multiple: true,
+      cy.get('div#active').within(() => {
+        cy.get('button[type="button"]')
+          .contains(
+            replaceIntlPlaceholder(
+              localizations.en.select_options_toggle,
+              'Product',
+              'type',
+            ),
+          )
+          .click({
+            force: true,
+          });
       });
       cy.get('li[role="option"]').contains(localizations.en.draft).click();
 

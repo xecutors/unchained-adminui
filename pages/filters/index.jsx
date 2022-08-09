@@ -17,7 +17,7 @@ import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -34,16 +34,11 @@ const FiltersListView = () => {
   const setQueryString = (searchString) => {
     if (searchString)
       push({
-        query: {
-          ...restQuery,
-          queryString: searchString,
-        },
+        query: normalizeQuery(restQuery, searchString, 'queryString'),
       });
     else
       push({
-        query: {
-          ...restQuery,
-        },
+        query: normalizeQuery(restQuery),
       });
   };
 

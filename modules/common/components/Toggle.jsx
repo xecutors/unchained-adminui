@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { normalizeQuery } from '../utils/utils';
 
 const Toggle = ({
   toggleText = '',
@@ -15,12 +16,10 @@ const Toggle = ({
 
   const toggle = () => {
     router.push({
-      query: {
-        ...router.query,
-        [toggleKey]: !toggleState,
-      },
+      query: normalizeQuery(router.query, !toggleState, toggleKey),
     });
   };
+
   return (
     <div className={classNames('ml-1', className)}>
       <button

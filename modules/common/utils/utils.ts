@@ -80,6 +80,21 @@ const reducerToObject = (array) => {
   );
 };
 
+const normalizeObjectToString = (object: Object) => {
+  return Object.keys(object)
+    .map((key) => [key, object[key]].join('='))
+    .join('&');
+};
+
+const normalizeQuery = (
+  oldQuery: Object,
+  newState?: boolean,
+  keyLabel?: string,
+) => {
+  const newQuery = keyLabel ? { ...oldQuery, [keyLabel]: newState } : oldQuery;
+  return normalizeObjectToString(newQuery);
+};
+
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;
@@ -97,5 +112,7 @@ export {
   normalizeLanguageISOCode,
   getSortKeys,
   reducerToObject,
+  normalizeObjectToString,
+  normalizeQuery,
   getContent,
 };
