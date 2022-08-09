@@ -88,7 +88,13 @@ const WorkQueueView = () => {
 
   return (
     <>
-      <BreadCrumbs />
+      <BreadCrumbs
+        depth={3}
+        currentPageTitle={formatMessage({
+          id: 'work_queue_header',
+          defaultMessage: 'Work queue',
+        })}
+      />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between">
         <PageHeader
           headerText={formatMessage({
