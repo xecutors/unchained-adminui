@@ -33,7 +33,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const { filters } = useFilters({
     queryString,
     limit: 50,
-    includeInactive: true,
+    includeInactive: false,
     sort: [{ key: 'created', value: 'DESC' }],
   });
 

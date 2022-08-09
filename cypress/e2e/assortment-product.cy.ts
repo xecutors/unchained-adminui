@@ -7,15 +7,31 @@ import {
   AssortmentProductsResponse,
   assortmentRequestVariables,
   RemoveAssortmentProductResponse,
-  SearchProductsResponse,
   SingleAssortmentResponse,
   TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
+import { ProductListResponse, ProductOperations } from '../mock/product';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
+
+const productSearchQuery = {
+  queryString: '',
+  limit: 50,
+  offset: 0,
+  includeDrafts: false,
+  tags: null,
+  slugs: null,
+  sort: [
+    {
+      key: 'created',
+      value: 'DESC',
+    },
+  ],
+  forceLocale: 'en',
+};
 
 describe('Assortment Detail Products', () => {
   const { assortment } = SingleAssortmentResponse.data;
@@ -33,14 +49,17 @@ describe('Assortment Detail Products', () => {
         aliasQuery(req, AssortmentOperation.AssortmentProducts);
         req.reply(AssortmentProductsResponse);
       }
+
+      if (hasOperationName(req, ProductOperations.GetProductList)) {
+        aliasQuery(req, ProductOperations.GetProductList);
+        req.reply(ProductListResponse);
+      }
+
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
         aliasQuery(req, AssortmentOperation.GetTranslatedTexts);
         req.reply(TranslatedAssortmentTextsResponse);
       }
-      if (hasOperationName(req, AssortmentOperation.SearchProducts)) {
-        aliasQuery(req, AssortmentOperation.SearchProducts);
-        req.reply(SearchProductsResponse);
-      }
+
       if (hasOperationName(req, AssortmentOperation.AddProduct)) {
         aliasMutation(req, AssortmentOperation.AddProduct);
         req.reply(AddAssortmentProductResponse);
@@ -158,86 +177,69 @@ describe('Assortment Detail Products', () => {
   });
 
   it('Should [SEARCH] product successfully', () => {
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(productSearchQuery);
+        expect(response.body).to.deep.eq(ProductListResponse);
+      },
+    );
     cy.get('input#react-select-2-input').clear().type('f');
 
-    cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 10,
-          offset: 0,
-          includeInactive: true,
+          ...productSearchQuery,
           queryString: 'f',
-          filterQuery: [],
-          assortmentId: null,
-          orderBy: null,
-          ignoreChildAssortments: false,
-          forceLocale: 'en',
         });
-        expect(response.body).to.deep.eq(SearchProductsResponse);
+        expect(response.body).to.deep.eq(ProductListResponse);
       },
     );
-
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').should('have.length', 2);
-    });
 
     cy.get('input#react-select-2-input').type('r');
 
-    cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 10,
-          offset: 0,
-          includeInactive: true,
+          ...productSearchQuery,
           queryString: 'fr',
-          filterQuery: [],
-          assortmentId: null,
-          orderBy: null,
-          ignoreChildAssortments: false,
-          forceLocale: 'en',
         });
-        expect(response.body).to.deep.eq(SearchProductsResponse);
+        expect(response.body).to.deep.eq(ProductListResponse);
       },
     );
-
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').should('have.length', 2);
-    });
   });
 
   it('Should [ADD PRODUCT] successfully', () => {
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(productSearchQuery);
+        expect(response.body).to.deep.eq(ProductListResponse);
+      },
+    );
     cy.get('input#react-select-2-input').type('f');
 
-    cy.wait(fullAliasName(AssortmentOperation.SearchProducts)).then(
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 10,
-          offset: 0,
-          includeInactive: true,
+          ...productSearchQuery,
           queryString: 'f',
-          filterQuery: [],
-          assortmentId: null,
-          orderBy: null,
-          ignoreChildAssortments: false,
-          forceLocale: 'en',
         });
-        expect(response.body).to.deep.eq(SearchProductsResponse);
+        expect(response.body).to.deep.eq(ProductListResponse);
       },
     );
 
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').first().click();
-    });
+    cy.get('#react-select-2-option-1').click();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.wait(fullAliasMutationName(AssortmentOperation.AddProduct)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: SearchProductsResponse.data.searchProducts.products[0]._id,
+          productId: ProductListResponse.data.products[1]._id,
           assortmentId: assortment._id,
           tags: [],
         });
@@ -259,7 +261,6 @@ describe('Assortment Detail Products', () => {
   });
 
   it('Should [ERROR] when required fields are not provided in add product', () => {
-    cy.get('input#react-select-2-input').clear();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.get('label[for="productId"]').should(

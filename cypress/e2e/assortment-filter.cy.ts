@@ -8,7 +8,6 @@ import {
   assortmentRequestVariables,
   FiltersListResponse,
   RemoveAssortmentFilterResponse,
-  SearchAssortmentsResponse,
   SingleAssortmentResponse,
   TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
@@ -29,11 +28,6 @@ describe('Assortment Detail Filters', () => {
       if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
         aliasQuery(req, AssortmentOperation.GetSingleAssortment);
         req.reply(SingleAssortmentResponse);
-      }
-
-      if (hasOperationName(req, AssortmentOperation.SearchAssortments)) {
-        aliasQuery(req, AssortmentOperation.SearchAssortments);
-        req.reply(SearchAssortmentsResponse);
       }
 
       if (hasOperationName(req, AssortmentOperation.GetTranslatedTexts)) {
@@ -132,7 +126,12 @@ describe('Assortment Detail Filters', () => {
           offset: 0,
           includeInactive: false,
           forceLocale: 'en',
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -188,7 +187,12 @@ describe('Assortment Detail Filters', () => {
           offset: 0,
           includeInactive: false,
           forceLocale: 'en',
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -204,7 +208,12 @@ describe('Assortment Detail Filters', () => {
           offset: 0,
           includeInactive: false,
           forceLocale: 'en',
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -225,7 +234,12 @@ describe('Assortment Detail Filters', () => {
           offset: 0,
           includeInactive: false,
           forceLocale: 'en',
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -245,7 +259,12 @@ describe('Assortment Detail Filters', () => {
           offset: 0,
           includeInactive: false,
           forceLocale: 'en',
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(FiltersListResponse);
       },
@@ -291,7 +310,6 @@ describe('Assortment Detail Filters', () => {
   });
 
   it('Should [ERROR] when required fields are not provided in add filter', () => {
-    cy.get('input#react-select-2-input').clear();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.get('label[for="filterId"]').should(

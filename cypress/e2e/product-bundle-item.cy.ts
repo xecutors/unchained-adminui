@@ -7,7 +7,6 @@ import {
   ProductListResponse,
   ProductOperations,
   RemoveBundleItemResponse,
-  SearchProductResponse,
   TranslatedProductTextResponse,
 } from '../mock/product';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -54,10 +53,6 @@ describe('Product Subscription', () => {
       if (hasOperationName(req, ProductOperations.RemoveBundleItem)) {
         aliasMutation(req, ProductOperations.RemoveBundleItem);
         req.reply(RemoveBundleItemResponse);
-      }
-      if (hasOperationName(req, ProductOperations.SearchProducts)) {
-        aliasQuery(req, ProductOperations.SearchProducts);
-        req.reply(SearchProductResponse);
       }
     });
 
@@ -135,23 +130,49 @@ describe('Product Subscription', () => {
   });
 
   it('Should [ADD BUNDLE ITEM LINK] successfully ', () => {
-    cy.get('input#react-select-2-input').clear().type('t');
-
-    cy.wait(fullAliasName(ProductOperations.SearchProducts)).then(
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 10,
+          queryString: '',
+          limit: 50,
           offset: 0,
-          includeInactive: true,
-          queryString: 't',
-          filterQuery: [],
-          assortmentId: null,
-          orderBy: null,
-          ignoreChildAssortments: false,
+          includeDrafts: true,
+          tags: null,
+          slugs: null,
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
           forceLocale: 'en',
         });
-        expect(response.body).to.deep.eq(SearchProductResponse);
+        expect(response.body).to.deep.eq(ProductListResponse);
+      },
+    );
+
+    cy.get('input#react-select-2-input').clear().type('t');
+
+    cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          queryString: 't',
+          limit: 50,
+          offset: 0,
+          includeDrafts: true,
+          tags: null,
+          slugs: null,
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
+          forceLocale: 'en',
+        });
+        expect(response.body).to.deep.eq(ProductListResponse);
       },
     );
     cy.get('#react-select-2-option-1').click();
@@ -167,7 +188,7 @@ describe('Product Subscription', () => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         item: {
-          productId: SearchProductResponse.data.searchProducts.products[1]._id,
+          productId: ProductListResponse.data.products[1]._id,
           quantity: 3,
         },
         productId: product._id,

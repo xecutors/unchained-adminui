@@ -7,7 +7,6 @@ import {
   AssortmentOperation,
   assortmentRequestVariables,
   RemoveAssortmentLinkResponse,
-  SearchAssortmentsResponse,
   SingleAssortmentResponse,
   TranslatedAssortmentTextsResponse,
 } from '../mock/assortment';
@@ -16,6 +15,23 @@ import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
+
+const assortmentFilterQuery = {
+  queryString: '',
+  tags: null,
+  slugs: null,
+  limit: 50,
+  offset: 0,
+  includeInactive: true,
+  includeLeaves: true,
+  sort: [
+    {
+      key: 'created',
+      value: 'DESC',
+    },
+  ],
+  forceLocale: 'en',
+};
 
 describe('Assortment Detail Links', () => {
   const { assortment } = SingleAssortmentResponse.data;
@@ -37,10 +53,7 @@ describe('Assortment Detail Links', () => {
         aliasQuery(req, AssortmentOperation.GetAssortmentLinks);
         req.reply(AssortmentLinksResponse);
       }
-      if (hasOperationName(req, AssortmentOperation.SearchAssortments)) {
-        aliasQuery(req, AssortmentOperation.SearchAssortments);
-        req.reply(SearchAssortmentsResponse);
-      }
+
       if (hasOperationName(req, AssortmentOperation.AddAssortmentLink)) {
         aliasMutation(req, AssortmentOperation.AddAssortmentLink);
         req.reply(AddAssortmentLinkResponse);
@@ -158,47 +171,51 @@ describe('Assortment Detail Links', () => {
   });
 
   it('Should [SEARCH] assortment successfully', () => {
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentFilterQuery);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
     cy.get('input#react-select-2-input').clear().type('s');
 
-    cy.wait(fullAliasName(AssortmentOperation.SearchAssortments)).then(
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
+          ...assortmentFilterQuery,
           queryString: 's',
-          forceLocale: 'en',
         });
-        expect(response.body).to.deep.eq(SearchAssortmentsResponse);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
-
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').should('have.length', 1);
-    });
   });
 
   it('Should [ADD ASSORTMENT LINK] successfully', () => {
-    const { assortments } = SearchAssortmentsResponse.data.searchAssortments;
-
-    cy.get('input#react-select-2-input').clear().type('s');
-
-    cy.wait(fullAliasName(AssortmentOperation.SearchAssortments)).then(
+    const { assortments } = AssortmentListResponse.data;
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          queryString: 's',
-          forceLocale: 'en',
-        });
-        expect(response.body).to.deep.eq(SearchAssortmentsResponse);
+        expect(request.body.variables).to.deep.eq(assortmentFilterQuery);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
 
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').first().click();
-    });
+    cy.get('input#react-select-2-input').clear().type('s');
+
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          ...assortmentFilterQuery,
+          queryString: 's',
+        });
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
+
+    cy.get('#react-select-2-option-1').click();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.wait(fullAliasMutationName(AssortmentOperation.AddAssortmentLink)).then(
@@ -206,7 +223,7 @@ describe('Assortment Detail Links', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           parentAssortmentId: assortment._id,
-          childAssortmentId: assortments[0]._id,
+          childAssortmentId: assortments[2]._id,
           tags: [],
         });
         expect(response.body).to.deep.eq(AddAssortmentLinkResponse);
@@ -239,7 +256,6 @@ describe('Assortment Detail Links', () => {
   });
 
   it('Should [ERROR] when required fields are not provided in add sub-assortment link', () => {
-    cy.get('input#react-select-2-input').clear();
     cy.get('input[type="submit"]').contains(localizations.en.save).click();
 
     cy.get('label[for="childAssortmentId"]').should(
