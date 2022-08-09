@@ -95,6 +95,17 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
+const getEndPoint = (endpoint) => {
+  if (typeof window !== 'undefined') {
+    if (endpoint) {
+      sessionStorage.setItem('endpoint', endpoint);
+      return sessionStorage.getItem('endpoint');
+    }
+    return sessionStorage.getItem('endpoint');
+  }
+  return null;
+};
+
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;

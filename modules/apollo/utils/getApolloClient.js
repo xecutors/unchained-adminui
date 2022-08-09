@@ -19,7 +19,7 @@ export function parseCookies(ctx = {}, options = {}) {
 }
 
 const {
-  publicRuntimeConfig: { allowEndpoint },
+  publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
 const getApolloClient = ({
@@ -42,7 +42,7 @@ const getApolloClient = ({
     return forward(operation);
   });
 
-  const newEndpoint = allowEndpoint === 'true' ? getEndPoint(endpoint) : null;
+  const newEndpoint = allowEndpointSwitch ? getEndPoint(endpoint) : null;
 
   const uri =
     newEndpoint ||
