@@ -2,6 +2,7 @@ import cookie from 'cookie';
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/client/link/error';
+import getConfig from 'next/config';
 import { onTokenChange } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
 import { getEndPoint } from '../../common/utils/utils';
@@ -16,6 +17,10 @@ export function parseCookies(ctx = {}, options = {}) {
     options,
   );
 }
+
+const {
+  publicRuntimeConfig: { allowEndpoint },
+} = getConfig();
 
 const getApolloClient = ({
   headers: headersOverride = {},
@@ -37,8 +42,10 @@ const getApolloClient = ({
     return forward(operation);
   });
 
+  const newEndpoint = allowEndpoint === 'true' ? getEndPoint(endpoint) : null;
+
   const uri =
-    getEndPoint(endpoint) ||
+    newEndpoint ||
     (process.browser
       ? `${window.location.origin}/api/graphql`
       : process.env.GRAPHQL_ENDPOINT);

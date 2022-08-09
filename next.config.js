@@ -41,5 +41,6 @@ module.exports = withPWA({
     ),
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
+    allowEndpoint: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SELECTION,
   },
 });
