@@ -5,6 +5,7 @@ import getConfig from 'next/config';
 const {
   publicRuntimeConfig: { metaConfig, manifestFile },
 } = getConfig();
+
 class MyDocument extends Document {
   render() {
     return (

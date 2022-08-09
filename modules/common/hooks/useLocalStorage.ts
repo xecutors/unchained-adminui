@@ -7,7 +7,6 @@ export default function useLocalStorage(key, initialValue) {
       const item = window.localStorage.getItem(key);
       return item || initialValue;
     } catch (error) {
-      console.log(error);
       return initialValue;
     }
   });
