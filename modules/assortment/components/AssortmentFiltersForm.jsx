@@ -30,11 +30,12 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const { hasRole } = useAuth();
 
   const [queryString, setQueryString] = useState('');
-  const { filters } = useFilters({ limit: 50, queryString });
-
-  const [filteredFilters, setFilteredFilters] = useState(() =>
-    normalizeFilters(filters),
-  );
+  const { filters } = useFilters({
+    queryString,
+    limit: 50,
+    includeInactive: true,
+    sort: [{ key: 'created', value: 'DESC' }],
+  });
 
   const successMessage = formatMessage({
     id: 'saved',
@@ -74,22 +75,9 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                   id: 'filter',
                   defaultMessage: 'Filter',
                 })}
-                data={filteredFilters}
+                data={normalizeFilters(filters)}
                 queryString={queryString}
-                onFilter={(val) => {
-                  setQueryString(val);
-                  setFilteredFilters(
-                    normalizeFilters(filters).filter((item) => {
-                      return (
-                        item?.title
-                          ?.toLowerCase()
-                          .includes(val?.toLowerCase()) ||
-                        item?.subtitle?.toLowerCase() === val?.toLowerCase() ||
-                        !val
-                      );
-                    }),
-                  );
-                }}
+                onFilter={setQueryString}
                 className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
               />
             </div>

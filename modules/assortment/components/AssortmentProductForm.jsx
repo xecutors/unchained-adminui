@@ -6,12 +6,12 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 
 import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
-import useSearchProducts from '../../product/hooks/useSearchProducts';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import useProducts from '../../product/hooks/useProducts';
 
 const normalizeProducts = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -33,10 +33,11 @@ const AssortmentProductForm = ({ assortmentId }) => {
     defaultMessage: 'Saved',
   });
 
-  const { products, loading } = useSearchProducts({
+  const { products, loading } = useProducts({
     queryString,
-    limit: 10,
-    includeInactive: true,
+    includeDrafts: true,
+    limit: 50,
+    sort: [{ key: 'created', value: 'DESC' }],
   });
 
   const onSubmit = async ({ productId, tags }) => {

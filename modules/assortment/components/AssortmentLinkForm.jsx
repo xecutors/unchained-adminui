@@ -5,13 +5,13 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
-import useSearchAssortments from '../hooks/useSearchAssortments';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
 import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import FormErrors from '../../forms/components/FormErrors';
+import useAssortments from '../hooks/useAssortments';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -27,9 +27,13 @@ const AssortmentLinkForm = ({ assortmentId }) => {
   const { addAssortmentLink } = useAddAssortmentLink();
   const { hasRole } = useAuth();
   const [queryString, setQueryString] = useState('');
-  const { assortments } = useSearchAssortments({
+
+  const { assortments, loading } = useAssortments({
     queryString,
+    includeInactive: true,
+    includeLeaves: true,
     limit: 50,
+    sort: [{ key: 'created', value: 'DESC' }],
   });
 
   const onSubmit = async ({ childAssortmentId, tags }) => {
@@ -74,6 +78,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                   defaultMessage: 'Sub-Assortment',
                 })}
                 required
+                isLoading={loading}
                 onFilter={setQueryString}
                 queryString={queryString}
                 data={normalizeAssortments(
