@@ -30,7 +30,12 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
   const { hasRole } = useAuth();
 
   const [queryString, setQueryString] = useState('');
-  const { filters } = useFilters({ limit: 50, queryString });
+  const { filters } = useFilters({
+    queryString,
+    limit: 50,
+    includeInactive: true,
+    sort: [{ key: 'created', value: 'DESC' }],
+  });
 
   const [filteredFilters, setFilteredFilters] = useState(() =>
     normalizeFilters(filters),
