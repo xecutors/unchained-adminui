@@ -5,9 +5,10 @@ import App from 'next/app';
 import { Router, useRouter } from 'next/router';
 
 import { ToastContainer } from 'react-toastify';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
+import getConfig from 'next/config';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +22,8 @@ import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
+import SandboxInput from '../modules/common/components/SandboxInput';
+import { getEndPoint } from '../modules/common/utils/utils';
 
 const handleRouteChange = (apolloClient) => async (url) => {
   const { data: { me } = {} } = await apolloClient.query({
@@ -40,13 +43,26 @@ const handleRouteChange = (apolloClient) => async (url) => {
   });
 };
 
+const {
+  publicRuntimeConfig: { allowEndpointSwitch },
+} = getConfig();
+
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
+  const [endpoint, setEndpoint] = useState(
+    getEndPoint('http://localhost:4010/graphql'),
+  );
 
-  const endpoint = router.query?.endpoint;
+  const handleOnBlur = (e) => {
+    getEndPoint(e.target.value);
+    setEndpoint(e.target.value);
+  };
 
-  const apollo = useApollo(pageProps, { locale, endpoint });
+  const apollo = useApollo(pageProps, {
+    locale,
+    endpoint,
+  });
 
   const getLayout =
     Component.getLayout ||
@@ -97,6 +113,9 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
           key="intl-provider"
         >
           <AuthWrapper>
+            {allowEndpointSwitch ? (
+              <SandboxInput endpoint={endpoint} handleOnBlur={handleOnBlur} />
+            ) : null}
             <ThemeWrapper>
               <ToastContainer
                 position="top-right"
