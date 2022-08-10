@@ -107,42 +107,34 @@ const getEndPoint = (endpoint) => {
 };
 
 const getConnection = async (url) => {
-  const newUrl = new URL(url);
-  const result = {};
-
-  if (typeof window !== 'undefined') {
-    if (
-      window.navigator.userAgent.indexOf('safari') &&
-      newUrl.protocol === 'http'
-    ) {
-      result.error = 'safari';
-    } else {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            variables: {},
-            query: `
-      {
-        __schema {
-          types {
-            kind
-            name
-            possibleTypes {
-              name
-            }
-          }
+  const result = { error: '', connection: null };
+  try {
+    if (typeof window !== 'undefined') {
+      const newUrl = new URL(url);
+      if (
+        window.navigator.userAgent.indexOf('safari') &&
+        newUrl.protocol === 'http'
+      ) {
+        result.error = 'safari';
+      } else {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              variables: {},
+              query: `{ __typename  }
+    `,
+            }),
+          });
+          result.connection = response;
+        } catch (error) {
+          result.error = 'connection failed';
         }
       }
-    `,
-          }),
-        });
-        result.connection = response;
-      } catch (error) {
-        result.error = 'connection failed';
-      }
     }
+  } catch (e) {
+    result.error = e.message;
   }
   return result;
 };

@@ -1,8 +1,8 @@
+import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
 const SandboxInput = ({ endpoint, handleOnBlur, connection }) => {
   const { formatMessage } = useIntl();
-
   return (
     <div className="mx-4">
       <div className="relative w-1/2">
@@ -19,15 +19,23 @@ const SandboxInput = ({ endpoint, handleOnBlur, connection }) => {
               name="endpoint"
               id="endpoint"
               className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
-              placeholder="http://localhost:3000/graphql"
+              placeholder="http://localhost:4010/graphql"
               defaultValue={endpoint}
               onBlur={handleOnBlur}
               autoComplete="off"
             />
-            <span className="absolute right-4 top-3 w-4 h-4 rounded-full bg-green-600" />
+            <span
+              className={classNames(
+                'absolute right-4 top-3 w-4 h-4 rounded-full',
+                {
+                  'bg-green-600': connection.status,
+                  'bg-red-600': !connection.status,
+                },
+              )}
+            />
           </div>
         </div>
-        {connection && (
+        {connection.error && (
           <div className="absolute top-0 left-full w-96 border border-slate-300 mx-2 rounded-md">
             <div>
               <p>Unable to reach server</p>

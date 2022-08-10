@@ -55,8 +55,10 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const handleOnBlur = async (e) => {
     const testUrl = await getConnection(e.target.value);
     setConnection({ status: testUrl?.connection?.ok, error: testUrl?.error });
-    getEndPoint(e.target.value);
-    setEndpoint(e.target.value);
+    if (!testUrl.error) {
+      getEndPoint(e.target.value);
+      setEndpoint(e.target.value);
+    }
   };
 
   const apollo = useApollo(pageProps, {
