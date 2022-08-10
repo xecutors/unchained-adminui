@@ -8,7 +8,6 @@ import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
-import getConfig from 'next/config';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,8 +21,10 @@ import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import SandboxInput from '../modules/common/components/SandboxInput';
-import { getEndPoint } from '../modules/common/utils/utils';
+import {
+  getEndPoint,
+  getTestConnection as getConnection,
+} from '../modules/common/utils/utils';
 
 const handleRouteChange = (apolloClient) => async (url) => {
   const { data: { me } = {} } = await apolloClient.query({
@@ -43,18 +44,17 @@ const handleRouteChange = (apolloClient) => async (url) => {
   });
 };
 
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
-
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
   const [endpoint, setEndpoint] = useState(
     getEndPoint('http://localhost:4010/graphql'),
   );
+  const [connection, setConnection] = useState({ status: true, error: null });
 
-  const handleOnBlur = (e) => {
+  const handleOnBlur = async (e) => {
+    const testUrl = await getConnection(e.target.value);
+    setConnection({ status: testUrl?.connection?.ok, error: testUrl?.error });
     getEndPoint(e.target.value);
     setEndpoint(e.target.value);
   };
@@ -113,9 +113,6 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
           key="intl-provider"
         >
           <AuthWrapper>
-            {allowEndpointSwitch ? (
-              <SandboxInput endpoint={endpoint} handleOnBlur={handleOnBlur} />
-            ) : null}
             <ThemeWrapper>
               <ToastContainer
                 position="top-right"
@@ -127,7 +124,14 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
                 pauseOnHover
               />
               <ModalWrapper>
-                {getLayout(<Component {...pageProps} />)}
+                {getLayout(
+                  <Component
+                    {...pageProps}
+                    endpoint={endpoint}
+                    handleOnBlur={handleOnBlur}
+                    connection={connection}
+                  />,
+                )}
               </ModalWrapper>
             </ThemeWrapper>
           </AuthWrapper>

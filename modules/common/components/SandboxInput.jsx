@@ -1,29 +1,56 @@
 import { useIntl } from 'react-intl';
 
-const SandboxInput = ({ endpoint, handleOnBlur }) => {
+const SandboxInput = ({ endpoint, handleOnBlur, connection }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="mx-4 md:pl-64">
-      <div className="my-2 flex items-center rounded-md border border-slate-300 dark:border-slate-600">
-        <label
-          htmlFor="sandbox"
-          className="inline-flex items-center rounded-l-md px-3 py-2 border-r border-slate-300 bg-slate-50 uppercase dark:bg-slate-900 font-bold text-slate-500 dark:text-white  dark:border-slate-600"
-        >
-          {formatMessage({ id: 'sandbox', defaultMessage: 'sandbox' })}
-        </label>
-        <div className="w-full">
-          <input
-            type="text"
-            name="sandbox"
-            id="sandbox"
-            className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
-            placeholder="http://localhost:3000/graphql"
-            defaultValue={endpoint}
-            onBlur={handleOnBlur}
-            autoComplete="off"
-          />
+    <div className="mx-4">
+      <div className="relative w-1/2">
+        <div className="my-2 flex items-center rounded-md border border-slate-300 dark:border-slate-600">
+          <label
+            htmlFor="endpoint"
+            className="inline-flex items-center rounded-l-md px-3 py-2 border-r border-slate-300 bg-slate-50 uppercase dark:bg-slate-900 font-bold text-slate-500 dark:text-white  dark:border-slate-600"
+          >
+            {formatMessage({ id: 'endpoint', defaultMessage: 'endpoint' })}
+          </label>
+          <div className="w-full relative">
+            <input
+              type="text"
+              name="endpoint"
+              id="endpoint"
+              className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
+              placeholder="http://localhost:3000/graphql"
+              defaultValue={endpoint}
+              onBlur={handleOnBlur}
+              autoComplete="off"
+            />
+            <span className="absolute right-4 top-3 w-4 h-4 rounded-full bg-green-600" />
+          </div>
         </div>
+        {connection && (
+          <div className="absolute top-0 left-full w-96 border border-slate-300 mx-2 rounded-md">
+            <div>
+              <p>Unable to reach server</p>
+              <p>
+                Safari does not support network requests from unchained admin on
+                HTTPS to your local HTTP endpoint, so we cannot introspect your
+                endpoint.
+              </p>
+              <p>There are a couple solutions:</p>
+              <ul>
+                <li>
+                  <p>
+                    Visit this page from a browser that supports HTTPS requests
+                    to local HTTP endpoints, like Chrome or Firefox.
+                  </p>
+                </li>
+                <li>
+                  <p>Set up an SSL certificate for your local endpoint.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

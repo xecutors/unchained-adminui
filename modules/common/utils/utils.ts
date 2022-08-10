@@ -106,6 +106,47 @@ const getEndPoint = (endpoint) => {
   return null;
 };
 
+const getConnection = async (url) => {
+  const newUrl = new URL(url);
+  const result = {};
+
+  if (typeof window !== 'undefined') {
+    if (
+      window.navigator.userAgent.indexOf('safari') &&
+      newUrl.protocol === 'http'
+    ) {
+      result.error = 'safari';
+    } else {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            variables: {},
+            query: `
+      {
+        __schema {
+          types {
+            kind
+            name
+            possibleTypes {
+              name
+            }
+          }
+        }
+      }
+    `,
+          }),
+        });
+        result.connection = response;
+      } catch (error) {
+        result.error = 'connection failed';
+      }
+    }
+  }
+  return result;
+};
+
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;
@@ -127,4 +168,5 @@ export {
   normalizeQuery,
   getContent,
   getEndPoint,
+  getConnection as getTestConnection,
 };
