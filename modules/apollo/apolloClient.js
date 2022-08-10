@@ -10,13 +10,14 @@ let apolloClient;
 
 export function initializeApollo(
   initialState = null,
-  { headers = {}, locale } = {},
+  { headers = {}, locale, endpoint } = {},
 ) {
   const client =
     apolloClient ??
     createApolloClient({
       headers,
       locale,
+      endpoint,
     });
 
   if (initialState) {
@@ -51,6 +52,9 @@ export function addApolloState(client, pageProps) {
 
 export function useApollo(pageProps, options) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
-  const store = useMemo(() => initializeApollo(state, options), [state]);
+  const store = useMemo(() => {
+    apolloClient = null;
+    return initializeApollo(state, options);
+  }, [state, options.endpoint]);
   return store;
 }

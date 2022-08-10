@@ -2,9 +2,13 @@ import { ApolloProvider } from '@apollo/client';
 import 'react-quill/dist/quill.snow.css';
 import App from 'next/app';
 
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 
 import { ToastContainer } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import Script from 'next/script';
+import getConfig from 'next/config';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,12 +20,49 @@ import Layout from '../modules/common/components/Layout';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
+import * as matomo from '../modules/common/utils/matomo';
+import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
+import SandboxInput from '../modules/common/components/SandboxInput';
+import { getEndPoint } from '../modules/common/utils/utils';
+
+const handleRouteChange = (apolloClient) => async (url) => {
+  const { data: { me } = {} } = await apolloClient.query({
+    query: CurrentUserQuery,
+    errorPolicy: 'none',
+    fetchPolicy: 'cache-first',
+  });
+
+  const emailAddress = me?.primaryEmail?.address;
+  const username = me?.username;
+  const clientId = me?._id;
+
+  matomo.pageView(document.location.origin + url, document.title, {
+    username,
+    emailAddress,
+    clientId,
+  });
+};
+
+const {
+  publicRuntimeConfig: { allowEndpointSwitch },
+} = getConfig();
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
+  const [endpoint, setEndpoint] = useState(
+    getEndPoint('http://localhost:4010/graphql'),
+  );
 
-  const apollo = useApollo(pageProps, { locale });
+  const handleOnBlur = (e) => {
+    getEndPoint(e.target.value);
+    setEndpoint(e.target.value);
+  };
+
+  const apollo = useApollo(pageProps, {
+    locale,
+    endpoint,
+  });
 
   const getLayout =
     Component.getLayout ||
@@ -33,31 +74,66 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
 
   const messages = getMessages(router.locale);
 
+  useEffect(() => {
+    Router.events.on('routeChangeComplete', handleRouteChange(apollo));
+
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange(apollo));
+    };
+  }, [apollo]);
+
   return (
-    <ApolloProvider client={apollo}>
-      <IntlWrapper
-        locale={router.locale}
-        messages={messages}
-        key="intl-provider"
-      >
-        <AuthWrapper>
-          <ThemeWrapper>
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              newestOnTop={false}
-              closeOnClick
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
+    <>
+      <Head>
+        {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
+          <>
+            <Script
+              id="matomo-script"
+              src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
             />
-            <ModalWrapper>
-              {getLayout(<Component {...pageProps} />)}
-            </ModalWrapper>
-          </ThemeWrapper>
-        </AuthWrapper>
-      </IntlWrapper>
-    </ApolloProvider>
+            <Script
+              id="matomo-config"
+              dangerouslySetInnerHTML={{
+                __html: `
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
+  _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
+  `,
+              }}
+            />
+          </>
+        ) : null}
+      </Head>
+      <ApolloProvider client={apollo}>
+        <IntlWrapper
+          locale={router.locale}
+          messages={messages}
+          key="intl-provider"
+        >
+          <AuthWrapper>
+            {allowEndpointSwitch ? (
+              <SandboxInput endpoint={endpoint} handleOnBlur={handleOnBlur} />
+            ) : null}
+            <ThemeWrapper>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <ModalWrapper>
+                {getLayout(<Component {...pageProps} />)}
+              </ModalWrapper>
+            </ThemeWrapper>
+          </AuthWrapper>
+        </IntlWrapper>
+      </ApolloProvider>
+    </>
   );
 };
 
