@@ -2,10 +2,6 @@ import { useRouter } from 'next/router';
 import SignUpForm from '../modules/accounts/components/Signup';
 import useCreateUser from '../modules/accounts/hooks/useCreateUser';
 import { storeLoginToken } from '../modules/accounts/utils/store';
-import {
-  addApolloState,
-  initializeApollo,
-} from '../modules/apollo/apolloClient';
 
 const SignUpPage = () => {
   const { push } = useRouter();
@@ -28,15 +24,6 @@ const SignUpPage = () => {
   };
   return <SignUpForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />;
 };
-
-export async function getStaticProps({ locale }) {
-  const apolloClient = await initializeApollo(null, { locale });
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 3600,
-  });
-}
 
 export default SignUpPage;
 

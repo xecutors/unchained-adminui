@@ -1,10 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import {
-  addApolloState,
-  initializeApollo,
-} from '../modules/apollo/apolloClient';
 import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
 import getLogo from '../modules/common/utils/getLogo';
 
@@ -71,15 +67,6 @@ const NotFound = () => {
     </div>
   );
 };
-
-export async function getStaticProps({ locale }) {
-  const apolloClient = await initializeApollo(null, { locale });
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 3600,
-  });
-}
 
 export default NotFound;
 
