@@ -2,13 +2,14 @@ import Loading from '../../common/components/Loading';
 import AssortmentGraph from './AssortmentGraph';
 import useAssortmentPaths from '../hooks/useAssortmentPaths';
 
-const AssortmentGraphView = ({ options }) => {
+const AssortmentGraphView = ({ options, selectedLocale }) => {
   const { includeInactive, slug } = options;
 
   const { assortments, loading } = useAssortmentPaths({
     slugs: slug ? [slug].filter(Boolean) : null,
     includeInactive,
     includeLeaves: !!slug,
+    forceLocale: selectedLocale,
   });
 
   return (

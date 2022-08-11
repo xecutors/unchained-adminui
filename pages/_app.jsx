@@ -25,6 +25,7 @@ import {
   getEndPoint,
   getTestConnection as getConnection,
 } from '../modules/common/utils/utils';
+import ThemeToggle from '../modules/common/components/ThemeToggle';
 
 const handleRouteChange = (apolloClient) => async (url) => {
   const { data: { me } = {} } = await apolloClient.query({
@@ -64,13 +65,20 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
     endpoint,
   });
 
-  const getLayout =
-    Component.getLayout ||
-    ((page) => (
-      <Layout apollo={apollo} {...rest}>
-        {page}
-      </Layout>
-    ));
+  const getLayout = Component.getLayout
+    ? (page) => (
+        <>
+          <div className="absolute top-4 right-4">
+            <ThemeToggle />
+          </div>
+          {Component.getLayout(page)}
+        </>
+      )
+    : (page) => (
+        <Layout apollo={apollo} {...rest}>
+          {page}
+        </Layout>
+      );
 
   const messages = getMessages(router.locale);
 

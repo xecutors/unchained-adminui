@@ -14,14 +14,19 @@ import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
 
-  return graph === 'true' ? (
-    <AssortmentGraphView options={rest} />
-  ) : (
-    <AssortmentListView options={rest} queryString={queryString} />
+  return (
+    <LocaleWrapper>
+      {graph === 'true' ? (
+        <AssortmentGraphView options={rest} />
+      ) : (
+        <AssortmentListView options={rest} queryString={queryString} />
+      )}
+    </LocaleWrapper>
   );
 };
 
@@ -29,7 +34,6 @@ const AssortmentsView = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { hasRole } = useAuth();
-
   const { query, push } = router;
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;

@@ -3,18 +3,16 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
-import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
-import useProducts from '../../modules/product/hooks/useProducts';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -39,17 +37,7 @@ const Products = () => {
       });
     }
   };
-
   const sortKeys = getSortKeys(sort);
-
-  const { products, productsCount, loading } = useProducts({
-    queryString,
-    includeDrafts,
-    limit,
-    offset,
-    tags,
-    sort: sortKeys,
-  });
 
   const sortFields = {
     status: formatMessage({
@@ -101,9 +89,12 @@ const Products = () => {
             toggleKey="includeDrafts"
           />
         </ListHeader>
-        {loading ? <Loading /> : <ProductList products={products} />}
 
-        <Pagination data={products} total={productsCount} />
+        <LocaleWrapper>
+          <ProductList
+            {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
+          />
+        </LocaleWrapper>
       </div>
     </>
   );

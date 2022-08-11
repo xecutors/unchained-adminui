@@ -9,6 +9,7 @@ import {
   TranslatedAssortmentTextsResponse,
   UpdateAssortmentResponse,
 } from '../mock/assortment';
+import { LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
@@ -146,6 +147,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -176,6 +178,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -207,6 +210,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -229,6 +233,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: true,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -491,6 +496,25 @@ describe('Assortment', () => {
         queryString: 'search',
       });
     });
+  });
+
+  it('Should navigate to [SELECTED LOCALE] page successfully', () => {
+    const [, deLocale] = LanguagesResponse.data.languages;
+
+    cy.get('select#locale-wrapper').select(deLocale.isoCode);
+
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          ...assortmentRequestVariables,
+          forceLocale: deLocale.isoCode,
+        });
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
+
+    cy.location('pathname').should('eq', '/assortments');
   });
 
   it('Should Navigate to [NEW ASSORTMENT] form page successfully', () => {

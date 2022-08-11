@@ -4,7 +4,7 @@ import { getSortKeys } from '../../common/utils/utils';
 import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
 
-const AssortmentListView = ({ options, queryString }) => {
+const AssortmentListView = ({ options, queryString, selectedLocale }) => {
   const { includeInactive, includeLeaves, limit, offset, tags, slug, sort } =
     options;
 
@@ -19,6 +19,7 @@ const AssortmentListView = ({ options, queryString }) => {
     tags,
     slugs: slug,
     sort: sortKeys,
+    forceLocale: selectedLocale,
   });
 
   return loading ? (
