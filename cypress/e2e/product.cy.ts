@@ -286,6 +286,25 @@ describe('Product', () => {
         });
       });
     });
+
+    it('Should navigate to [SELECTED LOCALE] page successfully', () => {
+      const [, deLocale] = LanguagesResponse.data.languages;
+
+      cy.get('select#locale-wrapper').select(deLocale.isoCode);
+
+      cy.wait(fullAliasName(ProductOperations.GetProductList)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            ...ProductFilterRequest,
+            forceLocale: deLocale.isoCode,
+          });
+          expect(response.body).to.deep.eq(ProductListResponse);
+        },
+      );
+
+      cy.location('pathname').should('eq', '/products');
+    });
   });
 
   context('New Product', () => {
