@@ -106,13 +106,16 @@ const getEndPoint = (endpoint) => {
   return null;
 };
 
+const isSafariBrowser = (userAgent: string): boolean =>
+  userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
+
 const getConnection = async (url) => {
   const result = { error: '', connection: null };
   try {
     if (typeof window !== 'undefined') {
       const newUrl = new URL(url);
       if (
-        window.navigator.userAgent.indexOf('safari') &&
+        isSafariBrowser(window.navigator.userAgent) &&
         newUrl.protocol === 'http'
       ) {
         result.error = 'safari';
@@ -128,8 +131,9 @@ const getConnection = async (url) => {
             }),
           });
           result.connection = response;
-        } catch (error) {
-          result.error = 'connection failed';
+        } catch (e) {
+          result.error = e.message;
+          result.connection = { ok: false };
         }
       }
     }
