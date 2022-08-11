@@ -15,6 +15,29 @@ import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+
+const GetProductList = ({ options, selectedLocale }) => {
+  const { queryString, includeDrafts, limit, offset, tags, sort } = options;
+  const sortKeys = getSortKeys(sort);
+
+  const { products, productsCount, loading } = useProducts({
+    queryString,
+    includeDrafts,
+    limit,
+    offset,
+    tags,
+    sort: sortKeys,
+    forceLocale: selectedLocale,
+  });
+
+  return (
+    <>
+      {loading ? <Loading /> : <ProductList products={products} />}
+      <Pagination data={products} total={productsCount} />
+    </>
+  );
+};
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -39,17 +62,6 @@ const Products = () => {
       });
     }
   };
-
-  const sortKeys = getSortKeys(sort);
-
-  const { products, productsCount, loading } = useProducts({
-    queryString,
-    includeDrafts,
-    limit,
-    offset,
-    tags,
-    sort: sortKeys,
-  });
 
   const sortFields = {
     status: formatMessage({
@@ -101,9 +113,12 @@ const Products = () => {
             toggleKey="includeDrafts"
           />
         </ListHeader>
-        {loading ? <Loading /> : <ProductList products={products} />}
 
-        <Pagination data={products} total={productsCount} />
+        <LocaleWrapper>
+          <GetProductList
+            options={{ queryString, includeDrafts, limit, offset, tags, sort }}
+          />
+        </LocaleWrapper>
       </div>
     </>
   );

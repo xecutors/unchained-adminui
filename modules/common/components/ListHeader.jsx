@@ -14,7 +14,7 @@ const ListHeader = ({
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   return (
-    <div className="px-2 py-3">
+    <div className="px-2 my-3">
       <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
         {children && (
           <div className="mt-2">

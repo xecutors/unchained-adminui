@@ -37,6 +37,7 @@ const useFilters = ({
   offset = 0,
   includeInactive = false,
   sort = [],
+  forceLocale = '',
 } = {}) => {
   const { locale } = useIntl();
 
@@ -46,7 +47,7 @@ const useFilters = ({
       limit,
       offset,
       includeInactive,
-      forceLocale: locale,
+      forceLocale: forceLocale || locale,
       sort,
     },
   });

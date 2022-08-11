@@ -18,6 +18,32 @@ import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+
+const GetFilterList = ({ options, selectedLocale, onRemoveFilter }) => {
+  const { queryString, limit, includeInactive, offset, sort } = options;
+  const sortKeys = getSortKeys(sort);
+
+  const { filters, filtersCount, loading } = useFilters({
+    queryString,
+    limit,
+    includeInactive,
+    offset,
+    sort: sortKeys,
+    forceLocale: selectedLocale,
+  });
+
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <FilterList filters={filters} onRemoveFilter={onRemoveFilter} />
+      )}
+      <Pagination data={filters} total={filtersCount} />
+    </>
+  );
+};
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -41,16 +67,6 @@ const FiltersListView = () => {
         query: normalizeQuery(restQuery),
       });
   };
-
-  const sortKeys = getSortKeys(sort);
-
-  const { filters, filtersCount, loading } = useFilters({
-    queryString,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-  });
 
   const { formatMessage } = useIntl();
 
@@ -125,12 +141,12 @@ const FiltersListView = () => {
           />
         </ListHeader>
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <FilterList filters={filters} onRemoveFilter={onRemoveFilter} />
-        )}
-        <Pagination data={filters} total={filtersCount} />
+        <LocaleWrapper>
+          <GetFilterList
+            options={{ queryString, limit, includeInactive, offset, sort }}
+            onRemoveFilter={onRemoveFilter}
+          />
+        </LocaleWrapper>
       </div>
     </>
   );

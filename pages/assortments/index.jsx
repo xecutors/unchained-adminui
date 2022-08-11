@@ -14,6 +14,7 @@ import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
@@ -21,7 +22,9 @@ const GetCurrentView = ({ options, queryString }) => {
   return graph === 'true' ? (
     <AssortmentGraphView options={rest} />
   ) : (
-    <AssortmentListView options={rest} queryString={queryString} />
+    <LocaleWrapper>
+      <AssortmentListView options={rest} queryString={queryString} />
+    </LocaleWrapper>
   );
 };
 

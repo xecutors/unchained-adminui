@@ -19,9 +19,9 @@ const LocaleWrapper = ({ children }) => {
   }, [languages, loading]);
 
   return (
-    <div className="my-3 lg:mt-5">
-      <div className="relative ">
-        <div className="lg:absolute lg:right-0 lg:bottom-8">
+    <div className="my-3">
+      <div className="relative mb-2">
+        <div className="w-fit ml-auto">
           <select
             id="locale-wrapper"
             className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
