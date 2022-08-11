@@ -7,16 +7,20 @@ import { stopPropagation } from '../data/miscellaneous';
 
 const LocaleWrapper = ({ children }) => {
   const { languages, loading } = useLanguages();
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
-  const [selectedLocale, setSelectedLocale] = useState(null);
+  const [selectedLocale, setSelectedLocale] = useState(locale);
 
   useEffect(() => {
     if (!loading) {
-      const baseLanguage = languages.filter((l) => l.isBase);
-      setSelectedLocale(baseLanguage.length ? baseLanguage[0].isoCode : '');
+      const baseLanguage = languages
+        .filter((l) => l.isBase || l.isoCode === locale)
+        .map(({ isoCode }) => isoCode);
+      setSelectedLocale(
+        baseLanguage.includes(locale) ? locale : baseLanguage[0],
+      );
     }
-  }, [languages, loading]);
+  }, [languages, loading, locale]);
 
   return (
     <div className="my-3">

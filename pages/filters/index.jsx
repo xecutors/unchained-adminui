@@ -4,13 +4,10 @@ import { useRouter } from 'next/router';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
-import Pagination from '../../modules/common/components/Pagination';
 import PageHeader from '../../modules/common/components/PageHeader';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
-import useFilters from '../../modules/filter/hooks/useFilters';
 import FilterList from '../../modules/filter/components/FilterList';
-import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
@@ -19,31 +16,6 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
-
-const GetFilterList = ({ options, selectedLocale, onRemoveFilter }) => {
-  const { queryString, limit, includeInactive, offset, sort } = options;
-  const sortKeys = getSortKeys(sort);
-
-  const { filters, filtersCount, loading } = useFilters({
-    queryString,
-    limit,
-    includeInactive,
-    offset,
-    sort: sortKeys,
-    forceLocale: selectedLocale,
-  });
-
-  return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <FilterList filters={filters} onRemoveFilter={onRemoveFilter} />
-      )}
-      <Pagination data={filters} total={filtersCount} />
-    </>
-  );
-};
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -67,7 +39,7 @@ const FiltersListView = () => {
         query: normalizeQuery(restQuery),
       });
   };
-
+  const sortKeys = getSortKeys(sort);
   const { formatMessage } = useIntl();
 
   const onRemoveFilter = async (filterId) => {
@@ -142,9 +114,9 @@ const FiltersListView = () => {
         </ListHeader>
 
         <LocaleWrapper>
-          <GetFilterList
-            options={{ queryString, limit, includeInactive, offset, sort }}
+          <FilterList
             onRemoveFilter={onRemoveFilter}
+            {...{ queryString, limit, includeInactive, offset, sortKeys }}
           />
         </LocaleWrapper>
       </div>
