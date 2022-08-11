@@ -147,6 +147,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -177,6 +178,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -208,6 +210,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -230,6 +233,7 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: true,
           includeLeaves: false,
+          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
