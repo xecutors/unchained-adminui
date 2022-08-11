@@ -17,6 +17,17 @@ export function parseCookies(ctx = {}, options = {}) {
     options,
   );
 }
+const getLocalURI = () => {
+  return process.browser
+    ? `${window.location.origin}/api/graphql`
+    : process.env.GRAPHQL_ENDPOINT;
+};
+
+const getNormalizeURI = (allowEndpoint, URI) => {
+  const endpoint = allowEndpoint ? getEndPoint(URI) : null;
+
+  return endpoint || getLocalURI();
+};
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
@@ -42,16 +53,8 @@ const getApolloClient = ({
     return forward(operation);
   });
 
-  const newEndpoint = allowEndpointSwitch ? getEndPoint(endpoint) : null;
-
-  const uri =
-    newEndpoint ||
-    (process.browser
-      ? `${window.location.origin}/api/graphql`
-      : process.env.GRAPHQL_ENDPOINT);
-
   const httpLink = createUploadLink({
-    uri,
+    uri: getNormalizeURI(allowEndpointSwitch, endpoint),
     credentials: 'same-origin',
     includeExtensions: true,
   });

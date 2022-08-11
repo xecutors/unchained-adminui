@@ -96,14 +96,56 @@ const normalizeQuery = (
 };
 
 const getEndPoint = (endpoint) => {
+  const defaultEndPoint = 'http://localhost:4010/graphql';
   if (typeof window !== 'undefined') {
     if (endpoint) {
       sessionStorage.setItem('endpoint', endpoint);
       return sessionStorage.getItem('endpoint');
     }
+    if (!sessionStorage.getItem('endpoint')) {
+      sessionStorage.setItem('endpoint', defaultEndPoint);
+      return sessionStorage.getItem('endpoint');
+    }
     return sessionStorage.getItem('endpoint');
   }
   return null;
+};
+
+const isSafariBrowser = (userAgent: string): boolean =>
+  userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
+
+const getConnection = async (url) => {
+  const result = { error: '', connection: null };
+  try {
+    if (typeof window !== 'undefined') {
+      const newUrl = new URL(url);
+      if (
+        isSafariBrowser(window.navigator.userAgent) &&
+        newUrl.protocol === 'http'
+      ) {
+        result.error = 'safari';
+      } else {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              variables: {},
+              query: `{ __typename  }
+    `,
+            }),
+          });
+          result.connection = response;
+        } catch (e) {
+          result.error = e.message;
+          result.connection = { ok: false };
+        }
+      }
+    }
+  } catch (e) {
+    result.error = e.message;
+  }
+  return result;
 };
 
 const getContent = (content) => {
@@ -127,4 +169,5 @@ export {
   normalizeQuery,
   getContent,
   getEndPoint,
+  getConnection as getTestConnection,
 };
