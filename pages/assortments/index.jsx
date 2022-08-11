@@ -19,11 +19,13 @@ import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
 
-  return graph === 'true' ? (
-    <AssortmentGraphView options={rest} />
-  ) : (
+  return (
     <LocaleWrapper>
-      <AssortmentListView options={rest} queryString={queryString} />
+      {graph === 'true' ? (
+        <AssortmentGraphView options={rest} />
+      ) : (
+        <AssortmentListView options={rest} queryString={queryString} />
+      )}
     </LocaleWrapper>
   );
 };
@@ -32,7 +34,6 @@ const AssortmentsView = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { hasRole } = useAuth();
-
   const { query, push } = router;
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;

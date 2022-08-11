@@ -6,6 +6,7 @@ const AssortmentPathsQuery = gql`
     $slugs: [String!]
     $includeInactive: Boolean
     $includeLeaves: Boolean
+    $forceLocale: String
   ) {
     assortments(
       slugs: $slugs
@@ -25,14 +26,15 @@ const useAssortmentPaths = ({
   slugs,
   includeInactive = false,
   includeLeaves = false,
+  forceLocale,
 }) => {
   const { data, loading, error } = useQuery(AssortmentPathsQuery, {
     variables: {
       slugs,
       includeInactive,
       includeLeaves,
+      forceLocale,
     },
-    nextFetchPolicy: 'cache-only',
     returnPartialData: true,
     notifyOnNetworkStatusChange: true,
   });
