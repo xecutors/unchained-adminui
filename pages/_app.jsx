@@ -47,15 +47,13 @@ const handleRouteChange = (apolloClient) => async (url) => {
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
-  const [endpoint, setEndpoint] = useState(
-    getEndPoint('http://localhost:4010/graphql'),
-  );
-  const [connection, setConnection] = useState({ status: true, error: null });
+  const [endpoint, setEndpoint] = useState(getEndPoint());
+  const [connection, setConnection] = useState({});
 
   const handleOnBlur = async (e) => {
-    const testUrl = await getConnection(e.target.value);
-    setConnection({ status: testUrl?.connection?.ok, error: testUrl?.error });
-    if (!testUrl.error) {
+    const result = await getConnection(e.target.value);
+    setConnection({ status: result?.connection?.ok, error: result?.error });
+    if (!result.error) {
       getEndPoint(e.target.value);
       setEndpoint(e.target.value);
     }
@@ -75,6 +73,15 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
     ));
 
   const messages = getMessages(router.locale);
+
+  useEffect(() => {
+    const setConn = async () => {
+      const result = await getConnection(endpoint);
+      setConnection({ status: result?.connection?.ok, error: result?.error });
+    };
+
+    setConn();
+  }, []);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange(apollo));

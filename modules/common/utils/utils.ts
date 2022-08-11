@@ -96,9 +96,14 @@ const normalizeQuery = (
 };
 
 const getEndPoint = (endpoint) => {
+  const defaultEndPoint = 'http://localhost:4010/graphql';
   if (typeof window !== 'undefined') {
     if (endpoint) {
       sessionStorage.setItem('endpoint', endpoint);
+      return sessionStorage.getItem('endpoint');
+    }
+    if (!sessionStorage.getItem('endpoint')) {
+      sessionStorage.setItem('endpoint', defaultEndPoint);
       return sessionStorage.getItem('endpoint');
     }
     return sessionStorage.getItem('endpoint');
