@@ -49,7 +49,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
         />
       </div>
-      <div className="mx-5 mb-5 flex h-5 items-center">
+      <div className="mx-5 mb-5">
         <CheckboxField
           id="isRoot"
           name="isRoot"
@@ -59,7 +59,14 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
             defaultMessage: 'Root node',
           })}
           className="mr-2 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
+          containerClassName="flex items-center"
         />
+        <span className="block text-sm text-slate-400 dark:text-slate-500">
+          {formatMessage({
+            id: 'root_description',
+            defaultMessage: 'This makes the assortment is a top level',
+          })}
+        </span>
       </div>
       <FormErrors />
       <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">

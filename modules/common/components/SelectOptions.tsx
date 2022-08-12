@@ -57,7 +57,7 @@ export default function SelectOptions({
               >
                 <div
                   className={classNames(
-                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`,
+                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-md border border-transparent py-[0.3rem] pl-2 pr-2 text-white shadow-sm lg:py-2 lg:pl-3 lg:pr-4`,
                     isHover && `bg-${select?.bgColor}-600`,
                   )}
                 >
@@ -71,10 +71,12 @@ export default function SelectOptions({
                 </div>
                 <Listbox.Button
                   className={classNames(
-                    `relative inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-none focus:z-10 focus:outline-none `,
+                    `inline-flex items-center bg-${select?.bgColor}-500 hover:cursor-pointer rounded-l-none rounded-r-md border-none  text-sm font-medium text-white outline-none focus:z-10 focus:outline-none `,
                     isHover && `bg-${select?.bgColor}-600`,
                   )}
                 >
+                  {/* the button effect on whole rather than only on icon */}
+                  <span className="absolute inset-0" />
                   <span className="sr-only">
                     {formatMessage(
                       {
@@ -107,7 +109,7 @@ export default function SelectOptions({
                     key={option.title}
                     className={() =>
                       classNames(
-                        'hover:bg-indigo-500 hover:text-white',
+                        'group hover:bg-indigo-500 hover:text-white',
                         option?.disable && 'cursor-not-allowed',
                         option.id === select.id
                           ? `text-white bg-${option.bgColor}-500`
@@ -151,7 +153,7 @@ export default function SelectOptions({
                           'mt-2',
                           option.id === select.id
                             ? 'text-green-100'
-                            : 'text-gray-500',
+                            : 'text-slate-500 group-hover:text-white',
                           '',
                         )}
                       >

@@ -77,7 +77,7 @@ const FilterOptionsListItem = ({
                     })}
                   />
                 ) : (
-                  option?.texts.title
+                  option?.texts?.title
                 )}
               </div>
               <div className="truncate text-sm text-slate-500 dark:text-slate-200">
@@ -91,7 +91,7 @@ const FilterOptionsListItem = ({
                     })}
                   />
                 ) : (
-                  option?.texts.subtitle && option?.texts.subtitle
+                  option?.texts?.subtitle && option?.texts?.subtitle
                 )}
               </div>
             </div>

@@ -136,7 +136,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     defaultMessage: 'Profile',
                   })}
                 </h3>
-                <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
+                <p className="-my-5 divide-y divide-slate-200 text-slate-600 dark:divide-slate-700 dark:text-slate-400 mr-4">
                   {formatMessage({
                     id: 'profile_notice',
                     defaultMessage:
@@ -369,7 +369,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                     defaultMessage: 'Address',
                   })}
                 </h3>
-                <p className="-my-5 divide-y divide-slate-200 dark:divide-slate-700 mr-2 dark:text-slate-400 mr-4">
+                <p className="-my-5 divide-y divide-slate-200 text-slate-600 dark:divide-slate-700 dark:text-slate-400 mr-4">
                   {formatMessage({
                     id: 'address_notice',
                     defaultMessage:
