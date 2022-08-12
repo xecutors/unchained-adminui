@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { normalizeQuery } from '../utils/utils';
+import { getBoolean, normalizeQuery } from '../utils/utils';
 
 const Toggle = ({
   toggleText = '',
@@ -12,7 +12,7 @@ const Toggle = ({
 }) => {
   const router = useRouter();
 
-  const toggleState = router?.query?.[toggleKey] === 'true' || active;
+  const toggleState = getBoolean(router?.query?.[toggleKey]) ?? active;
 
   const toggle = () => {
     router.push({
