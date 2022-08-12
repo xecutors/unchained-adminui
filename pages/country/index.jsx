@@ -19,7 +19,11 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  getBoolean,
+  getSortKeys,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const Country = () => {
   const { formatMessage } = useIntl();

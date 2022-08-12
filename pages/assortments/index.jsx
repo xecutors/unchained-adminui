@@ -13,7 +13,7 @@ import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
-import { normalizeQuery } from '../../modules/common/utils/utils';
+import { getBoolean, normalizeQuery } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const GetCurrentView = ({ options, queryString }) => {

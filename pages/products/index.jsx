@@ -11,7 +11,11 @@ import ProductList from '../../modules/product/components/ProductList';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  getBoolean,
+  getSortKeys,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const Products = () => {
