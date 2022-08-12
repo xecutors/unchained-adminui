@@ -63,7 +63,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
               <TagInputField
                 name="tags"
                 id="tags"
-                className="mt-1 w-full py-2 text-sm font-medium sm:ml-1"
+                className="mt-1 w-full text-sm font-medium"
               />
 
               <FilterableDropdown
