@@ -10,27 +10,40 @@ const runtimeCaching = require('next-pwa/cache');
 
 const enLang = require('./i18n/en.json');
 
-const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
-const supportedLanguages = translatedFiles
-  .split(',')
-  .map((lang) => lang.split('.')[0]);
-
-const translatedLanguages = supportedLanguages.map((lang) => {
-  const translatedFile = require(`./${lang}.json`);
-
-  if (translatedFile) {
-    if (
-      Object.keys(translatedFile).every((key) =>
-        Object.keys(enLang).includes(key),
-      )
-    ) {
-      return { lang, data: translatedFile };
-    }
-    throw Error('key is not available');
-  } else {
-    throw Error(`${lang} json file is not provided`);
+const normalizePath = (paths) => {
+  if (paths) {
+    return paths?.split(',')?.map((file) => {
+      const path = file?.substr(0, file?.lastIndexOf('/') + 1);
+      const lang = file?.substr(file?.lastIndexOf('/') + 1)?.split('.')[0];
+      const ext = file?.substr(file?.lastIndexOf('/') + 1)?.split('.')[1];
+      return { path, lang, ext };
+    });
   }
-});
+  return [];
+};
+
+const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
+const supportedLanguages = normalizePath(translatedFiles);
+
+const translatedLanguages =
+  (supportedLanguages?.length &&
+    supportedLanguages?.map(({ path, lang, ext }) => {
+      const translatedFile = require(`./${path}${lang}.${ext}`);
+
+      if (translatedFile) {
+        if (
+          Object.keys(translatedFile).every((key) =>
+            Object.keys(enLang).includes(key),
+          )
+        ) {
+          return { lang, data: translatedFile };
+        }
+        throw Error('key is not available');
+      } else {
+        throw Error(`${lang} json file is not provided`);
+      }
+    })) ||
+  [];
 
 const { UNCHAINED_META_CONFIG_FILE } = process.env;
 let metaConfig = null;
@@ -52,7 +65,9 @@ module.exports = withPWA({
     ignoreBuildErrors: false,
   },
   i18n: {
-    locales: supportedLanguages ? ['en', ...supportedLanguages] : ['en'],
+    locales: supportedLanguages?.length
+      ? ['en', ...supportedLanguages.map((lang) => lang?.lang)]
+      : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
   },
@@ -66,8 +81,8 @@ module.exports = withPWA({
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
     allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
-    supportedLanguages: translatedLanguages.reduce(
-      (acc, curr) => ({ ...acc, [curr.lang]: curr.data }),
+    supportedLanguages: translatedLanguages?.reduce(
+      (prev, next) => ({ ...prev, [next?.lang]: next.data }),
       {},
     ),
   },
