@@ -22,7 +22,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
     successMessage,
     enableReinitialize: true,
     initialValues: {
-      isRoot: false,
+      isRoot: true,
       title: '',
       tags: [],
     },

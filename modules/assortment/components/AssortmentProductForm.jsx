@@ -35,7 +35,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
 
   const { products, loading } = useProducts({
     queryString,
-    includeDrafts: false,
+    includeDrafts: true,
     limit: 50,
     sort: [{ key: 'created', value: 'DESC' }],
   });
