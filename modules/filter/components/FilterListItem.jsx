@@ -61,8 +61,9 @@ const FilterListItem = ({ filter, onRemove }) => {
       <Table.Cell>{filter.options?.length}</Table.Cell>
       {hasRole(ACTION_ROLES.filters.delete) && (
         <Table.Cell>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center md:justify-center">
             <DeleteButton
+              className="px-0"
               onClick={async () => {
                 await onRemove(filter?._id);
               }}

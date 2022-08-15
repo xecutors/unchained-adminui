@@ -30,6 +30,7 @@ import UserAvatar from './UserAvatar';
 import getLogo from '../utils/getLogo';
 import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
+import useOutsideClick from '../hooks/useOutsideClick';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -214,6 +215,12 @@ const Layout = ({
     router.push('/log-in');
   };
 
+  const handleClickOutside = () => {
+    setHideNav(true);
+  };
+
+  const ref = useOutsideClick(handleClickOutside);
+
   return (
     <div>
       <div
@@ -281,6 +288,7 @@ const Layout = ({
               </Link>
             </div>
             <SideNav
+              ref={ref}
               navigation={defaultNavigation}
               onClick={() => setHideNav(!hideNav)}
             />
@@ -326,6 +334,7 @@ const Layout = ({
         <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-500  pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
           <button
             type="button"
+            ref={ref}
             onClick={() => setHideNav(!hideNav)}
             className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-slate-500 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-400 dark:text-slate-200"
           >

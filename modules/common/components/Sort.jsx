@@ -54,6 +54,7 @@ const Sort = ({ sortFields, className }) => {
 
   return (
     <div className={classNames('ml-4 mt-2 w-max relative', className)}>
+      <div className="inset-0" />
       <button
         type="button"
         onClick={() => {
@@ -77,7 +78,7 @@ const Sort = ({ sortFields, className }) => {
       </button>
 
       {show && (
-        <div className="z-50 absolute top-full left-1/4 transition-all w-56">
+        <div className="z-50 absolute top-full right-0 lg:left-0 transition-all w-56">
           <div className="border-2 p-5 flex flex-col bg-white dark:bg-slate-800 mt-2 rounded-md drop-shadow-md relative">
             <button
               type="button"
