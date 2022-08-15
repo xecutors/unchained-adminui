@@ -35,7 +35,7 @@ const useFilters = ({
   queryString = '',
   limit = 20,
   offset = 0,
-  includeInactive = false,
+  includeInactive = true,
   sort = [],
   forceLocale = '',
 } = {}) => {

@@ -28,7 +28,7 @@ const useCountries = ({
   queryString = '',
   limit = 20,
   offset = 0,
-  includeInactive = false,
+  includeInactive = true,
   sort = [],
 } = {}) => {
   const { data, loading, error }: any = useQuery(CountriesQuery, {
