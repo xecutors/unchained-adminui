@@ -20,7 +20,8 @@ const Products = () => {
   const { query, push } = useRouter();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
-  const includeDrafts = query?.includeDrafts === 'true';
+  const includeDrafts =
+    query?.includeDrafts === 'true' || !query?.includeDrafts;
   const tags = query.tags?.split(',') || undefined;
   const sort = query.sort || '';
   const { hasRole } = useAuth();
@@ -87,6 +88,7 @@ const Products = () => {
               defaultMessage: 'Include drafts',
             })}
             toggleKey="includeDrafts"
+            active={includeDrafts}
           />
         </ListHeader>
 

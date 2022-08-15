@@ -23,7 +23,8 @@ const FiltersListView = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const sort = query?.sort || '';
   const { hasRole } = useAuth();
-  const includeInactive = query?.includeInactive === 'true';
+  const includeInactive =
+    query?.includeInactive === 'true' || !query?.includeInactive;
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
@@ -110,6 +111,7 @@ const FiltersListView = () => {
               defaultMessage: 'Include inactive',
             })}
             toggleKey="includeInactive"
+            active={includeInactive}
           />
         </ListHeader>
 

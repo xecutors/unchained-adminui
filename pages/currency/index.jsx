@@ -25,7 +25,8 @@ const Currencies = () => {
   const { hasRole } = useAuth();
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
-  const includeInactive = query?.includeInactive === 'true';
+  const includeInactive =
+    query?.includeInactive === 'true' || !query?.includeInactive;
   const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
@@ -113,6 +114,7 @@ const Currencies = () => {
               defaultMessage: 'Show Inactive',
             })}
             toggleKey="includeInactive"
+            active={includeInactive}
           />
         </ListHeader>
 

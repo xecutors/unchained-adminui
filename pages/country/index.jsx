@@ -27,7 +27,8 @@ const Country = () => {
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
   const sort = query?.sort || '';
-  const includeInactive = query?.includeInactive === 'true';
+  const includeInactive =
+    query?.includeInactive === 'true' || !query?.includeInactive;
   const { hasRole } = useAuth();
 
   const { queryString, ...restQuery } = query;
@@ -117,6 +118,7 @@ const Country = () => {
               defaultMessage: 'Show Inactive',
             })}
             toggleKey="includeInactive"
+            active={includeInactive}
           />
         </ListHeader>
         {loading ? (

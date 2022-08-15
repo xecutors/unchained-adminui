@@ -37,7 +37,8 @@ const AssortmentsView = () => {
   const { query, push } = router;
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
   const offset = parseInt(query?.skip, 10) || 0;
-  const includeInactive = query?.includeInactive === 'true';
+  const includeInactive =
+    query?.includeInactive === 'true' || !query?.includeInactive;
   const includeLeaves = query?.includeLeaves === 'true';
   const tags = query?.tags?.split(',') || undefined;
   const graph = query?.viewGraph || false;
@@ -120,6 +121,7 @@ const AssortmentsView = () => {
                 id: 'include_inactive',
                 defaultMessage: 'Include inactive',
               })}
+              active={includeInactive}
             />
             <Toggle
               toggleKey="includeLeaves"
