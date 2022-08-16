@@ -86,9 +86,6 @@ const getApolloClient = ({
         fetchPolicy: 'cache-and-network',
         errorPolicy: 'ignore',
       },
-      mutate: {
-        refetchQueries: 'all',
-      },
     },
     ssrMode: typeof window === 'undefined',
     link: ApolloLink.from([middlewareLink, errorLink, httpLink]),

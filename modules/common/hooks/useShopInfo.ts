@@ -29,7 +29,9 @@ export const ShopInfoQuery = gql`
 `;
 
 const useShopInfo = () => {
-  const { data, loading, error } = useQuery(ShopInfoQuery);
+  const { data, loading, error } = useQuery(ShopInfoQuery, {
+    fetchPolicy: 'cache-first',
+  });
   return {
     shopInfo: data?.shopInfo,
     loading,
