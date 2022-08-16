@@ -3,32 +3,31 @@
 /* eslint-disable camelcase */
 require('./node_env');
 const fs = require('fs');
-
+const path = require('path');
 const withPWA = require('next-pwa');
-
 const runtimeCaching = require('next-pwa/cache');
 
-const enLang = require('./i18n/en.json');
-
-const normalizePath = (paths) => {
+const normalizePaths = (paths) => {
   if (paths) {
-    return paths?.split(',')?.map((file) => {
-      const path = file?.substr(0, file?.lastIndexOf('/') + 1);
-      const lang = file?.substr(file?.lastIndexOf('/') + 1)?.split('.')[0];
-      const ext = file?.substr(file?.lastIndexOf('/') + 1)?.split('.')[1];
-      return { path, lang, ext };
+    return paths.split(',').map((file) => {
+      if (path.extname(file) !== '.json') {
+        throw new Error(`${file}: extension should be json`);
+      }
+      return path.resolve(file);
     });
   }
   return [];
 };
 
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
-const supportedLanguages = normalizePath(translatedFiles);
+const supportedLanguages = normalizePaths(translatedFiles);
 
-const translatedLanguages =
-  (supportedLanguages?.length &&
-    supportedLanguages?.map(({ path, lang, ext }) => {
-      const translatedFile = require(`./${path}${lang}.${ext}`);
+const translatedLanguages = supportedLanguages?.length
+  ? supportedLanguages?.map((file) => {
+      const lang = path.basename(file, '.json');
+      const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
+
+      const enLang = JSON.parse(fs.readFileSync('./i18n/en.json', 'utf-8'));
 
       if (translatedFile) {
         if (
@@ -42,8 +41,8 @@ const translatedLanguages =
       } else {
         throw Error(`${lang} json file is not provided`);
       }
-    })) ||
-  [];
+    })
+  : [];
 
 const { UNCHAINED_META_CONFIG_FILE } = process.env;
 let metaConfig = null;
@@ -53,6 +52,10 @@ if (
 ) {
   metaConfig = require(UNCHAINED_META_CONFIG_FILE);
 }
+
+const languages = supportedLanguages.map((file) =>
+  path.basename(file, '.json'),
+);
 
 module.exports = withPWA({
   pwa: {
@@ -65,9 +68,7 @@ module.exports = withPWA({
     ignoreBuildErrors: false,
   },
   i18n: {
-    locales: supportedLanguages?.length
-      ? ['en', ...supportedLanguages.map((lang) => lang?.lang)]
-      : ['en'],
+    locales: supportedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
   },
