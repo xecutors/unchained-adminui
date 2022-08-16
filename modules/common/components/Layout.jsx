@@ -288,7 +288,6 @@ const Layout = ({
               </Link>
             </div>
             <SideNav
-              ref={ref}
               navigation={defaultNavigation}
               onClick={() => setHideNav(!hideNav)}
             />
