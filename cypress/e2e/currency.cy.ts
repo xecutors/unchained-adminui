@@ -47,7 +47,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: '',
@@ -75,7 +75,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: true,
+          includeInactive: false,
           limit: 50,
           offset: 0,
           queryString: '',
@@ -87,14 +87,14 @@ describe('Currencies', () => {
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
       });
     });
     cy.get('button[role="switch"]').click();
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'false',
+        includeInactive: 'true',
       });
     });
   });
@@ -107,7 +107,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: 'search',
@@ -128,7 +128,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: 'search input',
@@ -158,7 +158,7 @@ describe('Currencies', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: true,
+          includeInactive: false,
           limit: 50,
           offset: 0,
           queryString: 'search',
@@ -172,7 +172,7 @@ describe('Currencies', () => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         queryString: 'search',
-        includeInactive: 'true',
+        includeInactive: 'false',
       });
     });
   });

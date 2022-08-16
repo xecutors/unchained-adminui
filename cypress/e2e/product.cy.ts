@@ -264,7 +264,7 @@ describe('Product', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             ...ProductFilterRequest,
-            includeDrafts: true,
+            includeDrafts: false,
           });
           expect(response.body).to.deep.eq(ProductListResponse);
         },
@@ -273,7 +273,7 @@ describe('Product', () => {
       cy.location().should((loc) => {
         expect(loc.pathname).to.eq('/products');
         expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-          includeDrafts: 'true',
+          includeDrafts: 'false',
         });
       });
       cy.get('button#includeDrafts')
@@ -282,7 +282,7 @@ describe('Product', () => {
       cy.location().should((loc) => {
         expect(loc.pathname).to.eq('/products');
         expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-          includeDrafts: 'false',
+          includeDrafts: 'true',
         });
       });
     });
@@ -489,9 +489,12 @@ describe('Product', () => {
         ({ texts: { slug } }) => slug === DRAFT_PRODUCT_SLUG,
       );
       cy.get(`a[href="/products/${DRAFT_PRODUCT_SLUG}"]`).first().click();
-      cy.get('.relative.inline-flex.items-center.bg-slate-500').click({
-        multiple: true,
+      cy.get('div#draft').within(() => {
+        cy.get('button[type="button"]').click({
+          multiple: true,
+        });
       });
+
       cy.get('li[role="option"]').contains(localizations.en.publish).click();
       cy.wait(fullAliasMutationName(ProductOperations.PublishProduct)).then(
         (currentSubject) => {

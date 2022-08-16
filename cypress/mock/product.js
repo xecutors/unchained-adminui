@@ -360,7 +360,7 @@ export const ProductFilterRequest = {
   queryString: '',
   limit: 50,
   offset: 0,
-  includeDrafts: false,
+  includeDrafts: true,
   tags: null,
   slugs: null,
   sort: [

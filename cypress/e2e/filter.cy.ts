@@ -95,7 +95,7 @@ describe('Filter', () => {
           queryString: '',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [],
         });
@@ -115,14 +115,14 @@ describe('Filter', () => {
       cy.location().then((current) => {
         expect(current.pathname).to.eq('/filters');
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-          includeInactive: 'true',
+          includeInactive: 'false',
         });
       });
 
       cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
         (currentSubject) => {
           const { request } = currentSubject;
-          expect(request.body.variables.includeInactive).to.eq(true);
+          expect(request.body.variables.includeInactive).to.eq(false);
         },
       );
 
@@ -130,7 +130,7 @@ describe('Filter', () => {
       cy.location().then((current) => {
         expect(current.pathname).to.eq('/filters');
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-          includeInactive: 'false',
+          includeInactive: 'true',
         });
       });
     });
@@ -145,7 +145,7 @@ describe('Filter', () => {
             queryString: 'search',
             limit: 50,
             offset: 0,
-            includeInactive: false,
+            includeInactive: true,
             forceLocale: 'en',
             sort: [],
           });
@@ -167,7 +167,7 @@ describe('Filter', () => {
             queryString: 'search input',
             limit: 50,
             offset: 0,
-            includeInactive: false,
+            includeInactive: true,
             forceLocale: 'en',
             sort: [],
           });
@@ -211,7 +211,7 @@ describe('Filter', () => {
             queryString: '',
             limit: 50,
             offset: 0,
-            includeInactive: false,
+            includeInactive: true,
             forceLocale: deLocale.isoCode,
             sort: [],
           });
@@ -387,8 +387,10 @@ describe('Filter', () => {
     });
 
     it('Should [DEACTIVATE FILTER] successfully', () => {
-      cy.get('.relative.inline-flex.items-center').click({
-        multiple: true,
+      cy.get('div#activate').within(() => {
+        cy.get('button[type="button"]').click({
+          multiple: true,
+        });
       });
 
       cy.get('li[role="option"]').contains(localizations.en.deactivate).click();
@@ -407,8 +409,10 @@ describe('Filter', () => {
     });
 
     it('Should [ACTIVATE FILTER] successfully', () => {
-      cy.get('.relative.inline-flex.items-center').click({
-        multiple: true,
+      cy.get('div#deactivate').within(() => {
+        cy.get('button[type="button"]').click({
+          multiple: true,
+        });
       });
 
       cy.get('li[role="option"]').contains(localizations.en.activate).click();
