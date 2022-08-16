@@ -83,12 +83,12 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const messages = getMessages(router.locale);
 
   useEffect(() => {
-    const setConn = async () => {
+    const updateEndpoint = async () => {
       const result = await getConnection(endpoint);
       setConnection({ status: result?.connection?.ok, error: result?.error });
     };
 
-    setConn();
+    updateEndpoint();
   }, []);
 
   useEffect(() => {

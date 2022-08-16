@@ -20,9 +20,9 @@ const normalizePaths = (paths) => {
 };
 
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
-const supportedLanguages = normalizePaths(translatedFiles);
+const extendedLanguages = normalizePaths(translatedFiles);
 
-const translatedLanguages = supportedLanguages?.map((file) => {
+const translatedLanguages = extendedLanguages?.map((file) => {
   const lang = path.basename(file, '.json');
   const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
 
@@ -51,9 +51,7 @@ if (
   metaConfig = require(UNCHAINED_META_CONFIG_FILE);
 }
 
-const languages = supportedLanguages.map((file) =>
-  path.basename(file, '.json'),
-);
+const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
 
 module.exports = withPWA({
   pwa: {
@@ -66,7 +64,7 @@ module.exports = withPWA({
     ignoreBuildErrors: false,
   },
   i18n: {
-    locales: supportedLanguages?.length ? ['en', ...languages] : ['en'],
+    locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
   },
@@ -80,7 +78,7 @@ module.exports = withPWA({
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
     allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
-    supportedLanguages: translatedLanguages?.reduce(
+    extendedLanguages: translatedLanguages?.reduce(
       (prev, next) => ({ ...prev, [next?.lang]: next.data }),
       {},
     ),

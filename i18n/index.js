@@ -1,13 +1,7 @@
-import getConfig from 'next/config';
 import en from './en.json';
 
-const {
-  publicRuntimeConfig: { supportedLanguages },
-} = getConfig();
-
-const localizations = {
+const defaultTranslations = {
   en,
-  ...supportedLanguages,
 };
 
-export default localizations;
+export default defaultTranslations;

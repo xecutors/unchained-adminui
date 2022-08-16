@@ -79,7 +79,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          includeInactive: true,
+          includeInactive: false,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -88,7 +88,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
       });
     });
     cy.get('button#includeInactive')
@@ -97,7 +97,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'false',
+        includeInactive: 'true',
       });
     });
   });
@@ -145,7 +145,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           slugs: null,
-          includeInactive: false,
+          includeInactive: true,
           includeLeaves: false,
           forceLocale: 'en',
         });
@@ -176,7 +176,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           slugs: null,
-          includeInactive: false,
+          includeInactive: true,
           includeLeaves: false,
           forceLocale: 'en',
         });
@@ -208,7 +208,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           slugs: null,
-          includeInactive: false,
+          includeInactive: true,
           includeLeaves: false,
           forceLocale: 'en',
         });
@@ -231,7 +231,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           slugs: null,
-          includeInactive: true,
+          includeInactive: false,
           includeLeaves: false,
           forceLocale: 'en',
         });
@@ -242,7 +242,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
         viewGraph: 'true',
       });
     });
@@ -252,7 +252,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'false',
+        includeInactive: 'true',
         viewGraph: 'true',
       });
     });
@@ -406,7 +406,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          includeInactive: true,
+          includeInactive: false,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -415,7 +415,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
       });
     });
 
@@ -429,7 +429,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          includeInactive: true,
+          includeInactive: false,
           includeLeaves: true,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -439,7 +439,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
         includeLeaves: 'true',
       });
     });
@@ -453,7 +453,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          includeInactive: true,
+          includeInactive: false,
           includeLeaves: true,
           tags: ['new'],
         });
@@ -464,7 +464,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
         includeLeaves: 'true',
         tags: 'new',
       });
@@ -478,7 +478,7 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          includeInactive: true,
+          includeInactive: false,
           includeLeaves: true,
           tags: ['new'],
           queryString: 'search',
@@ -490,7 +490,7 @@ describe('Assortment', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/assortments');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
         includeLeaves: 'true',
         tags: 'new',
         queryString: 'search',

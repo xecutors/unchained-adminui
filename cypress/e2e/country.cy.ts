@@ -52,7 +52,7 @@ describe('Countries', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: '',
@@ -77,7 +77,7 @@ describe('Countries', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: true,
+          includeInactive: false,
           limit: 50,
           offset: 0,
           queryString: '',
@@ -89,7 +89,7 @@ describe('Countries', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
       });
     });
     cy.get('button[role="switch"]').click();
@@ -97,7 +97,7 @@ describe('Countries', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'false',
+        includeInactive: 'true',
       });
     });
   });
@@ -110,7 +110,7 @@ describe('Countries', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: 'search',
@@ -132,7 +132,7 @@ describe('Countries', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: false,
+          includeInactive: true,
           limit: 50,
           offset: 0,
           queryString: 'search input',
@@ -160,7 +160,7 @@ describe('Countries', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          includeInactive: true,
+          includeInactive: false,
           limit: 50,
           offset: 0,
           queryString: 'search',
@@ -173,7 +173,7 @@ describe('Countries', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/country');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeInactive: 'true',
+        includeInactive: 'false',
         queryString: 'search',
       });
     });

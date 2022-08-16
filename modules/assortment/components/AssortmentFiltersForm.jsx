@@ -66,7 +66,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
                 name="tags"
                 id="tags"
                 label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
-                className="mt-1 w-full py-2 text-sm font-medium text-slate-500 sm:ml-1"
+                className="mt-1 w-full text-sm font-medium text-slate-500"
               />
               <FilterableDropdown
                 name="filterId"

@@ -1008,7 +1008,7 @@ export const RemoveAssortmentFilterResponse = {
 
 export const assortmentRequestVariables = {
   forceLocale: 'en',
-  includeInactive: false,
+  includeInactive: true,
   includeLeaves: false,
   limit: 50,
   offset: 0,
