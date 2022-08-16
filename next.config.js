@@ -3,10 +3,44 @@
 /* eslint-disable camelcase */
 require('./node_env');
 const fs = require('fs');
-
+const path = require('path');
 const withPWA = require('next-pwa');
-
 const runtimeCaching = require('next-pwa/cache');
+
+const normalizePaths = (paths) => {
+  if (paths) {
+    return paths.split(',').map((file) => {
+      if (path.extname(file) !== '.json') {
+        throw new Error(`${file}: extension should be json`);
+      }
+      return path.resolve(file);
+    });
+  }
+  return [];
+};
+
+const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
+const supportedLanguages = normalizePaths(translatedFiles);
+
+const translatedLanguages = supportedLanguages?.map((file) => {
+  const lang = path.basename(file, '.json');
+  const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
+
+  const enLang = JSON.parse(fs.readFileSync('./i18n/en.json', 'utf-8'));
+
+  if (translatedFile) {
+    if (
+      Object.keys(translatedFile).every((key) =>
+        Object.keys(enLang).includes(key),
+      )
+    ) {
+      return { lang, data: translatedFile };
+    }
+    throw Error('key is not available');
+  } else {
+    throw Error(`${lang} json file is not provided`);
+  }
+});
 
 const { UNCHAINED_META_CONFIG_FILE } = process.env;
 let metaConfig = null;
@@ -16,6 +50,10 @@ if (
 ) {
   metaConfig = require(UNCHAINED_META_CONFIG_FILE);
 }
+
+const languages = supportedLanguages.map((file) =>
+  path.basename(file, '.json'),
+);
 
 module.exports = withPWA({
   pwa: {
@@ -28,7 +66,7 @@ module.exports = withPWA({
     ignoreBuildErrors: false,
   },
   i18n: {
-    locales: ['en'],
+    locales: supportedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
   },
@@ -42,5 +80,9 @@ module.exports = withPWA({
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
     allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
+    supportedLanguages: translatedLanguages?.reduce(
+      (prev, next) => ({ ...prev, [next?.lang]: next.data }),
+      {},
+    ),
   },
 });
