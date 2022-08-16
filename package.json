@@ -23,7 +23,7 @@
     "Mikael Araya Mengistu <mikael@unchained.shop> (http://www.unchained.shop)"
   ],
   "dependencies": {
-    "@apollo/client": "^3.5.6",
+    "@apollo/client": "^3.6.9",
     "@formatjs/intl-pluralrules": "^4.3.0",
     "@formatjs/intl-relativetimeformat": "^9.5.0",
     "@graphql-tools/links": "^8.2.1",
