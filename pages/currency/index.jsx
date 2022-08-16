@@ -17,11 +17,7 @@ import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import {
-  getBoolean,
-  getSortKeys,
-  normalizeQuery,
-} from '../../modules/common/utils/utils';
+import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();

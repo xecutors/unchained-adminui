@@ -148,13 +148,6 @@ const getConnection = async (url) => {
   return result;
 };
 
-const getBoolean = (value) => {
-  if (value) {
-    return value === 'true';
-  }
-  return undefined;
-};
-
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;
@@ -177,5 +170,4 @@ export {
   getContent,
   getEndPoint,
   getConnection as getTestConnection,
-  getBoolean,
 };
