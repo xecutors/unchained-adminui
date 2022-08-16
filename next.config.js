@@ -22,27 +22,25 @@ const normalizePaths = (paths) => {
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
 const supportedLanguages = normalizePaths(translatedFiles);
 
-const translatedLanguages = supportedLanguages?.length
-  ? supportedLanguages?.map((file) => {
-      const lang = path.basename(file, '.json');
-      const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
+const translatedLanguages = supportedLanguages?.map((file) => {
+  const lang = path.basename(file, '.json');
+  const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
 
-      const enLang = JSON.parse(fs.readFileSync('./i18n/en.json', 'utf-8'));
+  const enLang = JSON.parse(fs.readFileSync('./i18n/en.json', 'utf-8'));
 
-      if (translatedFile) {
-        if (
-          Object.keys(translatedFile).every((key) =>
-            Object.keys(enLang).includes(key),
-          )
-        ) {
-          return { lang, data: translatedFile };
-        }
-        throw Error('key is not available');
-      } else {
-        throw Error(`${lang} json file is not provided`);
-      }
-    })
-  : [];
+  if (translatedFile) {
+    if (
+      Object.keys(translatedFile).every((key) =>
+        Object.keys(enLang).includes(key),
+      )
+    ) {
+      return { lang, data: translatedFile };
+    }
+    throw Error('key is not available');
+  } else {
+    throw Error(`${lang} json file is not provided`);
+  }
+});
 
 const { UNCHAINED_META_CONFIG_FILE } = process.env;
 let metaConfig = null;
