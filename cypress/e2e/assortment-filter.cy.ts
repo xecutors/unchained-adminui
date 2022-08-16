@@ -124,7 +124,7 @@ describe('Assortment Detail Filters', () => {
           queryString: '',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [
             {
@@ -185,7 +185,7 @@ describe('Assortment Detail Filters', () => {
           queryString: '',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [
             {
@@ -206,7 +206,7 @@ describe('Assortment Detail Filters', () => {
           queryString: 'color',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [
             {
@@ -232,7 +232,7 @@ describe('Assortment Detail Filters', () => {
           queryString: '',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [
             {
@@ -257,7 +257,7 @@ describe('Assortment Detail Filters', () => {
           queryString: 't',
           limit: 50,
           offset: 0,
-          includeInactive: false,
+          includeInactive: true,
           forceLocale: 'en',
           sort: [
             {

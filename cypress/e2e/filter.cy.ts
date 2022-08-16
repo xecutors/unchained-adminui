@@ -409,7 +409,7 @@ describe('Filter', () => {
     });
 
     it('Should [ACTIVATE FILTER] successfully', () => {
-      cy.get('div#deactivate').within(() => {
+      cy.get('div#activate').within(() => {
         cy.get('button[type="button"]').click({
           multiple: true,
         });
