@@ -55,23 +55,21 @@ const WorkDetailPage = () => {
   };
 
   return (
-    <>
-      <div className="mt-6 max-w-full">
-        <BreadCrumbs />
-        <div className="align-center flex min-w-full justify-between">
-          <PageHeader
-            headerText={formatMessage({
-              id: 'work_detail',
-              defaultMessage: 'Work Detail',
-            })}
-          />
-          {work && isDeletable(work?.status) ? (
-            <HeaderDeleteButton onClick={handleOnClick} />
-          ) : null}
-        </div>
-        {loading ? <Loading /> : <WorkDetail work={work} />}
+    <div className="mt-6 max-w-full">
+      <BreadCrumbs />
+      <div className="align-center flex min-w-full justify-between">
+        <PageHeader
+          headerText={formatMessage({
+            id: 'work_detail',
+            defaultMessage: 'Work Detail',
+          })}
+        />
+        {work && isDeletable(work?.status) ? (
+          <HeaderDeleteButton onClick={handleOnClick} />
+        ) : null}
       </div>
-    </>
+      {loading ? <Loading /> : <WorkDetail work={work} />}
+    </div>
   );
 };
 

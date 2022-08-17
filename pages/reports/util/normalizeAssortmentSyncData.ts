@@ -1,4 +1,4 @@
-const normalize = (assortment = [], isActive) =>
+const normalize = (assortment = [], isActive = false) =>
   assortment.map(
     ({ _id, created, slug, title, updated, authorId, locale }) => ({
       _id,
