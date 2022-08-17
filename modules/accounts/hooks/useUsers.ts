@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import UserFragment from '../fragment/UserFragment';
 
 export const UsersQuery = gql`
-  query users(
+  query Users(
     $limit: Int
     $offset: Int
     $includeGuests: Boolean
