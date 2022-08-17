@@ -42,7 +42,7 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       </label>
 
       <div className={classNames(`row ${choiceContainerClassName}`, className)}>
-        {Object.entries(field.options).map(([value, display]) => (
+        {Object.entries(field.options).map(([value, display]: any) => (
           <div
             className={classNames(`mb-3 ${choiceClassName}`, className)}
             key={value}

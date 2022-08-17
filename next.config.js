@@ -52,36 +52,40 @@ if (
 }
 
 const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
+const withTM = require('next-transpile-modules')(['recharts']);
 
-module.exports = withPWA({
-  swcMinify: true,
-  pwa: {
-    dest: 'public',
-    skipWaiting: false,
-    runtimeCaching,
-    disable: process.env.NODE_ENV === 'development',
-  },
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  i18n: {
-    locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
-    defaultLocale: 'en',
-    localeDetection: false,
-  },
+module.exports = withTM(
+  withPWA({
+    swcMinify: true,
+    experimental: { esmExternals: 'loose' },
+    pwa: {
+      dest: 'public',
+      skipWaiting: false,
+      runtimeCaching,
+      disable: process.env.NODE_ENV === 'development',
+    },
+    typescript: {
+      ignoreBuildErrors: false,
+    },
+    i18n: {
+      locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
+      defaultLocale: 'en',
+      localeDetection: false,
+    },
 
-  publicRuntimeConfig: {
-    metaConfig,
-    showCustomReports: parseInt(
-      process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
-      10,
-    ),
-    manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
-    logo: process.env.NEXT_PUBLIC_LOGO,
-    allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
-    extendedLanguages: translatedLanguages?.reduce(
-      (prev, next) => ({ ...prev, [next?.lang]: next.data }),
-      {},
-    ),
-  },
-});
+    publicRuntimeConfig: {
+      metaConfig,
+      showCustomReports: parseInt(
+        process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
+        10,
+      ),
+      manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
+      logo: process.env.NEXT_PUBLIC_LOGO,
+      allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
+      extendedLanguages: translatedLanguages?.reduce(
+        (prev, next) => ({ ...prev, [next?.lang]: next.data }),
+        {},
+      ),
+    },
+  }),
+);
