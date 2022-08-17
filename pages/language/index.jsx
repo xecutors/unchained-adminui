@@ -13,7 +13,7 @@ import Pagination from '../../modules/common/components/Pagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
-import ACTION_ROLES from '../../modules/common/data/roles';
+import ACTIONROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
@@ -107,7 +107,7 @@ const Languages = () => {
 
       <div className="min-w-full overflow-x-auto">
         <ListHeader
-          addPath={hasRole(ACTION_ROLES.languages.create) && '/language/new'}
+          addPath={hasRole(ACTIONROLES.languages.create) && '/language/new'}
           sortFields={sortFields}
         >
           <Toggle

@@ -15,26 +15,28 @@ const NotAuthorized = () => {
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
-          <a href="/" className="inline-flex">
-            <span className="sr-only">
-              {formatMessage({
-                id: 'unchained',
-                defaultMessage: 'Unchained Admin UI',
-              })}{' '}
-            </span>
-            <Image
-              src={logo}
-              loader={defaultNextImageLoader}
-              width={200}
-              placeholder="blur"
-              blurDataURL="/placeholder.png"
-              height={100}
-              alt={formatMessage({
-                id: 'unchained_logo',
-                defaultMessage: 'Unchained Logo',
-              })}
-            />
-          </a>
+          <Link href="/">
+            <a className="inline-flex">
+              <span className="sr-only">
+                {formatMessage({
+                  id: 'unchained',
+                  defaultMessage: 'Unchained Admin UI',
+                })}{' '}
+              </span>
+              <Image
+                src={logo}
+                loader={defaultNextImageLoader}
+                width={200}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
+                height={100}
+                alt={formatMessage({
+                  id: 'unchained_logo',
+                  defaultMessage: 'Unchained Logo',
+                })}
+              />
+            </a>
+          </Link>
         </div>
         <div className="py-16">
           <div className="text-center">

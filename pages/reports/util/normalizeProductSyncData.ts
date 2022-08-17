@@ -1,4 +1,4 @@
-const normalize = (products = [], productStatus) =>
+const normalize = (products = [], productStatus = '') =>
   products.map(
     ({
       productId: _id,
