@@ -12,23 +12,42 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Change graphql endpoint
+By default admin UI is pointed to `http://localhost:4010/graphql` set `GRAPHQL_ENDPOINT` to a different value if you want to change it.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Supply PWA manifest
+By default admin Ui is PWA enabled and it uses manifest file that uses unchained details (image, name, description, etc...). if you want to provided your own pwa manifest file use `UNCHAINED_PWA_MANIFEST_FILE` to provide the location the custom manifest file.
+in addition you can set `metaLinks` to provide meta link information such as device specific image
+```
+{
+"rel":"apple-touch-startup-image",
+"href":"/icons/apple-splash-640-1136.jpg",
+"media":"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+},
+```
+ and `meta` objects  key value pair of meta data for the admin panel
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+ ```
+ meta: {
+        "og:description": "Unchained e-commerce shop controller",
+        "og:site_name": "Admin UI",
+        "og:url": "https://unchained.shop",
+        "og:image": "/icons/manifest-icon-512.maskable.png",
+        "og:type": "website",
+        "og:title": "Unchained Admin UI",
+    }
+ ```
+## Change logo
+Set company logo by using  `NEXT_PUBLIC_LOGO` to provide url of the logo
 
-## Learn More
+## Enable Sandbox mode
+Set `NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH` to a truthy value to run admin UI in a sandbox mode
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding Additional language support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+It is possible to convert to any other language or additional support through env. 
+steps:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- provide a `JSON` translation file that uses the exact keys used for localization by setting each translation file path to be used though `UNCHAINED_ADMINUI_TRANSLATIONS` separated with **,**. look into `i18n/en.json` file to see available keys
+- each translation file name should follow the convention [locale].json where locale is the language `ISO` code.
