@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';

@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
