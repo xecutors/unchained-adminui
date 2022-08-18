@@ -111,6 +111,20 @@ describe('Order', () => {
         expect(request.body.variables).to.deep.eq({
           limit: 50,
           offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
           includeCarts: true,
           queryString: '',
           sort: [],
@@ -137,6 +151,20 @@ describe('Order', () => {
   it('should update data and route when [SEARCHING] accordingly', () => {
     cy.location('pathname').should('eq', '/orders');
     cy.get('input#search').type('s');
+
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
 
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
@@ -186,6 +214,20 @@ describe('Order', () => {
     cy.location('pathname').should('eq', '/orders');
 
     cy.get('button[role="switch"]').click({ multiple: true });
+
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
