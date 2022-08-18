@@ -22,7 +22,7 @@ const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
-export default function LogInForm({ endpoint, handleOnBlur, connection }) {
+const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
@@ -231,15 +231,14 @@ export default function LogInForm({ endpoint, handleOnBlur, connection }) {
                   id: 'create_new_account',
                   defaultMessage: 'Create new account?',
                 })}
-                <a
-                  href="/sign-up"
-                  className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
-                >
-                  {intl.formatMessage({
-                    id: 'sign_up',
-                    defaultMessage: 'Sign up',
-                  })}
-                </a>
+                <Link href="/sign-up">
+                  <a className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                    {intl.formatMessage({
+                      id: 'sign_up',
+                      defaultMessage: 'Sign up',
+                    })}
+                  </a>
+                </Link>
               </div>
             </Form>
           </FormWrapper>
@@ -247,4 +246,6 @@ export default function LogInForm({ endpoint, handleOnBlur, connection }) {
       </div>
     </>
   );
-}
+};
+
+export default LogInForm;

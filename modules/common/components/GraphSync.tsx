@@ -1,13 +1,17 @@
 import {
-  Area,
-  AreaChart,
-  CartesianGrid,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
   Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
+  Title,
+  Filler,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-function GraphSync({ dailySync }) {
+const GraphSync = ({ dailySync }) => {
   const normalizeChartData = () => {
     const chartData = dailySync?.map((syncDailyData) => {
       return {
@@ -19,45 +23,54 @@ function GraphSync({ dailySync }) {
     return chartData;
   };
 
-  return (
-    <>
-      <AreaChart
-        width={350}
-        height={150}
-        data={normalizeChartData()}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#FF0000" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#ff4d4d" stopOpacity={0} />
-          </linearGradient>
-          <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#6366f1" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#4a4db5" stopOpacity={0} />
-          </linearGradient>
-        </defs>
-        <XAxis dataKey="name" fontSize={12} fontWeight={400} />
-        <YAxis fontSize={12} fontWeight={400} />
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey="removed"
-          stroke="#ff4d4d"
-          fillOpacity={1}
-          fill="url(#colorUv)"
-        />
-        <Area
-          type="monotone"
-          dataKey="new"
-          stroke="#6366f1"
-          fillOpacity={1}
-          fill="url(#colorPv)"
-        />
-      </AreaChart>
-    </>
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler,
+    Legend,
   );
-}
+
+  const options: any = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: 'false',
+        position: 'top' as const,
+      },
+      title: {
+        display: false,
+        text: 'Chart.js Line Chart',
+      },
+    },
+  };
+
+  const data = {
+    labels: normalizeChartData().map((syncDailyData) => syncDailyData.name),
+    datasets: [
+      {
+        fill: true,
+        label: 'New Product',
+        data: normalizeChartData().map((syncDailyData) => syncDailyData.new),
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+      {
+        fill: true,
+        label: 'Removed Product',
+        data: normalizeChartData().map(
+          (syncDailyData) => syncDailyData.removed,
+        ),
+        borderColor: 'rgba(250,204,21)',
+        backgroundColor: 'rgba(250,204,21,0.5)',
+      },
+    ],
+  };
+
+  return <Line options={options} data={data} />;
+};
 
 export default GraphSync;
