@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
-  const formatPrice = (price: {currency: string, amount: number}) => {
+  const formatPrice = (price: { currency: string; amount: number }) => {
     if (!price?.currency || !price?.amount) return '0';
     const { amount, currency } = price || {};
     return new Intl.NumberFormat(locale, {
@@ -15,10 +15,7 @@ const useFormatPrice = () => {
   return { formatPrice };
 };
 
-const getInterfaceLabel = (
-  obj: {label?: string, version?: string}
-) => {
-  
+const getInterfaceLabel = (obj: { label?: string; version?: string }) => {
   return obj?.label && obj?.version ? `${obj.label} ${obj.version}` : '';
 };
 
@@ -109,7 +106,7 @@ const getEndPoint = (endpoint) => {
     }
     return sessionStorage.getItem('endpoint');
   }
-  return null;
+  return process.env.GRAPHQL_ENDPOINT;
 };
 
 const isSafariBrowser = (userAgent: string): boolean =>

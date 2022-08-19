@@ -55,6 +55,6 @@ export function useApollo(pageProps, options) {
   const store = useMemo(() => {
     apolloClient = null;
     return initializeApollo(state, options);
-  }, [state, options.endpoint]);
+  }, [state, options]);
   return store;
 }

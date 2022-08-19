@@ -18,7 +18,7 @@ export function parseCookies(ctx = {}, options = {}) {
   );
 }
 const getLocalURI = () => {
-  return process.browser
+  return typeof window !== 'undefined'
     ? `${window.location.origin}/api/graphql`
     : process.env.GRAPHQL_ENDPOINT;
 };

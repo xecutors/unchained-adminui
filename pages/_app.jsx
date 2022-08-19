@@ -89,7 +89,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
     };
 
     updateEndpoint();
-  }, []);
+  }, [endpoint]);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange(apollo));
