@@ -12,6 +12,7 @@ export const AssortmentLinksQuery = gql`
       _id
       linkedAssortments {
         _id
+        sortKey
         parent {
           ...AssortmentFragment
         }

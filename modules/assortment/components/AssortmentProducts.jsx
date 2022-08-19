@@ -1,7 +1,15 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { DragDropContext } from '@hello-pangea/dnd';
 
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 
@@ -15,12 +23,12 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 const AssortmentProducts = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
-
   const { linkedProducts, loading } = useAssortmentProducts({ assortmentId });
   const { setModal } = useModal();
-
   const { removeAssortmentProduct } = useRemoveAssortmentProduct();
   const { reorderAssortmentProducts } = useReorderAssortmentProducts();
+
+  const items = linkedProducts?.map((product) => product._id);
 
   const onRemoveProduct = async (assortmentProductId) => {
     await setModal(
@@ -48,56 +56,51 @@ const AssortmentProducts = ({ assortmentId }) => {
     );
   };
 
-  const handleDragEnd = async (result) => {
-    const { destination, source } = result;
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
 
-    if (!destination) {
+    if (active.id !== over.id) {
+      const oldIndex = items.indexOf(active.id);
+      const newIndex = items.indexOf(over.id);
+      const newItems = arrayMove(items, oldIndex, newIndex);
+
+      const sortedItems = newItems.map((id, index) => ({
+        assortmentProductId: id,
+        sortKey: index,
+      }));
+
+      try {
+        await reorderAssortmentProducts({ sortKeys: sortedItems });
+        toast.success(
+          formatMessage({
+            id: 'link_reorder',
+            defaultMessage: 'Link reorder successfully',
+          }),
+        );
+      } catch (error) {
+        toast.error(
+          formatMessage({
+            id: 'fail_reorder',
+            defaultMessage: 'Reordering failed, Try again!',
+          }),
+        );
+      }
+    } else {
       toast.info(
         formatMessage({
-          id: 'drop_area_empty',
-          defaultMessage: 'Destination is empty',
-        }),
-      );
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const newSortKeys = linkedProducts.map((media) => ({
-      assortmentProductId: media._id,
-      sortKey: media.sortKey,
-    }));
-
-    const [removedSortKey] = newSortKeys.splice(source.index, 1);
-    newSortKeys.splice(destination.index, 0, removedSortKey);
-
-    const sortKeys = newSortKeys.map((sortKey, index) => ({
-      ...sortKey,
-      sortKey: index,
-    }));
-
-    try {
-      await reorderAssortmentProducts({ sortKeys });
-      toast.success(
-        formatMessage({
-          id: 'product_reorder',
-          defaultMessage: 'Product reorder successfully',
-        }),
-      );
-    } catch (error) {
-      toast.error(
-        formatMessage({
-          id: 'fail_reorder',
-          defaultMessage: 'Reordering failed, Try again!',
+          id: 'reorder_original',
+          defaultMessage: 'Reorder to original location',
         }),
       );
     }
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   return (
     <>
@@ -151,12 +154,17 @@ const AssortmentProducts = ({ assortmentId }) => {
           </div>
         ) : (
           <div className="ml-auto my-auto w-full rounded shadow dark:shadow-none md:col-span-2">
-            <DragDropContext onDragEnd={handleDragEnd}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
               <AssortmentProductList
                 products={linkedProducts}
                 onRemoveProduct={onRemoveProduct}
+                items={items}
               />
-            </DragDropContext>
+            </DndContext>
           </div>
         )}
       </SelfDocumentingView>

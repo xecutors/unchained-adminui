@@ -1,6 +1,14 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { DragDropContext } from '@hello-pangea/dnd';
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import MediaUploader from '../../common/components/MediaUploader';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -15,10 +23,10 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   const { productMedia } = useProductMedia({ productId });
   const { setModal } = useModal();
   const { formatMessage } = useIntl();
-
   const { removeProductMedia } = useRemoveProductMedia();
   const { addProductMedia } = useAddProductMedia();
   const { reOrderProductMedia } = useReOrderProductMedia();
+  const items = productMedia?.map((media) => media._id);
 
   const onAddMedia = async (media) => {
     try {
@@ -65,56 +73,102 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
     );
   };
 
-  const handleDragEnd = async (result) => {
-    const { destination, source } = result;
+  // const handleDragEnd = async (result) => {
+  //   const { destination, source } = result;
 
-    if (!destination) {
+  //   if (!destination) {
+  //     toast.info(
+  //       formatMessage({
+  //         id: 'drop_area_empty',
+  //         defaultMessage: 'Destination is empty',
+  //       }),
+  //     );
+  //     return;
+  //   }
+
+  //   if (
+  //     destination.droppableId === source.droppableId &&
+  //     destination.index === source.index
+  //   ) {
+  //     return;
+  //   }
+
+  //   const newSortKeys = productMedia.map((media, index) => ({
+  //     productMediaId: media._id,
+  //     sortKey: index,
+  //   }));
+
+  //   const [removedSortKey] = newSortKeys.splice(source.index, 1);
+  //   newSortKeys.splice(destination.index, 0, removedSortKey);
+
+  //   const sortKeys = newSortKeys.map((sortKey, index) => ({
+  //     ...sortKey,
+  //     sortKey: index,
+  //   }));
+
+  //   try {
+  //     await reOrderProductMedia({ sortKeys });
+  //     toast.success(
+  //       formatMessage({
+  //         id: 'product_media_reorder',
+  //         defaultMessage: 'Media reorder successfully',
+  //       }),
+  //     );
+  //   } catch (error) {
+  //     toast.error(
+  //       formatMessage({
+  //         id: 'fail_reorder',
+  //         defaultMessage: 'Reordering failed, Try again!',
+  //       }),
+  //     );
+  //   }
+  // };
+
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      const oldIndex = items.indexOf(active.id);
+      const newIndex = items.indexOf(over.id);
+      const newItems = arrayMove(items, oldIndex, newIndex);
+
+      const sortedItems = newItems.map((id, index) => ({
+        productMediaId: id,
+        sortKey: index,
+      }));
+
+      try {
+        await reOrderProductMedia({ sortKeys: sortedItems });
+        toast.success(
+          formatMessage({
+            id: 'link_reorder',
+            defaultMessage: 'Link reorder successfully',
+          }),
+        );
+      } catch (error) {
+        toast.error(
+          formatMessage({
+            id: 'fail_reorder',
+            defaultMessage: 'Reordering failed, Try again!',
+          }),
+        );
+      }
+    } else {
       toast.info(
         formatMessage({
-          id: 'drop_area_empty',
-          defaultMessage: 'Destination is empty',
-        }),
-      );
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const newSortKeys = productMedia.map((media, index) => ({
-      productMediaId: media._id,
-      sortKey: index,
-    }));
-
-    const [removedSortKey] = newSortKeys.splice(source.index, 1);
-    newSortKeys.splice(destination.index, 0, removedSortKey);
-
-    const sortKeys = newSortKeys.map((sortKey, index) => ({
-      ...sortKey,
-      sortKey: index,
-    }));
-
-    try {
-      await reOrderProductMedia({ sortKeys });
-      toast.success(
-        formatMessage({
-          id: 'product_media_reorder',
-          defaultMessage: 'Media reorder successfully',
-        }),
-      );
-    } catch (error) {
-      toast.error(
-        formatMessage({
-          id: 'fail_reorder',
-          defaultMessage: 'Reordering failed, Try again!',
+          id: 'reorder_original',
+          defaultMessage: 'Reorder to original location',
         }),
       );
     }
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   return (
     <div className="mx-auto mt-5 space-y-5 lg:space-y-0 max-w-full bg-white dark:bg-slate-900 py-6 shadow dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded">
@@ -122,13 +176,18 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
         <MediaUploader onlyDragAndDrop addMedia={onAddMedia} />
       </div>
 
-      <DragDropContext onDragEnd={handleDragEnd}>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
         <ProductMediaList
           medias={productMedia}
           selectedLocale={selectedLocale}
           onDeleteMedia={onRemoveMedia}
+          items={items}
         />
-      </DragDropContext>
+      </DndContext>
     </div>
   );
 };

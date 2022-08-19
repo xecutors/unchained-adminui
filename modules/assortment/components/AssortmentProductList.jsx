@@ -1,36 +1,29 @@
 import { useIntl } from 'react-intl';
-import { Droppable } from '@hello-pangea/dnd';
-import classNames from 'classnames';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import NoData from '../../common/components/NoData';
 import AssortmentProductListItem from './AssortmentProductListItem';
 
-const AssortmentProductsList = ({ products, onRemoveProduct }) => {
+const AssortmentProductsList = ({ products, onRemoveProduct, items }) => {
   const { formatMessage } = useIntl();
   return products.length ? (
-    <Droppable droppableId="assortment-links">
-      {(provided, snapshot) => (
-        <div
-          className={classNames(
-            'space-y-4 block py-3 rounded px-6 bg-white dark:bg-slate-800 shadow dark:shadow-none transition-[background-color] ease-in-out delay-200',
-            {
-              'bg-slate-100 dark:bg-slate-700': snapshot.isDraggingOver,
-            },
-          )}
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-        >
-          {products.map((product, index) => (
+    <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <div className="space-y-4 block py-3 rounded px-6 bg-white dark:bg-slate-800 shadow dark:shadow-none transition-[background-color] ease-in-out delay-200">
+        {items.map((id) => {
+          const product = Object.values(products).find((pr) => pr._id === id);
+          return (
             <AssortmentProductListItem
+              id={id}
               key={product._id}
               link={product}
               onDelete={onRemoveProduct}
-              i={index}
             />
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
+          );
+        })}
+      </div>
+    </SortableContext>
   ) : (
     <NoData
       message={formatMessage({
