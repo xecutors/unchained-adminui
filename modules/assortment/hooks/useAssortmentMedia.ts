@@ -33,6 +33,7 @@ const useAssortmentMedia = ({ assortmentId = null, slug = null } = {}) => {
       slug,
       assortmentId,
     },
+    fetchPolicy: 'cache-first',
   });
 
   return {

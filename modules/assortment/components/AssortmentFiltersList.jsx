@@ -1,37 +1,30 @@
 import { useIntl } from 'react-intl';
-import { Droppable } from '@hello-pangea/dnd';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 
-import classNames from 'classnames';
 import NoData from '../../common/components/NoData';
 import AssortmentFiltersListItem from './AssortmentFiltersListItem';
 
-const AssortmentFiltersList = ({ filters, onRemoveFilter }) => {
+const AssortmentFiltersList = ({ filters, onRemoveFilter, items }) => {
   const { formatMessage } = useIntl();
   return filters?.length ? (
-    <Droppable droppableId="assortment-links">
-      {(provided, snapshot) => (
-        <div
-          className={classNames(
-            'space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200',
-            {
-              'bg-slate-100 dark:bg-slate-700': snapshot.isDraggingOver,
-            },
-          )}
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-        >
-          {filters.map((filter, index) => (
+    <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <div className="space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200">
+        {items.map((id) => {
+          const filter = Object.values(filters).find((fl) => fl._id === id);
+          return (
             <AssortmentFiltersListItem
+              id={id}
               key={filter._id}
               link={filter}
               onDelete={onRemoveFilter}
-              index={index}
             />
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
+          );
+        })}
+      </div>
+    </SortableContext>
   ) : (
     <NoData
       message={formatMessage({

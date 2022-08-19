@@ -1,67 +1,62 @@
 import { useIntl } from 'react-intl';
-import { Droppable } from '@hello-pangea/dnd';
-import classNames from 'classnames';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import NoData from '../../common/components/NoData';
 import AssortmentLinksListItem from './AssortmentLinksListItem';
 
-const AssortmentLinksList = ({ currentAssortmentId, links, onRemoveLink }) => {
+const AssortmentLinksList = ({
+  currentAssortmentId,
+  links,
+  onRemoveLink,
+  items,
+}) => {
   const { formatMessage } = useIntl();
   return links.length ? (
-    <Droppable droppableId="assortment-links">
-      {(provided, snapshot) => (
-        <div
-          className={classNames(
-            'space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200',
-            {
-              'bg-slate-100 dark:bg-slate-700': snapshot.isDraggingOver,
-            },
-          )}
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-        >
-          {links.map((link, index) => {
-            const { child, parent, _id } = link;
-            const comp = [];
-            if (parent && parent._id !== currentAssortmentId) {
-              comp.push(
-                <AssortmentLinksListItem
-                  key={parent._id}
-                  link={parent}
-                  isParent={parent?.childrenCount}
-                  linkId={_id}
-                  onDelete={onRemoveLink}
-                  index={index}
-                />,
-              );
-            }
-            if (child && child._id !== currentAssortmentId) {
-              comp.push(
-                <AssortmentLinksListItem
-                  key={child._id}
-                  link={child}
-                  linkId={_id}
-                  isParent={child._id === currentAssortmentId}
-                  onDelete={onRemoveLink}
-                  index={index}
-                />,
-              );
-            }
+    <SortableContext items={items} strategy={verticalListSortingStrategy}>
+      <div className="space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200">
+        {items.map((id) => {
+          const { child, parent, _id } = Object.values(links).find(
+            (link) => link._id === id,
+          );
+          const comp = [];
+          if (parent && parent._id !== currentAssortmentId) {
+            comp.push(
+              <AssortmentLinksListItem
+                id={id}
+                key={parent._id}
+                link={parent}
+                isParent={parent?.childrenCount}
+                linkId={_id}
+                onDelete={onRemoveLink}
+              />,
+            );
+          }
+          if (child && child._id !== currentAssortmentId) {
+            comp.push(
+              <AssortmentLinksListItem
+                id={id}
+                key={child._id}
+                link={child}
+                linkId={_id}
+                isParent={child._id === currentAssortmentId}
+                onDelete={onRemoveLink}
+              />,
+            );
+          }
 
-            return comp;
-          })}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  ) : (
-    <>
-      <NoData
-        message={formatMessage({
-          id: 'linked_assortment',
-          defaultMessage: 'Linked assortment',
+          return comp;
         })}
-      />
-    </>
+      </div>
+    </SortableContext>
+  ) : (
+    <NoData
+      message={formatMessage({
+        id: 'linked_assortment',
+        defaultMessage: 'Linked assortment',
+      })}
+    />
   );
 };
 
