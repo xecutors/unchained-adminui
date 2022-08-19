@@ -73,57 +73,6 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
     );
   };
 
-  // const handleDragEnd = async (result) => {
-  //   const { destination, source } = result;
-
-  //   if (!destination) {
-  //     toast.info(
-  //       formatMessage({
-  //         id: 'drop_area_empty',
-  //         defaultMessage: 'Destination is empty',
-  //       }),
-  //     );
-  //     return;
-  //   }
-
-  //   if (
-  //     destination.droppableId === source.droppableId &&
-  //     destination.index === source.index
-  //   ) {
-  //     return;
-  //   }
-
-  //   const newSortKeys = productMedia.map((media, index) => ({
-  //     productMediaId: media._id,
-  //     sortKey: index,
-  //   }));
-
-  //   const [removedSortKey] = newSortKeys.splice(source.index, 1);
-  //   newSortKeys.splice(destination.index, 0, removedSortKey);
-
-  //   const sortKeys = newSortKeys.map((sortKey, index) => ({
-  //     ...sortKey,
-  //     sortKey: index,
-  //   }));
-
-  //   try {
-  //     await reOrderProductMedia({ sortKeys });
-  //     toast.success(
-  //       formatMessage({
-  //         id: 'product_media_reorder',
-  //         defaultMessage: 'Media reorder successfully',
-  //       }),
-  //     );
-  //   } catch (error) {
-  //     toast.error(
-  //       formatMessage({
-  //         id: 'fail_reorder',
-  //         defaultMessage: 'Reordering failed, Try again!',
-  //       }),
-  //     );
-  //   }
-  // };
-
   const handleDragEnd = async (event) => {
     const { active, over } = event;
 
@@ -164,8 +113,15 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   };
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );

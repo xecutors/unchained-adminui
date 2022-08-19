@@ -163,8 +163,15 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
   };
 
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
     useSensor(KeyboardSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
