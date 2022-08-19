@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
-  const formatPrice = (price) => {
+  const formatPrice = (price: {currency: string, amount: number}) => {
+    if (!price?.currency || !price?.amount) return '0';
     const { amount, currency } = price || {};
-    if (!currency || !amount) return '0';
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency,
@@ -16,9 +16,10 @@ const useFormatPrice = () => {
 };
 
 const getInterfaceLabel = (
-  { label, version } = { label: null, version: null },
+  obj: {label?: string, version?: string}
 ) => {
-  return label && version ? `${label} ${version}` : '';
+  
+  return obj?.label && obj?.version ? `${obj.label} ${obj.version}` : '';
 };
 
 const classNames = (...classes) => {
