@@ -7,33 +7,31 @@ const UserAvatar = ({ avatar, username, onLogout, profile }) => {
   return (
     <a href="#" onClick={onLogout} className="group block flex-shrink-0">
       <div className="flex items-center">
-        <>
-          {avatar ? (
-            <Image
-              src={avatar?.url}
-              loader={defaultNextImageLoader}
-              width={36}
-              height={36}
-              className="rounded"
-              placeholder="blur"
-              blurDataURL="/placeholder.png"
-              alt={formatMessage({
-                id: 'user_avatar',
-                defaultMessage: 'User avatar',
-              })}
-            />
-          ) : (
-            <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-100">
-              <svg
-                className="h-full w-full text-slate-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </span>
-          )}
-        </>
+        {avatar ? (
+          <Image
+            src={avatar?.url}
+            loader={defaultNextImageLoader}
+            width={36}
+            height={36}
+            className="rounded"
+            placeholder="blur"
+            blurDataURL="/placeholder.png"
+            alt={formatMessage({
+              id: 'user_avatar',
+              defaultMessage: 'User avatar',
+            })}
+          />
+        ) : (
+          <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-slate-100">
+            <svg
+              className="h-full w-full text-slate-300"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </span>
+        )}
         <div className="ml-3">
           <p className="text-base font-medium text-slate-700 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-indigo-500">
             {username || profile?.displayName}

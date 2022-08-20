@@ -15,7 +15,7 @@ interface ChoicesFieldProps extends FieldHookProps {
 const ChoicesField = (props: ChoicesFieldProps) => {
   const field = useField(props);
   const {
-    choiceClassName = 'col-md-6 col-lg-4',
+    choiceClassName,
     choiceContainerClassName,
     labelClassName,
     inputClassName,
@@ -71,6 +71,13 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       </div>
     </div>
   );
+};
+
+ChoicesField.defaultProps = {
+  multiple: false,
+  choiceClassName: 'col-md-6 col-lg-4',
+  choiceContainerClassName: '',
+  labelClassName: '',
 };
 
 export default ChoicesField;

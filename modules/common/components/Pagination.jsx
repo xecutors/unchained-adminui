@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
@@ -290,11 +289,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
 Pagination.defaultProps = {
   data: [],
   total: 0,
-};
-
-Pagination.propTypes = {
-  total: PropTypes.number,
-  data: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Pagination;

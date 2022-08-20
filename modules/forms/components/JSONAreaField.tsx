@@ -77,7 +77,7 @@ const JSONAreaField = ({
         placeholder={field.placeholder}
         autoComplete={field.autoComplete}
         value={field.value}
-        rows={Math.max(field.value?.split(' ')?.length / 2, rows)}
+        rows={Math.max((field.value?.split(' ') || []).length / 2, rows)}
       />
     </FieldWrapper>
   );
@@ -89,5 +89,9 @@ export const useIntlMessageValues = () => {
     id: 'invalid_json_input',
     defaultMessage: 'Invalid JSON input',
   });
+};
+
+JSONAreaField.defaultProps = {
+  rows: [],
 };
 export default JSONAreaField;

@@ -61,7 +61,7 @@ const getSortKeys = (sort) => {
   return (
     (sort !== '' &&
       sort.split(',').map((field) => {
-        const [key = null, value = null] = field?.split('_');
+        const [key = null, value = null] = (field || '').split('_');
         return {
           key,
           value,

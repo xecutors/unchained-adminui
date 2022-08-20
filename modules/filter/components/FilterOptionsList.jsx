@@ -6,7 +6,7 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import FilterOptionsListItem from './FilterOptionsListItem';
 
-function FilterListView({ filterId, options, selectedLocale }) {
+const FilterListView = ({ filterId, options, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeFilterOption } = useRemoveFilterOption();
@@ -52,6 +52,6 @@ function FilterListView({ filterId, options, selectedLocale }) {
       </ul>
     </div>
   );
-}
+};
 
 export default FilterListView;

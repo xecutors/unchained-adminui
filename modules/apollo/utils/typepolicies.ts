@@ -15,7 +15,7 @@ export const keyMappings: any = {
           'slugs',
           'forceLocale',
         ],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
@@ -28,68 +28,68 @@ export const keyMappings: any = {
           'queryString',
           'forceLocale',
         ],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Countries: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Currencies: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Enrollments: {
         keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Quotations: {
         keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       WorkQueue: {
         keyArgs: ['limit', 'status', 'types', 'created', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Languages: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Events: {
         keyArgs: ['limit', 'offset', 'types', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       users: {
         keyArgs: ['limit', 'includeGuests', 'queryString', 'offset'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Filters: {
         keyArgs: ['limit', 'offset', 'queryString'],
-        merge(existing = [], incoming) {
+        merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
     },
     Orders: {
       keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],
-      merge(existing = [], incoming) {
+      merge(existing = [], incoming = []) {
         return [...existing, ...incoming];
       },
     },

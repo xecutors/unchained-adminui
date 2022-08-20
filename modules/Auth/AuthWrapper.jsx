@@ -69,11 +69,9 @@ const AuthWrapper = ({ children }) => {
   }, [router, currentUser?._id, hasAccess, isAuthenticated, loading]);
 
   return (
-    <>
-      <AuthContext.Provider value={ctx}>
-        {loading || !hasAccess() ? <Loading /> : children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider value={ctx}>
+      {loading || !hasAccess() ? <Loading /> : children}
+    </AuthContext.Provider>
   );
 };
 

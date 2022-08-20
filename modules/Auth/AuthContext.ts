@@ -1,8 +1,8 @@
 import React from 'react';
 
-export type Auth = (id: string) => boolean;
-export type AuthState = (id?: string) => boolean | string[];
-export type AuthReset = (id: string) => void;
+export type Auth = () => boolean;
+export type AuthState = () => boolean | string[];
+export type AuthReset = () => void;
 const AuthContext = React.createContext<{
   isAuthenticated: AuthState;
   isAdmin: Auth;
