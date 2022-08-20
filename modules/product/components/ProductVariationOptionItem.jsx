@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';

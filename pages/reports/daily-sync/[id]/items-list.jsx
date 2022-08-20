@@ -1,3 +1,4 @@
+import React from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';

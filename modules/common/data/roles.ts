@@ -1,6 +1,6 @@
 export const UNRESTRICTED = 'UNRESTRICTED';
 
-export const ACTION_ROLES = {
+const ACTION_ROLES = {
   assortments: {
     view: 'viewAssortment',
     viewList: 'viewAssortments',

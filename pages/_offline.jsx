@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 const Offline = () => {

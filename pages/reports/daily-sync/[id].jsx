@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { formatDuration } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import ResetPasswordForm from '../modules/accounts/components/ResetPasswordForm';
 import useResetPassword from '../modules/accounts/hooks/useResetPassword';

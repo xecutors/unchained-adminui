@@ -1,3 +1,4 @@
+import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';

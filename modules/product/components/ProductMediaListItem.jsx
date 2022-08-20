@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import MediaListItem from '../../common/components/MediaListItem';
 
 import useTranslatedProductMediaTexts from '../hooks/useTranslatedProductMediaTexts';

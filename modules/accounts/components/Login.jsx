@@ -1,3 +1,4 @@
+import React from 'react';
 import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';

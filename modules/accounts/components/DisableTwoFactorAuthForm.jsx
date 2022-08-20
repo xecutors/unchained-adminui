@@ -1,3 +1,4 @@
+import React from 'react';
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';

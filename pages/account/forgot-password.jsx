@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';

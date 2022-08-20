@@ -152,8 +152,6 @@ const getContent = (content) => {
   return span.textContent || span.innerText;
 };
 
-export default getContent;
-
 export {
   useFormatPrice,
   getInterfaceLabel,

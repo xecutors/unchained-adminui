@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import {
   preventDefault,

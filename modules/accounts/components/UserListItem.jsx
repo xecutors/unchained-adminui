@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import ActiveInActive from '../../common/components/ActiveInActive';

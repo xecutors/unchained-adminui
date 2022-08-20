@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 import Loading from '../../common/components/Loading';
 import SearchField from '../../common/components/SearchField';

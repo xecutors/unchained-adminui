@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import DatePicker from 'react-datepicker';
-import { useState } from 'react';
 import BreadCrumbs from '../../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../../modules/common/components/PageHeader';
 import SyncReportList from '../../../modules/sync/components/SyncReportList';

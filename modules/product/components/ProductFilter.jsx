@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
@@ -15,9 +16,10 @@ const ProductFilter = () => {
         query: normalizeQuery(router.query, value?.join(','), 'tags'),
       });
     } else {
-      delete router.query?.tags;
+      const { tags, ...rest } = router.query;
+      console.log('sadasd', normalizeQuery(rest));
       router.push({
-        query: normalizeQuery(router.query),
+        query: normalizeQuery(rest),
       });
     }
   };
@@ -30,7 +32,7 @@ const ProductFilter = () => {
             id: 'add',
             defaultMessage: 'Add',
           })}
-          tagList={router?.query?.tags?.split(',')}
+          tagList={[]}
           onChange={handleOnChange}
         />
       </div>

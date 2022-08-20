@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import JSONView from '../../common/components/JSONView';
 import useField, { FieldHookProps } from '../hooks/useField';

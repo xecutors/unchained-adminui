@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
+import React, { useEffect } from 'react';
+
 /* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
 
 import { PlusIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
-import { useEffect } from 'react';
 import ACTION_ROLES from '../modules/common/data/roles';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';

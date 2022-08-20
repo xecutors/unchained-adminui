@@ -1,5 +1,5 @@
 import localizations from '../../i18n';
-import getContent from '../../modules/common/utils/utils';
+import { getContent } from '../../modules/common/utils/utils';
 import {
   AddAssortmentLinkResponse,
   AssortmentLinksResponse,
