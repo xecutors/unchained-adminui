@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import Loading from '../../common/components/Loading';
 import NoData from '../../common/components/NoData';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import SearchField from '../../common/components/SearchField';
 import EnrollmentList from '../../enrollment/components/EnrollmentList';

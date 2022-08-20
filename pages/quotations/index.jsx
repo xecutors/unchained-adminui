@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import React from 'react';
+
 import { useRouter } from 'next/router';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';

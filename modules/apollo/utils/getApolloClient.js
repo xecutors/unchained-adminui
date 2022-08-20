@@ -18,7 +18,7 @@ export function parseCookies(ctx = {}, options = {}) {
   );
 }
 const getLocalURI = () => {
-  return typeof window !== 'undefined'
+  return process.browser
     ? `${window.location.origin}/api/graphql`
     : process.env.GRAPHQL_ENDPOINT;
 };
@@ -80,7 +80,7 @@ const getApolloClient = ({
   const cache = apolloCache(locale);
 
   const apolloClient = new ApolloClient({
-    connectToDevTools: process.browser,
+    connectToDevTools: typeof window !== undefined,
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',

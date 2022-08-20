@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import FilteredListItem from './FilteredListItem';
 import NoData from './NoData';

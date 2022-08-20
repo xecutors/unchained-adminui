@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React from 'react';
+
 import { useIntl } from 'react-intl';
 import JSONView from '../../common/components/JSONView';
 import useField, { FieldHookProps } from '../hooks/useField';
@@ -39,7 +39,7 @@ const JSONAreaField = ({
     try {
       JSON.parse(e.target.value || '{}');
       field.setError('');
-    } catch (err) {
+    } catch (err: any) {
       field.setError(err.message?.replace('JSON.parse', ''));
     } finally {
       field.setValue(e.target.value, true);
@@ -54,7 +54,7 @@ const JSONAreaField = ({
         true,
       );
       field.setError('');
-    } catch (err) {
+    } catch (err: any) {
       field.setError(err.message);
     }
   };

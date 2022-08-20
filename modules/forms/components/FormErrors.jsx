@@ -1,6 +1,5 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-
 import useFormContext from '../hooks/useFormContext';
 
 const createHandler = (name) => () => {

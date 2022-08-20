@@ -30,7 +30,7 @@ export const ShopInfoQuery = gql`
 
 const useShopInfo = () => {
   const { data, loading, error } = useQuery(ShopInfoQuery, {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-only',
   });
   return {
     shopInfo: data?.shopInfo,

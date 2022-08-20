@@ -17,7 +17,7 @@ const ProductFilter = () => {
       });
     } else {
       const { tags, ...rest } = router.query;
-      console.log('sadasd', normalizeQuery(rest));
+
       router.push({
         query: normalizeQuery(rest),
       });
@@ -32,7 +32,7 @@ const ProductFilter = () => {
             id: 'add',
             defaultMessage: 'Add',
           })}
-          tagList={[]}
+          tagList={router?.query?.tags?.split(',')}
           onChange={handleOnChange}
         />
       </div>

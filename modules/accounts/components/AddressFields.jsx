@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import TextField from '../../forms/components/TextField';

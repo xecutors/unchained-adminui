@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import { CommonFieldProps } from '../../forms/hooks/useField';
 

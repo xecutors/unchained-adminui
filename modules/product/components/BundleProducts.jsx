@@ -1,4 +1,3 @@
-import React from 'react';
 import BundleProductsForm from './BundleProductsForm';
 import BundleProductList from './BundleProductsList';
 

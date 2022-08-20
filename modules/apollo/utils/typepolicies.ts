@@ -74,7 +74,7 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      Users: {
+      users: {
         keyArgs: ['limit', 'includeGuests', 'queryString', 'offset'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];

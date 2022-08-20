@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+
 import { useIntl } from 'react-intl';
 import AssortmentForm from '../../modules/assortment/components/AssortmentForm';
 import useCreateAssortment from '../../modules/assortment/hooks/useCreateAssortment';

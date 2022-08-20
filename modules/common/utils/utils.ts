@@ -106,7 +106,7 @@ const getEndPoint = (endpoint) => {
     }
     return sessionStorage.getItem('endpoint');
   }
-  return process.env.GRAPHQL_ENDPOINT;
+  return null;
 };
 
 const isSafariBrowser = (userAgent: string): boolean =>
@@ -134,13 +134,13 @@ const getConnection = async (url) => {
             }),
           });
           result.connection = response;
-        } catch (e) {
+        } catch (e: any) {
           result.error = e.message;
           result.connection = { ok: false };
         }
       }
     }
-  } catch (e) {
+  } catch (e: any) {
     result.error = e.message;
   }
   return result;

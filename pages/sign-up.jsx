@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import SignUpForm from '../modules/accounts/components/Signup';
 import useCreateUser from '../modules/accounts/hooks/useCreateUser';

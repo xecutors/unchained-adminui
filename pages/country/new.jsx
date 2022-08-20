@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';

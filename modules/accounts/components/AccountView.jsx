@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';

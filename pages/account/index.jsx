@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import ChangePassword from '../../modules/accounts/components/ChangePassword';
 import DisableTwoFactorAuthForm from '../../modules/accounts/components/DisableTwoFactorAuthForm';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';

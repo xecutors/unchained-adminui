@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import UserList from '../../modules/accounts/components/UserList';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import TagInputField from '../../forms/components/TagInputField';

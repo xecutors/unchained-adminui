@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import {
@@ -40,9 +40,7 @@ const TagInput = ({
     }
   };
 
-  useEffect(() => {
-    onChange(tagList);
-  }, [tagList]);
+  useMemo(() => onChange(tagList), [tagList]);
 
   return (
     <div className="flow-root">

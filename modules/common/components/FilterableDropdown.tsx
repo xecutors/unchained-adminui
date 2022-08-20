@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import React from 'react';
 
 import Select from 'react-select';
 import FieldWrapper from '../../forms/components/FieldWrapper';

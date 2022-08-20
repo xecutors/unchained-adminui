@@ -1,4 +1,3 @@
-import React from 'react';
 import LogIn from '../modules/accounts/components/Login';
 
 const LogInPage = ({ endpoint, handleOnBlur, connection }) => {

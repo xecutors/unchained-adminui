@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import React from 'react';
 
 import { validateMaxLength } from '../lib/validators';
 import useField, { FieldHookProps } from '../hooks/useField';

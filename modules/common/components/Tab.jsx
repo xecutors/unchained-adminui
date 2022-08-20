@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import React from 'react';
+
 import { useIntl } from 'react-intl';
 
 const TabComponent = ({ children, tabItems, defaultTab }) => {
