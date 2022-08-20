@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
@@ -123,7 +124,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                 id: 'already_got_a_user',
                 defaultMessage: 'Already got a user?',
               })}
-              <a
+              <Link
                 href="/log-in"
                 className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
               >
@@ -131,7 +132,7 @@ const SignUpForm = ({ onSubmit, onSubmitSuccess }) => {
                   id: 'log_in',
                   defaultMessage: 'Log in',
                 })}
-              </a>
+              </Link>
             </div>
           </Form>
         </FormWrapper>

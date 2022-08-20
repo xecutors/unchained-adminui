@@ -14,8 +14,6 @@ const UserAvatar = ({ avatar, username, onLogout, profile }) => {
             width={36}
             height={36}
             className="rounded"
-            placeholder="blur"
-            blurDataURL="/placeholder.png"
             alt={formatMessage({
               id: 'user_avatar',
               defaultMessage: 'User avatar',

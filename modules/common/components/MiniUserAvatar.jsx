@@ -1,4 +1,9 @@
+import Image from 'next/image';
+import { useIntl } from 'react-intl';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+
 const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
+  const { formatMessage } = useIntl();
   return (
     <div className="flex-col ">
       <div>
@@ -12,10 +17,16 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
             </span>
           </span>
         ) : (
-          <img
+          <Image
             className="inline-block h-9 w-9 rounded-full"
             src={url}
-            alt="Avatar"
+            loader={defaultNextImageLoader}
+            width={36}
+            height={36}
+            alt={formatMessage({
+              id: 'user_avatar',
+              defaultMessage: 'User avatar',
+            })}
           />
         )}
       </div>

@@ -1,5 +1,3 @@
-
-
 import classNames from 'classnames';
 
 import useField, { FieldHookProps } from '../hooks/useField';
@@ -13,8 +11,8 @@ interface ChoicesFieldProps extends FieldHookProps {
   labelClassName?: string;
 }
 
-const ChoicesField = (props: ChoicesFieldProps) => {
-  const field = useField(props);
+const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
+  const field = useField({ multiple, options, ...props });
   const {
     choiceClassName,
     choiceContainerClassName,

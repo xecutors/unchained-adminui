@@ -24,7 +24,7 @@ const MultipleSelect = ({ tagList: tags, onChange, options, label }) => {
 
   useEffect(() => {
     onChange(tagList);
-  }, [tagList]);
+  }, [tagList, onChange]);
 
   return (
     <div className="mt-2 flex-col sm:mt-0">
