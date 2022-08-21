@@ -135,10 +135,11 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
       const { data } = await loginWithWebAuthn({
         webAuthnPublicKeyCredentials,
       });
-
-      const { id, token, tokenExpires } = data?.loginWithWebAuthn;
-      await storeLoginToken(id, token, new Date(tokenExpires));
-      return true;
+      if (data && data?.loginWithWebAuthn) {
+        const { id, token, tokenExpires } = data.loginWithWebAuthn;
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        return true;
+      }
     }
     return false;
   };

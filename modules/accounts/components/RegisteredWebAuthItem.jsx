@@ -1,5 +1,8 @@
+import Image from 'next/image';
+import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const RegisteredWebAuthItem = ({
@@ -10,14 +13,22 @@ const RegisteredWebAuthItem = ({
   md5Metadata,
   onRemoveCredential,
 }) => {
+  const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
     <li className="col-span-1 flex shadow-sm rounded-md ">
       {md5Metadata?.icon && (
         <div className="flex-shrink-0 flex items-center justify-center w-16  text-sm font-medium rounded-l-md">
-          <img
+          <Image
             className="inline-block h-10 w-10 rounded-full border-2"
-            src="https://unchained.shop/_next/static/media/logo.41b5589a.svg"
+            src={md5Metadata?.icon}
+            loader={defaultNextImageLoader}
+            width={36}
+            height={36}
+            alt={formatMessage({
+              id: 'web_auth_icon',
+              defaultMessage: 'Auth icon',
+            })}
           />
         </div>
       )}
