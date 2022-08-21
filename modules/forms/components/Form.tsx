@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormikProvider } from 'formik';
 
 import FormContext from '../lib/FormContext';

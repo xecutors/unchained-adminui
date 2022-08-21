@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-function FilterSummary({ filterKey, filterType }) {
+const FilterSummary = ({ filterKey, filterType }) => {
   const { formatMessage } = useIntl();
   return (
     <div className="space-y-2 lg:flex lg:space-y-0 lg:space-x-3">
@@ -25,6 +25,6 @@ function FilterSummary({ filterKey, filterType }) {
       </div>
     </div>
   );
-}
+};
 
 export default FilterSummary;

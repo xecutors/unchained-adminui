@@ -65,6 +65,7 @@ beforeEach(() => {
       req.reply(LanguagesResponse);
     }
   });
+  cy.viewport(1200, 800);
 });
 
 Cypress.on('uncaught:exception', () => {

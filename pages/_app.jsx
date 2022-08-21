@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
+import getConfig from 'next/config';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,6 +27,10 @@ import {
   getTestConnection as getConnection,
 } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
+
+const {
+  publicRuntimeConfig: { allowEndpointSwitch },
+} = getConfig();
 
 const handleRouteChange = (apolloClient) => async (url) => {
   const { data: { me } = {} } = await apolloClient.query({
@@ -87,9 +92,8 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
       const result = await getConnection(endpoint);
       setConnection({ status: result?.connection?.ok, error: result?.error });
     };
-
-    updateEndpoint();
-  }, []);
+    if (allowEndpointSwitch) updateEndpoint();
+  }, [endpoint]);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange(apollo));

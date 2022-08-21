@@ -1,3 +1,3 @@
-const computeDictionaryTotal = (prev, current) => prev + current?.length || 0;
+const computeDictionaryTotal = (prev, current) => prev + (current || []).length;
 
 export default computeDictionaryTotal;

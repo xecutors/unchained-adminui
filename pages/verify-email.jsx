@@ -1,8 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { ClockIcon, MailOpenIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import useVerifyEmail from '../modules/accounts/hooks/useVerifyEmail';
 import Loading from '../modules/common/components/Loading';

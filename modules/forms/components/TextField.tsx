@@ -45,4 +45,9 @@ const TextField = ({
   );
 };
 
+TextField.defaultProps = {
+  autoComplete: 'off',
+  type: 'text',
+  maxLength: 0,
+};
 export default TextField;

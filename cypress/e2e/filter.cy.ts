@@ -127,6 +127,12 @@ describe('Filter', () => {
       );
 
       cy.get('button[role="switch"]').click();
+      cy.wait(fullAliasName(FilterOperations.GetFiltersList)).then(
+        (currentSubject) => {
+          const { request } = currentSubject;
+          expect(request.body.variables.includeInactive).to.eq(true);
+        },
+      );
       cy.location().then((current) => {
         expect(current.pathname).to.eq('/filters');
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({

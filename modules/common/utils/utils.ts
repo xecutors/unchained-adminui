@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
-  const formatPrice = (price: {currency: string, amount: number}) => {
+  const formatPrice = (price: { currency: string; amount: number }) => {
     if (!price?.currency || !price?.amount) return '0';
     const { amount, currency } = price || {};
     return new Intl.NumberFormat(locale, {
@@ -15,10 +15,7 @@ const useFormatPrice = () => {
   return { formatPrice };
 };
 
-const getInterfaceLabel = (
-  obj: {label?: string, version?: string}
-) => {
-  
+const getInterfaceLabel = (obj: { label?: string; version?: string }) => {
   return obj?.label && obj?.version ? `${obj.label} ${obj.version}` : '';
 };
 
@@ -64,7 +61,7 @@ const getSortKeys = (sort) => {
   return (
     (sort !== '' &&
       sort.split(',').map((field) => {
-        const [key = null, value = null] = field?.split('_');
+        const [key = null, value = null] = (field || '').split('_');
         return {
           key,
           value,
@@ -137,13 +134,13 @@ const getConnection = async (url) => {
             }),
           });
           result.connection = response;
-        } catch (e) {
+        } catch (e: any) {
           result.error = e.message;
           result.connection = { ok: false };
         }
       }
     }
-  } catch (e) {
+  } catch (e: any) {
     result.error = e.message;
   }
   return result;
@@ -154,8 +151,6 @@ const getContent = (content) => {
   span.innerHTML = content;
   return span.textContent || span.innerText;
 };
-
-export default getContent;
 
 export {
   useFormatPrice,

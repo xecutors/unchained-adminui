@@ -10,7 +10,7 @@ const GetCurrentTab = ({ selectedView }) => {
   if (selectedView === 'add_work') return <WorkForm />;
   if (selectedView === 'do_work') return <DoWorkForm />;
   if (selectedView === 'allocate_work') return <AllocateWorkForm />;
-  return <></>;
+  return null;
 };
 const WorkManagement = () => {
   const { formatMessage } = useIntl();

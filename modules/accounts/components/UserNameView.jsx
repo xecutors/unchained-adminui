@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';

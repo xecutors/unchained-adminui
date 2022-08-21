@@ -1,8 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { useFormik, FormikValues, FormikErrors, FormikTouched } from 'formik';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import clean from '../lib/clean';
+
+type OnSubmitSuccessType = (
+  result: boolean,
+
+  values: FormikValues,
+) => Promise<boolean> | boolean;
+
 /**
  * @param onSubmitSuccess Return `false` to skip redirect
  */
@@ -19,14 +27,11 @@ const useForm = ({
   validate,
 }: {
   submit: (
-    // eslint-disable-next-line no-undef
     variables: Record<string, any>,
   ) => Promise<{ success: boolean; data?: any; errors?: any }>;
+
   getSubmitErrorMessage?: (error?: Error | any) => Promise<string> | string;
-  onSubmitSuccess?: (
-    result: boolean,
-    values: FormikValues,
-  ) => Promise<boolean> | boolean;
+  onSubmitSuccess?: OnSubmitSuccessType;
   initialValues: FormikValues;
   initialTouched?: FormikTouched<FormikValues>;
   initialErrors?: FormikErrors<FormikValues>;
@@ -34,7 +39,6 @@ const useForm = ({
   successMessage?: string;
   validate?: (
     values: FormikValues,
-    // eslint-disable-next-line no-undef
   ) => void | object | Promise<FormikErrors<FormikValues>>;
 }) => {
   const intl = useIntl();

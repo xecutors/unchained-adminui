@@ -1,5 +1,5 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 const TableRow = ({
   className = '',
@@ -7,9 +7,8 @@ const TableRow = ({
   header = false,
   ...props
 }) => {
-  const clone = (cell) => React?.cloneElement(cell || <></>, { header });
+  const clone = (cell) => React?.cloneElement(cell || <span />, { header });
   const cells = React.Children.map(children, clone, {});
-
   return (
     <tr
       className={classNames(

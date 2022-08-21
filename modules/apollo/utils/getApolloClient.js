@@ -80,7 +80,7 @@ const getApolloClient = ({
   const cache = apolloCache(locale);
 
   const apolloClient = new ApolloClient({
-    connectToDevTools: process.browser,
+    connectToDevTools: typeof window !== 'undefined',
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',

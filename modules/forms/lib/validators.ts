@@ -16,6 +16,7 @@ import {
 export const DATE_FORMAT = 'd.M.y';
 
 export type Validator = {
+  // eslint-disable-next-line no-unused-vars
   isValid: (arg0: any) => boolean;
   intlMessageDescriptor: MessageDescriptor;
   intlMessageValues?: Record<string, PrimitiveType>;

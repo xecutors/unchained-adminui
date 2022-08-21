@@ -13,19 +13,19 @@ const AssortmentSearchFilter = () => {
       });
     } else {
       delete router.query?.tags;
-      router.push({
-        query: normalizeQuery(router.query),
-      });
+      const { tags, ...rest } = router.query;
+      const normalized = normalizeQuery(rest);
+      if (normalized)
+        router.push({
+          query: rest,
+        });
     }
   };
 
   return (
     <div className="mb-5 mt-4 grid grid-cols-6 gap-6">
       <div className="col-span-6 sm:col-span-3">
-        <TagInput
-          tagList={router?.query?.tags?.split(',')}
-          onChange={handleOnChange}
-        />
+        <TagInput tagList={[]} onChange={handleOnChange} />
       </div>
     </div>
   );

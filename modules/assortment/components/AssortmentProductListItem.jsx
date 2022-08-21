@@ -1,48 +1,43 @@
-import classNames from 'classnames';
-import { Draggable } from 'react-beautiful-dnd';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 
-const AssortmentProductListItem = ({ link, onDelete, i }) => {
+const AssortmentProductListItem = ({ link, onDelete, id }) => {
   const { _id, product, tags } = link;
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   return (
-    <Draggable draggableId={_id} index={i}>
-      {(provided, snapshot) => (
-        <div
-          key={_id}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          draggable="true"
-          className={classNames(
-            'flex items-center justify-between px-2 rounded border-b border-slate-200 dark:border-slate-600 last:border-none hover:cursor-move',
-            {
-              'bg-slate-100 dark:bg-slate-600 border-2 border-b-2 rounded':
-                snapshot.isDragging,
-            },
-          )}
-        >
-          <div className="flex items-center space-x-6 py-4">
-            <div>
-              <h3 className="text-lg text-slate-800 dark:text-slate-200">
-                {product?.texts?.title}
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-200">
-                {product?.texts?.subtitle}
-              </p>
-            </div>
-          </div>
-          <div>
-            {(tags || [])?.map((tag) => (
-              <Badge text={tag} color="cyan" key={tag} />
-            ))}
-          </div>
-          <DeleteButton onClick={() => onDelete(_id)} />
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="flex items-center justify-between px-2 rounded border-b border-slate-200 dark:border-slate-600 last:border-none hover:cursor-move"
+    >
+      <div className="flex items-center space-x-6 py-4">
+        <div>
+          <h3 className="text-lg text-slate-800 dark:text-slate-200">
+            {product?.texts?.title}
+          </h3>
+          <p className="text-xs text-slate-600 dark:text-slate-200">
+            {product?.texts?.subtitle}
+          </p>
         </div>
-      )}
-    </Draggable>
+      </div>
+      <div>
+        {(tags || [])?.map((tag) => (
+          <Badge text={tag} color="cyan" key={tag} />
+        ))}
+      </div>
+      <DeleteButton onClick={() => onDelete(_id)} />
+    </div>
   );
 };
 

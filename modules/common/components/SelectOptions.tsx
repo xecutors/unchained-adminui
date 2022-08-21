@@ -18,13 +18,13 @@ export type SelectOptionsProp = {
   bgColor: string;
 };
 
-export default function SelectOptions({
+const SelectOptions = ({
   options,
   type,
 }: {
   options: SelectOptionsProp[];
   type?: string;
-}) {
+}) => {
   const [isHover, setIsHover] = useState(false);
   const [select, setSelected] = useState(
     options?.filter(({ current }) => current)[0],
@@ -169,8 +169,10 @@ export default function SelectOptions({
       )}
     </Listbox>
   );
-}
+};
 
 SelectOptions.defaultProps = {
   type: 'toggle',
 };
+
+export default SelectOptions;

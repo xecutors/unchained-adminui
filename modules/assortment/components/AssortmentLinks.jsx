@@ -1,7 +1,15 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { DragDropContext } from 'react-beautiful-dnd';
 
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import Loading from '../../common/components/Loading';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
@@ -19,6 +27,7 @@ const AssortmentLinks = ({ assortmentId }) => {
 
   const { removeAssortmentLink } = useRemoveAssortmentLink();
   const { reorderAssortmentLink } = useReorderAssortmentLink();
+  const items = linkedAssortments?.map((link) => link._id);
 
   const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
@@ -46,56 +55,58 @@ const AssortmentLinks = ({ assortmentId }) => {
     );
   };
 
-  const handleDragEnd = async (result) => {
-    const { destination, source } = result;
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
 
-    if (!destination) {
+    if (active.id !== over.id) {
+      const oldIndex = items.indexOf(active.id);
+      const newIndex = items.indexOf(over.id);
+      const newItems = arrayMove(items, oldIndex, newIndex);
+
+      const sortedItems = newItems.map((id, index) => ({
+        assortmentLinkId: id,
+        sortKey: index,
+      }));
+
+      try {
+        await reorderAssortmentLink({ sortKeys: sortedItems });
+        toast.success(
+          formatMessage({
+            id: 'link_reorder',
+            defaultMessage: 'Link reorder successfully',
+          }),
+        );
+      } catch (error) {
+        toast.error(
+          formatMessage({
+            id: 'fail_reorder',
+            defaultMessage: 'Reordering failed, Try again!',
+          }),
+        );
+      }
+    } else {
       toast.info(
         formatMessage({
-          id: 'drop_area_empty',
-          defaultMessage: 'Destination is empty',
-        }),
-      );
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const newSortKeys = linkedAssortments.map((media) => ({
-      assortmentLinkId: media._id,
-      sortKey: media.sortKey,
-    }));
-
-    const [removedSortKey] = newSortKeys.splice(source.index, 1);
-    newSortKeys.splice(destination.index, 0, removedSortKey);
-
-    const sortKeys = newSortKeys.map((sortKey, index) => ({
-      ...sortKey,
-      sortKey: index,
-    }));
-
-    try {
-      await reorderAssortmentLink({ sortKeys });
-      toast.success(
-        formatMessage({
-          id: 'link_reorder',
-          defaultMessage: 'Link reorder successfully',
-        }),
-      );
-    } catch (error) {
-      toast.error(
-        formatMessage({
-          id: 'fail_reorder',
-          defaultMessage: 'Reordering failed, Try again!',
+          id: 'reorder_original',
+          defaultMessage: 'Reorder to original location',
         }),
       );
     }
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   return (
     <>
@@ -147,13 +158,19 @@ const AssortmentLinks = ({ assortmentId }) => {
           <Loading />
         ) : (
           <div className="ml-auto shadow dark:shadow-none dark:bg-slate-800 w-full md:col-span-2 bg-white">
-            <DragDropContext onDragEnd={handleDragEnd}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+              id="assortment-link"
+            >
               <AssortmentLinksList
                 currentAssortmentId={assortmentId}
                 links={linkedAssortments || []}
                 onRemoveLink={onRemoveLink}
+                items={items}
               />
-            </DragDropContext>
+            </DndContext>
           </div>
         )}
       </SelfDocumentingView>

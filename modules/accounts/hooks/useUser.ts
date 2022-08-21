@@ -26,13 +26,4 @@ const useUser = ({ userId = null } = {}) => {
   };
 };
 
-export const preFetchUser = async (apolloClient, { userId = null }) => {
-  const { data } = await apolloClient.query({
-    query: UserQuery,
-    skip: !userId,
-    variables: { userId },
-  });
-  return data?.user;
-};
-
 export default useUser;

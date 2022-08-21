@@ -1,5 +1,5 @@
 import localizations from '../../i18n';
-import getContent from '../../modules/common/utils/utils';
+import { getContent } from '../../modules/common/utils/utils';
 import {
   AddAssortmentFilterResponse,
   AssortmentFiltersResponse,
@@ -160,7 +160,10 @@ describe('Assortment Detail Filters', () => {
   });
   it('Should Navigate to [ASSORTMENT DETAIL FILTERS] tab successfully', () => {
     cy.get('form#assortment_filter_form').should('be.visible');
-    cy.get('div[draggable="true"]').should('have.length', 2);
+    cy.get('div[aria-describedby="assortment-filter"]').should(
+      'have.length',
+      2,
+    );
   });
 
   it('Should [ADD TAG] successfully', () => {

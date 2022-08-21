@@ -97,20 +97,18 @@ const Events = () => {
           </p>
         </div>
         <div>
-          <>
-            <div className="mt-4">
-              <MultipleSelect
-                className="text-sm text-slate-900 dark:text-slate-200"
-                label={formatMessage({
-                  id: 'select_type',
-                  defaultMessage: 'Select type',
-                })}
-                tagList={extractQuery(query?.types)}
-                onChange={typeChangeHandler}
-                options={eventsType}
-              />
-            </div>
-          </>
+          <div className="mt-4">
+            <MultipleSelect
+              className="text-sm text-slate-900 dark:text-slate-200"
+              label={formatMessage({
+                id: 'select_type',
+                defaultMessage: 'Select type',
+              })}
+              tagList={extractQuery(query?.types)}
+              onChange={typeChangeHandler}
+              options={eventsType}
+            />
+          </div>
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">

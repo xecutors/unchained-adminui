@@ -1597,7 +1597,7 @@ export const GetSingleOrderResponse = {
 
 export const UserOperations = {
   CurrentUser: 'CurrentUser',
-  GetUserList: 'users',
+  GetUserList: 'Users',
   GetSingle: 'User',
   CreateUser: 'EnrollUser',
   UpdateUser: 'UpdateUserProfile',

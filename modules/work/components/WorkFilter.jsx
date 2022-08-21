@@ -154,23 +154,21 @@ const WorkFilter = ({ workTypes = [] }) => {
             </p>
           </div>
           <div>
-            <>
-              <div className="mt-4">
-                <MultipleSelect
-                  className="text-sm text-slate-900 dark:text-slate-200"
-                  label={formatMessage({
-                    id: 'select_type',
-                    defaultMessage: 'Select type',
-                  })}
-                  tagList={extractQuery(router.query?.types)}
-                  onChange={typeChangeHandler}
-                  options={workTypes.map((type) => ({
-                    label: type,
-                    value: type,
-                  }))}
-                />
-              </div>
-            </>
+            <div className="mt-4">
+              <MultipleSelect
+                className="text-sm text-slate-900 dark:text-slate-200"
+                label={formatMessage({
+                  id: 'select_type',
+                  defaultMessage: 'Select type',
+                })}
+                tagList={extractQuery(router.query?.types)}
+                onChange={typeChangeHandler}
+                options={workTypes.map((type) => ({
+                  label: type,
+                  value: type,
+                }))}
+              />
+            </div>
           </div>
         </div>
       </div>

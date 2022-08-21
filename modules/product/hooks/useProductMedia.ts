@@ -17,6 +17,7 @@ const useProductMedia = ({ productId = null, slug = null } = {}) => {
   const { data, loading, error } = useQuery(ProductMediaQuery, {
     skip: !productId && !slug,
     variables: { productId, slug },
+    fetchPolicy: 'cache-first',
   });
 
   const productMedia = data?.product?.media || [];

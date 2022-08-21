@@ -44,4 +44,9 @@ const TextAreaField = ({
   );
 };
 
+TextAreaField.defaultProps = {
+  autoComplete: 'off',
+  rows: 10,
+};
+
 export default TextAreaField;

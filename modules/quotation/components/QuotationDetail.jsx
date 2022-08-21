@@ -196,7 +196,8 @@ const QuotationDetail = ({ quotation }) => {
                   name="configuration"
                   value={form.formik.values.configuration}
                   rows={Math.max(
-                    form.formik.values.configuration?.split(' ')?.length / 2,
+                    (form.formik.values.configuration?.split(' ') || [])
+                      .length / 2,
                     5,
                   )}
                   label={formatMessage({

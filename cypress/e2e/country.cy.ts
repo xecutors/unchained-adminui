@@ -305,7 +305,9 @@ describe('Countries', () => {
     cy.get(`a[href="/country/${country._id}"]`).click();
     cy.location('pathname').should('eq', `/country/${country._id}`);
     cy.get('input[type="checkbox"]#isActive');
-    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button[aria-describedby="header-delete-button"]')
+      .contains(localizations.en.delete)
+      .click();
     cy.get('button').contains(localizations.en.delete_country).click();
     cy.location('pathname').should('eq', '/country');
 

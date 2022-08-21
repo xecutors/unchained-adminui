@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';

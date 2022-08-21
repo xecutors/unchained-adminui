@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
 import classNames from 'classnames';
 
 import useField, { FieldHookProps } from '../hooks/useField';
@@ -12,10 +11,10 @@ interface ChoicesFieldProps extends FieldHookProps {
   labelClassName?: string;
 }
 
-const ChoicesField = (props: ChoicesFieldProps) => {
-  const field = useField(props);
+const ChoicesField = ({ multiple, options, ...props }: ChoicesFieldProps) => {
+  const field = useField({ multiple, options, ...props });
   const {
-    choiceClassName = 'col-md-6 col-lg-4',
+    choiceClassName,
     choiceContainerClassName,
     labelClassName,
     inputClassName,
@@ -42,7 +41,7 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       </label>
 
       <div className={classNames(`row ${choiceContainerClassName}`, className)}>
-        {Object.entries(field.options).map(([value, display]) => (
+        {Object.entries(field.options).map(([value, display]: any) => (
           <div
             className={classNames(`mb-3 ${choiceClassName}`, className)}
             key={value}
@@ -71,6 +70,13 @@ const ChoicesField = (props: ChoicesFieldProps) => {
       </div>
     </div>
   );
+};
+
+ChoicesField.defaultProps = {
+  multiple: false,
+  choiceClassName: 'col-md-6 col-lg-4',
+  choiceContainerClassName: '',
+  labelClassName: '',
 };
 
 export default ChoicesField;

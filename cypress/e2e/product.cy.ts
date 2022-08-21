@@ -452,8 +452,9 @@ describe('Product', () => {
     });
 
     it('Should [ERROR] when required fields are not provided', () => {
-      cy.get('button[type="button"]')
-        .contains(localizations.en.add_tag)
+      cy.get('button[type="button"]#add-tag')
+        .should('contain.text', localizations.en.add_tag)
+
         .click();
 
       cy.get(

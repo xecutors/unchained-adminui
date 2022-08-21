@@ -1,5 +1,5 @@
 import localizations from '../../i18n';
-import getContent from '../../modules/common/utils/utils';
+import { getContent } from '../../modules/common/utils/utils';
 import {
   AddAssortmentLinkResponse,
   AssortmentLinksResponse,
@@ -153,7 +153,7 @@ describe('Assortment Detail Links', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL LINKS] tab successfully', () => {
     cy.get('form#assortment_link_form').should('be.visible');
-    cy.get('div[draggable="true"]').should('have.length', 3);
+    cy.get('div[aria-describedBy="assortment-link"]').should('have.length', 3);
   });
 
   it('Should [ADD TAG] successfully', () => {

@@ -1,11 +1,13 @@
 import { useIntl } from 'react-intl';
-import { Droppable } from 'react-beautiful-dnd';
-import classNames from 'classnames';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import NoData from '../../common/components/NoData';
 
 import ProductMediaListItem from './ProductMediaListItem';
 
-const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
+const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -19,38 +21,33 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia }) => {
         </h2>
 
         <div className="flow-root dark:bg-slate-800">
-          <Droppable droppableId="product-media" mode="standard">
-            {(provided, snapshot) => (
-              <ul
-                className={classNames(
-                  'space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ',
-                  { 'bg-slate-100 dark:bg-slate-500': snapshot.isDraggingOver },
-                )}
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {medias.length ? (
-                  medias.map((media, index) => (
+          <SortableContext items={items} strategy={verticalListSortingStrategy}>
+            <ul className="space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ">
+              {medias.length ? (
+                items.map((id) => {
+                  const media = Object.values(medias).find(
+                    (md) => md._id === id,
+                  );
+                  return (
                     <ProductMediaListItem
+                      id={id}
                       key={media._id}
                       media={media}
                       locale={selectedLocale}
                       onDelete={onDeleteMedia}
-                      index={index}
                     />
-                  ))
-                ) : (
-                  <NoData
-                    message={formatMessage({
-                      id: 'media',
-                      defaultMessage: 'Media',
-                    })}
-                  />
-                )}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
+                  );
+                })
+              ) : (
+                <NoData
+                  message={formatMessage({
+                    id: 'media',
+                    defaultMessage: 'Media',
+                  })}
+                />
+              )}
+            </ul>
+          </SortableContext>
         </div>
       </div>
     </div>

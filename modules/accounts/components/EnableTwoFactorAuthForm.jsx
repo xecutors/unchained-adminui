@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { QRCode } from 'react-qr-svg';
+import QRCode from 'qrcode.react';
 import Toggle from '../../common/components/Toggle';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';

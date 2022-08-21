@@ -1,4 +1,3 @@
-import React from 'react';
 import { IntlProvider } from 'react-intl';
 import SimpleSchema from 'simpl-schema';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';

@@ -1,7 +1,15 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { DragDropContext } from 'react-beautiful-dnd';
 
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import {
+  closestCenter,
+  DndContext,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAssortmentFilters from '../hooks/useAssortmentFilters';
@@ -16,9 +24,10 @@ const AssortmentFilters = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { assortmentFilters, loading } = useAssortmentFilters({ assortmentId });
   const { setModal } = useModal();
-
   const { removeAssortmentFilter } = useRemoveAssortmentFilter();
   const { reorderAssortmentFilters } = useReorderAssortmentFilters();
+
+  const items = assortmentFilters?.map((filter) => filter._id);
 
   const onRemoveFilter = async (assortmentFilterId) => {
     await setModal(
@@ -46,56 +55,58 @@ const AssortmentFilters = ({ assortmentId }) => {
     );
   };
 
-  const handleDragEnd = async (result) => {
-    const { destination, source } = result;
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
 
-    if (!destination) {
+    if (active.id !== over.id) {
+      const oldIndex = items.indexOf(active.id);
+      const newIndex = items.indexOf(over.id);
+      const newItems = arrayMove(items, oldIndex, newIndex);
+
+      const sortedItems = newItems.map((id, index) => ({
+        assortmentFilterId: id,
+        sortKey: index,
+      }));
+
+      try {
+        await reorderAssortmentFilters({ sortKeys: sortedItems });
+        toast.success(
+          formatMessage({
+            id: 'link_reorder',
+            defaultMessage: 'Link reorder successfully',
+          }),
+        );
+      } catch (error) {
+        toast.error(
+          formatMessage({
+            id: 'fail_reorder',
+            defaultMessage: 'Reordering failed, Try again!',
+          }),
+        );
+      }
+    } else {
       toast.info(
         formatMessage({
-          id: 'drop_area_empty',
-          defaultMessage: 'Destination is empty',
-        }),
-      );
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const newSortKeys = assortmentFilters.map((media) => ({
-      assortmentFilterId: media._id,
-      sortKey: media.sortKey,
-    }));
-
-    const [removedSortKey] = newSortKeys.splice(source.index, 1);
-    newSortKeys.splice(destination.index, 0, removedSortKey);
-
-    const sortKeys = newSortKeys.map((sortKey, index) => ({
-      ...sortKey,
-      sortKey: index,
-    }));
-
-    try {
-      await reorderAssortmentFilters({ sortKeys });
-      toast.success(
-        formatMessage({
-          id: 'filter_reorder',
-          defaultMessage: 'Filter reorder successfully',
-        }),
-      );
-    } catch (error) {
-      toast.error(
-        formatMessage({
-          id: 'fail_reorder',
-          defaultMessage: 'Reordering failed, Try again!',
+          id: 'reorder_original',
+          defaultMessage: 'Reorder to original location',
         }),
       );
     }
   };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
   return (
     <>
@@ -148,12 +159,18 @@ const AssortmentFilters = ({ assortmentId }) => {
           </div>
         ) : (
           <div className="ml-auto shadow dark:shadow-none w-full md:col-span-2 bg-white dark:bg-slate-800">
-            <DragDropContext onDragEnd={handleDragEnd}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+              id="assortment-filter"
+            >
               <AssortmentFiltersList
                 filters={assortmentFilters}
                 onRemoveFilter={onRemoveFilter}
+                items={items}
               />
-            </DragDropContext>
+            </DndContext>
           </div>
         )}
       </SelfDocumentingView>

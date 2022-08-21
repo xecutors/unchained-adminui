@@ -33,6 +33,7 @@ const useAssortmentProducts = ({ assortmentId = null, slug = null } = {}) => {
       assortmentId,
       forceLocale: locale,
     },
+    fetchPolicy: 'cache-first',
   });
   const assortment = data?.assortment || {};
   const linkedProducts = assortment?.productAssignments || [];
