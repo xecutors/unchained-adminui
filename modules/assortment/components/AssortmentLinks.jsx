@@ -162,6 +162,7 @@ const AssortmentLinks = ({ assortmentId }) => {
               sensors={sensors}
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
+              id="assortment-link"
             >
               <AssortmentLinksList
                 currentAssortmentId={assortmentId}

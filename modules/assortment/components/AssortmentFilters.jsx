@@ -163,6 +163,7 @@ const AssortmentFilters = ({ assortmentId }) => {
               sensors={sensors}
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
+              id="assortment-filter"
             >
               <AssortmentFiltersList
                 filters={assortmentFilters}

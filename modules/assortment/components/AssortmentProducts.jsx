@@ -165,6 +165,7 @@ const AssortmentProducts = ({ assortmentId }) => {
               sensors={sensors}
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
+              id="assortment-product"
             >
               <AssortmentProductList
                 products={linkedProducts}

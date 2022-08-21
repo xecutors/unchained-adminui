@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import Image from 'next/image';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
@@ -12,6 +13,7 @@ import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 import FormErrors from '../../forms/components/FormErrors';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
 const MediaListItem = ({
   media,
@@ -61,10 +63,15 @@ const MediaListItem = ({
     >
       <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
-          <img
+          <Image
             src={media?.file?.url}
             alt={mediaText?.title || mediaText?.subtitle}
             className="h-36 w-36 flex-none rounded-md bg-slate-10 object-cover object-center"
+            placeholder="blur"
+            loader={defaultNextImageLoader}
+            blurDataURL="/placeholder.png"
+            width={100}
+            height={100}
           />
         </a>
 
@@ -139,7 +146,7 @@ const MediaListItem = ({
             ) : (
               <button
                 id="edit"
-                type={isEdit ? 'button' : 'submit'}
+                type="button"
                 onClick={(e) => {
                   stopPropagation(e);
                   onEdit(!isEdit);

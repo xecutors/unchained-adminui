@@ -159,7 +159,10 @@ describe('Assortment Detail Products', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL PRODUCT] tab successfully', () => {
     cy.get('form#assortment_product_form').should('be.visible');
-    cy.get('div[draggable="true"]').should('have.length', 4);
+    cy.get('div[aria-describedBy="assortment-product"]').should(
+      'have.length',
+      4,
+    );
   });
 
   it('Should [ADD TAG] successfully', () => {

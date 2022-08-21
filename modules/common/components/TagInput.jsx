@@ -42,7 +42,7 @@ const TagInput = ({
 
   useEffect(() => {
     onChange(tagList);
-  }, [tagList, onChange]);
+  }, [tagList]);
 
   return (
     <div className="flow-root">

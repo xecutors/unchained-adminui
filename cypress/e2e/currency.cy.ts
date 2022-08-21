@@ -361,7 +361,9 @@ describe('Currencies', () => {
     cy.location('pathname').should('eq', '/currency');
     cy.get(`a[href="/currency/${currency._id}"]`).click();
     cy.location('pathname').should('eq', `/currency/${currency._id}`);
-    cy.get('button').contains(localizations.en.delete).click();
+    cy.get('button[aria-describedby="header-delete-button"]')
+      .contains(localizations.en.delete)
+      .click();
     cy.get('button').contains(localizations.en.delete_currency).click();
     cy.location('pathname').should('eq', '/currency');
 

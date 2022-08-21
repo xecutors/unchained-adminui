@@ -12,7 +12,6 @@ export const UserQuery = gql`
 
 const useUser = ({ userId = null } = {}) => {
   const { data, loading, error } = useQuery(UserQuery, {
-    fetchPolicy: 'cache-first',
     skip: !userId,
     variables: { userId },
   });

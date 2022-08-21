@@ -186,6 +186,7 @@ const AssortmentMediaForm = ({ assortmentId, selectedLocale }) => {
         sensors={sensors}
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
+        id="assortment-media"
       >
         <AssortmentMediaList
           medias={assortmentMedia}

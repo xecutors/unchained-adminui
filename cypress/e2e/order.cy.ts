@@ -125,7 +125,7 @@ describe('Order', () => {
         expect(request.body.variables).to.deep.eq({
           limit: 50,
           offset: 0,
-          includeCarts: true,
+          includeCarts: false,
           queryString: '',
           sort: [],
         });
@@ -133,19 +133,28 @@ describe('Order', () => {
       },
     );
 
+    cy.location('pathname').should('eq', '/orders');
+    cy.get('button[role="switch"]').click();
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/orders');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         includeCarts: 'true',
       });
     });
-    cy.get('button[role="switch"]').click({ multiple: true });
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/orders');
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        includeCarts: 'false',
-      });
-    });
+
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: true,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
   });
 
   it('should update data and route when [SEARCHING] accordingly', () => {

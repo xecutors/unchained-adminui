@@ -10,6 +10,7 @@ import {
 } from '../mock/work';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
+import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
 import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 // add search test
@@ -61,13 +62,13 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get('tr').should('have.length', 20);
   });
 
   it('Should  [HAVE, ALLOCATED, NEW, FAILED & SELECTED] checked initially', () => {
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`input[type="checkbox"][value="ALLOCATED"]`).should('be.checked');
     cy.get(`input[type="checkbox"][value="SUCCESS"]`).should('be.checked');
@@ -90,13 +91,18 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`input[type="checkbox"][value="ALLOCATED"]`).click();
     cy.get(`input[type="checkbox"][value="SUCCESS"]`).should('be.checked');
     cy.get(`input[type="checkbox"][value="NEW"]`).should('be.checked');
     cy.get(`input[type="checkbox"][value="FAILED"]`).should('be.checked');
-    cy.url().should('contains', '/works?status=NEW,SUCCESS,FAILED');
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        status: 'NEW,SUCCESS,FAILED',
+      });
+    });
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -112,7 +118,12 @@ describe('WorkQueue', () => {
       },
     );
     cy.get(`input[type="checkbox"][value="DELETED"]`).click();
-    cy.url().should('contains', '/works?status=NEW,SUCCESS,FAILED,DELETED');
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        status: 'NEW,SUCCESS,FAILED,DELETED',
+      });
+    });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -146,10 +157,15 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get('select[id="tag-input"]').select(activeWorkTypes[0]);
-    cy.url().should('contains', `/works?types=${activeWorkTypes[0]}`);
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: activeWorkTypes[0],
+      });
+    });
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -165,10 +181,12 @@ describe('WorkQueue', () => {
       },
     );
     cy.get('select[id="tag-input"]').select(activeWorkTypes[1]);
-    cy.url().should(
-      'contains',
-      `/works?types=${activeWorkTypes[0]},${activeWorkTypes[1]}`,
-    );
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: `${activeWorkTypes[0]},${activeWorkTypes[1]}`,
+      });
+    });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -187,7 +205,7 @@ describe('WorkQueue', () => {
   });
 
   it('Should [SEARCH] with [QUERY STRING] only', () => {
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -219,10 +237,16 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get('select[id="tag-input"]').select(activeWorkTypes[0]);
-    cy.url().should('contains', `/works?types=${activeWorkTypes[0]}`);
+
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: activeWorkTypes[0],
+      });
+    });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -240,10 +264,14 @@ describe('WorkQueue', () => {
     );
 
     cy.get(`input[type="checkbox"][value="ALLOCATED"]`).click();
-    cy.url().should(
-      'contains',
-      `/works?types=${activeWorkTypes[0]}&status=NEW,SUCCESS,FAILED`,
-    );
+
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: activeWorkTypes[0],
+        status: 'NEW,SUCCESS,FAILED',
+      });
+    });
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -263,7 +291,7 @@ describe('WorkQueue', () => {
   });
 
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
       .first()
@@ -277,12 +305,16 @@ describe('WorkQueue', () => {
       expect(response.body).to.deep.eq(AllocatedWorkResponse);
     });
 
-    cy.url().should('contain', `/works/${AllocatedWorkResponse.data.work._id}`);
+    cy.location('pathname').should(
+      'eq',
+      `/works/${AllocatedWorkResponse.data.work._id}`,
+    );
+
     cy.get('h2').should('contain', localizations.en.work_detail);
   });
 
   it('Should Navigate to [WORK DETAIL] page successfully', () => {
-    cy.url().should('contain', '/works');
+    cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`a[href="/works/${AllocatedWorkResponse.data.work._id}"]`)
       .first()
@@ -296,7 +328,10 @@ describe('WorkQueue', () => {
       expect(response.body).to.deep.eq(AllocatedWorkResponse);
     });
 
-    cy.url().should('contain', `/works/${AllocatedWorkResponse.data.work._id}`);
+    cy.location('pathname').should(
+      'eq',
+      `/works/${AllocatedWorkResponse.data.work._id}`,
+    );
     cy.get('h2').should('contain', localizations.en.work_detail);
   });
 
@@ -358,7 +393,11 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(AddWorkResponse);
       },
     );
-    cy.url().should('contain', `/works/${AddWorkResponse.data.addWork._id}`);
+
+    cy.location('pathname').should(
+      'eq',
+      `/works/${AddWorkResponse.data.addWork._id}`,
+    );
   });
 
   it('Should show[ERROR] when required fields are missing', () => {
@@ -456,8 +495,13 @@ describe('WorkQueue', () => {
     );
 
     cy.get('a[id="do_work"]').click();
-    cy.url().should('contain', '/works/management?tab=do_work');
 
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works/management');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'do_work',
+      });
+    });
     cy.get('select[name="type"]').select(firstType.value);
     cy.get('textarea[name="input"]')
       .clear()
@@ -486,7 +530,12 @@ describe('WorkQueue', () => {
       .click();
 
     cy.get('a[id="do_work"]').click();
-    cy.url().should('contain', '/works/management?tab=do_work');
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works/management');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        tab: 'do_work',
+      });
+    });
 
     cy.get(
       `input[type="submit"][aria-label="${localizations.en.do_work}"]`,
