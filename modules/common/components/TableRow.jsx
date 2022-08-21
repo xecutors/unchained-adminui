@@ -9,7 +9,6 @@ const TableRow = ({
 }) => {
   const clone = (cell) => React?.cloneElement(cell || <span />, { header });
   const cells = React.Children.map(children, clone, {});
-
   return (
     <tr
       className={classNames(

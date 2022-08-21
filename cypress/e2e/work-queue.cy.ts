@@ -155,12 +155,6 @@ describe('WorkQueue', () => {
     cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get('select[id="tag-input"]').select(activeWorkTypes[0]);
-    cy.location().then((current) => {
-      expect(current.pathname).eq('/works');
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        types: activeWorkTypes[0],
-      });
-    });
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -175,13 +169,14 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
-    cy.get('select[id="tag-input"]').select(activeWorkTypes[1]);
     cy.location().then((current) => {
       expect(current.pathname).eq('/works');
       expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        types: `${activeWorkTypes[0]},${activeWorkTypes[1]}`,
+        types: activeWorkTypes[0],
       });
     });
+
+    cy.get('select[id="tag-input"]').select(activeWorkTypes[1]);
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -197,6 +192,12 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: `${activeWorkTypes[0]},${activeWorkTypes[1]}`,
+      });
+    });
   });
 
   it('Should [SEARCH] with [QUERY STRING] only', () => {
@@ -236,13 +237,6 @@ describe('WorkQueue', () => {
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get('select[id="tag-input"]').select(activeWorkTypes[0]);
 
-    cy.location().then((current) => {
-      expect(current.pathname).eq('/works');
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        types: activeWorkTypes[0],
-      });
-    });
-
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -258,15 +252,14 @@ describe('WorkQueue', () => {
       },
     );
 
-    cy.get(`input[type="checkbox"][value="ALLOCATED"]`).click();
-
     cy.location().then((current) => {
       expect(current.pathname).eq('/works');
       expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
         types: activeWorkTypes[0],
-        status: 'NEW,SUCCESS,FAILED',
       });
     });
+
+    cy.get(`input[type="checkbox"][value="ALLOCATED"]`).click();
 
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
@@ -283,6 +276,13 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
+    cy.location().then((current) => {
+      expect(current.pathname).eq('/works');
+      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+        types: activeWorkTypes[0],
+        status: 'NEW,SUCCESS,FAILED',
+      });
+    });
   });
 
   it('Should Navigate to [WORK DETAIL] page successfully', () => {

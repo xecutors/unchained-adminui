@@ -98,6 +98,12 @@ describe('User', () => {
 
   it('should update data and route when [SEARCHING] accordingly', () => {
     cy.get('input[type="search"]').type('search');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/users');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'search',
+      });
+    });
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
@@ -110,13 +116,14 @@ describe('User', () => {
       },
     );
 
+    cy.get('input[type="search"]').type(' input');
+
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/users');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'search',
+        queryString: 'search input',
       });
     });
-    cy.get('input[type="search"]').type(' input');
 
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
@@ -129,13 +136,6 @@ describe('User', () => {
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/users');
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'search input',
-      });
-    });
   });
 
   it('Should [FILTER] by multiple fields [STATUS & QUERY STRING]', () => {

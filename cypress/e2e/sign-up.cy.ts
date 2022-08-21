@@ -31,7 +31,9 @@ describe('Sign Up', () => {
         aliasQuery(req, UserOperations.CurrentUser);
         if (req.headers?.cookie && req.headers?.cookie.includes('token')) {
           req.reply(CurrentUserResponse);
-        } else req.reply({ data: { me: null } });
+        } else {
+          req.reply({ data: { me: null } });
+        }
       }
     });
 
@@ -45,12 +47,6 @@ describe('Sign Up', () => {
   });
 
   it('Should [CREATE USER] successfully', () => {
-    cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
-      (currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
-      },
-    );
     cy.get('input[name="email"]').type('new@unchained.shop');
     cy.get('input[name="password"]').type('password');
     cy.get('button[type="submit"]')

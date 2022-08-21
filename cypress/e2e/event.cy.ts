@@ -50,11 +50,11 @@ describe('Events ', () => {
     );
   });
 
-  xit('Should display [LIST] of events', () => {
+  it('Should display [LIST] of events', () => {
     cy.get('tr').should('have.length', 8);
   });
 
-  xit('Should support [FILTER] multiple type  value', () => {
+  it('Should support [FILTER] multiple type  value', () => {
     const { options: eventTypes } = EventsTypeResponse.data.eventTypes;
     cy.get('select#tag-input').select(eventTypes[0].value);
     cy.wait(fullAliasName(EventOperations.GetEventList)).then(
@@ -100,7 +100,7 @@ describe('Events ', () => {
     });
   });
 
-  xit('Should update data and route accordingly when [SEARCHING]', () => {
+  it('Should update data and route accordingly when [SEARCHING]', () => {
     cy.get('input[type="search"]').type('search');
     cy.wait(fullAliasName(EventOperations.GetEventList)).then(
       (currentSubject) => {
@@ -194,7 +194,7 @@ describe('Events ', () => {
     });
   });
 
-  xit('Navigate to [EVENT DETAIL] successfully', () => {
+  it('Navigate to [EVENT DETAIL] successfully', () => {
     const [firstEvent] = EventsListResponse.data.events;
 
     cy.get(`a[href="/events/${firstEvent._id}"]`).click();
