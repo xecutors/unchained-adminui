@@ -119,20 +119,6 @@ describe('Order', () => {
       },
     );
 
-    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
-          queryString: '',
-          sort: [],
-        });
-        expect(response.body).to.deep.eq(OrderListResponse);
-      },
-    );
-
     cy.location('pathname').should('eq', '/orders');
     cy.get('button[role="switch"]').click();
     cy.location().should((loc) => {

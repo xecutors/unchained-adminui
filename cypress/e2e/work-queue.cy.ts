@@ -97,12 +97,7 @@ describe('WorkQueue', () => {
     cy.get(`input[type="checkbox"][value="SUCCESS"]`).should('be.checked');
     cy.get(`input[type="checkbox"][value="NEW"]`).should('be.checked');
     cy.get(`input[type="checkbox"][value="FAILED"]`).should('be.checked');
-    cy.location().then((current) => {
-      expect(current.pathname).eq('/works');
-      expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-        status: 'NEW,SUCCESS,FAILED',
-      });
-    });
+    cy.location('pathname').should('eq', '/works');
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -117,6 +112,7 @@ describe('WorkQueue', () => {
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
     );
+
     cy.get(`input[type="checkbox"][value="DELETED"]`).click();
     cy.location().then((current) => {
       expect(current.pathname).eq('/works');
@@ -124,7 +120,6 @@ describe('WorkQueue', () => {
         status: 'NEW,SUCCESS,FAILED,DELETED',
       });
     });
-
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;

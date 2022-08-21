@@ -79,7 +79,7 @@ describe('User', () => {
       .click({ force: true });
 
     cy.location('pathname').should('eq', '/users');
-    cy.get('h2').contains(localizations.en.users_list_header);
+    cy.get('h2').should('contain.text', localizations.en.users_list_header);
   });
 
   context('Order Tab', () => {
@@ -87,7 +87,10 @@ describe('User', () => {
       const { user } = SingleUserResponse.data;
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.location('pathname').should('eq', `/users/${user._id}`);
-      cy.get('h2').contains(localizations.en.users_setting_list_header);
+      cy.get('h2').should(
+        'contain.text',
+        localizations.en.users_setting_list_header,
+      );
 
       cy.get(`a#orders`).contains(localizations.en.orders).click();
       cy.location().then((current) => {
@@ -158,7 +161,10 @@ describe('User', () => {
       const { user } = SingleUserResponse.data;
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.location('pathname').should('eq', `/users/${user._id}`);
-      cy.get('h2').contains(localizations.en.users_setting_list_header);
+      cy.get('h2').should(
+        'contain.text',
+        localizations.en.users_setting_list_header,
+      );
       cy.get(`a#quotations`).contains(localizations.en.quotations).click();
       cy.location().then((loc) => {
         expect(loc.pathname).eq(`/users/${user._id}`);
@@ -271,7 +277,10 @@ describe('User', () => {
       const { user } = SingleUserResponse.data;
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.location('pathname').should('eq', `/users/${user._id}`);
-      cy.get('h2').contains(localizations.en.users_setting_list_header);
+      cy.get('h2').should(
+        'contain.text',
+        localizations.en.users_setting_list_header,
+      );
       cy.get(`a#enrollments`).contains(localizations.en.enrollments).click();
       cy.location().then((loc) => {
         expect(loc.pathname).eq(`/users/${user._id}`);
@@ -390,7 +399,9 @@ describe('User', () => {
       cy.get(`a[href="/users/${user._id}"]`).click();
       cy.location('pathname').should('eq', `/users/${user._id}`);
 
-      cy.get(`a`).contains(localizations.en.payment_credentials).click();
+      cy.get(`a#payment_credentials`)
+        .contains(localizations.en.payment_credentials)
+        .click();
       cy.location().then((current) => {
         expect(current.pathname).to.eq(`/users/${user._id}`);
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({

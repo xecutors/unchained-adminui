@@ -7,7 +7,7 @@ const TableRow = ({
   header = false,
   ...props
 }) => {
-  const clone = (cell) => React?.cloneElement(cell || null, { header });
+  const clone = (cell) => React?.cloneElement(cell || <span />, { header });
   const cells = React.Children.map(children, clone, {});
 
   return (
