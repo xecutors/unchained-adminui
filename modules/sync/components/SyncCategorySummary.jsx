@@ -96,7 +96,7 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-              {statistics.new}
+              {statistics?.newItems?.length}
             </p>
 
             <ViewCard
@@ -132,7 +132,7 @@ const SyncCategorySummary = ({
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-              {statistics.updated}
+              {statistics?.updatedItems?.length}
             </p>
             <ViewCard
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
@@ -181,7 +181,7 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-              {statistics.removed}
+              {statistics?.removedItems?.length}
             </p>
             {removedItemsRoute && (
               <ViewCard
@@ -223,7 +223,7 @@ const SyncCategorySummary = ({
           />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="text-2xl font-semibold text-slate-900 dark:text-slate-200">
-              {statistics.total || 0}
+              {statistics?.total || 0}
             </p>
             <div className="absolute inset-x-0 bottom-0 bg-slate-50 dark:bg-slate-500 px-4 py-4 sm:px-6">
               &nbsp;

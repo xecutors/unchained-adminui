@@ -29,7 +29,7 @@ const convertJobSignalToNumber = (signal) => {
   return false;
 };
 
-const JobSyncStat = ({ new: added, removed, total, diff }) => {
+const JobSyncStat = ({ new: added, removed, updated, total, diff }) => {
   return (
     <div className="ml-1 p-2 py-3 sm:flex-initial">
       <span className="relative mr-9 inline-block rounded-lg ">
@@ -53,7 +53,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
           />
         </div>
         <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
-          {diff}
+          {diff || updated}
         </span>
       </span>
       <span className="relative mr-9 inline-block  rounded-lg ">
@@ -153,42 +153,90 @@ const JobBody = ({ job }) => {
     <div className="border border-slate-200 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-600 text-slate-900 dark:text-white">
       <div className="py-5 sm:p-0">
         <dl className="divide-y divide-slate-300 px-7">
-          <div className="py-4 sm:py-5">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'solr',
-                defaultMessage: 'Solr',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.solr} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'crossbase',
-                defaultMessage: 'Crossbase',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.crossbase} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'navision',
-                defaultMessage: 'Navision',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.navision} />
-            </dd>
-          </div>
+          {job.solr && (
+            <div className="py-4 sm:py-5">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'solr',
+                  defaultMessage: 'Solr',
+                  description: 'Name',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.solr} />
+              </dd>
+            </div>
+          )}
+          {job.crossbase && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'crossbase',
+                  defaultMessage: 'Crossbase',
+                  description: 'Name',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.crossbase} />
+              </dd>
+            </div>
+          )}
+          {job.navision && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'navision',
+                  defaultMessage: 'Navision',
+                  description: 'Name',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.navision} />
+              </dd>
+            </div>
+          )}
+          {job?.publicare_update_solr && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'import',
+                  defaultMessage: 'solr_indexing',
+                  description: 'Solr Indexing',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.publicare_update_solr} />
+              </dd>
+            </div>
+          )}
+          {job?.bulk_import && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'import',
+                  defaultMessage: 'Import',
+                  description: 'Name',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.bulk_import} />
+              </dd>
+            </div>
+          )}
+          {job?.product_availability && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {formatMessage({
+                  id: 'product_availability',
+                  defaultMessage: 'Product Availability',
+                  description: 'Products availability',
+                })}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.product_availability} />
+              </dd>
+            </div>
+          )}
           <div className="py-4 sm:py-5 ">
             <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
               {formatMessage({

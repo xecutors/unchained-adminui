@@ -130,7 +130,7 @@ const SyncDetail = () => {
                   id: 'from',
                   defaultMessage: 'From',
                 })}
-                {getPreviousValue(stats.products)}
+                {getPreviousValue(stats?.products)}
               </span>
             </div>
 
@@ -172,7 +172,7 @@ const SyncDetail = () => {
         newItemsRoute="newAssortments"
         updatedItemsRoute="updatedAssortments"
         removedItemsRoute="removedAssortments"
-        statistics={stats.categories}
+        statistics={stats?.categories}
       />
 
       <SyncCategorySummary
@@ -183,7 +183,7 @@ const SyncDetail = () => {
         newItemsRoute="newProducts"
         updatedItemsRoute="updatedProducts"
         removedItemsRoute="removedProducts"
-        statistics={stats.products}
+        statistics={stats?.products}
       />
 
       <SyncCategorySummary
@@ -194,7 +194,7 @@ const SyncDetail = () => {
         newItemsRoute="newFilters"
         updatedItemsRoute="updatedFilters"
         removedItemsRoute="removedFilters"
-        statistics={stats.filters}
+        statistics={stats?.filters}
       />
     </>
   );

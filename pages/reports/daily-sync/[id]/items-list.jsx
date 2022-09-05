@@ -82,7 +82,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_assortments',
         defaultMessage: 'New Assortments',
       }),
-      length: stats.categories.new,
+      length: stats.categories?.newItems?.length,
     },
     {
       id: 'updatedAssortments',
@@ -90,7 +90,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_assortments',
         defaultMessage: 'Updated Assortments',
       }),
-      length: stats.categories.updated,
+      length: stats.categories.updatedItems?.length,
     },
     {
       id: 'removedAssortments',
@@ -98,7 +98,7 @@ const DailyAnalyticsReportList = () => {
         id: 'removed_assortments',
         defaultMessage: 'Removed Assortments',
       }),
-      length: stats.categories.removed,
+      length: stats.categories.removedItems?.length,
     },
     {
       id: 'newProducts',
@@ -106,7 +106,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_products',
         defaultMessage: 'New Products',
       }),
-      length: stats.products.new,
+      length: stats.products?.newItems.length,
     },
     {
       id: 'updatedProducts',
@@ -114,7 +114,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_products',
         defaultMessage: 'Updated Products',
       }),
-      length: stats.products.updated,
+      length: stats.products?.updatedItems.length,
     },
     {
       id: 'removedProducts',
@@ -122,7 +122,7 @@ const DailyAnalyticsReportList = () => {
         id: 'deleted_products',
         defaultMessage: 'Deleted products',
       }),
-      length: stats.products.removed,
+      length: stats.products?.removedItems?.length,
     },
     {
       id: 'newFilters',
@@ -130,7 +130,7 @@ const DailyAnalyticsReportList = () => {
         id: 'new_filters',
         defaultMessage: 'New Filters',
       }),
-      length: stats.filters.new,
+      length: stats.filters?.newItems?.length,
     },
     {
       id: 'updatedFilters',
@@ -138,7 +138,7 @@ const DailyAnalyticsReportList = () => {
         id: 'updated_filters',
         defaultMessage: 'Updated filters',
       }),
-      length: stats.filters.updated,
+      length: stats.filters.updatedItems?.length,
     },
     {
       id: 'removedFilters',
@@ -146,7 +146,7 @@ const DailyAnalyticsReportList = () => {
         id: 'removed_filters',
         defaultMessage: 'Removed filters',
       }),
-      length: stats.filters.removed,
+      length: stats.filters.removedItems?.length,
     },
   ];
 

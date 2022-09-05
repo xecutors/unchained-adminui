@@ -781,6 +781,10 @@
   "image_not_available": {
     "defaultMessage": "Image not available"
   },
+  "import": {
+    "defaultMessage": "Import",
+    "description": "Name"
+  },
   "import_duration": {
     "defaultMessage": "Duration of import"
   },
@@ -1014,6 +1018,9 @@
   "no_error": {
     "defaultMessage": "Error"
   },
+  "no_job": {
+    "defaultMessage": "sync report found"
+  },
   "no_payload": {
     "defaultMessage": "Payload"
   },
@@ -1101,8 +1108,14 @@
   "password": {
     "defaultMessage": "Password"
   },
+  "password_error": {
+    "defaultMessage": "Password change failed with {error}, try again later"
+  },
   "password_mismatch": {
     "defaultMessage": "Password fields don't match"
+  },
+  "password_success": {
+    "defaultMessage": "Password changed successfully."
   },
   "pay": {
     "defaultMessage": "PAY"
@@ -1163,6 +1176,10 @@
   },
   "product_added": {
     "defaultMessage": "Product added successfully!"
+  },
+  "product_availability": {
+    "defaultMessage": "Product Availability",
+    "description": "Products availability"
   },
   "product_commerce_info": {
     "defaultMessage": "One price list should have a max quantity field empty and no price should have the same max quantity along with currency and country specified"
