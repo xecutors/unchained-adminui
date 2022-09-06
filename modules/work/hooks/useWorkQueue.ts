@@ -8,6 +8,7 @@ export const WorkQueueQuery = gql`
     $status: [WorkStatus!]
     $types: [WorkType!]
     $created: DateFilterInput
+    $sort: [SortOptionInput!]
   ) {
     workQueue(
       offset: $offset
@@ -15,6 +16,7 @@ export const WorkQueueQuery = gql`
       status: $status
       types: $types
       created: $created
+      sort: $sort
     ) {
       ...WorkFragment
     }
