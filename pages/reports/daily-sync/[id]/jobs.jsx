@@ -125,15 +125,16 @@ const JobHeader = ({ job }) => {
               ),
             })}
           >
-            {formatMessage(
-              {
-                id: 'finished_at',
-                defaultMessage: 'Finished: {time}',
-              },
-              {
-                time: format(new Date(job.finished), 'yyyy-MM-dd HH:mm'),
-              },
-            )}
+            {job.finished &&
+              formatMessage(
+                {
+                  id: 'finished_at',
+                  defaultMessage: 'Finished: {time}',
+                },
+                {
+                  time: format(new Date(job.finished), 'yyyy-MM-dd HH:mm'),
+                },
+              )}
           </div>
         </div>
       </div>
