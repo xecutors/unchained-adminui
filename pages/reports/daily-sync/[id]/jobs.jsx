@@ -224,17 +224,17 @@ const JobBody = ({ job }) => {
               </dd>
             </div>
           )}
-          {job?.product_availability && (
+          {job?.availability && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
                 {formatMessage({
-                  id: 'product_availability',
+                  id: 'availability',
                   defaultMessage: 'Product Availability',
                   description: 'Products availability',
                 })}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-                <JobSyncHealth {...job.product_availability} />
+                <JobSyncHealth {...job.availability} />
               </dd>
             </div>
           )}
