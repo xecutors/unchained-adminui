@@ -27,15 +27,14 @@ const Products = () => {
   const { hasRole } = useAuth();
   const { queryString, ...restQuery } = query;
 
+   
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString) {
-      push({
-        query: normalizeQuery(restQuery, searchString, 'queryString'),
-      });
+      push({ query: normalizeQuery(rest, searchString, 'queryString') });
     } else {
-      push({
-        query: normalizeQuery(restQuery),
-      });
+      const {skip, ...withoutSkip} = restQuery
+      push({ query: normalizeQuery(withoutSkip) });
     }
   };
   const sortKeys = getSortKeys(sort);

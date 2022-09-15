@@ -20,18 +20,20 @@ const Quotations = () => {
   const sort = query?.set || '';
 
   const { queryString, ...restQuery } = query;
+  
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString)
       push({
         query: {
-          ...restQuery,
+          ...rest,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...restQuery,
+          ...rest,
         },
       });
   };

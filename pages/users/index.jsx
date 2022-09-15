@@ -16,18 +16,20 @@ const Users = () => {
   const { query, push } = useRouter();
   const { queryString, ...restQuery } = query;
 
+ 
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString)
       push({
         query: {
-          ...restQuery,
+          ...rest,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...restQuery,
+          ...rest,
         },
       });
   };

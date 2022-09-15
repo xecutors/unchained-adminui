@@ -33,16 +33,17 @@ const Country = () => {
 
   const { queryString, ...restQuery } = query;
 
+  
   const setQueryString = (searchString) => {
-    if (searchString)
-      push({
-        query: normalizeQuery(restQuery, searchString, 'queryString'),
-      });
-    else
-      push({
-        query: normalizeQuery(restQuery),
-      });
+    const {skip, ...rest } = query
+    if (searchString) {
+      push({ query: normalizeQuery(rest, searchString, 'queryString') });
+    } else {
+      const {skip, ...withoutSkip} = restQuery
+      push({ query: normalizeQuery(withoutSkip) });
+    }
   };
+
 
   const sortKeys = getSortKeys(sort);
 

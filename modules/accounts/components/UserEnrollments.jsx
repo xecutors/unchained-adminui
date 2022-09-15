@@ -8,17 +8,18 @@ const UserEnrollments = ({ _id: userId }) => {
   const queryString = query?.queryString || '';
 
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString)
       push({
         query: {
-          ...query,
+          ...rest,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...query,
+          ...rest,
         },
       });
   };

@@ -11,17 +11,18 @@ const UserOrders = ({ _id: userId }) => {
   const [includeCarts, setIncludeCarts] = useState(false);
 
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString)
       push({
         query: {
-          ...query,
+          ...rest,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...query,
+          ...rest,
         },
       });
   };

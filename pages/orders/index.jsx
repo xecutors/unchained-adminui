@@ -22,14 +22,14 @@ const Orders = () => {
   const includeCarts = query?.includeCarts === 'true';
   const sort = query?.sort || '';
   const { queryString, ...restQuery } = query;
-
+  
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString) {
-      push({ query: normalizeQuery(query, searchString, 'queryString') });
+      push({ query: normalizeQuery(rest, searchString, 'queryString') });
     } else {
-      push({
-        query: normalizeQuery(restQuery),
-      });
+      const {skip, ...withoutSkip} = restQuery
+      push({ query: normalizeQuery(withoutSkip) });
     }
   };
 

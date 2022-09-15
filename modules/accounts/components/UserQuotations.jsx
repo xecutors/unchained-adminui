@@ -9,21 +9,21 @@ const UserQuotations = ({ _id: userId }) => {
   const queryString = query?.queryString || '';
 
   const setQueryString = (searchString) => {
+    const {skip, ...rest } = query
     if (searchString)
       push({
         query: {
-          ...query,
+          ...rest,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...query,
+          ...rest,
         },
       });
   };
-
   const { quotations, loading } = useUserQuotations({ userId, queryString });
 
   if (loading) return <Loading />;
