@@ -1,72 +1,29 @@
-import { ArrowLeftIcon } from '@heroicons/react/solid';
+import { ArrowLeftIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-
 import AssortmentAlphabeticalList from '../../../../modules/assortment/components/AssortmentAlphabeticalList';
+
 import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import PageHeader from '../../../../modules/common/components/PageHeader';
 import Tab from '../../../../modules/common/components/Tab';
-import uniqueArrayObjects from '../../../../modules/common/utils/uniqueArrayObjects';
 import FiltersAlphabeticalList from '../../../../modules/filter/components/FiltersAlphabeticalList';
 import ProductsAlphabeticalList from '../../../../modules/product/components/ProductsAlphabeticalList';
 import useWork from '../../../../modules/work/hooks/useWork';
-import sortArrayAlphabetically from '../../util/sortArrayAlphabetically';
 
-const GetCurrentTab = ({ list, selectedView }) => {
-  if (!list) return <Loading />;
-  const {
-    newProducts,
-    removedProducts,
-    updatedFilters,
-    newAssortments,
-    updatedAssortments,
-    removedAssortments,
-    newFilters,
-    updatedProducts,
-    removedFilters,
-  } = list;
-
-  if (selectedView === 'new-assortments')
-    return <AssortmentAlphabeticalList dictionary={newAssortments} />;
-  if (selectedView === 'updated-assortments')
-    return <AssortmentAlphabeticalList dictionary={updatedAssortments} />;
-  if (selectedView === 'removed-assortments')
-    return (
-      <AssortmentAlphabeticalList
-        enableRedirect={false}
-        dictionary={removedAssortments}
-      />
-    );
-
-  if (selectedView === 'new-products')
-    return <ProductsAlphabeticalList dictionary={newProducts} />;
-  if (selectedView === 'updated-products')
-    return <ProductsAlphabeticalList dictionary={updatedProducts} />;
-  if (selectedView === 'removed-products')
-    return (
-      <ProductsAlphabeticalList
-        enableRedirect={false}
-        dictionary={removedProducts}
-      />
-    );
-
-  if (selectedView === 'new-filters')
-    return <FiltersAlphabeticalList dictionary={newFilters} />;
-  if (selectedView === 'updated-filters')
-    return <FiltersAlphabeticalList dictionary={updatedFilters} />;
-  if (selectedView === 'removed-filters')
-    return (
-      <FiltersAlphabeticalList
-        enableRedirect={false}
-        dictionary={removedFilters}
-      />
-    );
-
-  return <AssortmentAlphabeticalList dictionary={newAssortments} />;
+const TabComponentMap = {
+  newAssortments: AssortmentAlphabeticalList,
+  updatedAssortments: AssortmentAlphabeticalList,
+  removedAssortments: AssortmentAlphabeticalList,
+  newProducts: ProductsAlphabeticalList,
+  updatedProducts: ProductsAlphabeticalList,
+  removedProducts: ProductsAlphabeticalList,
+  newFilters: FiltersAlphabeticalList,
+  removedFilters: FiltersAlphabeticalList,
+  updatedFilters: FiltersAlphabeticalList,
 };
 
-const Wrapper = ({ selectedView, list }) => {
+const Wrapper = ({ selectedView, workId }) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -81,13 +38,15 @@ const Wrapper = ({ selectedView, list }) => {
     });
   };
 
+  const TabComponent = TabComponentMap[selectedView];
+
   return (
     <div>
       <div className="mt-4 mb-4">
         <input
           type="text"
           name="search"
-          className="block w-full dark:bg-slate-900 text-slate-600 dark:text-slate-200 dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          className="block w-full dark:bg-slate-600 text-slate-600 dark:text-white dark:placeholder:text-white rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
           onChange={handleOnChange}
           autoComplete="off"
           value={searchKey}
@@ -98,11 +57,7 @@ const Wrapper = ({ selectedView, list }) => {
           })}
         />
       </div>
-      <GetCurrentTab
-        list={list}
-        selectedView={selectedView}
-        defaultTab="new-assortments"
-      />
+      <TabComponent itemKey={selectedView} workId={workId} />
     </div>
   );
 };
@@ -119,137 +74,79 @@ const DailyAnalyticsReportList = () => {
 
   const { sync } = work.result || {};
   const { stats } = sync || {};
-  const { categories, products, filters } = stats || {};
-
-  const newAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(categories?.newItems || categories?.newCategories),
-    'title',
-    true,
-  );
-
-  const updatedAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(
-      categories?.updatedItems || categories.updatedCategories,
-    ),
-    'title',
-    true,
-  );
-
-  const removedAssortments = sortArrayAlphabetically(
-    uniqueArrayObjects(
-      categories?.removedItems || categories?.removedCategories,
-    ),
-    'title',
-    true,
-  );
-
-  const newProducts = sortArrayAlphabetically(
-    uniqueArrayObjects(products?.newItems),
-    'title',
-    true,
-  );
-
-  const updatedProducts = sortArrayAlphabetically(
-    uniqueArrayObjects(products?.updatedItems),
-    'title',
-    true,
-  );
-
-  const removedProducts = sortArrayAlphabetically(
-    uniqueArrayObjects(products?.removedItems),
-    'title',
-    true,
-  );
-  const newFilters = sortArrayAlphabetically(
-    uniqueArrayObjects(filters?.newItems),
-    'key',
-    true,
-  );
-
-  const updatedFilters = sortArrayAlphabetically(
-    uniqueArrayObjects(filters?.updatedItems || filters?.updatedFilters),
-    'key',
-    true,
-  );
-
-  const removedFilters = sortArrayAlphabetically(
-    uniqueArrayObjects(filters?.removedItems),
-    'key',
-    true,
-  );
 
   const dailySyncItemReportOptions = [
     {
-      id: 'new-assortments',
+      id: 'newAssortments',
       title: formatMessage({
         id: 'new_assortments',
         defaultMessage: 'New Assortments',
       }),
-      length: Object.values(newAssortments).flat().length,
+      length: stats.categories?.newItems?.length,
     },
     {
-      id: 'updated-assortments',
+      id: 'updatedAssortments',
       title: formatMessage({
         id: 'updated_assortments',
         defaultMessage: 'Updated Assortments',
       }),
-      length: Object.values(updatedAssortments).flat().length,
+      length: stats.categories.updatedItems?.length,
     },
     {
-      id: 'removed-assortments',
+      id: 'removedAssortments',
       title: formatMessage({
         id: 'removed_assortments',
         defaultMessage: 'Removed Assortments',
       }),
-      length: Object.values(removedAssortments).flat().length,
+      length: stats.categories.removedItems?.length,
     },
     {
-      id: 'new-products',
+      id: 'newProducts',
       title: formatMessage({
         id: 'new_products',
         defaultMessage: 'New Products',
       }),
-      length: Object.values(newProducts).flat().length,
+      length: stats.products?.newItems.length,
     },
     {
-      id: 'updated-products',
+      id: 'updatedProducts',
       title: formatMessage({
         id: 'updated_products',
         defaultMessage: 'Updated Products',
       }),
-      length: Object.values(updatedProducts).flat().length,
+      length: stats.products?.updatedItems.length,
     },
     {
-      id: 'removed-products',
+      id: 'removedProducts',
       title: formatMessage({
         id: 'deleted_products',
         defaultMessage: 'Deleted products',
       }),
-      length: Object.values(removedProducts).flat().length,
+      length: stats.products?.removedItems?.length,
     },
     {
-      id: 'new-filters',
+      id: 'newFilters',
       title: formatMessage({
         id: 'new_filters',
         defaultMessage: 'New Filters',
       }),
-      length: Object.values(newFilters).flat().length,
+      length: stats.filters?.newItems?.length,
     },
     {
-      id: 'updated-filters',
+      id: 'updatedFilters',
       title: formatMessage({
         id: 'updated_filters',
         defaultMessage: 'Updated filters',
       }),
-      length: Object.values(updatedFilters).flat().length,
+      length: stats.filters.updatedItems?.length,
     },
     {
-      id: 'removed-filters',
+      id: 'removedFilters',
       title: formatMessage({
         id: 'removed_filters',
         defaultMessage: 'Removed filters',
       }),
-      length: Object.values(removedFilters).flat().length,
+      length: stats.filters.removedItems?.length,
     },
   ];
 
@@ -273,20 +170,8 @@ const DailyAnalyticsReportList = () => {
           <ArrowLeftIcon className="h-6 w-6 text-teal-600 hover:text-teal-800" />
         </button>
       </span>
-      <Tab tabItems={dailySyncItemReportOptions} defaultTab="new-assortments">
-        <Wrapper
-          list={{
-            newAssortments,
-            newProducts,
-            newFilters,
-            updatedAssortments,
-            updatedProducts,
-            updatedFilters,
-            removedAssortments,
-            removedProducts,
-            removedFilters,
-          }}
-        />
+      <Tab tabItems={dailySyncItemReportOptions} defaultTab="newAssortments">
+        <Wrapper workId={id} />
       </Tab>
     </>
   );

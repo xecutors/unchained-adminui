@@ -16,8 +16,9 @@ const GraphSync = ({ dailySync }) => {
     const chartData = dailySync?.map((syncDailyData) => {
       return {
         name: new Date(syncDailyData.started).toDateString().substring(4, 10),
-        new: syncDailyData.result.sync.stats.products.new,
-        removed: syncDailyData.result.sync.stats.products.removed,
+        new: syncDailyData.result.sync.stats?.products?.newItems?.length || 0,
+        removed:
+          syncDailyData.result.sync.stats?.products?.removedItems?.length || 0,
       };
     });
     return chartData;

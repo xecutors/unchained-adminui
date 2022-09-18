@@ -1,37 +1,26 @@
-import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import Pagination from '../../common/components/Pagination';
-import computeDictionaryTotal from '../../common/utils/computeDictionaryTotal';
+import useDailySyncItems from '../../sync/hooks/useDailySyncItems';
 
-const FiltersAlphabeticalList = ({
-  dictionary = {},
-  enableRedirect = true,
-}) => {
+const FiltersAlphabeticalList = ({ workId, itemKey }) => {
   const { query } = useRouter();
-
   const { searchKey = '' } = query;
+  const { items, loadMore } = useDailySyncItems({
+    workId,
+    itemKey,
+    searchQuery: searchKey,
+  });
 
-  const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
-      return [
-        key,
-        values.filter((item) => {
-          return (
-            item?.key?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            item?.type.toLowerCase() === searchKey.toLowerCase() ||
-            !searchKey
-          );
-        }),
-      ];
-    }),
-  );
+  const filtered = items.reduce((acc, cur) => {
+    const letter = cur.key[0].toUpperCase();
+    return {
+      ...acc,
+      [letter]: [...(acc[letter] || []), cur],
+    };
+  }, {});
 
-  const totalFilters = Object.values(filtered).reduce(
-    computeDictionaryTotal,
-    0,
-  );
+  const totalFilters = items.length;
 
   return (
     <nav className="h-full overflow-y-auto" aria-label="dictionary">
@@ -39,20 +28,16 @@ const FiltersAlphabeticalList = ({
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-slate-200 dark:border-slate-800 bg-slate-300 dark:bg-slate-400 px-6 py-1 text-sm font-medium text-white dark:text-slate-900">
+              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 dark:bg-slate-400 px-6 py-1 text-sm font-medium text-white dark:text-slate-900">
                 <h3>{letter}</h3>
               </div>
               <ul className="relative z-0 divide-y divide-slate-200">
                 {filtered[letter].map((item) => (
-                  <li key={item._id} className="bg-white">
+                  <li key={item._id} className="bg-white dark:bg-slate-500">
                     <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-400">
                       <div className="min-w-0 flex-1">
                         <Link href={`/filters/${item?._id}`}>
-                          <a
-                            className={classNames('focus:outline-none', {
-                              'pointer-events-none': !enableRedirect,
-                            })}
-                          >
+                          <a className="focus:outline-none">
                             <span
                               className="absolute inset-0"
                               aria-hidden="true"
@@ -74,7 +59,11 @@ const FiltersAlphabeticalList = ({
           ) : null}
         </div>
       ))}
-      <Pagination total={totalFilters} data={filtered} />
+      <Pagination
+        onLoadMore={loadMore}
+        total={totalFilters}
+        data={Object.values(filtered).flat()}
+      />
     </nav>
   );
 };
