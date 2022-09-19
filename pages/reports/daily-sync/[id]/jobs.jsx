@@ -94,6 +94,20 @@ const JobSyncHealth = ({ signal, duration }) => {
   );
 };
 
+const JobDetail = ({ type, stat }) => {
+  if (!stat.total) return null;
+  return (
+    <div className="py-4 sm:py-5 ">
+      <dt className="text-sm font-medium text-slate-500 dark:text-slate-300 capitalize">
+        {type}
+      </dt>
+      <dd className=" mt-1 text-sm sm:col-span-2 sm:mt-0">
+        <JobSyncStat {...stat} />
+      </dd>
+    </div>
+  );
+};
+
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
   return (
@@ -150,6 +164,39 @@ const JobHeader = ({ job }) => {
 const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
+  const JobLabels = {
+    solr: formatMessage({
+      id: 'solr',
+      defaultMessage: 'Solr',
+      description: 'Sync solr indexing label',
+    }),
+    crossbase: formatMessage({
+      id: 'crossbase',
+      defaultMessage: 'Crossbase',
+      description: 'Sync crossbase label',
+    }),
+    navision: formatMessage({
+      id: 'navision',
+      defaultMessage: 'Navision',
+      description: 'Sync navision label',
+    }),
+    publicare_update_solr: formatMessage({
+      id: 'solr',
+      defaultMessage: 'Solr',
+      description: 'Sync solr indexing label',
+    }),
+    availability: formatMessage({
+      id: 'availability',
+      defaultMessage: 'Product Availability',
+      description: 'Products availability',
+    }),
+    bulk_import: formatMessage({
+      id: 'import',
+      defaultMessage: 'Import',
+      description: 'Name',
+    }),
+  };
+
   return (
     <div className="border border-slate-200 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-600 text-slate-900 dark:text-white">
       <div className="py-5 sm:p-0">
@@ -157,11 +204,7 @@ const JobBody = ({ job }) => {
           {job.solr && (
             <div className="py-4 sm:py-5">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'solr',
-                  defaultMessage: 'Solr',
-                  description: 'Name',
-                })}
+                {JobLabels.solr}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.solr} />
@@ -171,11 +214,7 @@ const JobBody = ({ job }) => {
           {job.crossbase && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'crossbase',
-                  defaultMessage: 'Crossbase',
-                  description: 'Name',
-                })}
+                {JobLabels.crossbase}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.crossbase} />
@@ -185,11 +224,7 @@ const JobBody = ({ job }) => {
           {job.navision && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'navision',
-                  defaultMessage: 'Navision',
-                  description: 'Name',
-                })}
+                {JobLabels.navision}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.navision} />
@@ -199,11 +234,7 @@ const JobBody = ({ job }) => {
           {job?.publicare_update_solr && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'import',
-                  defaultMessage: 'solr_indexing',
-                  description: 'Solr Indexing',
-                })}
+                {JobLabels.solr}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.publicare_update_solr} />
@@ -213,64 +244,27 @@ const JobBody = ({ job }) => {
           {job?.bulk_import && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'import',
-                  defaultMessage: 'Import',
-                  description: 'Name',
-                })}
+                {JobLabels.bulk_import}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.bulk_import} />
               </dd>
             </div>
           )}
+
           {job?.availability && (
             <div className="py-4 sm:py-5 ">
               <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-                {formatMessage({
-                  id: 'availability',
-                  defaultMessage: 'Product Availability',
-                  description: 'Products availability',
-                })}
+                {JobLabels.availability}
               </dt>
               <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
                 <JobSyncHealth {...job.availability} />
               </dd>
             </div>
           )}
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'categories',
-                defaultMessage: 'Categories',
-              })}
-            </dt>
-            <dd className=" mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.categories} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'products',
-                defaultMessage: 'Products',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.products} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'filters',
-                defaultMessage: 'Filters',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.filters} />
-            </dd>
-          </div>
+          {Object.entries(job).map(([type, stat]) => (
+            <JobDetail type={type} stat={stat} />
+          ))}
         </dl>
       </div>
     </div>

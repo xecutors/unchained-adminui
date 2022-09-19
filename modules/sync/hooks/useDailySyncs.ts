@@ -13,6 +13,7 @@ const useDailySyncs = ({
       status: ['SUCCESS', 'FAILED'],
       types: ['PUBLICARE_DAILY_ANALYTICS'],
       limit,
+      sort: [{ key: 'created', value: 'DESC' }],
     },
   });
 
