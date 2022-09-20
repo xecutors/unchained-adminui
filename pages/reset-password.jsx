@@ -1,14 +1,25 @@
 import { useRouter } from 'next/router';
 
 import { useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import ResetPasswordForm from '../modules/accounts/components/ResetPasswordForm';
 import useResetPassword from '../modules/accounts/hooks/useResetPassword';
 
 const PasswordReset = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const { formatMessage } = useIntl();
   const { resetPassword } = useResetPassword();
   const { token } = query;
+
+  const onPasswordChangedSuccessfully = () => {
+    toast.success(
+      formatMessage({
+        id: 'password_changed_success',
+        defaultMessage: 'Password changed successfully.',
+      }),
+    );
+    push('/');
+  };
 
   const onSubmit = async ({ newPassword }) => {
     return resetPassword({ newPassword, token, disableHashing: true });
@@ -33,7 +44,10 @@ const PasswordReset = () => {
           </p>
         </div>
         <div className="p-2">
-          <ResetPasswordForm onSubmit={onSubmit} />
+          <ResetPasswordForm
+            onSubmit={onSubmit}
+            onSubmitSuccess={onPasswordChangedSuccessfully}
+          />
         </div>
       </div>
     </div>
