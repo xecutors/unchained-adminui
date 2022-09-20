@@ -7,15 +7,15 @@ import useUserOrders from '../../order/hooks/useUserOrders';
 
 const UserOrders = ({ _id: userId }) => {
   const { query, push } = useRouter();
-  const queryString = query?.queryString || '';
+  const { queryString, ...rest } = query;
   const [includeCarts, setIncludeCarts] = useState(false);
 
   const setQueryString = (searchString) => {
-    const {skip, ...rest } = query
+    const { skip, ...withoutSkip } = rest;
     if (searchString)
       push({
         query: {
-          ...rest,
+          ...withoutSkip,
           queryString: searchString,
         },
       });

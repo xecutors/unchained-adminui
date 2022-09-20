@@ -18,7 +18,7 @@ export const CountriesQuery = gql`
     ) {
       ...CountryFragment
     }
-    countriesCount(includeInactive: $includeInactive)
+    countriesCount(includeInactive: $includeInactive, queryString: $queryString)
   }
 
   ${CountryFragment}

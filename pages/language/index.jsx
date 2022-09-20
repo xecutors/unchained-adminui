@@ -27,16 +27,18 @@ const Languages = () => {
   const includeInactive =
     query?.includeInactive === 'true' || !query?.includeInactive;
   const sort = query?.sort || '';
-
   const { queryString, ...restQuery } = query;
-  
+
   const setQueryString = (searchString) => {
-    const {skip, ...rest } = query
+    const { skip, ...withoutSkip } = restQuery;
     if (searchString) {
-      push({ query: normalizeQuery(rest, searchString, 'queryString') });
+      push({
+        query: normalizeQuery(withoutSkip, searchString, 'queryString'),
+      });
     } else {
-      const {skip, ...withoutSkip} = restQuery
-      push({ query: normalizeQuery(withoutSkip) });
+      push({
+        query: normalizeQuery(restQuery),
+      });
     }
   };
 

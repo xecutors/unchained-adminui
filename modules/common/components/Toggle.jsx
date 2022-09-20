@@ -15,7 +15,7 @@ const Toggle = ({
   const toggleState = router?.query?.[toggleKey] === 'true' || active;
 
   const toggle = () => {
-    const {skip, ...rest} = router.query
+    const { skip, ...rest } = router.query;
     router.push({
       query: normalizeQuery(rest, !toggleState, toggleKey),
     });

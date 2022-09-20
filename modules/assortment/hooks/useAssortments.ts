@@ -31,6 +31,7 @@ export const AssortmentsQuery = gql`
       slugs: $slugs
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
+      queryString: $queryString
     )
   }
   ${AssortmentFragment}
