@@ -50,6 +50,18 @@ const ProductBriefFragment = gql`
         labels
       }
     }
+    ... on TokenizedProduct {
+      texts(forceLocale: $forceLocale) {
+        _id
+        slug
+        title
+        subtitle
+        description
+        vendor
+        brand
+        labels
+      }
+    }
     _id
     sequence
     status

@@ -37,7 +37,7 @@ const ProductListItem = ({ product, showAvatar }) => {
           {product?.status !== 'DELETED' ? (
             <Link href={`/products/${generateUniqueId(product)}`}>
               <a className="text-blue-600 dark:text-blue-400">
-                {product?.texts.title || (
+                {product?.texts?.title || (
                   <>
                     {product._id}{' '}
                     <Badge
@@ -52,7 +52,7 @@ const ProductListItem = ({ product, showAvatar }) => {
               </a>
             </Link>
           ) : (
-            product?.texts.title || (
+            product?.texts?.title || (
               <>
                 {product._id}{' '}
                 <Badge
