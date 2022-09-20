@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import OrderDetailItem from './OrderDetailItem';
 
 import OrderDetailBilling from './OrderDetailBilling';
-import DocumentList from './DocumentList';
 import OrderDetailPayment from './OrderDetailPayment';
 import OrderDetailDelivery from './OrderDetailDelivery';
 import DiscountList from './DiscountList';
@@ -15,7 +14,6 @@ import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
 import StatusProgress from '../../common/components/StatusProgress';
 import OrderDetailHeader from './OrderDetailHeader';
-import Accordion from '../../common/components/Accordion';
 import useRejectOrder from '../hooks/useRejectOrder';
 import DangerMessage from '../../modal/components/DangerMessage';
 
@@ -135,21 +133,6 @@ const OrderDetail = ({ order }) => {
     },
   };
 
-  const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
-
-  const documents = {
-    header: (
-      <span className="flex">
-        {formatMessage({
-          id: 'documents',
-          defaultMessage: 'Documents',
-        })}
-      </span>
-    ),
-    body: <DocumentList documents={order?.documents || []} />,
-  };
-
   return (
     <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-10 md:mt-10 dark:text-slate-200">
       <div>
@@ -165,9 +148,6 @@ const OrderDetail = ({ order }) => {
           statusTypes={orderStatusType}
           timeline={timeline}
         />
-        <div className="mt-10">
-          <Accordion data={[documents]} headerCSS={headerCSS} />
-        </div>
       </div>
 
       <div>

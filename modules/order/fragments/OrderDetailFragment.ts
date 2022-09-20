@@ -214,13 +214,6 @@ const OrderDetailFragment = gql`
       amount
       currency
     }
-    documents {
-      _id
-      name
-      type
-      size
-      url
-    }
     items {
       _id
       product {

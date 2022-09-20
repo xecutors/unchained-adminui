@@ -1,13 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import { PaperClipIcon } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
-import DocumentList from '../../order/components/DocumentList';
-import Accordion from '../../common/components/Accordion';
 import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
@@ -131,25 +128,6 @@ const QuotationDetail = ({ quotation }) => {
     },
   };
 
-  const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-t-md border border-slate-300 bg-slate-100 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400';
-
-  const documents = {
-    header: (
-      <span className="flex">
-        <PaperClipIcon
-          className="mr-4 h-5 w-5 flex-shrink-0 text-slate-400"
-          aria-hidden="true"
-        />
-        {formatMessage({
-          id: 'documents',
-          defaultMessage: 'Documents',
-        })}
-      </span>
-    ),
-    body: <DocumentList documents={quotation.documents} />,
-  };
-
   const form = useForm({
     initialValues: {
       configuration: JSON.stringify(quotation.configuration || {}, null, 2),
@@ -210,8 +188,6 @@ const QuotationDetail = ({ quotation }) => {
           </div>
         </div>
       </section>
-
-      <Accordion data={[documents]} headerCSS={headerCSS} />
     </>
   );
 };
