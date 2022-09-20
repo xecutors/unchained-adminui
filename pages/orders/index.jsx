@@ -21,11 +21,15 @@ const Orders = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const includeCarts = query?.includeCarts === 'true';
   const sort = query?.sort || '';
+
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
+    const { skip, ...withoutSkip } = restQuery;
     if (searchString) {
-      push({ query: normalizeQuery(query, searchString, 'queryString') });
+      push({
+        query: normalizeQuery(withoutSkip, searchString, 'queryString'),
+      });
     } else {
       push({
         query: normalizeQuery(restQuery),

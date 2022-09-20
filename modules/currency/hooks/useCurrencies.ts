@@ -18,7 +18,10 @@ export const CurrenciesQuery = gql`
     ) {
       ...CurrencyFragment
     }
-    currenciesCount(includeInactive: $includeInactive)
+    currenciesCount(
+      includeInactive: $includeInactive
+      queryString: $queryString
+    )
   }
   ${CurrencyFragment}
 `;

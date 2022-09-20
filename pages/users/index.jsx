@@ -14,20 +14,21 @@ import ListHeader from '../../modules/common/components/ListHeader';
 const Users = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-  const { queryString, ...restQuery } = query;
+  const { queryString, rest } = query;
 
   const setQueryString = (searchString) => {
+    const { skip, ...withoutSkip } = rest || { skip: null };
     if (searchString)
       push({
         query: {
-          ...restQuery,
+          ...withoutSkip,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...restQuery,
+          ...rest,
         },
       });
   };

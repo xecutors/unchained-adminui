@@ -28,9 +28,10 @@ const Products = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
+    const { skip, ...withoutSkip } = restQuery;
     if (searchString) {
       push({
-        query: normalizeQuery(restQuery, searchString, 'queryString'),
+        query: normalizeQuery(withoutSkip, searchString, 'queryString'),
       });
     } else {
       push({

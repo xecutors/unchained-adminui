@@ -48,13 +48,17 @@ const AssortmentsView = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
+    const { skip, ...withoutSkip } = restQuery;
     if (searchString) {
-      push({ query: normalizeQuery(query, searchString, 'queryString') });
+      push({
+        query: normalizeQuery(withoutSkip, searchString, 'queryString'),
+      });
     } else {
-      push({ query: normalizeQuery(restQuery) });
+      push({
+        query: normalizeQuery(restQuery),
+      });
     }
   };
-
   const onViewGraph = () => {
     if (query.viewGraph) {
       push('/assortments');
