@@ -96,7 +96,7 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-              {statistics?.newItems?.length}
+              {statistics?.newItems?.length || 0}
             </p>
 
             <ViewCard
@@ -132,7 +132,7 @@ const SyncCategorySummary = ({
                 viewBox="0 0 20 20"
                 fill="currentColor"
               />
-              {statistics?.updatedItems?.length}
+              {statistics?.updatedItems?.length || 0}
             </p>
             <ViewCard
               link={`${router.asPath}/items-list?tab=${updatedItemsRoute}`}
@@ -181,7 +181,7 @@ const SyncCategorySummary = ({
                   clipRule="evenodd"
                 />
               </svg>
-              {statistics?.removedItems?.length}
+              {statistics?.removedItems?.length || 0}
             </p>
             {removedItemsRoute && (
               <ViewCard

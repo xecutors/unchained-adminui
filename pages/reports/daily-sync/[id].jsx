@@ -60,7 +60,8 @@ const SyncDetail = () => {
     0,
   );
 
-  const getPreviousValue = ({ new: added, removed, diff, total }) => {
+  const getPreviousValue = (param) => {
+    const { new: added, removed, diff, total } = param || {};
     if (added > removed) {
       return total - diff;
     }
@@ -157,7 +158,7 @@ const SyncDetail = () => {
                   Math.floor(durationInMilliSeconds / 1000 / 60) % 60,
                 ),
                 seconds: Math.floor(durationInMilliSeconds / 1000) % 60,
-              })}
+              }) || 'N/A'}
             </div>
           </dd>
         </div>

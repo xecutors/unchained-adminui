@@ -95,7 +95,7 @@ const JobSyncHealth = ({ signal, duration }) => {
 };
 
 const JobDetail = ({ type, stat }) => {
-  if (!stat.total) return null;
+  if (!stat?.total) return null;
   return (
     <div className="py-4 sm:py-5 ">
       <dt className="text-sm font-medium text-slate-500 dark:text-slate-300 capitalize">
