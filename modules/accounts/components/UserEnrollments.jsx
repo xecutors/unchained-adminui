@@ -5,7 +5,7 @@ import useUserEnrollments from '../../enrollment/hooks/useUserEnrollments';
 
 const UserEnrollments = ({ _id: userId }) => {
   const { query, push } = useRouter();
-  const { queryString, rest } = query;
+  const { queryString, ...rest } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest;

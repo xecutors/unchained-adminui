@@ -26,7 +26,7 @@ const ProductDetailPage = () => {
   const normalizedSlug = slug.join('/');
   const { product, loading } = useProduct({ slug: normalizedSlug });
   const { removeProduct } = useRemoveProduct();
-  console.log(product);
+
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage

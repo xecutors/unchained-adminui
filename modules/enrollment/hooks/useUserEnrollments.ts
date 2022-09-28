@@ -3,9 +3,9 @@ import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
 export const UserEnrollmentsQuery = gql`
   query UserEnrollments($userId: ID!, $queryString: String) {
-    user(userId: $userId, queryString: $queryString) {
+    user(userId: $userId) {
       _id
-      enrollments {
+      enrollments(queryString: $queryString) {
         ...EnrollmentFragment
       }
     }
