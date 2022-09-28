@@ -3,6 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
+import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import ProductForm from '../../modules/product/components/ProductForm';
 import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
 
@@ -10,8 +11,8 @@ const AddProduct = () => {
   const { createProduct } = useCreateProduct();
   const router = useRouter();
   const { formatMessage } = useIntl();
-  const onSubmitSuccess = (_, { texts }) => {
-    router.push(`/products/${texts?.slug}`);
+  const onSubmitSuccess = (_, { ...result }) => {
+    router.push(`/products/${generateUniqueId(result)}`);
   };
 
   const onSubmit = async ({ title, type, tags }) => {

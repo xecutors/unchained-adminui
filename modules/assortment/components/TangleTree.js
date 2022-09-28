@@ -10,6 +10,7 @@ import { ArrowLeftIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import constructTangleLayout from '../utils/contructTangleLayout';
 import Badge from '../../common/components/Badge';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const color = scaleOrdinal(schemeDark2);
 
@@ -90,7 +91,12 @@ const TangleTree = ({ data, options = {} }) => {
               height="100%"
             >
               <div xmlns="http://www.w3.org/1999/xhtml">
-                <Link href={`/assortments/${n?.slug}`}>
+                <Link
+                  href={`/assortments/${generateUniqueId({
+                    _id: n?.id,
+                    texts: n,
+                  })}`}
+                >
                   <a
                     id="root"
                     className='className="selectable text-indigo-600 hover:text-indigo-800 dark:text-lime-400 dark:hover:text-lime-500 text-base'
@@ -100,7 +106,14 @@ const TangleTree = ({ data, options = {} }) => {
                 </Link>
                 {n?.childCount !== undefined && (
                   <>
-                    <Link href={`/assortments?viewGraph=true&slug=${n?.slug}`}>
+                    <Link
+                      href={`/assortments?viewGraph=true&slug=${generateUniqueId(
+                        {
+                          _id: n?.id,
+                          texts: n,
+                        },
+                      )}`}
+                    >
                       <a className="text-blue-600 dark:text-fuchsia-400 dark:hover:text-fuchsia-600 ml-2 inline-flex items-center px-4 border border-slate-300 shadow-sm text-sm font-medium rounded-md bg-white dark:bg-slate-500 hover:bg-slate-50 dark:hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         {formatMessage({
                           id: 'children',

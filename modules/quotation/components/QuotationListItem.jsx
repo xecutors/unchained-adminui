@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import generateUniqueId from '../../common/utils/getUniqueId';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 const QUOTATION_STATUS = {
@@ -76,7 +77,7 @@ const QuotationListItem = ({ quotation }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
-          <Link href={`/products/${quotation.product._id}`}>
+          <Link href={`/products/${generateUniqueId(quotation.product)}`}>
             <a className="flex text-blue-600 dark:text-blue-400">
               <Image
                 loader={defaultNextImageLoader}

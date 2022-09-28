@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
@@ -12,13 +13,13 @@ export const AssortmentQuery = gql`
   ${AssortmentFragment}
 `;
 
-const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
+const useAssortment = ({ assortmentId: id = null, slug = null } = {}) => {
+  const parsedId = parseUniqueId(slug);
   const { locale } = useIntl();
   const { data, loading, error } = useQuery(AssortmentQuery, {
-    skip: !assortmentId && !slug,
+    skip: !id && !slug,
     variables: {
-      slug,
-      assortmentId,
+      assortmentId: id || parsedId,
       forceLocale: locale,
     },
   });
@@ -32,12 +33,13 @@ const useAssortment = ({ assortmentId = null, slug = null } = {}) => {
 
 export const preFetchAssortment = async (
   apolloClient,
-  { assortmentId = null, slug = null },
+  { assortmentId: id = null, slug = null },
 ) => {
+  const parsedId = parseUniqueId(slug);
   const { data } = await apolloClient.query({
     query: AssortmentQuery,
-    skip: !assortmentId && !slug,
-    variables: { assortmentId, slug },
+    skip: !id && !parsedId,
+    variables: { assortmentId: id || parsedId },
   });
   return data?.assortment;
 };

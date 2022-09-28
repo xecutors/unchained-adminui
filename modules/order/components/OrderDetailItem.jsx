@@ -3,13 +3,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useFormatPrice } from '../../common/utils/utils';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   return (
     <section aria-labelledby="products-heading">
-      <Link href={`/products/${item.product.texts.slug}`}>
+      <Link href={`/products/${generateUniqueId(item.product)}`}>
         <a>
           <h2 id="products-heading" className="sr-only">
             {formatMessage({

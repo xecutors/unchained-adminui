@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 export const ProductQuery = gql`
@@ -10,10 +11,11 @@ export const ProductQuery = gql`
   ${ProductDetailFragment}
 `;
 
-const useProduct = ({ productId = null, slug = null } = {}) => {
+const useProduct = ({ productId: id = null, slug = null } = {}) => {
+  const parsedId = parseUniqueId(slug);
   const { data, loading, error } = useQuery(ProductQuery, {
-    skip: !productId && !slug,
-    variables: { productId, slug },
+    skip: !id && !slug,
+    variables: { productId: id || parsedId },
   });
 
   return {
@@ -25,12 +27,13 @@ const useProduct = ({ productId = null, slug = null } = {}) => {
 
 export const preFetchProduct = async (
   apolloClient,
-  { productId = null, slug = null },
+  { productId: id = null, slug = null },
 ) => {
+  const parsedId = parseUniqueId(slug);
   const { data } = await apolloClient.query({
     query: ProductQuery,
-    skip: !productId && !slug,
-    variables: { productId, slug },
+    skip: !id && !parsedId,
+    variables: { productId: id || parsedId },
   });
   return data?.product;
 };

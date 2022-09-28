@@ -6,6 +6,7 @@ import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
@@ -82,7 +83,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
 
       <Table.Cell className="whitespace-nowrap">
         <div className="text-sm">
-          <Link href={`/products/${enrollment.plan.product._id}`}>
+          <Link href={`/products/${generateUniqueId(enrollment.plan.product)}`}>
             <span className="flex items-center">
               <Image
                 loader={defaultNextImageLoader}
