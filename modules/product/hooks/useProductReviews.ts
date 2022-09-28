@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductReviewFragment from '../fragments/ProductReviewFragment';
 
 export const ProductReviewQuery = gql`
@@ -13,10 +14,11 @@ export const ProductReviewQuery = gql`
   ${ProductReviewFragment}
 `;
 
-const useProductReviews = ({ productId = null, slug = null } = {}) => {
+const useProductReviews = ({ productId: id = null, slug = null } = {}) => {
+  const parsedId = parseUniqueId(slug);
   const { data, loading, error } = useQuery(ProductReviewQuery, {
-    skip: !productId && !slug,
-    variables: { productId, slug },
+    skip: !id && !parsedId,
+    variables: { productId: id || parsedId },
   });
 
   const product = data?.product || {};

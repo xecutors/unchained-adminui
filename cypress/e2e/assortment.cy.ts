@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import {
   AssortmentListResponse,
   AssortmentOperation,
@@ -552,15 +553,16 @@ describe('Assortment', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${CreateAssortmentResponse.data.createAssortment.texts.slug}`,
+      `/assortments/${generateUniqueId(
+        CreateAssortmentResponse.data.createAssortment,
+      )}`,
     );
 
     cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: CreateAssortmentResponse.data.createAssortment.texts.slug,
-          assortmentId: null,
+          assortmentId: CreateAssortmentResponse.data.createAssortment._id,
           forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);

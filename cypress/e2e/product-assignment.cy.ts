@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import { parseUniqueId } from '../../modules/common/utils/getUniqueId';
 
 import {
   ACTIVE_PRODUCT_SLUG,
@@ -18,7 +19,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Product Assignment', () => {
   const product = ProductListResponse.data.products.find(
-    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+    ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
   );
   const CurrentProductResponse = {
     data: {
@@ -84,8 +85,7 @@ describe('Product Assignment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: null,
-          slug: ACTIVE_PRODUCT_SLUG,
+          productId: parseUniqueId(ACTIVE_PRODUCT_SLUG),
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
@@ -110,7 +110,6 @@ describe('Product Assignment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          slug: null,
           forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(ProductAssignmentsResponse);
@@ -139,9 +138,8 @@ describe('Product Assignment', () => {
       cy.get('tr').should('have.length', 5);
     });
     it('Should add product variation assignment ', () => {
-      const [, secondProduct] =
-        SearchProductResponse.data.searchProducts.products;
-      cy.get('input#react-select-2-input').first().clear().type('f');
+      const [firstProduct] = SearchProductResponse.data.searchProducts.products;
+      cy.get('input#react-select-2-input').first().clear().type('Salad');
 
       cy.wait(fullAliasName(ProductOperations.SearchProducts)).then(
         (currentSubject) => {
@@ -150,7 +148,7 @@ describe('Product Assignment', () => {
             limit: 50,
             offset: 0,
             includeInactive: false,
-            queryString: 'f',
+            queryString: 'Salad',
             filterQuery: [],
             assortmentId: null,
             orderBy: null,
@@ -162,13 +160,13 @@ describe('Product Assignment', () => {
         },
       );
 
-      cy.get('#react-select-2-option-1').click();
+      cy.get('#react-select-2-option-0').click();
       cy.wait(
         fullAliasMutationName(ProductOperations.AddProductAssignment),
       ).then((currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: secondProduct._id,
+          productId: firstProduct._id,
           proxyId: product._id,
           vectors: [
             {

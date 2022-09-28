@@ -14,7 +14,7 @@ import ListHeader from '../../modules/common/components/ListHeader';
 const Users = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-  const { queryString, rest } = query;
+  const { queryString, ...rest } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest || { skip: null };

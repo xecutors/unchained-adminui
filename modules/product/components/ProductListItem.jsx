@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 import useUpdateProduct from '../hooks/useUpdateProduct';
 
@@ -14,7 +15,6 @@ const PRODUCT_STATUS = {
 
 const ProductListItem = ({ product, showAvatar }) => {
   const { formatMessage } = useIntl();
-  const { slug = '' } = product?.texts || {};
   const { updateProduct } = useUpdateProduct();
 
   const updateProductSequence = async (e) => {
@@ -35,7 +35,7 @@ const ProductListItem = ({ product, showAvatar }) => {
             />
           )}
           {product?.status !== 'DELETED' ? (
-            <Link href={`/products/${slug}`}>
+            <Link href={`/products/${generateUniqueId(product)}`}>
               <a className="text-blue-600 dark:text-blue-400">
                 {product?.texts.title || (
                   <>

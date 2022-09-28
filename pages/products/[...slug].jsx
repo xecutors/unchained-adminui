@@ -52,7 +52,11 @@ const ProductDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs routeName={normalizedSlug} depth={3} />
+      <BreadCrumbs
+        routeName={normalizedSlug}
+        depth={3}
+        currentPageTitle={product?.texts?.title}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={

@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 export const ProductWarehousingQuery = gql`
   query ProductWarehousing($productId: ID, $slug: String) {
@@ -12,12 +13,12 @@ export const ProductWarehousingQuery = gql`
   }
 `;
 
-const useProductWarehousing = ({ productId = null, slug = null } = {}) => {
+const useProductWarehousing = ({ productId: id = null, slug = null } = {}) => {
+  const parsedId = parseUniqueId(slug);
   const { data, loading, error } = useQuery(ProductWarehousingQuery, {
-    skip: !productId && !slug,
+    skip: !id && !parsedId,
     variables: {
-      productId,
-      slug,
+      productId: id || parsedId,
     },
   });
 

@@ -16,6 +16,7 @@ import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useRejectQuotation from '../hooks/useRejectQuotation';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -160,7 +161,7 @@ const QuotationDetail = ({ quotation }) => {
             </div>
             <div className="pt-6 pl-4 sm:col-span-7 md:row-end-1">
               <h3 className="text-lg font-medium text-slate-900">
-                <Link href={`/products/${quotation.product._id}`}>
+                <Link href={`/products/${generateUniqueId(quotation.product)}`}>
                   <a href="#">{quotation.product?.texts?.title}</a>
                 </Link>
               </h3>
