@@ -171,7 +171,7 @@ describe('Product Assignment', () => {
           vectors: [
             {
               key: 'test-variation',
-              value: 'first option value',
+              value: 'another',
             },
           ],
         });
