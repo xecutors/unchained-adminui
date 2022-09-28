@@ -53,7 +53,11 @@ const AssortmentDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs routeName={normalizedSlug} depth={3} />
+      <BreadCrumbs
+        routeName={normalizedSlug}
+        depth={3}
+        currentPageTitle={assortment?.texts?.title}
+      />
       <PageHeader
         headerText={
           <FormattedMessage

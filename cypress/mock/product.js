@@ -283,7 +283,7 @@ export const DELETED_PRODUCT_SLUG = 'deleted-product-slug_id_deleted-product';
 export const CreateProductResponse = {
   data: {
     createProduct: {
-      _id: 'b01216259a4f9449de850c7d',
+      _id: 'draft-product',
       texts: {
         _id: '6650fb29c79052c6d682dee5',
         slug: DRAFT_PRODUCT_SLUG,

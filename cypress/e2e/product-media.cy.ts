@@ -1,4 +1,7 @@
 import localizations from '../../i18n';
+import generateUniqueId, {
+  parseUniqueId,
+} from '../../modules/common/utils/getUniqueId';
 
 import {
   ACTIVE_PRODUCT_SLUG,
@@ -18,7 +21,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Product Media', () => {
   const product = ProductListResponse.data.products.find(
-    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+    ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
   );
   const CurrentProductResponse = {
     data: {
@@ -74,7 +77,7 @@ describe('Product Media', () => {
     cy.location('pathname').should('eq', '/products');
     cy.get('h2').should('contain.text', localizations.en.products_list_header);
 
-    cy.get(`a[href="/products/${product.texts.slug}"]`)
+    cy.get(`a[href="/products/${generateUniqueId(product)}"]`)
       .contains(product?.texts?.title)
       .click();
 
@@ -82,8 +85,7 @@ describe('Product Media', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: product.texts.slug,
-          productId: null,
+          productId: product._id,
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
@@ -99,26 +101,18 @@ describe('Product Media', () => {
       },
     );
 
-    cy.location('pathname').should('eq', `/products/${product.texts.slug}`);
+    cy.location('pathname').should(
+      'eq',
+      `/products/${generateUniqueId(product)}`,
+    );
 
     cy.get('a#media').contains(localizations.en.media).click();
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/products/${product.texts.slug}`);
+      expect(loc.pathname).to.eq(`/products/${generateUniqueId(product)}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });
     });
-
-    cy.wait(fullAliasName(ProductOperations.ProductMedia)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          slug: null,
-          productId: product._id,
-        });
-        expect(response.body).to.deep.eq(ProductMediaResponse);
-      },
-    );
 
     cy.wait(fullAliasName(ProductOperations.GetMediaTexts)).then(
       (currentSubject) => {
@@ -127,6 +121,16 @@ describe('Product Media', () => {
           productMediaId: ProductMediaResponse.data.product.media[0]._id,
         });
         expect(response.body).to.deep.eq(TranslatedProductMediaTextsResponse);
+      },
+    );
+
+    cy.wait(fullAliasName(ProductOperations.ProductMedia)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          productId: product._id,
+        });
+        expect(response.body).to.deep.eq(ProductMediaResponse);
       },
     );
 
@@ -157,7 +161,6 @@ describe('Product Media', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: null,
           productId: product._id,
         });
         expect(response.body).to.deep.eq(ProductMediaResponse);
@@ -165,7 +168,7 @@ describe('Product Media', () => {
     );
 
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/products/${product.texts.slug}`);
+      expect(loc.pathname).to.eq(`/products/${generateUniqueId(product)}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });
@@ -179,7 +182,7 @@ describe('Product Media', () => {
       .click();
 
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/products/${product.texts.slug}`);
+      expect(loc.pathname).to.eq(`/products/${generateUniqueId(product)}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });
@@ -224,7 +227,7 @@ describe('Product Media', () => {
     );
 
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/products/${product.texts.slug}`);
+      expect(loc.pathname).to.eq(`/products/${generateUniqueId(product)}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });
@@ -239,7 +242,7 @@ describe('Product Media', () => {
       .click();
 
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/products/${product.texts.slug}`);
+      expect(loc.pathname).to.eq(`/products/${generateUniqueId(product)}`);
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });

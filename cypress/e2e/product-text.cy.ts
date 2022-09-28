@@ -1,4 +1,7 @@
 import localizations from '../../i18n';
+import generateUniqueId, {
+  parseUniqueId,
+} from '../../modules/common/utils/getUniqueId';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   ACTIVE_PRODUCT_SLUG,
@@ -16,7 +19,7 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 
 describe('Product Text', () => {
   const product = ProductListResponse.data.products.find(
-    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+    ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
   );
   const CurrentProductResponse = {
     data: {
@@ -70,8 +73,7 @@ describe('Product Text', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: null,
-          slug: ACTIVE_PRODUCT_SLUG,
+          productId: parseUniqueId(ACTIVE_PRODUCT_SLUG),
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
@@ -184,7 +186,10 @@ describe('Product Text', () => {
     cy.get('button#cancel_update')
       .contains(localizations.en.cancel)
       .click({ force: true });
-    cy.location('pathname').should('eq', `/products/${product.texts.slug}`);
+    cy.location('pathname').should(
+      'eq',
+      `/products/${generateUniqueId(product)}`,
+    );
   });
 
   it('Show [ERROR] when required fields are missing', () => {

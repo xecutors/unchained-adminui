@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import { parseUniqueId } from '../../modules/common/utils/getUniqueId';
 import {
   ACTIVE_PRODUCT_SLUG,
   ProductFilterRequest,
@@ -15,7 +16,7 @@ import hasOperationName from '../utils/hasOperationName';
 
 describe('Product Warehousing', () => {
   const product = ProductListResponse.data.products.find(
-    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+    ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
   );
   const CurrentProductResponse = {
     data: {
@@ -68,8 +69,7 @@ describe('Product Warehousing', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: null,
-          slug: ACTIVE_PRODUCT_SLUG,
+          productId: parseUniqueId(ACTIVE_PRODUCT_SLUG),
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
@@ -94,7 +94,6 @@ describe('Product Warehousing', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          slug: null,
         });
         expect(response.body).to.deep.eq(ProductWarehousingResponse);
       },

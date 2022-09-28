@@ -15,7 +15,6 @@ const constructTangleLayout = (levels, options = {}) => {
   const nodes = levels.reduce((a, x) => a.concat(x), []);
   const nodesIndex = {};
   nodes.forEach((d) => {
-    console.log(d);
     nodesIndex[d.id] = d;
   });
 

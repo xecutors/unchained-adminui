@@ -26,7 +26,7 @@ const ProductDetailPage = () => {
   const normalizedSlug = slug.join('/');
   const { product, loading } = useProduct({ slug: normalizedSlug });
   const { removeProduct } = useRemoveProduct();
-
+  console.log(product);
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
@@ -52,7 +52,11 @@ const ProductDetailPage = () => {
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs routeName={normalizedSlug} depth={3} />
+      <BreadCrumbs
+        routeName={normalizedSlug}
+        depth={3}
+        currentPageTitle={product?.texts?.title}
+      />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={

@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import { parseUniqueId } from '../../modules/common/utils/getUniqueId';
 import { LanguagesResponse } from '../mock/language';
 import {
   ACTIVE_PRODUCT_SLUG,
@@ -25,7 +26,7 @@ describe('Product Variation', () => {
     ProductVariationTypesResponse.data.variationTypes.options;
   const [firstLocale, secondLocale] = LanguagesResponse.data.languages;
   const product = ProductListResponse.data.products.find(
-    ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+    ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
   );
   const CurrentProductResponse = {
     data: {
@@ -112,8 +113,7 @@ describe('Product Variation', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: null,
-          slug: ACTIVE_PRODUCT_SLUG,
+          productId: parseUniqueId(ACTIVE_PRODUCT_SLUG),
         });
         expect(response.body).to.deep.eq(CurrentProductResponse);
       },
@@ -139,7 +139,6 @@ describe('Product Variation', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          slug: null,
           forceLocale: firstLocale.isoCode,
         });
         expect(response.body).to.deep.eq(ProductVariationsResponse);
