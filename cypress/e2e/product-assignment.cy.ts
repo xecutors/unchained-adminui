@@ -138,9 +138,8 @@ describe('Product Assignment', () => {
       cy.get('tr').should('have.length', 5);
     });
     it('Should add product variation assignment ', () => {
-      const [, secondProduct] =
-        SearchProductResponse.data.searchProducts.products;
-      cy.get('input#react-select-2-input').first().clear().type('f');
+      const [firstProduct] = SearchProductResponse.data.searchProducts.products;
+      cy.get('input#react-select-2-input').first().clear().type('Salad');
 
       cy.wait(fullAliasName(ProductOperations.SearchProducts)).then(
         (currentSubject) => {
@@ -149,7 +148,7 @@ describe('Product Assignment', () => {
             limit: 50,
             offset: 0,
             includeInactive: false,
-            queryString: 'f',
+            queryString: 'Salad',
             filterQuery: [],
             assortmentId: null,
             orderBy: null,
@@ -161,13 +160,13 @@ describe('Product Assignment', () => {
         },
       );
 
-      cy.get('#react-select-2-option-1').click();
+      cy.get('#react-select-2-option-0').click();
       cy.wait(
         fullAliasMutationName(ProductOperations.AddProductAssignment),
       ).then((currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          productId: secondProduct._id,
+          productId: firstProduct._id,
           proxyId: product._id,
           vectors: [
             {
