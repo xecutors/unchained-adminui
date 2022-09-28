@@ -276,9 +276,9 @@ export const SingleProductResponse = {
   },
 };
 
-export const ACTIVE_PRODUCT_SLUG = 'active-product-slug';
-export const DRAFT_PRODUCT_SLUG = 'draft-product-slug';
-export const DELETED_PRODUCT_SLUG = 'deleted-product-slug';
+export const ACTIVE_PRODUCT_SLUG = 'active-product-slug_id_active-product';
+export const DRAFT_PRODUCT_SLUG = 'draft-product-slug_id_draft-product';
+export const DELETED_PRODUCT_SLUG = 'deleted-product-slug_id_deleted-product';
 
 export const CreateProductResponse = {
   data: {

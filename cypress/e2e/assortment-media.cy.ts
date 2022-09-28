@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import { getContent } from '../../modules/common/utils/utils';
 import {
   AssortmentListResponse,
@@ -71,7 +72,7 @@ describe('Assortment Detail Media', () => {
       localizations.en.assortments_list_header,
     );
 
-    cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+    cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
       .contains(assortment?.texts?.title)
       .click();
 
@@ -79,8 +80,7 @@ describe('Assortment Detail Media', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: assortment.texts.slug,
-          assortmentId: null,
+          assortmentId: assortment._id,
           forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
@@ -99,7 +99,7 @@ describe('Assortment Detail Media', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${assortment.texts.slug}`,
+      `/assortments/${generateUniqueId(assortment)}`,
     );
     cy.get('h2').within(() => {
       cy.get('span').should(
@@ -120,7 +120,6 @@ describe('Assortment Detail Media', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: null,
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentMediaResponse);
@@ -145,7 +144,9 @@ describe('Assortment Detail Media', () => {
 
   afterEach(() => {
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/assortments/${assortment.texts.slug}`);
+      expect(loc.pathname).to.eq(
+        `/assortments/${generateUniqueId(assortment)}`,
+      );
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'media',
       });
@@ -178,7 +179,6 @@ describe('Assortment Detail Media', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slug: null,
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentMediaResponse);
