@@ -1,4 +1,7 @@
 import localizations from '../../i18n';
+import generateUniqueId, {
+  parseUniqueId,
+} from '../../modules/common/utils/getUniqueId';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   ACTIVE_PRODUCT_SLUG,
@@ -42,7 +45,7 @@ describe('Product', () => {
         req.reply({
           data: {
             product: ProductListResponse.data.products.find(
-              ({ texts: { slug } }) => slug === body.variables.slug,
+              ({ _id }) => _id === body.variables.productId,
             ),
           },
         });
@@ -345,7 +348,9 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+        `/products/${generateUniqueId(
+          CreateProductResponse.data.createProduct,
+        )}`,
       );
     });
 
@@ -379,7 +384,9 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+        `/products/${generateUniqueId(
+          CreateProductResponse.data.createProduct,
+        )}`,
       );
     });
 
@@ -413,7 +420,9 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+        `/products/${generateUniqueId(
+          CreateProductResponse.data.createProduct,
+        )}`,
       );
     });
 
@@ -447,7 +456,9 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${CreateProductResponse.data.createProduct.texts.slug}`,
+        `/products/${generateUniqueId(
+          CreateProductResponse.data.createProduct,
+        )}`,
       );
     });
 
@@ -487,8 +498,9 @@ describe('Product', () => {
   context('Publish, Draft & Delete', () => {
     it('[PUBLISH] product successfully', () => {
       const [firstProduct] = ProductListResponse.data.products.filter(
-        ({ texts: { slug } }) => slug === DRAFT_PRODUCT_SLUG,
+        ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
+
       cy.get(`a[href="/products/${DRAFT_PRODUCT_SLUG}"]`).first().click();
       cy.get('div#draft').within(() => {
         cy.get('button[type="button"]').click({
@@ -526,7 +538,7 @@ describe('Product', () => {
 
     it('[UNPUBLISH] product successfully', () => {
       const [firstProduct] = ProductListResponse.data.products.filter(
-        ({ texts: { slug } }) => slug === ACTIVE_PRODUCT_SLUG,
+        ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
       );
       cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
       cy.get('div#active').within(() => {
@@ -557,10 +569,12 @@ describe('Product', () => {
 
     it('[DELETE] product successfully', () => {
       const [firstProduct] = ProductListResponse.data.products.filter(
-        ({ texts: { slug } }) => slug === DRAFT_PRODUCT_SLUG,
+        ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
 
-      cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+      cy.get(`a[href="/products/${generateUniqueId(firstProduct)}"]`)
+        .first()
+        .click();
       cy.get(
         'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
       ).click();
@@ -583,10 +597,12 @@ describe('Product', () => {
 
     it('Cancel [DELETE] product when cancel is clicked', () => {
       const [firstProduct] = ProductListResponse.data.products.filter(
-        ({ texts: { slug } }) => slug === DRAFT_PRODUCT_SLUG,
+        ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
 
-      cy.get(`a[href="/products/${firstProduct.texts.slug}"]`).first().click();
+      cy.get(`a[href="/products/${generateUniqueId(firstProduct)}"]`)
+        .first()
+        .click();
       cy.get(
         'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
       ).click();

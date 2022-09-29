@@ -1,4 +1,5 @@
 import localizations from '../../i18n';
+import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import { getContent } from '../../modules/common/utils/utils';
 import {
   AssortmentListResponse,
@@ -28,7 +29,7 @@ describe('Assortment Detail Texts', () => {
         req.reply({
           data: {
             assortment: AssortmentListResponse.data.assortments.find(
-              ({ texts }) => texts.slug === req.body.variables.slug,
+              ({ _id }) => _id === req.body.variables.assortmentId,
             ),
           },
         });
@@ -75,7 +76,7 @@ describe('Assortment Detail Texts', () => {
     beforeEach(() => {
       const { assortment } = SingleAssortmentResponse.data;
 
-      cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -83,8 +84,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq(SingleAssortmentResponse);
@@ -103,7 +103,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -180,7 +180,7 @@ describe('Assortment Detail Texts', () => {
         .click({ force: true });
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -205,8 +205,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq(SingleAssortmentResponse);
@@ -215,7 +214,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -233,7 +232,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -252,7 +251,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -287,7 +286,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -323,7 +322,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -358,7 +357,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-base',
       );
 
-      cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -366,8 +365,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -390,7 +388,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -423,8 +421,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -437,7 +434,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -446,7 +443,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-root',
       );
 
-      cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -454,8 +451,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -478,7 +474,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -523,8 +519,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -537,7 +532,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
 
@@ -546,7 +541,7 @@ describe('Assortment Detail Texts', () => {
         ({ _id }) => _id === 'not-active',
       );
 
-      cy.get(`a[href="/assortments/${assortment.texts.slug}"]`)
+      cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
         .contains(assortment?.texts?.title)
         .click();
 
@@ -554,8 +549,7 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -578,7 +572,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
       cy.get('h2').within(() => {
         cy.get('span').should(
@@ -623,8 +617,8 @@ describe('Assortment Detail Texts', () => {
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
-            slug: assortment.texts.slug,
-            assortmentId: null,
+            assortmentId: assortment._id,
+
             forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
@@ -637,7 +631,7 @@ describe('Assortment Detail Texts', () => {
 
       cy.location('pathname').should(
         'eq',
-        `/assortments/${assortment.texts.slug}`,
+        `/assortments/${generateUniqueId(assortment)}`,
       );
     });
   });

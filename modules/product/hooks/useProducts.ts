@@ -11,7 +11,6 @@ export const ProductsQuery = gql`
     $offset: Int
     $includeDrafts: Boolean
     $sort: [SortOptionInput!]
-    $forceLocale: String
   ) {
     products(
       queryString: $queryString
@@ -24,7 +23,12 @@ export const ProductsQuery = gql`
     ) {
       ...ProductBriefFragment
     }
-    productsCount(tags: $tags, slugs: $slugs, includeDrafts: $includeDrafts)
+    productsCount(
+      tags: $tags
+      slugs: $slugs
+      includeDrafts: $includeDrafts
+      queryString: $queryString
+    )
   }
   ${ProductBriefFragment}
 `;

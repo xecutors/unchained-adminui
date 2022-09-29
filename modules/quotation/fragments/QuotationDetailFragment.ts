@@ -46,14 +46,6 @@ const QuotationDetailFragment = gql`
         }
       }
     }
-
-    documents {
-      _id
-      name
-      type
-      size
-      url
-    }
     status
     created
     expires

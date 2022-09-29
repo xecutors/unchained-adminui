@@ -1,17 +1,41 @@
+import cookie from 'cookie';
+
 const onChangeCallbacks = [];
 
 let tokenStore = {
-  async set({ userId, token, tokenExpires }) {
-    window.localStorage['Meteor.userId'] = userId;
-    window.localStorage['Meteor.loginToken'] = token;
-    window.localStorage['Meteor.loginTokenExpires'] = tokenExpires.toString();
+  async set({ token, tokenExpires }) {
+    if (token && tokenExpires) {
+      // Client-side cookie setting, else it's from the server
+      const maxAge =
+        ((new Date().getTime() - new Date(tokenExpires).getTime()) * -1) / 1000;
+
+      const newCookie = cookie.serialize('token', token, {
+        path: '/',
+        secure: window.location.protocol === 'https',
+        sameSite: true,
+      });
+        console.debug('token added to cookies, expiring: ', maxAge); // eslint-disable-line
+      document.cookie = newCookie;
+    } else if (!tokenExpires) {
+      // Logout
+      document.cookie = cookie.serialize('token', '', {
+        maxAge: -1, // Expire the cookie immediately
+      });
+      document.cookie = cookie.serialize('token', '', {
+        maxAge: -1, // Expire the cookie immediately
+        path: '/',
+      });
+      console.debug('token removed from cookies'); // eslint-disable-line
+    }
   },
   get() {
-    return {
-      userId: window.localStorage['Meteor.userId'],
-      token: window.localStorage['Meteor.loginToken'],
-      tokenExpires: window.localStorage['Meteor.loginTokenExpires'],
-    };
+    if (process.browser) {
+      if (document.cookie) {
+        const parsedCookie = cookie.parse(document.cookie);
+        return parsedCookie;
+      }
+    }
+    return {};
   },
 };
 
@@ -33,14 +57,9 @@ export const storeLoginToken = async function storeLoginToken(
   await tokenDidChange();
 };
 
-export const getLoginToken = async function getLoginToken() {
+export const getLoginToken = function getLoginToken() {
   const { token } = tokenStore.get();
   return token;
-};
-
-export const getUserId = function getUserId() {
-  const { userId } = tokenStore.get();
-  return userId;
 };
 
 export const onTokenChange = function onTokenChange(callback) {

@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { stopPropagation } from '../data/miscellaneous';
 
 const LocaleSwitcher = () => {
   const { formatMessage } = useIntl();
   const { pathname, asPath, query, push, locale, locales } = useRouter();
 
   const handleOnChange = (e) => {
-    stopPropagation(e);
+    e.stopPropagation();
     push({ pathname, query }, asPath, {
       locale: e.target.value,
     });

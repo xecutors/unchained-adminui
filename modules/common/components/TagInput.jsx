@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
-import {
-  preventDefault,
-  stopPropagation,
-  stopPropagationAndPreventDefault,
-} from '../data/miscellaneous';
 import Badge from './Badge';
 import Button from './Button';
 
@@ -63,16 +58,17 @@ const TagInput = ({
               id={id || name}
               name={name}
               onKeyUp={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
                 if (e.key === 'Enter') {
                   addTag();
                 }
-                stopPropagationAndPreventDefault(e);
               }}
               onKeyDown={(e) => {
+                e.stopPropagation();
                 if (e.key === 'Enter') {
-                  preventDefault(e);
+                  e.preventDefault();
                 }
-                stopPropagation(e);
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className={classNames(

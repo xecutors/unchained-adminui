@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
+import generateUniqueId from '../../common/utils/getUniqueId';
 import useUpdateAssortment from '../hooks/useUpdateAssortment';
 
 const AssortmentListItem = ({ assortment, showAvatar }) => {
@@ -32,7 +33,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
               className="mr-2"
             />
           )}
-          <Link href={`/assortments/${assortment?.texts?.slug}`}>
+          <Link href={`/assortments/${generateUniqueId(assortment)}`}>
             <a className="text-blue-600 dark:text-blue-400">
               {assortment?.texts?.title || (
                 <>

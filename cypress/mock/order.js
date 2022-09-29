@@ -307,7 +307,6 @@ export const SingleOrderResponse = {
         currency: 'CHF',
         __typename: 'Price',
       },
-      documents: [],
       items: [
         {
           _id: '2f0a12f93cde312d027c28c6',
@@ -504,7 +503,6 @@ export const SingleOrderOpenResponse = {
         currency: 'CHF',
         __typename: 'Price',
       },
-      documents: [],
       items: [
         {
           _id: '2f0a12f93cde312d027c28c6',

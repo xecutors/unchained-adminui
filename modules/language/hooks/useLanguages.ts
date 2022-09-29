@@ -18,7 +18,7 @@ export const LanguagesQuery = gql`
     ) {
       ...LanguageFragment
     }
-    languagesCount(includeInactive: $includeInactive)
+    languagesCount(includeInactive: $includeInactive, queryString: $queryString)
   }
   ${LanguageFragment}
 `;

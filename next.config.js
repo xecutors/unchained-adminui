@@ -1,6 +1,13 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable camelcase */
+
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ * */
+
 require('./node_env');
 const fs = require('fs');
 const path = require('path');
@@ -61,8 +68,9 @@ module.exports = withPWA({
     runtimeCaching,
     disable: process.env.NODE_ENV === 'development',
   },
+
   typescript: {
-    ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.json',
   },
   i18n: {
     locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],

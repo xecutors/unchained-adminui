@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import { useIntl } from 'react-intl';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const AssortmentLinksQuery = gql`
@@ -25,14 +26,13 @@ export const AssortmentLinksQuery = gql`
   ${AssortmentFragment}
 `;
 
-const useAssortmentLinks = ({ assortmentId = null, slug = null } = {}) => {
+const useAssortmentLinks = ({ assortmentId: id = null, slug = null } = {}) => {
   const { locale } = useIntl();
-
+  const parsedId = parseUniqueId(slug);
   const { data, loading, error } = useQuery(AssortmentLinksQuery, {
-    skip: !assortmentId && !slug,
+    skip: !id && !parsedId,
     variables: {
-      slug,
-      assortmentId,
+      assortmentId: id || parsedId,
       forceLocale: locale,
     },
     fetchPolicy: 'cache-first',

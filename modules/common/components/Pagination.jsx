@@ -2,11 +2,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 
 import { FormattedMessage, useIntl } from 'react-intl';
-import {
-  DefaultLimit,
-  LimitSteps,
-  stopPropagation,
-} from '../data/miscellaneous';
+import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
 import Button from './Button';
 
 const Step = ({ onClick, disabled, label }) => {
@@ -95,7 +91,9 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
           key="dash-1"
           type="button"
           aria-current="page"
-          onClick={stopPropagation}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           label="..."
         />,
       );
@@ -105,7 +103,9 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
           key="dash-2"
           type="button"
           aria-current="page"
-          onClick={stopPropagation}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
           label="..."
         />,
       );

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { stopPropagationAndPreventDefault } from '../data/miscellaneous';
 
 const MediaUploader = ({
   enableDragAndDrop = true,
@@ -13,22 +12,26 @@ const MediaUploader = ({
   const { formatMessage } = useIntl();
 
   const handleDragOver = (event) => {
-    stopPropagationAndPreventDefault(event);
+    event.stopPropagation();
+    event.preventDefault();
     setDragArea(true);
   };
 
   const handleDragEnter = (event) => {
-    stopPropagationAndPreventDefault(event);
+    event.stopPropagation();
+    event.preventDefault();
     setDragArea(true);
   };
 
   const handleDragLeave = (event) => {
-    stopPropagationAndPreventDefault(event);
+    event.stopPropagation();
+    event.preventDefault();
     setDragArea(false);
   };
 
   const handleDrop = (event) => {
-    stopPropagationAndPreventDefault(event);
+    event.stopPropagation();
+    event.preventDefault();
     const { files } = event.dataTransfer;
     [...files].forEach((file) => {
       addMedia(file);
@@ -37,7 +40,8 @@ const MediaUploader = ({
   };
 
   const handleSelect = (event) => {
-    stopPropagationAndPreventDefault(event);
+    event.stopPropagation();
+    event.preventDefault();
     const { files } = event.target;
     [...files].forEach((file) => {
       addMedia(file);

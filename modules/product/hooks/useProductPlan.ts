@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductPlanConfigurationFragment from '../fragments/ProductPlanConfigurationFragment';
 
@@ -16,12 +17,12 @@ export const ProductPlanQuery = gql`
   ${ProductPlanConfigurationFragment}
 `;
 
-const useProductPlan = ({ productId = null, slug = null } = {}) => {
+const useProductPlan = ({ productId: id = null, slug = null } = {}) => {
+  const parsedId = parseUniqueId(slug);
   const { data, loading, error } = useQuery(ProductPlanQuery, {
-    skip: !productId && !slug,
+    skip: !id && !parsedId,
     variables: {
-      productId,
-      slug,
+      productId: id || parsedId,
     },
   });
 

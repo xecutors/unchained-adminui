@@ -1,22 +1,11 @@
-import cookie from 'cookie';
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
-import { onTokenChange } from '../../accounts/utils/store';
+import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
 import { getEndPoint } from '../../common/utils/utils';
 
-export function parseCookies(ctx = {}, options = {}) {
-  return cookie.parse(
-    ctx.req && ctx.req.headers && ctx.req.headers.cookie // eslint-disable-line
-      ? ctx.req.headers.cookie
-      : process.browser
-      ? document.cookie
-      : '',
-    options,
-  );
-}
 const getLocalURI = () => {
   return process.browser
     ? `${window.location.origin}/api/graphql`
@@ -44,7 +33,7 @@ const getApolloClient = ({
     if (headersOverride && headersOverride['accept-language']) {
       headers['accept-language'] = headersOverride['accept-language'];
     }
-    const foundToken = parseCookies({}).token;
+    const foundToken = getLoginToken();
     if (foundToken) {
       headers.authorization = `Bearer ${foundToken}`;
     }
@@ -97,30 +86,7 @@ const getApolloClient = ({
     resetCache(cache);
   });
 
-  onTokenChange(({ token, tokenExpires }) => {
-    if (!token || !tokenExpires) {
-      document.cookie = cookie.serialize('token', '', {
-        maxAge: -1, // Expire the cookie immediately
-      });
-      document.cookie = cookie.serialize('token', '', {
-        maxAge: -1, // Expire the cookie immediately
-        path: '/',
-      });
-      console.debug('token removed from cookies'); // eslint-disable-line
-      apolloClient.resetStore();
-      return;
-    }
-
-    const maxAge =
-      ((new Date().getTime() - new Date(tokenExpires).getTime()) * -1) / 1000;
-
-    const newCookie = cookie.serialize('token', token, {
-      path: '/',
-      secure: window.location.protocol === 'https',
-      sameSite: true,
-    });
-    document.cookie = newCookie;
-    console.debug('token added to cookies, expiring: ', maxAge); // eslint-disable-line
+  onTokenChange(() => {
     apolloClient.resetStore();
   });
 

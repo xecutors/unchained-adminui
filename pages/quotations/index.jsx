@@ -19,19 +19,21 @@ const Quotations = () => {
   const offset = parseInt(query?.skip, 10) || 0;
   const sort = query?.set || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, ...rest } = query;
+
   const setQueryString = (searchString) => {
+    const { skip, ...withoutSkip } = rest;
     if (searchString)
       push({
         query: {
-          ...restQuery,
+          ...withoutSkip,
           queryString: searchString,
         },
       });
     else
       push({
         query: {
-          ...restQuery,
+          ...rest,
         },
       });
   };

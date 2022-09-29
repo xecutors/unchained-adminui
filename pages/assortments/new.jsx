@@ -6,14 +6,15 @@ import useCreateAssortment from '../../modules/assortment/hooks/useCreateAssortm
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
+import generateUniqueId from '../../modules/common/utils/getUniqueId';
 
 const AddAssortments = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { createAssortment } = useCreateAssortment();
 
-  const onSubmitSuccess = (_, { texts }) => {
-    router.push(`/assortments/${texts?.slug}`);
+  const onSubmitSuccess = (_, { ...result }) => {
+    router.push(`/assortments/${generateUniqueId(result)}`);
   };
 
   const onSubmit = async ({ title, isRoot, tags }) => {

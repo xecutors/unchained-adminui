@@ -8,13 +8,7 @@ import SubmitButton from '../../forms/components/SubmitButton';
 import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-
-export const ProductTypes = {
-  SimpleProduct: 'Simple',
-  ConfigurableProduct: 'Configurable',
-  BundleProduct: 'Bundle',
-  PlanProduct: 'Plan',
-};
+import { PRODUCT_TYPES } from '../ProductTypes';
 
 const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
   const { formatMessage } = useIntl();
@@ -60,7 +54,7 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
             placeholder={formatMessage({ id: 'type', defaultMessage: 'Type' })}
             required
             name="type"
-            options={ProductTypes}
+            options={PRODUCT_TYPES}
           />
         </div>
         <TagInputField

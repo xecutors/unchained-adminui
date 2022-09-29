@@ -1,29 +1,26 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useDailySyncItems from '../../sync/hooks/useDailySyncItems';
 
-const ProductsAlphabeticalList = ({
-  dictionary = {},
-  enableRedirect = true,
-}) => {
+const ProductsAlphabeticalList = ({ workId, itemKey }) => {
   const { query } = useRouter();
-
   const { searchKey = '' } = query;
+  const { items } = useDailySyncItems({
+    workId,
+    itemKey,
+    searchQuery: searchKey,
+  });
 
-  const filtered = Object.fromEntries(
-    Object.entries(dictionary).map(([key, values]) => {
-      return [
-        key,
-        values.filter((item) => {
-          return (
-            item?.title?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            item?.subtitle?.toLowerCase().includes(searchKey.toLowerCase()) ||
-            !searchKey
-          );
-        }),
-      ];
-    }),
-  );
+  const disable = itemKey === 'removedProducts';
+
+  const filtered = items.reduce((acc, cur) => {
+    const letter = cur.title[0].toUpperCase();
+    return {
+      ...acc,
+      [letter]: [...(acc[letter] || []), cur],
+    };
+  }, {});
 
   return (
     <nav className="h-full overflow-y-auto" aria-label="dictionary">
@@ -31,7 +28,7 @@ const ProductsAlphabeticalList = ({
         <div key={letter} className="relative">
           {filtered[letter].length ? (
             <>
-              <div className="sticky top-0 z-10 border-t border-b border-slate-200 dark:border-slate-800 bg-slate-300 px-6 py-1 text-sm font-medium text-white dark:bg-slate-400 dark:text-slate-900">
+              <div className="sticky top-0 z-10 border-t border-b border-slate-200 bg-slate-300 px-6 py-1 text-sm font-medium text-white dark:bg-slate-400 dark:text-slate-900">
                 <h3>{letter}</h3>
               </div>
               <ul className="relative z-0 divide-y divide-slate-200">
@@ -51,7 +48,7 @@ const ProductsAlphabeticalList = ({
                         <Link href={`/products/${item?.slug}`}>
                           <a
                             className={classNames('focus:outline-none', {
-                              'pointer-events-none': !enableRedirect,
+                              'pointer-events-none': disable,
                             })}
                           >
                             <span

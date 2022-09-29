@@ -11,6 +11,7 @@ import {
   ExclamationIcon,
 } from '@heroicons/react/solid';
 import classNames from 'classnames';
+import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import Accordion from '../../../../modules/common/components/Accordion';
@@ -18,7 +19,6 @@ import BreadCrumbs from '../../../../modules/common/components/BreadCrumbs';
 import Loading from '../../../../modules/common/components/Loading';
 import NoData from '../../../../modules/common/components/NoData';
 import PageHeader from '../../../../modules/common/components/PageHeader';
-import useFormatDateTime from '../../../../modules/common/utils/useFormatDateTime';
 import useWork from '../../../../modules/work/hooks/useWork';
 
 const convertJobSignalToNumber = (signal) => {
@@ -29,7 +29,7 @@ const convertJobSignalToNumber = (signal) => {
   return false;
 };
 
-const JobSyncStat = ({ new: added, removed, total, diff }) => {
+const JobSyncStat = ({ new: added, removed, updated, total, diff }) => {
   return (
     <div className="ml-1 p-2 py-3 sm:flex-initial">
       <span className="relative mr-9 inline-block rounded-lg ">
@@ -40,7 +40,7 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="currentColor"
           />
         </div>
-        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-500 px-1 py-0.5 text-sm leading-none text-red-100">
+        <span className="absolute top-0 border-0 right-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-indigo-500 px-1 py-0.5 text-sm leading-none text-red-100">
           {added}
         </span>
       </span>
@@ -52,8 +52,8 @@ const JobSyncStat = ({ new: added, removed, total, diff }) => {
             fill="none"
           />
         </div>
-        <span className="absolute top-0 right-0 border inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
-          {diff}
+        <span className="absolute top-0 right-0 border-0 inline-flex translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full bg-green-500 px-1 py-0.5 text-sm leading-none text-red-100">
+          {diff || updated}
         </span>
       </span>
       <span className="relative mr-9 inline-block  rounded-lg ">
@@ -94,9 +94,22 @@ const JobSyncHealth = ({ signal, duration }) => {
   );
 };
 
+const JobDetail = ({ type, stat }) => {
+  if (!stat?.total) return null;
+  return (
+    <div className="py-4 sm:py-5 ">
+      <dt className="text-sm font-medium text-slate-500 dark:text-slate-300 capitalize">
+        {type}
+      </dt>
+      <dd className=" mt-1 text-sm sm:col-span-2 sm:mt-0">
+        <JobSyncStat {...stat} />
+      </dd>
+    </div>
+  );
+};
+
 const JobHeader = ({ job }) => {
   const { formatMessage } = useIntl();
-  const { formatDateTime } = useFormatDateTime();
   return (
     <div className="flex justify-between items-center">
       <div className="flex item-center">
@@ -115,10 +128,7 @@ const JobHeader = ({ job }) => {
                 defaultMessage: 'Started: {time}',
               },
               {
-                time: formatDateTime(job.started, {
-                  dateStyle: 'long',
-                  timeStyle: 'short',
-                }),
+                time: format(new Date(job.started), 'yyyy-MM-dd HH:mm'),
               },
             )}
           </div>
@@ -129,18 +139,16 @@ const JobHeader = ({ job }) => {
               ),
             })}
           >
-            {formatMessage(
-              {
-                id: 'finished_at',
-                defaultMessage: 'Finished: {time}',
-              },
-              {
-                time: formatDateTime(job.finished, {
-                  dateStyle: 'long',
-                  timeStyle: 'short',
-                }),
-              },
-            )}
+            {job.finished &&
+              formatMessage(
+                {
+                  id: 'finished_at',
+                  defaultMessage: 'Finished: {time}',
+                },
+                {
+                  time: format(new Date(job.finished), 'yyyy-MM-dd HH:mm'),
+                },
+              )}
           </div>
         </div>
       </div>
@@ -156,79 +164,107 @@ const JobHeader = ({ job }) => {
 const JobBody = ({ job }) => {
   const { formatMessage } = useIntl();
 
+  const JobLabels = {
+    solr: formatMessage({
+      id: 'solr',
+      defaultMessage: 'Solr',
+      description: 'Sync solr indexing label',
+    }),
+    crossbase: formatMessage({
+      id: 'crossbase',
+      defaultMessage: 'Crossbase',
+      description: 'Sync crossbase label',
+    }),
+    navision: formatMessage({
+      id: 'navision',
+      defaultMessage: 'Navision',
+      description: 'Sync navision label',
+    }),
+    publicare_update_solr: formatMessage({
+      id: 'solr',
+      defaultMessage: 'Solr',
+      description: 'Sync solr indexing label',
+    }),
+    availability: formatMessage({
+      id: 'availability',
+      defaultMessage: 'Product Availability',
+      description: 'Products availability',
+    }),
+    bulk_import: formatMessage({
+      id: 'import',
+      defaultMessage: 'Import',
+      description: 'Name',
+    }),
+  };
+
   return (
-    <div className="border border-slate-200 dark:border-slate-800 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200">
+    <div className="border border-slate-200 rounded-lg mt-2 overflow-hidden bg-white dark:bg-slate-600 text-slate-900 dark:text-white">
       <div className="py-5 sm:p-0">
         <dl className="divide-y divide-slate-300 px-7">
-          <div className="py-4 sm:py-5">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'solr',
-                defaultMessage: 'Solr',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.solr} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'crossbase',
-                defaultMessage: 'Crossbase',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.crossbase} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'navision',
-                defaultMessage: 'Navision',
-                description: 'Name',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncHealth {...job.navision} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'categories',
-                defaultMessage: 'Categories',
-              })}
-            </dt>
-            <dd className=" mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.categories} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'products',
-                defaultMessage: 'Products',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.products} />
-            </dd>
-          </div>
-          <div className="py-4 sm:py-5 ">
-            <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
-              {formatMessage({
-                id: 'filters',
-                defaultMessage: 'Filters',
-              })}
-            </dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              <JobSyncStat {...job.filters} />
-            </dd>
-          </div>
+          {job.solr && (
+            <div className="py-4 sm:py-5">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.solr}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.solr} />
+              </dd>
+            </div>
+          )}
+          {job.crossbase && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.crossbase}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.crossbase} />
+              </dd>
+            </div>
+          )}
+          {job.navision && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.navision}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.navision} />
+              </dd>
+            </div>
+          )}
+          {job?.publicare_update_solr && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.solr}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.publicare_update_solr} />
+              </dd>
+            </div>
+          )}
+          {job?.bulk_import && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.bulk_import}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.bulk_import} />
+              </dd>
+            </div>
+          )}
+
+          {job?.availability && (
+            <div className="py-4 sm:py-5 ">
+              <dt className="text-sm font-medium text-slate-500 dark:text-slate-300">
+                {JobLabels.availability}
+              </dt>
+              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+                <JobSyncHealth {...job.availability} />
+              </dd>
+            </div>
+          )}
+          {Object.entries(job).map(([type, stat]) => (
+            <JobDetail type={type} stat={stat} />
+          ))}
         </dl>
       </div>
     </div>
@@ -236,7 +272,7 @@ const JobBody = ({ job }) => {
 };
 
 const headerCSS =
-  'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
+  'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
 const SyncJobs = () => {
   const { formatMessage } = useIntl();
@@ -274,7 +310,7 @@ const SyncJobs = () => {
               id: 'no_job',
               defaultMessage: 'sync report found',
             })}
-            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-none"
+            className="border border-slate-300 rounded-lg drop-shadow dark:drop-shadow-none dark:shadow-sm dark:shadow-white"
           />
         ) : (
           <>

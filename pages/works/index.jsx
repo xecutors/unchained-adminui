@@ -36,16 +36,17 @@ const WorkQueueView = () => {
   const { queryString, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
-    if (searchString)
+    const { skip, ...withoutSkip } = restQuery;
+    if (searchString) {
       push({
-        query: normalizeQuery(restQuery, searchString, 'queryString'),
+        query: normalizeQuery(withoutSkip, searchString, 'queryString'),
       });
-    else
+    } else {
       push({
         query: normalizeQuery(restQuery),
       });
+    }
   };
-
   const sortKeys = getSortKeys(sort);
 
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({

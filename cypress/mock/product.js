@@ -276,14 +276,14 @@ export const SingleProductResponse = {
   },
 };
 
-export const ACTIVE_PRODUCT_SLUG = 'active-product-slug';
-export const DRAFT_PRODUCT_SLUG = 'draft-product-slug';
-export const DELETED_PRODUCT_SLUG = 'deleted-product-slug';
+export const ACTIVE_PRODUCT_SLUG = 'active-product-slug_id_active-product';
+export const DRAFT_PRODUCT_SLUG = 'draft-product-slug_id_draft-product';
+export const DELETED_PRODUCT_SLUG = 'deleted-product-slug_id_deleted-product';
 
 export const CreateProductResponse = {
   data: {
     createProduct: {
-      _id: 'b01216259a4f9449de850c7d',
+      _id: 'draft-product',
       texts: {
         _id: '6650fb29c79052c6d682dee5',
         slug: DRAFT_PRODUCT_SLUG,

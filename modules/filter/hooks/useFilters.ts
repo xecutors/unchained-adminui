@@ -26,7 +26,7 @@ export const FiltersQuery = gql`
         locale
       }
     }
-    filtersCount(includeInactive: $includeInactive)
+    filtersCount(includeInactive: $includeInactive, queryString: $queryString)
   }
   ${FilterFragment}
 `;
