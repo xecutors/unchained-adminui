@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { stopPropagation } from '../data/miscellaneous';
 import { normalizeQuery, reducerToObject } from '../utils/utils';
 
 const Sort = ({ sortFields, className }) => {
@@ -134,7 +133,7 @@ const Sort = ({ sortFields, className }) => {
                         type="button"
                         className="rounded-full hover:bg-red-200"
                         onClick={(e) => {
-                          stopPropagation(e);
+                          e.stopPropagation();
                           setSortReducer((current) => {
                             const copy = { ...current };
                             delete copy[field];

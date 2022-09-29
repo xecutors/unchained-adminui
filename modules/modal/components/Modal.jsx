@@ -1,7 +1,6 @@
 import React from 'react';
 import { injectIntl, useIntl } from 'react-intl';
 import ReactDOM from 'react-dom';
-import { stopPropagation } from '../../common/data/miscellaneous';
 
 class ModalInner extends React.Component {
   constructor(props) {
@@ -56,8 +55,12 @@ const Modal = ({
           </span>
           <div
             className="inline-block transform overflow-hidden rounded-lg bg-white dark:bg-slate-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle"
-            onClick={stopPropagation}
-            onKeyUp={stopPropagation}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            onKeyUp={(e) => {
+              e.stopPropagation();
+            }}
           >
             <div className="absolute top-0 right-0 pt-4 pr-4 sm:block">
               <button

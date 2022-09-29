@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
-import { stopPropagation } from '../data/miscellaneous';
 
 const LocaleWrapper = ({ children }) => {
   const { languages, loading } = useLanguages();
@@ -36,7 +35,7 @@ const LocaleWrapper = ({ children }) => {
             value={selectedLocale}
             defaultValue={selectedLocale}
             onChange={(e) => {
-              stopPropagation(e);
+              e.stopPropagation();
               setSelectedLocale(e.target.value);
             }}
           >

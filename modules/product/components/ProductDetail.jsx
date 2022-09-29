@@ -29,15 +29,9 @@ import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
 import ACTION_ROLES from '../../common/data/roles';
+import { PRODUCT_TYPES } from '../ProductTypes';
 import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
-
-const PRODUCT_TYPES = {
-  SIMPLE: 'SimpleProduct',
-  BUNDLE: 'BundleProduct',
-  PLAN: 'PlanProduct',
-  CONFIGURABLE: 'ConfigurableProduct',
-};
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')

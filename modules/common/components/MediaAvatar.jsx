@@ -5,7 +5,6 @@ import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import NoImage from './NoImage';
 
 const MediaAvatar = ({ file, className }) => {
-  const { url } = file;
   const { formatMessage } = useIntl();
   return (
     <div className={classNames('h-10 w-10 flex-shrink-0', className)}>
@@ -13,7 +12,7 @@ const MediaAvatar = ({ file, className }) => {
         <Image
           className="relative h-10 w-10 rounded-full"
           loader={defaultNextImageLoader}
-          src={url}
+          src={file.url}
           placeholder="blur"
           blurDataURL="/placeholder.png"
           width={100}
