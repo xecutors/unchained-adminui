@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import { stopPropagation } from '../data/miscellaneous';
 import useDisplayImageInModal from '../utils/useDisplayImageInModal';
 import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
@@ -148,7 +147,7 @@ const MediaListItem = ({
                 id="edit"
                 type="button"
                 onClick={(e) => {
-                  stopPropagation(e);
+                  e.stopPropagation()
                   onEdit(!isEdit);
                 }}
               >
@@ -162,7 +161,7 @@ const MediaListItem = ({
         <DeleteButton
           className="mt-2 mr-2"
           onClick={async (e) => {
-            stopPropagation(e);
+            e.stopPropagation()
             onDelete(media._id);
           }}
         />

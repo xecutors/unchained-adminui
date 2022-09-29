@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import {
   preventDefault,
-  stopPropagation,
   stopPropagationAndPreventDefault,
 } from '../data/miscellaneous';
 import Badge from './Badge';
@@ -72,7 +71,7 @@ const TagInput = ({
                 if (e.key === 'Enter') {
                   preventDefault(e);
                 }
-                stopPropagation(e);
+                e.stopPropagation();
               }}
               onChange={(e) => setNewTag(e.target.value)}
               className={classNames(

@@ -2,65 +2,15 @@ import { gql } from '@apollo/client';
 
 const ProductBriefFragment = gql`
   fragment ProductBriefFragment on Product {
-    ... on SimpleProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on PlanProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on BundleProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on ConfigurableProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
-    }
-    ... on TokenizedProduct {
-      texts(forceLocale: $forceLocale) {
-        _id
-        slug
-        title
-        subtitle
-        description
-        vendor
-        brand
-        labels
-      }
+    texts {
+      _id
+      slug
+      title
+      subtitle
+      description
+      vendor
+      brand
+      labels
     }
     _id
     sequence
