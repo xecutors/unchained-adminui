@@ -5,7 +5,6 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import EditIcon from '../../common/components/EditIcon';
-import { stopPropagationAndPreventDefault } from '../../common/data/miscellaneous';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
@@ -66,8 +65,14 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
             >
               <div
                 className="space-y-1"
-                onClick={stopPropagationAndPreventDefault}
-                onKeyUp={stopPropagationAndPreventDefault}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                }}
+                onKeyUp={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                }}
               >
                 <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-200">
                   {isEdit ? (
@@ -102,8 +107,14 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
 
               <div
                 className={classNames('ml-auto', { 'mx-auto': isEdit })}
-                onClick={stopPropagationAndPreventDefault}
-                onKeyUp={stopPropagationAndPreventDefault}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                }}
+                onKeyUp={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                }}
               >
                 {isEdit ? (
                   <div className="flex space-x-2 py-2">

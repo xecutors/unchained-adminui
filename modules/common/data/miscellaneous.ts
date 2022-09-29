@@ -744,15 +744,6 @@ export const getShadowStyle = (status) => {
 
 export default { LimitSteps, DefaultLimit };
 
-export const preventDefault = (e) => {
-  e.preventDefault();
-};
-
-export const stopPropagationAndPreventDefault = (e) => {
-  e.stopPropagation();
-  preventDefault(e);
-};
-
 export const UnrestrictedPages = [
   '/log-in',
   '/sign-up',
