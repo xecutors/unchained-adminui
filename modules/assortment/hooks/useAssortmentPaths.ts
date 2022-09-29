@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { parseSlug } from '../../common/utils/getUniqueId';
 import AssortmentChildrenFragment from '../fragments/AssortmentChildrenFragment';
 
 const AssortmentPathsQuery = gql`
@@ -28,9 +29,10 @@ const useAssortmentPaths = ({
   includeLeaves = false,
   forceLocale,
 }) => {
+  const normalizedSlug = slugs?.map((slug) => parseSlug(slug));
   const { data, loading, error } = useQuery(AssortmentPathsQuery, {
     variables: {
-      slugs,
+      slugs: normalizedSlug,
       includeInactive,
       includeLeaves,
       forceLocale,
