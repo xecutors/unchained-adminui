@@ -35,7 +35,7 @@ const normalizeCatalogPrices = (prices = []) => {
 
 const CommerceForm = ({ productId }) => {
   const { formatMessage } = useIntl();
-  const { catalogPrices, loading } = useProductCatalogPrices({ productId });
+  const { catalogPrices } = useProductCatalogPrices({ productId });
   const { hasRole } = useAuth();
   const { updateProductCommerce } = useUpdateProductCommerce();
   const { countries } = useCountries();
@@ -73,7 +73,7 @@ const CommerceForm = ({ productId }) => {
   const { pricing } = values;
 
   useEffect(() => {
-    if (!loading)
+    if (!catalogPrices?.length)
       form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
   }, [catalogPrices]);
 

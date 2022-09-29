@@ -14,7 +14,7 @@ import useUpdateProductWarehousing from '../hooks/useUpdateProductWarehousing';
 
 const WarehousingForm = ({ productId }) => {
   const { formatMessage } = useIntl();
-  const { product, loading } = useProductWarehousing({ productId });
+  const { product } = useProductWarehousing({ productId });
   const { hasRole } = useAuth();
   const { updateProductWarehousing } = useUpdateProductWarehousing();
 
@@ -38,10 +38,10 @@ const WarehousingForm = ({ productId }) => {
   });
 
   useEffect(() => {
-    if (Object.keys(product).length && !loading)
+    if (Object.keys(product).length) {
       form.formik.setValues({ ...product });
+    }
   }, [product]);
-
   return (
     <SelfDocumentingView
       documentationLabel={formatMessage({
