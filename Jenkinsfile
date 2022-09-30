@@ -55,7 +55,6 @@ pipeline {
       steps {
         script {
           adminui.push("2")
-          adminui.push("stable")
         }
       }
     }
