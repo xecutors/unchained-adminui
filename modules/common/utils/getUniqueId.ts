@@ -8,4 +8,10 @@ export const parseUniqueId = (value) => {
   return slugAndId?.pop();
 };
 
+export const parseSlug = (value) => {
+  if (!value) return null;
+  const [slug] = value.split('_id_');
+  return slug;
+};
+
 export default generateUniqueId;

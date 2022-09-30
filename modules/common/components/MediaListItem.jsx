@@ -147,7 +147,7 @@ const MediaListItem = ({
                 id="edit"
                 type="button"
                 onClick={(e) => {
-                  e.stopPropagation()
+                  e.stopPropagation();
                   onEdit(!isEdit);
                 }}
               >
@@ -161,7 +161,7 @@ const MediaListItem = ({
         <DeleteButton
           className="mt-2 mr-2"
           onClick={async (e) => {
-            e.stopPropagation()
+            e.stopPropagation();
             onDelete(media._id);
           }}
         />
