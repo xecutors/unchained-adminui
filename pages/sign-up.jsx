@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import SignUpForm from '../modules/accounts/components/Signup';
 import useCreateUser from '../modules/accounts/hooks/useCreateUser';
 import { storeLoginToken } from '../modules/accounts/utils/store';
@@ -6,7 +7,7 @@ import { storeLoginToken } from '../modules/accounts/utils/store';
 const SignUpPage = () => {
   const { push } = useRouter();
   const { createUser } = useCreateUser();
-
+  const [authenticateWithDevice, setAuthenticateWithDevice] = useState(true);
   const onSubmit = async ({ email, password }) => {
     const { data } = await createUser({
       email,
@@ -22,7 +23,14 @@ const SignUpPage = () => {
   const onSubmitSuccess = () => {
     push('/account');
   };
-  return <SignUpForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />;
+  return (
+    <SignUpForm
+      onSubmit={onSubmit}
+      onSubmitSuccess={onSubmitSuccess}
+      authenticateWithDevice={authenticateWithDevice}
+      onAuthenticateWithDeviceChange={setAuthenticateWithDevice}
+    />
+  );
 };
 
 export default SignUpPage;

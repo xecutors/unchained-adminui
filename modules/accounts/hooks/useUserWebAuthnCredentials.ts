@@ -1,0 +1,34 @@
+import { useQuery, gql } from '@apollo/client';
+import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
+
+export const UserWebAuthnCredentialsQuery = gql`
+  query UserWebAuthnCredentials($userId: ID!) {
+    user(userId: $userId) {
+      _id
+      webAuthnCredentials {
+        _id
+        created
+        aaguid
+        counter
+        mdsMetadata {
+          ...MD5MetaDataFragment
+        }
+      }
+    }
+  }
+  ${MD5MetaDataFragment}
+`;
+
+const useUserWebAuthnCredentials = ({ userId }) => {
+  const { data, loading, error } = useQuery(UserWebAuthnCredentialsQuery, {
+    variables: { userId },
+  });
+
+  return {
+    webAuthnCredentials: data?.user?.webAuthnCredentials,
+    loading,
+    error,
+  };
+};
+
+export default useUserWebAuthnCredentials;

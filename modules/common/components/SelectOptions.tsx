@@ -154,6 +154,7 @@ const SelectOptions = ({
                           option.id === select.id
                             ? 'text-green-100'
                             : 'text-slate-500 group-hover:text-white',
+
                           '',
                         )}
                       >

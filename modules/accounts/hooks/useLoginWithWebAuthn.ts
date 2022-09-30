@@ -1,0 +1,26 @@
+import { gql, useMutation } from '@apollo/client';
+
+const LogWithWebAuthnMutation = gql`
+  mutation LoginWithWebAuthn($webAuthnPublicKeyCredentials: JSON!) {
+    loginWithWebAuthn(
+      webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
+    ) {
+      id
+      token
+      tokenExpires
+    }
+  }
+`;
+
+const useLoginWithWebAuthn = () => {
+  const [loginWithWebAuthnMutation] = useMutation(LogWithWebAuthnMutation);
+
+  const loginWithWebAuthn = async ({ webAuthnPublicKeyCredentials }) => {
+    return loginWithWebAuthnMutation({
+      variables: { webAuthnPublicKeyCredentials },
+    });
+  };
+  return { loginWithWebAuthn };
+};
+
+export default useLoginWithWebAuthn;

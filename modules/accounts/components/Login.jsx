@@ -2,21 +2,96 @@ import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
+
 import FormWrapper from '../../common/components/FormWrapper';
 import SandboxInput from '../../common/components/SandboxInput';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
-import EmailField from '../../forms/components/EmailField';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
+import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
+import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
+
+const GetCurrentStep = ({ step }) => {
+  const { formatMessage } = useIntl();
+
+  switch (parseInt(step, 10)) {
+    case 2:
+      return (
+        <>
+          <PasswordField
+            id="password"
+            name="password"
+            autoComplete="current-password"
+            required
+            label={formatMessage({
+              id: 'password',
+              defaultMessage: 'Password',
+            })}
+            placeholder={formatMessage({
+              id: 'password',
+              defaultMessage: 'Password',
+            })}
+          />
+
+          <div className="my-1 text-sm sm:my-0 text-left">
+            <Link href="/account/forgot-password">
+              <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+                {formatMessage({
+                  id: 'forget_password',
+                  defaultMessage: 'Forgot your password?',
+                })}
+              </a>
+            </Link>
+          </div>
+        </>
+      );
+    case 3:
+      return (
+        <TextField
+          id="totp-code"
+          name="totpCode"
+          autoComplete="off"
+          label={formatMessage({
+            id: 'totp_code',
+            defaultMessage: 'TOTP code',
+          })}
+          placeholder={formatMessage({
+            id: 'totp_code',
+            defaultMessage: 'TOTP code',
+          })}
+        />
+      );
+    default:
+      return (
+        <TextField
+          id="username-or-email"
+          name="usernameOrEmail"
+          className="mt-1"
+          type="text"
+          autoComplete="email"
+          required
+          label={formatMessage({
+            id: 'username_or_email',
+            defaultMessage: 'Username/Email',
+          })}
+          placeholder={formatMessage({
+            id: 'username_or_email',
+            defaultMessage: 'Username/Email',
+          })}
+        />
+      );
+  }
+};
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
@@ -26,31 +101,89 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
-
+  const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const router = useRouter();
+  const nextStep = () => {
+    router.push({
+      query: {
+        step: parseInt(router.query.step, 10) + 1,
+      },
+    });
+  };
+
+  const previousStep = () => {
+    router.push({
+      query: {
+        step: parseInt(router.query.step, 10) - 1,
+      },
+    });
+  };
+
+  const { generateLoginCredentials } = useGenerateLoginCredentials();
+
   const { formatMessage } = useIntl();
   const successMessage = formatMessage({
     id: 'welcome',
     defaultMessage: 'Welcome!',
   });
 
-  const onSubmit = async ({ email, password, totpCode }) => {
-    const result = await logInWithPassword({
-      email,
-      password,
-      disableHashing: true,
-      totpCode,
+  const logInWithWebAuth = async (username) => {
+    const webAuthnPublicKeyCredentials = await generateLoginCredentials({
+      username,
     });
-
-    return result;
+    if (webAuthnPublicKeyCredentials) {
+      const { data } = await loginWithWebAuthn({
+        webAuthnPublicKeyCredentials,
+      });
+      if (data && data?.loginWithWebAuthn) {
+        const { id, token, tokenExpires } = data.loginWithWebAuthn;
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        return true;
+      }
+    }
+    return false;
   };
 
-  const onSubmitSuccess = async (_, { loginWithPassword }) => {
-    const { id, token, tokenExpires, user } = loginWithPassword || {};
-    await storeLoginToken(id, token, new Date(tokenExpires));
+  const onSubmit = async ({ usernameOrEmail, password, totpCode }) => {
+    if (router.query.step === '1') {
+      const success = await logInWithWebAuth(usernameOrEmail);
+      if (!success) nextStep();
+    }
+    if (router.query.step === '2') {
+      const { data, errors } = await logInWithPassword({
+        usernameOrEmail,
+        password,
+        disableHashing: true,
+      });
+      if (!errors?.length) {
+        const { id, token, tokenExpires, user } = data.loginWithPassword;
 
-    if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        if (user.isTwoFactorEnabled) nextStep();
+        return { success: Boolean(id), ...data.loginWithPassword };
+      }
+      return { success: false, errors };
+    }
+    if (router.query.step === '3') {
+      const { data, errors } = await logInWithPassword({
+        usernameOrEmail,
+        password,
+        disableHashing: true,
+        totpCode,
+      });
+      if (!errors?.length) {
+        const { id, token, tokenExpires, user } = data.loginWithPassword;
 
+        await storeLoginToken(id, token, new Date(tokenExpires));
+        if (user.isTwoFactorEnabled) nextStep();
+        return { success: Boolean(id), ...data.loginWithPassword };
+      }
+      return { success: false };
+    }
+    return false;
+  };
+
+  const onSubmitSuccess = async () => {
     router.push('/');
   };
 
@@ -65,7 +198,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           defaultMessage: 'Invalid credential, please try again',
         });
 
-      if (error.message.includes('2FA code required')) {
+      if (error?.message?.includes('2FA code required')) {
         form.formik.setFieldError(
           'totpCode',
           formatMessage({
@@ -74,7 +207,13 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           }),
         );
       }
-      if (error.message.includes("2FA code didn't match")) {
+      if (error?.message?.toLowerCase()?.includes('no password set')) {
+        return formatMessage({
+          id: 'user_password_not_set',
+          defaultMessage: 'User password not set',
+        });
+      }
+      if (error?.message?.includes("2FA code didn't match")) {
         form.formik.setFieldError(
           'totpCode',
           formatMessage({
@@ -87,11 +226,20 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
       return '';
     },
     initialValues: {
-      email: null,
+      usernameOrEmail: null,
       password: null,
       totpCode: null,
     },
   });
+
+  useEffect(() => {
+    if (router.query?.step === undefined || router.query?.step === null)
+      router.push({
+        query: {
+          step: 1,
+        },
+      });
+  }, []);
 
   const logo = getLogo();
   if (isAuthenticated()) {
@@ -107,6 +255,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           connection={connection}
         />
       ) : null}
+
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
@@ -135,72 +284,25 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
               form={form}
               className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
             >
-              <input type="hidden" name="remember" value="true" />
-              <div className="space-y-6 rounded-md shadow-sm">
-                <div>
-                  <EmailField
-                    id="email-address"
-                    name="email"
-                    className="mt-1"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    label={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                  />
-                </div>
-                <div>
-                  <PasswordField
-                    id="password"
-                    name="password"
-                    autoComplete="current-password"
-                    required
-                    label={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="totp-code"
-                    name="totpCode"
-                    autoComplete="off"
-                    label={formatMessage({
-                      id: 'totp_code',
-                      defaultMessage: 'TOTP code',
-                    })}
-                    placeholder={formatMessage({
-                      id: 'totp_code',
-                      defaultMessage: 'TOTP code',
-                    })}
-                  />
-                </div>
-              </div>
-
-              <div className="my-1 text-sm sm:my-0 text-left">
-                <Link href="/account/forgot-password">
-                  <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                    {formatMessage({
-                      id: 'forget_password',
-                      defaultMessage: 'Forgot your password?',
-                    })}
-                  </a>
-                </Link>
-              </div>
+              <GetCurrentStep step={router.query.step} />
 
               <FormErrors />
-              <div className="my-2">
+              <div className="flex items-center gap-4 mt-4">
+                {router.query.step !== '1' && (
+                  <button
+                    type="button"
+                    id="previous-button"
+                    name="previous-button"
+                    onClick={previousStep}
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3" />
+                    {formatMessage({
+                      id: 'previous',
+                      defaultMessage: 'Previous',
+                    })}
+                  </button>
+                )}
                 <button
                   type="submit"
                   id="submit"
@@ -223,7 +325,10 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
                       />
                     </svg>
                   </span>
-                  {formatMessage({ id: 'log_in', defaultMessage: 'Log in' })}
+                  {formatMessage({
+                    id: 'continue',
+                    defaultMessage: 'Continue',
+                  })}
                 </button>
               </div>
               <div className="text-sm text-slate-400 dark:text-slate-200">

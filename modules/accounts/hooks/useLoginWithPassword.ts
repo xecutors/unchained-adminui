@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import isEmail from '../../common/utils/isEmail';
 import hashPassword from '../utils/hashPassword';
 
 const LogInWithPasswordMutation = gql`
@@ -23,6 +24,7 @@ const LogInWithPasswordMutation = gql`
         _id
         allowedActions
         roles
+        isTwoFactorEnabled
       }
     }
   }
@@ -34,21 +36,26 @@ const useLoginWithPassword = () => {
   });
 
   const logInWithPassword = async ({
-    username,
-    email,
+    usernameOrEmail,
     password,
     totpCode,
     disableHashing = false,
   }) => {
-    const normalizedEmail = email?.trim();
-
     const variables = {
-      username,
-      email: normalizedEmail,
+      username: null,
+      email: null,
       totpCode,
       plainPassword: null,
       password: null,
     };
+
+    if (isEmail(usernameOrEmail)) {
+      const normalizedEmail = usernameOrEmail?.trim();
+      variables.email = normalizedEmail;
+    } else {
+      variables.username = usernameOrEmail;
+    }
+
     if (disableHashing) {
       variables.plainPassword = password;
     } else {
