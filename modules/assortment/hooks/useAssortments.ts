@@ -5,7 +5,7 @@ import AssortmentFragment from '../fragments/AssortmentFragment';
 export const AssortmentsQuery = gql`
   query Assortments(
     $queryString: String
-    $tags: [String!]
+    $tags: [LowerCaseString!]
     $slugs: [String!]
     $limit: Int
     $offset: Int
