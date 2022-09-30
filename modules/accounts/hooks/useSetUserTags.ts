@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 
 const SetUserTagsMutation = gql`
-  mutation setUserTags($tags: [String]!, $userId: ID!) {
+  mutation setUserTags($tags: [LowerCaseString]!, $userId: ID!) {
     setUserTags(tags: $tags, userId: $userId) {
       _id
       tags

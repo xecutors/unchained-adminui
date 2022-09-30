@@ -5,7 +5,7 @@ import ProductBriefFragment from '../fragments/ProductBriefFragment';
 export const ProductsQuery = gql`
   query Products(
     $queryString: String
-    $tags: [String!]
+    $tags: [LowerCaseString!]
     $slugs: [String!]
     $limit: Int
     $offset: Int
