@@ -34,7 +34,15 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Test') {
+    stage('Deploy v1') {
+      when { branch 'v1.x' }
+      steps {
+        script {
+          adminui.push("1")
+        }
+      }
+    }
+    stage('Deploy Next') {
       when { branch 'develop' }
       steps {
         script {
@@ -42,10 +50,11 @@ pipeline {
         }
       }
     }
-    stage('Deploy to Stage') {
+    stage('Deploy Prod') {
       when { branch 'master' }
       steps {
         script {
+          adminui.push("2")
           adminui.push("stable")
         }
       }
