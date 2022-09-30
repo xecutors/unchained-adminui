@@ -4,7 +4,7 @@ const AddAssortmentProductMutation = gql`
   mutation AddAssortmentProduct(
     $assortmentId: ID!
     $productId: ID!
-    $tags: [String!]
+    $tags: [LowerCaseString!]
   ) {
     addAssortmentProduct(
       assortmentId: $assortmentId
