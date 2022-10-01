@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-const SandboxInput = ({ endpoint, handleOnBlur, connection }) => {
+const SandboxInput = ({ handleOnBlur, connection }) => {
   const [show, setShow] = useState(!connection?.status);
   const { formatMessage } = useIntl();
 
@@ -28,7 +28,7 @@ const SandboxInput = ({ endpoint, handleOnBlur, connection }) => {
             id="endpoint"
             className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
             placeholder="http://localhost:4010/graphql"
-            defaultValue={endpoint}
+            defaultValue={connection.endpoint}
             onBlur={handleOnBlur}
             autoComplete="off"
           />

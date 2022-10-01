@@ -1,26 +1,8 @@
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/client/link/error';
-import getConfig from 'next/config';
 import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
-import { getEndPoint } from '../../common/utils/utils';
-
-const getLocalURI = () => {
-  return process.browser
-    ? `${window.location.origin}/api/graphql`
-    : process.env.GRAPHQL_ENDPOINT;
-};
-
-const getNormalizeURI = (allowEndpoint, URI) => {
-  const endpoint = allowEndpoint ? getEndPoint(URI) : null;
-
-  return endpoint || getLocalURI();
-};
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
 
 const getApolloClient = ({
   headers: headersOverride = {},
@@ -43,7 +25,7 @@ const getApolloClient = ({
   });
 
   const httpLink = createUploadLink({
-    uri: getNormalizeURI(allowEndpointSwitch, endpoint),
+    uri: endpoint,
     credentials: 'same-origin',
     includeExtensions: true,
   });
