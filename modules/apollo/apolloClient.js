@@ -12,6 +12,7 @@ export function initializeApollo(
   initialState = null,
   { headers = {}, locale, endpoint } = {},
 ) {
+  console.log(endpoint);
   const client =
     apolloClient ??
     createApolloClient({

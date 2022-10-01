@@ -5,7 +5,7 @@ import App from 'next/app';
 import { Router, useRouter } from 'next/router';
 
 import { ToastContainer } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import getConfig from 'next/config';
@@ -22,10 +22,7 @@ import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import {
-  getEndPoint,
-  getTestConnection as getConnection,
-} from '../modules/common/utils/utils';
+import { getEndPoint, setEndpoint } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 
 const {
@@ -53,21 +50,14 @@ const handleRouteChange = (apolloClient) => async (url) => {
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
   const { locale } = router;
-  const [endpoint, setEndpoint] = useState(getEndPoint());
-  const [connection, setConnection] = useState({});
 
   const handleOnBlur = async (e) => {
-    const result = await getConnection(e.target.value);
-    setConnection({ status: result?.connection?.ok, error: result?.error });
-    if (!result.error) {
-      getEndPoint(e.target.value);
-      setEndpoint(e.target.value);
-    }
+    await setEndpoint(e.target.value);
   };
 
   const apollo = useApollo(pageProps, {
     locale,
-    endpoint,
+    endpoint: getEndPoint()?.endpoint,
   });
 
   const getLayout = Component.getLayout
@@ -88,12 +78,8 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const messages = getMessages(router.locale);
 
   useEffect(() => {
-    const updateEndpoint = async () => {
-      const result = await getConnection(endpoint);
-      setConnection({ status: result?.connection?.ok, error: result?.error });
-    };
-    if (allowEndpointSwitch) updateEndpoint();
-  }, [endpoint]);
+    if (allowEndpointSwitch) setEndpoint();
+  }, []);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange(apollo));
@@ -148,9 +134,9 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
                 {getLayout(
                   <Component
                     {...pageProps}
-                    endpoint={endpoint}
+                    endpoint={getEndPoint()?.endpoint}
                     handleOnBlur={handleOnBlur}
-                    connection={connection}
+                    connection={getEndPoint()}
                   />,
                 )}
               </ModalWrapper>

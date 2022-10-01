@@ -10,6 +10,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 import SandboxInput from '../../common/components/SandboxInput';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
+import { getEndPoint } from '../../common/utils/utils';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
@@ -97,7 +98,7 @@ const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
-const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
+const LogInForm = ({ handleOnBlur }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
@@ -249,11 +250,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   return (
     <>
       {allowEndpointSwitch ? (
-        <SandboxInput
-          endpoint={endpoint}
-          handleOnBlur={handleOnBlur}
-          connection={connection}
-        />
+        <SandboxInput handleOnBlur={handleOnBlur} connection={getEndPoint()} />
       ) : null}
 
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

@@ -93,18 +93,9 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-const getEndPoint = (endpoint) => {
-  const defaultEndPoint = 'http://localhost:4010/graphql';
+const getEndPoint = () => {
   if (typeof window !== 'undefined') {
-    if (endpoint) {
-      sessionStorage.setItem('endpoint', endpoint);
-      return sessionStorage.getItem('endpoint');
-    }
-    if (!sessionStorage.getItem('endpoint')) {
-      sessionStorage.setItem('endpoint', defaultEndPoint);
-      return sessionStorage.getItem('endpoint');
-    }
-    return sessionStorage.getItem('endpoint');
+    return JSON.parse(sessionStorage.getItem('connection') || '{}');
   }
   return null;
 };
@@ -144,6 +135,24 @@ const getConnection = async (url) => {
     result.error = e.message;
   }
   return result;
+};
+
+export const setEndpoint = async (endpoint) => {
+  const currentEndpoint =
+    endpoint || getEndPoint()?.endpoint || 'http://localhost:4010/graphql';
+  const result = await getConnection(currentEndpoint);
+  console.log('result       dddddddddddd  ', result);
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem(
+      'connection',
+      JSON.stringify({
+        endpoint: currentEndpoint,
+        status: result?.connection?.ok,
+        error: result?.error,
+      }),
+    );
+  }
+  return null;
 };
 
 const getContent = (content) => {
