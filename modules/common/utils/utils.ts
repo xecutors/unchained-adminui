@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 
+const { NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH } = process.env;
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
@@ -103,7 +104,7 @@ const getEndPoint = () => {
 const isSafariBrowser = (userAgent: string): boolean =>
   userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
 
-const getConnection = async (url) => {
+const getTestConnection = async (url) => {
   const result = { error: '', connection: null };
   try {
     if (typeof window !== 'undefined') {
@@ -138,10 +139,16 @@ const getConnection = async (url) => {
 };
 
 export const setEndpoint = async (endpoint) => {
-  const currentEndpoint =
-    endpoint || getEndPoint()?.endpoint || 'http://localhost:4010/graphql';
-  const result = await getConnection(currentEndpoint);
-  console.log('result       dddddddddddd  ', result);
+  let currentEndpoint;
+  if (!NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH) {
+    currentEndpoint = process.env.GRAPHQL_ENDPOINT;
+  } else {
+    currentEndpoint =
+      endpoint || getEndPoint()?.endpoint || 'http://localhost:4010/graphql';
+  }
+
+  const result = await getTestConnection(currentEndpoint);
+
   if (typeof window !== 'undefined') {
     sessionStorage.setItem(
       'connection',
@@ -151,6 +158,7 @@ export const setEndpoint = async (endpoint) => {
         error: result?.error,
       }),
     );
+    return getEndPoint();
   }
   return null;
 };
@@ -174,5 +182,5 @@ export {
   normalizeQuery,
   getContent,
   getEndPoint,
-  getConnection as getTestConnection,
+  getTestConnection,
 };

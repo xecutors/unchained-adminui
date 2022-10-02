@@ -1,16 +1,15 @@
-import { XIcon } from '@heroicons/react/outline';
 import { XCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 import { useIntl } from 'react-intl';
+import { getEndPoint } from '../utils/utils';
 
-const SandboxInput = ({ handleOnBlur, connection }) => {
-  const [show, setShow] = useState(!connection?.status);
+const SandboxInput = ({ handleOnBlur }) => {
+  const [currentEndpoint, setCurrentEndpoint] = useState('');
+  const connection = getEndPoint();
+
   const { formatMessage } = useIntl();
-
-  useEffect(() => {
-    setShow(!connection?.status);
-  }, [connection.status]);
 
   return (
     <div className="mx-2 sm:mx-8 md:mx-auto md:w-1/2">
@@ -28,8 +27,9 @@ const SandboxInput = ({ handleOnBlur, connection }) => {
             id="endpoint"
             className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
             placeholder="http://localhost:4010/graphql"
-            defaultValue={connection.endpoint}
-            onBlur={handleOnBlur}
+            value={currentEndpoint}
+            onChange={(e) => setCurrentEndpoint(e.target.value)}
+            onBlur={() => handleOnBlur(currentEndpoint)}
             autoComplete="off"
           />
           <span
@@ -43,7 +43,7 @@ const SandboxInput = ({ handleOnBlur, connection }) => {
           />
         </div>
       </div>
-      {show && (
+      {!connection?.status && (
         <div className="fixed bottom-0 right-0 z-[9999] bg-red-100 dark:bg-red-300 w-4/5 sm:w-96 border border-slate-300 m-2 rounded-md">
           <div className="p-4 relative">
             <div className="flex items-center gap-2">
@@ -105,14 +105,6 @@ const SandboxInput = ({ handleOnBlur, connection }) => {
                 </p>
               </div>
             )}
-
-            <button
-              type="button"
-              className="absolute top-2 right-2 hover:bg-red-400 p-1 rounded-full"
-              onClick={() => setShow(false)}
-            >
-              <XIcon className="w-4 h-4 text-red-600" />
-            </button>
           </div>
         </div>
       )}
