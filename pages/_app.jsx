@@ -5,10 +5,10 @@ import App from 'next/app';
 import { Router, useRouter } from 'next/router';
 
 import { ToastContainer } from 'react-toastify';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
-import getConfig from 'next/config';
+
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,10 +24,6 @@ import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import { getEndPoint, setEndpoint } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
 
 const handleRouteChange = (apolloClient) => async (url) => {
   const { data: { me } = {} } = await apolloClient.query({
@@ -48,16 +44,18 @@ const handleRouteChange = (apolloClient) => async (url) => {
 };
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
+  const [connectionStatus, setConnectionStatus] = useState(getEndPoint());
+
+  const onEndpointChange = async (endpoint) => {
+    const result = await setEndpoint(endpoint);
+    setConnectionStatus(result);
+  };
   const router = useRouter();
   const { locale } = router;
 
-  const handleOnBlur = async (e) => {
-    await setEndpoint(e.target.value);
-  };
-
   const apollo = useApollo(pageProps, {
     locale,
-    endpoint: getEndPoint()?.endpoint,
+    endpoint: connectionStatus?.endpoint,
   });
 
   const getLayout = Component.getLayout
@@ -76,10 +74,6 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
       );
 
   const messages = getMessages(router.locale);
-
-  useEffect(() => {
-    if (allowEndpointSwitch) setEndpoint();
-  }, []);
 
   useEffect(() => {
     Router.events.on('routeChangeComplete', handleRouteChange(apollo));
@@ -133,10 +127,8 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
               <ModalWrapper>
                 {getLayout(
                   <Component
+                    onEndpointChange={onEndpointChange}
                     {...pageProps}
-                    endpoint={getEndPoint()?.endpoint}
-                    handleOnBlur={handleOnBlur}
-                    connection={getEndPoint()}
                   />,
                 )}
               </ModalWrapper>
