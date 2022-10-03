@@ -1,7 +1,6 @@
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/client/link/error';
-
 import getConfig from 'next/config';
 import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
@@ -16,10 +15,11 @@ const getLocalURI = () => {
     : process.env.GRAPHQL_ENDPOINT;
 };
 
-const getNormalizeURI = (URI) => {
-  const endpoint = allowEndpointSwitch ? URI : null;
-
-  return endpoint || getLocalURI();
+const getNormalizeURI = (endpoint) => {
+  if (allowEndpointSwitch) {
+    return endpoint;
+  }
+  return getLocalURI();
 };
 
 const getApolloClient = ({
@@ -77,7 +77,9 @@ const getApolloClient = ({
       },
     },
     ssrMode: typeof window === 'undefined',
-    link: ApolloLink.from([middlewareLink, errorLink, httpLink]),
+    link: ApolloLink.from(
+      [middlewareLink, errorLink, httpLink].filter(Boolean),
+    ),
 
     cache,
   });

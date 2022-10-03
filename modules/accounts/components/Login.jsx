@@ -222,6 +222,13 @@ const LogInForm = ({ onEndpointChange }) => {
           }),
         );
       }
+      if (error?.message?.toLowerCase()?.includes('is not valid json')) {
+        return formatMessage({
+          id: 'connection_to_server_error',
+          defaultMessage:
+            'Currently not connected to unchained engine, please check your connection to server and try again.',
+        });
+      }
 
       return '';
     },

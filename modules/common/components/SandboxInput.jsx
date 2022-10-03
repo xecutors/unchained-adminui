@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import { useState } from 'react';
 
 import { useIntl } from 'react-intl';
-import { getEndPoint } from '../utils/utils';
+import { getConnection } from '../utils/utils';
 
 const SandboxInput = ({ handleOnBlur }) => {
   const [currentEndpoint, setCurrentEndpoint] = useState('');
-  const connection = getEndPoint();
+  const connection = getConnection();
 
   const { formatMessage } = useIntl();
 
@@ -36,8 +36,8 @@ const SandboxInput = ({ handleOnBlur }) => {
             className={classNames(
               'absolute right-1 sm:right-4 top-3 w-4 h-4 rounded-full',
               {
-                'bg-green-600': connection.status,
-                'bg-red-600': !connection.status,
+                'bg-green-600': connection?.status,
+                'bg-red-600': !connection?.status,
               },
             )}
           />
@@ -49,10 +49,15 @@ const SandboxInput = ({ handleOnBlur }) => {
             <div className="flex items-center gap-2">
               <XCircleIcon className="h-5 w-5 text-red-400" />
               <h3 className="text-lg font-medium text-red-800">
-                {formatMessage({
-                  id: 'unable_server',
-                  defaultMessage: 'Unable to reach server',
-                })}
+                {formatMessage(
+                  {
+                    id: 'unable_server',
+                    defaultMessage: 'Unable to reach server at {endpoint}',
+                  },
+                  {
+                    endpoint: connection?.endpoint,
+                  },
+                )}
               </h3>
             </div>
 

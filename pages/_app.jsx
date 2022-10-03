@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 
-import { useApollo } from '../modules/apollo/apolloClient';
+import { initializeApollo, useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
@@ -22,10 +22,11 @@ import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import { getEndPoint, setEndpoint } from '../modules/common/utils/utils';
+import { getConnection, setEndpoint } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 
-const handleRouteChange = (apolloClient) => async (url) => {
+const handleRouteChange = async (url) => {
+  const apolloClient = initializeApollo();
   const { data: { me } = {} } = await apolloClient.query({
     query: CurrentUserQuery,
     errorPolicy: 'none',
@@ -44,7 +45,7 @@ const handleRouteChange = (apolloClient) => async (url) => {
 };
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
-  const [connectionStatus, setConnectionStatus] = useState(getEndPoint());
+  const [connectionStatus, setConnectionStatus] = useState(getConnection());
 
   const onEndpointChange = async (endpoint) => {
     const result = await setEndpoint(endpoint);
@@ -76,10 +77,10 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const messages = getMessages(router.locale);
 
   useEffect(() => {
-    Router.events.on('routeChangeComplete', handleRouteChange(apollo));
+    Router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange(apollo));
+      Router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [apollo]);
 
