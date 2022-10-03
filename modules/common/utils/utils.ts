@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 
+const { NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH } = process.env;
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
@@ -93,18 +94,13 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-const getEndPoint = (endpoint) => {
-  const defaultEndPoint = 'http://localhost:4010/graphql';
+const getConnection = (): {
+  endpoint: string;
+  status: boolean;
+  error?: string;
+} => {
   if (typeof window !== 'undefined') {
-    if (endpoint) {
-      sessionStorage.setItem('endpoint', endpoint);
-      return sessionStorage.getItem('endpoint');
-    }
-    if (!sessionStorage.getItem('endpoint')) {
-      sessionStorage.setItem('endpoint', defaultEndPoint);
-      return sessionStorage.getItem('endpoint');
-    }
-    return sessionStorage.getItem('endpoint');
+    return JSON.parse(sessionStorage.getItem('connection') || '{}');
   }
   return null;
 };
@@ -112,7 +108,7 @@ const getEndPoint = (endpoint) => {
 const isSafariBrowser = (userAgent: string): boolean =>
   userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
 
-const getConnection = async (url) => {
+const testConnection = async (url) => {
   const result = { error: '', connection: null };
   try {
     if (typeof window !== 'undefined') {
@@ -146,6 +142,34 @@ const getConnection = async (url) => {
   return result;
 };
 
+export const setEndpoint = async (
+  endpoint,
+): Promise<{ endpoint: string; status: boolean; error?: string } | null> => {
+  let currentEndpoint;
+  if (!NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH) {
+    currentEndpoint = process.env.GRAPHQL_ENDPOINT;
+  } else {
+    const sessionStore = getConnection();
+    currentEndpoint =
+      endpoint || sessionStore?.endpoint || 'http://localhost:4010/graphql';
+  }
+
+  const result = await testConnection(currentEndpoint);
+
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem(
+      'connection',
+      JSON.stringify({
+        endpoint: currentEndpoint,
+        status: result?.connection?.ok,
+        error: result?.error,
+      }),
+    );
+    return getConnection();
+  }
+  return null;
+};
+
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;
@@ -164,6 +188,6 @@ export {
   normalizeObjectToString,
   normalizeQuery,
   getContent,
-  getEndPoint,
-  getConnection as getTestConnection,
+  getConnection,
+  testConnection,
 };

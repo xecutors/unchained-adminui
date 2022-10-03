@@ -35,6 +35,7 @@ export function initializeApollo(
     });
     client.cache.restore(data);
   }
+
   if (typeof window === 'undefined') return client;
   if (!apolloClient) apolloClient = client;
 
@@ -52,8 +53,10 @@ export function addApolloState(client, pageProps) {
 
 export function useApollo(pageProps, { endpoint, ...rest }) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
+
   const store = useMemo(() => {
     apolloClient = null;
+
     return initializeApollo(state, { endpoint, ...rest });
   }, [state, endpoint]);
   return store;

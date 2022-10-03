@@ -8,8 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
-import getConfig from 'next/config';
-import { useApollo } from '../modules/apollo/apolloClient';
+
+import { initializeApollo, useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
@@ -22,17 +22,11 @@ import AuthWrapper from '../modules/Auth/AuthWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import {
-  getEndPoint,
-  getTestConnection as getConnection,
-} from '../modules/common/utils/utils';
+import { getConnection, setEndpoint } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
-
-const handleRouteChange = (apolloClient) => async (url) => {
+const handleRouteChange = async (url) => {
+  const apolloClient = initializeApollo();
   const { data: { me } = {} } = await apolloClient.query({
     query: CurrentUserQuery,
     errorPolicy: 'none',
@@ -51,23 +45,18 @@ const handleRouteChange = (apolloClient) => async (url) => {
 };
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
+  const [connectionStatus, setConnectionStatus] = useState(getConnection());
+
+  const onEndpointChange = async (endpoint) => {
+    const result = await setEndpoint(endpoint);
+    setConnectionStatus(result);
+  };
   const router = useRouter();
   const { locale } = router;
-  const [endpoint, setEndpoint] = useState(getEndPoint());
-  const [connection, setConnection] = useState({});
-
-  const handleOnBlur = async (e) => {
-    const result = await getConnection(e.target.value);
-    setConnection({ status: result?.connection?.ok, error: result?.error });
-    if (!result.error) {
-      getEndPoint(e.target.value);
-      setEndpoint(e.target.value);
-    }
-  };
 
   const apollo = useApollo(pageProps, {
     locale,
-    endpoint,
+    endpoint: connectionStatus?.endpoint,
   });
 
   const getLayout = Component.getLayout
@@ -88,18 +77,10 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const messages = getMessages(router.locale);
 
   useEffect(() => {
-    const updateEndpoint = async () => {
-      const result = await getConnection(endpoint);
-      setConnection({ status: result?.connection?.ok, error: result?.error });
-    };
-    if (allowEndpointSwitch) updateEndpoint();
-  }, [endpoint]);
-
-  useEffect(() => {
-    Router.events.on('routeChangeComplete', handleRouteChange(apollo));
+    Router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange(apollo));
+      Router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [apollo]);
 
@@ -147,10 +128,8 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
               <ModalWrapper>
                 {getLayout(
                   <Component
+                    onEndpointChange={onEndpointChange}
                     {...pageProps}
-                    endpoint={endpoint}
-                    handleOnBlur={handleOnBlur}
-                    connection={connection}
                   />,
                 )}
               </ModalWrapper>

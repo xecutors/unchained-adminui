@@ -97,7 +97,7 @@ const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
-const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
+const LogInForm = ({ onEndpointChange }) => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
@@ -222,6 +222,13 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
           }),
         );
       }
+      if (error?.message?.toLowerCase()?.includes('is not valid json')) {
+        return formatMessage({
+          id: 'connection_to_server_error',
+          defaultMessage:
+            'Currently not connected to unchained engine, please check your connection to server and try again.',
+        });
+      }
 
       return '';
     },
@@ -249,11 +256,7 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
   return (
     <>
       {allowEndpointSwitch ? (
-        <SandboxInput
-          endpoint={endpoint}
-          handleOnBlur={handleOnBlur}
-          connection={connection}
-        />
+        <SandboxInput handleOnBlur={onEndpointChange} />
       ) : null}
 
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

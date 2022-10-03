@@ -4,7 +4,10 @@ import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
 import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
-import { getEndPoint } from '../../common/utils/utils';
+
+const {
+  publicRuntimeConfig: { allowEndpointSwitch },
+} = getConfig();
 
 const getLocalURI = () => {
   return process.browser
@@ -12,15 +15,12 @@ const getLocalURI = () => {
     : process.env.GRAPHQL_ENDPOINT;
 };
 
-const getNormalizeURI = (allowEndpoint, URI) => {
-  const endpoint = allowEndpoint ? getEndPoint(URI) : null;
-
-  return endpoint || getLocalURI();
+const getNormalizeURI = (endpoint) => {
+  if (allowEndpointSwitch) {
+    return endpoint;
+  }
+  return getLocalURI();
 };
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
 
 const getApolloClient = ({
   headers: headersOverride = {},
@@ -43,7 +43,7 @@ const getApolloClient = ({
   });
 
   const httpLink = createUploadLink({
-    uri: getNormalizeURI(allowEndpointSwitch, endpoint),
+    uri: getNormalizeURI(endpoint),
     credentials: 'same-origin',
     includeExtensions: true,
   });
@@ -77,7 +77,9 @@ const getApolloClient = ({
       },
     },
     ssrMode: typeof window === 'undefined',
-    link: ApolloLink.from([middlewareLink, errorLink, httpLink]),
+    link: ApolloLink.from(
+      [middlewareLink, errorLink, httpLink].filter(Boolean),
+    ),
 
     cache,
   });
