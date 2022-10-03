@@ -94,7 +94,11 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-const getEndPoint = () => {
+const getConnection = (): {
+  endpoint: string;
+  status: boolean;
+  error?: string;
+} => {
   if (typeof window !== 'undefined') {
     return JSON.parse(sessionStorage.getItem('connection') || '{}');
   }
@@ -104,7 +108,7 @@ const getEndPoint = () => {
 const isSafariBrowser = (userAgent: string): boolean =>
   userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
 
-const getTestConnection = async (url) => {
+const testConnection = async (url) => {
   const result = { error: '', connection: null };
   try {
     if (typeof window !== 'undefined') {
@@ -138,16 +142,19 @@ const getTestConnection = async (url) => {
   return result;
 };
 
-export const setEndpoint = async (endpoint) => {
+export const setEndpoint = async (
+  endpoint,
+): Promise<{ endpoint: string; status: boolean; error?: string } | null> => {
   let currentEndpoint;
   if (!NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH) {
     currentEndpoint = process.env.GRAPHQL_ENDPOINT;
   } else {
+    const sessionStore = getConnection();
     currentEndpoint =
-      endpoint || getEndPoint()?.endpoint || 'http://localhost:4010/graphql';
+      endpoint || sessionStore?.endpoint || 'http://localhost:4010/graphql';
   }
 
-  const result = await getTestConnection(currentEndpoint);
+  const result = await testConnection(currentEndpoint);
 
   if (typeof window !== 'undefined') {
     sessionStorage.setItem(
@@ -158,7 +165,7 @@ export const setEndpoint = async (endpoint) => {
         error: result?.error,
       }),
     );
-    return getEndPoint();
+    return getConnection();
   }
   return null;
 };
@@ -181,6 +188,6 @@ export {
   normalizeObjectToString,
   normalizeQuery,
   getContent,
-  getEndPoint,
-  getTestConnection,
+  getConnection,
+  testConnection,
 };
