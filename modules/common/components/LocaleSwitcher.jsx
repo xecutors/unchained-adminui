@@ -11,7 +11,7 @@ const LocaleSwitcher = () => {
       locale: e.target.value,
     });
   };
-
+  if (locales?.length < 2) return null;
   return (
     <div className="ml-auto">
       <select
