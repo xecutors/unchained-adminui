@@ -2,8 +2,10 @@ import { useIntl } from 'react-intl';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import DraggableIcon from '../../common/components/DraggableIcon';
 
 const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
   const { formatMessage } = useIntl();
@@ -15,14 +17,16 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
+  const router = useRouter();
 
   return (
     <div
+      onClick={() => {
+        router.push(`/filters/${filter._id}`);
+      }}
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
-      className="flex items-center justify-between rounded px-2 gap-4 border-b border-slate-200 dark:border-slate-600 last:border-none hover:cursor-move"
+      className="flex items-center justify-between rounded px-2 gap-4 border-b border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
     >
       <div className="shrink-0 grow-0 basis-20 space-y-1 p-2">
         <Badge
@@ -49,7 +53,21 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
           <Badge color="indigo" text={tag} key={tag} />
         ))}
       </div>
-      <DeleteButton onClick={() => onDelete(_id)} />
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          className="hover:cursor-move"
+        >
+          <DraggableIcon />
+        </button>
+        <DeleteButton onClick={() => onDelete(_id)} />
+      </div>
     </div>
   );
 };
