@@ -1,5 +1,6 @@
 import { ApolloClient, ApolloLink } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
 import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
@@ -8,6 +9,35 @@ import apolloCache, { resetCache } from './apolloCache';
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
+
+const allowedHeaders = [
+  'accept-language',
+  'pragma',
+  'user-agent',
+  'x-forwarded-for',
+  'x-forwarded-host',
+  'x-forwarded-port',
+  'x-forwarded-proto',
+  'x-forwarded-server',
+  'x-mapihttpcapability',
+  'x-real-ip',
+  'x-user-identity',
+  'host',
+  'cookie',
+  'authorization',
+];
+
+const setLocale = (headers, locale) => {
+  const newHeaders = {
+    ...Object.fromEntries(
+      Object.entries(headers).filter(([key]) => {
+        return allowedHeaders.includes(key.toLowerCase());
+      }),
+    ),
+    'accept-language': locale,
+  };
+  return { headers: newHeaders };
+};
 
 const getLocalURI = () => {
   return process.browser
@@ -27,12 +57,12 @@ const getApolloClient = ({
   locale,
   endpoint,
 }) => {
-  const middlewareLink = new ApolloLink((operation, forward) => {
-    // add the authorization to the headers
+  const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
+    return setLocale({ ...headersOverride, ...contextHeaders }, locale);
+  });
+  const authLink = new ApolloLink((operation, forward) => {
     const headers = {};
-    if (headersOverride && headersOverride['accept-language']) {
-      headers['accept-language'] = headersOverride['accept-language'];
-    }
+
     const foundToken = getLoginToken();
     if (foundToken) {
       headers.authorization = `Bearer ${foundToken}`;
@@ -78,7 +108,7 @@ const getApolloClient = ({
     },
     ssrMode: typeof window === 'undefined',
     link: ApolloLink.from(
-      [middlewareLink, errorLink, httpLink].filter(Boolean),
+      [authLink, errorLink, localeLink, httpLink].filter(Boolean),
     ),
 
     cache,
