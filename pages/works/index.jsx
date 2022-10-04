@@ -30,7 +30,7 @@ const WorkQueueView = () => {
   };
 
   const limit = parseInt(query?.limit, 10) || DefaultLimit;
-  const offset = parseInt(query?.skip, 10) || 0;
+
   const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
@@ -52,7 +52,6 @@ const WorkQueueView = () => {
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
     queryString,
     limit,
-    offset,
     ...filter,
     sort: sortKeys,
   });
