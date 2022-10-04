@@ -4,7 +4,6 @@ import WorkListItem from './WorkListItem';
 
 const WorkList = ({ workQueue }) => {
   const { formatMessage } = useIntl();
-
   return (
     <Table className="min-w-full ">
       {workQueue?.map((work) => (

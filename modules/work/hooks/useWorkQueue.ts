@@ -23,24 +23,30 @@ export const WorkQueueQuery = gql`
       ...WorkFragment
     }
     activeWorkTypes
+    workQueueCount(
+      status: $status
+      types: $types
+      created: $created
+      queryString: $queryString
+    )
   }
   ${WorkFragment}
 `;
 
 const useWorkQueue = ({
   queryString = '',
-  offset = 0,
+
   limit = 50,
   status = undefined,
   types = undefined,
   created = null,
-  sort = [],
+  sort: sortOptions = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
     variables: {
       queryString,
-      offset,
+      offset: 0,
       limit,
       status,
       types,
@@ -49,16 +55,19 @@ const useWorkQueue = ({
           .filter(([, value]) => value)
           .map(([key, value]) => [key, new Date(value.toString())]),
       ),
-      sort,
+      sort: (sortOptions || []).length
+        ? sortOptions
+        : [{ key: 'scheduled', value: 'DESC' }],
     },
   });
   const workQueue = data?.workQueue || [];
   const activeWorkTypes = data?.activeWorkTypes || [];
-  const loadMore = () =>
+
+  const loadMore = () => {
     fetchMore({
       variables: { offset: workQueue.length },
     });
-
+  };
   return {
     workQueue,
     activeWorkTypes,
