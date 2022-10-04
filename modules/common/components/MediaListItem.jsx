@@ -13,6 +13,7 @@ import EditIcon from './EditIcon';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 import FormErrors from '../../forms/components/FormErrors';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import DraggableIcon from './DraggableIcon';
 
 const MediaListItem = ({
   media,
@@ -56,9 +57,7 @@ const MediaListItem = ({
       key={media._id}
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
-      className="flex flex-wrap gap-4 rounded hover:cursor-move"
+      className="flex flex-wrap gap-4 rounded hover:cursor-pointer"
     >
       <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
@@ -157,7 +156,20 @@ const MediaListItem = ({
           </div>
         </Form>
       </div>
-      <span className="flex items-start ">
+      <span
+        className="flex items-start items-center "
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          className="hover:cursor-move"
+        >
+          <DraggableIcon />
+        </button>
         <DeleteButton
           className="mt-2 mr-2"
           onClick={async (e) => {

@@ -20,7 +20,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
       className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
       ref={setNodeRef}
       onClick={() => {
-        router.push(`assortments/${generateUniqueId(link)}`);
+        router.push(`/assortments/${generateUniqueId(link)}`);
       }}
       style={style}
     >
@@ -53,18 +53,21 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
           </div>
         </div>
       </div>
-      <button
+      <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        type="button"
-        {...attributes}
-        {...listeners}
-        className="hover:cursor-move"
       >
-        <DraggableIcon />
-      </button>
-      <DeleteButton onClick={() => onDelete(linkId)} />
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          className="hover:cursor-move"
+        >
+          <DraggableIcon />
+        </button>
+        <DeleteButton onClick={() => onDelete(linkId)} />
+      </div>
     </div>
   );
 };
