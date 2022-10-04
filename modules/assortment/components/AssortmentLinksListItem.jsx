@@ -1,7 +1,10 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useRouter } from 'next/router';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import DraggableIcon from '../../common/components/DraggableIcon';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -10,13 +13,16 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
+
+  const router = useRouter();
   return (
     <div
-      className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-move"
+      className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
       ref={setNodeRef}
+      onClick={() => {
+        router.push(`assortments/${generateUniqueId(link)}`);
+      }}
       style={style}
-      {...attributes}
-      {...listeners}
     >
       <div className="flex flex-col justify-center space-x-6 py-4 flex-auto">
         <div className="flex grow shrink basis-2/5">
@@ -47,6 +53,17 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
           </div>
         </div>
       </div>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        type="button"
+        {...attributes}
+        {...listeners}
+        className="hover:cursor-move"
+      >
+        <DraggableIcon />
+      </button>
       <DeleteButton onClick={() => onDelete(linkId)} />
     </div>
   );
