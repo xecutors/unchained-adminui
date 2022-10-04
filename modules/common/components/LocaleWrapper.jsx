@@ -33,7 +33,6 @@ const LocaleWrapper = ({ children }) => {
               defaultMessage: 'Select language',
             })}
             value={selectedLocale}
-            defaultValue={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();
               setSelectedLocale(e.target.value);
