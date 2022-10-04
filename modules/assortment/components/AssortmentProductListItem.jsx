@@ -1,8 +1,11 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useRouter } from 'next/router';
 
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import DraggableIcon from '../../common/components/DraggableIcon';
+import generateUniqueId from '../../common/utils/getUniqueId';
 
 const AssortmentProductListItem = ({ link, onDelete, id }) => {
   const { _id, product, tags } = link;
@@ -13,15 +16,18 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
     transition,
   };
 
+  const router = useRouter();
+
   return (
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
-      className="flex items-center justify-between px-2 rounded border-b border-slate-200 dark:border-slate-600 last:border-none hover:cursor-move"
+      className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
+      onClick={() => {
+        router.push(`/products/${generateUniqueId(link?.product)}`);
+      }}
     >
-      <div className="flex items-center space-x-6 py-4">
+      <div className="flex items-center  py-4">
         <div>
           <h3 className="text-lg text-slate-800 dark:text-slate-200">
             {product?.texts?.title}
@@ -36,7 +42,21 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
           <Badge text={tag} color="cyan" key={tag} />
         ))}
       </div>
-      <DeleteButton onClick={() => onDelete(_id)} />
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <button
+          type="button"
+          {...attributes}
+          {...listeners}
+          className="hover:cursor-move"
+        >
+          <DraggableIcon />
+        </button>
+        <DeleteButton onClick={() => onDelete(_id)} />
+      </div>
     </div>
   );
 };
