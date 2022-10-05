@@ -7,7 +7,6 @@ const AssortmentPathsQuery = gql`
     $slugs: [String!]
     $includeInactive: Boolean
     $includeLeaves: Boolean
-    $forceLocale: String
   ) {
     assortments(
       slugs: $slugs
@@ -35,7 +34,11 @@ const useAssortmentPaths = ({
       slugs: normalizedSlug,
       includeInactive,
       includeLeaves,
-      forceLocale,
+    },
+    context: {
+      headers: {
+        forceLocale,
+      },
     },
     returnPartialData: true,
     notifyOnNetworkStatusChange: true,
