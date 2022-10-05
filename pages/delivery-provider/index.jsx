@@ -33,7 +33,7 @@ const DeliveryProviders = () => {
     await setModal(
       <DangerMessage
         message={formatMessage({
-          id: 'delete_delivery_providers_confirmation',
+          id: 'delete_delivery_provider_confirmation',
           defaultMessage:
             'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Delivery Providers? ',
         })}
@@ -48,7 +48,7 @@ const DeliveryProviders = () => {
           );
         }}
         okText={formatMessage({
-          id: 'delete_delivery_providers',
+          id: 'delete_delivery_provider',
           defaultMessage: 'Delete delivery providers',
         })}
       />,
