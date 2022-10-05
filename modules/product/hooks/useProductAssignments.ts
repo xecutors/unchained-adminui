@@ -1,19 +1,14 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductAssignmentFragment from '../fragments/ProductAssignmentFragment';
 
 export const ProductAssignmentQuery = gql`
-  query ProductAssignments(
-    $productId: ID
-    $slug: String
-    $forceLocale: String
-  ) {
+  query ProductAssignments($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       ... on ConfigurableProduct {
-        texts(forceLocale: $forceLocale) {
+        texts {
           _id
           subtitle
           slug
@@ -44,17 +39,12 @@ export const ProductAssignmentQuery = gql`
   ${ProductAssignmentFragment}
 `;
 
-const useProductAssignments = ({
-  productId: id = null,
-  slug = null,
-  locale = null,
-} = {}) => {
+const useProductAssignments = ({ productId: id = null, slug = null } = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { locale: defaultLocale } = useIntl();
-  const forceLocale = locale || defaultLocale;
+
   const { data, loading, error } = useQuery(ProductAssignmentQuery, {
     skip: !id && !parsedId,
-    variables: { productId: id || parsedId, forceLocale },
+    variables: { productId: id || parsedId },
   });
 
   const product = data?.product || {};

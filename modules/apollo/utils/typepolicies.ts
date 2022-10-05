@@ -13,21 +13,13 @@ export const keyMappings: any = {
           'tags',
           'queryString',
           'slugs',
-          'forceLocale',
         ],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       Products: {
-        keyArgs: [
-          'limit',
-          'includeDrafts',
-          'offset',
-          'tags',
-          'queryString',
-          'forceLocale',
-        ],
+        keyArgs: ['limit', 'includeDrafts', 'offset', 'tags', 'queryString'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },

@@ -1,4 +1,8 @@
-import { ApolloClient, ApolloLink } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
@@ -34,7 +38,7 @@ const setLocale = (headers, locale) => {
         return allowedHeaders.includes(key.toLowerCase());
       }),
     ),
-    'accept-language': locale,
+    'accept-language': headers?.forceLocale || locale,
   };
   return { headers: newHeaders };
 };
@@ -56,19 +60,20 @@ const getApolloClient = ({
   headers: headersOverride = {},
   locale,
   endpoint,
-}) => {
+}): ApolloClient<NormalizedCacheObject> => {
   const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
     return setLocale({ ...headersOverride, ...contextHeaders }, locale);
   });
   const authLink = new ApolloLink((operation, forward) => {
-    const headers = {};
+    const context = operation.getContext();
+    const headers: { authorization?: string } = {};
 
     const foundToken = getLoginToken();
     if (foundToken) {
       headers.authorization = `Bearer ${foundToken}`;
     }
 
-    operation.setContext({ headers });
+    operation.setContext({ ...headers, ...context?.headers });
     return forward(operation);
   });
 
@@ -80,7 +85,7 @@ const getApolloClient = ({
 
   const errorLink = onError(({ response, graphQLErrors, networkError }) => {
     if (graphQLErrors) {
-      response?.errors?.push(...graphQLErrors);
+      response?.errors.concat(graphQLErrors);
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
           // eslint-disable-line
@@ -114,7 +119,7 @@ const getApolloClient = ({
     cache,
   });
 
-  apolloClient.onResetStore(() => {
+  apolloClient.onResetStore(async () => {
     resetCache(cache);
   });
 
