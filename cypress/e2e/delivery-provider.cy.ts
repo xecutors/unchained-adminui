@@ -407,7 +407,7 @@ describe('Delivery Provider', () => {
 
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
-      .contains(localizations.en.delete_delivery_providers)
+      .contains(localizations.en.delete_delivery_provider)
       .click();
 
     cy.wait(
