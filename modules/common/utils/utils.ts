@@ -1,6 +1,10 @@
+import getConfig from 'next/config';
 import { useIntl } from 'react-intl';
 
-const { NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH } = process.env;
+const {
+  publicRuntimeConfig: { allowEndpointSwitch },
+} = getConfig();
+
 const useFormatPrice = () => {
   const { locale } = useIntl();
 
@@ -146,7 +150,7 @@ export const setEndpoint = async (
   endpoint,
 ): Promise<{ endpoint: string; status: boolean; error?: string } | null> => {
   let currentEndpoint;
-  if (!NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH) {
+  if (!allowEndpointSwitch) {
     currentEndpoint = process.env.GRAPHQL_ENDPOINT;
   } else {
     const sessionStore = getConnection();
