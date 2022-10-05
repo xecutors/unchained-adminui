@@ -73,7 +73,9 @@ const getApolloClient = ({
       headers.authorization = `Bearer ${foundToken}`;
     }
 
-    operation.setContext({ ...headers, ...context?.headers });
+    operation.setContext({
+      headers: { ...(context?.headers || {}), ...headers },
+    });
     return forward(operation);
   });
 
