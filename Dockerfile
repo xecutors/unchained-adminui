@@ -1,6 +1,4 @@
-FROM node:14-alpine
-
-RUN apk --no-cache add curl
+FROM node:16-alpine as bundler
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -14,15 +12,25 @@ RUN NODE_ENV=development npm install
 # Build app
 COPY . /usr/src/app/
 
+RUN npm run lint
+RUN npm run build
+RUN rm -Rf node_modules
+
+
+FROM node:16-alpine as runtime
+
+COPY --from=bundler /usr/src/app /usr/src
+
+WORKDIR /usr/src/app
+
 ENV NEXT_TELEMETRY_DISABLED="1"
 ENV TZ="Europe/Amsterdam"
 ENV NODE_ENV production
 
-RUN npm run lint && npm run test
-RUN npm run build && npm prune --production
+RUN npm install
 
-HEALTHCHECK --timeout=1s --start-period=5s \
-  CMD curl -f http://localhost:3000 || exit 1
+HEALTHCHECK --timeout=1s --start-period=2s \
+  CMD wget --spider -q http://localhost:3000 || exit 1
 
 EXPOSE 3000
 
