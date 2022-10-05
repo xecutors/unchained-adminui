@@ -11,8 +11,13 @@
 require('./node_env');
 const fs = require('fs');
 const path = require('path');
-const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  skipWaiting: false,
+  runtimeCaching,
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const normalizePaths = (paths) => {
   if (paths) {
@@ -62,13 +67,6 @@ const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
 
 module.exports = withPWA({
   swcMinify: true,
-  pwa: {
-    dest: 'public',
-    skipWaiting: false,
-    runtimeCaching,
-    disable: process.env.NODE_ENV === 'development',
-  },
-
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
@@ -77,7 +75,6 @@ module.exports = withPWA({
     defaultLocale: 'en',
     localeDetection: false,
   },
-
   publicRuntimeConfig: {
     metaConfig,
     showCustomReports: parseInt(
