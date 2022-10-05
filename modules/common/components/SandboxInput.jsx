@@ -6,8 +6,8 @@ import { useIntl } from 'react-intl';
 import { getConnection } from '../utils/utils';
 
 const SandboxInput = ({ handleOnBlur }) => {
-  const [currentEndpoint, setCurrentEndpoint] = useState('');
   const connection = getConnection();
+  const [currentEndpoint, setCurrentEndpoint] = useState(connection?.endpoint);
 
   const { formatMessage } = useIntl();
 
