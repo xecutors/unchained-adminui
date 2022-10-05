@@ -71,9 +71,7 @@ module.exports = withPWA({
     tsconfigPath: './tsconfig.json',
   },
   i18n: {
-    locales: extendedLanguages?.length
-      ? ['en', ...languages]
-      : ['en', 'fr', 'it'],
+    locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
   },
