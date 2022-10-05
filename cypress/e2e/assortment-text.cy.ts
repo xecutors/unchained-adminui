@@ -85,7 +85,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq(SingleAssortmentResponse);
         },
@@ -206,7 +205,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq(SingleAssortmentResponse);
         },
@@ -366,7 +364,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {
@@ -422,7 +419,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {
@@ -452,7 +448,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {
@@ -520,7 +515,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {
@@ -550,7 +544,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {
@@ -618,8 +611,6 @@ describe('Assortment Detail Texts', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             assortmentId: assortment._id,
-
-            forceLocale: 'en',
           });
           expect(response.body).to.deep.eq({
             data: {

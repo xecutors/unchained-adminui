@@ -31,7 +31,6 @@ const productSearchQuery = {
       value: 'DESC',
     },
   ],
-  forceLocale: 'en',
 };
 
 describe('Assortment Detail Products', () => {
@@ -100,7 +99,6 @@ describe('Assortment Detail Products', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -139,7 +137,6 @@ describe('Assortment Detail Products', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentProductsResponse);
@@ -160,7 +157,7 @@ describe('Assortment Detail Products', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL PRODUCT] tab successfully', () => {
     cy.get('form#assortment_product_form').should('be.visible');
-    cy.get('div[aria-describedBy="assortment-product"]').should(
+    cy.get('button[aria-describedBy="assortment-product"]').should(
       'have.length',
       4,
     );
@@ -255,7 +252,6 @@ describe('Assortment Detail Products', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentProductsResponse);
@@ -299,7 +295,6 @@ describe('Assortment Detail Products', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentProductsResponse);

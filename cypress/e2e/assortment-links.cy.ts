@@ -31,7 +31,6 @@ const assortmentFilterQuery = {
       value: 'DESC',
     },
   ],
-  forceLocale: 'en',
 };
 
 describe('Assortment Detail Links', () => {
@@ -94,7 +93,6 @@ describe('Assortment Detail Links', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -133,7 +131,6 @@ describe('Assortment Detail Links', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentLinksResponse);
@@ -154,7 +151,10 @@ describe('Assortment Detail Links', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL LINKS] tab successfully', () => {
     cy.get('form#assortment_link_form').should('be.visible');
-    cy.get('div[aria-describedBy="assortment-link"]').should('have.length', 3);
+    cy.get('button[aria-describedBy="assortment-link"]').should(
+      'have.length',
+      3,
+    );
   });
 
   it('Should [ADD TAG] successfully', () => {
@@ -236,7 +236,6 @@ describe('Assortment Detail Links', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -246,7 +245,6 @@ describe('Assortment Detail Links', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentLinksResponse);
@@ -290,7 +288,6 @@ describe('Assortment Detail Links', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentLinksResponse);

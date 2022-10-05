@@ -96,7 +96,6 @@ describe('Filter', () => {
           limit: 50,
           offset: 0,
           includeInactive: true,
-          forceLocale: 'en',
           sort: [],
         });
         expect(response.body).to.deep.eq(FilterListResponse);
@@ -152,7 +151,6 @@ describe('Filter', () => {
             limit: 50,
             offset: 0,
             includeInactive: true,
-            forceLocale: 'en',
             sort: [],
           });
           expect(response.body).to.deep.eq(FilterListResponse);
@@ -174,7 +172,6 @@ describe('Filter', () => {
             limit: 50,
             offset: 0,
             includeInactive: true,
-            forceLocale: 'en',
             sort: [],
           });
           expect(response.body).to.deep.eq(FilterListResponse);
@@ -218,7 +215,6 @@ describe('Filter', () => {
             limit: 50,
             offset: 0,
             includeInactive: true,
-            forceLocale: deLocale.isoCode,
             sort: [],
           });
           expect(response.body).to.deep.eq(FilterListResponse);

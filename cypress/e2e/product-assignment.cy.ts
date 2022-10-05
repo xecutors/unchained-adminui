@@ -110,7 +110,6 @@ describe('Product Assignment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(ProductAssignmentsResponse);
       },
@@ -153,7 +152,6 @@ describe('Product Assignment', () => {
             assortmentId: null,
             orderBy: null,
             ignoreChildAssortments: false,
-            forceLocale: 'en',
           });
 
           expect(response.body).to.deep.eq(SearchProductResponse);
