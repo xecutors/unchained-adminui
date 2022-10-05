@@ -148,7 +148,6 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: true,
           includeLeaves: false,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -179,7 +178,6 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: true,
           includeLeaves: false,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -211,7 +209,6 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: true,
           includeLeaves: false,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -234,7 +231,6 @@ describe('Assortment', () => {
           slugs: null,
           includeInactive: false,
           includeLeaves: false,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentPathsResponse);
       },
@@ -509,7 +505,6 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentRequestVariables,
-          forceLocale: deLocale.isoCode,
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
       },
@@ -563,7 +558,6 @@ describe('Assortment', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: CreateAssortmentResponse.data.createAssortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },

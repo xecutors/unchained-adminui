@@ -54,10 +54,7 @@ describe('Product', () => {
         req.reply(TranslatedProductTextResponse);
       }
       if (hasOperationName(req, ProductOperations.CreateProduct)) {
-        const { variables } = body;
         aliasMutation(req, ProductOperations.CreateProduct);
-        CreateProductResponse.data.createProduct.__typename =
-          ProductTypes[variables.product.type];
         req.reply(CreateProductResponse);
       }
       if (hasOperationName(req, ProductOperations.UnpublishProduct)) {
@@ -300,7 +297,6 @@ describe('Product', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             ...ProductFilterRequest,
-            forceLocale: deLocale.isoCode,
           });
           expect(response.body).to.deep.eq(ProductListResponse);
         },
@@ -330,7 +326,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: ProductTypes.SimpleProduct,
+              type: 'SIMPLE',
               tags: ['test'],
             },
           });
@@ -340,7 +336,6 @@ describe('Product', () => {
               ...CreateProductResponse.data,
               createProduct: {
                 ...CreateProductResponse.data.createProduct,
-                __typename: ProductTypes.SimpleProduct,
               },
             },
           });
@@ -366,7 +361,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: ProductTypes.BundleProduct,
+              type: 'BUNDLE',
               tags: ['test'],
             },
           });
@@ -376,7 +371,6 @@ describe('Product', () => {
               ...CreateProductResponse.data,
               createProduct: {
                 ...CreateProductResponse.data.createProduct,
-                __typename: ProductTypes.BundleProduct,
               },
             },
           });
@@ -402,7 +396,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: ProductTypes.ConfigurableProduct,
+              type: 'CONFIGURABLE',
               tags: ['test'],
             },
           });
@@ -412,7 +406,6 @@ describe('Product', () => {
               ...CreateProductResponse.data,
               createProduct: {
                 ...CreateProductResponse.data.createProduct,
-                __typename: ProductTypes.ConfigurableProduct,
               },
             },
           });
@@ -438,7 +431,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: ProductTypes.PlanProduct,
+              type: 'PLAN',
               tags: ['test'],
             },
           });
@@ -448,7 +441,6 @@ describe('Product', () => {
               ...CreateProductResponse.data,
               createProduct: {
                 ...CreateProductResponse.data.createProduct,
-                __typename: ProductTypes.PlanProduct,
               },
             },
           });
