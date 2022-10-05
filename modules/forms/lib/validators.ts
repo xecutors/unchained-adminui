@@ -198,23 +198,11 @@ export const validateProductCommerce = (currentIndex, values): Validator => {
   };
 };
 
-const isEmpty = (value) =>
-  value === null || value === '' || value === undefined;
-
 export const validateProductCommerceOneNull = (values): Validator => {
   return {
     isValid: () => {
-      if (
-        values?.length &&
-        values?.length === 1 &&
-        !isEmpty(values[0].maxQuantity)
-      )
-        return false;
-      if (
-        values.filter(({ maxQuantity }) => isEmpty(maxQuantity))?.length !== 1
-      )
-        return false;
-      return true;
+      if (values?.some(({ maxQuantity }) => !maxQuantity)) return true;
+      return false;
     },
 
     intlMessageDescriptor: {

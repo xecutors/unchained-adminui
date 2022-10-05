@@ -55,7 +55,7 @@ const CommerceForm = ({ productId }) => {
     enableReinitialize: true,
     initialValues: {
       pricing: [
-        ...(catalogPrices || [
+        ...(normalizeCatalogPrices(catalogPrices) || [
           {
             maxQuantity: '',
             amount: null,
@@ -71,11 +71,6 @@ const CommerceForm = ({ productId }) => {
 
   const { values } = form.formik;
   const { pricing } = values;
-
-  useEffect(() => {
-    if (!catalogPrices?.length)
-      form.formik.setValues({ pricing: normalizeCatalogPrices(catalogPrices) });
-  }, [catalogPrices]);
 
   return (
     <div className="flex flex-col ">
