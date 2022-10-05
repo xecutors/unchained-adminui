@@ -1,5 +1,10 @@
-import { ApolloClient, ApolloLink } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
 import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
@@ -8,6 +13,35 @@ import apolloCache, { resetCache } from './apolloCache';
 const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
+
+const allowedHeaders = [
+  'accept-language',
+  'pragma',
+  'user-agent',
+  'x-forwarded-for',
+  'x-forwarded-host',
+  'x-forwarded-port',
+  'x-forwarded-proto',
+  'x-forwarded-server',
+  'x-mapihttpcapability',
+  'x-real-ip',
+  'x-user-identity',
+  'host',
+  'cookie',
+  'authorization',
+];
+
+const setLocale = (headers, locale) => {
+  const newHeaders = {
+    ...Object.fromEntries(
+      Object.entries(headers).filter(([key]) => {
+        return allowedHeaders.includes(key.toLowerCase());
+      }),
+    ),
+    'accept-language': headers?.forceLocale || locale,
+  };
+  return { headers: newHeaders };
+};
 
 const getLocalURI = () => {
   return process.browser
@@ -26,19 +60,22 @@ const getApolloClient = ({
   headers: headersOverride = {},
   locale,
   endpoint,
-}) => {
-  const middlewareLink = new ApolloLink((operation, forward) => {
-    // add the authorization to the headers
-    const headers = {};
-    if (headersOverride && headersOverride['accept-language']) {
-      headers['accept-language'] = headersOverride['accept-language'];
-    }
+}): ApolloClient<NormalizedCacheObject> => {
+  const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
+    return setLocale({ ...headersOverride, ...contextHeaders }, locale);
+  });
+  const authLink = new ApolloLink((operation, forward) => {
+    const context = operation.getContext();
+    const headers: { authorization?: string } = {};
+
     const foundToken = getLoginToken();
     if (foundToken) {
       headers.authorization = `Bearer ${foundToken}`;
     }
 
-    operation.setContext({ headers });
+    operation.setContext({
+      headers: { ...(context?.headers || {}), ...headers },
+    });
     return forward(operation);
   });
 
@@ -50,7 +87,7 @@ const getApolloClient = ({
 
   const errorLink = onError(({ response, graphQLErrors, networkError }) => {
     if (graphQLErrors) {
-      response?.errors?.push(...graphQLErrors);
+      response?.errors.concat(graphQLErrors);
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
           // eslint-disable-line
@@ -78,13 +115,13 @@ const getApolloClient = ({
     },
     ssrMode: typeof window === 'undefined',
     link: ApolloLink.from(
-      [middlewareLink, errorLink, httpLink].filter(Boolean),
+      [authLink, errorLink, localeLink, httpLink].filter(Boolean),
     ),
 
     cache,
   });
 
-  apolloClient.onResetStore(() => {
+  apolloClient.onResetStore(async () => {
     resetCache(cache);
   });
 
