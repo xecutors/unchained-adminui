@@ -7,7 +7,12 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package.json /usr/src/app/
 COPY package-lock.json /usr/src/app/
-RUN NODE_ENV=development npm install
+
+ENV NEXT_TELEMETRY_DISABLED="1"
+ENV NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH="1"
+ENV TZ="Europe/Amsterdam"
+ENV NODE_ENV="development"
+RUN npm install
 
 # Build app
 COPY . /usr/src/app/
@@ -25,7 +30,7 @@ WORKDIR /usr/src/app
 
 ENV NEXT_TELEMETRY_DISABLED="1"
 ENV TZ="Europe/Amsterdam"
-ENV NODE_ENV production
+ENV NODE_ENV="production"
 
 RUN npm install
 
