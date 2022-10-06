@@ -6,6 +6,7 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import ProductForm from '../../modules/product/components/ProductForm';
 import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
+import { PRODUCT_TYPES } from '../../modules/product/ProductTypes';
 
 const AddProduct = () => {
   const { createProduct } = useCreateProduct();
@@ -16,7 +17,11 @@ const AddProduct = () => {
   };
 
   const onSubmit = async ({ title, type, tags }) => {
-    const { data, errors } = await createProduct({ title, type, tags });
+    const { data, errors } = await createProduct({
+      title,
+      type: PRODUCT_TYPES[type],
+      tags,
+    });
     if (errors?.length) return false;
     return { success: true, data: data?.createProduct };
   };
