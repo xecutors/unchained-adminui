@@ -139,7 +139,6 @@ describe('Product Variation', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          forceLocale: firstLocale.isoCode,
         });
         expect(response.body).to.deep.eq(ProductVariationsResponse);
       },

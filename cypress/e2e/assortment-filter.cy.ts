@@ -82,7 +82,6 @@ describe('Assortment Detail Filters', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -125,7 +124,7 @@ describe('Assortment Detail Filters', () => {
           limit: 50,
           offset: 0,
           includeInactive: true,
-          forceLocale: 'en',
+
           sort: [
             {
               key: 'created',
@@ -142,7 +141,6 @@ describe('Assortment Detail Filters', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(AssortmentFiltersResponse);
       },
@@ -161,7 +159,7 @@ describe('Assortment Detail Filters', () => {
   });
   it('Should Navigate to [ASSORTMENT DETAIL FILTERS] tab successfully', () => {
     cy.get('form#assortment_filter_form').should('be.visible');
-    cy.get('div[aria-describedby="assortment-filter"]').should(
+    cy.get('button[aria-describedby="assortment-filter"]').should(
       'have.length',
       2,
     );
@@ -192,7 +190,7 @@ describe('Assortment Detail Filters', () => {
           limit: 50,
           offset: 0,
           includeInactive: true,
-          forceLocale: 'en',
+
           sort: [
             {
               key: 'created',
@@ -225,7 +223,7 @@ describe('Assortment Detail Filters', () => {
           limit: 50,
           offset: 0,
           includeInactive: true,
-          forceLocale: 'en',
+
           sort: [
             {
               key: 'created',
@@ -256,7 +254,6 @@ describe('Assortment Detail Filters', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -266,7 +263,6 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentFiltersResponse);
@@ -313,7 +309,6 @@ describe('Assortment Detail Filters', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -323,7 +318,6 @@ describe('Assortment Detail Filters', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          forceLocale: 'en',
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(AssortmentFiltersResponse);

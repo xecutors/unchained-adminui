@@ -1,5 +1,4 @@
 import { useQuery, gql } from '@apollo/client';
-import { useIntl } from 'react-intl';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FiltersQuery = gql`
@@ -8,7 +7,6 @@ export const FiltersQuery = gql`
     $limit: Int
     $offset: Int
     $includeInactive: Boolean
-    $forceLocale: String
     $sort: [SortOptionInput!]
   ) {
     filters(
@@ -19,7 +17,7 @@ export const FiltersQuery = gql`
       sort: $sort
     ) {
       ...FilterFragment
-      texts(forceLocale: $forceLocale) {
+      texts {
         _id
         title
         subtitle
@@ -39,15 +37,17 @@ const useFilters = ({
   sort = [],
   forceLocale = '',
 } = {}) => {
-  const { locale } = useIntl();
-
   const { data, loading, error } = useQuery(FiltersQuery, {
+    context: {
+      headers: {
+        forceLocale,
+      },
+    },
     variables: {
       queryString,
       limit,
       offset,
       includeInactive,
-      forceLocale: forceLocale || locale,
       sort,
     },
   });

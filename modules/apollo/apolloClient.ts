@@ -2,16 +2,17 @@ import { useMemo } from 'react';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import createApolloClient from './utils/getApolloClient';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient;
 
-export function initializeApollo(
+export const initializeApollo = (
   initialState = null,
-  { headers = {}, locale, endpoint } = {},
-) {
+  { headers = {}, locale = '', endpoint = null } = {},
+): ApolloClient<NormalizedCacheObject> => {
   const client =
     apolloClient ??
     createApolloClient({
@@ -40,7 +41,7 @@ export function initializeApollo(
   if (!apolloClient) apolloClient = client;
 
   return client;
-}
+};
 
 export function addApolloState(client, pageProps) {
   const current = pageProps;

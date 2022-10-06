@@ -105,7 +105,6 @@ describe('Product Subscription', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           productId: product._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(ProductBundleItemsResponse);
       },
@@ -145,7 +144,6 @@ describe('Product Subscription', () => {
               value: 'DESC',
             },
           ],
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(ProductListResponse);
       },
@@ -169,7 +167,6 @@ describe('Product Subscription', () => {
               value: 'DESC',
             },
           ],
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(ProductListResponse);
       },

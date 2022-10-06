@@ -81,7 +81,6 @@ describe('Assortment Detail Media', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           assortmentId: assortment._id,
-          forceLocale: 'en',
         });
         expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
@@ -155,7 +154,10 @@ describe('Assortment Detail Media', () => {
 
   it('Should Navigate to [ASSORTMENT DETAIL MEDIA] tab successfully', () => {
     cy.get('div#media_uploader').should('be.visible');
-    cy.get('li[aria-describedBy="assortment-media"]').should('have.length', 1);
+    cy.get('button[aria-describedBy="assortment-media"]').should(
+      'have.length',
+      1,
+    );
   });
 
   it('Should [DELETE] media successfully', () => {

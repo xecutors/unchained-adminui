@@ -5,7 +5,7 @@ const ProductVariationFragment = gql`
     _id
     type
     key
-    texts(forceLocale: $forceLocale) {
+    texts {
       _id
       locale
       title
@@ -13,7 +13,7 @@ const ProductVariationFragment = gql`
     }
     options {
       _id
-      texts(forceLocale: $forceLocale) {
+      texts {
         _id
         locale
         title

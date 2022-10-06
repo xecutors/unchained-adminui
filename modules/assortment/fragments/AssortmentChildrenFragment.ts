@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 const AssortmentChildrenFragment = gql`
   fragment AssortmentChildrenFragment on Assortment {
     _id
-    texts(forceLocale: $forceLocale) {
+    texts {
       _id
       slug
       title

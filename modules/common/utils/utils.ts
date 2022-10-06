@@ -1,9 +1,6 @@
-import getConfig from 'next/config';
 import { useIntl } from 'react-intl';
 
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
+const allowEndpointSwitch = !!process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
 
 const useFormatPrice = () => {
   const { locale } = useIntl();

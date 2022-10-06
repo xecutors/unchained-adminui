@@ -289,7 +289,6 @@ export const CreateProductResponse = {
         slug: DRAFT_PRODUCT_SLUG,
         __typename: 'ProductTexts',
       },
-      __typename: 'SimpleProduct',
     },
   },
 };
@@ -369,7 +368,6 @@ export const ProductFilterRequest = {
       value: 'ASC',
     },
   ],
-  forceLocale: 'en',
 };
 
 export const UpdateProductResponse = {
