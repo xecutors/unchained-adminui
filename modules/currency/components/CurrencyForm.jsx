@@ -6,6 +6,7 @@ import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
+import SelectField from '../../forms/components/SelectField';
 import useForm from '../../forms/hooks/useForm';
 import { isContractAddress } from '../../forms/lib/validators';
 
@@ -46,6 +47,7 @@ const CurrencyForm = ({
       isoCode: '',
       contractAddress: '',
       isActive: false,
+      decimals: 2,
       ...defaultValue,
     },
   });
@@ -74,6 +76,19 @@ const CurrencyForm = ({
           })}
           autoComplete="on"
           className="my-4"
+        />
+
+        <SelectField
+          className="mt-0 w-full"
+          label={formatMessage({
+            id: 'decimals',
+            defaultMessage: 'decimals',
+          })}
+          required
+          name="decimals"
+          options={Object.fromEntries(
+            new Array(32).fill(null).map((_, i) => [i, `${i}`]),
+          )}
         />
 
         {isEdit && (

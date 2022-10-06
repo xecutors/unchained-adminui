@@ -6,6 +6,7 @@ const CurrencyFragment = gql`
     isoCode
     isActive
     contractAddress
+    decimals
   }
 `;
 
