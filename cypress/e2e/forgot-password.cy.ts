@@ -1,6 +1,7 @@
 import localizations from '../../i18n';
 import {
   AuthenticationOperations,
+  CreateWebAuthnCredentialRequestOptionsResponse,
   ForgotPasswordFailedResponse,
   ForgotPasswordSuccessResponse,
 } from '../mock/authorization';
@@ -24,9 +25,25 @@ describe('Forgot password', () => {
       if (hasOperationName(req, UserOperations.CurrentUser)) {
         req.reply({ data: { me: null } });
       }
+      if (
+        hasOperationName(
+          req,
+          AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+        )
+      ) {
+        aliasMutation(
+          req,
+          AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+        );
+
+        req.reply(CreateWebAuthnCredentialRequestOptionsResponse);
+      }
     });
+
     cy.visit('/');
     cy.location('pathname').should('eq', '/log-in');
+    cy.get('input[name="usernameOrEmail"]').type('admin@unchained.local');
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
     cy.get('a[href="/account/forgot-password"]')
       .contains(localizations.en.forget_password)
       .click();

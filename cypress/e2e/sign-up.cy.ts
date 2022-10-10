@@ -47,7 +47,8 @@ describe('Sign Up', () => {
   });
 
   it('Should [CREATE USER] successfully', () => {
-    cy.get('input[name="email"]').type('new@unchained.shop');
+    cy.get('input[name="usernameOrEmail"]').type('new@unchained.shop');
+    cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="password"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain.text', localizations.en.sign_up)
@@ -59,6 +60,7 @@ describe('Sign Up', () => {
           email: 'new@unchained.shop',
           plainPassword: 'password',
           password: null,
+          username: null,
         });
         expect(response.body).to.deep.eq(EnrollmentSuccessResponse);
       },
@@ -90,7 +92,9 @@ describe('Sign Up', () => {
         expect(response.body).to.deep.eq({ data: { me: null } });
       },
     );
-    cy.get('input[name="email"]').type('admin@unchained.shop');
+
+    cy.get('input[name="usernameOrEmail"]').type('admin@unchained.shop');
+    cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="password"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain', localizations.en.sign_up)
@@ -102,6 +106,7 @@ describe('Sign Up', () => {
           email: 'admin@unchained.shop',
           plainPassword: 'password',
           password: null,
+          username: null,
         });
         expect(response.body).to.deep.eq(EmailExistsEnrollmentErrorResponse);
       },
@@ -117,14 +122,15 @@ describe('Sign Up', () => {
         expect(response.body).to.deep.eq({ data: { me: null } });
       },
     );
+    cy.get('button#totp[role="switch"]').click();
     cy.get('button[type="submit"]')
       .should('contain.text', localizations.en.sign_up)
       .click();
-    cy.get('label[for="email"]').should(
+    cy.get('label[for="usernameOrEmail"]').should(
       'contain.text',
       replaceIntlPlaceholder(
-        localizations.en.error_email,
-        localizations.en.email,
+        localizations.en.error_required,
+        localizations.en.username_or_email,
       ),
     );
     cy.get('label[for="password"]').should(

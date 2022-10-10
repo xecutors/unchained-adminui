@@ -156,6 +156,8 @@ export const AuthenticationOperations = {
   LoginWithPassword: 'LoginWithPassword',
   ForgotPassword: 'ForgotPassword',
   CreateUser: 'CreateUser',
+  CreateWebAuthnCredentialRequestOptions:
+    'CreateWebAuthnCredentialRequestOptions',
 };
 
 export const EmailExistsEnrollmentErrorResponse = {
@@ -180,6 +182,18 @@ export const EnrollmentSuccessResponse = {
       token: '2e804e2ceb0a98fc914acb21dffb37802258b432ae9',
       tokenExpires: '2030-01-15T19:09:54.700Z',
       __typename: 'LoginMethodResponse',
+    },
+  },
+};
+
+export const CreateWebAuthnCredentialRequestOptionsResponse = {
+  data: {
+    createWebAuthnCredentialRequestOptions: {
+      challenge:
+        'cNnRQn1wT3m/MzyzCSg2C83dEf23+emjlLCtVPnBY9IM8ZkFpgxqBrYR3iftISfDGpfo/nH4TiT3WaxLK1tiAQ==',
+      timeout: 60000,
+      rpId: 'localhost',
+      requestId: 1665406065454,
     },
   },
 };

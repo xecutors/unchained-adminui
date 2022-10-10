@@ -145,7 +145,6 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slugs: null,
           includeInactive: true,
           includeLeaves: false,
         });
@@ -175,7 +174,6 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slugs: null,
           includeInactive: true,
           includeLeaves: false,
         });
@@ -206,7 +204,6 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slugs: null,
           includeInactive: true,
           includeLeaves: false,
         });
@@ -228,7 +225,6 @@ describe('Assortment', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          slugs: null,
           includeInactive: false,
           includeLeaves: false,
         });

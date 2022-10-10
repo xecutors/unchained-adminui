@@ -103,11 +103,13 @@ describe('Order', () => {
 
   it('Toggling status toggle should update route', () => {
     cy.location('pathname').should('eq', '/orders');
+
     cy.get('button[role="switch"]').click({ multiple: true });
 
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
+
         expect(request.body.variables).to.deep.eq({
           limit: 50,
           offset: 0,
@@ -207,9 +209,6 @@ describe('Order', () => {
 
   it('Should [FILTER] by multiple fields [STATUS & QUERY STRING]', () => {
     cy.location('pathname').should('eq', '/orders');
-
-    cy.get('button[role="switch"]').click({ multiple: true });
-
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -223,6 +222,9 @@ describe('Order', () => {
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
+
+    cy.get('button[role="switch"]').click({ multiple: true });
+
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;

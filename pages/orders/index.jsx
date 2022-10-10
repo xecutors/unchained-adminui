@@ -104,6 +104,7 @@ const Orders = () => {
               defaultMessage: 'Show carts',
             })}
             toggleKey="includeCarts"
+            active={includeCarts}
           />
         </ListHeader>
         {loading ? <Loading /> : <OrderList orders={orders} showUser />}
