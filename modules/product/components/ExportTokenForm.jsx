@@ -37,7 +37,7 @@ const ExportTokenForm = ({ tokenId }) => {
   return (
     <Form form={form}>
       <div className="p-5 pb-7 max-w-full">
-        <div>
+        <div className="flex justify-between align-middle">
           <TextField
             name="quantity"
             id="quantity"
@@ -53,8 +53,7 @@ const ExportTokenForm = ({ tokenId }) => {
             required
             className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
           />
-        </div>
-        <div>
+
           <TextField
             name="recipientWalletAddress"
             id="recipientWalletAddress"
@@ -67,21 +66,21 @@ const ExportTokenForm = ({ tokenId }) => {
               defaultMessage: 'Recipient wallet address',
             })}
             required
-            className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+            className=" w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+          />
+
+          <SubmitButton
+            hidden={!hasRole(ACTION_ROLES.products.update)}
+            label={formatMessage({
+              id: 'export-token',
+              defaultMessage: 'Export token',
+            })}
+            className="self-end"
           />
         </div>
       </div>
 
-      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right">
-        <SubmitButton
-          hidden={!hasRole(ACTION_ROLES.products.update)}
-          label={formatMessage({
-            id: 'export-token',
-            defaultMessage: 'Export token',
-          })}
-          third
-        />
-      </div>
+      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right" />
     </Form>
   );
 };

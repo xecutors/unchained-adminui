@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import TokenFragment from '../fragments/TokenFragment';
 
 const ExportTokenMutation = gql`
   mutation ExportToken(
@@ -11,9 +12,10 @@ const ExportTokenMutation = gql`
       quantity: $quantity
       recipientWalletAddress: $recipientWalletAddress
     ) {
-      _id
+      ...TokenFragment
     }
   }
+  ${TokenFragment}
 `;
 
 const useExportToken = () => {

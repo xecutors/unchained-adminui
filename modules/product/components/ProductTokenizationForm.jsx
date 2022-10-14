@@ -11,11 +11,9 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import useModal from '../../modal/hooks/useModal';
 import useProductTokenization from '../hooks/useProductTokenization';
 import useSmartContractStandards from '../hooks/useSmartContractStandards';
 import useUpdateProductTokenization from '../hooks/useUpdateProductTokenization';
-import ExportTokenForm from './ExportTokenForm';
 
 const ProductTokenizationForm = ({ productId }) => {
   const { formatMessage } = useIntl();
@@ -23,7 +21,6 @@ const ProductTokenizationForm = ({ productId }) => {
   const { smartContractStandards } = useSmartContractStandards();
   const { updateProductTokenization } = useUpdateProductTokenization();
   const { product } = useProductTokenization({ productId });
-  const { setModal } = useModal();
 
   const onSubmit = async ({
     contractAddress,
@@ -83,26 +80,6 @@ const ProductTokenizationForm = ({ productId }) => {
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
-      }
-      sideComponents={
-        product?.contractConfiguration?.tokenId && (
-          <button
-            type="button"
-            onClick={() =>
-              setModal(
-                <ExportTokenForm
-                  tokenId={product?.contractConfiguration?.tokenId}
-                />,
-              )
-            }
-            className="fixed top-0 right-0 z-50 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-sm sm:fixed sm:top-auto sm:right-auto"
-          >
-            {formatMessage({
-              id: 'add_filter_option',
-              defaultMessage: 'Add option',
-            })}
-          </button>
-        )
       }
     >
       <FormWrapper>
