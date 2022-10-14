@@ -10,6 +10,11 @@ export const UserTokensQuery = gql`
         ...TokenFragment
         product {
           ...ProductBriefFragment
+          simulatedPrice {
+            _id
+            amount
+            currency
+          }
         }
       }
     }
