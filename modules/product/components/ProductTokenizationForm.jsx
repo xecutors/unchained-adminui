@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import JSONView from '../../common/components/JSONView';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
@@ -9,14 +11,19 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
+import useModal from '../../modal/hooks/useModal';
+import useProductTokenization from '../hooks/useProductTokenization';
 import useSmartContractStandards from '../hooks/useSmartContractStandards';
 import useUpdateProductTokenization from '../hooks/useUpdateProductTokenization';
+import ExportTokenForm from './ExportTokenForm';
 
 const ProductTokenizationForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { smartContractStandards } = useSmartContractStandards();
   const { updateProductTokenization } = useUpdateProductTokenization();
+  const { product } = useProductTokenization({ productId });
+  const { setModal } = useModal();
 
   const onSubmit = async ({
     contractAddress,
@@ -49,6 +56,16 @@ const ProductTokenizationForm = ({ productId }) => {
     },
   });
 
+  useEffect(() => {
+    if (product)
+      form.formik.setValues({
+        contractAddress: product?.contractAddress || '',
+        contractStandard: product?.contractStandard || '',
+        tokenId: product?.contractConfiguration?.tokenId || '',
+        supply: product?.contractConfiguration?.supply || '',
+      });
+  }, [product]);
+
   return (
     <SelfDocumentingView
       documentationLabel={formatMessage({
@@ -66,6 +83,26 @@ const ProductTokenizationForm = ({ productId }) => {
             li: (chunk) => <li>{chunk} </li>,
           }}
         />
+      }
+      sideComponents={
+        product?.contractConfiguration?.tokenId && (
+          <button
+            type="button"
+            onClick={() =>
+              setModal(
+                <ExportTokenForm
+                  tokenId={product?.contractConfiguration?.tokenId}
+                />,
+              )
+            }
+            className="fixed top-0 right-0 z-50 mb-5  mt-5 mr-2 h-9 rounded-md border  border-transparent bg-indigo-500 px-3 py-1 text-sm font-medium  leading-5 text-white shadow-sm sm:fixed sm:top-auto sm:right-auto"
+          >
+            {formatMessage({
+              id: 'add_filter_option',
+              defaultMessage: 'Add option',
+            })}
+          </button>
+        )
       }
     >
       <FormWrapper>
@@ -108,6 +145,7 @@ const ProductTokenizationForm = ({ productId }) => {
             <TextField
               name="supply"
               id="supply"
+              type="number"
               label={formatMessage({
                 id: 'token-supply',
                 defaultMessage: 'Supply',
@@ -147,6 +185,10 @@ const ProductTokenizationForm = ({ productId }) => {
           </div>
         </Form>
       </FormWrapper>
+      <JSONView
+        value={JSON.stringify(product?.ercMetadata || {}, null, 2)}
+        className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
+      />
     </SelfDocumentingView>
   );
 };
