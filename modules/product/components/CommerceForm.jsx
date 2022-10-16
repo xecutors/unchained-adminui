@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';

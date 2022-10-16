@@ -35,7 +35,7 @@ const DeliveryProviders = () => {
         message={formatMessage({
           id: 'delete_delivery_provider_confirmation',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Delivery Providers? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this delivery provider?',
         })}
         onOkClick={async () => {
           setModal('');
@@ -49,7 +49,7 @@ const DeliveryProviders = () => {
         }}
         okText={formatMessage({
           id: 'delete_delivery_provider',
-          defaultMessage: 'Delete delivery providers',
+          defaultMessage: 'Delete delivery provider',
         })}
       />,
     );

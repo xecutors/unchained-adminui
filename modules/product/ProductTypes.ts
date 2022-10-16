@@ -1,9 +1,9 @@
 export const PRODUCT_TYPES = {
-  SIMPLE: 'SimpleProduct',
-  BUNDLE: 'BundleProduct',
-  PLAN: 'PlanProduct',
-  CONFIGURABLE: 'ConfigurableProduct',
-  TOKENIZED: 'TokenizedProduct',
+  SimpleProduct: 'SimpleProduct',
+  BundleProduct: 'BundleProduct',
+  PlanProduct: 'PlanProduct',
+  ConfigurableProduct: 'ConfigurableProduct',
+  TokenizedProduct: 'TokenizedProduct',
 };
 
 export default PRODUCT_TYPES;

@@ -50,7 +50,7 @@ const InternalError = () => {
             </h1>
             <p className="mt-2 text-base text-slate-500 dark:text-slate-200">
               {formatMessage({
-                id: 'not_found_message',
+                id: 'internal_server_error_message',
                 defaultMessage:
                   'Sorry, It is not you, it is us. We are working on to fix this.  .',
               })}
