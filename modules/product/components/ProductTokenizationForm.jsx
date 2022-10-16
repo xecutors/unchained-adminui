@@ -109,11 +109,11 @@ const ProductTokenizationForm = ({ productId }) => {
               name="contractAddress"
               id="contractAddress"
               label={formatMessage({
-                id: 'contract-address',
+                id: 'contract-address-label',
                 defaultMessage: 'Contract Address',
               })}
               placeholder={formatMessage({
-                id: 'contract-address',
+                id: 'contract-address-label',
                 defaultMessage: 'Contract Address',
               })}
               required
@@ -138,11 +138,11 @@ const ProductTokenizationForm = ({ productId }) => {
               name="tokenId"
               id="tokenId"
               label={formatMessage({
-                id: 'token-id',
+                id: 'token-id-label',
                 defaultMessage: 'Token ID',
               })}
               placeholder={formatMessage({
-                id: 'token-id',
+                id: 'token-id-label',
                 defaultMessage: 'Token ID',
               })}
               required

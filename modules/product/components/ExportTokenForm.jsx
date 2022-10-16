@@ -7,7 +7,7 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useExportToken from '../hooks/useExportToken';
 
-const ExportTokenForm = ({ tokenId }) => {
+const ExportTokenForm = ({ tokenId, max }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { exportToken } = useExportToken();
@@ -36,51 +36,57 @@ const ExportTokenForm = ({ tokenId }) => {
 
   return (
     <Form form={form}>
-      <div className="p-5 pb-7 max-w-full">
-        <div className="flex justify-between align-middle">
+      <div className="grid grid-cols-3 gap-y-6 gap-x-4 sm:grid-cols-4">
+        <div className="col-span-2 sm:col-span-3">
           <TextField
-            name="quantity"
-            id="quantity"
-            type="number"
-            label={formatMessage({
-              id: 'quantity',
-              defaultMessage: 'Quantity',
-            })}
-            placeholder={formatMessage({
-              id: 'quantity',
-              defaultMessage: 'Quantity',
-            })}
-            required
-            className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
-          />
-
-          <TextField
+            hideLabel
             name="recipientWalletAddress"
-            id="recipientWalletAddress"
+            labelClassName="block text-sm font-medium text-gray-700"
             label={formatMessage({
               id: 'recipient-wallet-address',
-              defaultMessage: 'Recipient wallet address',
+              defaultMessage: 'Wallet address',
             })}
             placeholder={formatMessage({
               id: 'recipient-wallet-address',
-              defaultMessage: 'Recipient wallet address',
+              defaultMessage: 'Wallet address',
             })}
             required
-            className=" w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+            containerClassName="mt-1"
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           />
+        </div>
 
+        <div>
+          <TextField
+            hideLabel
+            type="number"
+            max={max}
+            placeholder={formatMessage({
+              id: 'quantity',
+              defaultMessage: 'Quantity',
+            })}
+            label={formatMessage({
+              id: 'quantity',
+              defaultMessage: 'Quantity',
+            })}
+            name="quantity"
+            labelClassName="block text-sm font-medium text-gray-700"
+            containerClassName="mt-1"
+            required
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div className="col-span-4">
           <SubmitButton
             hidden={!hasRole(ACTION_ROLES.products.update)}
             label={formatMessage({
               id: 'export-token',
               defaultMessage: 'Export token',
             })}
-            className="self-end"
+            className=" w-full inline-flex rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           />
         </div>
       </div>
-
-      <div className="sm:px-15 space-y-6 border-t border-t-indigo-50 dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 p-5 text-right" />
     </Form>
   );
 };

@@ -265,6 +265,9 @@
   "categories": {
     "defaultMessage": "Categories"
   },
+  "chain-id": {
+    "defaultMessage": "Chain ID {chainId}"
+  },
   "change": {
     "defaultMessage": "Change"
   },
@@ -324,6 +327,15 @@
   },
   "continue": {
     "defaultMessage": "Continue"
+  },
+  "contract-address": {
+    "defaultMessage": "Contract {contractAddress}"
+  },
+  "contract-address-label": {
+    "defaultMessage": "Contract Address"
+  },
+  "contract-standard": {
+    "defaultMessage": "Contract standard"
   },
   "contract_address": {
     "defaultMessage": "Contract Address"
@@ -468,10 +480,10 @@
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this currency?"
   },
   "delete_delivery_provider": {
-    "defaultMessage": "Delete delivery providers"
+    "defaultMessage": "Delete delivery provider"
   },
   "delete_delivery_provider_confirmation": {
-    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this Delivery Providers?"
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this delivery provider?"
   },
   "delete_email": {
     "defaultMessage": "Delete email"
@@ -788,6 +800,9 @@
   "expires": {
     "defaultMessage": "Expires"
   },
+  "export-token": {
+    "defaultMessage": "Export token"
+  },
   "extensions": {
     "defaultMessage": "Extensions"
   },
@@ -957,6 +972,9 @@
   },
   "internal_server_error": {
     "defaultMessage": "500 Internal Server Error."
+  },
+  "internal_server_error_message": {
+    "defaultMessage": "Sorry, It is not you, it is us. We are working on to fix this. ."
   },
   "invalid_credential_error": {
     "defaultMessage": "Invalid credential, please try again"
@@ -1179,7 +1197,7 @@
     "defaultMessage": "Mark as Base"
   },
   "not_found_message": {
-    "defaultMessage": "Sorry, It is not you, it is us. We are working on to fix this. ."
+    "defaultMessage": "Sorry, we couldn’t find the page you’re looking for."
   },
   "not_published": {
     "defaultMessage": "Not published"
@@ -1438,6 +1456,9 @@
   },
   "recent_reviews": {
     "defaultMessage": "Recent reviews"
+  },
+  "recipient-wallet-address": {
+    "defaultMessage": "Wallet address"
   },
   "region": {
     "defaultMessage": "Region"
@@ -1764,6 +1785,27 @@
   "to": {
     "defaultMessage": "To"
   },
+  "token": {
+    "defaultMessage": "Token"
+  },
+  "token-id": {
+    "defaultMessage": "Token ID {chainTokenId}"
+  },
+  "token-id-label": {
+    "defaultMessage": "Token ID"
+  },
+  "token-supply": {
+    "defaultMessage": "Supply"
+  },
+  "token_quantity": {
+    "defaultMessage": "{quantity} tokens"
+  },
+  "token_updated": {
+    "defaultMessage": "Token update successfully!"
+  },
+  "tokens": {
+    "defaultMessage": "Tokens"
+  },
   "total": {
     "defaultMessage": "Total"
   },
@@ -1845,6 +1887,9 @@
   },
   "update_role": {
     "defaultMessage": "Update role"
+  },
+  "update_token": {
+    "defaultMessage": "Update token"
   },
   "update_warehousing_provider_header": {
     "defaultMessage": "Update warehousing provider"
@@ -1953,6 +1998,9 @@
   },
   "view_all": {
     "defaultMessage": "View all"
+  },
+  "wallet-address": {
+    "defaultMessage": "Wallet {walletAddress}"
   },
   "warehousing": {
     "defaultMessage": "Warehousing"
