@@ -326,7 +326,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: 'SIMPLE',
+              type: 'SimpleProduct',
               tags: ['test'],
             },
           });
@@ -361,7 +361,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: 'BUNDLE',
+              type: 'BundleProduct',
               tags: ['test'],
             },
           });
@@ -396,7 +396,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: 'CONFIGURABLE',
+              type: 'ConfigurableProduct',
               tags: ['test'],
             },
           });
@@ -431,7 +431,7 @@ describe('Product', () => {
           expect(request.body.variables).to.deep.eq({
             product: {
               title: 'test',
-              type: 'PLAN',
+              type: 'PlanProduct',
               tags: ['test'],
             },
           });

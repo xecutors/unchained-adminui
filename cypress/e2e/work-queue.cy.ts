@@ -57,7 +57,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -86,7 +86,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -107,7 +107,7 @@ describe('WorkQueue', () => {
           limit: 50,
           created: {},
           status: ['NEW', 'SUCCESS', 'FAILED'],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -129,7 +129,7 @@ describe('WorkQueue', () => {
           limit: 50,
           created: {},
           status: ['NEW', 'SUCCESS', 'FAILED', 'DELETED'],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -147,7 +147,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -164,7 +164,7 @@ describe('WorkQueue', () => {
           limit: 50,
           created: {},
           types: [activeWorkTypes[0]],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -187,7 +187,7 @@ describe('WorkQueue', () => {
           limit: 50,
           created: {},
           types: [activeWorkTypes[0], activeWorkTypes[1]],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -210,7 +210,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -228,7 +228,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -246,7 +246,7 @@ describe('WorkQueue', () => {
           limit: 50,
           created: {},
           types: [activeWorkTypes[0]],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },
@@ -271,7 +271,7 @@ describe('WorkQueue', () => {
           created: {},
           types: [activeWorkTypes[0]],
           status: ['NEW', 'SUCCESS', 'FAILED'],
-          sort: [],
+          sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
       },

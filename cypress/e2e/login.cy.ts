@@ -1,6 +1,7 @@
 import localizations from '../../i18n';
 import {
   AuthenticationOperations,
+  CreateWebAuthnCredentialRequestOptionsResponse,
   InvalidCredentialErrorResponse,
   LogInSuccessResponse,
 } from '../mock/authorization';
@@ -13,6 +14,19 @@ import replaceIntlPlaceholder from '../utils/replaceIntlPlaceholder';
 describe('Login', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
+      if (
+        hasOperationName(
+          req,
+          AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+        )
+      ) {
+        aliasMutation(
+          req,
+          AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+        );
+
+        req.reply(CreateWebAuthnCredentialRequestOptionsResponse);
+      }
       if (hasOperationName(req, AuthenticationOperations.LoginWithPassword)) {
         aliasMutation(req, AuthenticationOperations.LoginWithPassword);
         if (req.body.variables.plainPassword !== 'correct')
@@ -47,9 +61,25 @@ describe('Login', () => {
         expect(response.body).to.deep.eq({ data: { me: null } });
       },
     );
-    cy.get('input[name="email"]').type('admin@unchained.local');
+    cy.get('input[name="usernameOrEmail"]').type('admin@unchained.local');
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
+
+    cy.wait(
+      fullAliasMutationName(
+        AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+      ),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        username: 'admin@unchained.local',
+      });
+      expect(response.body).to.deep.eq(
+        CreateWebAuthnCredentialRequestOptionsResponse,
+      );
+    });
+
     cy.get('input[name="password"]').type('correct');
-    cy.get('button[type="submit"]').contains(localizations.en.log_in).click();
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
     cy.wait(
       fullAliasMutationName(AuthenticationOperations.LoginWithPassword),
     ).then((currentSubject) => {
@@ -58,7 +88,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         password: null,
         plainPassword: 'correct',
-        totpCode: null,
+        username: null,
       });
       expect(response.body).to.deep.eq(LogInSuccessResponse);
     });
@@ -75,9 +105,25 @@ describe('Login', () => {
 
   it('Should [FAIL LOGIN] when invalid credentials are passed', () => {
     cy.location('pathname').should('eq', '/log-in');
-    cy.get('input[name="email"]').type('admin@unchained.local');
+    cy.get('input[name="usernameOrEmail"]').type('admin@unchained.local');
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
+
+    cy.wait(
+      fullAliasMutationName(
+        AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+      ),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        username: 'admin@unchained.local',
+      });
+      expect(response.body).to.deep.eq(
+        CreateWebAuthnCredentialRequestOptionsResponse,
+      );
+    });
+
     cy.get('input[name="password"]').type('wrong-password');
-    cy.get('button[type="submit"]').contains(localizations.en.log_in).click();
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
 
     cy.wait(
       fullAliasMutationName(AuthenticationOperations.LoginWithPassword),
@@ -87,7 +133,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         password: null,
         plainPassword: 'wrong-password',
-        totpCode: null,
+        username: null,
       });
       expect(response.body).to.deep.eq(InvalidCredentialErrorResponse);
     });
@@ -99,21 +145,15 @@ describe('Login', () => {
   it('Should [ERROR] when [REQUIRED] fields are missing', () => {
     cy.location('pathname').should('eq', '/log-in');
 
-    cy.get('button[type="submit"]').contains(localizations.en.log_in).click();
-    cy.get('label[for="email"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_email,
-        localizations.en.email,
-      ),
-    );
-    cy.get('label[for="password"]').should(
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
+    cy.get('label[for="usernameOrEmail"]').should(
       'contain.text',
       replaceIntlPlaceholder(
         localizations.en.error_required,
-        localizations.en.password,
+        localizations.en.username_or_email,
       ),
     );
+
     cy.location('pathname').should('eq', '/log-in');
   });
 
@@ -125,6 +165,23 @@ describe('Login', () => {
   });
 
   it('Should  navigate to [FORGOT PASSWORD PAGE] successfully ', () => {
+    cy.get('input[name="usernameOrEmail"]').type('admin@unchained.local');
+    cy.get('button[type="submit"]').contains(localizations.en.continue).click();
+
+    cy.wait(
+      fullAliasMutationName(
+        AuthenticationOperations.CreateWebAuthnCredentialRequestOptions,
+      ),
+    ).then((currentSubject) => {
+      const { request, response } = currentSubject;
+      expect(request.body.variables).to.deep.eq({
+        username: 'admin@unchained.local',
+      });
+      expect(response.body).to.deep.eq(
+        CreateWebAuthnCredentialRequestOptionsResponse,
+      );
+    });
+
     cy.get('a[href="/account/forgot-password"]')
       .should('contain.text', localizations.en.forget_password)
       .click();

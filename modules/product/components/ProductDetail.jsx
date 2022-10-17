@@ -32,6 +32,7 @@ import ACTION_ROLES from '../../common/data/roles';
 import { PRODUCT_TYPES } from '../ProductTypes';
 import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
+import ProductTokenizationForm from './ProductTokenizationForm';
 
 const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'texts')
@@ -62,6 +63,10 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'reviews') return <ProductReviews productId={id} />;
   if (selectedView === 'assignments')
     return <ProductAssignmentForm proxyId={id} />;
+
+  if (selectedView === 'token') {
+    return <ProductTokenizationForm productId={id} />;
+  }
   return <ProductTextsForm productId={id} />;
 };
 const ProductDetail = ({ product }) => {
@@ -95,12 +100,12 @@ const ProductDetail = ({ product }) => {
       title: formatMessage({ id: 'media', defaultMessage: 'Media' }),
       Icon: <FilmIcon className="h-4 w-5" />,
     },
-    __typename !== PRODUCT_TYPES.CONFIGURABLE && {
+    __typename !== PRODUCT_TYPES.ConfigurableProduct && {
       id: 'commerce',
       title: formatMessage({ id: 'commerce', defaultMessage: 'Commerce' }),
       Icon: <ShoppingBagIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.SIMPLE && {
+    __typename === PRODUCT_TYPES.SimpleProduct && {
       id: 'supply',
       title: formatMessage({
         id: 'supply',
@@ -108,7 +113,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ChartPieIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.SIMPLE && {
+    __typename === PRODUCT_TYPES.SimpleProduct && {
       id: 'warehousing',
       title: formatMessage({
         id: 'warehousing',
@@ -116,7 +121,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ArchiveIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.CONFIGURABLE && {
+    __typename === PRODUCT_TYPES.ConfigurableProduct && {
       id: 'variations',
       title: formatMessage({
         id: 'variations',
@@ -124,7 +129,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <ColorSwatchIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.BUNDLE && {
+    __typename === PRODUCT_TYPES.BundleProduct && {
       id: 'bundled_products',
       title: formatMessage({
         id: 'bundles',
@@ -132,7 +137,7 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.PLAN && {
+    __typename === PRODUCT_TYPES.PlanProduct && {
       id: 'subscriptions',
       title: formatMessage({
         id: 'subscriptions',
@@ -140,11 +145,19 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <UsersIcon className="h-4 w-5" />,
     },
-    __typename === PRODUCT_TYPES.CONFIGURABLE && {
+    __typename === PRODUCT_TYPES.ConfigurableProduct && {
       id: 'assignments',
       title: formatMessage({
         id: 'assignments',
         defaultMessage: 'Assignments',
+      }),
+      Icon: <LinkIcon className="h-4 w-5" />,
+    },
+    __typename === PRODUCT_TYPES.TokenizedProduct && {
+      id: 'token',
+      title: formatMessage({
+        id: 'token',
+        defaultMessage: 'Token',
       }),
       Icon: <LinkIcon className="h-4 w-5" />,
     },

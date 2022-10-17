@@ -47,7 +47,7 @@ const Home = () => {
   }, [formatMessage]);
 
   return (
-    <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200">
+    <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200 sm:w-max xl:w-max">
       <div className="xl:col-span-2 overflow-x-auto">
         {hasRole(ACTION_ROLES.orders.viewList) && (
           <h2 className="ml-4 mb-3 text-xl">

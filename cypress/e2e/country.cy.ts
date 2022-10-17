@@ -128,6 +128,12 @@ describe('Countries', () => {
     });
 
     cy.get('input[type="search"]').type(' input');
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/country');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'search input',
+      });
+    });
     cy.wait(fullAliasName(CountryOperations.GetCountryList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -141,13 +147,6 @@ describe('Countries', () => {
         expect(response.body).to.deep.eq(CountryListResponse);
       },
     );
-
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/country');
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'search input',
-      });
-    });
   });
 
   it('Should [FILTER] by multiple fields [STATUS & QUERY STRING]', () => {
