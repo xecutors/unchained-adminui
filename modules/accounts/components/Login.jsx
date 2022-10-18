@@ -21,10 +21,6 @@ import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
 
-const isUserAdmin = ({ roles }) => {
-  return (roles || []).some((role) => role.toLowerCase() === 'admin');
-};
-
 const GetCurrentStep = ({ step }) => {
   const { formatMessage } = useIntl();
 
@@ -98,14 +94,10 @@ const GetCurrentStep = ({ step }) => {
 };
 
 const {
-  publicRuntimeConfig: { allowEndpointSwitch, restrictNonAdmin },
+  publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
 const LogInForm = ({ onEndpointChange }) => {
-  console.log(
-    'restrictNonAdminrestrictNonAdminrestrictNonAdmin',
-    restrictNonAdmin,
-  );
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
@@ -144,21 +136,8 @@ const LogInForm = ({ onEndpointChange }) => {
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
-        const { id, token, tokenExpires, user } = data.loginWithWebAuthn;
+        const { id, token, tokenExpires } = data.loginWithWebAuthn;
 
-        if (restrictNonAdmin && !isUserAdmin(user))
-          return {
-            success: false,
-            errors: [
-              {
-                message: formatMessage({
-                  id: 'restricted-for-non-admin',
-                  defaultMessage:
-                    'Your account is not granted access. Only Admin accounts are granted access ',
-                }),
-              },
-            ],
-          };
         await storeLoginToken(id, token, new Date(tokenExpires));
         return { success: true, errors };
       }
@@ -180,19 +159,6 @@ const LogInForm = ({ onEndpointChange }) => {
       });
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
-        if (restrictNonAdmin && !isUserAdmin(user))
-          return {
-            success: false,
-            errors: [
-              {
-                message: formatMessage({
-                  id: 'restricted-for-non-admin',
-                  defaultMessage:
-                    'Your account is not granted access. Only Admin accounts are granted access ',
-                }),
-              },
-            ],
-          };
         await storeLoginToken(id, token, new Date(tokenExpires));
         if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };

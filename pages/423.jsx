@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import logOut from '../modules/accounts/hooks/logOut';
 import { useApollo } from '../modules/apollo/apolloClient';
 
-const Offline = () => {
+const Locked = () => {
   const { formatMessage } = useIntl();
 
   const apollo = useApollo({});
@@ -59,6 +59,6 @@ const Offline = () => {
   );
 };
 
-export default Offline;
+export default Locked;
 
-Offline.getLayout = (page) => page;
+Locked.getLayout = (page) => page;
