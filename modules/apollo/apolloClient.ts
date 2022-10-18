@@ -4,6 +4,7 @@ import isEqual from 'lodash/isEqual';
 
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import createApolloClient from './utils/getApolloClient';
+import { getConnection } from '../common/utils/utils';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
@@ -52,13 +53,14 @@ export function addApolloState(client, pageProps) {
   return current;
 }
 
-export function useApollo(pageProps, { endpoint, ...rest }) {
-  const state = pageProps[APOLLO_STATE_PROP_NAME];
+export function useApollo(pageProps, { endpoint = null, ...rest } = {}) {
+  const state = pageProps?.[APOLLO_STATE_PROP_NAME];
+  const currentEndpoint = endpoint || getConnection()?.endpoint;
 
   const store = useMemo(() => {
     apolloClient = null;
 
-    return initializeApollo(state, { endpoint, ...rest });
+    return initializeApollo(state, { endpoint: currentEndpoint, ...rest });
   }, [state, endpoint]);
   return store;
 }

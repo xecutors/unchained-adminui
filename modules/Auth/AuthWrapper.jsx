@@ -61,6 +61,12 @@ const AuthWrapper = ({ children }) => {
       if (isAuthenticated()) {
         if (!hasAccess()) {
           router.replace('/403');
+        } else if (
+          isAdmin() &&
+          process.env.NEXT_PUBLIC_ONLY_ADMIN &&
+          router.pathname !== '/423'
+        ) {
+          router.replace('/423');
         }
       } else if (!hasAccess()) {
         router.replace('/log-in');

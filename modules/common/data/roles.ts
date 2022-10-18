@@ -222,6 +222,7 @@ export const ROUTE_ROLES = {
   '/404': UNRESTRICTED,
   '/_offline': UNRESTRICTED,
   '/403': UNRESTRICTED,
+  '/423': UNRESTRICTED,
   '/verify-email': UNRESTRICTED,
   '/orders/[orderId]': ACTION_ROLES.orders.manage,
   '/orders': ACTION_ROLES.orders.manage,
