@@ -6,6 +6,7 @@ const engineURL = new URL(process.env.GRAPHQL_ENDPOINT);
 
 export const config = {
   api: {
+    responseLimit: false,
     bodyParser: false,
     externalResolver: true,
   },
