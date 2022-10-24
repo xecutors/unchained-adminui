@@ -81,7 +81,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
         </h4>
         <p className="font-medium flex items-center justify-between">
           <span className="text-xl capitalize">
-            {data.status.toLowerCase()}
+            {data?.status?.toLowerCase()}
           </span>
           <span>
             &nbsp;on&nbsp;
