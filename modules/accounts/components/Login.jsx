@@ -267,7 +267,7 @@ const LogInForm = ({ onEndpointChange }) => {
               src={logo}
               loader={defaultNextImageLoader}
               placeholder="blur"
-              blurDataURL="/placeholder.png"
+              blurDataURL="/no-image.jpg"
               width={160}
               height={100}
               alt={formatMessage({

@@ -36,7 +36,7 @@ const OrderDetailItem = ({ item }) => {
                         width={80}
                         height={80}
                         placeholder="blur"
-                        blurDataURL="/placeholder.png"
+                        blurDataURL="/no-image.jpg"
                       />
                     ) : null}
                   </div>

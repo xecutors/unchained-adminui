@@ -6,6 +6,12 @@ export const UserTokensQuery = gql`
   query UserTokens($userId: ID!) {
     user(userId: $userId) {
       _id
+      web3Addresses {
+        address
+        nonce
+        verified
+      }
+
       tokens {
         ...TokenFragment
         product {
@@ -28,9 +34,11 @@ const useUserTokens = ({ userId = null } = {}) => {
     variables: { userId },
   });
   const tokens = data?.user?.tokens || [];
+  const web3Addresses = data?.user?.web3Addresses || [];
 
   return {
     tokens,
+    web3Addresses,
     loading,
     error,
   };

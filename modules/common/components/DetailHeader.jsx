@@ -31,7 +31,7 @@ const DetailHeader = ({ user, contact }) => {
             width={8}
             height={8}
             placeholder="blur"
-            blurDataURL="/placeholder.png"
+            blurDataURL="/no-image.jpg"
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -48,7 +48,7 @@ const DetailHeader = ({ user, contact }) => {
                 width={8}
                 height={8}
                 placeholder="blur"
-                blurDataURL="/placeholder.png"
+                blurDataURL="/no-image.jpg"
               />
             ) : (
               <FallbackAvatar username={user?.username} />

@@ -17,7 +17,7 @@ const FilteredListItem = ({ item, onSelected }) => {
                 src={item.image}
                 loader={defaultNextImageLoader}
                 placeholder="blur"
-                blurDataURL="/placeholder.png"
+                blurDataURL="/no-image.jpg"
                 width={160}
                 height={100}
                 alt={item?.title || item?.subtitle}

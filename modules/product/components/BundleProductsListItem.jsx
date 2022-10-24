@@ -22,7 +22,7 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
                 height={100}
                 alt={product?.texts?.title || product?.texts?.subtitle}
                 placeholder="blur"
-                blurDataURL="/placeholder.png"
+                blurDataURL="/no-image.jpg"
               />
             </div>
           </div>

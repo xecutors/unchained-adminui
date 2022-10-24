@@ -3,7 +3,7 @@ import TokenFragment from '../fragments/TokenFragment';
 
 const ExportTokenMutation = gql`
   mutation ExportToken(
-    $tokenId: String!
+    $tokenId: ID!
     $quantity: Int! = 1
     $recipientWalletAddress: String!
   ) {

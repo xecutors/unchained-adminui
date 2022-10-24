@@ -67,7 +67,7 @@ const MediaListItem = ({
             className="h-36 w-36 flex-none rounded-md bg-slate-10 object-cover object-center"
             placeholder="blur"
             loader={defaultNextImageLoader}
-            blurDataURL="/placeholder.png"
+            blurDataURL="/no-image.jpg"
             width={100}
             height={100}
           />

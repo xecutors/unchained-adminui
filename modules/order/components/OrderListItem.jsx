@@ -58,7 +58,7 @@ const OrderListItem = ({ order, showUser }) => {
                   width={20}
                   height={20}
                   placeholder="blur"
-                  blurDataURL="/placeholder.png"
+                  blurDataURL="/no-image.jpg"
                 />
               ) : (
                 <NoImage className="h-10 w-10" />

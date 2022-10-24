@@ -14,7 +14,7 @@ const useDisplayImageInModal = () => {
           loader={defaultNextImageLoader}
           placeholder="blur"
           layout="fill"
-          blurDataURL="/placeholder.png"
+          blurDataURL="/no-image.jpg"
         />
       </div>,
       { closeOnOutsideClick },

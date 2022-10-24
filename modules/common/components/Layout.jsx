@@ -278,7 +278,7 @@ const Layout = ({
                     width={125}
                     height={100}
                     placeholder="blur"
-                    blurDataURL="/placeholder.png"
+                    blurDataURL="/no-image.jpg"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',
@@ -310,7 +310,7 @@ const Layout = ({
                     width={175}
                     height={100}
                     placeholder="blur"
-                    blurDataURL="/placeholder.png"
+                    blurDataURL="/no-image.jpg"
                     alt={formatMessage({
                       id: 'unchained_logo',
                       defaultMessage: 'Unchained Logo',

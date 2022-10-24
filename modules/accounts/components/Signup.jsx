@@ -100,7 +100,7 @@ const SignUpForm = () => {
             width={160}
             height={100}
             placeholder="blur"
-            blurDataURL="/placeholder.png"
+            blurDataURL="/no-image.jpg"
             alt={formatMessage({
               id: 'unchained_logo',
               defaultMessage: 'Unchained Logo',

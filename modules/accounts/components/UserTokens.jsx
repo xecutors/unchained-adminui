@@ -8,11 +8,11 @@ import Loading from '../../common/components/Loading';
 import NoData from '../../common/components/NoData';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import shortenAddress from '../../common/utils/shortAddress';
 import { useFormatPrice } from '../../common/utils/utils';
 
-import ExportTokenForm from '../../product/components/ExportTokenForm';
-
 import useUserTokens from '../../product/hooks/useUserTokens';
+import ExportToken from './ExportToken';
 
 const TokenStatusColor = {
   CENTRALIZED: 'purple',
@@ -21,14 +21,14 @@ const TokenStatusColor = {
 };
 
 const UserTokens = ({ _id: userId }) => {
-  const { tokens, loading } = useUserTokens({ userId });
+  const { tokens, web3Addresses, loading } = useUserTokens({ userId });
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
 
   if (loading) return <Loading />;
   return tokens.length ? (
     <div className="bg-white">
-      <div className="-mx-px grid grid-cols-1 border-l border-gray-200 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3  ">
+      <div className="-mx-px grid grid-cols-1  border-l border-gray-200 sm:mx-0 sm:grid-cols-2 lg:grid-cols-3  ">
         {tokens?.map(
           ({
             _id,
@@ -38,13 +38,18 @@ const UserTokens = ({ _id: userId }) => {
             product,
             quantity,
             contractAddress,
+            status,
           }) => (
             <div className="group relative border-r border-b border-gray-200 p-4 sm:p-6">
               <Link href={`/products/${generateUniqueId(product)}`}>
                 <a>
                   <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
                     <Image
-                      src={product?.media?.length && product.media[0].file?.url}
+                      src={
+                        (product?.media?.length &&
+                          product.media[0].file?.url) ||
+                        '/no-image.jpg'
+                      }
                       loader={defaultNextImageLoader}
                       alt="TODO"
                       width="100%"
@@ -62,8 +67,8 @@ const UserTokens = ({ _id: userId }) => {
                       <div className="flex items-center absolute left-0 top-0">
                         <Badge
                           square
-                          text={tokens[0].status}
-                          color={TokenStatusColor[tokens[0].status]}
+                          text={status}
+                          color={TokenStatusColor[status]}
                         />
                       </div>
                       {walletAddress ? (
@@ -73,7 +78,7 @@ const UserTokens = ({ _id: userId }) => {
                               id: 'wallet-address',
                               defaultMessage: 'Wallet {walletAddress}',
                             },
-                            { walletAddress },
+                            { walletAddress: shortenAddress(walletAddress) },
                           )}
                         </div>
                       ) : null}
@@ -92,7 +97,7 @@ const UserTokens = ({ _id: userId }) => {
                             id: 'contract-address',
                             defaultMessage: 'Contract {contractAddress}',
                           },
-                          { contractAddress },
+                          { contractAddress: shortenAddress(contractAddress) },
                         )}
                       </p>
                       <p>
@@ -128,7 +133,13 @@ const UserTokens = ({ _id: userId }) => {
                   </div>
                 </a>
               </Link>
-              <ExportTokenForm tokenId={_id} />
+              <div className="mt-3 flex flex-col items-center">
+                <ExportToken
+                  tokenId={_id}
+                  addresses={web3Addresses}
+                  tokenStatus={status}
+                />
+              </div>
             </div>
           ),
         )}
