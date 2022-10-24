@@ -45,7 +45,7 @@ const ProductsAlphabeticalList = ({ workId, itemKey }) => {
                         </div>
                       )}
                       <div className="min-w-0 flex-1">
-                        <Link href={`/products/${item?.slug}`}>
+                        <Link href={`/products/${item?.slug}_id_${item._id}`}>
                           <a
                             className={classNames('focus:outline-none', {
                               'pointer-events-none': disable,
