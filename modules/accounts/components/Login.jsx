@@ -132,21 +132,23 @@ const LogInForm = ({ onEndpointChange }) => {
       username,
     });
     if (webAuthnPublicKeyCredentials) {
-      const { data } = await loginWithWebAuthn({
+      const { data, errors } = await loginWithWebAuthn({
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
         const { id, token, tokenExpires } = data.loginWithWebAuthn;
+
         await storeLoginToken(id, token, new Date(tokenExpires));
-        return true;
+        return { success: true, errors };
       }
     }
-    return false;
+    return { success: false, errors: [] };
   };
 
   const onSubmit = async ({ usernameOrEmail, password, totpCode }) => {
     if (router.query.step === '1') {
-      const success = await logInWithWebAuth(usernameOrEmail);
+      const { success, errors } = await logInWithWebAuth(usernameOrEmail);
+      if (errors.length) return errors;
       if (!success) nextStep();
     }
     if (router.query.step === '2') {
@@ -157,7 +159,6 @@ const LogInForm = ({ onEndpointChange }) => {
       });
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
-
         await storeLoginToken(id, token, new Date(tokenExpires));
         if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
@@ -173,7 +174,6 @@ const LogInForm = ({ onEndpointChange }) => {
       });
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
-
         await storeLoginToken(id, token, new Date(tokenExpires));
         if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
