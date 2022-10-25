@@ -18,8 +18,12 @@ import useForm from '../../forms/hooks/useForm';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import { storeLoginToken } from '../utils/store';
 
+const isUserAdmin = ({ roles }) => {
+  return (roles || []).some((role) => role.toLowerCase() === 'admin');
+};
+
 const {
-  publicRuntimeConfig: { allowEndpointSwitch },
+  publicRuntimeConfig: { allowEndpointSwitch, restrictNonAdmin },
 } = getConfig();
 
 const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
@@ -47,6 +51,19 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
 
   const onSubmitSuccess = async (_, { loginWithPassword }) => {
     const { id, token, tokenExpires, user } = loginWithPassword || {};
+    if (restrictNonAdmin && !isUserAdmin(user))
+      return {
+        success: false,
+        errors: [
+          {
+            message: formatMessage({
+              id: 'restricted-for-non-admin',
+              defaultMessage:
+                'Your account is not granted access. Only Admin accounts are granted access ',
+            }),
+          },
+        ],
+      };
     await storeLoginToken(id, token, new Date(tokenExpires));
 
     if (user?._id && !user?.roles?.includes('admin')) router.push('/account');

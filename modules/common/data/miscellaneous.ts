@@ -751,6 +751,7 @@ export const UnrestrictedPages = [
   '/reset-password',
   '/api/graphql',
   '/404',
+  '/423',
 ];
 
 export const PROVIDER_TYPE_CLASSES = {

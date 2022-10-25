@@ -121,3 +121,11 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.whistle{
+  width: 20%;
+  fill: #f95959;
+  margin: 100px 40%;
+}
+
+

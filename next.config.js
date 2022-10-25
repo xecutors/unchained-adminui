@@ -86,6 +86,7 @@ module.exports = withPWA({
     ),
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
+    restrictNonAdmin: !!process.env.NEXT_PUBLIC_ONLY_ADMIN,
     allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
     extendedLanguages: translatedLanguages?.reduce(
       (prev, next) => ({ ...prev, [next?.lang]: next.data }),
