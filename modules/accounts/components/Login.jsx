@@ -207,7 +207,7 @@ const LogInForm = ({ onEndpointChange }) => {
           }),
         );
       }
-      if (error?.message?.toLowerCase()?.includes('no password set')) {
+      if (error?.message?.toLowerCase().includes('no password set')) {
         return formatMessage({
           id: 'user_password_not_set',
           defaultMessage: 'User password not set',
@@ -222,7 +222,7 @@ const LogInForm = ({ onEndpointChange }) => {
           }),
         );
       }
-      if (error?.message?.toLowerCase()?.includes('is not valid json')) {
+      if (error?.message?.toLowerCase().includes('is not valid json')) {
         return formatMessage({
           id: 'connection_to_server_error',
           defaultMessage:

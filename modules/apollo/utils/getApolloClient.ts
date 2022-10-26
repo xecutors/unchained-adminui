@@ -35,7 +35,7 @@ const setLocale = (headers, locale) => {
   const newHeaders = {
     ...Object.fromEntries(
       Object.entries(headers).filter(([key]) => {
-        return allowedHeaders.includes(key.toLowerCase());
+        return allowedHeaders.includes(key?.toLowerCase());
       }),
     ),
     'accept-language': headers?.forceLocale || locale,

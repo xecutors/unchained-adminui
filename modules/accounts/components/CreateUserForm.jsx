@@ -22,7 +22,7 @@ const CreateUserForm = ({ onSubmit, onSubmitSuccess }) => {
     submit: onSubmit,
     onSubmitSuccess,
     getSubmitErrorMessage: (error) => {
-      if (error.message.toLowerCase().includes('email already exists'))
+      if (error?.message?.toLowerCase().includes('email already exists'))
         form.formik.setFieldError(
           'email',
           formatMessage({

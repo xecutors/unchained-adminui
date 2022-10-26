@@ -49,7 +49,7 @@ const useForm = ({
       if (
         error &&
         typeof error === 'string' &&
-        error?.toLowerCase()?.includes('email already exists')
+        error?.toLowerCase().includes('email already exists')
       )
         return intl.formatMessage({
           id: 'email_exists_error',
@@ -59,7 +59,7 @@ const useForm = ({
       if (
         error &&
         typeof error === 'string' &&
-        error?.toLowerCase()?.includes('permission')
+        error?.toLowerCase().includes('permission')
       ) {
         return intl.formatMessage({
           id: 'permission_missing',
@@ -69,7 +69,7 @@ const useForm = ({
 
       if (
         error?.message &&
-        error?.message?.toLowerCase()?.includes('email already exists')
+        error?.message?.toLowerCase().includes('email already exists')
       )
         return intl.formatMessage({
           id: 'email_exists_error',
@@ -78,7 +78,7 @@ const useForm = ({
 
       if (
         error?.message &&
-        error?.message?.toLowerCase()?.includes('permission')
+        error?.message?.toLowerCase().includes('permission')
       ) {
         return intl.formatMessage({
           id: 'permission_missing',
