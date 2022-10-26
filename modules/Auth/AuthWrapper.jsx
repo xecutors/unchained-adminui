@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
+import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import Loading from '../common/components/Loading';
 import { UnrestrictedPages } from '../common/data/miscellaneous';
 import { ROUTE_ROLES } from '../common/data/roles';
-
 import AuthContext from './AuthContext';
+
+const {
+  publicRuntimeConfig: { restrictNonAdmin },
+} = getConfig();
 
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
@@ -63,7 +67,7 @@ const AuthWrapper = ({ children }) => {
           router.replace('/403');
         } else if (
           !isAdmin() &&
-          process.env.NEXT_PUBLIC_ONLY_ADMIN &&
+          restrictNonAdmin &&
           router.pathname !== '/423'
         ) {
           router.replace('/423');
