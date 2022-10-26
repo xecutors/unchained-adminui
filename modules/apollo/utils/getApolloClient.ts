@@ -45,7 +45,8 @@ const setLocale = (headers, locale) => {
 
 const getLocalURI = () => {
   return process.browser
-    ? `${window.location.origin}/api/graphql`
+    ? process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
+        `${window.location.origin}/api/graphql`
     : process.env.GRAPHQL_ENDPOINT;
 };
 
