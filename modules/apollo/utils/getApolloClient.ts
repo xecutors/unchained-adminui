@@ -11,7 +11,7 @@ import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
 import apolloCache, { resetCache } from './apolloCache';
 
 const {
-  publicRuntimeConfig: { allowEndpointSwitch },
+  publicRuntimeConfig: { allowEndpointSwitch, publicGraphQLEndpoint },
 } = getConfig();
 
 const allowedHeaders = [
@@ -45,8 +45,7 @@ const setLocale = (headers, locale) => {
 
 const getLocalURI = () => {
   return process.browser
-    ? process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
-        `${window.location.origin}/api/graphql`
+    ? publicGraphQLEndpoint || `${window.location.origin}/api/graphql`
     : process.env.GRAPHQL_ENDPOINT;
 };
 
