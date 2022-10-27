@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import JSONView from '../../common/components/JSONView';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
@@ -161,10 +160,6 @@ const ProductTokenizationForm = ({ productId }) => {
           </div>
         </Form>
       </FormWrapper>
-      <JSONView
-        value={JSON.stringify(product?.ercMetadata || {}, null, 2)}
-        className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
-      />
     </SelfDocumentingView>
   );
 };
