@@ -69,7 +69,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       currentPage - 2,
       currentPage - 1,
       currentPage,
-      currentPage + 1,
+      currentPage + 2,
       currentPage + 2,
     ];
 

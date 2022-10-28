@@ -46,7 +46,7 @@ const ExportToken = ({ tokenId, tokenStatus, addresses }) => {
             ? formatMessage({ id: 'export', defaultMessage: `Export` })
             : formatMessage({
                 id: 'exporting',
-                defaultMessage: 'Exporting...',
+                defaultMessage: 'Exporting',
               })}
         </button>
       )}

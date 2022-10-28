@@ -6,7 +6,7 @@ const useFormatPrice = () => {
   const { locale } = useIntl();
 
   const formatPrice = (price: { currency: string; amount: number }) => {
-    if (!price?.currency || !price?.amount) return '0';
+    if (!price?.currency || !price?.amount) return '';
     const { amount, currency } = price || {};
     return new Intl.NumberFormat(locale, {
       style: 'currency',

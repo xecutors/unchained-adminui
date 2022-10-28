@@ -19,7 +19,7 @@ const ProductTokenizationForm = ({ productId }) => {
   const { hasRole } = useAuth();
   const { smartContractStandards } = useSmartContractStandards();
   const { updateProductTokenization } = useUpdateProductTokenization();
-  const { product } = useProductTokenization({ productId });
+  const { product, loading } = useProductTokenization({ productId });
 
   const onSubmit = async ({
     contractAddress,
@@ -53,14 +53,14 @@ const ProductTokenizationForm = ({ productId }) => {
   });
 
   useEffect(() => {
-    if (product)
+    if (!loading)
       form.formik.setValues({
         contractAddress: product?.contractAddress || '',
         contractStandard: product?.contractStandard || '',
         tokenId: product?.contractConfiguration?.tokenId || '',
         supply: product?.contractConfiguration?.supply || '',
       });
-  }, [product]);
+  }, [loading]);
 
   return (
     <SelfDocumentingView
