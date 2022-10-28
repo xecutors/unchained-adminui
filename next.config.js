@@ -65,7 +65,7 @@ if (
 
 const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
 
-module.exports = {
+module.exports = withPWA({
   swcMinify: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
@@ -91,4 +91,4 @@ module.exports = {
       {},
     ),
   },
-};
+});
