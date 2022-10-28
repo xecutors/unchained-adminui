@@ -4,7 +4,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 
-import RichTextEditorField from '../../forms/components/RichTextEditorField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
@@ -14,9 +13,12 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
+import TextAreaField from '../../forms/components/TextAreaField';
+
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+
   const { translatedTexts } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
     id: 'saved',
@@ -171,7 +173,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               </div>
             </div>
             <div className="col-span-6 mt-6 sm:col-span-3">
-              <RichTextEditorField
+              <TextAreaField
                 name="description"
                 id="description"
                 label={formatMessage({

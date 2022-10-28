@@ -6,7 +6,6 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import RichTextEditorField from '../../forms/components/RichTextEditorField';
 
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
@@ -14,6 +13,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import FormWrapper from '../../common/components/FormWrapper';
+import TextAreaField from '../../forms/components/TextAreaField';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -128,7 +128,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-12">
-                <RichTextEditorField
+                <TextAreaField
                   name="description"
                   id="description"
                   label={formatMessage({
