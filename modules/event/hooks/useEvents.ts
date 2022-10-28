@@ -27,12 +27,20 @@ const useEvents = ({
   types = null,
   limit = 20,
   offset = 0,
-  sort = [],
+  sort: sortOptions = [],
   queryString = null,
 } = {}) => {
   const { data, loading, error } = useQuery(EventQuery, {
     fetchPolicy: 'cache-first',
-    variables: { types, limit, offset, sort, queryString },
+    variables: {
+      types,
+      limit,
+      offset,
+      sort: sortOptions?.length
+        ? sortOptions
+        : [{ key: 'created', value: 'DESC' }],
+      queryString,
+    },
   });
   const events = data?.events || [];
   const eventsCount = data?.eventsCount;
