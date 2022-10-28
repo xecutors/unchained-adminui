@@ -98,13 +98,16 @@ export const validateRequired: Validator = {
   },
 };
 
-export const validateDate: Validator = {
-  isValid: isValidDate,
+export const validateDate = (isRequired = false): Validator => ({
+  isValid: (value) => {
+    if (!isRequired && !value) return true;
+    return isValidDate(value);
+  },
   intlMessageDescriptor: {
     id: 'error_invalid_date',
     defaultMessage: '{label} is not a valid date',
   },
-};
+});
 
 export const validateDateInput: Validator = {
   isValid: (value) => {
