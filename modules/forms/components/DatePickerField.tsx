@@ -20,7 +20,9 @@ const DatePickerField = ({
   ...props
 }: FieldHookProps) => {
   const field = useField({
-    validators: [...validators, validateDate],
+    validators: [...validators, props.required ? validateDate : null].filter(
+      Boolean,
+    ),
     ...props,
   });
 
