@@ -4,21 +4,27 @@ import React from 'react';
 
 import { useIntl } from 'react-intl';
 
-const TabComponent = ({ children, tabItems, defaultTab }) => {
+const TabComponent = ({
+  children,
+  tabItems,
+  defaultTab,
+  updateRoute = true,
+}) => {
   const router = useRouter();
 
   const { tab = defaultTab } = router?.query || {};
   const { formatMessage } = useIntl();
   const onTabSelected = (selectedTab) => {
-    router.push(
-      {
-        query: { ...router?.query, tab: selectedTab },
-      },
-      undefined,
-      {
-        shallow: true,
-      },
-    );
+    if (updateRoute)
+      router.push(
+        {
+          query: { ...router?.query, tab: selectedTab },
+        },
+        undefined,
+        {
+          shallow: true,
+        },
+      );
   };
 
   return (

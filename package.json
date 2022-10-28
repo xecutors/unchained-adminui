@@ -65,6 +65,7 @@
     "react-select": "^5.4.0",
     "react-toastify": "^9.0.8",
     "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "simpl-schema": "^1.12.3",
     "validator": "^13.7.0"

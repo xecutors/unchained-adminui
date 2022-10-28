@@ -85,7 +85,9 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
         <FormattedMessage
           id="product_text_form_description"
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-           <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+           <li> You can change the language of text by using the localization dropdown found at top right corner </li>
+           <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
+           </ul>"
           values={{
             ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,

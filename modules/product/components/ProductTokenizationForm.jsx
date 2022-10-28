@@ -71,12 +71,16 @@ const ProductTokenizationForm = ({ productId }) => {
       className="mt-2 sm:mt-0"
       documentation={
         <FormattedMessage
-          id="product_text_form_description"
-          defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-           <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+          id="tokenized_product_text_form_description"
+          defaultMessage="<b>Contract standards </b> <ol> 
+          <dt><b> ERC721 </b></dt> <dd> Buying multiple Products leads to multiple Tokens (make sure to set the tokenId to 0 to make it auto generate new id's)  </dd>
+            <dt> <b> ERC1155 </b></dt> <dd> Buying multiple Products leads to a new token with balance 3 of token with tokenId assigned </dd>
+            <dt> <b> Contract address </b></dt> <dd> Address of a token on a given network </dd> </ol>"
           values={{
-            ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
-            li: (chunk) => <li>{chunk} </li>,
+            ol: (chunk) => <ol>{chunk} </ol>,
+            dt: (chunk) => <dt className="bold">{chunk} </dt>,
+            dd: (chunk) => <dd>{chunk} </dd>,
+            b: (chunk) => <b>{chunk} </b>,
           }}
         />
       }

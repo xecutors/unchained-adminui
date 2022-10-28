@@ -5,6 +5,7 @@ import { EyeIcon, PencilIcon } from '@heroicons/react/solid';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
+import rehypeSanitize from 'rehype-sanitize';
 import { validateMaxLength } from '../lib/validators';
 import useField, { FieldHookProps } from '../hooks/useField';
 import FieldWrapper from './FieldWrapper';
@@ -17,7 +18,7 @@ const GetCurrentTab = ({ selectedView = 'edit', ...field }) => {
         className="text-black"
         // eslint-disable-next-line react/no-children-prop
         children={field.value}
-        rehypePlugins={[rehypeRaw, remarkGfm]}
+        rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize]}
       />
     );
   }
@@ -81,7 +82,7 @@ const TextAreaField = ({
 
   return (
     <FieldWrapper {...field}>
-      <Tab tabItems={TextAreaStates} defaultTab="edit">
+      <Tab tabItems={TextAreaStates} defaultTab="editor">
         <GetCurrentTab {...field} />
       </Tab>
     </FieldWrapper>
