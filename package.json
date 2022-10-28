@@ -61,9 +61,12 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
     "react-intl": "^6.0.5",
-    "react-quill": "^2.0.0",
+    "react-markdown": "^8.0.3",
     "react-select": "^5.4.0",
     "react-toastify": "^9.0.8",
+    "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
+    "remark-gfm": "^3.0.1",
     "simpl-schema": "^1.12.3",
     "validator": "^13.7.0"
   },

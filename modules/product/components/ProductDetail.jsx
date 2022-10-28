@@ -67,7 +67,11 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'token') {
     return <ProductTokenizationForm productId={id} />;
   }
-  return <ProductTextsForm productId={id} />;
+  return (
+    <LocaleWrapper>
+      <ProductTextsForm productId={id} />
+    </LocaleWrapper>
+  );
 };
 const ProductDetail = ({ product }) => {
   const { formatMessage } = useIntl();

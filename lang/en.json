@@ -196,7 +196,7 @@
     "defaultMessage": "Assortment product"
   },
   "assortment_text_form_description": {
-    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \\ </li></ul>"
   },
   "assortments": {
     "defaultMessage": "Assortments"
@@ -434,6 +434,9 @@
   "deactivated": {
     "defaultMessage": "Deactivated"
   },
+  "decimals": {
+    "defaultMessage": "decimals"
+  },
   "decreased": {
     "defaultMessage": "Decreased by"
   },
@@ -656,6 +659,9 @@
   "edit": {
     "defaultMessage": "Edit"
   },
+  "editor": {
+    "defaultMessage": "Editor"
+  },
   "email": {
     "defaultMessage": "Email"
   },
@@ -800,8 +806,11 @@
   "expires": {
     "defaultMessage": "Expires"
   },
-  "export-token": {
-    "defaultMessage": "Export token"
+  "export": {
+    "defaultMessage": "Export"
+  },
+  "exporting": {
+    "defaultMessage": "Exporting..."
   },
   "extensions": {
     "defaultMessage": "Extensions"
@@ -1214,6 +1223,9 @@
   "or_drag_and_drop": {
     "defaultMessage": "or drag and drop"
   },
+  "or_manually_enter_address": {
+    "defaultMessage": "Or enter address manually"
+  },
   "order": {
     "defaultMessage": "Order"
   },
@@ -1331,6 +1343,9 @@
   "preferred": {
     "defaultMessage": "Preferred"
   },
+  "preview": {
+    "defaultMessage": "preview"
+  },
   "previous": {
     "defaultMessage": "Previous"
   },
@@ -1383,7 +1398,7 @@
     "defaultMessage": "<ul><li> Information that will be used to identify dimensions of a product </li> </ul>"
   },
   "product_text_form_description": {
-    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+    "defaultMessage": "<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li> <li> You can change the language of text by using the localization dropdown found at top right corner </li> <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \\ </li> </ul>"
   },
   "product_title": {
     "defaultMessage": "Product"
@@ -1457,9 +1472,6 @@
   "recent_reviews": {
     "defaultMessage": "Recent reviews"
   },
-  "recipient-wallet-address": {
-    "defaultMessage": "Wallet address"
-  },
   "region": {
     "defaultMessage": "Region"
   },
@@ -1495,6 +1507,9 @@
   },
   "reports": {
     "defaultMessage": "Reports"
+  },
+  "required-role-not-satisfied": {
+    "defaultMessage": "Current account does not have access, please log in with an account that have the required role. Contact system administrator for further information"
   },
   "reset_link_sent": {
     "defaultMessage": "Password reset link sent to {email}"
@@ -1803,6 +1818,9 @@
   "token_updated": {
     "defaultMessage": "Token update successfully!"
   },
+  "tokenized_product_text_form_description": {
+    "defaultMessage": "<b>Contract standards </b> <ol> <dt><b> ERC721 </b></dt> <dd> Buying multiple Products leads to multiple Tokens (make sure to set the tokenId to 0 to make it auto generate new id's) </dd> <dt> <b> ERC1155 </b></dt> <dd> Buying multiple Products leads to a new token with balance 3 of token with tokenId assigned </dd> <dt> <b> Contract address </b></dt> <dd> Address of a token on a given network </dd> </ol>"
+  },
   "tokens": {
     "defaultMessage": "Tokens"
   },
@@ -1917,6 +1935,9 @@
   },
   "usage_calculation_type": {
     "defaultMessage": "Usage calculation type"
+  },
+  "use-another-account": {
+    "defaultMessage": "Use another account"
   },
   "use_another_verification_token": {
     "defaultMessage": "Please resend another verification email and try to verify again"

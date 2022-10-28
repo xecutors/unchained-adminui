@@ -6,7 +6,6 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
-import RichTextEditorField from '../../forms/components/RichTextEditorField';
 
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
@@ -14,6 +13,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import ACTION_ROLES from '../../common/data/roles';
 import FormWrapper from '../../common/components/FormWrapper';
+import TextAreaField from '../../forms/components/TextAreaField';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -77,7 +77,8 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
         <FormattedMessage
           id="assortment_text_form_description"
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-         <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+         <li> You can change the language of text by using the localization dropdown found at top right corner </li> 
+         <li> Description area accepts text that are compatible with markdown or HTML format. Tip: in order to add a line break use \ </li></ul>"
           values={{
             ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
@@ -128,7 +129,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-12">
-                <RichTextEditorField
+                <TextAreaField
                   name="description"
                   id="description"
                   label={formatMessage({

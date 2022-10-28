@@ -4,7 +4,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 
-import RichTextEditorField from '../../forms/components/RichTextEditorField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
@@ -14,9 +13,12 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
+import TextAreaField from '../../forms/components/TextAreaField';
+
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+
   const { translatedTexts } = useTranslatedProductTexts({ productId });
   const successMessage = formatMessage({
     id: 'saved',
@@ -83,7 +85,9 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
         <FormattedMessage
           id="product_text_form_description"
           defaultMessage="<ul> <li>A Slug is the unique identifying part of a web address, typically at the end of the URL. </li>
-           <li> You can change the language of text by using the localization dropdown found at top right corner </li> </ul>"
+           <li> You can change the language of text by using the localization dropdown found at top right corner </li>
+           <li> Description area accepts text that are compatible with markdown or HTML. Tip: in order to add a line break use \ </li>
+           </ul>"
           values={{
             ul: (chunk) => <ul className="list-disc list-inside">{chunk} </ul>,
             li: (chunk) => <li>{chunk} </li>,
@@ -171,7 +175,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               </div>
             </div>
             <div className="col-span-6 mt-6 sm:col-span-3">
-              <RichTextEditorField
+              <TextAreaField
                 name="description"
                 id="description"
                 label={formatMessage({
