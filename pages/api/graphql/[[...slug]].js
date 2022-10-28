@@ -1,8 +1,4 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
-import http from 'http';
-import https from 'https';
-
-const engineURL = new URL(process.env.GRAPHQL_ENDPOINT);
+import httpProxy from 'http-proxy';
 
 export const config = {
   api: {
@@ -12,29 +8,29 @@ export const config = {
   },
 };
 
-const agent =
-  engineURL.protocol === 'https:'
-    ? new https.Agent({ keepAlive: true })
-    : new http.Agent({ keepAlive: true });
-
-export default createProxyMiddleware({
-  agent,
-  cookieDomainRewrite: {
-    '*': '',
-  },
-  cookiePathRewrite: '/',
-  target: process.env.GRAPHQL_ENDPOINT,
-  changeOrigin: true,
-  proxyTimeout: 30000,
-  onProxyRes: (proxyRes) => {
-    const removeSecure = (str) => str.replace(/; Secure/i, '');
-    const set = proxyRes.headers['set-cookie'];
-    if (set) {
-      const result = Array.isArray(set)
-        ? set.map(removeSecure)
-        : removeSecure(set);
-      // eslint-disable-next-line
-      proxyRes.headers['set-cookie'] = result;
-    }
-  },
-});
+export default (req, res) =>
+  new Promise((resolve, reject) => {
+    const proxy = httpProxy.createProxy();
+    proxy
+      .once('proxyRes', resolve)
+      .once('error', reject)
+      .web(req, res, {
+        cookieDomainRewrite: {
+          '*': '',
+        },
+        cookiePathRewrite: '/',
+        target: process.env.GRAPHQL_ENDPOINT,
+        changeOrigin: true,
+        onProxyRes: (proxyRes) => {
+          const removeSecure = (str) => str.replace(/; Secure/i, '');
+          const set = proxyRes.headers['set-cookie'];
+          if (set) {
+            const result = Array.isArray(set)
+              ? set.map(removeSecure)
+              : removeSecure(set);
+            // eslint-disable-next-line
+          proxyRes.headers['set-cookie'] = result;
+          }
+        },
+      });
+  });

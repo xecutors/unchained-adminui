@@ -18,12 +18,14 @@ let tokenStore = {
       document.cookie = newCookie;
     } else if (!tokenExpires) {
       // Logout
-      document.cookie = cookie.serialize('token', '', {
+      document.cookie = cookie.serialize('token', null, {
         maxAge: -1, // Expire the cookie immediately
       });
-      document.cookie = cookie.serialize('token', '', {
+      document.cookie = cookie.serialize('token', null, {
         maxAge: -1, // Expire the cookie immediately
         path: '/',
+        secure: window.location.protocol === 'https',
+        sameSite: true,
       });
       console.debug('token removed from cookies'); // eslint-disable-line
     }
@@ -69,5 +71,5 @@ export const onTokenChange = function onTokenChange(callback) {
 };
 
 export const resetStore = async function resetStore() {
-  await storeLoginToken('', '', '');
+  await storeLoginToken();
 };
