@@ -15,7 +15,7 @@ const GetCurrentTab = ({ selectedView = 'edit', ...field }) => {
   if (selectedView === 'preview') {
     return (
       <ReactMarkdown
-        className="text-black"
+        className=" prose  dark:prose-invert"
         // eslint-disable-next-line react/no-children-prop
         children={field.value}
         rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize]}

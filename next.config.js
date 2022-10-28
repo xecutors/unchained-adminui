@@ -11,6 +11,13 @@
 require('./node_env');
 const fs = require('fs');
 const path = require('path');
+const runtimeCaching = require('next-pwa/cache');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  skipWaiting: false,
+  runtimeCaching,
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const normalizePaths = (paths) => {
   if (paths) {
