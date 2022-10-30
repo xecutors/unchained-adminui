@@ -15,6 +15,7 @@ import AddressFields from './AddressFields';
 
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
+import ACTION_ROLES from '../../common/data/roles';
 
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
@@ -23,7 +24,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
-  const { isAuthenticated } = useAuth();
+  const { hasRole } = useAuth();
 
   const [isEdit, setIsEdit] = useState(false);
   const onUpdateProfile = async (updatedProfile) => {
@@ -144,7 +145,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
-              {isAuthenticated(_id) && (
+              {hasRole(ACTION_ROLES.users.updateProfile) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}
@@ -207,18 +208,20 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         </span>
                       )}
                     </span>
-                    <span className="mt-1 ml-4 flex flex-shrink-0 items-start space-x-4">
-                      <button
-                        onClick={() => fileInputRef.current.click()}
-                        type="button"
-                        className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      >
-                        {formatMessage({
-                          id: 'change',
-                          defaultMessage: 'Change',
-                        })}
-                      </button>
-                    </span>
+                    {hasRole(ACTION_ROLES.users.updateAvatar) && (
+                      <span className="mt-1 ml-4 flex flex-shrink-0 items-start space-x-4">
+                        <button
+                          onClick={() => fileInputRef.current.click()}
+                          type="button"
+                          className="rounded-md border border-slate-300 dark:border-slate-700 bg-white py-2 px-3 text-sm font-medium leading-4 text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          {formatMessage({
+                            id: 'change',
+                            defaultMessage: 'Change',
+                          })}
+                        </button>
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -378,7 +381,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </p>
               </div>
 
-              {isAuthenticated(_id) && (
+              {hasRole(ACTION_ROLES.users.updateProfile) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}

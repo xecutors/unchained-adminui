@@ -1,7 +1,9 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import ACTION_ROLES from '../../common/data/roles';
 import useCurrentUser from '../hooks/useCurrentUser';
+import ChangePassword from './ChangePassword';
 import DisableTwoFactorAuthForm from './DisableTwoFactorAuthForm';
 import EmailAddresses from './EmailAddresses';
 import EnableTwoFactorAuthForm from './EnableTwoFactorAuthForm';
@@ -9,6 +11,7 @@ import SetPassword from './SetPassword';
 import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
 import UserTagsView from './UserTagsView';
+import UserWebAuthCredentials from './UserWebAuthCredentials';
 
 const AccountView = ({
   _id,
@@ -20,7 +23,7 @@ const AccountView = ({
 }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
-  const { isAdmin } = useAuth();
+  const { isAdmin, hasRole } = useAuth();
   return (
     <>
       <SelfDocumentingView
@@ -84,7 +87,7 @@ const AccountView = ({
           <UserRolesView roles={roles} userId={_id} />
         </div>
       </SelfDocumentingView>
-      {isAdmin() ? (
+      {isAdmin() || hasRole(ACTION_ROLES.users.updatePassword) ? (
         <>
           <div className="hidden sm:block" aria-hidden="true">
             <div className="py-5">
@@ -102,6 +105,8 @@ const AccountView = ({
       {currentUser?._id === _id && !isTwoFactorEnabled && (
         <EnableTwoFactorAuthForm />
       )}
+      <ChangePassword />
+      <UserWebAuthCredentials currentUser={currentUser} />
       {isTwoFactorEnabled && isAdmin() && (
         <DisableTwoFactorAuthForm userId={_id} />
       )}
