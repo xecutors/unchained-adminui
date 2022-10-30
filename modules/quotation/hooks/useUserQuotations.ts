@@ -3,9 +3,9 @@ import QuotationFragment from '../fragments/QuotationFragment';
 
 export const UserQuotationsQuery = gql`
   query UserQuotations($userId: ID!, $queryString: String) {
-    user(userId: $userId, queryString: $queryString) {
+    user(userId: $userId) {
       _id
-      quotations {
+      quotations(queryString: $queryString) {
         ...QuotationFragment
       }
     }

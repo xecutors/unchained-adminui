@@ -3,8 +3,8 @@ import OrderFragment from '../fragments/OrderFragment';
 
 export const UserOrdersQuery = gql`
   query UserOrder($userId: ID, $queryString: String) {
-    user(userId: $userId, queryString: $queryString) {
-      orders {
+    user(userId: $userId) {
+      orders(queryString: $queryString) {
         ...OrderFragment
       }
     }
