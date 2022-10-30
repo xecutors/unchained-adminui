@@ -11,12 +11,12 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import DeleteButton from '../../common/components/DeleteButton';
 import useRemoveWeb3Address from '../hooks/useRemoveWeb3Address';
-import useVerifyWeb3Address from '../hooks/useVerifyWeb3Address';
 import useAddWeb3Address from '../hooks/useAddWeb3Address';
+import SignWeb3AddressForm from './SignWeb3AddressForm';
 
 const Web3Addresses = ({ web3Addresses }) => {
   const { removeWeb3Address } = useRemoveWeb3Address();
-  const { verifyWeb3Address } = useVerifyWeb3Address();
+
   const { addWeb3Address } = useAddWeb3Address();
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
@@ -64,8 +64,8 @@ const Web3Addresses = ({ web3Addresses }) => {
     );
   };
 
-  const onVerifyAddress = async ({ address }) => {
-    await verifyWeb3Address({ address });
+  const onVerifyAddress = async ({ address, nonce }) => {
+    await setModal(<SignWeb3AddressForm address={address} nonce={nonce} />);
   };
 
   const successMessage = formatMessage({
@@ -84,7 +84,7 @@ const Web3Addresses = ({ web3Addresses }) => {
   return (
     <div className="rounded-md shadow px-4 py-5 sm:p-6 bg-white  dark:bg-slate-900">
       <ul className="-my-5 divide-y divide-slate-200 dark:divide-slate-700">
-        {(web3Addresses || []).map(({ address, verified }) => (
+        {(web3Addresses || []).map(({ address, verified, nonce }) => (
           <li className="py-4" key={address}>
             <div className="flex flex-wrap items-center justify-between">
               <div className="mr-2 flex max-w-md flex-wrap items-center space-x-2">
@@ -98,7 +98,7 @@ const Web3Addresses = ({ web3Addresses }) => {
                   <a
                     id="send_verification_mail"
                     onClick={async () => {
-                      await onVerifyAddress({ address });
+                      await onVerifyAddress({ address, nonce });
                     }}
                     className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                   >
