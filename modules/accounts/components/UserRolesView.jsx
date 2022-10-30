@@ -56,14 +56,15 @@ const UserRolesView = ({ roles, userId }) => {
         multiple
       />
       <FormErrors />
-
-      <SubmitButton
-        disabled={!hasRole(ACTION_ROLES.users.updateRoles)}
-        label={formatMessage({
-          id: 'update_role',
-          defaultMessage: 'Update role',
-        })}
-      />
+      {hasRole(ACTION_ROLES.users.updateRoles) && (
+        <SubmitButton
+          disabled={!hasRole(ACTION_ROLES.users.updateRoles)}
+          label={formatMessage({
+            id: 'update_role',
+            defaultMessage: 'Update role',
+          })}
+        />
+      )}
     </Form>
   );
 };

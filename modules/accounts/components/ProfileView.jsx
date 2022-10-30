@@ -16,11 +16,13 @@ import AddressFields from './AddressFields';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import ACTION_ROLES from '../../common/data/roles';
+import useCurrentUser from '../hooks/useCurrentUser';
 
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
   const fileInputRef = useRef();
   const { formatMessage } = useIntl();
+  const { currentUser } = useCurrentUser();
   const { formatDateTime } = useFormatDateTime();
   const { updateUserProfile } = useUpdateUserProfile();
   const { updateUserAvatar } = useUpdateUserAvatar();
@@ -145,7 +147,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
-              {hasRole(ACTION_ROLES.users.updateProfile) && (
+              {(hasRole(ACTION_ROLES.users.updateProfile) ||
+                currentUser?._id === _id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}
@@ -381,7 +384,8 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </p>
               </div>
 
-              {hasRole(ACTION_ROLES.users.updateProfile) && (
+              {(hasRole(ACTION_ROLES.users.updateProfile) ||
+                currentUser?._id === _id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}

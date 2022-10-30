@@ -6,12 +6,14 @@ import FormErrors from '../../forms/components/FormErrors';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useSetUserName from '../hooks/useSetUsername';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 
 const UserNameView = ({ _id: userId, username }) => {
   const { setUserName } = useSetUserName();
   const [isEdit, setIsEdit] = useState(false);
   const { formatMessage } = useIntl();
-
+  const { hasRole } = useAuth();
   const onUpdateUserName = async ({ username: newUsername }) => {
     const result = await setUserName({ username: newUsername, userId });
     setIsEdit(false);
@@ -65,38 +67,40 @@ const UserNameView = ({ _id: userId, username }) => {
               )}
             </span>
             <FormErrors />
-            <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
-              <button
-                id="cancel_update"
-                onClick={() => setIsEdit(!isEdit)}
-                type="button"
-                className={classNames(
-                  isEdit ? '' : 'focus:ring-indigo-400',
-                  'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
-                )}
-              >
-                {isEdit
-                  ? formatMessage({
-                      id: 'cancel',
-                      defaultMessage: 'Cancel',
-                    })
-                  : formatMessage({
-                      id: 'update',
-                      defaultMessage: 'Update',
-                    })}
-              </button>
-              {isEdit && (
+            {hasRole(ACTION_ROLES.users.updateUsername) && (
+              <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
                 <button
-                  type="submit"
-                  className="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  id="cancel_update"
+                  onClick={() => setIsEdit(!isEdit)}
+                  type="button"
+                  className={classNames(
+                    isEdit ? '' : 'focus:ring-indigo-400',
+                    'inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+                  )}
                 >
-                  {formatMessage({
-                    id: 'save',
-                    defaultMessage: 'Save',
-                  })}
+                  {isEdit
+                    ? formatMessage({
+                        id: 'cancel',
+                        defaultMessage: 'Cancel',
+                      })
+                    : formatMessage({
+                        id: 'update',
+                        defaultMessage: 'Update',
+                      })}
                 </button>
-              )}
-            </span>
+                {isEdit && (
+                  <button
+                    type="submit"
+                    className="inline-flex items-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    {formatMessage({
+                      id: 'save',
+                      defaultMessage: 'Save',
+                    })}
+                  </button>
+                )}
+              </span>
+            )}
           </div>
         </div>
       </dl>

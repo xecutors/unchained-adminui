@@ -56,68 +56,58 @@ const EnableTwoFactorAuthForm = () => {
   });
 
   return (
-    <div className="overflow-hidden lg:flex">
-      <div className="mb-7 border-slate-200 dark:border-slate-800 pb-2 sm:flex sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
-          {formatMessage({
-            id: 'enable_2fa_auth_header',
-            defaultMessage: 'Enable 2FA authentication',
+    <>
+      <div className="flex align-middle ">
+        <Toggle
+          id="totp-toggle"
+          onToggle={() => setEnableFormVisible(!showEnableForm)}
+          toggleText={formatMessage({
+            id: 'enable_totp',
+            defaultMessage: 'Enable TOTP',
           })}
-        </h3>
+          className="ml-2 my-3"
+          toggleKey="totp"
+          active={showEnableForm}
+        />
       </div>
-      <div className="w-full border-b  border-slate-200 dark:border-slate-800 bg-white  dark:bg-slate-900 rounded-md lg:ml-auto lg:w-4/6">
-        <div className="flex align-middle ">
-          <Toggle
-            id="totp-toggle"
-            onToggle={() => setEnableFormVisible(!showEnableForm)}
-            toggleText={formatMessage({
-              id: 'enable_totp',
-              defaultMessage: 'Enable TOTP',
-            })}
-            className="ml-2 my-3"
-            toggleKey="totp"
-            active={showEnableForm}
-          />
-        </div>
-        {showEnableForm && (
-          <Form form={form}>
-            <div className="relative max-w-full p-3 sm:flex justify-between space-y-6 sm:p-6">
-              <QRCode
-                style={{ width: 128, margin: 'auto' }}
-                value={secretBase32}
-                bgColor="#FFFFFF"
-                fgColor="#000000"
-                level="Q"
-              />
+      {showEnableForm && (
+        <Form form={form}>
+          <div className="relative max-w-full p-3 sm:flex justify-between space-y-6 sm:p-6">
+            <QRCode
+              style={{ width: 128, margin: 'auto' }}
+              value={secretBase32}
+              bgColor="#FFFFFF"
+              fgColor="#000000"
+              level="Q"
+            />
 
-              <TextField
-                label={formatMessage({
-                  id: 'totp_code',
-                  defaultMessage: 'TOTP code',
-                })}
-                placeholder={formatMessage({
-                  id: 'totp_code',
-                  defaultMessage: 'TOTP code',
-                })}
-                name="code"
-                id="code"
-                required
-                className="mb-4 text-sm sm:w-1/2"
-              />
-            </div>
-            <FormErrors />
-            <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
-              <SubmitButton
-                label={formatMessage({
-                  id: 'enable',
-                  defaultMessage: 'Enable',
-                })}
-              />
-            </div>
-          </Form>
-        )}
-      </div>
-    </div>
+            <TextField
+              label={formatMessage({
+                id: 'totp_code',
+                defaultMessage: 'TOTP code',
+              })}
+              placeholder={formatMessage({
+                id: 'totp_code',
+                defaultMessage: 'TOTP code',
+              })}
+              name="code"
+              id="code"
+              required
+              className="mb-4 text-sm sm:w-1/2"
+            />
+          </div>
+          <FormErrors />
+          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+            <SubmitButton
+              label={formatMessage({
+                id: 'enable',
+                defaultMessage: 'Enable',
+              })}
+            />
+          </div>
+        </Form>
+      )}
+    </>
   );
 };
 

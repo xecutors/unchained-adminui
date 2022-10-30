@@ -57,45 +57,33 @@ const SetPassword = ({ userId }) => {
   });
 
   return (
-    <div className="overflow-hidden lg:flex">
-      <div className="mb-7 border-slate-200 dark:border-slate-800 pb-2 sm:flex sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-200">
-          {formatMessage({
+    <Form form={form}>
+      <div className="relative max-w-full mb-4 p-3 space-y-6 sm:p-6">
+        <PasswordField
+          label={formatMessage({
+            id: 'new_password',
+            defaultMessage: 'New password',
+          })}
+          placeholder={formatMessage({
+            id: 'new_password',
+            defaultMessage: 'New password',
+          })}
+          name="newPassword"
+          id="newPassword"
+          required
+          className="text-sm"
+        />
+      </div>
+      <FormErrors />
+      <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
+        <SubmitButton
+          label={formatMessage({
             id: 'change_password',
             defaultMessage: 'Change password',
           })}
-        </h3>
+        />
       </div>
-      <div className="w-full border-b border-slate-200 dark:border-slate-800 bg-white  dark:bg-slate-900 rounded-md lg:ml-auto lg:w-4/6">
-        <Form form={form}>
-          <div className="relative max-w-full mb-4 p-3 space-y-6 sm:p-6">
-            <PasswordField
-              label={formatMessage({
-                id: 'new_password',
-                defaultMessage: 'New password',
-              })}
-              placeholder={formatMessage({
-                id: 'new_password',
-                defaultMessage: 'New password',
-              })}
-              name="newPassword"
-              id="newPassword"
-              required
-              className="text-sm"
-            />
-          </div>
-          <FormErrors />
-          <div className="border-t-indigo-50 border-t dark:border-t-slate-700 space-y-6 bg-slate-50 dark:bg-slate-800 text-right sm:p-6">
-            <SubmitButton
-              label={formatMessage({
-                id: 'change_password',
-                defaultMessage: 'Change password',
-              })}
-            />
-          </div>
-        </Form>
-      </div>
-    </div>
+    </Form>
   );
 };
 

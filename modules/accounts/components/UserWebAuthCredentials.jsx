@@ -1,20 +1,26 @@
+import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import useAuth from '../../Auth/useAuth';
+import ACTION_ROLES from '../../common/data/roles';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAddWebAuthnCredentials from '../hooks/useAddWebAuthnCredentials';
+import useCurrentUser from '../hooks/useCurrentUser';
 import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
 import useRemoveWebAuthnCredentials from '../hooks/useRemoveWebAuthCredentials';
 import useUserWebAuthnCredentials from '../hooks/useUserWebAuthnCredentials';
 import RegisteredWebAuthItem from './RegisteredWebAuthItem';
 
-const UserWebAuthCredentials = ({ currentUser }) => {
+const UserWebAuthCredentials = ({ userId }) => {
   const { formatMessage } = useIntl();
+  const { currentUser } = useCurrentUser();
   const { addWebAuthnCredentials } = useAddWebAuthnCredentials();
   const { webAuthnCredentials } = useUserWebAuthnCredentials({
-    userId: currentUser?._id,
+    userId,
   });
   const { setModal } = useModal();
+  const { hasRole } = useAuth();
 
   const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
   const { removeWebAuthnCredentials } = useRemoveWebAuthnCredentials();
@@ -61,39 +67,39 @@ const UserWebAuthCredentials = ({ currentUser }) => {
   };
 
   return (
-    <div className="overflow-hidden lg:flex">
-      <div className="mb-7 border-slate-200 pb-2 sm:flex sm:justify-between">
-        <h3 className="text-lg font-medium leading-6 text-slate-900 dark:text-white">
-          {formatMessage({
-            id: 'web_authentication',
-            defaultMessage: 'Web Authentication',
-          })}
-        </h3>
+    <>
+      <div>
+        <ul className="border-slate-200  divide-slate-200">
+          {webAuthnCredentials?.map((credential) => (
+            <RegisteredWebAuthItem
+              {...credential}
+              onRemoveCredential={handleRemoveWebAuthCredential}
+              removeDisabled={
+                userId !== currentUser?._id &&
+                !hasRole(ACTION_ROLES.users.updateUser)
+              }
+            />
+          ))}
+        </ul>
       </div>
-
-      <div className="w-full border-b border-slate-200 bg-white dark:border-2 dark:bg-slate-600 rounded-md lg:ml-auto lg:w-4/6">
-        <div>
-          <ul className="border-t border-b border-slate-200 divide-y divide-slate-200">
-            {webAuthnCredentials?.map((credential) => (
-              <RegisteredWebAuthItem
-                {...credential}
-                onRemoveCredential={handleRemoveWebAuthCredential}
-              />
-            ))}
-          </ul>
-        </div>
-        <button
-          type="button"
-          className="inline-flex cursor-pointer my-4 ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-400 bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
-          onClick={handleAddWebAuthCredential}
-        >
-          {formatMessage({
-            id: 'add_web_auth',
-            defaultMessage: 'Add WebAuth',
-          })}
-        </button>
-      </div>
-    </div>
+      <button
+        type="button"
+        disabled={userId !== currentUser?._id}
+        className={classNames(
+          'inline-flex cursor-pointer my-4 ml-4 justify-center rounded-md border border-transparent px-4 py-2 text-center text-sm font-medium leading-5 text-white shadow-sm focus:ring-indigo-400 bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2',
+          {
+            'focus:ring-indigo-200 bg-indigo-300 hover:bg-indigo-200':
+              userId !== currentUser?._id,
+          },
+        )}
+        onClick={handleAddWebAuthCredential}
+      >
+        {formatMessage({
+          id: 'add_web_auth',
+          defaultMessage: 'Add WebAuth',
+        })}
+      </button>
+    </>
   );
 };
 
