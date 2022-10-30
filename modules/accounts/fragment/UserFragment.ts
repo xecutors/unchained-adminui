@@ -35,6 +35,11 @@ const UserFragment = gql`
       verified
       address
     }
+    web3Addresses {
+      address
+      nonce
+      verified
+    }
     profile {
       displayName
       phoneMobile
