@@ -4,12 +4,7 @@ import React from 'react';
 
 import { useIntl } from 'react-intl';
 
-const TabComponent = ({
-  children,
-  tabItems,
-  defaultTab,
-  updateRoute = true,
-}) => {
+const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
   const router = useRouter();
 
   const { tab = defaultTab } = router?.query || {};
@@ -90,4 +85,4 @@ const TabComponent = ({
   );
 };
 
-export default TabComponent;
+export default Tab;
