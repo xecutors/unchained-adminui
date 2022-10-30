@@ -72,6 +72,9 @@
   "add_tag": {
     "defaultMessage": "Add tag"
   },
+  "add_web3_address": {
+    "defaultMessage": "Add address"
+  },
   "add_web_auth": {
     "defaultMessage": "Add WebAuth"
   },
@@ -328,9 +331,6 @@
   "continue": {
     "defaultMessage": "Continue"
   },
-  "contract-address": {
-    "defaultMessage": "Contract {contractAddress}"
-  },
   "contract-address-label": {
     "defaultMessage": "Contract Address"
   },
@@ -339,6 +339,12 @@
   },
   "contract_address": {
     "defaultMessage": "Contract Address"
+  },
+  "copied": {
+    "defaultMessage": "Copied"
+  },
+  "copy_to_clipboard": {
+    "defaultMessage": "Copy to clipboard"
   },
   "countries": {
     "defaultMessage": "Countries"
@@ -571,6 +577,12 @@
   },
   "delete_warehousing_provider_confirmation": {
     "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this warehousing provider?"
+  },
+  "delete_web3_address": {
+    "defaultMessage": "Delete address?"
+  },
+  "delete_web3_address_confirmation": {
+    "defaultMessage": "This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this address?"
   },
   "delete_web_auth_credential": {
     "defaultMessage": "Are you sure you want to unlink this device from your account?"
@@ -810,7 +822,7 @@
     "defaultMessage": "Export"
   },
   "exporting": {
-    "defaultMessage": "Exporting..."
+    "defaultMessage": "Exporting"
   },
   "extensions": {
     "defaultMessage": "Extensions"
@@ -1634,6 +1646,9 @@
   "sequence": {
     "defaultMessage": "Sequence"
   },
+  "set_password": {
+    "defaultMessage": "Set password"
+  },
   "shipping": {
     "defaultMessage": "Shipping"
   },
@@ -1649,11 +1664,17 @@
   "show_inactive": {
     "defaultMessage": "Show Inactive"
   },
+  "sign_address_header": {
+    "defaultMessage": "Sign address"
+  },
   "sign_up": {
     "defaultMessage": "Sign up"
   },
   "sign_up_header": {
     "defaultMessage": "Create new account"
+  },
+  "signature_hash": {
+    "defaultMessage": "Signature hash"
   },
   "simple_product_definition": {
     "defaultMessage": "<h3>Simple</h3> <p>Simple product is the most commonly used type of product type. It accepts configuration values for price, dimension and warehousing. Most e-commerce product needs are satisfied by this type </p>"
@@ -1811,9 +1832,6 @@
   },
   "token-supply": {
     "defaultMessage": "Supply"
-  },
-  "token_quantity": {
-    "defaultMessage": "{quantity} tokens"
   },
   "token_updated": {
     "defaultMessage": "Token update successfully!"
@@ -2011,6 +2029,9 @@
   "verification_token_expired": {
     "defaultMessage": "Verification token expired"
   },
+  "verification_web3_address": {
+    "defaultMessage": "Verify"
+  },
   "verify_alert_button": {
     "defaultMessage": "Verify"
   },
@@ -2037,6 +2058,24 @@
   },
   "warning": {
     "defaultMessage": "Warning!"
+  },
+  "web3_address": {
+    "defaultMessage": "Web3 Address"
+  },
+  "web3_address_added": {
+    "defaultMessage": "Address added successfully!"
+  },
+  "web3_address_deleted": {
+    "defaultMessage": "Address {address} deleted successfully"
+  },
+  "web3_address_signature_instruction": {
+    "defaultMessage": "Copy the following nonce ({nonce}) and past the signature on the space provided below"
+  },
+  "web3_addresses": {
+    "defaultMessage": "Web3 addresses"
+  },
+  "web3_verified_success": {
+    "defaultMessage": "Address verified successfully!"
   },
   "web_auth_credential_removed": {
     "defaultMessage": "Credential removed successfully"
