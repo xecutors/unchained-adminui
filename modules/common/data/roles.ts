@@ -150,6 +150,7 @@ const ACTION_ROLES = {
     updateProfile: 'updateUser',
     updatePassword: 'manageUsers',
     updateUsername: 'manageUsers',
+    updateUser: 'manageUsers',
     manage: 'manageUsers',
     updateRoles: 'manageUsers',
     enrollUser: 'manageUsers',

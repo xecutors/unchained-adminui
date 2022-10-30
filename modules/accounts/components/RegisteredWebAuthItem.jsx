@@ -12,6 +12,7 @@ const RegisteredWebAuthItem = ({
   created,
   md5Metadata,
   onRemoveCredential,
+  removeDisabled,
 }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
@@ -44,9 +45,11 @@ const RegisteredWebAuthItem = ({
         </div>
         <div className="flex-shrink-0 pr-2 justify-between h-100  text-right">
           <div>{formatDateTime(created)}</div>
-          <div className="align-bottom">
-            <DeleteButton onClick={() => onRemoveCredential(_id)} />
-          </div>
+          {!removeDisabled && (
+            <div className="align-bottom">
+              <DeleteButton onClick={() => onRemoveCredential(_id)} />
+            </div>
+          )}
         </div>
       </div>
     </li>

@@ -1,19 +1,17 @@
 import { useIntl } from 'react-intl';
-import UserWebAuthCredentials from '../../modules/accounts/components/UserWebAuthCredentials';
-import ChangePassword from '../../modules/accounts/components/ChangePassword';
-import DisableTwoFactorAuthForm from '../../modules/accounts/components/DisableTwoFactorAuthForm';
-import EmailAddresses from '../../modules/accounts/components/EmailAddresses';
-import EnableTwoFactorAuthForm from '../../modules/accounts/components/EnableTwoFactorAuthForm';
-import ProfileView from '../../modules/accounts/components/ProfileView';
+
 import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
+import UserSettings from '../../modules/accounts/components/UserSerttings';
+
 const Profile = () => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
+
   return (
-    <>
+    <div className=" max-w-6xl">
       <BreadCrumbs />
       <PageHeader
         headerText={formatMessage({
@@ -21,19 +19,8 @@ const Profile = () => {
           defaultMessage: 'Account',
         })}
       />
-      <div className="max-w-7xl">
-        <ProfileView {...currentUser} />
-        <div className="space-y-6 overflow-hidden rounded-md border-b dark:border-none sm:p-6">
-          <ChangePassword />
-          <EmailAddresses emails={currentUser?.emails} enableVerification />
-          <UserWebAuthCredentials currentUser={currentUser} />
-          {!currentUser?.isTwoFactorEnabled && <EnableTwoFactorAuthForm />}
-          {currentUser?.isTwoFactorEnabled && (
-            <DisableTwoFactorAuthForm userId={currentUser?._id} />
-          )}
-        </div>
-      </div>
-    </>
+      <UserSettings user={currentUser} />
+    </div>
   );
 };
 
