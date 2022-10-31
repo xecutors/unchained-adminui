@@ -1,5 +1,4 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 import CopyableText from '../../common/components/CopyableText';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -10,21 +9,20 @@ import useVerifyWeb3Address from '../hooks/useVerifyWeb3Address';
 const SignWeb3AddressForm = ({ nonce, address, close }) => {
   const { formatMessage } = useIntl();
   const { verifyWeb3Address } = useVerifyWeb3Address();
+  const successMessage = formatMessage({
+    id: 'web3_verified_success',
+    defaultMessage: 'Address verified successfully!',
+  });
 
   const onVerifyAddress = async ({ hash }) => {
     await verifyWeb3Address({ hash, address });
+    close();
   };
   const form = useForm({
     submit: onVerifyAddress,
+    successMessage,
     enableReinitialize: true,
-    onSubmitSuccess: () => {
-      toast.success(
-        formatMessage({
-          id: 'web3_verified_success',
-          defaultMessage: 'Address verified successfully!',
-        }),
-      );
-    },
+
     getSubmitErrorMessage: (error) => {
       if (
         error?.message
@@ -98,7 +96,7 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
             defaultMessage: 'Signature hash',
           })}
         />
-        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse justify-between">
           <SubmitButton />
           <button
             id="danger_cancel"

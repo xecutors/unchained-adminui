@@ -26,7 +26,7 @@ const Web3Addresses = ({ web3Addresses }) => {
   };
 
   const validateWeb3Address = {
-    isValid: (value) => value.match(/^0x/),
+    isValid: (value) => value.match(/^0x/) && value.length === 42,
     intlMessageDescriptor: {
       id: 'invalid-web3-address',
       defaultMessage: 'Invalid {label} ',
