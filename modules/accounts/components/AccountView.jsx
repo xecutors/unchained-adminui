@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import ACTION_ROLES from '../../common/data/roles';
@@ -12,10 +12,12 @@ import UserNameView from './UserNameView';
 import UserRolesView from './UserRolesView';
 import UserTagsView from './UserTagsView';
 import UserWebAuthCredentials from './UserWebAuthCredentials';
+import Web3Addresses from './Web3Addresses';
 
 const AccountView = ({
   _id,
   emails,
+  web3Addresses,
   username,
   roles,
   tags,
@@ -41,9 +43,13 @@ const AccountView = ({
           <UserNameView username={username} _id={_id} />
         </div>
       </SelfDocumentingView>
-
-      <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
-        <div className="mt-6">
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'email_addresses',
+          defaultMessage: 'Email addresses',
+        })}
+      >
+        <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
           <EmailAddresses
             emails={emails}
             enableVerification
@@ -51,7 +57,37 @@ const AccountView = ({
             emailBodyContainer="rounded-md shadow"
           />
         </div>
-      </div>
+      </SelfDocumentingView>
+      {currentUser?._id === _id && (
+        <SelfDocumentingView
+          documentationLabel={formatMessage({
+            id: 'web3_addresses',
+            defaultMessage: 'Web3 addresses',
+          })}
+          documentation={
+            <FormattedMessage
+              id="web3_address_verify_link"
+              defaultMessage="<p> Go to <a> etherscan </a> to verify address  </p>"
+              values={{
+                p: (chunk) => <p className="text-lg">{chunk} </p>,
+                a: (chunk) => (
+                  <a
+                    href="https://etherscan.io/verifiedSignatures"
+                    target="__blank"
+                    className="text-lg text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                  >
+                    {chunk}{' '}
+                  </a>
+                ),
+              }}
+            />
+          }
+        >
+          <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
+            <Web3Addresses web3Addresses={web3Addresses} />
+          </div>
+        </SelfDocumentingView>
+      )}
 
       <SelfDocumentingView
         documentationLabel={formatMessage({

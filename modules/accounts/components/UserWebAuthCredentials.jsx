@@ -73,6 +73,7 @@ const UserWebAuthCredentials = ({ userId }) => {
           {webAuthnCredentials?.map((credential) => (
             <RegisteredWebAuthItem
               {...credential}
+              key={credential?._id}
               onRemoveCredential={handleRemoveWebAuthCredential}
               removeDisabled={
                 userId !== currentUser?._id &&
