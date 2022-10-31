@@ -1,4 +1,5 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { toast } from 'react-toastify';
 import CopyableText from '../../common/components/CopyableText';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -6,21 +7,51 @@ import TextAreaField from '../../forms/components/TextAreaField';
 import useForm from '../../forms/hooks/useForm';
 import useVerifyWeb3Address from '../hooks/useVerifyWeb3Address';
 
-const SignWeb3AddressForm = ({ nonce, address }) => {
+const SignWeb3AddressForm = ({ nonce, address, close }) => {
   const { formatMessage } = useIntl();
   const { verifyWeb3Address } = useVerifyWeb3Address();
-  const successMessage = formatMessage({
-    id: 'web3_verified_success',
-    defaultMessage: 'Address verified successfully!',
-  });
 
   const onVerifyAddress = async ({ hash }) => {
     await verifyWeb3Address({ hash, address });
   };
   const form = useForm({
     submit: onVerifyAddress,
-    successMessage,
     enableReinitialize: true,
+    onSubmitSuccess: () => {
+      toast.success(
+        formatMessage({
+          id: 'web3_verified_success',
+          defaultMessage: 'Address verified successfully!',
+        }),
+      );
+    },
+    getSubmitErrorMessage: (error) => {
+      if (
+        error?.message
+          ?.toLowerCase()
+          .includes('signature does not match web3 account')
+      )
+        form.formik.setFieldError(
+          'hash',
+          formatMessage({
+            id: 'signature_not_match_error',
+            defaultMessage: 'Signature does not match',
+          }),
+        );
+      if (error?.message?.toLowerCase().includes('invalid signature length'))
+        form.formik.setFieldError(
+          'hash',
+          formatMessage({
+            id: 'invalid_signature_length',
+            defaultMessage: 'Invalid signature',
+          }),
+        );
+
+      return formatMessage({
+        id: 'invalid_signature_length',
+        defaultMessage: 'Invalid signature',
+      });
+    },
     initialValues: {
       hash: '',
     },
@@ -37,17 +68,16 @@ const SignWeb3AddressForm = ({ nonce, address }) => {
                 defaultMessage: 'Sign address',
               })}
             </h3>
-            <p className="mt-1 text-sm text-gray-500">
-              <p>
-                {formatMessage(
-                  {
-                    id: 'web3_address_signature_instruction',
-                    defaultMessage:
-                      'Copy the following nonce ({nonce}) and past the signature on the space        provided below',
-                  },
-                  { nonce },
-                )}
-              </p>
+            <p className="mt-1 text-sm text-gray-500 mb-4">
+              <FormattedMessage
+                id="web3_address_signature_instruction"
+                defaultMessage="<p>Copy the following nonce <b> ({nonce})</b> and past the signature on the space        provided below </p>"
+                values={{
+                  p: (chunk) => <p>{chunk} </p>,
+                  b: (chunk) => <b className="border-l text-2xl">{chunk} </b>,
+                  nonce,
+                }}
+              />
             </p>
           </div>
           <div className="ml-4 mt-4 flex-shrink-0">
@@ -68,7 +98,17 @@ const SignWeb3AddressForm = ({ nonce, address }) => {
             defaultMessage: 'Signature hash',
           })}
         />
-        <SubmitButton />
+        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+          <SubmitButton />
+          <button
+            id="danger_cancel"
+            onClick={close}
+            type="button"
+            className="mt-3 inline-flex w-full justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          >
+            {formatMessage({ id: 'cancel', defaultMessage: 'Cancel' })}
+          </button>
+        </div>
       </Form>
     </div>
   );

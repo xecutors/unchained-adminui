@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import ACTION_ROLES from '../../common/data/roles';
@@ -64,6 +64,24 @@ const AccountView = ({
             id: 'web3_addresses',
             defaultMessage: 'Web3 addresses',
           })}
+          documentation={
+            <FormattedMessage
+              id="web3_address_verify_link"
+              defaultMessage="<p> Go to <a> etherscan </a> to verify address  </p>"
+              values={{
+                p: (chunk) => <p className="text-lg">{chunk} </p>,
+                a: (chunk) => (
+                  <a
+                    href="https://etherscan.io/verifiedSignatures"
+                    target="__blank"
+                    className="text-lg text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                  >
+                    {chunk}{' '}
+                  </a>
+                ),
+              }}
+            />
+          }
         >
           <div className="space-y-6 overflow-hidden rounded-md border-slate-200 dark:border-slate-800 py-5">
             <Web3Addresses web3Addresses={web3Addresses} />
