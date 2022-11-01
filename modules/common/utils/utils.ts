@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 
 const allowEndpointSwitch = !!process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
+const defaultGraphqlEndpoint = 'http://localhost:4010/graphql';
 
 const useFormatPrice = () => {
   const { locale } = useIntl();
@@ -101,7 +102,10 @@ const getConnection = (): {
   error?: string;
 } => {
   if (typeof window !== 'undefined') {
-    return JSON.parse(sessionStorage.getItem('connection') || '{}');
+    return JSON.parse(
+      sessionStorage.getItem('connection') ||
+        JSON.stringify({ endpoint: defaultGraphqlEndpoint }),
+    );
   }
   return null;
 };
@@ -152,7 +156,7 @@ export const setEndpoint = async (
   } else {
     const sessionStore = getConnection();
     currentEndpoint =
-      endpoint || sessionStore?.endpoint || 'http://localhost:4010/graphql';
+      endpoint || sessionStore?.endpoint || defaultGraphqlEndpoint;
   }
 
   const result = await testConnection(currentEndpoint);
