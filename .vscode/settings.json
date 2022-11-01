@@ -4,6 +4,7 @@
     "DOWNVOTE",
     "formatjs",
     "heroicons",
+    "otpauth",
     "semibold",
     "tailwindcss",
     "TOTP",
