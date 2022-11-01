@@ -13,7 +13,17 @@ const EnableTOTPMutation = gql`
 const useEnableTOTP = () => {
   const [enableTOTPMutation] = useMutation(EnableTOTPMutation);
 
-  const enableTOTP = async ({ secretBase32, code }) => {
+  const enableTOTP = async ({ otpauthUrl, code }) => {
+    let secretBase32;
+    try {
+      secretBase32 = Object.fromEntries(
+        new URLSearchParams(new URL(otpauthUrl).search),
+      ).secret;
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+    }
+
     return enableTOTPMutation({
       variables: {
         code,

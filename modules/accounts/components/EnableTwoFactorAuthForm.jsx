@@ -13,14 +13,14 @@ import useEnableTOTP from '../hooks/useEnableTOTP';
 const EnableTwoFactorAuthForm = () => {
   const { enableTOTP } = useEnableTOTP();
   const { formatMessage } = useIntl();
-  const [secretBase32, setBase32Secret] = useState();
+  const [otpauthUrl, setOtpauthUrl] = useState();
   const [showEnableForm, setEnableFormVisible] = useState(false);
   const { buildTOTPAuthURL } = useBuildTOTPAuthURL();
 
   useEffect(() => {
     const setTotp = async () => {
       const totpUrl = await buildTOTPAuthURL();
-      setBase32Secret(totpUrl);
+      setOtpauthUrl(totpUrl);
     };
 
     if (showEnableForm) {
@@ -29,7 +29,7 @@ const EnableTwoFactorAuthForm = () => {
   }, [showEnableForm]);
 
   const onSubmit = async ({ code }) => {
-    await enableTOTP({ secretBase32, code });
+    await enableTOTP({ otpauthUrl, code });
   };
   const form = useForm({
     submit: onSubmit,
@@ -75,7 +75,7 @@ const EnableTwoFactorAuthForm = () => {
           <div className="relative max-w-full p-3 sm:flex justify-between space-y-6 sm:p-6">
             <QRCode
               style={{ width: 128, margin: 'auto' }}
-              value={secretBase32}
+              value={otpauthUrl}
               bgColor="#FFFFFF"
               fgColor="#000000"
               level="Q"
