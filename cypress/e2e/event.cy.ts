@@ -43,7 +43,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: null,
           types: null,
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -65,7 +70,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: null,
           types: [eventTypes[0].value],
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -86,7 +96,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: null,
           types: [eventTypes[0].value, eventTypes[1].value],
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -110,7 +125,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: 'search',
           types: null,
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -132,7 +152,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: 'search input',
           types: null,
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -158,7 +183,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: null,
           types: [eventTypes[0].value],
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },
@@ -180,7 +210,12 @@ describe('Events ', () => {
           offset: 0,
           queryString: 'search',
           types: [eventTypes[0].value],
-          sort: [],
+          sort: [
+            {
+              key: 'created',
+              value: 'DESC',
+            },
+          ],
         });
         expect(response.body).to.deep.eq(EventsListResponse);
       },

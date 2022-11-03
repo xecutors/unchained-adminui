@@ -114,6 +114,7 @@ describe('WorkQueue', () => {
     );
 
     cy.get(`input[type="checkbox"][value="DELETED"]`).click();
+    cy.wait(100);
     cy.location().then((current) => {
       expect(current.pathname).eq('/works');
       expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
@@ -431,13 +432,6 @@ describe('WorkQueue', () => {
       replaceIntlPlaceholder(
         localizations.en.error_required,
         localizations.en.retries,
-      ),
-    );
-    cy.get('label[for="scheduled"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_invalid_date,
-        localizations.en.scheduled,
       ),
     );
     cy.get(
