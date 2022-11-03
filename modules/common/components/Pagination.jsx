@@ -69,7 +69,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       currentPage - 2,
       currentPage - 1,
       currentPage,
-      currentPage + 2,
+      currentPage + 1,
       currentPage + 2,
     ];
 
@@ -110,9 +110,10 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
         />,
       );
     steps.push(addStep(1));
+
     steps.push(...filteredCenter);
 
-    if (pages > 0) {
+    if (pages > 1) {
       steps.push(addStep(pages));
     }
     return steps;
