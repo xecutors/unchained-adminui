@@ -64,7 +64,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
 
   const Steps = () => {
     const steps = [];
-    const pages = total ? Math.floor(total / limit) : 0;
+    const pages = total ? Math.ceil(total / limit) : 0;
     const center = [
       currentPage - 2,
       currentPage - 1,
