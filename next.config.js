@@ -61,7 +61,7 @@ if (
 const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
 
 module.exports = {
-  swcMinify: true,
+  swcMinify: false,
   // pwa: {
   //   dest: 'public',
   //   skipWaiting: false,
