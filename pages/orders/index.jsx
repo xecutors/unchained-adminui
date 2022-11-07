@@ -11,7 +11,10 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import OrderList from '../../modules/order/components/OrderList';
 import useOrders from '../../modules/order/hooks/useOrders';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -37,7 +40,7 @@ const Orders = () => {
     }
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
   const { orders, ordersCount, loading } = useOrders({
     limit,
     includeCarts,
@@ -45,41 +48,6 @@ const Orders = () => {
     offset,
     sort: sortKeys,
   });
-
-  const sortFields = {
-    orderNumber: formatMessage({
-      id: 'order_number',
-      defaultMessage: 'Order #',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    ordered: formatMessage({
-      id: 'ordered',
-      defaultMessage: 'ordered',
-    }),
-    confirmed: formatMessage({
-      id: 'confirmed',
-      defaultMessage: 'confirmed',
-    }),
-    fullfilled: formatMessage({
-      id: 'fullfilled',
-      defaultMessage: 'fullfilled',
-    }),
-    rejected: formatMessage({
-      id: 'rejected',
-      defaultMessage: 'Rejected',
-    }),
-    status: formatMessage({
-      id: 'status',
-      defaultMessage: 'Status',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
 
   return (
     <>
@@ -97,7 +65,7 @@ const Orders = () => {
         />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader sortFields={sortFields} className="mr-36">
+        <ListHeader className="mr-36">
           <Toggle
             toggleText={formatMessage({
               id: 'show_carts',

@@ -16,6 +16,7 @@ const ProductList = ({
   includeDrafts,
 }) => {
   const { formatMessage } = useIntl();
+  console.log(sortKeys);
   const { products, productsCount, loading } = useProducts({
     queryString,
     includeDrafts,
@@ -40,7 +41,7 @@ const ProductList = ({
                   defaultMessage: 'Name',
                 })}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell name="status">
                 {formatMessage({
                   id: 'active',
                   defaultMessage: 'Active',
@@ -53,7 +54,7 @@ const ProductList = ({
                   defaultMessage: 'Tags',
                 })}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell name="sequence">
                 {formatMessage({
                   id: 'sequence',
                   defaultMessage: 'Sequence',

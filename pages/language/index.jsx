@@ -16,7 +16,10 @@ import Loading from '../../modules/common/components/Loading';
 import ACTIONROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -42,7 +45,7 @@ const Languages = () => {
     }
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { languages, languagesCount, loading } = useLanguages({
     queryString,
@@ -81,15 +84,6 @@ const Languages = () => {
     );
   };
 
-  const sortFields = {
-    isoCode: formatMessage({
-      id: 'iso_code',
-      defaultMessage: 'ISO code',
-    }),
-    isActive: formatMessage({ id: 'active', defaultMessage: 'Active' }),
-    isBase: formatMessage({ id: 'base', defaultMessage: 'Base' }),
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -109,7 +103,6 @@ const Languages = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTIONROLES.languages.create) && '/language/new'}
-          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

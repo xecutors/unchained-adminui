@@ -4,25 +4,26 @@ import QuotationListItem from './QuotationListItem';
 
 const QuotationList = ({ quotations }) => {
   const { formatMessage } = useIntl();
+
   return (
     <Table className="min-w-full ">
       {quotations?.map((quotation) => (
         <Table.Row key={quotation._id} header>
-          <Table.Cell>
+          <Table.Cell name="quotationNumber">
             {formatMessage({
               id: 'quotation_number',
               defaultMessage: 'Quotation number',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="expires">
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
@@ -43,7 +44,7 @@ const QuotationList = ({ quotations }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',

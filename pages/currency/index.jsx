@@ -17,7 +17,10 @@ import Loading from '../../modules/common/components/Loading';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -43,7 +46,7 @@ const Currencies = () => {
       });
     }
   };
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { currencies, currenciesCount, loading } = useCurrencies({
     queryString,
@@ -82,14 +85,6 @@ const Currencies = () => {
     );
   };
 
-  const sortFields = {
-    isoCode: formatMessage({
-      id: 'iso_code',
-      defaultMessage: 'ISO code',
-    }),
-    isActive: formatMessage({ id: 'active', defaultMessage: 'Active' }),
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -108,7 +103,6 @@ const Currencies = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.currencies.create) && '/currency/new'}
-          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

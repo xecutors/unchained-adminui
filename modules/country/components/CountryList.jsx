@@ -7,18 +7,19 @@ import CountryListItem from './CountryListItem';
 const CountryList = ({ countries, onRemoveCountry }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
+
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (
         <Table.Row key={country._id} header>
-          <Table.Cell>
+          <Table.Cell name="isoCode">
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="name">
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
@@ -29,7 +30,7 @@ const CountryList = ({ countries, onRemoveCountry }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="isActive">
             <span className="sr-only">
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>

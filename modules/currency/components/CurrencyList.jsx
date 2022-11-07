@@ -12,18 +12,18 @@ const CurrencyList = ({ currencies, onRemoveCurrency }) => {
     <Table className="min-w-full ">
       {currencies?.map((currency) => (
         <Table.Row key={currency._id} header>
-          <Table.Cell>
+          <Table.Cell name="isoCode">
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="name">
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="isActive">
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
           {(hasRole(ACTION_ROLES.currencies.view) ||

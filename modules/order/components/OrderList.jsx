@@ -9,14 +9,14 @@ const OrderList = ({ orders, showUser }) => {
     <Table className="min-w-full">
       {(orders || [])?.map((order) => (
         <Table.Row key={order._id} header>
-          <Table.Cell>
+          <Table.Cell name="orderNumber">
             {formatMessage({
               id: 'order_number',
               defaultMessage: 'Order #',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="ordered">
             {formatMessage({
               id: 'order_date',
               defaultMessage: 'Order date',
@@ -39,7 +39,7 @@ const OrderList = ({ orders, showUser }) => {
             </Table.Cell>
           )}
 
-          <Table.Cell>
+          <Table.Cell name="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',

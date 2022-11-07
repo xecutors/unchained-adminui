@@ -43,14 +43,14 @@ const FilterList = ({
                 })}
               </Table.Cell>
 
-              <Table.Cell>
+              <Table.Cell name="type">
                 {formatMessage({
                   id: 'type',
                   defaultMessage: 'Type',
                 })}
               </Table.Cell>
 
-              <Table.Cell>
+              <Table.Cell name="isActive">
                 {formatMessage({
                   id: 'active',
                   defaultMessage: 'Active',

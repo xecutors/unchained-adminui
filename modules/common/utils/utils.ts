@@ -69,6 +69,12 @@ const getSortKeys = (sort) => {
     {}
   );
 };
+export const convertSortFieldsToQueryFormat = (sort) => {
+  return Object.entries(getSortKeys(sort)).map(([key, value]) => ({
+    key,
+    value,
+  }));
+};
 
 const reducerToObject = (array) => {
   return array.reduce(

@@ -4,6 +4,7 @@ import WorkListItem from './WorkListItem';
 
 const WorkList = ({ workQueue }) => {
   const { formatMessage } = useIntl();
+
   return (
     <Table className="min-w-full ">
       {workQueue?.map((work) => (
@@ -19,28 +20,28 @@ const WorkList = ({ workQueue }) => {
             {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="scheduled">
             {formatMessage({
               id: 'scheduled',
               defaultMessage: 'Scheduled',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="started">
             {formatMessage({
               id: 'started',
               defaultMessage: 'Started',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="finished">
             {formatMessage({
               id: 'finished',
               defaultMessage: 'Finished',

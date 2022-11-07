@@ -4,25 +4,26 @@ import EnrollmentListItem from './EnrollmentListItem';
 
 const EnrollmentList = ({ enrollments, showUser }) => {
   const { formatMessage } = useIntl();
+
   return (
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
         <Table.Row key={enrollment._id} header>
-          <Table.Cell>
+          <Table.Cell name="enrollmentNumber">
             {formatMessage({
               id: 'enrollment_number',
               defaultMessage: 'Enrollment number',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="expires">
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
@@ -44,7 +45,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',
