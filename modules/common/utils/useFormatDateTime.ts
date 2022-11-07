@@ -1,8 +1,4 @@
-import { useIntl } from 'react-intl';
-
 const useFormatDateTime = () => {
-  const { locale } = useIntl();
-
   const formatDateTime = (
     date,
     options: Intl.DateTimeFormatOptions = {
@@ -12,9 +8,10 @@ const useFormatDateTime = () => {
   ) => {
     if (!date) return 'N/A';
     try {
-      return Intl.DateTimeFormat(locale || 'default', options).format(
-        new Date(date).getTime(),
-      );
+      return Intl.DateTimeFormat(
+        navigator.language || 'default',
+        options,
+      ).format(new Date(date).getTime());
     } catch {
       return Intl.DateTimeFormat('default', {
         year: 'numeric',

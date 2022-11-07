@@ -1,15 +1,11 @@
-import { useIntl } from 'react-intl';
-
 const allowEndpointSwitch = !!process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
 const defaultGraphqlEndpoint = 'http://localhost:4010/graphql';
 
 const useFormatPrice = () => {
-  const { locale } = useIntl();
-
   const formatPrice = (price: { currency: string; amount: number }) => {
     if (!price?.currency || !price?.amount) return '';
     const { amount, currency } = price || {};
-    return new Intl.NumberFormat(locale, {
+    return new Intl.NumberFormat(navigator.language, {
       style: 'currency',
       currency,
     }).format(amount / 100);
