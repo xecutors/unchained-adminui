@@ -15,27 +15,27 @@ const AssortmentList = ({ assortments, showAvatar = true }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="isActive">
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="isRoot">
             {formatMessage({
               id: 'root',
               defaultMessage: 'Root',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell name="isBase">
             {formatMessage({
               id: 'base',
               defaultMessage: 'Base',
             })}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell name="sequence">
             {formatMessage({
               id: 'sequence',
               defaultMessage: 'Sequence',
