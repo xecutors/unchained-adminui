@@ -4,11 +4,39 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { getSortKeys, normalizeQuery } from '../utils/utils';
 
+const getNextSortDirection = (direction) => {
+  if (!direction) return 'ASC';
+  if (direction === 'ASC') return 'DESC';
+  return null;
+};
+
 const SortButton = ({ onSort, sortDirection }) => {
+  if (!sortDirection)
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="mr-2 w-6 h-6"
+        onClick={onSort}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+        />
+      </svg>
+    );
+
   return sortDirection === 'ASC' ? (
-    <ChevronUpIcon className="mr-2 w-6 h-6" onClick={onSort} />
+    <ChevronUpIcon className="mr-2 w-6 h-6 text-indigo-500" onClick={onSort} />
   ) : (
-    <ChevronDownIcon className="mr-2 w-6 h-6" onClick={onSort} />
+    <ChevronDownIcon
+      className="mr-2 w-6 h-6 text-indigo-500"
+      onClick={onSort}
+    />
   );
 };
 
@@ -25,10 +53,20 @@ const TableCell = ({
 
   const onSort = (event) => {
     event.preventDefault();
-    const sort = Object.entries({
-      ...sortKeys,
-      [name]: sortKeys[name] === 'ASC' ? 'DESC' : 'ASC',
-    })
+    const next = getNextSortDirection(sortKeys[name]);
+
+    let newSortKeys;
+    if (!next && sortKeys[name]) {
+      delete sortKeys[name];
+      newSortKeys = sortKeys;
+    } else {
+      newSortKeys = {
+        ...sortKeys,
+        [name]: sortKeys[name] === 'ASC' ? 'DESC' : 'ASC',
+      };
+    }
+
+    const sort = Object.entries(newSortKeys)
       .map(([key, value]) => [key, value].join('_'))
       .join(',');
 
@@ -63,7 +101,7 @@ const TableCell = ({
     >
       <div className="flex">
         {Td === 'th' && name && (
-          <SortButton onSort={onSort} sortDirection={sortKeys[name] || 'ASC'} />
+          <SortButton onSort={onSort} sortDirection={sortKeys[name]} />
         )}
 
         <div className="sm:inline">{children}</div>
