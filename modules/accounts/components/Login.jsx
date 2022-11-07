@@ -163,7 +163,12 @@ const LogInForm = ({ onEndpointChange }) => {
         if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
-      return { success: false, errors };
+      const [error] = errors;
+      if (error?.message?.includes('2FA code required')) {
+        nextStep();
+      } else {
+        return { success: false, errors };
+      }
     }
     if (router.query.step === '3') {
       const { data, errors } = await logInWithPassword({
@@ -178,7 +183,7 @@ const LogInForm = ({ onEndpointChange }) => {
         if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
-      return { success: false };
+      return { success: false, errors };
     }
     return false;
   };
@@ -197,16 +202,6 @@ const LogInForm = ({ onEndpointChange }) => {
           id: 'invalid_credential_error',
           defaultMessage: 'Invalid credential, please try again',
         });
-
-      if (error?.message?.includes('2FA code required')) {
-        form.formik.setFieldError(
-          'totpCode',
-          formatMessage({
-            id: 'totp_code_required',
-            defaultMessage: 'TOTP code is required',
-          }),
-        );
-      }
       if (error?.message?.toLowerCase().includes('no password set')) {
         return formatMessage({
           id: 'user_password_not_set',
