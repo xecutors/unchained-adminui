@@ -2,21 +2,21 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import OrderListItem from './OrderListItem';
 
-const OrderList = ({ orders, showUser }) => {
+const OrderList = ({ orders, showUser, sortable }) => {
   const { formatMessage } = useIntl();
 
   return (
     <Table className="min-w-full">
       {(orders || [])?.map((order) => (
-        <Table.Row key={order._id} header>
-          <Table.Cell name="orderNumber">
+        <Table.Row key={order._id} header enableSort={sortable}>
+          <Table.Cell sortKey="orderNumber">
             {formatMessage({
               id: 'order_number',
               defaultMessage: 'Order #',
             })}
           </Table.Cell>
 
-          <Table.Cell name="ordered">
+          <Table.Cell sortKey="ordered">
             {formatMessage({
               id: 'order_date',
               defaultMessage: 'Order date',
@@ -39,7 +39,7 @@ const OrderList = ({ orders, showUser }) => {
             </Table.Cell>
           )}
 
-          <Table.Cell name="status">
+          <Table.Cell sortKey="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',

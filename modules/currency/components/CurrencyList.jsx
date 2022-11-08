@@ -5,25 +5,25 @@ import Table from '../../common/components/Table';
 import ACTION_ROLES from '../../common/data/roles';
 import CurrencyListItem from './CurrencyListItem';
 
-const CurrencyList = ({ currencies, onRemoveCurrency }) => {
+const CurrencyList = ({ currencies, onRemoveCurrency, sortable }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   return (
     <Table className="min-w-full ">
       {currencies?.map((currency) => (
-        <Table.Row key={currency._id} header>
-          <Table.Cell name="isoCode">
+        <Table.Row key={currency._id} header enableSort={sortable}>
+          <Table.Cell sortKey="isoCode">
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell name="name">
+          <Table.Cell>
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
-          <Table.Cell name="isActive">
+          <Table.Cell sortKey="isActive">
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
           {(hasRole(ACTION_ROLES.currencies.view) ||

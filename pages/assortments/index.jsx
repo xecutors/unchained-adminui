@@ -24,7 +24,7 @@ const GetCurrentView = ({ options, queryString }) => {
       {graph === 'true' ? (
         <AssortmentGraphView options={rest} />
       ) : (
-        <AssortmentListView options={rest} queryString={queryString} />
+        <AssortmentListView options={rest} queryString={queryString} sortable />
       )}
     </LocaleWrapper>
   );

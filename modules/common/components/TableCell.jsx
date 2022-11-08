@@ -43,8 +43,9 @@ const SortButton = ({ onSort, sortDirection }) => {
 const TableCell = ({
   className = '',
   header = false,
+  enableSort,
   children,
-  name,
+  sortKey,
   index,
   ...props
 }) => {
@@ -53,16 +54,16 @@ const TableCell = ({
 
   const onSort = (event) => {
     event.preventDefault();
-    const next = getNextSortDirection(sortKeys[name]);
+    const next = getNextSortDirection(sortKeys[sortKey]);
 
     let newSortKeys;
-    if (!next && sortKeys[name]) {
-      delete sortKeys[name];
+    if (!next && sortKeys[sortKey]) {
+      delete sortKeys[sortKey];
       newSortKeys = sortKeys;
     } else {
       newSortKeys = {
         ...sortKeys,
-        [name]: sortKeys[name] === 'ASC' ? 'DESC' : 'ASC',
+        [sortKey]: sortKeys[sortKey] === 'ASC' ? 'DESC' : 'ASC',
       };
     }
 
@@ -100,8 +101,8 @@ const TableCell = ({
       {...props}
     >
       <div className="flex">
-        {Td === 'th' && name && (
-          <SortButton onSort={onSort} sortDirection={sortKeys[name]} />
+        {Td === 'th' && enableSort && sortKey && (
+          <SortButton onSort={onSort} sortDirection={sortKeys[sortKey]} />
         )}
 
         <div className="sm:inline">{children}</div>

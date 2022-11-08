@@ -4,7 +4,12 @@ import { convertSortFieldsToQueryFormat } from '../../common/utils/utils';
 import useAssortments from '../hooks/useAssortments';
 import AssortmentList from './AssortmentList';
 
-const AssortmentListView = ({ options, queryString, selectedLocale }) => {
+const AssortmentListView = ({
+  options,
+  queryString,
+  selectedLocale,
+  sortable,
+}) => {
   const { includeInactive, includeLeaves, limit, offset, tags, slug, sort } =
     options;
 
@@ -26,7 +31,7 @@ const AssortmentListView = ({ options, queryString, selectedLocale }) => {
     <Loading />
   ) : (
     <>
-      <AssortmentList assortments={assortments} />
+      <AssortmentList assortments={assortments} sortable={sortable} />
       <Pagination data={assortments} total={assortmentsCount} />
     </>
   );

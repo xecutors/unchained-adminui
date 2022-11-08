@@ -51,7 +51,7 @@ const WorkQueueView = () => {
     }
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
-  console.log(sortKeys);
+
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
     queryString,
     limit,
@@ -95,7 +95,7 @@ const WorkQueueView = () => {
           })}
         />
 
-        {loading ? <Loading /> : <WorkList workQueue={workQueue} />}
+        {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
         <Pagination data={workQueue} onLoadMore={loadMore} />
       </div>
     </>

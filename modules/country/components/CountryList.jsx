@@ -4,22 +4,22 @@ import Table from '../../common/components/Table';
 import ACTION_ROLES from '../../common/data/roles';
 import CountryListItem from './CountryListItem';
 
-const CountryList = ({ countries, onRemoveCountry }) => {
+const CountryList = ({ countries, onRemoveCountry, sortable }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (
-        <Table.Row key={country._id} header>
-          <Table.Cell name="isoCode">
+        <Table.Row key={country._id} header enableSort={sortable}>
+          <Table.Cell sortKey="isoCode">
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
             })}
           </Table.Cell>
 
-          <Table.Cell name="name">
+          <Table.Cell>
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
@@ -30,7 +30,7 @@ const CountryList = ({ countries, onRemoveCountry }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell name="isActive">
+          <Table.Cell sortKey="isActive">
             <span className="sr-only">
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>

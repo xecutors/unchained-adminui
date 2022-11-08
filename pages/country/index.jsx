@@ -120,6 +120,7 @@ const Country = () => {
           <Loading />
         ) : (
           <CountryList
+            sortable
             countries={countries}
             onRemoveCountry={onRemoveCountry}
           />

@@ -67,7 +67,7 @@ const Quotations = () => {
         {loading ? (
           <Loading />
         ) : (
-          <QuotationList quotations={quotations} showUser />
+          <QuotationList sortable quotations={quotations} showUser />
         )}
         <Pagination data={quotations} total={quotationsCount} />
       </div>

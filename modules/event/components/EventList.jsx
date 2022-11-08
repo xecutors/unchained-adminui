@@ -2,16 +2,16 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import EventListItem from './EventListItem';
 
-const EventList = ({ events }) => {
+const EventList = ({ events, sortable }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full ">
       {events?.map((event) => (
-        <Table.Row key={event._id} header>
-          <Table.Cell name="type">
+        <Table.Row key={event._id} header enableSort={sortable}>
+          <Table.Cell sortKey="type">
             {formatMessage({ id: 'type', defaultMessage: 'Type' })}
           </Table.Cell>
-          <Table.Cell name="created">
+          <Table.Cell sortKey="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',

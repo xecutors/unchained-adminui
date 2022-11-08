@@ -2,40 +2,41 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import QuotationListItem from './QuotationListItem';
 
-const QuotationList = ({ quotations }) => {
+const QuotationList = ({ quotations, sortable, showUser }) => {
   const { formatMessage } = useIntl();
 
   return (
     <Table className="min-w-full ">
       {quotations?.map((quotation) => (
-        <Table.Row key={quotation._id} header>
-          <Table.Cell name="quotationNumber">
+        <Table.Row key={quotation._id} header enableSort={sortable}>
+          <Table.Cell sortKey="quotationNumber">
             {formatMessage({
               id: 'quotation_number',
               defaultMessage: 'Quotation number',
             })}
           </Table.Cell>
 
-          <Table.Cell name="created">
+          <Table.Cell sortKey="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell name="expires">
+          <Table.Cell sortKey="expires">
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
             })}
           </Table.Cell>
-
-          <Table.Cell>
-            {formatMessage({
-              id: 'user',
-              defaultMessage: 'User',
-            })}
-          </Table.Cell>
+          {showUser && (
+            <Table.Cell>
+              {formatMessage({
+                id: 'user',
+                defaultMessage: 'User',
+              })}
+            </Table.Cell>
+          )}
 
           <Table.Cell>
             {formatMessage({
@@ -44,7 +45,7 @@ const QuotationList = ({ quotations }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell name="status">
+          <Table.Cell sortKey="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',
@@ -55,6 +56,7 @@ const QuotationList = ({ quotations }) => {
 
       {quotations?.map((quotation) => (
         <QuotationListItem
+          showUser={showUser}
           key={`${quotation?._id}-body`}
           quotation={quotation}
         />

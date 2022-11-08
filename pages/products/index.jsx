@@ -78,6 +78,7 @@ const Products = () => {
 
         <LocaleWrapper>
           <ProductList
+            sortable
             {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
           />
         </LocaleWrapper>

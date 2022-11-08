@@ -117,7 +117,11 @@ const Currencies = () => {
         {loading ? (
           <Loading />
         ) : (
-          <CurrencyList currencies={currencies} onRemoveCurrency={onRemove} />
+          <CurrencyList
+            currencies={currencies}
+            onRemoveCurrency={onRemove}
+            sortable
+          />
         )}
         <Pagination data={currencies} total={currenciesCount} />
       </div>

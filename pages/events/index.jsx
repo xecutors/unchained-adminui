@@ -114,7 +114,7 @@ const Events = () => {
         {loading ? (
           <Loading />
         ) : (
-          <EventList events={events} onSearch={setQueryString} />
+          <EventList events={events} onSearch={setQueryString} sortable />
         )}
         <Pagination data={events} total={eventsCount} />
       </div>

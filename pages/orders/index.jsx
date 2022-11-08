@@ -75,7 +75,11 @@ const Orders = () => {
             active={includeCarts}
           />
         </ListHeader>
-        {loading ? <Loading /> : <OrderList orders={orders} showUser />}
+        {loading ? (
+          <Loading />
+        ) : (
+          <OrderList orders={orders} showUser sortable />
+        )}
         <Pagination data={orders} total={ordersCount} />
       </div>
     </>

@@ -117,6 +117,7 @@ const Languages = () => {
           <Loading />
         ) : (
           <LanguageList
+            sortable
             languages={languages}
             onRemoveLanguage={onRemoveLanguage}
           />
