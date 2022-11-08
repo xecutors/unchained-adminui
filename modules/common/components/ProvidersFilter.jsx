@@ -39,7 +39,6 @@ const ProvidersFilter = ({ providerType, onProviderFilterChange }) => {
             id: 'filter_by_type',
             defaultMessage: 'Filter by type',
           })}
-          input-hint="Filter provider by type"
           autoComplete="off"
           className="w-50 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         >

@@ -56,11 +56,8 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      WorkQueue: {
-        keyArgs: ['limit', 'status', 'types', 'created', 'queryString'],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
+      workQueue: {
+        ...offsetLimitPagination(['status', 'types', 'created', 'queryString']),
       },
       Languages: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],

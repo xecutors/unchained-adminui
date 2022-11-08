@@ -34,10 +34,10 @@ const useWorkQueue = ({
   status = undefined,
   types = undefined,
   created = null,
-  sort = [],
+  sort: sortOptions = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-and-network',
     variables: {
       queryString,
       offset,
@@ -49,7 +49,9 @@ const useWorkQueue = ({
           .filter(([, value]) => value)
           .map(([key, value]) => [key, new Date(value.toString())]),
       ),
-      sort,
+      sort: (sortOptions || []).length
+        ? sortOptions
+        : [{ key: 'scheduled', value: 'DESC' }],
     },
   });
   const workQueue = data?.workQueue || [];

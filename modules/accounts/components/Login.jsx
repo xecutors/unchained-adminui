@@ -69,6 +69,10 @@ const LogInForm = ({ endpoint, handleOnBlur, connection }) => {
     if (user?._id && !user?.roles?.includes('admin')) router.push('/account');
 
     router.push('/');
+    return {
+      success: true,
+      errors: [],
+    };
   };
 
   const form = useForm({
