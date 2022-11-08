@@ -14,6 +14,7 @@ const ProductList = ({
   sortKeys,
   selectedLocale,
   includeDrafts,
+  sortable,
 }) => {
   const { formatMessage } = useIntl();
   const { products, productsCount, loading } = useProducts({
@@ -33,14 +34,14 @@ const ProductList = ({
       ) : (
         <Table className="min-w-full ">
           {products?.map((product) => (
-            <Table.Row key={product._id} header>
+            <Table.Row key={product._id} header enableSort={sortable}>
               <Table.Cell>
                 {formatMessage({
                   id: 'name',
                   defaultMessage: 'Name',
                 })}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell sortKey="status">
                 {formatMessage({
                   id: 'active',
                   defaultMessage: 'Active',
@@ -53,7 +54,7 @@ const ProductList = ({
                   defaultMessage: 'Tags',
                 })}
               </Table.Cell>
-              <Table.Cell>
+              <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
                 {formatMessage({
                   id: 'sequence',
                   defaultMessage: 'Sequence',

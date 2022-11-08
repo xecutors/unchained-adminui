@@ -2,16 +2,17 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import WorkListItem from './WorkListItem';
 
-const WorkList = ({ workQueue }) => {
+const WorkList = ({ workQueue, sortable }) => {
   const { formatMessage } = useIntl();
+
   return (
     <Table className="min-w-full ">
       {workQueue?.map((work) => (
-        <Table.Row key={`${work._id}-header`} header>
-          <Table.Cell>
+        <Table.Row key={`${work._id}-header`} header enableSort={sortable}>
+          <Table.Cell sortKey="type">
             {formatMessage({
-              id: 'work_number',
-              defaultMessage: 'Work #',
+              id: 'work_type',
+              defaultMessage: 'Type',
             })}
           </Table.Cell>
 
@@ -19,28 +20,28 @@ const WorkList = ({ workQueue }) => {
             {formatMessage({ id: 'status', defaultMessage: 'Status' })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="scheduled" defaultSortDirection="DESC">
             {formatMessage({
               id: 'scheduled',
               defaultMessage: 'Scheduled',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="started">
             {formatMessage({
               id: 'started',
               defaultMessage: 'Started',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="finished">
             {formatMessage({
               id: 'finished',
               defaultMessage: 'Finished',

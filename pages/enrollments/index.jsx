@@ -10,7 +10,10 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import EnrollmentList from '../../modules/enrollment/components/EnrollmentList';
 import useEnrollments from '../../modules/enrollment/hooks/useEnrollments';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
@@ -34,7 +37,7 @@ const EnrollmentListView = () => {
     }
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { enrollments, enrollmentsCount, loading } = useEnrollments({
     queryString,
@@ -42,29 +45,6 @@ const EnrollmentListView = () => {
     offset,
     sort: sortKeys,
   });
-
-  const sortFields = {
-    enrollmentNumber: formatMessage({
-      id: 'enrollment_number',
-      defaultMessage: 'Enrollment number',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    expires: formatMessage({
-      id: 'expires',
-      defaultMessage: 'Expires',
-    }),
-    status: formatMessage({
-      id: 'status',
-      defaultMessage: 'Status',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
 
   return (
     <>
@@ -82,7 +62,7 @@ const EnrollmentListView = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader sortFields={sortFields} />
+        <ListHeader />
 
         {loading ? (
           <Loading />

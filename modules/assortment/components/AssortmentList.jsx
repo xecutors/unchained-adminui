@@ -2,12 +2,12 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import AssortmentListItem from './AssortmentListItem';
 
-const AssortmentList = ({ assortments, showAvatar = true }) => {
+const AssortmentList = ({ assortments, showAvatar = true, sortable }) => {
   const { formatMessage } = useIntl();
   return (
     <Table className="min-w-full">
       {assortments?.map((assortment) => (
-        <Table.Row key={assortment._id} header>
+        <Table.Row key={assortment._id} header enableSort={sortable}>
           <Table.Cell>
             {formatMessage({
               id: 'name',
@@ -15,27 +15,27 @@ const AssortmentList = ({ assortments, showAvatar = true }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="isActive">
             {formatMessage({
               id: 'active',
               defaultMessage: 'Active',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="isRoot">
             {formatMessage({
               id: 'root',
               defaultMessage: 'Root',
             })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="isBase">
             {formatMessage({
               id: 'base',
               defaultMessage: 'Base',
             })}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
             {formatMessage({
               id: 'sequence',
               defaultMessage: 'Sequence',

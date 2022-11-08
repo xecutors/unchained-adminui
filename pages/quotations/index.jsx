@@ -10,7 +10,7 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys } from '../../modules/common/utils/utils';
+import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
 
 const Quotations = () => {
   const { formatMessage } = useIntl();
@@ -38,7 +38,7 @@ const Quotations = () => {
       });
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { quotations, quotationsCount, loading } = useQuotations({
     queryString,
@@ -46,33 +46,6 @@ const Quotations = () => {
     offset,
     sort: sortKeys,
   });
-
-  const sortFields = {
-    quotationNumber: formatMessage({
-      id: 'quotation_number',
-      defaultMessage: 'Quotation number',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    expires: formatMessage({
-      id: 'expires',
-      defaultMessage: 'Expires',
-    }),
-    rejected: formatMessage({
-      id: 'rejected',
-      defaultMessage: 'Rejected',
-    }),
-    status: formatMessage({
-      id: 'status',
-      defaultMessage: 'Status',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
 
   return (
     <>
@@ -90,11 +63,11 @@ const Quotations = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader sortFields={sortFields} />
+        <ListHeader />
         {loading ? (
           <Loading />
         ) : (
-          <QuotationList quotations={quotations} showUser />
+          <QuotationList sortable quotations={quotations} showUser />
         )}
         <Pagination data={quotations} total={quotationsCount} />
       </div>

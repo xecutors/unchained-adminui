@@ -4,15 +4,15 @@ import Table from '../../common/components/Table';
 import ACTION_ROLES from '../../common/data/roles';
 import LanguageListItem from './LanguageListItem';
 
-const LanguageList = ({ languages, onRemoveLanguage }) => {
+const LanguageList = ({ languages, onRemoveLanguage, sortable }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
   return (
     <Table className="min-w-full ">
       {languages?.map((language) => (
-        <Table.Row key={language._id} header>
-          <Table.Cell>
+        <Table.Row key={language._id} header enableSort={sortable}>
+          <Table.Cell sortKey="isoCode">
             {formatMessage({
               id: 'iso_code',
               defaultMessage: 'ISO code',
@@ -23,7 +23,7 @@ const LanguageList = ({ languages, onRemoveLanguage }) => {
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
 
-          <Table.Cell>
+          <Table.Cell sortKey="isActive">
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
           {(hasRole(ACTION_ROLES.country.view) ||

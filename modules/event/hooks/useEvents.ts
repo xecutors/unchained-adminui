@@ -31,7 +31,6 @@ const useEvents = ({
   queryString = null,
 } = {}) => {
   const { data, loading, error } = useQuery(EventQuery, {
-    fetchPolicy: 'cache-first',
     variables: {
       types,
       limit,

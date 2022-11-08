@@ -43,7 +43,6 @@ const useWorkQueue = ({
   sort: sortOptions = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
-    fetchPolicy: 'cache-first',
     variables: {
       queryString,
       offset: 0,

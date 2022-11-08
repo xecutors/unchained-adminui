@@ -11,7 +11,10 @@ import ProductList from '../../modules/product/components/ProductList';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const Products = () => {
@@ -39,26 +42,7 @@ const Products = () => {
       });
     }
   };
-  const sortKeys = getSortKeys(sort);
-
-  const sortFields = {
-    status: formatMessage({
-      id: 'isActive',
-      defaultMessage: 'Active',
-    }),
-    sequence: formatMessage({
-      id: 'sequence',
-      defaultMessage: 'Sequence',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   return (
     <>
@@ -81,7 +65,6 @@ const Products = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
-          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({
@@ -95,6 +78,7 @@ const Products = () => {
 
         <LocaleWrapper>
           <ProductList
+            sortable
             {...{ queryString, includeDrafts, limit, offset, tags, sortKeys }}
           />
         </LocaleWrapper>

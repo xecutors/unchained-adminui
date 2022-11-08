@@ -19,7 +19,14 @@ export const keyMappings: any = {
         },
       },
       Products: {
-        keyArgs: ['limit', 'includeDrafts', 'offset', 'tags', 'queryString'],
+        keyArgs: [
+          'limit',
+          'includeDrafts',
+          'offset',
+          'tags',
+          'queryString',
+          'sort',
+        ],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },

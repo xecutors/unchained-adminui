@@ -15,7 +15,7 @@ const QUOTATION_STATUS = {
   FULLFILLED: 'green',
 };
 
-const QuotationListItem = ({ quotation }) => {
+const QuotationListItem = ({ quotation, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   return (
@@ -58,23 +58,23 @@ const QuotationListItem = ({ quotation }) => {
           )}
         </div>
       </Table.Cell>
-
-      <Table.Cell>
-        <Link href={`/users/${quotation.user._id}`}>
-          <a className="flex text-blue-500 dark:text-blue-400">
-            <Image
-              loader={defaultNextImageLoader}
-              src={quotation.user?.avatar?.url}
-              width={40}
-              height={20}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
-            />
-            <span className="ml-2 self-end">{quotation.user?.username}</span>
-          </a>
-        </Link>
-      </Table.Cell>
-
+      {showUser && (
+        <Table.Cell>
+          <Link href={`/users/${quotation.user._id}`}>
+            <a className="flex text-blue-500 dark:text-blue-400">
+              <Image
+                loader={defaultNextImageLoader}
+                src={quotation.user?.avatar?.url}
+                width={40}
+                height={20}
+                placeholder="blur"
+                blurDataURL="/no-image.jpg"
+              />
+              <span className="ml-2 self-end">{quotation.user?.username}</span>
+            </a>
+          </Link>
+        </Table.Cell>
+      )}
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
           <Link href={`/products/${generateUniqueId(quotation.product)}`}>

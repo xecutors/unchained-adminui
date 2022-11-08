@@ -13,7 +13,10 @@ import useEvents from '../../modules/event/hooks/useEvents';
 import useEventTypes from '../../modules/event/hooks/useEventTypes';
 import MultipleSelect from '../../modules/common/components/MultipleSelect';
 import { extractQuery } from '../../modules/common/utils/normalizeFilterKeys';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
 
 const Events = () => {
@@ -38,7 +41,7 @@ const Events = () => {
     }
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const typeChangeHandler = (selectedTypes) => {
     const { types, ...rest } = query;
@@ -62,14 +65,6 @@ const Events = () => {
   });
 
   const { eventsType } = useEventTypes();
-
-  const sortFields = {
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    type: formatMessage({ id: 'type', defaultMessage: 'Type' }),
-  };
 
   return (
     <>
@@ -114,12 +109,12 @@ const Events = () => {
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader sortFields={sortFields} />
+        <ListHeader />
 
         {loading ? (
           <Loading />
         ) : (
-          <EventList events={events} onSearch={setQueryString} />
+          <EventList events={events} onSearch={setQueryString} sortable />
         )}
         <Pagination data={events} total={eventsCount} />
       </div>

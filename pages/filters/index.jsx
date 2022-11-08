@@ -14,7 +14,10 @@ import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const FiltersListView = () => {
@@ -42,7 +45,7 @@ const FiltersListView = () => {
       });
     }
   };
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
   const { formatMessage } = useIntl();
 
   const onRemoveFilter = async (filterId) => {
@@ -71,21 +74,6 @@ const FiltersListView = () => {
     );
   };
 
-  const sortFields = {
-    status: formatMessage({
-      id: 'isActive',
-      defaultMessage: 'Active',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -105,7 +93,6 @@ const FiltersListView = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}
-          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({

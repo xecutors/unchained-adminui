@@ -19,7 +19,10 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
-import { getSortKeys, normalizeQuery } from '../../modules/common/utils/utils';
+import {
+  convertSortFieldsToQueryFormat,
+  normalizeQuery,
+} from '../../modules/common/utils/utils';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -46,7 +49,7 @@ const Country = () => {
     }
   };
 
-  const sortKeys = getSortKeys(sort);
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { countries, countriesCount, loading } = useCountries({
     queryString,
@@ -85,15 +88,6 @@ const Country = () => {
     );
   };
 
-  const sortFields = {
-    isoCode: formatMessage({
-      id: 'iso_code',
-      defaultMessage: 'ISO code',
-    }),
-    isActive: formatMessage({ id: 'active', defaultMessage: 'Active' }),
-    isBase: formatMessage({ id: 'is_base', defaultMessage: 'Base' }),
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -112,7 +106,6 @@ const Country = () => {
       <div className="min-w-full overflow-x-auto">
         <ListHeader
           addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}
-          sortFields={sortFields}
         >
           <Toggle
             toggleText={formatMessage({
@@ -127,6 +120,7 @@ const Country = () => {
           <Loading />
         ) : (
           <CountryList
+            sortable
             countries={countries}
             onRemoveCountry={onRemoveCountry}
           />

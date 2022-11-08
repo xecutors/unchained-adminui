@@ -24,7 +24,7 @@ const GetCurrentView = ({ options, queryString }) => {
       {graph === 'true' ? (
         <AssortmentGraphView options={rest} />
       ) : (
-        <AssortmentListView options={rest} queryString={queryString} />
+        <AssortmentListView options={rest} queryString={queryString} sortable />
       )}
     </LocaleWrapper>
   );
@@ -72,29 +72,6 @@ const AssortmentsView = () => {
     }
   };
 
-  const sortFields = {
-    isActive: formatMessage({
-      id: 'isActive',
-      defaultMessage: 'Active',
-    }),
-    isRoot: formatMessage({
-      id: 'isRoot',
-      defaultMessage: 'Root',
-    }),
-    sequence: formatMessage({
-      id: 'sequence',
-      defaultMessage: 'Sequence',
-    }),
-    created: formatMessage({
-      id: 'created',
-      defaultMessage: 'Created',
-    }),
-    updated: formatMessage({
-      id: 'updated',
-      defaultMessage: 'Updated',
-    }),
-  };
-
   return (
     <>
       <BreadCrumbs />
@@ -116,7 +93,6 @@ const AssortmentsView = () => {
           addPath={
             hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
           }
-          sortFields={sortFields}
         >
           <div className="flex gap-4">
             <Toggle
