@@ -35,7 +35,7 @@ const AssortmentList = ({ assortments, showAvatar = true, sortable }) => {
               defaultMessage: 'Base',
             })}
           </Table.Cell>
-          <Table.Cell sortKey="sequence">
+          <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
             {formatMessage({
               id: 'sequence',
               defaultMessage: 'Sequence',

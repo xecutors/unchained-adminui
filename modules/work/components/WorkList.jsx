@@ -27,7 +27,7 @@ const WorkList = ({ workQueue, sortable }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell sortKey="scheduled">
+          <Table.Cell sortKey="scheduled" defaultSortDirection="DESC">
             {formatMessage({
               id: 'scheduled',
               defaultMessage: 'Scheduled',

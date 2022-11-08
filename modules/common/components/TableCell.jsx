@@ -46,6 +46,7 @@ const TableCell = ({
   enableSort,
   children,
   sortKey,
+  defaultSortDirection,
   index,
   ...props
 }) => {
@@ -102,7 +103,14 @@ const TableCell = ({
     >
       <div className="flex">
         {Td === 'th' && enableSort && sortKey && (
-          <SortButton onSort={onSort} sortDirection={sortKeys[sortKey]} />
+          <SortButton
+            onSort={onSort}
+            sortDirection={
+              Object.keys(sortKeys).length
+                ? sortKeys[sortKey]
+                : defaultSortDirection
+            }
+          />
         )}
 
         <div className="sm:inline">{children}</div>

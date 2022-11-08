@@ -17,7 +17,6 @@ const ProductList = ({
   sortable,
 }) => {
   const { formatMessage } = useIntl();
-  console.log(sortKeys);
   const { products, productsCount, loading } = useProducts({
     queryString,
     includeDrafts,
@@ -55,7 +54,7 @@ const ProductList = ({
                   defaultMessage: 'Tags',
                 })}
               </Table.Cell>
-              <Table.Cell sortKey="sequence">
+              <Table.Cell sortKey="sequence" defaultSortDirection="ASC">
                 {formatMessage({
                   id: 'sequence',
                   defaultMessage: 'Sequence',
