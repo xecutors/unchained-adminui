@@ -190,6 +190,10 @@ const LogInForm = ({ onEndpointChange }) => {
 
   const onSubmitSuccess = async () => {
     router.push('/');
+    return {
+      success: true,
+      errors: [],
+    };
   };
 
   const form = useForm({
