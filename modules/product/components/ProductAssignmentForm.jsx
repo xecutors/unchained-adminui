@@ -5,7 +5,6 @@ import Select from 'react-select';
 import FormWrapper from '../../common/components/FormWrapper';
 
 import useAddProductAssignment from '../hooks/useAddProductAssignment';
-import useSearchProducts from '../hooks/useSearchProducts';
 
 import DeleteButton from '../../common/components/DeleteButton';
 import useProductAssignments from '../hooks/useProductAssignments';
@@ -14,6 +13,7 @@ import useRemoveProductAssignment from '../hooks/useRemoveProductAssignment';
 import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import deBounce from '../../common/utils/deBounce';
+import useProducts from '../hooks/useProducts';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -55,9 +55,10 @@ const ProductAssignmentForm = ({ proxyId }) => {
   const { setModal } = useModal();
 
   const [queryString, setQueryString] = useState('');
-  const { products, loading } = useSearchProducts({
+  const { products } = useProducts({
     queryString,
     limit: 50,
+    sort: [{ key: 'created', value: 'DESC' }],
   });
   const { product } = useProductAssignments({ productId: proxyId });
 
@@ -166,13 +167,13 @@ const ProductAssignmentForm = ({ proxyId }) => {
               ) : (
                 <Select
                   name={`productId-${_id}`}
-                  isLoading={loading}
                   placeholder={formatMessage({
                     id: 'search_product',
                     defaultMessage: 'Search product',
                   })}
                   onChange={handleProductAssignment(columns)}
                   onInputChange={debouncedQuery}
+                  value={queryString}
                   options={(products || []).map(normalizeProduct)}
                   className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
                 />

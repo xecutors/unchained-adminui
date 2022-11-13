@@ -40,7 +40,7 @@ const Table = ({ className, ...props }) => {
   return rowsWithSort.header.length || rowsWithSort.body.length ? (
     <table
       className={classNames(
-        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 dark:divide-slate-600 overflow-hidden shadow sm:rounded-lg sm:bg-white dark:bg-slate-800/25',
+        'my-3 flex w-full flex-row flex-nowrap divide-y divide-slate-200 dark:divide-slate-600  shadow sm:rounded-lg sm:bg-white dark:bg-slate-800/25',
         className,
       )}
       {...props}

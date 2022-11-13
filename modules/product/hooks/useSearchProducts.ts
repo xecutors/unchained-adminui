@@ -12,7 +12,6 @@ export const SearchProductsQuery = gql`
     $ignoreChildAssortments: Boolean
     $limit: Int
     $offset: Int
-    $forceLocale: String
   ) {
     searchProducts(
       queryString: $queryString
