@@ -60,7 +60,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
     limit: 50,
     sort: [{ key: 'created', value: 'DESC' }],
   });
-  const { product } = useProductAssignments({ productId: proxyId });
+  const { product, loading } = useProductAssignments({ productId: proxyId });
 
   const variations = (product && product.variations) || [];
 
@@ -171,6 +171,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
                     id: 'search_product',
                     defaultMessage: 'Search product',
                   })}
+                  isLoading={loading}
                   onChange={handleProductAssignment(columns)}
                   onInputChange={debouncedQuery}
                   value={queryString}

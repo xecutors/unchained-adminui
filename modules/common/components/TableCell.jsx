@@ -13,7 +13,7 @@ const TableCell = ({ className = '', header = false, children, ...props }) => {
       {...props}
     >
       <div>
-        <div className="sm:inline">{children}</div>
+        <div className="sm:inline w-full">{children}</div>
       </div>
     </Td>
   );
