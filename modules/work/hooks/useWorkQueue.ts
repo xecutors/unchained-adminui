@@ -43,6 +43,7 @@ const useWorkQueue = ({
   sort: sortOptions = [],
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
+    pollInterval: 2000,
     variables: {
       queryString,
       offset: 0,
