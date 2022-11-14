@@ -430,7 +430,7 @@ describe('Product Variation', () => {
 
     it('Should  [DISPLAY VARIATION OPTION] successfully', () => {
       cy.get(
-        `div[data-variationid="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationid="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click({ multiple: true });
@@ -441,7 +441,7 @@ describe('Product Variation', () => {
 
     it('Should  [ADD VARIATION OPTION] successfully', () => {
       cy.get(
-        `div[data-variationid="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationid="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -474,7 +474,7 @@ describe('Product Variation', () => {
 
     it('Should  [DISPLAY ERROR] when required fields are missing successfully', () => {
       cy.get(
-        `div[data-variationid="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationid="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -508,7 +508,7 @@ describe('Product Variation', () => {
 
     it('Should  [INITIALIZE VARIATION OPTION FORM] successfully', () => {
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -528,7 +528,7 @@ describe('Product Variation', () => {
     it(`Should  [UPDATE VARIATION OPTION] successfully [${secondLocale.isoCode.toUpperCase()}] `, () => {
       cy.get('select#locale-wrapper').select(secondLocale.isoCode);
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -569,7 +569,7 @@ describe('Product Variation', () => {
     it(`Should  [UPDATE VARIATION OPTION] successfully [${firstLocale.isoCode.toUpperCase()}] `, () => {
       cy.get('select#locale-wrapper').select(firstLocale.isoCode);
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -610,7 +610,7 @@ describe('Product Variation', () => {
     it(`Should  [CANCEL UPDATE VARIATION OPTION] successfully `, () => {
       cy.get('select#locale-wrapper').select(secondLocale.isoCode);
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -641,7 +641,7 @@ describe('Product Variation', () => {
 
     it('Should  [REMOVE VARIATION OPTION] successfully', () => {
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
@@ -668,7 +668,7 @@ describe('Product Variation', () => {
 
     it('Should  [CANCEL DELETING VARIATION OPTION] ', () => {
       cy.get(
-        `div[data-variationId="${firstVariation._id}"] [data-itemIndex="0"] button[type="button"] > span`,
+        `div[data-variationId="${firstVariation._id}"] [data-itemindex="0"] button[type="button"] > span`,
       )
         .first()
         .click();
