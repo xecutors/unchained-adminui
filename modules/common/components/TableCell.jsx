@@ -113,7 +113,7 @@ const TableCell = ({
           />
         )}
 
-        <div className="sm:inline">{children}</div>
+        <div className="sm:inline w-full">{children}</div>
       </div>
     </Td>
   );
