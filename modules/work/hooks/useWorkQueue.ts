@@ -38,6 +38,7 @@ const useWorkQueue = ({
 } = {}) => {
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
     fetchPolicy: 'cache-and-network',
+    pollInterval: 2000,
     variables: {
       queryString,
       offset,
