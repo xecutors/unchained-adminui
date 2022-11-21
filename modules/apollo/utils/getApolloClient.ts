@@ -74,7 +74,10 @@ const getApolloClient = ({
     }
 
     operation.setContext({
-      headers: { ...(context?.headers || {}), ...headers },
+      headers: {
+        ...(context?.headers || {}),
+        ...headers,
+      },
     });
     return forward(operation);
   });
@@ -83,6 +86,9 @@ const getApolloClient = ({
     uri: getNormalizeURI(endpoint),
     credentials: 'same-origin',
     includeExtensions: true,
+    headers: {
+      'apollo-require-preflight': true,
+    },
   });
 
   const errorLink = onError(({ response, graphQLErrors, networkError }) => {
