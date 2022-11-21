@@ -11,7 +11,8 @@ import { normalizeQuery } from '../../common/utils/utils';
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
-  const { formatDateTime } = useFormatDateTime();
+  const { formatDateTime, getDateFormatPattern, parseDate } =
+    useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -62,7 +63,7 @@ const WorkFilter = ({ workTypes = [] }) => {
       }
     }
   };
-
+  console.log(getDateFormatPattern());
   return (
     <>
       <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
@@ -87,9 +88,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                   router.push({
                     query: normalizeQuery(
                       router.query,
-                      formatDateTime(value, {
-                        dateStyle: 'short',
-                      }),
+                      formatDateTime(value),
                       'start',
                     ),
                   });
@@ -99,12 +98,13 @@ const WorkFilter = ({ workTypes = [] }) => {
                   defaultMessage: 'Start date',
                 })}
                 showMonthDropdown
+                dateFormat={getDateFormatPattern()}
                 showYearDropdown
                 dropdownMode="select"
                 selected={
                   router?.query?.start
-                    ? new Date(router?.query?.start)
-                    : new Date(0)
+                    ? parseDate(router?.query?.start)
+                    : new Date()
                 }
                 className="block w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
@@ -118,9 +118,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                   router.push({
                     query: normalizeQuery(
                       router.query,
-                      formatDateTime(value, {
-                        dateStyle: 'short',
-                      }),
+                      formatDateTime(value, {}),
                       'end',
                     ),
                   })
@@ -129,11 +127,14 @@ const WorkFilter = ({ workTypes = [] }) => {
                   id: 'end_date',
                   defaultMessage: 'End Date',
                 })}
+                dateFormat={getDateFormatPattern()}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
                 selected={
-                  router?.query?.end ? new Date(router?.query?.end) : new Date()
+                  router?.query?.end
+                    ? parseDate(router?.query?.end)
+                    : new Date()
                 }
                 className="block w-full rounded-md dark:bg-slate-800 border border-slate-300 dark:border-slate-700 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />

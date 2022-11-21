@@ -1,18 +1,10 @@
-import { useIntl } from 'react-intl';
+import { parse } from 'date-fns';
 
 const useFormatDateTime = () => {
-  const { locale } = useIntl();
-
-  const formatDateTime = (
-    date,
-    options: Intl.DateTimeFormatOptions = {
-      dateStyle: 'full',
-      timeStyle: 'short',
-    },
-  ) => {
+  const formatDateTime = (date, options: Intl.DateTimeFormatOptions = {}) => {
     if (!date) return 'N/A';
     try {
-      return Intl.DateTimeFormat(locale || 'default', options).format(
+      return Intl.DateTimeFormat(navigator.language || 'de-ch', options).format(
         new Date(date).getTime(),
       );
     } catch {
@@ -24,7 +16,33 @@ const useFormatDateTime = () => {
     }
   };
 
-  return { formatDateTime };
+  const getDateFormatPattern = () => {
+    const getPatternForPart = (part) => {
+      switch (part.type) {
+        case 'day':
+          return 'd'.repeat(part.value.length);
+        case 'month':
+          return 'M'.repeat(part.value.length);
+        case 'year':
+          return 'y'.repeat(part.value.length);
+        case 'literal':
+          return part.value;
+        default:
+          return 'dd.mm.yyyy';
+      }
+    };
+
+    return new Intl.DateTimeFormat(navigator.language || 'de-ch')
+      .formatToParts(new Date())
+      .map(getPatternForPart)
+      .join('');
+  };
+
+  const parseDate = (value, pattern = null) => {
+    return parse(value, pattern || getDateFormatPattern(), new Date());
+  };
+
+  return { formatDateTime, getDateFormatPattern, parseDate };
 };
 
 export default useFormatDateTime;

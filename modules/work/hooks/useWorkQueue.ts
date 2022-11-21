@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import WorkFragment from '../fragments/WorkFragment';
 
 export const WorkQueueQuery = gql`
@@ -36,6 +37,7 @@ const useWorkQueue = ({
   created = null,
   sort: sortOptions = [],
 } = {}) => {
+  const { parseDate } = useFormatDateTime();
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
     fetchPolicy: 'cache-and-network',
     pollInterval: 2000,
@@ -48,7 +50,7 @@ const useWorkQueue = ({
       created: Object.fromEntries(
         Object.entries(created || {})
           .filter(([, value]) => value)
-          .map(([key, value]) => [key, new Date(value.toString())]),
+          .map(([key, value]) => [key, parseDate(value)]),
       ),
       sort: (sortOptions || []).length
         ? sortOptions
