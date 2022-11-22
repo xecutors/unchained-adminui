@@ -32,9 +32,13 @@ const useCalculateScheduledTime = () => {
     if (!started) return null;
     if (started && !finished) {
       const durationInMS = new Date(started).getTime() - new Date().getTime();
-      return formatDuration({
-        minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
-      });
+      return formatDuration(
+        {
+          minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
+          seconds: Number(Math.ceil(durationInMS / 1000 / 60)),
+        },
+        { zero: false },
+      );
     }
 
     const durationInMS =
@@ -42,8 +46,9 @@ const useCalculateScheduledTime = () => {
     return formatDuration(
       {
         minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
+        seconds: Number(Math.ceil(durationInMS / 1000 / 60)),
       },
-      { zero: true },
+      { zero: false },
     );
   };
 

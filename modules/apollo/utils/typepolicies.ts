@@ -57,7 +57,13 @@ export const keyMappings: any = {
         },
       },
       workQueue: {
-        ...offsetLimitPagination(['status', 'types', 'created', 'queryString']),
+        ...offsetLimitPagination([
+          'status',
+          'types',
+          'created',
+          'queryString',
+          'limit',
+        ]),
       },
       Languages: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],

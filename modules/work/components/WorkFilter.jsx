@@ -63,7 +63,7 @@ const WorkFilter = ({ workTypes = [] }) => {
       }
     }
   };
-  console.log(getDateFormatPattern());
+
   return (
     <>
       <div className="mb-2 justify-between py-4 sm:mb-0 lg:flex">
