@@ -47,6 +47,12 @@ const WorkList = ({ workQueue }) => {
               defaultMessage: 'Finished',
             })}
           </Table.Cell>
+          <Table.Cell>
+            {formatMessage({
+              id: 'duration',
+              defaultMessage: 'Duration',
+            })}
+          </Table.Cell>
         </Table.Row>
       ))}
 

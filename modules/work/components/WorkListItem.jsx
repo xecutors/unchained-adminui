@@ -5,10 +5,12 @@ import Table from '../../common/components/Table';
 
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import useCalculateScheduledTime from '../hooks/useCalculateScheduledTime';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+  const { getScheduledTime, getDuration } = useCalculateScheduledTime();
 
   const options = {
     dateStyle: 'short',
@@ -47,7 +49,7 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm">
-          {work.scheduled ? formatDateTime(work.scheduled, options) : 'n/a'}
+          {getScheduledTime(work, new Date().getTime())}{' '}
         </div>
       </Table.Cell>
 
@@ -61,6 +63,9 @@ const WorkListItem = ({ work }) => {
         <div className="flex items-center text-sm">
           {work.finished ? formatDateTime(work.finished, options) : 'n/a'}
         </div>
+      </Table.Cell>
+      <Table.Cell>
+        <div className="flex items-center text-sm">{getDuration(work)}</div>
       </Table.Cell>
     </Table.Row>
   );

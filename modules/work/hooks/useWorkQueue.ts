@@ -40,7 +40,7 @@ const useWorkQueue = ({
   const { parseDate } = useFormatDateTime();
   const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
     fetchPolicy: 'cache-and-network',
-    pollInterval: 2000,
+    pollInterval: 1000,
     variables: {
       queryString,
       offset,
