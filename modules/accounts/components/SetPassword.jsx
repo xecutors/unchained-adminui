@@ -15,7 +15,6 @@ const SetPassword = ({ userId }) => {
   const onSubmit = async ({ newPassword }) => {
     const { data } = await setPassword({
       newPassword,
-      disableHashing: true,
       userId,
     });
 

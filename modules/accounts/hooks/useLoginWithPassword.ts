@@ -1,19 +1,16 @@
 import { useMutation, gql } from '@apollo/client';
 import isEmail from '../../common/utils/isEmail';
-import hashPassword from '../utils/hashPassword';
 
 const LogInWithPasswordMutation = gql`
   mutation LoginWithPassword(
     $username: String
     $email: String
-    $password: HashedPasswordInput
     $plainPassword: String
     $totpCode: String
   ) {
     loginWithPassword(
       username: $username
       email: $email
-      password: $password
       plainPassword: $plainPassword
       totpCode: $totpCode
     ) {
@@ -35,18 +32,12 @@ const useLoginWithPassword = () => {
     errorPolicy: 'all',
   });
 
-  const logInWithPassword = async ({
-    usernameOrEmail,
-    password,
-    totpCode,
-    disableHashing = false,
-  }) => {
+  const logInWithPassword = async ({ usernameOrEmail, password, totpCode }) => {
     const variables = {
       username: null,
       email: null,
       totpCode,
       plainPassword: null,
-      password: null,
     };
 
     if (isEmail(usernameOrEmail)) {
@@ -56,11 +47,7 @@ const useLoginWithPassword = () => {
       variables.username = usernameOrEmail;
     }
 
-    if (disableHashing) {
-      variables.plainPassword = password;
-    } else {
-      variables.password = hashPassword(password);
-    }
+    variables.plainPassword = password;
     return logInWithPasswordMutation({
       variables,
       notifyOnNetworkStatusChange: true,

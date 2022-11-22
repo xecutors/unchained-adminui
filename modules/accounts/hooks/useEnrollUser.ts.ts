@@ -1,17 +1,14 @@
 import { useMutation, gql } from '@apollo/client';
 import UserFragment from '../fragment/UserFragment';
-import hashPassword from '../utils/hashPassword';
 
 const EnrollUserMutation = gql`
   mutation EnrollUser(
     $email: String!
-    $password: HashedPasswordInput
     $plainPassword: String
     $profile: UserProfileInput!
   ) {
     enrollUser(
       email: $email
-      password: $password
       plainPassword: $plainPassword
       profile: $profile
     ) {
@@ -25,23 +22,13 @@ const useEnrollUser = () => {
   const [enrollUserMutation, { data, error, loading }] =
     useMutation(EnrollUserMutation);
 
-  const enrollUser = async ({
-    email,
-    password,
-    profile,
-    disableHashing = false,
-  }) => {
+  const enrollUser = async ({ email, password, profile }) => {
     const variables = {
       email,
       profile,
       plainPassword: null,
-      password: null,
     };
-    if (disableHashing) {
-      variables.plainPassword = password;
-    } else {
-      variables.password = hashPassword(password);
-    }
+    variables.plainPassword = password;
     return enrollUserMutation({
       variables,
       refetchQueries: ['Users'],

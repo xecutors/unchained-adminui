@@ -33,7 +33,6 @@ const SignUpForm = () => {
     const { data } = await createUser({
       usernameOrEmail,
       webAuthnPublicKeyCredentials,
-      disableHashing: true,
     });
 
     if (data && data?.createUser) {
@@ -51,7 +50,6 @@ const SignUpForm = () => {
     const { data } = await createUser({
       usernameOrEmail,
       password,
-      disableHashing: true,
     });
     const { id, token, tokenExpires } = data.createUser;
     await storeLoginToken(id, token, new Date(tokenExpires));

@@ -1,12 +1,10 @@
 import { useMutation, gql } from '@apollo/client';
 import isEmail from '../../common/utils/isEmail';
-import hashPassword from '../utils/hashPassword';
 
 const CreateUserMutation = gql`
   mutation CreateUser(
     $username: String
     $email: String
-    $password: HashedPasswordInput
     $plainPassword: String
     $profile: UserProfileInput
     $webAuthnPublicKeyCredentials: JSON
@@ -14,7 +12,6 @@ const CreateUserMutation = gql`
     createUser(
       username: $username
       email: $email
-      password: $password
       plainPassword: $plainPassword
       profile: $profile
       webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
@@ -34,7 +31,6 @@ const useCreateUser = () => {
     usernameOrEmail,
     password,
     profile,
-    disableHashing = false,
     webAuthnPublicKeyCredentials,
   }) => {
     const variables = {
@@ -42,7 +38,6 @@ const useCreateUser = () => {
       email: null,
       profile,
       plainPassword: null,
-      password: null,
       webAuthnPublicKeyCredentials,
     };
     if (isEmail(usernameOrEmail)) {
@@ -50,11 +45,7 @@ const useCreateUser = () => {
     } else if (typeof usernameOrEmail === 'string') {
       variables.username = usernameOrEmail;
     }
-    if (disableHashing) {
-      variables.plainPassword = password;
-    } else {
-      variables.password = hashPassword(password);
-    }
+    variables.plainPassword = password;
     return createUserMutation({
       variables,
       refetchQueries: ['Users'],

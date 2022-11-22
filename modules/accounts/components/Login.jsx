@@ -155,7 +155,6 @@ const LogInForm = ({ onEndpointChange }) => {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
-        disableHashing: true,
       });
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
@@ -174,7 +173,6 @@ const LogInForm = ({ onEndpointChange }) => {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
-        disableHashing: true,
         totpCode,
       });
       if (!errors?.length) {

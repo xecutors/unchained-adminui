@@ -3,7 +3,6 @@ import { gql } from '@apollo/client';
 const UserFragment = gql`
   fragment UserFragment on User {
     _id
-    email
     isTwoFactorEnabled
     avatar {
       _id
@@ -26,10 +25,6 @@ const UserFragment = gql`
           version
         }
       }
-    }
-    primaryEmail {
-      address
-      verified
     }
     emails {
       verified

@@ -12,7 +12,6 @@ const SignUpPage = () => {
     const { data } = await createUser({
       email,
       password,
-      disableHashing: true,
     });
     const { id, token, tokenExpires } = data.createUser;
     await storeLoginToken(id, token, new Date(tokenExpires));

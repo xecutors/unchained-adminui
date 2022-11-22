@@ -22,7 +22,7 @@ const PasswordReset = () => {
   };
 
   const onSubmit = async ({ newPassword }) => {
-    return resetPassword({ newPassword, token, disableHashing: true });
+    return resetPassword({ newPassword, token });
   };
 
   return (

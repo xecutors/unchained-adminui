@@ -48,7 +48,6 @@ const CreateUser = () => {
           city,
         },
       },
-      disableHashing: true,
     });
     return result;
   };
