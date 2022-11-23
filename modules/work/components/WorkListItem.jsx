@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 
@@ -9,8 +10,21 @@ import useCalculateScheduledTime from '../hooks/useCalculateScheduledTime';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
+
   const { formatDateTime } = useFormatDateTime();
   const { getScheduledTime, getDuration } = useCalculateScheduledTime();
+
+  const [, reRenderComponent] = useState(null);
+
+  useEffect(() => {
+    let interval = null;
+    if ((work && work.status === 'NEW') || work.status === 'ALLOCATED') {
+      interval = setInterval(() => reRenderComponent(Date.now()), 1000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [work?.status]);
 
   const options = {
     dateStyle: 'short',
@@ -49,7 +63,7 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm">
-          {getScheduledTime(work, new Date().getTime())}{' '}
+          {getScheduledTime(work)}
         </div>
       </Table.Cell>
 

@@ -1,13 +1,16 @@
 import { formatDuration } from 'date-fns';
+import { useIntl } from 'react-intl';
 
 const useCalculateScheduledTime = () => {
-  const rtf = new Intl.RelativeTimeFormat('en', {
+  const { formatMessage } = useIntl();
+  const rtf = new Intl.RelativeTimeFormat(navigator.language || 'de-ch', {
     localeMatcher: 'best fit',
     numeric: 'always',
     style: 'long',
   });
 
-  const getScheduledTime = ({ scheduled, status, started }, now) => {
+  const getScheduledTime = ({ scheduled, status, started }) => {
+    const now = new Date().getTime();
     if (status === 'FAILED' || status === 'SUCCESS' || status === 'DELETED')
       return null;
     const scheduledTime = new Date(scheduled).getTime();
@@ -21,8 +24,10 @@ const useCalculateScheduledTime = () => {
       if (diff <= -1000) return rtf.format(Math.round(seconds), 'seconds');
       return rtf.format(Math.ceil(hours), 'hours');
     }
-    if (scheduledTime <= now && started) return 'Running';
-    if (scheduledTime <= now) return 'Ready';
+    if (scheduledTime <= now && started)
+      return formatMessage({ id: 'work_running', defaultMessage: 'Running' });
+    if (scheduledTime <= now)
+      return formatMessage({ id: 'work_ready', defaultMessage: 'Ready' });
     if (diff <= 60000) return rtf.format(Math.round(seconds), 'seconds');
     if (diff <= 3000000) return rtf.format(Math.round(minutes), 'minutes');
     return rtf.format(Math.ceil(hours), 'hours');
@@ -30,21 +35,15 @@ const useCalculateScheduledTime = () => {
 
   const getDuration = ({ started, finished }) => {
     if (!started) return null;
+    let durationInMS = null;
     if (started && !finished) {
-      const durationInMS = new Date().getTime() - new Date(started).getTime();
-      return formatDuration(
-        {
-          minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
-          seconds: Number(Math.ceil(durationInMS / 1000 / 60)),
-        },
-        { zero: false },
-      );
+      durationInMS = new Date().getTime() - new Date(started).getTime();
+    } else {
+      durationInMS = new Date(finished).getTime() - new Date(started).getTime();
     }
-
-    const durationInMS =
-      new Date(finished).getTime() - new Date(started).getTime();
     return formatDuration(
       {
+        hours: Math.floor(durationInMS / 1000 / 60 / 60) % 24,
         minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
         seconds: Number(Math.ceil(durationInMS / 1000 / 60)),
       },
