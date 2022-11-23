@@ -11,8 +11,7 @@ import { normalizeQuery } from '../../common/utils/utils';
 const WORK_STATUSES = ['NEW', 'ALLOCATED', 'SUCCESS', 'FAILED', 'DELETED'];
 
 const WorkFilter = ({ workTypes = [] }) => {
-  const { formatDateTime, getDateFormatPattern, parseDate } =
-    useFormatDateTime();
+  const { getDateFormatPattern, parseDate } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -88,7 +87,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                   router.push({
                     query: normalizeQuery(
                       router.query,
-                      formatDateTime(value),
+                      new Date(value).toISOString(),
                       'start',
                     ),
                   });
@@ -118,7 +117,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                   router.push({
                     query: normalizeQuery(
                       router.query,
-                      formatDateTime(value, {}),
+                      new Date(value).toISOString(),
                       'end',
                     ),
                   })

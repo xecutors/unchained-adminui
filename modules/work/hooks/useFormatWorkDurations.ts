@@ -48,7 +48,7 @@ const useFormatWorkDurations = () => {
         minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
         seconds: Number(Math.ceil(durationInMS / 1000) % 60),
       },
-      { zero: false },
+      { zero: false, locale: { code: navigator.language } },
     );
   };
 
