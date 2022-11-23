@@ -157,7 +157,6 @@ const WorkForm = () => {
               showTimeInput
               timeFormat="p"
               timeIntervals={15}
-              dateFormat="Pp"
             />
           </div>
 
