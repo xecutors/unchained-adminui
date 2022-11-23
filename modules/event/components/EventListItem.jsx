@@ -33,7 +33,10 @@ const EventListItem = ({ event }) => {
 
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center text-sm">
-          {formatDateTime(event.created)}
+          {formatDateTime(event.created, {
+            dateStyle: 'short',
+            timeStyle: 'short',
+          })}
         </div>
       </Table.Cell>
     </Table.Row>

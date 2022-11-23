@@ -9,7 +9,7 @@ const useDailySyncs = ({
 } = {}) => {
   const { data, loading, error, fetchMore }: any = useQuery(WorkQueueQuery, {
     variables: {
-      range: { start, end },
+      created: { start, end },
       status: ['SUCCESS', 'FAILED'],
       types: ['PUBLICARE_DAILY_ANALYTICS'],
       limit,
