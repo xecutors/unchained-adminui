@@ -1,7 +1,7 @@
 import { formatDuration } from 'date-fns';
 import { useIntl } from 'react-intl';
 
-const useCalculateScheduledTime = () => {
+const useFormatWorkDurations = () => {
   const { formatMessage } = useIntl();
   const rtf = new Intl.RelativeTimeFormat(navigator.language || 'de-ch', {
     localeMatcher: 'best fit',
@@ -34,18 +34,19 @@ const useCalculateScheduledTime = () => {
   };
 
   const getDuration = ({ started, finished }) => {
+    const now = new Date().getTime();
     if (!started) return null;
     let durationInMS = null;
     if (started && !finished) {
-      durationInMS = new Date().getTime() - new Date(started).getTime();
+      durationInMS = now - new Date(started).getTime();
     } else {
       durationInMS = new Date(finished).getTime() - new Date(started).getTime();
     }
     return formatDuration(
       {
-        hours: Math.floor(durationInMS / 1000 / 60 / 60) % 24,
+        hours: Number(Math.floor(durationInMS / 1000 / 60 / 60) % 24),
         minutes: Number(Math.floor(durationInMS / 1000 / 60) % 60),
-        seconds: Number(Math.ceil(durationInMS / 1000 / 60)),
+        seconds: Number(Math.ceil(durationInMS / 1000) % 60),
       },
       { zero: false },
     );
@@ -54,4 +55,4 @@ const useCalculateScheduledTime = () => {
   return { getScheduledTime, getDuration };
 };
 
-export default useCalculateScheduledTime;
+export default useFormatWorkDurations;

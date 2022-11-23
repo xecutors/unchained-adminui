@@ -6,19 +6,19 @@ import Table from '../../common/components/Table';
 
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import useCalculateScheduledTime from '../hooks/useCalculateScheduledTime';
+import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
 
   const { formatDateTime } = useFormatDateTime();
-  const { getScheduledTime, getDuration } = useCalculateScheduledTime();
+  const { getScheduledTime, getDuration } = useFormatWorkDurations();
 
   const [, reRenderComponent] = useState(null);
 
   useEffect(() => {
     let interval = null;
-    if ((work && work.status === 'NEW') || work.status === 'ALLOCATED') {
+    if (work && (work.status === 'NEW' || work.status === 'ALLOCATED')) {
       interval = setInterval(() => reRenderComponent(Date.now()), 1000);
     }
     return () => {
