@@ -5,6 +5,16 @@ export const WorkQuery = gql`
   query Work($workId: ID!) {
     work(workId: $workId) {
       ...WorkFragment
+      input
+      result
+      error
+      priority
+      worker
+      retries
+      original {
+        _id
+      }
+      timeout
     }
   }
   ${WorkFragment}

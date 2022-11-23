@@ -11,16 +11,6 @@ const WorkFragment = gql`
     finished
     created
     deleted
-    priority
-    worker
-    input
-    result
-    error
-    retries
-    original {
-      _id
-    }
-    timeout
   }
 `;
 

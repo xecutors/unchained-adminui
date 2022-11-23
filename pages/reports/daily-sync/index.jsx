@@ -56,9 +56,7 @@ const SyncReport = () => {
             id="report-start"
             placeholderText="Start date"
             selected={
-              router?.query?.start
-                ? parseDate(router?.query?.start)
-                : new Date()
+              router?.query?.start ? parseDate(router?.query?.start) : null
             }
             className="w-full rounded-md dark:text-slate-200 dark:bg-slate-500 border-slate-200 dark:border-slate-800 py-1 text-sm hover:border-indigo-500 sm:ml-1 sm:mt-0"
           />
