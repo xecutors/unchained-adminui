@@ -668,6 +668,9 @@
   "draft_product_description": {
     "defaultMessage": "Product will not be discoverable and can not be ordered"
   },
+  "duration": {
+    "defaultMessage": "Duration"
+  },
   "edit": {
     "defaultMessage": "Edit"
   },
@@ -1547,6 +1550,9 @@
   "rest_password": {
     "defaultMessage": "Reset password"
   },
+  "restricted-for-non-admin": {
+    "defaultMessage": "Your account is not granted access. Only Admin accounts are granted access"
+  },
   "result": {
     "defaultMessage": "Result"
   },
@@ -2143,8 +2149,14 @@
   "work_queue_header": {
     "defaultMessage": "Work queue"
   },
+  "work_ready": {
+    "defaultMessage": "Ready"
+  },
   "work_retries": {
     "defaultMessage": "Retries"
+  },
+  "work_running": {
+    "defaultMessage": "Running"
   },
   "work_scheduled": {
     "defaultMessage": "Scheduled"

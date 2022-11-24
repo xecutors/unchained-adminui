@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import { isValid } from 'date-fns';
 import DatePicker from 'react-datepicker';
+import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
 import useField, { FieldHookProps } from '../hooks/useField';
 import { validateDate } from '../lib/validators';
@@ -25,6 +26,7 @@ const DatePickerField = ({
     validators: [...validators, validateDate(required)],
     ...props,
   });
+  const { getDateFormatPattern } = useFormatDateTime();
 
   return (
     <FieldWrapper {...field} className={props.containerClassName}>
@@ -40,7 +42,7 @@ const DatePickerField = ({
           },
         )}
         onChange={(date) => field.setValue(parseDate(date))}
-        dateFormat="dd/MM/yyyy"
+        dateFormat={getDateFormatPattern()}
         peekNextMonth
         showMonthDropdown
         showYearDropdown

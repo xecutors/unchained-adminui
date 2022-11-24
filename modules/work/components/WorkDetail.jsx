@@ -1,107 +1,33 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
+import { useEffect, useState } from 'react';
 import Badge from '../../common/components/Badge';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
-import Accordion from '../../common/components/Accordion';
 import JSONView from '../../common/components/JSONView';
-import AccordionHeader from '../../common/components/AccordionHeader';
-import NoData from '../../common/components/NoData';
+import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+  const { getDuration, getScheduledTime } = useFormatWorkDurations();
+  const [, reRenderComponent] = useState(null);
+
+  useEffect(() => {
+    let interval = null;
+    if (work && (work.status === 'NEW' || work.status === 'ALLOCATED')) {
+      interval = setInterval(() => reRenderComponent(Date.now()), 1000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [work?.status]);
 
   const options = {
     timeStyle: 'medium',
     dateStyle: 'long',
   };
-
-  const data = [
-    {
-      header: (
-        <AccordionHeader
-          name={formatMessage({ id: 'input', defaultMessage: 'Input' })}
-        />
-      ),
-      body: (
-        <div className="mt-2 text-sm">
-          {work?.input ? (
-            <JSONView
-              value={JSON.stringify(work.input, null, 2)}
-              disabled
-              className=" mt-1 block w-full max-w-full rounded-md border-2 resize-none sm:text-sm"
-            />
-          ) : (
-            <NoData
-              className="bg-white dark:bg-slate-900 rounded-md capitalize border-2 border-slate-200 dark:border-slate-800"
-              message={formatMessage({
-                id: 'no_result',
-                defaultMessage: 'Result',
-              })}
-            />
-          )}
-        </div>
-      ),
-    },
-    {
-      header: (
-        <AccordionHeader
-          name={formatMessage({ id: 'result', defaultMessage: 'Result' })}
-        />
-      ),
-      body: (
-        <div className="mt-2 text-sm">
-          {work?.result ? (
-            <JSONView
-              value={JSON.stringify(work.result, null, 2)}
-              disabled
-              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none sm:text-sm"
-            />
-          ) : (
-            <NoData
-              className="bg-white dark:bg-slate-900 rounded-lg capitalize border-2 border-slate-200 dark:border-slate-800"
-              message={formatMessage({
-                id: 'no_result',
-                defaultMessage: 'Result',
-              })}
-            />
-          )}
-        </div>
-      ),
-    },
-
-    {
-      header: (
-        <AccordionHeader
-          name={formatMessage({ id: 'error', defaultMessage: 'Error' })}
-        />
-      ),
-      body: (
-        <div className="mt-2 text-sm">
-          {work?.error ? (
-            <JSONView
-              value={decodeURI(JSON.stringify(work.error, null, 2))}
-              disabled
-              className="mt-1 block w-full max-w-full rounded-md border-2 resize-none  sm:text-sm"
-            />
-          ) : (
-            <NoData
-              className="bg-white dark:bg-slate-900 rounded-lg capitalize border-2 border-slate-200 dark:border-slate-800"
-              message={formatMessage({
-                id: 'no_error',
-                defaultMessage: 'Error',
-              })}
-            />
-          )}
-        </div>
-      ),
-    },
-  ];
-
-  const headerCSS =
-    'inline-flex items-center justify-between w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 shadow-md text-sm font-medium text-slate-700 hover:bg-slate-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 ';
 
   return (
     <div className={`my-4 p-2 sm:p-6 lg:p-8 ${getShadowStyle(work?.status)}`}>
@@ -227,9 +153,7 @@ const WorkDetail = ({ work }) => {
                   defaultMessage: 'Scheduled',
                 })}
               </div>
-              <div className="flex text-sm">
-                {formatDateTime(work?.scheduled, options)}
-              </div>
+              <div className="flex text-sm">{getScheduledTime(work)}</div>
             </div>
             <div className="sm:col-span-1">
               <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
@@ -256,35 +180,71 @@ const WorkDetail = ({ work }) => {
             <div className="sm:col-span-1">
               <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
-                  id: 'work_updated',
-                  defaultMessage: 'Updated',
+                  id: 'duration',
+                  defaultMessage: 'Duration',
                 })}
               </div>
-              <div className="flex text-sm">
-                {formatDateTime(work?.updated, options)}
-              </div>
+              <div className="flex text-sm">{getDuration(work)}</div>
             </div>
-            <div className="sm:col-span-1">
-              <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
-                {formatMessage({
-                  id: 'deleted',
-                  defaultMessage: 'Deleted',
-                })}
+            {work?.deleted && (
+              <div className="sm:col-span-1">
+                <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
+                  {formatMessage({
+                    id: 'deleted',
+                    defaultMessage: 'Deleted',
+                  })}
+                </div>
+                <div className="flex text-sm">
+                  {formatDateTime(work?.deleted, options)}
+                </div>
               </div>
-              <div className="flex text-sm">
-                {formatDateTime(work?.deleted, options)}
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
-        <Accordion
-          data={data}
-          headerCSS={headerCSS}
-          bodyCSS="rounded-none"
-          itemContainerCSS="col-span-2 border-0 shadow-none"
-          containerCSS="col-span-2 grid grid-cols-1 gap-8 lg:grid-cols-2"
-        />
+        {work?.input && (
+          <div className="col-span-2  bg-white dark:bg-slate-900 lg:col-span-1">
+            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                {formatMessage({ id: 'input', defaultMessage: 'Input' })}
+              </h3>
+            </div>
+            <JSONView
+              value={JSON.stringify(work.input, null, 2)}
+              disabled
+              className="  block w-full max-w-full  resize-none sm:text-sm"
+            />
+          </div>
+        )}
+
+        {work?.result && (
+          <div className="col-span-2  bg-white dark:bg-slate-900   lg:col-span-1 ">
+            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                {formatMessage({ id: 'result', defaultMessage: 'Result' })}
+              </h3>
+            </div>
+            <JSONView
+              value={JSON.stringify(work.result, null, 2)}
+              disabled
+              className="  block w-full max-w-full  resize-none sm:text-sm"
+            />
+          </div>
+        )}
+        {work?.error && (
+          <div className="col-span-2  bg-white dark:bg-slate-900  lg:col-span-1 ">
+            <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+              <h3 className="text-lg font-medium leading-6  text-red-500">
+                {formatMessage({ id: 'error', defaultMessage: 'Error' })}
+              </h3>
+            </div>
+            <JSONView
+              value={decodeURI(JSON.stringify(work.error, null, 2))}
+              disabled
+              className="  block w-full max-w-full  resize-none sm:text-sm"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

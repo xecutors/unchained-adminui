@@ -1,15 +1,56 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { DefaultLimit } from '../../common/data/miscellaneous';
-import { WorkQueueQuery } from '../../work/hooks/useWorkQueue';
+
+export const SyncReportQuery = gql`
+  query SyncReports(
+    $queryString: String
+    $offset: Int
+    $limit: Int
+    $status: [WorkStatus!]
+    $types: [WorkType!]
+    $created: DateFilterInput
+    $sort: [SortOptionInput!]
+  ) {
+    workQueue(
+      queryString: $queryString
+      offset: $offset
+      limit: $limit
+      status: $status
+      types: $types
+      created: $created
+      sort: $sort
+    ) {
+      _id
+      type
+      scheduled
+      status
+      started
+      success
+      finished
+      created
+      deleted
+      priority
+      worker
+      retries
+      original {
+        _id
+      }
+      timeout
+      input
+      result
+      error
+    }
+  }
+`;
 
 const useDailySyncs = ({
   start = null,
   end = null,
   limit = DefaultLimit,
 } = {}) => {
-  const { data, loading, error, fetchMore }: any = useQuery(WorkQueueQuery, {
+  const { data, loading, error, fetchMore }: any = useQuery(SyncReportQuery, {
     variables: {
-      range: { start, end },
+      created: { start, end },
       status: ['SUCCESS', 'FAILED'],
       types: ['PUBLICARE_DAILY_ANALYTICS'],
       limit,

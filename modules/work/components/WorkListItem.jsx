@@ -1,14 +1,30 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import Badge from '../../common/components/Badge';
 import Table from '../../common/components/Table';
 
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
+import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
+
   const { formatDateTime } = useFormatDateTime();
+  const { getScheduledTime, getDuration } = useFormatWorkDurations();
+
+  const [, reRenderComponent] = useState(null);
+
+  useEffect(() => {
+    let interval = null;
+    if (work && (work.status === 'NEW' || work.status === 'ALLOCATED')) {
+      interval = setInterval(() => reRenderComponent(Date.now()), 1000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [work?.status]);
 
   const options = {
     dateStyle: 'short',
@@ -47,7 +63,7 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm">
-          {work.scheduled ? formatDateTime(work.scheduled, options) : 'n/a'}
+          {getScheduledTime(work)}
         </div>
       </Table.Cell>
 
@@ -61,6 +77,9 @@ const WorkListItem = ({ work }) => {
         <div className="flex items-center text-sm">
           {work.finished ? formatDateTime(work.finished, options) : 'n/a'}
         </div>
+      </Table.Cell>
+      <Table.Cell>
+        <div className="flex items-center text-sm">{getDuration(work)}</div>
       </Table.Cell>
     </Table.Row>
   );
