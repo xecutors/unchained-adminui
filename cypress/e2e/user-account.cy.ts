@@ -429,6 +429,7 @@ describe('User', () => {
     });
 
     it('Should [UPDATE PASSWORD] successfully', () => {
+      cy.get('input#oldPassword').type('password');
       cy.get('input#newPassword').type('password');
       cy.get('input[type="submit"]')
         .contains(localizations.en.change_password)
@@ -513,7 +514,9 @@ describe('User', () => {
           expect(request.body.variables).to.deep.eq({
             code: '123456',
             secretBase32:
-              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL,
+              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL?.split(
+                '=',
+              )[1],
           });
           expect(response.body).to.deep.eq(EnableTOTPResponse);
         },
@@ -563,7 +566,9 @@ describe('User', () => {
           expect(request.body.variables).to.deep.eq({
             code: '213',
             secretBase32:
-              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL,
+              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL?.split(
+                'secret=',
+              )[1],
           });
           expect(response.body).to.deep.eq(UnsuccessfulEnableTOTPResponse);
         },

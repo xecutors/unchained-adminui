@@ -413,8 +413,7 @@ describe('Account', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             code: '213746',
-            secretBase32:
-              'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
+            secretBase32: 'PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
           });
           expect(response.body).to.deep.eq(EnableTOTPResponse);
         },
@@ -447,8 +446,7 @@ describe('Account', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             code: '213',
-            secretBase32:
-              'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
+            secretBase32: 'PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
           });
           expect(response.body).to.deep.eq(UnsuccessfulEnableTOTPResponse);
         },

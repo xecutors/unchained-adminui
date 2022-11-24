@@ -670,7 +670,6 @@ export const createUserRequestVariables = {
     },
   },
   plainPassword: 'password',
-  password: null,
 };
 
 export const SetUsernameResponse = {
@@ -1607,7 +1606,7 @@ export const UserOperations = {
   AddEmail: 'AddEmail',
   SetUserTags: 'setUserTags',
   SetRoles: 'SetRoles',
-  SetPassword: 'SetPassword',
+  SetPassword: 'ChangePassword',
   BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
   EnableTOTP: 'EnableTOTP',
   DisableTOTP: 'DisableTOTP',
