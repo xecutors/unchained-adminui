@@ -1,5 +1,5 @@
 const generateUniqueId = ({ _id, texts }) => {
-  return `${texts.slug}_id_${_id}`;
+  return `${texts?.slug}_id_${_id}`;
 };
 
 export const parseUniqueId = (value) => {
