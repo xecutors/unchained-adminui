@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 const useFormatWorkDurations = () => {
   const { formatMessage } = useIntl();
-  const rtf = new Intl.RelativeTimeFormat(navigator.language || 'de-ch', {
+  const rtf = new Intl.RelativeTimeFormat('en', {
     localeMatcher: 'best fit',
     numeric: 'always',
     style: 'long',

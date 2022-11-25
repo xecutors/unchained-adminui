@@ -70,8 +70,8 @@ const WorkFilter = ({ workTypes = [] }) => {
           <div className="space-x-2">
             <div className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
               {formatMessage({
-                id: 'date_range',
-                defaultMessage: 'Date range',
+                id: 'filter_by_creation_date',
+                defaultMessage: 'Filter by creation date',
               })}
             </div>
           </div>
