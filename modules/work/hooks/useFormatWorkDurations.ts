@@ -1,4 +1,4 @@
-import { formatDistanceToNow, formatDuration } from 'date-fns';
+import { formatDistanceToNowStrict, formatDuration } from 'date-fns';
 
 const useFormatWorkDurations = () => {
   const getScheduledTime = ({ scheduled, status, started }) => {
@@ -7,8 +7,7 @@ const useFormatWorkDurations = () => {
     const scheduledTime = new Date(scheduled).getTime();
 
     if (status === 'ALLOCATED' || (status === 'NEW' && !started)) {
-      return formatDistanceToNow(scheduledTime, {
-        includeSeconds: true,
+      return formatDistanceToNowStrict(scheduledTime, {
         addSuffix: true,
       });
     }
