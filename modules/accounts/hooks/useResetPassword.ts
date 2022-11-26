@@ -2,11 +2,7 @@ import { useMutation, gql } from '@apollo/client';
 
 const ResetPasswordMutation = gql`
   mutation ResetPassword($newPlainPassword: String, $token: String!) {
-    resetPassword(
-      newPassword: $newPassword
-      newPlainPassword: $newPlainPassword
-      token: $token
-    ) {
+    resetPassword(newPlainPassword: $newPlainPassword, token: $token) {
       id
       token
       tokenExpires
