@@ -12,7 +12,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
   return item.children?.some(
     (d) => !d?.requiredRole || hasRole(d?.requiredRole),
   ) ? (
-    <Disclosure as="div" key={item.name} className="space-y-1">
+    <Disclosure defaultOpen as="div" key={item.name} className="space-y-1">
       {({ open }) => (
         <>
           <Disclosure.Button
