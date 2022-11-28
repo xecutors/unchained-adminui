@@ -133,33 +133,32 @@ const SignUpForm = () => {
                 />
               </div>
               {!authenticateWithDevice && (
-                <div>
-                  <TextField
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    label={formatMessage({
-                      id: 'email',
-                      defaultMessage: 'Email',
-                    })}
-                  />
-                </div>
-              )}
-
-              {!authenticateWithDevice && (
-                <div>
-                  <PasswordField
-                    id="password"
-                    name="password"
-                    autoComplete="current-password"
-                    required
-                    label={formatMessage({
-                      id: 'password',
-                      defaultMessage: 'Password',
-                    })}
-                  />
-                </div>
+                <>
+                  <div>
+                    <TextField
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      label={formatMessage({
+                        id: 'email',
+                        defaultMessage: 'Email',
+                      })}
+                    />
+                  </div>
+                  <div>
+                    <PasswordField
+                      id="password"
+                      name="password"
+                      autoComplete="current-password"
+                      required
+                      label={formatMessage({
+                        id: 'password',
+                        defaultMessage: 'Password',
+                      })}
+                    />
+                  </div>
+                </>
               )}
               <Toggle
                 onToggle={() =>
