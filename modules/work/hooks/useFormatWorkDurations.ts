@@ -1,36 +1,17 @@
-import { formatDuration } from 'date-fns';
-import { useIntl } from 'react-intl';
+import { formatDistanceToNowStrict, formatDuration } from 'date-fns';
 
 const useFormatWorkDurations = () => {
-  const { formatMessage } = useIntl();
-  const rtf = new Intl.RelativeTimeFormat(navigator.language || 'de-ch', {
-    localeMatcher: 'best fit',
-    numeric: 'always',
-    style: 'long',
-  });
-
   const getScheduledTime = ({ scheduled, status, started }) => {
-    const now = new Date().getTime();
     if (status === 'FAILED' || status === 'SUCCESS' || status === 'DELETED')
       return null;
     const scheduledTime = new Date(scheduled).getTime();
-    const diff = scheduledTime - now;
-    const seconds = diff / 1000;
-    const minutes = seconds / 60;
-    const hours = minutes / 60;
-    if (status === 'ALLOCATED' && !started) {
-      if (diff <= -3000000) return null;
-      if (diff <= -60000) return rtf.format(Math.round(minutes), 'minutes');
-      if (diff <= -1000) return rtf.format(Math.round(seconds), 'seconds');
-      return rtf.format(Math.ceil(hours), 'hours');
+
+    if (status === 'ALLOCATED' || (status === 'NEW' && !started)) {
+      return formatDistanceToNowStrict(scheduledTime, {
+        addSuffix: true,
+      });
     }
-    if (scheduledTime <= now && started)
-      return formatMessage({ id: 'work_running', defaultMessage: 'Running' });
-    if (scheduledTime <= now)
-      return formatMessage({ id: 'work_ready', defaultMessage: 'Ready' });
-    if (diff <= 60000) return rtf.format(Math.round(seconds), 'seconds');
-    if (diff <= 3000000) return rtf.format(Math.round(minutes), 'minutes');
-    return rtf.format(Math.ceil(hours), 'hours');
+    return null;
   };
 
   const getDuration = ({ started, finished }) => {

@@ -70,8 +70,8 @@ const WorkFilter = ({ workTypes = [] }) => {
           <div className="space-x-2">
             <div className="text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:leading-6 ">
               {formatMessage({
-                id: 'date_range',
-                defaultMessage: 'Date range',
+                id: 'filter_by_creation_date',
+                defaultMessage: 'Filter by creation date',
               })}
             </div>
           </div>
@@ -84,13 +84,18 @@ const WorkFilter = ({ workTypes = [] }) => {
                 name="startDate"
                 id="work-start"
                 onChange={(value) => {
-                  router.push({
-                    query: normalizeQuery(
-                      router.query,
-                      new Date(value).toISOString(),
-                      'start',
-                    ),
-                  });
+                  if (value)
+                    router.push({
+                      query: normalizeQuery(
+                        router.query,
+                        new Date(value).toISOString(),
+                        'start',
+                      ),
+                    });
+                  else {
+                    const { start, ...rest } = router.query;
+                    router.push({ query: { ...rest } });
+                  }
                 }}
                 placeholderText={formatMessage({
                   id: 'start_date',
@@ -101,9 +106,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 showYearDropdown
                 dropdownMode="select"
                 selected={
-                  router?.query?.start
-                    ? parseDate(router?.query?.start)
-                    : new Date()
+                  router?.query?.start ? parseDate(router?.query?.start) : null
                 }
                 className="block w-full rounded-md border dark:bg-slate-800 border-slate-300 dark:border-slate-700 py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400 sm:text-sm"
               />
@@ -113,15 +116,20 @@ const WorkFilter = ({ workTypes = [] }) => {
               <DatePicker
                 name="endDate"
                 id="work-end"
-                onChange={(value) =>
-                  router.push({
-                    query: normalizeQuery(
-                      router.query,
-                      new Date(value).toISOString(),
-                      'end',
-                    ),
-                  })
-                }
+                onChange={(value) => {
+                  if (value)
+                    router.push({
+                      query: normalizeQuery(
+                        router.query,
+                        new Date(value).toISOString(),
+                        'end',
+                      ),
+                    });
+                  else {
+                    const { end, ...rest } = router.query;
+                    router.push({ query: { ...rest } });
+                  }
+                }}
                 placeholderText={formatMessage({
                   id: 'end_date',
                   defaultMessage: 'End Date',

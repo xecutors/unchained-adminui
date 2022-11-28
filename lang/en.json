@@ -849,6 +849,9 @@
     "defaultMessage": "Filter activated!",
     "description": "shown on successful toggle of filter status"
   },
+  "filter_by_creation_date": {
+    "defaultMessage": "Filter by creation date"
+  },
   "filter_by_type": {
     "defaultMessage": "Filter by type"
   },
@@ -1000,8 +1003,14 @@
   "invalid_json_input": {
     "defaultMessage": "Invalid JSON input"
   },
+  "isActive": {
+    "defaultMessage": "Active"
+  },
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
+  },
+  "is_base": {
+    "defaultMessage": "Base"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
