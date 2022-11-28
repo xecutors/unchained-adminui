@@ -1,52 +1,29 @@
 import { useQuery, gql } from '@apollo/client';
-import { parseSlug } from '../../common/utils/getUniqueId';
-import AssortmentChildrenFragment from '../fragments/AssortmentChildrenFragment';
 
 const AssortmentPathsQuery = gql`
-  query AssortmentPaths(
-    $slugs: [String!]
-    $includeInactive: Boolean
-    $includeLeaves: Boolean
-  ) {
-    assortments(
-      slugs: $slugs
-      includeInactive: $includeInactive
-      includeLeaves: $includeLeaves
-    ) {
-      ...AssortmentChildrenFragment
-      children {
-        ...AssortmentChildrenFragment
+  query AssortmentPaths($assortmentId: ID!) {
+    assortment(assortmentId: $assortmentId) {
+      assortmentPaths {
+        links {
+          assortmentId
+        }
       }
     }
   }
-  ${AssortmentChildrenFragment}
 `;
 
-const useAssortmentPaths = ({
-  slugs,
-  includeInactive = false,
-  includeLeaves = false,
-  forceLocale,
-}) => {
-  const normalizedSlug = slugs?.map((slug) => parseSlug(slug));
+const useAssortmentPaths = ({ assortmentId }) => {
   const { data, loading, error } = useQuery(AssortmentPathsQuery, {
     variables: {
-      slugs: normalizedSlug,
-      includeInactive,
-      includeLeaves,
+      assortmentId,
     },
-    context: {
-      headers: {
-        forceLocale,
-      },
-    },
-    returnPartialData: true,
-    notifyOnNetworkStatusChange: true,
   });
 
-  const assortments = data?.assortments || [];
+  const assortmentsPaths = (data?.assortment?.assortmentPaths || [])?.flatMap(
+    ({ links }) => links,
+  );
 
-  return { assortments, loading, error };
+  return { assortmentsPaths, loading, error };
 };
 
 export default useAssortmentPaths;

@@ -1,11 +1,11 @@
 import Loading from '../../common/components/Loading';
 import AssortmentGraph from './AssortmentGraph';
-import useAssortmentPaths from '../hooks/useAssortmentPaths';
+import useAssortmentChildren from '../hooks/useAssortmentChildren';
 
 const AssortmentGraphView = ({ options, selectedLocale }) => {
   const { includeInactive, slug } = options;
 
-  const { assortments, loading } = useAssortmentPaths({
+  const { assortments, loading } = useAssortmentChildren({
     slugs: slug ? [slug].filter(Boolean) : null,
     includeInactive,
     includeLeaves: !!slug,

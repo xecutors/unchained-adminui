@@ -12,6 +12,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import FormErrors from '../../forms/components/FormErrors';
 import useAssortments from '../hooks/useAssortments';
+import useAssortmentPaths from '../hooks/useAssortmentPaths';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -25,6 +26,11 @@ const normalizeAssortments = (productsList = []) => {
 const AssortmentLinkForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
   const { addAssortmentLink } = useAddAssortmentLink();
+  const { assortmentsPaths } = useAssortmentPaths({ assortmentId });
+
+  const parentAssortmentIds = assortmentsPaths?.map(
+    ({ assortmentId: parentId }) => parentId,
+  );
   const { hasRole } = useAuth();
   const [queryString, setQueryString] = useState('');
 
@@ -82,7 +88,11 @@ const AssortmentLinkForm = ({ assortmentId }) => {
                 onFilter={setQueryString}
                 queryString={queryString}
                 data={normalizeAssortments(
-                  (assortments || []).filter(({ _id }) => _id !== assortmentId),
+                  (assortments || []).filter(
+                    ({ _id }) =>
+                      _id !== assortmentId &&
+                      !parentAssortmentIds.includes(_id),
+                  ),
                 )}
                 className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
               />

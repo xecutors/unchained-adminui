@@ -23,6 +23,11 @@ export const AssortmentsQuery = gql`
       sort: $sort
     ) {
       ...AssortmentFragment
+      linkedAssortments {
+        child {
+          _id
+        }
+      }
     }
     assortmentsCount(
       tags: $tags
