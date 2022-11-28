@@ -43,20 +43,17 @@ const setLocale = (headers, locale) => {
   return { headers: newHeaders };
 };
 
-const getLocalURI = () => {
-  return process.browser
-    ? publicGraphQLEndpoint || `${window.location.origin}/api/graphql`
-    : process.env.GRAPHQL_ENDPOINT;
-};
-
-const getNormalizeURI = (endpoint) => {
-  if (allowEndpointSwitch) {
-    return endpoint;
+const resolveUri = (endpointInSession) => {
+  if (typeof window !== 'undefined') {
+    if (allowEndpointSwitch && endpointInSession) return endpointInSession; // use user-selected endpoint
+    if (publicGraphQLEndpoint) return publicGraphQLEndpoint; // use pre-set public endpoint
+    return `${window.location.origin}/api/graphql`; // use the proxy that moves calls to GRAPHQL_ENDPOINT
   }
-  return getLocalURI();
+  // server side is direct (without using the proxy in next)
+  return process.env.GRAPHQL_ENDPOINT;
 };
 
-const getApolloClient = ({
+const createApolloClient = ({
   headers: headersOverride = {},
   locale,
   endpoint,
@@ -82,8 +79,9 @@ const getApolloClient = ({
     return forward(operation);
   });
 
+  const uri = resolveUri(endpoint);
   const httpLink = createUploadLink({
-    uri: getNormalizeURI(endpoint),
+    uri,
     credentials: 'same-origin',
     includeExtensions: true,
     headers: {
@@ -139,4 +137,4 @@ const getApolloClient = ({
   return apolloClient;
 };
 
-export default getApolloClient;
+export default createApolloClient;

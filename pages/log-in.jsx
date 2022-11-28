@@ -1,7 +1,7 @@
 import LogIn from '../modules/accounts/components/Login';
 
-const LogInPage = ({ onEndpointChange }) => {
-  return <LogIn onEndpointChange={onEndpointChange} />;
+const LogInPage = ({}) => {
+  return <LogIn />;
 };
 
 export default LogInPage;

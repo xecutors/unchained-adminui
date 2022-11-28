@@ -1,15 +1,61 @@
 import { XCircleIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { getConnection } from '../utils/utils';
+import { getDefaultEndpoint } from '../utils/utils';
 
-const SandboxInput = ({ handleOnBlur }) => {
-  const connection = getConnection();
-  const [currentEndpoint, setCurrentEndpoint] = useState(connection?.endpoint);
+const isSafariBrowser = (userAgent) =>
+  userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
+
+const testConnection = async (url) => {
+  const result = { error: null, connection: null, endpoint: url };
+  try {
+    if (typeof window !== 'undefined') {
+      const newUrl = new URL(url);
+      if (
+        isSafariBrowser(window.navigator.userAgent) &&
+        newUrl.protocol === 'http'
+      ) {
+        result.error = 'safari';
+      } else {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              variables: {},
+              query: `{ __typename  }
+    `,
+            }),
+          });
+          result.response = response;
+        } catch (e) {
+          result.error = e.message;
+          result.response = { ok: false };
+        }
+      }
+    }
+  } catch (e) {
+    result.error = e.message;
+  }
+  return result;
+};
+
+const SandboxInput = ({ handleOnBlur, endpoint }) => {
+  const [currentEndpoint, setCurrentEndpoint] = useState(
+    endpoint || getDefaultEndpoint(),
+  );
+  const [connection, setConnectionState] = useState({});
 
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    const testAndUpdateConnectionState = async () => {
+      const result = await testConnection(currentEndpoint);
+      setConnectionState(result);
+    };
+    testAndUpdateConnectionState();
+  }, [currentEndpoint]);
 
   return (
     <div className="mx-2 sm:mx-8 md:mx-auto md:w-1/2">
@@ -26,7 +72,7 @@ const SandboxInput = ({ handleOnBlur }) => {
             name="endpoint"
             id="endpoint"
             className="block w-full px-3 py-2 border-none rounded-r-md dark:bg-slate-800"
-            placeholder="http://localhost:4010/graphql"
+            placeholder="http://unchained-engine.xyz/graphql"
             value={currentEndpoint}
             onChange={(e) => setCurrentEndpoint(e.target.value)}
             onBlur={() => handleOnBlur(currentEndpoint)}
@@ -36,14 +82,14 @@ const SandboxInput = ({ handleOnBlur }) => {
             className={classNames(
               'absolute right-1 sm:right-4 top-3 w-4 h-4 rounded-full',
               {
-                'bg-green-600': connection?.status,
-                'bg-red-600': !connection?.status,
+                'bg-green-600': !connection.error,
+                'bg-red-600': connection.error,
               },
             )}
           />
         </div>
       </div>
-      {!connection?.status && (
+      {connection.error && (
         <div className="fixed bottom-0 right-0 z-[9999] bg-red-100 dark:bg-red-300 w-4/5 sm:w-96 border border-slate-300 m-2 rounded-md">
           <div className="p-4 relative">
             <div className="flex items-center gap-2">
@@ -55,7 +101,7 @@ const SandboxInput = ({ handleOnBlur }) => {
                     defaultMessage: 'Unable to reach server at {endpoint}',
                   },
                   {
-                    endpoint: connection?.endpoint,
+                    endpoint: connection.endpoint,
                   },
                 )}
               </h3>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import useEndpoint from '../../apollo/useEndpoint';
 import useAuth from '../../Auth/useAuth';
 
 import FormWrapper from '../../common/components/FormWrapper';
@@ -97,11 +98,13 @@ const {
   publicRuntimeConfig: { allowEndpointSwitch },
 } = getConfig();
 
-const LogInForm = ({ onEndpointChange }) => {
+const LogInForm = () => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
+  const { setEndpoint, endpoint } = useEndpoint();
+
   const router = useRouter();
   const nextStep = () => {
     router.push({
@@ -109,6 +112,10 @@ const LogInForm = ({ onEndpointChange }) => {
         step: parseInt(router.query.step, 10) + 1,
       },
     });
+  };
+
+  const onEndpointChange = (newEndpoint) => {
+    setEndpoint(newEndpoint);
   };
 
   const previousStep = () => {
@@ -253,7 +260,7 @@ const LogInForm = ({ onEndpointChange }) => {
   return (
     <>
       {allowEndpointSwitch ? (
-        <SandboxInput handleOnBlur={onEndpointChange} />
+        <SandboxInput handleOnBlur={onEndpointChange} endpoint={endpoint} />
       ) : null}
 
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

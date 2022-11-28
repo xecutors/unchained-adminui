@@ -1,5 +1,8 @@
-const allowEndpointSwitch = !!process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
-const defaultGraphqlEndpoint = 'http://localhost:4010/graphql';
+import getConfig from 'next/config';
+
+const {
+  publicRuntimeConfig: { publicGraphQLEndpoint },
+} = getConfig();
 
 const useFormatPrice = () => {
   const formatPrice = (price: { currency: string; amount: number }) => {
@@ -98,83 +101,21 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-const getConnection = (): {
-  endpoint: string;
-  status: boolean;
-  error?: string;
-} => {
-  if (typeof window !== 'undefined') {
-    return JSON.parse(
-      sessionStorage.getItem('connection') ||
-        JSON.stringify({ endpoint: defaultGraphqlEndpoint }),
-    );
-  }
-  return null;
+export const getDefaultEndpoint = () => {
+  return publicGraphQLEndpoint || 'http://localhost:4010/graphql';
 };
 
-const isSafariBrowser = (userAgent: string): boolean =>
-  userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
-
-const testConnection = async (url) => {
-  const result = { error: '', connection: null };
-  try {
-    if (typeof window !== 'undefined') {
-      const newUrl = new URL(url);
-      if (
-        isSafariBrowser(window.navigator.userAgent) &&
-        newUrl.protocol === 'http'
-      ) {
-        result.error = 'safari';
-      } else {
-        try {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              variables: {},
-              query: `{ __typename  }
-    `,
-            }),
-          });
-          result.connection = response;
-        } catch (e: any) {
-          result.error = e.message;
-          result.connection = { ok: false };
-        }
-      }
-    }
-  } catch (e: any) {
-    result.error = e.message;
+export const setEndpoint = (endpoint: string): string | null => {
+  const newEndpoint = endpoint || getDefaultEndpoint();
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem('selectedUnchainedEndpoint', newEndpoint);
   }
-  return result;
+  return newEndpoint;
 };
 
-export const setEndpoint = async (
-  endpoint,
-): Promise<{ endpoint: string; status: boolean; error?: string } | null> => {
-  let currentEndpoint;
-  if (!allowEndpointSwitch) {
-    currentEndpoint = process.env.GRAPHQL_ENDPOINT;
-  } else {
-    const sessionStore = getConnection();
-    currentEndpoint =
-      endpoint || sessionStore?.endpoint || defaultGraphqlEndpoint;
-  }
-
-  const result = await testConnection(currentEndpoint);
-
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem(
-      'connection',
-      JSON.stringify({
-        endpoint: currentEndpoint,
-        status: result?.connection?.ok,
-        error: result?.error,
-      }),
-    );
-    return getConnection();
-  }
-  return null;
+export const getEndpoint = (): string => {
+  const endpointInSession = sessionStorage.getItem('selectedUnchainedEndpoint');
+  return endpointInSession;
 };
 
 const getContent = (content) => {
@@ -195,6 +136,4 @@ export {
   normalizeObjectToString,
   normalizeQuery,
   getContent,
-  getConnection,
-  testConnection,
 };

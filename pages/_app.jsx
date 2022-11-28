@@ -4,7 +4,7 @@ import App from 'next/app';
 import { Router, useRouter } from 'next/router';
 
 import { ToastContainer } from 'react-toastify';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 
@@ -18,10 +18,12 @@ import Layout from '../modules/common/components/Layout';
 
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
+import EndpointWrapper, {
+  useSetEndpointContext,
+} from '../modules/apollo/EndpointWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
-import { getConnection, setEndpoint } from '../modules/common/utils/utils';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 
 const handleRouteChange = async (url) => {
@@ -44,18 +46,13 @@ const handleRouteChange = async (url) => {
 };
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
-  const [connectionStatus, setConnectionStatus] = useState(getConnection());
-
-  const onEndpointChange = async (endpoint) => {
-    const result = await setEndpoint(endpoint);
-    setConnectionStatus(result);
-  };
   const router = useRouter();
+  const { endpoint, setEndpoint } = useSetEndpointContext();
   const { locale } = router;
 
   const apollo = useApollo(pageProps, {
     locale,
-    endpoint: connectionStatus?.endpoint,
+    endpoint,
   });
 
   const getLayout = Component.getLayout
@@ -107,35 +104,32 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
           </>
         ) : null}
       </Head>
-      <ApolloProvider client={apollo}>
-        <IntlWrapper
-          locale={router.locale}
-          messages={messages}
-          key="intl-provider"
-        >
-          <AuthWrapper>
-            <ThemeWrapper>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                newestOnTop={false}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-              <ModalWrapper>
-                {getLayout(
-                  <Component
-                    onEndpointChange={onEndpointChange}
-                    {...pageProps}
-                  />,
-                )}
-              </ModalWrapper>
-            </ThemeWrapper>
-          </AuthWrapper>
-        </IntlWrapper>
-      </ApolloProvider>
+      <EndpointWrapper setEndpoint={setEndpoint} endpoint={endpoint}>
+        <ApolloProvider client={apollo}>
+          <IntlWrapper
+            locale={router.locale}
+            messages={messages}
+            key="intl-provider"
+          >
+            <AuthWrapper>
+              <ThemeWrapper>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <ModalWrapper>
+                  {getLayout(<Component {...pageProps} />)}
+                </ModalWrapper>
+              </ThemeWrapper>
+            </AuthWrapper>
+          </IntlWrapper>
+        </ApolloProvider>
+      </EndpointWrapper>
     </>
   );
 };
