@@ -11,7 +11,7 @@ const WorkList = ({ workQueue, sortable }) => {
         <Table.Row key={`${work._id}-header`} header enableSort={sortable}>
           <Table.Cell sortKey="type">
             {formatMessage({
-              id: 'work_type',
+              id: 'work_type_header',
               defaultMessage: 'Type',
             })}
           </Table.Cell>

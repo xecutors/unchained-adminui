@@ -25,13 +25,13 @@ const SignUpForm = () => {
   const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
   const { createUser } = useCreateUser();
   const { push } = useRouter();
-  const registerWithWebAuth = async (usernameOrEmail) => {
+  const registerWithWebAuth = async (username) => {
     const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
-      username: usernameOrEmail,
+      username,
     });
 
     const { data } = await createUser({
-      usernameOrEmail,
+      username,
       webAuthnPublicKeyCredentials,
     });
 
@@ -41,14 +41,15 @@ const SignUpForm = () => {
     }
   };
 
-  const onSubmit = async ({ usernameOrEmail, password }) => {
+  const onSubmit = async ({ username, email, password }) => {
     if (authenticateWithDevice) {
-      await registerWithWebAuth(usernameOrEmail);
+      await registerWithWebAuth(username);
       return true;
     }
 
     const { data } = await createUser({
-      usernameOrEmail,
+      username,
+      email,
       password,
     });
     const { id, token, tokenExpires } = data.createUser;
@@ -82,7 +83,8 @@ const SignUpForm = () => {
     submit: onSubmit,
     onSubmitSuccess,
     initialValues: {
-      usernameOrEmail: null,
+      username: null,
+      email: null,
       password: null,
     },
   });
@@ -120,29 +122,30 @@ const SignUpForm = () => {
             <div className="space-y-6 rounded-md shadow-sm">
               <div>
                 <TextField
-                  id="email-or-username"
-                  name="usernameOrEmail"
+                  id="username"
+                  name="username"
+                  required={authenticateWithDevice}
                   type="text"
-                  required
                   label={formatMessage({
-                    id: 'username_or_email',
-                    defaultMessage: 'Username/Email',
+                    id: 'username',
+                    defaultMessage: 'Username',
                   })}
                 />
               </div>
-
-              <Toggle
-                onToggle={() =>
-                  setAuthenticateWithDevice(!authenticateWithDevice)
-                }
-                toggleText={formatMessage({
-                  id: 'use_authenticator',
-                  defaultMessage: 'Use authenticator',
-                })}
-                className="ml-2 my-3"
-                toggleKey="totp"
-                active={authenticateWithDevice}
-              />
+              {!authenticateWithDevice && (
+                <div>
+                  <TextField
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    label={formatMessage({
+                      id: 'email',
+                      defaultMessage: 'Email',
+                    })}
+                  />
+                </div>
+              )}
 
               {!authenticateWithDevice && (
                 <div>
@@ -158,6 +161,18 @@ const SignUpForm = () => {
                   />
                 </div>
               )}
+              <Toggle
+                onToggle={() =>
+                  setAuthenticateWithDevice(!authenticateWithDevice)
+                }
+                toggleText={formatMessage({
+                  id: 'use_authenticator',
+                  defaultMessage: 'Use authenticator',
+                })}
+                className="ml-2 my-3"
+                toggleKey="totp"
+                active={authenticateWithDevice}
+              />
             </div>
             <FormErrors />
 

@@ -319,9 +319,6 @@
   "confirm_password": {
     "defaultMessage": "Confirm password"
   },
-  "confirmed": {
-    "defaultMessage": "confirmed"
-  },
   "connection_to_server_error": {
     "defaultMessage": "Currently not connected to unchained engine, please check your connection to server and try again."
   },
@@ -920,9 +917,6 @@
   "full_name": {
     "defaultMessage": "Full name"
   },
-  "fullfilled": {
-    "defaultMessage": "fullfilled"
-  },
   "gender": {
     "defaultMessage": "Gender"
   },
@@ -1008,15 +1002,6 @@
   },
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
-  },
-  "isActive": {
-    "defaultMessage": "Active"
-  },
-  "isRoot": {
-    "defaultMessage": "Root"
-  },
-  "is_base": {
-    "defaultMessage": "Base"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
@@ -1196,9 +1181,6 @@
   "no_data_message": {
     "defaultMessage": "<p>No <span> {message} available</span> </p>"
   },
-  "no_error": {
-    "defaultMessage": "Error"
-  },
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection"
   },
@@ -1207,9 +1189,6 @@
   },
   "no_payload": {
     "defaultMessage": "Payload"
-  },
-  "no_result": {
-    "defaultMessage": "Result"
   },
   "no_result_found": {
     "defaultMessage": "No result found"
@@ -1276,9 +1255,6 @@
   },
   "order_total": {
     "defaultMessage": "Order total"
-  },
-  "ordered": {
-    "defaultMessage": "ordered"
   },
   "orders": {
     "defaultMessage": "Orders"
@@ -1511,9 +1487,6 @@
   "reject_order_alert_header": {
     "defaultMessage": "Reject order?"
   },
-  "rejected": {
-    "defaultMessage": "Rejected"
-  },
   "removed_assortments": {
     "defaultMessage": "Removed Assortments"
   },
@@ -1549,9 +1522,6 @@
   },
   "rest_password": {
     "defaultMessage": "Reset password"
-  },
-  "restricted-for-non-admin": {
-    "defaultMessage": "Your account is not granted access. Only Admin accounts are granted access"
   },
   "result": {
     "defaultMessage": "Result"
@@ -1703,9 +1673,6 @@
   },
   "solutions": {
     "defaultMessage": "There are a couple solutions:"
-  },
-  "sort_btn": {
-    "defaultMessage": "Sort"
   },
   "ssl_certificate": {
     "defaultMessage": "Set up an SSL certificate for your local endpoint."
@@ -1870,9 +1837,6 @@
   "totp_code_not_match": {
     "defaultMessage": "TOTP code did not match"
   },
-  "totp_code_required": {
-    "defaultMessage": "TOTP code is required"
-  },
   "trial_interval_unit": {
     "defaultMessage": "Trial interval unit"
   },
@@ -1941,9 +1905,6 @@
   },
   "update_warehousing_provider_header": {
     "defaultMessage": "Update warehousing provider"
-  },
-  "updated": {
-    "defaultMessage": "Updated"
   },
   "updated_assortments": {
     "defaultMessage": "Updated Assortments"
@@ -2134,9 +2095,6 @@
   "work_management_setting_list_header": {
     "defaultMessage": "Work Management Settings"
   },
-  "work_number": {
-    "defaultMessage": "Work #"
-  },
   "work_original": {
     "defaultMessage": "Original Work"
   },
@@ -2173,8 +2131,8 @@
   "work_type": {
     "defaultMessage": "Work type"
   },
-  "work_updated": {
-    "defaultMessage": "Updated"
+  "work_type_header": {
+    "defaultMessage": "Type"
   },
   "worker": {
     "defaultMessage": "Worker"
