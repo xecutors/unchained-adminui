@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 
 const UpdateProductMediaTextsMutation = gql`
   mutation UpdateProductMediaTexts(
@@ -6,9 +7,10 @@ const UpdateProductMediaTextsMutation = gql`
     $texts: [UpdateProductMediaTextInput!]!
   ) {
     updateProductMediaTexts(productMediaId: $productMediaId, texts: $texts) {
-      _id
+      ...ProductMediaTextsFragment
     }
   }
+  ${ProductMediaTextsFragment}
 `;
 
 const useUpdateProductMediaTexts = () => {
