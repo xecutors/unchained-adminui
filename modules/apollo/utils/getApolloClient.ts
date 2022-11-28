@@ -88,6 +88,7 @@ const getApolloClient = ({
     includeExtensions: true,
     headers: {
       'apollo-require-preflight': true,
+      'x-unchained-bust-cache': true,
     },
   });
 

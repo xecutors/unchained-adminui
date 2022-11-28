@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const SetRoleMutation = gql`
   mutation SetRoles($roles: [String!]!, $userId: ID!) {
     setRoles(roles: $roles, userId: $userId) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useSetRoles = () => {

@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const UpdateEmailMutation = gql`
   mutation UpdateEmail($email: String!, $userId: ID) {
     updateEmail(email: $email, userId: $userId) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useUpdateEmail = () => {

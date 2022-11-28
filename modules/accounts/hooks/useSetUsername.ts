@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const SetUserNameMutation = gql`
   mutation SetUsername($username: String!, $userId: ID!) {
     setUsername(username: $username, userId: $userId) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useSetUserName = () => {

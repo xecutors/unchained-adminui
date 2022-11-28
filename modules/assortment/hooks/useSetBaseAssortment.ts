@@ -4,6 +4,7 @@ const SetBaseAssortmentMutation = gql`
   mutation SetBaseAssortment($assortmentId: ID!) {
     setBaseAssortment(assortmentId: $assortmentId) {
       _id
+      isBase
     }
   }
 `;

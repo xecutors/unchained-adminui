@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($token: String!) {
@@ -6,8 +7,12 @@ const VerifyEmailMutation = gql`
       id
       token
       tokenExpires
+      user {
+        ...UserFragment
+      }
     }
   }
+  ${UserFragment}
 `;
 
 const useVerifyEmail = () => {
