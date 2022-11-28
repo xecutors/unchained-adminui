@@ -1,6 +1,6 @@
 import LogIn from '../modules/accounts/components/Login';
 
-const LogInPage = ({}) => {
+const LogInPage = () => {
   return <LogIn />;
 };
 
