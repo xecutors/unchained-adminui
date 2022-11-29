@@ -11,7 +11,7 @@ const defaultParseDate = (date) => {
   if (date && isValid(date)) {
     return date;
   }
-  return date !== null;
+  return null;
 };
 
 const DatePickerField = ({
