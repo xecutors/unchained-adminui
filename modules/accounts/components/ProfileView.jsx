@@ -106,7 +106,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
   useEffect(() => {
     if (Object.keys(profile || {}).length) {
       form.formik.setValues({
-        birthday: profile?.birthday,
+        birthday: profile?.birthday ? new Date(profile?.birthday) : null,
         displayName: profile?.displayName,
         gender: profile?.gender,
         phoneMobile: profile?.phoneMobile,

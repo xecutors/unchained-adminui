@@ -10,7 +10,7 @@ const defaultParseDate = (date) => {
   if (date && validateDate.isValid(date)) {
     return date;
   }
-  return date !== null;
+  return null;
 };
 
 const DatePickerField = ({
