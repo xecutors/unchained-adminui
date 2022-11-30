@@ -15,7 +15,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
   return (
     <Table.Row className="text-sm">
       <Table.Cell>
-        <div className=" uppercase">
+        <div>
           {language.isoCode}
           {language.isBase && (
             <Badge
