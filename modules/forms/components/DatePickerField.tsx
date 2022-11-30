@@ -9,7 +9,7 @@ import FieldWrapper from './FieldWrapper';
 
 const defaultParseDate = (date) => {
   if (date && isValid(date)) {
-    return date;
+    return new Date(date);
   }
   return null;
 };
