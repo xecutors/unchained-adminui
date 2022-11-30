@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const UpdateUserProfileMutation = gql`
   mutation UpdateUserProfile($profile: UserProfileInput!, $userId: ID) {
     updateUserProfile(profile: $profile, userId: $userId) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useUpdateUserProfile = () => {
@@ -17,7 +19,6 @@ const useUpdateUserProfile = () => {
         profile,
         userId,
       },
-      refetchQueries: ['User'],
     });
   };
 

@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import { isValid } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -7,8 +8,8 @@ import { validateDate } from '../lib/validators';
 import FieldWrapper from './FieldWrapper';
 
 const defaultParseDate = (date) => {
-  if (date && validateDate.isValid(date)) {
-    return date;
+  if (date && isValid(date)) {
+    return new Date(date);
   }
   return null;
 };
@@ -18,10 +19,11 @@ const DatePickerField = ({
   className,
   parseDate = defaultParseDate,
   datePickerOptions = {},
+  required,
   ...props
 }: FieldHookProps) => {
   const field = useField({
-    validators: [...validators, validateDate],
+    validators: [...validators, validateDate(required)],
     ...props,
   });
   const { getDateFormatPattern } = useFormatDateTime();
