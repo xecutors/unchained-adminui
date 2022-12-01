@@ -1,5 +1,5 @@
 name: cypress-e2e-tests
-on: [push]
+on: [workflow_dispatch]
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
