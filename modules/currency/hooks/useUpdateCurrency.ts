@@ -17,11 +17,17 @@ const useUpdateCurrency = () => {
     isoCode,
     isActive,
     currencyId,
+    decimals,
     contractAddress,
   }) => {
     return updateCurrencyMutation({
       variables: {
-        currency: { isoCode, isActive, contractAddress },
+        currency: {
+          isoCode,
+          isActive,
+          contractAddress,
+          decimals: parseInt(decimals || '2', 10),
+        },
         currencyId,
       },
       refetchQueries: ['Currency', 'Currencies'],

@@ -14,8 +14,12 @@ const AddCurrency = () => {
     router.push(`/currency/${_id}`);
   };
 
-  const onSubmit = async ({ isoCode, contractAddress }) => {
-    const { data, errors } = await createCurrency({ isoCode, contractAddress });
+  const onSubmit = async ({ isoCode, contractAddress, decimals }) => {
+    const { data, errors } = await createCurrency({
+      isoCode,
+      contractAddress,
+      decimals,
+    });
     if (errors?.length) return false;
     return { success: true, data: data?.createCurrency };
   };
