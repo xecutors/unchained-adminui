@@ -13,9 +13,15 @@ const useCreateCurrency = () => {
     CreateCurrencyMutation,
   );
 
-  const createCurrency = async ({ isoCode, contractAddress }) => {
+  const createCurrency = async ({ isoCode, contractAddress, decimals }) => {
     return createCurrencyMutation({
-      variables: { currency: { isoCode, contractAddress } },
+      variables: {
+        currency: {
+          isoCode,
+          contractAddress,
+          decimals: parseInt(decimals || '2', 10),
+        },
+      },
       refetchQueries: ['Currencies', 'Currency'],
     });
   };
