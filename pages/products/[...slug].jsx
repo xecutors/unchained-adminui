@@ -1,3 +1,4 @@
+import { XIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
@@ -37,14 +38,44 @@ const ProductDetailPage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeProduct({ productId: product?._id });
-          toast.success(
-            formatMessage({
-              id: 'product_deleted_success',
-              defaultMessage: 'Deleted successfully ',
-            }),
-          );
-          router.push('/products');
+          try {
+            await removeProduct({ productId: product?._id });
+            toast.success(
+              formatMessage({
+                id: 'product_deleted_success',
+                defaultMessage: 'Deleted successfully ',
+              }),
+            );
+            router.push('/products');
+          } catch (e) {
+            await setModal(
+              <DangerMessage
+                headerText={formatMessage({
+                  id: 'error',
+                  defaultMessage: 'Error',
+                })}
+                message={e.message}
+                icon={
+                  <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <XIcon
+                      className="h-6 w-6 text-red-600"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                    />
+                  </div>
+                }
+                buttonText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
+                onOkClick={async () => {
+                  setModal('');
+                }}
+              />,
+            );
+          }
         }}
       />,
     );
