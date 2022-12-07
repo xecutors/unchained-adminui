@@ -2,11 +2,10 @@
 import isLength from 'validator/lib/isLength';
 import isEmail from 'validator/lib/isEmail';
 import matches from 'validator/lib/matches';
-import { isValid as isValidDate, isAfter, isBefore, format } from 'date-fns';
+import { isValid as isValidDate } from 'date-fns';
 
 import { MessageDescriptor, useIntl } from 'react-intl';
 import { PrimitiveType } from 'intl-messageformat';
-import parseDate from './parseDate';
 import {
   CurrencyCodes,
   CountryCodes,
@@ -98,40 +97,13 @@ export const validateRequired: Validator = {
   },
 };
 
-export const validateDate = (isRequired = false): Validator => ({
-  isValid: (value) => {
-    if (!isRequired && !value) return true;
-    return isValidDate(value);
-  },
-  intlMessageDescriptor: {
-    id: 'error_invalid_date',
-    defaultMessage: '{label} is not a valid date',
-  },
-});
-
-export const validateDateInput: Validator = {
-  isValid: (value) => {
-    const parsed = parseDate(value);
-    return isValidDate(parsed);
-  },
+export const validateDate: Validator = {
+  isValid: (value) => (value ? isValidDate(value) : true),
   intlMessageDescriptor: {
     id: 'error_invalid_date',
     defaultMessage: '{label} is not a valid date',
   },
 };
-
-export const validateDateBefore = (dateToCompare): Validator => ({
-  isValid: (value) => {
-    const parsed = parseDate(value);
-
-    return isBefore(parsed, dateToCompare);
-  },
-  intlMessageDescriptor: {
-    id: 'error_date_before',
-    defaultMessage: '{label} must be before {dateToCompare}.',
-  },
-  intlMessageValues: { dateToCompare: format(dateToCompare, DATE_FORMAT) },
-});
 
 export const validateRequiredTag = (isRequired): Validator => ({
   isValid: (value) => (isRequired ? value.length > 0 : true),
@@ -140,21 +112,6 @@ export const validateRequiredTag = (isRequired): Validator => ({
     defaultMessage: '{label} you must provide at least one tag',
   },
 });
-
-export const validateDateAfter = (dateToCompare): Validator => {
-  return {
-    isValid: (value) => {
-      const parsed = isString(value) ? parseDate(value) : value;
-
-      return isAfter(parsed, dateToCompare);
-    },
-    intlMessageDescriptor: {
-      id: 'error_date_after',
-      defaultMessage: '{label} must be after {dateToCompare}.',
-    },
-    intlMessageValues: { dateToCompare: format(dateToCompare, DATE_FORMAT) },
-  };
-};
 
 export const validatePhoneNumber: Validator = {
   isValid: (value) => matches(value || '', /^[0+]{1}[0-9() ]{9,25}$/g),
@@ -201,11 +158,23 @@ export const validateProductCommerce = (currentIndex, values): Validator => {
   };
 };
 
+const isEmpty = (value) =>
+  value === null || value === '' || value === undefined;
+
 export const validateProductCommerceOneNull = (values): Validator => {
   return {
     isValid: () => {
-      if (values?.some(({ maxQuantity }) => !maxQuantity)) return true;
-      return false;
+      if (
+        values?.length &&
+        values?.length === 1 &&
+        !isEmpty(values[0].maxQuantity)
+      )
+        return false;
+      if (
+        values.filter(({ maxQuantity }) => isEmpty(maxQuantity))?.length !== 1
+      )
+        return false;
+      return true;
     },
 
     intlMessageDescriptor: {

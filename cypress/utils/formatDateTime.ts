@@ -6,7 +6,7 @@ const formatDateTime = (
     timeStyle: 'short',
   },
 ) => {
-  if (!date) return 'N/A';
+  if (!date) return 'n/a';
   try {
     return Intl.DateTimeFormat(locale || 'default', options).format(
       new Date(date).getTime(),

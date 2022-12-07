@@ -108,7 +108,7 @@ const WorkDetail = ({ work }) => {
                   className="bg-purple-200 font-bold"
                 />
               ) : (
-                'N/A'
+                'n/a'
               )}
             </div>
           </div>

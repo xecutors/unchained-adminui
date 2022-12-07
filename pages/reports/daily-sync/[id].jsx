@@ -158,7 +158,7 @@ const SyncDetail = () => {
                   Math.floor(durationInMilliSeconds / 1000 / 60) % 60,
                 ),
                 seconds: Math.floor(durationInMilliSeconds / 1000) % 60,
-              }) || 'N/A'}
+              }) || 'n/a'}
             </div>
           </dd>
         </div>

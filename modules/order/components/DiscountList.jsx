@@ -63,7 +63,7 @@ const LogList = ({ discounts }) => {
                   <div className="flex items-center text-sm text-slate-900">
                     {discount.total.amount
                       ? formatPrice(discount.total)
-                      : 'N/A'}
+                      : 'n/a'}
                   </div>
                 </Table.Cell>
               </Table.Row>
