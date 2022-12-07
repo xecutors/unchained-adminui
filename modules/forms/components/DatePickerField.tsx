@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import { zonedTimeToUtc } from 'date-fns-tz';
 import DatePicker from 'react-datepicker';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -8,11 +7,10 @@ import { validateDate } from '../lib/validators';
 import FieldWrapper from './FieldWrapper';
 
 const defaultParseDate = (value) => {
-  if (!value) return null;
-  return zonedTimeToUtc(
-    value,
-    Intl.DateTimeFormat().resolvedOptions().timeZone,
-  );
+  if (validateDate.isValid(value)) {
+    return new Date(value);
+  }
+  return null;
 };
 
 const DatePickerField = ({
