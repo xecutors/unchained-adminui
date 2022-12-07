@@ -7,7 +7,7 @@ import { validateDate } from '../lib/validators';
 import FieldWrapper from './FieldWrapper';
 
 const defaultParseDate = (value) => {
-  if (validateDate.isValid(value)) {
+  if (value && validateDate.isValid(value)) {
     return new Date(value);
   }
   return null;
