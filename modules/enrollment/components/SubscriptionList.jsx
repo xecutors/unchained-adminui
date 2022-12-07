@@ -48,7 +48,7 @@ const SubscriptionList = ({ periods }) => {
                 <div className="flex items-center text-sm text-slate-900">
                   {period?.order?.orderNumber
                     ? period?.order?.orderNumber
-                    : 'N/A'}
+                    : 'n/a'}
                   {period?.isTrial && (
                     <Badge
                       text="Trial"
