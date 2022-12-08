@@ -682,7 +682,7 @@
   "web3_verified_success": "Address verified successfully!",
   "web_auth_credential_removed": "Credential removed successfully",
   "web_auth_icon": "Auth icon",
-  "web_auth_username_required": "You have to set a username to use WebAuthn",
+  "web_auth_username_required": "A username is required to use WebAuthn",
   "web_authentication": "Web Authentication",
   "weight_gram": "Weight (Gram)",
   "welcome": "Welcome!",

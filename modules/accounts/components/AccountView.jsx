@@ -105,16 +105,18 @@ const AccountView = ({
         </div>
       </SelfDocumentingView>
 
-      <SelfDocumentingView
-        documentationLabel={formatMessage({
-          id: 'roles',
-          defaultMessage: 'Roles',
-        })}
-      >
-        <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow  sm:p-6">
-          <UserRolesView roles={roles} userId={_id} />
-        </div>
-      </SelfDocumentingView>
+      {hasRole(ACTION_ROLES.users.updateRoles) ? (
+        <SelfDocumentingView
+          documentationLabel={formatMessage({
+            id: 'roles',
+            defaultMessage: 'Roles',
+          })}
+        >
+          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow  sm:p-6">
+            <UserRolesView roles={roles} userId={_id} />
+          </div>
+        </SelfDocumentingView>
+      ) : null}
 
       {(hasRole(ACTION_ROLES.users.updatePassword) ||
         hasRole(ACTION_ROLES.users.updateUser)) &&

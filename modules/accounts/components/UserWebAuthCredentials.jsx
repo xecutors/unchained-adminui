@@ -52,7 +52,7 @@ const UserWebAuthCredentials = ({ userId }) => {
       toast.error(
         formatMessage({
           id: 'web_auth_username_required',
-          defaultMessage: 'You have to set a username to use WebAuthn',
+          defaultMessage: 'A username is required to use WebAuthn',
         }),
       );
       return;
