@@ -1,27 +1,28 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
-const RemoveWebAuthnCredentialsMutation = gql`
-  mutation RemoveWebAuthnCredentials($credentialsId: ID!) {
+const RemoveWebAuthCredentialsMutation = gql`
+  mutation removeWebAuthCredentials($credentialsId: ID!) {
     removeWebAuthnCredentials(credentialsId: $credentialsId) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
-const useRemoveWebAuthnCredentials = () => {
-  const [removeWebAuthnCredentialsMutation] = useMutation(
-    RemoveWebAuthnCredentialsMutation,
+const useRemoveWebAuthCredentials = () => {
+  const [removeWebAuthCredentialsMutation] = useMutation(
+    RemoveWebAuthCredentialsMutation,
   );
-  const removeWebAuthnCredentials = async ({ credentialsId }) => {
-    return removeWebAuthnCredentialsMutation({
+  const removeWebAuthCredentials = async ({ credentialsId }) => {
+    return removeWebAuthCredentialsMutation({
       variables: { credentialsId },
-      refetchQueries: ['UserWebAuthnCredentials'],
     });
   };
 
   return {
-    removeWebAuthnCredentials,
+    removeWebAuthCredentials,
   };
 };
 
-export default useRemoveWebAuthnCredentials;
+export default useRemoveWebAuthCredentials;

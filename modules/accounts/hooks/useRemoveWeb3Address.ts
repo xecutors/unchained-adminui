@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const RemoveWeb3AddressMutation = gql`
-  mutation RemoveWeb3Account($address: String!) {
+  mutation RemoveWeb3Address($address: String!) {
     removeWeb3Address(address: $address) {
-      _id
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useRemoveWeb3Address = () => {
@@ -15,7 +17,6 @@ const useRemoveWeb3Address = () => {
       variables: {
         address,
       },
-      refetchQueries: ['CurrentUser'],
     });
   };
 

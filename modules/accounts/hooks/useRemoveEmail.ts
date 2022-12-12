@@ -1,15 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import UserFragment from '../fragment/UserFragment';
 
 const RemoveEmailMutation = gql`
   mutation RemoveEmail($email: String!, $userId: ID) {
     removeEmail(email: $email, userId: $userId) {
-      _id
-      emails {
-        verified
-        address
-      }
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 const useRemoveEmail = () => {

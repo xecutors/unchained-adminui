@@ -81,7 +81,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
             <a className="flex text-blue-600 dark:text-blue-400">
               <Image
                 loader={defaultNextImageLoader}
-                src={quotation.product?.media?.file.url}
+                src={quotation.product?.media[0]?.file?.url}
                 width={40}
                 height={20}
                 placeholder="blur"

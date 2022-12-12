@@ -19,7 +19,6 @@ const useDisableTOTP = () => {
         code,
         userId,
       },
-      refetchQueries: ['CurrentUser'],
     });
   };
 

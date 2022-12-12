@@ -1,12 +1,14 @@
 import { useMutation, gql } from '@apollo/client';
+import CountryFragment from '../fragments/CountryFragment';
 import { CountriesQuery } from './useCountries';
 
 const CreateCountryMutation = gql`
   mutation CreateCountry($country: CreateCountryInput!) {
     createCountry(country: $country) {
-      _id
+      ...CountryFragment
     }
   }
+  ${CountryFragment}
 `;
 
 const useCreateCountry = () => {

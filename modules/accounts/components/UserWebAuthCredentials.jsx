@@ -8,7 +8,7 @@ import useModal from '../../modal/hooks/useModal';
 import useAddWebAuthnCredentials from '../hooks/useAddWebAuthnCredentials';
 import useCurrentUser from '../hooks/useCurrentUser';
 import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
-import useRemoveWebAuthnCredentials from '../hooks/useRemoveWebAuthCredentials';
+import useRemoveWebAuthCredentials from '../hooks/useRemoveWebAuthCredentials';
 import useUserWebAuthnCredentials from '../hooks/useUserWebAuthnCredentials';
 import RegisteredWebAuthItem from './RegisteredWebAuthItem';
 
@@ -23,7 +23,7 @@ const UserWebAuthCredentials = ({ userId }) => {
   const { hasRole } = useAuth();
 
   const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
-  const { removeWebAuthnCredentials } = useRemoveWebAuthnCredentials();
+  const { removeWebAuthCredentials } = useRemoveWebAuthCredentials();
 
   const handleRemoveWebAuthCredential = async (credentialsId) => {
     await setModal(
@@ -35,7 +35,7 @@ const UserWebAuthCredentials = ({ userId }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWebAuthnCredentials({ credentialsId });
+          await removeWebAuthCredentials({ credentialsId });
           toast.success(
             formatMessage({
               id: 'web_auth_credential_removed',

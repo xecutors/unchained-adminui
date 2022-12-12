@@ -45,15 +45,10 @@ const Web3Addresses = ({ web3Addresses }) => {
           setModal('');
           await removeWeb3Address({ address });
           toast.success(
-            formatMessage(
-              {
-                id: 'web3_address_deleted',
-                defaultMessage: 'Address {address} deleted successfully',
-              },
-              {
-                address,
-              },
-            ),
+            formatMessage({
+              id: 'web3_address_deleted',
+              defaultMessage: 'Address deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({

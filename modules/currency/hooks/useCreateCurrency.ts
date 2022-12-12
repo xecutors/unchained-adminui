@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import CurrencyFragment from '../fragments/CurrencyFragment';
 
 const CreateCurrencyMutation = gql`
   mutation CreateCurrency($currency: CreateCurrencyInput!) {
     createCurrency(currency: $currency) {
-      _id
+      ...CurrencyFragment
     }
   }
+  ${CurrencyFragment}
 `;
 
 const useCreateCurrency = () => {
@@ -22,7 +24,6 @@ const useCreateCurrency = () => {
           decimals: parseInt(decimals || '2', 10),
         },
       },
-      refetchQueries: ['Currencies', 'Currency'],
     });
   };
   const newCurrency = data?.createCurrency;

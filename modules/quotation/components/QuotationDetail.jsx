@@ -150,7 +150,7 @@ const QuotationDetail = ({ quotation }) => {
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
                 <Image
                   loader={defaultNextImageLoader}
-                  src={quotation.product?.media?.file.url}
+                  src={quotation.product?.media[0]?.file?.url}
                   layout="responsive"
                   width="100"
                   height={100}

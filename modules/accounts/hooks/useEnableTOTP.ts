@@ -29,7 +29,6 @@ const useEnableTOTP = () => {
         code,
         secretBase32,
       },
-      refetchQueries: ['CurrentUser'],
     });
   };
 

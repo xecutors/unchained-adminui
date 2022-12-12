@@ -18,7 +18,6 @@ const useVerifyWeb3Address = () => {
         address,
         hash,
       },
-      refetchQueries: ['CurrentUser'],
     });
   };
 

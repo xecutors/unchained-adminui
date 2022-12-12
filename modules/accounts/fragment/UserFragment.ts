@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import MD5MetaDataFragment from './MD5MetaDataFragment';
 
 const UserFragment = gql`
   fragment UserFragment on User {
@@ -35,6 +36,15 @@ const UserFragment = gql`
       nonce
       verified
     }
+    webAuthnCredentials {
+      _id
+      created
+      aaguid
+      counter
+      mdsMetadata {
+        ...MD5MetaDataFragment
+      }
+    }
     profile {
       displayName
       phoneMobile
@@ -63,6 +73,7 @@ const UserFragment = gql`
     roles
     tags
   }
+  ${MD5MetaDataFragment}
 `;
 
 export default UserFragment;

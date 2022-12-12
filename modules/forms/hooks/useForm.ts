@@ -106,8 +106,7 @@ const useForm = ({
         !result?.errors?.length;
       if (success) {
         if (successMessage) toast.success(successMessage);
-
-        await onSubmitSuccess(success, result.data || values);
+        await onSubmitSuccess(success, result?.data || values);
       } else {
         const errors = typeof result === 'boolean' ? !result : result?.errors;
 
