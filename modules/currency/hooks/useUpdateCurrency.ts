@@ -30,7 +30,6 @@ const useUpdateCurrency = () => {
         },
         currencyId,
       },
-      refetchQueries: ['Currency', 'Currencies'],
     });
   };
 

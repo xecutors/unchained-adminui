@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import LanguageFragment from '../fragments/LanguageFragment';
 
 const RemoveLanguageMutation = gql`
   mutation RemoveLanguage($languageId: ID!) {
     removeLanguage(languageId: $languageId) {
-      _id
+      ...LanguageFragment
     }
   }
+  ${LanguageFragment}
 `;
 
 const useRemoveLanguage = () => {

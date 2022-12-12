@@ -90,7 +90,6 @@ const CountryForm = ({
                 'isoCode',
                 '_id',
               )}
-              required
               className="mb-2 text-sm"
             />
             <CheckboxField

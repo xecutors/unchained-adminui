@@ -30,7 +30,6 @@ const useUpdateDeliveryProvider = () => {
         deliveryProvider: { configuration },
         deliveryProviderId,
       },
-      refetchQueries: ['DeliveryProviders', 'DeliveryProvider'],
     });
   };
 

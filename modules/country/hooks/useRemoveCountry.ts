@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import CountryFragment from '../fragments/CountryFragment';
 
 const RemoveCountryMutation = gql`
   mutation RemoveCountry($countryId: ID!) {
     removeCountry(countryId: $countryId) {
-      _id
+      ...CountryFragment
     }
   }
+  ${CountryFragment}
 `;
 
 const useRemoveCountry = () => {

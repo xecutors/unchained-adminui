@@ -19,7 +19,6 @@ const useUpdateLanguage = () => {
         language: { isoCode, isActive },
         languageId,
       },
-      refetchQueries: ['Language', 'Languages'],
     });
   };
 

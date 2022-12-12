@@ -1,16 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import CountryFragment from '../fragments/CountryFragment';
 
 const UpdateCountryMutation = gql`
   mutation UpdateCountry($country: UpdateCountryInput!, $countryId: ID!) {
     updateCountry(country: $country, countryId: $countryId) {
-      _id
-      isoCode
-      isActive
-      defaultCurrency {
-        _id
-      }
+      ...CountryFragment
     }
   }
+  ${CountryFragment}
 `;
 
 const useUpdateCountry = () => {
@@ -27,7 +24,6 @@ const useUpdateCountry = () => {
         country: { isoCode, isActive, defaultCurrencyId },
         countryId,
       },
-      refetchQueries: ['Countries'],
     });
   };
 

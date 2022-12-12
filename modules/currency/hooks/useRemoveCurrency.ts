@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import CurrencyFragment from '../fragments/CurrencyFragment';
 
 const RemoveCurrencyMutation = gql`
   mutation RemoveCurrency($currencyId: ID!) {
     removeCurrency(currencyId: $currencyId) {
-      _id
+      ...CurrencyFragment
     }
   }
+  ${CurrencyFragment}
 `;
 
 const useRemoveCurrency = () => {
@@ -14,7 +16,7 @@ const useRemoveCurrency = () => {
   const removeCurrency = async ({ currencyId }) => {
     return removeCurrencyMutation({
       variables: { currencyId },
-      refetchQueries: ['Currencies', 'CurrencyId'],
+      refetchQueries: ['Currencies'],
     });
   };
 
