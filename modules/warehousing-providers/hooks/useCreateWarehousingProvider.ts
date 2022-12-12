@@ -1,13 +1,15 @@
 import { useMutation, gql } from '@apollo/client';
+import WarehousingProviderFragment from '../fragments/WarehousingProviderFragment';
 
 const CreateWarehousingProviderMutation = gql`
   mutation CreateWarehousingProvider(
     $warehousingProvider: CreateWarehousingProviderInput!
   ) {
     createWarehousingProvider(warehousingProvider: $warehousingProvider) {
-      _id
+      ...WarehousingProviderFragment
     }
   }
+  ${WarehousingProviderFragment}
 `;
 
 const useCreateWarehousingProvider = () => {
@@ -17,7 +19,6 @@ const useCreateWarehousingProvider = () => {
   const createWarehousingProvider = async ({ adapterKey, type }) => {
     return createWarehousingProviderMutation({
       variables: { warehousingProvider: { adapterKey, type } },
-      refetchQueries: ['WarehousingProviders', 'WarehousingProvider'],
     });
   };
 

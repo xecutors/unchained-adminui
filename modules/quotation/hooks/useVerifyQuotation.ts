@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 const VerifyQuotationMutation = gql`
   mutation VerifyQuotation($quotationId: ID!, $quotationContext: JSON) {
@@ -6,9 +7,10 @@ const VerifyQuotationMutation = gql`
       quotationId: $quotationId
       quotationContext: $quotationContext
     ) {
-      _id
+      QuotationDetailFragment
     }
   }
+  ${QuotationDetailFragment}
 `;
 
 const useVerifyQuotation = () => {
@@ -20,7 +22,6 @@ const useVerifyQuotation = () => {
   }) => {
     return verifyQuotationMutation({
       variables: { quotationId, quotationContext },
-      refetchQueries: ['Quotations', 'Quotation'],
     });
   };
 

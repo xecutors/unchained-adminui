@@ -16,7 +16,6 @@ const usePublishProduct = () => {
   const publishProduct = async ({ productId }) => {
     return publishProductMutation({
       variables: { productId },
-      refetchQueries: ['Product', 'Products'],
     });
   };
 

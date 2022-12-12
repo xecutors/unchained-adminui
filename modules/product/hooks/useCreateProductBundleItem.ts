@@ -19,7 +19,7 @@ const useCreateProductBundleItem = () => {
   const createProductBundleItem = async ({ productId, item }) => {
     return createProductBundleItemMutation({
       variables: { productId, item },
-      refetchQueries: ['ProductBundleItems', 'Product'],
+      refetchQueries: ['ProductBundleItems'],
     });
   };
 

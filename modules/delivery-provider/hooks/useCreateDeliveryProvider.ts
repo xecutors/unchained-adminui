@@ -1,13 +1,15 @@
 import { useMutation, gql } from '@apollo/client';
+import DeliveryProviderFragment from '../fragments/DeliveryProviderFragment';
 
 const CreateDeliveryProviderMutation = gql`
   mutation CreateDeliveryProvider(
     $deliveryProvider: CreateDeliveryProviderInput!
   ) {
     createDeliveryProvider(deliveryProvider: $deliveryProvider) {
-      _id
+      ...DeliveryProviderFragment
     }
   }
+  ${DeliveryProviderFragment}
 `;
 
 const useCreateDeliveryProvider = () => {
@@ -17,7 +19,6 @@ const useCreateDeliveryProvider = () => {
   const createDeliveryProvider = async ({ adapterKey, type }) => {
     return createDeliveryProviderMutation({
       variables: { deliveryProvider: { adapterKey, type } },
-      refetchQueries: ['DeliveryProviders', 'DeliveryProvider'],
     });
   };
 

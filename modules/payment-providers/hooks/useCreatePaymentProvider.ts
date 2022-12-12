@@ -1,13 +1,15 @@
 import { useMutation, gql } from '@apollo/client';
+import PaymentProviderFragment from '../fragments/PaymentProviderFragment';
 
 const CreatePaymentProviderMutation = gql`
   mutation CreatePaymentProvider(
     $paymentProvider: CreatePaymentProviderInput!
   ) {
     createPaymentProvider(paymentProvider: $paymentProvider) {
-      _id
+      ...PaymentProviderFragment
     }
   }
+  ${PaymentProviderFragment}
 `;
 
 const useCreatePaymentProvider = () => {
@@ -18,7 +20,6 @@ const useCreatePaymentProvider = () => {
   const createPaymentProvider = async ({ adapterKey, type }) => {
     return createPaymentProviderMutation({
       variables: { paymentProvider: { adapterKey, type } },
-      refetchQueries: ['PaymentProviders', 'PaymentProvider'],
     });
   };
   const newPaymentProvider = data?.createPaymentProvider;

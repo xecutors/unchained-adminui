@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import FilterFragment from '../fragments/FilterFragment';
 
 const CreateFilterMutation = gql`
   mutation CreateFilter($filter: CreateFilterInput!) {
     createFilter(filter: $filter) {
-      _id
+      ...FilterFragment
     }
   }
+  ${FilterFragment}
 `;
 
 const useCreateFilter = () => {
@@ -15,7 +17,6 @@ const useCreateFilter = () => {
   const createFilter = async ({ key, type, title, options }) => {
     return createFilterMutation({
       variables: { filter: { key, title, type, options } },
-      refetchQueries: ['Filters'],
     });
   };
   const newFilter = data?.createFilter;

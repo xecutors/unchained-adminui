@@ -20,7 +20,7 @@ const useRejectQuotation = () => {
   }) => {
     return rejectQuotationMutation({
       variables: { quotationId, quotationContext },
-      refetchQueries: ['Quotations', 'Quotation'],
+      refetchQueries: ['Quotations'],
     });
   };
 
