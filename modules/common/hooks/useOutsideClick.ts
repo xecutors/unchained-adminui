@@ -1,21 +1,28 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 const useOutsideClick = (callback) => {
   const ref = useRef<HTMLButtonElement>();
 
-  useEffect(() => {
-    const handleClick = (event) => {
+  // Create a memoized version of the handleClick function
+  const handleClick = useCallback(
+    (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         callback();
       }
-    };
+    },
+    [ref, callback],
+  );
 
-    document.addEventListener('click', handleClick);
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (document) {
+      document.addEventListener('click', handleClick);
 
-    return () => {
-      document.removeEventListener('click', handleClick);
-    };
-  }, [ref]);
+      return () => {
+        document.removeEventListener('click', handleClick);
+      };
+    }
+  }, [handleClick]);
 
   return ref;
 };

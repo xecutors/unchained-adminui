@@ -1,15 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 const CreateProductMutation = gql`
   mutation CreateProduct($product: CreateProductInput!) {
     createProduct(product: $product) {
-      _id
-      texts {
-        _id
-        slug
-      }
+      ...ProductFragment
     }
   }
+  ${ProductDetailFragment}
 `;
 
 const useCreateProduct = () => {

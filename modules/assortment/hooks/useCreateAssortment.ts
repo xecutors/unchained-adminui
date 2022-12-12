@@ -1,15 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentFragment from '../fragments/AssortmentFragment';
 
 const CreateAssortmentMutation = gql`
   mutation CreateAssortment($assortment: CreateAssortmentInput!) {
     createAssortment(assortment: $assortment) {
-      _id
-      texts {
-        _id
-        slug
-      }
+      ...AssortmentFragment
     }
   }
+  ${AssortmentFragment}
 `;
 
 const useCreateAssortment = () => {

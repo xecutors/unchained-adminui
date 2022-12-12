@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentLinkFragment from '../fragments/AssortmentLinkFragment';
 
 const RemoveAssortmentLinkMutation = gql`
   mutation RemoveAssortmentLink($assortmentLinkId: ID!) {
     removeAssortmentLink(assortmentLinkId: $assortmentLinkId) {
-      _id
+      ...AssortmentLinkFragment
     }
   }
+  ${AssortmentLinkFragment}
 `;
 
 const useRemoveAssortmentLink = () => {
@@ -16,7 +18,7 @@ const useRemoveAssortmentLink = () => {
   const removeAssortmentLink = async ({ assortmentLinkId }) => {
     return removeAssortmentLinkMutation({
       variables: { assortmentLinkId },
-      refetchQueries: ['AssortmentLinks', 'Assortments'],
+      refetchQueries: ['AssortmentLinks'],
     });
   };
 

@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentFragment from '../fragments/AssortmentFragment';
 
 const UpdateAssortmentMutation = gql`
   mutation UpdateAssortment(
@@ -6,9 +7,10 @@ const UpdateAssortmentMutation = gql`
     $assortmentId: ID!
   ) {
     updateAssortment(assortment: $assortment, assortmentId: $assortmentId) {
-      _id
+      ...AssortmentFragment
     }
   }
+  ${AssortmentFragment}
 `;
 
 const useUpdateAssortment = () => {
@@ -26,7 +28,6 @@ const useUpdateAssortment = () => {
         assortment: { isRoot, tags, sequence, isActive },
         assortmentId,
       },
-      refetchQueries: ['Assortment', 'Assortments'],
     });
   };
 

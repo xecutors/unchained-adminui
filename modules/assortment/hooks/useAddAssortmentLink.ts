@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentLinkFragment from '../fragments/AssortmentLinkFragment';
 
 const AddAssortmentLinkMutation = gql`
   mutation AddAssortmentLink(
@@ -11,9 +12,10 @@ const AddAssortmentLinkMutation = gql`
       childAssortmentId: $childAssortmentId
       tags: $tags
     ) {
-      _id
+      ...AssortmentLinkFragment
     }
   }
+  ${AssortmentLinkFragment}
 `;
 
 const useAddAssortmentLink = () => {
@@ -26,7 +28,7 @@ const useAddAssortmentLink = () => {
   }) => {
     return addAssortmentLinkMutation({
       variables: { parentAssortmentId, childAssortmentId, tags },
-      refetchQueries: ['AssortmentLinks', 'Assortment', 'Assortments'],
+      refetchQueries: ['AssortmentLinks'],
     });
   };
 

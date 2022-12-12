@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentMediaFragment from '../fragments/AssortmentMediaFragment';
 
 const AddAssortmentMediaMutation = gql`
   mutation AddAssortmentMedia($assortmentId: ID!, $media: Upload!) {
     addAssortmentMedia(assortmentId: $assortmentId, media: $media) {
-      _id
+      ...AssortmentMediaFragment
     }
   }
+  ${AssortmentMediaFragment}
 `;
 
 const useAddAssortmentMedia = () => {

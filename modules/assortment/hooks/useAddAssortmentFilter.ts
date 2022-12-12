@@ -24,7 +24,7 @@ const useAddAssortmentFilter = () => {
   const addAssortmentFilter = async ({ assortmentId, filterId, tags }) => {
     return addAssortmentFilterMutation({
       variables: { assortmentId, filterId, tags },
-      refetchQueries: ['AssortmentFilters', 'Assortment'],
+      refetchQueries: ['AssortmentFilters'],
     });
   };
 

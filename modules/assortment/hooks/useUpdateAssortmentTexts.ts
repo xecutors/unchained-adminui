@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import AssortmentTextsFragment from '../fragments/AssortmentTextsFragment';
 
 const UpdateAssortmentTextsMutation = gql`
   mutation updateAssortmentTexts(
@@ -6,9 +7,10 @@ const UpdateAssortmentTextsMutation = gql`
     $texts: [UpdateAssortmentTextInput!]!
   ) {
     updateAssortmentTexts(assortmentId: $assortmentId, texts: $texts) {
-      _id
+      ...AssortmentTextsFragment
     }
   }
+  ${AssortmentTextsFragment}
 `;
 
 const useUpdateAssortmentTexts = () => {
@@ -19,7 +21,6 @@ const useUpdateAssortmentTexts = () => {
   const updateAssortmentTexts = async ({ assortmentId, texts }) => {
     return updateAssortmentTextsMutation({
       variables: { assortmentId, texts },
-      refetchQueries: ['Assortments'],
     });
   };
 
