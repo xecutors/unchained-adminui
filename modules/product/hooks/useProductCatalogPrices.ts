@@ -1,13 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
-import ProductCatalogPricesFragment from '../fragments/ProductCatalogPricesFragment';
+import ProductCatalogPriceFragment from '../fragments/ProductCatalogPriceFragment';
 
 export const ProductCatalogPricesQuery = gql`
   query ProductCatalogPrices($productId: ID!) {
     productCatalogPrices(productId: $productId) {
-      ...ProductCatalogPricesFragment
+      ...ProductCatalogPriceFragment
     }
   }
-  ${ProductCatalogPricesFragment}
+  ${ProductCatalogPriceFragment}
 `;
 
 const useProductCatalogPrices = ({ productId }) => {

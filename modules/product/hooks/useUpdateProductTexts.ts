@@ -19,7 +19,7 @@ const useUpdateProductTexts = () => {
   const updateProductTexts = async ({ productId, texts }) => {
     return updateProductTextsMutation({
       variables: { productId, texts },
-      refetchQueries: ['Products'],
+      refetchQueries: ['Product'],
     });
   };
 

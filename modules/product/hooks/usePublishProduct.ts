@@ -1,12 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 const PublishProductMutation = gql`
   mutation PublishProduct($productId: ID!) {
     publishProduct(productId: $productId) {
-      _id
-      status
+      ...ProductDetailFragment
     }
   }
+  ${ProductDetailFragment}
 `;
 
 const usePublishProduct = () => {

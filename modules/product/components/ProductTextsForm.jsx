@@ -170,7 +170,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                     defaultMessage: 'Labels',
                   })}
                   autoComplete="on"
-                  className="text-sm font-medium text-slate-500"
+                  className="text-sm font-medium"
                 />
               </div>
             </div>

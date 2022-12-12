@@ -7,6 +7,10 @@ const UpdateProductWarehousingMutation = gql`
   ) {
     updateProductWarehousing(productId: $productId, warehousing: $warehousing) {
       _id
+      ... on SimpleProduct {
+        sku
+        baseUnit
+      }
     }
   }
 `;

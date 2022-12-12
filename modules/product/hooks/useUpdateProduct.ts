@@ -1,11 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 const UpdateProductMutation = gql`
   mutation UpdateProduct($productId: ID!, $product: UpdateProductInput!) {
     updateProduct(productId: $productId, product: $product) {
-      _id
+      ...ProductDetailFragment
     }
   }
+  ${ProductDetailFragment}
 `;
 
 const useUpdateProduct = () => {
@@ -21,7 +23,6 @@ const useUpdateProduct = () => {
           meta,
         },
       },
-      refetchQueries: ['Product', 'Products'],
     });
   };
 

@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import ProductDimensionFragment from '../fragments/ProductDimensionFragment';
 
 const UpdateProductSupplyMutation = gql`
   mutation UpdateProductSupply(
@@ -7,8 +8,14 @@ const UpdateProductSupplyMutation = gql`
   ) {
     updateProductSupply(productId: $productId, supply: $supply) {
       _id
+      ... on SimpleProduct {
+        dimensions {
+          ...ProductDimensionFragment
+        }
+      }
     }
   }
+  ${ProductDimensionFragment}
 `;
 
 const useUpdateProductSupply = () => {
