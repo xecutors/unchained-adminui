@@ -694,6 +694,7 @@ export const RemoveEmailResponse = {
   data: {
     removeEmail: {
       _id: 'SIgmXcECVYiDTVeh0',
+      userId: 'SIgmXcECVYiDTVeh0',
       emails: [
         {
           verified: false,

@@ -196,6 +196,7 @@ describe('Account', () => {
           req.reply(CurrentUserResponse);
         }
       });
+      cy.get('#account').first().click();
     });
 
     it('Should [UPDATE PASSWORD] successfully', () => {
@@ -293,6 +294,7 @@ describe('Account', () => {
           req.reply(CurrentUserResponse);
         }
       });
+      cy.get('#account').first().click();
     });
     it('Should [SEND VERIFICATION EMAIL] button is visible successfully', () => {
       cy.get('a#send_verification_mail')
@@ -337,6 +339,7 @@ describe('Account', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             email: currentUser?.email,
+            userId: currentUser._id,
           });
           expect(response.body).to.deep.eq(RemoveEmailResponse);
         },
@@ -358,6 +361,7 @@ describe('Account', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             email: currentUser?.email,
+            userId: currentUser?._id,
           });
           expect(response.body).to.deep.eq(AddEmailResponse);
         },
@@ -391,7 +395,7 @@ describe('Account', () => {
           req.reply(CurrentUserResponse);
         }
       });
-
+      cy.get('#account').first().click();
       cy.get('button[role="switch"]').click();
 
       cy.wait(
@@ -482,6 +486,7 @@ describe('Account', () => {
         }
       });
       cy.visit('/account');
+      cy.get('#account').first().click();
     });
     it('Should [DISABLE TOTP] successfully', () => {
       cy.get('input#code').type('213746');
