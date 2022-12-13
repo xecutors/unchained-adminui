@@ -1,9 +1,3 @@
-import getConfig from 'next/config';
-
-const {
-  publicRuntimeConfig: { publicGraphQLEndpoint },
-} = getConfig();
-
 const useFormatPrice = () => {
   const formatPrice = (price: { currency: string; amount: number }) => {
     if (!price?.currency || !price?.amount) return '';
@@ -102,7 +96,9 @@ const normalizeQuery = (
 };
 
 export const getDefaultEndpoint = () => {
-  return publicGraphQLEndpoint || 'http://localhost:4010/graphql';
+  return (
+    process.env?.NEXT_PUBLIC_GRAPHQL_ENDPOINT || 'http://localhost:4010/graphql'
+  );
 };
 
 export const setEndpoint = (endpoint: string): string | null => {
