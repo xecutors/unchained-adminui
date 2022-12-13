@@ -292,14 +292,6 @@ describe('User', () => {
       ),
     );
 
-    cy.get('label[for="birthday"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_invalid_date,
-        localizations.en.birthday,
-      ),
-    );
-
     cy.get('input[type="submit"]')
       .contains(localizations.en.save)
       .should('be.disabled');

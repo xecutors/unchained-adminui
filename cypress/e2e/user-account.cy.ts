@@ -430,7 +430,7 @@ describe('User', () => {
 
     it('Should [UPDATE PASSWORD] successfully', () => {
       cy.get('input#oldPassword').type('password');
-      cy.get('input#newPassword').type('password');
+      cy.get('input#newPassword').type('password1');
       cy.get('input[type="submit"]')
         .contains(localizations.en.change_password)
         .click();
@@ -440,9 +440,8 @@ describe('User', () => {
           const { request, response } = currentSubject;
 
           expect(request.body.variables).to.deep.eq({
-            newPassword: null,
-            newPlainPassword: 'password',
-            userId: user._id,
+            newPassword: 'password1',
+            oldPassword: 'password',
           });
           expect(response.body).to.deep.eq(SetPasswordResponse);
         },
