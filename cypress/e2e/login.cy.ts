@@ -86,7 +86,6 @@ describe('Login', () => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         email: 'admin@unchained.local',
-        password: null,
         plainPassword: 'correct',
         username: null,
       });
@@ -131,7 +130,6 @@ describe('Login', () => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         email: 'admin@unchained.local',
-        password: null,
         plainPassword: 'wrong-password',
         username: null,
       });

@@ -4,7 +4,7 @@ import ProductDetailFragment from '../fragments/ProductDetailFragment';
 const CreateProductMutation = gql`
   mutation CreateProduct($product: CreateProductInput!) {
     createProduct(product: $product) {
-      ...ProductFragment
+      ...ProductDetailFragment
     }
   }
   ${ProductDetailFragment}
