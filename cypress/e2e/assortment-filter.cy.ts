@@ -249,16 +249,6 @@ describe('Assortment Detail Filters', () => {
       },
     );
 
-    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(SingleAssortmentResponse);
-      },
-    );
-
     cy.wait(fullAliasName(AssortmentOperation.AssortmentFilters)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -301,16 +291,6 @@ describe('Assortment Detail Filters', () => {
           assortmentFilterId: filterAssignments[0]._id,
         });
         expect(response.body).to.deep.eq(RemoveAssortmentFilterResponse);
-      },
-    );
-
-    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
     );
 

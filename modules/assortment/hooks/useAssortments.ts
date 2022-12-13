@@ -52,6 +52,7 @@ const useAssortments = ({
   forceLocale = '',
 } = {}) => {
   const { data, loading, error } = useQuery(AssortmentsQuery, {
+    fetchPolicy: 'cache-first',
     variables: {
       queryString,
       tags,

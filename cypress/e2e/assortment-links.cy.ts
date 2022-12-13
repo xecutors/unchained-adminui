@@ -6,6 +6,7 @@ import {
   AssortmentLinksResponse,
   AssortmentListResponse,
   AssortmentOperation,
+  AssortmentPathsResponse,
   assortmentRequestVariables,
   RemoveAssortmentLinkResponse,
   SingleAssortmentResponse,
@@ -61,6 +62,11 @@ describe('Assortment Detail Links', () => {
       if (hasOperationName(req, AssortmentOperation.RemoveAssortmentLink)) {
         aliasMutation(req, AssortmentOperation.RemoveAssortmentLink);
         req.reply(RemoveAssortmentLinkResponse);
+      }
+
+      if (hasOperationName(req, AssortmentOperation.GetAssortmentPaths)) {
+        aliasQuery(req, AssortmentOperation.GetAssortmentPaths);
+        req.reply(AssortmentPathsResponse);
       }
     });
 
@@ -186,6 +192,7 @@ describe('Assortment Detail Links', () => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           ...assortmentFilterQuery,
+          includeLeaves: true,
           queryString: 's',
         });
         expect(response.body).to.deep.eq(AssortmentListResponse);
@@ -228,16 +235,6 @@ describe('Assortment Detail Links', () => {
           tags: [],
         });
         expect(response.body).to.deep.eq(AddAssortmentLinkResponse);
-      },
-    );
-
-    cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentId: assortment._id,
-        });
-        expect(response.body).to.deep.eq(SingleAssortmentResponse);
       },
     );
 
