@@ -11,7 +11,6 @@ import {
   UpdateAssortmentResponse,
   UpdateAssortmentTextsResponse,
 } from '../mock/assortment';
-import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import formatDateTime from '../utils/formatDateTime';

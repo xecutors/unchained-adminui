@@ -91,6 +91,7 @@ describe('Currencies', () => {
       });
     });
     cy.get('button[role="switch"]').click();
+    cy.wait(50);
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/currency');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -123,7 +124,7 @@ describe('Currencies', () => {
       });
     });
     cy.get('input[type="search"]').type(' input');
-
+    cy.wait(100);
     cy.wait(fullAliasName(CurrencyOperations.GetCurrencyList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -200,6 +201,7 @@ describe('Currencies', () => {
           currency: {
             isoCode: 'de',
             contractAddress: null,
+            decimals: 2,
           },
         });
         expect(currentSubject.response.body).to.deep.eq(CreateCurrencyResponse);
@@ -231,6 +233,7 @@ describe('Currencies', () => {
           currency: {
             isoCode: 'de',
             contractAddress: '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
+            decimals: 2,
           },
         });
         expect(currentSubject.response.body).to.deep.eq(CreateCurrencyResponse);
@@ -319,6 +322,7 @@ describe('Currencies', () => {
             contractAddress: '0x26b3E189B7DEE08EB86cCc698abc9D33980e39c6',
             isoCode: currency.isoCode,
             isActive: currency.isActive,
+            decimals: currency.decimals,
           },
           currencyId: currency._id,
         });

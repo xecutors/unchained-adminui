@@ -1,9 +1,9 @@
 import localizations from '../../i18n';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
 import {
+  AssortmentChildrenResponse,
   AssortmentListResponse,
   AssortmentOperation,
-  AssortmentPathsResponse,
   assortmentRequestVariables,
   CreateAssortmentResponse,
   SingleAssortmentResponse,
@@ -24,9 +24,9 @@ describe('Assortment', () => {
         aliasQuery(req, AssortmentOperation.GetAssortmentList);
         req.reply(AssortmentListResponse);
       }
-      if (hasOperationName(req, AssortmentOperation.GetAssortmentPaths)) {
-        aliasQuery(req, AssortmentOperation.GetAssortmentPaths);
-        req.reply(AssortmentPathsResponse);
+      if (hasOperationName(req, AssortmentOperation.GetAssortmentChildren)) {
+        aliasQuery(req, AssortmentOperation.GetAssortmentChildren);
+        req.reply(AssortmentChildrenResponse);
       }
       if (hasOperationName(req, AssortmentOperation.GetSingleAssortment)) {
         aliasQuery(req, AssortmentOperation.GetSingleAssortment);
@@ -141,14 +141,14 @@ describe('Assortment', () => {
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
 
-    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentChildren)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           includeInactive: true,
           includeLeaves: false,
         });
-        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+        expect(response.body).to.deep.eq(AssortmentChildrenResponse);
       },
     );
 
@@ -170,14 +170,14 @@ describe('Assortment', () => {
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
 
-    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentChildren)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           includeInactive: true,
           includeLeaves: false,
         });
-        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+        expect(response.body).to.deep.eq(AssortmentChildrenResponse);
       },
     );
 
@@ -200,14 +200,14 @@ describe('Assortment', () => {
       .contains(localizations.en.display_as_graph)
       .click({ force: true });
 
-    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentChildren)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           includeInactive: true,
           includeLeaves: false,
         });
-        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+        expect(response.body).to.deep.eq(AssortmentChildrenResponse);
       },
     );
 
@@ -221,14 +221,14 @@ describe('Assortment', () => {
       .contains(localizations.en.include_inactive)
       .click({ force: true });
 
-    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentPaths)).then(
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentChildren)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
           includeInactive: false,
           includeLeaves: false,
         });
-        expect(response.body).to.deep.eq(AssortmentPathsResponse);
+        expect(response.body).to.deep.eq(AssortmentChildrenResponse);
       },
     );
 
@@ -374,14 +374,6 @@ describe('Assortment', () => {
           assortmentId: _id,
         });
         expect(response.body).to.deep.eq(UpdateAssortmentResponse);
-      },
-    );
-
-    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq(assortmentRequestVariables);
-        expect(response.body).to.deep.eq(AssortmentListResponse);
       },
     );
 

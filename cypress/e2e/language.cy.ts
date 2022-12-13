@@ -88,6 +88,7 @@ describe('Languages', () => {
     });
 
     cy.get('button[role="switch"]').click();
+    cy.wait(100);
 
     cy.location().then((loc) => {
       expect(loc.pathname).to.eq('/language');

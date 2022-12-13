@@ -615,7 +615,7 @@ describe('Filter', () => {
           expect(request.body.variables).to.deep.eq({
             filterId: SingleFilterResponse.data.filter._id,
             filterOptionValue:
-              FilterOptionsResponse.data.filter.options[0].value,
+              SingleFilterResponse.data.filter.options[0].value,
           });
           expect(response.body).to.deep.eq(RemoveFilterOptionResponse);
         },

@@ -134,6 +134,65 @@ export const AssortmentListResponse = {
   },
 };
 
+export const AssortmentChildrenResponse = {
+  data: {
+    assortments: [
+      {
+        _id: '7f85efeede24415b3348697a',
+        texts: {
+          _id: '8ca135ed6a4d7d807c0b6765',
+          slug: 'test-new-assortment',
+          title: 'test new assortment',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 0,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: '9c4fbb24026edd32b184cb75',
+        texts: {
+          _id: '3c6d7728f7fd7326b479c779',
+          slug: 'assortment-again',
+          title: 'assortment again',
+          subtitle: 'updated assortment again',
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 0,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: '1b3b448f2d9433181a134491',
+        texts: {
+          _id: 'baab931f549b453f0545cbf9',
+          slug: 'a',
+          title: 'a',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 0,
+        __typename: 'Assortment',
+        children: [],
+      },
+      {
+        _id: '87e7aa1db0755c3963eb57cb',
+        texts: {
+          _id: '367587c908a2f0ef940fce92',
+          slug: 'gagaga',
+          title: 'gagaga',
+          subtitle: null,
+          __typename: 'AssortmentTexts',
+        },
+        childrenCount: 0,
+        __typename: 'Assortment',
+        children: [],
+      },
+    ],
+  },
+};
+
 export const TranslatedAssortmentTextsResponse = {
   data: {
     translatedAssortmentTexts: [
@@ -1024,6 +1083,7 @@ export const assortmentRequestVariables = {
 
 export const AssortmentOperation = {
   GetAssortmentList: 'Assortments',
+  GetAssortmentChildren: 'AssortmentChildren',
   GetSingleAssortment: 'Assortment',
   GetAssortmentPaths: 'AssortmentPaths',
   GetTranslatedTexts: 'TranslatedAssortmentTexts',
