@@ -11,6 +11,7 @@ import {
   UpdateAssortmentResponse,
   UpdateAssortmentTextsResponse,
 } from '../mock/assortment';
+import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import formatDateTime from '../utils/formatDateTime';
@@ -200,16 +201,6 @@ describe('Assortment Detail Texts', () => {
         },
       );
 
-      cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            assortmentId: assortment._id,
-          });
-          expect(response.body).to.deep.eq(SingleAssortmentResponse);
-        },
-      );
-
       cy.location('pathname').should(
         'eq',
         `/assortments/${generateUniqueId(assortment)}`,
@@ -224,9 +215,11 @@ describe('Assortment Detail Texts', () => {
       cy.get('input#slug').should('have.value', firstText.slug);
       cy.get('input#title').should('have.value', firstText.title);
       cy.get('input#subtitle').should('have.value', firstText.subtitle);
-      cy.get('div.ql-editor').within(() => {
-        cy.get('p').should('contain.text', firstText.description);
-      });
+      cy.get('input#subtitle').should('have.value', firstText.subtitle);
+      cy.get('textarea#description').should(
+        'have.value',
+        firstText.description,
+      );
 
       cy.location('pathname').should(
         'eq',
@@ -243,9 +236,10 @@ describe('Assortment Detail Texts', () => {
       cy.get('input#slug').should('have.value', secondText.slug);
       cy.get('input#title').should('have.value', secondText.title);
       cy.get('input#subtitle').should('have.value', secondText.subtitle);
-      cy.get('div.ql-editor').within(() => {
-        cy.get('p').should('contain.text', secondText.description);
-      });
+      cy.get('textarea#description').should(
+        'have.value',
+        secondText.description,
+      );
 
       cy.location('pathname').should(
         'eq',
@@ -510,20 +504,6 @@ describe('Assortment Detail Texts', () => {
         },
       );
 
-      cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            assortmentId: assortment._id,
-          });
-          expect(response.body).to.deep.eq({
-            data: {
-              assortment,
-            },
-          });
-        },
-      );
-
       cy.location('pathname').should(
         'eq',
         `/assortments/${generateUniqueId(assortment)}`,
@@ -603,20 +583,6 @@ describe('Assortment Detail Texts', () => {
           expect(currentSubject.response.body).to.deep.eq(
             UpdateAssortmentResponse,
           );
-        },
-      );
-
-      cy.wait(fullAliasName(AssortmentOperation.GetSingleAssortment)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            assortmentId: assortment._id,
-          });
-          expect(response.body).to.deep.eq({
-            data: {
-              assortment,
-            },
-          });
         },
       );
 

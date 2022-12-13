@@ -242,19 +242,6 @@ describe('Assortment Detail Media', () => {
         expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
       },
     );
-
-    cy.wait(fullAliasName(AssortmentOperation.GetMediaTexts)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentMediaId:
-            AssortmentMediaResponse.data.assortment.media[0]._id,
-        });
-        expect(response.body).to.deep.eq(
-          TranslatedAssortmentMediaTextsResponse,
-        );
-      },
-    );
   });
 
   it('Should [UPDATE WITH SELECTED LOCALE] media texts successfully', () => {
@@ -282,19 +269,6 @@ describe('Assortment Detail Media', () => {
           },
         });
         expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
-      },
-    );
-
-    cy.wait(fullAliasName(AssortmentOperation.GetMediaTexts)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          assortmentMediaId:
-            AssortmentMediaResponse.data.assortment.media[0]._id,
-        });
-        expect(response.body).to.deep.eq(
-          TranslatedAssortmentMediaTextsResponse,
-        );
       },
     );
   });
