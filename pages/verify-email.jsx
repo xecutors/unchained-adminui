@@ -41,7 +41,7 @@ const VerifyEmail = () => {
       }
     };
     if (query.token) verify();
-  }, [query.token, verifyEmail, formatMessage, result]);
+  }, [query.token]);
 
   if (result.success === null) return <Loading />;
   return (
