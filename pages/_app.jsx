@@ -25,6 +25,7 @@ import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
+import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
 
 const handleRouteChange = async (url) => {
   const apolloClient = initializeApollo();
@@ -112,20 +113,22 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
             key="intl-provider"
           >
             <AuthWrapper>
-              <ThemeWrapper>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  newestOnTop={false}
-                  closeOnClick
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                />
-                <ModalWrapper>
-                  {getLayout(<Component {...pageProps} />)}
-                </ModalWrapper>
-              </ThemeWrapper>
+              <UnchainedContextWrapper>
+                <ThemeWrapper>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
+                  <ModalWrapper>
+                    {getLayout(<Component {...pageProps} />)}
+                  </ModalWrapper>
+                </ThemeWrapper>
+              </UnchainedContextWrapper>
             </AuthWrapper>
           </IntlWrapper>
         </ApolloProvider>

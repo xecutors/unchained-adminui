@@ -10,12 +10,10 @@ import ACTION_ROLES from '../modules/common/data/roles';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
 import useAuth from '../modules/Auth/useAuth';
-import useIntrospection from '../modules/common/hooks/useIntrospection';
 
 const Home = () => {
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
-  useIntrospection();
 
   useEffect(() => {
     if (

@@ -24,6 +24,12 @@ export const ShopInfoQuery = gql`
         href
         title
       }
+      adminUiConfig {
+        customProperties {
+          entityName
+          inlineFragment
+        }
+      }
     }
   }
 `;
