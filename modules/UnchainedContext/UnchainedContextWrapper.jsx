@@ -9,7 +9,13 @@ const UnchainedContextWrapper = ({ children }) => {
     <UnchainedContext.Provider
       value={useMemo(() => {
         return {
-          customProperties: shopInfo?.adminUiConfig?.customProperties,
+          customProperties: shopInfo?.adminUiConfig?.customProperties?.reduce(
+            (prev, { entityName, inlineFragment }) => ({
+              ...prev,
+              [entityName]: inlineFragment,
+            }),
+            {},
+          ),
         };
       }, [shopInfo])}
     >
