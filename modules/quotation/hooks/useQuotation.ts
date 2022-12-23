@@ -1,15 +1,15 @@
 import { useQuery, gql } from '@apollo/client';
-import QuotationFragment from '../fragments/QuotationFragment';
+import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 export const QuotationsQuery = gql`
   query quotation($quotationId: ID!) {
     quotation(quotationId: $quotationId) {
       _id
-      ...QuotationFragment
+      ...QuotationDetailFragment
     }
     quotationsCount
   }
-  ${QuotationFragment}
+  ${QuotationDetailFragment}
 `;
 
 const useQuotation = ({ quotationId }) => {

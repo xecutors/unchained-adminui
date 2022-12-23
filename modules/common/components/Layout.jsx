@@ -108,6 +108,24 @@ const Layout = ({
       requiredRole: 'viewUsers',
     },
     {
+      name: formatMessage({
+        id: 'quotations',
+        defaultMessage: 'Quotations',
+      }),
+      href: '/quotations',
+
+      requiredRole: 'viewQuotations',
+    },
+    {
+      name: formatMessage({
+        id: 'enrollments',
+        defaultMessage: 'Enrollments',
+      }),
+
+      href: '/enrollments',
+      requiredRole: 'viewEnrollments',
+    },
+    {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
       icon: CogIcon,
       children: [
@@ -172,20 +190,6 @@ const Layout = ({
           href: '/events',
           requiredRole: ACTION_ROLES.events.view,
         },
-        // {
-        //   name: formatMessage({
-        //     id: 'quotations',
-        //     defaultMessage: 'Quotations',
-        //   }),
-        //   href: '/quotations',
-        // },
-        // {
-        //   name: formatMessage({
-        //     id: 'enrollments',
-        //     defaultMessage: 'Enrollments',
-        //   }),
-        //   href: '/enrollments',
-        // },
       ],
     },
     {

@@ -7,7 +7,7 @@ const VerifyQuotationMutation = gql`
       quotationId: $quotationId
       quotationContext: $quotationContext
     ) {
-      QuotationDetailFragment
+      ...QuotationDetailFragment
     }
   }
   ${QuotationDetailFragment}

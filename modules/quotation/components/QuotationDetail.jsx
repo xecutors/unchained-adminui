@@ -1,22 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 
+import { XIcon } from '@heroicons/react/solid';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
-import AlertMessage from '../../modal/components/AlertMessage';
+
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
 import JSONAreaField from '../../forms/components/JSONAreaField';
 import Form from '../../forms/components/Form';
 import useForm from '../../forms/hooks/useForm';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
-import DangerMessage from '../../modal/components/DangerMessage';
 import useRejectQuotation from '../hooks/useRejectQuotation';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import QuotationConfigurationForm from './QuotationConfigurationForm';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -28,60 +28,56 @@ const QuotationDetail = ({ quotation }) => {
 
   const onVerify = async () => {
     await setModal(
-      <AlertMessage
-        buttonText={formatMessage({
-          id: 'verify_alert_button',
-          defaultMessage: 'Verify',
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await VerifyQuotation({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
+
+          setModal('');
+        }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-verified-successfully',
+          defaultMessage: 'Quotation verified successfully',
         })}
         headerText={formatMessage({
-          id: 'verify_alert_header',
+          id: 'verify-quotation-quotation',
           defaultMessage: 'Verify quotation?',
         })}
-        onOkClick={async () => {
-          setModal('');
-          await VerifyQuotation({ id: quotation._id });
-          toast.success(
-            formatMessage(
-              {
-                id: 'success',
-                defaultMessage: 'Quotation {id} verified successfully',
-              },
-              {
-                id: quotation._id,
-              },
-            ),
-          );
-        }}
       />,
     );
   };
 
   const onReject = async () => {
     await setModal(
-      <DangerMessage
-        buttonText={formatMessage({
-          id: 'reject_alert_button',
-          defaultMessage: 'Reject',
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await rejectQuotation({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
+          setModal('');
+        }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-rejection-successfully',
+          defaultMessage: 'Quotation rejected successfully',
         })}
         headerText={formatMessage({
-          id: 'Reject_alert_header',
+          id: 'reject-quotation-quotation',
           defaultMessage: 'Reject quotation?',
         })}
-        onOkClick={async () => {
-          setModal('');
-          await rejectQuotation({ id: quotation._id });
-          toast.success(
-            formatMessage(
-              {
-                id: 'reject_alert_success',
-                defaultMessage: 'Reject {id} verified successfully',
-              },
-              {
-                id: quotation._id,
-              },
-            ),
-          );
-        }}
+        icon={
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+            <XIcon className="h-6 w-6 text-red-600" />
+          </div>
+        }
       />,
     );
   };
@@ -118,7 +114,7 @@ const QuotationDetail = ({ quotation }) => {
           <Button
             text="Reject"
             onClick={onReject}
-            className="rounded-md text-base"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
           />
         ),
     },
@@ -131,7 +127,11 @@ const QuotationDetail = ({ quotation }) => {
 
   const form = useForm({
     initialValues: {
-      configuration: JSON.stringify(quotation.configuration || {}, null, 2),
+      configuration: JSON.stringify(
+        (quotation.configuration || []).map(({ __typename, ...rest }) => rest),
+        null,
+        2,
+      ),
     },
   });
 

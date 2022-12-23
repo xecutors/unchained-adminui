@@ -16,7 +16,10 @@ const QuotationDetailFragment = gql`
         address
       }
     }
-    configuration
+    configuration {
+      key
+      value
+    }
     country {
       _id
       isoCode
