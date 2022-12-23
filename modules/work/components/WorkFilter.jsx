@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 
 import MultipleSelect from '../../common/components/MultipleSelect';
+import StatusFilter from '../../common/components/StatusFilter';
 import { extractQuery } from '../../common/utils/normalizeFilterKeys';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { normalizeQuery } from '../../common/utils/utils';
@@ -28,39 +29,16 @@ const WorkFilter = ({ workTypes = [] }) => {
     }
   };
 
-  const statusChangeHandler = (e) => {
+  const onStatusChange = (currentStatuses) => {
     const { status, ...rest } = router.query;
-
-    if (e.target.checked) {
-      const newStatus = [...extractQuery(status), e.target.name];
-      const newStatusValue =
-        newStatus.length === 1 && e.target.value === 'DELETED'
-          ? WORK_STATUSES.join(',')
-          : newStatus?.join(',');
-
+    if (currentStatuses?.length)
       router.push({
-        query: normalizeQuery(rest, newStatusValue, 'status'),
+        query: normalizeQuery(rest, currentStatuses, 'status'),
       });
-    } else {
-      const newStatus = [...extractQuery(status)].filter(
-        (v) => v !== e.target.value,
-      );
-
-      if (newStatus.length)
-        router.push({
-          query: normalizeQuery(router.query, newStatus?.join(','), 'status'),
-        });
-      // initial query or to replicate the behavior in the engine when no status is selected
-      else {
-        const newWorkerStatus = WORK_STATUSES.filter(
-          (stat) => stat !== e.target.value && stat !== 'DELETED',
-        ).join(',');
-
-        router.push({
-          query: normalizeQuery(rest, newWorkerStatus, 'status'),
-        });
-      }
-    }
+    else
+      router.push({
+        query: rest,
+      });
   };
 
   return (
@@ -181,40 +159,16 @@ const WorkFilter = ({ workTypes = [] }) => {
         </div>
       </div>
       <hr className="my-4 hidden w-full bg-slate-200 dark:bg-slate-700 sm:block" />
-
       <div>
         <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
         <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
-          {WORK_STATUSES.map((status) => (
-            <div
-              className="inline-flex items-center rounded-md bg-white dark:bg-slate-800 py-2 px-4 text-sm font-medium text-indigo-800 shadow-sm dark:shadow-none"
-              key={status}
-            >
-              <input
-                className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
-                type="checkbox"
-                id={status}
-                name={status}
-                value={status}
-                checked={
-                  extractQuery(router.query?.status).includes(status) ||
-                  (extractQuery(router.query?.status).length === 0 &&
-                    status !== 'DELETED')
-                }
-                onChange={statusChangeHandler}
-              />
-              <div className="ml-2">
-                <label
-                  className="text-sm text-slate-600 dark:text-slate-200"
-                  htmlFor={status}
-                >
-                  {status}
-                </label>
-              </div>
-            </div>
-          ))}
+          <StatusFilter
+            onStatusChange={onStatusChange}
+            selectedStatuses={router.query.status}
+            statuses={WORK_STATUSES}
+          />
         </div>
       </div>
     </>
