@@ -28,8 +28,8 @@ const DetailHeader = ({ user, contact }) => {
             loader={defaultNextImageLoader}
             src={user.avatar.url}
             alt={user.name || user.username}
-            width={8}
-            height={8}
+            width={100}
+            height={100}
             placeholder="blur"
             blurDataURL="/no-image.jpg"
           />

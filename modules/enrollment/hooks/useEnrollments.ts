@@ -7,12 +7,14 @@ export const EnrollmentsQuery = gql`
     $limit: Int
     $queryString: String
     $sort: [SortOptionInput!]
+    $status: [String!]
   ) {
     enrollments(
       offset: $offset
       limit: $limit
       queryString: $queryString
       sort: $sort
+      status: $status
     ) {
       ...EnrollmentFragment
     }
@@ -26,18 +28,17 @@ const useEnrollments = ({
   offset = 0,
   queryString = '',
   sort = [],
+  status = null,
 } = {}) => {
   const { data, loading, error } = useQuery(EnrollmentsQuery, {
-    variables: { limit, offset, queryString, sort },
+    variables: { limit, offset, queryString, sort, status },
   });
   const enrollments = data?.enrollments || [];
   const enrollmentsCount = data?.enrollmentsCount;
-  const hasMore = enrollments?.length < enrollmentsCount;
 
   return {
     enrollments,
     enrollmentsCount,
-    hasMore,
     loading,
     error,
   };

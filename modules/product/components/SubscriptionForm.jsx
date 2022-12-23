@@ -100,7 +100,7 @@ const SubscriptionForm = ({ productId }) => {
           <div className="relative max-w-full space-y-6 rounded-md sm:p-6">
             <SelectField
               required
-              className="mt-2.5 w-full py-1.5 text-sm font-medium"
+              className="mt-2.5 w-full py-1.5 text-sm font-medium text-slate-500"
               label={formatMessage({
                 id: 'usage_calculation_type',
                 defaultMessage: 'Usage calculation type',

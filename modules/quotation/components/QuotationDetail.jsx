@@ -9,15 +9,14 @@ import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import Form from '../../forms/components/Form';
-import useForm from '../../forms/hooks/useForm';
+
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
 import useRejectQuotation from '../hooks/useRejectQuotation';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import QuotationConfigurationForm from './QuotationConfigurationForm';
 import useMakeQuotationProposal from '../hooks/useMakeQuotationProposal';
+import JSONView from '../../common/components/JSONView';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -164,16 +163,6 @@ const QuotationDetail = ({ quotation }) => {
     },
   };
 
-  const form = useForm({
-    initialValues: {
-      configuration: JSON.stringify(
-        (quotation.configuration || []).map(({ __typename, ...rest }) => rest),
-        null,
-        2,
-      ),
-    },
-  });
-
   return (
     <>
       <QuotationDetailHeader quotation={quotation} />
@@ -207,23 +196,17 @@ const QuotationDetail = ({ quotation }) => {
               <p className="mt-3 text-slate-500">
                 {quotation.product?.description}
               </p>
-              <Form form={form} className="mr-4 pb-4">
-                <JSONAreaField
-                  disabled
-                  id="configuration"
-                  name="configuration"
-                  value={form.formik.values.configuration}
-                  rows={Math.max(
-                    (form.formik.values.configuration?.split(' ') || [])
-                      .length / 2,
-                    5,
-                  )}
-                  label={formatMessage({
-                    id: 'configuration',
-                    defaultMessage: 'Configuration',
-                  })}
-                />
-              </Form>
+
+              <JSONView
+                disabled
+                value={JSON.stringify(
+                  (quotation.configuration || []).map(
+                    ({ __typename, ...rest }) => rest,
+                  ),
+                  null,
+                  2,
+                )}
+              />
             </div>
           </div>
         </div>
