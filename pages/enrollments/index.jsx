@@ -14,8 +14,9 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
-import { extractQuery } from '../../modules/common/utils/normalizeFilterKeys';
+
 import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
+import StatusFilter from '../../modules/common/components/StatusFilter';
 
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
@@ -54,39 +55,16 @@ const EnrollmentListView = () => {
   const ENROLLMENT_STATUS =
     enrollmentStatusTypes?.map(({ value }) => value) || [];
 
-  const statusChangeHandler = (e) => {
+  const onStatusChange = (currentStatuses) => {
     const { status, ...rest } = query;
-
-    if (e.target.checked) {
-      const newStatus = [...extractQuery(status), e.target.name];
-      const newStatusValue =
-        newStatus.length === 1 && e.target.value === 'DELETED'
-          ? ENROLLMENT_STATUS.join(',')
-          : newStatus?.join(',');
-
+    if (currentStatuses?.length)
       push({
-        query: normalizeQuery(rest, newStatusValue, 'status'),
+        query: normalizeQuery(rest, currentStatuses, 'status'),
       });
-    } else {
-      const newStatus = [...extractQuery(status)].filter(
-        (v) => v !== e.target.value,
-      );
-
-      if (newStatus.length)
-        push({
-          query: normalizeQuery(query, newStatus?.join(','), 'status'),
-        });
-      // initial query or to replicate the behavior in the engine when no status is selected
-      else {
-        const newWorkerStatus = ENROLLMENT_STATUS.filter(
-          (stat) => stat !== e.target.value && stat !== 'DELETED',
-        ).join(',');
-
-        push({
-          query: normalizeQuery(rest, newWorkerStatus, 'status'),
-        });
-      }
-    }
+    else
+      push({
+        query: rest,
+      });
   };
 
   return (
@@ -109,32 +87,11 @@ const EnrollmentListView = () => {
           {formatMessage({ id: 'status', defaultMessage: 'Status' })}
         </p>
         <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
-          {ENROLLMENT_STATUS.map((status) => (
-            <div
-              className="inline-flex items-center rounded-md bg-white dark:bg-slate-800 py-2 px-4 text-sm font-medium text-indigo-800 shadow-sm dark:shadow-none"
-              key={status}
-            >
-              <input
-                className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
-                type="checkbox"
-                id={status}
-                name={status}
-                value={status}
-                checked={
-                  extractQuery(query?.status).includes(status) || !query?.status
-                }
-                onChange={statusChangeHandler}
-              />
-              <div className="ml-2">
-                <label
-                  className="text-sm text-slate-600 dark:text-slate-200"
-                  htmlFor={status}
-                >
-                  {status}
-                </label>
-              </div>
-            </div>
-          ))}
+          <StatusFilter
+            statuses={ENROLLMENT_STATUS}
+            onStatusChange={onStatusChange}
+            selectedStatuses={query?.status}
+          />
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">
