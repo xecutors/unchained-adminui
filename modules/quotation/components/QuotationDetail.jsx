@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import { XIcon } from '@heroicons/react/solid';
+import { MailIcon, XIcon } from '@heroicons/react/solid';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';
@@ -17,6 +17,7 @@ import QuotationDetailHeader from './QuotationDetailHeader';
 import useRejectQuotation from '../hooks/useRejectQuotation';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import QuotationConfigurationForm from './QuotationConfigurationForm';
+import useMakeQuotationProposal from '../hooks/useMakeQuotationProposal';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -25,6 +26,7 @@ const QuotationDetail = ({ quotation }) => {
   const { quotationStatusTypes } = useQuotationStatusTypes();
   const { VerifyQuotation } = useVerifyQuotation();
   const { rejectQuotation } = useRejectQuotation();
+  const { makeQuotationProposal } = useMakeQuotationProposal();
 
   const onVerify = async () => {
     await setModal(
@@ -82,6 +84,36 @@ const QuotationDetail = ({ quotation }) => {
     );
   };
 
+  const proposeQuote = async () => {
+    await setModal(
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await makeQuotationProposal({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
+          setModal('');
+        }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-quoted-successfully',
+          defaultMessage: 'Quoted successfully',
+        })}
+        headerText={formatMessage({
+          id: 'make-proposal-header',
+          defaultMessage: 'Make quotation proposal',
+        })}
+        icon={
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+            <MailIcon className="h-6 w-6 text-green-600" />
+          </div>
+        }
+      />,
+    );
+  };
+
   const timeline = {
     REQUESTED: {
       id: 1,
@@ -99,6 +131,13 @@ const QuotationDetail = ({ quotation }) => {
       id: 2,
       content: 'updated',
       visible: quotation.status === 'PROCESSING',
+      Component: quotation.status === 'PROCESSING' && (
+        <Button
+          text="Propose"
+          onClick={proposeQuote}
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+        />
+      ),
     },
     PROPOSED: {
       id: 3,
