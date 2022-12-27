@@ -206,6 +206,7 @@ const QuotationDetail = ({ quotation }) => {
                   null,
                   2,
                 )}
+                className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full rounded-md resize-none border-slate-200 dark:border-slate-800 sm:text-sm"
               />
             </div>
           </div>

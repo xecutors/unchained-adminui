@@ -10,7 +10,6 @@ import {
   UserIcon,
   LightningBoltIcon,
   MenuIcon,
-  CalendarIcon,
 } from '@heroicons/react/outline';
 import { LinkIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
@@ -128,7 +127,7 @@ const Layout = ({
       icon: QuotationIcon,
       requiredRole: 'viewQuotations',
     },
-    {
+    /* {
       name: formatMessage({
         id: 'enrollments',
         defaultMessage: 'Enrollments',
@@ -137,7 +136,7 @@ const Layout = ({
       href: '/enrollments',
       requiredRole: 'viewEnrollments',
       icon: CalendarIcon,
-    },
+    }, */
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
       icon: CogIcon,
