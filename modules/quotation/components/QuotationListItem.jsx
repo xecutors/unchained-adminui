@@ -21,17 +21,17 @@ const QuotationListItem = ({ quotation, showUser }) => {
   return (
     <Table.Row>
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm ">
           <Link href={`/quotations/${quotation._id}`}>
-            <a className="text-blue-600 dark:text-blue-400">
-              {quotation?.orderNumber || quotation._id?.substr(0, 10)}
+            <a className="font-medium text-blue-500 dark:text-blue-400">
+              {quotation?.quotationNumber || quotation._id?.substr(0, 10)}
             </a>
           </Link>
         </div>
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm ">
           {formatDateTime(quotation.created, {
             dateStyle: 'short',
             timeStyle: 'short',
@@ -40,49 +40,50 @@ const QuotationListItem = ({ quotation, showUser }) => {
       </Table.Cell>
 
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
-          {formatDateTime(quotation?.expires, {
-            dateStyle: 'short',
-            timeStyle: 'short',
-          })}
-
-          {!quotation.isExpired && (
+        <div className="flex items-center text-sm ">
+          {quotation.isExpired ? (
             <Badge
-              className="ml-1 p-1"
               text={formatMessage({
                 id: 'expired',
                 defaultMessage: 'Expired',
               })}
               color="red"
             />
+          ) : (
+            formatDateTime(quotation?.expires, {
+              dateStyle: 'short',
+              timeStyle: 'short',
+            })
           )}
         </div>
       </Table.Cell>
       {showUser && (
         <Table.Cell>
           <Link href={`/users/${quotation.user._id}`}>
-            <a className="flex text-blue-500 dark:text-blue-400">
+            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
               <Image
                 loader={defaultNextImageLoader}
                 src={quotation.user?.avatar?.url}
-                width={40}
+                width={20}
                 height={20}
                 placeholder="blur"
                 blurDataURL="/no-image.jpg"
               />
-              <span className="ml-2 self-end">{quotation.user?.username}</span>
+              <span className="font-medium ml-2">
+                {quotation.user?.username}
+              </span>
             </a>
           </Link>
         </Table.Cell>
       )}
       <Table.Cell>
-        <div className="flex items-center text-sm text-slate-900">
+        <div className="flex items-center text-sm ">
           <Link href={`/products/${generateUniqueId(quotation.product)}`}>
             <a className="flex text-blue-600 dark:text-blue-400">
               <Image
                 loader={defaultNextImageLoader}
                 src={quotation.product?.media[0]?.file?.url}
-                width={40}
+                width={20}
                 height={20}
                 placeholder="blur"
                 blurDataURL="/no-image.jpg"

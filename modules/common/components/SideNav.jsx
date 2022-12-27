@@ -20,10 +20,12 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
               'flex w-full dark:bg-slate-900 dark:hover:bg-slate-700 dark:text-slate-400 items-center rounded-md py-2 pl-2 pr-1 text-left text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-400',
             )}
           >
-            <item.icon
-              className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500"
-              aria-hidden="true"
-            />
+            {item?.icon && (
+              <item.icon
+                className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500"
+                aria-hidden="true"
+              />
+            )}
             <span className="flex-1 dark:text-slate-400">{item.name}</span>
             <svg
               className={classNames(
@@ -96,16 +98,20 @@ const SideNav = ({ navigation, onClick = () => true }) => {
                     },
                   )}
                 >
-                  <item.icon
-                    className={classNames(
-                      'mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500',
-                      {
-                        'text-indigo-500 ': router.asPath === item.href,
-                      },
-                    )}
-                    aria-hidden="true"
-                  />
-                  {item.name}
+                  {item?.icon && (
+                    <item.icon
+                      className={classNames(
+                        'mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500',
+                        {
+                          'text-indigo-500 ': router.asPath === item.href,
+                        },
+                      )}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span className="flex-1 dark:text-slate-400">
+                    {item.name}
+                  </span>
                 </a>
               </Link>
             </div>

@@ -9,9 +9,6 @@ import StatusProgress from '../../common/components/StatusProgress';
 import Accordion from '../../common/components/Accordion';
 import { getInterfaceLabel } from '../../common/utils/utils';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
-import Form from '../../forms/components/Form';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import useForm from '../../forms/hooks/useForm';
 import SubscriptionList from './SubscriptionList';
 import Button from '../../common/components/Button';
 import useActivateEnrollment from '../hooks/useActivateEnrollment';
@@ -21,6 +18,7 @@ import useTerminateEnrollment from '../hooks/useTerminateEnrollment';
 import useSendEnrollmentEmail from '../hooks/useSendEnrollmentEmail';
 import DangerMessage from '../../modal/components/DangerMessage';
 import EnrollmentDetailHeader from './EnrollmentDetailHeader';
+import JSONView from '../../common/components/JSONView';
 
 const EnrollmentDetail = ({ enrollment }) => {
   const { formatMessage } = useIntl();
@@ -88,16 +86,10 @@ const EnrollmentDetail = ({ enrollment }) => {
           setModal('');
           await sendEnrollmentEmail({ enrollmentId: enrollment._id });
           toast.success(
-            formatMessage(
-              {
-                id: 'terminate_enrollment_success',
-                defaultMessage:
-                  'Subscription {enrollmentId} terminated successfully',
-              },
-              {
-                enrollmentId: enrollment._id,
-              },
-            ),
+            formatMessage({
+              id: 'terminate_enrollment_success',
+              defaultMessage: 'Subscription terminated successfully',
+            }),
           );
         }}
       />,
@@ -116,16 +108,10 @@ const EnrollmentDetail = ({ enrollment }) => {
           setModal('');
           await terminateEnrollment({ enrollmentId: enrollment._id });
           toast.success(
-            formatMessage(
-              {
-                id: 'terminate_enrollment_success',
-                defaultMessage:
-                  'Subscription {enrollmentId} terminated successfully',
-              },
-              {
-                enrollmentId: enrollment._id,
-              },
-            ),
+            formatMessage({
+              id: 'terminate_enrollment_success',
+              defaultMessage: 'Subscription terminated successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -155,7 +141,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         <Button
           text="Activate"
           onClick={onActivateEnrollment}
-          className="rounded-md text-base"
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
         />
       ),
     },
@@ -170,7 +156,7 @@ const EnrollmentDetail = ({ enrollment }) => {
             defaultMessage: 'Terminate Enrollment',
           })}
           onClick={onTerminateEnrollment}
-          className="rounded-md border-red-500 bg-red-500 text-base hover:bg-red-700 focus:border-red-500 focus:outline-none focus:ring-0 focus:ring-red-500"
+          className="bg-white-300  inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
         />
       ),
     },
@@ -191,17 +177,6 @@ const EnrollmentDetail = ({ enrollment }) => {
     body: <SubscriptionList periods={enrollment.periods} />,
   };
 
-  const form = useForm({
-    initialValues: {
-      configuration: JSON.stringify(
-        enrollment.plan.configuration || {},
-        null,
-        2,
-      ),
-      length: enrollment.plan.configuration,
-    },
-  });
-
   return (
     <>
       <EnrollmentDetailHeader enrollment={enrollment} />
@@ -217,21 +192,12 @@ const EnrollmentDetail = ({ enrollment }) => {
             <div className="w flex flex-auto flex-col gap-y-4 gap-x-8 sm:col-span-2 sm:gap-y-8 lg:col-span-3 lg:grid-cols-12 lg:flex-row">
               <div className="flex flex-auto flex-col gap-y-8 pt-4 lg:col-span-6">
                 <span className="h relative h-48 w-full rounded-lg">
-                  {/* <Image
-                    loader={defaultNextImageLoader}
-                    src={enrollment.plan.product.media.file.url}
-                    alt={enrollment?.plan?.product?.text?.title}
-                    layout="fill"
-                    objectFit="contain"
-                  /> */}
                   <Image
                     loader={defaultNextImageLoader}
-                    src="https://tailwindui.com/img/ecommerce-images/product-page-01-featured-product-shot.jpg"
+                    src={enrollment?.plan?.product?.media?.file?.url}
                     alt={enrollment?.plan?.product?.text?.title}
                     layout="fill"
                     objectFit="contain"
-                    placeholder="blur"
-                    blurDataURL="/no-image.jpg"
                   />
                 </span>
                 <div className="flex flex-col">
@@ -257,26 +223,17 @@ const EnrollmentDetail = ({ enrollment }) => {
               </div>
 
               <div className="flex-auto border-t border-slate-200 dark:border-slate-800 pt-4 lg:col-span-6 lg:border-0">
-                <Form form={form}>
-                  <JSONAreaField
-                    disabled
-                    className="mt-2 text-sm text-slate-500"
-                    id="configuration"
-                    name="configuration"
-                    value={form.formik.values.configuration}
-                    rows={Math.max(
-                      (
-                        (form.formik.values.configuration || '').split(' ') ||
-                        []
-                      ).length / 2,
-                      5,
-                    )}
-                    label={formatMessage({
-                      id: 'configuration',
-                      defaultMessage: 'Configuration',
-                    })}
-                  />
-                </Form>
+                <JSONView
+                  disabled
+                  className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
+                  value={JSON.stringify(
+                    (enrollment.plan.configuration || []).map(
+                      ({ __typename, ...rest }) => rest,
+                    ),
+                    null,
+                    2,
+                  )}
+                />
               </div>
             </div>
 
@@ -290,10 +247,12 @@ const EnrollmentDetail = ({ enrollment }) => {
                 </dt>
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
-                    href={`/payment-provider/${enrollment?.payment?.provider._id}`}
+                    href={`/payment-provider/${enrollment?.payment?.provider?._id}`}
                   >
                     <a className="text-blue-600 dark:text-blue-400">
-                      {getInterfaceLabel(enrollment.payment.provider.interface)}
+                      {getInterfaceLabel(
+                        enrollment?.payment?.provider?.interface,
+                      )}
                     </a>
                   </Link>
                 </dd>
@@ -312,37 +271,38 @@ const EnrollmentDetail = ({ enrollment }) => {
                   >
                     <a className="text-blue-600 dark:text-blue-400">
                       {getInterfaceLabel(
-                        enrollment.delivery.provider.interface,
+                        enrollment?.delivery?.provider?.interface,
                       )}
                     </a>
                   </Link>
                 </dd>
               </div>
-
-              <div className="col-span-1 border-t border-slate-200 dark:border-slate-800 pt-4">
-                <dt className="font-medium text-slate-900">
-                  {formatMessage({
-                    id: 'contact',
-                    defaultMessage: 'Contact',
-                  })}
-                </dt>
-                <dd className="mt-2 text-sm text-slate-500">
-                  {enrollment?.contact?.telNumber}
-                </dd>
-                <dd className="mt-2 text-sm text-slate-500">
-                  {enrollment?.contact?.emailAddress}
-                </dd>
-                <dd className="mt-2 text-sm text-slate-500">
-                  <Button
-                    text={formatMessage({
-                      id: 'send_email_button',
-                      defaultMessage: 'Send Email',
+              {enrollment?.contact && (
+                <div className="col-span-1 border-t border-slate-200 dark:border-slate-800 pt-4">
+                  <div className="font-medium text-slate-900">
+                    {formatMessage({
+                      id: 'contact',
+                      defaultMessage: 'Contact',
                     })}
-                    className="rounded-md"
-                    onClick={onSendEnrollmentEmail}
-                  />
-                </dd>
-              </div>
+                  </div>
+                  <div className="mt-2 text-sm text-slate-500">
+                    {enrollment?.contact?.telNumber}
+                  </div>
+                  <div className="mt-2 text-sm text-slate-500">
+                    {enrollment?.contact?.emailAddress}
+                  </div>
+                  {enrollment?.contact?.emailAddress && (
+                    <Button
+                      text={formatMessage({
+                        id: 'send_email_button',
+                        defaultMessage: 'Send Email',
+                      })}
+                      className="px-2 py-1"
+                      onClick={onSendEnrollmentEmail}
+                    />
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="border-t border-slate-200 dark:border-slate-800 pt-4">

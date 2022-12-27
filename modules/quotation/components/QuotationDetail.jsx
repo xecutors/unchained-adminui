@@ -1,22 +1,22 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 
+import { MailIcon, XIcon } from '@heroicons/react/solid';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
-import AlertMessage from '../../modal/components/AlertMessage';
+
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
-import JSONAreaField from '../../forms/components/JSONAreaField';
-import Form from '../../forms/components/Form';
-import useForm from '../../forms/hooks/useForm';
+
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
-import DangerMessage from '../../modal/components/DangerMessage';
 import useRejectQuotation from '../hooks/useRejectQuotation';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import QuotationConfigurationForm from './QuotationConfigurationForm';
+import useMakeQuotationProposal from '../hooks/useMakeQuotationProposal';
+import JSONView from '../../common/components/JSONView';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -25,63 +25,90 @@ const QuotationDetail = ({ quotation }) => {
   const { quotationStatusTypes } = useQuotationStatusTypes();
   const { VerifyQuotation } = useVerifyQuotation();
   const { rejectQuotation } = useRejectQuotation();
+  const { makeQuotationProposal } = useMakeQuotationProposal();
 
   const onVerify = async () => {
     await setModal(
-      <AlertMessage
-        buttonText={formatMessage({
-          id: 'verify_alert_button',
-          defaultMessage: 'Verify',
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await VerifyQuotation({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
+
+          setModal('');
+        }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-verified-successfully',
+          defaultMessage: 'Quotation verified successfully',
         })}
         headerText={formatMessage({
-          id: 'verify_alert_header',
+          id: 'verify-quotation-quotation',
           defaultMessage: 'Verify quotation?',
         })}
-        onOkClick={async () => {
-          setModal('');
-          await VerifyQuotation({ id: quotation._id });
-          toast.success(
-            formatMessage(
-              {
-                id: 'success',
-                defaultMessage: 'Quotation {id} verified successfully',
-              },
-              {
-                id: quotation._id,
-              },
-            ),
-          );
-        }}
       />,
     );
   };
 
   const onReject = async () => {
     await setModal(
-      <DangerMessage
-        buttonText={formatMessage({
-          id: 'reject_alert_button',
-          defaultMessage: 'Reject',
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await rejectQuotation({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
+          setModal('');
+        }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-rejection-successfully',
+          defaultMessage: 'Quotation rejected successfully',
         })}
         headerText={formatMessage({
-          id: 'Reject_alert_header',
+          id: 'reject-quotation-quotation',
           defaultMessage: 'Reject quotation?',
         })}
-        onOkClick={async () => {
+        icon={
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+            <XIcon className="h-6 w-6 text-red-600" />
+          </div>
+        }
+      />,
+    );
+  };
+
+  const proposeQuote = async () => {
+    await setModal(
+      <QuotationConfigurationForm
+        onSubmit={async ({ quotationContext }) => {
+          await makeQuotationProposal({
+            quotationId: quotation._id,
+            quotationContext: quotationContext
+              ? JSON.parse(quotationContext || null)
+              : null,
+          });
           setModal('');
-          await rejectQuotation({ id: quotation._id });
-          toast.success(
-            formatMessage(
-              {
-                id: 'reject_alert_success',
-                defaultMessage: 'Reject {id} verified successfully',
-              },
-              {
-                id: quotation._id,
-              },
-            ),
-          );
         }}
+        onCancel={() => setModal('')}
+        successMessage={formatMessage({
+          id: 'quotation-quoted-successfully',
+          defaultMessage: 'Quoted successfully',
+        })}
+        headerText={formatMessage({
+          id: 'make-proposal-header',
+          defaultMessage: 'Make quotation proposal',
+        })}
+        icon={
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+            <MailIcon className="h-6 w-6 text-green-600" />
+          </div>
+        }
       />,
     );
   };
@@ -103,6 +130,13 @@ const QuotationDetail = ({ quotation }) => {
       id: 2,
       content: 'updated',
       visible: quotation.status === 'PROCESSING',
+      Component: quotation.status === 'PROCESSING' && (
+        <Button
+          text="Propose"
+          onClick={proposeQuote}
+          className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-indigo-500 bg-indigo-500 px-2 py-1 text-base font-medium text-white hover:bg-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring-0 focus:ring-indigo-400"
+        />
+      ),
     },
     PROPOSED: {
       id: 3,
@@ -118,7 +152,7 @@ const QuotationDetail = ({ quotation }) => {
           <Button
             text="Reject"
             onClick={onReject}
-            className="rounded-md text-base"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
           />
         ),
     },
@@ -128,12 +162,6 @@ const QuotationDetail = ({ quotation }) => {
       visible: true,
     },
   };
-
-  const form = useForm({
-    initialValues: {
-      configuration: JSON.stringify(quotation.configuration || {}, null, 2),
-    },
-  });
 
   return (
     <>
@@ -168,23 +196,18 @@ const QuotationDetail = ({ quotation }) => {
               <p className="mt-3 text-slate-500">
                 {quotation.product?.description}
               </p>
-              <Form form={form} className="mr-4 pb-4">
-                <JSONAreaField
-                  disabled
-                  id="configuration"
-                  name="configuration"
-                  value={form.formik.values.configuration}
-                  rows={Math.max(
-                    (form.formik.values.configuration?.split(' ') || [])
-                      .length / 2,
-                    5,
-                  )}
-                  label={formatMessage({
-                    id: 'configuration',
-                    defaultMessage: 'Configuration',
-                  })}
-                />
-              </Form>
+
+              <JSONView
+                disabled
+                value={JSON.stringify(
+                  (quotation.configuration || []).map(
+                    ({ __typename, ...rest }) => rest,
+                  ),
+                  null,
+                  2,
+                )}
+                className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full rounded-md resize-none border-slate-200 dark:border-slate-800 sm:text-sm"
+              />
             </div>
           </div>
         </div>

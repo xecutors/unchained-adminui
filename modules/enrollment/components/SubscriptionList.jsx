@@ -51,7 +51,10 @@ const SubscriptionList = ({ periods }) => {
                     : 'n/a'}
                   {period?.isTrial && (
                     <Badge
-                      text="Trial"
+                      text={formatMessage({
+                        id: 'trial',
+                        defaultMessage: 'Trial',
+                      })}
                       color="pink"
                       className="ml-2 rounded-full py-1 text-sm font-semibold leading-5"
                       square

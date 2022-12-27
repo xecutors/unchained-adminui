@@ -15,7 +15,7 @@ const JSONView = ({
       )}
       value={value}
       onChange={onChange}
-      rows={Math.max(((value || ' ')?.split(' ') || []).length / 4, 9)}
+      rows={Math.max(((value || ' ')?.split(' ') || []).length / 2, 7)}
       {...props}
     />
   );

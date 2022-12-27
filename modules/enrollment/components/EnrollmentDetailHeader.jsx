@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Badge from '../../common/components/Badge';
 import DetailHeader from '../../common/components/DetailHeader';
+import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const EnrollmentDetailHeader = ({ enrollment }) => {
   const { formatMessage, locale } = useIntl();
@@ -30,7 +31,10 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
               />
             ) : (
               <Badge
-                text="Cart"
+                text={formatMessage({
+                  id: 'initial',
+                  defaultMessage: 'Initial',
+                })}
                 color="yellow"
                 className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
               />
@@ -48,9 +52,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
         <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-slate-900 sm:text-base">
           <span>{enrollment?.country?.flagEmoji}</span>
           <span>
-            {new Intl.DisplayNames([locale], {
-              type: 'currency',
-            }).of(enrollment?.currency?.isoCode)}
+            {normalizeCurrencyISOCode(locale, enrollment?.currency?.isoCode)}
           </span>
           <span>
             {enrollment?.currency?.isoCode && (

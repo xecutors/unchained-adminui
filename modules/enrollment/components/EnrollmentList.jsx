@@ -2,28 +2,28 @@ import { useIntl } from 'react-intl';
 import Table from '../../common/components/Table';
 import EnrollmentListItem from './EnrollmentListItem';
 
-const EnrollmentList = ({ enrollments, showUser }) => {
+const EnrollmentList = ({ enrollments, showUser, sortable }) => {
   const { formatMessage } = useIntl();
 
   return (
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
-        <Table.Row key={enrollment._id} header>
-          <Table.Cell name="enrollmentNumber">
+        <Table.Row key={enrollment._id} header enableSort={sortable}>
+          <Table.Cell sortKey="enrollmentNumber">
             {formatMessage({
               id: 'enrollment_number',
               defaultMessage: 'Enrollment number',
             })}
           </Table.Cell>
 
-          <Table.Cell name="created">
+          <Table.Cell sortKey="created">
             {formatMessage({
               id: 'created',
               defaultMessage: 'Created',
             })}
           </Table.Cell>
 
-          <Table.Cell name="expires">
+          <Table.Cell>
             {formatMessage({
               id: 'expires',
               defaultMessage: 'Expires',
@@ -45,7 +45,7 @@ const EnrollmentList = ({ enrollments, showUser }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell name="status">
+          <Table.Cell sortKey="status">
             {formatMessage({
               id: 'status',
               defaultMessage: 'Status',

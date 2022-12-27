@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 const RejectQuotationMutation = gql`
   mutation RejectQuotation($quotationId: ID!, $quotationContext: JSON) {
@@ -6,9 +7,10 @@ const RejectQuotationMutation = gql`
       quotationId: $quotationId
       quotationContext: $quotationContext
     ) {
-      _id
+      ...QuotationDetailFragment
     }
   }
+  ${QuotationDetailFragment}
 `;
 
 const useRejectQuotation = () => {
@@ -20,7 +22,6 @@ const useRejectQuotation = () => {
   }) => {
     return rejectQuotationMutation({
       variables: { quotationId, quotationContext },
-      refetchQueries: ['Quotations'],
     });
   };
 

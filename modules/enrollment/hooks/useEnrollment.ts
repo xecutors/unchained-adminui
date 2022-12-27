@@ -1,13 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
-import EnrollmentFragment from '../fragments/EnrollmentFragment';
+import EnrollmentDetailFragment from '../fragments/EnrollmentDetailFragment';
 
 export const EnrollmentQuery = gql`
   query Enrollment($enrollmentId: ID!) {
     enrollment(enrollmentId: $enrollmentId) {
-      ...EnrollmentFragment
+      ...EnrollmentDetailFragment
     }
   }
-  ${EnrollmentFragment}
+  ${EnrollmentDetailFragment}
 `;
 
 const useEnrollment = ({ enrollmentId = null } = {}) => {

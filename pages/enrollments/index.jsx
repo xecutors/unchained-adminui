@@ -15,6 +15,9 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 
+import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
+import StatusFilter from '../../modules/common/components/StatusFilter';
+
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
@@ -44,7 +47,25 @@ const EnrollmentListView = () => {
     limit,
     offset,
     sort: sortKeys,
+    status: query?.status?.split(','),
   });
+
+  const { enrollmentStatusTypes } = useEnrollmentStatusTypes();
+
+  const ENROLLMENT_STATUS =
+    enrollmentStatusTypes?.map(({ value }) => value) || [];
+
+  const onStatusChange = (currentStatuses) => {
+    const { status, ...rest } = query;
+    if (currentStatuses?.length)
+      push({
+        query: normalizeQuery(rest, currentStatuses, 'status'),
+      });
+    else
+      push({
+        query: rest,
+      });
+  };
 
   return (
     <>
@@ -61,13 +82,25 @@ const EnrollmentListView = () => {
           onInputChange={setQueryString}
         />
       </div>
+      <div>
+        <p className="mt-0 text-xl font-medium leading-5 text-slate-800 dark:text-slate-200 lg:gap-7 lg:leading-6 ">
+          {formatMessage({ id: 'status', defaultMessage: 'Status' })}
+        </p>
+        <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
+          <StatusFilter
+            statuses={ENROLLMENT_STATUS}
+            onStatusChange={onStatusChange}
+            selectedStatuses={query?.status}
+          />
+        </div>
+      </div>
       <div className="min-w-full overflow-x-auto">
         <ListHeader />
 
         {loading ? (
           <Loading />
         ) : (
-          <EnrollmentList enrollments={enrollments} showUser />
+          <EnrollmentList enrollments={enrollments} showUser sortable />
         )}
         <Pagination data={enrollments} total={enrollmentsCount} />
       </div>

@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import Badge from '../../common/components/Badge';
 import DetailHeader from '../../common/components/DetailHeader';
+import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 
 const QuotationDetailHeader = ({ quotation }) => {
   const { formatMessage, locale } = useIntl();
@@ -31,7 +32,10 @@ const QuotationDetailHeader = ({ quotation }) => {
               />
             ) : (
               <Badge
-                text="Cart"
+                text={formatMessage({
+                  id: 'requested',
+                  defaultMessage: 'Requested',
+                })}
                 color="yellow"
                 className="text-lg font-medium sm:text-xl sm:font-bold"
               />
@@ -54,9 +58,7 @@ const QuotationDetailHeader = ({ quotation }) => {
         <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-slate-900 sm:text-base">
           <span>{quotation?.country?.flagEmoji}</span>
           <span>
-            {new Intl.DisplayNames([locale], {
-              type: 'currency',
-            }).of(quotation?.currency?.isoCode)}
+            {normalizeCurrencyISOCode(locale, quotation?.currency?.isoCode)}
           </span>
           <span>
             {quotation?.currency?.isoCode && (

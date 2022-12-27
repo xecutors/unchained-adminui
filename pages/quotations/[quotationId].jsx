@@ -12,15 +12,12 @@ const QuotationDetailPage = () => {
 
   const { query } = useRouter();
   const { quotationId } = query;
+
   const { quotation, loading } = useQuotation({ quotationId });
 
   return (
     <div className="mt-6 max-w-full">
-      <BreadCrumbs
-        currentPageTitle={
-          quotation.quotationNumber ? `#${quotation.quotationNumber}` : ''
-        }
-      />
+      <BreadCrumbs currentPageTitle={quotation?.quotationNumber ?? ''} />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader
           headerText={formatMessage({

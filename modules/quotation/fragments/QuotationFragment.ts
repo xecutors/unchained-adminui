@@ -34,6 +34,12 @@ const QuotationFragment = gql`
         }
       }
     }
+    currency {
+      _id
+      contractAddress
+      decimals
+      isoCode
+    }
     status
     created
     expires

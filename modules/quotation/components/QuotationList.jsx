@@ -6,7 +6,7 @@ const QuotationList = ({ quotations, sortable, showUser }) => {
   const { formatMessage } = useIntl();
 
   return (
-    <Table className="min-w-full ">
+    <Table className="min-w-full">
       {quotations?.map((quotation) => (
         <Table.Row key={quotation._id} header enableSort={sortable}>
           <Table.Cell sortKey="quotationNumber">
