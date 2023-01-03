@@ -15,27 +15,52 @@ const DisplayExtendedFields = (props) => {
 
   keys.forEach((key) => {
     const value = data[key];
+
     if (Array.isArray(value)) {
-      const listItems = [];
-      value.forEach((item, i) => {
-        listItems.push(
-          <li
-            // eslint-disable-next-line react/no-array-index-key
-            key={i}
-            className="flex items-center justify-between py-3 pl-3 pr-4 text-sm"
-          >
-            {DisplayExtendedFields({ data: item, parentKey: i })}
-          </li>,
-        );
-      });
       elements.push(
-        <ul
-          key={key}
-          className="divide-y divide-slate-200 rounded-md border border-slate-200"
-        >
-          {listItems}
-        </ul>,
+        <h2 key={parentKey} className="text-lg font-medium text-slate-900">
+          {key}
+        </h2>,
       );
+      if (value.every((v) => typeof v === 'string' || typeof v === 'number')) {
+        elements.push(
+          <ul
+            key={key}
+            className="divide-y divide-slate-200 rounded-md border border-slate-200"
+          >
+            {value.map((item) => (
+              <li
+                // eslint-disable-next-line react/no-array-index-key
+                key={item}
+                className="flex items-center text-slate-600  justify-between py-3 pl-3 pr-4 text-sm"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>,
+        );
+      } else {
+        const listItems = [];
+        value.forEach((item, i) => {
+          listItems.push(
+            <li
+              // eslint-disable-next-line react/no-array-index-key
+              key={i}
+              className="flex items-center text-slate-600  justify-between py-3 pl-3 pr-4 text-sm"
+            >
+              {DisplayExtendedFields({ data: item, parentKey: i })}
+            </li>,
+          );
+        });
+        elements.push(
+          <ul
+            key={key}
+            className="divide-y divide-slate-200 rounded-md border border-slate-200"
+          >
+            {listItems}
+          </ul>,
+        );
+      }
     } else if (typeof value === 'object') {
       elements.push(DisplayExtendedFields({ data: value, parentKey: key }));
     } else if (parentKey === undefined) {
