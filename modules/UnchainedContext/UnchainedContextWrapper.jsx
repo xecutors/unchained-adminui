@@ -4,20 +4,16 @@ import { gql } from '@apollo/client';
 import UnchainedContext from './UnchainedContext';
 import useShopInfo from '../common/hooks/useShopInfo';
 
-const assignObjectValue = (source, target) => {
+const assignObjectValue = (object1, object2) => {
   const result = {};
-  const keys = Object.keys(target);
+  const keys = Object.keys(object2);
   keys.forEach((key) => {
-    const sourceValue = source[key];
-    const targetValue = target[key];
-    if (Array.isArray(targetValue)) {
-      result[key] = targetValue.map((item, i) =>
-        assignObjectValue(sourceValue[i], item),
-      );
-    } else if (typeof targetValue === 'object') {
-      result[key] = assignObjectValue(sourceValue, targetValue);
+    const value1 = object1?.[key];
+    const value2 = object2?.[key];
+    if (typeof value2 === 'object') {
+      result[key] = assignObjectValue(value1, value2);
     } else {
-      result[key] = sourceValue;
+      result[key] = value1;
     }
   });
   return result;
@@ -56,7 +52,6 @@ const hydrateFragment = (fragment, source) => {
   const fragmentKeys = getKeyValuePair(
     queryFragment?.definitions[0]?.selectionSet?.selections,
   );
-
   return assignObjectValue(source, fragmentKeys);
 };
 

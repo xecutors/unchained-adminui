@@ -48,7 +48,7 @@ export const GetProductQuery = (inlineFragment = '') => gql`
 const useProduct = ({ productId: id = null, slug = null } = {}) => {
   const parsedId = parseUniqueId(slug);
 
-  const { customProperties } = useUnchainedContext();
+  const { customProperties, hydrateFragment } = useUnchainedContext();
   const { data, loading, error } = useQuery(
     GetProductQuery(customProperties?.Product),
     {
@@ -57,10 +57,16 @@ const useProduct = ({ productId: id = null, slug = null } = {}) => {
     },
   );
 
+  const extendedData = hydrateFragment(
+    customProperties?.Product,
+    data?.product,
+  );
+
   return {
     product: data?.product,
     loading,
     error,
+    extendedData,
   };
 };
 
