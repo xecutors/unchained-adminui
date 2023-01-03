@@ -2,10 +2,10 @@ import React from 'react';
 
 const UnchainedContext = React.createContext<{
   customProperties: Record<string, string>;
-  convertFragmentToKeyValuePair: Function;
+  hydrateFragment: Function;
 }>({
   customProperties: {},
-  convertFragmentToKeyValuePair: () => null,
+  hydrateFragment: () => null,
 });
 
 export default UnchainedContext;
