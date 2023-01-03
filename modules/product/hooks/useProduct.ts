@@ -1,11 +1,13 @@
 import { useQuery, gql } from '@apollo/client';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
-export const ProductQuery = gql`
+export const GetProductQuery = (inlineFragment = '') => gql`
   query Product($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       ...ProductDetailFragment
+      ${inlineFragment}
       ... on SimpleProduct {
         texts {
           _id
@@ -45,29 +47,21 @@ export const ProductQuery = gql`
 
 const useProduct = ({ productId: id = null, slug = null } = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(ProductQuery, {
-    skip: !id && !parsedId,
-    variables: { productId: id || parsedId },
-  });
+
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetProductQuery(customProperties?.Product),
+    {
+      skip: !id && !parsedId,
+      variables: { productId: id || parsedId },
+    },
+  );
 
   return {
     product: data?.product,
     loading,
     error,
   };
-};
-
-export const preFetchProduct = async (
-  apolloClient,
-  { productId: id = null, slug = null },
-) => {
-  const parsedId = parseUniqueId(slug);
-  const { data } = await apolloClient.query({
-    query: ProductQuery,
-    skip: !id && !parsedId,
-    variables: { productId: id || parsedId },
-  });
-  return data?.product;
 };
 
 export default useProduct;

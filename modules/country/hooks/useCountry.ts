@@ -1,35 +1,32 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CountryFragment from '../fragments/CountryFragment';
 
-export const CountryQuery = gql`
+export const GetCountryQuery = (inlineFragment = '') => gql`
   query Country($countryId: ID!) {
     country(countryId: $countryId) {
       ...CountryFragment
+      ${inlineFragment}
     }
   }
   ${CountryFragment}
 `;
 
 const useCountry = ({ countryId }) => {
-  const { data, loading, error } = useQuery(CountryQuery, {
-    skip: !countryId,
-    variables: { countryId },
-  });
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetCountryQuery(customProperties?.Country),
+    {
+      skip: !countryId,
+      variables: { countryId },
+    },
+  );
 
   return {
     country: data?.country,
     loading,
     error,
   };
-};
-
-export const preFetchCountry = async (apolloClient, { countryId = null }) => {
-  const { data } = await apolloClient.query({
-    query: CountryQuery,
-    skip: !countryId,
-    variables: { countryId },
-  });
-  return data?.country;
 };
 
 export default useCountry;

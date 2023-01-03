@@ -43,12 +43,6 @@ const ProductDetailFragment = gql`
           url
         }
       }
-      texts {
-        _id
-        title
-        subtitle
-        description
-      }
     }
   }
 `;

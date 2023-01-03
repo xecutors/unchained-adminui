@@ -1,10 +1,12 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import FilterFragment from '../fragments/FilterFragment';
 
-export const FilterQuery = gql`
+export const GetFilterQuery = (inlineFragment = '') => gql`
   query Filter($filterId: ID) {
     filter(filterId: $filterId) {
       ...FilterFragment
+      ${inlineFragment}
       texts {
         _id
         title
@@ -17,25 +19,20 @@ export const FilterQuery = gql`
 `;
 
 const useFilter = ({ filterId = null } = {}) => {
-  const { data, loading, error } = useQuery(FilterQuery, {
-    skip: !filterId,
-    variables: { filterId },
-  });
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetFilterQuery(customProperties?.Filter),
+    {
+      skip: !filterId,
+      variables: { filterId },
+    },
+  );
 
   return {
     filter: data?.filter,
     loading,
     error,
   };
-};
-
-export const preFetchFilter = async (apolloClient, { filterId = null }) => {
-  const { data } = await apolloClient.query({
-    query: FilterQuery,
-    skip: !filterId,
-    variables: { filterId },
-  });
-  return data?.filter;
 };
 
 export default useFilter;

@@ -1,10 +1,12 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import WorkFragment from '../fragments/WorkFragment';
 
-export const WorkQuery = gql`
+export const GetWorkQuery = (inlineFragment = '') => gql`
   query Work($workId: ID!) {
     work(workId: $workId) {
       ...WorkFragment
+      ${inlineFragment}
       input
       result
       error
@@ -21,11 +23,15 @@ export const WorkQuery = gql`
 `;
 
 const useWork = ({ workId = null, ...options } = {}) => {
-  const { data, loading, error } = useQuery(WorkQuery, {
-    skip: !workId,
-    variables: { workId },
-    ...options,
-  });
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetWorkQuery(customProperties?.Work),
+    {
+      skip: !workId,
+      variables: { workId },
+      ...options,
+    },
+  );
 
   return {
     work: data?.work,
