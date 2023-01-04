@@ -17,7 +17,7 @@ const isImageURL = (value) => {
     const { pathname } = new URL(value);
     const parts = pathname.split('.');
     const ext = `.${parts[parts.length - 1]}`;
-    console.log(ext);
+
     return ['.jpg', '.jpeg', '.png', '.gif', '.bmp'].includes(ext);
   } catch {
     return false;
