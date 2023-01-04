@@ -13,7 +13,8 @@ export const GetUserQuery = (inlineFragment = '') => gql`
 `;
 
 const useUser = ({ userId = null } = {}) => {
-  const { customProperties } = useUnchainedContext();
+  const { customProperties, hydrateFragment } = useUnchainedContext();
+
   const { data, loading, error } = useQuery(
     GetUserQuery(customProperties?.User),
     {
@@ -23,12 +24,14 @@ const useUser = ({ userId = null } = {}) => {
   );
 
   const user = data?.user;
+  const extendedData = hydrateFragment(customProperties?.User, user);
 
   return {
     user,
     shopInfo: data?.shopInfo,
     loading,
     error,
+    extendedData,
   };
 };
 

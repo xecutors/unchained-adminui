@@ -20,7 +20,7 @@ const FilterDetailPage = () => {
   const { query } = useRouter();
   const router = useRouter();
   const { filterId = '' } = query || {};
-  const { filter, loading } = useFilter({ filterId });
+  const { filter, loading, extendedData } = useFilter({ filterId });
   const { hasRole } = useAuth();
 
   const { removeFilter } = useRemoveFilter();
@@ -67,7 +67,11 @@ const FilterDetailPage = () => {
         )}
       </div>
 
-      {loading ? <Loading /> : <FilterDetail filter={filter} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <FilterDetail filter={filter} extendedData={extendedData} />
+      )}
     </div>
   );
 };

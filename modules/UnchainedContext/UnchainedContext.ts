@@ -5,7 +5,8 @@ const UnchainedContext = React.createContext<{
   hydrateFragment: Function;
 }>({
   customProperties: {},
-  hydrateFragment: () => null,
+  // eslint-disable-next-line no-unused-vars
+  hydrateFragment: (fragment: string, data: any) => null,
 });
 
 export default UnchainedContext;

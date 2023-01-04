@@ -19,7 +19,7 @@ export const GetFilterQuery = (inlineFragment = '') => gql`
 `;
 
 const useFilter = ({ filterId = null } = {}) => {
-  const { customProperties } = useUnchainedContext();
+  const { customProperties, hydrateFragment } = useUnchainedContext();
   const { data, loading, error } = useQuery(
     GetFilterQuery(customProperties?.Filter),
     {
@@ -28,10 +28,14 @@ const useFilter = ({ filterId = null } = {}) => {
     },
   );
 
+  const filter = data?.filter;
+  const extendedData = hydrateFragment(customProperties?.Filter, filter);
+
   return {
-    filter: data?.filter,
+    filter,
     loading,
     error,
+    extendedData,
   };
 };
 

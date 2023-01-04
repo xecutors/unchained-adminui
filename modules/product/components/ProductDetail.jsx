@@ -8,6 +8,7 @@ import {
   ColorSwatchIcon,
   PresentationChartLineIcon,
   UsersIcon,
+  PuzzleIcon,
 } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 import { LinkIcon } from '@heroicons/react/outline';
@@ -177,13 +178,13 @@ const ProductDetail = ({ product, extendedData }) => {
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
     },
-    {
+    extendedData !== null && {
       id: 'extended',
       title: formatMessage({
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <DocumentTextIcon className="h-4 w-5" />,
+      Icon: <PuzzleIcon className="h-4 w-5" />,
     },
   ].filter((item) => item !== false);
 

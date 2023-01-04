@@ -1,5 +1,9 @@
 import { useIntl } from 'react-intl';
-import { DocumentTextIcon, ClipboardListIcon } from '@heroicons/react/solid';
+import {
+  DocumentTextIcon,
+  ClipboardListIcon,
+  PuzzleIcon,
+} from '@heroicons/react/solid';
 
 import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';
@@ -9,8 +13,9 @@ import FilterTextForm from './FilterTextForm';
 import FilterOptions from './FilterOptions';
 import FilterSummary from './FilterSummary';
 import useUpdateFilter from '../hooks/useUpdateFilter';
+import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ selectedView, id }) => {
+const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
   if (selectedView === 'text')
     return (
       <LocaleWrapper>
@@ -24,6 +29,8 @@ const GetCurrentTab = ({ selectedView, id }) => {
         <FilterOptions filterId={id} />
       </LocaleWrapper>
     );
+  if (selectedView === 'extended')
+    return <DisplayExtendedFields data={extendedData} />;
   return (
     <LocaleWrapper>
       <FilterTextForm filterId={id} />
@@ -31,7 +38,7 @@ const GetCurrentTab = ({ selectedView, id }) => {
   );
 };
 
-const FilterDetail = ({ filter }) => {
+const FilterDetail = ({ filter, extendedData }) => {
   const { _id: filterId, isActive, key, type, created, updated } = filter;
   const { formatMessage, formatDate } = useIntl();
   const { updateFilter } = useUpdateFilter();
@@ -54,7 +61,15 @@ const FilterDetail = ({ filter }) => {
       }),
       Icon: <ClipboardListIcon className="h-4 w-5" />,
     },
-  ];
+    extendedData !== null && {
+      id: 'extended',
+      title: formatMessage({
+        id: 'extended-fields',
+        defaultMessage: 'Extended',
+      }),
+      Icon: <PuzzleIcon className="h-4 w-5" />,
+    },
+  ].filter(Boolean);
 
   const activeOptions = [
     {
@@ -132,7 +147,7 @@ const FilterDetail = ({ filter }) => {
         </div>
       </div>
       <Tab tabItems={filterOptions} defaultTab="text">
-        <GetCurrentTab id={filter?._id} />
+        <GetCurrentTab id={filter?._id} {...extendedData} />
       </Tab>
     </>
   );

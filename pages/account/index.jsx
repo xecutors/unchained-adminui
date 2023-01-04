@@ -4,7 +4,7 @@ import useCurrentUser from '../../modules/accounts/hooks/useCurrentUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
-import UserSettings from '../../modules/accounts/components/UserSerttings';
+import UserSettings from '../../modules/accounts/components/UserSettings';
 
 const Profile = () => {
   const { formatMessage } = useIntl();

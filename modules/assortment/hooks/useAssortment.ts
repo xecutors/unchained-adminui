@@ -16,7 +16,7 @@ export const GetAssortmentQuery = (inlineFragment = '') => gql`
 
 const useAssortment = ({ assortmentId: id = null, slug = null } = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { customProperties } = useUnchainedContext();
+  const { customProperties, hydrateFragment } = useUnchainedContext();
   const { data, loading, error } = useQuery(
     GetAssortmentQuery(customProperties?.Assortment),
     {
@@ -27,10 +27,18 @@ const useAssortment = ({ assortmentId: id = null, slug = null } = {}) => {
     },
   );
 
+  const assortment = data?.assortment;
+
+  const extendedData = hydrateFragment(
+    customProperties?.Assortment,
+    assortment,
+  );
+
   return {
     loading,
     error,
-    assortment: data?.assortment,
+    assortment,
+    extendedData,
   };
 };
 
