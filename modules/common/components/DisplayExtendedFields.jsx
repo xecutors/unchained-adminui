@@ -1,13 +1,36 @@
+import Image from 'next/image';
+import { useIntl } from 'react-intl';
+import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import useFormatDateTime from '../utils/useFormatDateTime';
 import Toggle from './Toggle';
 
-function isBoolean(value) {
+const isBoolean = (value) => {
   try {
     return typeof JSON.parse(value) === 'boolean';
   } catch {
     return false;
   }
-}
+};
+
+const isImageURL = (value) => {
+  try {
+    const { pathname } = new URL(value);
+    const parts = pathname.split('.');
+    const ext = `.${parts[parts.length - 1]}`;
+    console.log(ext);
+    return ['.jpg', '.jpeg', '.png', '.gif', '.bmp'].includes(ext);
+  } catch {
+    return false;
+  }
+};
+
+const isURL = (value) => {
+  try {
+    return new URL(value);
+  } catch {
+    return false;
+  }
+};
 
 const isValidDate = (dateString) => {
   return (
@@ -17,7 +40,41 @@ const isValidDate = (dateString) => {
 
 const DisplayData = ({ value }) => {
   const { formatDateTime } = useFormatDateTime();
+  const { formatMessage } = useIntl();
+  if (isURL(value)) {
+    if (isImageURL(value)) {
+      return (
+        <div className="ring-2 ring-offset-2 ring-indigo-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+          <Image
+            src={value}
+            className="relative h-10 w-10 rounded-full"
+            loader={defaultNextImageLoader}
+            placeholder="blur"
+            blurDataURL="/no-image.jpg"
+            width={100}
+            height={100}
+            alt={formatMessage({
+              id: 'image_not_available',
+              defaultMessage: 'Image not available',
+            })}
+          />
+        </div>
+      );
+    }
 
+    return (
+      <div className="ml-4 flex-shrink-0">
+        <a
+          href={value}
+          className="font-medium text-blue-600 hover:text-blue-500"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {new URL(value).hostname}...{new URL(value).pathname}
+        </a>
+      </div>
+    );
+  }
   if (isBoolean(value)) return <Toggle disabled active={JSON.parse(value)} />;
 
   if (isValidDate(value))
