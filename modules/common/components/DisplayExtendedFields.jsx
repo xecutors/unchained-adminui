@@ -29,6 +29,14 @@ const DisplayData = ({ value }) => {
   return value;
 };
 
+const DisplayLabel = ({ value }) => {
+  return (
+    <h3 className="text-base font-medium">
+      <span className="text-gray-900">{value}</span>
+    </h3>
+  );
+};
+
 const DisplayExtendedFields = (props) => {
   const { data, parentKey } = props;
   if (!data) return null;
@@ -37,28 +45,17 @@ const DisplayExtendedFields = (props) => {
   const elements = [];
 
   if (parentKey !== undefined) {
-    elements.push(
-      <h2 key={parentKey} className="text-lg font-medium text-slate-900">
-        {parentKey}
-      </h2>,
-    );
+    elements.push(<DisplayLabel value={parentKey} key={parentKey} />);
   }
 
   keys.forEach((key) => {
     const value = data[key];
 
     if (Array.isArray(value)) {
-      elements.push(
-        <h2 key={parentKey} className="text-lg font-medium text-slate-900">
-          {key}
-        </h2>,
-      );
+      elements.push(<DisplayLabel value={key} key={key} />);
       if (value.every((v) => typeof v === 'string' || typeof v === 'number')) {
         elements.push(
-          <div
-            key={key}
-            className="divide-y  rounded-md border border-slate-200 p-2"
-          >
+          <div key={key} className="  p-2">
             {value.map((item) => (
               <span
                 key={item}
@@ -83,10 +80,7 @@ const DisplayExtendedFields = (props) => {
           );
         });
         elements.push(
-          <ul
-            key={key}
-            className="divide-y divide-slate-200 rounded-md border border-slate-200"
-          >
+          <ul key={key} className="divide-y divide-slate-200 rounded-md ">
             {listItems}
           </ul>,
         );
@@ -96,7 +90,9 @@ const DisplayExtendedFields = (props) => {
     } else if (parentKey === undefined) {
       elements.push(
         <div key={key} className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-          <dt className="text-sm font-medium text-slate-700">{key}</dt>
+          <dt className="text-sm font-medium text-slate-700">
+            <DisplayLabel value={key} key={key} />
+          </dt>
           <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
             <DisplayData value={value} />
           </dd>
@@ -108,7 +104,9 @@ const DisplayExtendedFields = (props) => {
           key={key}
           className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6"
         >
-          <dt className="text-sm font-medium text-slate-700">{key}</dt>
+          <dt className="text-sm font-medium text-slate-700">
+            <DisplayLabel value={key} key={key} />
+          </dt>
           <dd className="mt-1 text-sm text-slate-900 sm:col-span-2 sm:mt-0">
             <DisplayData value={value} />
           </dd>
@@ -118,8 +116,8 @@ const DisplayExtendedFields = (props) => {
   });
 
   return (
-    <div className="border-t bg-white border-slate-200 px-4 py-5 ">
-      <dl className="sm:divide-y sm:divide-slate-200">{elements}</dl>
+    <div className=" bg-white  px-4 py-5 ">
+      <dl>{elements}</dl>
     </div>
   );
 };
