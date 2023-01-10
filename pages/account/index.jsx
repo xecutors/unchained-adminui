@@ -8,7 +8,7 @@ import UserSettings from '../../modules/accounts/components/UserSettings';
 
 const Profile = () => {
   const { formatMessage } = useIntl();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, extendedData } = useCurrentUser();
 
   return (
     <div className=" max-w-6xl">
@@ -19,7 +19,7 @@ const Profile = () => {
           defaultMessage: 'Account',
         })}
       />
-      <UserSettings user={currentUser} />
+      <UserSettings user={currentUser} extendedData={extendedData} />
     </div>
   );
 };

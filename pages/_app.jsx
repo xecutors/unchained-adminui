@@ -23,14 +23,14 @@ import EndpointWrapper, {
 } from '../modules/apollo/EndpointWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
-import { CurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
+import { GetCurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
 
 const handleRouteChange = async (url) => {
   const apolloClient = initializeApollo();
   const { data: { me } = {} } = await apolloClient.query({
-    query: CurrentUserQuery,
+    query: GetCurrentUserQuery(),
     errorPolicy: 'none',
     fetchPolicy: 'cache-first',
   });

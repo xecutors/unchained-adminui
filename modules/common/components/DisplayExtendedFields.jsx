@@ -70,7 +70,7 @@ const DisplayData = ({ value }) => {
           target="_blank"
           rel="noreferrer"
         >
-          {new URL(value).hostname}...{new URL(value).pathname}
+          {new URL(value).host}...{new URL(value).pathname}
         </a>
       </div>
     );
