@@ -29,7 +29,7 @@
     "@dnd-kit/utilities": "^3.2.0",
     "@formatjs/intl-pluralrules": "^5.0.3",
     "@formatjs/intl-relativetimeformat": "^11.0.3",
-    "@graphql-tools/links": "^8.3.6",
+    "@graphql-tools/links": "^8.3.27",
     "@graphql-tools/wrap": "^9.0.4",
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^1.0.6",
