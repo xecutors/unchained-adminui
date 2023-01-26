@@ -1,0 +1,22 @@
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "pozylon"
+      - "mikearaya"
+    commit-message:
+      # Prefix all commit messages with "npm: "
+      prefix: "[npm] "
+    labels:
+      - "npm"
+      - "dependencies"
+    reviewers:
+      - "pozylon"
+      - "mikearaya"
+    target-branch: "develop"
+    vendor: true
+      
