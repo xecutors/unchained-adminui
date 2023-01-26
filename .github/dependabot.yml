@@ -18,5 +18,4 @@ updates:
       - "pozylon"
       - "mikearaya"
     target-branch: "develop"
-    vendor: true
       
