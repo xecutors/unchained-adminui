@@ -68,7 +68,7 @@
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
-    "simpl-schema": "^1.12.3",
+    "simpl-schema": "^3.4.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {
