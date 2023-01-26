@@ -35,21 +35,22 @@ const ProductListItem = ({ product, showAvatar }) => {
             />
           )}
           {product?.status !== 'DELETED' ? (
-            <Link href={`/products/${generateUniqueId(product)}`}>
-              <a className="text-blue-600 dark:text-blue-400">
-                {product?.texts?.title || (
-                  <>
-                    {product._id}{' '}
-                    <Badge
-                      color="yellow"
-                      text={formatMessage({
-                        id: 'title_not_found',
-                        defaultMessage: 'Title not found',
-                      })}
-                    />
-                  </>
-                )}
-              </a>
+            <Link
+              href={`/products/${generateUniqueId(product)}`}
+              className="text-blue-600 dark:text-blue-400"
+            >
+              {product?.texts?.title || (
+                <>
+                  {product._id}{' '}
+                  <Badge
+                    color="yellow"
+                    text={formatMessage({
+                      id: 'title_not_found',
+                      defaultMessage: 'Title not found',
+                    })}
+                  />
+                </>
+              )}
             </Link>
           ) : (
             product?.texts?.title || (

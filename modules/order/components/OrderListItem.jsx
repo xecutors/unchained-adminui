@@ -19,18 +19,19 @@ const OrderListItem = ({ order, showUser }) => {
     <Table.Row>
       <Table.Cell>
         <div className="flex items-center text-sm">
-          <Link href={`/orders/${order._id}`}>
-            <a className="font-medium text-blue-500 dark:text-blue-400">
-              {order?.orderNumber || (
-                <>
-                  {order._id}{' '}
-                  <Badge
-                    color="yellow"
-                    text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
-                  />
-                </>
-              )}
-            </a>
+          <Link
+            href={`/orders/${order._id}`}
+            className="font-medium text-blue-500 dark:text-blue-400"
+          >
+            {order?.orderNumber || (
+              <>
+                {order._id}{' '}
+                <Badge
+                  color="yellow"
+                  text={formatMessage({ id: 'cart', defaultMessage: 'Cart' })}
+                />
+              </>
+            )}
           </Link>
         </div>
       </Table.Cell>
@@ -49,22 +50,23 @@ const OrderListItem = ({ order, showUser }) => {
       </Table.Cell>
       {showUser && order.user && (
         <Table.Cell>
-          <Link href={`/users/${order.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
-              {order.user?.avatar?.url ? (
-                <Image
-                  loader={defaultNextImageLoader}
-                  src={order.user?.avatar?.url}
-                  width={20}
-                  height={20}
-                  placeholder="blur"
-                  blurDataURL="/no-image.jpg"
-                />
-              ) : (
-                <NoImage className="h-10 w-10" />
-              )}
-              <span className="font-medium ml-2">{order.user?.username}</span>
-            </a>
+          <Link
+            href={`/users/${order.user._id}`}
+            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+          >
+            {order.user?.avatar?.url ? (
+              <Image
+                loader={defaultNextImageLoader}
+                src={order.user?.avatar?.url}
+                width={20}
+                height={20}
+                placeholder="blur"
+                blurDataURL="/no-image.jpg"
+              />
+            ) : (
+              <NoImage className="h-10 w-10" />
+            )}
+            <span className="font-medium ml-2">{order.user?.username}</span>
           </Link>
         </Table.Cell>
       )}

@@ -22,10 +22,11 @@ const QuotationListItem = ({ quotation, showUser }) => {
     <Table.Row>
       <Table.Cell>
         <div className="flex items-center text-sm ">
-          <Link href={`/quotations/${quotation._id}`}>
-            <a className="font-medium text-blue-500 dark:text-blue-400">
-              {quotation?.quotationNumber || quotation._id?.substr(0, 10)}
-            </a>
+          <Link
+            href={`/quotations/${quotation._id}`}
+            className="font-medium text-blue-500 dark:text-blue-400"
+          >
+            {quotation?.quotationNumber || quotation._id?.substr(0, 10)}
           </Link>
         </div>
       </Table.Cell>
@@ -59,39 +60,39 @@ const QuotationListItem = ({ quotation, showUser }) => {
       </Table.Cell>
       {showUser && (
         <Table.Cell>
-          <Link href={`/users/${quotation.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
-              <Image
-                loader={defaultNextImageLoader}
-                src={quotation.user?.avatar?.url}
-                width={20}
-                height={20}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-              />
-              <span className="font-medium ml-2">
-                {quotation.user?.username}
-              </span>
-            </a>
+          <Link
+            href={`/users/${quotation.user._id}`}
+            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+          >
+            <Image
+              loader={defaultNextImageLoader}
+              src={quotation.user?.avatar?.url}
+              width={20}
+              height={20}
+              placeholder="blur"
+              blurDataURL="/no-image.jpg"
+            />
+            <span className="font-medium ml-2">{quotation.user?.username}</span>
           </Link>
         </Table.Cell>
       )}
       <Table.Cell>
         <div className="flex items-center text-sm ">
-          <Link href={`/products/${generateUniqueId(quotation.product)}`}>
-            <a className="flex text-blue-600 dark:text-blue-400">
-              <Image
-                loader={defaultNextImageLoader}
-                src={quotation.product?.media[0]?.file?.url}
-                width={20}
-                height={20}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-              />
-              <span className="ml-2 self-end">
-                {quotation?.product.texts.title}
-              </span>
-            </a>
+          <Link
+            href={`/products/${generateUniqueId(quotation.product)}`}
+            className="flex text-blue-600 dark:text-blue-400"
+          >
+            <Image
+              loader={defaultNextImageLoader}
+              src={quotation.product?.media[0]?.file?.url}
+              width={20}
+              height={20}
+              placeholder="blur"
+              blurDataURL="/no-image.jpg"
+            />
+            <span className="ml-2 self-end">
+              {quotation?.product.texts.title}
+            </span>
           </Link>
         </div>
       </Table.Cell>

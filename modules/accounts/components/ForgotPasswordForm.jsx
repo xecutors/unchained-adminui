@@ -70,10 +70,11 @@ const ForgotPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
             defaultMessage: "Don't have an account yet?",
           })}
           {'  '}
-          <Link href="/sign-up">
-            <a className="font-semibold text-indigo-500 dark:text-indigo-400 focus:text-indigo-600 dark:hover:text-indigo-300 focus:underline focus:outline-none">
-              {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
-            </a>
+          <Link
+            href="/sign-up"
+            className="font-semibold text-indigo-500 dark:text-indigo-400 focus:text-indigo-600 dark:hover:text-indigo-300 focus:underline focus:outline-none"
+          >
+            {formatMessage({ id: 'sign_up', defaultMessage: 'Sign up' })}
           </Link>
           .
         </p>

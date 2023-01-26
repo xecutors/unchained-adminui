@@ -35,9 +35,7 @@ const CurrencyListItem = ({ currency, onRemove, enableEdit, enableDelete }) => {
           <div className="flex items-center">
             {enableEdit && (
               <Link href={`/currency/${currency?._id}`}>
-                <a>
-                  <EditIcon />
-                </a>
+                <EditIcon />
               </Link>
             )}
             {enableDelete && (

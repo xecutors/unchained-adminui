@@ -48,9 +48,7 @@ const ProviderListItem = ({
           <div className="flex items-center gap-1">
             {canEdit && (
               <Link href={`${providerPath}/${provider?._id}`}>
-                <a>
-                  <EditIcon />
-                </a>
+                <EditIcon />
               </Link>
             )}
             {canDelete && (

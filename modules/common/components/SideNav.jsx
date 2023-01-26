@@ -44,18 +44,18 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
             {item.children
               .filter((f) => !f?.requiredRole || hasRole(f.requiredRole))
               .map((subItem) => (
-                <Link key={subItem.name} href={subItem.href}>
-                  <a
-                    className={classNames(
-                      'group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900',
-                      {
-                        ' dark:bg-slate-700 text-slate-900 dark:text-slate-400 bg-slate-200 hover:bg-slate-300':
-                          router.pathname === subItem.href,
-                      },
-                    )}
-                  >
-                    {subItem.name}
-                  </a>
+                <Link
+                  key={subItem.name}
+                  href={subItem.href}
+                  className={classNames(
+                    'group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900',
+                    {
+                      ' dark:bg-slate-700 text-slate-900 dark:text-slate-400 bg-slate-200 hover:bg-slate-300':
+                        router.pathname === subItem.href,
+                    },
+                  )}
+                >
+                  {subItem.name}
                 </Link>
               ))}
           </Disclosure.Panel>
@@ -88,31 +88,28 @@ const SideNav = ({ navigation, onClick = () => true }) => {
           !item.children &&
           (!item.requiredRole || hasRole(item.requiredRole)) ? (
             <div key={item.name} onClick={onClick}>
-              <Link href={item?.href || '#'}>
-                <a
-                  className={classNames(
-                    'group flex w-full dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 items-center rounded-md py-2 pl-2 text-sm font-medium ',
-                    {
-                      'text-slate-900 dark:text-slate-400 bg-slate-200 dark:bg-slate-700':
-                        router.asPath === item.href,
-                    },
-                  )}
-                >
-                  {item?.icon && (
-                    <item.icon
-                      className={classNames(
-                        'mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500',
-                        {
-                          'text-indigo-500 ': router.asPath === item.href,
-                        },
-                      )}
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span className="flex-1 dark:text-slate-400">
-                    {item.name}
-                  </span>
-                </a>
+              <Link
+                href={item?.href || '#'}
+                className={classNames(
+                  'group flex w-full dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 items-center rounded-md py-2 pl-2 text-sm font-medium ',
+                  {
+                    'text-slate-900 dark:text-slate-400 bg-slate-200 dark:bg-slate-700':
+                      router.asPath === item.href,
+                  },
+                )}
+              >
+                {item?.icon && (
+                  <item.icon
+                    className={classNames(
+                      'mr-3 h-6 w-6 flex-shrink-0 text-indigo-400 group-hover:text-indigo-500',
+                      {
+                        'text-indigo-500 ': router.asPath === item.href,
+                      },
+                    )}
+                    aria-hidden="true"
+                  />
+                )}
+                <span className="flex-1 dark:text-slate-400">{item.name}</span>
               </Link>
             </div>
           ) : (

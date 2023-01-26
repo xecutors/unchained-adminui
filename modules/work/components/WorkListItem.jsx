@@ -35,18 +35,19 @@ const WorkListItem = ({ work }) => {
     <Table.Row>
       <Table.Cell>
         <div className="flex items-center text-sm">
-          <Link href={`/works/${work._id}`}>
-            <a className="text-blue-600 dark:text-blue-400">
-              {work?.type || (
-                <>
-                  {work._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-                  />
-                </>
-              )}
-            </a>
+          <Link
+            href={`/works/${work._id}`}
+            className="text-blue-600 dark:text-blue-400"
+          >
+            {work?.type || (
+              <>
+                {work._id}{' '}
+                <Badge
+                  color="blue"
+                  text={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+                />
+              </>
+            )}
           </Link>
         </div>
       </Table.Cell>

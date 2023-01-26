@@ -208,13 +208,14 @@ const SignUpForm = () => {
                 id: 'already_got_a_user',
                 defaultMessage: 'Already got a user?',
               })}
-              <Link href="/log-in">
-                <a className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                  {formatMessage({
-                    id: 'log_in',
-                    defaultMessage: 'Log in',
-                  })}
-                </a>
+              <Link
+                href="/log-in"
+                className=" ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+              >
+                {formatMessage({
+                  id: 'log_in',
+                  defaultMessage: 'Log in',
+                })}
               </Link>
             </div>
           </Form>

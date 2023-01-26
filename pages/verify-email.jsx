@@ -94,16 +94,14 @@ const VerifyEmail = () => {
               })}
         </p>
         <div className="mt-4">
-          <Link href="/">
-            <a
-              type="button"
-              className="px-4 py-2 text-blue-200 bg-blue-600 rounded"
-            >
-              {formatMessage({
-                id: 'go_to_home',
-                defaultMessage: 'Go to home',
-              })}
-            </a>
+          <Link
+            href="/"
+            className="px-4 py-2 text-blue-200 bg-blue-600 rounded"
+          >
+            {formatMessage({
+              id: 'go_to_home',
+              defaultMessage: 'Go to home',
+            })}
           </Link>
         </div>
       </div>

@@ -70,63 +70,57 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-2 gap-3">
                 {hasRole(ACTION_ROLES.products.create) && (
-                  <Link href="/products/new">
-                    <a
-                      type="button"
-                      className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                    >
-                      <PlusIcon
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      />
-                      <span className="ml-2">
-                        {formatMessage({
-                          id: 'product',
-                          defaultMessage: 'Product',
-                        })}
-                      </span>
-                    </a>
+                  <Link
+                    href="/products/new"
+                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    <PlusIcon
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    />
+                    <span className="ml-2">
+                      {formatMessage({
+                        id: 'product',
+                        defaultMessage: 'Product',
+                      })}
+                    </span>
                   </Link>
                 )}
                 {hasRole(ACTION_ROLES.products.create) && (
-                  <Link href="/users/new">
-                    <a
-                      type="button"
-                      className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                    >
-                      <PlusIcon
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      />
-                      <span className="ml-2">
-                        {formatMessage({
-                          id: 'user',
-                          defaultMessage: 'User',
-                        })}
-                      </span>
-                    </a>
+                  <Link
+                    href="/users/new"
+                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    <PlusIcon
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    />
+                    <span className="ml-2">
+                      {formatMessage({
+                        id: 'user',
+                        defaultMessage: 'User',
+                      })}
+                    </span>
                   </Link>
                 )}
                 {hasRole(ACTION_ROLES.assortments.create) && (
-                  <Link href="/assortments/new">
-                    <a
-                      type="button"
-                      className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                    >
-                      <PlusIcon
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      />
-                      <span className="ml-2">
-                        {formatMessage({
-                          id: 'assortment',
-                          defaultMessage: 'Assortment',
-                        })}
-                      </span>
-                    </a>
+                  <Link
+                    href="/assortments/new"
+                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                  >
+                    <PlusIcon
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    />
+                    <span className="ml-2">
+                      {formatMessage({
+                        id: 'assortment',
+                        defaultMessage: 'Assortment',
+                      })}
+                    </span>
                   </Link>
                 )}
               </div>

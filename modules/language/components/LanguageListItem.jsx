@@ -46,9 +46,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
           <div className="flex">
             {enableEdit && (
               <Link href={`/language/${language?._id}`}>
-                <a>
-                  <EditIcon />
-                </a>
+                <EditIcon />
               </Link>
             )}
             {enableDelete && (

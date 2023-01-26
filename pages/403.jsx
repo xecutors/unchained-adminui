@@ -15,27 +15,25 @@ const NotAuthorized = () => {
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
-          <Link href="/">
-            <a className="inline-flex">
-              <span className="sr-only">
-                {formatMessage({
-                  id: 'unchained',
-                  defaultMessage: 'Unchained Admin UI',
-                })}{' '}
-              </span>
-              <Image
-                src={logo}
-                loader={defaultNextImageLoader}
-                width={200}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-                height={100}
-                alt={formatMessage({
-                  id: 'unchained_logo',
-                  defaultMessage: 'Unchained Logo',
-                })}
-              />
-            </a>
+          <Link href="/" className="inline-flex">
+            <span className="sr-only">
+              {formatMessage({
+                id: 'unchained',
+                defaultMessage: 'Unchained Admin UI',
+              })}{' '}
+            </span>
+            <Image
+              src={logo}
+              loader={defaultNextImageLoader}
+              width={200}
+              placeholder="blur"
+              blurDataURL="/no-image.jpg"
+              height={100}
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
+            />
           </Link>
         </div>
         <div className="py-16">
@@ -64,24 +62,26 @@ const NotAuthorized = () => {
             </p>
             <div className="mt-6">
               {currentUser?._id ? (
-                <Link href="/">
-                  <a className="text-base font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-300">
-                    {formatMessage({
-                      id: 'go_back_home',
-                      defaultMessage: 'Go back home',
-                    })}
-                    <span aria-hidden="true"> &rarr;</span>
-                  </a>
+                <Link
+                  href="/"
+                  className="text-base font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-300"
+                >
+                  {formatMessage({
+                    id: 'go_back_home',
+                    defaultMessage: 'Go back home',
+                  })}
+                  <span aria-hidden="true"> &rarr;</span>
                 </Link>
               ) : (
-                <Link href="/log-in">
-                  <a className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                    {formatMessage({
-                      id: 'go_to_login',
-                      defaultMessage: 'Go to login',
-                    })}
-                    <span aria-hidden="true"> &rarr;</span>
-                  </a>
+                <Link
+                  href="/log-in"
+                  className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+                >
+                  {formatMessage({
+                    id: 'go_to_login',
+                    defaultMessage: 'Go to login',
+                  })}
+                  <span aria-hidden="true"> &rarr;</span>
                 </Link>
               )}
             </div>
