@@ -287,20 +287,18 @@ const Layout = ({
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
-                <a>
-                  <Image
-                    src={logo}
-                    loader={defaultNextImageLoader}
-                    width={125}
-                    height={100}
-                    placeholder="blur"
-                    blurDataURL="/no-image.jpg"
-                    alt={formatMessage({
-                      id: 'unchained_logo',
-                      defaultMessage: 'Unchained Logo',
-                    })}
-                  />
-                </a>
+                <Image
+                  src={logo}
+                  loader={defaultNextImageLoader}
+                  width={125}
+                  height={100}
+                  placeholder="blur"
+                  blurDataURL="/no-image.jpg"
+                  alt={formatMessage({
+                    id: 'unchained_logo',
+                    defaultMessage: 'Unchained Logo',
+                  })}
+                />
               </Link>
             </div>
             <SideNav
@@ -319,20 +317,18 @@ const Layout = ({
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
-                <a>
-                  <Image
-                    src={logo}
-                    loader={defaultNextImageLoader}
-                    width={175}
-                    height={100}
-                    placeholder="blur"
-                    blurDataURL="/no-image.jpg"
-                    alt={formatMessage({
-                      id: 'unchained_logo',
-                      defaultMessage: 'Unchained Logo',
-                    })}
-                  />
-                </a>
+                <Image
+                  src={logo}
+                  loader={defaultNextImageLoader}
+                  width={175}
+                  height={100}
+                  placeholder="blur"
+                  blurDataURL="/no-image.jpg"
+                  alt={formatMessage({
+                    id: 'unchained_logo',
+                    defaultMessage: 'Unchained Logo',
+                  })}
+                />
               </Link>
             </div>
             <SideNav navigation={defaultNavigation} />

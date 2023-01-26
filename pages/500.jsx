@@ -11,27 +11,25 @@ const InternalError = () => {
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-shrink-0 justify-center">
-          <Link href="/">
-            <a className="inline-flex">
-              <span className="sr-only">
-                {formatMessage({
-                  id: 'unchained',
-                  defaultMessage: 'Unchained Admin UI',
-                })}{' '}
-              </span>
-              <Image
-                src={logo}
-                loader={defaultNextImageLoader}
-                width={200}
-                height={100}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-                alt={formatMessage({
-                  id: 'unchained_logo',
-                  defaultMessage: 'Unchained Logo',
-                })}
-              />
-            </a>
+          <Link href="/" className="inline-flex">
+            <span className="sr-only">
+              {formatMessage({
+                id: 'unchained',
+                defaultMessage: 'Unchained Admin UI',
+              })}{' '}
+            </span>
+            <Image
+              src={logo}
+              loader={defaultNextImageLoader}
+              width={200}
+              height={100}
+              placeholder="blur"
+              blurDataURL="/no-image.jpg"
+              alt={formatMessage({
+                id: 'unchained_logo',
+                defaultMessage: 'Unchained Logo',
+              })}
+            />
           </Link>
         </div>
         <div className="py-16">
@@ -56,14 +54,15 @@ const InternalError = () => {
               })}
             </p>
             <div className="mt-6">
-              <Link href="/">
-                <a className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-                  {formatMessage({
-                    id: 'try_again',
-                    defaultMessage: 'try-again',
-                  })}
-                  <span aria-hidden="true"> &rarr;</span>
-                </a>
+              <Link
+                href="/"
+                className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+              >
+                {formatMessage({
+                  id: 'try_again',
+                  defaultMessage: 'try-again',
+                })}
+                <span aria-hidden="true"> &rarr;</span>
               </Link>
             </div>
           </div>

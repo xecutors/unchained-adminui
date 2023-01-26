@@ -248,12 +248,11 @@ const EnrollmentDetail = ({ enrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/payment-provider/${enrollment?.payment?.provider?._id}`}
+                    className="text-blue-600 dark:text-blue-400"
                   >
-                    <a className="text-blue-600 dark:text-blue-400">
-                      {getInterfaceLabel(
-                        enrollment?.payment?.provider?.interface,
-                      )}
-                    </a>
+                    {getInterfaceLabel(
+                      enrollment?.payment?.provider?.interface,
+                    )}
                   </Link>
                 </dd>
               </div>
@@ -268,12 +267,11 @@ const EnrollmentDetail = ({ enrollment }) => {
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
                     href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
+                    className="text-blue-600 dark:text-blue-400"
                   >
-                    <a className="text-blue-600 dark:text-blue-400">
-                      {getInterfaceLabel(
-                        enrollment?.delivery?.provider?.interface,
-                      )}
-                    </a>
+                    {getInterfaceLabel(
+                      enrollment?.delivery?.provider?.interface,
+                    )}
                   </Link>
                 </dd>
               </div>

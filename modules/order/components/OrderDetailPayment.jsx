@@ -71,10 +71,11 @@ const OrderDetailPayment = ({ order }) => {
 
       <div className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6">
         <span className="mb-5  block">
-          <Link href={`/payment-provider/${order.payment.provider._id}`}>
-            <a className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
-              {getInterfaceLabel(order.payment?.provider?.interface)}
-            </a>
+          <Link
+            href={`/payment-provider/${order.payment.provider._id}`}
+            className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
+          >
+            {getInterfaceLabel(order.payment?.provider?.interface)}
           </Link>
         </span>
         <div className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-200">

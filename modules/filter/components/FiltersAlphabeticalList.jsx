@@ -36,19 +36,20 @@ const FiltersAlphabeticalList = ({ workId, itemKey }) => {
                   <li key={item._id} className="bg-white dark:bg-slate-500">
                     <div className="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-slate-50 dark:hover:bg-slate-400">
                       <div className="min-w-0 flex-1">
-                        <Link href={`/filters/${item?._id}`}>
-                          <a className="focus:outline-none">
-                            <span
-                              className="absolute inset-0"
-                              aria-hidden="true"
-                            />
-                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                              {item?.type}
-                            </p>
-                            <p className="truncate text-sm text-slate-500 dark:text-slate-100">
-                              {item?.key}
-                            </p>
-                          </a>
+                        <Link
+                          href={`/filters/${item?._id}`}
+                          className="focus:outline-none"
+                        >
+                          <span
+                            className="absolute inset-0"
+                            aria-hidden="true"
+                          />
+                          <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                            {item?.type}
+                          </p>
+                          <p className="truncate text-sm text-slate-500 dark:text-slate-100">
+                            {item?.key}
+                          </p>
                         </Link>
                       </div>
                     </div>

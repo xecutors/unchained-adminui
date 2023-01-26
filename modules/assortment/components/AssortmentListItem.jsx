@@ -33,18 +33,19 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
               className="mr-2"
             />
           )}
-          <Link href={`/assortments/${generateUniqueId(assortment)}`}>
-            <a className="text-blue-600 dark:text-blue-400">
-              {assortment?.texts?.title || (
-                <>
-                  {assortment._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
-                  />
-                </>
-              )}
-            </a>
+          <Link
+            href={`/assortments/${generateUniqueId(assortment)}`}
+            className="text-blue-600 dark:text-blue-400"
+          >
+            {assortment?.texts?.title || (
+              <>
+                {assortment._id}{' '}
+                <Badge
+                  color="blue"
+                  text={formatMessage({ id: 'name', defaultMessage: 'Name' })}
+                />
+              </>
+            )}
           </Link>
         </div>
       </Table.Cell>

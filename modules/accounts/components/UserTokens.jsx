@@ -40,84 +40,84 @@ const UserTokens = ({ _id: userId }) => {
             status,
           }) => (
             <div className="group relative border-r border-b border-gray-200 p-4 sm:p-6">
-              <Link href={`/products/${generateUniqueId(product)}`}>
-                <a className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-                  <div>
-                    <Image
-                      src={
-                        (product?.media?.length &&
-                          product.media[0].file?.url) ||
-                        '/no-image.jpg'
-                      }
-                      loader={defaultNextImageLoader}
-                      alt="TODO"
-                      width="100%"
-                      layout="responsive"
-                      height="100%"
-                      className=" h-full w-full "
-                    />
-                  </div>
-                  <div className="pt-2">
-                    <h3 className="text-lg font-medium text-gray-900">
-                      {product?.texts?.title}
-                    </h3>
-                    <p>
+              <Link
+                href={`/products/${generateUniqueId(product)}`}
+                className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
+              >
+                <div>
+                  <Image
+                    src={
+                      (product?.media?.length && product.media[0].file?.url) ||
+                      '/no-image.jpg'
+                    }
+                    loader={defaultNextImageLoader}
+                    alt="TODO"
+                    width="100%"
+                    layout="responsive"
+                    height="100%"
+                    className=" h-full w-full "
+                  />
+                </div>
+                <div className="pt-2">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    {product?.texts?.title}
+                  </h3>
+                  <p>
+                    {formatMessage(
+                      {
+                        id: 'token-id',
+                        defaultMessage: 'Token ID {chainTokenId}',
+                      },
+                      { chainTokenId },
+                    )}
+                  </p>
+                  {walletAddress ? (
+                    <div>
                       {formatMessage(
                         {
-                          id: 'token-id',
-                          defaultMessage: 'Token ID {chainTokenId}',
+                          id: 'wallet-address',
+                          defaultMessage: 'Wallet {walletAddress}',
                         },
-                        { chainTokenId },
+                        { walletAddress: shortenAddress(walletAddress) },
                       )}
+                    </div>
+                  ) : null}
+                  <p>
+                    {formatMessage(
+                      {
+                        id: 'chain-id',
+                        defaultMessage: 'Chain ID {chainId}',
+                      },
+                      { chainId },
+                    )}
+                  </p>
+                  <p>
+                    {formatMessage(
+                      {
+                        id: 'token-id',
+                        defaultMessage: 'Token ID {chainTokenId}',
+                      },
+                      { chainTokenId },
+                    )}
+                  </p>
+                  {product?.simulatedPrice ? (
+                    <p className="mt-2 text-base font-medium text-gray-900">
+                      {formatPrice(product?.simulatedPrice)}
                     </p>
-                    {walletAddress ? (
-                      <div>
-                        {formatMessage(
-                          {
-                            id: 'wallet-address',
-                            defaultMessage: 'Wallet {walletAddress}',
-                          },
-                          { walletAddress: shortenAddress(walletAddress) },
-                        )}
-                      </div>
-                    ) : null}
-                    <p>
-                      {formatMessage(
-                        {
-                          id: 'chain-id',
-                          defaultMessage: 'Chain ID {chainId}',
-                        },
-                        { chainId },
-                      )}
-                    </p>
-                    <p>
-                      {formatMessage(
-                        {
-                          id: 'token-id',
-                          defaultMessage: 'Token ID {chainTokenId}',
-                        },
-                        { chainTokenId },
-                      )}
-                    </p>
-                    {product?.simulatedPrice ? (
-                      <p className="mt-2 text-base font-medium text-gray-900">
-                        {formatPrice(product?.simulatedPrice)}
-                      </p>
-                    ) : null}
-                    <div className="mt-2 mb-8">
-                      <div className="">
-                        <Badge
-                          text={
-                            status === 'CENTRALIZED'
-                              ? 'Off-Chain 🏛'
-                              : 'On-Chain ⛓'
-                          }
-                          color={TokenStatusColor[status]}
-                        />
-                      </div>
+                  ) : null}
+                  <div className="mt-2 mb-8">
+                    <div className="">
+                      <Badge
+                        text={
+                          status === 'CENTRALIZED'
+                            ? 'Off-Chain 🏛'
+                            : 'On-Chain ⛓'
+                        }
+                        color={TokenStatusColor[status]}
+                      />
                     </div>
                   </div>
-                </a>
+                </div>
               </Link>
               {status !== 'DECENTRALIZED' && (
                 <div className="mt-3 flex items-center justify-between">

@@ -57,13 +57,13 @@ const BreadCrumbs = ({ routeName, currentPageTitle, depth }) => {
                   />
                 </svg>
               )}
-              <Link href={data.path}>
-                <a className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 hover:text-slate-700">
-                  {/* if current page title is provided display that instead of using page id */}
-                  {i === result.length - 1 && currentPageTitle
-                    ? currentPageTitle
-                    : data.name}
-                </a>
+              <Link
+                href={data.path}
+                className="text-sm font-medium capitalize text-slate-500 dark:text-slate-400 dark:hover:text-slate-300 hover:text-slate-700"
+              >
+                {i === result.length - 1 && currentPageTitle
+                  ? currentPageTitle
+                  : data.name}
               </Link>
             </div>
           </li>

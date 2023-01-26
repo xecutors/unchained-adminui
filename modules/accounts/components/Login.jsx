@@ -45,13 +45,14 @@ const GetCurrentStep = ({ step }) => {
           />
 
           <div className="my-1 text-sm sm:my-0 text-left">
-            <Link href="/account/forgot-password">
-              <a className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                {formatMessage({
-                  id: 'forget_password',
-                  defaultMessage: 'Forgot your password?',
-                })}
-              </a>
+            <Link
+              href="/account/forgot-password"
+              className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+            >
+              {formatMessage({
+                id: 'forget_password',
+                defaultMessage: 'Forgot your password?',
+              })}
             </Link>
           </div>
         </>
@@ -343,13 +344,14 @@ const LogInForm = () => {
                   id: 'create_new_account',
                   defaultMessage: 'Create new account?',
                 })}
-                <Link href="/sign-up">
-                  <a className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                    {intl.formatMessage({
-                      id: 'sign_up',
-                      defaultMessage: 'Sign up',
-                    })}
-                  </a>
+                <Link
+                  href="/sign-up"
+                  className="ml-2 font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+                >
+                  {intl.formatMessage({
+                    id: 'sign_up',
+                    defaultMessage: 'Sign up',
+                  })}
                 </Link>
               </div>
             </Form>

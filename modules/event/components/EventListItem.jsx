@@ -12,21 +12,22 @@ const EventListItem = ({ event }) => {
     <Table.Row>
       <Table.Cell className="whitespace-nowrap px-6">
         <div className="flex items-center text-sm">
-          <Link href={`/events/${event._id}`}>
-            <a className="text-blue-600 dark:text-blue-400">
-              {event?.type || (
-                <>
-                  {event._id}{' '}
-                  <Badge
-                    color="blue"
-                    text={formatMessage({
-                      id: 'created',
-                      defaultMessage: 'Created',
-                    })}
-                  />
-                </>
-              )}
-            </a>
+          <Link
+            href={`/events/${event._id}`}
+            className="text-blue-600 dark:text-blue-400"
+          >
+            {event?.type || (
+              <>
+                {event._id}{' '}
+                <Badge
+                  color="blue"
+                  text={formatMessage({
+                    id: 'created',
+                    defaultMessage: 'Created',
+                  })}
+                />
+              </>
+            )}
           </Link>
         </div>
       </Table.Cell>

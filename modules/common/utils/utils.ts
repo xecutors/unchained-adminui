@@ -97,7 +97,8 @@ const normalizeQuery = (
 
 export const getDefaultEndpoint = () => {
   return (
-    process.env?.NEXT_PUBLIC_GRAPHQL_ENDPOINT || 'http://localhost:4010/graphql'
+    process?.env?.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
+    'http://localhost:4010/graphql'
   );
 };
 

@@ -24,10 +24,11 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
     <Table.Row>
       <Table.Cell>
         <div className="text-sm">
-          <Link href={`/enrollments/${enrollment._id}`}>
-            <a className="font-medium text-blue-500 dark:text-blue-400">
-              {enrollment?.enrollmentNumber || enrollment._id?.substr(0, 10)}
-            </a>
+          <Link
+            href={`/enrollments/${enrollment._id}`}
+            className="font-medium text-blue-500 dark:text-blue-400"
+          >
+            {enrollment?.enrollmentNumber || enrollment._id?.substr(0, 10)}
           </Link>
         </div>
       </Table.Cell>
@@ -62,40 +63,42 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
 
       {showUser && enrollment.user && (
         <Table.Cell>
-          <Link href={`/users/${enrollment.user._id}`}>
-            <a className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration">
-              <span className="inline-block h-9 w-9 rounded-full">
-                <Image
-                  loader={defaultNextImageLoader}
-                  src={enrollment?.user?.avatar?.url}
-                  width={36}
-                  height={36}
-                  placeholder="blur"
-                  blurDataURL="/no-image.jpg"
-                />
-              </span>
-              <span className="ml-2">{enrollment.user?.username}</span>
-            </a>
+          <Link
+            href={`/users/${enrollment.user._id}`}
+            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+          >
+            <span className="inline-block h-9 w-9 rounded-full">
+              <Image
+                loader={defaultNextImageLoader}
+                src={enrollment?.user?.avatar?.url}
+                width={36}
+                height={36}
+                placeholder="blur"
+                blurDataURL="/no-image.jpg"
+              />
+            </span>
+            <span className="ml-2">{enrollment.user?.username}</span>
           </Link>
         </Table.Cell>
       )}
 
       <Table.Cell>
         <div className="text-sm">
-          <Link href={`/products/${generateUniqueId(enrollment.plan.product)}`}>
-            <a className="flex text-blue-600 dark:text-blue-400">
-              <Image
-                loader={defaultNextImageLoader}
-                src={enrollment?.plan?.product?.media?.file?.url}
-                width={20}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-                height={20}
-              />
-              <span className="ml-2 self-end">
-                {enrollment?.plan.product.texts.title}
-              </span>
-            </a>
+          <Link
+            href={`/products/${generateUniqueId(enrollment.plan.product)}`}
+            className="flex text-blue-600 dark:text-blue-400"
+          >
+            <Image
+              loader={defaultNextImageLoader}
+              src={enrollment?.plan?.product?.media?.file?.url}
+              width={20}
+              placeholder="blur"
+              blurDataURL="/no-image.jpg"
+              height={20}
+            />
+            <span className="ml-2 self-end">
+              {enrollment?.plan.product.texts.title}
+            </span>
           </Link>
         </div>
       </Table.Cell>

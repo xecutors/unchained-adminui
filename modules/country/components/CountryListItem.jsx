@@ -59,9 +59,7 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
           <div className="flex items-center">
             {enableEdit && (
               <Link href={`/country/${country._id}`}>
-                <a>
-                  <EditIcon />
-                </a>
+                <EditIcon />
               </Link>
             )}
             {enableDelete && (

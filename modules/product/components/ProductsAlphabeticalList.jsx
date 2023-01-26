@@ -45,30 +45,29 @@ const ProductsAlphabeticalList = ({ workId, itemKey }) => {
                         </div>
                       )}
                       <div className="min-w-0 flex-1">
-                        <Link href={`/products/${item?.slug}_id_${item._id}`}>
-                          <a
-                            className={classNames('focus:outline-none', {
-                              'pointer-events-none': disable,
-                            })}
-                          >
-                            <span
-                              className="absolute inset-0"
-                              aria-hidden="true"
-                            />
-                            <p
-                              className="text-sm font-medium text-slate-900 dark:text-slate-100"
-                              // eslint-disable-next-line react/no-danger
-                              dangerouslySetInnerHTML={{ __html: item?.title }}
-                            />
+                        <Link
+                          href={`/products/${item?.slug}_id_${item._id}`}
+                          className={classNames('focus:outline-none', {
+                            'pointer-events-none': disable,
+                          })}
+                        >
+                          <span
+                            className="absolute inset-0"
+                            aria-hidden="true"
+                          />
+                          <p
+                            className="text-sm font-medium text-slate-900 dark:text-slate-100"
+                            // eslint-disable-next-line react/no-danger
+                            dangerouslySetInnerHTML={{ __html: item?.title }}
+                          />
 
-                            <p
-                              className="truncate text-sm text-slate-500 dark:text-slate-300"
-                              // eslint-disable-next-line react/no-danger
-                              dangerouslySetInnerHTML={{
-                                __html: item?.subtitle,
-                              }}
-                            />
-                          </a>
+                          <p
+                            className="truncate text-sm text-slate-500 dark:text-slate-300"
+                            // eslint-disable-next-line react/no-danger
+                            dangerouslySetInnerHTML={{
+                              __html: item?.subtitle,
+                            }}
+                          />
                         </Link>
                       </div>
                     </div>
