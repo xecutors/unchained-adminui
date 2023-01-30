@@ -4,14 +4,14 @@ import useUser from '../../modules/accounts/hooks/useUser';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import PageHeader from '../../modules/common/components/PageHeader';
-import UserSettings from '../../modules/accounts/components/UserSerttings';
+import UserSettings from '../../modules/accounts/components/UserSettings';
 
 const UserProfile = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const { userId } = query;
 
-  const { user } = useUser({ userId });
+  const { user, extendedData } = useUser({ userId });
 
   return (
     <div className=" max-w-6xl">
@@ -22,7 +22,7 @@ const UserProfile = () => {
           defaultMessage: 'User settings',
         })}
       />
-      <UserSettings user={user} />
+      <UserSettings user={user} extendedData={extendedData} />
     </div>
   );
 };

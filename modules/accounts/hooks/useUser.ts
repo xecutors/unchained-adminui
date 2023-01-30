@@ -1,9 +1,11 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import UserFragment from '../fragment/UserFragment';
 
-export const UserQuery = gql`
+export const GetUserQuery = (inlineFragment = '') => gql`
   query User($userId: ID) {
     user(userId: $userId) {
+      ${inlineFragment}
       ...UserFragment
     }
   }
@@ -11,18 +13,25 @@ export const UserQuery = gql`
 `;
 
 const useUser = ({ userId = null } = {}) => {
-  const { data, loading, error } = useQuery(UserQuery, {
-    skip: !userId,
-    variables: { userId },
-  });
+  const { customProperties, hydrateFragment } = useUnchainedContext();
+
+  const { data, loading, error } = useQuery(
+    GetUserQuery(customProperties?.User),
+    {
+      skip: !userId,
+      variables: { userId },
+    },
+  );
 
   const user = data?.user;
+  const extendedData = hydrateFragment(customProperties?.User, user);
 
   return {
     user,
     shopInfo: data?.shopInfo,
     loading,
     error,
+    extendedData,
   };
 };
 

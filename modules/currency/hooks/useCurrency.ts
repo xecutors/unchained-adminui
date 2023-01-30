@@ -1,35 +1,32 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
-export const CurrencyQuery = gql`
+export const GetCurrencyQuery = (inlineFragment = '') => gql`
   query Currency($currencyId: ID!) {
     currency(currencyId: $currencyId) {
       ...CurrencyFragment
+      ${inlineFragment}
     }
   }
   ${CurrencyFragment}
 `;
 
 const useCurrency = ({ currencyId }) => {
-  const { data, loading, error } = useQuery(CurrencyQuery, {
-    skip: !currencyId,
-    variables: { currencyId },
-  });
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetCurrencyQuery(customProperties?.Currency),
+    {
+      skip: !currencyId,
+      variables: { currencyId },
+    },
+  );
 
   return {
     currency: data?.currency,
     loading,
     error,
   };
-};
-
-export const preFetchCurrency = async (apolloClient, { currencyId = null }) => {
-  const { data } = await apolloClient.query({
-    query: CurrencyQuery,
-    skip: !currencyId,
-    variables: { currencyId },
-  });
-  return data?.currency;
 };
 
 export default useCurrency;

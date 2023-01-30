@@ -1,36 +1,33 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import OrderDetailFragment from '../fragments/OrderDetailFragment';
 
-export const OrderQuery = gql`
+export const GetOrderQuery = (inlineFragment) => gql`
   query Order($orderId: ID!) {
     order(orderId: $orderId) {
       ...OrderDetailFragment
+      ${inlineFragment}
     }
   }
   ${OrderDetailFragment}
 `;
 
 const useOrder = ({ orderId = null } = {}) => {
-  const { data, loading, error } = useQuery(OrderQuery, {
-    skip: !orderId,
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetOrderQuery(customProperties?.Order),
+    {
+      skip: !orderId,
 
-    variables: { orderId },
-  });
+      variables: { orderId },
+    },
+  );
 
   return {
     order: data?.order,
     loading,
     error,
   };
-};
-
-export const preFetchOrder = async (apolloClient, { orderId = null }) => {
-  const { data } = await apolloClient.query({
-    query: OrderQuery,
-    skip: !orderId,
-    variables: { orderId },
-  });
-  return data?.order;
 };
 
 export default useOrder;

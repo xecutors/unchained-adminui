@@ -24,7 +24,7 @@ const AssortmentDetailPage = () => {
   const { setModal } = useModal();
   const { slug = [] } = query || {};
   const normalizedSlug = slug?.join('/');
-  const { assortment, loading } = useAssortment({
+  const { assortment, loading, extendedData } = useAssortment({
     slug: normalizedSlug,
   });
 
@@ -110,7 +110,11 @@ const AssortmentDetailPage = () => {
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>
-      {loading ? <Loading /> : <AssortmentDetail assortment={assortment} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <AssortmentDetail assortment={assortment} extendedData={extendedData} />
+      )}
     </div>
   );
 };

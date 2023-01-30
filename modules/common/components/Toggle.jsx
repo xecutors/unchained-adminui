@@ -8,6 +8,7 @@ const Toggle = ({
   onToggle,
   active,
   className,
+  disabled = false,
   ...props
 }) => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const Toggle = ({
     <div className={classNames('ml-1', className)}>
       <button
         id={toggleKey}
+        disabled={disabled}
         type="button"
         className={classNames(
           ' relative inline-flex h-4 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',

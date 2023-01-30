@@ -25,7 +25,9 @@ const ProductDetailPage = () => {
 
   const { slug = [] } = query || {};
   const normalizedSlug = slug.join('/');
-  const { product, loading } = useProduct({ slug: normalizedSlug });
+  const { product, loading, extendedData } = useProduct({
+    slug: normalizedSlug,
+  });
   const { removeProduct } = useRemoveProduct();
 
   const handleOnClick = async () => {
@@ -157,7 +159,11 @@ const ProductDetailPage = () => {
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>
-      {loading ? <Loading /> : <ProductDetail product={product} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProductDetail product={product} extendedData={extendedData} />
+      )}
     </div>
   );
 };

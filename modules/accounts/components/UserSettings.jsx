@@ -3,10 +3,12 @@ import {
   ClipboardListIcon,
   CreditCardIcon,
   LockClosedIcon,
+  PuzzleIcon,
   ShoppingCartIcon,
   UserIcon,
 } from '@heroicons/react/solid';
 import { useIntl } from 'react-intl';
+import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 import Loading from '../../common/components/Loading';
 import Tab from '../../common/components/Tab';
 import AccountView from './AccountView';
@@ -17,7 +19,7 @@ import UserOrders from './UserOrders';
 import UserQuotations from './UserQuotations';
 import UserTokens from './UserTokens';
 
-const GetCurrentTab = ({ user, selectedView }) => {
+const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
   if (!user) return <Loading />;
   if (selectedView === 'profile') return <ProfileView {...user} />;
   if (selectedView === 'orders') return <UserOrders {...user} />;
@@ -27,9 +29,12 @@ const GetCurrentTab = ({ user, selectedView }) => {
   if (selectedView === 'payment_credentials')
     return <PaymentCredentialsView {...user} />;
   if (selectedView === 'tokens') return <UserTokens {...user} />;
+  if (selectedView === 'extended') {
+    return <DisplayExtendedFields data={extendedData} />;
+  }
   return <AccountView {...user} />;
 };
-const UserSettings = ({ user }) => {
+const UserSettings = ({ user, extendedData }) => {
   const { formatMessage } = useIntl();
   const userProfileSettingOptions = [
     {
@@ -94,10 +99,18 @@ const UserSettings = ({ user }) => {
         </svg>
       ),
     },
+    extendedData !== null && {
+      id: 'extended',
+      title: formatMessage({
+        id: 'extended-fields',
+        defaultMessage: 'Extended',
+      }),
+      Icon: <PuzzleIcon className="h-4 w-5" />,
+    },
   ];
   return (
     <Tab tabItems={userProfileSettingOptions} defaultTab="profile">
-      <GetCurrentTab user={user} />
+      <GetCurrentTab user={user} {...extendedData} />
     </Tab>
   );
 };

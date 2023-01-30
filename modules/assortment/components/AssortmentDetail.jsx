@@ -5,6 +5,7 @@ import {
   FilmIcon,
   ViewGridIcon,
   FilterIcon,
+  PuzzleIcon,
 } from '@heroicons/react/solid';
 
 import { toast } from 'react-toastify';
@@ -24,8 +25,9 @@ import useAuth from '../../Auth/useAuth';
 import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
 import AlertMessage from '../../modal/components/AlertMessage';
+import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ id, selectedView }) => {
+const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
@@ -44,13 +46,15 @@ const GetCurrentTab = ({ id, selectedView }) => {
     return <AssortmentProducts assortmentId={id} />;
   if (selectedView === 'filters')
     return <AssortmentFilters assortmentId={id} />;
+  if (selectedView === 'extended')
+    return <DisplayExtendedFields data={extendedData} />;
   return (
     <LocaleWrapper>
       <AssortmentTextForm assortmentId={id} />
     </LocaleWrapper>
   );
 };
-const AssortmentDetail = ({ assortment }) => {
+const AssortmentDetail = ({ assortment, extendedData }) => {
   const { isActive, isBase, isRoot } = assortment;
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
@@ -137,6 +141,14 @@ const AssortmentDetail = ({ assortment }) => {
         defaultMessage: 'Filters',
       }),
       Icon: <FilterIcon className="h-4 w-5" />,
+    },
+    extendedData !== null && {
+      id: 'extended',
+      title: formatMessage({
+        id: 'extended-fields',
+        defaultMessage: 'Extended',
+      }),
+      Icon: <PuzzleIcon className="h-4 w-5" />,
     },
   ];
 
@@ -328,7 +340,7 @@ const AssortmentDetail = ({ assortment }) => {
         />
       </div>
       <Tab tabItems={assortmentOptions} defaultTab="texts">
-        <GetCurrentTab id={assortment?._id} />
+        <GetCurrentTab id={assortment?._id} {...extendedData} />
       </Tab>
     </>
   );

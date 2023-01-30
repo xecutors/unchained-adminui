@@ -1,20 +1,27 @@
 import { useQuery, gql } from '@apollo/client';
+import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import EnrollmentDetailFragment from '../fragments/EnrollmentDetailFragment';
 
-export const EnrollmentQuery = gql`
+export const GetEnrollmentQuery = (inlineFragment = '') => gql`
   query Enrollment($enrollmentId: ID!) {
     enrollment(enrollmentId: $enrollmentId) {
       ...EnrollmentDetailFragment
+      ${inlineFragment}
+
     }
   }
   ${EnrollmentDetailFragment}
 `;
 
 const useEnrollment = ({ enrollmentId = null } = {}) => {
-  const { data, loading, error } = useQuery(EnrollmentQuery, {
-    skip: !enrollmentId,
-    variables: { enrollmentId },
-  });
+  const { customProperties } = useUnchainedContext();
+  const { data, loading, error } = useQuery(
+    GetEnrollmentQuery(customProperties?.Enrollment),
+    {
+      skip: !enrollmentId,
+      variables: { enrollmentId },
+    },
+  );
   const enrollment = data?.enrollment || {};
 
   return {

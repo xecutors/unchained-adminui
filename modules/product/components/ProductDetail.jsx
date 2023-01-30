@@ -8,6 +8,7 @@ import {
   ColorSwatchIcon,
   PresentationChartLineIcon,
   UsersIcon,
+  PuzzleIcon,
 } from '@heroicons/react/solid';
 import { toast } from 'react-toastify';
 import { LinkIcon } from '@heroicons/react/outline';
@@ -33,8 +34,9 @@ import { PRODUCT_TYPES } from '../ProductTypes';
 import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
 import ProductTokenizationForm from './ProductTokenizationForm';
+import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 
-const GetCurrentTab = ({ id, selectedView }) => {
+const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   if (selectedView === 'texts')
     return (
       <LocaleWrapper>
@@ -67,13 +69,16 @@ const GetCurrentTab = ({ id, selectedView }) => {
   if (selectedView === 'token') {
     return <ProductTokenizationForm productId={id} />;
   }
+  if (selectedView === 'extended') {
+    return <DisplayExtendedFields data={extendedData} />;
+  }
   return (
     <LocaleWrapper>
       <ProductTextsForm productId={id} />
     </LocaleWrapper>
   );
 };
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ product, extendedData }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { publishProduct } = usePublishProduct();
@@ -173,6 +178,14 @@ const ProductDetail = ({ product }) => {
       }),
       Icon: <PresentationChartLineIcon className="h-4 w-5" />,
     },
+    extendedData !== null && {
+      id: 'extended',
+      title: formatMessage({
+        id: 'extended-fields',
+        defaultMessage: 'Extended',
+      }),
+      Icon: <PuzzleIcon className="h-4 w-5" />,
+    },
   ].filter((item) => item !== false);
 
   const activeOptions = [
@@ -258,7 +271,7 @@ const ProductDetail = ({ product }) => {
         />
       </div>
       <Tab tabItems={productOptions} defaultTab="texts">
-        <GetCurrentTab id={product?._id} />
+        <GetCurrentTab id={product?._id} {...extendedData} />
       </Tab>
     </>
   );
