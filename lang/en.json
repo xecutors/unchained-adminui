@@ -3,9 +3,6 @@
     "defaultMessage": "default_input_name",
     "description": "DO not translate Skip this as it's the default given label when a component is not provided explicit label"
   },
-  "Reject_alert_header": {
-    "defaultMessage": "Reject quotation?"
-  },
   "account": {
     "defaultMessage": "Account"
   },
@@ -424,9 +421,6 @@
   },
   "date": {
     "defaultMessage": "Date"
-  },
-  "date_range": {
-    "defaultMessage": "Date range"
   },
   "deactivate": {
     "defaultMessage": "Deactivate"
@@ -985,6 +979,9 @@
   "increased_by": {
     "defaultMessage": "Increased by"
   },
+  "initial": {
+    "defaultMessage": "Initial"
+  },
   "input": {
     "defaultMessage": "Input"
   },
@@ -1003,14 +1000,8 @@
   "invalid_json_input": {
     "defaultMessage": "Invalid JSON input"
   },
-  "isActive": {
-    "defaultMessage": "Active"
-  },
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
-  },
-  "is_base": {
-    "defaultMessage": "Base"
   },
   "iso_code": {
     "defaultMessage": "ISO code"
@@ -1083,6 +1074,9 @@
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
+  },
+  "make-proposal-header": {
+    "defaultMessage": "Make quotation proposal"
   },
   "make_leaf": {
     "defaultMessage": "Make leaf"
@@ -1216,6 +1210,9 @@
   },
   "not_published": {
     "defaultMessage": "Not published"
+  },
+  "ok": {
+    "defaultMessage": "Ok"
   },
   "open_sidebar": {
     "defaultMessage": "Open sidebar"
@@ -1460,6 +1457,18 @@
   "quotation": {
     "defaultMessage": "quotation"
   },
+  "quotation-context-input-label": {
+    "defaultMessage": "Quotation context"
+  },
+  "quotation-quoted-successfully": {
+    "defaultMessage": "Quoted successfully"
+  },
+  "quotation-rejection-successfully": {
+    "defaultMessage": "Quotation rejected successfully"
+  },
+  "quotation-verified-successfully": {
+    "defaultMessage": "Quotation verified successfully"
+  },
   "quotation_detail": {
     "defaultMessage": "Quotation Detail"
   },
@@ -1468,6 +1477,9 @@
   },
   "quotation_number": {
     "defaultMessage": "Quotation number"
+  },
+  "quotation_updated": {
+    "defaultMessage": "Quotation updated successfuly"
   },
   "quotations": {
     "defaultMessage": "Quotations"
@@ -1481,11 +1493,8 @@
   "region_Code": {
     "defaultMessage": "Region"
   },
-  "reject_alert_button": {
-    "defaultMessage": "Reject"
-  },
-  "reject_alert_success": {
-    "defaultMessage": "Reject {id} verified successfully"
+  "reject-quotation-quotation": {
+    "defaultMessage": "Reject quotation?"
   },
   "reject_order": {
     "defaultMessage": "Reject order"
@@ -1507,6 +1516,9 @@
   },
   "reports": {
     "defaultMessage": "Reports"
+  },
+  "requested": {
+    "defaultMessage": "Requested"
   },
   "required-role-not-satisfied": {
     "defaultMessage": "Current account does not have access, please log in with an account that have the required role. Contact system administrator for further information"
@@ -1725,20 +1737,11 @@
   "subtotal": {
     "defaultMessage": "Subtotal"
   },
-  "success": {
-    "defaultMessage": "Quotation {id} verified successfully"
-  },
   "success_message": {
     "defaultMessage": "Subscription successfully activated."
   },
   "supply": {
     "defaultMessage": "Supply"
-  },
-  "switch_off": {
-    "defaultMessage": "off"
-  },
-  "switch_on": {
-    "defaultMessage": "on"
   },
   "sync_added": {
     "defaultMessage": "Added { categoryName }"
@@ -1786,7 +1789,7 @@
     "defaultMessage": "Are you sure you want to terminate this subscription?"
   },
   "terminate_enrollment_success": {
-    "defaultMessage": "Subscription {enrollmentId} terminated successfully"
+    "defaultMessage": "Subscription terminated successfully"
   },
   "terminate_subscription": {
     "defaultMessage": "Terminate subscription"
@@ -1845,6 +1848,9 @@
   },
   "totp_code_not_match": {
     "defaultMessage": "TOTP code did not match"
+  },
+  "trial": {
+    "defaultMessage": "Trial"
   },
   "trial_interval_unit": {
     "defaultMessage": "Trial interval unit"
@@ -2014,10 +2020,7 @@
   "verification_web3_address": {
     "defaultMessage": "Verify"
   },
-  "verify_alert_button": {
-    "defaultMessage": "Verify"
-  },
-  "verify_alert_header": {
+  "verify-quotation-quotation": {
     "defaultMessage": "Verify quotation?"
   },
   "view_all": {
@@ -2048,7 +2051,7 @@
     "defaultMessage": "Address added successfully!"
   },
   "web3_address_deleted": {
-    "defaultMessage": "Address {address} deleted successfully"
+    "defaultMessage": "Address deleted successfully"
   },
   "web3_address_signature_instruction": {
     "defaultMessage": "<p>Copy the following nonce <b> ({nonce})</b> and past the signature on the space provided below </p>"
@@ -2116,14 +2119,8 @@
   "work_queue_header": {
     "defaultMessage": "Work queue"
   },
-  "work_ready": {
-    "defaultMessage": "Ready"
-  },
   "work_retries": {
     "defaultMessage": "Retries"
-  },
-  "work_running": {
-    "defaultMessage": "Running"
   },
   "work_scheduled": {
     "defaultMessage": "Scheduled"
