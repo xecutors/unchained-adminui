@@ -7,6 +7,10 @@ const EnrollmentFragment = gql`
       _id
       isoCode
     }
+    currency {
+      _id
+      isoCode
+    }
     enrollmentNumber
     updated
     status
@@ -18,9 +22,26 @@ const EnrollmentFragment = gql`
       end
       isTrial
     }
+    payment {
+      provider {
+        _id
+      }
+    }
+    delivery {
+      provider {
+        _id
+      }
+    }
     plan {
       product {
         _id
+        media {
+          _id
+          file {
+            _id
+            url
+          }
+        }
         texts {
           _id
           title

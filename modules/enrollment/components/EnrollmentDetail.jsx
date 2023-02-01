@@ -194,7 +194,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                 <span className="h relative h-48 w-full rounded-lg">
                   <Image
                     loader={defaultNextImageLoader}
-                    src={enrollment?.plan?.product?.media?.file?.url}
+                    src={enrollment?.plan?.product?.media?.[0]?.file?.url}
                     alt={enrollment?.plan?.product?.text?.title}
                     layout="fill"
                     objectFit="contain"
