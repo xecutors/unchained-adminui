@@ -183,7 +183,7 @@ describe('Product Text', () => {
 
   it('Should cancel [ADD TAGS] form successfully', () => {
     cy.get('button#add_tag').click();
-    cy.get('button#cancel_update')
+    cy.get('[data-id="cancel_update"]')
       .contains(localizations.en.cancel)
       .click({ force: true });
     cy.location('pathname').should(

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import {
   CheckCircleIcon,
   XCircleIcon,
-  DeviceMobileIcon,
+  DevicePhoneMobileIcon,
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
@@ -106,7 +106,7 @@ const DetailHeader = ({ user, contact }) => {
                 {formatMessage({ id: 'phone', defaultMessage: 'Phone' })}
               </dt>
               <dd className="flex items-center text-sm font-medium capitalize text-slate-500 sm:mr-6">
-                <DeviceMobileIcon
+                <DevicePhoneMobileIcon
                   className="mr-1.5 h-5 w-5 flex-shrink-0 text-slate-400"
                   aria-hidden="true"
                 />

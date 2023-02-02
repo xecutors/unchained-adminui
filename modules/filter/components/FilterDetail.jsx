@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl';
 import {
   DocumentTextIcon,
-  ClipboardListIcon,
-  PuzzleIcon,
+  ClipboardDocumentListIcon,
+  PuzzlePieceIcon,
 } from '@heroicons/react/24/solid';
 
 import { toast } from 'react-toastify';
@@ -59,7 +59,7 @@ const FilterDetail = ({ filter, extendedData }) => {
         id: 'options',
         defaultMessage: 'Options',
       }),
-      Icon: <ClipboardListIcon className="h-4 w-5" />,
+      Icon: <ClipboardDocumentListIcon className="h-4 w-5" />,
     },
     extendedData !== null && {
       id: 'extended',
@@ -67,7 +67,7 @@ const FilterDetail = ({ filter, extendedData }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzleIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
     },
   ].filter(Boolean);
 

@@ -174,7 +174,7 @@ describe('Assortment Detail Texts', () => {
       const { assortment } = SingleAssortmentResponse.data;
 
       cy.get('button#add_tag').click();
-      cy.get('button#cancel_update')
+      cy.get('[data-id="cancel_update"]')
         .contains(localizations.en.cancel)
         .click({ force: true });
       cy.location('pathname').should(

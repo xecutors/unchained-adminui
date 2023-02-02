@@ -174,9 +174,11 @@ describe('Assortment Detail Filters', () => {
   it('Should [REMOVE TAG] successfully', () => {
     cy.get('input#tags').clear().type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
-    cy.get('span#badge').within(() => {
-      cy.get('button#badge-x-button').click();
-    });
+    cy.get('span#badge').each($div => {
+      cy.wrap($div).within(() => {
+        cy.get('button#badge-x-button').click();
+      });
+    })
   });
 
   it('Should [SEARCH] filter successfully', () => {
@@ -202,9 +204,12 @@ describe('Assortment Detail Filters', () => {
       },
     );
 
-    cy.get('div#react-select-2-listbox div:first').within(() => {
-      cy.get('div').should('have.length', 2);
-    });
+    cy.get('div#react-select-2-listbox div:first').each($div => {
+
+      cy.wrap($div).within(() => {
+        cy.get('div').should('have.length', 2);
+      });
+    })
   });
 
   it('Should [ADD FILTER] successfully', () => {

@@ -4,11 +4,11 @@ import {
   FilmIcon,
   ShoppingBagIcon,
   ChartPieIcon,
-  ArchiveIcon,
-  ColorSwatchIcon,
+  ArchiveBoxIcon,
+  SwatchIcon,
   PresentationChartLineIcon,
   UsersIcon,
-  PuzzleIcon,
+  PuzzlePieceIcon,
 } from '@heroicons/react/24/solid';
 import { toast } from 'react-toastify';
 import { LinkIcon } from '@heroicons/react/24/outline';
@@ -128,7 +128,7 @@ const ProductDetail = ({ product, extendedData }) => {
         id: 'warehousing',
         defaultMessage: 'Warehousing',
       }),
-      Icon: <ArchiveIcon className="h-4 w-5" />,
+      Icon: <ArchiveBoxIcon className="h-4 w-5" />,
     },
     __typename === PRODUCT_TYPES.ConfigurableProduct && {
       id: 'variations',
@@ -136,7 +136,7 @@ const ProductDetail = ({ product, extendedData }) => {
         id: 'variations',
         defaultMessage: 'Variations',
       }),
-      Icon: <ColorSwatchIcon className="h-4 w-5" />,
+      Icon: <SwatchIcon className="h-4 w-5" />,
     },
     __typename === PRODUCT_TYPES.BundleProduct && {
       id: 'bundled_products',
@@ -184,7 +184,7 @@ const ProductDetail = ({ product, extendedData }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzleIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
     },
   ].filter((item) => item !== false);
 

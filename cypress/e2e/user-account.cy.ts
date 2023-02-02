@@ -133,12 +133,12 @@ describe('User', () => {
     });
 
     it("Should [INITIALIZE USER'S USERNAME ] successfully", () => {
-      cy.get('button#cancel_update').click();
+      cy.get('[data-id="cancel_update"]').click();
       cy.get('input#username').should('have.value', user.username);
     });
 
     it("Should [UPDATE USER'S USERNAME ] successfully", () => {
-      cy.get('button#cancel_update').click();
+      cy.get('[data-id="cancel_update"]').click();
       cy.get('input#username').clear().type(user.username);
 
       cy.get('button[type="submit"]').contains(localizations.en.save).click();
@@ -163,14 +163,14 @@ describe('User', () => {
     });
 
     it("Should [CANCEL USER'S USERNAME] successfully on new user", () => {
-      cy.get('button#cancel_update').click();
-      cy.get('button#cancel_update').click();
+      cy.get('[data-id="cancel_update"]').click();
+      cy.get('[data-id="cancel_update"]').click();
 
       cy.location('pathname').should('eq', `/users/${user._id}`);
     });
 
     it("Should [ERROR] when required fields are not provided in update user's username", () => {
-      cy.get('button#cancel_update').click();
+      cy.get('[data-id="cancel_update"]').click();
       cy.get('input#username').clear().blur();
 
       cy.get('label[for="username"]').should(

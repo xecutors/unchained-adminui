@@ -94,7 +94,7 @@ describe('Account', () => {
       });
     });
     it('Should [INITIALIZE ACCOUNT] successfully', () => {
-      cy.get('button#cancel_update').first().click();
+      cy.get('[data-id="cancel_update"]').first().click();
 
       cy.get('input#displayName').should(
         'have.value',
@@ -146,7 +146,7 @@ describe('Account', () => {
     });
 
     it('Should [UPDATE ACCOUNT] successfully', () => {
-      cy.get('button#cancel_update').first().click();
+      cy.get('[data-id="cancel_update"]').first().click();
 
       cy.get('input#displayName').clear().type(currentUser.profile.displayName);
       cy.get('input[name="birthday"]').focus();
@@ -181,7 +181,7 @@ describe('Account', () => {
     });
 
     it('Should [CANCEL UPDATE ACCOUNT] successfully', () => {
-      cy.get('button#cancel_update').last().click();
+      cy.get('[data-id="cancel_update"]').last().click();
       cy.get('input#displayName').clear().type(currentUser.profile.displayName);
       cy.get('button').contains(localizations.en.cancel).last().click();
 
