@@ -1,4 +1,4 @@
-import { BanIcon } from '@heroicons/react/solid';
+import { BanIcon } from '@heroicons/react/24/solid';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 

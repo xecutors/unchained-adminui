@@ -1,4 +1,4 @@
-import { EmojiSadIcon } from '@heroicons/react/solid';
+import { EmojiSadIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
 import NoData from '../../common/components/NoData';

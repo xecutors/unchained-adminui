@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from '@heroicons/react/outline';
+import { ArrowDownIcon } from '@heroicons/react/24/outline';
 import { useIntl } from 'react-intl';
 
 const SyncChangeIcon = ({ new: added, removed, diff }) => {

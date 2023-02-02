@@ -10,8 +10,8 @@ import {
   UserIcon,
   LightningBoltIcon,
   MenuIcon,
-} from '@heroicons/react/outline';
-import { LinkIcon } from '@heroicons/react/solid';
+} from '@heroicons/react/24/outline';
+import { LinkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -60,7 +60,7 @@ const Layout = ({
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
-    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
+    process?.env?.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
   const logo = getLogo();
   const defaultNavigation = [
     {

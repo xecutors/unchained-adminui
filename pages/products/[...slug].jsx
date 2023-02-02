@@ -1,4 +1,4 @@
-import { XIcon } from '@heroicons/react/solid';
+import { XIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';

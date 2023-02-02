@@ -1,4 +1,4 @@
-import { RefreshIcon } from '@heroicons/react/solid';
+import { RefreshIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';

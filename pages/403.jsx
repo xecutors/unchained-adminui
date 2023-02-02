@@ -1,4 +1,4 @@
-import { LockClosedIcon } from '@heroicons/react/solid';
+import { LockClosedIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';

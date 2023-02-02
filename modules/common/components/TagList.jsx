@@ -1,4 +1,4 @@
-import { PencilAltIcon, TagIcon } from '@heroicons/react/outline';
+import { PencilAltIcon, TagIcon } from '@heroicons/react/24/outline';
 
 import { useIntl } from 'react-intl';
 import useModal from '../../modal/hooks/useModal';

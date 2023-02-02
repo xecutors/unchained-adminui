@@ -1,4 +1,4 @@
-import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/solid';
+import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';

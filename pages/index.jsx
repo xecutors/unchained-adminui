@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 /* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
 
-import { PlusIcon } from '@heroicons/react/outline';
+import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 import ACTION_ROLES from '../modules/common/data/roles';

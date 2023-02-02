@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { EmojiSadIcon } from '@heroicons/react/solid';
+import { EmojiSadIcon } from '@heroicons/react/24/solid';
 import { Fragment } from 'react';
 
 import Table from '../../common/components/Table';

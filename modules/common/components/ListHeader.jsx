@@ -1,4 +1,4 @@
-import { PlusSmIcon } from '@heroicons/react/outline';
+import { PlusSmIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 

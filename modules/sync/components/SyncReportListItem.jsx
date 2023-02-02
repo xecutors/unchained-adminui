@@ -1,4 +1,4 @@
-import { CheckIcon, XIcon } from '@heroicons/react/outline';
+import { CheckIcon, XIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';

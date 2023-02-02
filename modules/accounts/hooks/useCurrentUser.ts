@@ -14,6 +14,7 @@ export const GetCurrentUserQuery = (inlineFragment = '') => gql`
 
 const useCurrentUser = () => {
   const { customProperties, hydrateFragment } = useUnchainedContext();
+  console.log(customProperties?.User);
   const { data, loading, error } = useQuery(
     GetCurrentUserQuery(customProperties?.User),
     {

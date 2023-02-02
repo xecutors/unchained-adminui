@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ClockIcon, MailOpenIcon } from '@heroicons/react/outline';
+import { ClockIcon, MailOpenIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

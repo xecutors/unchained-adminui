@@ -6,7 +6,7 @@ import {
   ViewGridIcon,
   FilterIcon,
   PuzzleIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 
 import { toast } from 'react-toastify';
 import LocaleWrapper from '../../common/components/LocaleWrapper';

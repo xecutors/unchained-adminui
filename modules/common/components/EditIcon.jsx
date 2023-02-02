@@ -1,4 +1,4 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
+import { PencilAltIcon } from '@heroicons/react/24/outline';
 
 const EditIcon = () => {
   return (

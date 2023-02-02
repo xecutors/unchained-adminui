@@ -4,7 +4,7 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   DeviceMobileIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 

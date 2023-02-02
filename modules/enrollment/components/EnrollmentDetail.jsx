@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { InboxIcon } from '@heroicons/react/solid';
+import { InboxIcon } from '@heroicons/react/24/solid';
 
 import useEnrollmentStatusTypes from '../hooks/useEnrollmentStatusTypes';
 import StatusProgress from '../../common/components/StatusProgress';
