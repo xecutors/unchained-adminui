@@ -312,7 +312,7 @@ describe('User', () => {
       expect(response.body).to.deep.eq(SingleUserResponse);
     });
 
-    cy.get('button#cancel_update').first().click();
+    cy.get('[data-id="cancel_update"]').first().click();
     cy.get('input#displayName').should('have.value', user.profile.displayName);
     cy.get('select#gender').should('have.value', user.profile.gender);
     cy.get('input#phoneMobile').should('have.value', user.profile.phoneMobile);
@@ -356,7 +356,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.location('pathname').should('eq', `/users/${user._id}`);
 
-    cy.get('button#cancel_update').first().click();
+    cy.get('[data-id="cancel_update"]').first().click();
 
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('input[name="birthday"]').focus();
@@ -396,7 +396,7 @@ describe('User', () => {
     cy.get(`a[href="/users/${user._id}"]`).click();
     cy.location('pathname').should('eq', `/users/${user._id}`);
 
-    cy.get('button#cancel_update').last().click();
+    cy.get('[data-id="cancel_update"]').last().click();
     cy.get('input#displayName').clear().type(user.profile.displayName);
     cy.get('button').contains(localizations.en.cancel).last().click();
 

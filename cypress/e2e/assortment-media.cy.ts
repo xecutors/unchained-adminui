@@ -276,7 +276,7 @@ describe('Assortment Detail Media', () => {
   it('Should [CANCEL] in media texts update form', () => {
     cy.get('button#edit').first().click();
     cy.get('input#title').clear().type('title');
-    cy.get('button[type="button"]#cancel_update')
+    cy.get('button[type="button"][data-id="cancel_update"]')
       .contains(localizations.en.cancel)
       .click();
   });

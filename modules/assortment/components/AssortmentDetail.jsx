@@ -3,9 +3,9 @@ import {
   DocumentTextIcon,
   LinkIcon,
   FilmIcon,
-  ViewGridIcon,
-  FilterIcon,
-  PuzzleIcon,
+  ViewColumnsIcon,
+  FunnelIcon,
+  PuzzlePieceIcon,
 } from '@heroicons/react/24/solid';
 
 import { toast } from 'react-toastify';
@@ -132,7 +132,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         id: 'products',
         defaultMessage: 'Products',
       }),
-      Icon: <ViewGridIcon className="h-4 w-5" />,
+      Icon: <ViewColumnsIcon className="h-4 w-5" />,
     },
     {
       id: 'filters',
@@ -140,7 +140,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         id: 'filters',
         defaultMessage: 'Filters',
       }),
-      Icon: <FilterIcon className="h-4 w-5" />,
+      Icon: <FunnelIcon className="h-4 w-5" />,
     },
     extendedData !== null && {
       id: 'extended',
@@ -148,7 +148,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzleIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
     },
   ];
 

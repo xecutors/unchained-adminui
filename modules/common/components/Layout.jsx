@@ -4,14 +4,13 @@ import {
   TagIcon,
   HomeIcon,
   InboxIcon,
-  CollectionIcon,
-  AdjustmentsIcon,
+  RectangleStackIcon,
   UserGroupIcon,
   UserIcon,
-  LightningBoltIcon,
   Bars4Icon,
+  AdjustmentsVerticalIcon,
 } from '@heroicons/react/24/outline';
-import { LinkIcon } from '@heroicons/react/24/solid';
+import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -102,13 +101,13 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
-      icon: CollectionIcon,
+      icon: RectangleStackIcon,
       href: '/assortments',
       requiredRole: ACTION_ROLES.assortments.manage,
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
-      icon: AdjustmentsIcon,
+      icon: AdjustmentsVerticalIcon,
       requiredRole: ACTION_ROLES.filters.manage,
       href: '/filters',
     },
@@ -187,7 +186,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'activities', defaultMessage: 'Activities' }),
-      icon: LightningBoltIcon,
+      icon: BoltIcon,
       children: [
         {
           name: formatMessage({
