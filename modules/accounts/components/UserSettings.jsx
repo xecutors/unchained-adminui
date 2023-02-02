@@ -1,12 +1,12 @@
 import {
-  CashIcon,
-  ClipboardListIcon,
+  BanknotesIcon,
+  ClipboardDocumentListIcon,
   CreditCardIcon,
   LockClosedIcon,
-  PuzzleIcon,
+  PuzzlePieceIcon,
   ShoppingCartIcon,
   UserIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import DisplayExtendedFields from '../../common/components/DisplayExtendedFields';
 import Loading from '../../common/components/Loading';
@@ -58,7 +58,7 @@ const UserSettings = ({ user, extendedData }) => {
         id: 'quotations',
         defaultMessage: 'Quotations',
       }),
-      Icon: <CashIcon className="h-4 w-5" />,
+      Icon: <BanknotesIcon className="h-4 w-5" />,
     },
     {
       id: 'enrollments',
@@ -66,7 +66,7 @@ const UserSettings = ({ user, extendedData }) => {
         id: 'enrollments',
         defaultMessage: 'Enrollments',
       }),
-      Icon: <ClipboardListIcon className="h-4 w-5" />,
+      Icon: <ClipboardDocumentListIcon className="h-4 w-5" />,
     },
     {
       id: 'payment_credentials',
@@ -105,7 +105,7 @@ const UserSettings = ({ user, extendedData }) => {
         id: 'extended-fields',
         defaultMessage: 'Extended',
       }),
-      Icon: <PuzzleIcon className="h-4 w-5" />,
+      Icon: <PuzzlePieceIcon className="h-4 w-5" />,
     },
   ];
   return (

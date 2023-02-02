@@ -1,4 +1,4 @@
-import { VariableIcon } from '@heroicons/react/outline';
+import { VariableIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/router';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';

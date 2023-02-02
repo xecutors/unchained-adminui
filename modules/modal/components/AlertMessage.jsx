@@ -1,4 +1,4 @@
-import { CheckIcon } from '@heroicons/react/outline';
+import { CheckIcon } from '@heroicons/react/24/outline';
 
 const AlertMessage = ({ onOkClick, buttonText, headerText, message, icon }) => {
   return (

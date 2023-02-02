@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import { MailIcon, XIcon } from '@heroicons/react/solid';
+import { MailIcon, XIcon } from '@heroicons/react/24/solid';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';

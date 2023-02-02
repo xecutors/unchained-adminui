@@ -9,9 +9,9 @@ import {
   UserGroupIcon,
   UserIcon,
   LightningBoltIcon,
-  MenuIcon,
-} from '@heroicons/react/outline';
-import { LinkIcon } from '@heroicons/react/solid';
+  Bars4Icon,
+} from '@heroicons/react/24/outline';
+import { LinkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -60,7 +60,7 @@ const Layout = ({
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
-    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
+    process?.env?.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
   const logo = getLogo();
   const defaultNavigation = [
     {
@@ -355,7 +355,7 @@ const Layout = ({
                 defaultMessage: ' Open sidebar',
               })}
             </span>
-            <MenuIcon
+            <Bars4Icon
               fill="none"
               viewBox="0 0 24 24"
               className="h-8 w-8"

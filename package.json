@@ -23,7 +23,7 @@
     "Mikael Araya Mengistu <mikael@unchained.shop> (http://www.unchained.shop)"
   ],
   "dependencies": {
-    "@apollo/client": "^3.7.5",
+    "@apollo/client": "^3.7.6",
     "@dnd-kit/core": "^6.0.5",
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.0",

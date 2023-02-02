@@ -1,4 +1,8 @@
-import { StarIcon, ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/solid';
+import {
+  StarIcon,
+  ThumbDownIcon,
+  ThumbUpIcon,
+} from '@heroicons/react/24/solid';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const ProductReviewsReport = ({ productReviews }) => {

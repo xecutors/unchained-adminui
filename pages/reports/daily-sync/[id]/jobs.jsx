@@ -4,12 +4,12 @@ import {
   PlusIcon,
   RefreshIcon,
   TrashIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 import {
   ArrowLeftIcon,
   CheckCircleIcon,
   ExclamationIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';

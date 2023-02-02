@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from '@heroicons/react/solid';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import useTheme from '../hooks/useTheme';
 

@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 import { scaleOrdinal, schemeDark2 } from 'd3';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { ArrowLeftIcon } from '@heroicons/react/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import constructTangleLayout from '../utils/contructTangleLayout';
 import Badge from '../../common/components/Badge';

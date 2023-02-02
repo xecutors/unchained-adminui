@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
 
-import { PlusIcon } from '@heroicons/react/outline';
+import { PlusIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
 import { getInterfaceLabel, useFormatPrice } from '../../common/utils/utils';
 import useDeliveryProviderTypes from '../../delivery-provider/hooks/useDeliveryProviderTypes';

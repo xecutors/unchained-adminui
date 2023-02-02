@@ -1,10 +1,10 @@
-import { PhotographIcon } from '@heroicons/react/solid';
+import { PhotoIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 
 const NoImage = ({ className, containerClassName, Icon }) => {
   return (
     <span className={classNames('text-indigo-300', containerClassName)}>
-      {Icon || <PhotographIcon className={classNames(className)} />}
+      {Icon || <PhotoIcon className={classNames(className)} />}
     </span>
   );
 };

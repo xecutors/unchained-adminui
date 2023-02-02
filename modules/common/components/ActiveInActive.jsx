@@ -1,4 +1,4 @@
-import { BadgeCheckIcon, XCircleIcon } from '@heroicons/react/solid';
+import { CheckBadgeIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 
 const ActiveInActive = ({
@@ -14,7 +14,7 @@ const ActiveInActive = ({
     <span className={classNames('', containerClassName)}>
       {isActive
         ? activeIcon || (
-            <BadgeCheckIcon
+            <CheckBadgeIcon
               className={classNames(
                 'text-green-400 w-5 h-5 mr-2',
                 iconClassName,
