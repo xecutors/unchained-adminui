@@ -39,7 +39,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
           className="mt-1 block dark:bg-slate-800 dark:text-white w-full rounded-md border-slate-300 py-2 pl-3 pr-10 text-base capitalize focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
           value={tab}
         >
-          {tabItems.map((value) => (
+          {tabItems.filter(Boolean).map((value) => (
             <option key={value.id} value={value.id} className="dark:text-white">
               {value?.title || value?.id}
             </option>
@@ -49,7 +49,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
       <div className="mb-5 hidden lg:block">
         <div className="al border-b border-indigo-100 dark:border-slate-700">
           <nav className="-mb-px flex flex-wrap gap-6">
-            {tabItems.map((option) => (
+            {tabItems.filter(Boolean).map((option) => (
               <a
                 id={option.id}
                 key={option.id}

@@ -70,7 +70,7 @@ const UserNameView = ({ _id: userId, username }) => {
             {hasRole(ACTION_ROLES.users.updateUsername) && (
               <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
                 <button
-                  id="cancel_update"
+                  data-id="cancel_update"
                   onClick={() => setIsEdit(!isEdit)}
                   type="button"
                   className={classNames(
