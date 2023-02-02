@@ -47,7 +47,6 @@ const getKeyValuePair = (selectionSet) => {
 };
 
 const hydrateFragment = (fragment, source) => {
-  console.log(fragment, source);
   if (!fragment || !source) return null;
   const queryFragment = gql`fragment CustomProperty on ExtendedUnchainedSchema { ${fragment}  }`;
   const fragmentKeys = getKeyValuePair(
