@@ -11,7 +11,7 @@ import {
   ExclamationIcon,
 } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
-import { format } from 'date-fns';
+import { format } from 'date-fns-tz';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import Accordion from '../../../../modules/common/components/Accordion';
