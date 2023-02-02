@@ -21,7 +21,7 @@ const SaveAndCancelButtons = ({
       {showCancel ? (
         <button
           onClick={onCancel}
-          id="cancel_update"
+          data-id="cancel_update"
           type="button"
           className={classNames(
             'focus:ring-indigo-400',
