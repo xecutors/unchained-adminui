@@ -1,4 +1,4 @@
-import { PencilAltIcon, TagIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TagIcon } from '@heroicons/react/24/outline';
 
 import { useIntl } from 'react-intl';
 import useModal from '../../modal/hooks/useModal';
@@ -36,7 +36,7 @@ const TagList = ({ defaultValue, onSubmit, enableEdit }) => {
         <Button
           id="add_tag"
           className="h-12 w-12 rounded-full"
-          text={<PencilAltIcon className="h-5 w-5" />}
+          text={<PencilSquareIcon className="h-5 w-5" />}
           onClick={() =>
             setModal(
               <TagListForm

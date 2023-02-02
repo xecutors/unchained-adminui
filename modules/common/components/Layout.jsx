@@ -9,7 +9,7 @@ import {
   UserGroupIcon,
   UserIcon,
   LightningBoltIcon,
-  MenuIcon,
+  Bars4Icon,
 } from '@heroicons/react/24/outline';
 import { LinkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
@@ -355,7 +355,7 @@ const Layout = ({
                 defaultMessage: ' Open sidebar',
               })}
             </span>
-            <MenuIcon
+            <Bars4Icon
               fill="none"
               viewBox="0 0 24 24"
               className="h-8 w-8"

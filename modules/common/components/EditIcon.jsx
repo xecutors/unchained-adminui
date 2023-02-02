@@ -1,4 +1,4 @@
-import { PencilAltIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 const EditIcon = () => {
   return (
@@ -6,7 +6,7 @@ const EditIcon = () => {
       id="edit__icon_button"
       className="rounded-full bg-white px-1 py-1 text-sm text-indigo-500 hover:bg-indigo-50 focus:outline-none focus:ring-0 focus:ring-red-500 focus:ring-offset-2"
     >
-      <PencilAltIcon className="h-5 w-5" />
+      <PencilSquareIcon className="h-5 w-5" />
     </div>
   );
 };
