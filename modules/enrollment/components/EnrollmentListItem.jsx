@@ -75,6 +75,10 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
                 height={36}
                 placeholder="blur"
                 blurDataURL="/no-image.jpg"
+                alt={formatMessage({
+                  id: 'image-not-found',
+                  defaultMessage: 'image-not-found',
+                })}
               />
             </span>
             <span className="ml-2">{enrollment.user?.username}</span>
@@ -95,6 +99,10 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
               placeholder="blur"
               blurDataURL="/no-image.jpg"
               height={20}
+              alt={formatMessage({
+                id: 'image-not-found',
+                defaultMessage: 'image-not-found',
+              })}
             />
             <span className="ml-2 self-end">
               {enrollment?.plan.product.texts.title}

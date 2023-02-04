@@ -4,8 +4,12 @@ export const LogInSuccessResponse = {
       id: 'BKHrbTkHeGRtou5kc',
       token: '54256db66c640f613b853ac69914288aeca5bb2460b',
       tokenExpires: '2030-01-02T06:20:16.455Z',
+
       user: {
         _id: 'BKHrbTkHeGRtou5kc',
+        isTwoFactorEnabled: false,
+        web3Addresses: [],
+        webAuthnCredentials: [],
         allowedActions: [
           'answerQuotation',
           'authTwoFactor',

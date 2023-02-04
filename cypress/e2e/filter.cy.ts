@@ -13,7 +13,7 @@ import {
   UpdateFilterResponse,
   UpdateFilterTextResponse,
 } from '../mock/filter';
-import { LanguagesResponse } from '../mock/language';
+import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
@@ -33,6 +33,10 @@ const UpdateFilterOptionVariables = {
 describe('Filter', () => {
   beforeEach(() => {
     cy.intercept('POST', '/api/graphql', (req) => {
+      if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
+        aliasQuery(req, LanguageOperations.GetLanguagesList);
+        req.reply(LanguagesResponse);
+      }
       if (hasOperationName(req, FilterOperations.GetFiltersList)) {
         aliasQuery(req, FilterOperations.GetFiltersList);
         req.reply(FilterListResponse);
@@ -111,6 +115,7 @@ describe('Filter', () => {
 
     it('Toggling status [ACTIVE/INACTIVE] toggle should update route', () => {
       cy.get('button[role="switch"]').click();
+      cy.wait(150);
       cy.location().then((current) => {
         expect(current.pathname).to.eq('/filters');
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({

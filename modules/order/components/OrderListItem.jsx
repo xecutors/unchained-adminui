@@ -62,6 +62,10 @@ const OrderListItem = ({ order, showUser }) => {
                 height={20}
                 placeholder="blur"
                 blurDataURL="/no-image.jpg"
+                alt={formatMessage({
+                  id: 'image-not-found',
+                  defaultMessage: 'image-not-found',
+                })}
               />
             ) : (
               <NoImage className="h-10 w-10" />

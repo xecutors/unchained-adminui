@@ -125,7 +125,7 @@ describe('User', () => {
           expect(response.body).to.deep.eq(UserOrderListResponse);
         },
       );
-
+      cy.wait(200);
       cy.location().then((current) => {
         expect(current.pathname).to.eq(`/users/${user._id}`);
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
@@ -133,8 +133,8 @@ describe('User', () => {
           queryString: 's',
         });
       });
-
       cy.get('input[type="search"]').focus().type('a');
+      cy.wait(250);
       cy.wait(fullAliasName(UserOperations.UserOrder)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;

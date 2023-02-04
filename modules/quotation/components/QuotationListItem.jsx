@@ -70,6 +70,10 @@ const QuotationListItem = ({ quotation, showUser }) => {
               width={20}
               height={20}
               placeholder="blur"
+              alt={formatMessage({
+                id: 'image-not-found',
+                defaultMessage: 'image-not-found',
+              })}
               blurDataURL="/no-image.jpg"
             />
             <span className="font-medium ml-2">{quotation.user?.username}</span>
@@ -89,6 +93,10 @@ const QuotationListItem = ({ quotation, showUser }) => {
               height={20}
               placeholder="blur"
               blurDataURL="/no-image.jpg"
+              alt={formatMessage({
+                id: 'image-not-found',
+                defaultMessage: 'image-not-found',
+              })}
             />
             <span className="ml-2 self-end">
               {quotation?.product.texts.title}

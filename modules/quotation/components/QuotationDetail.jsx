@@ -184,6 +184,10 @@ const QuotationDetail = ({ quotation }) => {
                   height={100}
                   placeholder="blur"
                   blurDataURL="/no-image.jpg"
+                  alt={formatMessage({
+                    id: 'image-not-found',
+                    defaultMessage: 'image-not-found',
+                  })}
                 />
               </div>
             </div>

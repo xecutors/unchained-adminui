@@ -114,6 +114,7 @@ export const AssortmentListResponse = {
         isBase: true,
         isRoot: false,
         tags: [],
+        linkedAssortments: [],
         childrenCount: 4,
         media: [
           {
@@ -138,6 +139,7 @@ export const AssortmentChildrenResponse = {
   data: {
     assortments: [
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: '7f85efeede24415b3348697a',
         texts: {
           _id: '8ca135ed6a4d7d807c0b6765',
@@ -151,6 +153,7 @@ export const AssortmentChildrenResponse = {
         children: [],
       },
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: '9c4fbb24026edd32b184cb75',
         texts: {
           _id: '3c6d7728f7fd7326b479c779',
@@ -177,6 +180,7 @@ export const AssortmentChildrenResponse = {
         children: [],
       },
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: '87e7aa1db0755c3963eb57cb',
         texts: {
           _id: '367587c908a2f0ef940fce92',
@@ -222,6 +226,7 @@ export const AssortmentPathsResponse = {
   data: {
     assortments: [
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: 'e38361a29cf8e3a6036c837a',
         texts: {
           _id: '8f7dcfdeb42f704b56248d1e',
@@ -235,6 +240,7 @@ export const AssortmentPathsResponse = {
         children: [],
       },
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: '1fed9af2ed7fd71548955f6d',
         texts: {
           _id: '68b451c9e4b4d85a4e99de76',
@@ -261,6 +267,7 @@ export const AssortmentPathsResponse = {
         children: [],
       },
       {
+        ...AssortmentListResponse.data?.assortments[0],
         _id: '0de23bbadc6a2d8da8a73a98',
         texts: {
           _id: 'e98aaa56ab14e5f73708ca28',
@@ -280,6 +287,7 @@ export const AssortmentPathsResponse = {
 export const CreateAssortmentResponse = {
   data: {
     createAssortment: {
+      ...AssortmentListResponse.data?.assortments[0],
       _id: 'e38361a29cf8e3a6036c837a',
       texts: {
         _id: '8f7dcfdeb42f704b56248d1e',
@@ -294,6 +302,7 @@ export const CreateAssortmentResponse = {
 export const UpdateAssortmentResponse = {
   data: {
     updateAssortment: {
+      ...AssortmentListResponse.data?.assortments[0],
       _id: 'e38361a29cf8e3a6036c837a',
       __typename: 'Assortment',
     },
@@ -303,6 +312,7 @@ export const UpdateAssortmentResponse = {
 export const SingleAssortmentResponse = {
   data: {
     assortment: {
+      ...AssortmentListResponse.data?.assortments[0],
       _id: 'e38361a29cf8e3a6036c837a',
       isActive: true,
       created: '2022-03-22T13:47:05.168Z',
@@ -340,6 +350,7 @@ export const SingleAssortmentResponse = {
 export const SetBaseAssortmentResponse = {
   data: {
     setBaseAssortment: {
+      ...AssortmentListResponse.data?.assortments[0],
       _id: 'e38361a29cf8e3a6036c837a',
       __typename: 'Assortment',
     },
@@ -360,9 +371,11 @@ export const UpdateAssortmentTextsResponse = {
 export const AssortmentLinksResponse = {
   data: {
     assortment: {
+      ...AssortmentListResponse.data?.assortments[0],
       _id: 'e38361a29cf8e3a6036c837a',
       linkedAssortments: [
         {
+          ...AssortmentListResponse.data?.assortments[0],
           _id: '7336cc61081c8b0e770dca64',
           parent: {
             _id: 'e38361a29cf8e3a6036c837a',
@@ -397,6 +410,7 @@ export const AssortmentLinksResponse = {
             __typename: 'Assortment',
           },
           child: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: '1fed9af2ed7fd71548955f6d',
             isActive: true,
             created: '2022-03-29T20:50:58.529Z',
@@ -431,6 +445,7 @@ export const AssortmentLinksResponse = {
           __typename: 'AssortmentLink',
         },
         {
+          ...AssortmentListResponse.data?.assortments[0],
           _id: '732cda0142e9f3def79159e0',
           parent: {
             _id: '0de23bbadc6a2d8da8a73a98',
@@ -465,6 +480,7 @@ export const AssortmentLinksResponse = {
             __typename: 'Assortment',
           },
           child: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: 'e38361a29cf8e3a6036c837a',
             isActive: true,
             created: '2022-03-22T13:47:05.168Z',
@@ -499,6 +515,7 @@ export const AssortmentLinksResponse = {
           __typename: 'AssortmentLink',
         },
         {
+          ...AssortmentListResponse.data?.assortments[0],
           _id: '9b4e142553dc5b60465e565b',
           parent: {
             _id: 'e38361a29cf8e3a6036c837a',
@@ -533,6 +550,7 @@ export const AssortmentLinksResponse = {
             __typename: 'Assortment',
           },
           child: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: 'e66542656a6887e64d0d7cb9',
             isActive: true,
             created: '2022-04-20T14:47:53.670Z',
@@ -577,6 +595,7 @@ export const SearchAssortmentsResponse = {
     searchAssortments: {
       assortments: [
         {
+          ...AssortmentListResponse.data?.assortments[0],
           _id: 'e66542656a6887e64d0d7cb9',
           isActive: true,
           created: '2022-04-20T14:47:53.670Z',
@@ -953,6 +972,7 @@ export const RemoveAssortmentProductResponse = {
 
 export const FiltersListResponse = {
   data: {
+    filtersCount: 3,
     filters: [
       {
         _id: '9578c8348c354fa34b98fce7',

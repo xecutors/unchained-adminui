@@ -51,7 +51,10 @@ const UserTokens = ({ _id: userId }) => {
                       '/no-image.jpg'
                     }
                     loader={defaultNextImageLoader}
-                    alt="TODO"
+                    alt={formatMessage({
+                      id: 'product-image',
+                      defaultMessage: 'Product image',
+                    })}
                     width="100%"
                     layout="responsive"
                     height="100%"

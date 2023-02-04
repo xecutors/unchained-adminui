@@ -240,6 +240,7 @@ export const TranslatedFilterTextResponse = {
 export const FilterOptionsResponse = {
   data: {
     filter: {
+      ...FilterListResponse.data.filters[0],
       _id: '__root_assortment',
       options: [
         {
@@ -312,6 +313,7 @@ export const FilterTypesResponse = {
 export const CreateFilterResponse = {
   data: {
     createFilter: {
+      ...FilterListResponse.data.filters[0],
       _id: 'Z8YTBtEnmjoyLNvcp',
       __typename: 'Filter',
     },
@@ -322,6 +324,7 @@ export const UpdateFilterTextResponse = {
   data: {
     updateFilterTexts: [
       {
+        ...TranslatedFilterTextResponse.data.translatedFilterTexts[0],
         _id: 'g4zYQ6viLhdeRqbo9',
         __typename: 'FilterTexts',
       },
@@ -333,6 +336,7 @@ export const RemoveFilterResponse = {
   data: {
     removeFilter: [
       {
+        ...FilterListResponse.data.filters[0],
         _id: 'g4zYQ6viLhdeRqbo9',
         __typename: 'Filter',
       },
@@ -343,6 +347,7 @@ export const RemoveFilterResponse = {
 export const UpdateFilterResponse = {
   data: {
     updateFilter: {
+      ...FilterListResponse.data.filters[0],
       _id: '__root_assortment',
       __typename: 'Filter',
     },
@@ -352,6 +357,7 @@ export const UpdateFilterResponse = {
 export const RemoveFilterOptionResponse = {
   data: {
     removeFilterOption: {
+      ...FilterOptionsResponse.data.filter.options[0],
       _id: '__root_assortment',
       __typename: 'Filter',
     },
@@ -360,6 +366,7 @@ export const RemoveFilterOptionResponse = {
 export const CreateFilterOptionResponse = {
   data: {
     createFilterOption: {
+      ...FilterOptionsResponse.data.filter.options[0],
       _id: '__root_assortment',
       __typename: 'FilterOption',
     },

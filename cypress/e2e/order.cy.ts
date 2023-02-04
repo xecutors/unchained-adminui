@@ -94,6 +94,19 @@ describe('Order', () => {
 
     cy.get('h2').should('contain.text', localizations.en.orders_list_header);
     cy.location('pathname').should('eq', '/orders');
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
   });
 
   it('Show Navigate to [ORDERS] page successfully', () => {
@@ -104,26 +117,7 @@ describe('Order', () => {
   it('Toggling status toggle should update route', () => {
     cy.location('pathname').should('eq', '/orders');
 
-    cy.get('button[role="switch"]').click({ multiple: true });
-
-    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
-      (currentSubject) => {
-        const { request, response } = currentSubject;
-
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
-          queryString: '',
-          sort: [],
-        });
-        expect(response.body).to.deep.eq(OrderListResponse);
-      },
-    );
-
-    cy.location('pathname').should('eq', '/orders');
     cy.get('button[role="switch"]').click();
-    cy.wait(100);
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/orders');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
@@ -134,6 +128,7 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
+
         expect(request.body.variables).to.deep.eq({
           limit: 50,
           offset: 0,
@@ -144,11 +139,36 @@ describe('Order', () => {
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
+
+    cy.location('pathname').should('eq', '/orders');
+    cy.get('button[role="switch"]').click();
+
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/orders');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        includeCarts: 'false',
+      });
+    });
+
+    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq({
+          limit: 50,
+          offset: 0,
+          includeCarts: false,
+          queryString: '',
+          sort: [],
+        });
+        expect(response.body).to.deep.eq(OrderListResponse);
+      },
+    );
   });
 
   it('should update data and route when [SEARCHING] accordingly', () => {
     cy.location('pathname').should('eq', '/orders');
-    cy.get('input#search').type('s');
+    cy.get('input#search').type('search');
+    cy.wait(150);
 
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
@@ -157,7 +177,7 @@ describe('Order', () => {
           limit: 50,
           offset: 0,
           includeCarts: false,
-          queryString: 's',
+          queryString: 'search',
           sort: [],
         });
         expect(response.body).to.deep.eq(OrderListResponse);
@@ -167,10 +187,10 @@ describe('Order', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/orders');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 's',
+        queryString: 'search',
       });
     });
-    cy.get('input[type="search"]').type('a');
+    cy.get('input[type="search"]').type(' input');
 
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
@@ -179,7 +199,7 @@ describe('Order', () => {
           limit: 50,
           offset: 0,
           includeCarts: false,
-          queryString: 'sa',
+          queryString: 'search input',
           sort: [],
         });
         expect(response.body).to.deep.eq(OrderListResponse);
@@ -189,7 +209,7 @@ describe('Order', () => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq('/orders');
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'sa',
+        queryString: 'search input',
       });
     });
   });
