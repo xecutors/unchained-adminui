@@ -55,7 +55,7 @@ pipeline {
       steps {
         script {
           def packageJson = readJSON file: './package.json'
-          def packageVersion = packageJSON.version
+          def packageVersion = packageJson.version
           def versionChunks = packageVersion.split(/\./)
           def majorVersion = $versionChunks[0]
           def minorVersion = $versionChunks[1]
