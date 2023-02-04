@@ -57,9 +57,13 @@ pipeline {
           def packageJson = readJSON file: './package.json'
           def packageVersion = packageJSON.version
           def versionChunks = packageVersion.split(/\./)
-          adminui.push("v$versionChunks[0].$versionChunks[1].$versionChunks[2]") // v2.0.0
-          adminui.push("v$versionChunks[0].$versionChunks[1]") // v2.0
-          adminui.push("v$versionChunks[0]") // v2
+          def majorVersion = $versionChunks[0]
+          def minorVersion = $versionChunks[1]
+          def patchVersion = $versionChunks[2]
+
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v2.0.0
+          adminui.push("v$majorVersion.$minorVersion") // v2.0
+          adminui.push("v$majorVersion") // v2
         }
       }
     }
