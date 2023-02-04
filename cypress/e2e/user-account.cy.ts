@@ -18,6 +18,7 @@ import {
   UnsuccessfulEnableTOTPResponse,
   UserListResponse,
   UserOperations,
+  UserWebAuthCredentials,
 } from '../mock/user';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
@@ -30,6 +31,10 @@ describe('User', () => {
     cy.intercept('POST', '/api/graphql', (req) => {
       if (hasOperationName(req, LanguageOperations.GetLanguagesList)) {
         req.reply(LanguagesResponse);
+      }
+      if (hasOperationName(req, UserOperations.UserWebAuthnCredentials)) {
+        aliasQuery(req, UserOperations.UserWebAuthnCredentials);
+        req.reply(UserWebAuthCredentials);
       }
       if (hasOperationName(req, UserOperations.GetUserList)) {
         aliasQuery(req, UserOperations.GetUserList);

@@ -4,6 +4,8 @@ export const CurrentUserResponse = {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
       isTwoFactorEnabled: false,
+      web3Addresses: [],
+      webAuthnCredentials: [],
       avatar: null,
       allowedActions: [
         'answerQuotation',
@@ -145,6 +147,8 @@ export const UserListResponse = {
         _id: 'SIgmXcECVYiDTVeh0',
         email: 'admin@unchained.local',
         isTwoFactorEnabled: false,
+        web3Addresses: [],
+        webAuthnCredentials: [],
         avatar: null,
         allowedActions: [
           'answerQuotation',
@@ -326,6 +330,8 @@ export const UserListResponse = {
         _id: 'totp-enabled',
         email: 'rdt7992@gmail.com',
         isTwoFactorEnabled: true,
+        web3Addresses: [],
+        webAuthnCredentials: [],
         avatar: null,
         allowedActions: [
           'bookmarkProduct',
@@ -378,6 +384,8 @@ export const UserListResponse = {
         email: 'rdt@hotmail.com',
         isTwoFactorEnabled: false,
         avatar: null,
+        web3Addresses: [],
+        webAuthnCredentials: [],
         allowedActions: [
           'bookmarkProduct',
           'createCart',
@@ -447,6 +455,8 @@ export const CreateUserResponse = {
       _id: 'Ul7NVSyjgEdDQpPQK',
       email: 'redi@hotmail.com',
       isTwoFactorEnabled: false,
+      web3Addresses: [],
+      webAuthnCredentials: [],
       avatar: null,
       allowedActions: [
         'bookmarkProduct',
@@ -521,6 +531,8 @@ export const UpdateUserResponse = {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',
       isTwoFactorEnabled: false,
+      web3Addresses: [],
+      webAuthnCredentials: [],
       avatar: null,
       allowedActions: [
         'answerQuotation',
@@ -675,7 +687,9 @@ export const createUserRequestVariables = {
 export const SetUsernameResponse = {
   data: {
     setUsername: {
+      ...UserListResponse.data.users[0],
       _id: 'SIgmXcECVYiDTVeh0',
+      isInitialPassword: true,
       __typename: 'User',
     },
   },
@@ -693,7 +707,9 @@ export const SendVerificationEmailResponse = {
 export const RemoveEmailResponse = {
   data: {
     removeEmail: {
+      ...UserListResponse.data.users[0],
       _id: 'SIgmXcECVYiDTVeh0',
+
       userId: 'SIgmXcECVYiDTVeh0',
       emails: [
         {
@@ -710,7 +726,9 @@ export const RemoveEmailResponse = {
 export const AddEmailResponse = {
   data: {
     addEmail: {
+      ...UserListResponse.data.users[0],
       _id: 'SIgmXcECVYiDTVeh0',
+      tags: ['new'],
       emails: [
         {
           verified: true,
@@ -731,6 +749,7 @@ export const AddEmailResponse = {
 export const SetUserTagsResponse = {
   data: {
     setUserTags: {
+      ...UserListResponse.data.users[0],
       _id: 'SIgmXcECVYiDTVeh0',
       tags: ['new'],
       __typename: 'User',
@@ -741,6 +760,7 @@ export const SetUserTagsResponse = {
 export const SetRolesResponse = {
   data: {
     setRoles: {
+      ...UserListResponse.data.users[0],
       _id: 'SIgmXcECVYiDTVeh0',
       __typename: 'User',
     },
@@ -1595,7 +1615,18 @@ export const GetSingleOrderResponse = {
   },
 };
 
+export const UserWebAuthCredentials = {
+  data: {
+    user: {
+      _id: 'raA3pJV389x046dnz',
+      webAuthnCredentials: [],
+      __typename: 'User',
+    },
+  },
+};
+
 export const UserOperations = {
+  UserWebAuthnCredentials: 'UserWebAuthnCredentials',
   CurrentUser: 'CurrentUser',
   GetUserList: 'Users',
   GetSingle: 'User',

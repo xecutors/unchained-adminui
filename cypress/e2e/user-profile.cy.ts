@@ -8,6 +8,7 @@ import {
   UpdateUserResponse,
   UserListResponse,
   UserOperations,
+  UserWebAuthCredentials,
 } from '../mock/user';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
@@ -28,6 +29,10 @@ describe('User', () => {
       if (hasOperationName(req, UserOperations.GetSingle)) {
         aliasQuery(req, UserOperations.GetSingle);
         req.reply(SingleUserResponse);
+      }
+      if (hasOperationName(req, UserOperations.UserWebAuthnCredentials)) {
+        aliasQuery(req, UserOperations.UserWebAuthnCredentials);
+        req.reply(UserWebAuthCredentials);
       }
       if (hasOperationName(req, UserOperations.SystemRoles)) {
         req.reply(SystemRolesResponse);

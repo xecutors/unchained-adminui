@@ -174,11 +174,7 @@ describe('Assortment Detail Filters', () => {
   it('Should [REMOVE TAG] successfully', () => {
     cy.get('input#tags').clear().type('new');
     cy.get('button#add-tag').contains(localizations.en.add_tag).click();
-    cy.get('span#badge').each(($div) => {
-      cy.wrap($div).within(() => {
-        cy.get('button#badge-x-button').click();
-      });
-    });
+    cy.get('span#badge').first().get('button#badge-x-button').click();
   });
 
   it('Should [SEARCH] filter successfully', () => {

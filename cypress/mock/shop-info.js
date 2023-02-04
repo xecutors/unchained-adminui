@@ -23,6 +23,22 @@ export const ShopInfoResponse = {
       },
       __typename: 'Shop',
       externalLinks: [],
+      adminUiConfig: {
+        customProperties: [
+          {
+            entityName: 'Enrollment',
+            inlineFragment:
+              '...on Enrollment {\n        \n        rotendoRenewalDate\n        notificationIsEnabled\n      }',
+            __typename: 'AdminUiConfigCustomEntityInterface',
+          },
+          {
+            entityName: 'ShopInfo',
+            inlineFragment: '...on ShopInfo {\n        vapidPublicKey\n      }',
+            __typename: 'AdminUiConfigCustomEntityInterface',
+          },
+        ],
+        __typename: 'AdminUiConfig',
+      },
     },
   },
 };

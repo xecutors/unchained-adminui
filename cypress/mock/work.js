@@ -294,6 +294,7 @@ export const WorkQueueResponse = {
       'ORDERLY_KITCHEN_CLOSE',
       'SMS',
     ],
+    workQueueCount: 510,
   },
 };
 
