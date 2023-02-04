@@ -5,6 +5,7 @@ import {
   HomeIcon,
   InboxIcon,
   RectangleStackIcon,
+  CalendarIcon,
   UserGroupIcon,
   UserIcon,
   Bars4Icon,
@@ -126,7 +127,7 @@ const Layout = ({
       icon: QuotationIcon,
       requiredRole: 'viewQuotations',
     },
-    /* {
+    {
       name: formatMessage({
         id: 'enrollments',
         defaultMessage: 'Enrollments',
@@ -135,7 +136,7 @@ const Layout = ({
       href: '/enrollments',
       requiredRole: 'viewEnrollments',
       icon: CalendarIcon,
-    }, */
+    },
     {
       name: formatMessage({ id: 'system', defaultMessage: 'System settings' }),
       icon: CogIcon,
