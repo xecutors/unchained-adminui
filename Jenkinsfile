@@ -54,7 +54,12 @@ pipeline {
       when { branch 'master' }
       steps {
         script {
-          adminui.push("2")
+          def packageJson = readJSON file: './package.json'
+          def packageVersion = packageJSON.version
+          def versionChunks = packageVersion.split(/\./)
+          adminui.push("v$versionChunks[0].$versionChunks[1].$versionChunks[2]") // v2.0.0
+          adminui.push("v$versionChunks[0].$versionChunks[1]") // v2.0
+          adminui.push("v$versionChunks[0]") // v2
         }
       }
     }
