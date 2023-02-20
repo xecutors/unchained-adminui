@@ -33,7 +33,7 @@
     "@formatjs/intl-pluralrules": "^5.0.3",
     "@formatjs/intl-relativetimeformat": "^11.0.3",
     "@graphql-tools/links": "^8.3.31",
-    "@graphql-tools/wrap": "^9.3.5",
+    "@graphql-tools/wrap": "^9.3.6",
     "@headlessui/react": "^1.7.10",
     "@heroicons/react": "^2.0.14",
     "@tailwindcss/forms": "^0.5.2",
