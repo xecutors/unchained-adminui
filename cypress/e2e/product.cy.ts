@@ -28,6 +28,7 @@ const ProductTypes = {
   SimpleProduct: 'SimpleProduct',
   PlanProduct: 'PlanProduct',
   BundleProduct: 'BundleProduct',
+  TokenizedProduct: 'TokenizedProduct',
 };
 
 describe('Product', () => {
@@ -446,6 +447,41 @@ describe('Product', () => {
       );
     });
 
+    it('Show [ADD PRODUCT]  successfully [TokenizedProduct]', () => {
+      cy.get('input#title').type('test');
+      cy.get('select#type').select(ProductTypes.TokenizedProduct);
+      cy.get('input[name="tags"]').type('test');
+      cy.get('button').contains(localizations.en.add_tag).click();
+      cy.get('input[type="submit"]').click();
+      cy.wait(fullAliasMutationName(ProductOperations.CreateProduct)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            product: {
+              title: 'test',
+              type: 'TokenizedProduct',
+              tags: ['test'],
+            },
+          });
+          expect(response.body).to.deep.eq({
+            ...CreateProductResponse,
+            data: {
+              ...CreateProductResponse.data,
+              createProduct: {
+                ...CreateProductResponse.data.createProduct,
+              },
+            },
+          });
+        },
+      );
+      cy.location('pathname').should(
+        'eq',
+        `/products/${generateUniqueId(
+          CreateProductResponse.data.createProduct,
+        )}`,
+      );
+    });
+
     it('Should [ERROR] when required fields are not provided', () => {
       cy.get('button[type="button"]#add-tag')
         .should('contain.text', localizations.en.add_tag)
@@ -650,6 +686,7 @@ describe('Product', () => {
       cy.get('a#commerce').should('to.be', undefined);
       cy.get('a#supply').should('to.be', undefined);
       cy.get('a#warehousing').should('to.be', undefined);
+      cy.get('a#token').should('to.be', undefined);
     });
 
     it('PlanProduct', () => {
@@ -663,6 +700,7 @@ describe('Product', () => {
       cy.get('a#bundled_products').should('to.be', undefined);
       cy.get('a#supply').should('to.be', undefined);
       cy.get('a#warehousing').should('to.be', undefined);
+      cy.get('a#token').should('to.be', undefined);
     });
 
     it('BundleProduct', () => {
@@ -670,6 +708,19 @@ describe('Product', () => {
       cy.get('a#media').should('contain.text', localizations.en.media);
       cy.get('a#commerce').should('contain.text', localizations.en.commerce);
       cy.get('a#bundled_products').should('to.be', localizations.en.bundles);
+
+      cy.get('a#variations').should('to.be', undefined);
+      cy.get('a#assignments').should('to.be', undefined);
+      cy.get('a#bundled_products').should('to.be', undefined);
+      cy.get('a#supply').should('to.be', undefined);
+      cy.get('a#warehousing').should('to.be', undefined);
+      cy.get('a#token').should('to.be', undefined);
+    });
+    it('TokenizedProduct', () => {
+      cy.get('a#texts').should('contain.text', localizations.en.text);
+      cy.get('a#media').should('contain.text', localizations.en.media);
+      cy.get('a#commerce').should('contain.text', localizations.en.commerce);
+      cy.get('a#token').should('to.be', localizations.en.token);
 
       cy.get('a#variations').should('to.be', undefined);
       cy.get('a#assignments').should('to.be', undefined);

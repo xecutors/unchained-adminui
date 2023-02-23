@@ -209,6 +209,8 @@ export const SingleOrderResponse = {
           interface: {
             _id: 'ch.orderly.discount.depot',
             label: 'Depotgebühren',
+            isManualAdditionAllowed: true,
+            isManualRemovalAllowed: false,
             version: '1.0',
             __typename: 'DiscountInterface',
           },
@@ -405,6 +407,8 @@ export const SingleOrderOpenResponse = {
           interface: {
             _id: 'ch.orderly.discount.depot',
             label: 'Depotgebühren',
+            isManualAdditionAllowed: true,
+            isManualRemovalAllowed: false,
             version: '1.0',
             __typename: 'DiscountInterface',
           },
