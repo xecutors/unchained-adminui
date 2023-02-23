@@ -7,7 +7,9 @@ import {
   OrderDeliveryStatusResponse,
   OrderPaymentStatusResponse,
   OrderStatusResponse,
+  SingleEnrollmentResponse,
   SingleOrderResponse,
+  SingleQuotationResponse,
   SingleUserResponse,
   SystemRolesResponse,
   UserEnrollmentsListResponse,
@@ -29,6 +31,15 @@ describe('User', () => {
       if (hasOperationName(req, UserOperations.GetUserList)) {
         aliasQuery(req, UserOperations.GetUserList);
         req.reply(UserListResponse);
+      }
+      if (hasOperationName(req, UserOperations.GetEnrollment)) {
+        aliasQuery(req, UserOperations.GetEnrollment);
+        req.reply(SingleEnrollmentResponse);
+      }
+
+      if (hasOperationName(req, UserOperations.GetQuotation)) {
+        aliasQuery(req, UserOperations.GetQuotation);
+        req.reply(SingleQuotationResponse);
       }
       if (hasOperationName(req, UserOperations.GetSingle)) {
         aliasQuery(req, UserOperations.GetSingle);
@@ -113,34 +124,45 @@ describe('User', () => {
     it('should update data and route when [SEARCHING] accordingly', () => {
       const { user } = SingleUserResponse.data;
 
-      cy.get('input[type="search"]').focus().type('s');
+      cy.get('input[type="search"]').focus().type('search');
 
       cy.wait(fullAliasName(UserOperations.UserOrder)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             userId: user._id,
-            queryString: 's',
+            queryString: 'search',
           });
           expect(response.body).to.deep.eq(UserOrderListResponse);
         },
       );
-      cy.wait(200);
+
+      cy.wait(fullAliasName(UserOperations.UserOrder)).then(
+        (currentSubject) => {
+          const { request, response } = currentSubject;
+          expect(request.body.variables).to.deep.eq({
+            userId: user._id,
+            queryString: 'search',
+          });
+          expect(response.body).to.deep.eq(UserOrderListResponse);
+        },
+      );
+
       cy.location().then((current) => {
         expect(current.pathname).to.eq(`/users/${user._id}`);
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'orders',
-          queryString: 's',
+          queryString: 'search',
         });
       });
-      cy.get('input[type="search"]').focus().type('a');
-      cy.wait(250);
+      cy.get('input[type="search"]').focus().type(' input');
+
       cy.wait(fullAliasName(UserOperations.UserOrder)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             userId: user._id,
-            queryString: 'sa',
+            queryString: 'search input',
           });
           expect(response.body).to.deep.eq(UserOrderListResponse);
         },
@@ -150,7 +172,7 @@ describe('User', () => {
         expect(current.pathname).to.eq(`/users/${user._id}`);
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'orders',
-          queryString: 'sa',
+          queryString: 'search input',
         });
       });
     });

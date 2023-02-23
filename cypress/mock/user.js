@@ -1102,223 +1102,243 @@ export const OrderStatusResponse = {
   },
 };
 
+const QuotationList = [
+  {
+    _id: '9f9535d8-af23-4773-9a0c-2da2',
+    quotationNumber: 'ABC123456',
+    user: {
+      _id: 'SIgmXcECVYiDTVeh0',
+      username: 'admin',
+      name: 'mike',
+      avatar: {
+        _id: 'a-1',
+        url: 'https://robohash.org/numquamarchitectoofficiis.png?size=50x50&set=set1',
+      },
+      primaryEmail: {
+        verified: false,
+        address: 'rdt7992@gmail.com',
+      },
+    },
+    product: {
+      _id: '91fe4bbb-4a1b-4bfc-a05a-bf637447a7e7',
+      texts: {
+        _id: 'texts-123',
+        title: 'Table Cloth 62x120 Colour',
+        slug: 'slug',
+        subtitle: 'subtitle',
+        description: 'description',
+      },
+      media: {
+        _id: 'media-1',
+        file: {
+          _id: 'file-1',
+          type: 'png',
+          url: 'http://dummyimage.com/231x100.png/ff4444/ffffff',
+        },
+      },
+    },
+    created: '2022-07-05T07:14:50.211Z',
+    expires: '2022-07-05T07:14:50.211Z',
+    status: 'REQUESTED',
+    isExpired: false,
+    fullfilled: '2022-07-05T07:14:50.211Z',
+    rejected: '2022-07-05T07:14:50.211Z',
+    updated: '2022-07-05T07:14:50.211Z',
+    __typename: 'Quotation',
+  },
+];
+
 export const UserQuotationsListResponse = {
   data: {
     user: {
       _id: 'SIgmXcECVYiDTVeh0',
-      quotations: [
-        {
-          _id: '9f9535d8-af23-4773-9a0c-2da2',
-          quotationNumber: 'ABC123456',
-          user: {
-            _id: 'SIgmXcECVYiDTVeh0',
-            username: 'admin',
-            name: 'mike',
-            avatar: {
-              _id: 'a-1',
-              url: 'https://robohash.org/numquamarchitectoofficiis.png?size=50x50&set=set1',
-            },
-            primaryEmail: {
-              verified: false,
-              address: 'rdt7992@gmail.com',
-            },
-          },
-          product: {
-            _id: '91fe4bbb-4a1b-4bfc-a05a-bf637447a7e7',
-            texts: {
-              _id: 'texts-123',
-              title: 'Table Cloth 62x120 Colour',
-              slug: 'slug',
-              subtitle: 'subtitle',
-              description: 'description',
-            },
-            media: {
-              _id: 'media-1',
-              file: {
-                _id: 'file-1',
-                type: 'png',
-                url: 'http://dummyimage.com/231x100.png/ff4444/ffffff',
-              },
-            },
-          },
-          created: '2022-07-05T07:14:50.211Z',
-          expires: '2022-07-05T07:14:50.211Z',
-          status: 'REQUESTED',
-          isExpired: false,
-          fullfilled: '2022-07-05T07:14:50.211Z',
-          rejected: '2022-07-05T07:14:50.211Z',
-          updated: '2022-07-05T07:14:50.211Z',
-          __typename: 'Quotation',
-        },
-      ],
+      quotations: QuotationList,
       __typename: 'User',
     },
   },
 };
 
+export const SingleQuotationResponse = {
+  data: {
+    quotation: {
+      ...QuotationList[0],
+    },
+  },
+};
+
+const EnrollmentList = [
+  {
+    _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
+    user: {
+      username: 'bgarvey0',
+      avatar: {
+        url: 'https://robohash.org/invelitut.png?size=50x50&set=set1',
+      },
+    },
+    plan: {
+      product: {
+        texts: {
+          _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
+          title: 'Stronghold',
+        },
+        media: {
+          file: {
+            url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAInSURBVDjLY/j//z8DJZiBZgY4tN9wcO6+0erZd2uKc+fNfoeWGxMcW27Msiq+3GWUdIZXL/okI14D7JqvB+csf3Rv4p6X//t3Pf/fvf35/8Ilj3471V3bph9zmougC6xrr8mETbu7q3jl40/FKx5+LVzy8Ltd+eUZBvGnOYjygk3llfKCZY++u3fcWutcd21B07on/61yz88kKgwsCi8qJc++9yhu2p37ppnnQ4C4oWblo/9WOReXEjTANOsCs1PD9VVZ8+9/N0k7m6Yfe5LLOPFMR+Wyh/9dqq5eUvc6xIbXALOs8zEZc+9/C+q+ddEw/rSfXuRxLfP0swuqgAYEt934pOq2nxenAUbJZ0TjJt9+Vbn80X+v5huXrbLOb7LMOLfVterqjYVNbf+3BKv+2+PE8m+nK/MjIK5AMcAg9jSjfcnl2SC/mqedQQmstpjsq+dLbP5/39r7/9+1Hf+/rij6fzpb988uZ5ZcsAL9mFNcwOhxKV3y8H9Ez603OkHHbGGaVVz3C693EXz3Daj5/yTf///LBf//b1P8/7rL4f9OF+Z7kFDPOLcutv/Wv4QJt/8HNF9/qx1wpFfZaa+Akv0eLW3fw4v2OLH+/3d23X9k8L5e4j/IO0Sld6B/H3+Zm/z/P1DTjzKG/++A+GEG83+g+BOiDDgcLtVwMkX197Nyxf+vKln/301h/L/Xl+XPDlfmKqJz3ZFw2QqgjfehsfAYpBkkDgCxi6Nciw8o3QAAAABJRU5ErkJggg==',
+          },
+        },
+      },
+      configuration: {
+        value: 'Meezzy',
+        compony: 'Raynor, Shanahan and Runte',
+        domain: 'miitbeian.gov.cn',
+        TLD: 'mil',
+      },
+    },
+    payment: {
+      provider: {
+        interface: {
+          label: 'Uraeginthus angolensis',
+          version: '4.1',
+        },
+      },
+    },
+    delivery: {
+      provider: {
+        interface: {
+          label: 'Justicia pilosella (Nees) Hilsenb.',
+          version: '0.6.8',
+        },
+      },
+    },
+    created: 1615432241000,
+    expires: 1624639687000,
+    updated: 1644506966000,
+    status: 'INITIAL',
+    isExpired: true,
+    enrollmentNumber: '8024407485',
+    periods: [],
+    contact: {
+      telNumber: '229-712-0153',
+      emailAddress: 'bgarvey0@google.com',
+    },
+    billingAddress: {
+      firstName: 'Benito',
+      lastName: 'Garvey',
+      company: 'Schneider-Huel',
+      addressLine: '7 Ridge Oak Terrace',
+      addressLine2: '39 Northview Pass',
+      postalCode: null,
+      countryCode: 'CN',
+      regionCode: 'AR',
+      city: 'Xiangcunxiang',
+    },
+    country: {
+      _id: '03b35eb3-c893-44b9-8080-cad544b73892',
+      isoCode: 'CNY',
+      flagEmoji: 'China',
+      name: 'Argentina',
+    },
+    currency: {
+      isoCode: 'ARS',
+      isActive: true,
+    },
+    logs: [],
+    __typename: 'Enrollment',
+  },
+  {
+    _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
+    user: {
+      username: 'aglennie1',
+      avatar: {
+        url: 'https://robohash.org/corporisperspiciatiseos.png?size=50x50&set=set1',
+      },
+    },
+    plan: {
+      product: {
+        _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
+        texts: {
+          title: 'Fixflex',
+        },
+        media: {
+          file: {
+            url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJeSURBVDjLzVNbSJNRHBd660Go597qJQrEl4qgCIoopyk0ZstN0G22EZu1dAuEbA/Otb0Iu+jciinsaUiI7uJgF4cojkIdXtYG0TbYFuk86Ly0+e3X+QY9CCZEL33we/nOOb//+V1ODYCaf0HN/0FQed3TRrFFQVgwvUrCKLvJkfw5KcuekZJYRH62t5PDJ3xy8JhL9hubN4v3HwqqBPQAj6KIGR8wPw+srADJJLC+DiYcwqbTicL4OHYcDmxbR5EZGkLmTT92b98t7ty41cwSfMJ7GzA1BbhcwNoasLwMTEyA6e1FRipFVixGQSTCD4EAn5uaENfpkOx+CVJ/PcMS1FVUymjlnRag05BKofrNzoLhcpHlcPC9oQF+txvT09PYGBjAV3EXSN213Pblel7VA6r3HNXrYd72A5OTQC4HLC3hm8GAgNeLTEcHwuEwgsEgYj0qfBy1lV1mi+tYCmVpV22ps9N9pFYDCwvA6ir8fj8SiQRCoRC1ZB3xeBw+n48urUJHZWi12rPHIjlsE9Qe8FrdJZW6SrAxPIxYLEatcUGj0UCv11dlRKNRGI3GDyf2YP9RS+3eA47/98Z8Ps9OAtV7ULh0tcViseyl02l4PB4MDg6eXI7dO/cuOKmhXqo/RU212+3YuniFx66ZzWayRpOyWq2QSCR/btgX3tObsy9eZRcXFxEIBDAyMrJnMpmIm6YRiUQgl8vtlOD8qTV10PKwBOxtWDnswbGxMczNzbEEUCgUZ04loBptMpkMfX19jeO0jQYaK53aKhQKGT6fP/NXj0mpVEIgYOt//P8vZQLgm35VBV4AAAAASUVORK5CYII=',
+          },
+        },
+      },
+      configuration: {
+        value: 'Yacero',
+        compony: 'Hayes-Walker',
+        domain: 'vimeo.com',
+        TLD: 'info',
+      },
+    },
+    payment: {
+      provider: {
+        interface: {
+          label: 'Megaderma spasma',
+          version: '9.13',
+        },
+      },
+    },
+    delivery: {
+      provider: {
+        interface: {
+          label: 'Centromadia pungens (Hook. & Arn.) Greene ssp. pungens',
+          version: '2.32',
+        },
+      },
+    },
+    created: 1625930065000,
+    expires: 1619519649000,
+    updated: 1623525074000,
+    status: 'ACTIVE',
+    isExpired: false,
+    enrollmentNumber: '8118115232',
+    periods: [],
+    contact: {
+      telNumber: '244-335-1566',
+      emailAddress: 'aglennie1@instagram.com',
+    },
+    billingAddress: {
+      firstName: 'Ardelia',
+      lastName: 'Glennie',
+      company: 'Walter-Buckridge',
+      addressLine: '4 Armistice Hill',
+      addressLine2: '1526 Susan Pass',
+      postalCode: '679 61',
+      countryCode: 'CZ',
+      regionCode: 'MG',
+      city: 'Letovice',
+    },
+    country: {
+      _id: '2c5d3392-3b96-4e8c-8081-daba4bf76725',
+      isoCode: 'CZK',
+      flagEmoji: 'Czech Republic',
+      name: 'Madagascar',
+    },
+    currency: {
+      isoCode: 'MGA',
+      isActive: false,
+    },
+    logs: [],
+    __typename: 'Enrollment',
+  },
+];
+
 export const UserEnrollmentsListResponse = {
   data: {
     user: {
       _id: 'SIgmXcECVYiDTVeh0',
-      enrollments: [
-        {
-          _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
-          user: {
-            username: 'bgarvey0',
-            avatar: {
-              url: 'https://robohash.org/invelitut.png?size=50x50&set=set1',
-            },
-          },
-          plan: {
-            product: {
-              texts: {
-                _id: '9ae08a0e-e382-45ff-ab5b-7f253f33550a',
-                title: 'Stronghold',
-              },
-              media: {
-                file: {
-                  url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAInSURBVDjLY/j//z8DJZiBZgY4tN9wcO6+0erZd2uKc+fNfoeWGxMcW27Msiq+3GWUdIZXL/okI14D7JqvB+csf3Rv4p6X//t3Pf/fvf35/8Ilj3471V3bph9zmougC6xrr8mETbu7q3jl40/FKx5+LVzy8Ltd+eUZBvGnOYjygk3llfKCZY++u3fcWutcd21B07on/61yz88kKgwsCi8qJc++9yhu2p37ppnnQ4C4oWblo/9WOReXEjTANOsCs1PD9VVZ8+9/N0k7m6Yfe5LLOPFMR+Wyh/9dqq5eUvc6xIbXALOs8zEZc+9/C+q+ddEw/rSfXuRxLfP0swuqgAYEt934pOq2nxenAUbJZ0TjJt9+Vbn80X+v5huXrbLOb7LMOLfVterqjYVNbf+3BKv+2+PE8m+nK/MjIK5AMcAg9jSjfcnl2SC/mqedQQmstpjsq+dLbP5/39r7/9+1Hf+/rij6fzpb988uZ5ZcsAL9mFNcwOhxKV3y8H9Ez603OkHHbGGaVVz3C693EXz3Daj5/yTf///LBf//b1P8/7rL4f9OF+Z7kFDPOLcutv/Wv4QJt/8HNF9/qx1wpFfZaa+Akv0eLW3fw4v2OLH+/3d23X9k8L5e4j/IO0Sld6B/H3+Zm/z/P1DTjzKG/++A+GEG83+g+BOiDDgcLtVwMkX197Nyxf+vKln/301h/L/Xl+XPDlfmKqJz3ZFw2QqgjfehsfAYpBkkDgCxi6Nciw8o3QAAAABJRU5ErkJggg==',
-                },
-              },
-            },
-            configuration: {
-              value: 'Meezzy',
-              compony: 'Raynor, Shanahan and Runte',
-              domain: 'miitbeian.gov.cn',
-              TLD: 'mil',
-            },
-          },
-          payment: {
-            provider: {
-              interface: {
-                label: 'Uraeginthus angolensis',
-                version: '4.1',
-              },
-            },
-          },
-          delivery: {
-            provider: {
-              interface: {
-                label: 'Justicia pilosella (Nees) Hilsenb.',
-                version: '0.6.8',
-              },
-            },
-          },
-          created: 1615432241000,
-          expires: 1624639687000,
-          updated: 1644506966000,
-          status: 'INITIAL',
-          isExpired: true,
-          enrollmentNumber: '8024407485',
-          periods: [],
-          contact: {
-            telNumber: '229-712-0153',
-            emailAddress: 'bgarvey0@google.com',
-          },
-          billingAddress: {
-            firstName: 'Benito',
-            lastName: 'Garvey',
-            company: 'Schneider-Huel',
-            addressLine: '7 Ridge Oak Terrace',
-            addressLine2: '39 Northview Pass',
-            postalCode: null,
-            countryCode: 'CN',
-            regionCode: 'AR',
-            city: 'Xiangcunxiang',
-          },
-          country: {
-            _id: '03b35eb3-c893-44b9-8080-cad544b73892',
-            isoCode: 'CNY',
-            flagEmoji: 'China',
-            name: 'Argentina',
-          },
-          currency: {
-            isoCode: 'ARS',
-            isActive: true,
-          },
-          logs: [],
-          __typename: 'Enrollment',
-        },
-        {
-          _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
-          user: {
-            username: 'aglennie1',
-            avatar: {
-              url: 'https://robohash.org/corporisperspiciatiseos.png?size=50x50&set=set1',
-            },
-          },
-          plan: {
-            product: {
-              _id: '8f74df46-4c91-4be3-bbd1-5c333d7fb1a2',
-              texts: {
-                title: 'Fixflex',
-              },
-              media: {
-                file: {
-                  url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJeSURBVDjLzVNbSJNRHBd660Go597qJQrEl4qgCIoopyk0ZstN0G22EZu1dAuEbA/Otb0Iu+jciinsaUiI7uJgF4cojkIdXtYG0TbYFuk86Ly0+e3X+QY9CCZEL33we/nOOb//+V1ODYCaf0HN/0FQed3TRrFFQVgwvUrCKLvJkfw5KcuekZJYRH62t5PDJ3xy8JhL9hubN4v3HwqqBPQAj6KIGR8wPw+srADJJLC+DiYcwqbTicL4OHYcDmxbR5EZGkLmTT92b98t7ty41cwSfMJ7GzA1BbhcwNoasLwMTEyA6e1FRipFVixGQSTCD4EAn5uaENfpkOx+CVJ/PcMS1FVUymjlnRag05BKofrNzoLhcpHlcPC9oQF+txvT09PYGBjAV3EXSN213Pblel7VA6r3HNXrYd72A5OTQC4HLC3hm8GAgNeLTEcHwuEwgsEgYj0qfBy1lV1mi+tYCmVpV22ps9N9pFYDCwvA6ir8fj8SiQRCoRC1ZB3xeBw+n48urUJHZWi12rPHIjlsE9Qe8FrdJZW6SrAxPIxYLEatcUGj0UCv11dlRKNRGI3GDyf2YP9RS+3eA47/98Z8Ps9OAtV7ULh0tcViseyl02l4PB4MDg6eXI7dO/cuOKmhXqo/RU212+3YuniFx66ZzWayRpOyWq2QSCR/btgX3tObsy9eZRcXFxEIBDAyMrJnMpmIm6YRiUQgl8vtlOD8qTV10PKwBOxtWDnswbGxMczNzbEEUCgUZ04loBptMpkMfX19jeO0jQYaK53aKhQKGT6fP/NXj0mpVEIgYOt//P8vZQLgm35VBV4AAAAASUVORK5CYII=',
-                },
-              },
-            },
-            configuration: {
-              value: 'Yacero',
-              compony: 'Hayes-Walker',
-              domain: 'vimeo.com',
-              TLD: 'info',
-            },
-          },
-          payment: {
-            provider: {
-              interface: {
-                label: 'Megaderma spasma',
-                version: '9.13',
-              },
-            },
-          },
-          delivery: {
-            provider: {
-              interface: {
-                label: 'Centromadia pungens (Hook. & Arn.) Greene ssp. pungens',
-                version: '2.32',
-              },
-            },
-          },
-          created: 1625930065000,
-          expires: 1619519649000,
-          updated: 1623525074000,
-          status: 'ACTIVE',
-          isExpired: false,
-          enrollmentNumber: '8118115232',
-          periods: [],
-          contact: {
-            telNumber: '244-335-1566',
-            emailAddress: 'aglennie1@instagram.com',
-          },
-          billingAddress: {
-            firstName: 'Ardelia',
-            lastName: 'Glennie',
-            company: 'Walter-Buckridge',
-            addressLine: '4 Armistice Hill',
-            addressLine2: '1526 Susan Pass',
-            postalCode: '679 61',
-            countryCode: 'CZ',
-            regionCode: 'MG',
-            city: 'Letovice',
-          },
-          country: {
-            _id: '2c5d3392-3b96-4e8c-8081-daba4bf76725',
-            isoCode: 'CZK',
-            flagEmoji: 'Czech Republic',
-            name: 'Madagascar',
-          },
-          currency: {
-            isoCode: 'MGA',
-            isActive: false,
-          },
-          logs: [],
-          __typename: 'Enrollment',
-        },
-      ],
+      enrollments: EnrollmentList,
       __typename: 'User',
+    },
+  },
+};
+
+export const SingleEnrollmentResponse = {
+  data: {
+    enrollment: {
+      ...EnrollmentList[0],
     },
   },
 };
@@ -1652,4 +1672,6 @@ export const UserOperations = {
   OrderDeliveryStatus: 'OrderDeliveryStatus',
   DeliveryProvidersType: 'DeliveryProvidersType',
   GetSingleOrder: 'Order',
+  GetEnrollment: 'Enrollment',
+  GetQuotation: 'Quotation',
 };

@@ -123,13 +123,6 @@ describe('User', () => {
 
     cy.get('input[type="search"]').type(' input');
 
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/users');
-      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
-        queryString: 'search input',
-      });
-    });
-
     cy.wait(fullAliasName(UserOperations.GetUserList)).then(
       (currentSubject) => {
         expect(currentSubject.request.body.variables).to.deep.eq({
@@ -141,6 +134,12 @@ describe('User', () => {
         expect(currentSubject.response.body).to.deep.eq(UserListResponse);
       },
     );
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.eq('/users');
+      expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
+        queryString: 'search input',
+      });
+    });
   });
 
   it('Should [FILTER] by multiple fields [STATUS & QUERY STRING]', () => {

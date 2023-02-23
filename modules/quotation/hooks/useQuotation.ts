@@ -3,7 +3,7 @@ import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 export const GetQuotationsQuery = (inlineFragment = '') => gql`
-  query quotation($quotationId: ID!) {
+  query Quotation($quotationId: ID!) {
     quotation(quotationId: $quotationId) {
       _id
       ...QuotationDetailFragment
