@@ -76,7 +76,7 @@
   "devDependencies": {
     "@formatjs/cli": "^6.0.3",
     "@tailwindcss/typography": "^0.5.9",
-    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "autoprefixer": "^10.4.8",
     "cypress": "^12.5.1",
