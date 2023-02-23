@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { UnrestrictedPages } from './modules/common/data/miscellaneous';
+import { UnrestrictedPages } from './modules/common/data/roles';
 
 const isReportUI = false;
 const middleware = async (req: NextRequest) => {
