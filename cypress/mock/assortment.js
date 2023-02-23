@@ -19,6 +19,7 @@ export const AssortmentListResponse = {
         isRoot: true,
         tags: [],
         childrenCount: 4,
+        linkedAssortments: [],
         media: [
           {
             _id: 'a057db39dcd83bb5795ef38f',
@@ -51,6 +52,7 @@ export const AssortmentListResponse = {
         isRoot: true,
         tags: [],
         childrenCount: 4,
+        linkedAssortments: [],
         media: [
           {
             _id: 'cca5d793040a97ea65652712',
@@ -83,6 +85,7 @@ export const AssortmentListResponse = {
         isRoot: true,
         tags: [],
         childrenCount: 4,
+        linkedAssortments: [],
         media: [
           {
             _id: '5595435cf99a9e936edce88c',
@@ -445,9 +448,9 @@ export const AssortmentLinksResponse = {
           __typename: 'AssortmentLink',
         },
         {
-          ...AssortmentListResponse.data?.assortments[0],
           _id: '732cda0142e9f3def79159e0',
           parent: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: '0de23bbadc6a2d8da8a73a98',
             isActive: true,
             created: '2022-06-22T07:46:19.990Z',
@@ -515,9 +518,9 @@ export const AssortmentLinksResponse = {
           __typename: 'AssortmentLink',
         },
         {
-          ...AssortmentListResponse.data?.assortments[0],
           _id: '9b4e142553dc5b60465e565b',
           parent: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: 'e38361a29cf8e3a6036c837a',
             isActive: true,
             created: '2022-03-22T13:47:05.168Z',
@@ -982,9 +985,13 @@ export const FiltersListResponse = {
           _id: '166f4510bba04f6263a356af',
           title: 'some title',
           subtitle: null,
+          locale: 'de',
           __typename: 'FilterTexts',
         },
         type: 'SINGLE_CHOICE',
+        updated: '2022-07-23T11:45:51.809Z',
+        created: '2022-07-23T11:45:47.228Z',
+        options: [],
         __typename: 'Filter',
       },
       {
@@ -995,9 +1002,13 @@ export const FiltersListResponse = {
           _id: '2a46fe90e5181c92b9731081',
           title: 'By color',
           subtitle: null,
+          locale: 'de',
           __typename: 'FilterTexts',
         },
         type: 'MULTI_CHOICE',
+        options: [],
+        updated: '2022-07-23T11:45:51.809Z',
+        created: '2022-07-23T11:45:47.228Z',
         __typename: 'Filter',
       },
     ],

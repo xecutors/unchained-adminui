@@ -132,6 +132,7 @@ describe('Assortment Detail Links', () => {
     });
 
     cy.get('a#links').contains(localizations.en.links).click();
+    cy.wait(100);
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentLinks)).then(
       (currentSubject) => {
@@ -264,6 +265,13 @@ describe('Assortment Detail Links', () => {
   });
 
   it('should [DELETE] sub-assortment successfully', () => {
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentFilterQuery);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_continue')
       .contains(localizations.en.delete_link)
@@ -291,6 +299,13 @@ describe('Assortment Detail Links', () => {
   });
 
   it('Should [CANCEL DELETE] sub-assortment successfully', () => {
+    cy.wait(fullAliasName(AssortmentOperation.GetAssortmentList)).then(
+      (currentSubject) => {
+        const { request, response } = currentSubject;
+        expect(request.body.variables).to.deep.eq(assortmentFilterQuery);
+        expect(response.body).to.deep.eq(AssortmentListResponse);
+      },
+    );
     cy.get('button[type="button"]#delete_button').first().click();
     cy.get('button[type="button"]#danger_cancel')
       .contains(localizations.en.cancel)
