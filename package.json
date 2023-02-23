@@ -18,7 +18,7 @@
     "version-n-tag": "run-p --print-label && npm  version && npm run tag"
   },
   "engines": {
-    "node": "16.x"
+    "node": ">=16"
   },
   "contributors": [
     "Vedran Rudelj <vedran@unchained.shop> (http://www.unchained.shop)",
