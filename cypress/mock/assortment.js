@@ -19,7 +19,7 @@ export const AssortmentListResponse = {
         isRoot: true,
         tags: [],
         childrenCount: 4,
-        linkedAssortments: [],
+
         media: [
           {
             _id: 'a057db39dcd83bb5795ef38f',
@@ -378,9 +378,9 @@ export const AssortmentLinksResponse = {
       _id: 'e38361a29cf8e3a6036c837a',
       linkedAssortments: [
         {
-          ...AssortmentListResponse.data?.assortments[0],
           _id: '7336cc61081c8b0e770dca64',
           parent: {
+            ...AssortmentListResponse.data?.assortments[0],
             _id: 'e38361a29cf8e3a6036c837a',
             isActive: true,
             created: '2022-03-22T13:47:05.168Z',

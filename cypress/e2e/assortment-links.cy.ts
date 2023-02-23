@@ -132,7 +132,6 @@ describe('Assortment Detail Links', () => {
     });
 
     cy.get('a#links').contains(localizations.en.links).click();
-    cy.wait(100);
 
     cy.wait(fullAliasName(AssortmentOperation.GetAssortmentLinks)).then(
       (currentSubject) => {
