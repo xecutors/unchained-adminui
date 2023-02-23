@@ -1,5 +1,18 @@
 export const UNRESTRICTED = 'UNRESTRICTED';
 
+export const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/oauth',
+  '/account/forgot-password',
+  '/reset-password',
+  '/api/graphql',
+  '/404',
+  '/423',
+  '/_offline',
+  '/verify-email',
+];
+
 const ACTION_ROLES = {
   assortments: {
     view: 'viewAssortment',
@@ -225,6 +238,7 @@ export const ROUTE_ROLES = {
   '/403': UNRESTRICTED,
   '/423': UNRESTRICTED,
   '/verify-email': UNRESTRICTED,
+  '/oauth': UNRESTRICTED,
   '/orders/[orderId]': ACTION_ROLES.orders.manage,
   '/orders': ACTION_ROLES.orders.manage,
 };
