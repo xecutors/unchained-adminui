@@ -744,6 +744,16 @@ export const getShadowStyle = (status) => {
 
 export default { LimitSteps, DefaultLimit };
 
+export const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/account/forgot-password',
+  '/reset-password',
+  '/api/graphql',
+  '/404',
+  '/423',
+];
+
 export const PROVIDER_TYPE_CLASSES = {
   PHYSICAL: 'green',
   CARD: 'blue',

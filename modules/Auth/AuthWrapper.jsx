@@ -3,7 +3,8 @@ import React, { useEffect, useMemo } from 'react';
 import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import Loading from '../common/components/Loading';
-import { UnrestrictedPages, ROUTE_ROLES } from '../common/data/roles';
+import { UnrestrictedPages } from '../common/data/miscellaneous';
+import { ROUTE_ROLES } from '../common/data/roles';
 import AuthContext from './AuthContext';
 
 const {

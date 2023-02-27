@@ -21,7 +21,6 @@ import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
-import GoogleOauth from './GoogleOauth';
 
 const GetCurrentStep = ({ step }) => {
   const { formatMessage } = useIntl();
@@ -341,7 +340,6 @@ const LogInForm = () => {
                   })}
                 </button>
               </div>
-
               <div className="text-sm text-slate-400 dark:text-slate-200">
                 {formatMessage({
                   id: 'create_new_account',
@@ -358,7 +356,6 @@ const LogInForm = () => {
                 </Link>
               </div>
             </Form>
-            <GoogleOauth />
           </FormWrapper>
         </div>
       </div>
