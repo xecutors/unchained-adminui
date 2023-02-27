@@ -60,7 +60,7 @@ const Layout = ({
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
-    process?.env?.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
+    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
   const logo = getLogo();
   const defaultNavigation = [
     {

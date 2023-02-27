@@ -18,7 +18,8 @@ import Layout from '../modules/common/components/Layout';
 
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 import AuthWrapper from '../modules/Auth/AuthWrapper';
-import EndpointWrapper, {
+import {
+  EndpointContext,
   useSetEndpointContext,
 } from '../modules/apollo/EndpointWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
@@ -48,12 +49,12 @@ const handleRouteChange = async (url) => {
 
 const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
   const router = useRouter();
-  const { endpoint, setEndpoint } = useSetEndpointContext();
+  const endpointContext = useSetEndpointContext();
   const { locale } = router;
 
   const apollo = useApollo(pageProps, {
     locale,
-    endpoint,
+    endpoint: endpointContext.endpoint,
   });
 
   const getLayout = Component.getLayout
@@ -105,7 +106,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
           </>
         ) : null}
       </Head>
-      <EndpointWrapper setEndpoint={setEndpoint} endpoint={endpoint}>
+      <EndpointContext.Provider value={endpointContext}>
         <ApolloProvider client={apollo}>
           <IntlWrapper
             locale={router.locale}
@@ -132,7 +133,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
             </AuthWrapper>
           </IntlWrapper>
         </ApolloProvider>
-      </EndpointWrapper>
+      </EndpointContext.Provider>
     </>
   );
 };

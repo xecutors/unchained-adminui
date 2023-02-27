@@ -95,19 +95,11 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-export const getDefaultEndpoint = () => {
-  return (
-    process?.env?.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
-    'http://localhost:4010/graphql'
-  );
-};
-
 export const setEndpoint = (endpoint: string): string | null => {
-  const newEndpoint = endpoint || getDefaultEndpoint();
   if (typeof window !== 'undefined') {
-    sessionStorage.setItem('selectedUnchainedEndpoint', newEndpoint);
+    sessionStorage.setItem('selectedUnchainedEndpoint', endpoint);
   }
-  return newEndpoint;
+  return endpoint;
 };
 
 export const getEndpoint = (): string => {

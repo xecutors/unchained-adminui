@@ -2,7 +2,6 @@ import { XCircleIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { getDefaultEndpoint } from '../utils/utils';
 
 const isSafariBrowser = (userAgent) =>
   userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
@@ -42,10 +41,8 @@ const testConnection = async (url) => {
 };
 
 const SandboxInput = ({ handleOnBlur, endpoint }) => {
-  const [currentEndpoint, setCurrentEndpoint] = useState(
-    endpoint || getDefaultEndpoint(),
-  );
   const [connection, setConnectionState] = useState({});
+  const [currentEndpoint, setCurrentEndpoint] = useState(endpoint);
 
   const { formatMessage } = useIntl();
 

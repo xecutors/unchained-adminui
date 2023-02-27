@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import useEndpoint from '../../apollo/useEndpoint';
+import { useEndpoint } from '../../apollo/EndpointWrapper';
 import useAuth from '../../Auth/useAuth';
 
 import FormWrapper from '../../common/components/FormWrapper';
@@ -104,6 +104,7 @@ const LogInForm = () => {
   const { logInWithPassword } = useLoginWithPassword();
   const { isAuthenticated } = useAuth();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
+
   const { setEndpoint, endpoint } = useEndpoint();
 
   const router = useRouter();

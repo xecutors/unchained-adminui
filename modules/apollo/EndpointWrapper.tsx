@@ -1,15 +1,20 @@
-import { useState, createContext, useMemo } from 'react';
+import { useState, createContext, useContext } from 'react';
+import getConfig from 'next/config';
 import {
   getEndpoint as getEndpointFromSession,
   setEndpoint as setEndpointInSession,
 } from '../common/utils/utils';
+
+const {
+  publicRuntimeConfig: { publicGraphQLEndpoint },
+} = getConfig();
 
 const EndpointContext = createContext<{
   setEndpoint: typeof setEndpointInSession;
   endpoint: string;
 }>({
   setEndpoint: () => null,
-  endpoint: null,
+  endpoint: publicGraphQLEndpoint || 'http://localhost:4010/graphql',
 });
 
 const useSetEndpointContext = () => {
@@ -22,7 +27,7 @@ const useSetEndpointContext = () => {
     } catch (err) {
       /* */
     }
-    return null;
+    return publicGraphQLEndpoint;
   });
 
   return {
@@ -39,21 +44,8 @@ const useSetEndpointContext = () => {
   };
 };
 
-const EndpointWrapper = ({ children, setEndpoint, endpoint }) => {
-  const contextValue = useMemo(
-    () => ({
-      setEndpoint,
-      endpoint,
-    }),
-    [endpoint, setEndpoint],
-  );
-
-  return (
-    <EndpointContext.Provider value={contextValue}>
-      {children}
-    </EndpointContext.Provider>
-  );
+const useEndpoint = () => {
+  return useContext(EndpointContext);
 };
 
-export { EndpointContext, useSetEndpointContext };
-export default EndpointWrapper;
+export { EndpointContext, useSetEndpointContext, useEndpoint };
