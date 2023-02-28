@@ -647,9 +647,6 @@
   "display_name": {
     "defaultMessage": "Display name"
   },
-  "do_work": {
-    "defaultMessage": "Do Work"
-  },
   "dont_have_account": {
     "defaultMessage": "Don't have an account yet?"
   },
