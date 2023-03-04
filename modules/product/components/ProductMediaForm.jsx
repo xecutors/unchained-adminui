@@ -29,6 +29,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   const items = productMedia?.map((media) => media._id);
 
   const onAddMedia = async (media) => {
+    console.log(media);
     try {
       await addProductMedia({ productId, media });
       toast.success(

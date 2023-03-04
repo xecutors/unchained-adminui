@@ -11,6 +11,7 @@ const QuotationConfigurationForm = ({
   onCancel,
   icon,
   headerText,
+  submitButtonText,
 }) => {
   const { formatMessage } = useIntl();
   const defaultSuccessMessage = formatMessage({
@@ -63,7 +64,11 @@ const QuotationConfigurationForm = ({
         />
       </div>
       <div className="border border-t-indigo-50 bg-slate-50 mt-6 -mx-5 -mb-6 dark:bg-slate-500 dark:border-0">
-        <SaveAndCancelButtons onCancel={onCancel} className="justify-end " />
+        <SaveAndCancelButtons
+          onCancel={onCancel}
+          submitText={submitButtonText}
+          className="justify-end "
+        />
       </div>
     </Form>
   );
