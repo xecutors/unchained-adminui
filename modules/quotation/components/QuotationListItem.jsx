@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
+import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -64,41 +63,22 @@ const QuotationListItem = ({ quotation, showUser }) => {
             href={`/users/${quotation.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
-            <Image
-              loader={defaultNextImageLoader}
-              src={quotation.user?.avatar?.url}
-              width={20}
-              height={20}
-              placeholder="blur"
-              alt={formatMessage({
-                id: 'image-not-found',
-                defaultMessage: 'image-not-found',
-              })}
-              blurDataURL="/no-image.jpg"
-            />
+            <MediaAvatar file={quotation.user?.avatar?.url} className="mr-2" />
             <span className="font-medium ml-2">{quotation.user?.username}</span>
           </Link>
         </Table.Cell>
       )}
       <Table.Cell>
-        <div className="flex items-center text-sm ">
+        <div>
           <Link
             href={`/products/${generateUniqueId(quotation.product)}`}
-            className="flex text-blue-600 dark:text-blue-400"
+            className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
-            <Image
-              loader={defaultNextImageLoader}
-              src={quotation.product?.media[0]?.file?.url}
-              width={20}
-              height={20}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
-              alt={formatMessage({
-                id: 'image-not-found',
-                defaultMessage: 'image-not-found',
-              })}
+            <MediaAvatar
+              file={quotation.product?.media[0]?.file?.url}
+              className="mr-2"
             />
-            <span className="ml-2 self-end">
+            <span className="font-medium ml-2">
               {quotation?.product.texts.title}
             </span>
           </Link>

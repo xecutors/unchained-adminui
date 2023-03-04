@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-import { MailIcon, XIcon } from '@heroicons/react/24/solid';
+import { PaperAirplaneIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import StatusProgress from '../../common/components/StatusProgress';
 import useQuotationStatusTypes from '../hooks/useQuotationStatusTypes';
 import Button from '../../common/components/Button';
@@ -45,6 +45,10 @@ const QuotationDetail = ({ quotation }) => {
           id: 'quotation-verified-successfully',
           defaultMessage: 'Quotation verified successfully',
         })}
+        submitButtonText={formatMessage({
+          id: 'verify-quotation-submit',
+          defaultMessage: 'Verify',
+        })}
         headerText={formatMessage({
           id: 'verify-quotation-quotation',
           defaultMessage: 'Verify quotation?',
@@ -74,9 +78,13 @@ const QuotationDetail = ({ quotation }) => {
           id: 'reject-quotation-quotation',
           defaultMessage: 'Reject quotation?',
         })}
+        submitButtonText={formatMessage({
+          id: 'reject-quotation-submit',
+          defaultMessage: 'Reject',
+        })}
         icon={
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-            <XIcon className="h-6 w-6 text-red-600" />
+            <XCircleIcon className="h-6 w-6 text-red-600" />
           </div>
         }
       />,
@@ -104,9 +112,13 @@ const QuotationDetail = ({ quotation }) => {
           id: 'make-proposal-header',
           defaultMessage: 'Make quotation proposal',
         })}
+        submitButtonText={formatMessage({
+          id: 'process-quotation-submit',
+          defaultMessage: 'Mark as processed',
+        })}
         icon={
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-            <MailIcon className="h-6 w-6 text-green-600" />
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10 mr-3">
+            <PaperAirplaneIcon className="h-6 w-6 text-indigo-600" />
           </div>
         }
       />,
@@ -152,7 +164,7 @@ const QuotationDetail = ({ quotation }) => {
           <Button
             text="Reject"
             onClick={onReject}
-            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-1 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
+            className="bg-white-300 relative -ml-px inline-flex items-center space-x-2 rounded-md border border-red-500 bg-red-500 px-2 py-2 text-base font-medium text-white hover:bg-red-700 focus:border-red-400 focus:outline-none focus:ring-0 focus:ring-red-400"
           />
         ),
     },
@@ -162,6 +174,8 @@ const QuotationDetail = ({ quotation }) => {
       visible: true,
     },
   };
+
+  console.log(quotation);
 
   return (
     <>
@@ -178,7 +192,9 @@ const QuotationDetail = ({ quotation }) => {
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
                 <Image
                   loader={defaultNextImageLoader}
-                  src={quotation.product?.media[0]?.file?.url}
+                  src={
+                    quotation.product?.media[0]?.file?.url || '/no-image.jpg'
+                  }
                   layout="responsive"
                   width="100"
                   height={100}

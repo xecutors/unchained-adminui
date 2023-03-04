@@ -1,12 +1,11 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 
 import Table from '../../common/components/Table';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import MediaAvatar from '../../common/components/MediaAvatar';
 
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
@@ -68,17 +67,9 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <span className="inline-block h-9 w-9 rounded-full">
-              <Image
-                loader={defaultNextImageLoader}
-                src={enrollment?.user?.avatar?.url}
-                width={36}
-                height={36}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-                alt={formatMessage({
-                  id: 'image-not-found',
-                  defaultMessage: 'image-not-found',
-                })}
+              <MediaAvatar
+                file={enrollment?.user?.avatar?.url}
+                className="mr-2"
               />
             </span>
             <span className="ml-2">{enrollment.user?.username}</span>
@@ -87,28 +78,16 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       )}
 
       <Table.Cell>
-        <div className="text-sm">
-          <Link
-            href={`/products/${generateUniqueId(enrollment.plan.product)}`}
-            className="flex text-blue-600 dark:text-blue-400"
-          >
-            <Image
-              loader={defaultNextImageLoader}
-              src={enrollment?.plan?.product?.media?.file?.url}
-              width={20}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
-              height={20}
-              alt={formatMessage({
-                id: 'image-not-found',
-                defaultMessage: 'image-not-found',
-              })}
-            />
-            <span className="ml-2 self-end">
-              {enrollment?.plan.product.texts.title}
-            </span>
-          </Link>
-        </div>
+        <Link
+          href={`/products/${generateUniqueId(enrollment.plan.product)}`}
+          className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
+        >
+          <MediaAvatar
+            file={enrollment?.plan?.product?.media?.file?.url}
+            className="mr-2"
+          />
+          <span className="ml-2">{enrollment?.plan.product.texts.title}</span>
+        </Link>
       </Table.Cell>
 
       <Table.Cell>
