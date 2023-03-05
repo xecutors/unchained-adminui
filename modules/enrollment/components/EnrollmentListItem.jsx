@@ -6,6 +6,7 @@ import Table from '../../common/components/Table';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import MediaAvatar from '../../common/components/MediaAvatar';
+import formatUsername from '../../common/utils/formatUsername';
 
 const ENROLLMENT_STATUS = {
   INITIAL: 'orange',
@@ -67,12 +68,9 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <span className="inline-block h-9 w-9 rounded-full">
-              <MediaAvatar
-                file={enrollment?.user?.avatar?.url}
-                className="mr-2"
-              />
+              <MediaAvatar file={enrollment?.user?.avatar} className="mr-2" />
             </span>
-            <span className="ml-2">{enrollment.user?.username}</span>
+            <span className="ml-2">{formatUsername(enrollment.user)}</span>
           </Link>
         </Table.Cell>
       )}
@@ -83,7 +81,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
           className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
         >
           <MediaAvatar
-            file={enrollment?.plan?.product?.media?.file?.url}
+            file={enrollment?.plan?.product?.media?.file}
             className="mr-2"
           />
           <span className="ml-2">{enrollment?.plan.product.texts.title}</span>

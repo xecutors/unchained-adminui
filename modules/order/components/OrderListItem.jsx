@@ -1,12 +1,10 @@
-import Image from 'next/image';
-
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
-import NoImage from '../../common/components/NoImage';
+import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
 import { ORDER_STATUSES } from '../../common/data/miscellaneous';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
+import formatUsername from '../../common/utils/formatUsername';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { useFormatPrice } from '../../common/utils/utils';
 
@@ -14,7 +12,6 @@ const OrderListItem = ({ order, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
   const { formatDateTime } = useFormatDateTime();
-
   return (
     <Table.Row>
       <Table.Cell>
@@ -54,23 +51,11 @@ const OrderListItem = ({ order, showUser }) => {
             href={`/users/${order.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
-            {order.user?.avatar?.url ? (
-              <Image
-                loader={defaultNextImageLoader}
-                src={order.user?.avatar?.url}
-                width={20}
-                height={20}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
-                alt={formatMessage({
-                  id: 'image-not-found',
-                  defaultMessage: 'image-not-found',
-                })}
-              />
-            ) : (
-              <NoImage className="h-10 w-10" />
-            )}
-            <span className="font-medium ml-2">{order.user?.username}</span>
+            <MediaAvatar file={order.user?.avatar} className="mr-2" />
+
+            <span className="font-medium ml-2">
+              {formatUsername(order.user)}
+            </span>
           </Link>
         </Table.Cell>
       )}
