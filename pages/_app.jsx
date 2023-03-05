@@ -48,7 +48,7 @@ const handleRouteChange = async (url) => {
   });
 };
 
-const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
+const UnchainedAdmin = ({ Component, componentName, pageProps, ...rest }) => {
   const router = useRouter();
   const endpointContext = useSetEndpointContext();
   const { locale } = router;
@@ -114,7 +114,7 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
             messages={messages}
             key="intl-provider"
           >
-            <AuthWrapper>
+            <AuthWrapper apolloClient={apollo} componentName={componentName}>
               <UnchainedContextWrapper>
                 <ThemeWrapper>
                   <ToastContainer
@@ -141,7 +141,10 @@ const UnchainedAdmin = ({ Component, pageProps, ...rest }) => {
 
 UnchainedAdmin.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
-  return { ...appProps };
+
+  const componentName =
+    appContext.Component.displayName || appContext.Component.name || 'Unknown';
+  return { ...appProps, componentName };
 };
 
 export default UnchainedAdmin;

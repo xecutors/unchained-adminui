@@ -3,51 +3,43 @@ import React, { useEffect, useMemo } from 'react';
 import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import Loading from '../common/components/Loading';
-import { UnrestrictedPages, ROUTE_ROLES } from '../common/data/roles';
 import AuthContext from './AuthContext';
+import {
+  checkAccess,
+  checkRole,
+  isUserAdmin,
+  isUserAuthenticated,
+} from '../../app-permissions.config';
 
 const {
   publicRuntimeConfig: { restrictNonAdmin },
 } = getConfig();
 
-const AuthWrapper = ({ children }) => {
+const AuthWrapper = ({ children, apolloClient, componentName }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
 
-  const isAuthenticated = () => {
-    return !!currentUser?._id;
+  const isAuthenticated = (user) => {
+    return isUserAuthenticated(user);
   };
 
-  const isAdmin = () => {
-    return (
-      currentUser?.allowedActions.length === 0 ||
-      (currentUser?.roles || []).includes('admin')
-    );
+  const isAdmin = (user) => {
+    return isUserAdmin(user);
   };
 
-  const hasRole = (role) => {
-    if (isAdmin()) {
-      return true;
-    }
-    if (currentUser?.allowedActions.includes(role)) {
-      return true;
-    }
-    return false;
+  const hasRole = (role, action = null) => {
+    return checkRole(currentUser, role, apolloClient, {
+      componentName,
+      router,
+      action,
+    });
   };
 
-  const hasAccess = () => {
-    if (!currentUser?._id && !UnrestrictedPages.includes(router.pathname))
-      return false;
-
-    if (
-      ROUTE_ROLES[router.pathname] === 'UNRESTRICTED' ||
-      isAdmin() ||
-      (currentUser?.allowedActions || [])?.includes(
-        ROUTE_ROLES[router.pathname],
-      )
-    )
-      return true;
-    return false;
+  const hasAccess = ({ user, action } = {}) => {
+    return checkAccess(user, action, apolloClient, {
+      router,
+      componentName,
+    });
   };
 
   const ctx = useMemo(() => {
@@ -61,17 +53,17 @@ const AuthWrapper = ({ children }) => {
 
   useEffect(() => {
     if (!loading) {
-      if (isAuthenticated()) {
-        if (!hasAccess()) {
+      if (isAuthenticated(currentUser)) {
+        if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
         } else if (
-          !isAdmin() &&
+          !isAdmin(currentUser) &&
           restrictNonAdmin &&
           router.pathname !== '/423'
         ) {
           router.replace('/423');
         }
-      } else if (!hasAccess()) {
+      } else if (!hasAccess({ user: currentUser })) {
         router.replace('/log-in');
       }
     }
@@ -79,7 +71,7 @@ const AuthWrapper = ({ children }) => {
 
   return (
     <AuthContext.Provider value={ctx}>
-      {loading || !hasAccess() ? <Loading /> : children}
+      {loading || !hasAccess({ user: currentUser }) ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };
