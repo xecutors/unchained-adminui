@@ -27,6 +27,7 @@ import * as matomo from '../modules/common/utils/matomo';
 import { GetCurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
+import formatUsername from '../modules/common/utils/formatUsername';
 
 const handleRouteChange = async (url) => {
   const apolloClient = initializeApollo();
@@ -37,7 +38,7 @@ const handleRouteChange = async (url) => {
   });
 
   const emailAddress = me?.primaryEmail?.address;
-  const username = me?.username;
+  const username = formatUsername(me);
   const clientId = me?._id;
 
   matomo.pageView(document.location.origin + url, document.title, {

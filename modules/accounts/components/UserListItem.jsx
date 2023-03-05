@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
+import formatUsername from '../../common/utils/formatUsername';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
@@ -29,7 +30,7 @@ const UserListItem = ({ user }) => {
             <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
               <div>
                 <div className="truncate text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                  {user.name}
+                  {formatUsername(user)}
                 </div>
                 <div className="flex items-center text-sm text-slate-500 dark:text-slate-200">
                   <svg

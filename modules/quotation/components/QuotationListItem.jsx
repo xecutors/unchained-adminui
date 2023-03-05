@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import MediaAvatar from '../../common/components/MediaAvatar';
 import Table from '../../common/components/Table';
+import formatUsername from '../../common/utils/formatUsername';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -17,6 +18,7 @@ const QUOTATION_STATUS = {
 const QuotationListItem = ({ quotation, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+  console.log(quotation.product?.media[0]?.file?.url);
   return (
     <Table.Row>
       <Table.Cell>
@@ -63,8 +65,10 @@ const QuotationListItem = ({ quotation, showUser }) => {
             href={`/users/${quotation.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
-            <MediaAvatar file={quotation.user?.avatar?.url} className="mr-2" />
-            <span className="font-medium ml-2">{quotation.user?.username}</span>
+            <MediaAvatar file={quotation.user?.avatar} className="mr-2" />
+            <span className="font-medium ml-2">
+              {formatUsername(quotation.user)}
+            </span>
           </Link>
         </Table.Cell>
       )}
@@ -75,7 +79,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <MediaAvatar
-              file={quotation.product?.media[0]?.file?.url}
+              file={quotation.product?.media[0]?.file}
               className="mr-2"
             />
             <span className="font-medium ml-2">

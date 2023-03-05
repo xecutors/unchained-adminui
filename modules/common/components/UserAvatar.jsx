@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import formatUsername from '../utils/formatUsername';
 
-const UserAvatar = ({ avatar, username, onLogout, profile }) => {
+const UserAvatar = ({ avatar, onLogout, ...user }) => {
   const { formatMessage } = useIntl();
   return (
     <a href="#" onClick={onLogout} className="group block flex-shrink-0">

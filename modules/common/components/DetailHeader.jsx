@@ -7,6 +7,7 @@ import {
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import formatUsername from '../utils/formatUsername';
 
 const FallbackAvatar = ({ username }) => {
   return (
@@ -60,7 +61,7 @@ const DetailHeader = ({ user, contact }) => {
                 href={`/users/${user?._id}`}
                 className="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300"
               >
-                {user?.name ? user.name : user?.username}
+                {formatUsername(user)}
               </Link>
             </h3>
             {user?.primaryEmail?.verified && (
