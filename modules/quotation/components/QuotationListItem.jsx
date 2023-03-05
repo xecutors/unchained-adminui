@@ -18,6 +18,7 @@ const QUOTATION_STATUS = {
 const QuotationListItem = ({ quotation, showUser }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
+  console.log(quotation.product?.media[0]?.file?.url);
   return (
     <Table.Row>
       <Table.Cell>
