@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import useFormatDateTime from '../utils/useFormatDateTime';
+import ImageWithFallback from './ImageWithFallback';
 import Toggle from './Toggle';
 
 const isBoolean = (value) => {
@@ -45,12 +44,9 @@ const DisplayData = ({ value }) => {
     if (isImageURL(value)) {
       return (
         <div className="ring-2 ring-offset-2 ring-indigo-500 group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
-          <Image
+          <ImageWithFallback
             src={value}
             className="relative h-10 w-10 rounded-full"
-            loader={defaultNextImageLoader}
-            placeholder="blur"
-            blurDataURL="/no-image.jpg"
             width={100}
             height={100}
             alt={formatMessage({

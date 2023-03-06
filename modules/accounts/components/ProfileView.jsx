@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Image from 'next/image';
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -8,7 +7,6 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useUpdateUserAvatar from '../hooks/useUpdateUserAvatar';
 import useUpdateUserProfile from '../hooks/useUpdateUserProfile';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import SaveAndCancelButtons from '../../common/components/SaveAndCancelButtons';
 import AddressFields from './AddressFields';
@@ -17,6 +15,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import ACTION_ROLES from '../../common/data/roles';
 import useCurrentUser from '../hooks/useCurrentUser';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 
 const ProfileView = ({ profile = {}, avatar, _id }) => {
   const { address } = profile || {};
@@ -187,13 +186,10 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         hidden
                       />
                       {avatar ? (
-                        <Image
+                        <ImageWithFallback
                           src={avatar?.url}
-                          loader={defaultNextImageLoader}
                           width={100}
                           height={100}
-                          placeholder="blur"
-                          blurDataURL="/no-image.jpg"
                           alt={formatMessage({
                             id: 'unchained_logo',
                             defaultMessage: 'Unchained Logo',

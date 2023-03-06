@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { InboxIcon } from '@heroicons/react/24/solid';
@@ -19,6 +18,7 @@ import useSendEnrollmentEmail from '../hooks/useSendEnrollmentEmail';
 import DangerMessage from '../../modal/components/DangerMessage';
 import EnrollmentDetailHeader from './EnrollmentDetailHeader';
 import JSONView from '../../common/components/JSONView';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 
 const EnrollmentDetail = ({ enrollment }) => {
   const { formatMessage } = useIntl();
@@ -192,7 +192,7 @@ const EnrollmentDetail = ({ enrollment }) => {
             <div className="w flex flex-auto flex-col gap-y-4 gap-x-8 sm:col-span-2 sm:gap-y-8 lg:col-span-3 lg:grid-cols-12 lg:flex-row">
               <div className="flex flex-auto flex-col gap-y-8 pt-4 lg:col-span-6">
                 <span className="h relative h-48 w-full rounded-lg">
-                  <Image
+                  <ImageWithFallback
                     loader={defaultNextImageLoader}
                     src={enrollment?.plan?.product?.media?.[0]?.file?.url}
                     alt={enrollment?.plan?.product?.text?.title}

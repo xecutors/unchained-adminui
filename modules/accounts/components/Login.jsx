@@ -1,5 +1,4 @@
 import getConfig from 'next/config';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -8,8 +7,8 @@ import { useEndpoint } from '../../apollo/EndpointWrapper';
 import useAuth from '../../Auth/useAuth';
 
 import FormWrapper from '../../common/components/FormWrapper';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import SandboxInput from '../../common/components/SandboxInput';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -269,12 +268,9 @@ const LogInForm = () => {
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
-            <Image
+            <ImageWithFallback
               className="mx-auto"
               src={logo}
-              loader={defaultNextImageLoader}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
               width={160}
               height={100}
               alt={formatMessage({

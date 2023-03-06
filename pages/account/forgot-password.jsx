@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
-import defaultNextImageLoader from '../../modules/common/utils/defaultNextImageLoader';
+import ImageWithFallback from '../../modules/common/components/ImageWithFallback';
 import getLogo from '../../modules/common/utils/getLogo';
 
 const ForgotPassword = () => {
@@ -37,14 +36,11 @@ const ForgotPassword = () => {
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 text-center">
         <div>
-          <Image
+          <ImageWithFallback
             className="mx-auto"
             src={logo}
-            loader={defaultNextImageLoader}
             width={160}
             height={100}
-            placeholder="blur"
-            blurDataURL="/no-image.jpg"
             alt={formatMessage({
               id: 'unchained_logo',
               defaultMessage: 'Unchained Logo',

@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import formatUsername from '../utils/formatUsername';
+import ImageWithFallback from './ImageWithFallback';
 
 const UserAvatar = ({ avatar, onLogout, ...user }) => {
   const { formatMessage } = useIntl();
@@ -9,7 +9,7 @@ const UserAvatar = ({ avatar, onLogout, ...user }) => {
     <a href="#" onClick={onLogout} className="group block flex-shrink-0">
       <div className="flex items-center">
         {avatar ? (
-          <Image
+          <ImageWithFallback
             src={avatar?.url}
             loader={defaultNextImageLoader}
             width={36}

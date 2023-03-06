@@ -1,15 +1,14 @@
 import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
 import DeleteButton from '../../common/components/DeleteButton';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import Badge from '../../common/components/Badge';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 
 const ProductReviewsItem = ({ review }) => {
   const { formatMessage } = useIntl();
@@ -64,15 +63,12 @@ const ProductReviewsItem = ({ review }) => {
       )}
     >
       <div className="flex items-center">
-        <Image
-          loader={defaultNextImageLoader}
+        <ImageWithFallback
           src={review?.author?.avatar?.url}
           alt={review?.author?.username}
           width={48}
           height={48}
           className="h-12 w-12 rounded-full"
-          placeholder="blur"
-          blurDataURL="/no-image.jpg"
         />
         <div className="ml-4 mr-auto">
           <h4 className="text-sm font-bold">{review?.author?.username}</h4>

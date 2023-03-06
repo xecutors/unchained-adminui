@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
@@ -20,7 +20,7 @@ const RegisteredWebAuthItem = ({
     <li className="col-span-1 flex shadow-sm rounded-md ">
       {md5Metadata?.icon && (
         <div className="flex-shrink-0 flex items-center justify-center w-16  text-sm font-medium rounded-l-md">
-          <Image
+          <ImageWithFallback
             className="inline-block h-10 w-10 rounded-full border-2"
             src={md5Metadata?.icon}
             loader={defaultNextImageLoader}

@@ -1,9 +1,7 @@
-import Image from 'next/image';
-
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import NoImage from '../../common/components/NoImage';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 
 const BundleProductsListItem = ({ item, onDelete, index }) => {
   const { product, quantity } = item;
@@ -14,15 +12,12 @@ const BundleProductsListItem = ({ item, onDelete, index }) => {
         {product.media?.length ? (
           <div className="flex w-20 flex-col items-center">
             <div className="relative m-1 mr-2 mt-1 flex items-center  justify-center rounded-full ">
-              <Image
+              <ImageWithFallback
                 className="mx-auto w-auto"
                 src={product.media[0]?.file.url}
-                loader={defaultNextImageLoader}
                 width={160}
                 height={100}
                 alt={product?.texts?.title || product?.texts?.subtitle}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
               />
             </div>
           </div>

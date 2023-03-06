@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
 import Badge from '../../common/components/Badge';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Loading from '../../common/components/Loading';
 
 import NoData from '../../common/components/NoData';
@@ -45,7 +45,7 @@ const UserTokens = ({ _id: userId }) => {
                 className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
               >
                 <div>
-                  <Image
+                  <ImageWithFallback
                     src={
                       (product?.media?.length && product.media[0].file?.url) ||
                       '/no-image.jpg'

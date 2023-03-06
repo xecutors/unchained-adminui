@@ -1,12 +1,10 @@
-import Image from 'next/image';
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import FormWrapper from '../../common/components/FormWrapper';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Toggle from '../../common/components/Toggle';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import getLogo from '../../common/utils/getLogo';
 
 import Form from '../../forms/components/Form';
@@ -96,11 +94,8 @@ const SignUpForm = () => {
           <Image
             className="mx-auto"
             src={logo}
-            loader={defaultNextImageLoader}
             width={160}
             height={100}
-            placeholder="blur"
-            blurDataURL="/no-image.jpg"
             alt={formatMessage({
               id: 'unchained_logo',
               defaultMessage: 'Unchained Logo',
