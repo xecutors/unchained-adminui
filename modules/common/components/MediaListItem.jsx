@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import Image from 'next/image';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
@@ -12,8 +11,8 @@ import DeleteButton from './DeleteButton';
 import EditIcon from './EditIcon';
 import SaveAndCancelButtons from './SaveAndCancelButtons';
 import FormErrors from '../../forms/components/FormErrors';
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import DraggableIcon from './DraggableIcon';
+import ImageWithFallback from './ImageWithFallback';
 
 const MediaListItem = ({
   media,
@@ -61,13 +60,10 @@ const MediaListItem = ({
     >
       <div className="flex-1 basis-1/3">
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
-          <Image
+          <ImageWithFallback
             src={media?.file?.url}
             alt={mediaText?.title || mediaText?.subtitle}
             className="h-36 w-36 flex-none rounded-md bg-slate-10 object-cover object-center"
-            placeholder="blur"
-            loader={defaultNextImageLoader}
-            blurDataURL="/no-image.jpg"
             width={100}
             height={100}
           />

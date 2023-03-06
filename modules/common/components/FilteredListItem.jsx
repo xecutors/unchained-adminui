@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import ImageWithFallback from './ImageWithFallback';
 import NoImage from './NoImage';
 
 const FilteredListItem = ({ item, onSelected }) => {
@@ -12,12 +11,9 @@ const FilteredListItem = ({ item, onSelected }) => {
         {item?.image ? (
           <div className="flex w-20 shrink-0 grow-0 basis-1/5 flex-col items-center">
             <div className="relative m-1 mr-2 mt-1 flex items-center justify-center rounded-full">
-              <Image
+              <ImageWithFallback
                 className="mx-auto w-auto"
                 src={item.image}
-                loader={defaultNextImageLoader}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
                 width={160}
                 height={100}
                 alt={item?.title || item?.subtitle}

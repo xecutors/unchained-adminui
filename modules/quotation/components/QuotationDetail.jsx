@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
@@ -10,13 +9,13 @@ import useModal from '../../modal/hooks/useModal';
 
 import useVerifyQuotation from '../hooks/useVerifyQuotation';
 
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import QuotationDetailHeader from './QuotationDetailHeader';
 import useRejectQuotation from '../hooks/useRejectQuotation';
 import generateUniqueId from '../../common/utils/getUniqueId';
 import QuotationConfigurationForm from './QuotationConfigurationForm';
 import useMakeQuotationProposal from '../hooks/useMakeQuotationProposal';
 import JSONView from '../../common/components/JSONView';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 
 const QuotationDetail = ({ quotation }) => {
   const { formatMessage } = useIntl();
@@ -175,8 +174,6 @@ const QuotationDetail = ({ quotation }) => {
     },
   };
 
-  console.log(quotation);
-
   return (
     <>
       <QuotationDetailHeader quotation={quotation} />
@@ -190,16 +187,13 @@ const QuotationDetail = ({ quotation }) => {
           <div className="grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-8">
             <div className="sm:col-span-4 md:col-span-5 md:row-span-2 md:row-end-2">
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
-                <Image
-                  loader={defaultNextImageLoader}
+                <ImageWithFallback
                   src={
                     quotation.product?.media[0]?.file?.url || '/no-image.jpg'
                   }
                   layout="responsive"
                   width="100"
                   height={100}
-                  placeholder="blur"
-                  blurDataURL="/no-image.jpg"
                   alt={formatMessage({
                     id: 'image-not-found',
                     defaultMessage: 'image-not-found',

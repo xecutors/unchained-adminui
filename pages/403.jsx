@@ -1,10 +1,9 @@
 import { LockClosedIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
+import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 
-import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
 import getLogo from '../modules/common/utils/getLogo';
 
 const NotAuthorized = () => {
@@ -22,12 +21,9 @@ const NotAuthorized = () => {
                 defaultMessage: 'Unchained Admin UI',
               })}{' '}
             </span>
-            <Image
+            <ImageWithFallback
               src={logo}
-              loader={defaultNextImageLoader}
               width={200}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
               height={100}
               alt={formatMessage({
                 id: 'unchained_logo',

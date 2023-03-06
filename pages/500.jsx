@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import defaultNextImageLoader from '../modules/common/utils/defaultNextImageLoader';
+import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 import getLogo from '../modules/common/utils/getLogo';
 
 const InternalError = () => {
@@ -18,13 +17,10 @@ const InternalError = () => {
                 defaultMessage: 'Unchained Admin UI',
               })}{' '}
             </span>
-            <Image
+            <ImageWithFallback
               src={logo}
-              loader={defaultNextImageLoader}
               width={200}
               height={100}
-              placeholder="blur"
-              blurDataURL="/no-image.jpg"
               alt={formatMessage({
                 id: 'unchained_logo',
                 defaultMessage: 'Unchained Logo',

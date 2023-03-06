@@ -1,9 +1,8 @@
 import { useIntl } from 'react-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useFormatPrice } from '../../common/utils/utils';
-import defaultNextImageLoader from '../../common/utils/defaultNextImageLoader';
 import generateUniqueId from '../../common/utils/getUniqueId';
+import ImageWithFallback from '../../common/components/ImageWithFallback';
 
 const OrderDetailItem = ({ item }) => {
   const { formatMessage } = useIntl();
@@ -24,8 +23,7 @@ const OrderDetailItem = ({ item }) => {
               <div className="flex items-center">
                 <div className="flex flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                   {item.product?.media?.length ? (
-                    <Image
-                      loader={defaultNextImageLoader}
+                    <ImageWithFallback
                       src={`${item.product?.media[0].file.url}`}
                       alt={
                         item?.product?.texts?.title ||
@@ -34,8 +32,6 @@ const OrderDetailItem = ({ item }) => {
                       className="h-full w-full object-cover object-center sm:h-full sm:w-full"
                       width={80}
                       height={80}
-                      placeholder="blur"
-                      blurDataURL="/no-image.jpg"
                     />
                   ) : null}
                 </div>

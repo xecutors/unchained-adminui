@@ -12,7 +12,6 @@ import {
   AdjustmentsVerticalIcon,
 } from '@heroicons/react/24/outline';
 import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -24,13 +23,13 @@ import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import ACTION_ROLES from '../data/roles';
 import useShopInfo from '../hooks/useShopInfo';
 
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import getLogo from '../utils/getLogo';
 import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
+import ImageWithFallback from './ImageWithFallback';
 
 const { publicRuntimeConfig } = getConfig();
 const QuotationIcon = ({ className }) => (
@@ -287,13 +286,10 @@ const Layout = ({
           <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
-                <Image
+                <ImageWithFallback
                   src={logo}
-                  loader={defaultNextImageLoader}
                   width={125}
                   height={100}
-                  placeholder="blur"
-                  blurDataURL="/no-image.jpg"
                   alt={formatMessage({
                     id: 'unchained_logo',
                     defaultMessage: 'Unchained Logo',
@@ -317,13 +313,10 @@ const Layout = ({
           <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
-                <Image
+                <ImageWithFallback
                   src={logo}
-                  loader={defaultNextImageLoader}
                   width={175}
                   height={100}
-                  placeholder="blur"
-                  blurDataURL="/no-image.jpg"
                   alt={formatMessage({
                     id: 'unchained_logo',
                     defaultMessage: 'Unchained Logo',

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import {
   CheckCircleIcon,
@@ -6,8 +5,8 @@ import {
   DevicePhoneMobileIcon,
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import formatUsername from '../utils/formatUsername';
+import ImageWithFallback from './ImageWithFallback';
 
 const FallbackAvatar = ({ username }) => {
   return (
@@ -25,14 +24,11 @@ const DetailHeader = ({ user, contact }) => {
     <div className="flex items-center">
       <span className="hidden h-8 w-8 rounded-full sm:block">
         {user?.avatar ? (
-          <Image
-            loader={defaultNextImageLoader}
+          <ImageWithFallback
             src={user.avatar.url}
             alt={user.name || user.username}
             width={100}
             height={100}
-            placeholder="blur"
-            blurDataURL="/no-image.jpg"
           />
         ) : (
           <FallbackAvatar username={user?.username} />
@@ -42,14 +38,11 @@ const DetailHeader = ({ user, contact }) => {
         <div className="flex items-center">
           <span className="block h-8 w-8 rounded-full sm:hidden">
             {user?.avatar ? (
-              <Image
-                loader={defaultNextImageLoader}
-                src={user.avatar.url}
+              <ImageWithFallback
+                src="/no-image.jpg"
                 alt={user.name || user.username}
                 width={8}
                 height={8}
-                placeholder="blur"
-                blurDataURL="/no-image.jpg"
               />
             ) : (
               <FallbackAvatar username={user?.username} />

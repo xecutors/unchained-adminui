@@ -1,7 +1,6 @@
 import classNames from 'classnames';
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
-import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import ImageWithFallback from './ImageWithFallback';
 import NoImage from './NoImage';
 
 const MediaAvatar = ({ file, className }) => {
@@ -9,12 +8,9 @@ const MediaAvatar = ({ file, className }) => {
   return (
     <div className={classNames('h-10 w-10 flex-shrink-0', className)}>
       {file ? (
-        <Image
+        <ImageWithFallback
           className="relative h-10 w-10 rounded-full"
-          loader={defaultNextImageLoader}
           src={file.url}
-          placeholder="blur"
-          blurDataURL="/no-image.jpg"
           width={100}
           height={100}
           alt={formatMessage({

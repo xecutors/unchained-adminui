@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
+import ImageWithFallback from './ImageWithFallback';
 
 const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
   const { formatMessage } = useIntl();
@@ -17,7 +17,7 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
             </span>
           </span>
         ) : (
-          <Image
+          <ImageWithFallback
             className="inline-block h-9 w-9 rounded-full"
             src={url}
             loader={defaultNextImageLoader}
