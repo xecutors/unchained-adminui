@@ -201,8 +201,8 @@ export const ROUTE_ROLES = {
   '/country/[countryId]': ACTION_ROLES.country.manage,
   '/currency/[currencyId]': ACTION_ROLES.currencies.manage,
   '/language/[languageId]': ACTION_ROLES.languages.manage,
-  '/products/[slug]': ACTION_ROLES.products.manage,
-  '/assortments/[slug]': ACTION_ROLES.assortments.manage,
+  '/products/[...slug]': ACTION_ROLES.products.manage,
+  '/assortments/[...slug]': ACTION_ROLES.assortments.manage,
   '/filters/[filterId]': ACTION_ROLES.filters.manage,
   '/country': ACTION_ROLES.country.manage,
   '/currency': ACTION_ROLES.currencies.manage,
@@ -241,6 +241,10 @@ export const ROUTE_ROLES = {
   '/oauth': UNRESTRICTED,
   '/orders/[orderId]': ACTION_ROLES.orders.manage,
   '/orders': ACTION_ROLES.orders.manage,
+  '/quotations': ACTION_ROLES.quotations.viewList,
+  '/quotations/[quotationId]': ACTION_ROLES.quotations.view,
+  '/enrollments': ACTION_ROLES.enrollment.viewList,
+  '/enrollments/[enrollmentId]': ACTION_ROLES.enrollment.view,
 };
 
 export default ACTION_ROLES;
