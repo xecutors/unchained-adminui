@@ -55,9 +55,9 @@ const UserTokens = ({ _id: userId }) => {
                       id: 'product-image',
                       defaultMessage: 'Product image',
                     })}
-                    width="100%"
+                    width={100}
+                    height={100}
                     layout="responsive"
-                    height="100%"
                     className=" h-full w-full "
                   />
                 </div>
