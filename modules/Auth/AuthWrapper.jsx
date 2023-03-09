@@ -4,12 +4,10 @@ import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import Loading from '../common/components/Loading';
 import AuthContext from './AuthContext';
-import {
-  checkAccess,
-  checkRole,
-  isUserAdmin,
-  isUserAuthenticated,
-} from '../../app-permissions.config';
+import { permissions } from '../../app-permissions.config';
+
+const { checkAccess, checkRole, isUserAdmin, isUserAuthenticated } =
+  permissions;
 
 const {
   publicRuntimeConfig: { restrictNonAdmin },
@@ -20,22 +18,26 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   const { currentUser, loading } = useCurrentUser();
 
   const isAuthenticated = (user) => {
+    if (!isUserAuthenticated) return true;
     return isUserAuthenticated(user);
   };
 
   const isAdmin = (user) => {
+    if (!isUserAdmin) return true;
     return isUserAdmin(user);
   };
 
-  const hasRole = (role, action = null) => {
-    return checkRole(currentUser, role, apolloClient, {
-      componentName,
+  const hasRole = (action, component = null) => {
+    if (!checkRole) return true;
+    return checkRole(currentUser, action, apolloClient, {
+      componentName: component,
       router,
       action,
     });
   };
 
   const hasAccess = ({ user, action } = {}) => {
+    if (!checkAccess) return true;
     return checkAccess(user, action, apolloClient, {
       router,
       componentName,
@@ -49,7 +51,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
       isAdmin,
       hasRole,
     };
-  }, [currentUser, router]);
+  }, [currentUser, router.pathname]);
 
   useEffect(() => {
     if (!loading) {
