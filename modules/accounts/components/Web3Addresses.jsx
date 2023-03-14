@@ -77,7 +77,7 @@ const Web3Addresses = ({ web3Addresses }) => {
   });
 
   return (
-    <div className="rounded-md shadow px-4 py-5 sm:p-6 bg-white  dark:bg-slate-900">
+    <div className="rounded-md shadow px-4 py-5 sm:p-6 bg-white dark:bg-slate-800">
       <ul className="-my-5 divide-y divide-slate-200 dark:divide-slate-700">
         {(web3Addresses || []).map(({ address, verified, nonce }) => (
           <li className="py-4" key={address}>
