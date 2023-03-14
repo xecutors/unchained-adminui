@@ -94,7 +94,7 @@ const SignUpForm = () => {
       <div className="w-full max-w-md space-y-8 text-center">
         <div>
           <Image
-            className="mx-auto h-12 w-auto"
+            className="mx-auto"
             src={logo}
             loader={defaultNextImageLoader}
             width={160}

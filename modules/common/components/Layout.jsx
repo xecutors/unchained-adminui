@@ -342,7 +342,7 @@ const Layout = ({
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64 2xl:pl-96">
-        <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-500  pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+        <div className="flex justify-between sticky top-0 z-10 bg-white dark:bg-slate-800 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden border-b border-slate-200 dark:border-slate-700">
           <button
             type="button"
             ref={ref}

@@ -50,7 +50,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
                   className={classNames(
                     'group flex w-full items-center rounded-md py-2 pl-11 pr-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900',
                     {
-                      ' dark:bg-slate-700 text-slate-900 dark:text-slate-400 bg-slate-200 hover:bg-slate-300':
+                      ' dark:bg-slate-800 text-slate-900 dark:text-slate-400 bg-slate-200 hover:bg-slate-300':
                         router.pathname === subItem.href,
                     },
                   )}
@@ -72,8 +72,8 @@ const SideNav = ({ navigation, onClick = () => true }) => {
 
   return (
     <div className="mt-1 flex flex-grow flex-col dark:bg-slate-900">
-      <div className="flex">
-        <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6 ">
+      <div className="flex items-center mb-3">
+        <h1 className="text-md bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6 ">
           {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
         </h1>
         <div className="ml-auto mr-8 hidden md:block">

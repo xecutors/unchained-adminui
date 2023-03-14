@@ -21,7 +21,7 @@ const OrderDetailItem = ({ item }) => {
         <div className="space-y-8">
           <div className="mb-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow dark:shadow-none dark:text-slate-200 hover:border hover:border-solid hover:border-blue-600">
             <div className="px-2 py-1">
-              <div className="flex items-center">
+              <div className="flex items-center flex-wrap">
                 <div className="flex flex-shrink-0 overflow-hidden rounded-lg sm:mx-0 ">
                   {item.product?.media?.length ? (
                     <Image
@@ -31,7 +31,7 @@ const OrderDetailItem = ({ item }) => {
                         item?.product?.texts?.title ||
                         item?.product?.texts?.subtitle
                       }
-                      className="h-full w-full object-cover object-center sm:h-full sm:w-full"
+                      className="object-cover object-center"
                       width={80}
                       height={80}
                       placeholder="blur"

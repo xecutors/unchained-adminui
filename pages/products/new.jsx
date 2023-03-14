@@ -42,7 +42,7 @@ const AddProduct = () => {
               defaultMessage: 'Product type',
             })}
           </h3>
-          <div className="divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-400 mr-4">
+          <div className="text-sm divide-y divide-slate-200 dark:divide-slate-800 dark:text-slate-400 mr-4">
             <div className="my-2 py-2">
               <FormattedMessage
                 id="simple_product_definition"
