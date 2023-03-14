@@ -329,7 +329,7 @@ const CommerceForm = ({ productId }) => {
               </FieldArray>
             </div>
             <FormErrors />
-            <div className="border-t-indigo-50 border-t sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-500 px-5 py-6 text-right">
+            <div className="border-t-indigo-50 border-t dark:border-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
               <SubmitButton
                 hidden={!hasRole(ACTION_ROLES.products.updateCommerce)}
                 label={formatMessage({
