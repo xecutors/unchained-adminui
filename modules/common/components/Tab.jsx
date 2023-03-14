@@ -47,7 +47,7 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
         </select>
       </div>
       <div className="mb-5 hidden lg:block">
-        <div className="al border-b border-indigo-100 dark:border-slate-700">
+        <div className="al border-b border-indigo-100 dark:border-slate-800">
           <nav className="-mb-px flex flex-wrap gap-6">
             {tabItems.filter(Boolean).map((option) => (
               <a
@@ -56,10 +56,10 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
                 onClick={() => onTabSelected(option.id)}
                 className={classNames(
                   {
-                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-500':
+                    'cursor-pointer rounded-t-lg border border-indigo-200 dark:border-slate-700 border-b-indigo-500 dark:border-b-indigo-500 bg-indigo-100 text-indigo-800 dark:text-slate-200 dark:bg-slate-800':
                       tab === option.id,
                   },
-                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-500 hover:border-b-indigo-500 hover:rounded-t-lg',
+                  'cursor-pointer relative whitespace-nowrap border border-b-2 border-transparent py-4 px-1 pr-3 pl-2 text-sm dark:text-slate-400 font-medium dark:hover:bg-slate-700 hover:border-b-indigo-500 hover:rounded-t-lg',
                 )}
               >
                 <div className="flex items-center space-x-1">

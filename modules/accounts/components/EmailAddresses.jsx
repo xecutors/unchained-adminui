@@ -106,7 +106,7 @@ const EmailAddresses = ({
                     onClick={async () => {
                       await onSendVerification({ email: address });
                     }}
-                    className="inline-flex items-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                    className="inline-flex items-center rounded-md dark:text-indigo-400 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
                   >
                     {formatMessage({
                       id: 'send_verification_mail',
@@ -116,7 +116,7 @@ const EmailAddresses = ({
                 )}
                 <a
                   onClick={() => onRemoveEmail({ email: address, userId })}
-                  className="ml-2 inline-flex items-center rounded-full bg-white hover:bg-red-50"
+                  className="ml-2 inline-flex items-center rounded-full hover:bg-red-50"
                 >
                   <DeleteButton />
                 </a>

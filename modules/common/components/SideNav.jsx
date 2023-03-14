@@ -73,7 +73,7 @@ const SideNav = ({ navigation, onClick = () => true }) => {
   return (
     <div className="mt-1 flex flex-grow flex-col dark:bg-slate-900">
       <div className="flex">
-        <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 dark:text-slate-400 lg:px-4 2xl:px-6 ">
+        <h1 className="text-md mb-4 bg-white dark:bg-slate-900 px-2 font-bold text-indigo-500 lg:px-4 2xl:px-6 ">
           {formatMessage({ id: 'admin_ui', defaultMessage: 'Admin UI' })}
         </h1>
         <div className="ml-auto mr-8 hidden md:block">
@@ -91,7 +91,7 @@ const SideNav = ({ navigation, onClick = () => true }) => {
               <Link
                 href={item?.href || '#'}
                 className={classNames(
-                  'group flex w-full dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 items-center rounded-md py-2 pl-2 text-sm font-medium ',
+                  'group flex w-full dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
                   {
                     'text-slate-900 dark:text-slate-400 bg-slate-200 dark:bg-slate-700':
                       router.asPath === item.href,

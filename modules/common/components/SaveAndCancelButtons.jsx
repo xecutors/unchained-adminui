@@ -14,7 +14,7 @@ const SaveAndCancelButtons = ({
   return (
     <span
       className={classNames(
-        'flex flex-shrink-0 items-center space-x-4 p-5 dark:bg-slate-800',
+        'flex flex-shrink-0 items-center space-x-4 py-5 pl-1',
         className,
       )}
     >
@@ -25,7 +25,7 @@ const SaveAndCancelButtons = ({
           type="button"
           className={classNames(
             'focus:ring-indigo-400',
-            'inline-flex items-center rounded-md border  border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
+            'inline-flex items-center rounded-md border dark:text-indigo-400 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2',
           )}
         >
           {cancelText ||

@@ -358,7 +358,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   </div>
                 </div>
               </div>
-              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex flex-shrink-0 items-center justify-end space-x-4">
+              <div className="border-t border-t-indigo-50 dark:border-slate-700 -mx-6 bg-slate-50 dark:bg-slate-800 flex flex-shrink-0 items-center justify-end space-x-4 pr-5">
                 {isEdit ? (
                   <SaveAndCancelButtons onCancel={() => setIsEdit(!isEdit)} />
                 ) : null}

@@ -115,7 +115,7 @@ const Web3Addresses = ({ web3Addresses }) => {
         ))}
       </ul>
       <Form form={form}>
-        <div className="mt-4 border-t dark:border-t-slate-700">
+        <div className="mt-4">
           <div className="items-between mt-4 flex space-x-4">
             <TextField
               className="mt-0"
