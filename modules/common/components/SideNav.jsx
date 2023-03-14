@@ -91,9 +91,9 @@ const SideNav = ({ navigation, onClick = () => true }) => {
               <Link
                 href={item?.href || '#'}
                 className={classNames(
-                  'group flex w-full dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
+                  'group flex w-full dark:text-slate-400 dark:hover:bg-slate-800 items-center rounded-md py-2 pl-2 text-sm font-medium ',
                   {
-                    'text-slate-900 dark:text-slate-400 bg-slate-200 dark:bg-slate-700':
+                    'text-slate-900 dark:text-slate-400 bg-slate-100 dark:bg-slate-800':
                       router.asPath === item.href,
                   },
                 )}

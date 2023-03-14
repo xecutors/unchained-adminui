@@ -26,7 +26,7 @@ const ThemeToggle = () => {
       >
         <SunIcon
           className={classNames(
-            'w-8 h-8 text-slate-900 transition-all ease-out delay-1000',
+            'w-6 h-6 text-slate-600 transition-all ease-out delay-1000',
             {
               hidden: theme === 'dark',
             },
@@ -34,7 +34,7 @@ const ThemeToggle = () => {
         />
         <MoonIcon
           className={classNames(
-            'w-8 h-8 text-white transition-all ease-out delay-1000',
+            'w-6 h-6 text-yellow-200 transition-all ease-out delay-1000',
             {
               hidden: theme === 'light',
             },
