@@ -8,6 +8,7 @@ import EmailAddresses from './EmailAddresses';
 import EnableTwoFactorAuthForm from './EnableTwoFactorAuthForm';
 import SetPassword from './SetPassword';
 import UserNameView from './UserNameView';
+import UserOauthProviders from './UserOauthProviders';
 import UserRolesView from './UserRolesView';
 import UserTagsView from './UserTagsView';
 import UserWebAuthCredentials from './UserWebAuthCredentials';
@@ -177,18 +178,26 @@ const AccountView = ({
           </div>
         </SelfDocumentingView>
       )}
-      {hasRole('showWebAuthn') && (
-        <SelfDocumentingView
-          documentationLabel={formatMessage({
-            id: 'web_authentication',
-            defaultMessage: 'Web Authentication',
-          })}
-        >
-          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-            <UserWebAuthCredentials userId={_id} />
-          </div>
-        </SelfDocumentingView>
-      )}
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'web_authentication',
+          defaultMessage: 'Web Authentication',
+        })}
+      >
+        <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+          <UserWebAuthCredentials userId={_id} />
+        </div>
+      </SelfDocumentingView>
+      <SelfDocumentingView
+        documentationLabel={formatMessage({
+          id: 'web_authentication',
+          defaultMessage: 'Web Authentication',
+        })}
+      >
+        <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+          <UserOauthProviders userId={_id} />
+        </div>
+      </SelfDocumentingView>
     </>
   );
 };

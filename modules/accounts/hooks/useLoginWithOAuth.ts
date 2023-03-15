@@ -22,12 +22,16 @@ const useLogInWithOAuth = () => {
   const apollo = useApolloClient();
   const [logInWithOAuthMutation] = useMutation(LogInWithOauthMutation);
 
-  const logInWithOAuth = async ({ authorizationCode, provider }) => {
+  const logInWithOAuth = async ({
+    authorizationCode,
+    provider,
+    redirectUrl,
+  }) => {
     const loginResult = await logInWithOAuthMutation({
       variables: {
         authorizationCode,
         provider,
-        redirectUrl: 'http://localhost:3000/oauth',
+        redirectUrl,
       },
       awaitRefetchQueries: true,
     });

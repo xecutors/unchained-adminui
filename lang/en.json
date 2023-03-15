@@ -1075,6 +1075,9 @@
   "length_millimeter": {
     "defaultMessage": "Length (Millimeter)"
   },
+  "link-with-google-account": {
+    "defaultMessage": "Link with Google"
+  },
   "link_reorder": {
     "defaultMessage": "Link reorder successfully"
   },
@@ -1240,6 +1243,9 @@
   },
   "not_published": {
     "defaultMessage": "Not published"
+  },
+  "oauth_link_removed": {
+    "defaultMessage": "Oauth link removed successfully"
   },
   "ok": {
     "defaultMessage": "Ok"
@@ -1703,6 +1709,9 @@
   "show_inactive": {
     "defaultMessage": "Show Inactive"
   },
+  "sign-in-with-google": {
+    "defaultMessage": "Sign in with Google"
+  },
   "sign_address_header": {
     "defaultMessage": "Sign address"
   },
@@ -1926,6 +1935,9 @@
   },
   "unchained_logo": {
     "defaultMessage": "Unchained Logo"
+  },
+  "unlink_oauth_provider": {
+    "defaultMessage": "Are you sure you want to unlink this account?"
   },
   "update": {
     "defaultMessage": "Update"

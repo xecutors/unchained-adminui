@@ -352,7 +352,12 @@ const LogInForm = () => {
                 </Link>
               </div>
             </Form>
-            <GoogleOauth />
+            <GoogleOauth
+              label={formatMessage({
+                id: 'sign-in-with-google',
+                defaultMessage: 'Sign in with Google',
+              })}
+            />
           </FormWrapper>
         </div>
       </div>

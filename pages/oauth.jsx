@@ -12,6 +12,7 @@ const Oauth = () => {
         await logInWithOAuth({
           provider: router.query.state,
           authorizationCode: router.query.code,
+          redirectUrl: 'http://localhost:3000/oauth',
         });
         router.push('/');
       }
