@@ -28,7 +28,7 @@ const GoogleOauth = () => {
               +https://www.googleapis.com/auth/userinfo.profile
               +https://www.googleapis.com/auth/user.addresses.read
               +https://www.googleapis.com/auth/user.birthday.read                  
-              &state=GOOGLE`.replaceAll(' ', '')}
+              &state=google`.replaceAll(' ', '')}
       className="group relative flex w-full rounded-md border border-slate-300 hover:bg-slate-50 py-2 px-4 items-center font-medium  focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
     >
       <svg

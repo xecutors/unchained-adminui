@@ -62,7 +62,8 @@ module.exports = {
     localeDetection: false,
   },
   publicRuntimeConfig: {
-    oAuthClientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
+    oAuthClientId: process.env.NEXT_PUBLIC_GOOGLE_OAUTH_CLIENT_ID,
+    metaConfig,
     showCustomReports: parseInt(
       process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
       10,
