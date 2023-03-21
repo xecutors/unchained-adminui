@@ -40,8 +40,8 @@ const WorkForm = () => {
   }) => {
     const { data, errors } = await addWork({
       type,
-      retries: parseInt(inputRetry, 10),
-      priority: parseInt(inputPriority, 10),
+      retries: parseInt(inputRetry, 10) || undefined,
+      priority: parseInt(inputPriority, 10) || undefined,
       input: JSON.parse(userInput || '[]'),
       scheduled,
       originalWorkId,
@@ -100,8 +100,7 @@ const WorkForm = () => {
                 id: 'priority',
                 defaultMessage: 'Priority',
               })}
-              required
-              autoComplete="on"
+              type="number"
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
             />
 
@@ -117,8 +116,7 @@ const WorkForm = () => {
                 id: 'retries',
                 defaultMessage: 'Retries',
               })}
-              required
-              autoComplete="on"
+              type="number"
               className="w-full py-2 text-sm text-slate-900 sm:mt-0"
             />
           </div>

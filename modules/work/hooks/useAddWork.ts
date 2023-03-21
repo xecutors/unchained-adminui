@@ -3,11 +3,11 @@ import { useMutation, gql } from '@apollo/client';
 const AddWorkMutation = gql`
   mutation AddWork(
     $type: WorkType!
-    $priority: Int!
+    $priority: Int! = 0
     $input: JSON
     $originalWorkId: ID
     $scheduled: Timestamp
-    $retries: Int!
+    $retries: Int! = 20
   ) {
     addWork(
       type: $type

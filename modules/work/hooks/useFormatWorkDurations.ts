@@ -1,7 +1,9 @@
 import { formatDistanceToNowStrict, formatDuration } from 'date-fns';
 
 const useFormatWorkDurations = () => {
-  const getScheduledTime = ({ scheduled, status, started }) => {
+  const getScheduledTime = (time) => {
+    if (!time) return null;
+    const { scheduled, status, started } = time;
     if (status === 'FAILED' || status === 'SUCCESS' || status === 'DELETED')
       return null;
     const scheduledTime = new Date(scheduled).getTime();
@@ -14,7 +16,9 @@ const useFormatWorkDurations = () => {
     return null;
   };
 
-  const getDuration = ({ started, finished }) => {
+  const getDuration = (durations) => {
+    if (!durations) return null;
+    const { started, finished } = durations;
     const now = new Date().getTime();
     if (!started) return null;
     let durationInMS = null;

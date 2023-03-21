@@ -23,8 +23,7 @@ const AllocateWorkForm = () => {
 
   const onSubmit = async ({ types, worker }) => {
     const { data, errors } = await allocateWork({ types, worker });
-    if (errors.length) return false;
-    return { success: true, data: data?.allocateWork };
+    return { success: !!data?.allocateWork, data: data?.allocateWork, errors };
   };
 
   const onSubmitSuccess = (_, { _id }) => {
@@ -38,7 +37,14 @@ const AllocateWorkForm = () => {
     submit: onSubmit,
     onSubmitSuccess,
     getSubmitErrorMessage: async (error) => {
-      return error?.message || '';
+      return (
+        error?.message ||
+        formatMessage({
+          id: 'error-something-went-wrong',
+          defaultMessage:
+            'Unable to complete the task successfully please try again',
+        })
+      );
     },
     successMessage,
     enableReinitialize: true,
