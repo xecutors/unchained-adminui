@@ -52,7 +52,7 @@
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
     "http-proxy": "^1.18.1",
-    "intl-messageformat": "^10.3.1",
+    "intl-messageformat": "^10.3.3",
     "isomorphic-unfetch": "^4.0.2",
     "lodash": "^4.17.21",
     "lodash.isequal": "^4.5.0",
