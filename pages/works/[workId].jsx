@@ -35,15 +35,10 @@ const WorkDetailPage = () => {
           setModal('');
           await removeWork({ workId });
           toast.success(
-            formatMessage(
-              {
-                id: 'work_deleted',
-                defaultMessage: 'Work {workId} deleted successfully',
-              },
-              {
-                workId,
-              },
-            ),
+            formatMessage({
+              id: 'work_deleted',
+              defaultMessage: 'Work deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
