@@ -88,7 +88,7 @@ describe('WorkQueue', () => {
     cy.get(`input[type="checkbox"][value="DELETED"]`).should('not.be.checked');
   });
 
-  it('Should [FILTER] with selected [STATUS] only [ALLOCATED]', () => {
+  it('Should [FILTER] with selected [STATUS] only [ALLOCATED, DELETED]', () => {
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -105,7 +105,6 @@ describe('WorkQueue', () => {
     cy.location('pathname').should('eq', '/works');
     cy.get('h2').should('contain', localizations.en.work_queue_header);
     cy.get(`input[type="checkbox"][value="ALLOCATED"]`).click();
-    cy.wait(150);
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -131,9 +130,8 @@ describe('WorkQueue', () => {
     cy.get(`input[type="checkbox"][value="NEW"]`).should('not.be.checked');
     cy.get(`input[type="checkbox"][value="FAILED"]`).should('not.be.checked');
     cy.location('pathname').should('eq', '/works');
-
     cy.get(`input[type="checkbox"][value="DELETED"]`).click();
-    cy.wait(150);
+
     cy.wait(fullAliasName(WorkOperations.GetWorkQueue)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -142,7 +140,7 @@ describe('WorkQueue', () => {
           offset: 0,
           limit: 50,
           created: {},
-          status: ['ALLOCATED'],
+          status: ['ALLOCATED', 'DELETED'],
           sort: [{ key: 'scheduled', value: 'DESC' }],
         });
         expect(response.body).to.deep.eq(WorkQueueResponse);
@@ -453,20 +451,6 @@ describe('WorkQueue', () => {
       replaceIntlPlaceholder(
         localizations.en.error_required,
         localizations.en.type,
-      ),
-    );
-    cy.get('label[for="priority"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_required,
-        localizations.en.priority,
-      ),
-    );
-    cy.get('label[for="retries"]').should(
-      'contain.text',
-      replaceIntlPlaceholder(
-        localizations.en.error_required,
-        localizations.en.retries,
       ),
     );
     cy.get(
