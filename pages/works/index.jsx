@@ -85,7 +85,6 @@ const WorkQueueView = () => {
         <ListHeader
           addPath={
             (hasRole(ACTION_ROLES.work.allocateWork) ||
-              hasRole(ACTION_ROLES.work.doWork) ||
               hasRole(ACTION_ROLES.work.add)) &&
             '/works/management'
           }

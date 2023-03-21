@@ -2,7 +2,6 @@ import localizations from '../../i18n';
 import {
   AddWorkResponse,
   AllocatedWorkResponse,
-  DoWorkResponse,
   SuccessResponse,
   WorkOperations,
   WorkQueueResponse,
@@ -32,10 +31,6 @@ describe('WorkQueue', () => {
       if (hasOperationName(req, WorkOperations.AddWork)) {
         aliasMutation(req, WorkOperations.AddWork);
         req.reply(AddWorkResponse);
-      }
-      if (hasOperationName(req, WorkOperations.DoWork)) {
-        aliasMutation(req, WorkOperations.DoWork);
-        req.reply(DoWorkResponse);
       }
     });
 

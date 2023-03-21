@@ -489,7 +489,6 @@ export const WorkOperations = {
   GetWork: 'Work',
   AddWork: 'AddWork',
   GetWorkTypes: 'WorkTypes',
-  DoWork: 'DoWork',
   AllocateWork: 'AllocateWork',
 };
 
@@ -533,21 +532,6 @@ export const WorkTypesResponse = {
   },
 };
 
-export const DoWorkResponse = {
-  data: {
-    doWork: {
-      result: {
-        deletedProductMediaCount: 0,
-        deletedAssortmentMediaCount: 0,
-        deletedFilesCount: 0,
-      },
-      error: null,
-      success: true,
-      __typename: 'WorkOutput',
-    },
-  },
-};
-
 export default {
   WorkOperations,
   WorkQueueResponse,
@@ -559,5 +543,4 @@ export default {
   AllocatedWorkResponse,
   AddWorkResponse,
   WorkTypesResponse,
-  DoWorkResponse,
 };

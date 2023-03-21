@@ -139,7 +139,6 @@ const ACTION_ROLES = {
     allocateWork: 'manageWorker',
     finishWork: 'manageWorker',
     removeWork: 'manageWorker',
-    doWork: 'manageWorker',
   },
   orders: {
     view: 'viewOrder',
@@ -229,6 +228,7 @@ export const ROUTE_ROLES = {
   '/events': ACTION_ROLES.events.viewList,
   '/': UNRESTRICTED,
   '/account': UNRESTRICTED,
+  '/account/oauth': UNRESTRICTED,
   '/log-in': UNRESTRICTED,
   '/account/forgot-password': UNRESTRICTED,
   '/reset-password': UNRESTRICTED,
