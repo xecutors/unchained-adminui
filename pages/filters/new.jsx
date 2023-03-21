@@ -13,13 +13,13 @@ const AddFilter = () => {
   const { createFilter } = useCreateFilter();
 
   const onSubmit = async ({ key, title, type, options }) => {
-    const { data } = await createFilter({
+    const { data, errors } = await createFilter({
       options,
       key,
       title,
       type,
     });
-    return { success: true, data: data?.createFilter };
+    return { success: !!errors?.length, data: data?.createFilter };
   };
 
   const onSubmitSuccess = (_, { _id }) => {

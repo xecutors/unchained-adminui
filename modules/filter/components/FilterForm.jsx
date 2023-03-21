@@ -5,6 +5,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
 import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
+import FormErrors from '../../forms/components/FormErrors';
 
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -30,6 +31,31 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
       type: '',
       key: '',
       options: [''],
+    },
+    getSubmitErrorMessage: async (error) => {
+      if (error.message?.includes('duplicate key')) {
+        form.formik.setFieldError(
+          'key',
+          formatMessage({
+            id: 'filter_key_already_exists',
+            defaultMessage:
+              'Filter key already exists, please provide unique key',
+          }),
+        );
+        return formatMessage({
+          id: 'filter_key_already_exists',
+          defaultMessage:
+            'Filter key already exists, please provide unique key',
+        });
+      }
+      return (
+        error?.message ||
+        formatMessage({
+          id: 'error-something-went-wrong',
+          defaultMessage:
+            'Unable to complete the task successfully please try again',
+        })
+      );
     },
   });
 
@@ -141,6 +167,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
           )}
         </FieldArray>
       </div>
+      <FormErrors />
       <div className="sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 border-t-indigo-50 dark:border-t-slate-700 p-5 text-right">
         <SubmitButton
           hidden={!hasRole(ACTION_ROLES.filters.create)}
