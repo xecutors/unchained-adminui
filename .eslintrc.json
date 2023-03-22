@@ -1,12 +1,12 @@
 {
   "root": true,
   "plugins": ["cypress","formatjs",  "react-hooks"],
-  "extends": [ "next", "airbnb", "prettier", "plugin:prettier/recommended"],
+  "extends": [ "airbnb", "prettier", "plugin:prettier/recommended"],
   "parserOptions": {
         
     "project": "./tsconfig.json",
     "requireConfigFile": false,
-    "ecmaVersion": 6,
+    "ecmaVersion": 2022,
  
     "ecmaFeatures": {
         "jsx": true
