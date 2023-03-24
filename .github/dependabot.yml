@@ -14,6 +14,6 @@ updates:
       - "dependencies"
     reviewers:
       - "mikearaya"
-    target-branch: "develop"
+    target-branch: "master"
     open-pull-requests-limit: 10
       
