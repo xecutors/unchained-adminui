@@ -1,7 +1,19 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { UnrestrictedPages } from './app-permissions.config';
+/* import { UnrestrictedPages } from './app-permissions.config'; */
 
 const isReportUI = false;
+const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/oauth',
+  '/account/forgot-password',
+  '/reset-password',
+  '/api/graphql',
+  '/404',
+  '/423',
+  '/_offline',
+  '/verify-email',
+];
 const middleware = async (req: NextRequest) => {
   const { pathname } = req.nextUrl;
 
