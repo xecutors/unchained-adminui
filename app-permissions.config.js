@@ -263,7 +263,7 @@ function isAdmin(user) {
     user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
   );
 }
-module.exports = ({ ROUTE_ROLE, UnrestrictedPage, ...rest }) => ({
+module.exports = () => ({
   checkAccess: (
     user,
     action,

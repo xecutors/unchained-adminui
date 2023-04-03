@@ -84,7 +84,6 @@ module.exports = withPWA({
     ),
     permissionConfig: fs.readFileSync(
       path.resolve(__dirname, process.env.UI_PERMISSION_CONFIG),
-      'utf8',
     ),
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,

@@ -18,11 +18,7 @@ class MyDocument extends Document {
           {(metaConfig?.metaLinks || []).map((attr) => (
             <link {...attr} />
           ))}
-          <script
-            src="/api/permission-config"
-            type="javascript"
-            id="role-config-script"
-          />
+          <script src="/api/permission-config" id="role-config-script" />
         </Head>
         <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
           <noscript

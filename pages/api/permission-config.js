@@ -1,25 +1,24 @@
 import getConfig from 'next/config';
 
-const generateRoleConfig = async (roleConfig) => {
-  let injectScripts;
-
+const generateRoleConfig = async (permissionConfig) => {
   try {
-    const result = await fetch(roleConfig);
-    injectScripts = result?.text();
-  } catch (e) {
-    injectScripts = roleConfig;
+    const module = await import(permissionConfig);
+    const roleConfigFunction = module.default;
+    const roleConfig = roleConfigFunction({});
+    return roleConfig;
+  } catch (error) {
+    return permissionConfig;
   }
-
-  return injectScripts;
 };
 
 export default async function handler(req, res) {
   const {
     publicRuntimeConfig: { permissionConfig },
   } = getConfig();
-  const js = await generateRoleConfig(permissionConfig);
-  res.setHeader('Content-Type', 'text/javascript; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
 
-  res.status(200).json(js);
+  const js = await generateRoleConfig(permissionConfig);
+
+  res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+  res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  res.status(200).send(js);
 }

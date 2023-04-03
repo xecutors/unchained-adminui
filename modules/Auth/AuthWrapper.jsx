@@ -8,14 +8,13 @@ import AuthContext from './AuthContext';
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 
 const {
-  publicRuntimeConfig: { restrictNonAdmin },
+  publicRuntimeConfig: { restrictNonAdmin, permissionConfig, ...rest },
 } = getConfig();
 
 const AuthWrapper = ({ children, apolloClient, componentName }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
   const [roleConfig, setConfig] = useState();
-  console.log('ererererererrrrrrrrrrrrr ererer        ', roleConfig);
 
   useEffect(() => {
     async function fetchConfig() {
@@ -32,12 +31,13 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
 
   const isAuthenticated = (user) => {
     /* if (!isUserAuthenticated) return true;
-    return isUserAuthenticated(user); */
+    return isUserAuthenticated(user); */ return true;
   };
 
   const isAdmin = (user) => {
     /* if (!isUserAdmin) return true;
     return isUserAdmin(user); */
+    return true;
   };
 
   const hasRole = (action, component = null) => {
@@ -47,6 +47,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
       router,
       action,
     }); */
+    return true;
   };
 
   const hasAccess = ({ user, action } = {}) => {
@@ -55,6 +56,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
       router,
       componentName,
     }); */
+    return true;
   };
 
   const ctx = useMemo(() => {
