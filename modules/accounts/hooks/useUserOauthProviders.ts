@@ -4,7 +4,7 @@ export const UserOauthProvidersQuery = gql`
   query UserOauthProviders($userId: ID!) {
     user(userId: $userId) {
       _id
-      linkedOauthProviders {
+      oAuthAccounts {
         provider
         data {
           authorizationCode
@@ -32,7 +32,7 @@ const useUserOauthProviders = ({ userId }) => {
   });
 
   return {
-    linkedOauthProviders: data?.user?.linkedOauthProviders || [],
+    oAuthAccounts: data?.user?.oAuthAccounts || [],
     loading,
     error,
   };

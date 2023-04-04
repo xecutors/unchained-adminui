@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 import useLinkOauthProvider from '../../modules/accounts/hooks/useLinkOauthProvider';
 
 const Oauth = () => {
-  const { linkOauthProvider } = useLinkOauthProvider();
+  const { linkOAuthAccount } = useLinkOauthProvider();
   const router = useRouter();
 
   useEffect(() => {
     const asyncLogin = async () => {
       if (router.query.code && router.query.state) {
-        await linkOauthProvider({
+        await linkOAuthAccount({
           provider: router.query.state,
           authorizationCode: router.query.code,
           redirectUrl: 'http://localhost:3000/account/oauth',

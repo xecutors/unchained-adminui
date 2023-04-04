@@ -14,13 +14,13 @@ const UserOauthProviders = ({ userId }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
 
-  const { linkedOauthProviders } = useUserOauthProviders({
+  const { oAuthAccounts } = useUserOauthProviders({
     userId,
   });
   const { setModal } = useModal();
   const { hasRole } = useAuth();
 
-  const { unlinkOauthProvider } = useUnLinkOauthProvider();
+  const { unlinkOAuthAccount } = useUnLinkOauthProvider();
 
   const handleRemoveProvider = async (provider, authorizationCode) => {
     await setModal(
@@ -31,7 +31,7 @@ const UserOauthProviders = ({ userId }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await unlinkOauthProvider({ provider, authorizationCode });
+          await unlinkOAuthAccount({ provider, authorizationCode });
           toast.success(
             formatMessage({
               id: 'oauth_link_removed',
@@ -53,7 +53,7 @@ const UserOauthProviders = ({ userId }) => {
             defaultMessage: 'Link with Google',
           })}
         />
-        {linkedOauthProviders?.map((provider) => (
+        {oAuthAccounts?.map((provider) => (
           <LinkedOauthProviderItem
             {...provider}
             key={provider.provider}

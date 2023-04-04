@@ -1,16 +1,16 @@
 import { useMutation, gql } from '@apollo/client';
 
 const UnLinkOauthProviderMutation = gql`
-  mutation UnLinkOauthProvider(
+  mutation unlinkOAuthAccount(
     $authorizationCode: String!
     $provider: String!
   ) {
-    unlinkOauthProvider(
+    unlinkOAuthAccount(
       provider: $provider
       authorizationCode: $authorizationCode
     ) {
       _id
-      linkedOauthProviders {
+      oAuthAccounts {
         provider
         data {
           authorizationCode
@@ -37,14 +37,14 @@ const useUnLinkOauthProvider = () => {
     UnLinkOauthProviderMutation,
   );
 
-  const unlinkOauthProvider = async ({ provider, authorizationCode }) => {
+  const unlinkOAuthAccount = async ({ provider, authorizationCode }) => {
     return unLinkOauthProviderMutation({
       variables: { provider, authorizationCode },
     });
   };
 
   return {
-    unlinkOauthProvider,
+    unlinkOAuthAccount,
   };
 };
 

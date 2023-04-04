@@ -1,18 +1,18 @@
 import { useMutation, gql } from '@apollo/client';
 
 const LinkOauthProviderMutation = gql`
-  mutation LinkOauthProvider(
+  mutation linkOAuthAccount(
     $authorizationCode: String!
     $provider: String!
     $redirectUrl: String!
   ) {
-    linkOauthProvider(
+    linkOAuthAccount(
       provider: $provider
       authorizationCode: $authorizationCode
       redirectUrl: $redirectUrl
     ) {
       _id
-      linkedOauthProviders {
+      oAuthAccounts {
         provider
         data {
           authorizationCode
@@ -37,7 +37,7 @@ const LinkOauthProviderMutation = gql`
 const useLinkOauthProvider = () => {
   const [linkOauthProviderMutation] = useMutation(LinkOauthProviderMutation);
 
-  const linkOauthProvider = async ({
+  const linkOAuthAccount = async ({
     provider,
     authorizationCode,
     redirectUrl,
@@ -48,7 +48,7 @@ const useLinkOauthProvider = () => {
   };
 
   return {
-    linkOauthProvider,
+    linkOAuthAccount,
   };
 };
 
