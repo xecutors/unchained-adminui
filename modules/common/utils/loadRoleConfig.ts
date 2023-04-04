@@ -1,26 +1,22 @@
-const dynamicallyImportFromFilesystem = async (filePath) => {
-  const module = await import(filePath);
-  return module;
-};
+const UnrestrictedPages = [
+  '/log-in',
+  '/sign-up',
+  '/oauth',
+  '/account/forgot-password',
+  '/reset-password',
+  '/api/graphql',
+  '/404',
+  '/423',
+  '/_offline',
+  '/verify-email',
+];
 
 const loadRoleConfigFromInjectedGlobalScript = () => {
-  const scriptElement = document.getElementById('role-config-script');
-
-  if (scriptElement) {
-    const roleConfig = JSON.parse(scriptElement.textContent);
-    return roleConfig;
-  }
-  return null;
+  if (typeof window === 'undefined' || !window?.AdminUiPermissions) return {};
+  return window.AdminUiPermissions({ UnrestrictedPages });
 };
 
-const loadRoleConfig = async () => {
-  if (typeof window === 'undefined') {
-    const roleConfigModule = await dynamicallyImportFromFilesystem(
-      process.env.UI_PERMISSION_CONFIG,
-    );
-
-    return roleConfigModule;
-  }
+const loadRoleConfig = () => {
   return loadRoleConfigFromInjectedGlobalScript();
 };
 

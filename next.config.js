@@ -82,9 +82,10 @@ module.exports = withPWA({
       process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
       10,
     ),
-    permissionConfig: fs.readFileSync(
-      path.resolve(__dirname, process.env.UI_PERMISSION_CONFIG),
-    ),
+    permissionConfig: require(path.resolve(
+      __dirname,
+      process.env.UI_PERMISSION_CONFIG,
+    )),
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,

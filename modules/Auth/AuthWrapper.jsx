@@ -14,49 +14,37 @@ const {
 const AuthWrapper = ({ children, apolloClient, componentName }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
-  const [roleConfig, setConfig] = useState();
 
-  useEffect(() => {
-    async function fetchConfig() {
-      try {
-        const config = await loadRoleConfig();
-        setConfig(config);
-      } catch (error) {
-        console.error('Failed to load config:', error);
-      }
-    }
-
-    fetchConfig();
-  }, []);
+  const { checkAccess, isUserAuthenticated, isUserAdmin, checkRole } = useMemo(
+    () => loadRoleConfig(),
+    [],
+  );
 
   const isAuthenticated = (user) => {
-    /* if (!isUserAuthenticated) return true;
-    return isUserAuthenticated(user); */ return true;
+    if (!isUserAuthenticated) return true;
+    return isUserAuthenticated(user);
   };
 
   const isAdmin = (user) => {
-    /* if (!isUserAdmin) return true;
-    return isUserAdmin(user); */
-    return true;
+    if (!isUserAdmin) return true;
+    return isUserAdmin(user);
   };
 
   const hasRole = (action, component = null) => {
-    /*     if (!checkRole) return true;
+    if (!checkRole) return true;
     return checkRole(currentUser, action, apolloClient, {
       componentName: component,
       router,
       action,
-    }); */
-    return true;
+    });
   };
 
   const hasAccess = ({ user, action } = {}) => {
-    /*    if (!checkAccess) return true;
+    if (!checkAccess) return true;
     return checkAccess(user, action, apolloClient, {
       router,
       componentName,
-    }); */
-    return true;
+    });
   };
 
   const ctx = useMemo(() => {

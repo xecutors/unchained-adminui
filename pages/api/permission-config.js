@@ -17,8 +17,14 @@ export default async function handler(req, res) {
   } = getConfig();
 
   const js = await generateRoleConfig(permissionConfig);
-
+  const javascriptCode = `window.AdminUiPermissions = ${js.toString()}`;
   res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
   res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  res.status(200).send(js);
+  res.status(200).send(javascriptCode);
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
