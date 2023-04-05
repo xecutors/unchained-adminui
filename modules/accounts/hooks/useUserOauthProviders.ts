@@ -5,22 +5,9 @@ export const UserOauthProvidersQuery = gql`
     user(userId: $userId) {
       _id
       oAuthAccounts {
+        _id
         provider
-        data {
-          authorizationCode
-          email
-          address
-          avatarUrl
-          birthDate
-          city
-          company
-          countryCode
-          displayName
-          firstName
-          gender
-          lastName
-          phoneNumber
-        }
+        authorizationCode
       }
     }
   }
