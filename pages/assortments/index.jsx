@@ -8,7 +8,6 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 
 import AssortmentSearchFilter from '../../modules/assortment/components/AssortmentSearchFilter';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import AssortmentGraphView from '../../modules/assortment/components/AssortmentGraphView';
@@ -89,11 +88,7 @@ const AssortmentsView = () => {
       </div>
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={
-            hasRole(ACTION_ROLES.assortments.create) && '/assortments/new'
-          }
-        >
+        <ListHeader addPath={hasRole('addAssortment') && '/assortments/new'}>
           <div className="flex gap-4">
             <Toggle
               toggleKey="includeInactive"

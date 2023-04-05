@@ -12,7 +12,6 @@ import Loading from '../../modules/common/components/Loading';
 import ListHeader from '../../modules/common/components/ListHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const PaymentProviders = () => {
@@ -62,10 +61,7 @@ const PaymentProviders = () => {
         })}
       />
       <ListHeader
-        addPath={
-          hasRole(ACTION_ROLES.paymentProviders.create) &&
-          '/payment-provider/new'
-        }
+        addPath={hasRole('addPaymentProvider') && '/payment-provider/new'}
       >
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}
@@ -78,8 +74,8 @@ const PaymentProviders = () => {
           providerPath="/payment-provider"
           providers={paymentProviders}
           onRemove={onRemovePaymentProvider}
-          canDelete={hasRole(ACTION_ROLES.paymentProviders.delete)}
-          canEdit={hasRole(ACTION_ROLES.paymentProviders.update)}
+          canDelete={hasRole('removePaymentProvider')}
+          canEdit={hasRole('editPaymentProvider')}
         />
       )}
     </>

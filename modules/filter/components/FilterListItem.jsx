@@ -4,7 +4,6 @@ import useAuth from '../../Auth/useAuth';
 import Badge from '../../common/components/Badge';
 import DeleteButton from '../../common/components/DeleteButton';
 import Table from '../../common/components/Table';
-import ACTION_ROLES from '../../common/data/roles';
 
 const FILTER_TYPES = {
   SWITCH: 'blue',
@@ -60,7 +59,7 @@ const FilterListItem = ({ filter, onRemove }) => {
       </Table.Cell>
 
       <Table.Cell>{filter.options?.length}</Table.Cell>
-      {hasRole(ACTION_ROLES.filters.delete) && (
+      {hasRole('removeFilter') && (
         <Table.Cell>
           <div className="flex items-center md:justify-center">
             <DeleteButton

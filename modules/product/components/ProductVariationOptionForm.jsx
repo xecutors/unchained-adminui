@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -41,7 +40,7 @@ const ProductVariationOptionForm = ({ onSubmit }) => {
         />
         <span className="flex-auto self-end">
           <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.products.createVariationOption)}
+            hidden={!hasRole('addProductVariationOption')}
             className="p-0"
             label={formatMessage({
               id: 'add_option',

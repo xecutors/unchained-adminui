@@ -8,7 +8,6 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
@@ -153,9 +152,7 @@ const ProductDetailPage = () => {
             )}
           </div>
         </PageHeader>
-        {product &&
-        product.status === 'DRAFT' &&
-        hasRole(ACTION_ROLES.products.delete) ? (
+        {product && product.status === 'DRAFT' && hasRole('removeProduct') ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import Table from '../../common/components/Table';
-import ACTION_ROLES from '../../common/data/roles';
 import CountryListItem from './CountryListItem';
 
 const CountryList = ({ countries, onRemoveCountry, sortable }) => {
@@ -35,8 +34,7 @@ const CountryList = ({ countries, onRemoveCountry, sortable }) => {
               {formatMessage({ id: 'active', defaultMessage: 'Active' })}
             </span>
           </Table.Cell>
-          {(hasRole(ACTION_ROLES.country.view) ||
-            hasRole(ACTION_ROLES.country.delete)) && (
+          {(hasRole('showCountry') || hasRole('removeCountry')) && (
             <Table.Cell>
               <span className="sr-only">
                 {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
@@ -52,8 +50,8 @@ const CountryList = ({ countries, onRemoveCountry, sortable }) => {
           key={`${country?._id}-body`}
           country={country}
           onRemove={onRemoveCountry}
-          enableEdit={hasRole(ACTION_ROLES.country.view)}
-          enableDelete={hasRole(ACTION_ROLES.country.delete)}
+          enableEdit={hasRole('showCountry')}
+          enableDelete={hasRole('removeCountry')}
         />
       ))}
     </Table>

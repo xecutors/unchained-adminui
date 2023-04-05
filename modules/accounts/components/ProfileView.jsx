@@ -13,7 +13,6 @@ import AddressFields from './AddressFields';
 
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import ACTION_ROLES from '../../common/data/roles';
 import useCurrentUser from '../hooks/useCurrentUser';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 
@@ -146,8 +145,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                   })}
                 </p>
               </div>
-              {(hasRole(ACTION_ROLES.users.updateProfile) ||
-                currentUser?._id === _id) && (
+              {(hasRole('editUserProfile') || currentUser?._id === _id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}
@@ -207,7 +205,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                         </span>
                       )}
                     </span>
-                    {hasRole(ACTION_ROLES.users.updateAvatar) && (
+                    {hasRole('editUserAvatar') && (
                       <span className="mt-1 ml-4 flex flex-shrink-0 items-start space-x-4">
                         <button
                           onClick={() => fileInputRef.current.click()}
@@ -380,8 +378,7 @@ const ProfileView = ({ profile = {}, avatar, _id }) => {
                 </p>
               </div>
 
-              {(hasRole(ACTION_ROLES.users.updateProfile) ||
-                currentUser?._id === _id) && (
+              {(hasRole('editUserProfile') || currentUser?._id === _id) && (
                 <SaveAndCancelButtons
                   showSubmit={isEdit}
                   onCancel={() => setIsEdit(!isEdit)}

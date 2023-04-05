@@ -1,7 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import ACTION_ROLES from '../../common/data/roles';
 import useCurrentUser from '../hooks/useCurrentUser';
 import ChangePassword from './ChangePassword';
 import DisableTwoFactorAuthForm from './DisableTwoFactorAuthForm';
@@ -105,7 +104,7 @@ const AccountView = ({
         </div>
       </SelfDocumentingView>
 
-      {hasRole(ACTION_ROLES.users.updateRoles) ? (
+      {hasRole('editUserRoles') ? (
         <SelfDocumentingView
           documentationLabel={formatMessage({
             id: 'roles',
@@ -118,8 +117,7 @@ const AccountView = ({
         </SelfDocumentingView>
       ) : null}
 
-      {(hasRole(ACTION_ROLES.users.updatePassword) ||
-        hasRole(ACTION_ROLES.users.updateUser)) &&
+      {(hasRole('editUserPassword') || hasRole('editUser')) &&
       currentUser?._id !== _id ? (
         <SelfDocumentingView
           documentationLabel={formatMessage({
@@ -160,7 +158,7 @@ const AccountView = ({
       )}
 
       {((isTwoFactorEnabled && currentUser?._id === _id) ||
-        (isTwoFactorEnabled && hasRole(ACTION_ROLES.users.updateUser))) && (
+        (isTwoFactorEnabled && hasRole('editUser'))) && (
         <SelfDocumentingView
           documentationLabel={formatMessage({
             id: 'disable_2fa_auth_header',

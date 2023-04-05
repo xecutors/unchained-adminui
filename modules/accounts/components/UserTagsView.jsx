@@ -1,6 +1,5 @@
 import useSetUserTags from '../hooks/useSetUserTags';
 import TagList from '../../common/components/TagList';
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 
 const UserTagsView = ({ tags: defaultTags = [], userId }) => {
@@ -14,7 +13,7 @@ const UserTagsView = ({ tags: defaultTags = [], userId }) => {
     <TagList
       defaultValue={defaultTags}
       onSubmit={updateUserTags}
-      enableEdit={hasRole(ACTION_ROLES.users.updateTags)}
+      enableEdit={hasRole('editUserTags')}
     />
   );
 };

@@ -13,7 +13,6 @@ import useDeliveryProvider from '../../modules/delivery-provider/hooks/useDelive
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const DeliveryProviderUpdate = () => {
@@ -82,7 +81,7 @@ const DeliveryProviderUpdate = () => {
             defaultMessage: 'Update delivery provider',
           })}
         />
-        {hasRole(ACTION_ROLES.deliveryProviders.delete) && (
+        {hasRole('removeDeliveryProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />
         )}
       </div>
@@ -90,7 +89,7 @@ const DeliveryProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
-          readOnly={!hasRole(ACTION_ROLES.deliveryProviders.update)}
+          readOnly={!hasRole('editDeliveryProvider')}
           provider={deliveryProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

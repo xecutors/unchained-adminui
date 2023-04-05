@@ -3,7 +3,6 @@ import useAuth from '../../Auth/useAuth';
 import Loading from '../../common/components/Loading';
 import Pagination from '../../common/components/Pagination';
 import Table from '../../common/components/Table';
-import ACTION_ROLES from '../../common/data/roles';
 import useFilters from '../hooks/useFilters';
 import FilterListItem from './FilterListItem';
 
@@ -63,7 +62,7 @@ const FilterList = ({
                   defaultMessage: 'Options',
                 })}
               </Table.Cell>
-              {hasRole(ACTION_ROLES.filters.delete) && (
+              {hasRole('removeFilter') && (
                 <Table.Cell>
                   <span className="sr-only">
                     {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}

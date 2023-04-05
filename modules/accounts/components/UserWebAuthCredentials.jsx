@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useAddWebAuthnCredentials from '../hooks/useAddWebAuthnCredentials';
@@ -76,8 +75,7 @@ const UserWebAuthCredentials = ({ userId }) => {
               key={credential?._id}
               onRemoveCredential={handleRemoveWebAuthCredential}
               removeDisabled={
-                userId !== currentUser?._id &&
-                !hasRole(ACTION_ROLES.users.updateUser)
+                userId !== currentUser?._id && !hasRole('editUserProfile')
               }
             />
           ))}

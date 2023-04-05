@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -74,7 +73,7 @@ const LanguageForm = ({ onSubmit, onSubmitSuccess, isEdit, defaultValue }) => {
       </div>
       <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 mt-5 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">
         <SubmitButton
-          hidden={!hasRole(ACTION_ROLES.languages.update)}
+          hidden={!hasRole('editLanguage')}
           label={
             isEdit
               ? formatMessage({

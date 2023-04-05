@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl';
 
 import useAuth from '../../Auth/useAuth';
 import Table from '../../common/components/Table';
-import ACTION_ROLES from '../../common/data/roles';
 import CurrencyListItem from './CurrencyListItem';
 
 const CurrencyList = ({ currencies, onRemoveCurrency, sortable }) => {
@@ -26,8 +25,7 @@ const CurrencyList = ({ currencies, onRemoveCurrency, sortable }) => {
           <Table.Cell sortKey="isActive">
             {formatMessage({ id: 'active', defaultMessage: 'Active' })}
           </Table.Cell>
-          {(hasRole(ACTION_ROLES.currencies.view) ||
-            hasRole(ACTION_ROLES.currencies.delete)) && (
+          {(hasRole('showCurrency') || hasRole('removeCurrency')) && (
             <Table.Cell>&nbsp;</Table.Cell>
           )}
         </Table.Row>
@@ -38,8 +36,8 @@ const CurrencyList = ({ currencies, onRemoveCurrency, sortable }) => {
           key={`${currency?._id}-body`}
           currency={currency}
           onRemove={onRemoveCurrency}
-          enableDelete={hasRole(ACTION_ROLES.currencies.delete)}
-          enableEdit={hasRole(ACTION_ROLES.currencies.view)}
+          enableDelete={hasRole('removeCurrency')}
+          enableEdit={hasRole('showCurrency')}
         />
       ))}
     </Table>

@@ -5,7 +5,6 @@ import useAuth from '../../Auth/useAuth';
 import DeleteButton from '../../common/components/DeleteButton';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
@@ -149,7 +148,7 @@ const AllocateWorkForm = () => {
         <FormErrors />
         <div className="border-t-indigo-50 border-t dark:border-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
           <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.work.allocateWork)}
+            hidden={!hasRole('allocateWork')}
             label={formatMessage({
               id: 'allocate_work',
               defaultMessage: 'Allocate Work',

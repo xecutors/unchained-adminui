@@ -9,7 +9,6 @@ import useForm from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 
@@ -109,7 +108,7 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
           </div>
           <div className="flex">
             <SubmitButton
-              hidden={!hasRole(ACTION_ROLES.filters.updateTexts)}
+              hidden={!hasRole('editFilterTexts')}
               label={formatMessage({
                 id: 'update_filter',
                 defaultMessage: 'Update filter',

@@ -13,7 +13,6 @@ import Pagination from '../../modules/common/components/Pagination';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import Loading from '../../modules/common/components/Loading';
-import ACTIONROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import {
@@ -101,9 +100,7 @@ const Languages = () => {
       </div>
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole(ACTIONROLES.languages.create) && '/language/new'}
-        >
+        <ListHeader addPath={hasRole('addLanguage') && '/language/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

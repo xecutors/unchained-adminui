@@ -13,7 +13,6 @@ import useModal from '../../modules/modal/hooks/useModal';
 import ProviderDetail from '../../modules/common/components/ProviderDetail';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const PaymentProviderUpdate = () => {
@@ -81,7 +80,7 @@ const PaymentProviderUpdate = () => {
             defaultMessage: 'Update payment provider',
           })}
         />
-        {hasRole(ACTION_ROLES.paymentProviders.delete) && (
+        {hasRole('removePaymentProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />
         )}
       </div>
@@ -89,7 +88,7 @@ const PaymentProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
-          readOnly={!hasRole(ACTION_ROLES.paymentProviders.update)}
+          readOnly={!hasRole('editPaymentProvider')}
           provider={paymentProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

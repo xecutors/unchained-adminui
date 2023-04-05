@@ -14,7 +14,6 @@ import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import { normalizeCountryISOCode } from '../../modules/common/utils/utils';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const normalizeCountry = (country) => {
@@ -83,9 +82,7 @@ const UpdateCountry = () => {
         <PageHeader
           headerText={normalizeCountryISOCode(locale, country?.isoCode)}
         />
-        {hasRole(ACTION_ROLES.country.delete) && (
-          <HeaderDeleteButton onClick={onDelete} />
-        )}
+        {hasRole('removeCountry') && <HeaderDeleteButton onClick={onDelete} />}
       </div>
       {loading ? (
         <Loading />

@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../common/data/roles';
 import useCountries from '../../country/hooks/useCountries';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 
@@ -331,7 +330,7 @@ const CommerceForm = ({ productId }) => {
             <FormErrors />
             <div className="border-t-indigo-50 border-t dark:border-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 px-5 py-6 text-right">
               <SubmitButton
-                hidden={!hasRole(ACTION_ROLES.products.updateCommerce)}
+                hidden={!hasRole('editProductCommerce')}
                 label={formatMessage({
                   id: 'save',
                   defaultMessage: 'Save',

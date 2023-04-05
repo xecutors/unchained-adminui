@@ -8,7 +8,6 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ProductFilter from '../../modules/product/components/ProductFilter';
 import ProductList from '../../modules/product/components/ProductList';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import {
@@ -63,9 +62,7 @@ const Products = () => {
         <ProductFilter />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole(ACTION_ROLES.products.create) && '/products/new'}
-        >
+        <ListHeader addPath={hasRole('addProduct') && '/products/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',

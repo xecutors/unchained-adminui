@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import DeleteButton from '../../common/components/DeleteButton';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 
@@ -170,7 +169,7 @@ const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
       <FormErrors />
       <div className="sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 border-t-indigo-50 dark:border-t-slate-700 p-5 text-right">
         <SubmitButton
-          hidden={!hasRole(ACTION_ROLES.filters.create)}
+          hidden={!hasRole('addFilter')}
           label={formatMessage({
             id: 'create_filter',
             defaultMessage: 'Create Filter',

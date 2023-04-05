@@ -11,7 +11,6 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveOrder from '../../modules/order/hooks/useRemoveOrder';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const OrderDetailPage = () => {
@@ -67,9 +66,7 @@ const OrderDetailPage = () => {
             defaultMessage: 'Order Detail',
           })}
         />
-        {order &&
-        isDeletable(order.status) &&
-        hasRole(ACTION_ROLES.orders.delete) ? (
+        {order && isDeletable(order.status) && hasRole('removeOrder') ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>
