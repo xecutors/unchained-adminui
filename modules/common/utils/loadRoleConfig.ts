@@ -12,8 +12,8 @@ const UnrestrictedPages = [
 ];
 
 const loadRoleConfigFromInjectedGlobalScript = () => {
-  if (typeof window === 'undefined' || !window?.AdminUiPermissions) return {};
-  return window.AdminUiPermissions({ UnrestrictedPages });
+  if (typeof window === 'undefined' || !(window as any)?.AdminUiPermissions) return {};
+  return (window as any).AdminUiPermissions({ UnrestrictedPages });
 };
 
 const loadRoleConfig = () => {
