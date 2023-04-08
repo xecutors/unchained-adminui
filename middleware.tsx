@@ -13,6 +13,7 @@ const UnrestrictedPages = [
   '/423',
   '/_offline',
   '/verify-email',
+  "/403"
 ];
 const middleware = async (req: NextRequest) => {
   const { pathname } = req.nextUrl;

@@ -264,7 +264,7 @@ module.exports = ({ UnrestrictedPages }) => {
       return false;
     },
     checkRole: (user, role, apolloClient, { componentName, router }) => {
-      if (isAdmin()) {
+      if (isAdmin(user)) {
         return true;
       }
       if (user?.allowedActions.includes(role)) {

@@ -21,12 +21,12 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   );
 
   const isAuthenticated = (user) => {
-    if (isUserAuthenticated) return false;
+    if (!isUserAuthenticated) return false;
     return isUserAuthenticated(user);
   };
 
   const isAdmin = (user) => {
-    if (!isUserAdmin) return true;
+    if (!isUserAdmin) return false;
     return isUserAdmin(user);
   };
 
@@ -40,7 +40,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   };
 
   const hasAccess = ({ user, action } = {}) => {
-    if (checkAccess) return false;
+    if (!checkAccess) return false;
     return checkAccess(user, action, apolloClient, {
       router,
       componentName,

@@ -4,7 +4,7 @@ const generateRoleConfig = async (permissionConfig) => {
   try {
     const module = await import(permissionConfig);
     const roleConfigFunction = module.default;
-    const roleConfig = roleConfigFunction({});
+    const roleConfig = roleConfigFunction();
     return roleConfig;
   } catch (error) {
     return permissionConfig;

@@ -9,6 +9,7 @@ const UnrestrictedPages = [
   '/423',
   '/_offline',
   '/verify-email',
+  '/403'
 ];
 
 const loadRoleConfigFromInjectedGlobalScript = () => {

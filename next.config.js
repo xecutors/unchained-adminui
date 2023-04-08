@@ -12,12 +12,15 @@ require('./node_env');
 const fs = require('fs');
 const path = require('path');
 const runtimeCaching = require('next-pwa/cache');
+
 const withPWA = require('next-pwa')({
   dest: 'public',
   skipWaiting: false,
   runtimeCaching,
   disable: process.env.NODE_ENV === 'development',
 });
+const loadPermissionConfig = require('./loadPermissionConfig');
+const loadPWAMetaConfig = require('./loadPWAMeta');
 
 const normalizePaths = (paths) => {
   if (paths) {
@@ -54,16 +57,10 @@ const translatedLanguages = extendedLanguages?.map((file) => {
   }
 });
 
-const { UNCHAINED_META_CONFIG_FILE } = process.env;
-let metaConfig = null;
-if (
-  fs.existsSync(UNCHAINED_META_CONFIG_FILE) &&
-  process.env.NODE_ENV === 'production'
-) {
-  metaConfig = require(UNCHAINED_META_CONFIG_FILE);
-}
-
 const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
+const permissionConfig = loadPermissionConfig();
+
+const metaConfig = loadPWAMetaConfig();
 
 module.exports = withPWA({
   swcMinify: true,
@@ -82,10 +79,7 @@ module.exports = withPWA({
       process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
       10,
     ),
-    permissionConfig: require(path.resolve(
-      __dirname,
-      process.env.UI_PERMISSION_CONFIG,
-    )),
+    permissionConfig,
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
