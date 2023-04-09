@@ -1,25 +1,18 @@
 import { NextResponse, NextRequest } from 'next/server';
-/* import { UnrestrictedPages } from './app-permissions.config'; */
 
 const isReportUI = false;
-const UnrestrictedPages = [
-  '/log-in',
-  '/sign-up',
-  '/oauth',
-  '/account/forgot-password',
-  '/reset-password',
-  '/api/graphql',
-  '/404',
-  '/423',
-  '/_offline',
-  '/verify-email',
-  "/403"
-];
 const middleware = async (req: NextRequest) => {
   const { pathname } = req.nextUrl;
+const url = new URL(req.url)
+  const apiUrl = `${url.origin}/api/permission-config?json=true`;
+  
+  const permissionsConfig = await fetch(apiUrl)
+  const {UnrestrictedPages} = await permissionsConfig.json()
+  
+  
 
   if (
-    !UnrestrictedPages.includes(pathname) &&
+   (UnrestrictedPages && !UnrestrictedPages.includes(pathname))&&
     !pathname.match(/^\/reports/) &&
     isReportUI &&
     pathname !== '/'

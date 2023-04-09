@@ -19,7 +19,7 @@ class MyDocument extends Document {
             <link {...attr} />
           ))}
           <script
-            src="/api/permission-config"
+            src="/api/permission-config?format=text"
             id="role-config-script"
             type="module"
           />

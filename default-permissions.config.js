@@ -1,4 +1,4 @@
-module.exports = ({ UnrestrictedPages }) => {
+module.exports = () => {
   function isAdmin(user) {
     return (
       user?.allowedActions.length === 0 || (user?.roles || []).includes('admin')
@@ -247,8 +247,21 @@ module.exports = ({ UnrestrictedPages }) => {
     '/enrollments': ACTION_ROLES.enrollment.showEnrollments,
     '/enrollments/[enrollmentId]': ACTION_ROLES.enrollment.showEnrollment,
   };
-
+  const UnrestrictedPages = [
+    '/log-in',
+    '/sign-up',
+    '/oauth',
+    '/account/forgot-password',
+    '/reset-password',
+    '/api/graphql',
+    '/404',
+    '/423',
+    '/_offline',
+    '/verify-email',
+    '/403',
+  ];
   return {
+    UnrestrictedPages,
     checkAccess: (
       user,
       action,
