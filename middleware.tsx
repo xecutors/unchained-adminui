@@ -7,7 +7,7 @@ const url = new URL(req.url)
   const apiUrl = `${url.origin}/api/permission-config?json=true`;
   
   const permissionsConfig = await fetch(apiUrl)
-  const {UnrestrictedPages} = await permissionsConfig.json()
+  const {UnrestrictedPages = []} = await permissionsConfig.json()
   
   
 
