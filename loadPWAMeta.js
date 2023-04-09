@@ -5,7 +5,7 @@ const path = require('path');
 
 function loadPWAMetaConfig() {
   let metaConfig;
-  const defaultPageMetaConfig = path.resolve('./default-page-meta.json');
+  const defaultPageMetaConfig = path.resolve('./public/default-page-meta.json');
   const customPageMetaPath = process.env.UNCHAINED_META_CONFIG_FILE;
 
   try {
