@@ -4,11 +4,14 @@ import SearchField from '../../common/components/SearchField';
 import OrderList from '../../order/components/OrderList';
 
 import useUserOrders from '../../order/hooks/useUserOrders';
+import { convertSortFieldsToQueryFormat } from '../../common/utils/utils';
 
 const UserOrders = ({ _id: userId }) => {
   const { query, push } = useRouter();
   const { queryString, ...rest } = query;
   const [includeCarts, setIncludeCarts] = useState(false);
+  const sort = query?.sort;
+  const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest;
@@ -27,7 +30,12 @@ const UserOrders = ({ _id: userId }) => {
       });
   };
 
-  const { orders } = useUserOrders({ userId, includeCarts, queryString });
+  const { orders } = useUserOrders({
+    userId,
+    includeCarts,
+    queryString,
+    sort: sortKeys,
+  });
 
   return (
     <div className="space-y-4 mt-4">
@@ -37,6 +45,7 @@ const UserOrders = ({ _id: userId }) => {
         includeCarts={includeCarts}
         onIncludeCartsChange={setIncludeCarts}
         showUser={false}
+        sortable
       />
     </div>
   );

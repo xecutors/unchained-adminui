@@ -10,16 +10,18 @@ const Tab = ({ children, tabItems, defaultTab, updateRoute = true }) => {
   const { tab = defaultTab } = router?.query || {};
   const { formatMessage } = useIntl();
   const onTabSelected = (selectedTab) => {
-    if (updateRoute)
+    if (updateRoute) {
+      const { sort, ...queryWithoutSort } = router?.query || {};
       router.push(
         {
-          query: { ...router?.query, tab: selectedTab },
+          query: { ...queryWithoutSort, tab: selectedTab },
         },
         undefined,
         {
           shallow: true,
         },
       );
+    }
   };
 
   return (

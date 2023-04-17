@@ -29,10 +29,18 @@ const useOrders = ({
   offset = 0,
   includeCarts = false,
   queryString = '',
-  sort = [],
+  sort: sortOptions = [],
 } = {}) => {
   const { data, loading, error } = useQuery(OrdersQuery, {
-    variables: { limit, offset, includeCarts, queryString, sort },
+    variables: {
+      limit,
+      offset,
+      includeCarts,
+      queryString,
+      sort: sortOptions.length
+        ? sortOptions
+        : [{ key: 'ordered', value: 'DESC' }],
+    },
   });
   const orders = data?.orders || [];
   const ordersCount = data?.ordersCount;

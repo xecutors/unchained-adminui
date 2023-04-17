@@ -16,7 +16,7 @@ const OrderList = ({ orders, showUser, sortable }) => {
             })}
           </Table.Cell>
 
-          <Table.Cell sortKey="ordered">
+          <Table.Cell sortKey="ordered" defaultSortDirection="DESC">
             {formatMessage({
               id: 'order_date',
               defaultMessage: 'Order date',
