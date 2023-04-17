@@ -74,7 +74,7 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@formatjs/cli": "^6.0.4",
+    "@formatjs/cli": "^6.1.0",
     "@tailwindcss/typography": "^0.5.9",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
