@@ -103,11 +103,9 @@ const UserTokens = ({ _id: userId }) => {
                       { chainTokenId },
                     )}
                   </p>
-                  {product?.simulatedPrice ? (
-                    <p className="mt-2 text-base font-medium text-gray-900">
-                      {formatPrice(product?.simulatedPrice)}
-                    </p>
-                  ) : null}
+                  <p className="mt-2 text-base font-medium text-gray-900">
+                    {formatPrice(product?.simulatedPrice)}
+                  </p>
                   <div className="mt-2 mb-8">
                     <div className="">
                       <Badge

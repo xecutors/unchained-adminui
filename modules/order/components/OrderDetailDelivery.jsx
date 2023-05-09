@@ -55,11 +55,9 @@ const OrderDetailDelivery = ({ order }) => {
             defaultMessage: 'Delivered',
           })}
         </h2>
-        {order?.delivery.fee && (
-          <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
-            {formatPrice(order?.delivery.fee)}
-          </span>
-        )}
+        <span className="mr-2 block rounded-full py-1 text-xs font-semibold leading-5">
+          {formatPrice(order?.delivery.fee)}
+        </span>
         <span className="font-medium">
           {formatDateTime(order?.delivery?.delivered, {
             timeStyle: 'short',

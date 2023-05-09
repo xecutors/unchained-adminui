@@ -12,10 +12,9 @@ const triggerColor = {
   USER: 'indigo',
 };
 
-const LogList = ({ discounts }) => {
+const DiscountList = ({ discounts }) => {
   const { formatMessage } = useIntl();
   const { formatPrice } = useFormatPrice();
-
   return (
     <div className="flex flex-auto flex-col bg-white dark:bg-slate-800 shadow dark:shadow-none sm:rounded-lg">
       <h2 className="px-4 py-4 text-lg font-medium text-slate-900 dark:text-slate-200 sm:px-6">
@@ -61,9 +60,7 @@ const LogList = ({ discounts }) => {
 
                 <Table.Cell>
                   <div className="flex items-center text-sm text-slate-900">
-                    {discount.total.amount
-                      ? formatPrice(discount.total)
-                      : 'n/a'}
+                    {formatPrice(discount.total)}
                   </div>
                 </Table.Cell>
               </Table.Row>
@@ -84,4 +81,4 @@ const LogList = ({ discounts }) => {
   );
 };
 
-export default LogList;
+export default DiscountList;

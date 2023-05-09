@@ -47,7 +47,7 @@ const OrderDetailItem = ({ item }) => {
                     }}
                   />
                   <div className="mt-1 text-sm font-medium">
-                    {item?.unitPrice && formatPrice(item?.unitPrice)}
+                    {formatPrice(item?.unitPrice)}
                   </div>
                   <div className="mt-2 text-xs">
                     {formatMessage({

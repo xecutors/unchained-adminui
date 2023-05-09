@@ -1,6 +1,7 @@
 const useFormatPrice = () => {
   const formatPrice = (price: { currency: string; amount: number }) => {
-    if (!price?.currency || !price?.amount) return '';
+    if (!price?.currency) return 'n/a';
+    if (price?.amount === undefined || price?.amount === null) return '';
     const { amount, currency } = price || {};
     return new Intl.NumberFormat(navigator.language, {
       style: 'currency',

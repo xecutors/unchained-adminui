@@ -162,7 +162,7 @@ const OrderDetail = ({ order }) => {
         <OrderDetailPayment order={order} />
       </div>
       <div>
-        <DiscountList discount={order?.discounts} />
+        <DiscountList discounts={order?.discounts} />
       </div>
     </div>
   );
