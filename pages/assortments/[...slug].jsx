@@ -11,7 +11,6 @@ import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useRemoveAssortment from '../../modules/assortment/hooks/useRemoveAssortment';
 import useAuth from '../../modules/Auth/useAuth';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
 const AssortmentDetailPage = () => {
@@ -106,7 +105,7 @@ const AssortmentDetailPage = () => {
         </div>
       </PageHeader>
       <div className="align-center flex min-w-full justify-end mb-3 ">
-        {assortment && hasRole(ACTION_ROLES.assortments.delete) ? (
+        {assortment && hasRole('removeAssortment') ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

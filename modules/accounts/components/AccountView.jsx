@@ -1,7 +1,6 @@
 import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import ACTION_ROLES from '../../common/data/roles';
 import useCurrentUser from '../hooks/useCurrentUser';
 import ChangePassword from './ChangePassword';
 import DisableTwoFactorAuthForm from './DisableTwoFactorAuthForm';
@@ -105,7 +104,7 @@ const AccountView = ({
         </div>
       </SelfDocumentingView>
 
-      {hasRole(ACTION_ROLES.users.updateRoles) ? (
+      {hasRole('showUserRoles') ? (
         <SelfDocumentingView
           documentationLabel={formatMessage({
             id: 'roles',
@@ -118,9 +117,7 @@ const AccountView = ({
         </SelfDocumentingView>
       ) : null}
 
-      {(hasRole(ACTION_ROLES.users.updatePassword) ||
-        hasRole(ACTION_ROLES.users.updateUser)) &&
-      currentUser?._id !== _id ? (
+      {hasRole('showUserPassword') && currentUser?._id !== _id ? (
         <SelfDocumentingView
           documentationLabel={formatMessage({
             id: 'set_password',
@@ -146,21 +143,23 @@ const AccountView = ({
         </SelfDocumentingView>
       )}
 
-      {currentUser?._id === _id && !isTwoFactorEnabled && (
-        <SelfDocumentingView
-          documentationLabel={formatMessage({
-            id: 'enable_2fa_auth_header',
-            defaultMessage: 'Enable 2FA authentication',
-          })}
-        >
-          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-            <EnableTwoFactorAuthForm />
-          </div>
-        </SelfDocumentingView>
-      )}
+      {currentUser?._id === _id &&
+        !isTwoFactorEnabled &&
+        hasRole('showTwoFactor') && (
+          <SelfDocumentingView
+            documentationLabel={formatMessage({
+              id: 'enable_2fa_auth_header',
+              defaultMessage: 'Enable 2FA authentication',
+            })}
+          >
+            <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+              <EnableTwoFactorAuthForm />
+            </div>
+          </SelfDocumentingView>
+        )}
 
       {((isTwoFactorEnabled && currentUser?._id === _id) ||
-        (isTwoFactorEnabled && hasRole(ACTION_ROLES.users.updateUser))) && (
+        (isTwoFactorEnabled && hasRole('showTwoFactor'))) && (
         <SelfDocumentingView
           documentationLabel={formatMessage({
             id: 'disable_2fa_auth_header',
@@ -172,16 +171,18 @@ const AccountView = ({
           </div>
         </SelfDocumentingView>
       )}
-      <SelfDocumentingView
-        documentationLabel={formatMessage({
-          id: 'web_authentication',
-          defaultMessage: 'Web Authentication',
-        })}
-      >
-        <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-          <UserWebAuthCredentials userId={_id} />
-        </div>
-      </SelfDocumentingView>
+      {hasRole('showWebAuthn') && (
+        <SelfDocumentingView
+          documentationLabel={formatMessage({
+            id: 'web_authentication',
+            defaultMessage: 'Web Authentication',
+          })}
+        >
+          <div className="overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
+            <UserWebAuthCredentials userId={_id} />
+          </div>
+        </SelfDocumentingView>
+      )}
     </>
   );
 };

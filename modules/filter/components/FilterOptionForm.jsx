@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
@@ -62,7 +61,7 @@ const FilterOptionForm = ({ onCancel, onSubmit }) => {
         </button>
         <span className="flex items-center">
           <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.filters.createOption)}
+            hidden={!hasRole('addFilterOption')}
             className="m-auto w-full"
             label={formatMessage({
               id: 'add_filter_option',

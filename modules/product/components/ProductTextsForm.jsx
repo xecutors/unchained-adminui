@@ -8,7 +8,6 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
@@ -187,7 +186,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
           </div>
           <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
             <SubmitButton
-              hidden={!hasRole(ACTION_ROLES.products.updateTexts)}
+              hidden={!hasRole('editProductTexts')}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',

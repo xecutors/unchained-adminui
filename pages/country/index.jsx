@@ -16,7 +16,6 @@ import useRemoveCountry from '../../modules/country/hooks/useRemoveCountry';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import {
@@ -104,9 +103,7 @@ const Country = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole(ACTION_ROLES.country.create) && '/country/new'}
-        >
+        <ListHeader addPath={hasRole('addCountry') && '/country/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

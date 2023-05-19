@@ -7,7 +7,6 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useSetUserName from '../hooks/useSetUsername';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 
 const UserNameView = ({ _id: userId, username }) => {
   const { setUserName } = useSetUserName();
@@ -67,7 +66,7 @@ const UserNameView = ({ _id: userId, username }) => {
               )}
             </span>
             <FormErrors />
-            {hasRole(ACTION_ROLES.users.updateUsername) && (
+            {hasRole('editUsername') && (
               <span className="ml-4 mt-1 flex flex-shrink-0 items-center space-x-4">
                 <button
                   data-id="cancel_update"

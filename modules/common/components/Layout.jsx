@@ -16,20 +16,22 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-
 import getConfig from 'next/config';
+
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
-import ACTION_ROLES from '../data/roles';
 import useShopInfo from '../hooks/useShopInfo';
 
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
-import getLogo from '../utils/getLogo';
 import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
+
+const {
+  publicRuntimeConfig: { logo },
+} = getConfig();
 
 const { publicRuntimeConfig } = getConfig();
 const QuotationIcon = ({ className }) => (
@@ -60,7 +62,7 @@ const Layout = ({
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
     process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
-  const logo = getLogo();
+
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
@@ -76,7 +78,7 @@ const Layout = ({
             id: 'daily_sync',
             defaultMessage: 'Daily sync',
           }),
-          requiredRole: ACTION_ROLES.work.manage,
+          requiredRole: 'manageWorker',
           href: '/reports/daily-sync',
         },
       ],
@@ -86,7 +88,7 @@ const Layout = ({
         id: 'orders',
         defaultMessage: 'Orders',
       }),
-      requiredRole: ACTION_ROLES.orders.manage,
+      requiredRole: 'manageOrders',
       icon: InboxIcon,
       href: '/orders',
     },
@@ -95,7 +97,7 @@ const Layout = ({
         id: 'products',
         defaultMessage: 'Products',
       }),
-      requiredRole: ACTION_ROLES.products.manage,
+      requiredRole: 'manageProducts',
       icon: TagIcon,
       href: '/products',
     },
@@ -103,12 +105,12 @@ const Layout = ({
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: RectangleStackIcon,
       href: '/assortments',
-      requiredRole: ACTION_ROLES.assortments.manage,
+      requiredRole: 'manageAssortments',
     },
     {
       name: formatMessage({ id: 'filters', defaultMessage: 'Filters' }),
       icon: AdjustmentsVerticalIcon,
-      requiredRole: ACTION_ROLES.filters.manage,
+      requiredRole: 'manageFilters',
       href: '/filters',
     },
     {
@@ -145,25 +147,25 @@ const Layout = ({
             id: 'currencies',
             defaultMessage: 'Currencies',
           }),
-          requiredRole: ACTION_ROLES.currencies.manage,
+          requiredRole: 'manageCurrencies',
           href: '/currency',
         },
         {
           name: formatMessage({ id: 'countries', defaultMessage: 'Countries' }),
           href: '/country',
-          requiredRole: ACTION_ROLES.country.manage,
+          requiredRole: 'manageCountries',
         },
         {
           name: formatMessage({ id: 'languages', defaultMessage: 'Languages' }),
           href: '/language',
-          requiredRole: ACTION_ROLES.languages.manage,
+          requiredRole: 'manageLanguages',
         },
         {
           name: formatMessage({
             id: 'delivery_providers',
             defaultMessage: 'Delivery providers',
           }),
-          requiredRole: ACTION_ROLES.deliveryProviders.manage,
+          requiredRole: 'manageDeliveryProviders',
           href: '/delivery-provider',
         },
         {
@@ -171,7 +173,7 @@ const Layout = ({
             id: 'payment_providers',
             defaultMessage: 'Payment providers',
           }),
-          requiredRole: ACTION_ROLES.paymentProviders.manage,
+          requiredRole: 'managePaymentProviders',
           href: '/payment-provider',
         },
         {
@@ -179,7 +181,7 @@ const Layout = ({
             id: 'warehousing_provider',
             defaultMessage: 'Warehousing provider',
           }),
-          requiredRole: ACTION_ROLES.warehousingProviders.manage,
+          requiredRole: 'manageWarehousingProviders',
           href: '/warehousing-provider',
         },
       ],
@@ -193,13 +195,13 @@ const Layout = ({
             id: 'work_queue',
             defaultMessage: 'Work queue',
           }),
-          requiredRole: ACTION_ROLES.work.manage,
+          requiredRole: 'manageWorker',
           href: '/works',
         },
         {
           name: formatMessage({ id: 'event', defaultMessage: 'Events' }),
           href: '/events',
-          requiredRole: ACTION_ROLES.events.view,
+          requiredRole: 'showEvents',
         },
       ],
     },

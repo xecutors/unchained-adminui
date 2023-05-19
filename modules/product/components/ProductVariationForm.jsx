@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../common/data/roles';
 
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
@@ -81,7 +80,7 @@ const ProductVariationForm = ({ onSubmit }) => {
         </div>
         <div className="sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-700 px-5 py-6 text-right">
           <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.products.createVariation)}
+            hidden={!hasRole('addProductVariation')}
             label={formatMessage({
               id: 'save',
               defaultMessage: 'Save',

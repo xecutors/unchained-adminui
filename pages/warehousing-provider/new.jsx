@@ -7,7 +7,6 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import PageHeader from '../../modules/common/components/PageHeader';
 import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useCreateWarehousingProvider from '../../modules/warehousing-providers/hooks/useCreateWarehousingProvider';
 import useWarehousingInterfacesByType from '../../modules/warehousing-providers/hooks/useWarehousingInterfacesByType';
 import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
@@ -49,7 +48,7 @@ const NewPaymentProvider = () => {
         />
         <div className="mt-6">
           <NewProviderForm
-            readOnly={!hasRole(ACTION_ROLES.warehousingProviders.create)}
+            readOnly={!hasRole('addWarehousingProvider')}
             providerInterfaces={convertArrayOfObjectToObject(
               warehousingInterfaces,
               'label',

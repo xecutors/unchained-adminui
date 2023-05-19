@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import CreateUserForm from '../../modules/accounts/components/CreateUserForm';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import useEnrollUser from '../../modules/accounts/hooks/useEnrollUser.ts';
 
@@ -53,7 +52,7 @@ const CreateUser = () => {
   };
 
   const onSubmitSuccess = (_, { enrollUser: user }) => {
-    if (hasRole(ACTION_ROLES.users.view));
+    if (hasRole('showUser'));
     router.push(`/users/${user?._id}`);
   };
   return (

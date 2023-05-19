@@ -1,15 +1,17 @@
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import getConfig from 'next/config';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
 
-import getLogo from '../modules/common/utils/getLogo';
+const {
+  publicRuntimeConfig: { logo },
+} = getConfig();
 
 const NotAuthorized = () => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
-  const logo = getLogo();
   return (
     <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
       <main className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">

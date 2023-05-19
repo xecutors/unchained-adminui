@@ -14,7 +14,6 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const UpdateCurrency = () => {
@@ -73,9 +72,7 @@ const UpdateCurrency = () => {
         <PageHeader
           headerText={normalizeCurrencyISOCode(locale, currency?.isoCode)}
         />
-        {hasRole(ACTION_ROLES.currencies.delete) && (
-          <HeaderDeleteButton onClick={onDelete} />
-        )}
+        {hasRole('removeCurrency') && <HeaderDeleteButton onClick={onDelete} />}
       </div>
       {loading ? (
         <Loading />

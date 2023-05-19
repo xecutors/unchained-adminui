@@ -13,8 +13,6 @@ import Loading from '../../modules/common/components/Loading';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
-
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const WarehousingProviderUpdate = () => {
@@ -83,7 +81,7 @@ const WarehousingProviderUpdate = () => {
             defaultMessage: 'Update warehousing provider',
           })}
         />
-        {hasRole(ACTION_ROLES.warehousingProviders.delete) && (
+        {hasRole('removeWarehousingProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />
         )}
       </div>
@@ -92,7 +90,7 @@ const WarehousingProviderUpdate = () => {
         <Loading />
       ) : (
         <ProviderDetail
-          readOnly={!hasRole(ACTION_ROLES.warehousingProviders.update)}
+          readOnly={!hasRole('editWarehousingProvider')}
           provider={warehousingProvider}
           onSubmit={onSubmit}
           onSubmitSuccess={onSubmitSuccess}

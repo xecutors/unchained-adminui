@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
-import ACTION_ROLES from '../../common/data/roles';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
@@ -72,7 +71,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
         label={formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
       />
       <SubmitButton
-        hidden={!hasRole(ACTION_ROLES.products.createBundleItem)}
+        hidden={!hasRole('addProductBundleItem')}
         label={formatMessage({ id: 'submit', defaultMessage: 'Submit' })}
         className="mt-2"
       />

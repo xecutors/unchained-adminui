@@ -9,8 +9,10 @@ import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 import useBuildTOTPAuthURL from '../hooks/useBuildTOTPAuthURL';
 import useEnableTOTP from '../hooks/useEnableTOTP';
+import useAuth from '../../Auth/useAuth';
 
 const EnableTwoFactorAuthForm = () => {
+  const { hasRole } = useAuth();
   const { enableTOTP } = useEnableTOTP();
   const { formatMessage } = useIntl();
   const [otpauthUrl, setOtpauthUrl] = useState();
@@ -103,6 +105,7 @@ const EnableTwoFactorAuthForm = () => {
                 id: 'enable',
                 defaultMessage: 'Enable',
               })}
+              disabled={!hasRole('editUser')}
             />
           </div>
         </Form>

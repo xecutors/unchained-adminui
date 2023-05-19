@@ -62,7 +62,14 @@ const MediaListItem = ({
         <a onClick={() => displayImageInModal({ url: media?.file?.url })}>
           <ImageWithFallback
             src={media?.file?.url}
-            alt={mediaText?.title || mediaText?.subtitle}
+            alt={
+              mediaText?.title ||
+              mediaText?.subtitle ||
+              formatMessage({
+                id: 'error-loading-image-alt',
+                defaultMessage: 'Error loading image',
+              })
+            }
             className="h-36 w-36 flex-none rounded-md bg-slate-10 object-cover object-center"
             width={100}
             height={100}

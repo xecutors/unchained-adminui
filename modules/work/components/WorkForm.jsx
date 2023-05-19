@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
-import ACTION_ROLES from '../../common/data/roles';
 
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';
@@ -177,7 +176,7 @@ const WorkForm = () => {
 
         <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 space-y-6 bg-slate-50 dark:bg-slate-800 p-5 text-right">
           <SubmitButton
-            hidden={!hasRole(ACTION_ROLES.work.add)}
+            hidden={!hasRole('addWork')}
             label={formatMessage({
               id: 'add_work',
               defaultMessage: 'Add Work',

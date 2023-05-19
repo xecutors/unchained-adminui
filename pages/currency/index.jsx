@@ -14,7 +14,6 @@ import Pagination from '../../modules/common/components/Pagination';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import Loading from '../../modules/common/components/Loading';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import {
@@ -101,9 +100,7 @@ const Currencies = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole(ACTION_ROLES.currencies.create) && '/currency/new'}
-        >
+        <ListHeader addPath={hasRole('addCurrency') && '/currency/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

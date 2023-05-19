@@ -11,7 +11,6 @@ import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts'
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import FormWrapper from '../../common/components/FormWrapper';
 import TextAreaField from '../../forms/components/TextAreaField';
 
@@ -141,7 +140,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
             </div>
 
             <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
-              {hasRole(ACTION_ROLES.assortments.updateTexts) && (
+              {hasRole('editAssortmentText') && (
                 <SubmitButton
                   label={formatMessage({
                     id: 'save',

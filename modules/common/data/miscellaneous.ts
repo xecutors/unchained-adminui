@@ -1,7 +1,7 @@
 export const LimitSteps = [10, 25, 50, 100, 200, 400, 800, 1000];
 export const DefaultLimit = 50;
 
-export const ColorLookupTable = {
+const ColorLookupTable = {
   red: {
     bg: {
       50: 'bg-red-50',

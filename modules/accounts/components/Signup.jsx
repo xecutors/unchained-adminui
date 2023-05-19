@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
+import getConfig from 'next/config';
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 import Toggle from '../../common/components/Toggle';
-import getLogo from '../../common/utils/getLogo';
 
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -16,6 +16,10 @@ import useForm from '../../forms/hooks/useForm';
 import useCreateUser from '../hooks/useCreateUser';
 import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
 import { storeLoginToken } from '../utils/store';
+
+const {
+  publicRuntimeConfig: { logo },
+} = getConfig();
 
 const SignUpForm = () => {
   const { formatMessage } = useIntl();
@@ -86,7 +90,6 @@ const SignUpForm = () => {
       password: null,
     },
   });
-  const logo = getLogo();
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 text-center">

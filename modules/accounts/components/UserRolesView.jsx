@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import ACTION_ROLES from '../../common/data/roles';
 import useSystemRoles from '../../common/hooks/useSystemRoles';
 import ChoicesField from '../../forms/components/ChoicesField';
 import Form from '../../forms/components/Form';
@@ -56,9 +55,9 @@ const UserRolesView = ({ roles, userId }) => {
         multiple
       />
       <FormErrors />
-      {hasRole(ACTION_ROLES.users.updateRoles) && (
+      {hasRole('editUserRoles') && (
         <SubmitButton
-          disabled={!hasRole(ACTION_ROLES.users.updateRoles)}
+          disabled={!hasRole('editUserRoles')}
           label={formatMessage({
             id: 'update_role',
             defaultMessage: 'Update role',

@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import useAuth from '../../Auth/useAuth';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
@@ -9,6 +10,7 @@ import useForm from '../../forms/hooks/useForm';
 import useSetPassword from '../hooks/useSetPassword';
 
 const SetPassword = ({ userId }) => {
+  const { hasRole } = useAuth();
   const { setPassword } = useSetPassword();
   const { formatMessage } = useIntl();
 
@@ -80,6 +82,7 @@ const SetPassword = ({ userId }) => {
             id: 'change_password',
             defaultMessage: 'Change password',
           })}
+          disabled={!hasRole('editUserPassword') && !hasRole('editUser')}
         />
       </div>
     </Form>

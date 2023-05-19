@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-import ACTION_ROLES from '../modules/common/data/roles';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
 import useAuth from '../modules/Auth/useAuth';
@@ -49,18 +48,18 @@ const Home = () => {
   return (
     <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200 sm:w-max xl:w-max">
       <div className="xl:col-span-2 overflow-x-auto">
-        {hasRole(ACTION_ROLES.orders.viewList) && (
+        {hasRole('showOrders') && (
           <h2 className="ml-4 mb-3 text-xl">
             {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
           </h2>
         )}
-        {hasRole(ACTION_ROLES.orders.viewList) && <LatestOrders />}
+        {hasRole('showOrders') && <LatestOrders />}
       </div>
 
       <div className="xl:col-span-1">
-        {hasRole(ACTION_ROLES.products.create) ||
-          hasRole(ACTION_ROLES.users.create) ||
-          (hasRole(ACTION_ROLES.assortments.create) && (
+        {hasRole('addProduct') ||
+          hasRole('addUser') ||
+          (hasRole('addAssortment') && (
             <div className="mb-10">
               <h2 className="ml-4 mb-3 text-xl text-slate-700">
                 {formatMessage({
@@ -69,7 +68,7 @@ const Home = () => {
                 })}
               </h2>
               <div className="grid grid-cols-2 gap-3">
-                {hasRole(ACTION_ROLES.products.create) && (
+                {hasRole('addProduct') && (
                   <Link
                     href="/products/new"
                     className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
@@ -87,7 +86,7 @@ const Home = () => {
                     </span>
                   </Link>
                 )}
-                {hasRole(ACTION_ROLES.products.create) && (
+                {hasRole('addProduct') && (
                   <Link
                     href="/users/new"
                     className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
@@ -105,7 +104,7 @@ const Home = () => {
                     </span>
                   </Link>
                 )}
-                {hasRole(ACTION_ROLES.assortments.create) && (
+                {hasRole('addAssortment') && (
                   <Link
                     href="/assortments/new"
                     className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"

@@ -22,6 +22,7 @@ import UserTokens from './UserTokens';
 const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
   if (!user) return <Loading />;
   if (selectedView === 'profile') return <ProfileView {...user} />;
+  if (selectedView === 'account') return <AccountView {...user} />;
   if (selectedView === 'orders') return <UserOrders {...user} />;
   if (selectedView === 'quotations') return <UserQuotations {...user} />;
   if (selectedView === 'enrollments') return <UserEnrollments {...user} />;
@@ -32,7 +33,7 @@ const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
   if (selectedView === 'extended') {
     return <DisplayExtendedFields data={extendedData} />;
   }
-  return <AccountView {...user} />;
+  return <ProfileView {...user} />;
 };
 const UserSettings = ({ user, extendedData }) => {
   const { formatMessage } = useIntl();

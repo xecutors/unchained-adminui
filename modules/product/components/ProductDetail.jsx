@@ -29,7 +29,6 @@ import ProductReviews from '../../product-review/components/ProductReviews';
 import BundleProducts from './BundleProducts';
 import TagList from '../../common/components/TagList';
 import useUpdateProduct from '../hooks/useUpdateProduct';
-import ACTION_ROLES from '../../common/data/roles';
 import { PRODUCT_TYPES } from '../ProductTypes';
 import useAuth from '../../Auth/useAuth';
 import ProductAssignmentForm from './ProductAssignmentForm';
@@ -256,7 +255,7 @@ const ProductDetail = ({ product, extendedData }) => {
         <TagList
           defaultValue={product?.tags}
           onSubmit={onUpdateTags}
-          enableEdit={hasRole(ACTION_ROLES.products.update)}
+          enableEdit={hasRole('editProduct')}
         />
         <input
           type="number"

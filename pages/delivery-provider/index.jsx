@@ -10,7 +10,6 @@ import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import ProvidersList from '../../modules/common/components/ProvidersList';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useDeliveryProviders from '../../modules/delivery-provider/hooks/useDeliveryProviders';
 import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
@@ -65,10 +64,7 @@ const DeliveryProviders = () => {
         })}
       />
       <ListHeader
-        addPath={
-          hasRole(ACTION_ROLES.deliveryProviders.create) &&
-          '/delivery-provider/new'
-        }
+        addPath={hasRole('addDeliveryProvider') && '/delivery-provider/new'}
       >
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}
@@ -78,13 +74,13 @@ const DeliveryProviders = () => {
         <Loading />
       ) : (
         <ProvidersList
-          editRole={ACTION_ROLES.deliveryProviders.update}
-          deleteRole={ACTION_ROLES.deliveryProviders.delete}
+          editRole="editDeliveryProvider"
+          deleteRole="removeDeliveryProvider"
           providerPath="/delivery-provider"
           providers={deliveryProviders}
           onRemove={onRemoveDeliveryProvider}
-          enableDelete={hasRole(ACTION_ROLES.deliveryProviders.delete)}
-          enableEdit={hasRole(ACTION_ROLES.deliveryProviders.update)}
+          enableDelete={hasRole('removeDeliveryProvider')}
+          enableEdit={hasRole('editDeliveryProvider')}
         />
       )}
     </>

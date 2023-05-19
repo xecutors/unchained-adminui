@@ -20,7 +20,6 @@ import useUpdateAssortment from '../hooks/useUpdateAssortment';
 import Tab from '../../common/components/Tab';
 import TagList from '../../common/components/TagList';
 import useSetBaseAssortment from '../hooks/useSetBaseAssortment';
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import Button from '../../common/components/Button';
 import useModal from '../../modal/hooks/useModal';
@@ -292,7 +291,7 @@ const AssortmentDetail = ({ assortment, extendedData }) => {
         <TagList
           defaultValue={assortment?.tags}
           onSubmit={updateAssortmentTags}
-          enableEdit={hasRole(ACTION_ROLES.assortments.update)}
+          enableEdit={hasRole('editAssortment')}
         />
         <input
           id="sequence"

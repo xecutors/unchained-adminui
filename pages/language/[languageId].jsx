@@ -13,7 +13,6 @@ import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import Loading from '../../modules/common/components/Loading';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 
 const UpdateLanguage = () => {
@@ -74,9 +73,7 @@ const UpdateLanguage = () => {
       />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader headerText={normalizeLanguageName(language?.isoCode)} />
-        {hasRole(ACTION_ROLES.languages.delete) && (
-          <HeaderDeleteButton onClick={onDelete} />
-        )}
+        {hasRole('removeLanguage') && <HeaderDeleteButton onClick={onDelete} />}
       </div>
       {loading ? (
         <Loading />

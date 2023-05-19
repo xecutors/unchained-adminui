@@ -11,7 +11,6 @@ import FilterList from '../../modules/filter/components/FilterList';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import useAuth from '../../modules/Auth/useAuth';
 import SearchField from '../../modules/common/components/SearchField';
 import {
@@ -91,9 +90,7 @@ const FiltersListView = () => {
       </div>
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader
-          addPath={hasRole(ACTION_ROLES.filters.create) && '/filters/new'}
-        >
+        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',

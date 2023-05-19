@@ -7,7 +7,6 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
-import ACTION_ROLES from '../../modules/common/data/roles';
 import FilterDetail from '../../modules/filter/components/FilterDetail';
 import useFilter from '../../modules/filter/hooks/useFilter';
 import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
@@ -62,7 +61,7 @@ const FilterDetailPage = () => {
             defaultMessage: 'Filter Detail',
           })}
         />
-        {hasRole(ACTION_ROLES.filters.delete) && (
+        {hasRole('removeFilter') && (
           <HeaderDeleteButton onClick={onRemoveFilter} />
         )}
       </div>

@@ -9,7 +9,6 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 import SandboxInput from '../../common/components/SandboxInput';
-import getLogo from '../../common/utils/getLogo';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
@@ -21,6 +20,10 @@ import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
 import GoogleOauth from './GoogleOauth';
+
+const {
+  publicRuntimeConfig: { allowEndpointSwitch, logo },
+} = getConfig();
 
 const GetCurrentStep = ({ step }) => {
   const { formatMessage } = useIntl();
@@ -94,10 +97,6 @@ const GetCurrentStep = ({ step }) => {
       );
   }
 };
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch },
-} = getConfig();
 
 const LogInForm = () => {
   const intl = useIntl();
@@ -254,7 +253,6 @@ const LogInForm = () => {
       });
   }, []);
 
-  const logo = getLogo();
   if (isAuthenticated()) {
     router.replace('/');
   }

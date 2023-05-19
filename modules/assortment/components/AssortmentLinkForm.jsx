@@ -7,7 +7,6 @@ import useForm from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
-import ACTION_ROLES from '../../common/data/roles';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import FormErrors from '../../forms/components/FormErrors';
@@ -101,7 +100,7 @@ const AssortmentLinkForm = ({ assortmentId }) => {
           <FormErrors />
           <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
             <SubmitButton
-              hidden={!hasRole(ACTION_ROLES.assortments.addLink)}
+              hidden={!hasRole('addAssortmentLink')}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',
