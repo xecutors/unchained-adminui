@@ -1,24 +1,6 @@
-const UnrestrictedPages = [
-  '/log-in',
-  '/sign-up',
-  '/oauth',
-  '/account/forgot-password',
-  '/reset-password',
-  '/api/graphql',
-  '/404',
-  '/423',
-  '/_offline',
-  '/verify-email',
-  '/403'
-];
-
 const loadRoleConfigFromInjectedGlobalScript = () => {
   if (typeof window === 'undefined' || !(window as any)?.AdminUiPermissions){ return {}};
-  return (window as any).AdminUiPermissions({ UnrestrictedPages });
+  return (window as any).AdminUiPermissions();
 };
 
-const loadRoleConfig = () => {
-  return loadRoleConfigFromInjectedGlobalScript();
-};
-
-export default loadRoleConfig;
+export default loadRoleConfigFromInjectedGlobalScript;

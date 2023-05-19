@@ -1,9 +1,13 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import getConfig from 'next/config';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
 import ImageWithFallback from '../../modules/common/components/ImageWithFallback';
-import getLogo from '../../modules/common/utils/getLogo';
+
+const {
+  publicRuntimeConfig: { logo },
+} = getConfig();
 
 const ForgotPassword = () => {
   const { forgotPassword } = useForgotPassword();
@@ -29,8 +33,6 @@ const ForgotPassword = () => {
     const { data } = await forgotPassword({ email });
     return data.forgotPassword;
   };
-
-  const logo = getLogo();
 
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

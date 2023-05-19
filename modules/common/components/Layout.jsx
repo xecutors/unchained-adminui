@@ -16,19 +16,22 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-
 import getConfig from 'next/config';
+
 import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
 
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
-import getLogo from '../utils/getLogo';
 import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
+
+const {
+  publicRuntimeConfig: { logo },
+} = getConfig();
 
 const { publicRuntimeConfig } = getConfig();
 const QuotationIcon = ({ className }) => (
@@ -59,7 +62,7 @@ const Layout = ({
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
     process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
-  const logo = getLogo();
+
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),

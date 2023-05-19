@@ -17,10 +17,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "noImplicitAny": false,
+    "isolatedModules": true
   },
   "exclude": [
     "node_modules"
@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "**/*.jsx"
-, "next.config.js"  ]
+    "**/*.jsx",
+    "next.config.js"
+  ]
 }
-

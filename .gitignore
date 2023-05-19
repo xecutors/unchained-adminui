@@ -45,3 +45,5 @@ next-env.d.ts
 **/public/worker-*.js.map
 **/public/fallback-*.js
 manifest.json
+
+/app-permissions.config.js

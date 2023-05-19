@@ -11,16 +11,7 @@
 require('./node_env');
 const fs = require('fs');
 const path = require('path');
-const runtimeCaching = require('next-pwa/cache');
-
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  skipWaiting: false,
-  runtimeCaching,
-  disable: process.env.NODE_ENV === 'development',
-});
 const loadPermissionConfig = require('./loadPermissionConfig');
-const loadPWAMetaConfig = require('./loadPWAMeta');
 
 const normalizePaths = (paths) => {
   if (paths) {
@@ -34,9 +25,10 @@ const normalizePaths = (paths) => {
   return [];
 };
 
+const permissionConfig = loadPermissionConfig();
+
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
 const extendedLanguages = normalizePaths(translatedFiles);
-
 const translatedLanguages = extendedLanguages?.map((file) => {
   const lang = path.basename(file, '.json');
   const translatedFile = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -58,11 +50,8 @@ const translatedLanguages = extendedLanguages?.map((file) => {
 });
 
 const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
-const permissionConfig = loadPermissionConfig();
 
-const metaConfig = loadPWAMetaConfig();
-
-module.exports = withPWA({
+module.exports = {
   swcMinify: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
@@ -74,14 +63,12 @@ module.exports = withPWA({
   },
   publicRuntimeConfig: {
     oAuthClientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
-    metaConfig,
     showCustomReports: parseInt(
       process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
       10,
     ),
     permissionConfig,
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
-    manifestFile: process.env.UNCHAINED_PWA_MANIFEST_FILE,
     logo: process.env.NEXT_PUBLIC_LOGO,
     restrictNonAdmin: !!process.env.NEXT_PUBLIC_ONLY_ADMIN,
     allowEndpointSwitch: process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH,
@@ -90,4 +77,4 @@ module.exports = withPWA({
       {},
     ),
   },
-});
+};
