@@ -194,12 +194,13 @@ class MyDocument extends Document {
     return (
       <Html className="h-full">
         <Head>
-          {Object.entries(meta || {}).map(([key, value]) => (
-            <meta name={key} content={value} />
+          {Object.entries(meta || {}).map(([key, value], i) => (
+            <meta name={`${key}-${i}-${value}`} content={value} />
           ))}
 
-          {(metaLinks || []).map((attr) => (
-            <link {...attr} />
+          {(metaLinks || []).map((attr, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <link key={`${attr?.href}-${attr.type}-${i}`} {...attr} />
           ))}
           <script
             src="/api/permission-config"
