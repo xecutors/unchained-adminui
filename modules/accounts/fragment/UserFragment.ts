@@ -5,6 +5,32 @@ const UserFragment = gql`
   fragment UserFragment on User {
     _id
     isTwoFactorEnabled
+    lastBillingAddress {
+      firstName
+      lastName
+      company
+      addressLine
+      addressLine2
+      postalCode
+      countryCode
+      regionCode
+      city
+      
+    }
+    
+    lastContact {
+      emailAddress
+      telNumber
+    }
+    lastLogin {
+      countryCode
+      locale
+      remoteAddress
+      remotePort
+      timestamp
+      userAgent
+    }
+    
     avatar {
       _id
       name
