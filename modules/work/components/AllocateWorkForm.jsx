@@ -153,7 +153,6 @@ const AllocateWorkForm = () => {
               id: 'allocate_work',
               defaultMessage: 'Allocate Work',
             })}
-            full
           />
         </div>
       </Form>

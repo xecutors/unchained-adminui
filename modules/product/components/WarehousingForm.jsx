@@ -91,7 +91,6 @@ const WarehousingForm = ({ productId }) => {
                 id: 'save',
                 defaultMessage: 'Save',
               })}
-              full
             />
           </div>
         </Form>

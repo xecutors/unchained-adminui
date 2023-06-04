@@ -8,8 +8,6 @@ const CheckboxField = (props: CommonFieldProps) => {
     labelClassName,
     containerClassName,
     inputClassName,
-    hideLabel,
-    errorMessage,
     ...checkboxProps
   } = props;
   const field = useField({ ...props, type: 'checkbox' });

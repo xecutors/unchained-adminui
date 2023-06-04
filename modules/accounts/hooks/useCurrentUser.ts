@@ -18,6 +18,7 @@ const useCurrentUser = () => {
     GetCurrentUserQuery(customProperties?.User),
     {
       fetchPolicy: 'cache-first',
+      notifyOnNetworkStatusChange: true,
     },
   );
 

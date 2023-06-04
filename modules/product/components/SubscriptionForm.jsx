@@ -193,7 +193,6 @@ const SubscriptionForm = ({ productId }) => {
                   id: 'save',
                   defaultMessage: 'Save',
                 })}
-                full
               />
             </div>
           </div>

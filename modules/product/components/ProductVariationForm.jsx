@@ -85,7 +85,6 @@ const ProductVariationForm = ({ onSubmit }) => {
               id: 'save',
               defaultMessage: 'Save',
             })}
-            full
           />
         </div>
       </Form>

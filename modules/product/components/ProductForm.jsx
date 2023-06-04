@@ -69,7 +69,6 @@ const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
             id: 'add_product',
             defaultMessage: 'Add product',
           })}
-          third
         />
       </div>
     </Form>

@@ -11,7 +11,7 @@ const SubmitButton = ({
   ...props
 }) => {
   const formik = useFormikContext();
-  const { half, full, third, ...restProps } = props;
+  const { ...restProps } = props;
 
   const fieldsMetaProps = Object.fromEntries(
     Object.keys(formik.initialValues).map((fieldName) => [

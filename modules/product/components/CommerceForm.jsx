@@ -335,7 +335,6 @@ const CommerceForm = ({ productId }) => {
                   id: 'save',
                   defaultMessage: 'Save',
                 })}
-                full
               />
             </div>
           </Form>

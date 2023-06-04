@@ -263,7 +263,7 @@ const JobBody = ({ job }) => {
             </div>
           )}
           {Object.entries(job).map(([type, stat]) => (
-            <JobDetail type={type} stat={stat} />
+            <JobDetail type={type} stat={stat} key={stat?._id} />
           ))}
         </dl>
       </div>

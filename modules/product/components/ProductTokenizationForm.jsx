@@ -158,7 +158,6 @@ const ProductTokenizationForm = ({ productId }) => {
                 id: 'update_token',
                 defaultMessage: 'Update token',
               })}
-              third
             />
           </div>
         </Form>

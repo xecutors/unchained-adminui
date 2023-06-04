@@ -15,9 +15,7 @@ const UserFragment = gql`
       countryCode
       regionCode
       city
-      
     }
-    
     lastContact {
       emailAddress
       telNumber
@@ -30,7 +28,6 @@ const UserFragment = gql`
       timestamp
       userAgent
     }
-    
     avatar {
       _id
       name

@@ -195,7 +195,11 @@ class MyDocument extends Document {
       <Html className="h-full">
         <Head>
           {Object.entries(meta || {}).map(([key, value], i) => (
-            <meta name={`${key}-${i}-${value}`} content={value} />
+            <meta
+              key={`${key}-${i}-${value}`}
+              name={`${key}-${i}-${value}`}
+              content={value}
+            />
           ))}
 
           {(metaLinks || []).map((attr, i) => (

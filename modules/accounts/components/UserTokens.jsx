@@ -39,7 +39,10 @@ const UserTokens = ({ _id: userId }) => {
 
             status,
           }) => (
-            <div className="group relative border-r border-b border-gray-200 p-4 sm:p-6">
+            <div
+              key={_id}
+              className="group relative border-r border-b border-gray-200 p-4 sm:p-6"
+            >
               <Link
                 href={`/products/${generateUniqueId(product)}`}
                 className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
