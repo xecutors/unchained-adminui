@@ -15,13 +15,12 @@ interface SelectFieldProps extends FieldHookProps {
 const SelectField = (props: SelectFieldProps) => {
   const { options, ...field } = useField(props);
   const { className } = props || { className: '' };
-
   return (
     <FieldWrapper {...field}>
       <div className="select-wrap">
         <select
           className={classnames(
-            'mt-1 block w-full dark:bg-slate-900 rounded-md border-1 border-slate-200 dark:text-white dark:border-slate-700 py-2.5 pl-3 pr-10 text-base text-black-400 shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
+            'mt-1 block w-full dark:bg-slate-900 rounded-md border-1 border-slate-200 dark:text-white dark:border-slate-700 py-2.5 pl-3 pr-10 text-base text-black shadow-sm focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm',
             className,
             {
               'border-red-300 text-red-600': !!field.error,

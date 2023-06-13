@@ -36,10 +36,15 @@ const CommerceForm = ({ productId }) => {
   const { formatMessage } = useIntl();
   const { catalogPrices } = useProductCatalogPrices({ productId });
   const { hasRole } = useAuth();
+
   const { updateProductCommerce } = useUpdateProductCommerce();
   const { countries } = useCountries();
   const { currencies } = useCurrencies();
 
+  const baseCountry = countries?.find(({ isBase }) => isBase);
+
+  const defaultCountryValue = baseCountry?.isoCode;
+  const defaultCurrencyValue = baseCountry?.defaultCurrency?.isoCode;
   const onSubmit = async ({ pricing }) => {
     await updateProductCommerce({ productId, pricing });
     return true;
@@ -60,8 +65,8 @@ const CommerceForm = ({ productId }) => {
             amount: null,
             isTaxable: false,
             isNetPrice: false,
-            currencyCode: null,
-            countryCode: null,
+            currencyCode: defaultCurrencyValue,
+            countryCode: defaultCountryValue,
           },
         ]),
       ],
@@ -70,7 +75,6 @@ const CommerceForm = ({ productId }) => {
 
   const { values } = form.formik;
   const { pricing } = values;
-
   return (
     <div className="flex flex-col ">
       <div className="md:col-span-1">
@@ -221,6 +225,7 @@ const CommerceForm = ({ productId }) => {
 
                           <div className="flex w-full gap-x-2">
                             <SelectField
+                              defaultValue={defaultCountryValue}
                               className="w-full lg:ml-4 lg:mr-4"
                               label={formatMessage({
                                 id: 'country',
@@ -242,6 +247,7 @@ const CommerceForm = ({ productId }) => {
                             />
 
                             <SelectField
+                              defaultValue={defaultCurrencyValue}
                               className="w-full lg:mr-8 "
                               label={formatMessage({
                                 id: 'currency',
@@ -301,8 +307,8 @@ const CommerceForm = ({ productId }) => {
                                 amount: null,
                                 isTaxable: false,
                                 isNetPrice: false,
-                                currencyCode: null,
-                                countryCode: null,
+                                currencyCode: defaultCurrencyValue,
+                                countryCode: defaultCountryValue,
                               })
                             }
                           >

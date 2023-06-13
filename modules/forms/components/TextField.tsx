@@ -25,10 +25,12 @@ const TextField = ({
     <FieldWrapper {...field}>
       <input
         className={classnames(
-          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 border-slate-200 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 shadow-sm placeholder:text-slate-400 focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400',
-          props.className,
+          'relative mt-1 block w-full dark:focus:autofill dark:hover:autofill dark:autofill dark:placeholder:text-white dark:bg-slate-900 dark:text-slate-200 appearance-none rounded-md border-2 dark:border-slate-700 px-4 py-2.5 text-sm text-slate-900  focus:border-indigo-400 focus:outline-none  focus:ring-1 focus:ring-indigo-400 shadow-sm',
           {
-            'border-2 border-red-300 placeholder:text-red-300': !!field.error,
+            'border-red-700 placeholder:text-red-300 placeholder-red-300':
+              !!field.error,
+            'border-slate-300 placeholder-slate-400 placeholder:text-slate-400':
+              !field.error,
           },
         )}
         disabled={field.disabled}
