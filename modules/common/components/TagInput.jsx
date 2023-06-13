@@ -24,20 +24,23 @@ const TagInput = ({
     if (index !== -1) {
       const newTags = [...tagList];
       newTags.splice(index, 1);
+      onChange(newTags);
       setTagList(newTags);
     }
   };
 
   const addTag = () => {
     if (!tagList.includes(newTag) && newTag) {
-      setTagList([...tagList, newTag]);
+      const newTags = [...tagList, newTag];
+      setTagList(newTags);
+      onChange(newTags);
       setNewTag('');
     }
   };
 
   useEffect(() => {
-    onChange(tagList);
-  }, [tagList]);
+    setTagList(tags);
+  }, [tags]);
 
   return (
     <div className="flow-root">

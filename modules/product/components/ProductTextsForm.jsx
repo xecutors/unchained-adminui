@@ -13,6 +13,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
 import TextAreaField from '../../forms/components/TextAreaField';
+import TagInputField from '../../forms/components/TagInputField';
 
 const ProductTextsForm = ({ productId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -61,7 +62,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
       vendor: '',
       description: '',
       brand: '',
-      labels: '',
+      labels: [],
     },
   });
 
@@ -69,7 +70,6 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
     const value = translatedTexts?.find(
       (text) => text.locale === selectedLocale,
     );
-
     if (value) form.formik.setValues(value);
   }, [translatedTexts, selectedLocale]);
 
@@ -161,12 +161,16 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
-                <TextField
+                <TagInputField
                   name="labels"
                   id="labels"
                   label={formatMessage({
                     id: 'labels',
                     defaultMessage: 'Labels',
+                  })}
+                  buttonText={formatMessage({
+                    id: 'add',
+                    defaultMessage: 'Add',
                   })}
                   autoComplete="on"
                   className="text-sm font-medium"
