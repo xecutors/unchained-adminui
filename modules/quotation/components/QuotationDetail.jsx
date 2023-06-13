@@ -196,7 +196,7 @@ const QuotationDetail = ({ quotation }) => {
                   height={100}
                   alt={formatMessage({
                     id: 'image-not-found',
-                    defaultMessage: 'image-not-found',
+                    defaultMessage: 'Image not found',
                   })}
                 />
               </div>

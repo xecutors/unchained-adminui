@@ -7,6 +7,7 @@ import Table from '../../common/components/Table';
 import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
+import Tooltip from '../../common/components/ToolTip';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -64,7 +65,9 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm">
-          {getScheduledTime(work)}
+          <Tooltip text={formatDateTime(work.scheduled, options)}>
+            {getScheduledTime(work)}
+          </Tooltip>
         </div>
       </Table.Cell>
 

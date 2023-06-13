@@ -124,7 +124,10 @@ const BillingAddressInfo = ({
       </div>
       <div>
         <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
-          {formatMessage({ id: 'postal_code', defaultMessage: 'Postal Code' })}
+          {formatMessage({
+            id: 'postal_code',
+            defaultMessage: 'Postal/ZIP code',
+          })}
         </label>
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">{postalCode}</span>
@@ -142,7 +145,7 @@ const BillingAddressInfo = ({
       </div>
       <div>
         <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
-          {formatMessage({ id: 'city', defaultMessage: 'city' })}
+          {formatMessage({ id: 'city', defaultMessage: 'City' })}
         </label>
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">{city}</span>
@@ -150,7 +153,7 @@ const BillingAddressInfo = ({
       </div>
       <div>
         <label className="text-sm font-medium text-slate-500 dark:text-slate-200">
-          {formatMessage({ id: 'region', defaultMessage: 'region' })}
+          {formatMessage({ id: 'region', defaultMessage: 'Region' })}
         </label>
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">{regionCode}</span>

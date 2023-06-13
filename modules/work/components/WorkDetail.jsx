@@ -7,6 +7,7 @@ import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
 import JSONView from '../../common/components/JSONView';
 import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
+import Tooltip from '../../common/components/ToolTip';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -154,7 +155,11 @@ const WorkDetail = ({ work }) => {
                   defaultMessage: 'Scheduled',
                 })}
               </div>
-              <div className="flex text-sm">{getScheduledTime(work)}</div>
+              <div className="flex text-sm w-100">
+                <Tooltip text={formatDateTime(work.scheduled, options)}>
+                  {getScheduledTime(work)}
+                </Tooltip>
+              </div>
             </div>
             <div className="sm:col-span-1">
               <div className="flex text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">

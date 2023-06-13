@@ -84,6 +84,9 @@
   "address": {
     "defaultMessage": "Address"
   },
+  "address2": {
+    "defaultMessage": "Address 2"
+  },
   "address_line_1": {
     "defaultMessage": "Address line 1 (Street, House no)"
   },
@@ -240,6 +243,9 @@
   },
   "brand": {
     "defaultMessage": "Brand"
+  },
+  "browser": {
+    "defaultMessage": "Browser"
   },
   "bundle": {
     "defaultMessage": "Bundle product"
@@ -737,6 +743,12 @@
   "error": {
     "defaultMessage": "Error"
   },
+  "error-loading-image-alt": {
+    "defaultMessage": "Error loading image"
+  },
+  "error-something-went-wrong": {
+    "defaultMessage": "Unable to complete the task successfully please try again"
+  },
   "error_403": {
     "defaultMessage": "403 unauthorized"
   },
@@ -815,6 +827,9 @@
   "exporting": {
     "defaultMessage": "Exporting"
   },
+  "extended-fields": {
+    "defaultMessage": "Extended"
+  },
   "extensions": {
     "defaultMessage": "Extensions"
   },
@@ -863,6 +878,9 @@
     "defaultMessage": "Key",
     "description": "Filter form key"
   },
+  "filter_key_already_exists": {
+    "defaultMessage": "Filter key already exists, please provide unique key"
+  },
   "filter_option_added_success": {
     "defaultMessage": "Filter option added successfully"
   },
@@ -908,6 +926,9 @@
   "from": {
     "defaultMessage": "From"
   },
+  "fullName": {
+    "defaultMessage": "FullName"
+  },
   "full_name": {
     "defaultMessage": "Full name"
   },
@@ -940,6 +961,9 @@
   },
   "home": {
     "defaultMessage": "Home"
+  },
+  "image-not-found": {
+    "defaultMessage": "Image not found"
   },
   "image_not_available": {
     "defaultMessage": "Image not available"
@@ -1000,6 +1024,9 @@
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
   },
+  "ip": {
+    "defaultMessage": "IP Address"
+  },
   "iso_code": {
     "defaultMessage": "ISO code"
   },
@@ -1011,6 +1038,9 @@
   },
   "labels": {
     "defaultMessage": "Labels"
+  },
+  "language": {
+    "defaultMessage": "Language"
   },
   "language_added": {
     "defaultMessage": "Language added successfully!"
@@ -1071,6 +1101,9 @@
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
+  },
+  "logs": {
+    "defaultMessage": "Logs"
   },
   "make-proposal-header": {
     "defaultMessage": "Make quotation proposal"
@@ -1352,8 +1385,14 @@
   "priority": {
     "defaultMessage": "Priority"
   },
+  "process-quotation-submit": {
+    "defaultMessage": "Mark as processed"
+  },
   "product": {
     "defaultMessage": "Product"
+  },
+  "product-image": {
+    "defaultMessage": "Product image"
   },
   "product_added": {
     "defaultMessage": "Product added successfully!"
@@ -1492,6 +1531,9 @@
   },
   "reject-quotation-quotation": {
     "defaultMessage": "Reject quotation?"
+  },
+  "reject-quotation-submit": {
+    "defaultMessage": "Reject"
   },
   "reject_order": {
     "defaultMessage": "Reject order"
@@ -1800,6 +1842,9 @@
   "thank_you_for_verifying": {
     "defaultMessage": "Thank you for verifying your email address"
   },
+  "time": {
+    "defaultMessage": "Time"
+  },
   "title": {
     "defaultMessage": "Title"
   },
@@ -2020,6 +2065,9 @@
   "verify-quotation-quotation": {
     "defaultMessage": "Verify quotation?"
   },
+  "verify-quotation-submit": {
+    "defaultMessage": "Verify"
+  },
   "view_all": {
     "defaultMessage": "View all"
   },
@@ -2093,7 +2141,7 @@
     "defaultMessage": "Created"
   },
   "work_deleted": {
-    "defaultMessage": "Work {workId} deleted successfully"
+    "defaultMessage": "Work deleted successfully"
   },
   "work_detail": {
     "defaultMessage": "Work Detail"
@@ -2124,9 +2172,6 @@
   },
   "work_started": {
     "defaultMessage": "Started"
-  },
-  "work_started_success": {
-    "defaultMessage": "Work started successfully!"
   },
   "work_status": {
     "defaultMessage": "Work Status"
