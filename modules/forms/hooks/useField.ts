@@ -103,6 +103,10 @@ const useField = (props: FieldHookProps): ComputedProps => {
     field.onChange(event);
   };
 
+  const isNullOrUndefined = (v) => {
+    return v === null || v === undefined;
+  };
+
   return {
     ...props,
     name,
@@ -112,7 +116,7 @@ const useField = (props: FieldHookProps): ComputedProps => {
     required,
     onChange,
     onBlur: field.onBlur,
-    value: field.value || '',
+    value: isNullOrUndefined(field.value) ? '' : field.value,
     setValue: helpers.setValue,
     ...helpers,
   };
