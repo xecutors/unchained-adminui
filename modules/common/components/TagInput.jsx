@@ -39,12 +39,12 @@ const TagInput = ({
   };
 
   useEffect(() => {
-    setTagList(tags);
+    setTagList(tags || []);
   }, [tags]);
 
   return (
     <div className="flow-root">
-      {tagList.map((tag) => (
+      {tagList?.map((tag) => (
         <Badge
           key={tag}
           text={tag}
