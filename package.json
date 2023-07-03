@@ -62,7 +62,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.14.1",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.44.3",
+    "react-hook-form": "^7.45.1",
     "react-intl": "^6.4.4",
     "react-markdown": "^8.0.6",
     "react-select": "^5.7.2",
