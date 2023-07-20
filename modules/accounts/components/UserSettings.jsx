@@ -35,6 +35,7 @@ const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
     return <DisplayExtendedFields data={extendedData} />;
   }
   if (selectedView === 'logs') {
+    console.log(user);
     return <DisplayUserLastLogs {...user} />;
   }
   return <ProfileView {...user} />;
@@ -107,8 +108,8 @@ const UserSettings = ({ user, extendedData }) => {
     {
       id: 'logs',
       title: formatMessage({
-        id: 'logs',
-        defaultMessage: 'Logs',
+        id: 'user-activities',
+        defaultMessage: 'Activity',
       }),
       Icon: (
         <svg

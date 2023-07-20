@@ -25,7 +25,7 @@ const normalizePaths = (paths) => {
   return [];
 };
 
-const permissionConfig = loadPermissionConfig();
+const permissionConfig = loadPermissionConfig()?.toString();
 
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
 const extendedLanguages = normalizePaths(translatedFiles);

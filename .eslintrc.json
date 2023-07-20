@@ -1,6 +1,6 @@
 {
   "root": true,
-  "plugins": ["cypress","formatjs",  "react-hooks"],
+  "plugins": ["cypress","formatjs"],
   "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended", "next"],
   "parserOptions": {
         

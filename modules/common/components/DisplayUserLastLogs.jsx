@@ -10,6 +10,7 @@ const LoginInfo = ({ loginData }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
+  if (!loginData) return null;
   return (
     <div className="mt-2 bg-white text-slate-500 dark:text-slate-200">
       <div>
@@ -19,7 +20,8 @@ const LoginInfo = ({ loginData }) => {
 
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">
-            {normalizeCountryISOCode(loginData.countryCode)}
+            {loginData?.countryCode &&
+              normalizeCountryISOCode(loginData?.countryCode)}
           </span>
         </div>
       </div>
@@ -30,7 +32,8 @@ const LoginInfo = ({ loginData }) => {
 
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">
-            {normalizeLanguageISOCode(loginData.locale?.split('_')[0])}
+            {loginData?.locale &&
+              normalizeLanguageISOCode(loginData.locale?.split('_')[0])}
           </span>
         </div>
       </div>
