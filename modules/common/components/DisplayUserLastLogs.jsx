@@ -7,7 +7,7 @@ import {
 } from '../utils/utils';
 
 const LoginInfo = ({ loginData }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
   if (!loginData) return null;
@@ -21,7 +21,7 @@ const LoginInfo = ({ loginData }) => {
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">
             {loginData?.countryCode &&
-              normalizeCountryISOCode(loginData?.countryCode)}
+              normalizeCountryISOCode(locale, loginData?.countryCode)}
           </span>
         </div>
       </div>
@@ -33,7 +33,7 @@ const LoginInfo = ({ loginData }) => {
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">
             {loginData?.locale &&
-              normalizeLanguageISOCode(loginData.locale?.split('_')[0])}
+              normalizeLanguageISOCode(locale, loginData.locale?.split('_')[0])}
           </span>
         </div>
       </div>

@@ -35,7 +35,6 @@ const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
     return <DisplayExtendedFields data={extendedData} />;
   }
   if (selectedView === 'logs') {
-    console.log(user);
     return <DisplayUserLastLogs {...user} />;
   }
   return <ProfileView {...user} />;
