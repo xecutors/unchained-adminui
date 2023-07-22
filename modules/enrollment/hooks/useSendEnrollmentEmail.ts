@@ -1,9 +1,9 @@
 import { useMutation, gql } from '@apollo/client';
 
 const SendEnrollmentEmailMutation = gql`
-  mutation sendEnrollmentEmail($enrollmentId: ID!) {
-    sendEnrollmentEmail(enrollmentId: $enrollmentId) {
-      _id
+  mutation sendEnrollmentEmail($email: String!) {
+    sendEnrollmentEmail(email: $email) {
+      success
     }
   }
 `;
@@ -13,9 +13,9 @@ const useSendEnrollmentEmail = () => {
     SendEnrollmentEmailMutation,
   );
 
-  const sendEnrollmentEmail = async ({ enrollmentId }) => {
+  const sendEnrollmentEmail = async ({ email }) => {
     return sendEnrollmentEmailMutation({
-      variables: { enrollmentId },
+      variables: { email },
     });
   };
 

@@ -84,7 +84,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await sendEnrollmentEmail({ enrollmentId: enrollment._id });
+          await sendEnrollmentEmail({ email: enrollment.contact.emailAddress });
           toast.success(
             formatMessage({
               id: 'terminate_enrollment_success',

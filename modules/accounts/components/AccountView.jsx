@@ -21,6 +21,8 @@ const AccountView = ({
   roles,
   tags,
   isTwoFactorEnabled,
+  isInitialPassword,
+  primaryEmail,
 }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
@@ -125,7 +127,11 @@ const AccountView = ({
           })}
         >
           <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-            <SetPassword userId={_id} />
+            <SetPassword
+              userId={_id}
+              isInitialPassword={isInitialPassword}
+              primaryEmail={primaryEmail}
+            />
           </div>
         </SelfDocumentingView>
       ) : null}
