@@ -4,15 +4,16 @@ import { useIntl } from 'react-intl';
 import Badge from './Badge';
 import Button from './Button';
 
-
 const normalizeTagValue = (tags) => {
-
-  if(tags) {
-    if(Array.isArray(tags)) return tags
-     return tags.toString().split(',').map((str => str.trim()))
+  if (tags) {
+    if (Array.isArray(tags)) return tags;
+    return tags
+      .toString()
+      .split(',')
+      .map((str) => str.trim());
   }
-  return []
-}
+  return [];
+};
 const TagInput = ({
   tagList: tags,
   onChange,

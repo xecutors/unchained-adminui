@@ -7,6 +7,18 @@ export const CurrentUserResponse = {
       web3Addresses: [],
       webAuthnCredentials: [],
       avatar: null,
+      lastBillingAddress: null,
+      lastContact: null,
+      lastLogin: {
+        countryCode: 'CH',
+        locale: 'de_CH',
+        remoteAddress: '::1',
+        remotePort: '51356',
+        timestamp: 1690888482538,
+        userAgent:
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        __typename: 'UserLoginTracker',
+      },
       allowedActions: [
         'answerQuotation',
         'authTwoFactor',

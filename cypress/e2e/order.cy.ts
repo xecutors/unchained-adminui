@@ -23,11 +23,13 @@ const DEFAULT_ORDERS_FILTER = {
   offset: 0,
   includeCarts: false,
   queryString: '',
-  sort: [{
-    "key": "ordered",
-    "value": "DESC"
-}],
-}
+  sort: [
+    {
+      key: 'ordered',
+      value: 'DESC',
+    },
+  ],
+};
 
 describe('Order', () => {
   beforeEach(() => {
@@ -136,7 +138,10 @@ describe('Order', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
 
-        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, includeCarts: true});
+        expect(request.body.variables).to.deep.eq({
+          ...DEFAULT_ORDERS_FILTER,
+          includeCarts: true,
+        });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
@@ -168,9 +173,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
+        expect(request.body.variables).to.deep.eq({
+          ...DEFAULT_ORDERS_FILTER,
           queryString: 'search',
-          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -187,9 +192,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
+        expect(request.body.variables).to.deep.eq({
+          ...DEFAULT_ORDERS_FILTER,
           queryString: 'search input',
-          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -211,9 +216,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
+        expect(request.body.variables).to.deep.eq({
+          ...DEFAULT_ORDERS_FILTER,
           includeCarts: true,
-          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -227,7 +232,6 @@ describe('Order', () => {
           ...DEFAULT_ORDERS_FILTER,
           includeCarts: true,
           queryString: 's',
-          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
