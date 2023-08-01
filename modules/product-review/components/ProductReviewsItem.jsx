@@ -1,4 +1,4 @@
-import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/24/solid';
+import { HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -17,7 +17,7 @@ const ProductReviewsItem = ({ review }) => {
 
   const { removeProductReview } = useRemoveProductReview();
 
-  const onRemove = async (reviewId) => {
+  const onRemove = async (productReviewId) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
@@ -27,17 +27,12 @@ const ProductReviewsItem = ({ review }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeProductReview({ reviewId });
+          await removeProductReview({ productReviewId });
           toast.success(
-            formatMessage(
-              {
-                id: 'review_deleted',
-                defaultMessage: 'Review {reviewId} deleted successfully',
-              },
-              {
-                reviewId,
-              },
-            ),
+            formatMessage({
+              id: 'review_deleted',
+              defaultMessage: 'Review deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -82,9 +77,9 @@ const ProductReviewsItem = ({ review }) => {
           </p>
         </div>
         <div className="flex items-center">
-          <ThumbUpIcon className="h-7 w-7 text-slate-400" />
+          <HandThumbUpIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.upVote}</span>
-          <ThumbDownIcon className="h-7 w-7 text-slate-400" />
+          <HandThumbDownIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.downVote}</span>
         </div>
         {!review.deleted ? (

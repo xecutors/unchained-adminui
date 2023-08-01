@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 
 export const ProductReviewQuery = gql`
-  query Product($productId: ID, $slug: String) {
+  query ProductReviewByProduct($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id
       reviews {

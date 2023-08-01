@@ -1,7 +1,7 @@
 import {
   StarIcon,
-  ThumbDownIcon,
-  ThumbUpIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
 } from '@heroicons/react/24/solid';
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -18,7 +18,11 @@ const ProductReviewsReport = ({ productReviews }) => {
     0,
   );
 
-  const averageVote = (totalUpVote / (totalUpVote + totalDownVote)) * 100;
+  const averageUpVote = totalUpVote
+    ? (totalUpVote / (totalUpVote + totalDownVote)) * 100
+    : 0;
+
+  const averageDownVote = averageUpVote ? 100 - averageUpVote : 0;
 
   return (
     <div className="lg:col-span-4">
@@ -31,13 +35,13 @@ const ProductReviewsReport = ({ productReviews }) => {
 
       <div className="mt-3 flex items-center">
         <div>
-          <div title={`${averageVote}`} className="flex items-center">
+          <div title={`${averageUpVote}`} className="flex items-center">
             {[0, 1, 2, 3, 4].map((rating) => (
               <StarIcon
                 key={rating}
                 className={`
                         ${
-                          averageVote >= rating * 20
+                          averageUpVote >= rating * 20
                             ? 'text-yellow-400'
                             : 'text-slate-400'
                         }
@@ -74,7 +78,7 @@ const ProductReviewsReport = ({ productReviews }) => {
             <dt className="flex flex-1 items-center">
               <p className="font-medium">{totalUpVote}</p>
               <div aria-hidden="true" className="ml-2 flex flex-1 items-center">
-                <ThumbUpIcon
+                <HandThumbUpIcon
                   className={`
                           ${
                             totalUpVote > 0
@@ -91,9 +95,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                     <div
                       className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                       style={{
-                        width: `calc(${totalUpVote} / ${
-                          totalUpVote + totalDownVote
-                        } * 100%)`,
+                        width: `calc(${averageUpVote}%)`,
                       }}
                     />
                   ) : null}
@@ -101,7 +103,7 @@ const ProductReviewsReport = ({ productReviews }) => {
               </div>
             </dt>
             <dd className="ml-3 w-10 text-right text-sm tabular-nums">
-              {Math.round((totalUpVote / (totalUpVote + totalDownVote)) * 100)}%
+              {Math.round(averageUpVote)}%
             </dd>
           </div>
 
@@ -117,7 +119,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                 </span>
               </p>
               <div aria-hidden="true" className="ml-2 flex flex-1 items-center">
-                <ThumbDownIcon
+                <HandThumbDownIcon
                   className={`
                           ${
                             totalDownVote > 0
@@ -135,9 +137,7 @@ const ProductReviewsReport = ({ productReviews }) => {
                     <div
                       className="absolute inset-y-0 rounded-full border border-yellow-400 bg-yellow-400"
                       style={{
-                        width: `calc(${totalDownVote} / ${
-                          totalUpVote + totalDownVote
-                        } * 100%)`,
+                        width: `calc(${averageDownVote}%)`,
                       }}
                     />
                   ) : null}
@@ -145,10 +145,7 @@ const ProductReviewsReport = ({ productReviews }) => {
               </div>
             </dt>
             <dd className="ml-3 w-10 text-right text-sm tabular-nums">
-              {Math.round(
-                (totalDownVote / (totalUpVote + totalDownVote)) * 100,
-              )}
-              %
+              {Math.round(averageDownVote)}%
             </dd>
           </div>
         </dl>

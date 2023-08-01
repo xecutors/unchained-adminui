@@ -1,4 +1,4 @@
-import { EmojiSadIcon } from '@heroicons/react/24/solid';
+import { FaceFrownIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId';
 import NoData from '../../common/components/NoData';
@@ -37,7 +37,7 @@ const ProductReviews = ({ productId }) => {
           </div>
         </div>
       ) : (
-        <NoData message="Reviews" Icon={<EmojiSadIcon />} />
+        <NoData message="Reviews" Icon={<FaceFrownIcon />} />
       )}
     </div>
   );
