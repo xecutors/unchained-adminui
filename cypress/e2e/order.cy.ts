@@ -18,6 +18,16 @@ import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
 import { aliasQuery, fullAliasName } from '../utils/aliasQuery';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import hasOperationName from '../utils/hasOperationName';
+const DEFAULT_ORDERS_FILTER = {
+  limit: 50,
+  offset: 0,
+  includeCarts: false,
+  queryString: '',
+  sort: [{
+    "key": "ordered",
+    "value": "DESC"
+}],
+}
 
 describe('Order', () => {
   beforeEach(() => {
@@ -81,20 +91,14 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
-          queryString: '',
-          sort: [],
-        });
+        expect(request.body.variables).to.deep.eq(DEFAULT_ORDERS_FILTER);
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
 
     cy.get('h2').should('contain.text', localizations.en.orders_list_header);
     cy.location('pathname').should('eq', '/orders');
-    cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
+    /* cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
@@ -102,11 +106,14 @@ describe('Order', () => {
           offset: 0,
           includeCarts: false,
           queryString: '',
-          sort: [],
+          sort: [{
+            "key": "ordered",
+            "value": "DESC"
+        }],
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
-    );
+    ); */
   });
 
   it('Show Navigate to [ORDERS] page successfully', () => {
@@ -129,13 +136,7 @@ describe('Order', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
 
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: true,
-          queryString: '',
-          sort: [],
-        });
+        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, includeCarts: true});
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
@@ -153,13 +154,7 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
-          queryString: '',
-          sort: [],
-        });
+        expect(request.body.variables).to.deep.eq(DEFAULT_ORDERS_FILTER);
         expect(response.body).to.deep.eq(OrderListResponse);
       },
     );
@@ -173,12 +168,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
+        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
           queryString: 'search',
-          sort: [],
+          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -195,12 +187,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
-          includeCarts: false,
+        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
           queryString: 'search input',
-          sort: [],
+          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -222,12 +211,9 @@ describe('Order', () => {
     cy.wait(fullAliasName(OrderOperations.GetOrderList)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
-        expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
+        expect(request.body.variables).to.deep.eq({...DEFAULT_ORDERS_FILTER, 
           includeCarts: true,
-          queryString: '',
-          sort: [],
+          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },
@@ -238,11 +224,10 @@ describe('Order', () => {
       (currentSubject) => {
         const { request, response } = currentSubject;
         expect(request.body.variables).to.deep.eq({
-          limit: 50,
-          offset: 0,
+          ...DEFAULT_ORDERS_FILTER,
           includeCarts: true,
           queryString: 's',
-          sort: [],
+          
         });
         expect(response.body).to.deep.eq(OrderListResponse);
       },

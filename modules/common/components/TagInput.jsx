@@ -4,6 +4,15 @@ import { useIntl } from 'react-intl';
 import Badge from './Badge';
 import Button from './Button';
 
+
+const normalizeTagValue = (tags) => {
+
+  if(tags) {
+    if(Array.isArray(tags)) return tags
+     return tags.toString().split(',').map((str => str.trim()))
+  }
+  return []
+}
 const TagInput = ({
   tagList: tags,
   onChange,
@@ -15,7 +24,7 @@ const TagInput = ({
   placeholder,
 }) => {
   const { formatMessage } = useIntl();
-  const [tagList, setTagList] = useState([...(tags || [])]);
+  const [tagList, setTagList] = useState(normalizeTagValue(tags));
 
   const [newTag, setNewTag] = useState('');
 
@@ -39,7 +48,7 @@ const TagInput = ({
   };
 
   useEffect(() => {
-    setTagList(tags || []);
+    setTagList(normalizeTagValue(tags));
   }, [tags]);
 
   return (
