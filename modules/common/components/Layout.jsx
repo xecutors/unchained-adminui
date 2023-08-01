@@ -11,7 +11,7 @@ import {
   Bars4Icon,
   AdjustmentsVerticalIcon,
 } from '@heroicons/react/24/outline';
-import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
+import { BoltIcon, LinkIcon, StopCircleIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -31,6 +31,7 @@ import ImageWithFallback from './ImageWithFallback';
 import Button from './Button';
 import useStopImpersonation from '../../accounts/hooks/useStopImpersonation';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
 
 const {
   publicRuntimeConfig: { logo },
@@ -243,7 +244,9 @@ const Layout = ({
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div>
+    <div className={classNames("", {
+      'border-red-400 border-4': !!currentUser?.impersonator
+    })}>
       <div
         className={`fixed inset-0 z-40 flex md:hidden  ${
           hideNav ? 'hidden' : ''
@@ -370,17 +373,14 @@ const Layout = ({
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
           {currentUser?.impersonator && (
             <Button
-              text={formatMessage({
-                id: 'stop-impersonation',
-                defaultMessage: 'Stop impersonation',
-              })}
+              text={<StopCircleIcon className='h-5 w-5' />}
               onClick={async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 await stopImpersonation();
                 router.push('/');
               }}
-              className="right-0 absolute"
+              className="right-0 absolute bg-red-600 mr-4 hover:bg-red-400"
             />
           )}
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">

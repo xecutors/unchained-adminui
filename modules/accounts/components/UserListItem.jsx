@@ -86,7 +86,7 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div>
-            <div className="flex">
+            
               {(hasRole('impersonate') || isAdmin()) &&
                 user._id !== currentUser._id && (
                   <Button
@@ -101,21 +101,8 @@ const UserListItem = ({ user }) => {
                       defaultMessage: 'Impersonate Account',
                     })}
                   />
-                )}
-              <svg
-                className="h-5 w-5 text-slate-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
+                )}              
+            
           </div>
         </div>
       </Link>
