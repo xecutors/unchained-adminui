@@ -1,12 +1,19 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
+import Button from '../../common/components/Button';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
+import useCurrentUser from '../hooks/useCurrentUser';
+import useImpersonate from '../hooks/useImpersonate';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
+  const {currentUser} = useCurrentUser()
+  const {impersonateAs} = useImpersonate()
+  const { hasRole, isAdmin } = useAuth();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
@@ -77,6 +84,20 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div>
+            <div className="flex">
+            {(hasRole('impersonate') || isAdmin()) && user._id !== currentUser._id  &&  
+            <Button onClick={async (e) => {
+              e.stopPropagation()
+              e.preventDefault()
+              await impersonateAs({userId: user._id})
+            }}
+            
+            text={formatMessage({
+              id: 'impersonate-user-account',
+              defaultMessage: 'Impersonate Account'
+            })}
+            />
+          }
             <svg
               className="h-5 w-5 text-slate-400"
               xmlns="http://www.w3.org/2000/svg"
@@ -90,6 +111,7 @@ const UserListItem = ({ user }) => {
                 clipRule="evenodd"
               />
             </svg>
+            </div>
           </div>
         </div>
       </Link>
