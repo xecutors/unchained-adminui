@@ -5,6 +5,9 @@ const UserFragment = gql`
   fragment UserFragment on User {
     _id
     isTwoFactorEnabled
+    impersonator {
+      _id
+    }
     lastBillingAddress {
       firstName
       lastName

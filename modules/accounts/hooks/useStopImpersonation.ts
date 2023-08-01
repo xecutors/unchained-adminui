@@ -12,10 +12,11 @@ export const STOP_IMPERSONATION_MUTATION = gql`
 
 const useStopImpersonation = () => {
   const [stopImpersonationMutation, { client }] = useMutation(
-    STOP_IMPERSONATION_MUTATION, {
+    STOP_IMPERSONATION_MUTATION,
+    {
       awaitRefetchQueries: true,
       refetchQueries: ['User'],
-    }
+    },
   );
 
   const stopImpersonation = async () => {

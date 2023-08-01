@@ -28,6 +28,9 @@ import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
+import Button from './Button';
+import useStopImpersonation from '../../accounts/hooks/useStopImpersonation';
+import { useRouter } from 'next/router';
 
 const {
   publicRuntimeConfig: { logo },
@@ -58,6 +61,7 @@ const Layout = ({
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
+  const { stopImpersonation } = useStopImpersonation();
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??
@@ -364,6 +368,21 @@ const Layout = ({
           </div>
         </div>
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
+          {currentUser?.impersonator && (
+            <Button
+              text={formatMessage({
+                id: 'stop-impersonation',
+                defaultMessage: 'Stop impersonation',
+              })}
+              onClick={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                await stopImpersonation();
+                router.push('/');
+              }}
+              className="right-0 absolute"
+            />
+          )}
           <h3 className="ml-8 text-lg font-medium leading-6 text-slate-900">
             {pageHeader}
           </h3>

@@ -14,7 +14,7 @@ export const IMPERSONATE_MUTATION = gql`
 `;
 
 const useImpersonate = () => {
-  const [impersonateAsMutation] = useMutation(IMPERSONATE_MUTATION);
+  const [impersonateAsMutation, { client }] = useMutation(IMPERSONATE_MUTATION);
 
   const impersonateAs = async ({ userId }) => {
     const result = await impersonateAsMutation({
@@ -24,7 +24,7 @@ const useImpersonate = () => {
       awaitRefetchQueries: true,
       refetchQueries: ['User'],
     });
-
+    await client.resetStore();
     return result;
   };
 
