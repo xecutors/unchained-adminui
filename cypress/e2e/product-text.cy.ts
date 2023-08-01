@@ -96,7 +96,7 @@ describe('Product Text', () => {
     cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
     cy.get('input[name="brand"]').should('have.value', de.brand);
     cy.get('input[name="vendor"]').should('have.value', de.vendor);
-    cy.get('input[name="labels"]').should('have.value', de.labels);
+    cy.get('span[id="badge"]').should('contain.text', de.labels);
     /* cy.get('input[name="description"]').should('have.value', de.description); */
   });
 
@@ -108,7 +108,7 @@ describe('Product Text', () => {
     cy.get('input[name="subtitle"]').should('have.value', de.subtitle);
     cy.get('input[name="brand"]').should('have.value', de.brand);
     cy.get('input[name="vendor"]').should('have.value', de.vendor);
-    cy.get('input[name="labels"]').should('have.value', de.labels);
+    cy.get('span[id="badge"]').should('contain.text', de.labels);
     /* cy.get('input[name="description"]').should('contain.text', de.description); */
 
     cy.get('select[id="locale-wrapper"]').select(enLocale.isoCode);
@@ -117,7 +117,7 @@ describe('Product Text', () => {
     cy.get('input[name="subtitle"]').should('have.value', en.subtitle);
     cy.get('input[name="brand"]').should('have.value', en.brand);
     cy.get('input[name="vendor"]').should('have.value', en.vendor);
-    cy.get('input[name="labels"]').should('have.value', en.labels);
+    cy.get('span[id="badge"]').should('contain.text', en.labels);
     /* cy.get('input[name="description"]').should('contain.text', en.description); */
   });
 
@@ -129,7 +129,8 @@ describe('Product Text', () => {
     cy.get('input[name="subtitle"]').clear().type('updated subtitle');
     cy.get('input[name="brand"]').clear().type('updated brand');
     cy.get('input[name="vendor"]').clear().type('updated vendor');
-    cy.get('input[name="labels"]').clear().type('updated label');
+    cy.get('input[name="labels"]').clear().type('updated label').type('{enter}'); 
+    
     cy.get(`input[type="submit"][aria-label="${localizations.en.save}"]`)
       .should('have.value', localizations.en.save)
       .click();
@@ -147,7 +148,10 @@ describe('Product Text', () => {
             subtitle: 'updated subtitle',
             brand: 'updated brand',
             vendor: 'updated vendor',
-            labels: 'updated label',
+            labels: [
+              "test label en",
+              "updated label"
+          ],
             locale: deLocale.isoCode,
             description: null,
           },
