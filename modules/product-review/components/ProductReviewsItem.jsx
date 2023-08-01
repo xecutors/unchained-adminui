@@ -1,4 +1,4 @@
-import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/24/solid';
+import { HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -10,14 +10,14 @@ import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import Badge from '../../common/components/Badge';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 
-const ProductReviewsItem = ({ review }) => {
+const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   const { setModal } = useModal();
 
   const { removeProductReview } = useRemoveProductReview();
 
-  const onRemove = async (reviewId) => {
+  const onRemove = async (productReviewId) => {
     await setModal(
       <DangerMessage
         message={formatMessage({
@@ -27,17 +27,12 @@ const ProductReviewsItem = ({ review }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeProductReview({ reviewId });
+          await removeProductReview({ productReviewId });
           toast.success(
-            formatMessage(
-              {
-                id: 'review_deleted',
-                defaultMessage: 'Review {reviewId} deleted successfully',
-              },
-              {
-                reviewId,
-              },
-            ),
+            formatMessage({
+              id: 'review_deleted',
+              defaultMessage: 'Review deleted successfully',
+            }),
           );
         }}
         okText={formatMessage({
@@ -82,17 +77,18 @@ const ProductReviewsItem = ({ review }) => {
           </p>
         </div>
         <div className="flex items-center">
-          <ThumbUpIcon className="h-7 w-7 text-slate-400" />
+          <HandThumbUpIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.upVote}</span>
-          <ThumbDownIcon className="h-7 w-7 text-slate-400" />
+          <HandThumbDownIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.downVote}</span>
         </div>
-        {!review.deleted ? (
+        {!review.deleted && enableDelete ? (
           <DeleteButton
             onClick={() => onRemove(review._id)}
             className="ml-auto"
           />
-        ) : (
+        ) : null}
+        {review.deleted ? (
           <Badge
             text={formatMessage({
               id: 'deleted_text',
@@ -101,7 +97,7 @@ const ProductReviewsItem = ({ review }) => {
             color="red"
             className="ml-auto p-1"
           />
-        )}
+        ) : null}
       </div>
 
       <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-200">

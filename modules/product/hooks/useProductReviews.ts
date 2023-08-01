@@ -3,26 +3,42 @@ import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductReviewFragment from '../fragments/ProductReviewFragment';
 
 export const ProductReviewQuery = gql`
-  query ProductReviews($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      reviews {
-        ...ProductReviewFragment
-      }
+  query ProductReviews(
+    $queryString: String
+    $limit: Int
+    $offset: Int
+    $sort: [SortOptionInput!]
+  ) {
+    productReviews(
+      queryString: $queryString
+      limit: $limit
+      offset: $offset
+      sort: $sort
+    ) {
+      ...ProductReviewFragment
     }
   }
   ${ProductReviewFragment}
 `;
 
-const useProductReviews = ({ productId: id = null, slug = null } = {}) => {
-  const parsedId = parseUniqueId(slug);
+const useProductReviews = ({
+  queryString = '',
+  limit = 10,
+  offset = 0,
+  sortOptions = [],
+} = {}) => {
   const { data, loading, error } = useQuery(ProductReviewQuery, {
-    skip: !id && !parsedId,
-    variables: { productId: id || parsedId },
+    variables: {
+      queryString,
+      limit: limit || 10,
+      offset: offset || 0,
+      sort: sortOptions?.length
+        ? sortOptions
+        : [{ key: 'created', value: 'DESC' }],
+    },
   });
 
-  const product = data?.product || {};
-  const reviews = product?.reviews || [];
+  const reviews = data?.productReviews || [];
 
   return {
     reviews,

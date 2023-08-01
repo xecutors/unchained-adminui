@@ -18,7 +18,7 @@ const useRemoveProductReview = () => {
       variables: {
         productReviewId,
       },
-      refetchQueries: ['ProductReviews'],
+      refetchQueries: ['ProductReviewByProduct', 'ProductReviewByUser'],
     });
   };
 

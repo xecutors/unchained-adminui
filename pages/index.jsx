@@ -9,6 +9,7 @@ import Link from 'next/link';
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
 import useAuth from '../modules/Auth/useAuth';
+import LatestProductReviews from '../modules/product-review/components/LatestProductReviews';
 
 const Home = () => {
   const { hasRole } = useAuth();
@@ -46,8 +47,8 @@ const Home = () => {
   }, [formatMessage]);
 
   return (
-    <div className="xl:grid xl:grid-cols-3 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200 sm:w-max xl:w-max">
-      <div className="xl:col-span-2 overflow-x-auto">
+    <div className="xl:grid xl:grid-cols-2 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200 sm:w-max xl:w-max">
+      <div className="xl:col-span-1 overflow-x-auto">
         {hasRole('showOrders') && (
           <h2 className="ml-4 mb-3 text-xl">
             {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
@@ -125,8 +126,19 @@ const Home = () => {
               </div>
             </div>
           ))}
+        <div>
+          <SystemInformation />
 
-        <SystemInformation />
+          {hasRole('showProducts') && (
+            <h2 className="ml-4 mb-3 mt-4 text-xl">
+              {formatMessage({
+                id: 'latest-reviews',
+                defaultMessage: 'Latest Reviews',
+              })}{' '}
+            </h2>
+          )}
+          {hasRole('showProducts') && <LatestProductReviews />}
+        </div>
       </div>
     </div>
   );
