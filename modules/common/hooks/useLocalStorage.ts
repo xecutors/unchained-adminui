@@ -12,7 +12,7 @@ const useLocalStorage = (key, initialValue) => {
       }
       return initialValue;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return initialValue;
     }
   });
@@ -28,7 +28,7 @@ const useLocalStorage = (key, initialValue) => {
         console.log('localStorage is not available');
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -43,8 +43,23 @@ export const ShopInfoResponse = {
   },
 };
 
-export const ShopInfoOperations = {
-  ShopInfo: 'ShopInfo',
+const SystemRolesResponseAdmin = {
+  data: {
+    shopInfo: {
+      _id: 'root',
+      userRoles: ['admin'],
+      __typename: 'Shop',
+    },
+  },
 };
 
-export default { ShopInfoResponse, ShopInfoOperations };
+export const ShopInfoOperations = {
+  ShopInfo: 'ShopInfo',
+  SystemRoles: 'SystemRoles',
+};
+
+export default {
+  ShopInfoResponse,
+  ShopInfoOperations,
+  SystemRolesResponseAdmin,
+};

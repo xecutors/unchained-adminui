@@ -3,7 +3,7 @@ import deBounce from '../utils/deBounce';
 
 const SearchField = ({ inputText, onInputChange, defaultValue }) => {
   const { formatMessage } = useIntl();
-  const deBouncedInput = deBounce()(onInputChange);
+  const deBouncedInput = deBounce(200)(onInputChange);
   return (
     <div className="md:max-w-3xl lg:max-w-none">
       <div className="w-full">
@@ -32,7 +32,7 @@ const SearchField = ({ inputText, onInputChange, defaultValue }) => {
             id="search"
             defaultValue={defaultValue}
             name="search"
-            className="block w-full max-w-lg rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:placeholder:text-slate-400 dark:bg-slate-800 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-none"
+            className="block w-full max-w-lg rounded-md border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-white  bg-white dark:placeholder:text-slate-400 dark:bg-slate-800 py-2 pl-10 pr-3 text-sm shadow-sm dark:shadow-none"
             placeholder={formatMessage({
               id: 'search',
               defaultMessage: 'Search',

@@ -37,6 +37,7 @@ describe('Filter', () => {
         aliasQuery(req, LanguageOperations.GetLanguagesList);
         req.reply(LanguagesResponse);
       }
+
       if (hasOperationName(req, FilterOperations.GetFiltersList)) {
         aliasQuery(req, FilterOperations.GetFiltersList);
         req.reply(FilterListResponse);

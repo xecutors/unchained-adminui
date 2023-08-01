@@ -162,6 +162,7 @@ export const AuthenticationOperations = {
   CreateUser: 'CreateUser',
   CreateWebAuthnCredentialRequestOptions:
     'CreateWebAuthnCredentialRequestOptions',
+  UserWebAuthnCredentials: 'UserWebAuthnCredentials',
 };
 
 export const EmailExistsEnrollmentErrorResponse = {
@@ -201,6 +202,17 @@ export const CreateWebAuthnCredentialRequestOptionsResponse = {
     },
   },
 };
+
+export const UserWebAuthnCredentialsResponse = {
+  data: {
+    user: {
+      _id: 'zmCNUUHJJYZRMFHdN',
+      webAuthnCredentials: [],
+      __typename: 'User',
+    },
+  },
+};
+
 export default {
   LogInSuccessResponse,
   InvalidCredentialErrorResponse,
@@ -208,4 +220,5 @@ export default {
   ForgotPasswordSuccessResponse,
   EmailExistsEnrollmentErrorResponse,
   EnrollmentSuccessResponse,
+  UserWebAuthnCredentialsResponse,
 };

@@ -19,7 +19,7 @@ const AddFilter = () => {
       title,
       type,
     });
-    return { success: !!errors?.length, data: data?.createFilter };
+    return { success: !errors?.length, data: data?.createFilter };
   };
 
   const onSubmitSuccess = (_, { _id }) => {

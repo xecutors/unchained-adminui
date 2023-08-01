@@ -37,10 +37,16 @@
 
 import hasOperationName from '../utils/hasOperationName';
 import { ShopInfoOperations, ShopInfoResponse } from '../mock/shop-info';
-import { CurrentUserResponse, UserOperations } from '../mock/user';
+import {
+  CurrentUserResponse,
+  SystemRolesResponse,
+  UserOperations,
+  UserWebAuthCredentials,
+} from '../mock/user';
 import { OrderListResponse, OrderOperations } from '../mock/order';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import { aliasQuery } from '../utils/aliasQuery';
+import { AuthenticationOperations } from '../mock/authorization';
 
 beforeEach(() => {
   cy.intercept('POST', '/api/graphql', (req) => {
@@ -56,6 +62,15 @@ beforeEach(() => {
 
     if (hasOperationName(req, ShopInfoOperations.ShopInfo)) {
       req.reply(ShopInfoResponse);
+    }
+    if (hasOperationName(req, ShopInfoOperations.SystemRoles)) {
+      req.reply(SystemRolesResponse);
+    }
+
+    if (
+      hasOperationName(req, AuthenticationOperations.UserWebAuthnCredentials)
+    ) {
+      req.reply(UserWebAuthCredentials);
     }
 
     if (

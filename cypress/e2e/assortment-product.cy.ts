@@ -240,7 +240,7 @@ describe('Assortment Detail Products', () => {
         expect(request.body.variables).to.deep.eq({
           productId: ProductListResponse.data.products[1]._id,
           assortmentId: assortment._id,
-          tags: [],
+          tags: null,
         });
         expect(response.body).to.deep.eq(AddAssortmentProductResponse);
       },

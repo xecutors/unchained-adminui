@@ -230,7 +230,7 @@ describe('Assortment Detail Links', () => {
         expect(request.body.variables).to.deep.eq({
           parentAssortmentId: assortment._id,
           childAssortmentId: assortments[2]._id,
-          tags: [],
+          tags: null,
         });
         expect(response.body).to.deep.eq(AddAssortmentLinkResponse);
       },

@@ -124,25 +124,46 @@ describe('User', () => {
     it('should update data and route when [SEARCHING] accordingly', () => {
       const { user } = SingleUserResponse.data;
 
-      cy.get('input[type="search"]').focus().type('search');
+      cy.get('input[type="search"]').focus().type('sea');
 
       cy.wait(fullAliasName(UserOperations.UserOrder)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             userId: user._id,
-            queryString: 'search',
+            queryString: 'sea',
+            sort: [
+              {
+                key: 'ordered',
+                value: 'DESC',
+              },
+            ],
           });
           expect(response.body).to.deep.eq(UserOrderListResponse);
         },
       );
 
+      cy.location().then((current) => {
+        expect(current.pathname).to.eq(`/users/${user._id}`);
+        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
+          tab: 'orders',
+          queryString: 'sea',
+        });
+      });
+      cy.get('input[type="search"]').focus().type('rch');
+
       cy.wait(fullAliasName(UserOperations.UserOrder)).then(
         (currentSubject) => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             userId: user._id,
             queryString: 'search',
+            sort: [
+              {
+                key: 'ordered',
+                value: 'DESC',
+              },
+            ],
           });
           expect(response.body).to.deep.eq(UserOrderListResponse);
         },
@@ -153,26 +174,6 @@ describe('User', () => {
         expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
           tab: 'orders',
           queryString: 'search',
-        });
-      });
-      cy.get('input[type="search"]').focus().type(' input');
-
-      cy.wait(fullAliasName(UserOperations.UserOrder)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            userId: user._id,
-            queryString: 'search input',
-          });
-          expect(response.body).to.deep.eq(UserOrderListResponse);
-        },
-      );
-
-      cy.location().then((current) => {
-        expect(current.pathname).to.eq(`/users/${user._id}`);
-        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-          tab: 'orders',
-          queryString: 'search input',
         });
       });
     });

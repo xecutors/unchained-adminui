@@ -162,6 +162,18 @@ export const UserListResponse = {
         web3Addresses: [],
         webAuthnCredentials: [],
         avatar: null,
+        lastBillingAddress: null,
+        lastContact: null,
+        lastLogin: {
+          countryCode: 'CH',
+          locale: 'de_CH',
+          remoteAddress: '::1',
+          remotePort: '51356',
+          timestamp: 1690888482538,
+          userAgent:
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+          __typename: 'UserLoginTracker',
+        },
         allowedActions: [
           'answerQuotation',
           'authTwoFactor',
@@ -344,6 +356,18 @@ export const UserListResponse = {
         isTwoFactorEnabled: true,
         web3Addresses: [],
         webAuthnCredentials: [],
+        lastBillingAddress: null,
+        lastContact: null,
+        lastLogin: {
+          countryCode: 'CH',
+          locale: 'de_CH',
+          remoteAddress: '::1',
+          remotePort: '51356',
+          timestamp: 1690888482538,
+          userAgent:
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+          __typename: 'UserLoginTracker',
+        },
         avatar: null,
         allowedActions: [
           'bookmarkProduct',
@@ -396,6 +420,18 @@ export const UserListResponse = {
         email: 'rdt@hotmail.com',
         isTwoFactorEnabled: false,
         avatar: null,
+        lastBillingAddress: null,
+        lastContact: null,
+        lastLogin: {
+          countryCode: 'CH',
+          locale: 'de_CH',
+          remoteAddress: '::1',
+          remotePort: '51356',
+          timestamp: 1690888482538,
+          userAgent:
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+          __typename: 'UserLoginTracker',
+        },
         web3Addresses: [],
         webAuthnCredentials: [],
         allowedActions: [
@@ -457,7 +493,7 @@ export const SingleUserResponse = {
 
 export const TOTPEnabledUser = {
   data: {
-    user: UserListResponse.data.users[1],
+    user: UserListResponse.data.users[0],
   },
 };
 
@@ -468,6 +504,18 @@ export const CreateUserResponse = {
       email: 'redi@hotmail.com',
       isTwoFactorEnabled: false,
       web3Addresses: [],
+      lastBillingAddress: null,
+      lastContact: null,
+      lastLogin: {
+        countryCode: 'CH',
+        locale: 'de_CH',
+        remoteAddress: '::1',
+        remotePort: '51356',
+        timestamp: 1690888482538,
+        userAgent:
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        __typename: 'UserLoginTracker',
+      },
       webAuthnCredentials: [],
       avatar: null,
       allowedActions: [
@@ -544,6 +592,18 @@ export const UpdateUserResponse = {
       email: 'admin@unchained.local',
       isTwoFactorEnabled: false,
       web3Addresses: [],
+      lastBillingAddress: null,
+      lastContact: null,
+      lastLogin: {
+        countryCode: 'CH',
+        locale: 'de_CH',
+        remoteAddress: '::1',
+        remotePort: '51356',
+        timestamp: 1690888482538,
+        userAgent:
+          'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        __typename: 'UserLoginTracker',
+      },
       webAuthnCredentials: [],
       avatar: null,
       allowedActions: [

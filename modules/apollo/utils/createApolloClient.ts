@@ -104,7 +104,7 @@ const createApolloClient = ({
     }
 
     if (networkError) {
-      console.log(`[Network error]: ${networkError}`); // eslint-disable-line
+      console.error(`[Network error]: ${networkError}`); // eslint-disable-line
     }
   });
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import Badge from './Badge';
@@ -48,7 +48,7 @@ const TagInput = ({
     }
   };
 
-  useEffect(() => {
+  useMemo(() => {
     setTagList(normalizeTagValue(tags));
   }, [tags]);
 

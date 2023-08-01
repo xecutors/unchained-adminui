@@ -129,8 +129,11 @@ describe('Product Text', () => {
     cy.get('input[name="subtitle"]').clear().type('updated subtitle');
     cy.get('input[name="brand"]').clear().type('updated brand');
     cy.get('input[name="vendor"]').clear().type('updated vendor');
-    cy.get('input[name="labels"]').clear().type('updated label').type('{enter}'); 
-    
+    cy.get('input[name="labels"]')
+      .clear()
+      .type('updated label')
+      .type('{enter}');
+
     cy.get(`input[type="submit"][aria-label="${localizations.en.save}"]`)
       .should('have.value', localizations.en.save)
       .click();
@@ -148,10 +151,7 @@ describe('Product Text', () => {
             subtitle: 'updated subtitle',
             brand: 'updated brand',
             vendor: 'updated vendor',
-            labels: [
-              "test label en",
-              "updated label"
-          ],
+            labels: ['test label en', 'updated label'],
             locale: deLocale.isoCode,
             description: null,
           },
