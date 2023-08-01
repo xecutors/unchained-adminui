@@ -10,7 +10,7 @@ import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import Badge from '../../common/components/Badge';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 
-const ProductReviewsItem = ({ review }) => {
+const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   const { setModal } = useModal();
@@ -82,12 +82,13 @@ const ProductReviewsItem = ({ review }) => {
           <HandThumbDownIcon className="h-7 w-7 text-slate-400" />
           <span className="mx-2">{review.downVote}</span>
         </div>
-        {!review.deleted ? (
+        {!review.deleted && enableDelete ? (
           <DeleteButton
             onClick={() => onRemove(review._id)}
             className="ml-auto"
           />
-        ) : (
+        ) : null}
+        {review.deleted ? (
           <Badge
             text={formatMessage({
               id: 'deleted_text',
@@ -96,7 +97,7 @@ const ProductReviewsItem = ({ review }) => {
             color="red"
             className="ml-auto p-1"
           />
-        )}
+        ) : null}
       </div>
 
       <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-200">
