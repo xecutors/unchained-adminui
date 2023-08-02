@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
-import ProductReviewFragment from '../fragments/ProductReviewFragment';
+import ProductReviewDetailFragment from '../../product-review/fragments/ProductReviewDetailFragment';
 
 export const ProductReviewQuery = gql`
   query ProductReviews(
@@ -15,10 +15,10 @@ export const ProductReviewQuery = gql`
       offset: $offset
       sort: $sort
     ) {
-      ...ProductReviewFragment
+      ...ProductReviewDetailFragment
     }
   }
-  ${ProductReviewFragment}
+  ${ProductReviewDetailFragment}
 `;
 
 const useProductReviews = ({

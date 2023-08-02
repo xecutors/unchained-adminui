@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import ProductReviewFragment from '../../product/fragments/ProductReviewFragment';
+import ProductReviewFragment from '../fragments/ProductReviewFragment';
 
 export const ProductReviewsQuery = gql`
   query ProductReviews(

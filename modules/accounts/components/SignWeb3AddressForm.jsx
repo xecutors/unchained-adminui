@@ -2,7 +2,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import CopyableText from '../../common/components/CopyableText';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
-import TextAreaField from '../../forms/components/TextAreaField';
+import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import useForm from '../../forms/hooks/useForm';
 import useVerifyWeb3Address from '../hooks/useVerifyWeb3Address';
 
@@ -84,7 +84,7 @@ const SignWeb3AddressForm = ({ nonce, address, close }) => {
         </div>
       </div>
       <Form form={form}>
-        <TextAreaField
+        <MarkdownTextAreaField
           required
           name="hash"
           label={formatMessage({

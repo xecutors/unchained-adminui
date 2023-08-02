@@ -12,7 +12,7 @@ import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import TextAreaField from '../../forms/components/TextAreaField';
+import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 
 const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
   const { formatMessage } = useIntl();
@@ -128,7 +128,7 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
                 />
               </div>
               <div className="col-span-12">
-                <TextAreaField
+                <MarkdownTextAreaField
                   name="description"
                   id="description"
                   label={formatMessage({

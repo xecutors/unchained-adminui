@@ -12,7 +12,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
-import TextAreaField from '../../forms/components/TextAreaField';
+import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
 
 const ProductTextsForm = ({ productId, selectedLocale }) => {
@@ -178,7 +178,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
               </div>
             </div>
             <div className="col-span-6 mt-6 sm:col-span-3">
-              <TextAreaField
+              <MarkdownTextAreaField
                 name="description"
                 id="description"
                 label={formatMessage({

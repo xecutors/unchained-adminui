@@ -4,11 +4,14 @@ import useProductReviewsByProductId from '../hooks/useProductReviewsByProductId'
 import NoData from '../../common/components/NoData';
 import ProductReviewsItem from './ProductReviewsItem';
 import ProductReviewsReport from './ProductReviewsReport';
+import ProductReviewForm from './ProductReviewForm';
+import useCreateProductReview from '../hooks/useCreateProductReview';
 
 const ProductReviews = ({ productId }) => {
   const { productReviews } = useProductReviewsByProductId({
     productId,
   });
+  const { createProductReview } = useCreateProductReview();
   const { formatMessage } = useIntl();
 
   return (
@@ -19,6 +22,18 @@ const ProductReviews = ({ productId }) => {
             <ProductReviewsReport productReviews={productReviews} />
 
             <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+              {productId && (
+                <ProductReviewForm
+                  onSubmit={async ({ title, review, rating }) =>
+                    await createProductReview({
+                      productId,
+                      title,
+                      review,
+                      rating: 10,
+                    })
+                  }
+                />
+              )}
               <h3 className="sr-only">
                 {formatMessage({
                   id: 'recent_reviews',
