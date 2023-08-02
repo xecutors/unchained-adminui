@@ -17,6 +17,8 @@ import formatUsername from '../../common/utils/formatUsername';
 import useAddProductReviewVote from '../hooks/useAddProductReviewVote';
 import Button from '../../common/components/Button';
 import useRemoveProductReviewVote from '../hooks/useRemoveProductReviewVote';
+import useAuth from '../../Auth/useAuth';
+import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 
 const voteTypes = {
   UPVOTE: 'UPVOTE',
@@ -25,11 +27,12 @@ const voteTypes = {
 };
 const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { formatMessage } = useIntl();
-
+  const { currentUser } = useCurrentUser();
   const { formatDateTime } = useFormatDateTime();
   const { setModal } = useModal();
   const { addProductReviewVote } = useAddProductReviewVote();
   const { removeProductReviewVote } = useRemoveProductReviewVote();
+  const { hasRole, isAdmin } = useAuth();
   const hasAlreadyVoted = (type) =>
     !!review.ownVotes.find((v) => v.type === type);
   const toggleVote = async (type, meta = null) => {
@@ -41,6 +44,14 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
   };
 
   const { removeProductReview } = useRemoveProductReview();
+  const canDeleteReview =
+    (!review.deleted &&
+      hasRole('voteProductReview') &&
+      enableDelete &&
+      review?.author?._id === currentUser._id) ||
+    (isAdmin(currentUser) && !review.deleted);
+
+  const canManageVotes = !review.deleted && hasRole('voteProductReview');
 
   const onRemove = async (productReviewId) => {
     await setModal(
@@ -104,7 +115,11 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
           </p>
         </div>
         <div className="flex items-center">
-          <button onClick={async () => toggleVote(voteTypes.UPVOTE)}>
+          <button
+            type="button"
+            disabled={!canManageVotes}
+            onClick={async () => toggleVote(voteTypes.UPVOTE)}
+          >
             <HandThumbUpIcon
               className={`h-7 w-7
             ${
@@ -115,7 +130,11 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
             />
             <span className="mx-2">{review.upVote}</span>
           </button>
-          <button onClick={async () => toggleVote(voteTypes.DOWNVOTE)}>
+          <button
+            type="button"
+            disabled={!canManageVotes}
+            onClick={async () => toggleVote(voteTypes.DOWNVOTE)}
+          >
             <HandThumbDownIcon
               className={`h-7 w-7
             ${
@@ -129,7 +148,7 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
           </button>
         </div>
 
-        {!review.deleted && enableDelete ? (
+        {canDeleteReview ? (
           <DeleteButton
             onClick={() => onRemove(review._id)}
             className="ml-auto"
@@ -145,19 +164,28 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
             className="ml-auto p-1"
           />
         ) : null}
-        <Button
-          text={
-            <FlagIcon
-              className={`h-5 w-5 border-slate-600 hover:text-white text-slate-400 border-3 ${
-                hasAlreadyVoted(voteTypes.REPORT)
-                  ? 'text-yellow-400'
-                  : 'text-slate-400'
-              }              `}
-            />
-          }
-          onClick={async () => toggleVote(voteTypes.REPORT)}
-          className="p-0 bg-white hover:bg-slate-300 "
-        />
+        {hasRole('voteProductReview') && (
+          <Button
+            disabled={!canManageVotes}
+            text={
+              <FlagIcon
+                className={classNames(
+                  'h-5 w-5 border-slate-600  text-slate-400 border-3',
+                  {
+                    'text-yellow-400': hasAlreadyVoted(voteTypes.REPORT),
+                    'text-slate-400': !hasAlreadyVoted(voteTypes.REPORT),
+                    'hover:text-white': canManageVotes,
+                  },
+                )}
+              />
+            }
+            onClick={async () => toggleVote(voteTypes.REPORT)}
+            className={classNames('p-0 bg-white', {
+              'hover:bg-slate-300': canManageVotes,
+              'hover:bg-white': !canManageVotes,
+            })}
+          />
+        )}
       </div>
 
       <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-600">

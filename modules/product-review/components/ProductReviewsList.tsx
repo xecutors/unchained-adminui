@@ -1,6 +1,10 @@
 import ProductReviewsItem from './ProductReviewsItem';
 
-const ProductReviewsList = ({ reviews, className = '' }) => {
+const ProductReviewsList = ({
+  reviews,
+  className = '',
+  enableDelete = false,
+}) => {
   if (!reviews || !reviews.length) return null;
 
   return (
@@ -9,7 +13,7 @@ const ProductReviewsList = ({ reviews, className = '' }) => {
         <ProductReviewsItem
           key={review._id}
           review={review}
-          enableDelete={false}
+          enableDelete={enableDelete}
         />
       ))}
     </div>

@@ -274,7 +274,7 @@ module.exports = () => {
 
       if (
         ROUTE_ROLES[pathname] === 'UNRESTRICTED' ||
-        isAdmin() ||
+        isAdmin(user) ||
         (user?.allowedActions || [])?.includes(ROUTE_ROLES[pathname])
       )
         return true;
