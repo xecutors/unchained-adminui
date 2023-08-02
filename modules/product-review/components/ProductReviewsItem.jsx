@@ -9,6 +9,7 @@ import useModal from '../../modal/hooks/useModal';
 import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import Badge from '../../common/components/Badge';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
+import formatUsername from '../../common/utils/formatUsername';
 
 const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { formatMessage } = useIntl();
@@ -66,7 +67,9 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
           className="h-12 w-12 rounded-full"
         />
         <div className="ml-4 mr-auto">
-          <h4 className="text-sm font-bold">{review?.author?.username}</h4>
+          <h4 className="text-sm font-bold text-slate-600">
+            {formatUsername(review?.author)}
+          </h4>
           <p className="text-sm font-normal text-slate-400">
             <time dateTime={review.updated || review.created}>
               {formatDateTime(review.updated || review.created, {
@@ -100,7 +103,7 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
         ) : null}
       </div>
 
-      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-200">
+      <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-600">
         <h3 className="text-sm font-medium">{review.title}</h3>
         <p>{review.review}</p>
       </div>

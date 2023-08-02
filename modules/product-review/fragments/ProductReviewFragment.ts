@@ -9,6 +9,14 @@ const ProductReviewFragment = gql`
     author {
       _id
       username
+      name
+      profile {
+        displayName
+        address {
+          firstName
+          lastName
+        }
+      }
       isGuest
       avatar {
         _id
