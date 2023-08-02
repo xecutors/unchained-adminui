@@ -1,9 +1,9 @@
 import { useMutation, gql } from '@apollo/client';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
-enum ProductReviewVoteType {
-  UPVOTE,
-  DOWNVOTE,
-  REPORT,
+export enum ProductReviewVoteType {
+  UPVOTE = 'UPVOTE',
+  DOWNVOTE = 'DOWNVOTE',
+  REPORT = 'REPORT',
 }
 const AddProductReviewVoteMutation = gql`
   mutation AddProductReviewVote(
