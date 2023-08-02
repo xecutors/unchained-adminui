@@ -27,23 +27,6 @@ const ProductBriefFragment = gql`
         url
       }
     }
-    reviews {
-      _id
-      created
-      author {
-        _id
-        username
-        isGuest
-      }
-      rating
-      title
-      review
-      voteCount
-      ownVotes {
-        type
-        timestamp
-      }
-    }
   }
 `;
 
