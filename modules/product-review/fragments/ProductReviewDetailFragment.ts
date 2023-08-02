@@ -46,7 +46,6 @@ const ProductReviewDetailFragment = gql`
     downVote: voteCount(type: DOWNVOTE)
     voteReport: voteCount(type: REPORT)
     ownVotes {
-      _id
       timestamp
       type
     }

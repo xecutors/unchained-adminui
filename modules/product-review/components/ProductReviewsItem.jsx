@@ -1,4 +1,8 @@
-import { HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/solid';
+import {
+  FlagIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
+} from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -10,11 +14,24 @@ import useRemoveProductReview from '../hooks/useRemoveProductReview';
 import Badge from '../../common/components/Badge';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 import formatUsername from '../../common/utils/formatUsername';
+import useAddProductReviewVote from '../hooks/useAddProductReviewVote';
+import Button from '../../common/components/Button';
 
+const voteTypes = {
+  UPVOTE: 'UPVOTE',
+  DOWNVOTE: 'DOWNVOTE',
+  REPORT: 'REPORT',
+};
 const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { formatMessage } = useIntl();
+
   const { formatDateTime } = useFormatDateTime();
   const { setModal } = useModal();
+  const { addProductReviewVote } = useAddProductReviewVote();
+
+  const vote = async (type, meta = null) => {
+    await addProductReviewVote({ productReviewId: review._id, type, meta });
+  };
 
   const { removeProductReview } = useRemoveProductReview();
 
@@ -80,11 +97,31 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
           </p>
         </div>
         <div className="flex items-center">
-          <HandThumbUpIcon className="h-7 w-7 text-slate-400" />
-          <span className="mx-2">{review.upVote}</span>
-          <HandThumbDownIcon className="h-7 w-7 text-slate-400" />
-          <span className="mx-2">{review.downVote}</span>
+          <button onClick={async () => await vote(voteTypes.UPVOTE)}>
+            <HandThumbUpIcon
+              className={`h-7 w-7
+            ${
+              review?.ownVotes?.find((v) => v.type === voteTypes.UPVOTE)
+                ? 'text-yellow-400'
+                : 'text-slate-400'
+            }`}
+            />
+            <span className="mx-2">{review.upVote}</span>
+          </button>
+          <button onClick={async () => await vote(voteTypes.DOWNVOTE)}>
+            <HandThumbDownIcon
+              className={`h-7 w-7
+            ${
+              review?.ownVotes?.find((v) => v.type === voteTypes.DOWNVOTE)
+                ? 'text-yellow-400'
+                : 'text-slate-400'
+            }            
+          `}
+            />
+            <span className="mx-2">{review.downVote}</span>
+          </button>
         </div>
+
         {!review.deleted && enableDelete ? (
           <DeleteButton
             onClick={() => onRemove(review._id)}
@@ -101,6 +138,19 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
             className="ml-auto p-1"
           />
         ) : null}
+        <Button
+          text={
+            <FlagIcon
+              className={`h-5 w-5 border-slate-600 hover:text-white text-slate-400 border-3 ${
+                review?.ownVotes?.find((v) => v.type === voteTypes.REPORT)
+                  ? 'text-yellow-400'
+                  : 'text-slate-400'
+              }              `}
+            />
+          }
+          onClick={() => vote(voteTypes.REPORT)}
+          className="p-0 bg-white hover:bg-slate-300 "
+        />
       </div>
 
       <div className="mt-4 space-y-2 text-base italic text-slate-600 dark:text-slate-600">

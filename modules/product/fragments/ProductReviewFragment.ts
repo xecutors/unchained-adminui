@@ -11,7 +11,6 @@ const ProductReviewFragment = gql`
     review
     voteCount
     ownVotes {
-      _id
       timestamp
       type
     }
