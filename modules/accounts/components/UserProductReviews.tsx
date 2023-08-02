@@ -6,7 +6,7 @@ const UserProductReviews = ({ _id }) => {
 
   return (
     <div className="space-y-4 mt-4 bg-white">
-      <ProductReviewsList reviews={reviews} />
+      <ProductReviewsList reviews={reviews} enableDelete={true} />
     </div>
   );
 };
