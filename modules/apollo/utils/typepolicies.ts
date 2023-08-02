@@ -31,6 +31,18 @@ export const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
+      Product: {
+        keyArgs: ['productId', 'slug'],
+        fields: {
+          reviews: offsetLimitPagination(),
+        },
+      },
+      User: {
+        keyArgs: ['userId'],
+        fields: {
+          reviews: offsetLimitPagination(),
+        },
+      },
       Countries: {
         keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
         merge(existing = [], incoming = []) {
