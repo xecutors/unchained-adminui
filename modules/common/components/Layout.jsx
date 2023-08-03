@@ -244,9 +244,12 @@ const Layout = ({
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div className={classNames("", {
-      'border-red-400 border-4': !!currentUser?.impersonator
-    })}>
+    <div
+      className={classNames('', {
+        'fixed overflow-scroll border-8 border-red-600 top-0 left-0 right-0 bottom-0':
+          !!currentUser?.impersonator,
+      })}
+    >
       <div
         className={`fixed inset-0 z-40 flex md:hidden  ${
           hideNav ? 'hidden' : ''
@@ -373,7 +376,7 @@ const Layout = ({
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
           {currentUser?.impersonator && (
             <Button
-              text={<StopCircleIcon className='h-5 w-5' />}
+              text={<StopCircleIcon className="h-5 w-5" />}
               onClick={async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
