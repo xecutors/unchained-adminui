@@ -12,6 +12,7 @@
     "extract-translation": "formatjs extract '(pages|modules)/**/*.{ts,tsx,jsx}' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
     "compile-translation": "formatjs compile  ./lang/en.json  --out-file ./i18n/en.json --format custom-formatter.js",
     "test:e2e": "cypress open",
+    "test:component": "cypress open --component",
     "test:e2e-record": "cypress run --browser chrome --record",
     "version": "run-p --print-label && npm version --no-git-tag-version patch && git add .",
     "tag": "git tag v$npm_package_version && git push origin v$npm_package_version",
