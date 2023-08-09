@@ -14,9 +14,9 @@
     "test:e2e": "cypress open",
     "test:component": "cypress open --component",
     "test:e2e-record": "cypress run --browser chrome --record",
-    "version": "run-p --print-label && npm version --no-git-tag-version patch && git add .",
+    "version": "npm version  patch && git add .",
     "tag": "git tag v$npm_package_version && git push origin v$npm_package_version",
-    "version-n-tag": "run-p --print-label && npm  version && npm run tag"
+    "version-n-tag": "run-p --print-label && npm run  version && npm run tag"
   },
   "engines": {
     "node": ">=16"
