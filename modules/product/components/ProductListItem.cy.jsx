@@ -1,19 +1,18 @@
 import React from 'react';
 import ProductListItem from './ProductListItem';
-
+const MOCK_PRODUCT = {
+  _id: 'mock',
+  texts: { title: 'new products', slug: 'texts-slug' },
+  status: 'ACTIVE',
+  tags: ['test'],
+  sequence: 1,
+};
 describe('<ProductListItem />', () => {
   it('renders', () => {
-    // see: https://on.cypress.io/mounting-react
-    cy.mount(
-      <ProductListItem
-        product={{
-          _id: 'mock',
-          texts: { title: 'new products', slug: 'texts-slug' },
-          status: 'ACTIVE',
-          tags: ['test'],
-          sequence: 1,
-        }}
-      />,
-    );
+    cy.mount(<ProductListItem product={MOCK_PRODUCT} />);
+    cy.get('.flex.items-center').should('be.visible');
+    cy.get('.text-blue-600').should('be.visible');
+    cy.get('.whitespace-nowrap').should('be.visible');
+    cy.get('input[type="number"]').should('be.visible');
   });
 });

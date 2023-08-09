@@ -61,7 +61,7 @@ Cypress.Commands.add('mount', (component, options: any) => {
     ...(options?.router || {}),
   };
 
-  cy.stub(Router, 'useRouter').returns(router);
+  cy.stub(Router, 'useRouter' as any).returns(router);
 
   return mount(
     <MockedProvider>
