@@ -3,6 +3,7 @@ import {
   ClipboardDocumentListIcon,
   CreditCardIcon,
   LockClosedIcon,
+  PaperAirplaneIcon,
   PuzzlePieceIcon,
   ShoppingCartIcon,
   UserIcon,
@@ -12,6 +13,7 @@ import DisplayExtendedFields from '../../common/components/DisplayExtendedFields
 import DisplayUserLastLogs from '../../common/components/DisplayUserLastLogs';
 import Loading from '../../common/components/Loading';
 import Tab from '../../common/components/Tab';
+import UserProductReviews from './UserProductReviews';
 import AccountView from './AccountView';
 import PaymentCredentialsView from './PaymentCredentialsView';
 import ProfileView from './ProfileView';
@@ -27,6 +29,7 @@ const GetCurrentTab = ({ user, selectedView, ...extendedData }) => {
   if (selectedView === 'orders') return <UserOrders {...user} />;
   if (selectedView === 'quotations') return <UserQuotations {...user} />;
   if (selectedView === 'enrollments') return <UserEnrollments {...user} />;
+  if (selectedView === 'reviews') return <UserProductReviews {...user} />;
 
   if (selectedView === 'payment_credentials')
     return <PaymentCredentialsView {...user} />;
@@ -103,6 +106,14 @@ const UserSettings = ({ user, extendedData }) => {
           />
         </svg>
       ),
+    },
+    {
+      id: 'reviews',
+      title: formatMessage({
+        id: 'reviews',
+        defaultMessage: 'Reviews',
+      }),
+      Icon: <PaperAirplaneIcon className="h-4 w-5" />,
     },
     {
       id: 'logs',

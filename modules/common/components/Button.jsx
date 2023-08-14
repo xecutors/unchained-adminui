@@ -1,6 +1,12 @@
 import classnames from 'classnames';
 
-const Button = ({ text, onClick, className, disabled = false, id }) => {
+const Button = ({
+  text,
+  onClick,
+  className = '',
+  disabled = false,
+  id = '',
+}) => {
   return (
     <button
       id={id}

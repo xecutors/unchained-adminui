@@ -19,13 +19,15 @@ import Button from '../../common/components/Button';
 import useRemoveProductReviewVote from '../hooks/useRemoveProductReviewVote';
 import useAuth from '../../Auth/useAuth';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
+import ProductReviewReportCommentForm from './ProductReviewReportCommentForm';
 
 const voteTypes = {
   UPVOTE: 'UPVOTE',
   DOWNVOTE: 'DOWNVOTE',
   REPORT: 'REPORT',
 };
-const ProductReviewsItem = ({ review, enableDelete = true }) => {
+
+const ProductReviewsItem = ({ review, enableDelete = true, showProduct }) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { formatDateTime } = useFormatDateTime();
@@ -33,13 +35,36 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
   const { addProductReviewVote } = useAddProductReviewVote();
   const { removeProductReviewVote } = useRemoveProductReviewVote();
   const { hasRole, isAdmin } = useAuth();
+
   const hasAlreadyVoted = (type) =>
     !!review.ownVotes.find((v) => v.type === type);
-  const toggleVote = async (type, meta = null) => {
+  const toggleVote = async (type) => {
+    const onReportSubmit = async ({ message }) => {
+      try {
+        await addProductReviewVote({
+          productReviewId: review._id,
+          type,
+          meta: { message },
+        });
+        return true;
+      } catch (e) {
+        return e?.message || e;
+      }
+    };
+
     if (hasAlreadyVoted(type)) {
       await removeProductReviewVote({ productReviewId: review._id, type });
     } else {
-      await addProductReviewVote({ productReviewId: review._id, type, meta });
+      if (type === voteTypes.REPORT) {
+        await setModal(
+          <ProductReviewReportCommentForm
+            onSubmit={onReportSubmit}
+            onSubmitSuccess={async () => setModal(null)}
+          />,
+        );
+      } else {
+        await addProductReviewVote({ productReviewId: review._id, type });
+      }
     }
   };
 
@@ -52,6 +77,8 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
     (isAdmin(currentUser) && !review.deleted);
 
   const canManageVotes = !review.deleted && hasRole('voteProductReview');
+  const product = review?.product;
+  console.log(product);
 
   const onRemove = async (productReviewId) => {
     await setModal(
@@ -94,16 +121,39 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
       )}
     >
       <div className="flex items-center">
-        <ImageWithFallback
-          src={review?.author?.avatar?.url}
-          alt={review?.author?.username}
-          width={48}
-          height={48}
-          className="h-12 w-12 rounded-full"
-        />
+        {showProduct ? (
+          <ImageWithFallback
+            src={product?.media[0]?.file?.url}
+            alt={review?.author?.username}
+            width={48}
+            height={48}
+            className="h-12 w-12 rounded-full"
+          />
+        ) : (
+          <ImageWithFallback
+            src={review?.author?.avatar?.url}
+            alt={review?.author?.username}
+            width={48}
+            height={48}
+            className="h-12 w-12 rounded-full"
+          />
+        )}
         <div className="ml-4 mr-auto">
           <h4 className="text-sm font-bold text-slate-600">
-            {formatUsername(review?.author)}
+            {showProduct
+              ? product?.texts?.title || (
+                  <>
+                    {product._id}{' '}
+                    <Badge
+                      color="yellow"
+                      text={formatMessage({
+                        id: 'title_not_found',
+                        defaultMessage: 'Title not found',
+                      })}
+                    />
+                  </>
+                )
+              : formatUsername(review?.author)}
           </h4>
           <p className="text-sm font-normal text-slate-400">
             <time dateTime={review.updated || review.created}>
@@ -128,7 +178,7 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
                 : 'text-slate-400'
             }`}
             />
-            <span className="mx-2">{review.upVote}</span>
+            <span className="mx-2 text-slate-600">{review.upVote}</span>
           </button>
           <button
             type="button"
@@ -144,7 +194,7 @@ const ProductReviewsItem = ({ review, enableDelete = true }) => {
             }            
           `}
             />
-            <span className="mx-2">{review.downVote}</span>
+            <span className="mx-2 text-slate-600 ">{review.downVote}</span>
           </button>
         </div>
 

@@ -6,11 +6,13 @@ import ProductReviewsItem from './ProductReviewsItem';
 import ProductReviewsReport from './ProductReviewsReport';
 import ProductReviewForm from './ProductReviewForm';
 import useCreateProductReview from '../hooks/useCreateProductReview';
+import Button from '../../common/components/Button';
 
 const ProductReviews = ({ productId }) => {
-  const { productReviews } = useProductReviewsByProductId({
-    productId,
-  });
+  const { productReviews, loadMore, reviewsCount } =
+    useProductReviewsByProductId({
+      productId,
+    });
   const { createProductReview } = useCreateProductReview();
   const { formatMessage } = useIntl();
 
@@ -54,6 +56,16 @@ const ProductReviews = ({ productId }) => {
       ) : (
         <NoData message="Reviews" Icon={<FaceFrownIcon />} />
       )}
+      {reviewsCount > productReviews?.length ? (
+        <Button
+          type="button"
+          text={formatMessage({
+            id: 'load-more-reviews',
+            defaultMessage: 'Load reviews',
+          })}
+          onClick={loadMore}
+        />
+      ) : null}
     </div>
   );
 };

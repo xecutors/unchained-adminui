@@ -2,12 +2,19 @@ import { useQuery, gql } from '@apollo/client';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 
 export const ProductReviewQuery = gql`
-  query ProductReviewByProduct($productId: ID, $slug: String) {
+  query ProductReviewByProduct(
+    $productId: ID
+    $slug: String
+    $limit: Int
+    $offset: Int
+    $sort: [SortOptionInput!]
+  ) {
     product(productId: $productId, slug: $slug) {
       _id
-      reviews {
+      reviews(limit: $limit, offset: $offset, sort: $sort) {
         ...ProductReviewDetailFragment
       }
+      reviewsCount
     }
   }
   ${ProductReviewDetailFragment}
@@ -16,17 +23,28 @@ export const ProductReviewQuery = gql`
 const useProductReviewsByProductId = ({
   productId = null,
   slug = null,
+  limit = 10,
+  offset = 0,
+  sort: sortOptions = [{ key: 'created', value: 'DESC' }],
 } = {}) => {
-  const { data, loading, error } = useQuery(ProductReviewQuery, {
+  const { data, loading, error, fetchMore } = useQuery(ProductReviewQuery, {
     skip: !productId,
-    variables: { productId, slug },
+    variables: { productId, slug, limit, offset, sort: sortOptions },
   });
   const product = data?.product;
   const productReviews = product?.reviews || [];
+  const reviewsCount = product?.reviewsCount || 0;
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: productReviews?.length },
+    });
+  };
   return {
     productReviews,
     loading,
     error,
+    reviewsCount,
+    loadMore,
   };
 };
 
