@@ -8,6 +8,10 @@ export const GetCurrentUserQuery = (inlineFragment = '') => gql`
       ...UserFragment
       ${inlineFragment}
     }
+    impersonator {
+      _id
+    }
+
   }
   ${UserFragment}
 `;
@@ -24,12 +28,14 @@ const useCurrentUser = () => {
 
   const currentUser = data?.me;
   const extendedData = hydrateFragment(customProperties?.User, currentUser);
+  const impersonator = data?.impersonator;
 
   return {
     currentUser,
     loading,
     error,
     extendedData,
+    impersonator,
   };
 };
 

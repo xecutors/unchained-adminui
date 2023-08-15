@@ -30,7 +30,6 @@ import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import Button from './Button';
 import useStopImpersonation from '../../accounts/hooks/useStopImpersonation';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 const {
@@ -59,7 +58,7 @@ const Layout = ({
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, impersonator } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
   const { stopImpersonation } = useStopImpersonation();
@@ -247,7 +246,7 @@ const Layout = ({
     <div
       className={classNames('', {
         'fixed overflow-scroll border-8 border-red-600 top-0 left-0 right-0 bottom-0':
-          !!currentUser?.impersonator,
+          !!impersonator,
       })}
     >
       <div
@@ -374,7 +373,7 @@ const Layout = ({
           </div>
         </div>
         <main className="container mx-auto max-w-7xl flex-1 px-4 pt-5 pb-10 sm:px-6 md:px-8">
-          {currentUser?.impersonator && (
+          {impersonator && (
             <Button
               text={<StopCircleIcon className="h-5 w-5" />}
               onClick={async (e) => {
