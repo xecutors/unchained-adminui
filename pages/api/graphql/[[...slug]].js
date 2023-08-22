@@ -8,7 +8,7 @@ export const config = {
   },
 };
 
-export default (req, res) =>
+const APIRedirect = (req, res) =>
   new Promise((resolve, reject) => {
     const proxy = httpProxy.createProxy();
     proxy
@@ -34,3 +34,5 @@ export default (req, res) =>
         },
       });
   });
+
+export default APIRedirect;
