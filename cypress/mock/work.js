@@ -532,7 +532,7 @@ export const WorkTypesResponse = {
   },
 };
 
-export default {
+const WorkMocks = {
   WorkOperations,
   WorkQueueResponse,
   FailedResponse,
@@ -544,3 +544,5 @@ export default {
   AddWorkResponse,
   WorkTypesResponse,
 };
+
+export default WorkMocks;

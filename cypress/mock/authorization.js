@@ -213,7 +213,7 @@ export const UserWebAuthnCredentialsResponse = {
   },
 };
 
-export default {
+const Authorization = {
   LogInSuccessResponse,
   InvalidCredentialErrorResponse,
   ForgotPasswordFailedResponse,
@@ -222,3 +222,5 @@ export default {
   EnrollmentSuccessResponse,
   UserWebAuthnCredentialsResponse,
 };
+
+export default Authorization;

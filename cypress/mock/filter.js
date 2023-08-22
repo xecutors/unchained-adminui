@@ -387,7 +387,7 @@ export const FilterOperations = {
   CreateFilterOption: 'CreateFilterOption',
 };
 
-export default {
+const FilterMocks = {
   FilterListResponse,
   SingleFilterResponse,
   FilterOperations,
@@ -401,3 +401,5 @@ export default {
   RemoveFilterOptionResponse,
   CreateFilterOptionResponse,
 };
+
+export default FilterMocks;

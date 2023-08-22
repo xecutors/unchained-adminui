@@ -202,4 +202,10 @@ export const EventOperations = {
   GetEventTypes: 'EventsType',
 };
 
-export default { EventsListResponse, SingleEventResponse, EventsTypeResponse };
+const EventMocks = {
+  EventsListResponse,
+  SingleEventResponse,
+  EventsTypeResponse,
+};
+
+export default EventMocks;

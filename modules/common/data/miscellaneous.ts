@@ -742,8 +742,6 @@ export const getShadowStyle = (status) => {
   return `${shadowStyle[status]}`;
 };
 
-export default { LimitSteps, DefaultLimit };
-
 export const PROVIDER_TYPE_CLASSES = {
   PHYSICAL: 'green',
   CARD: 'blue',
@@ -768,3 +766,6 @@ export const ORDER_STATUSES = {
   FULLFILLED: 'green',
   REJECTED: 'red',
 };
+
+const Miscellaneous = { LimitSteps, DefaultLimit };
+export default Miscellaneous;

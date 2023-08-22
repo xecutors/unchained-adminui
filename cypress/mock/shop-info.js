@@ -58,8 +58,10 @@ export const ShopInfoOperations = {
   SystemRoles: 'SystemRoles',
 };
 
-export default {
+const ShopInfoMocks = {
   ShopInfoResponse,
   ShopInfoOperations,
   SystemRolesResponseAdmin,
 };
+
+export default ShopInfoMocks;

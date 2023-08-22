@@ -70,4 +70,6 @@ export const LanguageOperations = {
   RemoveLanguage: 'RemoveLanguage',
 };
 
-export default { LanguagesResponse, LanguageOperations };
+const LanguageMocks = { LanguagesResponse, LanguageOperations };
+
+export default LanguageMocks;

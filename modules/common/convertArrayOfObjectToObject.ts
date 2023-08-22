@@ -17,4 +17,4 @@ export const normalizeVariationOption = (arr) =>
     })),
   );
 
-export default { convertArrayOfObjectToObject };
+export default convertArrayOfObjectToObject;

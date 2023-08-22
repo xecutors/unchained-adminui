@@ -210,7 +210,7 @@ export const WarehousingProviderOperations = {
   GetPickUpWarehousingProviders: 'GetPickUpWarehousingProviders',
 };
 
-export default {
+const WarehousingProviderMocks = {
   WarehousingProviderInterfacesResponse,
   WarehousingProviderOperations,
   WarehousingProvidersListResponse,
@@ -218,3 +218,5 @@ export default {
   WarehousingProvidersTypeResponse,
   CreateWarehousingProviderResponse,
 };
+
+export default WarehousingProviderMocks;

@@ -986,7 +986,7 @@ export const ProductOperations = {
   RemoveProductAssignment: 'RemoveProductAssignment',
 };
 
-export default {
+const ProductMocks = {
   UpdateProductPlanResponse,
   ProductListResponse,
   ProductOperations,
@@ -1008,3 +1008,5 @@ export default {
   UpdateProductVariationTextResponse,
   ProductAssignmentsResponse,
 };
+
+export default ProductMocks;

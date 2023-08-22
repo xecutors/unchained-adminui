@@ -192,7 +192,7 @@ export const DeliveryProviderOperations = {
   UpdateProvider: 'UpdateDeliveryProvider',
 };
 
-export default {
+const DeliveryProviderMocks = {
   DeliveryProviderOperations,
   DeliveryProviderListResponse,
   SingleDeliveryProviderResponse,
@@ -201,3 +201,5 @@ export default {
   DeliveryProvidersTypeResponse,
   CreateDeliveryProviderResponse,
 };
+
+export default DeliveryProviderMocks;

@@ -6,4 +6,6 @@ export const fullAliasName = (alias) => {
   return `@gql${alias}Query`;
 };
 
-export default { aliasQuery, fullAliasName };
+const Aliases = { aliasQuery, fullAliasName };
+
+export default Aliases;

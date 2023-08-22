@@ -183,7 +183,7 @@ export const PaymentProviderOperations = {
   RemoveProvider: 'RemovePaymentProvider',
 };
 
-export default {
+const PaymentProviderMocks = {
   PaymentProviderOperations,
   PaymentProvidersInterfaceResponse,
   PaymentProvidersListResponse,
@@ -191,3 +191,5 @@ export default {
   SinglePaymentProviderResponse,
   CreatePaymentProviderResponse,
 };
+
+export default PaymentProviderMocks;
