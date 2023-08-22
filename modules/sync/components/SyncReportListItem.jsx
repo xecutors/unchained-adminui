@@ -1,4 +1,4 @@
-import { CheckIcon, XIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
@@ -24,7 +24,7 @@ const SyncReportListItem = ({ data }) => {
                   viewBox="0 0 24 24"
                 />
               ) : (
-                <XIcon
+                <XMarkIcon
                   className="h-5 w-5 rounded-full bg-red-400"
                   fill="none"
                   stroke="white"

@@ -1,14 +1,14 @@
 import {
   ClockIcon,
-  DatabaseIcon,
+  CircleStackIcon,
   PlusIcon,
-  RefreshIcon,
+  ArrowPathIcon,
   TrashIcon,
 } from '@heroicons/react/24/outline';
 import {
   ArrowLeftIcon,
   CheckCircleIcon,
-  ExclamationIcon,
+  ExclamationCircleIcon,
 } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { format } from 'date-fns-tz';
@@ -46,7 +46,7 @@ const JobSyncStat = ({ new: added, removed, updated, total, diff }) => {
       </span>
       <span className="relative mr-9 inline-block  rounded-lg ">
         <div className="relative rounded-md bg-green-500 p-2 ">
-          <RefreshIcon
+          <ArrowPathIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
@@ -72,7 +72,7 @@ const JobSyncStat = ({ new: added, removed, updated, total, diff }) => {
 
       <span className="relative inline-block  rounded-lg ">
         <div className="relative rounded-md bg-green-500 p-2 ">
-          <DatabaseIcon
+          <CircleStackIcon
             className="h-4 w-4 text-white"
             viewBox="0 0 22 22"
             fill="none"
@@ -117,7 +117,7 @@ const JobHeader = ({ job }) => {
           {convertJobSignalToNumber(job.sync.signal) ? (
             <CheckCircleIcon className="h-7 w-7 text-green-500" />
           ) : (
-            <ExclamationIcon className="h-7 w-7 text-yellow-500" />
+            <ExclamationCircleIcon className="h-7 w-7 text-yellow-500" />
           )}
         </div>
         <div className="flex items-center gap-4">
