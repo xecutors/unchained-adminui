@@ -1,4 +1,4 @@
-import { RefreshIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
@@ -109,7 +109,7 @@ const SyncCategorySummary = ({
         <CardContainer>
           <Card
             icon={
-              <RefreshIcon
+              <ArrowPathIcon
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-white"
                 viewBox="0 0 20 20"
@@ -128,7 +128,7 @@ const SyncCategorySummary = ({
           />
           <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
             <p className="flex items-baseline text-2xl font-semibold text-green-600">
-              <RefreshIcon
+              <ArrowPathIcon
                 className="h-5 w-5 flex-shrink-0 self-center text-green-500"
                 viewBox="0 0 20 20"
                 fill="currentColor"
