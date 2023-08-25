@@ -44,6 +44,8 @@ const Users = () => {
     offset,
   });
 
+  console.log(users);
+
   return (
     <div className="mb-10">
       <BreadCrumbs />

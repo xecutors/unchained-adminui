@@ -1,12 +1,21 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import useAuth from '../../Auth/useAuth';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
+import Button from '../../common/components/Button';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
+import useCurrentUser from '../hooks/useCurrentUser';
+import useImpersonate from '../hooks/useImpersonate';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
+  const { currentUser } = useCurrentUser();
+  const { impersonateAs } = useImpersonate();
+  const { hasRole, isAdmin } = useAuth();
+  const router = useRouter();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
@@ -77,19 +86,23 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div>
-            <svg
-              className="h-5 w-5 text-slate-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
+            
+              {(hasRole('impersonate') || isAdmin()) &&
+                user._id !== currentUser._id && (
+                  <Button
+                    onClick={async (e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      await impersonateAs({ userId: user._id });
+                      router.push('/');
+                    }}
+                    text={formatMessage({
+                      id: 'impersonate-user-account',
+                      defaultMessage: 'Impersonate Account',
+                    })}
+                  />
+                )}              
+            
           </div>
         </div>
       </Link>
