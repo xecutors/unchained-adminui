@@ -18,7 +18,7 @@ const GetCurrentTab = ({ selectedView = 'edit', ...field }) => {
         className=" prose  dark:prose-invert"
         // eslint-disable-next-line react/no-children-prop
         children={field.value}
-        rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize]}
+        rehypePlugins={[rehypeRaw, remarkGfm, rehypeSanitize] as any}
       />
     );
   }

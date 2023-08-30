@@ -78,10 +78,9 @@ const TableCell = ({
       .map((key) => [key, rest[key]].join('='))
       .join('&');
 
-    const newURL =
-      rest === {}
-        ? `${router.basePath}?sort=${sort}`
-        : `${router.basePath}?${newRest}&sort=${sort}`;
+    const newURL = !rest
+      ? `${router.basePath}?sort=${sort}`
+      : `${router.basePath}?${newRest}&sort=${sort}`;
 
     if (sort) router.push(newURL);
     else

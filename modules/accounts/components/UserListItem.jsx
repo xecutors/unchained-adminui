@@ -86,23 +86,21 @@ const UserListItem = ({ user }) => {
             </div>
           </div>
           <div>
-            
-              {(hasRole('impersonate') || isAdmin()) &&
-                user._id !== currentUser._id && (
-                  <Button
-                    onClick={async (e) => {
-                      e.stopPropagation();
-                      e.preventDefault();
-                      await impersonateAs({ userId: user._id });
-                      router.push('/');
-                    }}
-                    text={formatMessage({
-                      id: 'impersonate-user-account',
-                      defaultMessage: 'Impersonate Account',
-                    })}
-                  />
-                )}              
-            
+            {(hasRole('impersonate') || isAdmin()) &&
+              user._id !== currentUser._id && (
+                <Button
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    await impersonateAs({ userId: user._id });
+                    router.push('/');
+                  }}
+                  text={formatMessage({
+                    id: 'impersonate-user-account',
+                    defaultMessage: 'Impersonate Account',
+                  })}
+                />
+              )}
           </div>
         </div>
       </Link>
