@@ -34,11 +34,20 @@ pipeline {
         }
       }
     }
-    stage('Deploy v1') {
+    stage('Deploy v1.x') {
       when { branch 'v1.x' }
       steps {
         script {
           adminui.push("1")
+        }
+      }
+    }
+    stage('Deploy v2.0.x') {
+      when { branch 'v2.0.x' }
+      steps {
+        script {
+          adminui.push("2.0")
+          adminui.push("v2.0")
         }
       }
     }
