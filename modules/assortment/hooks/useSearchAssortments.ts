@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ISearchAssortmentsQuery,
+  ISearchAssortmentsQueryVariables,
+} from '../../../gql/types';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const SearchAssortmentsQuery = gql`
@@ -16,8 +20,11 @@ const useSearchAssortments = ({
   queryString = '',
   limit = 20,
   offset = 0,
-} = {}) => {
-  const { data, loading, error } = useQuery(SearchAssortmentsQuery, {
+}: ISearchAssortmentsQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    ISearchAssortmentsQuery,
+    ISearchAssortmentsQueryVariables
+  >(SearchAssortmentsQuery, {
     skip: !queryString,
     variables: {
       limit,
@@ -25,7 +32,7 @@ const useSearchAssortments = ({
       queryString,
     },
   });
-  const searchAssortments = data?.searchAssortments || {};
+  const searchAssortments = data?.searchAssortments;
   const assortments = searchAssortments?.assortments || [];
 
   return {

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedAssortmentTextsQuery,
+  ITranslatedAssortmentTextsQueryVariables,
+} from '../../../gql/types';
 
 import AssortmentTextsFragment from '../fragments/AssortmentTextsFragment';
 
@@ -11,8 +15,13 @@ export const TranslatedAssortmentTextsQuery = gql`
   ${AssortmentTextsFragment}
 `;
 
-const useTranslatedAssortmentTexts = ({ assortmentId = null } = {}) => {
-  const { data, loading, error } = useQuery(TranslatedAssortmentTextsQuery, {
+const useTranslatedAssortmentTexts = ({
+  assortmentId = null,
+}: ITranslatedAssortmentTextsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    ITranslatedAssortmentTextsQuery,
+    ITranslatedAssortmentTextsQueryVariables
+  >(TranslatedAssortmentTextsQuery, {
     skip: !assortmentId,
     variables: {
       assortmentId,

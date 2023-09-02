@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddAssortmentProductMutation,
+  IAddAssortmentProductMutationVariables,
+} from '../../../gql/types';
 
 const AddAssortmentProductMutation = gql`
   mutation AddAssortmentProduct(
@@ -17,11 +21,16 @@ const AddAssortmentProductMutation = gql`
 `;
 
 const useAddAssortmentProduct = () => {
-  const [addAssortmentProductMutation] = useMutation(
-    AddAssortmentProductMutation,
-  );
+  const [addAssortmentProductMutation] = useMutation<
+    IAddAssortmentProductMutation,
+    IAddAssortmentProductMutationVariables
+  >(AddAssortmentProductMutation);
 
-  const addAssortmentProduct = async ({ productId, assortmentId, tags }) => {
+  const addAssortmentProduct = async ({
+    productId,
+    assortmentId,
+    tags,
+  }: IAddAssortmentProductMutationVariables) => {
     return addAssortmentProductMutation({
       variables: { productId, assortmentId, tags },
       refetchQueries: ['AssortmentProducts'],

@@ -38,7 +38,7 @@ const AssortmentProductForm = ({ assortmentId }) => {
     limit: 50,
     sort: [{ key: 'created', value: 'DESC' }],
   });
-  
+
   const onSubmit = async ({ productId, tags }) => {
     await addAssortmentProduct({ productId, assortmentId, tags });
     return true;

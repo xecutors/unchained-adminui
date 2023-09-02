@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IAssortmentMediaQuery,
+  IAssortmentMediaQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 export const AssortmentMediaQuery = gql`
@@ -27,15 +31,21 @@ export const AssortmentMediaQuery = gql`
   }
 `;
 
-const useAssortmentMedia = ({ assortmentId: id = null, slug = null } = {}) => {
+const useAssortmentMedia = ({
+  assortmentId: id = null,
+  slug = null,
+}: IAssortmentMediaQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(AssortmentMediaQuery, {
-    skip: !id && !parsedId,
-    variables: {
-      assortmentId: id || parsedId,
+  const { data, loading, error } = useQuery<IAssortmentMediaQuery>(
+    AssortmentMediaQuery,
+    {
+      skip: !id && !parsedId,
+      variables: {
+        assortmentId: id || parsedId,
+      },
+      fetchPolicy: 'cache-first',
     },
-    fetchPolicy: 'cache-first',
-  });
+  );
 
   return {
     loading,

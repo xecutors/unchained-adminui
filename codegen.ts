@@ -12,8 +12,7 @@ const config: CodegenConfig = {
         'typescript-react-apollo',
       ],
 
-      config: {        
-        withHooks: true,
+      config: {
         typesPrefix: 'I',
         fieldWrapperValue: 'T | Promise<T>',
         wrapFieldDefinitions: true,

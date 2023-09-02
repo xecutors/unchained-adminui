@@ -43,6 +43,7 @@ const AssortmentFiltersForm = ({ assortmentId }) => {
 
   const onSubmit = async ({ filterId, tags }) => {
     await addAssortmentFilter({ filterId, assortmentId, tags });
+
     return true;
   };
 

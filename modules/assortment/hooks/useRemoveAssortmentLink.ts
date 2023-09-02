@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveAssortmentLinkMutation,
+  IRemoveAssortmentLinkMutationVariables,
+} from '../../../gql/types';
 import AssortmentLinkFragment from '../fragments/AssortmentLinkFragment';
 
 const RemoveAssortmentLinkMutation = gql`
@@ -11,11 +15,14 @@ const RemoveAssortmentLinkMutation = gql`
 `;
 
 const useRemoveAssortmentLink = () => {
-  const [removeAssortmentLinkMutation] = useMutation(
-    RemoveAssortmentLinkMutation,
-  );
+  const [removeAssortmentLinkMutation] = useMutation<
+    IRemoveAssortmentLinkMutation,
+    IRemoveAssortmentLinkMutationVariables
+  >(RemoveAssortmentLinkMutation);
 
-  const removeAssortmentLink = async ({ assortmentLinkId }) => {
+  const removeAssortmentLink = async ({
+    assortmentLinkId,
+  }: IRemoveAssortmentLinkMutationVariables) => {
     return removeAssortmentLinkMutation({
       variables: { assortmentLinkId },
       refetchQueries: ['AssortmentLinks'],

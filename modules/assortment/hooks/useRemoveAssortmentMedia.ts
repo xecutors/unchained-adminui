@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveAssortmentMediaMutation,
+  IRemoveAssortmentMediaMutationVariables,
+} from '../../../gql/types';
 
 const RemoveAssortmentMediaMutation = gql`
   mutation RemoveAssortmentMedia($assortmentMediaId: ID!) {
@@ -9,11 +13,14 @@ const RemoveAssortmentMediaMutation = gql`
 `;
 
 const useRemoveAssortmentMedia = () => {
-  const [removeAssortmentMediaMutation] = useMutation(
-    RemoveAssortmentMediaMutation,
-  );
+  const [removeAssortmentMediaMutation] = useMutation<
+    IRemoveAssortmentMediaMutation,
+    IRemoveAssortmentMediaMutationVariables
+  >(RemoveAssortmentMediaMutation);
 
-  const removeAssortmentMedia = async ({ assortmentMediaId }) => {
+  const removeAssortmentMedia = async ({
+    assortmentMediaId,
+  }: IRemoveAssortmentMediaMutationVariables) => {
     return removeAssortmentMediaMutation({
       variables: { assortmentMediaId },
       refetchQueries: ['AssortmentMedia'],
