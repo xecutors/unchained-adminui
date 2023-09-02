@@ -6,15 +6,13 @@ const config: CodegenConfig = {
   documents: 'modules/**/*.{ts,tsx}',
   generates: {
     'gql/types.ts': {
-      preset: 'near-operation-file',
       plugins: [
         'typescript',
         'typescript-operations',
         'typescript-react-apollo',
       ],
 
-      config: {
-        withResultType: true,
+      config: {        
         withHooks: true,
         typesPrefix: 'I',
         fieldWrapperValue: 'T | Promise<T>',

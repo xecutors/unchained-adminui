@@ -48,11 +48,7 @@ const useProducts = ({
   slugs = null,
   sort: sortOptions = [] as ISortOptionInput[],
   forceLocale = '',
-}: IProductsQueryVariables & { forceLocale?: string } = {}): IProductsQuery & {
-  hasMore: boolean;
-  loading: boolean;
-  error: any;
-} => {
+}: IProductsQueryVariables & { forceLocale?: string } = {}) => {
   const { data, loading, error } = useQuery<
     IProductsQuery,
     IProductsQueryVariables
