@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddWebAuthnCredentialsMutation,
+  IAddWebAuthnCredentialsMutationVariables,
+} from '../../../gql/types';
 import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
 import UserFragment from '../fragment/UserFragment';
 
@@ -22,11 +26,14 @@ const AddWebAuthnCredentialsMutation = gql`
 `;
 
 const useAddWebAuthnCredentials = () => {
-  const [addWebAuthnCredentialsMutation] = useMutation(
-    AddWebAuthnCredentialsMutation,
-  );
+  const [addWebAuthnCredentialsMutation] = useMutation<
+    IAddWebAuthnCredentialsMutation,
+    IAddWebAuthnCredentialsMutationVariables
+  >(AddWebAuthnCredentialsMutation);
 
-  const addWebAuthnCredentials = async ({ credentials }) => {
+  const addWebAuthnCredentials = async ({
+    credentials,
+  }: IAddWebAuthnCredentialsMutationVariables) => {
     return addWebAuthnCredentialsMutation({
       variables: { credentials },
     });

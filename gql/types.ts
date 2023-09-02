@@ -1,5 +1,4 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import * as Operations from '';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -21,7 +20,6 @@ export type Incremental<T> =
       [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
     };
 export type FieldWrapper<T> = T | Promise<T>;
-const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -38,7 +36,6 @@ export type Scalars = {
 };
 
 export type IAddress = {
-  __typename?: 'Address';
   addressLine?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   addressLine2?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   city?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -63,19 +60,16 @@ export type IAddressInput = {
 };
 
 export type IAdminUiConfig = {
-  __typename?: 'AdminUiConfig';
   customProperties: Array<FieldWrapper<IAdminUiConfigCustomEntityInterface>>;
 };
 
 export type IAdminUiConfigCustomEntityInterface = {
-  __typename?: 'AdminUiConfigCustomEntityInterface';
   entityName: FieldWrapper<Scalars['String']['output']>;
   inlineFragment: FieldWrapper<Scalars['String']['output']>;
 };
 
 /** Assortment */
 export type IAssortment = {
-  __typename?: 'Assortment';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortmentPaths: Array<FieldWrapper<IAssortmentPath>>;
   children?: Maybe<Array<FieldWrapper<IAssortment>>>;
@@ -128,7 +122,6 @@ export type IAssortmentTextsArgs = {
 };
 
 export type IAssortmentFilter = {
-  __typename?: 'AssortmentFilter';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortment: FieldWrapper<IAssortment>;
   filter: FieldWrapper<IFilter>;
@@ -137,7 +130,6 @@ export type IAssortmentFilter = {
 };
 
 export type IAssortmentLink = {
-  __typename?: 'AssortmentLink';
   _id: FieldWrapper<Scalars['ID']['output']>;
   child: FieldWrapper<IAssortment>;
   parent: FieldWrapper<IAssortment>;
@@ -146,7 +138,6 @@ export type IAssortmentLink = {
 };
 
 export type IAssortmentMedia = {
-  __typename?: 'AssortmentMedia';
   _id: FieldWrapper<Scalars['ID']['output']>;
   file: FieldWrapper<IMedia>;
   sortKey: FieldWrapper<Scalars['Int']['output']>;
@@ -159,7 +150,6 @@ export type IAssortmentMediaTextsArgs = {
 };
 
 export type IAssortmentMediaTexts = {
-  __typename?: 'AssortmentMediaTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -168,7 +158,6 @@ export type IAssortmentMediaTexts = {
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IAssortmentPath = {
-  __typename?: 'AssortmentPath';
   links: Array<FieldWrapper<IAssortmentPathLink>>;
 };
 
@@ -178,7 +167,6 @@ export type IAssortmentPath = {
  * to short-circuit breadcrumb lookups
  */
 export type IAssortmentPathLink = {
-  __typename?: 'AssortmentPathLink';
   assortmentId: FieldWrapper<Scalars['ID']['output']>;
   assortmentTexts: FieldWrapper<IAssortmentTexts>;
   link?: Maybe<FieldWrapper<IAssortmentLink>>;
@@ -194,7 +182,6 @@ export type IAssortmentPathLinkAssortmentTextsArgs = {
 };
 
 export type IAssortmentProduct = {
-  __typename?: 'AssortmentProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortment: FieldWrapper<IAssortment>;
   product: FieldWrapper<IProduct>;
@@ -203,7 +190,6 @@ export type IAssortmentProduct = {
 };
 
 export type IAssortmentSearchResult = {
-  __typename?: 'AssortmentSearchResult';
   assortments: Array<FieldWrapper<IAssortment>>;
   assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
 };
@@ -214,7 +200,6 @@ export type IAssortmentSearchResultAssortmentsArgs = {
 };
 
 export type IAssortmentTexts = {
-  __typename?: 'AssortmentTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -224,7 +209,6 @@ export type IAssortmentTexts = {
 };
 
 export type IBookmark = {
-  __typename?: 'Bookmark';
   _id: FieldWrapper<Scalars['ID']['output']>;
   created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
   product: FieldWrapper<IProduct>;
@@ -233,7 +217,6 @@ export type IBookmark = {
 
 /** A Bundle product consists of multiple configured products */
 export type IBundleProduct = IProduct & {
-  __typename?: 'BundleProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
   bundleItems?: Maybe<Array<FieldWrapper<IProductBundleItem>>>;
@@ -289,7 +272,6 @@ export enum ICacheControlScope {
 }
 
 export type IColor = {
-  __typename?: 'Color';
   blue?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
   green?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
   hex?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -299,7 +281,6 @@ export type IColor = {
 
 /** Configurable Product (Proxy) */
 export type IConfigurableProduct = IProduct & {
-  __typename?: 'ConfigurableProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   /** Complete assignment matrix */
   assignments: Array<FieldWrapper<IProductVariationAssignment>>;
@@ -385,7 +366,6 @@ export type IConfigurableProductTextsArgs = {
 };
 
 export type IContact = {
-  __typename?: 'Contact';
   emailAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   telNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
@@ -396,14 +376,12 @@ export type IContactInput = {
 };
 
 export type IContractConfiguration = {
-  __typename?: 'ContractConfiguration';
   ercMetadataProperties?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   supply: FieldWrapper<Scalars['Int']['output']>;
   tokenId: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type ICountry = {
-  __typename?: 'Country';
   _id: FieldWrapper<Scalars['ID']['output']>;
   defaultCurrency?: Maybe<FieldWrapper<ICurrency>>;
   flagEmoji?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -488,7 +466,6 @@ export type ICreateWarehousingProviderInput = {
 };
 
 export type ICurrency = {
-  __typename?: 'Currency';
   _id: FieldWrapper<Scalars['ID']['output']>;
   contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   decimals?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
@@ -502,14 +479,12 @@ export type IDateFilterInput = {
 };
 
 export type IDeliveryInterface = {
-  __typename?: 'DeliveryInterface';
   _id: FieldWrapper<Scalars['ID']['output']>;
   label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IDeliveryProvider = {
-  __typename?: 'DeliveryProvider';
   _id: FieldWrapper<Scalars['ID']['output']>;
   configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   configurationError?: Maybe<FieldWrapper<IDeliveryProviderError>>;
@@ -544,7 +519,6 @@ export enum IDeliveryProviderType {
 }
 
 export type IDimensions = {
-  __typename?: 'Dimensions';
   height?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
   length?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
   weight?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
@@ -568,7 +542,6 @@ export type IDimensionsWidthArgs = {
 };
 
 export type IDiscountInterface = {
-  __typename?: 'DiscountInterface';
   _id: FieldWrapper<Scalars['ID']['output']>;
   isManualAdditionAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
   isManualRemovalAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
@@ -577,7 +550,6 @@ export type IDiscountInterface = {
 };
 
 export type IDispatch = {
-  __typename?: 'Dispatch';
   _id: FieldWrapper<Scalars['ID']['output']>;
   deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
   earliestDelivery?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -587,7 +559,6 @@ export type IDispatch = {
 
 /** Enrollment */
 export type IEnrollment = {
-  __typename?: 'Enrollment';
   _id: FieldWrapper<Scalars['ID']['output']>;
   billingAddress?: Maybe<FieldWrapper<IAddress>>;
   contact?: Maybe<FieldWrapper<IContact>>;
@@ -612,7 +583,6 @@ export type IEnrollmentIsExpiredArgs = {
 };
 
 export type IEnrollmentDelivery = {
-  __typename?: 'EnrollmentDelivery';
   provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
 };
 
@@ -622,7 +592,6 @@ export type IEnrollmentDeliveryInput = {
 };
 
 export type IEnrollmentPayment = {
-  __typename?: 'EnrollmentPayment';
   provider?: Maybe<FieldWrapper<IPaymentProvider>>;
 };
 
@@ -632,7 +601,6 @@ export type IEnrollmentPaymentInput = {
 };
 
 export type IEnrollmentPeriod = {
-  __typename?: 'EnrollmentPeriod';
   end: FieldWrapper<Scalars['DateTime']['output']>;
   isTrial: FieldWrapper<Scalars['Boolean']['output']>;
   order?: Maybe<FieldWrapper<IOrder>>;
@@ -640,7 +608,6 @@ export type IEnrollmentPeriod = {
 };
 
 export type IEnrollmentPlan = {
-  __typename?: 'EnrollmentPlan';
   configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
   product: FieldWrapper<IPlanProduct>;
   quantity: FieldWrapper<Scalars['Int']['output']>;
@@ -664,7 +631,6 @@ export enum IEnrollmentStatus {
 }
 
 export type IEvent = {
-  __typename?: 'Event';
   _id: FieldWrapper<Scalars['ID']['output']>;
   created: FieldWrapper<Scalars['Timestamp']['output']>;
   payload?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
@@ -787,7 +753,6 @@ export enum IEventType {
 }
 
 export type IFilter = {
-  __typename?: 'Filter';
   _id: FieldWrapper<Scalars['ID']['output']>;
   created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
   isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
@@ -803,7 +768,6 @@ export type IFilterTextsArgs = {
 };
 
 export type IFilterOption = {
-  __typename?: 'FilterOption';
   _id: FieldWrapper<Scalars['ID']['output']>;
   texts?: Maybe<FieldWrapper<IFilterTexts>>;
   value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -819,7 +783,6 @@ export type IFilterQueryInput = {
 };
 
 export type IFilterTexts = {
-  __typename?: 'FilterTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -838,14 +801,12 @@ export enum IFilterType {
 }
 
 export type IGeoPosition = {
-  __typename?: 'GeoPosition';
   altitute?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
   latitude: FieldWrapper<Scalars['Float']['output']>;
   longitude: FieldWrapper<Scalars['Float']['output']>;
 };
 
 export type ILanguage = {
-  __typename?: 'Language';
   _id: FieldWrapper<Scalars['ID']['output']>;
   isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
   isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
@@ -861,13 +822,11 @@ export enum ILengthUnit {
 }
 
 export type ILink = {
-  __typename?: 'Link';
   href?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type ILoadedFilter = {
-  __typename?: 'LoadedFilter';
   definition: FieldWrapper<IFilter>;
   filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
   isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
@@ -876,7 +835,6 @@ export type ILoadedFilter = {
 };
 
 export type ILoadedFilterOption = {
-  __typename?: 'LoadedFilterOption';
   definition: FieldWrapper<IFilterOption>;
   filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
   isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
@@ -884,7 +842,6 @@ export type ILoadedFilterOption = {
 
 /** Type returned when the user logs in */
 export type ILoginMethodResponse = {
-  __typename?: 'LoginMethodResponse';
   /** Id of the user logged in user */
   id: FieldWrapper<Scalars['String']['output']>;
   /** Token of the connection */
@@ -902,7 +859,6 @@ export enum IMassUnit {
 }
 
 export type IMedia = {
-  __typename?: 'Media';
   _id: FieldWrapper<Scalars['ID']['output']>;
   name: FieldWrapper<Scalars['String']['output']>;
   size: FieldWrapper<Scalars['Int']['output']>;
@@ -916,14 +872,12 @@ export type IMediaUrlArgs = {
 };
 
 export type IMediaUploadTicket = {
-  __typename?: 'MediaUploadTicket';
   _id: FieldWrapper<Scalars['ID']['output']>;
   expires: FieldWrapper<Scalars['DateTime']['output']>;
   putURL: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type IMutation = {
-  __typename?: 'Mutation';
   /** Activate a enrollment by changing the status to ACTIVE */
   activateEnrollment: FieldWrapper<IEnrollment>;
   /** Add a new filter to an assortment */
@@ -2094,14 +2048,12 @@ export type IMutationVerifyWeb3AddressArgs = {
 };
 
 export type IOAuthAccount = {
-  __typename?: 'OAuthAccount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   authorizationCode: FieldWrapper<Scalars['String']['output']>;
   provider: FieldWrapper<IOAuthProvider>;
 };
 
 export type IOAuthProvider = {
-  __typename?: 'OAuthProvider';
   _id: FieldWrapper<Scalars['String']['output']>;
   clientId: FieldWrapper<Scalars['String']['output']>;
   scopes: Array<FieldWrapper<Scalars['String']['output']>>;
@@ -2109,7 +2061,6 @@ export type IOAuthProvider = {
 
 /** Just an order */
 export type IOrder = {
-  __typename?: 'Order';
   _id: FieldWrapper<Scalars['ID']['output']>;
   billingAddress?: Maybe<FieldWrapper<IAddress>>;
   confirmed?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -2149,7 +2100,6 @@ export type IOrderDelivery = {
 };
 
 export type IOrderDeliveryDiscount = IOrderDiscountable & {
-  __typename?: 'OrderDeliveryDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   delivery: FieldWrapper<IOrderDelivery>;
   orderDiscount: FieldWrapper<IOrderDiscount>;
@@ -2157,7 +2107,6 @@ export type IOrderDeliveryDiscount = IOrderDiscountable & {
 };
 
 export type IOrderDeliveryPickUp = IOrderDelivery & {
-  __typename?: 'OrderDeliveryPickUp';
   _id: FieldWrapper<Scalars['ID']['output']>;
   activePickUpLocation?: Maybe<FieldWrapper<IOrderPickUpLocation>>;
   delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -2169,7 +2118,6 @@ export type IOrderDeliveryPickUp = IOrderDelivery & {
 };
 
 export type IOrderDeliveryShipping = IOrderDelivery & {
-  __typename?: 'OrderDeliveryShipping';
   _id: FieldWrapper<Scalars['ID']['output']>;
   address?: Maybe<FieldWrapper<IAddress>>;
   delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -2189,7 +2137,6 @@ export enum IOrderDeliveryStatus {
 }
 
 export type IOrderDiscount = {
-  __typename?: 'OrderDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   code?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   discounted?: Maybe<Array<FieldWrapper<IOrderDiscountable>>>;
@@ -2213,7 +2160,6 @@ export type IOrderDiscountable = {
 };
 
 export type IOrderGlobalDiscount = IOrderDiscountable & {
-  __typename?: 'OrderGlobalDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   order: FieldWrapper<IOrder>;
   orderDiscount: FieldWrapper<IOrderDiscount>;
@@ -2221,7 +2167,6 @@ export type IOrderGlobalDiscount = IOrderDiscountable & {
 };
 
 export type IOrderItem = {
-  __typename?: 'OrderItem';
   _id: FieldWrapper<Scalars['ID']['output']>;
   configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
   discounts?: Maybe<Array<FieldWrapper<IOrderItemDiscount>>>;
@@ -2240,7 +2185,6 @@ export type IOrderItemTotalArgs = {
 };
 
 export type IOrderItemDiscount = IOrderDiscountable & {
-  __typename?: 'OrderItemDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   item: FieldWrapper<IOrderItem>;
   orderDiscount: FieldWrapper<IOrderDiscount>;
@@ -2272,7 +2216,6 @@ export type IOrderPayment = {
 };
 
 export type IOrderPaymentCard = IOrderPayment & {
-  __typename?: 'OrderPaymentCard';
   _id: FieldWrapper<Scalars['ID']['output']>;
   discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
   fee?: Maybe<FieldWrapper<IPrice>>;
@@ -2282,7 +2225,6 @@ export type IOrderPaymentCard = IOrderPayment & {
 };
 
 export type IOrderPaymentDiscount = IOrderDiscountable & {
-  __typename?: 'OrderPaymentDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   orderDiscount: FieldWrapper<IOrderDiscount>;
   payment: FieldWrapper<IOrderPayment>;
@@ -2290,7 +2232,6 @@ export type IOrderPaymentDiscount = IOrderDiscountable & {
 };
 
 export type IOrderPaymentGeneric = IOrderPayment & {
-  __typename?: 'OrderPaymentGeneric';
   _id: FieldWrapper<Scalars['ID']['output']>;
   discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
   fee?: Maybe<FieldWrapper<IPrice>>;
@@ -2300,7 +2241,6 @@ export type IOrderPaymentGeneric = IOrderPayment & {
 };
 
 export type IOrderPaymentInvoice = IOrderPayment & {
-  __typename?: 'OrderPaymentInvoice';
   _id: FieldWrapper<Scalars['ID']['output']>;
   discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
   fee?: Maybe<FieldWrapper<IPrice>>;
@@ -2319,7 +2259,6 @@ export enum IOrderPaymentStatus {
 }
 
 export type IOrderPickUpLocation = {
-  __typename?: 'OrderPickUpLocation';
   _id: FieldWrapper<Scalars['ID']['output']>;
   address?: Maybe<FieldWrapper<IAddress>>;
   geoPoint?: Maybe<FieldWrapper<IGeoPosition>>;
@@ -2354,7 +2293,6 @@ export enum IOrderStatus {
 }
 
 export type IPaymentCredentials = {
-  __typename?: 'PaymentCredentials';
   _id: FieldWrapper<Scalars['ID']['output']>;
   isPreferred: FieldWrapper<Scalars['Boolean']['output']>;
   isValid: FieldWrapper<Scalars['Boolean']['output']>;
@@ -2365,14 +2303,12 @@ export type IPaymentCredentials = {
 };
 
 export type IPaymentInterface = {
-  __typename?: 'PaymentInterface';
   _id: FieldWrapper<Scalars['ID']['output']>;
   label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IPaymentProvider = {
-  __typename?: 'PaymentProvider';
   _id: FieldWrapper<Scalars['ID']['output']>;
   configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   configurationError?: Maybe<FieldWrapper<IPaymentProviderError>>;
@@ -2410,7 +2346,6 @@ export enum IPaymentProviderType {
 
 /** Plan (Virtual Product that somebody can enroll to) */
 export type IPlanProduct = IProduct & {
-  __typename?: 'PlanProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
   catalogPrice?: Maybe<FieldWrapper<IPrice>>;
@@ -2490,7 +2425,6 @@ export type IPlanProductTextsArgs = {
 };
 
 export type IPrice = {
-  __typename?: 'Price';
   _id: FieldWrapper<Scalars['ID']['output']>;
   amount: FieldWrapper<Scalars['Int']['output']>;
   currency: FieldWrapper<Scalars['String']['output']>;
@@ -2499,14 +2433,12 @@ export type IPrice = {
 };
 
 export type IPriceLevel = {
-  __typename?: 'PriceLevel';
   maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
   minQuantity: FieldWrapper<Scalars['Int']['output']>;
   price: FieldWrapper<IPrice>;
 };
 
 export type IPriceRange = {
-  __typename?: 'PriceRange';
   _id: FieldWrapper<Scalars['ID']['output']>;
   maxPrice: FieldWrapper<IPrice>;
   minPrice: FieldWrapper<IPrice>;
@@ -2569,20 +2501,17 @@ export type IProductAssignmentVectorInput = {
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IProductAssortmentPath = {
-  __typename?: 'ProductAssortmentPath';
   assortmentProduct: FieldWrapper<IAssortmentProduct>;
   links: Array<FieldWrapper<IAssortmentPathLink>>;
 };
 
 export type IProductBundleItem = {
-  __typename?: 'ProductBundleItem';
   configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
   product: FieldWrapper<IProduct>;
   quantity: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type IProductCatalogPrice = {
-  __typename?: 'ProductCatalogPrice';
   _id: FieldWrapper<Scalars['ID']['output']>;
   amount: FieldWrapper<Scalars['Int']['output']>;
   country: FieldWrapper<ICountry>;
@@ -2593,7 +2522,6 @@ export type IProductCatalogPrice = {
 };
 
 export type IProductConfigurationParameter = {
-  __typename?: 'ProductConfigurationParameter';
   key: FieldWrapper<Scalars['String']['output']>;
   value: FieldWrapper<Scalars['String']['output']>;
 };
@@ -2604,14 +2532,12 @@ export type IProductConfigurationParameterInput = {
 };
 
 export type IProductDiscount = {
-  __typename?: 'ProductDiscount';
   _id: FieldWrapper<Scalars['ID']['output']>;
   interface?: Maybe<FieldWrapper<IDiscountInterface>>;
   total: FieldWrapper<IPrice>;
 };
 
 export type IProductMedia = {
-  __typename?: 'ProductMedia';
   _id: FieldWrapper<Scalars['ID']['output']>;
   file: FieldWrapper<IMedia>;
   sortKey: FieldWrapper<Scalars['Int']['output']>;
@@ -2624,7 +2550,6 @@ export type IProductMediaTextsArgs = {
 };
 
 export type IProductMediaTexts = {
-  __typename?: 'ProductMediaTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -2632,7 +2557,6 @@ export type IProductMediaTexts = {
 };
 
 export type IProductPlanConfiguration = {
-  __typename?: 'ProductPlanConfiguration';
   billingInterval: FieldWrapper<IProductPlanConfigurationInterval>;
   billingIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
   trialInterval?: Maybe<FieldWrapper<IProductPlanConfigurationInterval>>;
@@ -2654,7 +2578,6 @@ export enum IProductPlanUsageCalculationType {
 }
 
 export type IProductReview = {
-  __typename?: 'ProductReview';
   _id: FieldWrapper<Scalars['ID']['output']>;
   author: FieldWrapper<IUser>;
   created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -2679,7 +2602,6 @@ export type IProductReviewInput = {
 };
 
 export type IProductReviewVote = {
-  __typename?: 'ProductReviewVote';
   _id: FieldWrapper<Scalars['ID']['output']>;
   timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
   type: FieldWrapper<IProductReviewVoteType>;
@@ -2693,7 +2615,6 @@ export enum IProductReviewVoteType {
 
 /** Search result */
 export type IProductSearchResult = {
-  __typename?: 'ProductSearchResult';
   filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
   filters: Array<FieldWrapper<ILoadedFilter>>;
   products: Array<FieldWrapper<IProduct>>;
@@ -2716,7 +2637,6 @@ export enum IProductStatus {
 }
 
 export type IProductTexts = {
-  __typename?: 'ProductTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   brand?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -2729,7 +2649,6 @@ export type IProductTexts = {
 };
 
 export type IProductVariation = {
-  __typename?: 'ProductVariation';
   _id: FieldWrapper<Scalars['ID']['output']>;
   key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   options?: Maybe<Array<FieldWrapper<IProductVariationOption>>>;
@@ -2743,7 +2662,6 @@ export type IProductVariationTextsArgs = {
 
 /** Key Value Combination to Product Assignment */
 export type IProductVariationAssignment = {
-  __typename?: 'ProductVariationAssignment';
   _id: FieldWrapper<Scalars['ID']['output']>;
   /** Assigned Product */
   product?: Maybe<FieldWrapper<IProduct>>;
@@ -2753,14 +2671,12 @@ export type IProductVariationAssignment = {
 
 /** Key Value Combination */
 export type IProductVariationAssignmentVector = {
-  __typename?: 'ProductVariationAssignmentVector';
   _id: FieldWrapper<Scalars['ID']['output']>;
   option?: Maybe<FieldWrapper<IProductVariationOption>>;
   variation?: Maybe<FieldWrapper<IProductVariation>>;
 };
 
 export type IProductVariationOption = {
-  __typename?: 'ProductVariationOption';
   _id: FieldWrapper<Scalars['ID']['output']>;
   texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
   value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -2771,7 +2687,6 @@ export type IProductVariationOptionTextsArgs = {
 };
 
 export type IProductVariationTexts = {
-  __typename?: 'ProductVariationTexts';
   _id: FieldWrapper<Scalars['ID']['output']>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -2786,7 +2701,6 @@ export enum IProductVariationType {
 }
 
 export type IPushSubscription = {
-  __typename?: 'PushSubscription';
   _id: FieldWrapper<Scalars['ID']['output']>;
   endpoint: FieldWrapper<Scalars['String']['output']>;
   expirationTime?: Maybe<FieldWrapper<Scalars['Timestamp']['output']>>;
@@ -2794,7 +2708,6 @@ export type IPushSubscription = {
 };
 
 export type IQuery = {
-  __typename?: 'Query';
   /** Get List of currently registered worker plugins */
   activeWorkTypes: Array<FieldWrapper<IWorkType>>;
   /** Get a specific assortment by ID */
@@ -3269,7 +3182,6 @@ export type IQueryWorkQueueCountArgs = {
 
 /** Quotation */
 export type IQuotation = {
-  __typename?: 'Quotation';
   _id: FieldWrapper<Scalars['ID']['output']>;
   configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
   country?: Maybe<FieldWrapper<ICountry>>;
@@ -3448,7 +3360,6 @@ export enum ISearchOrderBy {
 
 /** Search result */
 export type ISearchResult = {
-  __typename?: 'SearchResult';
   filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
   filters: Array<FieldWrapper<ILoadedFilter>>;
   products: Array<FieldWrapper<IProduct>>;
@@ -3462,7 +3373,6 @@ export type ISearchResultProductsArgs = {
 };
 
 export type IShop = {
-  __typename?: 'Shop';
   _id: FieldWrapper<Scalars['ID']['output']>;
   adminUiConfig: FieldWrapper<IAdminUiConfig>;
   country?: Maybe<FieldWrapper<ICountry>>;
@@ -3476,7 +3386,6 @@ export type IShop = {
 
 /** Simple Product */
 export type ISimpleProduct = IProduct & {
-  __typename?: 'SimpleProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
   baseUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -3583,7 +3492,6 @@ export type ISortOptionInput = {
 };
 
 export type IStock = {
-  __typename?: 'Stock';
   _id: FieldWrapper<Scalars['ID']['output']>;
   deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
   quantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
@@ -3591,12 +3499,10 @@ export type IStock = {
 };
 
 export type ISuccessResponse = {
-  __typename?: 'SuccessResponse';
   success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
 };
 
 export type IToken = {
-  __typename?: 'Token';
   _id: FieldWrapper<Scalars['ID']['output']>;
   chainId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   chainTokenId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -3621,7 +3527,6 @@ export enum ITokenExportStatus {
 
 /** Tokenized Product (Blockchain materialized Product) */
 export type ITokenizedProduct = IProduct & {
-  __typename?: 'TokenizedProduct';
   _id: FieldWrapper<Scalars['ID']['output']>;
   assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
   catalogPrice?: Maybe<FieldWrapper<IPrice>>;
@@ -3830,7 +3735,6 @@ export type IUpdateProviderInput = {
 };
 
 export type IUser = {
-  __typename?: 'User';
   _id: FieldWrapper<Scalars['ID']['output']>;
   allowedActions: Array<FieldWrapper<IRoleAction>>;
   avatar?: Maybe<FieldWrapper<IMedia>>;
@@ -3901,13 +3805,11 @@ export type IUserReviewsArgs = {
 };
 
 export type IUserEmail = {
-  __typename?: 'UserEmail';
   address: FieldWrapper<Scalars['String']['output']>;
   verified: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export type IUserLoginTracker = {
-  __typename?: 'UserLoginTracker';
   countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   remoteAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -3917,7 +3819,6 @@ export type IUserLoginTracker = {
 };
 
 export type IUserProfile = {
-  __typename?: 'UserProfile';
   address?: Maybe<FieldWrapper<IAddress>>;
   birthday?: Maybe<FieldWrapper<Scalars['Date']['output']>>;
   displayName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -3934,14 +3835,12 @@ export type IUserProfileInput = {
 };
 
 export type IWarehousingInterface = {
-  __typename?: 'WarehousingInterface';
   _id: FieldWrapper<Scalars['ID']['output']>;
   label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IWarehousingProvider = {
-  __typename?: 'WarehousingProvider';
   _id: FieldWrapper<Scalars['ID']['output']>;
   configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   configurationError?: Maybe<FieldWrapper<IWarehousingProviderError>>;
@@ -3968,14 +3867,12 @@ export enum IWarehousingProviderType {
 }
 
 export type IWeb3Address = {
-  __typename?: 'Web3Address';
   address: FieldWrapper<Scalars['String']['output']>;
   nonce?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
   verified: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export type IWebAuthnCredentials = {
-  __typename?: 'WebAuthnCredentials';
   _id: FieldWrapper<Scalars['ID']['output']>;
   aaguid: FieldWrapper<Scalars['String']['output']>;
   counter: FieldWrapper<Scalars['Int']['output']>;
@@ -3984,7 +3881,6 @@ export type IWebAuthnCredentials = {
 };
 
 export type IWebAuthnMdSv3Metadata = {
-  __typename?: 'WebAuthnMDSv3Metadata';
   attachmentHint?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
   attestationRootCertificates?: Maybe<
     Array<FieldWrapper<Scalars['String']['output']>>
@@ -4014,7 +3910,6 @@ export type IWebAuthnMdSv3Metadata = {
 };
 
 export type IWork = {
-  __typename?: 'Work';
   _id: FieldWrapper<Scalars['ID']['output']>;
   created: FieldWrapper<Scalars['DateTime']['output']>;
   deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
@@ -4036,7 +3931,6 @@ export type IWork = {
 };
 
 export type IWorkOutput = {
-  __typename?: 'WorkOutput';
   error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
   success: FieldWrapper<Scalars['Boolean']['output']>;
@@ -4072,7 +3966,6 @@ export enum IWorkType {
 
 /** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
 export type I__EnumValue = {
-  __typename?: '__EnumValue';
   name: FieldWrapper<Scalars['String']['output']>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
@@ -4081,7 +3974,6 @@ export type I__EnumValue = {
 
 /** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
 export type I__Field = {
-  __typename?: '__Field';
   name: FieldWrapper<Scalars['String']['output']>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   args: Array<FieldWrapper<I__InputValue>>;
@@ -4097,7 +3989,6 @@ export type I__FieldArgsArgs = {
 
 /** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
 export type I__InputValue = {
-  __typename?: '__InputValue';
   name: FieldWrapper<Scalars['String']['output']>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   type: FieldWrapper<I__Type>;
@@ -4113,7 +4004,6 @@ export type I__InputValue = {
  * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
  */
 export type I__Type = {
-  __typename?: '__Type';
   kind: FieldWrapper<I__TypeKind>;
   name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
   description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
@@ -4174,7 +4064,6 @@ export enum I__TypeKind {
 }
 
 export type IMd5MetaDataFragmentFragment = {
-  __typename?: 'WebAuthnMDSv3Metadata';
   legalHeader?: string | null;
   description?: string | null;
   authenticatorVersion?: number | null;
@@ -4190,8 +4079,11 @@ export type IMd5MetaDataFragmentFragment = {
   authenticatorGetInfo?: any | null;
 };
 
+export type IMd5MetaDataFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IUserFragmentFragment = {
-  __typename?: 'User';
   _id: string;
   isTwoFactorEnabled: boolean;
   allowedActions: Array<IRoleAction>;
@@ -4202,7 +4094,6 @@ export type IUserFragmentFragment = {
   roles?: Array<string> | null;
   tags?: Array<any> | null;
   lastBillingAddress?: {
-    __typename?: 'Address';
     firstName?: string | null;
     lastName?: string | null;
     company?: string | null;
@@ -4214,12 +4105,10 @@ export type IUserFragmentFragment = {
     city?: string | null;
   } | null;
   lastContact?: {
-    __typename?: 'Contact';
     emailAddress?: string | null;
     telNumber?: string | null;
   } | null;
   lastLogin?: {
-    __typename?: 'UserLoginTracker';
     countryCode?: string | null;
     locale?: string | null;
     remoteAddress?: string | null;
@@ -4228,7 +4117,6 @@ export type IUserFragmentFragment = {
     userAgent?: string | null;
   } | null;
   avatar?: {
-    __typename?: 'Media';
     _id: string;
     name: string;
     size: number;
@@ -4236,41 +4124,31 @@ export type IUserFragmentFragment = {
     url: string;
   } | null;
   paymentCredentials: Array<{
-    __typename?: 'PaymentCredentials';
     _id: string;
     isValid: boolean;
     isPreferred: boolean;
     paymentProvider: {
-      __typename?: 'PaymentProvider';
       _id: string;
       type?: IPaymentProviderType | null;
       interface?: {
-        __typename?: 'PaymentInterface';
         _id: string;
         label?: string | null;
         version?: string | null;
       } | null;
     };
   }>;
-  emails?: Array<{
-    __typename?: 'UserEmail';
-    verified: boolean;
-    address: string;
-  }> | null;
+  emails?: Array<{ verified: boolean; address: string }> | null;
   web3Addresses: Array<{
-    __typename?: 'Web3Address';
     address: string;
     nonce?: number | null;
     verified: boolean;
   }>;
   webAuthnCredentials: Array<{
-    __typename?: 'WebAuthnCredentials';
     _id: string;
     created: any;
     aaguid: string;
     counter: number;
     mdsMetadata?: {
-      __typename?: 'WebAuthnMDSv3Metadata';
       legalHeader?: string | null;
       description?: string | null;
       authenticatorVersion?: number | null;
@@ -4287,13 +4165,11 @@ export type IUserFragmentFragment = {
     } | null;
   }>;
   profile?: {
-    __typename?: 'UserProfile';
     displayName?: string | null;
     phoneMobile?: string | null;
     gender?: string | null;
     birthday?: any | null;
     address?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4305,21 +4181,16 @@ export type IUserFragmentFragment = {
       city?: string | null;
     } | null;
   } | null;
-  primaryEmail?: {
-    __typename?: 'UserEmail';
-    verified: boolean;
-    address: string;
-  } | null;
+  primaryEmail?: { verified: boolean; address: string } | null;
 };
+
+export type IUserFragmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ILogoutMutationVariables = Exact<{
   token?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type ILogoutMutation = {
-  __typename?: 'Mutation';
-  logout?: { __typename?: 'SuccessResponse'; success?: boolean | null } | null;
-};
+export type ILogoutMutation = { logout?: { success?: boolean | null } | null };
 
 export type IAddEmailMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -4327,9 +4198,7 @@ export type IAddEmailMutationVariables = Exact<{
 }>;
 
 export type IAddEmailMutation = {
-  __typename?: 'Mutation';
   addEmail: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -4340,7 +4209,6 @@ export type IAddEmailMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4352,12 +4220,10 @@ export type IAddEmailMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -4366,7 +4232,6 @@ export type IAddEmailMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -4374,41 +4239,31 @@ export type IAddEmailMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -4425,13 +4280,11 @@ export type IAddEmailMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -4443,11 +4296,7 @@ export type IAddEmailMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -4456,9 +4305,7 @@ export type IAddWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IAddWeb3AddressMutation = {
-  __typename?: 'Mutation';
   addWeb3Address: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -4469,7 +4316,6 @@ export type IAddWeb3AddressMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4481,12 +4327,10 @@ export type IAddWeb3AddressMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -4495,7 +4339,6 @@ export type IAddWeb3AddressMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -4503,41 +4346,31 @@ export type IAddWeb3AddressMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -4554,13 +4387,11 @@ export type IAddWeb3AddressMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -4572,11 +4403,7 @@ export type IAddWeb3AddressMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -4585,9 +4412,7 @@ export type IAddWebAuthnCredentialsMutationVariables = Exact<{
 }>;
 
 export type IAddWebAuthnCredentialsMutation = {
-  __typename?: 'Mutation';
   addWebAuthnCredentials: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -4598,13 +4423,11 @@ export type IAddWebAuthnCredentialsMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -4621,7 +4444,6 @@ export type IAddWebAuthnCredentialsMutation = {
       } | null;
     }>;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4633,12 +4455,10 @@ export type IAddWebAuthnCredentialsMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -4647,7 +4467,6 @@ export type IAddWebAuthnCredentialsMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -4655,41 +4474,31 @@ export type IAddWebAuthnCredentialsMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -4701,11 +4510,7 @@ export type IAddWebAuthnCredentialsMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -4714,7 +4519,6 @@ export type IBuildSecretTotpAuthUrlMutationVariables = Exact<{
 }>;
 
 export type IBuildSecretTotpAuthUrlMutation = {
-  __typename?: 'Mutation';
   buildSecretTOTPAuthURL: string;
 };
 
@@ -4724,11 +4528,7 @@ export type IChangePasswordMutationVariables = Exact<{
 }>;
 
 export type IChangePasswordMutation = {
-  __typename?: 'Mutation';
-  changePassword?: {
-    __typename?: 'SuccessResponse';
-    success?: boolean | null;
-  } | null;
+  changePassword?: { success?: boolean | null } | null;
 };
 
 export type ICreateUserMutationVariables = Exact<{
@@ -4740,13 +4540,7 @@ export type ICreateUserMutationVariables = Exact<{
 }>;
 
 export type ICreateUserMutation = {
-  __typename?: 'Mutation';
-  createUser?: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  } | null;
+  createUser?: { id: string; token: string; tokenExpires: any } | null;
 };
 
 export type ICreateUserWithWebAuthMutationMutationVariables = Exact<{
@@ -4756,13 +4550,7 @@ export type ICreateUserWithWebAuthMutationMutationVariables = Exact<{
 }>;
 
 export type ICreateUserWithWebAuthMutationMutation = {
-  __typename?: 'Mutation';
-  createUser?: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  } | null;
+  createUser?: { id: string; token: string; tokenExpires: any } | null;
 };
 
 export type ICreateWebAuthnCredentialCreationOptionsMutationVariables = Exact<{
@@ -4770,7 +4558,6 @@ export type ICreateWebAuthnCredentialCreationOptionsMutationVariables = Exact<{
 }>;
 
 export type ICreateWebAuthnCredentialCreationOptionsMutation = {
-  __typename?: 'Mutation';
   createWebAuthnCredentialCreationOptions: any;
 };
 
@@ -4779,27 +4566,19 @@ export type ICreateWebAuthnCredentialRequestOptionsMutationVariables = Exact<{
 }>;
 
 export type ICreateWebAuthnCredentialRequestOptionsMutation = {
-  __typename?: 'Mutation';
   createWebAuthnCredentialRequestOptions: any;
 };
 
 export type ICurrentUserRoleQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ICurrentUserRoleQuery = {
-  __typename?: 'Query';
-  me?: {
-    __typename?: 'User';
-    _id: string;
-    allowedActions: Array<IRoleAction>;
-  } | null;
+  me?: { _id: string; allowedActions: Array<IRoleAction> } | null;
 };
 
 export type ICurrentUserQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ICurrentUserQuery = {
-  __typename?: 'Query';
   me?: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -4810,7 +4589,6 @@ export type ICurrentUserQuery = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4822,12 +4600,10 @@ export type ICurrentUserQuery = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -4836,7 +4612,6 @@ export type ICurrentUserQuery = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -4844,41 +4619,31 @@ export type ICurrentUserQuery = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -4895,13 +4660,11 @@ export type ICurrentUserQuery = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -4913,13 +4676,9 @@ export type ICurrentUserQuery = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   } | null;
-  impersonator?: { __typename?: 'User'; _id: string } | null;
+  impersonator?: { _id: string } | null;
 };
 
 export type IDisableTotpMutationVariables = Exact<{
@@ -4928,9 +4687,7 @@ export type IDisableTotpMutationVariables = Exact<{
 }>;
 
 export type IDisableTotpMutation = {
-  __typename?: 'Mutation';
   disableTOTP: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -4941,7 +4698,6 @@ export type IDisableTotpMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -4953,12 +4709,10 @@ export type IDisableTotpMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -4967,7 +4721,6 @@ export type IDisableTotpMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -4975,41 +4728,31 @@ export type IDisableTotpMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5026,13 +4769,11 @@ export type IDisableTotpMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5044,11 +4785,7 @@ export type IDisableTotpMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5058,9 +4795,7 @@ export type IEnableTotpMutationVariables = Exact<{
 }>;
 
 export type IEnableTotpMutation = {
-  __typename?: 'Mutation';
   enableTOTP: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5071,7 +4806,6 @@ export type IEnableTotpMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5083,12 +4817,10 @@ export type IEnableTotpMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5097,7 +4829,6 @@ export type IEnableTotpMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5105,41 +4836,31 @@ export type IEnableTotpMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5156,13 +4877,11 @@ export type IEnableTotpMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5174,11 +4893,7 @@ export type IEnableTotpMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5189,9 +4904,7 @@ export type IEnrollUserMutationVariables = Exact<{
 }>;
 
 export type IEnrollUserMutation = {
-  __typename?: 'Mutation';
   enrollUser: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5202,7 +4915,6 @@ export type IEnrollUserMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5214,12 +4926,10 @@ export type IEnrollUserMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5228,7 +4938,6 @@ export type IEnrollUserMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5236,41 +4945,31 @@ export type IEnrollUserMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5287,13 +4986,11 @@ export type IEnrollUserMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5305,11 +5002,7 @@ export type IEnrollUserMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5318,11 +5011,7 @@ export type IForgotPasswordMutationVariables = Exact<{
 }>;
 
 export type IForgotPasswordMutation = {
-  __typename?: 'Mutation';
-  forgotPassword?: {
-    __typename?: 'SuccessResponse';
-    success?: boolean | null;
-  } | null;
+  forgotPassword?: { success?: boolean | null } | null;
 };
 
 export type IImpersonateMutationVariables = Exact<{
@@ -5330,13 +5019,11 @@ export type IImpersonateMutationVariables = Exact<{
 }>;
 
 export type IImpersonateMutation = {
-  __typename?: 'Mutation';
   impersonate: {
-    __typename?: 'LoginMethodResponse';
     id: string;
     tokenExpires: any;
     token: string;
-    user?: { __typename?: 'User'; _id: string } | null;
+    user?: { _id: string } | null;
   };
 };
 
@@ -5347,13 +5034,7 @@ export type ILogInWithOAuthMutationVariables = Exact<{
 }>;
 
 export type ILogInWithOAuthMutation = {
-  __typename?: 'Mutation';
-  loginWithOAuth?: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  } | null;
+  loginWithOAuth?: { id: string; token: string; tokenExpires: any } | null;
 };
 
 export type ILoginWithPasswordMutationVariables = Exact<{
@@ -5364,14 +5045,11 @@ export type ILoginWithPasswordMutationVariables = Exact<{
 }>;
 
 export type ILoginWithPasswordMutation = {
-  __typename?: 'Mutation';
   loginWithPassword?: {
-    __typename?: 'LoginMethodResponse';
     id: string;
     token: string;
     tokenExpires: any;
     user?: {
-      __typename?: 'User';
       _id: string;
       allowedActions: Array<IRoleAction>;
       roles?: Array<string> | null;
@@ -5385,13 +5063,7 @@ export type ILoginWithWebAuthnMutationVariables = Exact<{
 }>;
 
 export type ILoginWithWebAuthnMutation = {
-  __typename?: 'Mutation';
-  loginWithWebAuthn?: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  } | null;
+  loginWithWebAuthn?: { id: string; token: string; tokenExpires: any } | null;
 };
 
 export type IRemoveEmailMutationVariables = Exact<{
@@ -5400,9 +5072,7 @@ export type IRemoveEmailMutationVariables = Exact<{
 }>;
 
 export type IRemoveEmailMutation = {
-  __typename?: 'Mutation';
   removeEmail: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5413,7 +5083,6 @@ export type IRemoveEmailMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5425,12 +5094,10 @@ export type IRemoveEmailMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5439,7 +5106,6 @@ export type IRemoveEmailMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5447,41 +5113,31 @@ export type IRemoveEmailMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5498,13 +5154,11 @@ export type IRemoveEmailMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5516,11 +5170,7 @@ export type IRemoveEmailMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5529,9 +5179,7 @@ export type IRemoveWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IRemoveWeb3AddressMutation = {
-  __typename?: 'Mutation';
   removeWeb3Address: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5542,7 +5190,6 @@ export type IRemoveWeb3AddressMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5554,12 +5201,10 @@ export type IRemoveWeb3AddressMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5568,7 +5213,6 @@ export type IRemoveWeb3AddressMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5576,41 +5220,31 @@ export type IRemoveWeb3AddressMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5627,13 +5261,11 @@ export type IRemoveWeb3AddressMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5645,11 +5277,7 @@ export type IRemoveWeb3AddressMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5658,9 +5286,7 @@ export type IRemoveWebAuthCredentialsMutationVariables = Exact<{
 }>;
 
 export type IRemoveWebAuthCredentialsMutation = {
-  __typename?: 'Mutation';
   removeWebAuthnCredentials: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5671,7 +5297,6 @@ export type IRemoveWebAuthCredentialsMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5683,12 +5308,10 @@ export type IRemoveWebAuthCredentialsMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5697,7 +5320,6 @@ export type IRemoveWebAuthCredentialsMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5705,41 +5327,31 @@ export type IRemoveWebAuthCredentialsMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5756,13 +5368,11 @@ export type IRemoveWebAuthCredentialsMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5774,11 +5384,7 @@ export type IRemoveWebAuthCredentialsMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5788,13 +5394,7 @@ export type IResetPasswordMutationVariables = Exact<{
 }>;
 
 export type IResetPasswordMutation = {
-  __typename?: 'Mutation';
-  resetPassword?: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  } | null;
+  resetPassword?: { id: string; token: string; tokenExpires: any } | null;
 };
 
 export type ISendVerificationEmailMutationVariables = Exact<{
@@ -5802,11 +5402,7 @@ export type ISendVerificationEmailMutationVariables = Exact<{
 }>;
 
 export type ISendVerificationEmailMutation = {
-  __typename?: 'Mutation';
-  sendVerificationEmail?: {
-    __typename?: 'SuccessResponse';
-    success?: boolean | null;
-  } | null;
+  sendVerificationEmail?: { success?: boolean | null } | null;
 };
 
 export type ISetPasswordMutationVariables = Exact<{
@@ -5815,9 +5411,7 @@ export type ISetPasswordMutationVariables = Exact<{
 }>;
 
 export type ISetPasswordMutation = {
-  __typename?: 'Mutation';
   setPassword: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5828,7 +5422,6 @@ export type ISetPasswordMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5840,12 +5433,10 @@ export type ISetPasswordMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5854,7 +5445,6 @@ export type ISetPasswordMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5862,41 +5452,31 @@ export type ISetPasswordMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -5913,13 +5493,11 @@ export type ISetPasswordMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -5931,11 +5509,7 @@ export type ISetPasswordMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -5945,9 +5519,7 @@ export type ISetRolesMutationVariables = Exact<{
 }>;
 
 export type ISetRolesMutation = {
-  __typename?: 'Mutation';
   setRoles: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -5958,7 +5530,6 @@ export type ISetRolesMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -5970,12 +5541,10 @@ export type ISetRolesMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -5984,7 +5553,6 @@ export type ISetRolesMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -5992,41 +5560,31 @@ export type ISetRolesMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6043,13 +5601,11 @@ export type ISetRolesMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6061,11 +5617,7 @@ export type ISetRolesMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
@@ -6077,8 +5629,7 @@ export type ISetUserTagsMutationVariables = Exact<{
 }>;
 
 export type ISetUserTagsMutation = {
-  __typename?: 'Mutation';
-  setUserTags: { __typename?: 'User'; _id: string; tags?: Array<any> | null };
+  setUserTags: { _id: string; tags?: Array<any> | null };
 };
 
 export type ISetUsernameMutationVariables = Exact<{
@@ -6087,9 +5638,7 @@ export type ISetUsernameMutationVariables = Exact<{
 }>;
 
 export type ISetUsernameMutation = {
-  __typename?: 'Mutation';
   setUsername: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -6100,7 +5649,6 @@ export type ISetUsernameMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -6112,12 +5660,10 @@ export type ISetUsernameMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -6126,7 +5672,6 @@ export type ISetUsernameMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -6134,41 +5679,31 @@ export type ISetUsernameMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6185,13 +5720,11 @@ export type ISetUsernameMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6203,24 +5736,14 @@ export type ISetUsernameMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
 export type IStopImpersonateMutationVariables = Exact<{ [key: string]: never }>;
 
 export type IStopImpersonateMutation = {
-  __typename?: 'Mutation';
-  stopImpersonation: {
-    __typename?: 'LoginMethodResponse';
-    id: string;
-    token: string;
-    tokenExpires: any;
-  };
+  stopImpersonation: { id: string; token: string; tokenExpires: any };
 };
 
 export type IUserQueryVariables = Exact<{
@@ -6228,9 +5751,7 @@ export type IUserQueryVariables = Exact<{
 }>;
 
 export type IUserQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -6241,7 +5762,6 @@ export type IUserQuery = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -6253,12 +5773,10 @@ export type IUserQuery = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -6267,7 +5785,6 @@ export type IUserQuery = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -6275,41 +5792,31 @@ export type IUserQuery = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6326,13 +5833,11 @@ export type IUserQuery = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6344,11 +5849,7 @@ export type IUserQuery = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   } | null;
 };
 
@@ -6357,18 +5858,14 @@ export type IUserWebAuthnCredentialsQueryVariables = Exact<{
 }>;
 
 export type IUserWebAuthnCredentialsQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6395,10 +5892,8 @@ export type IUsersQueryVariables = Exact<{
 }>;
 
 export type IUsersQuery = {
-  __typename?: 'Query';
   usersCount: number;
   users: Array<{
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -6409,7 +5904,6 @@ export type IUsersQuery = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -6421,12 +5915,10 @@ export type IUsersQuery = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -6435,7 +5927,6 @@ export type IUsersQuery = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -6443,41 +5934,31 @@ export type IUsersQuery = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6494,13 +5975,11 @@ export type IUsersQuery = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6512,11 +5991,7 @@ export type IUsersQuery = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   }>;
 };
 
@@ -6525,14 +6000,11 @@ export type IVerifyEmailMutationVariables = Exact<{
 }>;
 
 export type IVerifyEmailMutation = {
-  __typename?: 'Mutation';
   verifyEmail?: {
-    __typename?: 'LoginMethodResponse';
     id: string;
     token: string;
     tokenExpires: any;
     user?: {
-      __typename?: 'User';
       _id: string;
       isTwoFactorEnabled: boolean;
       allowedActions: Array<IRoleAction>;
@@ -6543,7 +6015,6 @@ export type IVerifyEmailMutation = {
       roles?: Array<string> | null;
       tags?: Array<any> | null;
       lastBillingAddress?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6555,12 +6026,10 @@ export type IVerifyEmailMutation = {
         city?: string | null;
       } | null;
       lastContact?: {
-        __typename?: 'Contact';
         emailAddress?: string | null;
         telNumber?: string | null;
       } | null;
       lastLogin?: {
-        __typename?: 'UserLoginTracker';
         countryCode?: string | null;
         locale?: string | null;
         remoteAddress?: string | null;
@@ -6569,7 +6038,6 @@ export type IVerifyEmailMutation = {
         userAgent?: string | null;
       } | null;
       avatar?: {
-        __typename?: 'Media';
         _id: string;
         name: string;
         size: number;
@@ -6577,41 +6045,31 @@ export type IVerifyEmailMutation = {
         url: string;
       } | null;
       paymentCredentials: Array<{
-        __typename?: 'PaymentCredentials';
         _id: string;
         isValid: boolean;
         isPreferred: boolean;
         paymentProvider: {
-          __typename?: 'PaymentProvider';
           _id: string;
           type?: IPaymentProviderType | null;
           interface?: {
-            __typename?: 'PaymentInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         };
       }>;
-      emails?: Array<{
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      }> | null;
+      emails?: Array<{ verified: boolean; address: string }> | null;
       web3Addresses: Array<{
-        __typename?: 'Web3Address';
         address: string;
         nonce?: number | null;
         verified: boolean;
       }>;
       webAuthnCredentials: Array<{
-        __typename?: 'WebAuthnCredentials';
         _id: string;
         created: any;
         aaguid: string;
         counter: number;
         mdsMetadata?: {
-          __typename?: 'WebAuthnMDSv3Metadata';
           legalHeader?: string | null;
           description?: string | null;
           authenticatorVersion?: number | null;
@@ -6628,13 +6086,11 @@ export type IVerifyEmailMutation = {
         } | null;
       }>;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         phoneMobile?: string | null;
         gender?: string | null;
         birthday?: any | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
           company?: string | null;
@@ -6646,11 +6102,7 @@ export type IVerifyEmailMutation = {
           city?: string | null;
         } | null;
       } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     } | null;
   } | null;
 };
@@ -6661,9 +6113,7 @@ export type IVerifyWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IVerifyWeb3AddressMutation = {
-  __typename?: 'Mutation';
   verifyWeb3Address: {
-    __typename?: 'User';
     _id: string;
     isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
@@ -6674,7 +6124,6 @@ export type IVerifyWeb3AddressMutation = {
     roles?: Array<string> | null;
     tags?: Array<any> | null;
     lastBillingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -6686,12 +6135,10 @@ export type IVerifyWeb3AddressMutation = {
       city?: string | null;
     } | null;
     lastContact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     lastLogin?: {
-      __typename?: 'UserLoginTracker';
       countryCode?: string | null;
       locale?: string | null;
       remoteAddress?: string | null;
@@ -6700,7 +6147,6 @@ export type IVerifyWeb3AddressMutation = {
       userAgent?: string | null;
     } | null;
     avatar?: {
-      __typename?: 'Media';
       _id: string;
       name: string;
       size: number;
@@ -6708,41 +6154,31 @@ export type IVerifyWeb3AddressMutation = {
       url: string;
     } | null;
     paymentCredentials: Array<{
-      __typename?: 'PaymentCredentials';
       _id: string;
       isValid: boolean;
       isPreferred: boolean;
       paymentProvider: {
-        __typename?: 'PaymentProvider';
         _id: string;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    }> | null;
+    emails?: Array<{ verified: boolean; address: string }> | null;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     webAuthnCredentials: Array<{
-      __typename?: 'WebAuthnCredentials';
       _id: string;
       created: any;
       aaguid: string;
       counter: number;
       mdsMetadata?: {
-        __typename?: 'WebAuthnMDSv3Metadata';
         legalHeader?: string | null;
         description?: string | null;
         authenticatorVersion?: number | null;
@@ -6759,13 +6195,11 @@ export type IVerifyWeb3AddressMutation = {
       } | null;
     }>;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
       phoneMobile?: string | null;
       gender?: string | null;
       birthday?: any | null;
       address?: {
-        __typename?: 'Address';
         firstName?: string | null;
         lastName?: string | null;
         company?: string | null;
@@ -6777,20 +6211,14 @@ export type IVerifyWeb3AddressMutation = {
         city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
 };
 
 export type IAssortmentChildrenFragmentFragment = {
-  __typename?: 'Assortment';
   _id: string;
   childrenCount: number;
   texts?: {
-    __typename?: 'AssortmentTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -6798,8 +6226,11 @@ export type IAssortmentChildrenFragmentFragment = {
   } | null;
 };
 
+export type IAssortmentChildrenFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IAssortmentFragmentFragment = {
-  __typename?: 'Assortment';
   _id: string;
   isActive?: boolean | null;
   created?: any | null;
@@ -6810,7 +6241,6 @@ export type IAssortmentFragmentFragment = {
   tags?: Array<any> | null;
   childrenCount: number;
   texts?: {
-    __typename?: 'AssortmentTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -6818,19 +6248,20 @@ export type IAssortmentFragmentFragment = {
     description?: string | null;
   } | null;
   media: Array<{
-    __typename?: 'AssortmentMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
+export type IAssortmentFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IAssortmentLinkFragmentFragment = {
-  __typename?: 'AssortmentLink';
   _id: string;
   sortKey: number;
   parent: {
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -6841,7 +6272,6 @@ export type IAssortmentLinkFragmentFragment = {
     tags?: Array<any> | null;
     childrenCount: number;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -6849,14 +6279,12 @@ export type IAssortmentLinkFragmentFragment = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   };
   child: {
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -6867,7 +6295,6 @@ export type IAssortmentLinkFragmentFragment = {
     tags?: Array<any> | null;
     childrenCount: number;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -6875,21 +6302,22 @@ export type IAssortmentLinkFragmentFragment = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   };
 };
 
+export type IAssortmentLinkFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IAssortmentMediaFragmentFragment = {
-  __typename?: 'AssortmentMedia';
   _id: string;
   tags?: Array<any> | null;
-  file: { __typename?: 'Media'; _id: string; url: string };
+  file: { _id: string; url: string };
   texts?: {
-    __typename?: 'AssortmentMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -6897,16 +6325,22 @@ export type IAssortmentMediaFragmentFragment = {
   } | null;
 };
 
+export type IAssortmentMediaFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IAssortmentMediaTextsFragmentFragment = {
-  __typename?: 'AssortmentMediaTexts';
   _id: string;
   locale?: string | null;
   title?: string | null;
   subtitle?: string | null;
 };
 
+export type IAssortmentMediaTextsFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IAssortmentTextsFragmentFragment = {
-  __typename?: 'AssortmentTexts';
   _id: string;
   locale?: string | null;
   slug?: string | null;
@@ -6914,6 +6348,10 @@ export type IAssortmentTextsFragmentFragment = {
   subtitle?: string | null;
   description?: string | null;
 };
+
+export type IAssortmentTextsFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
 
 export type IAddAssortmentFilterMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
@@ -6925,8 +6363,7 @@ export type IAddAssortmentFilterMutationVariables = Exact<{
 }>;
 
 export type IAddAssortmentFilterMutation = {
-  __typename?: 'Mutation';
-  addAssortmentFilter: { __typename?: 'AssortmentFilter'; _id: string };
+  addAssortmentFilter: { _id: string };
 };
 
 export type IAddAssortmentLinkMutationVariables = Exact<{
@@ -6939,13 +6376,10 @@ export type IAddAssortmentLinkMutationVariables = Exact<{
 }>;
 
 export type IAddAssortmentLinkMutation = {
-  __typename?: 'Mutation';
   addAssortmentLink: {
-    __typename?: 'AssortmentLink';
     _id: string;
     sortKey: number;
     parent: {
-      __typename?: 'Assortment';
       _id: string;
       isActive?: boolean | null;
       created?: any | null;
@@ -6956,7 +6390,6 @@ export type IAddAssortmentLinkMutation = {
       tags?: Array<any> | null;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -6964,14 +6397,12 @@ export type IAddAssortmentLinkMutation = {
         description?: string | null;
       } | null;
       media: Array<{
-        __typename?: 'AssortmentMedia';
         _id: string;
         tags?: Array<any> | null;
-        file: { __typename?: 'Media'; _id: string; url: string };
+        file: { _id: string; url: string };
       }>;
     };
     child: {
-      __typename?: 'Assortment';
       _id: string;
       isActive?: boolean | null;
       created?: any | null;
@@ -6982,7 +6413,6 @@ export type IAddAssortmentLinkMutation = {
       tags?: Array<any> | null;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -6990,10 +6420,9 @@ export type IAddAssortmentLinkMutation = {
         description?: string | null;
       } | null;
       media: Array<{
-        __typename?: 'AssortmentMedia';
         _id: string;
         tags?: Array<any> | null;
-        file: { __typename?: 'Media'; _id: string; url: string };
+        file: { _id: string; url: string };
       }>;
     };
   };
@@ -7005,14 +6434,11 @@ export type IAddAssortmentMediaMutationVariables = Exact<{
 }>;
 
 export type IAddAssortmentMediaMutation = {
-  __typename?: 'Mutation';
   addAssortmentMedia: {
-    __typename?: 'AssortmentMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
     texts?: {
-      __typename?: 'AssortmentMediaTexts';
       _id: string;
       locale?: string | null;
       title?: string | null;
@@ -7031,8 +6457,7 @@ export type IAddAssortmentProductMutationVariables = Exact<{
 }>;
 
 export type IAddAssortmentProductMutation = {
-  __typename?: 'Mutation';
-  addAssortmentProduct: { __typename?: 'AssortmentProduct'; _id: string };
+  addAssortmentProduct: { _id: string };
 };
 
 export type IAssortmentQueryVariables = Exact<{
@@ -7041,9 +6466,7 @@ export type IAssortmentQueryVariables = Exact<{
 }>;
 
 export type IAssortmentQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -7054,7 +6477,6 @@ export type IAssortmentQuery = {
     tags?: Array<any> | null;
     childrenCount: number;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -7062,10 +6484,9 @@ export type IAssortmentQuery = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   } | null;
 };
@@ -7079,17 +6500,13 @@ export type IAssortmentChildrenQueryVariables = Exact<{
 }>;
 
 export type IAssortmentChildrenQuery = {
-  __typename?: 'Query';
   assortments: Array<{
-    __typename?: 'Assortment';
     _id: string;
     childrenCount: number;
     children?: Array<{
-      __typename?: 'Assortment';
       _id: string;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -7097,7 +6514,6 @@ export type IAssortmentChildrenQuery = {
       } | null;
     }> | null;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -7112,17 +6528,13 @@ export type IAssortmentFiltersQueryVariables = Exact<{
 }>;
 
 export type IAssortmentFiltersQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
     _id: string;
     filterAssignments?: Array<{
-      __typename?: 'AssortmentFilter';
       _id: string;
       sortKey: number;
       tags?: Array<any> | null;
       filter: {
-        __typename?: 'Filter';
         _id: string;
         updated?: any | null;
         created?: any | null;
@@ -7130,11 +6542,9 @@ export type IAssortmentFiltersQuery = {
         isActive?: boolean | null;
         type?: IFilterType | null;
         options?: Array<{
-          __typename?: 'FilterOption';
           _id: string;
           value?: string | null;
           texts?: {
-            __typename?: 'FilterTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
@@ -7152,16 +6562,12 @@ export type IAssortmentLinksQueryVariables = Exact<{
 }>;
 
 export type IAssortmentLinksQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
     _id: string;
     linkedAssortments?: Array<{
-      __typename?: 'AssortmentLink';
       _id: string;
       sortKey: number;
       parent: {
-        __typename?: 'Assortment';
         _id: string;
         isActive?: boolean | null;
         created?: any | null;
@@ -7172,7 +6578,6 @@ export type IAssortmentLinksQuery = {
         tags?: Array<any> | null;
         childrenCount: number;
         texts?: {
-          __typename?: 'AssortmentTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -7180,14 +6585,12 @@ export type IAssortmentLinksQuery = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'AssortmentMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       };
       child: {
-        __typename?: 'Assortment';
         _id: string;
         isActive?: boolean | null;
         created?: any | null;
@@ -7198,7 +6601,6 @@ export type IAssortmentLinksQuery = {
         tags?: Array<any> | null;
         childrenCount: number;
         texts?: {
-          __typename?: 'AssortmentTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -7206,10 +6608,9 @@ export type IAssortmentLinksQuery = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'AssortmentMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       };
     }> | null;
@@ -7222,24 +6623,19 @@ export type IAssortmentMediaQueryVariables = Exact<{
 }>;
 
 export type IAssortmentMediaQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
     _id: string;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
       sortKey: number;
       texts?: {
-        __typename?: 'AssortmentMediaTexts';
         _id: string;
         locale?: string | null;
         title?: string | null;
         subtitle?: string | null;
       } | null;
       file: {
-        __typename?: 'Media';
         _id: string;
         url: string;
         name: string;
@@ -7255,13 +6651,8 @@ export type IAssortmentPathsQueryVariables = Exact<{
 }>;
 
 export type IAssortmentPathsQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
-    assortmentPaths: Array<{
-      __typename?: 'AssortmentPath';
-      links: Array<{ __typename?: 'AssortmentPathLink'; assortmentId: string }>;
-    }>;
+    assortmentPaths: Array<{ links: Array<{ assortmentId: string }> }>;
   } | null;
 };
 
@@ -7271,18 +6662,14 @@ export type IAssortmentProductsQueryVariables = Exact<{
 }>;
 
 export type IAssortmentProductsQuery = {
-  __typename?: 'Query';
   assortment?: {
-    __typename?: 'Assortment';
     _id: string;
     productAssignments?: Array<{
-      __typename?: 'AssortmentProduct';
       _id: string;
       sortKey: number;
       tags?: Array<any> | null;
       product:
         | {
-            __typename?: 'BundleProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -7290,7 +6677,6 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               title?: string | null;
@@ -7301,14 +6687,12 @@ export type IAssortmentProductsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'ConfigurableProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -7316,7 +6700,6 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               title?: string | null;
@@ -7327,14 +6710,12 @@ export type IAssortmentProductsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'PlanProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -7342,7 +6723,6 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               title?: string | null;
@@ -7353,14 +6733,12 @@ export type IAssortmentProductsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'SimpleProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -7368,7 +6746,6 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               title?: string | null;
@@ -7379,14 +6756,12 @@ export type IAssortmentProductsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'TokenizedProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -7394,7 +6769,6 @@ export type IAssortmentProductsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               title?: string | null;
@@ -7405,10 +6779,9 @@ export type IAssortmentProductsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           };
     }> | null;
@@ -7432,10 +6805,8 @@ export type IAssortmentsQueryVariables = Exact<{
 }>;
 
 export type IAssortmentsQuery = {
-  __typename?: 'Query';
   assortmentsCount: number;
   assortments: Array<{
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -7445,12 +6816,8 @@ export type IAssortmentsQuery = {
     isRoot?: boolean | null;
     tags?: Array<any> | null;
     childrenCount: number;
-    linkedAssortments?: Array<{
-      __typename?: 'AssortmentLink';
-      child: { __typename?: 'Assortment'; _id: string };
-    }> | null;
+    linkedAssortments?: Array<{ child: { _id: string } }> | null;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -7458,19 +6825,11 @@ export type IAssortmentsQuery = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   }>;
-};
-
-export type IAssortmentsCountQueryVariables = Exact<{ [key: string]: never }>;
-
-export type IAssortmentsCountQuery = {
-  __typename?: 'Query';
-  assortmentsCount: number;
 };
 
 export type ICreateAssortmentMutationVariables = Exact<{
@@ -7478,9 +6837,7 @@ export type ICreateAssortmentMutationVariables = Exact<{
 }>;
 
 export type ICreateAssortmentMutation = {
-  __typename?: 'Mutation';
   createAssortment: {
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -7491,7 +6848,6 @@ export type ICreateAssortmentMutation = {
     tags?: Array<any> | null;
     childrenCount: number;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -7499,10 +6855,9 @@ export type ICreateAssortmentMutation = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   };
 };
@@ -7511,18 +6866,14 @@ export type IRemoveAssortmentMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveAssortmentMutation = {
-  __typename?: 'Mutation';
-  removeAssortment: { __typename?: 'Assortment'; _id: string };
-};
+export type IRemoveAssortmentMutation = { removeAssortment: { _id: string } };
 
 export type IRemoveAssortmentFilterMutationVariables = Exact<{
   assortmentFilterId: Scalars['ID']['input'];
 }>;
 
 export type IRemoveAssortmentFilterMutation = {
-  __typename?: 'Mutation';
-  removeAssortmentFilter: { __typename?: 'AssortmentFilter'; _id: string };
+  removeAssortmentFilter: { _id: string };
 };
 
 export type IRemoveAssortmentLinkMutationVariables = Exact<{
@@ -7530,13 +6881,10 @@ export type IRemoveAssortmentLinkMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentLinkMutation = {
-  __typename?: 'Mutation';
   removeAssortmentLink: {
-    __typename?: 'AssortmentLink';
     _id: string;
     sortKey: number;
     parent: {
-      __typename?: 'Assortment';
       _id: string;
       isActive?: boolean | null;
       created?: any | null;
@@ -7547,7 +6895,6 @@ export type IRemoveAssortmentLinkMutation = {
       tags?: Array<any> | null;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -7555,14 +6902,12 @@ export type IRemoveAssortmentLinkMutation = {
         description?: string | null;
       } | null;
       media: Array<{
-        __typename?: 'AssortmentMedia';
         _id: string;
         tags?: Array<any> | null;
-        file: { __typename?: 'Media'; _id: string; url: string };
+        file: { _id: string; url: string };
       }>;
     };
     child: {
-      __typename?: 'Assortment';
       _id: string;
       isActive?: boolean | null;
       created?: any | null;
@@ -7573,7 +6918,6 @@ export type IRemoveAssortmentLinkMutation = {
       tags?: Array<any> | null;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -7581,10 +6925,9 @@ export type IRemoveAssortmentLinkMutation = {
         description?: string | null;
       } | null;
       media: Array<{
-        __typename?: 'AssortmentMedia';
         _id: string;
         tags?: Array<any> | null;
-        file: { __typename?: 'Media'; _id: string; url: string };
+        file: { _id: string; url: string };
       }>;
     };
   };
@@ -7595,8 +6938,7 @@ export type IRemoveAssortmentMediaMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentMediaMutation = {
-  __typename?: 'Mutation';
-  removeAssortmentMedia: { __typename?: 'AssortmentMedia'; _id: string };
+  removeAssortmentMedia: { _id: string };
 };
 
 export type IRemoveAssortmentProductMutationVariables = Exact<{
@@ -7604,8 +6946,7 @@ export type IRemoveAssortmentProductMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentProductMutation = {
-  __typename?: 'Mutation';
-  removeAssortmentProduct: { __typename?: 'AssortmentProduct'; _id: string };
+  removeAssortmentProduct: { _id: string };
 };
 
 export type IReorderAssortmentFiltersMutationVariables = Exact<{
@@ -7615,11 +6956,7 @@ export type IReorderAssortmentFiltersMutationVariables = Exact<{
 }>;
 
 export type IReorderAssortmentFiltersMutation = {
-  __typename?: 'Mutation';
-  reorderAssortmentFilters: Array<{
-    __typename?: 'AssortmentFilter';
-    _id: string;
-  }>;
+  reorderAssortmentFilters: Array<{ _id: string }>;
 };
 
 export type IReorderAssortmentLinksMutationVariables = Exact<{
@@ -7627,8 +6964,7 @@ export type IReorderAssortmentLinksMutationVariables = Exact<{
 }>;
 
 export type IReorderAssortmentLinksMutation = {
-  __typename?: 'Mutation';
-  reorderAssortmentLinks: Array<{ __typename?: 'AssortmentLink'; _id: string }>;
+  reorderAssortmentLinks: Array<{ _id: string }>;
 };
 
 export type IReorderAssortmentMediaMutationVariables = Exact<{
@@ -7636,11 +6972,7 @@ export type IReorderAssortmentMediaMutationVariables = Exact<{
 }>;
 
 export type IReorderAssortmentMediaMutation = {
-  __typename?: 'Mutation';
-  reorderAssortmentMedia: Array<{
-    __typename?: 'AssortmentMedia';
-    _id: string;
-  }>;
+  reorderAssortmentMedia: Array<{ _id: string }>;
 };
 
 export type IReorderAssortmentProductsMutationVariables = Exact<{
@@ -7650,11 +6982,7 @@ export type IReorderAssortmentProductsMutationVariables = Exact<{
 }>;
 
 export type IReorderAssortmentProductsMutation = {
-  __typename?: 'Mutation';
-  reorderAssortmentProducts: Array<{
-    __typename?: 'AssortmentProduct';
-    _id: string;
-  }>;
+  reorderAssortmentProducts: Array<{ _id: string }>;
 };
 
 export type ISearchAssortmentsQueryVariables = Exact<{
@@ -7664,11 +6992,8 @@ export type ISearchAssortmentsQueryVariables = Exact<{
 }>;
 
 export type ISearchAssortmentsQuery = {
-  __typename?: 'Query';
   searchAssortments: {
-    __typename?: 'AssortmentSearchResult';
     assortments: Array<{
-      __typename?: 'Assortment';
       _id: string;
       isActive?: boolean | null;
       created?: any | null;
@@ -7679,7 +7004,6 @@ export type ISearchAssortmentsQuery = {
       tags?: Array<any> | null;
       childrenCount: number;
       texts?: {
-        __typename?: 'AssortmentTexts';
         _id: string;
         slug?: string | null;
         title?: string | null;
@@ -7687,10 +7011,9 @@ export type ISearchAssortmentsQuery = {
         description?: string | null;
       } | null;
       media: Array<{
-        __typename?: 'AssortmentMedia';
         _id: string;
         tags?: Array<any> | null;
-        file: { __typename?: 'Media'; _id: string; url: string };
+        file: { _id: string; url: string };
       }>;
     }>;
   };
@@ -7701,12 +7024,7 @@ export type ISetBaseAssortmentMutationVariables = Exact<{
 }>;
 
 export type ISetBaseAssortmentMutation = {
-  __typename?: 'Mutation';
-  setBaseAssortment: {
-    __typename?: 'Assortment';
-    _id: string;
-    isBase?: boolean | null;
-  };
+  setBaseAssortment: { _id: string; isBase?: boolean | null };
 };
 
 export type ITranslatedAssortmentMediaTextsQueryVariables = Exact<{
@@ -7714,9 +7032,7 @@ export type ITranslatedAssortmentMediaTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedAssortmentMediaTextsQuery = {
-  __typename?: 'Query';
   translatedAssortmentMediaTexts: Array<{
-    __typename?: 'AssortmentMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -7729,9 +7045,7 @@ export type ITranslatedAssortmentTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedAssortmentTextsQuery = {
-  __typename?: 'Query';
   translatedAssortmentTexts: Array<{
-    __typename?: 'AssortmentTexts';
     _id: string;
     locale?: string | null;
     slug?: string | null;
@@ -7747,9 +7061,7 @@ export type IUpdateAssortmentMutationVariables = Exact<{
 }>;
 
 export type IUpdateAssortmentMutation = {
-  __typename?: 'Mutation';
   updateAssortment: {
-    __typename?: 'Assortment';
     _id: string;
     isActive?: boolean | null;
     created?: any | null;
@@ -7760,7 +7072,6 @@ export type IUpdateAssortmentMutation = {
     tags?: Array<any> | null;
     childrenCount: number;
     texts?: {
-      __typename?: 'AssortmentTexts';
       _id: string;
       slug?: string | null;
       title?: string | null;
@@ -7768,10 +7079,9 @@ export type IUpdateAssortmentMutation = {
       description?: string | null;
     } | null;
     media: Array<{
-      __typename?: 'AssortmentMedia';
       _id: string;
       tags?: Array<any> | null;
-      file: { __typename?: 'Media'; _id: string; url: string };
+      file: { _id: string; url: string };
     }>;
   };
 };
@@ -7784,9 +7094,7 @@ export type IUpdateAssortmentMediaTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateAssortmentMediaTextsMutation = {
-  __typename?: 'Mutation';
   updateAssortmentMediaTexts: Array<{
-    __typename?: 'AssortmentMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -7800,9 +7108,7 @@ export type IUpdateAssortmentTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateAssortmentTextsMutation = {
-  __typename?: 'Mutation';
   updateAssortmentTexts: Array<{
-    __typename?: 'AssortmentTexts';
     _id: string;
     locale?: string | null;
     slug?: string | null;
@@ -7815,41 +7121,27 @@ export type IUpdateAssortmentTextsMutation = {
 export type IShopInfoQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IShopInfoQuery = {
-  __typename?: 'Query';
   shopInfo: {
-    __typename?: 'Shop';
     _id: string;
     version?: string | null;
     language?: {
-      __typename?: 'Language';
       _id: string;
       isoCode?: string | null;
       name?: string | null;
     } | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
-      defaultCurrency?: {
-        __typename?: 'Currency';
-        _id: string;
-        isoCode: string;
-      } | null;
+      defaultCurrency?: { _id: string; isoCode: string } | null;
     } | null;
     externalLinks: Array<{
-      __typename?: 'Link';
       href?: string | null;
       title?: string | null;
     } | null>;
     adminUiConfig: {
-      __typename?: 'AdminUiConfig';
-      customProperties: Array<{
-        __typename?: 'AdminUiConfigCustomEntityInterface';
-        entityName: string;
-        inlineFragment: string;
-      }>;
+      customProperties: Array<{ entityName: string; inlineFragment: string }>;
     };
   };
 };
@@ -7857,22 +7149,18 @@ export type IShopInfoQuery = {
 export type ISystemRolesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ISystemRolesQuery = {
-  __typename?: 'Query';
-  shopInfo: { __typename?: 'Shop'; _id: string; userRoles: Array<string> };
+  shopInfo: { _id: string; userRoles: Array<string> };
 };
 
 export type ICountryFragmentFragment = {
-  __typename?: 'Country';
   _id: string;
   isoCode?: string | null;
   isActive?: boolean | null;
   isBase?: boolean | null;
-  defaultCurrency?: {
-    __typename?: 'Currency';
-    _id: string;
-    isoCode: string;
-  } | null;
+  defaultCurrency?: { _id: string; isoCode: string } | null;
 };
+
+export type ICountryFragmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICountriesQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
@@ -7883,19 +7171,13 @@ export type ICountriesQueryVariables = Exact<{
 }>;
 
 export type ICountriesQuery = {
-  __typename?: 'Query';
   countriesCount: number;
   countries: Array<{
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
     isBase?: boolean | null;
-    defaultCurrency?: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-    } | null;
+    defaultCurrency?: { _id: string; isoCode: string } | null;
   }>;
 };
 
@@ -7904,18 +7186,12 @@ export type ICountryQueryVariables = Exact<{
 }>;
 
 export type ICountryQuery = {
-  __typename?: 'Query';
   country?: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
     isBase?: boolean | null;
-    defaultCurrency?: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-    } | null;
+    defaultCurrency?: { _id: string; isoCode: string } | null;
   } | null;
 };
 
@@ -7924,18 +7200,12 @@ export type ICreateCountryMutationVariables = Exact<{
 }>;
 
 export type ICreateCountryMutation = {
-  __typename?: 'Mutation';
   createCountry: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
     isBase?: boolean | null;
-    defaultCurrency?: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-    } | null;
+    defaultCurrency?: { _id: string; isoCode: string } | null;
   };
 };
 
@@ -7944,18 +7214,12 @@ export type IRemoveCountryMutationVariables = Exact<{
 }>;
 
 export type IRemoveCountryMutation = {
-  __typename?: 'Mutation';
   removeCountry: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
     isBase?: boolean | null;
-    defaultCurrency?: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-    } | null;
+    defaultCurrency?: { _id: string; isoCode: string } | null;
   };
 };
 
@@ -7965,23 +7229,16 @@ export type IUpdateCountryMutationVariables = Exact<{
 }>;
 
 export type IUpdateCountryMutation = {
-  __typename?: 'Mutation';
   updateCountry: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
     isBase?: boolean | null;
-    defaultCurrency?: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-    } | null;
+    defaultCurrency?: { _id: string; isoCode: string } | null;
   };
 };
 
 export type ICurrencyFragmentFragment = {
-  __typename?: 'Currency';
   _id: string;
   isoCode: string;
   isActive?: boolean | null;
@@ -7989,14 +7246,16 @@ export type ICurrencyFragmentFragment = {
   decimals?: number | null;
 };
 
+export type ICurrencyFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreateCurrencyMutationVariables = Exact<{
   currency: ICreateCurrencyInput;
 }>;
 
 export type ICreateCurrencyMutation = {
-  __typename?: 'Mutation';
   createCurrency: {
-    __typename?: 'Currency';
     _id: string;
     isoCode: string;
     isActive?: boolean | null;
@@ -8014,10 +7273,8 @@ export type ICurrenciesQueryVariables = Exact<{
 }>;
 
 export type ICurrenciesQuery = {
-  __typename?: 'Query';
   currenciesCount: number;
   currencies: Array<{
-    __typename?: 'Currency';
     _id: string;
     isoCode: string;
     isActive?: boolean | null;
@@ -8031,9 +7288,7 @@ export type ICurrencyQueryVariables = Exact<{
 }>;
 
 export type ICurrencyQuery = {
-  __typename?: 'Query';
   currency?: {
-    __typename?: 'Currency';
     _id: string;
     isoCode: string;
     isActive?: boolean | null;
@@ -8047,9 +7302,7 @@ export type IRemoveCurrencyMutationVariables = Exact<{
 }>;
 
 export type IRemoveCurrencyMutation = {
-  __typename?: 'Mutation';
   removeCurrency: {
-    __typename?: 'Currency';
     _id: string;
     isoCode: string;
     isActive?: boolean | null;
@@ -8064,9 +7317,7 @@ export type IUpdateCurrencyMutationVariables = Exact<{
 }>;
 
 export type IUpdateCurrencyMutation = {
-  __typename?: 'Mutation';
   updateCurrency: {
-    __typename?: 'Currency';
     _id: string;
     isoCode: string;
     isActive?: boolean | null;
@@ -8076,7 +7327,6 @@ export type IUpdateCurrencyMutation = {
 };
 
 export type IDeliveryProviderFragmentFragment = {
-  __typename?: 'DeliveryProvider';
   _id: string;
   created?: any | null;
   updated?: any | null;
@@ -8086,21 +7336,22 @@ export type IDeliveryProviderFragmentFragment = {
   configuration?: any | null;
   configurationError?: IDeliveryProviderError | null;
   interface?: {
-    __typename?: 'DeliveryInterface';
     _id: string;
     label?: string | null;
     version?: string | null;
   } | null;
 };
 
+export type IDeliveryProviderFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreateDeliveryProviderMutationVariables = Exact<{
   deliveryProvider: ICreateDeliveryProviderInput;
 }>;
 
 export type ICreateDeliveryProviderMutation = {
-  __typename?: 'Mutation';
   createDeliveryProvider: {
-    __typename?: 'DeliveryProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -8110,7 +7361,6 @@ export type ICreateDeliveryProviderMutation = {
     configuration?: any | null;
     configurationError?: IDeliveryProviderError | null;
     interface?: {
-      __typename?: 'DeliveryInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -8123,9 +7373,7 @@ export type IDeliveryInterfacesQueryVariables = Exact<{
 }>;
 
 export type IDeliveryInterfacesQuery = {
-  __typename?: 'Query';
   deliveryInterfaces: Array<{
-    __typename?: 'DeliveryInterface';
     _id: string;
     label?: string | null;
     value: string;
@@ -8137,9 +7385,7 @@ export type IDeliveryProviderQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProviderQuery = {
-  __typename?: 'Query';
   deliveryProvider?: {
-    __typename?: 'DeliveryProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -8149,7 +7395,6 @@ export type IDeliveryProviderQuery = {
     configuration?: any | null;
     configurationError?: IDeliveryProviderError | null;
     interface?: {
-      __typename?: 'DeliveryInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -8162,14 +7407,8 @@ export type IDeliveryProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProvidersTypeQuery = {
-  __typename?: 'Query';
   deliveryProviderType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -8178,9 +7417,7 @@ export type IDeliveryProvidersQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProvidersQuery = {
-  __typename?: 'Query';
   deliveryProviders: Array<{
-    __typename?: 'DeliveryProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -8190,7 +7427,6 @@ export type IDeliveryProvidersQuery = {
     configuration?: any | null;
     configurationError?: IDeliveryProviderError | null;
     interface?: {
-      __typename?: 'DeliveryInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -8203,14 +7439,8 @@ export type IOrderDeliveryStatusQueryVariables = Exact<{
 }>;
 
 export type IOrderDeliveryStatusQuery = {
-  __typename?: 'Query';
   deliveryStatusType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -8219,8 +7449,7 @@ export type IRemoveDeliveryProviderMutationVariables = Exact<{
 }>;
 
 export type IRemoveDeliveryProviderMutation = {
-  __typename?: 'Mutation';
-  removeDeliveryProvider: { __typename?: 'DeliveryProvider'; _id: string };
+  removeDeliveryProvider: { _id: string };
 };
 
 export type IUpdateDeliveryProviderMutationVariables = Exact<{
@@ -8229,9 +7458,7 @@ export type IUpdateDeliveryProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdateDeliveryProviderMutation = {
-  __typename?: 'Mutation';
   updateDeliveryProvider: {
-    __typename?: 'DeliveryProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -8241,7 +7468,6 @@ export type IUpdateDeliveryProviderMutation = {
     configuration?: any | null;
     configurationError?: IDeliveryProviderError | null;
     interface?: {
-      __typename?: 'DeliveryInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -8250,7 +7476,6 @@ export type IUpdateDeliveryProviderMutation = {
 };
 
 export type IEnrollmentDetailFragmentFragment = {
-  __typename?: 'Enrollment';
   _id: string;
   enrollmentNumber?: string | null;
   updated?: any | null;
@@ -8258,13 +7483,8 @@ export type IEnrollmentDetailFragmentFragment = {
   created: any;
   expires?: any | null;
   isExpired?: boolean | null;
-  country?: {
-    __typename?: 'Country';
-    _id: string;
-    isoCode?: string | null;
-  } | null;
+  country?: { _id: string; isoCode?: string | null } | null;
   billingAddress?: {
-    __typename?: 'Address';
     addressLine?: string | null;
     addressLine2?: string | null;
     city?: string | null;
@@ -8275,13 +7495,8 @@ export type IEnrollmentDetailFragmentFragment = {
     postalCode?: string | null;
     regionCode?: string | null;
   } | null;
-  contact?: {
-    __typename?: 'Contact';
-    emailAddress?: string | null;
-    telNumber?: string | null;
-  } | null;
+  contact?: { emailAddress?: string | null; telNumber?: string | null } | null;
   currency?: {
-    __typename?: 'Currency';
     _id: string;
     contractAddress?: string | null;
     decimals?: number | null;
@@ -8289,22 +7504,18 @@ export type IEnrollmentDetailFragmentFragment = {
     isoCode: string;
   } | null;
   delivery?: {
-    __typename?: 'EnrollmentDelivery';
     provider?: {
-      __typename?: 'DeliveryProvider';
       _id: string;
       configuration?: any | null;
       configurationError?: IDeliveryProviderError | null;
       isActive?: boolean | null;
       type?: IDeliveryProviderType | null;
       interface?: {
-        __typename?: 'DeliveryInterface';
         _id: string;
         label?: string | null;
         version?: string | null;
       } | null;
       simulatedPrice?: {
-        __typename?: 'Price';
         _id: string;
         amount: number;
         currency: string;
@@ -8314,16 +7525,13 @@ export type IEnrollmentDetailFragmentFragment = {
     } | null;
   } | null;
   payment?: {
-    __typename?: 'EnrollmentPayment';
     provider?: {
-      __typename?: 'PaymentProvider';
       _id: string;
       configuration?: any | null;
       configurationError?: IPaymentProviderError | null;
       isActive?: boolean | null;
       type?: IPaymentProviderType | null;
       interface?: {
-        __typename?: 'PaymentInterface';
         _id: string;
         label?: string | null;
         version?: string | null;
@@ -8331,41 +7539,32 @@ export type IEnrollmentDetailFragmentFragment = {
     } | null;
   } | null;
   periods: Array<{
-    __typename?: 'EnrollmentPeriod';
     end: any;
     isTrial: boolean;
     start: any;
-    order?: { __typename?: 'Order'; _id: string } | null;
+    order?: { _id: string } | null;
   }>;
   plan: {
-    __typename?: 'EnrollmentPlan';
     quantity: number;
-    configuration?: Array<{
-      __typename?: 'ProductConfigurationParameter';
-      key: string;
-      value: string;
-    }> | null;
+    configuration?: Array<{ key: string; value: string }> | null;
     product: {
-      __typename?: 'PlanProduct';
       _id: string;
-      texts?: {
-        __typename?: 'ProductTexts';
-        _id: string;
-        title?: string | null;
-      } | null;
+      texts?: { _id: string; title?: string | null } | null;
     };
   };
   user: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
   };
 };
 
+export type IEnrollmentDetailFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IEnrollmentFragmentFragment = {
-  __typename?: 'Enrollment';
   _id: string;
   enrollmentNumber?: string | null;
   updated?: any | null;
@@ -8373,60 +7572,37 @@ export type IEnrollmentFragmentFragment = {
   created: any;
   expires?: any | null;
   isExpired?: boolean | null;
-  country?: {
-    __typename?: 'Country';
-    _id: string;
-    isoCode?: string | null;
-  } | null;
-  currency?: { __typename?: 'Currency'; _id: string; isoCode: string } | null;
-  periods: Array<{
-    __typename?: 'EnrollmentPeriod';
-    start: any;
-    end: any;
-    isTrial: boolean;
-  }>;
-  payment?: {
-    __typename?: 'EnrollmentPayment';
-    provider?: { __typename?: 'PaymentProvider'; _id: string } | null;
-  } | null;
-  delivery?: {
-    __typename?: 'EnrollmentDelivery';
-    provider?: { __typename?: 'DeliveryProvider'; _id: string } | null;
-  } | null;
+  country?: { _id: string; isoCode?: string | null } | null;
+  currency?: { _id: string; isoCode: string } | null;
+  periods: Array<{ start: any; end: any; isTrial: boolean }>;
+  payment?: { provider?: { _id: string } | null } | null;
+  delivery?: { provider?: { _id: string } | null } | null;
   plan: {
-    __typename?: 'EnrollmentPlan';
     quantity: number;
     product: {
-      __typename?: 'PlanProduct';
       _id: string;
-      media: Array<{
-        __typename?: 'ProductMedia';
-        _id: string;
-        file: { __typename?: 'Media'; _id: string; url: string };
-      }>;
-      texts?: {
-        __typename?: 'ProductTexts';
-        _id: string;
-        title?: string | null;
-      } | null;
+      media: Array<{ _id: string; file: { _id: string; url: string } }>;
+      texts?: { _id: string; title?: string | null } | null;
     };
   };
   user: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
   };
 };
+
+export type IEnrollmentFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
 
 export type IActivateEnrollmentMutationVariables = Exact<{
   enrollmentId: Scalars['ID']['input'];
 }>;
 
 export type IActivateEnrollmentMutation = {
-  __typename?: 'Mutation';
-  activateEnrollment: { __typename?: 'Enrollment'; _id: string };
+  activateEnrollment: { _id: string };
 };
 
 export type IEnrollmentQueryVariables = Exact<{
@@ -8434,9 +7610,7 @@ export type IEnrollmentQueryVariables = Exact<{
 }>;
 
 export type IEnrollmentQuery = {
-  __typename?: 'Query';
   enrollment?: {
-    __typename?: 'Enrollment';
     _id: string;
     enrollmentNumber?: string | null;
     updated?: any | null;
@@ -8444,13 +7618,8 @@ export type IEnrollmentQuery = {
     created: any;
     expires?: any | null;
     isExpired?: boolean | null;
-    country?: {
-      __typename?: 'Country';
-      _id: string;
-      isoCode?: string | null;
-    } | null;
+    country?: { _id: string; isoCode?: string | null } | null;
     billingAddress?: {
-      __typename?: 'Address';
       addressLine?: string | null;
       addressLine2?: string | null;
       city?: string | null;
@@ -8462,12 +7631,10 @@ export type IEnrollmentQuery = {
       regionCode?: string | null;
     } | null;
     contact?: {
-      __typename?: 'Contact';
       emailAddress?: string | null;
       telNumber?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       contractAddress?: string | null;
       decimals?: number | null;
@@ -8475,22 +7642,18 @@ export type IEnrollmentQuery = {
       isoCode: string;
     } | null;
     delivery?: {
-      __typename?: 'EnrollmentDelivery';
       provider?: {
-        __typename?: 'DeliveryProvider';
         _id: string;
         configuration?: any | null;
         configurationError?: IDeliveryProviderError | null;
         isActive?: boolean | null;
         type?: IDeliveryProviderType | null;
         interface?: {
-          __typename?: 'DeliveryInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
         } | null;
         simulatedPrice?: {
-          __typename?: 'Price';
           _id: string;
           amount: number;
           currency: string;
@@ -8500,16 +7663,13 @@ export type IEnrollmentQuery = {
       } | null;
     } | null;
     payment?: {
-      __typename?: 'EnrollmentPayment';
       provider?: {
-        __typename?: 'PaymentProvider';
         _id: string;
         configuration?: any | null;
         configurationError?: IPaymentProviderError | null;
         isActive?: boolean | null;
         type?: IPaymentProviderType | null;
         interface?: {
-          __typename?: 'PaymentInterface';
           _id: string;
           label?: string | null;
           version?: string | null;
@@ -8517,36 +7677,24 @@ export type IEnrollmentQuery = {
       } | null;
     } | null;
     periods: Array<{
-      __typename?: 'EnrollmentPeriod';
       end: any;
       isTrial: boolean;
       start: any;
-      order?: { __typename?: 'Order'; _id: string } | null;
+      order?: { _id: string } | null;
     }>;
     plan: {
-      __typename?: 'EnrollmentPlan';
       quantity: number;
-      configuration?: Array<{
-        __typename?: 'ProductConfigurationParameter';
-        key: string;
-        value: string;
-      }> | null;
+      configuration?: Array<{ key: string; value: string }> | null;
       product: {
-        __typename?: 'PlanProduct';
         _id: string;
-        texts?: {
-          __typename?: 'ProductTexts';
-          _id: string;
-          title?: string | null;
-        } | null;
+        texts?: { _id: string; title?: string | null } | null;
       };
     };
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
   } | null;
 };
@@ -8554,14 +7702,8 @@ export type IEnrollmentQuery = {
 export type IEnrollmentStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IEnrollmentStatusQuery = {
-  __typename?: 'Query';
   enrollmentStatusTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -8576,10 +7718,8 @@ export type IEnrollmentsQueryVariables = Exact<{
 }>;
 
 export type IEnrollmentsQuery = {
-  __typename?: 'Query';
   enrollmentsCount: number;
   enrollments: Array<{
-    __typename?: 'Enrollment';
     _id: string;
     enrollmentNumber?: string | null;
     updated?: any | null;
@@ -8587,50 +7727,24 @@ export type IEnrollmentsQuery = {
     created: any;
     expires?: any | null;
     isExpired?: boolean | null;
-    country?: {
-      __typename?: 'Country';
-      _id: string;
-      isoCode?: string | null;
-    } | null;
-    currency?: { __typename?: 'Currency'; _id: string; isoCode: string } | null;
-    periods: Array<{
-      __typename?: 'EnrollmentPeriod';
-      start: any;
-      end: any;
-      isTrial: boolean;
-    }>;
-    payment?: {
-      __typename?: 'EnrollmentPayment';
-      provider?: { __typename?: 'PaymentProvider'; _id: string } | null;
-    } | null;
-    delivery?: {
-      __typename?: 'EnrollmentDelivery';
-      provider?: { __typename?: 'DeliveryProvider'; _id: string } | null;
-    } | null;
+    country?: { _id: string; isoCode?: string | null } | null;
+    currency?: { _id: string; isoCode: string } | null;
+    periods: Array<{ start: any; end: any; isTrial: boolean }>;
+    payment?: { provider?: { _id: string } | null } | null;
+    delivery?: { provider?: { _id: string } | null } | null;
     plan: {
-      __typename?: 'EnrollmentPlan';
       quantity: number;
       product: {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
-        texts?: {
-          __typename?: 'ProductTexts';
-          _id: string;
-          title?: string | null;
-        } | null;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
+        texts?: { _id: string; title?: string | null } | null;
       };
     };
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
   }>;
 };
@@ -8640,11 +7754,7 @@ export type ISendEnrollmentEmailMutationVariables = Exact<{
 }>;
 
 export type ISendEnrollmentEmailMutation = {
-  __typename?: 'Mutation';
-  sendEnrollmentEmail?: {
-    __typename?: 'SuccessResponse';
-    success?: boolean | null;
-  } | null;
+  sendEnrollmentEmail?: { success?: boolean | null } | null;
 };
 
 export type ITerminateEnrollmentMutationVariables = Exact<{
@@ -8652,8 +7762,7 @@ export type ITerminateEnrollmentMutationVariables = Exact<{
 }>;
 
 export type ITerminateEnrollmentMutation = {
-  __typename?: 'Mutation';
-  terminateEnrollment: { __typename?: 'Enrollment'; _id: string };
+  terminateEnrollment: { _id: string };
 };
 
 export type IUserEnrollmentsQueryVariables = Exact<{
@@ -8662,12 +7771,9 @@ export type IUserEnrollmentsQueryVariables = Exact<{
 }>;
 
 export type IUserEnrollmentsQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     enrollments: Array<{
-      __typename?: 'Enrollment';
       _id: string;
       enrollmentNumber?: string | null;
       updated?: any | null;
@@ -8675,75 +7781,44 @@ export type IUserEnrollmentsQuery = {
       created: any;
       expires?: any | null;
       isExpired?: boolean | null;
-      country?: {
-        __typename?: 'Country';
-        _id: string;
-        isoCode?: string | null;
-      } | null;
-      currency?: {
-        __typename?: 'Currency';
-        _id: string;
-        isoCode: string;
-      } | null;
-      periods: Array<{
-        __typename?: 'EnrollmentPeriod';
-        start: any;
-        end: any;
-        isTrial: boolean;
-      }>;
-      payment?: {
-        __typename?: 'EnrollmentPayment';
-        provider?: { __typename?: 'PaymentProvider'; _id: string } | null;
-      } | null;
-      delivery?: {
-        __typename?: 'EnrollmentDelivery';
-        provider?: { __typename?: 'DeliveryProvider'; _id: string } | null;
-      } | null;
+      country?: { _id: string; isoCode?: string | null } | null;
+      currency?: { _id: string; isoCode: string } | null;
+      periods: Array<{ start: any; end: any; isTrial: boolean }>;
+      payment?: { provider?: { _id: string } | null } | null;
+      delivery?: { provider?: { _id: string } | null } | null;
       plan: {
-        __typename?: 'EnrollmentPlan';
         quantity: number;
         product: {
-          __typename?: 'PlanProduct';
           _id: string;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
-          texts?: {
-            __typename?: 'ProductTexts';
-            _id: string;
-            title?: string | null;
-          } | null;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
+          texts?: { _id: string; title?: string | null } | null;
         };
       };
       user: {
-        __typename?: 'User';
         _id: string;
         username?: string | null;
         name: string;
-        avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+        avatar?: { _id: string; url: string } | null;
       };
     }>;
   } | null;
 };
 
 export type IEventFragmentFragment = {
-  __typename?: 'Event';
   _id: string;
   type: string;
   payload?: any | null;
   created: any;
 };
 
+export type IEventFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+
 export type IEventQueryVariables = Exact<{
   eventId: Scalars['ID']['input'];
 }>;
 
 export type IEventQuery = {
-  __typename?: 'Query';
   event?: {
-    __typename?: 'Event';
     _id: string;
     type: string;
     payload?: any | null;
@@ -8754,14 +7829,8 @@ export type IEventQuery = {
 export type IEventsTypeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IEventsTypeQuery = {
-  __typename?: 'Query';
   eventTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label: string;
-    }> | null;
+    options?: Array<{ value: string; label: string }> | null;
   } | null;
 };
 
@@ -8776,10 +7845,8 @@ export type IEventsQueryVariables = Exact<{
 }>;
 
 export type IEventsQuery = {
-  __typename?: 'Query';
   eventsCount: number;
   events: Array<{
-    __typename?: 'Event';
     _id: string;
     type: string;
     payload?: any | null;
@@ -8792,19 +7859,12 @@ export type IRegisteredEventTypeQueryVariables = Exact<{
 }>;
 
 export type IRegisteredEventTypeQuery = {
-  __typename?: 'Query';
   registeredEvents?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
 export type IFilterFragmentFragment = {
-  __typename?: 'Filter';
   _id: string;
   updated?: any | null;
   created?: any | null;
@@ -8812,11 +7872,9 @@ export type IFilterFragmentFragment = {
   isActive?: boolean | null;
   type?: IFilterType | null;
   options?: Array<{
-    __typename?: 'FilterOption';
     _id: string;
     value?: string | null;
     texts?: {
-      __typename?: 'FilterTexts';
       _id: string;
       title?: string | null;
       subtitle?: string | null;
@@ -8825,12 +7883,12 @@ export type IFilterFragmentFragment = {
   }> | null;
 };
 
+export type IFilterFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+
 export type IFilterOptionFragmentFragment = {
-  __typename?: 'FilterOption';
   _id: string;
   value?: string | null;
   texts?: {
-    __typename?: 'FilterTexts';
     _id: string;
     title?: string | null;
     subtitle?: string | null;
@@ -8838,22 +7896,27 @@ export type IFilterOptionFragmentFragment = {
   } | null;
 };
 
+export type IFilterOptionFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IFilterTextsFragmentFragment = {
-  __typename?: 'FilterTexts';
   _id: string;
   locale?: string | null;
   title?: string | null;
   subtitle?: string | null;
 };
 
+export type IFilterTextsFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreateFilterMutationVariables = Exact<{
   filter: ICreateFilterInput;
 }>;
 
 export type ICreateFilterMutation = {
-  __typename?: 'Mutation';
   createFilter: {
-    __typename?: 'Filter';
     _id: string;
     updated?: any | null;
     created?: any | null;
@@ -8861,11 +7924,9 @@ export type ICreateFilterMutation = {
     isActive?: boolean | null;
     type?: IFilterType | null;
     options?: Array<{
-      __typename?: 'FilterOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'FilterTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
@@ -8881,8 +7942,7 @@ export type ICreateFilterOptionMutationVariables = Exact<{
 }>;
 
 export type ICreateFilterOptionMutation = {
-  __typename?: 'Mutation';
-  createFilterOption: { __typename?: 'Filter'; _id: string };
+  createFilterOption: { _id: string };
 };
 
 export type IFilterQueryVariables = Exact<{
@@ -8890,9 +7950,7 @@ export type IFilterQueryVariables = Exact<{
 }>;
 
 export type IFilterQuery = {
-  __typename?: 'Query';
   filter?: {
-    __typename?: 'Filter';
     _id: string;
     updated?: any | null;
     created?: any | null;
@@ -8900,18 +7958,15 @@ export type IFilterQuery = {
     isActive?: boolean | null;
     type?: IFilterType | null;
     texts?: {
-      __typename?: 'FilterTexts';
       _id: string;
       title?: string | null;
       subtitle?: string | null;
       locale?: string | null;
     } | null;
     options?: Array<{
-      __typename?: 'FilterOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'FilterTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
@@ -8926,16 +7981,12 @@ export type IFilterOptionsQueryVariables = Exact<{
 }>;
 
 export type IFilterOptionsQuery = {
-  __typename?: 'Query';
   filter?: {
-    __typename?: 'Filter';
     _id: string;
     options?: Array<{
-      __typename?: 'FilterOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'FilterTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
@@ -8948,14 +7999,8 @@ export type IFilterOptionsQuery = {
 export type IFilterTypesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IFilterTypesQuery = {
-  __typename?: 'Query';
   filterTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      label: string;
-      value: string;
-    }> | null;
+    options?: Array<{ label: string; value: string }> | null;
   } | null;
 };
 
@@ -8968,10 +8013,8 @@ export type IFiltersQueryVariables = Exact<{
 }>;
 
 export type IFiltersQuery = {
-  __typename?: 'Query';
   filtersCount: number;
   filters: Array<{
-    __typename?: 'Filter';
     _id: string;
     updated?: any | null;
     created?: any | null;
@@ -8979,18 +8022,15 @@ export type IFiltersQuery = {
     isActive?: boolean | null;
     type?: IFilterType | null;
     texts?: {
-      __typename?: 'FilterTexts';
       _id: string;
       title?: string | null;
       subtitle?: string | null;
       locale?: string | null;
     } | null;
     options?: Array<{
-      __typename?: 'FilterOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'FilterTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
@@ -9002,16 +8042,13 @@ export type IFiltersQuery = {
 
 export type IFiltersCountQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IFiltersCountQuery = { __typename?: 'Query'; filtersCount: number };
+export type IFiltersCountQuery = { filtersCount: number };
 
 export type IRemoveFilterMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveFilterMutation = {
-  __typename?: 'Mutation';
-  removeFilter: { __typename?: 'Filter'; _id: string };
-};
+export type IRemoveFilterMutation = { removeFilter: { _id: string } };
 
 export type IRemoveFilterOptionMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
@@ -9019,8 +8056,7 @@ export type IRemoveFilterOptionMutationVariables = Exact<{
 }>;
 
 export type IRemoveFilterOptionMutation = {
-  __typename?: 'Mutation';
-  removeFilterOption: { __typename?: 'Filter'; _id: string };
+  removeFilterOption: { _id: string };
 };
 
 export type ITranslatedFilterTextsQueryVariables = Exact<{
@@ -9029,9 +8065,7 @@ export type ITranslatedFilterTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedFilterTextsQuery = {
-  __typename?: 'Query';
   translatedFilterTexts: Array<{
-    __typename?: 'FilterTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -9045,9 +8079,7 @@ export type IUpdateFilterMutationVariables = Exact<{
 }>;
 
 export type IUpdateFilterMutation = {
-  __typename?: 'Mutation';
   updateFilter: {
-    __typename?: 'Filter';
     _id: string;
     updated?: any | null;
     created?: any | null;
@@ -9055,11 +8087,9 @@ export type IUpdateFilterMutation = {
     isActive?: boolean | null;
     type?: IFilterType | null;
     options?: Array<{
-      __typename?: 'FilterOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'FilterTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
@@ -9076,9 +8106,7 @@ export type IUpdateFilterTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateFilterTextsMutation = {
-  __typename?: 'Mutation';
   updateFilterTexts: Array<{
-    __typename?: 'FilterTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -9087,7 +8115,6 @@ export type IUpdateFilterTextsMutation = {
 };
 
 export type ILanguageFragmentFragment = {
-  __typename?: 'Language';
   _id: string;
   isoCode?: string | null;
   isActive?: boolean | null;
@@ -9095,14 +8122,16 @@ export type ILanguageFragmentFragment = {
   name?: string | null;
 };
 
+export type ILanguageFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreateLanguageMutationVariables = Exact<{
   language: ICreateLanguageInput;
 }>;
 
 export type ICreateLanguageMutation = {
-  __typename?: 'Mutation';
   createLanguage: {
-    __typename?: 'Language';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
@@ -9116,9 +8145,7 @@ export type ILanguageQueryVariables = Exact<{
 }>;
 
 export type ILanguageQuery = {
-  __typename?: 'Query';
   language?: {
-    __typename?: 'Language';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
@@ -9136,10 +8163,8 @@ export type ILanguagesQueryVariables = Exact<{
 }>;
 
 export type ILanguagesQuery = {
-  __typename?: 'Query';
   languagesCount: number;
   languages: Array<{
-    __typename?: 'Language';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
@@ -9153,9 +8178,7 @@ export type IRemoveLanguageMutationVariables = Exact<{
 }>;
 
 export type IRemoveLanguageMutation = {
-  __typename?: 'Mutation';
   removeLanguage: {
-    __typename?: 'Language';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
@@ -9170,9 +8193,7 @@ export type IUpdateLanguageMutationVariables = Exact<{
 }>;
 
 export type IUpdateLanguageMutation = {
-  __typename?: 'Mutation';
   updateLanguage: {
-    __typename?: 'Language';
     _id: string;
     isoCode?: string | null;
     isActive?: boolean | null;
@@ -9182,7 +8203,6 @@ export type IUpdateLanguageMutation = {
 };
 
 export type IOrderDetailFragmentFragment = {
-  __typename?: 'Order';
   _id: string;
   orderNumber?: string | null;
   status?: IOrderStatus | null;
@@ -9191,47 +8211,27 @@ export type IOrderDetailFragmentFragment = {
   ordered?: any | null;
   confirmed?: any | null;
   fullfilled?: any | null;
-  totalTax?: { __typename?: 'Price'; amount: number; currency: string } | null;
-  itemsTotal?: {
-    __typename?: 'Price';
-    amount: number;
-    currency: string;
-  } | null;
-  totalDiscount?: {
-    __typename?: 'Price';
-    amount: number;
-    currency: string;
-  } | null;
-  totalPayment?: {
-    __typename?: 'Price';
-    amount: number;
-    currency: string;
-  } | null;
-  totalDelivery?: {
-    __typename?: 'Price';
-    amount: number;
-    currency: string;
-  } | null;
+  totalTax?: { amount: number; currency: string } | null;
+  itemsTotal?: { amount: number; currency: string } | null;
+  totalDiscount?: { amount: number; currency: string } | null;
+  totalPayment?: { amount: number; currency: string } | null;
+  totalDelivery?: { amount: number; currency: string } | null;
   user?: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     isGuest: boolean;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
   } | null;
   discounts?: Array<{
-    __typename?: 'OrderDiscount';
     _id: string;
     trigger: IOrderDiscountTrigger;
     code?: string | null;
     interface?: {
-      __typename?: 'DiscountInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
     } | null;
     total: {
-      __typename?: 'Price';
       amount: number;
       currency: string;
       isTaxable: boolean;
@@ -9239,13 +8239,10 @@ export type IOrderDetailFragmentFragment = {
     };
     discounted?: Array<
       | {
-          __typename?: 'OrderDeliveryDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -9253,7 +8250,6 @@ export type IOrderDetailFragmentFragment = {
             };
           };
           total: {
-            __typename?: 'Price';
             amount: number;
             currency: string;
             isTaxable: boolean;
@@ -9261,13 +8257,10 @@ export type IOrderDetailFragmentFragment = {
           };
         }
       | {
-          __typename?: 'OrderGlobalDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -9275,7 +8268,6 @@ export type IOrderDetailFragmentFragment = {
             };
           };
           total: {
-            __typename?: 'Price';
             amount: number;
             currency: string;
             isTaxable: boolean;
@@ -9283,13 +8275,10 @@ export type IOrderDetailFragmentFragment = {
           };
         }
       | {
-          __typename?: 'OrderItemDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -9297,7 +8286,6 @@ export type IOrderDetailFragmentFragment = {
             };
           };
           total: {
-            __typename?: 'Price';
             amount: number;
             currency: string;
             isTaxable: boolean;
@@ -9305,13 +8293,10 @@ export type IOrderDetailFragmentFragment = {
           };
         }
       | {
-          __typename?: 'OrderPaymentDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -9319,7 +8304,6 @@ export type IOrderDetailFragmentFragment = {
             };
           };
           total: {
-            __typename?: 'Price';
             amount: number;
             currency: string;
             isTaxable: boolean;
@@ -9330,68 +8314,57 @@ export type IOrderDetailFragmentFragment = {
   }> | null;
   payment?:
     | {
-        __typename?: 'OrderPaymentCard';
         _id: string;
         status?: IOrderPaymentStatus | null;
         paid?: any | null;
         provider?: {
-          __typename?: 'PaymentProvider';
           _id: string;
           type?: IPaymentProviderType | null;
           interface?: {
-            __typename?: 'PaymentInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         } | null;
-        fee?: { __typename?: 'Price'; currency: string; amount: number } | null;
+        fee?: { currency: string; amount: number } | null;
       }
     | {
-        __typename?: 'OrderPaymentGeneric';
         _id: string;
         status?: IOrderPaymentStatus | null;
         paid?: any | null;
         provider?: {
-          __typename?: 'PaymentProvider';
           _id: string;
           type?: IPaymentProviderType | null;
           interface?: {
-            __typename?: 'PaymentInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         } | null;
-        fee?: { __typename?: 'Price'; currency: string; amount: number } | null;
+        fee?: { currency: string; amount: number } | null;
       }
     | {
-        __typename?: 'OrderPaymentInvoice';
         _id: string;
         status?: IOrderPaymentStatus | null;
         paid?: any | null;
         provider?: {
-          __typename?: 'PaymentProvider';
           _id: string;
           type?: IPaymentProviderType | null;
           interface?: {
-            __typename?: 'PaymentInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         } | null;
-        fee?: { __typename?: 'Price'; currency: string; amount: number } | null;
+        fee?: { currency: string; amount: number } | null;
       }
     | null;
   delivery?:
     | {
-        __typename?: 'OrderDeliveryPickUp';
         _id: string;
         status?: IOrderDeliveryStatus | null;
         delivered?: any | null;
         provider?: {
-          __typename?: 'DeliveryProvider';
           _id: string;
           type?: IDeliveryProviderType | null;
           created?: any | null;
@@ -9399,40 +8372,30 @@ export type IOrderDetailFragmentFragment = {
           deleted?: any | null;
           configuration?: any | null;
           interface?: {
-            __typename?: 'DeliveryInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         } | null;
         fee?: {
-          __typename?: 'Price';
           isTaxable: boolean;
           isNetPrice: boolean;
           amount: number;
           currency: string;
         } | null;
         discounts?: Array<{
-          __typename?: 'OrderDeliveryDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             trigger: IOrderDiscountTrigger;
             code?: string | null;
-            order: {
-              __typename?: 'Order';
-              _id: string;
-              orderNumber?: string | null;
-            };
+            order: { _id: string; orderNumber?: string | null };
             interface?: {
-              __typename?: 'DiscountInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
             total: {
-              __typename?: 'Price';
               isTaxable: boolean;
               isNetPrice: boolean;
               amount: number;
@@ -9440,26 +8403,18 @@ export type IOrderDetailFragmentFragment = {
             };
             discounted?: Array<
               | {
-                  __typename?: 'OrderDeliveryDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9468,26 +8423,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderGlobalDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9496,26 +8443,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderItemDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9524,26 +8463,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderPaymentDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9556,12 +8487,10 @@ export type IOrderDetailFragmentFragment = {
         }> | null;
       }
     | {
-        __typename?: 'OrderDeliveryShipping';
         _id: string;
         status?: IOrderDeliveryStatus | null;
         delivered?: any | null;
         provider?: {
-          __typename?: 'DeliveryProvider';
           _id: string;
           type?: IDeliveryProviderType | null;
           created?: any | null;
@@ -9569,40 +8498,30 @@ export type IOrderDetailFragmentFragment = {
           deleted?: any | null;
           configuration?: any | null;
           interface?: {
-            __typename?: 'DeliveryInterface';
             _id: string;
             label?: string | null;
             version?: string | null;
           } | null;
         } | null;
         fee?: {
-          __typename?: 'Price';
           isTaxable: boolean;
           isNetPrice: boolean;
           amount: number;
           currency: string;
         } | null;
         discounts?: Array<{
-          __typename?: 'OrderDeliveryDiscount';
           _id: string;
           orderDiscount: {
-            __typename?: 'OrderDiscount';
             _id: string;
             trigger: IOrderDiscountTrigger;
             code?: string | null;
-            order: {
-              __typename?: 'Order';
-              _id: string;
-              orderNumber?: string | null;
-            };
+            order: { _id: string; orderNumber?: string | null };
             interface?: {
-              __typename?: 'DiscountInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
             total: {
-              __typename?: 'Price';
               isTaxable: boolean;
               isNetPrice: boolean;
               amount: number;
@@ -9610,26 +8529,18 @@ export type IOrderDetailFragmentFragment = {
             };
             discounted?: Array<
               | {
-                  __typename?: 'OrderDeliveryDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9638,26 +8549,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderGlobalDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9666,26 +8569,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderItemDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9694,26 +8589,18 @@ export type IOrderDetailFragmentFragment = {
                   };
                 }
               | {
-                  __typename?: 'OrderPaymentDiscount';
                   _id: string;
                   orderDiscount: {
-                    __typename?: 'OrderDiscount';
                     _id: string;
                     trigger: IOrderDiscountTrigger;
                     code?: string | null;
-                    order: {
-                      __typename?: 'Order';
-                      _id: string;
-                      orderNumber?: string | null;
-                    };
+                    order: { _id: string; orderNumber?: string | null };
                     interface?: {
-                      __typename?: 'DiscountInterface';
                       _id: string;
                       label?: string | null;
                       version?: string | null;
                     } | null;
                     total: {
-                      __typename?: 'Price';
                       isTaxable: boolean;
                       isNetPrice: boolean;
                       amount: number;
@@ -9726,26 +8613,15 @@ export type IOrderDetailFragmentFragment = {
         }> | null;
       }
     | null;
-  contact?: {
-    __typename?: 'Contact';
-    telNumber?: string | null;
-    emailAddress?: string | null;
-  } | null;
+  contact?: { telNumber?: string | null; emailAddress?: string | null } | null;
   country?: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     flagEmoji?: string | null;
     name?: string | null;
   } | null;
-  currency?: {
-    __typename?: 'Currency';
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-  } | null;
+  currency?: { _id: string; isoCode: string; isActive?: boolean | null } | null;
   billingAddress?: {
-    __typename?: 'Address';
     firstName?: string | null;
     lastName?: string | null;
     company?: string | null;
@@ -9756,22 +8632,14 @@ export type IOrderDetailFragmentFragment = {
     regionCode?: string | null;
     city?: string | null;
   } | null;
-  total?: {
-    __typename?: 'Price';
-    isTaxable: boolean;
-    amount: number;
-    currency: string;
-  } | null;
+  total?: { isTaxable: boolean; amount: number; currency: string } | null;
   items?: Array<{
-    __typename?: 'OrderItem';
     _id: string;
     quantity: number;
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             brand?: string | null;
@@ -9779,17 +8647,11 @@ export type IOrderDetailFragmentFragment = {
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             brand?: string | null;
@@ -9797,17 +8659,11 @@ export type IOrderDetailFragmentFragment = {
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             brand?: string | null;
@@ -9815,17 +8671,11 @@ export type IOrderDetailFragmentFragment = {
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             brand?: string | null;
@@ -9833,17 +8683,11 @@ export type IOrderDetailFragmentFragment = {
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             brand?: string | null;
@@ -9851,21 +8695,15 @@ export type IOrderDetailFragmentFragment = {
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
     unitPrice?: {
-      __typename?: 'Price';
       amount: number;
       isTaxable: boolean;
       isNetPrice: boolean;
       currency: string;
     } | null;
     total?: {
-      __typename?: 'Price';
       amount: number;
       isTaxable: boolean;
       isNetPrice: boolean;
@@ -9874,8 +8712,11 @@ export type IOrderDetailFragmentFragment = {
   }> | null;
 };
 
+export type IOrderDetailFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IOrderFragmentFragment = {
-  __typename?: 'Order';
   _id: string;
   status?: IOrderStatus | null;
   created?: any | null;
@@ -9884,13 +8725,8 @@ export type IOrderFragmentFragment = {
   orderNumber?: string | null;
   confirmed?: any | null;
   fullfilled?: any | null;
-  contact?: {
-    __typename?: 'Contact';
-    telNumber?: string | null;
-    emailAddress?: string | null;
-  } | null;
+  contact?: { telNumber?: string | null; emailAddress?: string | null } | null;
   total?: {
-    __typename?: 'Price';
     _id: string;
     isTaxable: boolean;
     isNetPrice: boolean;
@@ -9898,49 +8734,37 @@ export type IOrderFragmentFragment = {
     currency: string;
   } | null;
   user?: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     isGuest: boolean;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
-      address?: {
-        __typename?: 'Address';
-        firstName?: string | null;
-        lastName?: string | null;
-      } | null;
+      address?: { firstName?: string | null; lastName?: string | null } | null;
     } | null;
   } | null;
 };
+
+export type IOrderFragmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IConfirmOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IConfirmOrderMutation = {
-  __typename?: 'Mutation';
-  confirmOrder: { __typename?: 'Order'; _id: string };
-};
+export type IConfirmOrderMutation = { confirmOrder: { _id: string } };
 
 export type IDeliverOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IDeliverOrderMutation = {
-  __typename?: 'Mutation';
-  deliverOrder: { __typename?: 'Order'; _id: string };
-};
+export type IDeliverOrderMutation = { deliverOrder: { _id: string } };
 
 export type IOrderQueryVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
 export type IOrderQuery = {
-  __typename?: 'Query';
   order?: {
-    __typename?: 'Order';
     _id: string;
     orderNumber?: string | null;
     status?: IOrderStatus | null;
@@ -9949,51 +8773,27 @@ export type IOrderQuery = {
     ordered?: any | null;
     confirmed?: any | null;
     fullfilled?: any | null;
-    totalTax?: {
-      __typename?: 'Price';
-      amount: number;
-      currency: string;
-    } | null;
-    itemsTotal?: {
-      __typename?: 'Price';
-      amount: number;
-      currency: string;
-    } | null;
-    totalDiscount?: {
-      __typename?: 'Price';
-      amount: number;
-      currency: string;
-    } | null;
-    totalPayment?: {
-      __typename?: 'Price';
-      amount: number;
-      currency: string;
-    } | null;
-    totalDelivery?: {
-      __typename?: 'Price';
-      amount: number;
-      currency: string;
-    } | null;
+    totalTax?: { amount: number; currency: string } | null;
+    itemsTotal?: { amount: number; currency: string } | null;
+    totalDiscount?: { amount: number; currency: string } | null;
+    totalPayment?: { amount: number; currency: string } | null;
+    totalDelivery?: { amount: number; currency: string } | null;
     user?: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       isGuest: boolean;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     } | null;
     discounts?: Array<{
-      __typename?: 'OrderDiscount';
       _id: string;
       trigger: IOrderDiscountTrigger;
       code?: string | null;
       interface?: {
-        __typename?: 'DiscountInterface';
         _id: string;
         label?: string | null;
         version?: string | null;
       } | null;
       total: {
-        __typename?: 'Price';
         amount: number;
         currency: string;
         isTaxable: boolean;
@@ -10001,13 +8801,10 @@ export type IOrderQuery = {
       };
       discounted?: Array<
         | {
-            __typename?: 'OrderDeliveryDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               total: {
-                __typename?: 'Price';
                 amount: number;
                 currency: string;
                 isTaxable: boolean;
@@ -10015,7 +8812,6 @@ export type IOrderQuery = {
               };
             };
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -10023,13 +8819,10 @@ export type IOrderQuery = {
             };
           }
         | {
-            __typename?: 'OrderGlobalDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               total: {
-                __typename?: 'Price';
                 amount: number;
                 currency: string;
                 isTaxable: boolean;
@@ -10037,7 +8830,6 @@ export type IOrderQuery = {
               };
             };
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -10045,13 +8837,10 @@ export type IOrderQuery = {
             };
           }
         | {
-            __typename?: 'OrderItemDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               total: {
-                __typename?: 'Price';
                 amount: number;
                 currency: string;
                 isTaxable: boolean;
@@ -10059,7 +8848,6 @@ export type IOrderQuery = {
               };
             };
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -10067,13 +8855,10 @@ export type IOrderQuery = {
             };
           }
         | {
-            __typename?: 'OrderPaymentDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               total: {
-                __typename?: 'Price';
                 amount: number;
                 currency: string;
                 isTaxable: boolean;
@@ -10081,7 +8866,6 @@ export type IOrderQuery = {
               };
             };
             total: {
-              __typename?: 'Price';
               amount: number;
               currency: string;
               isTaxable: boolean;
@@ -10092,80 +8876,57 @@ export type IOrderQuery = {
     }> | null;
     payment?:
       | {
-          __typename?: 'OrderPaymentCard';
           _id: string;
           status?: IOrderPaymentStatus | null;
           paid?: any | null;
           provider?: {
-            __typename?: 'PaymentProvider';
             _id: string;
             type?: IPaymentProviderType | null;
             interface?: {
-              __typename?: 'PaymentInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
           } | null;
-          fee?: {
-            __typename?: 'Price';
-            currency: string;
-            amount: number;
-          } | null;
+          fee?: { currency: string; amount: number } | null;
         }
       | {
-          __typename?: 'OrderPaymentGeneric';
           _id: string;
           status?: IOrderPaymentStatus | null;
           paid?: any | null;
           provider?: {
-            __typename?: 'PaymentProvider';
             _id: string;
             type?: IPaymentProviderType | null;
             interface?: {
-              __typename?: 'PaymentInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
           } | null;
-          fee?: {
-            __typename?: 'Price';
-            currency: string;
-            amount: number;
-          } | null;
+          fee?: { currency: string; amount: number } | null;
         }
       | {
-          __typename?: 'OrderPaymentInvoice';
           _id: string;
           status?: IOrderPaymentStatus | null;
           paid?: any | null;
           provider?: {
-            __typename?: 'PaymentProvider';
             _id: string;
             type?: IPaymentProviderType | null;
             interface?: {
-              __typename?: 'PaymentInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
           } | null;
-          fee?: {
-            __typename?: 'Price';
-            currency: string;
-            amount: number;
-          } | null;
+          fee?: { currency: string; amount: number } | null;
         }
       | null;
     delivery?:
       | {
-          __typename?: 'OrderDeliveryPickUp';
           _id: string;
           status?: IOrderDeliveryStatus | null;
           delivered?: any | null;
           provider?: {
-            __typename?: 'DeliveryProvider';
             _id: string;
             type?: IDeliveryProviderType | null;
             created?: any | null;
@@ -10173,40 +8934,30 @@ export type IOrderQuery = {
             deleted?: any | null;
             configuration?: any | null;
             interface?: {
-              __typename?: 'DeliveryInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
           } | null;
           fee?: {
-            __typename?: 'Price';
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currency: string;
           } | null;
           discounts?: Array<{
-            __typename?: 'OrderDeliveryDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               trigger: IOrderDiscountTrigger;
               code?: string | null;
-              order: {
-                __typename?: 'Order';
-                _id: string;
-                orderNumber?: string | null;
-              };
+              order: { _id: string; orderNumber?: string | null };
               interface?: {
-                __typename?: 'DiscountInterface';
                 _id: string;
                 label?: string | null;
                 version?: string | null;
               } | null;
               total: {
-                __typename?: 'Price';
                 isTaxable: boolean;
                 isNetPrice: boolean;
                 amount: number;
@@ -10214,26 +8965,18 @@ export type IOrderQuery = {
               };
               discounted?: Array<
                 | {
-                    __typename?: 'OrderDeliveryDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10242,26 +8985,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderGlobalDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10270,26 +9005,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderItemDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10298,26 +9025,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderPaymentDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10330,12 +9049,10 @@ export type IOrderQuery = {
           }> | null;
         }
       | {
-          __typename?: 'OrderDeliveryShipping';
           _id: string;
           status?: IOrderDeliveryStatus | null;
           delivered?: any | null;
           provider?: {
-            __typename?: 'DeliveryProvider';
             _id: string;
             type?: IDeliveryProviderType | null;
             created?: any | null;
@@ -10343,40 +9060,30 @@ export type IOrderQuery = {
             deleted?: any | null;
             configuration?: any | null;
             interface?: {
-              __typename?: 'DeliveryInterface';
               _id: string;
               label?: string | null;
               version?: string | null;
             } | null;
           } | null;
           fee?: {
-            __typename?: 'Price';
             isTaxable: boolean;
             isNetPrice: boolean;
             amount: number;
             currency: string;
           } | null;
           discounts?: Array<{
-            __typename?: 'OrderDeliveryDiscount';
             _id: string;
             orderDiscount: {
-              __typename?: 'OrderDiscount';
               _id: string;
               trigger: IOrderDiscountTrigger;
               code?: string | null;
-              order: {
-                __typename?: 'Order';
-                _id: string;
-                orderNumber?: string | null;
-              };
+              order: { _id: string; orderNumber?: string | null };
               interface?: {
-                __typename?: 'DiscountInterface';
                 _id: string;
                 label?: string | null;
                 version?: string | null;
               } | null;
               total: {
-                __typename?: 'Price';
                 isTaxable: boolean;
                 isNetPrice: boolean;
                 amount: number;
@@ -10384,26 +9091,18 @@ export type IOrderQuery = {
               };
               discounted?: Array<
                 | {
-                    __typename?: 'OrderDeliveryDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10412,26 +9111,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderGlobalDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10440,26 +9131,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderItemDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10468,26 +9151,18 @@ export type IOrderQuery = {
                     };
                   }
                 | {
-                    __typename?: 'OrderPaymentDiscount';
                     _id: string;
                     orderDiscount: {
-                      __typename?: 'OrderDiscount';
                       _id: string;
                       trigger: IOrderDiscountTrigger;
                       code?: string | null;
-                      order: {
-                        __typename?: 'Order';
-                        _id: string;
-                        orderNumber?: string | null;
-                      };
+                      order: { _id: string; orderNumber?: string | null };
                       interface?: {
-                        __typename?: 'DiscountInterface';
                         _id: string;
                         label?: string | null;
                         version?: string | null;
                       } | null;
                       total: {
-                        __typename?: 'Price';
                         isTaxable: boolean;
                         isNetPrice: boolean;
                         amount: number;
@@ -10501,25 +9176,21 @@ export type IOrderQuery = {
         }
       | null;
     contact?: {
-      __typename?: 'Contact';
       telNumber?: string | null;
       emailAddress?: string | null;
     } | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       isoCode: string;
       isActive?: boolean | null;
     } | null;
     billingAddress?: {
-      __typename?: 'Address';
       firstName?: string | null;
       lastName?: string | null;
       company?: string | null;
@@ -10530,22 +9201,14 @@ export type IOrderQuery = {
       regionCode?: string | null;
       city?: string | null;
     } | null;
-    total?: {
-      __typename?: 'Price';
-      isTaxable: boolean;
-      amount: number;
-      currency: string;
-    } | null;
+    total?: { isTaxable: boolean; amount: number; currency: string } | null;
     items?: Array<{
-      __typename?: 'OrderItem';
       _id: string;
       quantity: number;
       product:
         | {
-            __typename?: 'BundleProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               brand?: string | null;
@@ -10553,17 +9216,11 @@ export type IOrderQuery = {
               title?: string | null;
               subtitle?: string | null;
             } | null;
-            media: Array<{
-              __typename?: 'ProductMedia';
-              _id: string;
-              file: { __typename?: 'Media'; _id: string; url: string };
-            }>;
+            media: Array<{ _id: string; file: { _id: string; url: string } }>;
           }
         | {
-            __typename?: 'ConfigurableProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               brand?: string | null;
@@ -10571,17 +9228,11 @@ export type IOrderQuery = {
               title?: string | null;
               subtitle?: string | null;
             } | null;
-            media: Array<{
-              __typename?: 'ProductMedia';
-              _id: string;
-              file: { __typename?: 'Media'; _id: string; url: string };
-            }>;
+            media: Array<{ _id: string; file: { _id: string; url: string } }>;
           }
         | {
-            __typename?: 'PlanProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               brand?: string | null;
@@ -10589,17 +9240,11 @@ export type IOrderQuery = {
               title?: string | null;
               subtitle?: string | null;
             } | null;
-            media: Array<{
-              __typename?: 'ProductMedia';
-              _id: string;
-              file: { __typename?: 'Media'; _id: string; url: string };
-            }>;
+            media: Array<{ _id: string; file: { _id: string; url: string } }>;
           }
         | {
-            __typename?: 'SimpleProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               brand?: string | null;
@@ -10607,17 +9252,11 @@ export type IOrderQuery = {
               title?: string | null;
               subtitle?: string | null;
             } | null;
-            media: Array<{
-              __typename?: 'ProductMedia';
-              _id: string;
-              file: { __typename?: 'Media'; _id: string; url: string };
-            }>;
+            media: Array<{ _id: string; file: { _id: string; url: string } }>;
           }
         | {
-            __typename?: 'TokenizedProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               brand?: string | null;
@@ -10625,21 +9264,15 @@ export type IOrderQuery = {
               title?: string | null;
               subtitle?: string | null;
             } | null;
-            media: Array<{
-              __typename?: 'ProductMedia';
-              _id: string;
-              file: { __typename?: 'Media'; _id: string; url: string };
-            }>;
+            media: Array<{ _id: string; file: { _id: string; url: string } }>;
           };
       unitPrice?: {
-        __typename?: 'Price';
         amount: number;
         isTaxable: boolean;
         isNetPrice: boolean;
         currency: string;
       } | null;
       total?: {
-        __typename?: 'Price';
         amount: number;
         isTaxable: boolean;
         isNetPrice: boolean;
@@ -10652,14 +9285,8 @@ export type IOrderQuery = {
 export type IOrderStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IOrderStatusQuery = {
-  __typename?: 'Query';
   orderStatusType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -10672,10 +9299,8 @@ export type IOrdersQueryVariables = Exact<{
 }>;
 
 export type IOrdersQuery = {
-  __typename?: 'Query';
   ordersCount: number;
   orders: Array<{
-    __typename?: 'Order';
     _id: string;
     status?: IOrderStatus | null;
     created?: any | null;
@@ -10685,12 +9310,10 @@ export type IOrdersQuery = {
     confirmed?: any | null;
     fullfilled?: any | null;
     contact?: {
-      __typename?: 'Contact';
       telNumber?: string | null;
       emailAddress?: string | null;
     } | null;
     total?: {
-      __typename?: 'Price';
       _id: string;
       isTaxable: boolean;
       isNetPrice: boolean;
@@ -10698,16 +9321,13 @@ export type IOrdersQuery = {
       currency: string;
     } | null;
     user?: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       isGuest: boolean;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
@@ -10720,28 +9340,19 @@ export type IPayOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IPayOrderMutation = {
-  __typename?: 'Mutation';
-  payOrder: { __typename?: 'Order'; _id: string };
-};
+export type IPayOrderMutation = { payOrder: { _id: string } };
 
 export type IRejectOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IRejectOrderMutation = {
-  __typename?: 'Mutation';
-  rejectOrder: { __typename?: 'Order'; _id: string };
-};
+export type IRejectOrderMutation = { rejectOrder: { _id: string } };
 
 export type IRemoveOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveOrderMutation = {
-  __typename?: 'Mutation';
-  removeOrder: { __typename?: 'Order'; _id: string };
-};
+export type IRemoveOrderMutation = { removeOrder: { _id: string } };
 
 export type IUserOrderQueryVariables = Exact<{
   userId?: InputMaybe<Scalars['ID']['input']>;
@@ -10750,11 +9361,8 @@ export type IUserOrderQueryVariables = Exact<{
 }>;
 
 export type IUserOrderQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     orders: Array<{
-      __typename?: 'Order';
       _id: string;
       status?: IOrderStatus | null;
       created?: any | null;
@@ -10764,12 +9372,10 @@ export type IUserOrderQuery = {
       confirmed?: any | null;
       fullfilled?: any | null;
       contact?: {
-        __typename?: 'Contact';
         telNumber?: string | null;
         emailAddress?: string | null;
       } | null;
       total?: {
-        __typename?: 'Price';
         _id: string;
         isTaxable: boolean;
         isNetPrice: boolean;
@@ -10777,16 +9383,13 @@ export type IUserOrderQuery = {
         currency: string;
       } | null;
       user?: {
-        __typename?: 'User';
         _id: string;
         username?: string | null;
         isGuest: boolean;
-        avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+        avatar?: { _id: string; url: string } | null;
         profile?: {
-          __typename?: 'UserProfile';
           displayName?: string | null;
           address?: {
-            __typename?: 'Address';
             firstName?: string | null;
             lastName?: string | null;
           } | null;
@@ -10797,7 +9400,6 @@ export type IUserOrderQuery = {
 };
 
 export type IPaymentProviderFragmentFragment = {
-  __typename?: 'PaymentProvider';
   _id: string;
   created?: any | null;
   updated?: any | null;
@@ -10807,21 +9409,22 @@ export type IPaymentProviderFragmentFragment = {
   configuration?: any | null;
   configurationError?: IPaymentProviderError | null;
   interface?: {
-    __typename?: 'PaymentInterface';
     _id: string;
     label?: string | null;
     version?: string | null;
   } | null;
 };
 
+export type IPaymentProviderFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreatePaymentProviderMutationVariables = Exact<{
   paymentProvider: ICreatePaymentProviderInput;
 }>;
 
 export type ICreatePaymentProviderMutation = {
-  __typename?: 'Mutation';
   createPaymentProvider: {
-    __typename?: 'PaymentProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -10831,7 +9434,6 @@ export type ICreatePaymentProviderMutation = {
     configuration?: any | null;
     configurationError?: IPaymentProviderError | null;
     interface?: {
-      __typename?: 'PaymentInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -10844,9 +9446,7 @@ export type IPaymentInterfacesQueryVariables = Exact<{
 }>;
 
 export type IPaymentInterfacesQuery = {
-  __typename?: 'Query';
   paymentInterfaces: Array<{
-    __typename?: 'PaymentInterface';
     _id: string;
     label?: string | null;
     value: string;
@@ -10858,9 +9458,7 @@ export type IPaymentProviderQueryVariables = Exact<{
 }>;
 
 export type IPaymentProviderQuery = {
-  __typename?: 'Query';
   paymentProvider?: {
-    __typename?: 'PaymentProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -10870,7 +9468,6 @@ export type IPaymentProviderQuery = {
     configuration?: any | null;
     configurationError?: IPaymentProviderError | null;
     interface?: {
-      __typename?: 'PaymentInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -10883,14 +9480,8 @@ export type IPaymentProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IPaymentProvidersTypeQuery = {
-  __typename?: 'Query';
   paymentProviderType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -10899,9 +9490,7 @@ export type IPaymentProvidersQueryVariables = Exact<{
 }>;
 
 export type IPaymentProvidersQuery = {
-  __typename?: 'Query';
   paymentProviders: Array<{
-    __typename?: 'PaymentProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -10911,7 +9500,6 @@ export type IPaymentProvidersQuery = {
     configuration?: any | null;
     configurationError?: IPaymentProviderError | null;
     interface?: {
-      __typename?: 'PaymentInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -10922,14 +9510,8 @@ export type IPaymentProvidersQuery = {
 export type IOrderPaymentStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IOrderPaymentStatusQuery = {
-  __typename?: 'Query';
   paymentStatusTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -10938,8 +9520,7 @@ export type IRemovePaymentProviderMutationVariables = Exact<{
 }>;
 
 export type IRemovePaymentProviderMutation = {
-  __typename?: 'Mutation';
-  removePaymentProvider: { __typename?: 'PaymentProvider'; _id: string };
+  removePaymentProvider: { _id: string };
 };
 
 export type IUpdatePaymentProviderMutationVariables = Exact<{
@@ -10948,9 +9529,7 @@ export type IUpdatePaymentProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdatePaymentProviderMutation = {
-  __typename?: 'Mutation';
   updatePaymentProvider: {
-    __typename?: 'PaymentProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -10960,7 +9539,6 @@ export type IUpdatePaymentProviderMutation = {
     configuration?: any | null;
     configurationError?: IPaymentProviderError | null;
     interface?: {
-      __typename?: 'PaymentInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -10969,7 +9547,6 @@ export type IUpdatePaymentProviderMutation = {
 };
 
 export type IProductReviewDetailFragmentFragment = {
-  __typename?: 'ProductReview';
   _id: string;
   created?: any | null;
   updated?: any | null;
@@ -10981,107 +9558,70 @@ export type IProductReviewDetailFragmentFragment = {
   downVote?: number | null;
   voteReport?: number | null;
   author: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
     isGuest: boolean;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
-      address?: {
-        __typename?: 'Address';
-        firstName?: string | null;
-        lastName?: string | null;
-      } | null;
+      address?: { firstName?: string | null; lastName?: string | null } | null;
     } | null;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
   };
   product:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       };
-  ownVotes: Array<{
-    __typename?: 'ProductReviewVote';
-    timestamp: any;
-    type: IProductReviewVoteType;
-  }>;
+  ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
 };
 
+export type IProductReviewDetailFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductReviewFragmentFragment = {
-  __typename?: 'ProductReview';
   _id: string;
   created?: any | null;
   updated?: any | null;
@@ -11092,99 +9632,67 @@ export type IProductReviewFragmentFragment = {
   downVote?: number | null;
   voteReport?: number | null;
   author: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
     isGuest: boolean;
     profile?: {
-      __typename?: 'UserProfile';
       displayName?: string | null;
-      address?: {
-        __typename?: 'Address';
-        firstName?: string | null;
-        lastName?: string | null;
-      } | null;
+      address?: { firstName?: string | null; lastName?: string | null } | null;
     } | null;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+    avatar?: { _id: string; url: string } | null;
   };
   product:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
         } | null;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       };
 };
+
+export type IProductReviewFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
 
 export type IAddProductReviewVoteMutationVariables = Exact<{
   productReviewId: Scalars['ID']['input'];
@@ -11193,9 +9701,7 @@ export type IAddProductReviewVoteMutationVariables = Exact<{
 }>;
 
 export type IAddProductReviewVoteMutation = {
-  __typename?: 'Mutation';
   addProductReviewVote: {
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -11207,103 +9713,66 @@ export type IAddProductReviewVoteMutation = {
     downVote?: number | null;
     voteReport?: number | null;
     author: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
       isGuest: boolean;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      timestamp: any;
-      type: IProductReviewVoteType;
-    }>;
+    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
 
@@ -11313,9 +9782,7 @@ export type ICreateProductReviewMutationVariables = Exact<{
 }>;
 
 export type ICreateProductReviewMutation = {
-  __typename?: 'Mutation';
   createProductReview: {
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -11327,103 +9794,66 @@ export type ICreateProductReviewMutation = {
     downVote?: number | null;
     voteReport?: number | null;
     author: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
       isGuest: boolean;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      timestamp: any;
-      type: IProductReviewVoteType;
-    }>;
+    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
 
@@ -11432,9 +9862,7 @@ export type IProductReviewQueryVariables = Exact<{
 }>;
 
 export type IProductReviewQuery = {
-  __typename?: 'Query';
   productReview: {
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -11446,103 +9874,66 @@ export type IProductReviewQuery = {
     downVote?: number | null;
     voteReport?: number | null;
     author: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
       isGuest: boolean;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      timestamp: any;
-      type: IProductReviewVoteType;
-    }>;
+    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
 
@@ -11555,14 +9946,11 @@ export type IProductReviewByProductQueryVariables = Exact<{
 }>;
 
 export type IProductReviewByProductQuery = {
-  __typename?: 'Query';
   product?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         reviewsCount: number;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           updated?: any | null;
@@ -11574,111 +9962,87 @@ export type IProductReviewByProductQuery = {
           downVote?: number | null;
           voteReport?: number | null;
           author: {
-            __typename?: 'User';
             _id: string;
             username?: string | null;
             name: string;
             isGuest: boolean;
             profile?: {
-              __typename?: 'UserProfile';
               displayName?: string | null;
               address?: {
-                __typename?: 'Address';
                 firstName?: string | null;
                 lastName?: string | null;
               } | null;
             } | null;
-            avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+            avatar?: { _id: string; url: string } | null;
           };
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            timestamp: any;
-            type: IProductReviewVoteType;
-          }>;
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         reviewsCount: number;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           updated?: any | null;
@@ -11690,111 +10054,87 @@ export type IProductReviewByProductQuery = {
           downVote?: number | null;
           voteReport?: number | null;
           author: {
-            __typename?: 'User';
             _id: string;
             username?: string | null;
             name: string;
             isGuest: boolean;
             profile?: {
-              __typename?: 'UserProfile';
               displayName?: string | null;
               address?: {
-                __typename?: 'Address';
                 firstName?: string | null;
                 lastName?: string | null;
               } | null;
             } | null;
-            avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+            avatar?: { _id: string; url: string } | null;
           };
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            timestamp: any;
-            type: IProductReviewVoteType;
-          }>;
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         reviewsCount: number;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           updated?: any | null;
@@ -11806,111 +10146,87 @@ export type IProductReviewByProductQuery = {
           downVote?: number | null;
           voteReport?: number | null;
           author: {
-            __typename?: 'User';
             _id: string;
             username?: string | null;
             name: string;
             isGuest: boolean;
             profile?: {
-              __typename?: 'UserProfile';
               displayName?: string | null;
               address?: {
-                __typename?: 'Address';
                 firstName?: string | null;
                 lastName?: string | null;
               } | null;
             } | null;
-            avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+            avatar?: { _id: string; url: string } | null;
           };
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            timestamp: any;
-            type: IProductReviewVoteType;
-          }>;
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         reviewsCount: number;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           updated?: any | null;
@@ -11922,111 +10238,87 @@ export type IProductReviewByProductQuery = {
           downVote?: number | null;
           voteReport?: number | null;
           author: {
-            __typename?: 'User';
             _id: string;
             username?: string | null;
             name: string;
             isGuest: boolean;
             profile?: {
-              __typename?: 'UserProfile';
               displayName?: string | null;
               address?: {
-                __typename?: 'Address';
                 firstName?: string | null;
                 lastName?: string | null;
               } | null;
             } | null;
-            avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+            avatar?: { _id: string; url: string } | null;
           };
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            timestamp: any;
-            type: IProductReviewVoteType;
-          }>;
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         reviewsCount: number;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           updated?: any | null;
@@ -12038,103 +10330,81 @@ export type IProductReviewByProductQuery = {
           downVote?: number | null;
           voteReport?: number | null;
           author: {
-            __typename?: 'User';
             _id: string;
             username?: string | null;
             name: string;
             isGuest: boolean;
             profile?: {
-              __typename?: 'UserProfile';
               displayName?: string | null;
               address?: {
-                __typename?: 'Address';
                 firstName?: string | null;
                 lastName?: string | null;
               } | null;
             } | null;
-            avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+            avatar?: { _id: string; url: string } | null;
           };
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   subtitle?: string | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            timestamp: any;
-            type: IProductReviewVoteType;
-          }>;
+          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
         }>;
       }
     | null;
@@ -12145,8 +10415,7 @@ export type IRemoveProductReviewMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductReviewMutation = {
-  __typename?: 'Mutation';
-  removeProductReview: { __typename?: 'ProductReview'; _id: string };
+  removeProductReview: { _id: string };
 };
 
 export type IRemoveProductReviewVoteMutationVariables = Exact<{
@@ -12155,9 +10424,7 @@ export type IRemoveProductReviewVoteMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductReviewVoteMutation = {
-  __typename?: 'Mutation';
   removeProductReviewVote: {
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -12169,103 +10436,66 @@ export type IRemoveProductReviewVoteMutation = {
     downVote?: number | null;
     voteReport?: number | null;
     author: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
       isGuest: boolean;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      timestamp: any;
-      type: IProductReviewVoteType;
-    }>;
+    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   };
 };
 
@@ -12277,13 +10507,10 @@ export type IUserProductReviewsQueryVariables = Exact<{
 }>;
 
 export type IUserProductReviewsQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     reviewsCount: number;
     reviews: Array<{
-      __typename?: 'ProductReview';
       _id: string;
       created?: any | null;
       updated?: any | null;
@@ -12296,7 +10523,6 @@ export type IUserProductReviewsQuery = {
       voteReport?: number | null;
       product:
         | {
-            __typename?: 'BundleProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -12304,7 +10530,6 @@ export type IUserProductReviewsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               title?: string | null;
               subtitle?: string | null;
@@ -12315,14 +10540,12 @@ export type IUserProductReviewsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'ConfigurableProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -12330,7 +10553,6 @@ export type IUserProductReviewsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               title?: string | null;
               subtitle?: string | null;
@@ -12341,14 +10563,12 @@ export type IUserProductReviewsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'PlanProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -12356,7 +10576,6 @@ export type IUserProductReviewsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               title?: string | null;
               subtitle?: string | null;
@@ -12367,14 +10586,12 @@ export type IUserProductReviewsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'SimpleProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -12382,7 +10599,6 @@ export type IUserProductReviewsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               title?: string | null;
               subtitle?: string | null;
@@ -12393,14 +10609,12 @@ export type IUserProductReviewsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           }
         | {
-            __typename?: 'TokenizedProduct';
             _id: string;
             sequence: number;
             status: IProductStatus;
@@ -12408,7 +10622,6 @@ export type IUserProductReviewsQuery = {
             updated?: any | null;
             published?: any | null;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               title?: string | null;
               subtitle?: string | null;
@@ -12419,61 +10632,47 @@ export type IUserProductReviewsQuery = {
               labels?: Array<string> | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
               tags?: Array<any> | null;
-              file: { __typename?: 'Media'; _id: string; url: string };
+              file: { _id: string; url: string };
             }>;
           };
       author: {
-        __typename?: 'User';
         _id: string;
         username?: string | null;
         name: string;
         isGuest: boolean;
         profile?: {
-          __typename?: 'UserProfile';
           displayName?: string | null;
           address?: {
-            __typename?: 'Address';
             firstName?: string | null;
             lastName?: string | null;
           } | null;
         } | null;
-        avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+        avatar?: { _id: string; url: string } | null;
       };
-      ownVotes: Array<{
-        __typename?: 'ProductReviewVote';
-        timestamp: any;
-        type: IProductReviewVoteType;
-      }>;
+      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
     }>;
   } | null;
 };
 
 export type IProductAssignmentFragmentFragment = {
-  __typename?: 'ProductVariationAssignment';
   _id: string;
   vectors?: Array<{
-    __typename?: 'ProductVariationAssignmentVector';
     _id: string;
     option?: {
-      __typename?: 'ProductVariationOption';
       _id: string;
       value?: string | null;
       texts?: {
-        __typename?: 'ProductVariationTexts';
         _id: string;
         title?: string | null;
         subtitle?: string | null;
       } | null;
     } | null;
     variation?: {
-      __typename?: 'ProductVariation';
       _id: string;
       key?: string | null;
       texts?: {
-        __typename?: 'ProductVariationTexts';
         _id: string;
         locale?: string | null;
         title?: string | null;
@@ -12482,10 +10681,8 @@ export type IProductAssignmentFragmentFragment = {
   }> | null;
   product?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           slug?: string | null;
@@ -12493,10 +10690,8 @@ export type IProductAssignmentFragmentFragment = {
         } | null;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           slug?: string | null;
@@ -12504,10 +10699,8 @@ export type IProductAssignmentFragmentFragment = {
         } | null;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           slug?: string | null;
@@ -12515,10 +10708,8 @@ export type IProductAssignmentFragmentFragment = {
         } | null;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           slug?: string | null;
@@ -12526,10 +10717,8 @@ export type IProductAssignmentFragmentFragment = {
         } | null;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           slug?: string | null;
@@ -12539,8 +10728,11 @@ export type IProductAssignmentFragmentFragment = {
     | null;
 };
 
+export type IProductAssignmentFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 type IProductBriefFragment_BundleProduct_Fragment = {
-  __typename?: 'BundleProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12548,7 +10740,6 @@ type IProductBriefFragment_BundleProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   texts?: {
-    __typename?: 'ProductTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -12559,15 +10750,13 @@ type IProductBriefFragment_BundleProduct_Fragment = {
     labels?: Array<string> | null;
   } | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
 type IProductBriefFragment_ConfigurableProduct_Fragment = {
-  __typename?: 'ConfigurableProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12575,7 +10764,6 @@ type IProductBriefFragment_ConfigurableProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   texts?: {
-    __typename?: 'ProductTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -12586,15 +10774,13 @@ type IProductBriefFragment_ConfigurableProduct_Fragment = {
     labels?: Array<string> | null;
   } | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
 type IProductBriefFragment_PlanProduct_Fragment = {
-  __typename?: 'PlanProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12602,7 +10788,6 @@ type IProductBriefFragment_PlanProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   texts?: {
-    __typename?: 'ProductTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -12613,15 +10798,13 @@ type IProductBriefFragment_PlanProduct_Fragment = {
     labels?: Array<string> | null;
   } | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
 type IProductBriefFragment_SimpleProduct_Fragment = {
-  __typename?: 'SimpleProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12629,7 +10812,6 @@ type IProductBriefFragment_SimpleProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   texts?: {
-    __typename?: 'ProductTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -12640,15 +10822,13 @@ type IProductBriefFragment_SimpleProduct_Fragment = {
     labels?: Array<string> | null;
   } | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
 type IProductBriefFragment_TokenizedProduct_Fragment = {
-  __typename?: 'TokenizedProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12656,7 +10836,6 @@ type IProductBriefFragment_TokenizedProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   texts?: {
-    __typename?: 'ProductTexts';
     _id: string;
     slug?: string | null;
     title?: string | null;
@@ -12667,10 +10846,9 @@ type IProductBriefFragment_TokenizedProduct_Fragment = {
     labels?: Array<string> | null;
   } | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
 };
 
@@ -12681,30 +10859,30 @@ export type IProductBriefFragmentFragment =
   | IProductBriefFragment_SimpleProduct_Fragment
   | IProductBriefFragment_TokenizedProduct_Fragment;
 
+export type IProductBriefFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductCatalogPriceFragmentFragment = {
-  __typename?: 'ProductCatalogPrice';
   _id: string;
   isTaxable: boolean;
   isNetPrice: boolean;
   amount: number;
   maxQuantity?: number | null;
   country: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     name?: string | null;
     flagEmoji?: string | null;
   };
-  currency: {
-    __typename?: 'Currency';
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-  };
+  currency: { _id: string; isoCode: string; isActive?: boolean | null };
 };
 
+export type IProductCatalogPriceFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 type IProductDetailFragment_BundleProduct_Fragment = {
-  __typename?: 'BundleProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12713,82 +10891,45 @@ type IProductDetailFragment_BundleProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
   reviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     rating?: number | null;
     title?: string | null;
     review?: string | null;
     voteCount?: number | null;
-    author: {
-      __typename?: 'User';
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-    };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      type: IProductReviewVoteType;
-      timestamp: any;
-    }>;
+    author: { _id: string; username?: string | null; isGuest: boolean };
+    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
   }>;
   siblings: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
   >;
 };
 
 type IProductDetailFragment_ConfigurableProduct_Fragment = {
-  __typename?: 'ConfigurableProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12797,82 +10938,45 @@ type IProductDetailFragment_ConfigurableProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
   reviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     rating?: number | null;
     title?: string | null;
     review?: string | null;
     voteCount?: number | null;
-    author: {
-      __typename?: 'User';
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-    };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      type: IProductReviewVoteType;
-      timestamp: any;
-    }>;
+    author: { _id: string; username?: string | null; isGuest: boolean };
+    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
   }>;
   siblings: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
   >;
 };
 
 type IProductDetailFragment_PlanProduct_Fragment = {
-  __typename?: 'PlanProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12881,82 +10985,45 @@ type IProductDetailFragment_PlanProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
   reviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     rating?: number | null;
     title?: string | null;
     review?: string | null;
     voteCount?: number | null;
-    author: {
-      __typename?: 'User';
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-    };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      type: IProductReviewVoteType;
-      timestamp: any;
-    }>;
+    author: { _id: string; username?: string | null; isGuest: boolean };
+    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
   }>;
   siblings: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
   >;
 };
 
 type IProductDetailFragment_SimpleProduct_Fragment = {
-  __typename?: 'SimpleProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -12965,82 +11032,45 @@ type IProductDetailFragment_SimpleProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
   reviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     rating?: number | null;
     title?: string | null;
     review?: string | null;
     voteCount?: number | null;
-    author: {
-      __typename?: 'User';
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-    };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      type: IProductReviewVoteType;
-      timestamp: any;
-    }>;
+    author: { _id: string; username?: string | null; isGuest: boolean };
+    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
   }>;
   siblings: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
   >;
 };
 
 type IProductDetailFragment_TokenizedProduct_Fragment = {
-  __typename?: 'TokenizedProduct';
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -13049,76 +11079,40 @@ type IProductDetailFragment_TokenizedProduct_Fragment = {
   updated?: any | null;
   published?: any | null;
   media: Array<{
-    __typename?: 'ProductMedia';
     _id: string;
     tags?: Array<any> | null;
-    file: { __typename?: 'Media'; _id: string; url: string };
+    file: { _id: string; url: string };
   }>;
   reviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     rating?: number | null;
     title?: string | null;
     review?: string | null;
     voteCount?: number | null;
-    author: {
-      __typename?: 'User';
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-    };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      type: IProductReviewVoteType;
-      timestamp: any;
-    }>;
+    author: { _id: string; username?: string | null; isGuest: boolean };
+    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
   }>;
   siblings: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
-        media: Array<{
-          __typename?: 'ProductMedia';
-          _id: string;
-          file: { __typename?: 'Media'; _id: string; url: string };
-        }>;
+        media: Array<{ _id: string; file: { _id: string; url: string } }>;
       }
   >;
 };
@@ -13130,29 +11124,27 @@ export type IProductDetailFragmentFragment =
   | IProductDetailFragment_SimpleProduct_Fragment
   | IProductDetailFragment_TokenizedProduct_Fragment;
 
+export type IProductDetailFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductDimensionFragmentFragment = {
-  __typename?: 'Dimensions';
   weight?: number | null;
   length?: number | null;
   width?: number | null;
   height?: number | null;
 };
 
+export type IProductDimensionFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductMediaFragmentFragment = {
-  __typename?: 'ProductMedia';
   _id: string;
   tags?: Array<any> | null;
   sortKey: number;
-  file: {
-    __typename?: 'Media';
-    _id: string;
-    name: string;
-    type: string;
-    size: number;
-    url: string;
-  };
+  file: { _id: string; name: string; type: string; size: number; url: string };
   texts?: {
-    __typename?: 'ProductMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -13160,16 +11152,22 @@ export type IProductMediaFragmentFragment = {
   } | null;
 };
 
+export type IProductMediaFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductMediaTextsFragmentFragment = {
-  __typename?: 'ProductMediaTexts';
   _id: string;
   locale?: string | null;
   title?: string | null;
   subtitle?: string | null;
 };
 
+export type IProductMediaTextsFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductPlanConfigurationFragmentFragment = {
-  __typename?: 'ProductPlanConfiguration';
   usageCalculationType: IProductPlanUsageCalculationType;
   billingInterval: IProductPlanConfigurationInterval;
   trialInterval?: IProductPlanConfigurationInterval | null;
@@ -13177,8 +11175,11 @@ export type IProductPlanConfigurationFragmentFragment = {
   billingIntervalCount?: number | null;
 };
 
+export type IProductPlanConfigurationFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductTextsFragmentFragment = {
-  __typename?: 'ProductTexts';
   _id: string;
   locale?: string | null;
   slug?: string | null;
@@ -13190,24 +11191,24 @@ export type IProductTextsFragmentFragment = {
   labels?: Array<string> | null;
 };
 
+export type IProductTextsFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IProductVariationFragmentFragment = {
-  __typename?: 'ProductVariation';
   _id: string;
   type?: IProductVariationType | null;
   key?: string | null;
   texts?: {
-    __typename?: 'ProductVariationTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
     subtitle?: string | null;
   } | null;
   options?: Array<{
-    __typename?: 'ProductVariationOption';
     _id: string;
     value?: string | null;
     texts?: {
-      __typename?: 'ProductVariationTexts';
       _id: string;
       locale?: string | null;
       title?: string | null;
@@ -13216,8 +11217,11 @@ export type IProductVariationFragmentFragment = {
   }> | null;
 };
 
+export type IProductVariationFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ITokenFragmentFragment = {
-  __typename?: 'Token';
   _id: string;
   walletAddress?: string | null;
   status: ITokenExportStatus;
@@ -13227,6 +11231,8 @@ export type ITokenFragmentFragment = {
   chainTokenId?: string | null;
 };
 
+export type ITokenFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+
 export type IAddProductAssignmentMutationVariables = Exact<{
   proxyId: Scalars['ID']['input'];
   productId: Scalars['ID']['input'];
@@ -13234,13 +11240,12 @@ export type IAddProductAssignmentMutationVariables = Exact<{
 }>;
 
 export type IAddProductAssignmentMutation = {
-  __typename?: 'Mutation';
   addProductAssignment:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IAddProductMediaMutationVariables = Exact<{
@@ -13248,20 +11253,15 @@ export type IAddProductMediaMutationVariables = Exact<{
   media: Scalars['Upload']['input'];
 }>;
 
-export type IAddProductMediaMutation = {
-  __typename?: 'Mutation';
-  addProductMedia: { __typename?: 'ProductMedia'; _id: string };
-};
+export type IAddProductMediaMutation = { addProductMedia: { _id: string } };
 
 export type ICreateProductMutationVariables = Exact<{
   product: ICreateProductInput;
 }>;
 
 export type ICreateProductMutation = {
-  __typename?: 'Mutation';
   createProduct:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13270,81 +11270,44 @@ export type ICreateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13353,81 +11316,44 @@ export type ICreateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13436,81 +11362,44 @@ export type ICreateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13519,81 +11408,44 @@ export type ICreateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13602,76 +11454,40 @@ export type ICreateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       };
@@ -13683,13 +11499,12 @@ export type ICreateProductBundleItemMutationVariables = Exact<{
 }>;
 
 export type ICreateProductBundleItemMutation = {
-  __typename?: 'Mutation';
   createProductBundleItem:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type ICreateProductVariationMutationVariables = Exact<{
@@ -13698,8 +11513,7 @@ export type ICreateProductVariationMutationVariables = Exact<{
 }>;
 
 export type ICreateProductVariationMutation = {
-  __typename?: 'Mutation';
-  createProductVariation: { __typename?: 'ProductVariation'; _id: string };
+  createProductVariation: { _id: string };
 };
 
 export type ICreateProductVariationOptionMutationVariables = Exact<{
@@ -13708,11 +11522,7 @@ export type ICreateProductVariationOptionMutationVariables = Exact<{
 }>;
 
 export type ICreateProductVariationOptionMutation = {
-  __typename?: 'Mutation';
-  createProductVariationOption: {
-    __typename?: 'ProductVariation';
-    _id: string;
-  };
+  createProductVariationOption: { _id: string };
 };
 
 export type IExportTokenMutationVariables = Exact<{
@@ -13722,9 +11532,7 @@ export type IExportTokenMutationVariables = Exact<{
 }>;
 
 export type IExportTokenMutation = {
-  __typename?: 'Mutation';
   exportToken: {
-    __typename?: 'Token';
     _id: string;
     walletAddress?: string | null;
     status: ITokenExportStatus;
@@ -13741,10 +11549,8 @@ export type IProductQueryVariables = Exact<{
 }>;
 
 export type IProductQuery = {
-  __typename?: 'Query';
   product?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13753,88 +11559,50 @@ export type IProductQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13843,88 +11611,50 @@ export type IProductQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -13933,88 +11663,50 @@ export type IProductQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -14023,88 +11715,50 @@ export type IProductQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           title?: string | null;
           subtitle?: string | null;
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -14113,76 +11767,40 @@ export type IProductQuery = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
@@ -14195,62 +11813,43 @@ export type IProductAssignmentsQueryVariables = Exact<{
 }>;
 
 export type IProductAssignmentsQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
+    | { _id: string }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           subtitle?: string | null;
           slug?: string | null;
           title?: string | null;
         } | null;
         variations?: Array<{
-          __typename?: 'ProductVariation';
           _id: string;
           key?: string | null;
-          texts?: {
-            __typename?: 'ProductVariationTexts';
-            _id: string;
-            title?: string | null;
-          } | null;
+          texts?: { _id: string; title?: string | null } | null;
           options?: Array<{
-            __typename?: 'ProductVariationOption';
             _id: string;
             value?: string | null;
-            texts?: {
-              __typename?: 'ProductVariationTexts';
-              _id: string;
-              title?: string | null;
-            } | null;
+            texts?: { _id: string; title?: string | null } | null;
           }> | null;
         }> | null;
         assignments: Array<{
-          __typename?: 'ProductVariationAssignment';
           _id: string;
           vectors?: Array<{
-            __typename?: 'ProductVariationAssignmentVector';
             _id: string;
             option?: {
-              __typename?: 'ProductVariationOption';
               _id: string;
               value?: string | null;
               texts?: {
-                __typename?: 'ProductVariationTexts';
                 _id: string;
                 title?: string | null;
                 subtitle?: string | null;
               } | null;
             } | null;
             variation?: {
-              __typename?: 'ProductVariation';
               _id: string;
               key?: string | null;
               texts?: {
-                __typename?: 'ProductVariationTexts';
                 _id: string;
                 locale?: string | null;
                 title?: string | null;
@@ -14259,10 +11858,8 @@ export type IProductAssignmentsQuery = {
           }> | null;
           product?:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   slug?: string | null;
@@ -14270,10 +11867,8 @@ export type IProductAssignmentsQuery = {
                 } | null;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   slug?: string | null;
@@ -14281,10 +11876,8 @@ export type IProductAssignmentsQuery = {
                 } | null;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   slug?: string | null;
@@ -14292,10 +11885,8 @@ export type IProductAssignmentsQuery = {
                 } | null;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   slug?: string | null;
@@ -14303,10 +11894,8 @@ export type IProductAssignmentsQuery = {
                 } | null;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   title?: string | null;
                   slug?: string | null;
@@ -14316,9 +11905,9 @@ export type IProductAssignmentsQuery = {
             | null;
         }>;
       }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14328,17 +11917,13 @@ export type IProductBundleItemsQueryVariables = Exact<{
 }>;
 
 export type IProductBundleItemsQuery = {
-  __typename?: 'Query';
   product?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         bundleItems?: Array<{
-          __typename?: 'ProductBundleItem';
           quantity: number;
           product:
             | {
-                __typename?: 'BundleProduct';
                 _id: string;
                 sequence: number;
                 status: IProductStatus;
@@ -14346,7 +11931,6 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   slug?: string | null;
                   title?: string | null;
@@ -14357,14 +11941,12 @@ export type IProductBundleItemsQuery = {
                   labels?: Array<string> | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
                   tags?: Array<any> | null;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'ConfigurableProduct';
                 _id: string;
                 sequence: number;
                 status: IProductStatus;
@@ -14372,7 +11954,6 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   slug?: string | null;
                   title?: string | null;
@@ -14383,14 +11964,12 @@ export type IProductBundleItemsQuery = {
                   labels?: Array<string> | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
                   tags?: Array<any> | null;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'PlanProduct';
                 _id: string;
                 sequence: number;
                 status: IProductStatus;
@@ -14398,7 +11977,6 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   slug?: string | null;
                   title?: string | null;
@@ -14409,14 +11987,12 @@ export type IProductBundleItemsQuery = {
                   labels?: Array<string> | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
                   tags?: Array<any> | null;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'SimpleProduct';
                 _id: string;
                 sequence: number;
                 status: IProductStatus;
@@ -14424,7 +12000,6 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   slug?: string | null;
                   title?: string | null;
@@ -14435,14 +12010,12 @@ export type IProductBundleItemsQuery = {
                   labels?: Array<string> | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
                   tags?: Array<any> | null;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               }
             | {
-                __typename?: 'TokenizedProduct';
                 _id: string;
                 sequence: number;
                 status: IProductStatus;
@@ -14450,7 +12023,6 @@ export type IProductBundleItemsQuery = {
                 updated?: any | null;
                 published?: any | null;
                 texts?: {
-                  __typename?: 'ProductTexts';
                   _id: string;
                   slug?: string | null;
                   title?: string | null;
@@ -14461,18 +12033,17 @@ export type IProductBundleItemsQuery = {
                   labels?: Array<string> | null;
                 } | null;
                 media: Array<{
-                  __typename?: 'ProductMedia';
                   _id: string;
                   tags?: Array<any> | null;
-                  file: { __typename?: 'Media'; _id: string; url: string };
+                  file: { _id: string; url: string };
                 }>;
               };
         }> | null;
       }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14481,27 +12052,19 @@ export type IProductCatalogPricesQueryVariables = Exact<{
 }>;
 
 export type IProductCatalogPricesQuery = {
-  __typename?: 'Query';
   productCatalogPrices: Array<{
-    __typename?: 'ProductCatalogPrice';
     _id: string;
     isTaxable: boolean;
     isNetPrice: boolean;
     amount: number;
     maxQuantity?: number | null;
     country: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       name?: string | null;
       flagEmoji?: string | null;
     };
-    currency: {
-      __typename?: 'Currency';
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
-    };
+    currency: { _id: string; isoCode: string; isActive?: boolean | null };
   }>;
 };
 
@@ -14510,22 +12073,11 @@ export type IProductDimensionUnitsQueryVariables = Exact<{
 }>;
 
 export type IProductDimensionUnitsQuery = {
-  __typename?: 'Query';
   massUnits?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
   lengthUnits?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -14535,18 +12087,14 @@ export type IProductMediaQueryVariables = Exact<{
 }>;
 
 export type IProductMediaQuery = {
-  __typename?: 'Query';
   product?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
           sortKey: number;
           file: {
-            __typename?: 'Media';
             _id: string;
             name: string;
             type: string;
@@ -14554,7 +12102,6 @@ export type IProductMediaQuery = {
             url: string;
           };
           texts?: {
-            __typename?: 'ProductMediaTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
@@ -14563,15 +12110,12 @@ export type IProductMediaQuery = {
         }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
           sortKey: number;
           file: {
-            __typename?: 'Media';
             _id: string;
             name: string;
             type: string;
@@ -14579,7 +12123,6 @@ export type IProductMediaQuery = {
             url: string;
           };
           texts?: {
-            __typename?: 'ProductMediaTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
@@ -14588,15 +12131,12 @@ export type IProductMediaQuery = {
         }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
           sortKey: number;
           file: {
-            __typename?: 'Media';
             _id: string;
             name: string;
             type: string;
@@ -14604,7 +12144,6 @@ export type IProductMediaQuery = {
             url: string;
           };
           texts?: {
-            __typename?: 'ProductMediaTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
@@ -14613,15 +12152,12 @@ export type IProductMediaQuery = {
         }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
           sortKey: number;
           file: {
-            __typename?: 'Media';
             _id: string;
             name: string;
             type: string;
@@ -14629,7 +12165,6 @@ export type IProductMediaQuery = {
             url: string;
           };
           texts?: {
-            __typename?: 'ProductMediaTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
@@ -14638,15 +12173,12 @@ export type IProductMediaQuery = {
         }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
           sortKey: number;
           file: {
-            __typename?: 'Media';
             _id: string;
             name: string;
             type: string;
@@ -14654,7 +12186,6 @@ export type IProductMediaQuery = {
             url: string;
           };
           texts?: {
-            __typename?: 'ProductMediaTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
@@ -14671,15 +12202,12 @@ export type IProductPlanQueryVariables = Exact<{
 }>;
 
 export type IProductPlanQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         plan?: {
-          __typename?: 'ProductPlanConfiguration';
           usageCalculationType: IProductPlanUsageCalculationType;
           billingInterval: IProductPlanConfigurationInterval;
           trialInterval?: IProductPlanConfigurationInterval | null;
@@ -14687,8 +12215,8 @@ export type IProductPlanQuery = {
           billingIntervalCount?: number | null;
         } | null;
       }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14697,22 +12225,11 @@ export type IProductPlanConfigurationOptionsQueryVariables = Exact<{
 }>;
 
 export type IProductPlanConfigurationOptionsQuery = {
-  __typename?: 'Query';
   usageCalculationTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
   configurationIntervals?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -14724,9 +12241,7 @@ export type IProductReviewsQueryVariables = Exact<{
 }>;
 
 export type IProductReviewsQuery = {
-  __typename?: 'Query';
   productReviews: Array<{
-    __typename?: 'ProductReview';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -14738,103 +12253,66 @@ export type IProductReviewsQuery = {
     downVote?: number | null;
     voteReport?: number | null;
     author: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
       isGuest: boolean;
       profile?: {
-        __typename?: 'UserProfile';
         displayName?: string | null;
         address?: {
-          __typename?: 'Address';
           firstName?: string | null;
           lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
+      avatar?: { _id: string; url: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             title?: string | null;
             subtitle?: string | null;
           } | null;
-          media: Array<{
-            __typename?: 'ProductMedia';
-            _id: string;
-            file: { __typename?: 'Media'; _id: string; url: string };
-          }>;
+          media: Array<{ _id: string; file: { _id: string; url: string } }>;
         };
-    ownVotes: Array<{
-      __typename?: 'ProductReviewVote';
-      timestamp: any;
-      type: IProductReviewVoteType;
-    }>;
+    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
   }>;
 };
 
@@ -14844,23 +12322,20 @@ export type IProductSupplyQueryVariables = Exact<{
 }>;
 
 export type IProductSupplyQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         dimensions?: {
-          __typename?: 'Dimensions';
           weight?: number | null;
           length?: number | null;
           width?: number | null;
           height?: number | null;
         } | null;
       }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14870,22 +12345,16 @@ export type IProductTokenizationQueryVariables = Exact<{
 }>;
 
 export type IProductTokenizationQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | {
-        __typename?: 'TokenizedProduct';
         contractStandard?: ISmartContractStandard | null;
         contractAddress?: string | null;
         _id: string;
-        contractConfiguration?: {
-          __typename?: 'ContractConfiguration';
-          tokenId: string;
-          supply: number;
-        } | null;
+        contractConfiguration?: { tokenId: string; supply: number } | null;
       }
     | null;
 };
@@ -14895,14 +12364,8 @@ export type IProductVariationTypeQueryVariables = Exact<{
 }>;
 
 export type IProductVariationTypeQuery = {
-  __typename?: 'Query';
   variationTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -14912,30 +12375,24 @@ export type IProductVariationsQueryVariables = Exact<{
 }>;
 
 export type IProductVariationsQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
+    | { _id: string }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         variations?: Array<{
-          __typename?: 'ProductVariation';
           _id: string;
           type?: IProductVariationType | null;
           key?: string | null;
           texts?: {
-            __typename?: 'ProductVariationTexts';
             _id: string;
             locale?: string | null;
             title?: string | null;
             subtitle?: string | null;
           } | null;
           options?: Array<{
-            __typename?: 'ProductVariationOption';
             _id: string;
             value?: string | null;
             texts?: {
-              __typename?: 'ProductVariationTexts';
               _id: string;
               locale?: string | null;
               title?: string | null;
@@ -14944,9 +12401,9 @@ export type IProductVariationsQuery = {
           }> | null;
         }> | null;
       }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14956,18 +12413,12 @@ export type IProductWarehousingQueryVariables = Exact<{
 }>;
 
 export type IProductWarehousingQuery = {
-  __typename?: 'Query';
   product?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | {
-        __typename?: 'SimpleProduct';
-        sku?: string | null;
-        baseUnit?: string | null;
-        _id: string;
-      }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { sku?: string | null; baseUnit?: string | null; _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -14987,11 +12438,9 @@ export type IProductsQueryVariables = Exact<{
 }>;
 
 export type IProductsQuery = {
-  __typename?: 'Query';
   productsCount: number;
   products: Array<
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -14999,7 +12448,6 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -15010,14 +12458,12 @@ export type IProductsQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15025,7 +12471,6 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -15036,14 +12481,12 @@ export type IProductsQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15051,7 +12494,6 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -15062,14 +12504,12 @@ export type IProductsQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15077,7 +12517,6 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -15088,14 +12527,12 @@ export type IProductsQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15103,7 +12540,6 @@ export type IProductsQuery = {
         updated?: any | null;
         published?: any | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -15114,10 +12550,9 @@ export type IProductsQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       }
   >;
@@ -15125,20 +12560,15 @@ export type IProductsQuery = {
 
 export type IProductsCountQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IProductsCountQuery = {
-  __typename?: 'Query';
-  productsCount: number;
-};
+export type IProductsCountQuery = { productsCount: number };
 
 export type IPublishProductMutationVariables = Exact<{
   productId: Scalars['ID']['input'];
 }>;
 
 export type IPublishProductMutation = {
-  __typename?: 'Mutation';
   publishProduct:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15147,81 +12577,44 @@ export type IPublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15230,81 +12623,44 @@ export type IPublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15313,81 +12669,44 @@ export type IPublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15396,81 +12715,44 @@ export type IPublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15479,76 +12761,40 @@ export type IPublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       };
@@ -15559,8 +12805,7 @@ export type IReOrderProductMediaMutationVariables = Exact<{
 }>;
 
 export type IReOrderProductMediaMutation = {
-  __typename?: 'Mutation';
-  reorderProductMedia: Array<{ __typename?: 'ProductMedia'; _id: string }>;
+  reorderProductMedia: Array<{ _id: string }>;
 };
 
 export type IRemoveBundleItemMutationVariables = Exact<{
@@ -15569,13 +12814,12 @@ export type IRemoveBundleItemMutationVariables = Exact<{
 }>;
 
 export type IRemoveBundleItemMutation = {
-  __typename?: 'Mutation';
   removeBundleItem:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductMutationVariables = Exact<{
@@ -15583,13 +12827,12 @@ export type IRemoveProductMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductMutation = {
-  __typename?: 'Mutation';
   removeProduct:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductAssignmentMutationVariables = Exact<{
@@ -15598,13 +12841,12 @@ export type IRemoveProductAssignmentMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductAssignmentMutation = {
-  __typename?: 'Mutation';
   removeProductAssignment:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string };
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string };
 };
 
 export type IRemoveProductMediaMutationVariables = Exact<{
@@ -15612,8 +12854,7 @@ export type IRemoveProductMediaMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductMediaMutation = {
-  __typename?: 'Mutation';
-  removeProductMedia: { __typename?: 'ProductMedia'; _id: string };
+  removeProductMedia: { _id: string };
 };
 
 export type IRemoveProductVariationMutationVariables = Exact<{
@@ -15621,8 +12862,7 @@ export type IRemoveProductVariationMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductVariationMutation = {
-  __typename?: 'Mutation';
-  removeProductVariation: { __typename?: 'ProductVariation'; _id: string };
+  removeProductVariation: { _id: string };
 };
 
 export type IRemoveProductVariationOptionMutationVariables = Exact<{
@@ -15631,11 +12871,7 @@ export type IRemoveProductVariationOptionMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductVariationOptionMutation = {
-  __typename?: 'Mutation';
-  removeProductVariationOption: {
-    __typename?: 'ProductVariation';
-    _id: string;
-  };
+  removeProductVariationOption: { _id: string };
 };
 
 export type ISearchProductsQueryVariables = Exact<{
@@ -15650,14 +12886,11 @@ export type ISearchProductsQueryVariables = Exact<{
 }>;
 
 export type ISearchProductsQuery = {
-  __typename?: 'Query';
   searchProducts: {
-    __typename?: 'ProductSearchResult';
     productsCount: number;
     filteredProductsCount: number;
     products: Array<
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           sequence: number;
           status: IProductStatus;
@@ -15665,7 +12898,6 @@ export type ISearchProductsQuery = {
           updated?: any | null;
           published?: any | null;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             title?: string | null;
@@ -15676,14 +12908,12 @@ export type ISearchProductsQuery = {
             labels?: Array<string> | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
             tags?: Array<any> | null;
-            file: { __typename?: 'Media'; _id: string; url: string };
+            file: { _id: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           sequence: number;
           status: IProductStatus;
@@ -15691,7 +12921,6 @@ export type ISearchProductsQuery = {
           updated?: any | null;
           published?: any | null;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             title?: string | null;
@@ -15702,14 +12931,12 @@ export type ISearchProductsQuery = {
             labels?: Array<string> | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
             tags?: Array<any> | null;
-            file: { __typename?: 'Media'; _id: string; url: string };
+            file: { _id: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           sequence: number;
           status: IProductStatus;
@@ -15717,7 +12944,6 @@ export type ISearchProductsQuery = {
           updated?: any | null;
           published?: any | null;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             title?: string | null;
@@ -15728,14 +12954,12 @@ export type ISearchProductsQuery = {
             labels?: Array<string> | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
             tags?: Array<any> | null;
-            file: { __typename?: 'Media'; _id: string; url: string };
+            file: { _id: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           sequence: number;
           status: IProductStatus;
@@ -15743,7 +12967,6 @@ export type ISearchProductsQuery = {
           updated?: any | null;
           published?: any | null;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             title?: string | null;
@@ -15754,14 +12977,12 @@ export type ISearchProductsQuery = {
             labels?: Array<string> | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
             tags?: Array<any> | null;
-            file: { __typename?: 'Media'; _id: string; url: string };
+            file: { _id: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           sequence: number;
           status: IProductStatus;
@@ -15769,7 +12990,6 @@ export type ISearchProductsQuery = {
           updated?: any | null;
           published?: any | null;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             title?: string | null;
@@ -15780,10 +13000,9 @@ export type ISearchProductsQuery = {
             labels?: Array<string> | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
             tags?: Array<any> | null;
-            file: { __typename?: 'Media'; _id: string; url: string };
+            file: { _id: string; url: string };
           }>;
         }
     >;
@@ -15795,14 +13014,8 @@ export type ISmartContractStandardsQueryVariables = Exact<{
 }>;
 
 export type ISmartContractStandardsQuery = {
-  __typename?: 'Query';
   smartContractStandards?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label: string;
-    }> | null;
+    options?: Array<{ value: string; label: string }> | null;
   } | null;
 };
 
@@ -15811,9 +13024,7 @@ export type ITranslatedProductMediaTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductMediaTextsQuery = {
-  __typename?: 'Query';
   translatedProductMediaTexts: Array<{
-    __typename?: 'ProductMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -15826,9 +13037,7 @@ export type ITranslatedProductTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductTextsQuery = {
-  __typename?: 'Query';
   translatedProductTexts: Array<{
-    __typename?: 'ProductTexts';
     _id: string;
     locale?: string | null;
     slug?: string | null;
@@ -15847,9 +13056,7 @@ export type ITranslatedProductVariationTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductVariationTextsQuery = {
-  __typename?: 'Query';
   translatedProductVariationTexts: Array<{
-    __typename?: 'ProductVariationTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -15862,10 +13069,8 @@ export type IUnpublishProductMutationVariables = Exact<{
 }>;
 
 export type IUnpublishProductMutation = {
-  __typename?: 'Mutation';
   unpublishProduct:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15874,81 +13079,44 @@ export type IUnpublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -15957,81 +13125,44 @@ export type IUnpublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16040,81 +13171,44 @@ export type IUnpublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16123,81 +13217,44 @@ export type IUnpublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16206,76 +13263,40 @@ export type IUnpublishProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       };
@@ -16287,10 +13308,8 @@ export type IUpdateProductMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductMutation = {
-  __typename?: 'Mutation';
   updateProduct?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16299,81 +13318,44 @@ export type IUpdateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16382,81 +13364,44 @@ export type IUpdateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16465,81 +13410,44 @@ export type IUpdateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16548,81 +13456,44 @@ export type IUpdateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16631,76 +13502,40 @@ export type IUpdateProductMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
@@ -16713,10 +13548,8 @@ export type IUpdateProductCommerceMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductCommerceMutation = {
-  __typename?: 'Mutation';
   updateProductCommerce?:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16725,81 +13558,44 @@ export type IUpdateProductCommerceMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16808,81 +13604,44 @@ export type IUpdateProductCommerceMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16891,81 +13650,44 @@ export type IUpdateProductCommerceMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -16974,81 +13696,44 @@ export type IUpdateProductCommerceMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -17057,76 +13742,40 @@ export type IUpdateProductCommerceMutation = {
         updated?: any | null;
         published?: any | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
         reviews: Array<{
-          __typename?: 'ProductReview';
           _id: string;
           created?: any | null;
           rating?: number | null;
           title?: string | null;
           review?: string | null;
           voteCount?: number | null;
-          author: {
-            __typename?: 'User';
-            _id: string;
-            username?: string | null;
-            isGuest: boolean;
-          };
-          ownVotes: Array<{
-            __typename?: 'ProductReviewVote';
-            type: IProductReviewVoteType;
-            timestamp: any;
-          }>;
+          author: { _id: string; username?: string | null; isGuest: boolean };
+          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
         }>;
         siblings: Array<
           | {
-              __typename?: 'BundleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'ConfigurableProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'PlanProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'SimpleProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
           | {
-              __typename?: 'TokenizedProduct';
               _id: string;
-              media: Array<{
-                __typename?: 'ProductMedia';
-                _id: string;
-                file: { __typename?: 'Media'; _id: string; url: string };
-              }>;
+              media: Array<{ _id: string; file: { _id: string; url: string } }>;
             }
         >;
       }
@@ -17139,9 +13788,7 @@ export type IUpdateProductMediaTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductMediaTextsMutation = {
-  __typename?: 'Mutation';
   updateProductMediaTexts: Array<{
-    __typename?: 'ProductMediaTexts';
     _id: string;
     locale?: string | null;
     title?: string | null;
@@ -17155,13 +13802,12 @@ export type IUpdateProductPlanMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductPlanMutation = {
-  __typename?: 'Mutation';
   updateProductPlan?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | { __typename?: 'SimpleProduct'; _id: string }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -17171,23 +13817,20 @@ export type IUpdateProductSupplyMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductSupplyMutation = {
-  __typename?: 'Mutation';
   updateProductSupply?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         dimensions?: {
-          __typename?: 'Dimensions';
           weight?: number | null;
           length?: number | null;
           width?: number | null;
           height?: number | null;
         } | null;
       }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -17197,9 +13840,7 @@ export type IUpdateProductTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductTextsMutation = {
-  __typename?: 'Mutation';
   updateProductTexts: Array<{
-    __typename?: 'ProductTexts';
     _id: string;
     locale?: string | null;
     slug?: string | null;
@@ -17218,11 +13859,7 @@ export type IUpdateProductTokenizationMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductTokenizationMutation = {
-  __typename?: 'Mutation';
-  updateProductTokenization?: {
-    __typename?: 'TokenizedProduct';
-    _id: string;
-  } | null;
+  updateProductTokenization?: { _id: string } | null;
 };
 
 export type IUpdateProductVariationTextsMutationVariables = Exact<{
@@ -17234,11 +13871,7 @@ export type IUpdateProductVariationTextsMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductVariationTextsMutation = {
-  __typename?: 'Mutation';
-  updateProductVariationTexts: Array<{
-    __typename?: 'ProductVariationTexts';
-    _id: string;
-  }>;
+  updateProductVariationTexts: Array<{ _id: string }>;
 };
 
 export type IUpdateProductWarehousingMutationVariables = Exact<{
@@ -17247,18 +13880,12 @@ export type IUpdateProductWarehousingMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductWarehousingMutation = {
-  __typename?: 'Mutation';
   updateProductWarehousing?:
-    | { __typename?: 'BundleProduct'; _id: string }
-    | { __typename?: 'ConfigurableProduct'; _id: string }
-    | { __typename?: 'PlanProduct'; _id: string }
-    | {
-        __typename?: 'SimpleProduct';
-        sku?: string | null;
-        baseUnit?: string | null;
-        _id: string;
-      }
-    | { __typename?: 'TokenizedProduct'; _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { _id: string }
+    | { sku?: string | null; baseUnit?: string | null; _id: string }
+    | { _id: string }
     | null;
 };
 
@@ -17267,18 +13894,14 @@ export type IUserTokensQueryVariables = Exact<{
 }>;
 
 export type IUserTokensQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     web3Addresses: Array<{
-      __typename?: 'Web3Address';
       address: string;
       nonce?: number | null;
       verified: boolean;
     }>;
     tokens: Array<{
-      __typename?: 'Token';
       _id: string;
       walletAddress?: string | null;
       status: ITokenExportStatus;
@@ -17287,7 +13910,6 @@ export type IUserTokensQuery = {
       chainId?: string | null;
       chainTokenId?: string | null;
       product: {
-        __typename?: 'TokenizedProduct';
         _id: string;
         sequence: number;
         status: IProductStatus;
@@ -17295,13 +13917,11 @@ export type IUserTokensQuery = {
         updated?: any | null;
         published?: any | null;
         simulatedPrice?: {
-          __typename?: 'Price';
           _id: string;
           amount: number;
           currency: string;
         } | null;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           title?: string | null;
@@ -17312,10 +13932,9 @@ export type IUserTokensQuery = {
           labels?: Array<string> | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
           tags?: Array<any> | null;
-          file: { __typename?: 'Media'; _id: string; url: string };
+          file: { _id: string; url: string };
         }>;
       };
     }>;
@@ -17323,7 +13942,6 @@ export type IUserTokensQuery = {
 };
 
 export type IQuotationDetailFragmentFragment = {
-  __typename?: 'Quotation';
   _id: string;
   status: IQuotationStatus;
   created: any;
@@ -17334,41 +13952,24 @@ export type IQuotationDetailFragmentFragment = {
   fullfilled?: any | null;
   rejected?: any | null;
   user: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    avatar?: { _id: string; url: string } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
-  configuration?: Array<{
-    __typename?: 'ProductConfigurationParameter';
-    key: string;
-    value: string;
-  }> | null;
+  configuration?: Array<{ key: string; value: string }> | null;
   country?: {
-    __typename?: 'Country';
     _id: string;
     isoCode?: string | null;
     flagEmoji?: string | null;
     name?: string | null;
   } | null;
-  currency?: {
-    __typename?: 'Currency';
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-  } | null;
+  currency?: { _id: string; isoCode: string; isActive?: boolean | null } | null;
   product:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17376,21 +13977,13 @@ export type IQuotationDetailFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17398,21 +13991,13 @@ export type IQuotationDetailFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17420,21 +14005,13 @@ export type IQuotationDetailFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17442,21 +14019,13 @@ export type IQuotationDetailFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17464,20 +14033,17 @@ export type IQuotationDetailFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       };
 };
 
+export type IQuotationDetailFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IQuotationFragmentFragment = {
-  __typename?: 'Quotation';
   _id: string;
   status: IQuotationStatus;
   created: any;
@@ -17488,23 +14054,16 @@ export type IQuotationFragmentFragment = {
   fullfilled?: any | null;
   rejected?: any | null;
   user: {
-    __typename?: 'User';
     _id: string;
     username?: string | null;
     name: string;
-    avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-    primaryEmail?: {
-      __typename?: 'UserEmail';
-      verified: boolean;
-      address: string;
-    } | null;
+    avatar?: { _id: string; url: string } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
   };
   product:
     | {
-        __typename?: 'BundleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17512,21 +14071,13 @@ export type IQuotationFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'ConfigurableProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17534,21 +14085,13 @@ export type IQuotationFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'PlanProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17556,21 +14099,13 @@ export type IQuotationFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'SimpleProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17578,21 +14113,13 @@ export type IQuotationFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       }
     | {
-        __typename?: 'TokenizedProduct';
         _id: string;
         texts?: {
-          __typename?: 'ProductTexts';
           _id: string;
           slug?: string | null;
           subtitle?: string | null;
@@ -17600,18 +14127,11 @@ export type IQuotationFragmentFragment = {
           description?: string | null;
         } | null;
         media: Array<{
-          __typename?: 'ProductMedia';
           _id: string;
-          file: {
-            __typename?: 'Media';
-            _id: string;
-            type: string;
-            url: string;
-          };
+          file: { _id: string; type: string; url: string };
         }>;
       };
   currency?: {
-    __typename?: 'Currency';
     _id: string;
     contractAddress?: string | null;
     decimals?: number | null;
@@ -17619,15 +14139,17 @@ export type IQuotationFragmentFragment = {
   } | null;
 };
 
+export type IQuotationFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type IMakeQuotationProposalMutationVariables = Exact<{
   quotationId: Scalars['ID']['input'];
   quotationContext?: InputMaybe<Scalars['JSON']['input']>;
 }>;
 
 export type IMakeQuotationProposalMutation = {
-  __typename?: 'Mutation';
   makeQuotationProposal: {
-    __typename?: 'Quotation';
     _id: string;
     status: IQuotationStatus;
     created: any;
@@ -17638,41 +14160,28 @@ export type IMakeQuotationProposalMutation = {
     fullfilled?: any | null;
     rejected?: any | null;
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     };
-    configuration?: Array<{
-      __typename?: 'ProductConfigurationParameter';
-      key: string;
-      value: string;
-    }> | null;
+    configuration?: Array<{ key: string; value: string }> | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       isoCode: string;
       isActive?: boolean | null;
     } | null;
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17680,21 +14189,13 @@ export type IMakeQuotationProposalMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17702,21 +14203,13 @@ export type IMakeQuotationProposalMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17724,21 +14217,13 @@ export type IMakeQuotationProposalMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17746,21 +14231,13 @@ export type IMakeQuotationProposalMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17768,14 +14245,8 @@ export type IMakeQuotationProposalMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         };
   };
@@ -17786,10 +14257,8 @@ export type IQuotationQueryVariables = Exact<{
 }>;
 
 export type IQuotationQuery = {
-  __typename?: 'Query';
   quotationsCount: number;
   quotation?: {
-    __typename?: 'Quotation';
     _id: string;
     status: IQuotationStatus;
     created: any;
@@ -17800,41 +14269,28 @@ export type IQuotationQuery = {
     fullfilled?: any | null;
     rejected?: any | null;
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     };
-    configuration?: Array<{
-      __typename?: 'ProductConfigurationParameter';
-      key: string;
-      value: string;
-    }> | null;
+    configuration?: Array<{ key: string; value: string }> | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       isoCode: string;
       isActive?: boolean | null;
     } | null;
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17842,21 +14298,13 @@ export type IQuotationQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17864,21 +14312,13 @@ export type IQuotationQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17886,21 +14326,13 @@ export type IQuotationQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17908,21 +14340,13 @@ export type IQuotationQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -17930,14 +14354,8 @@ export type IQuotationQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         };
   } | null;
@@ -17946,14 +14364,8 @@ export type IQuotationQuery = {
 export type IQuotationStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IQuotationStatusQuery = {
-  __typename?: 'Query';
   quotationStatusType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -17965,10 +14377,8 @@ export type IQuotationsQueryVariables = Exact<{
 }>;
 
 export type IQuotationsQuery = {
-  __typename?: 'Query';
   quotationsCount: number;
   quotations: Array<{
-    __typename?: 'Quotation';
     _id: string;
     status: IQuotationStatus;
     created: any;
@@ -17979,23 +14389,16 @@ export type IQuotationsQuery = {
     fullfilled?: any | null;
     rejected?: any | null;
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     };
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18003,21 +14406,13 @@ export type IQuotationsQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18025,21 +14420,13 @@ export type IQuotationsQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18047,21 +14434,13 @@ export type IQuotationsQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18069,21 +14448,13 @@ export type IQuotationsQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18091,18 +14462,11 @@ export type IQuotationsQuery = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         };
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       contractAddress?: string | null;
       decimals?: number | null;
@@ -18117,9 +14481,7 @@ export type IRejectQuotationMutationVariables = Exact<{
 }>;
 
 export type IRejectQuotationMutation = {
-  __typename?: 'Mutation';
   rejectQuotation: {
-    __typename?: 'Quotation';
     _id: string;
     status: IQuotationStatus;
     created: any;
@@ -18130,41 +14492,28 @@ export type IRejectQuotationMutation = {
     fullfilled?: any | null;
     rejected?: any | null;
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     };
-    configuration?: Array<{
-      __typename?: 'ProductConfigurationParameter';
-      key: string;
-      value: string;
-    }> | null;
+    configuration?: Array<{ key: string; value: string }> | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       isoCode: string;
       isActive?: boolean | null;
     } | null;
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18172,21 +14521,13 @@ export type IRejectQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18194,21 +14535,13 @@ export type IRejectQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18216,21 +14549,13 @@ export type IRejectQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18238,21 +14563,13 @@ export type IRejectQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18260,14 +14577,8 @@ export type IRejectQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         };
   };
@@ -18279,12 +14590,9 @@ export type IUserQuotationsQueryVariables = Exact<{
 }>;
 
 export type IUserQuotationsQuery = {
-  __typename?: 'Query';
   user?: {
-    __typename?: 'User';
     _id: string;
     quotations: Array<{
-      __typename?: 'Quotation';
       _id: string;
       status: IQuotationStatus;
       created: any;
@@ -18295,23 +14603,16 @@ export type IUserQuotationsQuery = {
       fullfilled?: any | null;
       rejected?: any | null;
       user: {
-        __typename?: 'User';
         _id: string;
         username?: string | null;
         name: string;
-        avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-        primaryEmail?: {
-          __typename?: 'UserEmail';
-          verified: boolean;
-          address: string;
-        } | null;
+        avatar?: { _id: string; url: string } | null;
+        primaryEmail?: { verified: boolean; address: string } | null;
       };
       product:
         | {
-            __typename?: 'BundleProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               subtitle?: string | null;
@@ -18319,21 +14620,13 @@ export type IUserQuotationsQuery = {
               description?: string | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
-              file: {
-                __typename?: 'Media';
-                _id: string;
-                type: string;
-                url: string;
-              };
+              file: { _id: string; type: string; url: string };
             }>;
           }
         | {
-            __typename?: 'ConfigurableProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               subtitle?: string | null;
@@ -18341,21 +14634,13 @@ export type IUserQuotationsQuery = {
               description?: string | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
-              file: {
-                __typename?: 'Media';
-                _id: string;
-                type: string;
-                url: string;
-              };
+              file: { _id: string; type: string; url: string };
             }>;
           }
         | {
-            __typename?: 'PlanProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               subtitle?: string | null;
@@ -18363,21 +14648,13 @@ export type IUserQuotationsQuery = {
               description?: string | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
-              file: {
-                __typename?: 'Media';
-                _id: string;
-                type: string;
-                url: string;
-              };
+              file: { _id: string; type: string; url: string };
             }>;
           }
         | {
-            __typename?: 'SimpleProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               subtitle?: string | null;
@@ -18385,21 +14662,13 @@ export type IUserQuotationsQuery = {
               description?: string | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
-              file: {
-                __typename?: 'Media';
-                _id: string;
-                type: string;
-                url: string;
-              };
+              file: { _id: string; type: string; url: string };
             }>;
           }
         | {
-            __typename?: 'TokenizedProduct';
             _id: string;
             texts?: {
-              __typename?: 'ProductTexts';
               _id: string;
               slug?: string | null;
               subtitle?: string | null;
@@ -18407,18 +14676,11 @@ export type IUserQuotationsQuery = {
               description?: string | null;
             } | null;
             media: Array<{
-              __typename?: 'ProductMedia';
               _id: string;
-              file: {
-                __typename?: 'Media';
-                _id: string;
-                type: string;
-                url: string;
-              };
+              file: { _id: string; type: string; url: string };
             }>;
           };
       currency?: {
-        __typename?: 'Currency';
         _id: string;
         contractAddress?: string | null;
         decimals?: number | null;
@@ -18434,9 +14696,7 @@ export type IVerifyQuotationMutationVariables = Exact<{
 }>;
 
 export type IVerifyQuotationMutation = {
-  __typename?: 'Mutation';
   verifyQuotation: {
-    __typename?: 'Quotation';
     _id: string;
     status: IQuotationStatus;
     created: any;
@@ -18447,41 +14707,28 @@ export type IVerifyQuotationMutation = {
     fullfilled?: any | null;
     rejected?: any | null;
     user: {
-      __typename?: 'User';
       _id: string;
       username?: string | null;
       name: string;
-      avatar?: { __typename?: 'Media'; _id: string; url: string } | null;
-      primaryEmail?: {
-        __typename?: 'UserEmail';
-        verified: boolean;
-        address: string;
-      } | null;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
     };
-    configuration?: Array<{
-      __typename?: 'ProductConfigurationParameter';
-      key: string;
-      value: string;
-    }> | null;
+    configuration?: Array<{ key: string; value: string }> | null;
     country?: {
-      __typename?: 'Country';
       _id: string;
       isoCode?: string | null;
       flagEmoji?: string | null;
       name?: string | null;
     } | null;
     currency?: {
-      __typename?: 'Currency';
       _id: string;
       isoCode: string;
       isActive?: boolean | null;
     } | null;
     product:
       | {
-          __typename?: 'BundleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18489,21 +14736,13 @@ export type IVerifyQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'ConfigurableProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18511,21 +14750,13 @@ export type IVerifyQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'PlanProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18533,21 +14764,13 @@ export type IVerifyQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'SimpleProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18555,21 +14778,13 @@ export type IVerifyQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         }
       | {
-          __typename?: 'TokenizedProduct';
           _id: string;
           texts?: {
-            __typename?: 'ProductTexts';
             _id: string;
             slug?: string | null;
             subtitle?: string | null;
@@ -18577,14 +14792,8 @@ export type IVerifyQuotationMutation = {
             description?: string | null;
           } | null;
           media: Array<{
-            __typename?: 'ProductMedia';
             _id: string;
-            file: {
-              __typename?: 'Media';
-              _id: string;
-              type: string;
-              url: string;
-            };
+            file: { _id: string; type: string; url: string };
           }>;
         };
   };
@@ -18601,9 +14810,7 @@ export type ISyncReportsQueryVariables = Exact<{
 }>;
 
 export type ISyncReportsQuery = {
-  __typename?: 'Query';
   workQueue: Array<{
-    __typename?: 'Work';
     _id: string;
     type: IWorkType;
     scheduled?: any | null;
@@ -18620,12 +14827,11 @@ export type ISyncReportsQuery = {
     input?: any | null;
     result?: any | null;
     error?: any | null;
-    original?: { __typename?: 'Work'; _id: string } | null;
+    original?: { _id: string } | null;
   }>;
 };
 
 export type IWarehousingProviderFragmentFragment = {
-  __typename?: 'WarehousingProvider';
   _id: string;
   created?: any | null;
   updated?: any | null;
@@ -18635,21 +14841,22 @@ export type IWarehousingProviderFragmentFragment = {
   configuration?: any | null;
   configurationError?: IWarehousingProviderError | null;
   interface?: {
-    __typename?: 'WarehousingInterface';
     _id: string;
     label?: string | null;
     version?: string | null;
   } | null;
 };
 
+export type IWarehousingProviderFragmentFragmentVariables = Exact<{
+  [key: string]: never;
+}>;
+
 export type ICreateWarehousingProviderMutationVariables = Exact<{
   warehousingProvider: ICreateWarehousingProviderInput;
 }>;
 
 export type ICreateWarehousingProviderMutation = {
-  __typename?: 'Mutation';
   createWarehousingProvider: {
-    __typename?: 'WarehousingProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -18659,7 +14866,6 @@ export type ICreateWarehousingProviderMutation = {
     configuration?: any | null;
     configurationError?: IWarehousingProviderError | null;
     interface?: {
-      __typename?: 'WarehousingInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -18672,11 +14878,7 @@ export type IRemoveWarehousingProviderMutationVariables = Exact<{
 }>;
 
 export type IRemoveWarehousingProviderMutation = {
-  __typename?: 'Mutation';
-  removeWarehousingProvider: {
-    __typename?: 'WarehousingProvider';
-    _id: string;
-  };
+  removeWarehousingProvider: { _id: string };
 };
 
 export type IUpdateWarehousingProviderMutationVariables = Exact<{
@@ -18685,9 +14887,7 @@ export type IUpdateWarehousingProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdateWarehousingProviderMutation = {
-  __typename?: 'Mutation';
   updateWarehousingProvider: {
-    __typename?: 'WarehousingProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -18697,7 +14897,6 @@ export type IUpdateWarehousingProviderMutation = {
     configuration?: any | null;
     configurationError?: IWarehousingProviderError | null;
     interface?: {
-      __typename?: 'WarehousingInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -18710,9 +14909,7 @@ export type IWarehousingInterfacesQueryVariables = Exact<{
 }>;
 
 export type IWarehousingInterfacesQuery = {
-  __typename?: 'Query';
   warehousingInterfaces: Array<{
-    __typename?: 'WarehousingInterface';
     _id: string;
     label?: string | null;
     value: string;
@@ -18724,9 +14921,7 @@ export type IWarehousingProviderQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProviderQuery = {
-  __typename?: 'Query';
   warehousingProvider?: {
-    __typename?: 'WarehousingProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -18736,7 +14931,6 @@ export type IWarehousingProviderQuery = {
     configuration?: any | null;
     configurationError?: IWarehousingProviderError | null;
     interface?: {
-      __typename?: 'WarehousingInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -18749,14 +14943,8 @@ export type IWarehousingProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProvidersTypeQuery = {
-  __typename?: 'Query';
   warehousingProviderType?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label?: string | null;
-    }> | null;
+    options?: Array<{ value: string; label?: string | null }> | null;
   } | null;
 };
 
@@ -18765,9 +14953,7 @@ export type IWarehousingProvidersQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProvidersQuery = {
-  __typename?: 'Query';
   warehousingProviders: Array<{
-    __typename?: 'WarehousingProvider';
     _id: string;
     created?: any | null;
     updated?: any | null;
@@ -18777,7 +14963,6 @@ export type IWarehousingProvidersQuery = {
     configuration?: any | null;
     configurationError?: IWarehousingProviderError | null;
     interface?: {
-      __typename?: 'WarehousingInterface';
       _id: string;
       label?: string | null;
       version?: string | null;
@@ -18786,7 +14971,6 @@ export type IWarehousingProvidersQuery = {
 };
 
 export type IWorkFragmentFragment = {
-  __typename?: 'Work';
   _id: string;
   type: IWorkType;
   scheduled?: any | null;
@@ -18798,12 +14982,11 @@ export type IWorkFragmentFragment = {
   deleted?: any | null;
 };
 
+export type IWorkFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+
 export type IActiveWorkTypesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IActiveWorkTypesQuery = {
-  __typename?: 'Query';
-  activeWorkTypes: Array<IWorkType>;
-};
+export type IActiveWorkTypesQuery = { activeWorkTypes: Array<IWorkType> };
 
 export type IAddWorkMutationVariables = Exact<{
   type: IWorkType;
@@ -18814,32 +14997,20 @@ export type IAddWorkMutationVariables = Exact<{
   retries?: Scalars['Int']['input'];
 }>;
 
-export type IAddWorkMutation = {
-  __typename?: 'Mutation';
-  addWork?: { __typename?: 'Work'; _id: string } | null;
-};
+export type IAddWorkMutation = { addWork?: { _id: string } | null };
 
 export type IAllocateWorkMutationVariables = Exact<{
   types?: InputMaybe<Array<InputMaybe<IWorkType>> | InputMaybe<IWorkType>>;
   worker?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type IAllocateWorkMutation = {
-  __typename?: 'Mutation';
-  allocateWork?: { __typename?: 'Work'; _id: string } | null;
-};
+export type IAllocateWorkMutation = { allocateWork?: { _id: string } | null };
 
 export type IWorkTypesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IWorkTypesQuery = {
-  __typename?: 'Query';
   registeredWorkTypes?: {
-    __typename?: '__Type';
-    options?: Array<{
-      __typename?: '__EnumValue';
-      value: string;
-      label: string;
-    }> | null;
+    options?: Array<{ value: string; label: string }> | null;
   } | null;
 };
 
@@ -18847,19 +15018,14 @@ export type IRemoveWorkMutationVariables = Exact<{
   workId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveWorkMutation = {
-  __typename?: 'Mutation';
-  removeWork: { __typename?: 'Work'; _id: string };
-};
+export type IRemoveWorkMutation = { removeWork: { _id: string } };
 
 export type IWorkQueryVariables = Exact<{
   workId: Scalars['ID']['input'];
 }>;
 
 export type IWorkQuery = {
-  __typename?: 'Query';
   work?: {
-    __typename?: 'Work';
     input?: any | null;
     result?: any | null;
     error?: any | null;
@@ -18876,7 +15042,7 @@ export type IWorkQuery = {
     finished?: any | null;
     created: any;
     deleted?: any | null;
-    original?: { __typename?: 'Work'; _id: string } | null;
+    original?: { _id: string } | null;
   } | null;
 };
 
@@ -18891,11 +15057,9 @@ export type IWorkQueueQueryVariables = Exact<{
 }>;
 
 export type IWorkQueueQuery = {
-  __typename?: 'Query';
   activeWorkTypes: Array<IWorkType>;
   workQueueCount: number;
   workQueue: Array<{
-    __typename?: 'Work';
     _id: string;
     type: IWorkType;
     scheduled?: any | null;
@@ -18907,13251 +15071,3 @@ export type IWorkQueueQuery = {
     deleted?: any | null;
   }>;
 };
-
-export const Md5MetaDataFragmentFragmentDoc = gql`
-  fragment MD5MetaDataFragment on WebAuthnMDSv3Metadata {
-    legalHeader
-    description
-    authenticatorVersion
-    protocolFamily
-    schema
-    authenticationAlgorithms
-    publicKeyAlgAndEncodings
-    attestationTypes
-    keyProtection
-    upv
-    tcDisplay
-    authenticationAlgorithms
-    publicKeyAlgAndEncodings
-    icon
-    authenticatorGetInfo
-  }
-`;
-export const UserFragmentFragmentDoc = gql`
-  fragment UserFragment on User {
-    _id
-    isTwoFactorEnabled
-    lastBillingAddress {
-      firstName
-      lastName
-      company
-      addressLine
-      addressLine2
-      postalCode
-      countryCode
-      regionCode
-      city
-    }
-    lastContact {
-      emailAddress
-      telNumber
-    }
-    lastLogin {
-      countryCode
-      locale
-      remoteAddress
-      remotePort
-      timestamp
-      userAgent
-    }
-    avatar {
-      _id
-      name
-      size
-      type
-      url
-    }
-    allowedActions
-    paymentCredentials {
-      _id
-      isValid
-      isPreferred
-      paymentProvider {
-        _id
-        type
-        interface {
-          _id
-          label
-          version
-        }
-      }
-    }
-    emails {
-      verified
-      address
-    }
-    web3Addresses {
-      address
-      nonce
-      verified
-    }
-    webAuthnCredentials {
-      _id
-      created
-      aaguid
-      counter
-      mdsMetadata {
-        ...MD5MetaDataFragment
-      }
-    }
-    profile {
-      displayName
-      phoneMobile
-      gender
-      address {
-        firstName
-        lastName
-        company
-        addressLine
-        addressLine2
-        postalCode
-        countryCode
-        regionCode
-        city
-      }
-      birthday
-    }
-    username
-    primaryEmail {
-      verified
-      address
-    }
-    isGuest
-    isInitialPassword
-    name
-    roles
-    tags
-  }
-  ${Md5MetaDataFragmentFragmentDoc}
-`;
-export const AssortmentChildrenFragmentFragmentDoc = gql`
-  fragment AssortmentChildrenFragment on Assortment {
-    _id
-    texts {
-      _id
-      slug
-      title
-      subtitle
-    }
-    childrenCount
-  }
-`;
-export const AssortmentFragmentFragmentDoc = gql`
-  fragment AssortmentFragment on Assortment {
-    _id
-    isActive
-    created
-    updated
-    sequence
-    isBase
-    isRoot
-    tags
-    texts {
-      _id
-      slug
-      title
-      subtitle
-      description
-    }
-    childrenCount
-    media {
-      _id
-      tags
-      file {
-        _id
-        url
-      }
-    }
-  }
-`;
-export const AssortmentLinkFragmentFragmentDoc = gql`
-  fragment AssortmentLinkFragment on AssortmentLink {
-    _id
-    sortKey
-    parent {
-      ...AssortmentFragment
-    }
-    child {
-      ...AssortmentFragment
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-export const AssortmentMediaTextsFragmentFragmentDoc = gql`
-  fragment AssortmentMediaTextsFragment on AssortmentMediaTexts {
-    _id
-    locale
-    title
-    subtitle
-  }
-`;
-export const AssortmentMediaFragmentFragmentDoc = gql`
-  fragment AssortmentMediaFragment on AssortmentMedia {
-    _id
-    tags
-    file {
-      _id
-      url
-    }
-    texts {
-      ...AssortmentMediaTextsFragment
-    }
-  }
-  ${AssortmentMediaTextsFragmentFragmentDoc}
-`;
-export const AssortmentTextsFragmentFragmentDoc = gql`
-  fragment AssortmentTextsFragment on AssortmentTexts {
-    _id
-    locale
-    slug
-    title
-    subtitle
-    description
-  }
-`;
-export const CountryFragmentFragmentDoc = gql`
-  fragment CountryFragment on Country {
-    _id
-    isoCode
-    isActive
-    isBase
-    defaultCurrency {
-      _id
-      isoCode
-    }
-  }
-`;
-export const CurrencyFragmentFragmentDoc = gql`
-  fragment CurrencyFragment on Currency {
-    _id
-    isoCode
-    isActive
-    contractAddress
-    decimals
-  }
-`;
-export const DeliveryProviderFragmentFragmentDoc = gql`
-  fragment DeliveryProviderFragment on DeliveryProvider {
-    _id
-    created
-    updated
-    deleted
-    type
-    isActive
-    configuration
-    interface {
-      _id
-      label
-      version
-    }
-    configurationError
-  }
-`;
-export const EnrollmentDetailFragmentFragmentDoc = gql`
-  fragment EnrollmentDetailFragment on Enrollment {
-    _id
-    country {
-      _id
-      isoCode
-    }
-    enrollmentNumber
-    updated
-    status
-    created
-    expires
-    billingAddress {
-      addressLine
-      addressLine2
-      city
-      company
-      countryCode
-      firstName
-      lastName
-      postalCode
-      regionCode
-    }
-    contact {
-      emailAddress
-      telNumber
-    }
-    currency {
-      _id
-      contractAddress
-      decimals
-      isActive
-      isoCode
-    }
-    delivery {
-      provider {
-        _id
-        configuration
-        configurationError
-        interface {
-          _id
-          label
-          version
-        }
-        isActive
-        simulatedPrice {
-          _id
-          amount
-          currency
-          isNetPrice
-          isTaxable
-        }
-        type
-      }
-    }
-    payment {
-      provider {
-        _id
-        configuration
-        configurationError
-        interface {
-          _id
-          label
-          version
-        }
-        isActive
-        type
-      }
-    }
-    periods {
-      end
-      isTrial
-      start
-      order {
-        _id
-      }
-    }
-    isExpired
-    periods {
-      start
-      end
-      isTrial
-    }
-    plan {
-      configuration {
-        key
-        value
-      }
-      product {
-        _id
-        texts {
-          _id
-          title
-        }
-      }
-      quantity
-    }
-    user {
-      _id
-      username
-      name
-      avatar {
-        _id
-        url
-      }
-    }
-  }
-`;
-export const EnrollmentFragmentFragmentDoc = gql`
-  fragment EnrollmentFragment on Enrollment {
-    _id
-    country {
-      _id
-      isoCode
-    }
-    currency {
-      _id
-      isoCode
-    }
-    enrollmentNumber
-    updated
-    status
-    created
-    expires
-    isExpired
-    periods {
-      start
-      end
-      isTrial
-    }
-    payment {
-      provider {
-        _id
-      }
-    }
-    delivery {
-      provider {
-        _id
-      }
-    }
-    plan {
-      product {
-        _id
-        media {
-          _id
-          file {
-            _id
-            url
-          }
-        }
-        texts {
-          _id
-          title
-        }
-      }
-      quantity
-    }
-    user {
-      _id
-      username
-      name
-      avatar {
-        _id
-        url
-      }
-    }
-  }
-`;
-export const EventFragmentFragmentDoc = gql`
-  fragment EventFragment on Event {
-    _id
-    type
-    payload
-    created
-  }
-`;
-export const FilterFragmentFragmentDoc = gql`
-  fragment FilterFragment on Filter {
-    _id
-    updated
-    created
-    key
-    isActive
-    type
-    options {
-      _id
-      texts {
-        _id
-        title
-        subtitle
-        locale
-      }
-      value
-    }
-  }
-`;
-export const FilterOptionFragmentFragmentDoc = gql`
-  fragment FilterOptionFragment on FilterOption {
-    _id
-    texts {
-      _id
-      title
-      subtitle
-      locale
-    }
-    value
-  }
-`;
-export const FilterTextsFragmentFragmentDoc = gql`
-  fragment FilterTextsFragment on FilterTexts {
-    _id
-    locale
-    title
-    subtitle
-  }
-`;
-export const LanguageFragmentFragmentDoc = gql`
-  fragment LanguageFragment on Language {
-    _id
-    isoCode
-    isActive
-    isBase
-    name
-  }
-`;
-export const OrderDetailFragmentFragmentDoc = gql`
-  fragment OrderDetailFragment on Order {
-    _id
-    totalTax: total(category: TAXES) {
-      amount
-      currency
-    }
-    itemsTotal: total(category: ITEMS) {
-      amount
-      currency
-    }
-    totalDiscount: total(category: DISCOUNTS) {
-      amount
-      currency
-    }
-    totalPayment: total(category: PAYMENT) {
-      amount
-      currency
-    }
-    totalDelivery: total(category: DELIVERY) {
-      amount
-      currency
-    }
-    user {
-      _id
-      username
-      isGuest
-      avatar {
-        _id
-        url
-      }
-    }
-    discounts {
-      _id
-      trigger
-      code
-      interface {
-        _id
-        label
-        version
-      }
-      total {
-        amount
-        currency
-        isTaxable
-        isNetPrice
-      }
-      discounted {
-        _id
-        orderDiscount {
-          _id
-          total {
-            amount
-            currency
-            isTaxable
-            isNetPrice
-          }
-        }
-        total {
-          amount
-          currency
-          isTaxable
-          isNetPrice
-        }
-      }
-    }
-    payment {
-      _id
-      provider {
-        _id
-        type
-        interface {
-          _id
-          label
-          version
-        }
-      }
-      status
-      fee {
-        currency
-        amount
-      }
-      paid
-    }
-    delivery {
-      _id
-      status
-      provider {
-        _id
-        type
-        interface {
-          _id
-          label
-          version
-        }
-      }
-      delivered
-    }
-    orderNumber
-    status
-    created
-    updated
-    ordered
-    confirmed
-    fullfilled
-    contact {
-      telNumber
-      emailAddress
-    }
-    country {
-      _id
-      isoCode
-      flagEmoji
-      name
-    }
-    currency {
-      _id
-      isoCode
-      isActive
-    }
-    billingAddress {
-      firstName
-      lastName
-      company
-      addressLine
-      addressLine2
-      postalCode
-      countryCode
-      regionCode
-      city
-    }
-    delivery {
-      _id
-      provider {
-        _id
-        created
-        updated
-        deleted
-        type
-        configuration
-        interface {
-          _id
-          label
-          version
-        }
-      }
-      status
-      delivered
-      fee {
-        isTaxable
-        isNetPrice
-        amount
-        currency
-      }
-      discounts {
-        _id
-        orderDiscount {
-          _id
-          trigger
-          code
-          order {
-            _id
-            orderNumber
-          }
-          interface {
-            _id
-            label
-            version
-          }
-          total {
-            isTaxable
-            isNetPrice
-            amount
-            currency
-          }
-          discounted {
-            _id
-            orderDiscount {
-              _id
-              trigger
-              code
-              order {
-                _id
-                orderNumber
-              }
-              interface {
-                _id
-                label
-                version
-              }
-              total {
-                isTaxable
-                isNetPrice
-                amount
-                currency
-              }
-            }
-          }
-        }
-      }
-      delivered
-    }
-    total {
-      isTaxable
-      isTaxable
-      amount
-      currency
-    }
-    items {
-      _id
-      product {
-        _id
-        texts {
-          _id
-          slug
-          brand
-          vendor
-          title
-          subtitle
-        }
-        media {
-          _id
-          file {
-            _id
-            url
-          }
-        }
-      }
-      quantity
-      unitPrice {
-        amount
-        isTaxable
-        isNetPrice
-        currency
-      }
-      total {
-        amount
-        isTaxable
-        isNetPrice
-        currency
-      }
-    }
-  }
-`;
-export const OrderFragmentFragmentDoc = gql`
-  fragment OrderFragment on Order {
-    _id
-    status
-    created
-    updated
-    ordered
-    orderNumber
-    confirmed
-    fullfilled
-    contact {
-      telNumber
-      emailAddress
-    }
-    total {
-      _id
-      isTaxable
-      isNetPrice
-      amount
-      currency
-    }
-    user {
-      _id
-      username
-      isGuest
-      avatar {
-        _id
-        url
-      }
-      profile {
-        displayName
-        address {
-          firstName
-          lastName
-        }
-      }
-    }
-  }
-`;
-export const PaymentProviderFragmentFragmentDoc = gql`
-  fragment PaymentProviderFragment on PaymentProvider {
-    _id
-    created
-    updated
-    deleted
-    isActive
-    type
-    interface {
-      _id
-      label
-      version
-    }
-    configuration
-    configurationError
-  }
-`;
-export const ProductReviewDetailFragmentFragmentDoc = gql`
-  fragment ProductReviewDetailFragment on ProductReview {
-    _id
-    created
-    updated
-    deleted
-    author {
-      _id
-      username
-      name
-      profile {
-        displayName
-        address {
-          firstName
-          lastName
-        }
-      }
-      isGuest
-      avatar {
-        _id
-        url
-      }
-    }
-    product {
-      _id
-      texts {
-        _id
-        title
-        subtitle
-      }
-      media {
-        _id
-        file {
-          _id
-          url
-        }
-      }
-    }
-    rating
-    title
-    review
-    upVote: voteCount(type: UPVOTE)
-    downVote: voteCount(type: DOWNVOTE)
-    voteReport: voteCount(type: REPORT)
-    ownVotes {
-      timestamp
-      type
-    }
-  }
-`;
-export const ProductReviewFragmentFragmentDoc = gql`
-  fragment ProductReviewFragment on ProductReview {
-    _id
-    created
-    updated
-    deleted
-    author {
-      _id
-      username
-      name
-      profile {
-        displayName
-        address {
-          firstName
-          lastName
-        }
-      }
-      isGuest
-      avatar {
-        _id
-        url
-      }
-    }
-    product {
-      _id
-      texts {
-        _id
-        title
-        subtitle
-      }
-      media {
-        _id
-        file {
-          _id
-          url
-        }
-      }
-    }
-    rating
-    title
-    upVote: voteCount(type: UPVOTE)
-    downVote: voteCount(type: DOWNVOTE)
-    voteReport: voteCount(type: REPORT)
-  }
-`;
-export const ProductAssignmentFragmentFragmentDoc = gql`
-  fragment ProductAssignmentFragment on ProductVariationAssignment {
-    _id
-    vectors {
-      _id
-      option {
-        _id
-        value
-        texts {
-          _id
-          title
-          subtitle
-        }
-      }
-      variation {
-        _id
-        key
-        texts {
-          _id
-          locale
-          title
-        }
-      }
-    }
-    product {
-      _id
-      texts {
-        _id
-        title
-        slug
-        subtitle
-      }
-    }
-  }
-`;
-export const ProductBriefFragmentFragmentDoc = gql`
-  fragment ProductBriefFragment on Product {
-    texts {
-      _id
-      slug
-      title
-      subtitle
-      description
-      vendor
-      brand
-      labels
-    }
-    _id
-    sequence
-    status
-    tags
-    sequence
-    updated
-    published
-    media {
-      _id
-      tags
-      file {
-        _id
-        url
-      }
-    }
-  }
-`;
-export const ProductCatalogPriceFragmentFragmentDoc = gql`
-  fragment ProductCatalogPriceFragment on ProductCatalogPrice {
-    _id
-    isTaxable
-    isNetPrice
-    country {
-      _id
-      isoCode
-      name
-      flagEmoji
-    }
-    currency {
-      _id
-      isoCode
-      isActive
-    }
-    amount
-    maxQuantity
-  }
-`;
-export const ProductDetailFragmentFragmentDoc = gql`
-  fragment ProductDetailFragment on Product {
-    _id
-    sequence
-    status
-    created
-    tags
-    updated
-    published
-    media {
-      _id
-      tags
-      file {
-        _id
-        url
-      }
-    }
-    reviews {
-      _id
-      created
-      author {
-        _id
-        username
-        isGuest
-      }
-      rating
-      title
-      review
-      voteCount
-      ownVotes {
-        type
-        timestamp
-      }
-    }
-    siblings {
-      _id
-      media {
-        _id
-        file {
-          _id
-          url
-        }
-      }
-    }
-  }
-`;
-export const ProductDimensionFragmentFragmentDoc = gql`
-  fragment ProductDimensionFragment on Dimensions {
-    weight(unit: GRAM)
-    length(unit: MILLIMETERS)
-    width(unit: MILLIMETERS)
-    height(unit: MILLIMETERS)
-  }
-`;
-export const ProductMediaFragmentFragmentDoc = gql`
-  fragment ProductMediaFragment on ProductMedia {
-    _id
-    tags
-    file {
-      _id
-      name
-      type
-      size
-      url
-    }
-    sortKey
-    texts {
-      _id
-      locale
-      title
-      subtitle
-    }
-  }
-`;
-export const ProductMediaTextsFragmentFragmentDoc = gql`
-  fragment ProductMediaTextsFragment on ProductMediaTexts {
-    _id
-    locale
-    title
-    subtitle
-  }
-`;
-export const ProductPlanConfigurationFragmentFragmentDoc = gql`
-  fragment ProductPlanConfigurationFragment on ProductPlanConfiguration {
-    usageCalculationType
-    billingInterval
-    trialInterval
-    trialIntervalCount
-    billingIntervalCount
-  }
-`;
-export const ProductTextsFragmentFragmentDoc = gql`
-  fragment ProductTextsFragment on ProductTexts {
-    _id
-    locale
-    slug
-    title
-    subtitle
-    description
-    vendor
-    brand
-    labels
-  }
-`;
-export const ProductVariationFragmentFragmentDoc = gql`
-  fragment ProductVariationFragment on ProductVariation {
-    _id
-    type
-    key
-    texts {
-      _id
-      locale
-      title
-      subtitle
-    }
-    options {
-      _id
-      texts {
-        _id
-        locale
-        title
-        subtitle
-      }
-      value
-    }
-  }
-`;
-export const TokenFragmentFragmentDoc = gql`
-  fragment TokenFragment on Token {
-    _id
-    walletAddress
-    status
-    quantity
-    contractAddress
-    chainId
-    chainTokenId
-  }
-`;
-export const QuotationDetailFragmentFragmentDoc = gql`
-  fragment QuotationDetailFragment on Quotation {
-    _id
-    user {
-      _id
-      username
-      avatar {
-        _id
-        url
-      }
-      name
-      primaryEmail {
-        verified
-        address
-      }
-    }
-    configuration {
-      key
-      value
-    }
-    country {
-      _id
-      isoCode
-      flagEmoji
-      name
-    }
-    currency {
-      _id
-      isoCode
-      isActive
-    }
-    product {
-      _id
-      texts {
-        _id
-        slug
-        subtitle
-        title
-        description
-      }
-      media {
-        _id
-        file {
-          _id
-          type
-          url
-        }
-      }
-    }
-    status
-    created
-    expires
-    updated
-    isExpired
-    quotationNumber
-    fullfilled
-    rejected
-  }
-`;
-export const QuotationFragmentFragmentDoc = gql`
-  fragment QuotationFragment on Quotation {
-    _id
-    user {
-      _id
-      username
-      avatar {
-        _id
-        url
-      }
-      name
-      primaryEmail {
-        verified
-        address
-      }
-    }
-    product {
-      _id
-      texts {
-        _id
-        slug
-        subtitle
-        title
-        description
-      }
-      media {
-        _id
-        file {
-          _id
-          type
-          url
-        }
-      }
-    }
-    currency {
-      _id
-      contractAddress
-      decimals
-      isoCode
-    }
-    status
-    created
-    expires
-    updated
-    isExpired
-    quotationNumber
-    fullfilled
-    rejected
-  }
-`;
-export const WarehousingProviderFragmentFragmentDoc = gql`
-  fragment WarehousingProviderFragment on WarehousingProvider {
-    _id
-    created
-    updated
-    deleted
-    isActive
-    type
-    interface {
-      _id
-      label
-      version
-    }
-    configuration
-    configurationError
-  }
-`;
-export const WorkFragmentFragmentDoc = gql`
-  fragment WorkFragment on Work {
-    _id
-    type
-    scheduled
-    status
-    started
-    success
-    finished
-    created
-    deleted
-  }
-`;
-export const LogoutDocument = gql`
-  mutation logout($token: String) {
-    logout(token: $token) {
-      success
-    }
-  }
-`;
-export type ILogoutMutationFn = Apollo.MutationFunction<
-  ILogoutMutation,
-  ILogoutMutationVariables
->;
-
-/**
- * __useLogoutMutation__
- *
- * To run a mutation, you first call `useLogoutMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useLogoutMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [logoutMutation, { data, loading, error }] = useLogoutMutation({
- *   variables: {
- *      token: // value for 'token'
- *   },
- * });
- */
-export function useLogoutMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ILogoutMutation,
-    ILogoutMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<ILogoutMutation, ILogoutMutationVariables>(
-    LogoutDocument,
-    options,
-  );
-}
-export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
-export type LogoutMutationResult = Apollo.MutationResult<ILogoutMutation>;
-export type LogoutMutationOptions = Apollo.BaseMutationOptions<
-  ILogoutMutation,
-  ILogoutMutationVariables
->;
-export const AddEmailDocument = gql`
-  mutation AddEmail($email: String!, $userId: ID) {
-    addEmail(email: $email, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IAddEmailMutationFn = Apollo.MutationFunction<
-  IAddEmailMutation,
-  IAddEmailMutationVariables
->;
-
-/**
- * __useAddEmailMutation__
- *
- * To run a mutation, you first call `useAddEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addEmailMutation, { data, loading, error }] = useAddEmailMutation({
- *   variables: {
- *      email: // value for 'email'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useAddEmailMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddEmailMutation,
-    IAddEmailMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IAddEmailMutation, IAddEmailMutationVariables>(
-    AddEmailDocument,
-    options,
-  );
-}
-export type AddEmailMutationHookResult = ReturnType<typeof useAddEmailMutation>;
-export type AddEmailMutationResult = Apollo.MutationResult<IAddEmailMutation>;
-export type AddEmailMutationOptions = Apollo.BaseMutationOptions<
-  IAddEmailMutation,
-  IAddEmailMutationVariables
->;
-export const AddWeb3AddressDocument = gql`
-  mutation AddWeb3Address($address: String!) {
-    addWeb3Address(address: $address) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IAddWeb3AddressMutationFn = Apollo.MutationFunction<
-  IAddWeb3AddressMutation,
-  IAddWeb3AddressMutationVariables
->;
-
-/**
- * __useAddWeb3AddressMutation__
- *
- * To run a mutation, you first call `useAddWeb3AddressMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddWeb3AddressMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addWeb3AddressMutation, { data, loading, error }] = useAddWeb3AddressMutation({
- *   variables: {
- *      address: // value for 'address'
- *   },
- * });
- */
-export function useAddWeb3AddressMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddWeb3AddressMutation,
-    IAddWeb3AddressMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddWeb3AddressMutation,
-    IAddWeb3AddressMutationVariables
-  >(AddWeb3AddressDocument, options);
-}
-export type AddWeb3AddressMutationHookResult = ReturnType<
-  typeof useAddWeb3AddressMutation
->;
-export type AddWeb3AddressMutationResult =
-  Apollo.MutationResult<IAddWeb3AddressMutation>;
-export type AddWeb3AddressMutationOptions = Apollo.BaseMutationOptions<
-  IAddWeb3AddressMutation,
-  IAddWeb3AddressMutationVariables
->;
-export const AddWebAuthnCredentialsDocument = gql`
-  mutation AddWebAuthnCredentials($credentials: JSON!) {
-    addWebAuthnCredentials(credentials: $credentials) {
-      ...UserFragment
-      webAuthnCredentials {
-        _id
-        created
-        aaguid
-        counter
-        mdsMetadata {
-          ...MD5MetaDataFragment
-        }
-      }
-    }
-  }
-  ${UserFragmentFragmentDoc}
-  ${Md5MetaDataFragmentFragmentDoc}
-`;
-export type IAddWebAuthnCredentialsMutationFn = Apollo.MutationFunction<
-  IAddWebAuthnCredentialsMutation,
-  IAddWebAuthnCredentialsMutationVariables
->;
-
-/**
- * __useAddWebAuthnCredentialsMutation__
- *
- * To run a mutation, you first call `useAddWebAuthnCredentialsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddWebAuthnCredentialsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addWebAuthnCredentialsMutation, { data, loading, error }] = useAddWebAuthnCredentialsMutation({
- *   variables: {
- *      credentials: // value for 'credentials'
- *   },
- * });
- */
-export function useAddWebAuthnCredentialsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddWebAuthnCredentialsMutation,
-    IAddWebAuthnCredentialsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddWebAuthnCredentialsMutation,
-    IAddWebAuthnCredentialsMutationVariables
-  >(AddWebAuthnCredentialsDocument, options);
-}
-export type AddWebAuthnCredentialsMutationHookResult = ReturnType<
-  typeof useAddWebAuthnCredentialsMutation
->;
-export type AddWebAuthnCredentialsMutationResult =
-  Apollo.MutationResult<IAddWebAuthnCredentialsMutation>;
-export type AddWebAuthnCredentialsMutationOptions = Apollo.BaseMutationOptions<
-  IAddWebAuthnCredentialsMutation,
-  IAddWebAuthnCredentialsMutationVariables
->;
-export const BuildSecretTotpAuthUrlDocument = gql`
-  mutation BuildSecretTOTPAuthURL {
-    buildSecretTOTPAuthURL
-  }
-`;
-export type IBuildSecretTotpAuthUrlMutationFn = Apollo.MutationFunction<
-  IBuildSecretTotpAuthUrlMutation,
-  IBuildSecretTotpAuthUrlMutationVariables
->;
-
-/**
- * __useBuildSecretTotpAuthUrlMutation__
- *
- * To run a mutation, you first call `useBuildSecretTotpAuthUrlMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useBuildSecretTotpAuthUrlMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [buildSecretTotpAuthUrlMutation, { data, loading, error }] = useBuildSecretTotpAuthUrlMutation({
- *   variables: {
- *   },
- * });
- */
-export function useBuildSecretTotpAuthUrlMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IBuildSecretTotpAuthUrlMutation,
-    IBuildSecretTotpAuthUrlMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IBuildSecretTotpAuthUrlMutation,
-    IBuildSecretTotpAuthUrlMutationVariables
-  >(BuildSecretTotpAuthUrlDocument, options);
-}
-export type BuildSecretTotpAuthUrlMutationHookResult = ReturnType<
-  typeof useBuildSecretTotpAuthUrlMutation
->;
-export type BuildSecretTotpAuthUrlMutationResult =
-  Apollo.MutationResult<IBuildSecretTotpAuthUrlMutation>;
-export type BuildSecretTotpAuthUrlMutationOptions = Apollo.BaseMutationOptions<
-  IBuildSecretTotpAuthUrlMutation,
-  IBuildSecretTotpAuthUrlMutationVariables
->;
-export const ChangePasswordDocument = gql`
-  mutation ChangePassword($oldPassword: String!, $newPassword: String!) {
-    changePassword(
-      oldPlainPassword: $oldPassword
-      newPlainPassword: $newPassword
-    ) {
-      success
-    }
-  }
-`;
-export type IChangePasswordMutationFn = Apollo.MutationFunction<
-  IChangePasswordMutation,
-  IChangePasswordMutationVariables
->;
-
-/**
- * __useChangePasswordMutation__
- *
- * To run a mutation, you first call `useChangePasswordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useChangePasswordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [changePasswordMutation, { data, loading, error }] = useChangePasswordMutation({
- *   variables: {
- *      oldPassword: // value for 'oldPassword'
- *      newPassword: // value for 'newPassword'
- *   },
- * });
- */
-export function useChangePasswordMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IChangePasswordMutation,
-    IChangePasswordMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IChangePasswordMutation,
-    IChangePasswordMutationVariables
-  >(ChangePasswordDocument, options);
-}
-export type ChangePasswordMutationHookResult = ReturnType<
-  typeof useChangePasswordMutation
->;
-export type ChangePasswordMutationResult =
-  Apollo.MutationResult<IChangePasswordMutation>;
-export type ChangePasswordMutationOptions = Apollo.BaseMutationOptions<
-  IChangePasswordMutation,
-  IChangePasswordMutationVariables
->;
-export const CreateUserDocument = gql`
-  mutation CreateUser(
-    $username: String
-    $email: String
-    $plainPassword: String
-    $profile: UserProfileInput
-    $webAuthnPublicKeyCredentials: JSON
-  ) {
-    createUser(
-      username: $username
-      email: $email
-      plainPassword: $plainPassword
-      profile: $profile
-      webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
-    ) {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type ICreateUserMutationFn = Apollo.MutationFunction<
-  ICreateUserMutation,
-  ICreateUserMutationVariables
->;
-
-/**
- * __useCreateUserMutation__
- *
- * To run a mutation, you first call `useCreateUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateUserMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createUserMutation, { data, loading, error }] = useCreateUserMutation({
- *   variables: {
- *      username: // value for 'username'
- *      email: // value for 'email'
- *      plainPassword: // value for 'plainPassword'
- *      profile: // value for 'profile'
- *      webAuthnPublicKeyCredentials: // value for 'webAuthnPublicKeyCredentials'
- *   },
- * });
- */
-export function useCreateUserMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateUserMutation,
-    ICreateUserMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<ICreateUserMutation, ICreateUserMutationVariables>(
-    CreateUserDocument,
-    options,
-  );
-}
-export type CreateUserMutationHookResult = ReturnType<
-  typeof useCreateUserMutation
->;
-export type CreateUserMutationResult =
-  Apollo.MutationResult<ICreateUserMutation>;
-export type CreateUserMutationOptions = Apollo.BaseMutationOptions<
-  ICreateUserMutation,
-  ICreateUserMutationVariables
->;
-export const CreateUserWithWebAuthMutationDocument = gql`
-  mutation CreateUserWithWebAuthMutation(
-    $username: String
-    $email: String
-    $webAuthnPublicKeyCredentials: JSON
-  ) {
-    createUser(
-      username: $username
-      email: $email
-      webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
-    ) {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type ICreateUserWithWebAuthMutationMutationFn = Apollo.MutationFunction<
-  ICreateUserWithWebAuthMutationMutation,
-  ICreateUserWithWebAuthMutationMutationVariables
->;
-
-/**
- * __useCreateUserWithWebAuthMutationMutation__
- *
- * To run a mutation, you first call `useCreateUserWithWebAuthMutationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateUserWithWebAuthMutationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createUserWithWebAuthMutationMutation, { data, loading, error }] = useCreateUserWithWebAuthMutationMutation({
- *   variables: {
- *      username: // value for 'username'
- *      email: // value for 'email'
- *      webAuthnPublicKeyCredentials: // value for 'webAuthnPublicKeyCredentials'
- *   },
- * });
- */
-export function useCreateUserWithWebAuthMutationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateUserWithWebAuthMutationMutation,
-    ICreateUserWithWebAuthMutationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateUserWithWebAuthMutationMutation,
-    ICreateUserWithWebAuthMutationMutationVariables
-  >(CreateUserWithWebAuthMutationDocument, options);
-}
-export type CreateUserWithWebAuthMutationMutationHookResult = ReturnType<
-  typeof useCreateUserWithWebAuthMutationMutation
->;
-export type CreateUserWithWebAuthMutationMutationResult =
-  Apollo.MutationResult<ICreateUserWithWebAuthMutationMutation>;
-export type CreateUserWithWebAuthMutationMutationOptions =
-  Apollo.BaseMutationOptions<
-    ICreateUserWithWebAuthMutationMutation,
-    ICreateUserWithWebAuthMutationMutationVariables
-  >;
-export const CreateWebAuthnCredentialCreationOptionsDocument = gql`
-  mutation CreateWebAuthnCredentialCreationOptions($username: String!) {
-    createWebAuthnCredentialCreationOptions(username: $username)
-  }
-`;
-export type ICreateWebAuthnCredentialCreationOptionsMutationFn =
-  Apollo.MutationFunction<
-    ICreateWebAuthnCredentialCreationOptionsMutation,
-    ICreateWebAuthnCredentialCreationOptionsMutationVariables
-  >;
-
-/**
- * __useCreateWebAuthnCredentialCreationOptionsMutation__
- *
- * To run a mutation, you first call `useCreateWebAuthnCredentialCreationOptionsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateWebAuthnCredentialCreationOptionsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createWebAuthnCredentialCreationOptionsMutation, { data, loading, error }] = useCreateWebAuthnCredentialCreationOptionsMutation({
- *   variables: {
- *      username: // value for 'username'
- *   },
- * });
- */
-export function useCreateWebAuthnCredentialCreationOptionsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateWebAuthnCredentialCreationOptionsMutation,
-    ICreateWebAuthnCredentialCreationOptionsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateWebAuthnCredentialCreationOptionsMutation,
-    ICreateWebAuthnCredentialCreationOptionsMutationVariables
-  >(CreateWebAuthnCredentialCreationOptionsDocument, options);
-}
-export type CreateWebAuthnCredentialCreationOptionsMutationHookResult =
-  ReturnType<typeof useCreateWebAuthnCredentialCreationOptionsMutation>;
-export type CreateWebAuthnCredentialCreationOptionsMutationResult =
-  Apollo.MutationResult<ICreateWebAuthnCredentialCreationOptionsMutation>;
-export type CreateWebAuthnCredentialCreationOptionsMutationOptions =
-  Apollo.BaseMutationOptions<
-    ICreateWebAuthnCredentialCreationOptionsMutation,
-    ICreateWebAuthnCredentialCreationOptionsMutationVariables
-  >;
-export const CreateWebAuthnCredentialRequestOptionsDocument = gql`
-  mutation CreateWebAuthnCredentialRequestOptions($username: String) {
-    createWebAuthnCredentialRequestOptions(username: $username)
-  }
-`;
-export type ICreateWebAuthnCredentialRequestOptionsMutationFn =
-  Apollo.MutationFunction<
-    ICreateWebAuthnCredentialRequestOptionsMutation,
-    ICreateWebAuthnCredentialRequestOptionsMutationVariables
-  >;
-
-/**
- * __useCreateWebAuthnCredentialRequestOptionsMutation__
- *
- * To run a mutation, you first call `useCreateWebAuthnCredentialRequestOptionsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateWebAuthnCredentialRequestOptionsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createWebAuthnCredentialRequestOptionsMutation, { data, loading, error }] = useCreateWebAuthnCredentialRequestOptionsMutation({
- *   variables: {
- *      username: // value for 'username'
- *   },
- * });
- */
-export function useCreateWebAuthnCredentialRequestOptionsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateWebAuthnCredentialRequestOptionsMutation,
-    ICreateWebAuthnCredentialRequestOptionsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateWebAuthnCredentialRequestOptionsMutation,
-    ICreateWebAuthnCredentialRequestOptionsMutationVariables
-  >(CreateWebAuthnCredentialRequestOptionsDocument, options);
-}
-export type CreateWebAuthnCredentialRequestOptionsMutationHookResult =
-  ReturnType<typeof useCreateWebAuthnCredentialRequestOptionsMutation>;
-export type CreateWebAuthnCredentialRequestOptionsMutationResult =
-  Apollo.MutationResult<ICreateWebAuthnCredentialRequestOptionsMutation>;
-export type CreateWebAuthnCredentialRequestOptionsMutationOptions =
-  Apollo.BaseMutationOptions<
-    ICreateWebAuthnCredentialRequestOptionsMutation,
-    ICreateWebAuthnCredentialRequestOptionsMutationVariables
-  >;
-export const CurrentUserRoleDocument = gql`
-  query CurrentUserRole {
-    me {
-      _id
-      allowedActions
-    }
-  }
-`;
-
-/**
- * __useCurrentUserRoleQuery__
- *
- * To run a query within a React component, call `useCurrentUserRoleQuery` and pass it any options that fit your needs.
- * When your component renders, `useCurrentUserRoleQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCurrentUserRoleQuery({
- *   variables: {
- *   },
- * });
- */
-export function useCurrentUserRoleQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ICurrentUserRoleQuery,
-    ICurrentUserRoleQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICurrentUserRoleQuery, ICurrentUserRoleQueryVariables>(
-    CurrentUserRoleDocument,
-    options,
-  );
-}
-export function useCurrentUserRoleLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICurrentUserRoleQuery,
-    ICurrentUserRoleQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ICurrentUserRoleQuery,
-    ICurrentUserRoleQueryVariables
-  >(CurrentUserRoleDocument, options);
-}
-export type CurrentUserRoleQueryHookResult = ReturnType<
-  typeof useCurrentUserRoleQuery
->;
-export type CurrentUserRoleLazyQueryHookResult = ReturnType<
-  typeof useCurrentUserRoleLazyQuery
->;
-export type CurrentUserRoleQueryResult = Apollo.QueryResult<
-  ICurrentUserRoleQuery,
-  ICurrentUserRoleQueryVariables
->;
-export const CurrentUserDocument = gql`
-  query CurrentUser {
-    me {
-      ...UserFragment
-    }
-    impersonator {
-      _id
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-
-/**
- * __useCurrentUserQuery__
- *
- * To run a query within a React component, call `useCurrentUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useCurrentUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCurrentUserQuery({
- *   variables: {
- *   },
- * });
- */
-export function useCurrentUserQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ICurrentUserQuery,
-    ICurrentUserQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICurrentUserQuery, ICurrentUserQueryVariables>(
-    CurrentUserDocument,
-    options,
-  );
-}
-export function useCurrentUserLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICurrentUserQuery,
-    ICurrentUserQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ICurrentUserQuery, ICurrentUserQueryVariables>(
-    CurrentUserDocument,
-    options,
-  );
-}
-export type CurrentUserQueryHookResult = ReturnType<typeof useCurrentUserQuery>;
-export type CurrentUserLazyQueryHookResult = ReturnType<
-  typeof useCurrentUserLazyQuery
->;
-export type CurrentUserQueryResult = Apollo.QueryResult<
-  ICurrentUserQuery,
-  ICurrentUserQueryVariables
->;
-export const DisableTotpDocument = gql`
-  mutation DisableTOTP($code: String!, $userId: ID) {
-    disableTOTP(code: $code, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IDisableTotpMutationFn = Apollo.MutationFunction<
-  IDisableTotpMutation,
-  IDisableTotpMutationVariables
->;
-
-/**
- * __useDisableTotpMutation__
- *
- * To run a mutation, you first call `useDisableTotpMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDisableTotpMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [disableTotpMutation, { data, loading, error }] = useDisableTotpMutation({
- *   variables: {
- *      code: // value for 'code'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useDisableTotpMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IDisableTotpMutation,
-    IDisableTotpMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IDisableTotpMutation,
-    IDisableTotpMutationVariables
-  >(DisableTotpDocument, options);
-}
-export type DisableTotpMutationHookResult = ReturnType<
-  typeof useDisableTotpMutation
->;
-export type DisableTotpMutationResult =
-  Apollo.MutationResult<IDisableTotpMutation>;
-export type DisableTotpMutationOptions = Apollo.BaseMutationOptions<
-  IDisableTotpMutation,
-  IDisableTotpMutationVariables
->;
-export const EnableTotpDocument = gql`
-  mutation EnableTOTP($secretBase32: String!, $code: String!) {
-    enableTOTP(secretBase32: $secretBase32, code: $code) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IEnableTotpMutationFn = Apollo.MutationFunction<
-  IEnableTotpMutation,
-  IEnableTotpMutationVariables
->;
-
-/**
- * __useEnableTotpMutation__
- *
- * To run a mutation, you first call `useEnableTotpMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useEnableTotpMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [enableTotpMutation, { data, loading, error }] = useEnableTotpMutation({
- *   variables: {
- *      secretBase32: // value for 'secretBase32'
- *      code: // value for 'code'
- *   },
- * });
- */
-export function useEnableTotpMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IEnableTotpMutation,
-    IEnableTotpMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IEnableTotpMutation, IEnableTotpMutationVariables>(
-    EnableTotpDocument,
-    options,
-  );
-}
-export type EnableTotpMutationHookResult = ReturnType<
-  typeof useEnableTotpMutation
->;
-export type EnableTotpMutationResult =
-  Apollo.MutationResult<IEnableTotpMutation>;
-export type EnableTotpMutationOptions = Apollo.BaseMutationOptions<
-  IEnableTotpMutation,
-  IEnableTotpMutationVariables
->;
-export const EnrollUserDocument = gql`
-  mutation EnrollUser(
-    $email: String!
-    $plainPassword: String
-    $profile: UserProfileInput!
-  ) {
-    enrollUser(
-      email: $email
-      plainPassword: $plainPassword
-      profile: $profile
-    ) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IEnrollUserMutationFn = Apollo.MutationFunction<
-  IEnrollUserMutation,
-  IEnrollUserMutationVariables
->;
-
-/**
- * __useEnrollUserMutation__
- *
- * To run a mutation, you first call `useEnrollUserMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useEnrollUserMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [enrollUserMutation, { data, loading, error }] = useEnrollUserMutation({
- *   variables: {
- *      email: // value for 'email'
- *      plainPassword: // value for 'plainPassword'
- *      profile: // value for 'profile'
- *   },
- * });
- */
-export function useEnrollUserMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IEnrollUserMutation,
-    IEnrollUserMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IEnrollUserMutation, IEnrollUserMutationVariables>(
-    EnrollUserDocument,
-    options,
-  );
-}
-export type EnrollUserMutationHookResult = ReturnType<
-  typeof useEnrollUserMutation
->;
-export type EnrollUserMutationResult =
-  Apollo.MutationResult<IEnrollUserMutation>;
-export type EnrollUserMutationOptions = Apollo.BaseMutationOptions<
-  IEnrollUserMutation,
-  IEnrollUserMutationVariables
->;
-export const ForgotPasswordDocument = gql`
-  mutation ForgotPassword($email: String!) {
-    forgotPassword(email: $email) {
-      success
-    }
-  }
-`;
-export type IForgotPasswordMutationFn = Apollo.MutationFunction<
-  IForgotPasswordMutation,
-  IForgotPasswordMutationVariables
->;
-
-/**
- * __useForgotPasswordMutation__
- *
- * To run a mutation, you first call `useForgotPasswordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useForgotPasswordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [forgotPasswordMutation, { data, loading, error }] = useForgotPasswordMutation({
- *   variables: {
- *      email: // value for 'email'
- *   },
- * });
- */
-export function useForgotPasswordMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IForgotPasswordMutation,
-    IForgotPasswordMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IForgotPasswordMutation,
-    IForgotPasswordMutationVariables
-  >(ForgotPasswordDocument, options);
-}
-export type ForgotPasswordMutationHookResult = ReturnType<
-  typeof useForgotPasswordMutation
->;
-export type ForgotPasswordMutationResult =
-  Apollo.MutationResult<IForgotPasswordMutation>;
-export type ForgotPasswordMutationOptions = Apollo.BaseMutationOptions<
-  IForgotPasswordMutation,
-  IForgotPasswordMutationVariables
->;
-export const ImpersonateDocument = gql`
-  mutation Impersonate($userId: ID!) {
-    impersonate(userId: $userId) {
-      id
-      tokenExpires
-      token
-      user {
-        _id
-      }
-    }
-  }
-`;
-export type IImpersonateMutationFn = Apollo.MutationFunction<
-  IImpersonateMutation,
-  IImpersonateMutationVariables
->;
-
-/**
- * __useImpersonateMutation__
- *
- * To run a mutation, you first call `useImpersonateMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useImpersonateMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [impersonateMutation, { data, loading, error }] = useImpersonateMutation({
- *   variables: {
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useImpersonateMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IImpersonateMutation,
-    IImpersonateMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IImpersonateMutation,
-    IImpersonateMutationVariables
-  >(ImpersonateDocument, options);
-}
-export type ImpersonateMutationHookResult = ReturnType<
-  typeof useImpersonateMutation
->;
-export type ImpersonateMutationResult =
-  Apollo.MutationResult<IImpersonateMutation>;
-export type ImpersonateMutationOptions = Apollo.BaseMutationOptions<
-  IImpersonateMutation,
-  IImpersonateMutationVariables
->;
-export const LogInWithOAuthDocument = gql`
-  mutation LogInWithOAuth(
-    $authorizationCode: String!
-    $provider: String!
-    $redirectUrl: String!
-  ) {
-    loginWithOAuth(
-      provider: $provider
-      authorizationCode: $authorizationCode
-      redirectUrl: $redirectUrl
-    ) {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type ILogInWithOAuthMutationFn = Apollo.MutationFunction<
-  ILogInWithOAuthMutation,
-  ILogInWithOAuthMutationVariables
->;
-
-/**
- * __useLogInWithOAuthMutation__
- *
- * To run a mutation, you first call `useLogInWithOAuthMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useLogInWithOAuthMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [logInWithOAuthMutation, { data, loading, error }] = useLogInWithOAuthMutation({
- *   variables: {
- *      authorizationCode: // value for 'authorizationCode'
- *      provider: // value for 'provider'
- *      redirectUrl: // value for 'redirectUrl'
- *   },
- * });
- */
-export function useLogInWithOAuthMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ILogInWithOAuthMutation,
-    ILogInWithOAuthMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ILogInWithOAuthMutation,
-    ILogInWithOAuthMutationVariables
-  >(LogInWithOAuthDocument, options);
-}
-export type LogInWithOAuthMutationHookResult = ReturnType<
-  typeof useLogInWithOAuthMutation
->;
-export type LogInWithOAuthMutationResult =
-  Apollo.MutationResult<ILogInWithOAuthMutation>;
-export type LogInWithOAuthMutationOptions = Apollo.BaseMutationOptions<
-  ILogInWithOAuthMutation,
-  ILogInWithOAuthMutationVariables
->;
-export const LoginWithPasswordDocument = gql`
-  mutation LoginWithPassword(
-    $username: String
-    $email: String
-    $plainPassword: String
-    $totpCode: String
-  ) {
-    loginWithPassword(
-      username: $username
-      email: $email
-      plainPassword: $plainPassword
-      totpCode: $totpCode
-    ) {
-      id
-      token
-      tokenExpires
-      user {
-        _id
-        allowedActions
-        roles
-        isTwoFactorEnabled
-      }
-    }
-  }
-`;
-export type ILoginWithPasswordMutationFn = Apollo.MutationFunction<
-  ILoginWithPasswordMutation,
-  ILoginWithPasswordMutationVariables
->;
-
-/**
- * __useLoginWithPasswordMutation__
- *
- * To run a mutation, you first call `useLoginWithPasswordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useLoginWithPasswordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [loginWithPasswordMutation, { data, loading, error }] = useLoginWithPasswordMutation({
- *   variables: {
- *      username: // value for 'username'
- *      email: // value for 'email'
- *      plainPassword: // value for 'plainPassword'
- *      totpCode: // value for 'totpCode'
- *   },
- * });
- */
-export function useLoginWithPasswordMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ILoginWithPasswordMutation,
-    ILoginWithPasswordMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ILoginWithPasswordMutation,
-    ILoginWithPasswordMutationVariables
-  >(LoginWithPasswordDocument, options);
-}
-export type LoginWithPasswordMutationHookResult = ReturnType<
-  typeof useLoginWithPasswordMutation
->;
-export type LoginWithPasswordMutationResult =
-  Apollo.MutationResult<ILoginWithPasswordMutation>;
-export type LoginWithPasswordMutationOptions = Apollo.BaseMutationOptions<
-  ILoginWithPasswordMutation,
-  ILoginWithPasswordMutationVariables
->;
-export const LoginWithWebAuthnDocument = gql`
-  mutation LoginWithWebAuthn($webAuthnPublicKeyCredentials: JSON!) {
-    loginWithWebAuthn(
-      webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
-    ) {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type ILoginWithWebAuthnMutationFn = Apollo.MutationFunction<
-  ILoginWithWebAuthnMutation,
-  ILoginWithWebAuthnMutationVariables
->;
-
-/**
- * __useLoginWithWebAuthnMutation__
- *
- * To run a mutation, you first call `useLoginWithWebAuthnMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useLoginWithWebAuthnMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [loginWithWebAuthnMutation, { data, loading, error }] = useLoginWithWebAuthnMutation({
- *   variables: {
- *      webAuthnPublicKeyCredentials: // value for 'webAuthnPublicKeyCredentials'
- *   },
- * });
- */
-export function useLoginWithWebAuthnMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ILoginWithWebAuthnMutation,
-    ILoginWithWebAuthnMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ILoginWithWebAuthnMutation,
-    ILoginWithWebAuthnMutationVariables
-  >(LoginWithWebAuthnDocument, options);
-}
-export type LoginWithWebAuthnMutationHookResult = ReturnType<
-  typeof useLoginWithWebAuthnMutation
->;
-export type LoginWithWebAuthnMutationResult =
-  Apollo.MutationResult<ILoginWithWebAuthnMutation>;
-export type LoginWithWebAuthnMutationOptions = Apollo.BaseMutationOptions<
-  ILoginWithWebAuthnMutation,
-  ILoginWithWebAuthnMutationVariables
->;
-export const RemoveEmailDocument = gql`
-  mutation RemoveEmail($email: String!, $userId: ID) {
-    removeEmail(email: $email, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IRemoveEmailMutationFn = Apollo.MutationFunction<
-  IRemoveEmailMutation,
-  IRemoveEmailMutationVariables
->;
-
-/**
- * __useRemoveEmailMutation__
- *
- * To run a mutation, you first call `useRemoveEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeEmailMutation, { data, loading, error }] = useRemoveEmailMutation({
- *   variables: {
- *      email: // value for 'email'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useRemoveEmailMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveEmailMutation,
-    IRemoveEmailMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveEmailMutation,
-    IRemoveEmailMutationVariables
-  >(RemoveEmailDocument, options);
-}
-export type RemoveEmailMutationHookResult = ReturnType<
-  typeof useRemoveEmailMutation
->;
-export type RemoveEmailMutationResult =
-  Apollo.MutationResult<IRemoveEmailMutation>;
-export type RemoveEmailMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveEmailMutation,
-  IRemoveEmailMutationVariables
->;
-export const RemoveWeb3AddressDocument = gql`
-  mutation RemoveWeb3Address($address: String!) {
-    removeWeb3Address(address: $address) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IRemoveWeb3AddressMutationFn = Apollo.MutationFunction<
-  IRemoveWeb3AddressMutation,
-  IRemoveWeb3AddressMutationVariables
->;
-
-/**
- * __useRemoveWeb3AddressMutation__
- *
- * To run a mutation, you first call `useRemoveWeb3AddressMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveWeb3AddressMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeWeb3AddressMutation, { data, loading, error }] = useRemoveWeb3AddressMutation({
- *   variables: {
- *      address: // value for 'address'
- *   },
- * });
- */
-export function useRemoveWeb3AddressMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveWeb3AddressMutation,
-    IRemoveWeb3AddressMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveWeb3AddressMutation,
-    IRemoveWeb3AddressMutationVariables
-  >(RemoveWeb3AddressDocument, options);
-}
-export type RemoveWeb3AddressMutationHookResult = ReturnType<
-  typeof useRemoveWeb3AddressMutation
->;
-export type RemoveWeb3AddressMutationResult =
-  Apollo.MutationResult<IRemoveWeb3AddressMutation>;
-export type RemoveWeb3AddressMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveWeb3AddressMutation,
-  IRemoveWeb3AddressMutationVariables
->;
-export const RemoveWebAuthCredentialsDocument = gql`
-  mutation removeWebAuthCredentials($credentialsId: ID!) {
-    removeWebAuthnCredentials(credentialsId: $credentialsId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IRemoveWebAuthCredentialsMutationFn = Apollo.MutationFunction<
-  IRemoveWebAuthCredentialsMutation,
-  IRemoveWebAuthCredentialsMutationVariables
->;
-
-/**
- * __useRemoveWebAuthCredentialsMutation__
- *
- * To run a mutation, you first call `useRemoveWebAuthCredentialsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveWebAuthCredentialsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeWebAuthCredentialsMutation, { data, loading, error }] = useRemoveWebAuthCredentialsMutation({
- *   variables: {
- *      credentialsId: // value for 'credentialsId'
- *   },
- * });
- */
-export function useRemoveWebAuthCredentialsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveWebAuthCredentialsMutation,
-    IRemoveWebAuthCredentialsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveWebAuthCredentialsMutation,
-    IRemoveWebAuthCredentialsMutationVariables
-  >(RemoveWebAuthCredentialsDocument, options);
-}
-export type RemoveWebAuthCredentialsMutationHookResult = ReturnType<
-  typeof useRemoveWebAuthCredentialsMutation
->;
-export type RemoveWebAuthCredentialsMutationResult =
-  Apollo.MutationResult<IRemoveWebAuthCredentialsMutation>;
-export type RemoveWebAuthCredentialsMutationOptions =
-  Apollo.BaseMutationOptions<
-    IRemoveWebAuthCredentialsMutation,
-    IRemoveWebAuthCredentialsMutationVariables
-  >;
-export const ResetPasswordDocument = gql`
-  mutation ResetPassword($newPlainPassword: String, $token: String!) {
-    resetPassword(newPlainPassword: $newPlainPassword, token: $token) {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type IResetPasswordMutationFn = Apollo.MutationFunction<
-  IResetPasswordMutation,
-  IResetPasswordMutationVariables
->;
-
-/**
- * __useResetPasswordMutation__
- *
- * To run a mutation, you first call `useResetPasswordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useResetPasswordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [resetPasswordMutation, { data, loading, error }] = useResetPasswordMutation({
- *   variables: {
- *      newPlainPassword: // value for 'newPlainPassword'
- *      token: // value for 'token'
- *   },
- * });
- */
-export function useResetPasswordMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IResetPasswordMutation,
-    IResetPasswordMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IResetPasswordMutation,
-    IResetPasswordMutationVariables
-  >(ResetPasswordDocument, options);
-}
-export type ResetPasswordMutationHookResult = ReturnType<
-  typeof useResetPasswordMutation
->;
-export type ResetPasswordMutationResult =
-  Apollo.MutationResult<IResetPasswordMutation>;
-export type ResetPasswordMutationOptions = Apollo.BaseMutationOptions<
-  IResetPasswordMutation,
-  IResetPasswordMutationVariables
->;
-export const SendVerificationEmailDocument = gql`
-  mutation SendVerificationEmail($email: String) {
-    sendVerificationEmail(email: $email) {
-      success
-    }
-  }
-`;
-export type ISendVerificationEmailMutationFn = Apollo.MutationFunction<
-  ISendVerificationEmailMutation,
-  ISendVerificationEmailMutationVariables
->;
-
-/**
- * __useSendVerificationEmailMutation__
- *
- * To run a mutation, you first call `useSendVerificationEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSendVerificationEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [sendVerificationEmailMutation, { data, loading, error }] = useSendVerificationEmailMutation({
- *   variables: {
- *      email: // value for 'email'
- *   },
- * });
- */
-export function useSendVerificationEmailMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISendVerificationEmailMutation,
-    ISendVerificationEmailMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISendVerificationEmailMutation,
-    ISendVerificationEmailMutationVariables
-  >(SendVerificationEmailDocument, options);
-}
-export type SendVerificationEmailMutationHookResult = ReturnType<
-  typeof useSendVerificationEmailMutation
->;
-export type SendVerificationEmailMutationResult =
-  Apollo.MutationResult<ISendVerificationEmailMutation>;
-export type SendVerificationEmailMutationOptions = Apollo.BaseMutationOptions<
-  ISendVerificationEmailMutation,
-  ISendVerificationEmailMutationVariables
->;
-export const SetPasswordDocument = gql`
-  mutation SetPassword($newPlainPassword: String, $userId: ID!) {
-    setPassword(newPlainPassword: $newPlainPassword, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type ISetPasswordMutationFn = Apollo.MutationFunction<
-  ISetPasswordMutation,
-  ISetPasswordMutationVariables
->;
-
-/**
- * __useSetPasswordMutation__
- *
- * To run a mutation, you first call `useSetPasswordMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSetPasswordMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [setPasswordMutation, { data, loading, error }] = useSetPasswordMutation({
- *   variables: {
- *      newPlainPassword: // value for 'newPlainPassword'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useSetPasswordMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISetPasswordMutation,
-    ISetPasswordMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISetPasswordMutation,
-    ISetPasswordMutationVariables
-  >(SetPasswordDocument, options);
-}
-export type SetPasswordMutationHookResult = ReturnType<
-  typeof useSetPasswordMutation
->;
-export type SetPasswordMutationResult =
-  Apollo.MutationResult<ISetPasswordMutation>;
-export type SetPasswordMutationOptions = Apollo.BaseMutationOptions<
-  ISetPasswordMutation,
-  ISetPasswordMutationVariables
->;
-export const SetRolesDocument = gql`
-  mutation SetRoles($roles: [String!]!, $userId: ID!) {
-    setRoles(roles: $roles, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type ISetRolesMutationFn = Apollo.MutationFunction<
-  ISetRolesMutation,
-  ISetRolesMutationVariables
->;
-
-/**
- * __useSetRolesMutation__
- *
- * To run a mutation, you first call `useSetRolesMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSetRolesMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [setRolesMutation, { data, loading, error }] = useSetRolesMutation({
- *   variables: {
- *      roles: // value for 'roles'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useSetRolesMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISetRolesMutation,
-    ISetRolesMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<ISetRolesMutation, ISetRolesMutationVariables>(
-    SetRolesDocument,
-    options,
-  );
-}
-export type SetRolesMutationHookResult = ReturnType<typeof useSetRolesMutation>;
-export type SetRolesMutationResult = Apollo.MutationResult<ISetRolesMutation>;
-export type SetRolesMutationOptions = Apollo.BaseMutationOptions<
-  ISetRolesMutation,
-  ISetRolesMutationVariables
->;
-export const SetUserTagsDocument = gql`
-  mutation setUserTags($tags: [LowerCaseString]!, $userId: ID!) {
-    setUserTags(tags: $tags, userId: $userId) {
-      _id
-      tags
-    }
-  }
-`;
-export type ISetUserTagsMutationFn = Apollo.MutationFunction<
-  ISetUserTagsMutation,
-  ISetUserTagsMutationVariables
->;
-
-/**
- * __useSetUserTagsMutation__
- *
- * To run a mutation, you first call `useSetUserTagsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSetUserTagsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [setUserTagsMutation, { data, loading, error }] = useSetUserTagsMutation({
- *   variables: {
- *      tags: // value for 'tags'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useSetUserTagsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISetUserTagsMutation,
-    ISetUserTagsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISetUserTagsMutation,
-    ISetUserTagsMutationVariables
-  >(SetUserTagsDocument, options);
-}
-export type SetUserTagsMutationHookResult = ReturnType<
-  typeof useSetUserTagsMutation
->;
-export type SetUserTagsMutationResult =
-  Apollo.MutationResult<ISetUserTagsMutation>;
-export type SetUserTagsMutationOptions = Apollo.BaseMutationOptions<
-  ISetUserTagsMutation,
-  ISetUserTagsMutationVariables
->;
-export const SetUsernameDocument = gql`
-  mutation SetUsername($username: String!, $userId: ID!) {
-    setUsername(username: $username, userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type ISetUsernameMutationFn = Apollo.MutationFunction<
-  ISetUsernameMutation,
-  ISetUsernameMutationVariables
->;
-
-/**
- * __useSetUsernameMutation__
- *
- * To run a mutation, you first call `useSetUsernameMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSetUsernameMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [setUsernameMutation, { data, loading, error }] = useSetUsernameMutation({
- *   variables: {
- *      username: // value for 'username'
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useSetUsernameMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISetUsernameMutation,
-    ISetUsernameMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISetUsernameMutation,
-    ISetUsernameMutationVariables
-  >(SetUsernameDocument, options);
-}
-export type SetUsernameMutationHookResult = ReturnType<
-  typeof useSetUsernameMutation
->;
-export type SetUsernameMutationResult =
-  Apollo.MutationResult<ISetUsernameMutation>;
-export type SetUsernameMutationOptions = Apollo.BaseMutationOptions<
-  ISetUsernameMutation,
-  ISetUsernameMutationVariables
->;
-export const StopImpersonateDocument = gql`
-  mutation StopImpersonate {
-    stopImpersonation {
-      id
-      token
-      tokenExpires
-    }
-  }
-`;
-export type IStopImpersonateMutationFn = Apollo.MutationFunction<
-  IStopImpersonateMutation,
-  IStopImpersonateMutationVariables
->;
-
-/**
- * __useStopImpersonateMutation__
- *
- * To run a mutation, you first call `useStopImpersonateMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useStopImpersonateMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [stopImpersonateMutation, { data, loading, error }] = useStopImpersonateMutation({
- *   variables: {
- *   },
- * });
- */
-export function useStopImpersonateMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IStopImpersonateMutation,
-    IStopImpersonateMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IStopImpersonateMutation,
-    IStopImpersonateMutationVariables
-  >(StopImpersonateDocument, options);
-}
-export type StopImpersonateMutationHookResult = ReturnType<
-  typeof useStopImpersonateMutation
->;
-export type StopImpersonateMutationResult =
-  Apollo.MutationResult<IStopImpersonateMutation>;
-export type StopImpersonateMutationOptions = Apollo.BaseMutationOptions<
-  IStopImpersonateMutation,
-  IStopImpersonateMutationVariables
->;
-export const UserDocument = gql`
-  query User($userId: ID) {
-    user(userId: $userId) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-
-/**
- * __useUserQuery__
- *
- * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useUserQuery(
-  baseOptions?: Apollo.QueryHookOptions<IUserQuery, IUserQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUserQuery, IUserQueryVariables>(
-    UserDocument,
-    options,
-  );
-}
-export function useUserLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<IUserQuery, IUserQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IUserQuery, IUserQueryVariables>(
-    UserDocument,
-    options,
-  );
-}
-export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
-export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
-export type UserQueryResult = Apollo.QueryResult<
-  IUserQuery,
-  IUserQueryVariables
->;
-export const UserWebAuthnCredentialsDocument = gql`
-  query UserWebAuthnCredentials($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      webAuthnCredentials {
-        _id
-        created
-        aaguid
-        counter
-        mdsMetadata {
-          ...MD5MetaDataFragment
-        }
-      }
-    }
-  }
-  ${Md5MetaDataFragmentFragmentDoc}
-`;
-
-/**
- * __useUserWebAuthnCredentialsQuery__
- *
- * To run a query within a React component, call `useUserWebAuthnCredentialsQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserWebAuthnCredentialsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserWebAuthnCredentialsQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useUserWebAuthnCredentialsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IUserWebAuthnCredentialsQuery,
-    IUserWebAuthnCredentialsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IUserWebAuthnCredentialsQuery,
-    IUserWebAuthnCredentialsQueryVariables
-  >(UserWebAuthnCredentialsDocument, options);
-}
-export function useUserWebAuthnCredentialsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserWebAuthnCredentialsQuery,
-    IUserWebAuthnCredentialsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IUserWebAuthnCredentialsQuery,
-    IUserWebAuthnCredentialsQueryVariables
-  >(UserWebAuthnCredentialsDocument, options);
-}
-export type UserWebAuthnCredentialsQueryHookResult = ReturnType<
-  typeof useUserWebAuthnCredentialsQuery
->;
-export type UserWebAuthnCredentialsLazyQueryHookResult = ReturnType<
-  typeof useUserWebAuthnCredentialsLazyQuery
->;
-export type UserWebAuthnCredentialsQueryResult = Apollo.QueryResult<
-  IUserWebAuthnCredentialsQuery,
-  IUserWebAuthnCredentialsQueryVariables
->;
-export const UsersDocument = gql`
-  query Users(
-    $limit: Int
-    $offset: Int
-    $includeGuests: Boolean
-    $queryString: String
-  ) {
-    users(
-      limit: $limit
-      offset: $offset
-      includeGuests: $includeGuests
-      queryString: $queryString
-    ) {
-      ...UserFragment
-    }
-    usersCount(includeGuests: $includeGuests, queryString: $queryString)
-  }
-  ${UserFragmentFragmentDoc}
-`;
-
-/**
- * __useUsersQuery__
- *
- * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUsersQuery({
- *   variables: {
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeGuests: // value for 'includeGuests'
- *      queryString: // value for 'queryString'
- *   },
- * });
- */
-export function useUsersQuery(
-  baseOptions?: Apollo.QueryHookOptions<IUsersQuery, IUsersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUsersQuery, IUsersQueryVariables>(
-    UsersDocument,
-    options,
-  );
-}
-export function useUsersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<IUsersQuery, IUsersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IUsersQuery, IUsersQueryVariables>(
-    UsersDocument,
-    options,
-  );
-}
-export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
-export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
-export type UsersQueryResult = Apollo.QueryResult<
-  IUsersQuery,
-  IUsersQueryVariables
->;
-export const VerifyEmailDocument = gql`
-  mutation VerifyEmail($token: String!) {
-    verifyEmail(token: $token) {
-      id
-      token
-      tokenExpires
-      user {
-        ...UserFragment
-      }
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IVerifyEmailMutationFn = Apollo.MutationFunction<
-  IVerifyEmailMutation,
-  IVerifyEmailMutationVariables
->;
-
-/**
- * __useVerifyEmailMutation__
- *
- * To run a mutation, you first call `useVerifyEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useVerifyEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [verifyEmailMutation, { data, loading, error }] = useVerifyEmailMutation({
- *   variables: {
- *      token: // value for 'token'
- *   },
- * });
- */
-export function useVerifyEmailMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IVerifyEmailMutation,
-    IVerifyEmailMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IVerifyEmailMutation,
-    IVerifyEmailMutationVariables
-  >(VerifyEmailDocument, options);
-}
-export type VerifyEmailMutationHookResult = ReturnType<
-  typeof useVerifyEmailMutation
->;
-export type VerifyEmailMutationResult =
-  Apollo.MutationResult<IVerifyEmailMutation>;
-export type VerifyEmailMutationOptions = Apollo.BaseMutationOptions<
-  IVerifyEmailMutation,
-  IVerifyEmailMutationVariables
->;
-export const VerifyWeb3AddressDocument = gql`
-  mutation VerifyWeb3Address($address: String!, $hash: String!) {
-    verifyWeb3Address(address: $address, hash: $hash) {
-      ...UserFragment
-    }
-  }
-  ${UserFragmentFragmentDoc}
-`;
-export type IVerifyWeb3AddressMutationFn = Apollo.MutationFunction<
-  IVerifyWeb3AddressMutation,
-  IVerifyWeb3AddressMutationVariables
->;
-
-/**
- * __useVerifyWeb3AddressMutation__
- *
- * To run a mutation, you first call `useVerifyWeb3AddressMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useVerifyWeb3AddressMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [verifyWeb3AddressMutation, { data, loading, error }] = useVerifyWeb3AddressMutation({
- *   variables: {
- *      address: // value for 'address'
- *      hash: // value for 'hash'
- *   },
- * });
- */
-export function useVerifyWeb3AddressMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IVerifyWeb3AddressMutation,
-    IVerifyWeb3AddressMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IVerifyWeb3AddressMutation,
-    IVerifyWeb3AddressMutationVariables
-  >(VerifyWeb3AddressDocument, options);
-}
-export type VerifyWeb3AddressMutationHookResult = ReturnType<
-  typeof useVerifyWeb3AddressMutation
->;
-export type VerifyWeb3AddressMutationResult =
-  Apollo.MutationResult<IVerifyWeb3AddressMutation>;
-export type VerifyWeb3AddressMutationOptions = Apollo.BaseMutationOptions<
-  IVerifyWeb3AddressMutation,
-  IVerifyWeb3AddressMutationVariables
->;
-export const AddAssortmentFilterDocument = gql`
-  mutation AddAssortmentFilter(
-    $assortmentId: ID!
-    $filterId: ID!
-    $tags: [LowerCaseString!]
-  ) {
-    addAssortmentFilter(
-      assortmentId: $assortmentId
-      filterId: $filterId
-      tags: $tags
-    ) {
-      _id
-    }
-  }
-`;
-export type IAddAssortmentFilterMutationFn = Apollo.MutationFunction<
-  IAddAssortmentFilterMutation,
-  IAddAssortmentFilterMutationVariables
->;
-
-/**
- * __useAddAssortmentFilterMutation__
- *
- * To run a mutation, you first call `useAddAssortmentFilterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddAssortmentFilterMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addAssortmentFilterMutation, { data, loading, error }] = useAddAssortmentFilterMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      filterId: // value for 'filterId'
- *      tags: // value for 'tags'
- *   },
- * });
- */
-export function useAddAssortmentFilterMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddAssortmentFilterMutation,
-    IAddAssortmentFilterMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddAssortmentFilterMutation,
-    IAddAssortmentFilterMutationVariables
-  >(AddAssortmentFilterDocument, options);
-}
-export type AddAssortmentFilterMutationHookResult = ReturnType<
-  typeof useAddAssortmentFilterMutation
->;
-export type AddAssortmentFilterMutationResult =
-  Apollo.MutationResult<IAddAssortmentFilterMutation>;
-export type AddAssortmentFilterMutationOptions = Apollo.BaseMutationOptions<
-  IAddAssortmentFilterMutation,
-  IAddAssortmentFilterMutationVariables
->;
-export const AddAssortmentLinkDocument = gql`
-  mutation AddAssortmentLink(
-    $parentAssortmentId: ID!
-    $childAssortmentId: ID!
-    $tags: [LowerCaseString!]
-  ) {
-    addAssortmentLink(
-      parentAssortmentId: $parentAssortmentId
-      childAssortmentId: $childAssortmentId
-      tags: $tags
-    ) {
-      ...AssortmentLinkFragment
-    }
-  }
-  ${AssortmentLinkFragmentFragmentDoc}
-`;
-export type IAddAssortmentLinkMutationFn = Apollo.MutationFunction<
-  IAddAssortmentLinkMutation,
-  IAddAssortmentLinkMutationVariables
->;
-
-/**
- * __useAddAssortmentLinkMutation__
- *
- * To run a mutation, you first call `useAddAssortmentLinkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddAssortmentLinkMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addAssortmentLinkMutation, { data, loading, error }] = useAddAssortmentLinkMutation({
- *   variables: {
- *      parentAssortmentId: // value for 'parentAssortmentId'
- *      childAssortmentId: // value for 'childAssortmentId'
- *      tags: // value for 'tags'
- *   },
- * });
- */
-export function useAddAssortmentLinkMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddAssortmentLinkMutation,
-    IAddAssortmentLinkMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddAssortmentLinkMutation,
-    IAddAssortmentLinkMutationVariables
-  >(AddAssortmentLinkDocument, options);
-}
-export type AddAssortmentLinkMutationHookResult = ReturnType<
-  typeof useAddAssortmentLinkMutation
->;
-export type AddAssortmentLinkMutationResult =
-  Apollo.MutationResult<IAddAssortmentLinkMutation>;
-export type AddAssortmentLinkMutationOptions = Apollo.BaseMutationOptions<
-  IAddAssortmentLinkMutation,
-  IAddAssortmentLinkMutationVariables
->;
-export const AddAssortmentMediaDocument = gql`
-  mutation AddAssortmentMedia($assortmentId: ID!, $media: Upload!) {
-    addAssortmentMedia(assortmentId: $assortmentId, media: $media) {
-      ...AssortmentMediaFragment
-    }
-  }
-  ${AssortmentMediaFragmentFragmentDoc}
-`;
-export type IAddAssortmentMediaMutationFn = Apollo.MutationFunction<
-  IAddAssortmentMediaMutation,
-  IAddAssortmentMediaMutationVariables
->;
-
-/**
- * __useAddAssortmentMediaMutation__
- *
- * To run a mutation, you first call `useAddAssortmentMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddAssortmentMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addAssortmentMediaMutation, { data, loading, error }] = useAddAssortmentMediaMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      media: // value for 'media'
- *   },
- * });
- */
-export function useAddAssortmentMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddAssortmentMediaMutation,
-    IAddAssortmentMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddAssortmentMediaMutation,
-    IAddAssortmentMediaMutationVariables
-  >(AddAssortmentMediaDocument, options);
-}
-export type AddAssortmentMediaMutationHookResult = ReturnType<
-  typeof useAddAssortmentMediaMutation
->;
-export type AddAssortmentMediaMutationResult =
-  Apollo.MutationResult<IAddAssortmentMediaMutation>;
-export type AddAssortmentMediaMutationOptions = Apollo.BaseMutationOptions<
-  IAddAssortmentMediaMutation,
-  IAddAssortmentMediaMutationVariables
->;
-export const AddAssortmentProductDocument = gql`
-  mutation AddAssortmentProduct(
-    $assortmentId: ID!
-    $productId: ID!
-    $tags: [LowerCaseString!]
-  ) {
-    addAssortmentProduct(
-      assortmentId: $assortmentId
-      productId: $productId
-      tags: $tags
-    ) {
-      _id
-    }
-  }
-`;
-export type IAddAssortmentProductMutationFn = Apollo.MutationFunction<
-  IAddAssortmentProductMutation,
-  IAddAssortmentProductMutationVariables
->;
-
-/**
- * __useAddAssortmentProductMutation__
- *
- * To run a mutation, you first call `useAddAssortmentProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddAssortmentProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addAssortmentProductMutation, { data, loading, error }] = useAddAssortmentProductMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      productId: // value for 'productId'
- *      tags: // value for 'tags'
- *   },
- * });
- */
-export function useAddAssortmentProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddAssortmentProductMutation,
-    IAddAssortmentProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddAssortmentProductMutation,
-    IAddAssortmentProductMutationVariables
-  >(AddAssortmentProductDocument, options);
-}
-export type AddAssortmentProductMutationHookResult = ReturnType<
-  typeof useAddAssortmentProductMutation
->;
-export type AddAssortmentProductMutationResult =
-  Apollo.MutationResult<IAddAssortmentProductMutation>;
-export type AddAssortmentProductMutationOptions = Apollo.BaseMutationOptions<
-  IAddAssortmentProductMutation,
-  IAddAssortmentProductMutationVariables
->;
-export const AssortmentDocument = gql`
-  query Assortment($assortmentId: ID, $slug: String) {
-    assortment(assortmentId: $assortmentId, slug: $slug) {
-      ...AssortmentFragment
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentQuery__
- *
- * To run a query within a React component, call `useAssortmentQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useAssortmentQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentQuery,
-    IAssortmentQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IAssortmentQuery, IAssortmentQueryVariables>(
-    AssortmentDocument,
-    options,
-  );
-}
-export function useAssortmentLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentQuery,
-    IAssortmentQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IAssortmentQuery, IAssortmentQueryVariables>(
-    AssortmentDocument,
-    options,
-  );
-}
-export type AssortmentQueryHookResult = ReturnType<typeof useAssortmentQuery>;
-export type AssortmentLazyQueryHookResult = ReturnType<
-  typeof useAssortmentLazyQuery
->;
-export type AssortmentQueryResult = Apollo.QueryResult<
-  IAssortmentQuery,
-  IAssortmentQueryVariables
->;
-export const AssortmentChildrenDocument = gql`
-  query AssortmentChildren(
-    $slugs: [String!]
-    $includeInactive: Boolean
-    $includeLeaves: Boolean
-  ) {
-    assortments(
-      slugs: $slugs
-      includeInactive: $includeInactive
-      includeLeaves: $includeLeaves
-    ) {
-      ...AssortmentChildrenFragment
-      children {
-        ...AssortmentChildrenFragment
-      }
-    }
-  }
-  ${AssortmentChildrenFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentChildrenQuery__
- *
- * To run a query within a React component, call `useAssortmentChildrenQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentChildrenQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentChildrenQuery({
- *   variables: {
- *      slugs: // value for 'slugs'
- *      includeInactive: // value for 'includeInactive'
- *      includeLeaves: // value for 'includeLeaves'
- *   },
- * });
- */
-export function useAssortmentChildrenQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentChildrenQuery,
-    IAssortmentChildrenQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IAssortmentChildrenQuery,
-    IAssortmentChildrenQueryVariables
-  >(AssortmentChildrenDocument, options);
-}
-export function useAssortmentChildrenLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentChildrenQuery,
-    IAssortmentChildrenQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentChildrenQuery,
-    IAssortmentChildrenQueryVariables
-  >(AssortmentChildrenDocument, options);
-}
-export type AssortmentChildrenQueryHookResult = ReturnType<
-  typeof useAssortmentChildrenQuery
->;
-export type AssortmentChildrenLazyQueryHookResult = ReturnType<
-  typeof useAssortmentChildrenLazyQuery
->;
-export type AssortmentChildrenQueryResult = Apollo.QueryResult<
-  IAssortmentChildrenQuery,
-  IAssortmentChildrenQueryVariables
->;
-export const AssortmentFiltersDocument = gql`
-  query AssortmentFilters($assortmentId: ID, $slug: String) {
-    assortment(assortmentId: $assortmentId, slug: $slug) {
-      _id
-      filterAssignments {
-        _id
-        sortKey
-        tags
-        filter {
-          ...FilterFragment
-        }
-      }
-    }
-  }
-  ${FilterFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentFiltersQuery__
- *
- * To run a query within a React component, call `useAssortmentFiltersQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentFiltersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentFiltersQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useAssortmentFiltersQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentFiltersQuery,
-    IAssortmentFiltersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IAssortmentFiltersQuery,
-    IAssortmentFiltersQueryVariables
-  >(AssortmentFiltersDocument, options);
-}
-export function useAssortmentFiltersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentFiltersQuery,
-    IAssortmentFiltersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentFiltersQuery,
-    IAssortmentFiltersQueryVariables
-  >(AssortmentFiltersDocument, options);
-}
-export type AssortmentFiltersQueryHookResult = ReturnType<
-  typeof useAssortmentFiltersQuery
->;
-export type AssortmentFiltersLazyQueryHookResult = ReturnType<
-  typeof useAssortmentFiltersLazyQuery
->;
-export type AssortmentFiltersQueryResult = Apollo.QueryResult<
-  IAssortmentFiltersQuery,
-  IAssortmentFiltersQueryVariables
->;
-export const AssortmentLinksDocument = gql`
-  query AssortmentLinks($assortmentId: ID, $slug: String) {
-    assortment(assortmentId: $assortmentId, slug: $slug) {
-      _id
-      linkedAssortments {
-        _id
-        sortKey
-        parent {
-          ...AssortmentFragment
-        }
-        child {
-          ...AssortmentFragment
-        }
-      }
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentLinksQuery__
- *
- * To run a query within a React component, call `useAssortmentLinksQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentLinksQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentLinksQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useAssortmentLinksQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentLinksQuery,
-    IAssortmentLinksQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IAssortmentLinksQuery, IAssortmentLinksQueryVariables>(
-    AssortmentLinksDocument,
-    options,
-  );
-}
-export function useAssortmentLinksLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentLinksQuery,
-    IAssortmentLinksQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentLinksQuery,
-    IAssortmentLinksQueryVariables
-  >(AssortmentLinksDocument, options);
-}
-export type AssortmentLinksQueryHookResult = ReturnType<
-  typeof useAssortmentLinksQuery
->;
-export type AssortmentLinksLazyQueryHookResult = ReturnType<
-  typeof useAssortmentLinksLazyQuery
->;
-export type AssortmentLinksQueryResult = Apollo.QueryResult<
-  IAssortmentLinksQuery,
-  IAssortmentLinksQueryVariables
->;
-export const AssortmentMediaDocument = gql`
-  query AssortmentMedia($assortmentId: ID, $slug: String) {
-    assortment(assortmentId: $assortmentId, slug: $slug) {
-      _id
-      media {
-        _id
-        tags
-        texts {
-          _id
-          locale
-          title
-          subtitle
-        }
-        file {
-          _id
-          url
-          name
-          size
-          type
-        }
-        sortKey
-      }
-    }
-  }
-`;
-
-/**
- * __useAssortmentMediaQuery__
- *
- * To run a query within a React component, call `useAssortmentMediaQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentMediaQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentMediaQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useAssortmentMediaQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentMediaQuery,
-    IAssortmentMediaQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IAssortmentMediaQuery, IAssortmentMediaQueryVariables>(
-    AssortmentMediaDocument,
-    options,
-  );
-}
-export function useAssortmentMediaLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentMediaQuery,
-    IAssortmentMediaQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentMediaQuery,
-    IAssortmentMediaQueryVariables
-  >(AssortmentMediaDocument, options);
-}
-export type AssortmentMediaQueryHookResult = ReturnType<
-  typeof useAssortmentMediaQuery
->;
-export type AssortmentMediaLazyQueryHookResult = ReturnType<
-  typeof useAssortmentMediaLazyQuery
->;
-export type AssortmentMediaQueryResult = Apollo.QueryResult<
-  IAssortmentMediaQuery,
-  IAssortmentMediaQueryVariables
->;
-export const AssortmentPathsDocument = gql`
-  query AssortmentPaths($assortmentId: ID!) {
-    assortment(assortmentId: $assortmentId) {
-      assortmentPaths {
-        links {
-          assortmentId
-        }
-      }
-    }
-  }
-`;
-
-/**
- * __useAssortmentPathsQuery__
- *
- * To run a query within a React component, call `useAssortmentPathsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentPathsQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *   },
- * });
- */
-export function useAssortmentPathsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IAssortmentPathsQuery,
-    IAssortmentPathsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IAssortmentPathsQuery, IAssortmentPathsQueryVariables>(
-    AssortmentPathsDocument,
-    options,
-  );
-}
-export function useAssortmentPathsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentPathsQuery,
-    IAssortmentPathsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentPathsQuery,
-    IAssortmentPathsQueryVariables
-  >(AssortmentPathsDocument, options);
-}
-export type AssortmentPathsQueryHookResult = ReturnType<
-  typeof useAssortmentPathsQuery
->;
-export type AssortmentPathsLazyQueryHookResult = ReturnType<
-  typeof useAssortmentPathsLazyQuery
->;
-export type AssortmentPathsQueryResult = Apollo.QueryResult<
-  IAssortmentPathsQuery,
-  IAssortmentPathsQueryVariables
->;
-export const AssortmentProductsDocument = gql`
-  query AssortmentProducts($assortmentId: ID, $slug: String) {
-    assortment(assortmentId: $assortmentId, slug: $slug) {
-      _id
-      productAssignments {
-        _id
-        sortKey
-        tags
-        product {
-          ...ProductBriefFragment
-        }
-      }
-    }
-  }
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentProductsQuery__
- *
- * To run a query within a React component, call `useAssortmentProductsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentProductsQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useAssortmentProductsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentProductsQuery,
-    IAssortmentProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IAssortmentProductsQuery,
-    IAssortmentProductsQueryVariables
-  >(AssortmentProductsDocument, options);
-}
-export function useAssortmentProductsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentProductsQuery,
-    IAssortmentProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentProductsQuery,
-    IAssortmentProductsQueryVariables
-  >(AssortmentProductsDocument, options);
-}
-export type AssortmentProductsQueryHookResult = ReturnType<
-  typeof useAssortmentProductsQuery
->;
-export type AssortmentProductsLazyQueryHookResult = ReturnType<
-  typeof useAssortmentProductsLazyQuery
->;
-export type AssortmentProductsQueryResult = Apollo.QueryResult<
-  IAssortmentProductsQuery,
-  IAssortmentProductsQueryVariables
->;
-export const AssortmentsDocument = gql`
-  query Assortments(
-    $queryString: String
-    $tags: [LowerCaseString!]
-    $slugs: [String!]
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-    $includeLeaves: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    assortments(
-      queryString: $queryString
-      tags: $tags
-      slugs: $slugs
-      limit: $limit
-      offset: $offset
-      includeInactive: $includeInactive
-      includeLeaves: $includeLeaves
-      sort: $sort
-    ) {
-      ...AssortmentFragment
-      linkedAssortments {
-        child {
-          _id
-        }
-      }
-    }
-    assortmentsCount(
-      tags: $tags
-      slugs: $slugs
-      includeInactive: $includeInactive
-      includeLeaves: $includeLeaves
-      queryString: $queryString
-    )
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-
-/**
- * __useAssortmentsQuery__
- *
- * To run a query within a React component, call `useAssortmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      tags: // value for 'tags'
- *      slugs: // value for 'slugs'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeInactive: // value for 'includeInactive'
- *      includeLeaves: // value for 'includeLeaves'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useAssortmentsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentsQuery,
-    IAssortmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IAssortmentsQuery, IAssortmentsQueryVariables>(
-    AssortmentsDocument,
-    options,
-  );
-}
-export function useAssortmentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentsQuery,
-    IAssortmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IAssortmentsQuery, IAssortmentsQueryVariables>(
-    AssortmentsDocument,
-    options,
-  );
-}
-export type AssortmentsQueryHookResult = ReturnType<typeof useAssortmentsQuery>;
-export type AssortmentsLazyQueryHookResult = ReturnType<
-  typeof useAssortmentsLazyQuery
->;
-export type AssortmentsQueryResult = Apollo.QueryResult<
-  IAssortmentsQuery,
-  IAssortmentsQueryVariables
->;
-export const AssortmentsCountDocument = gql`
-  query AssortmentsCount {
-    assortmentsCount
-  }
-`;
-
-/**
- * __useAssortmentsCountQuery__
- *
- * To run a query within a React component, call `useAssortmentsCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssortmentsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssortmentsCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAssortmentsCountQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IAssortmentsCountQuery,
-    IAssortmentsCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IAssortmentsCountQuery,
-    IAssortmentsCountQueryVariables
-  >(AssortmentsCountDocument, options);
-}
-export function useAssortmentsCountLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IAssortmentsCountQuery,
-    IAssortmentsCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IAssortmentsCountQuery,
-    IAssortmentsCountQueryVariables
-  >(AssortmentsCountDocument, options);
-}
-export type AssortmentsCountQueryHookResult = ReturnType<
-  typeof useAssortmentsCountQuery
->;
-export type AssortmentsCountLazyQueryHookResult = ReturnType<
-  typeof useAssortmentsCountLazyQuery
->;
-export type AssortmentsCountQueryResult = Apollo.QueryResult<
-  IAssortmentsCountQuery,
-  IAssortmentsCountQueryVariables
->;
-export const CreateAssortmentDocument = gql`
-  mutation CreateAssortment($assortment: CreateAssortmentInput!) {
-    createAssortment(assortment: $assortment) {
-      ...AssortmentFragment
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-export type ICreateAssortmentMutationFn = Apollo.MutationFunction<
-  ICreateAssortmentMutation,
-  ICreateAssortmentMutationVariables
->;
-
-/**
- * __useCreateAssortmentMutation__
- *
- * To run a mutation, you first call `useCreateAssortmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateAssortmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createAssortmentMutation, { data, loading, error }] = useCreateAssortmentMutation({
- *   variables: {
- *      assortment: // value for 'assortment'
- *   },
- * });
- */
-export function useCreateAssortmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateAssortmentMutation,
-    ICreateAssortmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateAssortmentMutation,
-    ICreateAssortmentMutationVariables
-  >(CreateAssortmentDocument, options);
-}
-export type CreateAssortmentMutationHookResult = ReturnType<
-  typeof useCreateAssortmentMutation
->;
-export type CreateAssortmentMutationResult =
-  Apollo.MutationResult<ICreateAssortmentMutation>;
-export type CreateAssortmentMutationOptions = Apollo.BaseMutationOptions<
-  ICreateAssortmentMutation,
-  ICreateAssortmentMutationVariables
->;
-export const RemoveAssortmentDocument = gql`
-  mutation RemoveAssortment($assortmentId: ID!) {
-    removeAssortment(assortmentId: $assortmentId) {
-      _id
-    }
-  }
-`;
-export type IRemoveAssortmentMutationFn = Apollo.MutationFunction<
-  IRemoveAssortmentMutation,
-  IRemoveAssortmentMutationVariables
->;
-
-/**
- * __useRemoveAssortmentMutation__
- *
- * To run a mutation, you first call `useRemoveAssortmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveAssortmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeAssortmentMutation, { data, loading, error }] = useRemoveAssortmentMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *   },
- * });
- */
-export function useRemoveAssortmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveAssortmentMutation,
-    IRemoveAssortmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveAssortmentMutation,
-    IRemoveAssortmentMutationVariables
-  >(RemoveAssortmentDocument, options);
-}
-export type RemoveAssortmentMutationHookResult = ReturnType<
-  typeof useRemoveAssortmentMutation
->;
-export type RemoveAssortmentMutationResult =
-  Apollo.MutationResult<IRemoveAssortmentMutation>;
-export type RemoveAssortmentMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveAssortmentMutation,
-  IRemoveAssortmentMutationVariables
->;
-export const RemoveAssortmentFilterDocument = gql`
-  mutation RemoveAssortmentFilter($assortmentFilterId: ID!) {
-    removeAssortmentFilter(assortmentFilterId: $assortmentFilterId) {
-      _id
-    }
-  }
-`;
-export type IRemoveAssortmentFilterMutationFn = Apollo.MutationFunction<
-  IRemoveAssortmentFilterMutation,
-  IRemoveAssortmentFilterMutationVariables
->;
-
-/**
- * __useRemoveAssortmentFilterMutation__
- *
- * To run a mutation, you first call `useRemoveAssortmentFilterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveAssortmentFilterMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeAssortmentFilterMutation, { data, loading, error }] = useRemoveAssortmentFilterMutation({
- *   variables: {
- *      assortmentFilterId: // value for 'assortmentFilterId'
- *   },
- * });
- */
-export function useRemoveAssortmentFilterMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveAssortmentFilterMutation,
-    IRemoveAssortmentFilterMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveAssortmentFilterMutation,
-    IRemoveAssortmentFilterMutationVariables
-  >(RemoveAssortmentFilterDocument, options);
-}
-export type RemoveAssortmentFilterMutationHookResult = ReturnType<
-  typeof useRemoveAssortmentFilterMutation
->;
-export type RemoveAssortmentFilterMutationResult =
-  Apollo.MutationResult<IRemoveAssortmentFilterMutation>;
-export type RemoveAssortmentFilterMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveAssortmentFilterMutation,
-  IRemoveAssortmentFilterMutationVariables
->;
-export const RemoveAssortmentLinkDocument = gql`
-  mutation RemoveAssortmentLink($assortmentLinkId: ID!) {
-    removeAssortmentLink(assortmentLinkId: $assortmentLinkId) {
-      ...AssortmentLinkFragment
-    }
-  }
-  ${AssortmentLinkFragmentFragmentDoc}
-`;
-export type IRemoveAssortmentLinkMutationFn = Apollo.MutationFunction<
-  IRemoveAssortmentLinkMutation,
-  IRemoveAssortmentLinkMutationVariables
->;
-
-/**
- * __useRemoveAssortmentLinkMutation__
- *
- * To run a mutation, you first call `useRemoveAssortmentLinkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveAssortmentLinkMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeAssortmentLinkMutation, { data, loading, error }] = useRemoveAssortmentLinkMutation({
- *   variables: {
- *      assortmentLinkId: // value for 'assortmentLinkId'
- *   },
- * });
- */
-export function useRemoveAssortmentLinkMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveAssortmentLinkMutation,
-    IRemoveAssortmentLinkMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveAssortmentLinkMutation,
-    IRemoveAssortmentLinkMutationVariables
-  >(RemoveAssortmentLinkDocument, options);
-}
-export type RemoveAssortmentLinkMutationHookResult = ReturnType<
-  typeof useRemoveAssortmentLinkMutation
->;
-export type RemoveAssortmentLinkMutationResult =
-  Apollo.MutationResult<IRemoveAssortmentLinkMutation>;
-export type RemoveAssortmentLinkMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveAssortmentLinkMutation,
-  IRemoveAssortmentLinkMutationVariables
->;
-export const RemoveAssortmentMediaDocument = gql`
-  mutation RemoveAssortmentMedia($assortmentMediaId: ID!) {
-    removeAssortmentMedia(assortmentMediaId: $assortmentMediaId) {
-      _id
-    }
-  }
-`;
-export type IRemoveAssortmentMediaMutationFn = Apollo.MutationFunction<
-  IRemoveAssortmentMediaMutation,
-  IRemoveAssortmentMediaMutationVariables
->;
-
-/**
- * __useRemoveAssortmentMediaMutation__
- *
- * To run a mutation, you first call `useRemoveAssortmentMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveAssortmentMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeAssortmentMediaMutation, { data, loading, error }] = useRemoveAssortmentMediaMutation({
- *   variables: {
- *      assortmentMediaId: // value for 'assortmentMediaId'
- *   },
- * });
- */
-export function useRemoveAssortmentMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveAssortmentMediaMutation,
-    IRemoveAssortmentMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveAssortmentMediaMutation,
-    IRemoveAssortmentMediaMutationVariables
-  >(RemoveAssortmentMediaDocument, options);
-}
-export type RemoveAssortmentMediaMutationHookResult = ReturnType<
-  typeof useRemoveAssortmentMediaMutation
->;
-export type RemoveAssortmentMediaMutationResult =
-  Apollo.MutationResult<IRemoveAssortmentMediaMutation>;
-export type RemoveAssortmentMediaMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveAssortmentMediaMutation,
-  IRemoveAssortmentMediaMutationVariables
->;
-export const RemoveAssortmentProductDocument = gql`
-  mutation RemoveAssortmentProduct($assortmentProductId: ID!) {
-    removeAssortmentProduct(assortmentProductId: $assortmentProductId) {
-      _id
-    }
-  }
-`;
-export type IRemoveAssortmentProductMutationFn = Apollo.MutationFunction<
-  IRemoveAssortmentProductMutation,
-  IRemoveAssortmentProductMutationVariables
->;
-
-/**
- * __useRemoveAssortmentProductMutation__
- *
- * To run a mutation, you first call `useRemoveAssortmentProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveAssortmentProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeAssortmentProductMutation, { data, loading, error }] = useRemoveAssortmentProductMutation({
- *   variables: {
- *      assortmentProductId: // value for 'assortmentProductId'
- *   },
- * });
- */
-export function useRemoveAssortmentProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveAssortmentProductMutation,
-    IRemoveAssortmentProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveAssortmentProductMutation,
-    IRemoveAssortmentProductMutationVariables
-  >(RemoveAssortmentProductDocument, options);
-}
-export type RemoveAssortmentProductMutationHookResult = ReturnType<
-  typeof useRemoveAssortmentProductMutation
->;
-export type RemoveAssortmentProductMutationResult =
-  Apollo.MutationResult<IRemoveAssortmentProductMutation>;
-export type RemoveAssortmentProductMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveAssortmentProductMutation,
-  IRemoveAssortmentProductMutationVariables
->;
-export const ReorderAssortmentFiltersDocument = gql`
-  mutation ReorderAssortmentFilters(
-    $sortKeys: [ReorderAssortmentFilterInput!]!
-  ) {
-    reorderAssortmentFilters(sortKeys: $sortKeys) {
-      _id
-    }
-  }
-`;
-export type IReorderAssortmentFiltersMutationFn = Apollo.MutationFunction<
-  IReorderAssortmentFiltersMutation,
-  IReorderAssortmentFiltersMutationVariables
->;
-
-/**
- * __useReorderAssortmentFiltersMutation__
- *
- * To run a mutation, you first call `useReorderAssortmentFiltersMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReorderAssortmentFiltersMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reorderAssortmentFiltersMutation, { data, loading, error }] = useReorderAssortmentFiltersMutation({
- *   variables: {
- *      sortKeys: // value for 'sortKeys'
- *   },
- * });
- */
-export function useReorderAssortmentFiltersMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IReorderAssortmentFiltersMutation,
-    IReorderAssortmentFiltersMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IReorderAssortmentFiltersMutation,
-    IReorderAssortmentFiltersMutationVariables
-  >(ReorderAssortmentFiltersDocument, options);
-}
-export type ReorderAssortmentFiltersMutationHookResult = ReturnType<
-  typeof useReorderAssortmentFiltersMutation
->;
-export type ReorderAssortmentFiltersMutationResult =
-  Apollo.MutationResult<IReorderAssortmentFiltersMutation>;
-export type ReorderAssortmentFiltersMutationOptions =
-  Apollo.BaseMutationOptions<
-    IReorderAssortmentFiltersMutation,
-    IReorderAssortmentFiltersMutationVariables
-  >;
-export const ReorderAssortmentLinksDocument = gql`
-  mutation ReorderAssortmentLinks($sortKeys: [ReorderAssortmentLinkInput!]!) {
-    reorderAssortmentLinks(sortKeys: $sortKeys) {
-      _id
-    }
-  }
-`;
-export type IReorderAssortmentLinksMutationFn = Apollo.MutationFunction<
-  IReorderAssortmentLinksMutation,
-  IReorderAssortmentLinksMutationVariables
->;
-
-/**
- * __useReorderAssortmentLinksMutation__
- *
- * To run a mutation, you first call `useReorderAssortmentLinksMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReorderAssortmentLinksMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reorderAssortmentLinksMutation, { data, loading, error }] = useReorderAssortmentLinksMutation({
- *   variables: {
- *      sortKeys: // value for 'sortKeys'
- *   },
- * });
- */
-export function useReorderAssortmentLinksMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IReorderAssortmentLinksMutation,
-    IReorderAssortmentLinksMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IReorderAssortmentLinksMutation,
-    IReorderAssortmentLinksMutationVariables
-  >(ReorderAssortmentLinksDocument, options);
-}
-export type ReorderAssortmentLinksMutationHookResult = ReturnType<
-  typeof useReorderAssortmentLinksMutation
->;
-export type ReorderAssortmentLinksMutationResult =
-  Apollo.MutationResult<IReorderAssortmentLinksMutation>;
-export type ReorderAssortmentLinksMutationOptions = Apollo.BaseMutationOptions<
-  IReorderAssortmentLinksMutation,
-  IReorderAssortmentLinksMutationVariables
->;
-export const ReorderAssortmentMediaDocument = gql`
-  mutation ReorderAssortmentMedia($sortKeys: [ReorderAssortmentMediaInput!]!) {
-    reorderAssortmentMedia(sortKeys: $sortKeys) {
-      _id
-    }
-  }
-`;
-export type IReorderAssortmentMediaMutationFn = Apollo.MutationFunction<
-  IReorderAssortmentMediaMutation,
-  IReorderAssortmentMediaMutationVariables
->;
-
-/**
- * __useReorderAssortmentMediaMutation__
- *
- * To run a mutation, you first call `useReorderAssortmentMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReorderAssortmentMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reorderAssortmentMediaMutation, { data, loading, error }] = useReorderAssortmentMediaMutation({
- *   variables: {
- *      sortKeys: // value for 'sortKeys'
- *   },
- * });
- */
-export function useReorderAssortmentMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IReorderAssortmentMediaMutation,
-    IReorderAssortmentMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IReorderAssortmentMediaMutation,
-    IReorderAssortmentMediaMutationVariables
-  >(ReorderAssortmentMediaDocument, options);
-}
-export type ReorderAssortmentMediaMutationHookResult = ReturnType<
-  typeof useReorderAssortmentMediaMutation
->;
-export type ReorderAssortmentMediaMutationResult =
-  Apollo.MutationResult<IReorderAssortmentMediaMutation>;
-export type ReorderAssortmentMediaMutationOptions = Apollo.BaseMutationOptions<
-  IReorderAssortmentMediaMutation,
-  IReorderAssortmentMediaMutationVariables
->;
-export const ReorderAssortmentProductsDocument = gql`
-  mutation ReorderAssortmentProducts(
-    $sortKeys: [ReorderAssortmentProductInput!]!
-  ) {
-    reorderAssortmentProducts(sortKeys: $sortKeys) {
-      _id
-    }
-  }
-`;
-export type IReorderAssortmentProductsMutationFn = Apollo.MutationFunction<
-  IReorderAssortmentProductsMutation,
-  IReorderAssortmentProductsMutationVariables
->;
-
-/**
- * __useReorderAssortmentProductsMutation__
- *
- * To run a mutation, you first call `useReorderAssortmentProductsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReorderAssortmentProductsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reorderAssortmentProductsMutation, { data, loading, error }] = useReorderAssortmentProductsMutation({
- *   variables: {
- *      sortKeys: // value for 'sortKeys'
- *   },
- * });
- */
-export function useReorderAssortmentProductsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IReorderAssortmentProductsMutation,
-    IReorderAssortmentProductsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IReorderAssortmentProductsMutation,
-    IReorderAssortmentProductsMutationVariables
-  >(ReorderAssortmentProductsDocument, options);
-}
-export type ReorderAssortmentProductsMutationHookResult = ReturnType<
-  typeof useReorderAssortmentProductsMutation
->;
-export type ReorderAssortmentProductsMutationResult =
-  Apollo.MutationResult<IReorderAssortmentProductsMutation>;
-export type ReorderAssortmentProductsMutationOptions =
-  Apollo.BaseMutationOptions<
-    IReorderAssortmentProductsMutation,
-    IReorderAssortmentProductsMutationVariables
-  >;
-export const SearchAssortmentsDocument = gql`
-  query SearchAssortments($queryString: String, $offset: Int, $limit: Int) {
-    searchAssortments(queryString: $queryString, includeInactive: true) {
-      assortments(limit: $limit, offset: $offset) {
-        ...AssortmentFragment
-      }
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-
-/**
- * __useSearchAssortmentsQuery__
- *
- * To run a query within a React component, call `useSearchAssortmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSearchAssortmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSearchAssortmentsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *   },
- * });
- */
-export function useSearchAssortmentsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ISearchAssortmentsQuery,
-    ISearchAssortmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ISearchAssortmentsQuery,
-    ISearchAssortmentsQueryVariables
-  >(SearchAssortmentsDocument, options);
-}
-export function useSearchAssortmentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ISearchAssortmentsQuery,
-    ISearchAssortmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ISearchAssortmentsQuery,
-    ISearchAssortmentsQueryVariables
-  >(SearchAssortmentsDocument, options);
-}
-export type SearchAssortmentsQueryHookResult = ReturnType<
-  typeof useSearchAssortmentsQuery
->;
-export type SearchAssortmentsLazyQueryHookResult = ReturnType<
-  typeof useSearchAssortmentsLazyQuery
->;
-export type SearchAssortmentsQueryResult = Apollo.QueryResult<
-  ISearchAssortmentsQuery,
-  ISearchAssortmentsQueryVariables
->;
-export const SetBaseAssortmentDocument = gql`
-  mutation SetBaseAssortment($assortmentId: ID!) {
-    setBaseAssortment(assortmentId: $assortmentId) {
-      _id
-      isBase
-    }
-  }
-`;
-export type ISetBaseAssortmentMutationFn = Apollo.MutationFunction<
-  ISetBaseAssortmentMutation,
-  ISetBaseAssortmentMutationVariables
->;
-
-/**
- * __useSetBaseAssortmentMutation__
- *
- * To run a mutation, you first call `useSetBaseAssortmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSetBaseAssortmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [setBaseAssortmentMutation, { data, loading, error }] = useSetBaseAssortmentMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *   },
- * });
- */
-export function useSetBaseAssortmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISetBaseAssortmentMutation,
-    ISetBaseAssortmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISetBaseAssortmentMutation,
-    ISetBaseAssortmentMutationVariables
-  >(SetBaseAssortmentDocument, options);
-}
-export type SetBaseAssortmentMutationHookResult = ReturnType<
-  typeof useSetBaseAssortmentMutation
->;
-export type SetBaseAssortmentMutationResult =
-  Apollo.MutationResult<ISetBaseAssortmentMutation>;
-export type SetBaseAssortmentMutationOptions = Apollo.BaseMutationOptions<
-  ISetBaseAssortmentMutation,
-  ISetBaseAssortmentMutationVariables
->;
-export const TranslatedAssortmentMediaTextsDocument = gql`
-  query TranslatedAssortmentMediaTexts($assortmentMediaId: ID!) {
-    translatedAssortmentMediaTexts(assortmentMediaId: $assortmentMediaId) {
-      ...AssortmentMediaTextsFragment
-    }
-  }
-  ${AssortmentMediaTextsFragmentFragmentDoc}
-`;
-
-/**
- * __useTranslatedAssortmentMediaTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedAssortmentMediaTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedAssortmentMediaTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedAssortmentMediaTextsQuery({
- *   variables: {
- *      assortmentMediaId: // value for 'assortmentMediaId'
- *   },
- * });
- */
-export function useTranslatedAssortmentMediaTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedAssortmentMediaTextsQuery,
-    ITranslatedAssortmentMediaTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedAssortmentMediaTextsQuery,
-    ITranslatedAssortmentMediaTextsQueryVariables
-  >(TranslatedAssortmentMediaTextsDocument, options);
-}
-export function useTranslatedAssortmentMediaTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedAssortmentMediaTextsQuery,
-    ITranslatedAssortmentMediaTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedAssortmentMediaTextsQuery,
-    ITranslatedAssortmentMediaTextsQueryVariables
-  >(TranslatedAssortmentMediaTextsDocument, options);
-}
-export type TranslatedAssortmentMediaTextsQueryHookResult = ReturnType<
-  typeof useTranslatedAssortmentMediaTextsQuery
->;
-export type TranslatedAssortmentMediaTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedAssortmentMediaTextsLazyQuery
->;
-export type TranslatedAssortmentMediaTextsQueryResult = Apollo.QueryResult<
-  ITranslatedAssortmentMediaTextsQuery,
-  ITranslatedAssortmentMediaTextsQueryVariables
->;
-export const TranslatedAssortmentTextsDocument = gql`
-  query TranslatedAssortmentTexts($assortmentId: ID!) {
-    translatedAssortmentTexts(assortmentId: $assortmentId) {
-      ...AssortmentTextsFragment
-    }
-  }
-  ${AssortmentTextsFragmentFragmentDoc}
-`;
-
-/**
- * __useTranslatedAssortmentTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedAssortmentTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedAssortmentTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedAssortmentTextsQuery({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *   },
- * });
- */
-export function useTranslatedAssortmentTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedAssortmentTextsQuery,
-    ITranslatedAssortmentTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedAssortmentTextsQuery,
-    ITranslatedAssortmentTextsQueryVariables
-  >(TranslatedAssortmentTextsDocument, options);
-}
-export function useTranslatedAssortmentTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedAssortmentTextsQuery,
-    ITranslatedAssortmentTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedAssortmentTextsQuery,
-    ITranslatedAssortmentTextsQueryVariables
-  >(TranslatedAssortmentTextsDocument, options);
-}
-export type TranslatedAssortmentTextsQueryHookResult = ReturnType<
-  typeof useTranslatedAssortmentTextsQuery
->;
-export type TranslatedAssortmentTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedAssortmentTextsLazyQuery
->;
-export type TranslatedAssortmentTextsQueryResult = Apollo.QueryResult<
-  ITranslatedAssortmentTextsQuery,
-  ITranslatedAssortmentTextsQueryVariables
->;
-export const UpdateAssortmentDocument = gql`
-  mutation UpdateAssortment(
-    $assortment: UpdateAssortmentInput!
-    $assortmentId: ID!
-  ) {
-    updateAssortment(assortment: $assortment, assortmentId: $assortmentId) {
-      ...AssortmentFragment
-    }
-  }
-  ${AssortmentFragmentFragmentDoc}
-`;
-export type IUpdateAssortmentMutationFn = Apollo.MutationFunction<
-  IUpdateAssortmentMutation,
-  IUpdateAssortmentMutationVariables
->;
-
-/**
- * __useUpdateAssortmentMutation__
- *
- * To run a mutation, you first call `useUpdateAssortmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAssortmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAssortmentMutation, { data, loading, error }] = useUpdateAssortmentMutation({
- *   variables: {
- *      assortment: // value for 'assortment'
- *      assortmentId: // value for 'assortmentId'
- *   },
- * });
- */
-export function useUpdateAssortmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateAssortmentMutation,
-    IUpdateAssortmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateAssortmentMutation,
-    IUpdateAssortmentMutationVariables
-  >(UpdateAssortmentDocument, options);
-}
-export type UpdateAssortmentMutationHookResult = ReturnType<
-  typeof useUpdateAssortmentMutation
->;
-export type UpdateAssortmentMutationResult =
-  Apollo.MutationResult<IUpdateAssortmentMutation>;
-export type UpdateAssortmentMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateAssortmentMutation,
-  IUpdateAssortmentMutationVariables
->;
-export const UpdateAssortmentMediaTextsDocument = gql`
-  mutation UpdateAssortmentMediaTexts(
-    $assortmentMediaId: ID!
-    $texts: [UpdateAssortmentMediaTextInput!]!
-  ) {
-    updateAssortmentMediaTexts(
-      assortmentMediaId: $assortmentMediaId
-      texts: $texts
-    ) {
-      ...AssortmentMediaTextsFragment
-    }
-  }
-  ${AssortmentMediaTextsFragmentFragmentDoc}
-`;
-export type IUpdateAssortmentMediaTextsMutationFn = Apollo.MutationFunction<
-  IUpdateAssortmentMediaTextsMutation,
-  IUpdateAssortmentMediaTextsMutationVariables
->;
-
-/**
- * __useUpdateAssortmentMediaTextsMutation__
- *
- * To run a mutation, you first call `useUpdateAssortmentMediaTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAssortmentMediaTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAssortmentMediaTextsMutation, { data, loading, error }] = useUpdateAssortmentMediaTextsMutation({
- *   variables: {
- *      assortmentMediaId: // value for 'assortmentMediaId'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateAssortmentMediaTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateAssortmentMediaTextsMutation,
-    IUpdateAssortmentMediaTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateAssortmentMediaTextsMutation,
-    IUpdateAssortmentMediaTextsMutationVariables
-  >(UpdateAssortmentMediaTextsDocument, options);
-}
-export type UpdateAssortmentMediaTextsMutationHookResult = ReturnType<
-  typeof useUpdateAssortmentMediaTextsMutation
->;
-export type UpdateAssortmentMediaTextsMutationResult =
-  Apollo.MutationResult<IUpdateAssortmentMediaTextsMutation>;
-export type UpdateAssortmentMediaTextsMutationOptions =
-  Apollo.BaseMutationOptions<
-    IUpdateAssortmentMediaTextsMutation,
-    IUpdateAssortmentMediaTextsMutationVariables
-  >;
-export const UpdateAssortmentTextsDocument = gql`
-  mutation updateAssortmentTexts(
-    $assortmentId: ID!
-    $texts: [UpdateAssortmentTextInput!]!
-  ) {
-    updateAssortmentTexts(assortmentId: $assortmentId, texts: $texts) {
-      ...AssortmentTextsFragment
-    }
-  }
-  ${AssortmentTextsFragmentFragmentDoc}
-`;
-export type IUpdateAssortmentTextsMutationFn = Apollo.MutationFunction<
-  IUpdateAssortmentTextsMutation,
-  IUpdateAssortmentTextsMutationVariables
->;
-
-/**
- * __useUpdateAssortmentTextsMutation__
- *
- * To run a mutation, you first call `useUpdateAssortmentTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAssortmentTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateAssortmentTextsMutation, { data, loading, error }] = useUpdateAssortmentTextsMutation({
- *   variables: {
- *      assortmentId: // value for 'assortmentId'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateAssortmentTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateAssortmentTextsMutation,
-    IUpdateAssortmentTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateAssortmentTextsMutation,
-    IUpdateAssortmentTextsMutationVariables
-  >(UpdateAssortmentTextsDocument, options);
-}
-export type UpdateAssortmentTextsMutationHookResult = ReturnType<
-  typeof useUpdateAssortmentTextsMutation
->;
-export type UpdateAssortmentTextsMutationResult =
-  Apollo.MutationResult<IUpdateAssortmentTextsMutation>;
-export type UpdateAssortmentTextsMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateAssortmentTextsMutation,
-  IUpdateAssortmentTextsMutationVariables
->;
-export const ShopInfoDocument = gql`
-  query ShopInfo {
-    shopInfo {
-      _id
-      version
-      language {
-        _id
-        isoCode
-        name
-      }
-      country {
-        _id
-        isoCode
-        flagEmoji
-        name
-        defaultCurrency {
-          _id
-          isoCode
-        }
-      }
-      externalLinks {
-        href
-        title
-      }
-      adminUiConfig {
-        customProperties {
-          entityName
-          inlineFragment
-        }
-      }
-    }
-  }
-`;
-
-/**
- * __useShopInfoQuery__
- *
- * To run a query within a React component, call `useShopInfoQuery` and pass it any options that fit your needs.
- * When your component renders, `useShopInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useShopInfoQuery({
- *   variables: {
- *   },
- * });
- */
-export function useShopInfoQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IShopInfoQuery,
-    IShopInfoQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IShopInfoQuery, IShopInfoQueryVariables>(
-    ShopInfoDocument,
-    options,
-  );
-}
-export function useShopInfoLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IShopInfoQuery,
-    IShopInfoQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IShopInfoQuery, IShopInfoQueryVariables>(
-    ShopInfoDocument,
-    options,
-  );
-}
-export type ShopInfoQueryHookResult = ReturnType<typeof useShopInfoQuery>;
-export type ShopInfoLazyQueryHookResult = ReturnType<
-  typeof useShopInfoLazyQuery
->;
-export type ShopInfoQueryResult = Apollo.QueryResult<
-  IShopInfoQuery,
-  IShopInfoQueryVariables
->;
-export const SystemRolesDocument = gql`
-  query SystemRoles {
-    shopInfo {
-      _id
-      userRoles
-    }
-  }
-`;
-
-/**
- * __useSystemRolesQuery__
- *
- * To run a query within a React component, call `useSystemRolesQuery` and pass it any options that fit your needs.
- * When your component renders, `useSystemRolesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSystemRolesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSystemRolesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ISystemRolesQuery,
-    ISystemRolesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ISystemRolesQuery, ISystemRolesQueryVariables>(
-    SystemRolesDocument,
-    options,
-  );
-}
-export function useSystemRolesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ISystemRolesQuery,
-    ISystemRolesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ISystemRolesQuery, ISystemRolesQueryVariables>(
-    SystemRolesDocument,
-    options,
-  );
-}
-export type SystemRolesQueryHookResult = ReturnType<typeof useSystemRolesQuery>;
-export type SystemRolesLazyQueryHookResult = ReturnType<
-  typeof useSystemRolesLazyQuery
->;
-export type SystemRolesQueryResult = Apollo.QueryResult<
-  ISystemRolesQuery,
-  ISystemRolesQueryVariables
->;
-export const CountriesDocument = gql`
-  query Countries(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    countries(
-      queryString: $queryString
-      limit: $limit
-      offset: $offset
-      includeInactive: $includeInactive
-      sort: $sort
-    ) {
-      ...CountryFragment
-    }
-    countriesCount(includeInactive: $includeInactive, queryString: $queryString)
-  }
-  ${CountryFragmentFragmentDoc}
-`;
-
-/**
- * __useCountriesQuery__
- *
- * To run a query within a React component, call `useCountriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useCountriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCountriesQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeInactive: // value for 'includeInactive'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useCountriesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ICountriesQuery,
-    ICountriesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICountriesQuery, ICountriesQueryVariables>(
-    CountriesDocument,
-    options,
-  );
-}
-export function useCountriesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICountriesQuery,
-    ICountriesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ICountriesQuery, ICountriesQueryVariables>(
-    CountriesDocument,
-    options,
-  );
-}
-export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
-export type CountriesLazyQueryHookResult = ReturnType<
-  typeof useCountriesLazyQuery
->;
-export type CountriesQueryResult = Apollo.QueryResult<
-  ICountriesQuery,
-  ICountriesQueryVariables
->;
-export const CountryDocument = gql`
-  query Country($countryId: ID!) {
-    country(countryId: $countryId) {
-      ...CountryFragment
-    }
-  }
-  ${CountryFragmentFragmentDoc}
-`;
-
-/**
- * __useCountryQuery__
- *
- * To run a query within a React component, call `useCountryQuery` and pass it any options that fit your needs.
- * When your component renders, `useCountryQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCountryQuery({
- *   variables: {
- *      countryId: // value for 'countryId'
- *   },
- * });
- */
-export function useCountryQuery(
-  baseOptions: Apollo.QueryHookOptions<ICountryQuery, ICountryQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICountryQuery, ICountryQueryVariables>(
-    CountryDocument,
-    options,
-  );
-}
-export function useCountryLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICountryQuery,
-    ICountryQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ICountryQuery, ICountryQueryVariables>(
-    CountryDocument,
-    options,
-  );
-}
-export type CountryQueryHookResult = ReturnType<typeof useCountryQuery>;
-export type CountryLazyQueryHookResult = ReturnType<typeof useCountryLazyQuery>;
-export type CountryQueryResult = Apollo.QueryResult<
-  ICountryQuery,
-  ICountryQueryVariables
->;
-export const CreateCountryDocument = gql`
-  mutation CreateCountry($country: CreateCountryInput!) {
-    createCountry(country: $country) {
-      ...CountryFragment
-    }
-  }
-  ${CountryFragmentFragmentDoc}
-`;
-export type ICreateCountryMutationFn = Apollo.MutationFunction<
-  ICreateCountryMutation,
-  ICreateCountryMutationVariables
->;
-
-/**
- * __useCreateCountryMutation__
- *
- * To run a mutation, you first call `useCreateCountryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateCountryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createCountryMutation, { data, loading, error }] = useCreateCountryMutation({
- *   variables: {
- *      country: // value for 'country'
- *   },
- * });
- */
-export function useCreateCountryMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateCountryMutation,
-    ICreateCountryMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateCountryMutation,
-    ICreateCountryMutationVariables
-  >(CreateCountryDocument, options);
-}
-export type CreateCountryMutationHookResult = ReturnType<
-  typeof useCreateCountryMutation
->;
-export type CreateCountryMutationResult =
-  Apollo.MutationResult<ICreateCountryMutation>;
-export type CreateCountryMutationOptions = Apollo.BaseMutationOptions<
-  ICreateCountryMutation,
-  ICreateCountryMutationVariables
->;
-export const RemoveCountryDocument = gql`
-  mutation RemoveCountry($countryId: ID!) {
-    removeCountry(countryId: $countryId) {
-      ...CountryFragment
-    }
-  }
-  ${CountryFragmentFragmentDoc}
-`;
-export type IRemoveCountryMutationFn = Apollo.MutationFunction<
-  IRemoveCountryMutation,
-  IRemoveCountryMutationVariables
->;
-
-/**
- * __useRemoveCountryMutation__
- *
- * To run a mutation, you first call `useRemoveCountryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveCountryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeCountryMutation, { data, loading, error }] = useRemoveCountryMutation({
- *   variables: {
- *      countryId: // value for 'countryId'
- *   },
- * });
- */
-export function useRemoveCountryMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveCountryMutation,
-    IRemoveCountryMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveCountryMutation,
-    IRemoveCountryMutationVariables
-  >(RemoveCountryDocument, options);
-}
-export type RemoveCountryMutationHookResult = ReturnType<
-  typeof useRemoveCountryMutation
->;
-export type RemoveCountryMutationResult =
-  Apollo.MutationResult<IRemoveCountryMutation>;
-export type RemoveCountryMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveCountryMutation,
-  IRemoveCountryMutationVariables
->;
-export const UpdateCountryDocument = gql`
-  mutation UpdateCountry($country: UpdateCountryInput!, $countryId: ID!) {
-    updateCountry(country: $country, countryId: $countryId) {
-      ...CountryFragment
-    }
-  }
-  ${CountryFragmentFragmentDoc}
-`;
-export type IUpdateCountryMutationFn = Apollo.MutationFunction<
-  IUpdateCountryMutation,
-  IUpdateCountryMutationVariables
->;
-
-/**
- * __useUpdateCountryMutation__
- *
- * To run a mutation, you first call `useUpdateCountryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateCountryMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateCountryMutation, { data, loading, error }] = useUpdateCountryMutation({
- *   variables: {
- *      country: // value for 'country'
- *      countryId: // value for 'countryId'
- *   },
- * });
- */
-export function useUpdateCountryMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateCountryMutation,
-    IUpdateCountryMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateCountryMutation,
-    IUpdateCountryMutationVariables
-  >(UpdateCountryDocument, options);
-}
-export type UpdateCountryMutationHookResult = ReturnType<
-  typeof useUpdateCountryMutation
->;
-export type UpdateCountryMutationResult =
-  Apollo.MutationResult<IUpdateCountryMutation>;
-export type UpdateCountryMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateCountryMutation,
-  IUpdateCountryMutationVariables
->;
-export const CreateCurrencyDocument = gql`
-  mutation CreateCurrency($currency: CreateCurrencyInput!) {
-    createCurrency(currency: $currency) {
-      ...CurrencyFragment
-    }
-  }
-  ${CurrencyFragmentFragmentDoc}
-`;
-export type ICreateCurrencyMutationFn = Apollo.MutationFunction<
-  ICreateCurrencyMutation,
-  ICreateCurrencyMutationVariables
->;
-
-/**
- * __useCreateCurrencyMutation__
- *
- * To run a mutation, you first call `useCreateCurrencyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateCurrencyMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createCurrencyMutation, { data, loading, error }] = useCreateCurrencyMutation({
- *   variables: {
- *      currency: // value for 'currency'
- *   },
- * });
- */
-export function useCreateCurrencyMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateCurrencyMutation,
-    ICreateCurrencyMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateCurrencyMutation,
-    ICreateCurrencyMutationVariables
-  >(CreateCurrencyDocument, options);
-}
-export type CreateCurrencyMutationHookResult = ReturnType<
-  typeof useCreateCurrencyMutation
->;
-export type CreateCurrencyMutationResult =
-  Apollo.MutationResult<ICreateCurrencyMutation>;
-export type CreateCurrencyMutationOptions = Apollo.BaseMutationOptions<
-  ICreateCurrencyMutation,
-  ICreateCurrencyMutationVariables
->;
-export const CurrenciesDocument = gql`
-  query Currencies(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    currencies(
-      queryString: $queryString
-      limit: $limit
-      offset: $offset
-      includeInactive: $includeInactive
-      sort: $sort
-    ) {
-      ...CurrencyFragment
-    }
-    currenciesCount(
-      includeInactive: $includeInactive
-      queryString: $queryString
-    )
-  }
-  ${CurrencyFragmentFragmentDoc}
-`;
-
-/**
- * __useCurrenciesQuery__
- *
- * To run a query within a React component, call `useCurrenciesQuery` and pass it any options that fit your needs.
- * When your component renders, `useCurrenciesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCurrenciesQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeInactive: // value for 'includeInactive'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useCurrenciesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ICurrenciesQuery,
-    ICurrenciesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICurrenciesQuery, ICurrenciesQueryVariables>(
-    CurrenciesDocument,
-    options,
-  );
-}
-export function useCurrenciesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICurrenciesQuery,
-    ICurrenciesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ICurrenciesQuery, ICurrenciesQueryVariables>(
-    CurrenciesDocument,
-    options,
-  );
-}
-export type CurrenciesQueryHookResult = ReturnType<typeof useCurrenciesQuery>;
-export type CurrenciesLazyQueryHookResult = ReturnType<
-  typeof useCurrenciesLazyQuery
->;
-export type CurrenciesQueryResult = Apollo.QueryResult<
-  ICurrenciesQuery,
-  ICurrenciesQueryVariables
->;
-export const CurrencyDocument = gql`
-  query Currency($currencyId: ID!) {
-    currency(currencyId: $currencyId) {
-      ...CurrencyFragment
-    }
-  }
-  ${CurrencyFragmentFragmentDoc}
-`;
-
-/**
- * __useCurrencyQuery__
- *
- * To run a query within a React component, call `useCurrencyQuery` and pass it any options that fit your needs.
- * When your component renders, `useCurrencyQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCurrencyQuery({
- *   variables: {
- *      currencyId: // value for 'currencyId'
- *   },
- * });
- */
-export function useCurrencyQuery(
-  baseOptions: Apollo.QueryHookOptions<ICurrencyQuery, ICurrencyQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ICurrencyQuery, ICurrencyQueryVariables>(
-    CurrencyDocument,
-    options,
-  );
-}
-export function useCurrencyLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ICurrencyQuery,
-    ICurrencyQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ICurrencyQuery, ICurrencyQueryVariables>(
-    CurrencyDocument,
-    options,
-  );
-}
-export type CurrencyQueryHookResult = ReturnType<typeof useCurrencyQuery>;
-export type CurrencyLazyQueryHookResult = ReturnType<
-  typeof useCurrencyLazyQuery
->;
-export type CurrencyQueryResult = Apollo.QueryResult<
-  ICurrencyQuery,
-  ICurrencyQueryVariables
->;
-export const RemoveCurrencyDocument = gql`
-  mutation RemoveCurrency($currencyId: ID!) {
-    removeCurrency(currencyId: $currencyId) {
-      ...CurrencyFragment
-    }
-  }
-  ${CurrencyFragmentFragmentDoc}
-`;
-export type IRemoveCurrencyMutationFn = Apollo.MutationFunction<
-  IRemoveCurrencyMutation,
-  IRemoveCurrencyMutationVariables
->;
-
-/**
- * __useRemoveCurrencyMutation__
- *
- * To run a mutation, you first call `useRemoveCurrencyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveCurrencyMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeCurrencyMutation, { data, loading, error }] = useRemoveCurrencyMutation({
- *   variables: {
- *      currencyId: // value for 'currencyId'
- *   },
- * });
- */
-export function useRemoveCurrencyMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveCurrencyMutation,
-    IRemoveCurrencyMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveCurrencyMutation,
-    IRemoveCurrencyMutationVariables
-  >(RemoveCurrencyDocument, options);
-}
-export type RemoveCurrencyMutationHookResult = ReturnType<
-  typeof useRemoveCurrencyMutation
->;
-export type RemoveCurrencyMutationResult =
-  Apollo.MutationResult<IRemoveCurrencyMutation>;
-export type RemoveCurrencyMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveCurrencyMutation,
-  IRemoveCurrencyMutationVariables
->;
-export const UpdateCurrencyDocument = gql`
-  mutation UpdateCurrency($currency: UpdateCurrencyInput!, $currencyId: ID!) {
-    updateCurrency(currency: $currency, currencyId: $currencyId) {
-      ...CurrencyFragment
-    }
-  }
-  ${CurrencyFragmentFragmentDoc}
-`;
-export type IUpdateCurrencyMutationFn = Apollo.MutationFunction<
-  IUpdateCurrencyMutation,
-  IUpdateCurrencyMutationVariables
->;
-
-/**
- * __useUpdateCurrencyMutation__
- *
- * To run a mutation, you first call `useUpdateCurrencyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateCurrencyMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateCurrencyMutation, { data, loading, error }] = useUpdateCurrencyMutation({
- *   variables: {
- *      currency: // value for 'currency'
- *      currencyId: // value for 'currencyId'
- *   },
- * });
- */
-export function useUpdateCurrencyMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateCurrencyMutation,
-    IUpdateCurrencyMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateCurrencyMutation,
-    IUpdateCurrencyMutationVariables
-  >(UpdateCurrencyDocument, options);
-}
-export type UpdateCurrencyMutationHookResult = ReturnType<
-  typeof useUpdateCurrencyMutation
->;
-export type UpdateCurrencyMutationResult =
-  Apollo.MutationResult<IUpdateCurrencyMutation>;
-export type UpdateCurrencyMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateCurrencyMutation,
-  IUpdateCurrencyMutationVariables
->;
-export const CreateDeliveryProviderDocument = gql`
-  mutation CreateDeliveryProvider(
-    $deliveryProvider: CreateDeliveryProviderInput!
-  ) {
-    createDeliveryProvider(deliveryProvider: $deliveryProvider) {
-      ...DeliveryProviderFragment
-    }
-  }
-  ${DeliveryProviderFragmentFragmentDoc}
-`;
-export type ICreateDeliveryProviderMutationFn = Apollo.MutationFunction<
-  ICreateDeliveryProviderMutation,
-  ICreateDeliveryProviderMutationVariables
->;
-
-/**
- * __useCreateDeliveryProviderMutation__
- *
- * To run a mutation, you first call `useCreateDeliveryProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateDeliveryProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createDeliveryProviderMutation, { data, loading, error }] = useCreateDeliveryProviderMutation({
- *   variables: {
- *      deliveryProvider: // value for 'deliveryProvider'
- *   },
- * });
- */
-export function useCreateDeliveryProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateDeliveryProviderMutation,
-    ICreateDeliveryProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateDeliveryProviderMutation,
-    ICreateDeliveryProviderMutationVariables
-  >(CreateDeliveryProviderDocument, options);
-}
-export type CreateDeliveryProviderMutationHookResult = ReturnType<
-  typeof useCreateDeliveryProviderMutation
->;
-export type CreateDeliveryProviderMutationResult =
-  Apollo.MutationResult<ICreateDeliveryProviderMutation>;
-export type CreateDeliveryProviderMutationOptions = Apollo.BaseMutationOptions<
-  ICreateDeliveryProviderMutation,
-  ICreateDeliveryProviderMutationVariables
->;
-export const DeliveryInterfacesDocument = gql`
-  query DeliveryInterfaces($providerType: DeliveryProviderType!) {
-    deliveryInterfaces(type: $providerType) {
-      _id
-      value: _id
-      label
-    }
-  }
-`;
-
-/**
- * __useDeliveryInterfacesQuery__
- *
- * To run a query within a React component, call `useDeliveryInterfacesQuery` and pass it any options that fit your needs.
- * When your component renders, `useDeliveryInterfacesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDeliveryInterfacesQuery({
- *   variables: {
- *      providerType: // value for 'providerType'
- *   },
- * });
- */
-export function useDeliveryInterfacesQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IDeliveryInterfacesQuery,
-    IDeliveryInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IDeliveryInterfacesQuery,
-    IDeliveryInterfacesQueryVariables
-  >(DeliveryInterfacesDocument, options);
-}
-export function useDeliveryInterfacesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IDeliveryInterfacesQuery,
-    IDeliveryInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IDeliveryInterfacesQuery,
-    IDeliveryInterfacesQueryVariables
-  >(DeliveryInterfacesDocument, options);
-}
-export type DeliveryInterfacesQueryHookResult = ReturnType<
-  typeof useDeliveryInterfacesQuery
->;
-export type DeliveryInterfacesLazyQueryHookResult = ReturnType<
-  typeof useDeliveryInterfacesLazyQuery
->;
-export type DeliveryInterfacesQueryResult = Apollo.QueryResult<
-  IDeliveryInterfacesQuery,
-  IDeliveryInterfacesQueryVariables
->;
-export const DeliveryProviderDocument = gql`
-  query DeliveryProvider($deliveryProviderId: ID!) {
-    deliveryProvider(deliveryProviderId: $deliveryProviderId) {
-      ...DeliveryProviderFragment
-    }
-  }
-  ${DeliveryProviderFragmentFragmentDoc}
-`;
-
-/**
- * __useDeliveryProviderQuery__
- *
- * To run a query within a React component, call `useDeliveryProviderQuery` and pass it any options that fit your needs.
- * When your component renders, `useDeliveryProviderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDeliveryProviderQuery({
- *   variables: {
- *      deliveryProviderId: // value for 'deliveryProviderId'
- *   },
- * });
- */
-export function useDeliveryProviderQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IDeliveryProviderQuery,
-    IDeliveryProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IDeliveryProviderQuery,
-    IDeliveryProviderQueryVariables
-  >(DeliveryProviderDocument, options);
-}
-export function useDeliveryProviderLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IDeliveryProviderQuery,
-    IDeliveryProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IDeliveryProviderQuery,
-    IDeliveryProviderQueryVariables
-  >(DeliveryProviderDocument, options);
-}
-export type DeliveryProviderQueryHookResult = ReturnType<
-  typeof useDeliveryProviderQuery
->;
-export type DeliveryProviderLazyQueryHookResult = ReturnType<
-  typeof useDeliveryProviderLazyQuery
->;
-export type DeliveryProviderQueryResult = Apollo.QueryResult<
-  IDeliveryProviderQuery,
-  IDeliveryProviderQueryVariables
->;
-export const DeliveryProvidersTypeDocument = gql`
-  query DeliveryProvidersType {
-    deliveryProviderType: __type(name: "DeliveryProviderType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useDeliveryProvidersTypeQuery__
- *
- * To run a query within a React component, call `useDeliveryProvidersTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `useDeliveryProvidersTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDeliveryProvidersTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDeliveryProvidersTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IDeliveryProvidersTypeQuery,
-    IDeliveryProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IDeliveryProvidersTypeQuery,
-    IDeliveryProvidersTypeQueryVariables
-  >(DeliveryProvidersTypeDocument, options);
-}
-export function useDeliveryProvidersTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IDeliveryProvidersTypeQuery,
-    IDeliveryProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IDeliveryProvidersTypeQuery,
-    IDeliveryProvidersTypeQueryVariables
-  >(DeliveryProvidersTypeDocument, options);
-}
-export type DeliveryProvidersTypeQueryHookResult = ReturnType<
-  typeof useDeliveryProvidersTypeQuery
->;
-export type DeliveryProvidersTypeLazyQueryHookResult = ReturnType<
-  typeof useDeliveryProvidersTypeLazyQuery
->;
-export type DeliveryProvidersTypeQueryResult = Apollo.QueryResult<
-  IDeliveryProvidersTypeQuery,
-  IDeliveryProvidersTypeQueryVariables
->;
-export const DeliveryProvidersDocument = gql`
-  query DeliveryProviders($type: DeliveryProviderType) {
-    deliveryProviders(type: $type) {
-      ...DeliveryProviderFragment
-    }
-  }
-  ${DeliveryProviderFragmentFragmentDoc}
-`;
-
-/**
- * __useDeliveryProvidersQuery__
- *
- * To run a query within a React component, call `useDeliveryProvidersQuery` and pass it any options that fit your needs.
- * When your component renders, `useDeliveryProvidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDeliveryProvidersQuery({
- *   variables: {
- *      type: // value for 'type'
- *   },
- * });
- */
-export function useDeliveryProvidersQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IDeliveryProvidersQuery,
-    IDeliveryProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IDeliveryProvidersQuery,
-    IDeliveryProvidersQueryVariables
-  >(DeliveryProvidersDocument, options);
-}
-export function useDeliveryProvidersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IDeliveryProvidersQuery,
-    IDeliveryProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IDeliveryProvidersQuery,
-    IDeliveryProvidersQueryVariables
-  >(DeliveryProvidersDocument, options);
-}
-export type DeliveryProvidersQueryHookResult = ReturnType<
-  typeof useDeliveryProvidersQuery
->;
-export type DeliveryProvidersLazyQueryHookResult = ReturnType<
-  typeof useDeliveryProvidersLazyQuery
->;
-export type DeliveryProvidersQueryResult = Apollo.QueryResult<
-  IDeliveryProvidersQuery,
-  IDeliveryProvidersQueryVariables
->;
-export const OrderDeliveryStatusDocument = gql`
-  query OrderDeliveryStatus {
-    deliveryStatusType: __type(name: "OrderDeliveryStatus") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useOrderDeliveryStatusQuery__
- *
- * To run a query within a React component, call `useOrderDeliveryStatusQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrderDeliveryStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrderDeliveryStatusQuery({
- *   variables: {
- *   },
- * });
- */
-export function useOrderDeliveryStatusQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IOrderDeliveryStatusQuery,
-    IOrderDeliveryStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IOrderDeliveryStatusQuery,
-    IOrderDeliveryStatusQueryVariables
-  >(OrderDeliveryStatusDocument, options);
-}
-export function useOrderDeliveryStatusLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IOrderDeliveryStatusQuery,
-    IOrderDeliveryStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IOrderDeliveryStatusQuery,
-    IOrderDeliveryStatusQueryVariables
-  >(OrderDeliveryStatusDocument, options);
-}
-export type OrderDeliveryStatusQueryHookResult = ReturnType<
-  typeof useOrderDeliveryStatusQuery
->;
-export type OrderDeliveryStatusLazyQueryHookResult = ReturnType<
-  typeof useOrderDeliveryStatusLazyQuery
->;
-export type OrderDeliveryStatusQueryResult = Apollo.QueryResult<
-  IOrderDeliveryStatusQuery,
-  IOrderDeliveryStatusQueryVariables
->;
-export const RemoveDeliveryProviderDocument = gql`
-  mutation RemoveDeliveryProvider($deliveryProviderId: ID!) {
-    removeDeliveryProvider(deliveryProviderId: $deliveryProviderId) {
-      _id
-    }
-  }
-`;
-export type IRemoveDeliveryProviderMutationFn = Apollo.MutationFunction<
-  IRemoveDeliveryProviderMutation,
-  IRemoveDeliveryProviderMutationVariables
->;
-
-/**
- * __useRemoveDeliveryProviderMutation__
- *
- * To run a mutation, you first call `useRemoveDeliveryProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveDeliveryProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeDeliveryProviderMutation, { data, loading, error }] = useRemoveDeliveryProviderMutation({
- *   variables: {
- *      deliveryProviderId: // value for 'deliveryProviderId'
- *   },
- * });
- */
-export function useRemoveDeliveryProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveDeliveryProviderMutation,
-    IRemoveDeliveryProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveDeliveryProviderMutation,
-    IRemoveDeliveryProviderMutationVariables
-  >(RemoveDeliveryProviderDocument, options);
-}
-export type RemoveDeliveryProviderMutationHookResult = ReturnType<
-  typeof useRemoveDeliveryProviderMutation
->;
-export type RemoveDeliveryProviderMutationResult =
-  Apollo.MutationResult<IRemoveDeliveryProviderMutation>;
-export type RemoveDeliveryProviderMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveDeliveryProviderMutation,
-  IRemoveDeliveryProviderMutationVariables
->;
-export const UpdateDeliveryProviderDocument = gql`
-  mutation UpdateDeliveryProvider(
-    $deliveryProvider: UpdateProviderInput!
-    $deliveryProviderId: ID!
-  ) {
-    updateDeliveryProvider(
-      deliveryProvider: $deliveryProvider
-      deliveryProviderId: $deliveryProviderId
-    ) {
-      ...DeliveryProviderFragment
-    }
-  }
-  ${DeliveryProviderFragmentFragmentDoc}
-`;
-export type IUpdateDeliveryProviderMutationFn = Apollo.MutationFunction<
-  IUpdateDeliveryProviderMutation,
-  IUpdateDeliveryProviderMutationVariables
->;
-
-/**
- * __useUpdateDeliveryProviderMutation__
- *
- * To run a mutation, you first call `useUpdateDeliveryProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateDeliveryProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateDeliveryProviderMutation, { data, loading, error }] = useUpdateDeliveryProviderMutation({
- *   variables: {
- *      deliveryProvider: // value for 'deliveryProvider'
- *      deliveryProviderId: // value for 'deliveryProviderId'
- *   },
- * });
- */
-export function useUpdateDeliveryProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateDeliveryProviderMutation,
-    IUpdateDeliveryProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateDeliveryProviderMutation,
-    IUpdateDeliveryProviderMutationVariables
-  >(UpdateDeliveryProviderDocument, options);
-}
-export type UpdateDeliveryProviderMutationHookResult = ReturnType<
-  typeof useUpdateDeliveryProviderMutation
->;
-export type UpdateDeliveryProviderMutationResult =
-  Apollo.MutationResult<IUpdateDeliveryProviderMutation>;
-export type UpdateDeliveryProviderMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateDeliveryProviderMutation,
-  IUpdateDeliveryProviderMutationVariables
->;
-export const ActivateEnrollmentDocument = gql`
-  mutation ActivateEnrollment($enrollmentId: ID!) {
-    activateEnrollment(enrollmentId: $enrollmentId) {
-      _id
-    }
-  }
-`;
-export type IActivateEnrollmentMutationFn = Apollo.MutationFunction<
-  IActivateEnrollmentMutation,
-  IActivateEnrollmentMutationVariables
->;
-
-/**
- * __useActivateEnrollmentMutation__
- *
- * To run a mutation, you first call `useActivateEnrollmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useActivateEnrollmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [activateEnrollmentMutation, { data, loading, error }] = useActivateEnrollmentMutation({
- *   variables: {
- *      enrollmentId: // value for 'enrollmentId'
- *   },
- * });
- */
-export function useActivateEnrollmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IActivateEnrollmentMutation,
-    IActivateEnrollmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IActivateEnrollmentMutation,
-    IActivateEnrollmentMutationVariables
-  >(ActivateEnrollmentDocument, options);
-}
-export type ActivateEnrollmentMutationHookResult = ReturnType<
-  typeof useActivateEnrollmentMutation
->;
-export type ActivateEnrollmentMutationResult =
-  Apollo.MutationResult<IActivateEnrollmentMutation>;
-export type ActivateEnrollmentMutationOptions = Apollo.BaseMutationOptions<
-  IActivateEnrollmentMutation,
-  IActivateEnrollmentMutationVariables
->;
-export const EnrollmentDocument = gql`
-  query Enrollment($enrollmentId: ID!) {
-    enrollment(enrollmentId: $enrollmentId) {
-      ...EnrollmentDetailFragment
-    }
-  }
-  ${EnrollmentDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useEnrollmentQuery__
- *
- * To run a query within a React component, call `useEnrollmentQuery` and pass it any options that fit your needs.
- * When your component renders, `useEnrollmentQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEnrollmentQuery({
- *   variables: {
- *      enrollmentId: // value for 'enrollmentId'
- *   },
- * });
- */
-export function useEnrollmentQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IEnrollmentQuery,
-    IEnrollmentQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IEnrollmentQuery, IEnrollmentQueryVariables>(
-    EnrollmentDocument,
-    options,
-  );
-}
-export function useEnrollmentLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IEnrollmentQuery,
-    IEnrollmentQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IEnrollmentQuery, IEnrollmentQueryVariables>(
-    EnrollmentDocument,
-    options,
-  );
-}
-export type EnrollmentQueryHookResult = ReturnType<typeof useEnrollmentQuery>;
-export type EnrollmentLazyQueryHookResult = ReturnType<
-  typeof useEnrollmentLazyQuery
->;
-export type EnrollmentQueryResult = Apollo.QueryResult<
-  IEnrollmentQuery,
-  IEnrollmentQueryVariables
->;
-export const EnrollmentStatusDocument = gql`
-  query EnrollmentStatus {
-    enrollmentStatusTypes: __type(name: "EnrollmentStatus") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useEnrollmentStatusQuery__
- *
- * To run a query within a React component, call `useEnrollmentStatusQuery` and pass it any options that fit your needs.
- * When your component renders, `useEnrollmentStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEnrollmentStatusQuery({
- *   variables: {
- *   },
- * });
- */
-export function useEnrollmentStatusQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IEnrollmentStatusQuery,
-    IEnrollmentStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IEnrollmentStatusQuery,
-    IEnrollmentStatusQueryVariables
-  >(EnrollmentStatusDocument, options);
-}
-export function useEnrollmentStatusLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IEnrollmentStatusQuery,
-    IEnrollmentStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IEnrollmentStatusQuery,
-    IEnrollmentStatusQueryVariables
-  >(EnrollmentStatusDocument, options);
-}
-export type EnrollmentStatusQueryHookResult = ReturnType<
-  typeof useEnrollmentStatusQuery
->;
-export type EnrollmentStatusLazyQueryHookResult = ReturnType<
-  typeof useEnrollmentStatusLazyQuery
->;
-export type EnrollmentStatusQueryResult = Apollo.QueryResult<
-  IEnrollmentStatusQuery,
-  IEnrollmentStatusQueryVariables
->;
-export const EnrollmentsDocument = gql`
-  query Enrollments(
-    $offset: Int
-    $limit: Int
-    $queryString: String
-    $sort: [SortOptionInput!]
-    $status: [String!]
-  ) {
-    enrollments(
-      offset: $offset
-      limit: $limit
-      queryString: $queryString
-      sort: $sort
-      status: $status
-    ) {
-      ...EnrollmentFragment
-    }
-    enrollmentsCount
-  }
-  ${EnrollmentFragmentFragmentDoc}
-`;
-
-/**
- * __useEnrollmentsQuery__
- *
- * To run a query within a React component, call `useEnrollmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useEnrollmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEnrollmentsQuery({
- *   variables: {
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *      queryString: // value for 'queryString'
- *      sort: // value for 'sort'
- *      status: // value for 'status'
- *   },
- * });
- */
-export function useEnrollmentsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IEnrollmentsQuery,
-    IEnrollmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IEnrollmentsQuery, IEnrollmentsQueryVariables>(
-    EnrollmentsDocument,
-    options,
-  );
-}
-export function useEnrollmentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IEnrollmentsQuery,
-    IEnrollmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IEnrollmentsQuery, IEnrollmentsQueryVariables>(
-    EnrollmentsDocument,
-    options,
-  );
-}
-export type EnrollmentsQueryHookResult = ReturnType<typeof useEnrollmentsQuery>;
-export type EnrollmentsLazyQueryHookResult = ReturnType<
-  typeof useEnrollmentsLazyQuery
->;
-export type EnrollmentsQueryResult = Apollo.QueryResult<
-  IEnrollmentsQuery,
-  IEnrollmentsQueryVariables
->;
-export const SendEnrollmentEmailDocument = gql`
-  mutation sendEnrollmentEmail($email: String!) {
-    sendEnrollmentEmail(email: $email) {
-      success
-    }
-  }
-`;
-export type ISendEnrollmentEmailMutationFn = Apollo.MutationFunction<
-  ISendEnrollmentEmailMutation,
-  ISendEnrollmentEmailMutationVariables
->;
-
-/**
- * __useSendEnrollmentEmailMutation__
- *
- * To run a mutation, you first call `useSendEnrollmentEmailMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSendEnrollmentEmailMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [sendEnrollmentEmailMutation, { data, loading, error }] = useSendEnrollmentEmailMutation({
- *   variables: {
- *      email: // value for 'email'
- *   },
- * });
- */
-export function useSendEnrollmentEmailMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ISendEnrollmentEmailMutation,
-    ISendEnrollmentEmailMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ISendEnrollmentEmailMutation,
-    ISendEnrollmentEmailMutationVariables
-  >(SendEnrollmentEmailDocument, options);
-}
-export type SendEnrollmentEmailMutationHookResult = ReturnType<
-  typeof useSendEnrollmentEmailMutation
->;
-export type SendEnrollmentEmailMutationResult =
-  Apollo.MutationResult<ISendEnrollmentEmailMutation>;
-export type SendEnrollmentEmailMutationOptions = Apollo.BaseMutationOptions<
-  ISendEnrollmentEmailMutation,
-  ISendEnrollmentEmailMutationVariables
->;
-export const TerminateEnrollmentDocument = gql`
-  mutation TerminateEnrollment($enrollmentId: ID!) {
-    terminateEnrollment(enrollmentId: $enrollmentId) {
-      _id
-    }
-  }
-`;
-export type ITerminateEnrollmentMutationFn = Apollo.MutationFunction<
-  ITerminateEnrollmentMutation,
-  ITerminateEnrollmentMutationVariables
->;
-
-/**
- * __useTerminateEnrollmentMutation__
- *
- * To run a mutation, you first call `useTerminateEnrollmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useTerminateEnrollmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [terminateEnrollmentMutation, { data, loading, error }] = useTerminateEnrollmentMutation({
- *   variables: {
- *      enrollmentId: // value for 'enrollmentId'
- *   },
- * });
- */
-export function useTerminateEnrollmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ITerminateEnrollmentMutation,
-    ITerminateEnrollmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ITerminateEnrollmentMutation,
-    ITerminateEnrollmentMutationVariables
-  >(TerminateEnrollmentDocument, options);
-}
-export type TerminateEnrollmentMutationHookResult = ReturnType<
-  typeof useTerminateEnrollmentMutation
->;
-export type TerminateEnrollmentMutationResult =
-  Apollo.MutationResult<ITerminateEnrollmentMutation>;
-export type TerminateEnrollmentMutationOptions = Apollo.BaseMutationOptions<
-  ITerminateEnrollmentMutation,
-  ITerminateEnrollmentMutationVariables
->;
-export const UserEnrollmentsDocument = gql`
-  query UserEnrollments($userId: ID!, $queryString: String) {
-    user(userId: $userId) {
-      _id
-      enrollments(queryString: $queryString) {
-        ...EnrollmentFragment
-      }
-    }
-  }
-  ${EnrollmentFragmentFragmentDoc}
-`;
-
-/**
- * __useUserEnrollmentsQuery__
- *
- * To run a query within a React component, call `useUserEnrollmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserEnrollmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserEnrollmentsQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      queryString: // value for 'queryString'
- *   },
- * });
- */
-export function useUserEnrollmentsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IUserEnrollmentsQuery,
-    IUserEnrollmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUserEnrollmentsQuery, IUserEnrollmentsQueryVariables>(
-    UserEnrollmentsDocument,
-    options,
-  );
-}
-export function useUserEnrollmentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserEnrollmentsQuery,
-    IUserEnrollmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IUserEnrollmentsQuery,
-    IUserEnrollmentsQueryVariables
-  >(UserEnrollmentsDocument, options);
-}
-export type UserEnrollmentsQueryHookResult = ReturnType<
-  typeof useUserEnrollmentsQuery
->;
-export type UserEnrollmentsLazyQueryHookResult = ReturnType<
-  typeof useUserEnrollmentsLazyQuery
->;
-export type UserEnrollmentsQueryResult = Apollo.QueryResult<
-  IUserEnrollmentsQuery,
-  IUserEnrollmentsQueryVariables
->;
-export const EventDocument = gql`
-  query Event($eventId: ID!) {
-    event(eventId: $eventId) {
-      ...EventFragment
-    }
-  }
-  ${EventFragmentFragmentDoc}
-`;
-
-/**
- * __useEventQuery__
- *
- * To run a query within a React component, call `useEventQuery` and pass it any options that fit your needs.
- * When your component renders, `useEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEventQuery({
- *   variables: {
- *      eventId: // value for 'eventId'
- *   },
- * });
- */
-export function useEventQuery(
-  baseOptions: Apollo.QueryHookOptions<IEventQuery, IEventQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IEventQuery, IEventQueryVariables>(
-    EventDocument,
-    options,
-  );
-}
-export function useEventLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<IEventQuery, IEventQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IEventQuery, IEventQueryVariables>(
-    EventDocument,
-    options,
-  );
-}
-export type EventQueryHookResult = ReturnType<typeof useEventQuery>;
-export type EventLazyQueryHookResult = ReturnType<typeof useEventLazyQuery>;
-export type EventQueryResult = Apollo.QueryResult<
-  IEventQuery,
-  IEventQueryVariables
->;
-export const EventsTypeDocument = gql`
-  query EventsType {
-    eventTypes: __type(name: "EventType") {
-      options: enumValues {
-        value: name
-        label: name
-      }
-    }
-  }
-`;
-
-/**
- * __useEventsTypeQuery__
- *
- * To run a query within a React component, call `useEventsTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `useEventsTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEventsTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useEventsTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IEventsTypeQuery,
-    IEventsTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IEventsTypeQuery, IEventsTypeQueryVariables>(
-    EventsTypeDocument,
-    options,
-  );
-}
-export function useEventsTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IEventsTypeQuery,
-    IEventsTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IEventsTypeQuery, IEventsTypeQueryVariables>(
-    EventsTypeDocument,
-    options,
-  );
-}
-export type EventsTypeQueryHookResult = ReturnType<typeof useEventsTypeQuery>;
-export type EventsTypeLazyQueryHookResult = ReturnType<
-  typeof useEventsTypeLazyQuery
->;
-export type EventsTypeQueryResult = Apollo.QueryResult<
-  IEventsTypeQuery,
-  IEventsTypeQueryVariables
->;
-export const EventsDocument = gql`
-  query Events(
-    $types: [String!]
-    $limit: Int
-    $offset: Int
-    $sort: [SortOptionInput!]
-    $queryString: String
-  ) {
-    events(
-      types: $types
-      limit: $limit
-      offset: $offset
-      sort: $sort
-      queryString: $queryString
-    ) {
-      ...EventFragment
-    }
-    eventsCount
-  }
-  ${EventFragmentFragmentDoc}
-`;
-
-/**
- * __useEventsQuery__
- *
- * To run a query within a React component, call `useEventsQuery` and pass it any options that fit your needs.
- * When your component renders, `useEventsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useEventsQuery({
- *   variables: {
- *      types: // value for 'types'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      sort: // value for 'sort'
- *      queryString: // value for 'queryString'
- *   },
- * });
- */
-export function useEventsQuery(
-  baseOptions?: Apollo.QueryHookOptions<IEventsQuery, IEventsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IEventsQuery, IEventsQueryVariables>(
-    EventsDocument,
-    options,
-  );
-}
-export function useEventsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IEventsQuery,
-    IEventsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IEventsQuery, IEventsQueryVariables>(
-    EventsDocument,
-    options,
-  );
-}
-export type EventsQueryHookResult = ReturnType<typeof useEventsQuery>;
-export type EventsLazyQueryHookResult = ReturnType<typeof useEventsLazyQuery>;
-export type EventsQueryResult = Apollo.QueryResult<
-  IEventsQuery,
-  IEventsQueryVariables
->;
-export const RegisteredEventTypeDocument = gql`
-  query RegisteredEventType {
-    registeredEvents: __type(name: "EventType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useRegisteredEventTypeQuery__
- *
- * To run a query within a React component, call `useRegisteredEventTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `useRegisteredEventTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useRegisteredEventTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useRegisteredEventTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IRegisteredEventTypeQuery,
-    IRegisteredEventTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IRegisteredEventTypeQuery,
-    IRegisteredEventTypeQueryVariables
-  >(RegisteredEventTypeDocument, options);
-}
-export function useRegisteredEventTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IRegisteredEventTypeQuery,
-    IRegisteredEventTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IRegisteredEventTypeQuery,
-    IRegisteredEventTypeQueryVariables
-  >(RegisteredEventTypeDocument, options);
-}
-export type RegisteredEventTypeQueryHookResult = ReturnType<
-  typeof useRegisteredEventTypeQuery
->;
-export type RegisteredEventTypeLazyQueryHookResult = ReturnType<
-  typeof useRegisteredEventTypeLazyQuery
->;
-export type RegisteredEventTypeQueryResult = Apollo.QueryResult<
-  IRegisteredEventTypeQuery,
-  IRegisteredEventTypeQueryVariables
->;
-export const CreateFilterDocument = gql`
-  mutation CreateFilter($filter: CreateFilterInput!) {
-    createFilter(filter: $filter) {
-      ...FilterFragment
-    }
-  }
-  ${FilterFragmentFragmentDoc}
-`;
-export type ICreateFilterMutationFn = Apollo.MutationFunction<
-  ICreateFilterMutation,
-  ICreateFilterMutationVariables
->;
-
-/**
- * __useCreateFilterMutation__
- *
- * To run a mutation, you first call `useCreateFilterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateFilterMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createFilterMutation, { data, loading, error }] = useCreateFilterMutation({
- *   variables: {
- *      filter: // value for 'filter'
- *   },
- * });
- */
-export function useCreateFilterMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateFilterMutation,
-    ICreateFilterMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateFilterMutation,
-    ICreateFilterMutationVariables
-  >(CreateFilterDocument, options);
-}
-export type CreateFilterMutationHookResult = ReturnType<
-  typeof useCreateFilterMutation
->;
-export type CreateFilterMutationResult =
-  Apollo.MutationResult<ICreateFilterMutation>;
-export type CreateFilterMutationOptions = Apollo.BaseMutationOptions<
-  ICreateFilterMutation,
-  ICreateFilterMutationVariables
->;
-export const CreateFilterOptionDocument = gql`
-  mutation CreateFilterOption(
-    $filterId: ID!
-    $option: CreateFilterOptionInput!
-  ) {
-    createFilterOption(filterId: $filterId, option: $option) {
-      _id
-    }
-  }
-`;
-export type ICreateFilterOptionMutationFn = Apollo.MutationFunction<
-  ICreateFilterOptionMutation,
-  ICreateFilterOptionMutationVariables
->;
-
-/**
- * __useCreateFilterOptionMutation__
- *
- * To run a mutation, you first call `useCreateFilterOptionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateFilterOptionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createFilterOptionMutation, { data, loading, error }] = useCreateFilterOptionMutation({
- *   variables: {
- *      filterId: // value for 'filterId'
- *      option: // value for 'option'
- *   },
- * });
- */
-export function useCreateFilterOptionMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateFilterOptionMutation,
-    ICreateFilterOptionMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateFilterOptionMutation,
-    ICreateFilterOptionMutationVariables
-  >(CreateFilterOptionDocument, options);
-}
-export type CreateFilterOptionMutationHookResult = ReturnType<
-  typeof useCreateFilterOptionMutation
->;
-export type CreateFilterOptionMutationResult =
-  Apollo.MutationResult<ICreateFilterOptionMutation>;
-export type CreateFilterOptionMutationOptions = Apollo.BaseMutationOptions<
-  ICreateFilterOptionMutation,
-  ICreateFilterOptionMutationVariables
->;
-export const FilterDocument = gql`
-  query Filter($filterId: ID) {
-    filter(filterId: $filterId) {
-      ...FilterFragment
-      texts {
-        _id
-        title
-        subtitle
-        locale
-      }
-    }
-  }
-  ${FilterFragmentFragmentDoc}
-`;
-
-/**
- * __useFilterQuery__
- *
- * To run a query within a React component, call `useFilterQuery` and pass it any options that fit your needs.
- * When your component renders, `useFilterQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFilterQuery({
- *   variables: {
- *      filterId: // value for 'filterId'
- *   },
- * });
- */
-export function useFilterQuery(
-  baseOptions?: Apollo.QueryHookOptions<IFilterQuery, IFilterQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IFilterQuery, IFilterQueryVariables>(
-    FilterDocument,
-    options,
-  );
-}
-export function useFilterLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IFilterQuery,
-    IFilterQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IFilterQuery, IFilterQueryVariables>(
-    FilterDocument,
-    options,
-  );
-}
-export type FilterQueryHookResult = ReturnType<typeof useFilterQuery>;
-export type FilterLazyQueryHookResult = ReturnType<typeof useFilterLazyQuery>;
-export type FilterQueryResult = Apollo.QueryResult<
-  IFilterQuery,
-  IFilterQueryVariables
->;
-export const FilterOptionsDocument = gql`
-  query FilterOptions($filterId: ID) {
-    filter(filterId: $filterId) {
-      _id
-      options {
-        ...FilterOptionFragment
-      }
-    }
-  }
-  ${FilterOptionFragmentFragmentDoc}
-`;
-
-/**
- * __useFilterOptionsQuery__
- *
- * To run a query within a React component, call `useFilterOptionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useFilterOptionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFilterOptionsQuery({
- *   variables: {
- *      filterId: // value for 'filterId'
- *   },
- * });
- */
-export function useFilterOptionsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IFilterOptionsQuery,
-    IFilterOptionsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IFilterOptionsQuery, IFilterOptionsQueryVariables>(
-    FilterOptionsDocument,
-    options,
-  );
-}
-export function useFilterOptionsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IFilterOptionsQuery,
-    IFilterOptionsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IFilterOptionsQuery, IFilterOptionsQueryVariables>(
-    FilterOptionsDocument,
-    options,
-  );
-}
-export type FilterOptionsQueryHookResult = ReturnType<
-  typeof useFilterOptionsQuery
->;
-export type FilterOptionsLazyQueryHookResult = ReturnType<
-  typeof useFilterOptionsLazyQuery
->;
-export type FilterOptionsQueryResult = Apollo.QueryResult<
-  IFilterOptionsQuery,
-  IFilterOptionsQueryVariables
->;
-export const FilterTypesDocument = gql`
-  query FilterTypes {
-    filterTypes: __type(name: "FilterType") {
-      options: enumValues {
-        label: name
-        value: name
-      }
-    }
-  }
-`;
-
-/**
- * __useFilterTypesQuery__
- *
- * To run a query within a React component, call `useFilterTypesQuery` and pass it any options that fit your needs.
- * When your component renders, `useFilterTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFilterTypesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useFilterTypesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IFilterTypesQuery,
-    IFilterTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IFilterTypesQuery, IFilterTypesQueryVariables>(
-    FilterTypesDocument,
-    options,
-  );
-}
-export function useFilterTypesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IFilterTypesQuery,
-    IFilterTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IFilterTypesQuery, IFilterTypesQueryVariables>(
-    FilterTypesDocument,
-    options,
-  );
-}
-export type FilterTypesQueryHookResult = ReturnType<typeof useFilterTypesQuery>;
-export type FilterTypesLazyQueryHookResult = ReturnType<
-  typeof useFilterTypesLazyQuery
->;
-export type FilterTypesQueryResult = Apollo.QueryResult<
-  IFilterTypesQuery,
-  IFilterTypesQueryVariables
->;
-export const FiltersDocument = gql`
-  query Filters(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $includeInactive: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    filters(
-      queryString: $queryString
-      limit: $limit
-      offset: $offset
-      includeInactive: $includeInactive
-      sort: $sort
-    ) {
-      ...FilterFragment
-      texts {
-        _id
-        title
-        subtitle
-        locale
-      }
-    }
-    filtersCount(includeInactive: $includeInactive, queryString: $queryString)
-  }
-  ${FilterFragmentFragmentDoc}
-`;
-
-/**
- * __useFiltersQuery__
- *
- * To run a query within a React component, call `useFiltersQuery` and pass it any options that fit your needs.
- * When your component renders, `useFiltersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFiltersQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeInactive: // value for 'includeInactive'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useFiltersQuery(
-  baseOptions?: Apollo.QueryHookOptions<IFiltersQuery, IFiltersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IFiltersQuery, IFiltersQueryVariables>(
-    FiltersDocument,
-    options,
-  );
-}
-export function useFiltersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IFiltersQuery,
-    IFiltersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IFiltersQuery, IFiltersQueryVariables>(
-    FiltersDocument,
-    options,
-  );
-}
-export type FiltersQueryHookResult = ReturnType<typeof useFiltersQuery>;
-export type FiltersLazyQueryHookResult = ReturnType<typeof useFiltersLazyQuery>;
-export type FiltersQueryResult = Apollo.QueryResult<
-  IFiltersQuery,
-  IFiltersQueryVariables
->;
-export const FiltersCountDocument = gql`
-  query FiltersCount {
-    filtersCount
-  }
-`;
-
-/**
- * __useFiltersCountQuery__
- *
- * To run a query within a React component, call `useFiltersCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useFiltersCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFiltersCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useFiltersCountQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IFiltersCountQuery,
-    IFiltersCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IFiltersCountQuery, IFiltersCountQueryVariables>(
-    FiltersCountDocument,
-    options,
-  );
-}
-export function useFiltersCountLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IFiltersCountQuery,
-    IFiltersCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IFiltersCountQuery, IFiltersCountQueryVariables>(
-    FiltersCountDocument,
-    options,
-  );
-}
-export type FiltersCountQueryHookResult = ReturnType<
-  typeof useFiltersCountQuery
->;
-export type FiltersCountLazyQueryHookResult = ReturnType<
-  typeof useFiltersCountLazyQuery
->;
-export type FiltersCountQueryResult = Apollo.QueryResult<
-  IFiltersCountQuery,
-  IFiltersCountQueryVariables
->;
-export const RemoveFilterDocument = gql`
-  mutation RemoveFilter($filterId: ID!) {
-    removeFilter(filterId: $filterId) {
-      _id
-    }
-  }
-`;
-export type IRemoveFilterMutationFn = Apollo.MutationFunction<
-  IRemoveFilterMutation,
-  IRemoveFilterMutationVariables
->;
-
-/**
- * __useRemoveFilterMutation__
- *
- * To run a mutation, you first call `useRemoveFilterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveFilterMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeFilterMutation, { data, loading, error }] = useRemoveFilterMutation({
- *   variables: {
- *      filterId: // value for 'filterId'
- *   },
- * });
- */
-export function useRemoveFilterMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveFilterMutation,
-    IRemoveFilterMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveFilterMutation,
-    IRemoveFilterMutationVariables
-  >(RemoveFilterDocument, options);
-}
-export type RemoveFilterMutationHookResult = ReturnType<
-  typeof useRemoveFilterMutation
->;
-export type RemoveFilterMutationResult =
-  Apollo.MutationResult<IRemoveFilterMutation>;
-export type RemoveFilterMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveFilterMutation,
-  IRemoveFilterMutationVariables
->;
-export const RemoveFilterOptionDocument = gql`
-  mutation RemoveFilterOption($filterId: ID!, $filterOptionValue: String!) {
-    removeFilterOption(
-      filterId: $filterId
-      filterOptionValue: $filterOptionValue
-    ) {
-      _id
-    }
-  }
-`;
-export type IRemoveFilterOptionMutationFn = Apollo.MutationFunction<
-  IRemoveFilterOptionMutation,
-  IRemoveFilterOptionMutationVariables
->;
-
-/**
- * __useRemoveFilterOptionMutation__
- *
- * To run a mutation, you first call `useRemoveFilterOptionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveFilterOptionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeFilterOptionMutation, { data, loading, error }] = useRemoveFilterOptionMutation({
- *   variables: {
- *      filterId: // value for 'filterId'
- *      filterOptionValue: // value for 'filterOptionValue'
- *   },
- * });
- */
-export function useRemoveFilterOptionMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveFilterOptionMutation,
-    IRemoveFilterOptionMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveFilterOptionMutation,
-    IRemoveFilterOptionMutationVariables
-  >(RemoveFilterOptionDocument, options);
-}
-export type RemoveFilterOptionMutationHookResult = ReturnType<
-  typeof useRemoveFilterOptionMutation
->;
-export type RemoveFilterOptionMutationResult =
-  Apollo.MutationResult<IRemoveFilterOptionMutation>;
-export type RemoveFilterOptionMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveFilterOptionMutation,
-  IRemoveFilterOptionMutationVariables
->;
-export const TranslatedFilterTextsDocument = gql`
-  query TranslatedFilterTexts($filterId: ID!, $filterOptionValue: String) {
-    translatedFilterTexts(
-      filterId: $filterId
-      filterOptionValue: $filterOptionValue
-    ) {
-      ...FilterTextsFragment
-    }
-  }
-  ${FilterTextsFragmentFragmentDoc}
-`;
-
-/**
- * __useTranslatedFilterTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedFilterTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedFilterTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedFilterTextsQuery({
- *   variables: {
- *      filterId: // value for 'filterId'
- *      filterOptionValue: // value for 'filterOptionValue'
- *   },
- * });
- */
-export function useTranslatedFilterTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedFilterTextsQuery,
-    ITranslatedFilterTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedFilterTextsQuery,
-    ITranslatedFilterTextsQueryVariables
-  >(TranslatedFilterTextsDocument, options);
-}
-export function useTranslatedFilterTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedFilterTextsQuery,
-    ITranslatedFilterTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedFilterTextsQuery,
-    ITranslatedFilterTextsQueryVariables
-  >(TranslatedFilterTextsDocument, options);
-}
-export type TranslatedFilterTextsQueryHookResult = ReturnType<
-  typeof useTranslatedFilterTextsQuery
->;
-export type TranslatedFilterTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedFilterTextsLazyQuery
->;
-export type TranslatedFilterTextsQueryResult = Apollo.QueryResult<
-  ITranslatedFilterTextsQuery,
-  ITranslatedFilterTextsQueryVariables
->;
-export const UpdateFilterDocument = gql`
-  mutation UpdateFilter($filter: UpdateFilterInput!, $filterId: ID!) {
-    updateFilter(filter: $filter, filterId: $filterId) {
-      ...FilterFragment
-    }
-  }
-  ${FilterFragmentFragmentDoc}
-`;
-export type IUpdateFilterMutationFn = Apollo.MutationFunction<
-  IUpdateFilterMutation,
-  IUpdateFilterMutationVariables
->;
-
-/**
- * __useUpdateFilterMutation__
- *
- * To run a mutation, you first call `useUpdateFilterMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateFilterMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateFilterMutation, { data, loading, error }] = useUpdateFilterMutation({
- *   variables: {
- *      filter: // value for 'filter'
- *      filterId: // value for 'filterId'
- *   },
- * });
- */
-export function useUpdateFilterMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateFilterMutation,
-    IUpdateFilterMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateFilterMutation,
-    IUpdateFilterMutationVariables
-  >(UpdateFilterDocument, options);
-}
-export type UpdateFilterMutationHookResult = ReturnType<
-  typeof useUpdateFilterMutation
->;
-export type UpdateFilterMutationResult =
-  Apollo.MutationResult<IUpdateFilterMutation>;
-export type UpdateFilterMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateFilterMutation,
-  IUpdateFilterMutationVariables
->;
-export const UpdateFilterTextsDocument = gql`
-  mutation UpdateFilterTexts(
-    $filterId: ID!
-    $filterOptionValue: String
-    $texts: [UpdateFilterTextInput!]!
-  ) {
-    updateFilterTexts(
-      filterId: $filterId
-      filterOptionValue: $filterOptionValue
-      texts: $texts
-    ) {
-      ...FilterTextsFragment
-    }
-  }
-  ${FilterTextsFragmentFragmentDoc}
-`;
-export type IUpdateFilterTextsMutationFn = Apollo.MutationFunction<
-  IUpdateFilterTextsMutation,
-  IUpdateFilterTextsMutationVariables
->;
-
-/**
- * __useUpdateFilterTextsMutation__
- *
- * To run a mutation, you first call `useUpdateFilterTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateFilterTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateFilterTextsMutation, { data, loading, error }] = useUpdateFilterTextsMutation({
- *   variables: {
- *      filterId: // value for 'filterId'
- *      filterOptionValue: // value for 'filterOptionValue'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateFilterTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateFilterTextsMutation,
-    IUpdateFilterTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateFilterTextsMutation,
-    IUpdateFilterTextsMutationVariables
-  >(UpdateFilterTextsDocument, options);
-}
-export type UpdateFilterTextsMutationHookResult = ReturnType<
-  typeof useUpdateFilterTextsMutation
->;
-export type UpdateFilterTextsMutationResult =
-  Apollo.MutationResult<IUpdateFilterTextsMutation>;
-export type UpdateFilterTextsMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateFilterTextsMutation,
-  IUpdateFilterTextsMutationVariables
->;
-export const CreateLanguageDocument = gql`
-  mutation CreateLanguage($language: CreateLanguageInput!) {
-    createLanguage(language: $language) {
-      ...LanguageFragment
-    }
-  }
-  ${LanguageFragmentFragmentDoc}
-`;
-export type ICreateLanguageMutationFn = Apollo.MutationFunction<
-  ICreateLanguageMutation,
-  ICreateLanguageMutationVariables
->;
-
-/**
- * __useCreateLanguageMutation__
- *
- * To run a mutation, you first call `useCreateLanguageMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateLanguageMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createLanguageMutation, { data, loading, error }] = useCreateLanguageMutation({
- *   variables: {
- *      language: // value for 'language'
- *   },
- * });
- */
-export function useCreateLanguageMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateLanguageMutation,
-    ICreateLanguageMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateLanguageMutation,
-    ICreateLanguageMutationVariables
-  >(CreateLanguageDocument, options);
-}
-export type CreateLanguageMutationHookResult = ReturnType<
-  typeof useCreateLanguageMutation
->;
-export type CreateLanguageMutationResult =
-  Apollo.MutationResult<ICreateLanguageMutation>;
-export type CreateLanguageMutationOptions = Apollo.BaseMutationOptions<
-  ICreateLanguageMutation,
-  ICreateLanguageMutationVariables
->;
-export const LanguageDocument = gql`
-  query Language($languageId: ID!) {
-    language(languageId: $languageId) {
-      ...LanguageFragment
-    }
-  }
-  ${LanguageFragmentFragmentDoc}
-`;
-
-/**
- * __useLanguageQuery__
- *
- * To run a query within a React component, call `useLanguageQuery` and pass it any options that fit your needs.
- * When your component renders, `useLanguageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useLanguageQuery({
- *   variables: {
- *      languageId: // value for 'languageId'
- *   },
- * });
- */
-export function useLanguageQuery(
-  baseOptions: Apollo.QueryHookOptions<ILanguageQuery, ILanguageQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ILanguageQuery, ILanguageQueryVariables>(
-    LanguageDocument,
-    options,
-  );
-}
-export function useLanguageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ILanguageQuery,
-    ILanguageQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ILanguageQuery, ILanguageQueryVariables>(
-    LanguageDocument,
-    options,
-  );
-}
-export type LanguageQueryHookResult = ReturnType<typeof useLanguageQuery>;
-export type LanguageLazyQueryHookResult = ReturnType<
-  typeof useLanguageLazyQuery
->;
-export type LanguageQueryResult = Apollo.QueryResult<
-  ILanguageQuery,
-  ILanguageQueryVariables
->;
-export const LanguagesDocument = gql`
-  query Languages(
-    $queryString: String
-    $offset: Int
-    $limit: Int
-    $includeInactive: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    languages(
-      queryString: $queryString
-      offset: $offset
-      limit: $limit
-      includeInactive: $includeInactive
-      sort: $sort
-    ) {
-      ...LanguageFragment
-    }
-    languagesCount(includeInactive: $includeInactive, queryString: $queryString)
-  }
-  ${LanguageFragmentFragmentDoc}
-`;
-
-/**
- * __useLanguagesQuery__
- *
- * To run a query within a React component, call `useLanguagesQuery` and pass it any options that fit your needs.
- * When your component renders, `useLanguagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useLanguagesQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *      includeInactive: // value for 'includeInactive'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useLanguagesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ILanguagesQuery,
-    ILanguagesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ILanguagesQuery, ILanguagesQueryVariables>(
-    LanguagesDocument,
-    options,
-  );
-}
-export function useLanguagesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ILanguagesQuery,
-    ILanguagesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ILanguagesQuery, ILanguagesQueryVariables>(
-    LanguagesDocument,
-    options,
-  );
-}
-export type LanguagesQueryHookResult = ReturnType<typeof useLanguagesQuery>;
-export type LanguagesLazyQueryHookResult = ReturnType<
-  typeof useLanguagesLazyQuery
->;
-export type LanguagesQueryResult = Apollo.QueryResult<
-  ILanguagesQuery,
-  ILanguagesQueryVariables
->;
-export const RemoveLanguageDocument = gql`
-  mutation RemoveLanguage($languageId: ID!) {
-    removeLanguage(languageId: $languageId) {
-      ...LanguageFragment
-    }
-  }
-  ${LanguageFragmentFragmentDoc}
-`;
-export type IRemoveLanguageMutationFn = Apollo.MutationFunction<
-  IRemoveLanguageMutation,
-  IRemoveLanguageMutationVariables
->;
-
-/**
- * __useRemoveLanguageMutation__
- *
- * To run a mutation, you first call `useRemoveLanguageMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveLanguageMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeLanguageMutation, { data, loading, error }] = useRemoveLanguageMutation({
- *   variables: {
- *      languageId: // value for 'languageId'
- *   },
- * });
- */
-export function useRemoveLanguageMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveLanguageMutation,
-    IRemoveLanguageMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveLanguageMutation,
-    IRemoveLanguageMutationVariables
-  >(RemoveLanguageDocument, options);
-}
-export type RemoveLanguageMutationHookResult = ReturnType<
-  typeof useRemoveLanguageMutation
->;
-export type RemoveLanguageMutationResult =
-  Apollo.MutationResult<IRemoveLanguageMutation>;
-export type RemoveLanguageMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveLanguageMutation,
-  IRemoveLanguageMutationVariables
->;
-export const UpdateLanguageDocument = gql`
-  mutation UpdateLanguage($language: UpdateLanguageInput!, $languageId: ID!) {
-    updateLanguage(language: $language, languageId: $languageId) {
-      ...LanguageFragment
-    }
-  }
-  ${LanguageFragmentFragmentDoc}
-`;
-export type IUpdateLanguageMutationFn = Apollo.MutationFunction<
-  IUpdateLanguageMutation,
-  IUpdateLanguageMutationVariables
->;
-
-/**
- * __useUpdateLanguageMutation__
- *
- * To run a mutation, you first call `useUpdateLanguageMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateLanguageMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateLanguageMutation, { data, loading, error }] = useUpdateLanguageMutation({
- *   variables: {
- *      language: // value for 'language'
- *      languageId: // value for 'languageId'
- *   },
- * });
- */
-export function useUpdateLanguageMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateLanguageMutation,
-    IUpdateLanguageMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateLanguageMutation,
-    IUpdateLanguageMutationVariables
-  >(UpdateLanguageDocument, options);
-}
-export type UpdateLanguageMutationHookResult = ReturnType<
-  typeof useUpdateLanguageMutation
->;
-export type UpdateLanguageMutationResult =
-  Apollo.MutationResult<IUpdateLanguageMutation>;
-export type UpdateLanguageMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateLanguageMutation,
-  IUpdateLanguageMutationVariables
->;
-export const ConfirmOrderDocument = gql`
-  mutation ConfirmOrder($orderId: ID!) {
-    confirmOrder(orderId: $orderId) {
-      _id
-    }
-  }
-`;
-export type IConfirmOrderMutationFn = Apollo.MutationFunction<
-  IConfirmOrderMutation,
-  IConfirmOrderMutationVariables
->;
-
-/**
- * __useConfirmOrderMutation__
- *
- * To run a mutation, you first call `useConfirmOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useConfirmOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [confirmOrderMutation, { data, loading, error }] = useConfirmOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useConfirmOrderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IConfirmOrderMutation,
-    IConfirmOrderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IConfirmOrderMutation,
-    IConfirmOrderMutationVariables
-  >(ConfirmOrderDocument, options);
-}
-export type ConfirmOrderMutationHookResult = ReturnType<
-  typeof useConfirmOrderMutation
->;
-export type ConfirmOrderMutationResult =
-  Apollo.MutationResult<IConfirmOrderMutation>;
-export type ConfirmOrderMutationOptions = Apollo.BaseMutationOptions<
-  IConfirmOrderMutation,
-  IConfirmOrderMutationVariables
->;
-export const DeliverOrderDocument = gql`
-  mutation DeliverOrder($orderId: ID!) {
-    deliverOrder(orderId: $orderId) {
-      _id
-    }
-  }
-`;
-export type IDeliverOrderMutationFn = Apollo.MutationFunction<
-  IDeliverOrderMutation,
-  IDeliverOrderMutationVariables
->;
-
-/**
- * __useDeliverOrderMutation__
- *
- * To run a mutation, you first call `useDeliverOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeliverOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deliverOrderMutation, { data, loading, error }] = useDeliverOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useDeliverOrderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IDeliverOrderMutation,
-    IDeliverOrderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IDeliverOrderMutation,
-    IDeliverOrderMutationVariables
-  >(DeliverOrderDocument, options);
-}
-export type DeliverOrderMutationHookResult = ReturnType<
-  typeof useDeliverOrderMutation
->;
-export type DeliverOrderMutationResult =
-  Apollo.MutationResult<IDeliverOrderMutation>;
-export type DeliverOrderMutationOptions = Apollo.BaseMutationOptions<
-  IDeliverOrderMutation,
-  IDeliverOrderMutationVariables
->;
-export const OrderDocument = gql`
-  query Order($orderId: ID!) {
-    order(orderId: $orderId) {
-      ...OrderDetailFragment
-    }
-  }
-  ${OrderDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useOrderQuery__
- *
- * To run a query within a React component, call `useOrderQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrderQuery({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useOrderQuery(
-  baseOptions: Apollo.QueryHookOptions<IOrderQuery, IOrderQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IOrderQuery, IOrderQueryVariables>(
-    OrderDocument,
-    options,
-  );
-}
-export function useOrderLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<IOrderQuery, IOrderQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IOrderQuery, IOrderQueryVariables>(
-    OrderDocument,
-    options,
-  );
-}
-export type OrderQueryHookResult = ReturnType<typeof useOrderQuery>;
-export type OrderLazyQueryHookResult = ReturnType<typeof useOrderLazyQuery>;
-export type OrderQueryResult = Apollo.QueryResult<
-  IOrderQuery,
-  IOrderQueryVariables
->;
-export const OrderStatusDocument = gql`
-  query OrderStatus {
-    orderStatusType: __type(name: "OrderStatus") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useOrderStatusQuery__
- *
- * To run a query within a React component, call `useOrderStatusQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrderStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrderStatusQuery({
- *   variables: {
- *   },
- * });
- */
-export function useOrderStatusQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IOrderStatusQuery,
-    IOrderStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IOrderStatusQuery, IOrderStatusQueryVariables>(
-    OrderStatusDocument,
-    options,
-  );
-}
-export function useOrderStatusLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IOrderStatusQuery,
-    IOrderStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IOrderStatusQuery, IOrderStatusQueryVariables>(
-    OrderStatusDocument,
-    options,
-  );
-}
-export type OrderStatusQueryHookResult = ReturnType<typeof useOrderStatusQuery>;
-export type OrderStatusLazyQueryHookResult = ReturnType<
-  typeof useOrderStatusLazyQuery
->;
-export type OrderStatusQueryResult = Apollo.QueryResult<
-  IOrderStatusQuery,
-  IOrderStatusQueryVariables
->;
-export const OrdersDocument = gql`
-  query Orders(
-    $limit: Int
-    $offset: Int
-    $includeCarts: Boolean
-    $queryString: String
-    $sort: [SortOptionInput!]
-  ) {
-    orders(
-      limit: $limit
-      offset: $offset
-      includeCarts: $includeCarts
-      queryString: $queryString
-      sort: $sort
-    ) {
-      ...OrderFragment
-    }
-    ordersCount
-  }
-  ${OrderFragmentFragmentDoc}
-`;
-
-/**
- * __useOrdersQuery__
- *
- * To run a query within a React component, call `useOrdersQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrdersQuery({
- *   variables: {
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeCarts: // value for 'includeCarts'
- *      queryString: // value for 'queryString'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useOrdersQuery(
-  baseOptions?: Apollo.QueryHookOptions<IOrdersQuery, IOrdersQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IOrdersQuery, IOrdersQueryVariables>(
-    OrdersDocument,
-    options,
-  );
-}
-export function useOrdersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IOrdersQuery,
-    IOrdersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IOrdersQuery, IOrdersQueryVariables>(
-    OrdersDocument,
-    options,
-  );
-}
-export type OrdersQueryHookResult = ReturnType<typeof useOrdersQuery>;
-export type OrdersLazyQueryHookResult = ReturnType<typeof useOrdersLazyQuery>;
-export type OrdersQueryResult = Apollo.QueryResult<
-  IOrdersQuery,
-  IOrdersQueryVariables
->;
-export const PayOrderDocument = gql`
-  mutation PayOrder($orderId: ID!) {
-    payOrder(orderId: $orderId) {
-      _id
-    }
-  }
-`;
-export type IPayOrderMutationFn = Apollo.MutationFunction<
-  IPayOrderMutation,
-  IPayOrderMutationVariables
->;
-
-/**
- * __usePayOrderMutation__
- *
- * To run a mutation, you first call `usePayOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePayOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [payOrderMutation, { data, loading, error }] = usePayOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function usePayOrderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IPayOrderMutation,
-    IPayOrderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IPayOrderMutation, IPayOrderMutationVariables>(
-    PayOrderDocument,
-    options,
-  );
-}
-export type PayOrderMutationHookResult = ReturnType<typeof usePayOrderMutation>;
-export type PayOrderMutationResult = Apollo.MutationResult<IPayOrderMutation>;
-export type PayOrderMutationOptions = Apollo.BaseMutationOptions<
-  IPayOrderMutation,
-  IPayOrderMutationVariables
->;
-export const RejectOrderDocument = gql`
-  mutation RejectOrder($orderId: ID!) {
-    rejectOrder(orderId: $orderId) {
-      _id
-    }
-  }
-`;
-export type IRejectOrderMutationFn = Apollo.MutationFunction<
-  IRejectOrderMutation,
-  IRejectOrderMutationVariables
->;
-
-/**
- * __useRejectOrderMutation__
- *
- * To run a mutation, you first call `useRejectOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRejectOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [rejectOrderMutation, { data, loading, error }] = useRejectOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useRejectOrderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRejectOrderMutation,
-    IRejectOrderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRejectOrderMutation,
-    IRejectOrderMutationVariables
-  >(RejectOrderDocument, options);
-}
-export type RejectOrderMutationHookResult = ReturnType<
-  typeof useRejectOrderMutation
->;
-export type RejectOrderMutationResult =
-  Apollo.MutationResult<IRejectOrderMutation>;
-export type RejectOrderMutationOptions = Apollo.BaseMutationOptions<
-  IRejectOrderMutation,
-  IRejectOrderMutationVariables
->;
-export const RemoveOrderDocument = gql`
-  mutation RemoveOrder($orderId: ID!) {
-    removeOrder(orderId: $orderId) {
-      _id
-    }
-  }
-`;
-export type IRemoveOrderMutationFn = Apollo.MutationFunction<
-  IRemoveOrderMutation,
-  IRemoveOrderMutationVariables
->;
-
-/**
- * __useRemoveOrderMutation__
- *
- * To run a mutation, you first call `useRemoveOrderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveOrderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeOrderMutation, { data, loading, error }] = useRemoveOrderMutation({
- *   variables: {
- *      orderId: // value for 'orderId'
- *   },
- * });
- */
-export function useRemoveOrderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveOrderMutation,
-    IRemoveOrderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveOrderMutation,
-    IRemoveOrderMutationVariables
-  >(RemoveOrderDocument, options);
-}
-export type RemoveOrderMutationHookResult = ReturnType<
-  typeof useRemoveOrderMutation
->;
-export type RemoveOrderMutationResult =
-  Apollo.MutationResult<IRemoveOrderMutation>;
-export type RemoveOrderMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveOrderMutation,
-  IRemoveOrderMutationVariables
->;
-export const UserOrderDocument = gql`
-  query UserOrder(
-    $userId: ID
-    $queryString: String
-    $sort: [SortOptionInput!]
-  ) {
-    user(userId: $userId) {
-      orders(queryString: $queryString, sort: $sort) {
-        ...OrderFragment
-      }
-    }
-  }
-  ${OrderFragmentFragmentDoc}
-`;
-
-/**
- * __useUserOrderQuery__
- *
- * To run a query within a React component, call `useUserOrderQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserOrderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserOrderQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      queryString: // value for 'queryString'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useUserOrderQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IUserOrderQuery,
-    IUserOrderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUserOrderQuery, IUserOrderQueryVariables>(
-    UserOrderDocument,
-    options,
-  );
-}
-export function useUserOrderLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserOrderQuery,
-    IUserOrderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IUserOrderQuery, IUserOrderQueryVariables>(
-    UserOrderDocument,
-    options,
-  );
-}
-export type UserOrderQueryHookResult = ReturnType<typeof useUserOrderQuery>;
-export type UserOrderLazyQueryHookResult = ReturnType<
-  typeof useUserOrderLazyQuery
->;
-export type UserOrderQueryResult = Apollo.QueryResult<
-  IUserOrderQuery,
-  IUserOrderQueryVariables
->;
-export const CreatePaymentProviderDocument = gql`
-  mutation CreatePaymentProvider(
-    $paymentProvider: CreatePaymentProviderInput!
-  ) {
-    createPaymentProvider(paymentProvider: $paymentProvider) {
-      ...PaymentProviderFragment
-    }
-  }
-  ${PaymentProviderFragmentFragmentDoc}
-`;
-export type ICreatePaymentProviderMutationFn = Apollo.MutationFunction<
-  ICreatePaymentProviderMutation,
-  ICreatePaymentProviderMutationVariables
->;
-
-/**
- * __useCreatePaymentProviderMutation__
- *
- * To run a mutation, you first call `useCreatePaymentProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePaymentProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPaymentProviderMutation, { data, loading, error }] = useCreatePaymentProviderMutation({
- *   variables: {
- *      paymentProvider: // value for 'paymentProvider'
- *   },
- * });
- */
-export function useCreatePaymentProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreatePaymentProviderMutation,
-    ICreatePaymentProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreatePaymentProviderMutation,
-    ICreatePaymentProviderMutationVariables
-  >(CreatePaymentProviderDocument, options);
-}
-export type CreatePaymentProviderMutationHookResult = ReturnType<
-  typeof useCreatePaymentProviderMutation
->;
-export type CreatePaymentProviderMutationResult =
-  Apollo.MutationResult<ICreatePaymentProviderMutation>;
-export type CreatePaymentProviderMutationOptions = Apollo.BaseMutationOptions<
-  ICreatePaymentProviderMutation,
-  ICreatePaymentProviderMutationVariables
->;
-export const PaymentInterfacesDocument = gql`
-  query PaymentInterfaces($providerType: PaymentProviderType!) {
-    paymentInterfaces(type: $providerType) {
-      _id
-      value: _id
-      label
-    }
-  }
-`;
-
-/**
- * __usePaymentInterfacesQuery__
- *
- * To run a query within a React component, call `usePaymentInterfacesQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaymentInterfacesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePaymentInterfacesQuery({
- *   variables: {
- *      providerType: // value for 'providerType'
- *   },
- * });
- */
-export function usePaymentInterfacesQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IPaymentInterfacesQuery,
-    IPaymentInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IPaymentInterfacesQuery,
-    IPaymentInterfacesQueryVariables
-  >(PaymentInterfacesDocument, options);
-}
-export function usePaymentInterfacesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IPaymentInterfacesQuery,
-    IPaymentInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IPaymentInterfacesQuery,
-    IPaymentInterfacesQueryVariables
-  >(PaymentInterfacesDocument, options);
-}
-export type PaymentInterfacesQueryHookResult = ReturnType<
-  typeof usePaymentInterfacesQuery
->;
-export type PaymentInterfacesLazyQueryHookResult = ReturnType<
-  typeof usePaymentInterfacesLazyQuery
->;
-export type PaymentInterfacesQueryResult = Apollo.QueryResult<
-  IPaymentInterfacesQuery,
-  IPaymentInterfacesQueryVariables
->;
-export const PaymentProviderDocument = gql`
-  query PaymentProvider($paymentProviderId: ID!) {
-    paymentProvider(paymentProviderId: $paymentProviderId) {
-      ...PaymentProviderFragment
-    }
-  }
-  ${PaymentProviderFragmentFragmentDoc}
-`;
-
-/**
- * __usePaymentProviderQuery__
- *
- * To run a query within a React component, call `usePaymentProviderQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaymentProviderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePaymentProviderQuery({
- *   variables: {
- *      paymentProviderId: // value for 'paymentProviderId'
- *   },
- * });
- */
-export function usePaymentProviderQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IPaymentProviderQuery,
-    IPaymentProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IPaymentProviderQuery, IPaymentProviderQueryVariables>(
-    PaymentProviderDocument,
-    options,
-  );
-}
-export function usePaymentProviderLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IPaymentProviderQuery,
-    IPaymentProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IPaymentProviderQuery,
-    IPaymentProviderQueryVariables
-  >(PaymentProviderDocument, options);
-}
-export type PaymentProviderQueryHookResult = ReturnType<
-  typeof usePaymentProviderQuery
->;
-export type PaymentProviderLazyQueryHookResult = ReturnType<
-  typeof usePaymentProviderLazyQuery
->;
-export type PaymentProviderQueryResult = Apollo.QueryResult<
-  IPaymentProviderQuery,
-  IPaymentProviderQueryVariables
->;
-export const PaymentProvidersTypeDocument = gql`
-  query PaymentProvidersType {
-    paymentProviderType: __type(name: "PaymentProviderType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __usePaymentProvidersTypeQuery__
- *
- * To run a query within a React component, call `usePaymentProvidersTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaymentProvidersTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePaymentProvidersTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function usePaymentProvidersTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IPaymentProvidersTypeQuery,
-    IPaymentProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IPaymentProvidersTypeQuery,
-    IPaymentProvidersTypeQueryVariables
-  >(PaymentProvidersTypeDocument, options);
-}
-export function usePaymentProvidersTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IPaymentProvidersTypeQuery,
-    IPaymentProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IPaymentProvidersTypeQuery,
-    IPaymentProvidersTypeQueryVariables
-  >(PaymentProvidersTypeDocument, options);
-}
-export type PaymentProvidersTypeQueryHookResult = ReturnType<
-  typeof usePaymentProvidersTypeQuery
->;
-export type PaymentProvidersTypeLazyQueryHookResult = ReturnType<
-  typeof usePaymentProvidersTypeLazyQuery
->;
-export type PaymentProvidersTypeQueryResult = Apollo.QueryResult<
-  IPaymentProvidersTypeQuery,
-  IPaymentProvidersTypeQueryVariables
->;
-export const PaymentProvidersDocument = gql`
-  query PaymentProviders($type: PaymentProviderType) {
-    paymentProviders(type: $type) {
-      ...PaymentProviderFragment
-    }
-  }
-  ${PaymentProviderFragmentFragmentDoc}
-`;
-
-/**
- * __usePaymentProvidersQuery__
- *
- * To run a query within a React component, call `usePaymentProvidersQuery` and pass it any options that fit your needs.
- * When your component renders, `usePaymentProvidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePaymentProvidersQuery({
- *   variables: {
- *      type: // value for 'type'
- *   },
- * });
- */
-export function usePaymentProvidersQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IPaymentProvidersQuery,
-    IPaymentProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IPaymentProvidersQuery,
-    IPaymentProvidersQueryVariables
-  >(PaymentProvidersDocument, options);
-}
-export function usePaymentProvidersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IPaymentProvidersQuery,
-    IPaymentProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IPaymentProvidersQuery,
-    IPaymentProvidersQueryVariables
-  >(PaymentProvidersDocument, options);
-}
-export type PaymentProvidersQueryHookResult = ReturnType<
-  typeof usePaymentProvidersQuery
->;
-export type PaymentProvidersLazyQueryHookResult = ReturnType<
-  typeof usePaymentProvidersLazyQuery
->;
-export type PaymentProvidersQueryResult = Apollo.QueryResult<
-  IPaymentProvidersQuery,
-  IPaymentProvidersQueryVariables
->;
-export const OrderPaymentStatusDocument = gql`
-  query OrderPaymentStatus {
-    paymentStatusTypes: __type(name: "OrderPaymentStatus") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useOrderPaymentStatusQuery__
- *
- * To run a query within a React component, call `useOrderPaymentStatusQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrderPaymentStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrderPaymentStatusQuery({
- *   variables: {
- *   },
- * });
- */
-export function useOrderPaymentStatusQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IOrderPaymentStatusQuery,
-    IOrderPaymentStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IOrderPaymentStatusQuery,
-    IOrderPaymentStatusQueryVariables
-  >(OrderPaymentStatusDocument, options);
-}
-export function useOrderPaymentStatusLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IOrderPaymentStatusQuery,
-    IOrderPaymentStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IOrderPaymentStatusQuery,
-    IOrderPaymentStatusQueryVariables
-  >(OrderPaymentStatusDocument, options);
-}
-export type OrderPaymentStatusQueryHookResult = ReturnType<
-  typeof useOrderPaymentStatusQuery
->;
-export type OrderPaymentStatusLazyQueryHookResult = ReturnType<
-  typeof useOrderPaymentStatusLazyQuery
->;
-export type OrderPaymentStatusQueryResult = Apollo.QueryResult<
-  IOrderPaymentStatusQuery,
-  IOrderPaymentStatusQueryVariables
->;
-export const RemovePaymentProviderDocument = gql`
-  mutation RemovePaymentProvider($paymentProviderId: ID!) {
-    removePaymentProvider(paymentProviderId: $paymentProviderId) {
-      _id
-    }
-  }
-`;
-export type IRemovePaymentProviderMutationFn = Apollo.MutationFunction<
-  IRemovePaymentProviderMutation,
-  IRemovePaymentProviderMutationVariables
->;
-
-/**
- * __useRemovePaymentProviderMutation__
- *
- * To run a mutation, you first call `useRemovePaymentProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemovePaymentProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removePaymentProviderMutation, { data, loading, error }] = useRemovePaymentProviderMutation({
- *   variables: {
- *      paymentProviderId: // value for 'paymentProviderId'
- *   },
- * });
- */
-export function useRemovePaymentProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemovePaymentProviderMutation,
-    IRemovePaymentProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemovePaymentProviderMutation,
-    IRemovePaymentProviderMutationVariables
-  >(RemovePaymentProviderDocument, options);
-}
-export type RemovePaymentProviderMutationHookResult = ReturnType<
-  typeof useRemovePaymentProviderMutation
->;
-export type RemovePaymentProviderMutationResult =
-  Apollo.MutationResult<IRemovePaymentProviderMutation>;
-export type RemovePaymentProviderMutationOptions = Apollo.BaseMutationOptions<
-  IRemovePaymentProviderMutation,
-  IRemovePaymentProviderMutationVariables
->;
-export const UpdatePaymentProviderDocument = gql`
-  mutation UpdatePaymentProvider(
-    $paymentProvider: UpdateProviderInput!
-    $paymentProviderId: ID!
-  ) {
-    updatePaymentProvider(
-      paymentProvider: $paymentProvider
-      paymentProviderId: $paymentProviderId
-    ) {
-      ...PaymentProviderFragment
-    }
-  }
-  ${PaymentProviderFragmentFragmentDoc}
-`;
-export type IUpdatePaymentProviderMutationFn = Apollo.MutationFunction<
-  IUpdatePaymentProviderMutation,
-  IUpdatePaymentProviderMutationVariables
->;
-
-/**
- * __useUpdatePaymentProviderMutation__
- *
- * To run a mutation, you first call `useUpdatePaymentProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdatePaymentProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updatePaymentProviderMutation, { data, loading, error }] = useUpdatePaymentProviderMutation({
- *   variables: {
- *      paymentProvider: // value for 'paymentProvider'
- *      paymentProviderId: // value for 'paymentProviderId'
- *   },
- * });
- */
-export function useUpdatePaymentProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdatePaymentProviderMutation,
-    IUpdatePaymentProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdatePaymentProviderMutation,
-    IUpdatePaymentProviderMutationVariables
-  >(UpdatePaymentProviderDocument, options);
-}
-export type UpdatePaymentProviderMutationHookResult = ReturnType<
-  typeof useUpdatePaymentProviderMutation
->;
-export type UpdatePaymentProviderMutationResult =
-  Apollo.MutationResult<IUpdatePaymentProviderMutation>;
-export type UpdatePaymentProviderMutationOptions = Apollo.BaseMutationOptions<
-  IUpdatePaymentProviderMutation,
-  IUpdatePaymentProviderMutationVariables
->;
-export const AddProductReviewVoteDocument = gql`
-  mutation AddProductReviewVote(
-    $productReviewId: ID!
-    $type: ProductReviewVoteType!
-    $meta: JSON
-  ) {
-    addProductReviewVote(
-      productReviewId: $productReviewId
-      type: $type
-      meta: $meta
-    ) {
-      ...ProductReviewDetailFragment
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-export type IAddProductReviewVoteMutationFn = Apollo.MutationFunction<
-  IAddProductReviewVoteMutation,
-  IAddProductReviewVoteMutationVariables
->;
-
-/**
- * __useAddProductReviewVoteMutation__
- *
- * To run a mutation, you first call `useAddProductReviewVoteMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddProductReviewVoteMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addProductReviewVoteMutation, { data, loading, error }] = useAddProductReviewVoteMutation({
- *   variables: {
- *      productReviewId: // value for 'productReviewId'
- *      type: // value for 'type'
- *      meta: // value for 'meta'
- *   },
- * });
- */
-export function useAddProductReviewVoteMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddProductReviewVoteMutation,
-    IAddProductReviewVoteMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddProductReviewVoteMutation,
-    IAddProductReviewVoteMutationVariables
-  >(AddProductReviewVoteDocument, options);
-}
-export type AddProductReviewVoteMutationHookResult = ReturnType<
-  typeof useAddProductReviewVoteMutation
->;
-export type AddProductReviewVoteMutationResult =
-  Apollo.MutationResult<IAddProductReviewVoteMutation>;
-export type AddProductReviewVoteMutationOptions = Apollo.BaseMutationOptions<
-  IAddProductReviewVoteMutation,
-  IAddProductReviewVoteMutationVariables
->;
-export const CreateProductReviewDocument = gql`
-  mutation CreateProductReview(
-    $productId: ID!
-    $productReview: ProductReviewInput!
-  ) {
-    createProductReview(productId: $productId, productReview: $productReview) {
-      ...ProductReviewDetailFragment
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-export type ICreateProductReviewMutationFn = Apollo.MutationFunction<
-  ICreateProductReviewMutation,
-  ICreateProductReviewMutationVariables
->;
-
-/**
- * __useCreateProductReviewMutation__
- *
- * To run a mutation, you first call `useCreateProductReviewMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProductReviewMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProductReviewMutation, { data, loading, error }] = useCreateProductReviewMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      productReview: // value for 'productReview'
- *   },
- * });
- */
-export function useCreateProductReviewMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateProductReviewMutation,
-    ICreateProductReviewMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateProductReviewMutation,
-    ICreateProductReviewMutationVariables
-  >(CreateProductReviewDocument, options);
-}
-export type CreateProductReviewMutationHookResult = ReturnType<
-  typeof useCreateProductReviewMutation
->;
-export type CreateProductReviewMutationResult =
-  Apollo.MutationResult<ICreateProductReviewMutation>;
-export type CreateProductReviewMutationOptions = Apollo.BaseMutationOptions<
-  ICreateProductReviewMutation,
-  ICreateProductReviewMutationVariables
->;
-export const ProductReviewDocument = gql`
-  query ProductReview($productReviewId: ID!) {
-    productReview(productReviewId: $productReviewId) {
-      ...ProductReviewDetailFragment
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useProductReviewQuery__
- *
- * To run a query within a React component, call `useProductReviewQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductReviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductReviewQuery({
- *   variables: {
- *      productReviewId: // value for 'productReviewId'
- *   },
- * });
- */
-export function useProductReviewQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IProductReviewQuery,
-    IProductReviewQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductReviewQuery, IProductReviewQueryVariables>(
-    ProductReviewDocument,
-    options,
-  );
-}
-export function useProductReviewLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductReviewQuery,
-    IProductReviewQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductReviewQuery, IProductReviewQueryVariables>(
-    ProductReviewDocument,
-    options,
-  );
-}
-export type ProductReviewQueryHookResult = ReturnType<
-  typeof useProductReviewQuery
->;
-export type ProductReviewLazyQueryHookResult = ReturnType<
-  typeof useProductReviewLazyQuery
->;
-export type ProductReviewQueryResult = Apollo.QueryResult<
-  IProductReviewQuery,
-  IProductReviewQueryVariables
->;
-export const ProductReviewByProductDocument = gql`
-  query ProductReviewByProduct(
-    $productId: ID
-    $slug: String
-    $limit: Int
-    $offset: Int
-    $sort: [SortOptionInput!]
-  ) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      reviews(limit: $limit, offset: $offset, sort: $sort) {
-        ...ProductReviewDetailFragment
-      }
-      reviewsCount
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useProductReviewByProductQuery__
- *
- * To run a query within a React component, call `useProductReviewByProductQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductReviewByProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductReviewByProductQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useProductReviewByProductQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductReviewByProductQuery,
-    IProductReviewByProductQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductReviewByProductQuery,
-    IProductReviewByProductQueryVariables
-  >(ProductReviewByProductDocument, options);
-}
-export function useProductReviewByProductLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductReviewByProductQuery,
-    IProductReviewByProductQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductReviewByProductQuery,
-    IProductReviewByProductQueryVariables
-  >(ProductReviewByProductDocument, options);
-}
-export type ProductReviewByProductQueryHookResult = ReturnType<
-  typeof useProductReviewByProductQuery
->;
-export type ProductReviewByProductLazyQueryHookResult = ReturnType<
-  typeof useProductReviewByProductLazyQuery
->;
-export type ProductReviewByProductQueryResult = Apollo.QueryResult<
-  IProductReviewByProductQuery,
-  IProductReviewByProductQueryVariables
->;
-export const RemoveProductReviewDocument = gql`
-  mutation RemoveProductReview($productReviewId: ID!) {
-    removeProductReview(productReviewId: $productReviewId) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductReviewMutationFn = Apollo.MutationFunction<
-  IRemoveProductReviewMutation,
-  IRemoveProductReviewMutationVariables
->;
-
-/**
- * __useRemoveProductReviewMutation__
- *
- * To run a mutation, you first call `useRemoveProductReviewMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductReviewMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductReviewMutation, { data, loading, error }] = useRemoveProductReviewMutation({
- *   variables: {
- *      productReviewId: // value for 'productReviewId'
- *   },
- * });
- */
-export function useRemoveProductReviewMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductReviewMutation,
-    IRemoveProductReviewMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductReviewMutation,
-    IRemoveProductReviewMutationVariables
-  >(RemoveProductReviewDocument, options);
-}
-export type RemoveProductReviewMutationHookResult = ReturnType<
-  typeof useRemoveProductReviewMutation
->;
-export type RemoveProductReviewMutationResult =
-  Apollo.MutationResult<IRemoveProductReviewMutation>;
-export type RemoveProductReviewMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductReviewMutation,
-  IRemoveProductReviewMutationVariables
->;
-export const RemoveProductReviewVoteDocument = gql`
-  mutation removeProductReviewVote(
-    $productReviewId: ID!
-    $type: ProductReviewVoteType!
-  ) {
-    removeProductReviewVote(productReviewId: $productReviewId, type: $type) {
-      ...ProductReviewDetailFragment
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-export type IRemoveProductReviewVoteMutationFn = Apollo.MutationFunction<
-  IRemoveProductReviewVoteMutation,
-  IRemoveProductReviewVoteMutationVariables
->;
-
-/**
- * __useRemoveProductReviewVoteMutation__
- *
- * To run a mutation, you first call `useRemoveProductReviewVoteMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductReviewVoteMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductReviewVoteMutation, { data, loading, error }] = useRemoveProductReviewVoteMutation({
- *   variables: {
- *      productReviewId: // value for 'productReviewId'
- *      type: // value for 'type'
- *   },
- * });
- */
-export function useRemoveProductReviewVoteMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductReviewVoteMutation,
-    IRemoveProductReviewVoteMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductReviewVoteMutation,
-    IRemoveProductReviewVoteMutationVariables
-  >(RemoveProductReviewVoteDocument, options);
-}
-export type RemoveProductReviewVoteMutationHookResult = ReturnType<
-  typeof useRemoveProductReviewVoteMutation
->;
-export type RemoveProductReviewVoteMutationResult =
-  Apollo.MutationResult<IRemoveProductReviewVoteMutation>;
-export type RemoveProductReviewVoteMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductReviewVoteMutation,
-  IRemoveProductReviewVoteMutationVariables
->;
-export const UserProductReviewsDocument = gql`
-  query UserProductReviews(
-    $userId: ID!
-    $limit: Int
-    $offset: Int
-    $sort: [SortOptionInput!]
-  ) {
-    user(userId: $userId) {
-      _id
-      reviews(limit: $limit, offset: $offset, sort: $sort) {
-        ...ProductReviewDetailFragment
-        product {
-          ...ProductBriefFragment
-        }
-      }
-      reviewsCount
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useUserProductReviewsQuery__
- *
- * To run a query within a React component, call `useUserProductReviewsQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserProductReviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserProductReviewsQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useUserProductReviewsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IUserProductReviewsQuery,
-    IUserProductReviewsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IUserProductReviewsQuery,
-    IUserProductReviewsQueryVariables
-  >(UserProductReviewsDocument, options);
-}
-export function useUserProductReviewsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserProductReviewsQuery,
-    IUserProductReviewsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IUserProductReviewsQuery,
-    IUserProductReviewsQueryVariables
-  >(UserProductReviewsDocument, options);
-}
-export type UserProductReviewsQueryHookResult = ReturnType<
-  typeof useUserProductReviewsQuery
->;
-export type UserProductReviewsLazyQueryHookResult = ReturnType<
-  typeof useUserProductReviewsLazyQuery
->;
-export type UserProductReviewsQueryResult = Apollo.QueryResult<
-  IUserProductReviewsQuery,
-  IUserProductReviewsQueryVariables
->;
-export const AddProductAssignmentDocument = gql`
-  mutation AddProductAssignment(
-    $proxyId: ID!
-    $productId: ID!
-    $vectors: [ProductAssignmentVectorInput!]!
-  ) {
-    addProductAssignment(
-      proxyId: $proxyId
-      productId: $productId
-      vectors: $vectors
-    ) {
-      _id
-    }
-  }
-`;
-export type IAddProductAssignmentMutationFn = Apollo.MutationFunction<
-  IAddProductAssignmentMutation,
-  IAddProductAssignmentMutationVariables
->;
-
-/**
- * __useAddProductAssignmentMutation__
- *
- * To run a mutation, you first call `useAddProductAssignmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddProductAssignmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addProductAssignmentMutation, { data, loading, error }] = useAddProductAssignmentMutation({
- *   variables: {
- *      proxyId: // value for 'proxyId'
- *      productId: // value for 'productId'
- *      vectors: // value for 'vectors'
- *   },
- * });
- */
-export function useAddProductAssignmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddProductAssignmentMutation,
-    IAddProductAssignmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddProductAssignmentMutation,
-    IAddProductAssignmentMutationVariables
-  >(AddProductAssignmentDocument, options);
-}
-export type AddProductAssignmentMutationHookResult = ReturnType<
-  typeof useAddProductAssignmentMutation
->;
-export type AddProductAssignmentMutationResult =
-  Apollo.MutationResult<IAddProductAssignmentMutation>;
-export type AddProductAssignmentMutationOptions = Apollo.BaseMutationOptions<
-  IAddProductAssignmentMutation,
-  IAddProductAssignmentMutationVariables
->;
-export const AddProductMediaDocument = gql`
-  mutation AddProductMedia($productId: ID!, $media: Upload!) {
-    addProductMedia(productId: $productId, media: $media) {
-      _id
-    }
-  }
-`;
-export type IAddProductMediaMutationFn = Apollo.MutationFunction<
-  IAddProductMediaMutation,
-  IAddProductMediaMutationVariables
->;
-
-/**
- * __useAddProductMediaMutation__
- *
- * To run a mutation, you first call `useAddProductMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddProductMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addProductMediaMutation, { data, loading, error }] = useAddProductMediaMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      media: // value for 'media'
- *   },
- * });
- */
-export function useAddProductMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddProductMediaMutation,
-    IAddProductMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAddProductMediaMutation,
-    IAddProductMediaMutationVariables
-  >(AddProductMediaDocument, options);
-}
-export type AddProductMediaMutationHookResult = ReturnType<
-  typeof useAddProductMediaMutation
->;
-export type AddProductMediaMutationResult =
-  Apollo.MutationResult<IAddProductMediaMutation>;
-export type AddProductMediaMutationOptions = Apollo.BaseMutationOptions<
-  IAddProductMediaMutation,
-  IAddProductMediaMutationVariables
->;
-export const CreateProductDocument = gql`
-  mutation CreateProduct($product: CreateProductInput!) {
-    createProduct(product: $product) {
-      ...ProductDetailFragment
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-export type ICreateProductMutationFn = Apollo.MutationFunction<
-  ICreateProductMutation,
-  ICreateProductMutationVariables
->;
-
-/**
- * __useCreateProductMutation__
- *
- * To run a mutation, you first call `useCreateProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProductMutation, { data, loading, error }] = useCreateProductMutation({
- *   variables: {
- *      product: // value for 'product'
- *   },
- * });
- */
-export function useCreateProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateProductMutation,
-    ICreateProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateProductMutation,
-    ICreateProductMutationVariables
-  >(CreateProductDocument, options);
-}
-export type CreateProductMutationHookResult = ReturnType<
-  typeof useCreateProductMutation
->;
-export type CreateProductMutationResult =
-  Apollo.MutationResult<ICreateProductMutation>;
-export type CreateProductMutationOptions = Apollo.BaseMutationOptions<
-  ICreateProductMutation,
-  ICreateProductMutationVariables
->;
-export const CreateProductBundleItemDocument = gql`
-  mutation CreateProductBundleItem(
-    $productId: ID!
-    $item: CreateProductBundleItemInput!
-  ) {
-    createProductBundleItem(productId: $productId, item: $item) {
-      _id
-    }
-  }
-`;
-export type ICreateProductBundleItemMutationFn = Apollo.MutationFunction<
-  ICreateProductBundleItemMutation,
-  ICreateProductBundleItemMutationVariables
->;
-
-/**
- * __useCreateProductBundleItemMutation__
- *
- * To run a mutation, you first call `useCreateProductBundleItemMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProductBundleItemMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProductBundleItemMutation, { data, loading, error }] = useCreateProductBundleItemMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      item: // value for 'item'
- *   },
- * });
- */
-export function useCreateProductBundleItemMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateProductBundleItemMutation,
-    ICreateProductBundleItemMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateProductBundleItemMutation,
-    ICreateProductBundleItemMutationVariables
-  >(CreateProductBundleItemDocument, options);
-}
-export type CreateProductBundleItemMutationHookResult = ReturnType<
-  typeof useCreateProductBundleItemMutation
->;
-export type CreateProductBundleItemMutationResult =
-  Apollo.MutationResult<ICreateProductBundleItemMutation>;
-export type CreateProductBundleItemMutationOptions = Apollo.BaseMutationOptions<
-  ICreateProductBundleItemMutation,
-  ICreateProductBundleItemMutationVariables
->;
-export const CreateProductVariationDocument = gql`
-  mutation CreateProductVariation(
-    $productId: ID!
-    $variation: CreateProductVariationInput!
-  ) {
-    createProductVariation(productId: $productId, variation: $variation) {
-      _id
-    }
-  }
-`;
-export type ICreateProductVariationMutationFn = Apollo.MutationFunction<
-  ICreateProductVariationMutation,
-  ICreateProductVariationMutationVariables
->;
-
-/**
- * __useCreateProductVariationMutation__
- *
- * To run a mutation, you first call `useCreateProductVariationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProductVariationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProductVariationMutation, { data, loading, error }] = useCreateProductVariationMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      variation: // value for 'variation'
- *   },
- * });
- */
-export function useCreateProductVariationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateProductVariationMutation,
-    ICreateProductVariationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateProductVariationMutation,
-    ICreateProductVariationMutationVariables
-  >(CreateProductVariationDocument, options);
-}
-export type CreateProductVariationMutationHookResult = ReturnType<
-  typeof useCreateProductVariationMutation
->;
-export type CreateProductVariationMutationResult =
-  Apollo.MutationResult<ICreateProductVariationMutation>;
-export type CreateProductVariationMutationOptions = Apollo.BaseMutationOptions<
-  ICreateProductVariationMutation,
-  ICreateProductVariationMutationVariables
->;
-export const CreateProductVariationOptionDocument = gql`
-  mutation CreateProductVariationOption(
-    $productVariationId: ID!
-    $option: CreateProductVariationOptionInput!
-  ) {
-    createProductVariationOption(
-      productVariationId: $productVariationId
-      option: $option
-    ) {
-      _id
-    }
-  }
-`;
-export type ICreateProductVariationOptionMutationFn = Apollo.MutationFunction<
-  ICreateProductVariationOptionMutation,
-  ICreateProductVariationOptionMutationVariables
->;
-
-/**
- * __useCreateProductVariationOptionMutation__
- *
- * To run a mutation, you first call `useCreateProductVariationOptionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateProductVariationOptionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createProductVariationOptionMutation, { data, loading, error }] = useCreateProductVariationOptionMutation({
- *   variables: {
- *      productVariationId: // value for 'productVariationId'
- *      option: // value for 'option'
- *   },
- * });
- */
-export function useCreateProductVariationOptionMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateProductVariationOptionMutation,
-    ICreateProductVariationOptionMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateProductVariationOptionMutation,
-    ICreateProductVariationOptionMutationVariables
-  >(CreateProductVariationOptionDocument, options);
-}
-export type CreateProductVariationOptionMutationHookResult = ReturnType<
-  typeof useCreateProductVariationOptionMutation
->;
-export type CreateProductVariationOptionMutationResult =
-  Apollo.MutationResult<ICreateProductVariationOptionMutation>;
-export type CreateProductVariationOptionMutationOptions =
-  Apollo.BaseMutationOptions<
-    ICreateProductVariationOptionMutation,
-    ICreateProductVariationOptionMutationVariables
-  >;
-export const ExportTokenDocument = gql`
-  mutation ExportToken(
-    $tokenId: ID!
-    $quantity: Int! = 1
-    $recipientWalletAddress: String!
-  ) {
-    exportToken(
-      tokenId: $tokenId
-      quantity: $quantity
-      recipientWalletAddress: $recipientWalletAddress
-    ) {
-      ...TokenFragment
-    }
-  }
-  ${TokenFragmentFragmentDoc}
-`;
-export type IExportTokenMutationFn = Apollo.MutationFunction<
-  IExportTokenMutation,
-  IExportTokenMutationVariables
->;
-
-/**
- * __useExportTokenMutation__
- *
- * To run a mutation, you first call `useExportTokenMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useExportTokenMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [exportTokenMutation, { data, loading, error }] = useExportTokenMutation({
- *   variables: {
- *      tokenId: // value for 'tokenId'
- *      quantity: // value for 'quantity'
- *      recipientWalletAddress: // value for 'recipientWalletAddress'
- *   },
- * });
- */
-export function useExportTokenMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IExportTokenMutation,
-    IExportTokenMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IExportTokenMutation,
-    IExportTokenMutationVariables
-  >(ExportTokenDocument, options);
-}
-export type ExportTokenMutationHookResult = ReturnType<
-  typeof useExportTokenMutation
->;
-export type ExportTokenMutationResult =
-  Apollo.MutationResult<IExportTokenMutation>;
-export type ExportTokenMutationOptions = Apollo.BaseMutationOptions<
-  IExportTokenMutation,
-  IExportTokenMutationVariables
->;
-export const ProductDocument = gql`
-  query Product($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      ...ProductDetailFragment
-      ... on SimpleProduct {
-        texts {
-          _id
-          title
-          subtitle
-          description
-        }
-      }
-      ... on ConfigurableProduct {
-        texts {
-          _id
-          title
-          subtitle
-          description
-        }
-      }
-      ... on PlanProduct {
-        texts {
-          _id
-          title
-          subtitle
-          description
-        }
-      }
-      ... on BundleProduct {
-        texts {
-          _id
-          title
-          subtitle
-          description
-        }
-      }
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useProductQuery__
- *
- * To run a query within a React component, call `useProductQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductQuery(
-  baseOptions?: Apollo.QueryHookOptions<IProductQuery, IProductQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductQuery, IProductQueryVariables>(
-    ProductDocument,
-    options,
-  );
-}
-export function useProductLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductQuery,
-    IProductQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductQuery, IProductQueryVariables>(
-    ProductDocument,
-    options,
-  );
-}
-export type ProductQueryHookResult = ReturnType<typeof useProductQuery>;
-export type ProductLazyQueryHookResult = ReturnType<typeof useProductLazyQuery>;
-export type ProductQueryResult = Apollo.QueryResult<
-  IProductQuery,
-  IProductQueryVariables
->;
-export const ProductAssignmentsDocument = gql`
-  query ProductAssignments($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on ConfigurableProduct {
-        texts {
-          _id
-          subtitle
-          slug
-          title
-        }
-        variations {
-          _id
-          key
-          texts {
-            _id
-            title
-          }
-          options {
-            _id
-            value
-            texts {
-              _id
-              title
-            }
-          }
-        }
-        assignments(includeInactive: true) {
-          ...ProductAssignmentFragment
-        }
-      }
-    }
-  }
-  ${ProductAssignmentFragmentFragmentDoc}
-`;
-
-/**
- * __useProductAssignmentsQuery__
- *
- * To run a query within a React component, call `useProductAssignmentsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductAssignmentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductAssignmentsQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductAssignmentsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductAssignmentsQuery,
-    IProductAssignmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductAssignmentsQuery,
-    IProductAssignmentsQueryVariables
-  >(ProductAssignmentsDocument, options);
-}
-export function useProductAssignmentsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductAssignmentsQuery,
-    IProductAssignmentsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductAssignmentsQuery,
-    IProductAssignmentsQueryVariables
-  >(ProductAssignmentsDocument, options);
-}
-export type ProductAssignmentsQueryHookResult = ReturnType<
-  typeof useProductAssignmentsQuery
->;
-export type ProductAssignmentsLazyQueryHookResult = ReturnType<
-  typeof useProductAssignmentsLazyQuery
->;
-export type ProductAssignmentsQueryResult = Apollo.QueryResult<
-  IProductAssignmentsQuery,
-  IProductAssignmentsQueryVariables
->;
-export const ProductBundleItemsDocument = gql`
-  query ProductBundleItems($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on BundleProduct {
-        bundleItems {
-          product {
-            ...ProductBriefFragment
-          }
-          quantity
-        }
-      }
-    }
-  }
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useProductBundleItemsQuery__
- *
- * To run a query within a React component, call `useProductBundleItemsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductBundleItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductBundleItemsQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductBundleItemsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductBundleItemsQuery,
-    IProductBundleItemsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductBundleItemsQuery,
-    IProductBundleItemsQueryVariables
-  >(ProductBundleItemsDocument, options);
-}
-export function useProductBundleItemsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductBundleItemsQuery,
-    IProductBundleItemsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductBundleItemsQuery,
-    IProductBundleItemsQueryVariables
-  >(ProductBundleItemsDocument, options);
-}
-export type ProductBundleItemsQueryHookResult = ReturnType<
-  typeof useProductBundleItemsQuery
->;
-export type ProductBundleItemsLazyQueryHookResult = ReturnType<
-  typeof useProductBundleItemsLazyQuery
->;
-export type ProductBundleItemsQueryResult = Apollo.QueryResult<
-  IProductBundleItemsQuery,
-  IProductBundleItemsQueryVariables
->;
-export const ProductCatalogPricesDocument = gql`
-  query ProductCatalogPrices($productId: ID!) {
-    productCatalogPrices(productId: $productId) {
-      ...ProductCatalogPriceFragment
-    }
-  }
-  ${ProductCatalogPriceFragmentFragmentDoc}
-`;
-
-/**
- * __useProductCatalogPricesQuery__
- *
- * To run a query within a React component, call `useProductCatalogPricesQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductCatalogPricesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductCatalogPricesQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *   },
- * });
- */
-export function useProductCatalogPricesQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IProductCatalogPricesQuery,
-    IProductCatalogPricesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductCatalogPricesQuery,
-    IProductCatalogPricesQueryVariables
-  >(ProductCatalogPricesDocument, options);
-}
-export function useProductCatalogPricesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductCatalogPricesQuery,
-    IProductCatalogPricesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductCatalogPricesQuery,
-    IProductCatalogPricesQueryVariables
-  >(ProductCatalogPricesDocument, options);
-}
-export type ProductCatalogPricesQueryHookResult = ReturnType<
-  typeof useProductCatalogPricesQuery
->;
-export type ProductCatalogPricesLazyQueryHookResult = ReturnType<
-  typeof useProductCatalogPricesLazyQuery
->;
-export type ProductCatalogPricesQueryResult = Apollo.QueryResult<
-  IProductCatalogPricesQuery,
-  IProductCatalogPricesQueryVariables
->;
-export const ProductDimensionUnitsDocument = gql`
-  query ProductDimensionUnits {
-    massUnits: __type(name: "MassUnit") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-    lengthUnits: __type(name: "LengthUnit") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useProductDimensionUnitsQuery__
- *
- * To run a query within a React component, call `useProductDimensionUnitsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductDimensionUnitsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductDimensionUnitsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useProductDimensionUnitsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductDimensionUnitsQuery,
-    IProductDimensionUnitsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductDimensionUnitsQuery,
-    IProductDimensionUnitsQueryVariables
-  >(ProductDimensionUnitsDocument, options);
-}
-export function useProductDimensionUnitsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductDimensionUnitsQuery,
-    IProductDimensionUnitsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductDimensionUnitsQuery,
-    IProductDimensionUnitsQueryVariables
-  >(ProductDimensionUnitsDocument, options);
-}
-export type ProductDimensionUnitsQueryHookResult = ReturnType<
-  typeof useProductDimensionUnitsQuery
->;
-export type ProductDimensionUnitsLazyQueryHookResult = ReturnType<
-  typeof useProductDimensionUnitsLazyQuery
->;
-export type ProductDimensionUnitsQueryResult = Apollo.QueryResult<
-  IProductDimensionUnitsQuery,
-  IProductDimensionUnitsQueryVariables
->;
-export const ProductMediaDocument = gql`
-  query ProductMedia($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      media {
-        ...ProductMediaFragment
-      }
-    }
-  }
-  ${ProductMediaFragmentFragmentDoc}
-`;
-
-/**
- * __useProductMediaQuery__
- *
- * To run a query within a React component, call `useProductMediaQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductMediaQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductMediaQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductMediaQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductMediaQuery,
-    IProductMediaQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductMediaQuery, IProductMediaQueryVariables>(
-    ProductMediaDocument,
-    options,
-  );
-}
-export function useProductMediaLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductMediaQuery,
-    IProductMediaQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductMediaQuery, IProductMediaQueryVariables>(
-    ProductMediaDocument,
-    options,
-  );
-}
-export type ProductMediaQueryHookResult = ReturnType<
-  typeof useProductMediaQuery
->;
-export type ProductMediaLazyQueryHookResult = ReturnType<
-  typeof useProductMediaLazyQuery
->;
-export type ProductMediaQueryResult = Apollo.QueryResult<
-  IProductMediaQuery,
-  IProductMediaQueryVariables
->;
-export const ProductPlanDocument = gql`
-  query ProductPlan($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on PlanProduct {
-        plan {
-          ...ProductPlanConfigurationFragment
-        }
-      }
-    }
-  }
-  ${ProductPlanConfigurationFragmentFragmentDoc}
-`;
-
-/**
- * __useProductPlanQuery__
- *
- * To run a query within a React component, call `useProductPlanQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductPlanQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductPlanQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductPlanQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductPlanQuery,
-    IProductPlanQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductPlanQuery, IProductPlanQueryVariables>(
-    ProductPlanDocument,
-    options,
-  );
-}
-export function useProductPlanLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductPlanQuery,
-    IProductPlanQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductPlanQuery, IProductPlanQueryVariables>(
-    ProductPlanDocument,
-    options,
-  );
-}
-export type ProductPlanQueryHookResult = ReturnType<typeof useProductPlanQuery>;
-export type ProductPlanLazyQueryHookResult = ReturnType<
-  typeof useProductPlanLazyQuery
->;
-export type ProductPlanQueryResult = Apollo.QueryResult<
-  IProductPlanQuery,
-  IProductPlanQueryVariables
->;
-export const ProductPlanConfigurationOptionsDocument = gql`
-  query ProductPlanConfigurationOptions {
-    usageCalculationTypes: __type(name: "ProductPlanUsageCalculationType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-    configurationIntervals: __type(name: "ProductPlanConfigurationInterval") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useProductPlanConfigurationOptionsQuery__
- *
- * To run a query within a React component, call `useProductPlanConfigurationOptionsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductPlanConfigurationOptionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductPlanConfigurationOptionsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useProductPlanConfigurationOptionsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductPlanConfigurationOptionsQuery,
-    IProductPlanConfigurationOptionsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductPlanConfigurationOptionsQuery,
-    IProductPlanConfigurationOptionsQueryVariables
-  >(ProductPlanConfigurationOptionsDocument, options);
-}
-export function useProductPlanConfigurationOptionsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductPlanConfigurationOptionsQuery,
-    IProductPlanConfigurationOptionsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductPlanConfigurationOptionsQuery,
-    IProductPlanConfigurationOptionsQueryVariables
-  >(ProductPlanConfigurationOptionsDocument, options);
-}
-export type ProductPlanConfigurationOptionsQueryHookResult = ReturnType<
-  typeof useProductPlanConfigurationOptionsQuery
->;
-export type ProductPlanConfigurationOptionsLazyQueryHookResult = ReturnType<
-  typeof useProductPlanConfigurationOptionsLazyQuery
->;
-export type ProductPlanConfigurationOptionsQueryResult = Apollo.QueryResult<
-  IProductPlanConfigurationOptionsQuery,
-  IProductPlanConfigurationOptionsQueryVariables
->;
-export const ProductReviewsDocument = gql`
-  query ProductReviews(
-    $queryString: String
-    $limit: Int
-    $offset: Int
-    $sort: [SortOptionInput!]
-  ) {
-    productReviews(
-      queryString: $queryString
-      limit: $limit
-      offset: $offset
-      sort: $sort
-    ) {
-      ...ProductReviewDetailFragment
-    }
-  }
-  ${ProductReviewDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useProductReviewsQuery__
- *
- * To run a query within a React component, call `useProductReviewsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductReviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductReviewsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useProductReviewsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductReviewsQuery,
-    IProductReviewsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductReviewsQuery, IProductReviewsQueryVariables>(
-    ProductReviewsDocument,
-    options,
-  );
-}
-export function useProductReviewsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductReviewsQuery,
-    IProductReviewsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductReviewsQuery,
-    IProductReviewsQueryVariables
-  >(ProductReviewsDocument, options);
-}
-export type ProductReviewsQueryHookResult = ReturnType<
-  typeof useProductReviewsQuery
->;
-export type ProductReviewsLazyQueryHookResult = ReturnType<
-  typeof useProductReviewsLazyQuery
->;
-export type ProductReviewsQueryResult = Apollo.QueryResult<
-  IProductReviewsQuery,
-  IProductReviewsQueryVariables
->;
-export const ProductSupplyDocument = gql`
-  query ProductSupply($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on SimpleProduct {
-        dimensions {
-          ...ProductDimensionFragment
-        }
-      }
-    }
-  }
-  ${ProductDimensionFragmentFragmentDoc}
-`;
-
-/**
- * __useProductSupplyQuery__
- *
- * To run a query within a React component, call `useProductSupplyQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductSupplyQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductSupplyQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductSupplyQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductSupplyQuery,
-    IProductSupplyQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductSupplyQuery, IProductSupplyQueryVariables>(
-    ProductSupplyDocument,
-    options,
-  );
-}
-export function useProductSupplyLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductSupplyQuery,
-    IProductSupplyQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductSupplyQuery, IProductSupplyQueryVariables>(
-    ProductSupplyDocument,
-    options,
-  );
-}
-export type ProductSupplyQueryHookResult = ReturnType<
-  typeof useProductSupplyQuery
->;
-export type ProductSupplyLazyQueryHookResult = ReturnType<
-  typeof useProductSupplyLazyQuery
->;
-export type ProductSupplyQueryResult = Apollo.QueryResult<
-  IProductSupplyQuery,
-  IProductSupplyQueryVariables
->;
-export const ProductTokenizationDocument = gql`
-  query ProductTokenization($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on TokenizedProduct {
-        contractConfiguration {
-          tokenId
-          supply
-        }
-        contractStandard
-        contractAddress
-      }
-    }
-  }
-`;
-
-/**
- * __useProductTokenizationQuery__
- *
- * To run a query within a React component, call `useProductTokenizationQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductTokenizationQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductTokenizationQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductTokenizationQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductTokenizationQuery,
-    IProductTokenizationQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductTokenizationQuery,
-    IProductTokenizationQueryVariables
-  >(ProductTokenizationDocument, options);
-}
-export function useProductTokenizationLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductTokenizationQuery,
-    IProductTokenizationQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductTokenizationQuery,
-    IProductTokenizationQueryVariables
-  >(ProductTokenizationDocument, options);
-}
-export type ProductTokenizationQueryHookResult = ReturnType<
-  typeof useProductTokenizationQuery
->;
-export type ProductTokenizationLazyQueryHookResult = ReturnType<
-  typeof useProductTokenizationLazyQuery
->;
-export type ProductTokenizationQueryResult = Apollo.QueryResult<
-  IProductTokenizationQuery,
-  IProductTokenizationQueryVariables
->;
-export const ProductVariationTypeDocument = gql`
-  query ProductVariationType {
-    variationTypes: __type(name: "ProductVariationType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useProductVariationTypeQuery__
- *
- * To run a query within a React component, call `useProductVariationTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductVariationTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductVariationTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useProductVariationTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductVariationTypeQuery,
-    IProductVariationTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductVariationTypeQuery,
-    IProductVariationTypeQueryVariables
-  >(ProductVariationTypeDocument, options);
-}
-export function useProductVariationTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductVariationTypeQuery,
-    IProductVariationTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductVariationTypeQuery,
-    IProductVariationTypeQueryVariables
-  >(ProductVariationTypeDocument, options);
-}
-export type ProductVariationTypeQueryHookResult = ReturnType<
-  typeof useProductVariationTypeQuery
->;
-export type ProductVariationTypeLazyQueryHookResult = ReturnType<
-  typeof useProductVariationTypeLazyQuery
->;
-export type ProductVariationTypeQueryResult = Apollo.QueryResult<
-  IProductVariationTypeQuery,
-  IProductVariationTypeQueryVariables
->;
-export const ProductVariationsDocument = gql`
-  query ProductVariations($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on ConfigurableProduct {
-        variations {
-          ...ProductVariationFragment
-        }
-      }
-    }
-  }
-  ${ProductVariationFragmentFragmentDoc}
-`;
-
-/**
- * __useProductVariationsQuery__
- *
- * To run a query within a React component, call `useProductVariationsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductVariationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductVariationsQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductVariationsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductVariationsQuery,
-    IProductVariationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductVariationsQuery,
-    IProductVariationsQueryVariables
-  >(ProductVariationsDocument, options);
-}
-export function useProductVariationsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductVariationsQuery,
-    IProductVariationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductVariationsQuery,
-    IProductVariationsQueryVariables
-  >(ProductVariationsDocument, options);
-}
-export type ProductVariationsQueryHookResult = ReturnType<
-  typeof useProductVariationsQuery
->;
-export type ProductVariationsLazyQueryHookResult = ReturnType<
-  typeof useProductVariationsLazyQuery
->;
-export type ProductVariationsQueryResult = Apollo.QueryResult<
-  IProductVariationsQuery,
-  IProductVariationsQueryVariables
->;
-export const ProductWarehousingDocument = gql`
-  query ProductWarehousing($productId: ID, $slug: String) {
-    product(productId: $productId, slug: $slug) {
-      _id
-      ... on SimpleProduct {
-        sku
-        baseUnit
-      }
-    }
-  }
-`;
-
-/**
- * __useProductWarehousingQuery__
- *
- * To run a query within a React component, call `useProductWarehousingQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductWarehousingQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductWarehousingQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *      slug: // value for 'slug'
- *   },
- * });
- */
-export function useProductWarehousingQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductWarehousingQuery,
-    IProductWarehousingQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IProductWarehousingQuery,
-    IProductWarehousingQueryVariables
-  >(ProductWarehousingDocument, options);
-}
-export function useProductWarehousingLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductWarehousingQuery,
-    IProductWarehousingQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IProductWarehousingQuery,
-    IProductWarehousingQueryVariables
-  >(ProductWarehousingDocument, options);
-}
-export type ProductWarehousingQueryHookResult = ReturnType<
-  typeof useProductWarehousingQuery
->;
-export type ProductWarehousingLazyQueryHookResult = ReturnType<
-  typeof useProductWarehousingLazyQuery
->;
-export type ProductWarehousingQueryResult = Apollo.QueryResult<
-  IProductWarehousingQuery,
-  IProductWarehousingQueryVariables
->;
-export const ProductsDocument = gql`
-  query Products(
-    $queryString: String
-    $tags: [LowerCaseString!]
-    $slugs: [String!]
-    $limit: Int
-    $offset: Int
-    $includeDrafts: Boolean
-    $sort: [SortOptionInput!]
-  ) {
-    products(
-      queryString: $queryString
-      tags: $tags
-      slugs: $slugs
-      limit: $limit
-      offset: $offset
-      includeDrafts: $includeDrafts
-      sort: $sort
-    ) {
-      ...ProductBriefFragment
-    }
-    productsCount(
-      tags: $tags
-      slugs: $slugs
-      includeDrafts: $includeDrafts
-      queryString: $queryString
-    )
-  }
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useProductsQuery__
- *
- * To run a query within a React component, call `useProductsQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      tags: // value for 'tags'
- *      slugs: // value for 'slugs'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      includeDrafts: // value for 'includeDrafts'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useProductsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductsQuery,
-    IProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductsQuery, IProductsQueryVariables>(
-    ProductsDocument,
-    options,
-  );
-}
-export function useProductsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductsQuery,
-    IProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductsQuery, IProductsQueryVariables>(
-    ProductsDocument,
-    options,
-  );
-}
-export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>;
-export type ProductsLazyQueryHookResult = ReturnType<
-  typeof useProductsLazyQuery
->;
-export type ProductsQueryResult = Apollo.QueryResult<
-  IProductsQuery,
-  IProductsQueryVariables
->;
-export const ProductsCountDocument = gql`
-  query ProductsCount {
-    productsCount
-  }
-`;
-
-/**
- * __useProductsCountQuery__
- *
- * To run a query within a React component, call `useProductsCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useProductsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useProductsCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useProductsCountQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IProductsCountQuery,
-    IProductsCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IProductsCountQuery, IProductsCountQueryVariables>(
-    ProductsCountDocument,
-    options,
-  );
-}
-export function useProductsCountLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IProductsCountQuery,
-    IProductsCountQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IProductsCountQuery, IProductsCountQueryVariables>(
-    ProductsCountDocument,
-    options,
-  );
-}
-export type ProductsCountQueryHookResult = ReturnType<
-  typeof useProductsCountQuery
->;
-export type ProductsCountLazyQueryHookResult = ReturnType<
-  typeof useProductsCountLazyQuery
->;
-export type ProductsCountQueryResult = Apollo.QueryResult<
-  IProductsCountQuery,
-  IProductsCountQueryVariables
->;
-export const PublishProductDocument = gql`
-  mutation PublishProduct($productId: ID!) {
-    publishProduct(productId: $productId) {
-      ...ProductDetailFragment
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-export type IPublishProductMutationFn = Apollo.MutationFunction<
-  IPublishProductMutation,
-  IPublishProductMutationVariables
->;
-
-/**
- * __usePublishProductMutation__
- *
- * To run a mutation, you first call `usePublishProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePublishProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [publishProductMutation, { data, loading, error }] = usePublishProductMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *   },
- * });
- */
-export function usePublishProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IPublishProductMutation,
-    IPublishProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IPublishProductMutation,
-    IPublishProductMutationVariables
-  >(PublishProductDocument, options);
-}
-export type PublishProductMutationHookResult = ReturnType<
-  typeof usePublishProductMutation
->;
-export type PublishProductMutationResult =
-  Apollo.MutationResult<IPublishProductMutation>;
-export type PublishProductMutationOptions = Apollo.BaseMutationOptions<
-  IPublishProductMutation,
-  IPublishProductMutationVariables
->;
-export const ReOrderProductMediaDocument = gql`
-  mutation ReOrderProductMedia($sortKeys: [ReorderProductMediaInput!]!) {
-    reorderProductMedia(sortKeys: $sortKeys) {
-      _id
-    }
-  }
-`;
-export type IReOrderProductMediaMutationFn = Apollo.MutationFunction<
-  IReOrderProductMediaMutation,
-  IReOrderProductMediaMutationVariables
->;
-
-/**
- * __useReOrderProductMediaMutation__
- *
- * To run a mutation, you first call `useReOrderProductMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReOrderProductMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reOrderProductMediaMutation, { data, loading, error }] = useReOrderProductMediaMutation({
- *   variables: {
- *      sortKeys: // value for 'sortKeys'
- *   },
- * });
- */
-export function useReOrderProductMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IReOrderProductMediaMutation,
-    IReOrderProductMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IReOrderProductMediaMutation,
-    IReOrderProductMediaMutationVariables
-  >(ReOrderProductMediaDocument, options);
-}
-export type ReOrderProductMediaMutationHookResult = ReturnType<
-  typeof useReOrderProductMediaMutation
->;
-export type ReOrderProductMediaMutationResult =
-  Apollo.MutationResult<IReOrderProductMediaMutation>;
-export type ReOrderProductMediaMutationOptions = Apollo.BaseMutationOptions<
-  IReOrderProductMediaMutation,
-  IReOrderProductMediaMutationVariables
->;
-export const RemoveBundleItemDocument = gql`
-  mutation RemoveBundleItem($productId: ID!, $index: Int!) {
-    removeBundleItem(productId: $productId, index: $index) {
-      _id
-    }
-  }
-`;
-export type IRemoveBundleItemMutationFn = Apollo.MutationFunction<
-  IRemoveBundleItemMutation,
-  IRemoveBundleItemMutationVariables
->;
-
-/**
- * __useRemoveBundleItemMutation__
- *
- * To run a mutation, you first call `useRemoveBundleItemMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveBundleItemMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeBundleItemMutation, { data, loading, error }] = useRemoveBundleItemMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      index: // value for 'index'
- *   },
- * });
- */
-export function useRemoveBundleItemMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveBundleItemMutation,
-    IRemoveBundleItemMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveBundleItemMutation,
-    IRemoveBundleItemMutationVariables
-  >(RemoveBundleItemDocument, options);
-}
-export type RemoveBundleItemMutationHookResult = ReturnType<
-  typeof useRemoveBundleItemMutation
->;
-export type RemoveBundleItemMutationResult =
-  Apollo.MutationResult<IRemoveBundleItemMutation>;
-export type RemoveBundleItemMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveBundleItemMutation,
-  IRemoveBundleItemMutationVariables
->;
-export const RemoveProductDocument = gql`
-  mutation RemoveProduct($productId: ID!) {
-    removeProduct(productId: $productId) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductMutationFn = Apollo.MutationFunction<
-  IRemoveProductMutation,
-  IRemoveProductMutationVariables
->;
-
-/**
- * __useRemoveProductMutation__
- *
- * To run a mutation, you first call `useRemoveProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductMutation, { data, loading, error }] = useRemoveProductMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *   },
- * });
- */
-export function useRemoveProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductMutation,
-    IRemoveProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductMutation,
-    IRemoveProductMutationVariables
-  >(RemoveProductDocument, options);
-}
-export type RemoveProductMutationHookResult = ReturnType<
-  typeof useRemoveProductMutation
->;
-export type RemoveProductMutationResult =
-  Apollo.MutationResult<IRemoveProductMutation>;
-export type RemoveProductMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductMutation,
-  IRemoveProductMutationVariables
->;
-export const RemoveProductAssignmentDocument = gql`
-  mutation RemoveProductAssignment(
-    $proxyId: ID!
-    $vectors: [ProductAssignmentVectorInput!]!
-  ) {
-    removeProductAssignment(proxyId: $proxyId, vectors: $vectors) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductAssignmentMutationFn = Apollo.MutationFunction<
-  IRemoveProductAssignmentMutation,
-  IRemoveProductAssignmentMutationVariables
->;
-
-/**
- * __useRemoveProductAssignmentMutation__
- *
- * To run a mutation, you first call `useRemoveProductAssignmentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductAssignmentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductAssignmentMutation, { data, loading, error }] = useRemoveProductAssignmentMutation({
- *   variables: {
- *      proxyId: // value for 'proxyId'
- *      vectors: // value for 'vectors'
- *   },
- * });
- */
-export function useRemoveProductAssignmentMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductAssignmentMutation,
-    IRemoveProductAssignmentMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductAssignmentMutation,
-    IRemoveProductAssignmentMutationVariables
-  >(RemoveProductAssignmentDocument, options);
-}
-export type RemoveProductAssignmentMutationHookResult = ReturnType<
-  typeof useRemoveProductAssignmentMutation
->;
-export type RemoveProductAssignmentMutationResult =
-  Apollo.MutationResult<IRemoveProductAssignmentMutation>;
-export type RemoveProductAssignmentMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductAssignmentMutation,
-  IRemoveProductAssignmentMutationVariables
->;
-export const RemoveProductMediaDocument = gql`
-  mutation RemoveProductMedia($productMediaId: ID!) {
-    removeProductMedia(productMediaId: $productMediaId) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductMediaMutationFn = Apollo.MutationFunction<
-  IRemoveProductMediaMutation,
-  IRemoveProductMediaMutationVariables
->;
-
-/**
- * __useRemoveProductMediaMutation__
- *
- * To run a mutation, you first call `useRemoveProductMediaMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductMediaMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductMediaMutation, { data, loading, error }] = useRemoveProductMediaMutation({
- *   variables: {
- *      productMediaId: // value for 'productMediaId'
- *   },
- * });
- */
-export function useRemoveProductMediaMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductMediaMutation,
-    IRemoveProductMediaMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductMediaMutation,
-    IRemoveProductMediaMutationVariables
-  >(RemoveProductMediaDocument, options);
-}
-export type RemoveProductMediaMutationHookResult = ReturnType<
-  typeof useRemoveProductMediaMutation
->;
-export type RemoveProductMediaMutationResult =
-  Apollo.MutationResult<IRemoveProductMediaMutation>;
-export type RemoveProductMediaMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductMediaMutation,
-  IRemoveProductMediaMutationVariables
->;
-export const RemoveProductVariationDocument = gql`
-  mutation RemoveProductVariation($productVariationId: ID!) {
-    removeProductVariation(productVariationId: $productVariationId) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductVariationMutationFn = Apollo.MutationFunction<
-  IRemoveProductVariationMutation,
-  IRemoveProductVariationMutationVariables
->;
-
-/**
- * __useRemoveProductVariationMutation__
- *
- * To run a mutation, you first call `useRemoveProductVariationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductVariationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductVariationMutation, { data, loading, error }] = useRemoveProductVariationMutation({
- *   variables: {
- *      productVariationId: // value for 'productVariationId'
- *   },
- * });
- */
-export function useRemoveProductVariationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductVariationMutation,
-    IRemoveProductVariationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductVariationMutation,
-    IRemoveProductVariationMutationVariables
-  >(RemoveProductVariationDocument, options);
-}
-export type RemoveProductVariationMutationHookResult = ReturnType<
-  typeof useRemoveProductVariationMutation
->;
-export type RemoveProductVariationMutationResult =
-  Apollo.MutationResult<IRemoveProductVariationMutation>;
-export type RemoveProductVariationMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveProductVariationMutation,
-  IRemoveProductVariationMutationVariables
->;
-export const RemoveProductVariationOptionDocument = gql`
-  mutation RemoveProductVariationOption(
-    $productVariationId: ID!
-    $productVariationOptionValue: String!
-  ) {
-    removeProductVariationOption(
-      productVariationId: $productVariationId
-      productVariationOptionValue: $productVariationOptionValue
-    ) {
-      _id
-    }
-  }
-`;
-export type IRemoveProductVariationOptionMutationFn = Apollo.MutationFunction<
-  IRemoveProductVariationOptionMutation,
-  IRemoveProductVariationOptionMutationVariables
->;
-
-/**
- * __useRemoveProductVariationOptionMutation__
- *
- * To run a mutation, you first call `useRemoveProductVariationOptionMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveProductVariationOptionMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeProductVariationOptionMutation, { data, loading, error }] = useRemoveProductVariationOptionMutation({
- *   variables: {
- *      productVariationId: // value for 'productVariationId'
- *      productVariationOptionValue: // value for 'productVariationOptionValue'
- *   },
- * });
- */
-export function useRemoveProductVariationOptionMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveProductVariationOptionMutation,
-    IRemoveProductVariationOptionMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveProductVariationOptionMutation,
-    IRemoveProductVariationOptionMutationVariables
-  >(RemoveProductVariationOptionDocument, options);
-}
-export type RemoveProductVariationOptionMutationHookResult = ReturnType<
-  typeof useRemoveProductVariationOptionMutation
->;
-export type RemoveProductVariationOptionMutationResult =
-  Apollo.MutationResult<IRemoveProductVariationOptionMutation>;
-export type RemoveProductVariationOptionMutationOptions =
-  Apollo.BaseMutationOptions<
-    IRemoveProductVariationOptionMutation,
-    IRemoveProductVariationOptionMutationVariables
-  >;
-export const SearchProductsDocument = gql`
-  query SearchProducts(
-    $queryString: String
-    $filterQuery: [FilterQueryInput!]
-    $assortmentId: ID
-    $orderBy: SearchOrderBy
-    $includeInactive: Boolean
-    $ignoreChildAssortments: Boolean
-    $limit: Int
-    $offset: Int
-  ) {
-    searchProducts(
-      queryString: $queryString
-      filterQuery: $filterQuery
-      assortmentId: $assortmentId
-      orderBy: $orderBy
-      includeInactive: $includeInactive
-      ignoreChildAssortments: $ignoreChildAssortments
-    ) {
-      productsCount
-      filteredProductsCount
-      products(limit: $limit, offset: $offset) {
-        ...ProductBriefFragment
-      }
-    }
-  }
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useSearchProductsQuery__
- *
- * To run a query within a React component, call `useSearchProductsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSearchProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSearchProductsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      filterQuery: // value for 'filterQuery'
- *      assortmentId: // value for 'assortmentId'
- *      orderBy: // value for 'orderBy'
- *      includeInactive: // value for 'includeInactive'
- *      ignoreChildAssortments: // value for 'ignoreChildAssortments'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *   },
- * });
- */
-export function useSearchProductsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ISearchProductsQuery,
-    ISearchProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ISearchProductsQuery, ISearchProductsQueryVariables>(
-    SearchProductsDocument,
-    options,
-  );
-}
-export function useSearchProductsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ISearchProductsQuery,
-    ISearchProductsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ISearchProductsQuery,
-    ISearchProductsQueryVariables
-  >(SearchProductsDocument, options);
-}
-export type SearchProductsQueryHookResult = ReturnType<
-  typeof useSearchProductsQuery
->;
-export type SearchProductsLazyQueryHookResult = ReturnType<
-  typeof useSearchProductsLazyQuery
->;
-export type SearchProductsQueryResult = Apollo.QueryResult<
-  ISearchProductsQuery,
-  ISearchProductsQueryVariables
->;
-export const SmartContractStandardsDocument = gql`
-  query SmartContractStandards {
-    smartContractStandards: __type(name: "SmartContractStandard") {
-      options: enumValues {
-        value: name
-        label: name
-      }
-    }
-  }
-`;
-
-/**
- * __useSmartContractStandardsQuery__
- *
- * To run a query within a React component, call `useSmartContractStandardsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSmartContractStandardsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSmartContractStandardsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useSmartContractStandardsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ISmartContractStandardsQuery,
-    ISmartContractStandardsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ISmartContractStandardsQuery,
-    ISmartContractStandardsQueryVariables
-  >(SmartContractStandardsDocument, options);
-}
-export function useSmartContractStandardsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ISmartContractStandardsQuery,
-    ISmartContractStandardsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ISmartContractStandardsQuery,
-    ISmartContractStandardsQueryVariables
-  >(SmartContractStandardsDocument, options);
-}
-export type SmartContractStandardsQueryHookResult = ReturnType<
-  typeof useSmartContractStandardsQuery
->;
-export type SmartContractStandardsLazyQueryHookResult = ReturnType<
-  typeof useSmartContractStandardsLazyQuery
->;
-export type SmartContractStandardsQueryResult = Apollo.QueryResult<
-  ISmartContractStandardsQuery,
-  ISmartContractStandardsQueryVariables
->;
-export const TranslatedProductMediaTextsDocument = gql`
-  query TranslatedProductMediaTexts($productMediaId: ID!) {
-    translatedProductMediaTexts(productMediaId: $productMediaId) {
-      ...ProductMediaTextsFragment
-    }
-  }
-  ${ProductMediaTextsFragmentFragmentDoc}
-`;
-
-/**
- * __useTranslatedProductMediaTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedProductMediaTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedProductMediaTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedProductMediaTextsQuery({
- *   variables: {
- *      productMediaId: // value for 'productMediaId'
- *   },
- * });
- */
-export function useTranslatedProductMediaTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedProductMediaTextsQuery,
-    ITranslatedProductMediaTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedProductMediaTextsQuery,
-    ITranslatedProductMediaTextsQueryVariables
-  >(TranslatedProductMediaTextsDocument, options);
-}
-export function useTranslatedProductMediaTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedProductMediaTextsQuery,
-    ITranslatedProductMediaTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedProductMediaTextsQuery,
-    ITranslatedProductMediaTextsQueryVariables
-  >(TranslatedProductMediaTextsDocument, options);
-}
-export type TranslatedProductMediaTextsQueryHookResult = ReturnType<
-  typeof useTranslatedProductMediaTextsQuery
->;
-export type TranslatedProductMediaTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedProductMediaTextsLazyQuery
->;
-export type TranslatedProductMediaTextsQueryResult = Apollo.QueryResult<
-  ITranslatedProductMediaTextsQuery,
-  ITranslatedProductMediaTextsQueryVariables
->;
-export const TranslatedProductTextsDocument = gql`
-  query TranslatedProductTexts($productId: ID!) {
-    translatedProductTexts(productId: $productId) {
-      ...ProductTextsFragment
-    }
-  }
-  ${ProductTextsFragmentFragmentDoc}
-`;
-
-/**
- * __useTranslatedProductTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedProductTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedProductTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedProductTextsQuery({
- *   variables: {
- *      productId: // value for 'productId'
- *   },
- * });
- */
-export function useTranslatedProductTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedProductTextsQuery,
-    ITranslatedProductTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedProductTextsQuery,
-    ITranslatedProductTextsQueryVariables
-  >(TranslatedProductTextsDocument, options);
-}
-export function useTranslatedProductTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedProductTextsQuery,
-    ITranslatedProductTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedProductTextsQuery,
-    ITranslatedProductTextsQueryVariables
-  >(TranslatedProductTextsDocument, options);
-}
-export type TranslatedProductTextsQueryHookResult = ReturnType<
-  typeof useTranslatedProductTextsQuery
->;
-export type TranslatedProductTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedProductTextsLazyQuery
->;
-export type TranslatedProductTextsQueryResult = Apollo.QueryResult<
-  ITranslatedProductTextsQuery,
-  ITranslatedProductTextsQueryVariables
->;
-export const TranslatedProductVariationTextsDocument = gql`
-  query translatedProductVariationTexts(
-    $productVariationId: ID!
-    $productVariationOptionValue: String
-  ) {
-    translatedProductVariationTexts(
-      productVariationId: $productVariationId
-      productVariationOptionValue: $productVariationOptionValue
-    ) {
-      _id
-      locale
-      title
-      subtitle
-    }
-  }
-`;
-
-/**
- * __useTranslatedProductVariationTextsQuery__
- *
- * To run a query within a React component, call `useTranslatedProductVariationTextsQuery` and pass it any options that fit your needs.
- * When your component renders, `useTranslatedProductVariationTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTranslatedProductVariationTextsQuery({
- *   variables: {
- *      productVariationId: // value for 'productVariationId'
- *      productVariationOptionValue: // value for 'productVariationOptionValue'
- *   },
- * });
- */
-export function useTranslatedProductVariationTextsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    ITranslatedProductVariationTextsQuery,
-    ITranslatedProductVariationTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    ITranslatedProductVariationTextsQuery,
-    ITranslatedProductVariationTextsQueryVariables
-  >(TranslatedProductVariationTextsDocument, options);
-}
-export function useTranslatedProductVariationTextsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ITranslatedProductVariationTextsQuery,
-    ITranslatedProductVariationTextsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    ITranslatedProductVariationTextsQuery,
-    ITranslatedProductVariationTextsQueryVariables
-  >(TranslatedProductVariationTextsDocument, options);
-}
-export type TranslatedProductVariationTextsQueryHookResult = ReturnType<
-  typeof useTranslatedProductVariationTextsQuery
->;
-export type TranslatedProductVariationTextsLazyQueryHookResult = ReturnType<
-  typeof useTranslatedProductVariationTextsLazyQuery
->;
-export type TranslatedProductVariationTextsQueryResult = Apollo.QueryResult<
-  ITranslatedProductVariationTextsQuery,
-  ITranslatedProductVariationTextsQueryVariables
->;
-export const UnpublishProductDocument = gql`
-  mutation UnpublishProduct($productId: ID!) {
-    unpublishProduct(productId: $productId) {
-      ...ProductDetailFragment
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-export type IUnpublishProductMutationFn = Apollo.MutationFunction<
-  IUnpublishProductMutation,
-  IUnpublishProductMutationVariables
->;
-
-/**
- * __useUnpublishProductMutation__
- *
- * To run a mutation, you first call `useUnpublishProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUnpublishProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [unpublishProductMutation, { data, loading, error }] = useUnpublishProductMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *   },
- * });
- */
-export function useUnpublishProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUnpublishProductMutation,
-    IUnpublishProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUnpublishProductMutation,
-    IUnpublishProductMutationVariables
-  >(UnpublishProductDocument, options);
-}
-export type UnpublishProductMutationHookResult = ReturnType<
-  typeof useUnpublishProductMutation
->;
-export type UnpublishProductMutationResult =
-  Apollo.MutationResult<IUnpublishProductMutation>;
-export type UnpublishProductMutationOptions = Apollo.BaseMutationOptions<
-  IUnpublishProductMutation,
-  IUnpublishProductMutationVariables
->;
-export const UpdateProductDocument = gql`
-  mutation UpdateProduct($productId: ID!, $product: UpdateProductInput!) {
-    updateProduct(productId: $productId, product: $product) {
-      ...ProductDetailFragment
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-export type IUpdateProductMutationFn = Apollo.MutationFunction<
-  IUpdateProductMutation,
-  IUpdateProductMutationVariables
->;
-
-/**
- * __useUpdateProductMutation__
- *
- * To run a mutation, you first call `useUpdateProductMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductMutation, { data, loading, error }] = useUpdateProductMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      product: // value for 'product'
- *   },
- * });
- */
-export function useUpdateProductMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductMutation,
-    IUpdateProductMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductMutation,
-    IUpdateProductMutationVariables
-  >(UpdateProductDocument, options);
-}
-export type UpdateProductMutationHookResult = ReturnType<
-  typeof useUpdateProductMutation
->;
-export type UpdateProductMutationResult =
-  Apollo.MutationResult<IUpdateProductMutation>;
-export type UpdateProductMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductMutation,
-  IUpdateProductMutationVariables
->;
-export const UpdateProductCommerceDocument = gql`
-  mutation UpdateProductCommerce(
-    $productId: ID!
-    $commerce: UpdateProductCommerceInput!
-  ) {
-    updateProductCommerce(productId: $productId, commerce: $commerce) {
-      ...ProductDetailFragment
-    }
-  }
-  ${ProductDetailFragmentFragmentDoc}
-`;
-export type IUpdateProductCommerceMutationFn = Apollo.MutationFunction<
-  IUpdateProductCommerceMutation,
-  IUpdateProductCommerceMutationVariables
->;
-
-/**
- * __useUpdateProductCommerceMutation__
- *
- * To run a mutation, you first call `useUpdateProductCommerceMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductCommerceMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductCommerceMutation, { data, loading, error }] = useUpdateProductCommerceMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      commerce: // value for 'commerce'
- *   },
- * });
- */
-export function useUpdateProductCommerceMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductCommerceMutation,
-    IUpdateProductCommerceMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductCommerceMutation,
-    IUpdateProductCommerceMutationVariables
-  >(UpdateProductCommerceDocument, options);
-}
-export type UpdateProductCommerceMutationHookResult = ReturnType<
-  typeof useUpdateProductCommerceMutation
->;
-export type UpdateProductCommerceMutationResult =
-  Apollo.MutationResult<IUpdateProductCommerceMutation>;
-export type UpdateProductCommerceMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductCommerceMutation,
-  IUpdateProductCommerceMutationVariables
->;
-export const UpdateProductMediaTextsDocument = gql`
-  mutation UpdateProductMediaTexts(
-    $productMediaId: ID!
-    $texts: [UpdateProductMediaTextInput!]!
-  ) {
-    updateProductMediaTexts(productMediaId: $productMediaId, texts: $texts) {
-      ...ProductMediaTextsFragment
-    }
-  }
-  ${ProductMediaTextsFragmentFragmentDoc}
-`;
-export type IUpdateProductMediaTextsMutationFn = Apollo.MutationFunction<
-  IUpdateProductMediaTextsMutation,
-  IUpdateProductMediaTextsMutationVariables
->;
-
-/**
- * __useUpdateProductMediaTextsMutation__
- *
- * To run a mutation, you first call `useUpdateProductMediaTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductMediaTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductMediaTextsMutation, { data, loading, error }] = useUpdateProductMediaTextsMutation({
- *   variables: {
- *      productMediaId: // value for 'productMediaId'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateProductMediaTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductMediaTextsMutation,
-    IUpdateProductMediaTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductMediaTextsMutation,
-    IUpdateProductMediaTextsMutationVariables
-  >(UpdateProductMediaTextsDocument, options);
-}
-export type UpdateProductMediaTextsMutationHookResult = ReturnType<
-  typeof useUpdateProductMediaTextsMutation
->;
-export type UpdateProductMediaTextsMutationResult =
-  Apollo.MutationResult<IUpdateProductMediaTextsMutation>;
-export type UpdateProductMediaTextsMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductMediaTextsMutation,
-  IUpdateProductMediaTextsMutationVariables
->;
-export const UpdateProductPlanDocument = gql`
-  mutation UpdateProductPlan($productId: ID!, $plan: UpdateProductPlanInput!) {
-    updateProductPlan(productId: $productId, plan: $plan) {
-      _id
-    }
-  }
-`;
-export type IUpdateProductPlanMutationFn = Apollo.MutationFunction<
-  IUpdateProductPlanMutation,
-  IUpdateProductPlanMutationVariables
->;
-
-/**
- * __useUpdateProductPlanMutation__
- *
- * To run a mutation, you first call `useUpdateProductPlanMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductPlanMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductPlanMutation, { data, loading, error }] = useUpdateProductPlanMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      plan: // value for 'plan'
- *   },
- * });
- */
-export function useUpdateProductPlanMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductPlanMutation,
-    IUpdateProductPlanMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductPlanMutation,
-    IUpdateProductPlanMutationVariables
-  >(UpdateProductPlanDocument, options);
-}
-export type UpdateProductPlanMutationHookResult = ReturnType<
-  typeof useUpdateProductPlanMutation
->;
-export type UpdateProductPlanMutationResult =
-  Apollo.MutationResult<IUpdateProductPlanMutation>;
-export type UpdateProductPlanMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductPlanMutation,
-  IUpdateProductPlanMutationVariables
->;
-export const UpdateProductSupplyDocument = gql`
-  mutation UpdateProductSupply(
-    $productId: ID!
-    $supply: UpdateProductSupplyInput!
-  ) {
-    updateProductSupply(productId: $productId, supply: $supply) {
-      _id
-      ... on SimpleProduct {
-        dimensions {
-          ...ProductDimensionFragment
-        }
-      }
-    }
-  }
-  ${ProductDimensionFragmentFragmentDoc}
-`;
-export type IUpdateProductSupplyMutationFn = Apollo.MutationFunction<
-  IUpdateProductSupplyMutation,
-  IUpdateProductSupplyMutationVariables
->;
-
-/**
- * __useUpdateProductSupplyMutation__
- *
- * To run a mutation, you first call `useUpdateProductSupplyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductSupplyMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductSupplyMutation, { data, loading, error }] = useUpdateProductSupplyMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      supply: // value for 'supply'
- *   },
- * });
- */
-export function useUpdateProductSupplyMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductSupplyMutation,
-    IUpdateProductSupplyMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductSupplyMutation,
-    IUpdateProductSupplyMutationVariables
-  >(UpdateProductSupplyDocument, options);
-}
-export type UpdateProductSupplyMutationHookResult = ReturnType<
-  typeof useUpdateProductSupplyMutation
->;
-export type UpdateProductSupplyMutationResult =
-  Apollo.MutationResult<IUpdateProductSupplyMutation>;
-export type UpdateProductSupplyMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductSupplyMutation,
-  IUpdateProductSupplyMutationVariables
->;
-export const UpdateProductTextsDocument = gql`
-  mutation UpdateProductTexts(
-    $productId: ID!
-    $texts: [UpdateProductTextInput!]!
-  ) {
-    updateProductTexts(productId: $productId, texts: $texts) {
-      ...ProductTextsFragment
-    }
-  }
-  ${ProductTextsFragmentFragmentDoc}
-`;
-export type IUpdateProductTextsMutationFn = Apollo.MutationFunction<
-  IUpdateProductTextsMutation,
-  IUpdateProductTextsMutationVariables
->;
-
-/**
- * __useUpdateProductTextsMutation__
- *
- * To run a mutation, you first call `useUpdateProductTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductTextsMutation, { data, loading, error }] = useUpdateProductTextsMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateProductTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductTextsMutation,
-    IUpdateProductTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductTextsMutation,
-    IUpdateProductTextsMutationVariables
-  >(UpdateProductTextsDocument, options);
-}
-export type UpdateProductTextsMutationHookResult = ReturnType<
-  typeof useUpdateProductTextsMutation
->;
-export type UpdateProductTextsMutationResult =
-  Apollo.MutationResult<IUpdateProductTextsMutation>;
-export type UpdateProductTextsMutationOptions = Apollo.BaseMutationOptions<
-  IUpdateProductTextsMutation,
-  IUpdateProductTextsMutationVariables
->;
-export const UpdateProductTokenizationDocument = gql`
-  mutation UpdateProductTokenization(
-    $productId: ID!
-    $tokenization: UpdateProductTokenizationInput!
-  ) {
-    updateProductTokenization(
-      productId: $productId
-      tokenization: $tokenization
-    ) {
-      _id
-    }
-  }
-`;
-export type IUpdateProductTokenizationMutationFn = Apollo.MutationFunction<
-  IUpdateProductTokenizationMutation,
-  IUpdateProductTokenizationMutationVariables
->;
-
-/**
- * __useUpdateProductTokenizationMutation__
- *
- * To run a mutation, you first call `useUpdateProductTokenizationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductTokenizationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductTokenizationMutation, { data, loading, error }] = useUpdateProductTokenizationMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      tokenization: // value for 'tokenization'
- *   },
- * });
- */
-export function useUpdateProductTokenizationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductTokenizationMutation,
-    IUpdateProductTokenizationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductTokenizationMutation,
-    IUpdateProductTokenizationMutationVariables
-  >(UpdateProductTokenizationDocument, options);
-}
-export type UpdateProductTokenizationMutationHookResult = ReturnType<
-  typeof useUpdateProductTokenizationMutation
->;
-export type UpdateProductTokenizationMutationResult =
-  Apollo.MutationResult<IUpdateProductTokenizationMutation>;
-export type UpdateProductTokenizationMutationOptions =
-  Apollo.BaseMutationOptions<
-    IUpdateProductTokenizationMutation,
-    IUpdateProductTokenizationMutationVariables
-  >;
-export const UpdateProductVariationTextsDocument = gql`
-  mutation UpdateProductVariationTexts(
-    $productVariationId: ID!
-    $productVariationOptionValue: String
-    $texts: [UpdateProductVariationTextInput!]!
-  ) {
-    updateProductVariationTexts(
-      productVariationId: $productVariationId
-      productVariationOptionValue: $productVariationOptionValue
-      texts: $texts
-    ) {
-      _id
-    }
-  }
-`;
-export type IUpdateProductVariationTextsMutationFn = Apollo.MutationFunction<
-  IUpdateProductVariationTextsMutation,
-  IUpdateProductVariationTextsMutationVariables
->;
-
-/**
- * __useUpdateProductVariationTextsMutation__
- *
- * To run a mutation, you first call `useUpdateProductVariationTextsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductVariationTextsMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductVariationTextsMutation, { data, loading, error }] = useUpdateProductVariationTextsMutation({
- *   variables: {
- *      productVariationId: // value for 'productVariationId'
- *      productVariationOptionValue: // value for 'productVariationOptionValue'
- *      texts: // value for 'texts'
- *   },
- * });
- */
-export function useUpdateProductVariationTextsMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductVariationTextsMutation,
-    IUpdateProductVariationTextsMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductVariationTextsMutation,
-    IUpdateProductVariationTextsMutationVariables
-  >(UpdateProductVariationTextsDocument, options);
-}
-export type UpdateProductVariationTextsMutationHookResult = ReturnType<
-  typeof useUpdateProductVariationTextsMutation
->;
-export type UpdateProductVariationTextsMutationResult =
-  Apollo.MutationResult<IUpdateProductVariationTextsMutation>;
-export type UpdateProductVariationTextsMutationOptions =
-  Apollo.BaseMutationOptions<
-    IUpdateProductVariationTextsMutation,
-    IUpdateProductVariationTextsMutationVariables
-  >;
-export const UpdateProductWarehousingDocument = gql`
-  mutation UpdateProductWarehousing(
-    $productId: ID!
-    $warehousing: UpdateProductWarehousingInput!
-  ) {
-    updateProductWarehousing(productId: $productId, warehousing: $warehousing) {
-      _id
-      ... on SimpleProduct {
-        sku
-        baseUnit
-      }
-    }
-  }
-`;
-export type IUpdateProductWarehousingMutationFn = Apollo.MutationFunction<
-  IUpdateProductWarehousingMutation,
-  IUpdateProductWarehousingMutationVariables
->;
-
-/**
- * __useUpdateProductWarehousingMutation__
- *
- * To run a mutation, you first call `useUpdateProductWarehousingMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateProductWarehousingMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateProductWarehousingMutation, { data, loading, error }] = useUpdateProductWarehousingMutation({
- *   variables: {
- *      productId: // value for 'productId'
- *      warehousing: // value for 'warehousing'
- *   },
- * });
- */
-export function useUpdateProductWarehousingMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateProductWarehousingMutation,
-    IUpdateProductWarehousingMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateProductWarehousingMutation,
-    IUpdateProductWarehousingMutationVariables
-  >(UpdateProductWarehousingDocument, options);
-}
-export type UpdateProductWarehousingMutationHookResult = ReturnType<
-  typeof useUpdateProductWarehousingMutation
->;
-export type UpdateProductWarehousingMutationResult =
-  Apollo.MutationResult<IUpdateProductWarehousingMutation>;
-export type UpdateProductWarehousingMutationOptions =
-  Apollo.BaseMutationOptions<
-    IUpdateProductWarehousingMutation,
-    IUpdateProductWarehousingMutationVariables
-  >;
-export const UserTokensDocument = gql`
-  query UserTokens($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      web3Addresses {
-        address
-        nonce
-        verified
-      }
-      tokens {
-        ...TokenFragment
-        product {
-          ...ProductBriefFragment
-          simulatedPrice {
-            _id
-            amount
-            currency
-          }
-        }
-      }
-    }
-  }
-  ${TokenFragmentFragmentDoc}
-  ${ProductBriefFragmentFragmentDoc}
-`;
-
-/**
- * __useUserTokensQuery__
- *
- * To run a query within a React component, call `useUserTokensQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserTokensQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserTokensQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *   },
- * });
- */
-export function useUserTokensQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IUserTokensQuery,
-    IUserTokensQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUserTokensQuery, IUserTokensQueryVariables>(
-    UserTokensDocument,
-    options,
-  );
-}
-export function useUserTokensLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserTokensQuery,
-    IUserTokensQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IUserTokensQuery, IUserTokensQueryVariables>(
-    UserTokensDocument,
-    options,
-  );
-}
-export type UserTokensQueryHookResult = ReturnType<typeof useUserTokensQuery>;
-export type UserTokensLazyQueryHookResult = ReturnType<
-  typeof useUserTokensLazyQuery
->;
-export type UserTokensQueryResult = Apollo.QueryResult<
-  IUserTokensQuery,
-  IUserTokensQueryVariables
->;
-export const MakeQuotationProposalDocument = gql`
-  mutation MakeQuotationProposal($quotationId: ID!, $quotationContext: JSON) {
-    makeQuotationProposal(
-      quotationId: $quotationId
-      quotationContext: $quotationContext
-    ) {
-      ...QuotationDetailFragment
-    }
-  }
-  ${QuotationDetailFragmentFragmentDoc}
-`;
-export type IMakeQuotationProposalMutationFn = Apollo.MutationFunction<
-  IMakeQuotationProposalMutation,
-  IMakeQuotationProposalMutationVariables
->;
-
-/**
- * __useMakeQuotationProposalMutation__
- *
- * To run a mutation, you first call `useMakeQuotationProposalMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeQuotationProposalMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeQuotationProposalMutation, { data, loading, error }] = useMakeQuotationProposalMutation({
- *   variables: {
- *      quotationId: // value for 'quotationId'
- *      quotationContext: // value for 'quotationContext'
- *   },
- * });
- */
-export function useMakeQuotationProposalMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IMakeQuotationProposalMutation,
-    IMakeQuotationProposalMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IMakeQuotationProposalMutation,
-    IMakeQuotationProposalMutationVariables
-  >(MakeQuotationProposalDocument, options);
-}
-export type MakeQuotationProposalMutationHookResult = ReturnType<
-  typeof useMakeQuotationProposalMutation
->;
-export type MakeQuotationProposalMutationResult =
-  Apollo.MutationResult<IMakeQuotationProposalMutation>;
-export type MakeQuotationProposalMutationOptions = Apollo.BaseMutationOptions<
-  IMakeQuotationProposalMutation,
-  IMakeQuotationProposalMutationVariables
->;
-export const QuotationDocument = gql`
-  query Quotation($quotationId: ID!) {
-    quotation(quotationId: $quotationId) {
-      _id
-      ...QuotationDetailFragment
-    }
-    quotationsCount
-  }
-  ${QuotationDetailFragmentFragmentDoc}
-`;
-
-/**
- * __useQuotationQuery__
- *
- * To run a query within a React component, call `useQuotationQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuotationQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useQuotationQuery({
- *   variables: {
- *      quotationId: // value for 'quotationId'
- *   },
- * });
- */
-export function useQuotationQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IQuotationQuery,
-    IQuotationQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IQuotationQuery, IQuotationQueryVariables>(
-    QuotationDocument,
-    options,
-  );
-}
-export function useQuotationLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IQuotationQuery,
-    IQuotationQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IQuotationQuery, IQuotationQueryVariables>(
-    QuotationDocument,
-    options,
-  );
-}
-export type QuotationQueryHookResult = ReturnType<typeof useQuotationQuery>;
-export type QuotationLazyQueryHookResult = ReturnType<
-  typeof useQuotationLazyQuery
->;
-export type QuotationQueryResult = Apollo.QueryResult<
-  IQuotationQuery,
-  IQuotationQueryVariables
->;
-export const QuotationStatusDocument = gql`
-  query QuotationStatus {
-    quotationStatusType: __type(name: "QuotationStatus") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useQuotationStatusQuery__
- *
- * To run a query within a React component, call `useQuotationStatusQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuotationStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useQuotationStatusQuery({
- *   variables: {
- *   },
- * });
- */
-export function useQuotationStatusQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IQuotationStatusQuery,
-    IQuotationStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IQuotationStatusQuery, IQuotationStatusQueryVariables>(
-    QuotationStatusDocument,
-    options,
-  );
-}
-export function useQuotationStatusLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IQuotationStatusQuery,
-    IQuotationStatusQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IQuotationStatusQuery,
-    IQuotationStatusQueryVariables
-  >(QuotationStatusDocument, options);
-}
-export type QuotationStatusQueryHookResult = ReturnType<
-  typeof useQuotationStatusQuery
->;
-export type QuotationStatusLazyQueryHookResult = ReturnType<
-  typeof useQuotationStatusLazyQuery
->;
-export type QuotationStatusQueryResult = Apollo.QueryResult<
-  IQuotationStatusQuery,
-  IQuotationStatusQueryVariables
->;
-export const QuotationsDocument = gql`
-  query Quotations(
-    $limit: Int
-    $offset: Int
-    $queryString: String
-    $sort: [SortOptionInput!]
-  ) {
-    quotations(
-      limit: $limit
-      offset: $offset
-      queryString: $queryString
-      sort: $sort
-    ) {
-      ...QuotationFragment
-    }
-    quotationsCount
-  }
-  ${QuotationFragmentFragmentDoc}
-`;
-
-/**
- * __useQuotationsQuery__
- *
- * To run a query within a React component, call `useQuotationsQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuotationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useQuotationsQuery({
- *   variables: {
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      queryString: // value for 'queryString'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useQuotationsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IQuotationsQuery,
-    IQuotationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IQuotationsQuery, IQuotationsQueryVariables>(
-    QuotationsDocument,
-    options,
-  );
-}
-export function useQuotationsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IQuotationsQuery,
-    IQuotationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IQuotationsQuery, IQuotationsQueryVariables>(
-    QuotationsDocument,
-    options,
-  );
-}
-export type QuotationsQueryHookResult = ReturnType<typeof useQuotationsQuery>;
-export type QuotationsLazyQueryHookResult = ReturnType<
-  typeof useQuotationsLazyQuery
->;
-export type QuotationsQueryResult = Apollo.QueryResult<
-  IQuotationsQuery,
-  IQuotationsQueryVariables
->;
-export const RejectQuotationDocument = gql`
-  mutation RejectQuotation($quotationId: ID!, $quotationContext: JSON) {
-    rejectQuotation(
-      quotationId: $quotationId
-      quotationContext: $quotationContext
-    ) {
-      ...QuotationDetailFragment
-    }
-  }
-  ${QuotationDetailFragmentFragmentDoc}
-`;
-export type IRejectQuotationMutationFn = Apollo.MutationFunction<
-  IRejectQuotationMutation,
-  IRejectQuotationMutationVariables
->;
-
-/**
- * __useRejectQuotationMutation__
- *
- * To run a mutation, you first call `useRejectQuotationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRejectQuotationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [rejectQuotationMutation, { data, loading, error }] = useRejectQuotationMutation({
- *   variables: {
- *      quotationId: // value for 'quotationId'
- *      quotationContext: // value for 'quotationContext'
- *   },
- * });
- */
-export function useRejectQuotationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRejectQuotationMutation,
-    IRejectQuotationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRejectQuotationMutation,
-    IRejectQuotationMutationVariables
-  >(RejectQuotationDocument, options);
-}
-export type RejectQuotationMutationHookResult = ReturnType<
-  typeof useRejectQuotationMutation
->;
-export type RejectQuotationMutationResult =
-  Apollo.MutationResult<IRejectQuotationMutation>;
-export type RejectQuotationMutationOptions = Apollo.BaseMutationOptions<
-  IRejectQuotationMutation,
-  IRejectQuotationMutationVariables
->;
-export const UserQuotationsDocument = gql`
-  query UserQuotations($userId: ID!, $queryString: String) {
-    user(userId: $userId) {
-      _id
-      quotations(queryString: $queryString) {
-        ...QuotationFragment
-      }
-    }
-  }
-  ${QuotationFragmentFragmentDoc}
-`;
-
-/**
- * __useUserQuotationsQuery__
- *
- * To run a query within a React component, call `useUserQuotationsQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserQuotationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUserQuotationsQuery({
- *   variables: {
- *      userId: // value for 'userId'
- *      queryString: // value for 'queryString'
- *   },
- * });
- */
-export function useUserQuotationsQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IUserQuotationsQuery,
-    IUserQuotationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IUserQuotationsQuery, IUserQuotationsQueryVariables>(
-    UserQuotationsDocument,
-    options,
-  );
-}
-export function useUserQuotationsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IUserQuotationsQuery,
-    IUserQuotationsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IUserQuotationsQuery,
-    IUserQuotationsQueryVariables
-  >(UserQuotationsDocument, options);
-}
-export type UserQuotationsQueryHookResult = ReturnType<
-  typeof useUserQuotationsQuery
->;
-export type UserQuotationsLazyQueryHookResult = ReturnType<
-  typeof useUserQuotationsLazyQuery
->;
-export type UserQuotationsQueryResult = Apollo.QueryResult<
-  IUserQuotationsQuery,
-  IUserQuotationsQueryVariables
->;
-export const VerifyQuotationDocument = gql`
-  mutation VerifyQuotation($quotationId: ID!, $quotationContext: JSON) {
-    verifyQuotation(
-      quotationId: $quotationId
-      quotationContext: $quotationContext
-    ) {
-      ...QuotationDetailFragment
-    }
-  }
-  ${QuotationDetailFragmentFragmentDoc}
-`;
-export type IVerifyQuotationMutationFn = Apollo.MutationFunction<
-  IVerifyQuotationMutation,
-  IVerifyQuotationMutationVariables
->;
-
-/**
- * __useVerifyQuotationMutation__
- *
- * To run a mutation, you first call `useVerifyQuotationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useVerifyQuotationMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [verifyQuotationMutation, { data, loading, error }] = useVerifyQuotationMutation({
- *   variables: {
- *      quotationId: // value for 'quotationId'
- *      quotationContext: // value for 'quotationContext'
- *   },
- * });
- */
-export function useVerifyQuotationMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IVerifyQuotationMutation,
-    IVerifyQuotationMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IVerifyQuotationMutation,
-    IVerifyQuotationMutationVariables
-  >(VerifyQuotationDocument, options);
-}
-export type VerifyQuotationMutationHookResult = ReturnType<
-  typeof useVerifyQuotationMutation
->;
-export type VerifyQuotationMutationResult =
-  Apollo.MutationResult<IVerifyQuotationMutation>;
-export type VerifyQuotationMutationOptions = Apollo.BaseMutationOptions<
-  IVerifyQuotationMutation,
-  IVerifyQuotationMutationVariables
->;
-export const SyncReportsDocument = gql`
-  query SyncReports(
-    $queryString: String
-    $offset: Int
-    $limit: Int
-    $status: [WorkStatus!]
-    $types: [WorkType!]
-    $created: DateFilterInput
-    $sort: [SortOptionInput!]
-  ) {
-    workQueue(
-      queryString: $queryString
-      offset: $offset
-      limit: $limit
-      status: $status
-      types: $types
-      created: $created
-      sort: $sort
-    ) {
-      _id
-      type
-      scheduled
-      status
-      started
-      success
-      finished
-      created
-      deleted
-      priority
-      worker
-      retries
-      original {
-        _id
-      }
-      timeout
-      input
-      result
-      error
-    }
-  }
-`;
-
-/**
- * __useSyncReportsQuery__
- *
- * To run a query within a React component, call `useSyncReportsQuery` and pass it any options that fit your needs.
- * When your component renders, `useSyncReportsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSyncReportsQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *      status: // value for 'status'
- *      types: // value for 'types'
- *      created: // value for 'created'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useSyncReportsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ISyncReportsQuery,
-    ISyncReportsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<ISyncReportsQuery, ISyncReportsQueryVariables>(
-    SyncReportsDocument,
-    options,
-  );
-}
-export function useSyncReportsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ISyncReportsQuery,
-    ISyncReportsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<ISyncReportsQuery, ISyncReportsQueryVariables>(
-    SyncReportsDocument,
-    options,
-  );
-}
-export type SyncReportsQueryHookResult = ReturnType<typeof useSyncReportsQuery>;
-export type SyncReportsLazyQueryHookResult = ReturnType<
-  typeof useSyncReportsLazyQuery
->;
-export type SyncReportsQueryResult = Apollo.QueryResult<
-  ISyncReportsQuery,
-  ISyncReportsQueryVariables
->;
-export const CreateWarehousingProviderDocument = gql`
-  mutation CreateWarehousingProvider(
-    $warehousingProvider: CreateWarehousingProviderInput!
-  ) {
-    createWarehousingProvider(warehousingProvider: $warehousingProvider) {
-      ...WarehousingProviderFragment
-    }
-  }
-  ${WarehousingProviderFragmentFragmentDoc}
-`;
-export type ICreateWarehousingProviderMutationFn = Apollo.MutationFunction<
-  ICreateWarehousingProviderMutation,
-  ICreateWarehousingProviderMutationVariables
->;
-
-/**
- * __useCreateWarehousingProviderMutation__
- *
- * To run a mutation, you first call `useCreateWarehousingProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateWarehousingProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createWarehousingProviderMutation, { data, loading, error }] = useCreateWarehousingProviderMutation({
- *   variables: {
- *      warehousingProvider: // value for 'warehousingProvider'
- *   },
- * });
- */
-export function useCreateWarehousingProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    ICreateWarehousingProviderMutation,
-    ICreateWarehousingProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    ICreateWarehousingProviderMutation,
-    ICreateWarehousingProviderMutationVariables
-  >(CreateWarehousingProviderDocument, options);
-}
-export type CreateWarehousingProviderMutationHookResult = ReturnType<
-  typeof useCreateWarehousingProviderMutation
->;
-export type CreateWarehousingProviderMutationResult =
-  Apollo.MutationResult<ICreateWarehousingProviderMutation>;
-export type CreateWarehousingProviderMutationOptions =
-  Apollo.BaseMutationOptions<
-    ICreateWarehousingProviderMutation,
-    ICreateWarehousingProviderMutationVariables
-  >;
-export const RemoveWarehousingProviderDocument = gql`
-  mutation RemoveWarehousingProvider($warehousingProviderId: ID!) {
-    removeWarehousingProvider(warehousingProviderId: $warehousingProviderId) {
-      _id
-    }
-  }
-`;
-export type IRemoveWarehousingProviderMutationFn = Apollo.MutationFunction<
-  IRemoveWarehousingProviderMutation,
-  IRemoveWarehousingProviderMutationVariables
->;
-
-/**
- * __useRemoveWarehousingProviderMutation__
- *
- * To run a mutation, you first call `useRemoveWarehousingProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveWarehousingProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeWarehousingProviderMutation, { data, loading, error }] = useRemoveWarehousingProviderMutation({
- *   variables: {
- *      warehousingProviderId: // value for 'warehousingProviderId'
- *   },
- * });
- */
-export function useRemoveWarehousingProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveWarehousingProviderMutation,
-    IRemoveWarehousingProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IRemoveWarehousingProviderMutation,
-    IRemoveWarehousingProviderMutationVariables
-  >(RemoveWarehousingProviderDocument, options);
-}
-export type RemoveWarehousingProviderMutationHookResult = ReturnType<
-  typeof useRemoveWarehousingProviderMutation
->;
-export type RemoveWarehousingProviderMutationResult =
-  Apollo.MutationResult<IRemoveWarehousingProviderMutation>;
-export type RemoveWarehousingProviderMutationOptions =
-  Apollo.BaseMutationOptions<
-    IRemoveWarehousingProviderMutation,
-    IRemoveWarehousingProviderMutationVariables
-  >;
-export const UpdateWarehousingProviderDocument = gql`
-  mutation UpdateWarehousingProvider(
-    $warehousingProvider: UpdateProviderInput!
-    $warehousingProviderId: ID!
-  ) {
-    updateWarehousingProvider(
-      warehousingProvider: $warehousingProvider
-      warehousingProviderId: $warehousingProviderId
-    ) {
-      ...WarehousingProviderFragment
-    }
-  }
-  ${WarehousingProviderFragmentFragmentDoc}
-`;
-export type IUpdateWarehousingProviderMutationFn = Apollo.MutationFunction<
-  IUpdateWarehousingProviderMutation,
-  IUpdateWarehousingProviderMutationVariables
->;
-
-/**
- * __useUpdateWarehousingProviderMutation__
- *
- * To run a mutation, you first call `useUpdateWarehousingProviderMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateWarehousingProviderMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateWarehousingProviderMutation, { data, loading, error }] = useUpdateWarehousingProviderMutation({
- *   variables: {
- *      warehousingProvider: // value for 'warehousingProvider'
- *      warehousingProviderId: // value for 'warehousingProviderId'
- *   },
- * });
- */
-export function useUpdateWarehousingProviderMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IUpdateWarehousingProviderMutation,
-    IUpdateWarehousingProviderMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IUpdateWarehousingProviderMutation,
-    IUpdateWarehousingProviderMutationVariables
-  >(UpdateWarehousingProviderDocument, options);
-}
-export type UpdateWarehousingProviderMutationHookResult = ReturnType<
-  typeof useUpdateWarehousingProviderMutation
->;
-export type UpdateWarehousingProviderMutationResult =
-  Apollo.MutationResult<IUpdateWarehousingProviderMutation>;
-export type UpdateWarehousingProviderMutationOptions =
-  Apollo.BaseMutationOptions<
-    IUpdateWarehousingProviderMutation,
-    IUpdateWarehousingProviderMutationVariables
-  >;
-export const WarehousingInterfacesDocument = gql`
-  query WarehousingInterfaces($providerType: WarehousingProviderType!) {
-    warehousingInterfaces(type: $providerType) {
-      _id
-      value: _id
-      label
-    }
-  }
-`;
-
-/**
- * __useWarehousingInterfacesQuery__
- *
- * To run a query within a React component, call `useWarehousingInterfacesQuery` and pass it any options that fit your needs.
- * When your component renders, `useWarehousingInterfacesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWarehousingInterfacesQuery({
- *   variables: {
- *      providerType: // value for 'providerType'
- *   },
- * });
- */
-export function useWarehousingInterfacesQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IWarehousingInterfacesQuery,
-    IWarehousingInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IWarehousingInterfacesQuery,
-    IWarehousingInterfacesQueryVariables
-  >(WarehousingInterfacesDocument, options);
-}
-export function useWarehousingInterfacesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWarehousingInterfacesQuery,
-    IWarehousingInterfacesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IWarehousingInterfacesQuery,
-    IWarehousingInterfacesQueryVariables
-  >(WarehousingInterfacesDocument, options);
-}
-export type WarehousingInterfacesQueryHookResult = ReturnType<
-  typeof useWarehousingInterfacesQuery
->;
-export type WarehousingInterfacesLazyQueryHookResult = ReturnType<
-  typeof useWarehousingInterfacesLazyQuery
->;
-export type WarehousingInterfacesQueryResult = Apollo.QueryResult<
-  IWarehousingInterfacesQuery,
-  IWarehousingInterfacesQueryVariables
->;
-export const WarehousingProviderDocument = gql`
-  query WarehousingProvider($warehousingProviderId: ID!) {
-    warehousingProvider(warehousingProviderId: $warehousingProviderId) {
-      ...WarehousingProviderFragment
-    }
-  }
-  ${WarehousingProviderFragmentFragmentDoc}
-`;
-
-/**
- * __useWarehousingProviderQuery__
- *
- * To run a query within a React component, call `useWarehousingProviderQuery` and pass it any options that fit your needs.
- * When your component renders, `useWarehousingProviderQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWarehousingProviderQuery({
- *   variables: {
- *      warehousingProviderId: // value for 'warehousingProviderId'
- *   },
- * });
- */
-export function useWarehousingProviderQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    IWarehousingProviderQuery,
-    IWarehousingProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IWarehousingProviderQuery,
-    IWarehousingProviderQueryVariables
-  >(WarehousingProviderDocument, options);
-}
-export function useWarehousingProviderLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWarehousingProviderQuery,
-    IWarehousingProviderQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IWarehousingProviderQuery,
-    IWarehousingProviderQueryVariables
-  >(WarehousingProviderDocument, options);
-}
-export type WarehousingProviderQueryHookResult = ReturnType<
-  typeof useWarehousingProviderQuery
->;
-export type WarehousingProviderLazyQueryHookResult = ReturnType<
-  typeof useWarehousingProviderLazyQuery
->;
-export type WarehousingProviderQueryResult = Apollo.QueryResult<
-  IWarehousingProviderQuery,
-  IWarehousingProviderQueryVariables
->;
-export const WarehousingProvidersTypeDocument = gql`
-  query WarehousingProvidersType {
-    warehousingProviderType: __type(name: "WarehousingProviderType") {
-      options: enumValues {
-        value: name
-        label: description
-      }
-    }
-  }
-`;
-
-/**
- * __useWarehousingProvidersTypeQuery__
- *
- * To run a query within a React component, call `useWarehousingProvidersTypeQuery` and pass it any options that fit your needs.
- * When your component renders, `useWarehousingProvidersTypeQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWarehousingProvidersTypeQuery({
- *   variables: {
- *   },
- * });
- */
-export function useWarehousingProvidersTypeQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IWarehousingProvidersTypeQuery,
-    IWarehousingProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IWarehousingProvidersTypeQuery,
-    IWarehousingProvidersTypeQueryVariables
-  >(WarehousingProvidersTypeDocument, options);
-}
-export function useWarehousingProvidersTypeLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWarehousingProvidersTypeQuery,
-    IWarehousingProvidersTypeQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IWarehousingProvidersTypeQuery,
-    IWarehousingProvidersTypeQueryVariables
-  >(WarehousingProvidersTypeDocument, options);
-}
-export type WarehousingProvidersTypeQueryHookResult = ReturnType<
-  typeof useWarehousingProvidersTypeQuery
->;
-export type WarehousingProvidersTypeLazyQueryHookResult = ReturnType<
-  typeof useWarehousingProvidersTypeLazyQuery
->;
-export type WarehousingProvidersTypeQueryResult = Apollo.QueryResult<
-  IWarehousingProvidersTypeQuery,
-  IWarehousingProvidersTypeQueryVariables
->;
-export const WarehousingProvidersDocument = gql`
-  query WarehousingProviders($type: WarehousingProviderType) {
-    warehousingProviders(type: $type) {
-      ...WarehousingProviderFragment
-    }
-  }
-  ${WarehousingProviderFragmentFragmentDoc}
-`;
-
-/**
- * __useWarehousingProvidersQuery__
- *
- * To run a query within a React component, call `useWarehousingProvidersQuery` and pass it any options that fit your needs.
- * When your component renders, `useWarehousingProvidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWarehousingProvidersQuery({
- *   variables: {
- *      type: // value for 'type'
- *   },
- * });
- */
-export function useWarehousingProvidersQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IWarehousingProvidersQuery,
-    IWarehousingProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<
-    IWarehousingProvidersQuery,
-    IWarehousingProvidersQueryVariables
-  >(WarehousingProvidersDocument, options);
-}
-export function useWarehousingProvidersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWarehousingProvidersQuery,
-    IWarehousingProvidersQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IWarehousingProvidersQuery,
-    IWarehousingProvidersQueryVariables
-  >(WarehousingProvidersDocument, options);
-}
-export type WarehousingProvidersQueryHookResult = ReturnType<
-  typeof useWarehousingProvidersQuery
->;
-export type WarehousingProvidersLazyQueryHookResult = ReturnType<
-  typeof useWarehousingProvidersLazyQuery
->;
-export type WarehousingProvidersQueryResult = Apollo.QueryResult<
-  IWarehousingProvidersQuery,
-  IWarehousingProvidersQueryVariables
->;
-export const ActiveWorkTypesDocument = gql`
-  query ActiveWorkTypes {
-    activeWorkTypes
-  }
-`;
-
-/**
- * __useActiveWorkTypesQuery__
- *
- * To run a query within a React component, call `useActiveWorkTypesQuery` and pass it any options that fit your needs.
- * When your component renders, `useActiveWorkTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useActiveWorkTypesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useActiveWorkTypesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IActiveWorkTypesQuery,
-    IActiveWorkTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IActiveWorkTypesQuery, IActiveWorkTypesQueryVariables>(
-    ActiveWorkTypesDocument,
-    options,
-  );
-}
-export function useActiveWorkTypesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IActiveWorkTypesQuery,
-    IActiveWorkTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<
-    IActiveWorkTypesQuery,
-    IActiveWorkTypesQueryVariables
-  >(ActiveWorkTypesDocument, options);
-}
-export type ActiveWorkTypesQueryHookResult = ReturnType<
-  typeof useActiveWorkTypesQuery
->;
-export type ActiveWorkTypesLazyQueryHookResult = ReturnType<
-  typeof useActiveWorkTypesLazyQuery
->;
-export type ActiveWorkTypesQueryResult = Apollo.QueryResult<
-  IActiveWorkTypesQuery,
-  IActiveWorkTypesQueryVariables
->;
-export const AddWorkDocument = gql`
-  mutation AddWork(
-    $type: WorkType!
-    $priority: Int! = 0
-    $input: JSON
-    $originalWorkId: ID
-    $scheduled: Timestamp
-    $retries: Int! = 20
-  ) {
-    addWork(
-      type: $type
-      priority: $priority
-      input: $input
-      originalWorkId: $originalWorkId
-      scheduled: $scheduled
-      retries: $retries
-    ) {
-      _id
-    }
-  }
-`;
-export type IAddWorkMutationFn = Apollo.MutationFunction<
-  IAddWorkMutation,
-  IAddWorkMutationVariables
->;
-
-/**
- * __useAddWorkMutation__
- *
- * To run a mutation, you first call `useAddWorkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddWorkMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [addWorkMutation, { data, loading, error }] = useAddWorkMutation({
- *   variables: {
- *      type: // value for 'type'
- *      priority: // value for 'priority'
- *      input: // value for 'input'
- *      originalWorkId: // value for 'originalWorkId'
- *      scheduled: // value for 'scheduled'
- *      retries: // value for 'retries'
- *   },
- * });
- */
-export function useAddWorkMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAddWorkMutation,
-    IAddWorkMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IAddWorkMutation, IAddWorkMutationVariables>(
-    AddWorkDocument,
-    options,
-  );
-}
-export type AddWorkMutationHookResult = ReturnType<typeof useAddWorkMutation>;
-export type AddWorkMutationResult = Apollo.MutationResult<IAddWorkMutation>;
-export type AddWorkMutationOptions = Apollo.BaseMutationOptions<
-  IAddWorkMutation,
-  IAddWorkMutationVariables
->;
-export const AllocateWorkDocument = gql`
-  mutation AllocateWork($types: [WorkType], $worker: String) {
-    allocateWork(types: $types, worker: $worker) {
-      _id
-    }
-  }
-`;
-export type IAllocateWorkMutationFn = Apollo.MutationFunction<
-  IAllocateWorkMutation,
-  IAllocateWorkMutationVariables
->;
-
-/**
- * __useAllocateWorkMutation__
- *
- * To run a mutation, you first call `useAllocateWorkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAllocateWorkMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [allocateWorkMutation, { data, loading, error }] = useAllocateWorkMutation({
- *   variables: {
- *      types: // value for 'types'
- *      worker: // value for 'worker'
- *   },
- * });
- */
-export function useAllocateWorkMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IAllocateWorkMutation,
-    IAllocateWorkMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<
-    IAllocateWorkMutation,
-    IAllocateWorkMutationVariables
-  >(AllocateWorkDocument, options);
-}
-export type AllocateWorkMutationHookResult = ReturnType<
-  typeof useAllocateWorkMutation
->;
-export type AllocateWorkMutationResult =
-  Apollo.MutationResult<IAllocateWorkMutation>;
-export type AllocateWorkMutationOptions = Apollo.BaseMutationOptions<
-  IAllocateWorkMutation,
-  IAllocateWorkMutationVariables
->;
-export const WorkTypesDocument = gql`
-  query WorkTypes {
-    registeredWorkTypes: __type(name: "WorkType") {
-      options: enumValues {
-        value: name
-        label: name
-      }
-    }
-  }
-`;
-
-/**
- * __useWorkTypesQuery__
- *
- * To run a query within a React component, call `useWorkTypesQuery` and pass it any options that fit your needs.
- * When your component renders, `useWorkTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWorkTypesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useWorkTypesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IWorkTypesQuery,
-    IWorkTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IWorkTypesQuery, IWorkTypesQueryVariables>(
-    WorkTypesDocument,
-    options,
-  );
-}
-export function useWorkTypesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWorkTypesQuery,
-    IWorkTypesQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IWorkTypesQuery, IWorkTypesQueryVariables>(
-    WorkTypesDocument,
-    options,
-  );
-}
-export type WorkTypesQueryHookResult = ReturnType<typeof useWorkTypesQuery>;
-export type WorkTypesLazyQueryHookResult = ReturnType<
-  typeof useWorkTypesLazyQuery
->;
-export type WorkTypesQueryResult = Apollo.QueryResult<
-  IWorkTypesQuery,
-  IWorkTypesQueryVariables
->;
-export const RemoveWorkDocument = gql`
-  mutation RemoveWork($workId: ID!) {
-    removeWork(workId: $workId) {
-      _id
-    }
-  }
-`;
-export type IRemoveWorkMutationFn = Apollo.MutationFunction<
-  IRemoveWorkMutation,
-  IRemoveWorkMutationVariables
->;
-
-/**
- * __useRemoveWorkMutation__
- *
- * To run a mutation, you first call `useRemoveWorkMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveWorkMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [removeWorkMutation, { data, loading, error }] = useRemoveWorkMutation({
- *   variables: {
- *      workId: // value for 'workId'
- *   },
- * });
- */
-export function useRemoveWorkMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    IRemoveWorkMutation,
-    IRemoveWorkMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<IRemoveWorkMutation, IRemoveWorkMutationVariables>(
-    RemoveWorkDocument,
-    options,
-  );
-}
-export type RemoveWorkMutationHookResult = ReturnType<
-  typeof useRemoveWorkMutation
->;
-export type RemoveWorkMutationResult =
-  Apollo.MutationResult<IRemoveWorkMutation>;
-export type RemoveWorkMutationOptions = Apollo.BaseMutationOptions<
-  IRemoveWorkMutation,
-  IRemoveWorkMutationVariables
->;
-export const WorkDocument = gql`
-  query Work($workId: ID!) {
-    work(workId: $workId) {
-      ...WorkFragment
-      input
-      result
-      error
-      priority
-      worker
-      retries
-      original {
-        _id
-      }
-      timeout
-    }
-  }
-  ${WorkFragmentFragmentDoc}
-`;
-
-/**
- * __useWorkQuery__
- *
- * To run a query within a React component, call `useWorkQuery` and pass it any options that fit your needs.
- * When your component renders, `useWorkQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWorkQuery({
- *   variables: {
- *      workId: // value for 'workId'
- *   },
- * });
- */
-export function useWorkQuery(
-  baseOptions: Apollo.QueryHookOptions<IWorkQuery, IWorkQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IWorkQuery, IWorkQueryVariables>(
-    WorkDocument,
-    options,
-  );
-}
-export function useWorkLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<IWorkQuery, IWorkQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IWorkQuery, IWorkQueryVariables>(
-    WorkDocument,
-    options,
-  );
-}
-export type WorkQueryHookResult = ReturnType<typeof useWorkQuery>;
-export type WorkLazyQueryHookResult = ReturnType<typeof useWorkLazyQuery>;
-export type WorkQueryResult = Apollo.QueryResult<
-  IWorkQuery,
-  IWorkQueryVariables
->;
-export const WorkQueueDocument = gql`
-  query WorkQueue(
-    $queryString: String
-    $offset: Int
-    $limit: Int
-    $status: [WorkStatus!]
-    $types: [WorkType!]
-    $created: DateFilterInput
-    $sort: [SortOptionInput!]
-  ) {
-    workQueue(
-      queryString: $queryString
-      offset: $offset
-      limit: $limit
-      status: $status
-      types: $types
-      created: $created
-      sort: $sort
-    ) {
-      ...WorkFragment
-    }
-    activeWorkTypes
-    workQueueCount(
-      status: $status
-      types: $types
-      created: $created
-      queryString: $queryString
-    )
-  }
-  ${WorkFragmentFragmentDoc}
-`;
-
-/**
- * __useWorkQueueQuery__
- *
- * To run a query within a React component, call `useWorkQueueQuery` and pass it any options that fit your needs.
- * When your component renders, `useWorkQueueQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useWorkQueueQuery({
- *   variables: {
- *      queryString: // value for 'queryString'
- *      offset: // value for 'offset'
- *      limit: // value for 'limit'
- *      status: // value for 'status'
- *      types: // value for 'types'
- *      created: // value for 'created'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function useWorkQueueQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    IWorkQueueQuery,
-    IWorkQueueQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<IWorkQueueQuery, IWorkQueueQueryVariables>(
-    WorkQueueDocument,
-    options,
-  );
-}
-export function useWorkQueueLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    IWorkQueueQuery,
-    IWorkQueueQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<IWorkQueueQuery, IWorkQueueQueryVariables>(
-    WorkQueueDocument,
-    options,
-  );
-}
-export type WorkQueueQueryHookResult = ReturnType<typeof useWorkQueueQuery>;
-export type WorkQueueLazyQueryHookResult = ReturnType<
-  typeof useWorkQueueLazyQuery
->;
-export type WorkQueueQueryResult = Apollo.QueryResult<
-  IWorkQueueQuery,
-  IWorkQueueQueryVariables
->;

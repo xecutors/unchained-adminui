@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddEmailMutation,
+  IAddEmailMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const AddEmailMutation = gql`
@@ -11,9 +15,12 @@ const AddEmailMutation = gql`
 `;
 
 const useAddEmail = () => {
-  const [addEmailMutation] = useMutation(AddEmailMutation);
+  const [addEmailMutation] = useMutation<
+    IAddEmailMutation,
+    IAddEmailMutationVariables
+  >(AddEmailMutation);
 
-  const addEmail = async ({ email, userId }) => {
+  const addEmail = async ({ email, userId }: IAddEmailMutationVariables) => {
     return addEmailMutation({
       variables: { email, userId },
     });

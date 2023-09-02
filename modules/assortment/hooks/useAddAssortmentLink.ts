@@ -1,7 +1,6 @@
 import { useMutation, gql } from '@apollo/client';
 import {
   IAddAssortmentLinkMutation,
-  IAddAssortmentLinkMutationFn,
   IAddAssortmentLinkMutationVariables,
 } from '../../../gql/types';
 import AssortmentLinkFragment from '../fragments/AssortmentLinkFragment';

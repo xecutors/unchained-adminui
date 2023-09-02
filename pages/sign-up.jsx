@@ -11,7 +11,7 @@ const SignUpPage = () => {
   const onSubmit = async ({ email, password }) => {
     const { data } = await createUser({
       email,
-      password,
+      plainPassword: password,
     });
     const { id, token, tokenExpires } = data.createUser;
     await storeLoginToken(id, token, new Date(tokenExpires));

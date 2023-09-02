@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IBuildSecretTotpAuthUrlMutation,
+  IBuildSecretTotpAuthUrlMutationVariables,
+} from '../../../gql/types';
 
 const BuildSecretTOTPAuthURLMutation = gql`
   mutation BuildSecretTOTPAuthURL {
@@ -7,9 +11,10 @@ const BuildSecretTOTPAuthURLMutation = gql`
 `;
 
 const useBuildTOTPAuthURL = () => {
-  const [buildSecretTOTPAuthURLMutation] = useMutation(
-    BuildSecretTOTPAuthURLMutation,
-  );
+  const [buildSecretTOTPAuthURLMutation] = useMutation<
+    IBuildSecretTotpAuthUrlMutation,
+    IBuildSecretTotpAuthUrlMutationVariables
+  >(BuildSecretTOTPAuthURLMutation);
 
   const buildTOTPAuthURL = async () => {
     const { data } = await buildSecretTOTPAuthURLMutation();

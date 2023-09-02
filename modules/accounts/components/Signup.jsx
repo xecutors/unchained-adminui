@@ -52,7 +52,7 @@ const SignUpForm = () => {
     const { data } = await createUser({
       username,
       email,
-      password,
+      plainPassword: password,
     });
     const { id, token, tokenExpires } = data.createUser;
     await storeLoginToken(id, token, new Date(tokenExpires));
