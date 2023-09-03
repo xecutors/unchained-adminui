@@ -36,58 +36,68 @@ export type Scalars = {
 };
 
 export type IAddress = {
-  addressLine?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  addressLine2?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  city?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  company?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  firstName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  lastName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  postalCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  regionCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly addressLine?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly addressLine2?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly city?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly company?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly firstName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly lastName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly postalCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly regionCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IAddressInput = {
-  addressLine?: InputMaybe<Scalars['String']['input']>;
-  addressLine2?: InputMaybe<Scalars['String']['input']>;
-  city?: InputMaybe<Scalars['String']['input']>;
-  company?: InputMaybe<Scalars['String']['input']>;
-  countryCode?: InputMaybe<Scalars['String']['input']>;
-  firstName?: InputMaybe<Scalars['String']['input']>;
-  lastName?: InputMaybe<Scalars['String']['input']>;
-  postalCode?: InputMaybe<Scalars['String']['input']>;
-  regionCode?: InputMaybe<Scalars['String']['input']>;
+  readonly addressLine?: InputMaybe<Scalars['String']['input']>;
+  readonly addressLine2?: InputMaybe<Scalars['String']['input']>;
+  readonly city?: InputMaybe<Scalars['String']['input']>;
+  readonly company?: InputMaybe<Scalars['String']['input']>;
+  readonly countryCode?: InputMaybe<Scalars['String']['input']>;
+  readonly firstName?: InputMaybe<Scalars['String']['input']>;
+  readonly lastName?: InputMaybe<Scalars['String']['input']>;
+  readonly postalCode?: InputMaybe<Scalars['String']['input']>;
+  readonly regionCode?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IAdminUiConfig = {
-  customProperties: Array<FieldWrapper<IAdminUiConfigCustomEntityInterface>>;
+  readonly customProperties: ReadonlyArray<
+    FieldWrapper<IAdminUiConfigCustomEntityInterface>
+  >;
 };
 
 export type IAdminUiConfigCustomEntityInterface = {
-  entityName: FieldWrapper<Scalars['String']['output']>;
-  inlineFragment: FieldWrapper<Scalars['String']['output']>;
+  readonly entityName: FieldWrapper<Scalars['String']['output']>;
+  readonly inlineFragment: FieldWrapper<Scalars['String']['output']>;
 };
 
 /** Assortment */
 export type IAssortment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IAssortmentPath>>;
-  children?: Maybe<Array<FieldWrapper<IAssortment>>>;
-  childrenCount: FieldWrapper<Scalars['Int']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  filterAssignments?: Maybe<Array<FieldWrapper<IAssortmentFilter>>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isRoot?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  linkedAssortments?: Maybe<Array<FieldWrapper<IAssortmentLink>>>;
-  media: Array<FieldWrapper<IAssortmentMedia>>;
-  productAssignments?: Maybe<Array<FieldWrapper<IAssortmentProduct>>>;
-  searchProducts: FieldWrapper<IProductSearchResult>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IAssortmentTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IAssortmentPath>>;
+  readonly children?: Maybe<ReadonlyArray<FieldWrapper<IAssortment>>>;
+  readonly childrenCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly filterAssignments?: Maybe<
+    ReadonlyArray<FieldWrapper<IAssortmentFilter>>
+  >;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly isRoot?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly linkedAssortments?: Maybe<
+    ReadonlyArray<FieldWrapper<IAssortmentLink>>
+  >;
+  readonly media: ReadonlyArray<FieldWrapper<IAssortmentMedia>>;
+  readonly productAssignments?: Maybe<
+    ReadonlyArray<FieldWrapper<IAssortmentProduct>>
+  >;
+  readonly searchProducts: FieldWrapper<IProductSearchResult>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IAssortmentTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** Assortment */
@@ -104,12 +114,12 @@ export type IAssortmentChildrenCountArgs = {
 export type IAssortmentMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Assortment */
 export type IAssortmentSearchProductsArgs = {
-  filterQuery?: InputMaybe<Array<IFilterQueryInput>>;
+  filterQuery?: InputMaybe<ReadonlyArray<IFilterQueryInput>>;
   ignoreChildAssortments?: InputMaybe<Scalars['Boolean']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
@@ -122,27 +132,33 @@ export type IAssortmentTextsArgs = {
 };
 
 export type IAssortmentFilter = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortment: FieldWrapper<IAssortment>;
-  filter: FieldWrapper<IFilter>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortment: FieldWrapper<IAssortment>;
+  readonly filter: FieldWrapper<IFilter>;
+  readonly sortKey: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
 };
 
 export type IAssortmentLink = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  child: FieldWrapper<IAssortment>;
-  parent: FieldWrapper<IAssortment>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly child: FieldWrapper<IAssortment>;
+  readonly parent: FieldWrapper<IAssortment>;
+  readonly sortKey: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
 };
 
 export type IAssortmentMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  file: FieldWrapper<IMedia>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IAssortmentMediaTexts>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly file: FieldWrapper<IMedia>;
+  readonly sortKey: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IAssortmentMediaTexts>>;
 };
 
 export type IAssortmentMediaTextsArgs = {
@@ -150,15 +166,15 @@ export type IAssortmentMediaTextsArgs = {
 };
 
 export type IAssortmentMediaTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IAssortmentPath = {
-  links: Array<FieldWrapper<IAssortmentPathLink>>;
+  readonly links: ReadonlyArray<FieldWrapper<IAssortmentPathLink>>;
 };
 
 /**
@@ -167,9 +183,9 @@ export type IAssortmentPath = {
  * to short-circuit breadcrumb lookups
  */
 export type IAssortmentPathLink = {
-  assortmentId: FieldWrapper<Scalars['ID']['output']>;
-  assortmentTexts: FieldWrapper<IAssortmentTexts>;
-  link?: Maybe<FieldWrapper<IAssortmentLink>>;
+  readonly assortmentId: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentTexts: FieldWrapper<IAssortmentTexts>;
+  readonly link?: Maybe<FieldWrapper<IAssortmentLink>>;
 };
 
 /**
@@ -182,16 +198,18 @@ export type IAssortmentPathLinkAssortmentTextsArgs = {
 };
 
 export type IAssortmentProduct = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortment: FieldWrapper<IAssortment>;
-  product: FieldWrapper<IProduct>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortment: FieldWrapper<IAssortment>;
+  readonly product: FieldWrapper<IProduct>;
+  readonly sortKey: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
 };
 
 export type IAssortmentSearchResult = {
-  assortments: Array<FieldWrapper<IAssortment>>;
-  assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly assortments: ReadonlyArray<FieldWrapper<IAssortment>>;
+  readonly assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type IAssortmentSearchResultAssortmentsArgs = {
@@ -200,44 +218,46 @@ export type IAssortmentSearchResultAssortmentsArgs = {
 };
 
 export type IAssortmentTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IBookmark = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  product: FieldWrapper<IProduct>;
-  user: FieldWrapper<IUser>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly product: FieldWrapper<IProduct>;
+  readonly user: FieldWrapper<IUser>;
 };
 
 /** A Bundle product consists of multiple configured products */
 export type IBundleProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  bundleItems?: Maybe<Array<FieldWrapper<IProductBundleItem>>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly bundleItems?: Maybe<ReadonlyArray<FieldWrapper<IProductBundleItem>>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** A Bundle product consists of multiple configured products */
 export type IBundleProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** A Bundle product consists of multiple configured products */
@@ -245,7 +265,7 @@ export type IBundleProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** A Bundle product consists of multiple configured products */
@@ -272,36 +292,40 @@ export enum ICacheControlScope {
 }
 
 export type IColor = {
-  blue?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  green?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  hex?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  red?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly blue?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly green?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly hex?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly red?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
 };
 
 /** Configurable Product (Proxy) */
 export type IConfigurableProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
   /** Complete assignment matrix */
-  assignments: Array<FieldWrapper<IProductVariationAssignment>>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
+  readonly assignments: ReadonlyArray<
+    FieldWrapper<IProductVariationAssignment>
+  >;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly catalogPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
   /** Reduced list of possible products by key/value combinations */
-  products?: Maybe<Array<FieldWrapper<IProduct>>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly products?: Maybe<ReadonlyArray<FieldWrapper<IProduct>>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly simulatedPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
   /** Product's variations (keys) and their options (values) */
-  variations?: Maybe<Array<FieldWrapper<IProductVariation>>>;
+  readonly variations?: Maybe<ReadonlyArray<FieldWrapper<IProductVariation>>>;
 };
 
 /** Configurable Product (Proxy) */
@@ -314,20 +338,20 @@ export type IConfigurableProductCatalogPriceRangeArgs = {
   currency?: InputMaybe<Scalars['String']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   quantity?: InputMaybe<Scalars['Int']['input']>;
-  vectors?: InputMaybe<Array<IProductAssignmentVectorInput>>;
+  vectors?: InputMaybe<ReadonlyArray<IProductAssignmentVectorInput>>;
 };
 
 /** Configurable Product (Proxy) */
 export type IConfigurableProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Configurable Product (Proxy) */
 export type IConfigurableProductProductsArgs = {
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
-  vectors?: InputMaybe<Array<IProductAssignmentVectorInput>>;
+  vectors?: InputMaybe<ReadonlyArray<IProductAssignmentVectorInput>>;
 };
 
 /** Configurable Product (Proxy) */
@@ -335,7 +359,7 @@ export type IConfigurableProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** Configurable Product (Proxy) */
@@ -357,7 +381,7 @@ export type IConfigurableProductSimulatedPriceRangeArgs = {
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   quantity?: InputMaybe<Scalars['Int']['input']>;
   useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
-  vectors?: InputMaybe<Array<IProductAssignmentVectorInput>>;
+  vectors?: InputMaybe<ReadonlyArray<IProductAssignmentVectorInput>>;
 };
 
 /** Configurable Product (Proxy) */
@@ -366,30 +390,32 @@ export type IConfigurableProductTextsArgs = {
 };
 
 export type IContact = {
-  emailAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  telNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly emailAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly telNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IContactInput = {
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  telNumber?: InputMaybe<Scalars['String']['input']>;
+  readonly emailAddress?: InputMaybe<Scalars['String']['input']>;
+  readonly telNumber?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IContractConfiguration = {
-  ercMetadataProperties?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  supply: FieldWrapper<Scalars['Int']['output']>;
-  tokenId: FieldWrapper<Scalars['String']['output']>;
+  readonly ercMetadataProperties?: Maybe<
+    FieldWrapper<Scalars['JSON']['output']>
+  >;
+  readonly supply: FieldWrapper<Scalars['Int']['output']>;
+  readonly tokenId: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type ICountry = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  defaultCurrency?: Maybe<FieldWrapper<ICurrency>>;
-  flagEmoji?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly defaultCurrency?: Maybe<FieldWrapper<ICurrency>>;
+  readonly flagEmoji?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
   /** ISO 3166-1 alpha-2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements */
-  isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type ICountryNameArgs = {
@@ -397,104 +423,108 @@ export type ICountryNameArgs = {
 };
 
 export type ICreateAssortmentInput = {
-  isRoot?: InputMaybe<Scalars['Boolean']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
-  title: Scalars['String']['input'];
+  readonly isRoot?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly tags?: InputMaybe<
+    ReadonlyArray<Scalars['LowerCaseString']['input']>
+  >;
+  readonly title: Scalars['String']['input'];
 };
 
 export type ICreateCountryInput = {
-  isoCode: Scalars['String']['input'];
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type ICreateCurrencyInput = {
-  contractAddress?: InputMaybe<Scalars['String']['input']>;
-  decimals?: InputMaybe<Scalars['Int']['input']>;
-  isoCode: Scalars['String']['input'];
+  readonly contractAddress?: InputMaybe<Scalars['String']['input']>;
+  readonly decimals?: InputMaybe<Scalars['Int']['input']>;
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type ICreateDeliveryProviderInput = {
-  adapterKey: Scalars['String']['input'];
-  type: IDeliveryProviderType;
+  readonly adapterKey: Scalars['String']['input'];
+  readonly type: IDeliveryProviderType;
 };
 
 export type ICreateFilterInput = {
-  key: Scalars['String']['input'];
-  options?: InputMaybe<Array<Scalars['String']['input']>>;
-  title: Scalars['String']['input'];
-  type: IFilterType;
+  readonly key: Scalars['String']['input'];
+  readonly options?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  readonly title: Scalars['String']['input'];
+  readonly type: IFilterType;
 };
 
 export type ICreateFilterOptionInput = {
-  title: Scalars['String']['input'];
-  value: Scalars['String']['input'];
+  readonly title: Scalars['String']['input'];
+  readonly value: Scalars['String']['input'];
 };
 
 export type ICreateLanguageInput = {
-  isoCode: Scalars['String']['input'];
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type ICreatePaymentProviderInput = {
-  adapterKey: Scalars['String']['input'];
-  type: IPaymentProviderType;
+  readonly adapterKey: Scalars['String']['input'];
+  readonly type: IPaymentProviderType;
 };
 
 export type ICreateProductBundleItemInput = {
-  productId: Scalars['ID']['input'];
-  quantity: Scalars['Int']['input'];
+  readonly productId: Scalars['ID']['input'];
+  readonly quantity: Scalars['Int']['input'];
 };
 
 export type ICreateProductInput = {
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
-  title: Scalars['String']['input'];
-  type: Scalars['String']['input'];
+  readonly tags?: InputMaybe<
+    ReadonlyArray<Scalars['LowerCaseString']['input']>
+  >;
+  readonly title: Scalars['String']['input'];
+  readonly type: Scalars['String']['input'];
 };
 
 export type ICreateProductVariationInput = {
-  key: Scalars['String']['input'];
-  title: Scalars['String']['input'];
-  type: IProductVariationType;
+  readonly key: Scalars['String']['input'];
+  readonly title: Scalars['String']['input'];
+  readonly type: IProductVariationType;
 };
 
 export type ICreateProductVariationOptionInput = {
-  title: Scalars['String']['input'];
-  value: Scalars['String']['input'];
+  readonly title: Scalars['String']['input'];
+  readonly value: Scalars['String']['input'];
 };
 
 export type ICreateWarehousingProviderInput = {
-  adapterKey: Scalars['String']['input'];
-  type: IWarehousingProviderType;
+  readonly adapterKey: Scalars['String']['input'];
+  readonly type: IWarehousingProviderType;
 };
 
 export type ICurrency = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  decimals?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isoCode: FieldWrapper<Scalars['String']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly decimals?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly isoCode: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type IDateFilterInput = {
-  end?: InputMaybe<Scalars['DateTime']['input']>;
-  start?: InputMaybe<Scalars['DateTime']['input']>;
+  readonly end?: InputMaybe<Scalars['DateTime']['input']>;
+  readonly start?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type IDeliveryInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IDeliveryProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IDeliveryProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IDeliveryInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  type?: Maybe<FieldWrapper<IDeliveryProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly configurationError?: Maybe<FieldWrapper<IDeliveryProviderError>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly interface?: Maybe<FieldWrapper<IDeliveryInterface>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly type?: Maybe<FieldWrapper<IDeliveryProviderType>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 export type IDeliveryProviderSimulatedPriceArgs = {
@@ -519,10 +549,10 @@ export enum IDeliveryProviderType {
 }
 
 export type IDimensions = {
-  height?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  length?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  weight?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  width?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  readonly height?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  readonly length?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  readonly weight?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  readonly width?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
 };
 
 export type IDimensionsHeightArgs = {
@@ -542,39 +572,45 @@ export type IDimensionsWidthArgs = {
 };
 
 export type IDiscountInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isManualAdditionAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isManualRemovalAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly isManualAdditionAllowed?: Maybe<
+    FieldWrapper<Scalars['Boolean']['output']>
+  >;
+  readonly isManualRemovalAllowed?: Maybe<
+    FieldWrapper<Scalars['Boolean']['output']>
+  >;
+  readonly label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IDispatch = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  earliestDelivery?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  shipping?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly earliestDelivery?: Maybe<
+    FieldWrapper<Scalars['DateTime']['output']>
+  >;
+  readonly shipping?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
 };
 
 /** Enrollment */
 export type IEnrollment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  billingAddress?: Maybe<FieldWrapper<IAddress>>;
-  contact?: Maybe<FieldWrapper<IContact>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  delivery?: Maybe<FieldWrapper<IEnrollmentDelivery>>;
-  enrollmentNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  payment?: Maybe<FieldWrapper<IEnrollmentPayment>>;
-  periods: Array<FieldWrapper<IEnrollmentPeriod>>;
-  plan: FieldWrapper<IEnrollmentPlan>;
-  status: FieldWrapper<IEnrollmentStatus>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user: FieldWrapper<IUser>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly billingAddress?: Maybe<FieldWrapper<IAddress>>;
+  readonly contact?: Maybe<FieldWrapper<IContact>>;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
+  readonly created: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly currency?: Maybe<FieldWrapper<ICurrency>>;
+  readonly delivery?: Maybe<FieldWrapper<IEnrollmentDelivery>>;
+  readonly enrollmentNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly payment?: Maybe<FieldWrapper<IEnrollmentPayment>>;
+  readonly periods: ReadonlyArray<FieldWrapper<IEnrollmentPeriod>>;
+  readonly plan: FieldWrapper<IEnrollmentPlan>;
+  readonly status: FieldWrapper<IEnrollmentStatus>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly user: FieldWrapper<IUser>;
 };
 
 /** Enrollment */
@@ -583,40 +619,44 @@ export type IEnrollmentIsExpiredArgs = {
 };
 
 export type IEnrollmentDelivery = {
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
 };
 
 export type IEnrollmentDeliveryInput = {
-  deliveryProviderId: Scalars['ID']['input'];
-  meta?: InputMaybe<Scalars['JSON']['input']>;
+  readonly deliveryProviderId: Scalars['ID']['input'];
+  readonly meta?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type IEnrollmentPayment = {
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly provider?: Maybe<FieldWrapper<IPaymentProvider>>;
 };
 
 export type IEnrollmentPaymentInput = {
-  meta?: InputMaybe<Scalars['JSON']['input']>;
-  paymentProviderId: Scalars['ID']['input'];
+  readonly meta?: InputMaybe<Scalars['JSON']['input']>;
+  readonly paymentProviderId: Scalars['ID']['input'];
 };
 
 export type IEnrollmentPeriod = {
-  end: FieldWrapper<Scalars['DateTime']['output']>;
-  isTrial: FieldWrapper<Scalars['Boolean']['output']>;
-  order?: Maybe<FieldWrapper<IOrder>>;
-  start: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly end: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly isTrial: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly order?: Maybe<FieldWrapper<IOrder>>;
+  readonly start: FieldWrapper<Scalars['DateTime']['output']>;
 };
 
 export type IEnrollmentPlan = {
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  product: FieldWrapper<IPlanProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
+  readonly configuration?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductConfigurationParameter>>
+  >;
+  readonly product: FieldWrapper<IPlanProduct>;
+  readonly quantity: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type IEnrollmentPlanInput = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
-  productId: Scalars['ID']['input'];
-  quantity?: InputMaybe<Scalars['Int']['input']>;
+  readonly configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
+  readonly productId: Scalars['ID']['input'];
+  readonly quantity?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export enum IEnrollmentStatus {
@@ -631,10 +671,10 @@ export enum IEnrollmentStatus {
 }
 
 export type IEvent = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created: FieldWrapper<Scalars['Timestamp']['output']>;
-  payload?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  type: FieldWrapper<Scalars['String']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly created: FieldWrapper<Scalars['Timestamp']['output']>;
+  readonly payload?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly type: FieldWrapper<Scalars['String']['output']>;
 };
 
 export enum IEventType {
@@ -753,14 +793,14 @@ export enum IEventType {
 }
 
 export type IFilter = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  options?: Maybe<Array<FieldWrapper<IFilterOption>>>;
-  texts?: Maybe<FieldWrapper<IFilterTexts>>;
-  type?: Maybe<FieldWrapper<IFilterType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly options?: Maybe<ReadonlyArray<FieldWrapper<IFilterOption>>>;
+  readonly texts?: Maybe<FieldWrapper<IFilterTexts>>;
+  readonly type?: Maybe<FieldWrapper<IFilterType>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 export type IFilterTextsArgs = {
@@ -768,9 +808,9 @@ export type IFilterTextsArgs = {
 };
 
 export type IFilterOption = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  texts?: Maybe<FieldWrapper<IFilterTexts>>;
-  value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly texts?: Maybe<FieldWrapper<IFilterTexts>>;
+  readonly value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IFilterOptionTextsArgs = {
@@ -778,15 +818,15 @@ export type IFilterOptionTextsArgs = {
 };
 
 export type IFilterQueryInput = {
-  key: Scalars['String']['input'];
-  value?: InputMaybe<Scalars['String']['input']>;
+  readonly key: Scalars['String']['input'];
+  readonly value?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IFilterTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export enum IFilterType {
@@ -801,18 +841,18 @@ export enum IFilterType {
 }
 
 export type IGeoPosition = {
-  altitute?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  latitude: FieldWrapper<Scalars['Float']['output']>;
-  longitude: FieldWrapper<Scalars['Float']['output']>;
+  readonly altitute?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  readonly latitude: FieldWrapper<Scalars['Float']['output']>;
+  readonly longitude: FieldWrapper<Scalars['Float']['output']>;
 };
 
 export type ILanguage = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
   /** ISO 639-1 alpha-2 https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes */
-  isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export enum ILengthUnit {
@@ -822,34 +862,34 @@ export enum ILengthUnit {
 }
 
 export type ILink = {
-  href?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly href?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type ILoadedFilter = {
-  definition: FieldWrapper<IFilter>;
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  options?: Maybe<Array<FieldWrapper<ILoadedFilterOption>>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly definition: FieldWrapper<IFilter>;
+  readonly filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly options?: Maybe<ReadonlyArray<FieldWrapper<ILoadedFilterOption>>>;
+  readonly productsCount: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type ILoadedFilterOption = {
-  definition: FieldWrapper<IFilterOption>;
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly definition: FieldWrapper<IFilterOption>;
+  readonly filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
 };
 
 /** Type returned when the user logs in */
 export type ILoginMethodResponse = {
   /** Id of the user logged in user */
-  id: FieldWrapper<Scalars['String']['output']>;
+  readonly id: FieldWrapper<Scalars['String']['output']>;
   /** Token of the connection */
-  token: FieldWrapper<Scalars['String']['output']>;
+  readonly token: FieldWrapper<Scalars['String']['output']>;
   /** Expiration date for the token */
-  tokenExpires: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly tokenExpires: FieldWrapper<Scalars['DateTime']['output']>;
   /** The logged in user */
-  user?: Maybe<FieldWrapper<IUser>>;
+  readonly user?: Maybe<FieldWrapper<IUser>>;
 };
 
 export enum IMassUnit {
@@ -859,11 +899,11 @@ export enum IMassUnit {
 }
 
 export type IMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  size: FieldWrapper<Scalars['Int']['output']>;
-  type: FieldWrapper<Scalars['String']['output']>;
-  url: FieldWrapper<Scalars['String']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly size: FieldWrapper<Scalars['Int']['output']>;
+  readonly type: FieldWrapper<Scalars['String']['output']>;
+  readonly url: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type IMediaUrlArgs = {
@@ -872,405 +912,425 @@ export type IMediaUrlArgs = {
 };
 
 export type IMediaUploadTicket = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  expires: FieldWrapper<Scalars['DateTime']['output']>;
-  putURL: FieldWrapper<Scalars['String']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly expires: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly putURL: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type IMutation = {
   /** Activate a enrollment by changing the status to ACTIVE */
-  activateEnrollment: FieldWrapper<IEnrollment>;
+  readonly activateEnrollment: FieldWrapper<IEnrollment>;
   /** Add a new filter to an assortment */
-  addAssortmentFilter: FieldWrapper<IAssortmentFilter>;
+  readonly addAssortmentFilter: FieldWrapper<IAssortmentFilter>;
   /** Add a new child assortment to an assortment */
-  addAssortmentLink: FieldWrapper<IAssortmentLink>;
+  readonly addAssortmentLink: FieldWrapper<IAssortmentLink>;
   /** Add a new media to a assortment */
-  addAssortmentMedia: FieldWrapper<IAssortmentMedia>;
+  readonly addAssortmentMedia: FieldWrapper<IAssortmentMedia>;
   /** Add a new product to an assortment */
-  addAssortmentProduct: FieldWrapper<IAssortmentProduct>;
+  readonly addAssortmentProduct: FieldWrapper<IAssortmentProduct>;
   /** Add a new discount to the cart, a new order gets generated with status = open (= order before checkout / cart) if necessary */
-  addCartDiscount: FieldWrapper<IOrderDiscount>;
+  readonly addCartDiscount: FieldWrapper<IOrderDiscount>;
   /** Add a new item to the cart. Order gets generated with status = open (= order before checkout / cart) if necessary. */
-  addCartProduct: FieldWrapper<IOrderItem>;
+  readonly addCartProduct: FieldWrapper<IOrderItem>;
   /** Add a new quotation to the cart. */
-  addCartQuotation: FieldWrapper<IOrderItem>;
+  readonly addCartQuotation: FieldWrapper<IOrderItem>;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
-  addEmail: FieldWrapper<IUser>;
+  readonly addEmail: FieldWrapper<IUser>;
   /** Add multiple new item to the cart. Order gets generated with status = open (= order before checkout / cart) if necessary. */
-  addMultipleCartProducts: Array<Maybe<FieldWrapper<IOrderItem>>>;
+  readonly addMultipleCartProducts: ReadonlyArray<
+    Maybe<FieldWrapper<IOrderItem>>
+  >;
   /**
    * Link a new product to a ConfigurableProduct by providing a configuration
    * combination that uniquely identifies a row in the assignment matrix
    */
-  addProductAssignment: FieldWrapper<IProduct>;
+  readonly addProductAssignment: FieldWrapper<IProduct>;
   /** Add a new media to a product's visualization */
-  addProductMedia: FieldWrapper<IProductMedia>;
+  readonly addProductMedia: FieldWrapper<IProductMedia>;
   /**
    * Add a vote to a ProductReview.
    * If there there is a previous vote from the user invoking this it will be removed and updated with the new vote
    */
-  addProductReviewVote: FieldWrapper<IProductReview>;
+  readonly addProductReviewVote: FieldWrapper<IProductReview>;
   /** Store user W3C Push subscription object */
-  addPushSubscription: FieldWrapper<IUser>;
+  readonly addPushSubscription: FieldWrapper<IUser>;
   /** Web3 */
-  addWeb3Address: FieldWrapper<IUser>;
+  readonly addWeb3Address: FieldWrapper<IUser>;
   /** Register WebAuthn Credentials for current user */
-  addWebAuthnCredentials: FieldWrapper<IUser>;
+  readonly addWebAuthnCredentials: FieldWrapper<IUser>;
   /**
    * Add work to the work queue. Each type has its own input shape. If you pinpoint the worker by setting it
    * during creation, the work will be only run by the worker who identifies as that worker.
    */
-  addWork?: Maybe<FieldWrapper<IWork>>;
+  readonly addWork?: Maybe<FieldWrapper<IWork>>;
   /**
    * Get the next task from the worker queue. This will also mark the task as "started".
    * Optional worker to identify the worker.
    */
-  allocateWork?: Maybe<FieldWrapper<IWork>>;
+  readonly allocateWork?: Maybe<FieldWrapper<IWork>>;
   /**
    * Toggle Bookmark state on a product as currently logged in user,
    * Does not work when multiple bookmarks with different explicit meta configurations exist.
    * In those cases please use createBookmark and removeBookmark
    */
-  bookmark: FieldWrapper<IBookmark>;
+  readonly bookmark: FieldWrapper<IBookmark>;
   /** In order to activate TOTP, generate a secret and return */
-  buildSecretTOTPAuthURL: FieldWrapper<Scalars['String']['output']>;
+  readonly buildSecretTOTPAuthURL: FieldWrapper<Scalars['String']['output']>;
   /** Change the current user's password. Must be logged in. */
-  changePassword?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly changePassword?: Maybe<FieldWrapper<ISuccessResponse>>;
   /**
    * Process the checkout (automatically charge & deliver if possible), the cart will get
    * transformed to an ordinary order if everything goes well.
    */
-  checkoutCart: FieldWrapper<IOrder>;
-  confirmMediaUpload: FieldWrapper<IMedia>;
+  readonly checkoutCart: FieldWrapper<IOrder>;
+  readonly confirmMediaUpload: FieldWrapper<IMedia>;
   /** Manually confirm an order which is in progress */
-  confirmOrder: FieldWrapper<IOrder>;
+  readonly confirmOrder: FieldWrapper<IOrder>;
   /** Creates new assortment. */
-  createAssortment: FieldWrapper<IAssortment>;
+  readonly createAssortment: FieldWrapper<IAssortment>;
   /** Create a bookmark for a specific user */
-  createBookmark: FieldWrapper<IBookmark>;
+  readonly createBookmark: FieldWrapper<IBookmark>;
   /**
    * Creates an alternative cart. If you use this feature, you should use explicit orderId's when using the
    * cart mutations. Else it will work like a stack and the checkout will use the very first cart of the user.
    */
-  createCart: FieldWrapper<IOrder>;
-  createCountry: FieldWrapper<ICountry>;
-  createCurrency: FieldWrapper<ICurrency>;
+  readonly createCart: FieldWrapper<IOrder>;
+  readonly createCountry: FieldWrapper<ICountry>;
+  readonly createCurrency: FieldWrapper<ICurrency>;
   /** Creates new delivery provider */
-  createDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  readonly createDeliveryProvider: FieldWrapper<IDeliveryProvider>;
   /** Create a enrollment. */
-  createEnrollment: FieldWrapper<IEnrollment>;
+  readonly createEnrollment: FieldWrapper<IEnrollment>;
   /** Creates new Filter along with the user who created it. */
-  createFilter: FieldWrapper<IFilter>;
+  readonly createFilter: FieldWrapper<IFilter>;
   /** Adds new option to filters */
-  createFilterOption: FieldWrapper<IFilter>;
+  readonly createFilterOption: FieldWrapper<IFilter>;
   /** Adds new language along with the user who created it */
-  createLanguage: FieldWrapper<ILanguage>;
+  readonly createLanguage: FieldWrapper<ILanguage>;
   /** Adds new payment provider */
-  createPaymentProvider: FieldWrapper<IPaymentProvider>;
+  readonly createPaymentProvider: FieldWrapper<IPaymentProvider>;
   /** Create a new product */
-  createProduct: FieldWrapper<IProduct>;
+  readonly createProduct: FieldWrapper<IProduct>;
   /** Adds one product as bundle for another products */
-  createProductBundleItem: FieldWrapper<IProduct>;
+  readonly createProductBundleItem: FieldWrapper<IProduct>;
   /** Add a new ProductReview */
-  createProductReview: FieldWrapper<IProductReview>;
+  readonly createProductReview: FieldWrapper<IProductReview>;
   /** Creates new product variation for a product. */
-  createProductVariation: FieldWrapper<IProductVariation>;
+  readonly createProductVariation: FieldWrapper<IProductVariation>;
   /** Adds variation option to an existing product variations */
-  createProductVariationOption: FieldWrapper<IProductVariation>;
+  readonly createProductVariationOption: FieldWrapper<IProductVariation>;
   /** Create a new user. */
-  createUser?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly createUser?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Creates new warehouse provider. */
-  createWarehousingProvider: FieldWrapper<IWarehousingProvider>;
+  readonly createWarehousingProvider: FieldWrapper<IWarehousingProvider>;
   /** Create WebAuthn PublicKeyCredentialCreationOptions to use for Registering a new WebAuthn Device */
-  createWebAuthnCredentialCreationOptions: FieldWrapper<
+  readonly createWebAuthnCredentialCreationOptions: FieldWrapper<
     Scalars['JSON']['output']
   >;
   /** Create WebAuthn PublicKeyCredentialRequestrOptions to use for WebAuthn Login Flow */
-  createWebAuthnCredentialRequestOptions: FieldWrapper<
+  readonly createWebAuthnCredentialRequestOptions: FieldWrapper<
     Scalars['JSON']['output']
   >;
   /** Manually mark a undelivered order as delivered */
-  deliverOrder: FieldWrapper<IOrder>;
+  readonly deliverOrder: FieldWrapper<IOrder>;
   /** Disable the 2nd factor (TOTP) */
-  disableTOTP: FieldWrapper<IUser>;
+  readonly disableTOTP: FieldWrapper<IUser>;
   /**
    * Remove all items of an open order (cart) if possible.
    * if you want to remove single cart item use removeCartItem instead
    */
-  emptyCart?: Maybe<FieldWrapper<IOrder>>;
+  readonly emptyCart?: Maybe<FieldWrapper<IOrder>>;
   /** In order to activate 2nd factor (TOTP), generate a secret and return */
-  enableTOTP: FieldWrapper<IUser>;
+  readonly enableTOTP: FieldWrapper<IUser>;
   /** Enroll a new user, setting enroll to true will let the user choose his password (e-mail gets sent) */
-  enrollUser: FieldWrapper<IUser>;
+  readonly enrollUser: FieldWrapper<IUser>;
   /** Tokenize */
-  exportToken: FieldWrapper<IToken>;
+  readonly exportToken: FieldWrapper<IToken>;
   /**
    * Register a work attempt manually.
    * Note: Usually, work attempts are handled internally by the inbuilt cron
    * worker. This mutation is part of the interface for "outside" workers.
    */
-  finishWork: FieldWrapper<IWork>;
+  readonly finishWork: FieldWrapper<IWork>;
   /** Request a forgot password email. */
-  forgotPassword?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly forgotPassword?: Maybe<FieldWrapper<ISuccessResponse>>;
   /**
    * Update hearbeat (updates user activity information such as last
    * login and logged in user IP address, locale and country where they
    * accessed the system)
    */
-  heartbeat: FieldWrapper<IUser>;
+  readonly heartbeat: FieldWrapper<IUser>;
   /** Impersonate a user */
-  impersonate: FieldWrapper<ILoginMethodResponse>;
+  readonly impersonate: FieldWrapper<ILoginMethodResponse>;
   /** OAuth2 */
-  linkOAuthAccount: FieldWrapper<IUser>;
+  readonly linkOAuthAccount: FieldWrapper<IUser>;
   /** Login as Guest User (creates an anonymous user and returns logged in token) */
-  loginAsGuest?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly loginAsGuest?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Log the user with OAuth2 service provider */
-  loginWithOAuth?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly loginWithOAuth?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Log the user in with a password. */
-  loginWithPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly loginWithPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Log the user in with a WebAuthn device */
-  loginWithWebAuthn?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly loginWithWebAuthn?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Log the user out. */
-  logout?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly logout?: Maybe<FieldWrapper<ISuccessResponse>>;
   /** Log out all sessions related with user. */
-  logoutAllSessions?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly logoutAllSessions?: Maybe<FieldWrapper<ISuccessResponse>>;
   /** Make a proposal as answer to the RFP by changing its status to PROCESSED */
-  makeQuotationProposal: FieldWrapper<IQuotation>;
+  readonly makeQuotationProposal: FieldWrapper<IQuotation>;
   /** Make's the provided payment credential as the users preferred method of payment. */
-  markPaymentCredentialsPreferred?: Maybe<FieldWrapper<IPaymentCredentials>>;
-  pageView: FieldWrapper<Scalars['String']['output']>;
+  readonly markPaymentCredentialsPreferred?: Maybe<
+    FieldWrapper<IPaymentCredentials>
+  >;
+  readonly pageView: FieldWrapper<Scalars['String']['output']>;
   /** Manually mark an unpaid/partially paid order as fully paid */
-  payOrder: FieldWrapper<IOrder>;
-  prepareAssortmentMediaUpload: FieldWrapper<IMediaUploadTicket>;
-  prepareProductMediaUpload: FieldWrapper<IMediaUploadTicket>;
-  prepareUserAvatarUpload: FieldWrapper<IMediaUploadTicket>;
+  readonly payOrder: FieldWrapper<IOrder>;
+  readonly prepareAssortmentMediaUpload: FieldWrapper<IMediaUploadTicket>;
+  readonly prepareProductMediaUpload: FieldWrapper<IMediaUploadTicket>;
+  readonly prepareUserAvatarUpload: FieldWrapper<IMediaUploadTicket>;
   /**
    * This will pick up non-external work, execute, await result and finish
    * it up on the target system. This function allows you to do work queue "ticks"
    * from outside instead of waiting for default Cron and Event Listener to trigger
    * and can be helpful in serverless environments.
    */
-  processNextWork?: Maybe<FieldWrapper<IWork>>;
+  readonly processNextWork?: Maybe<FieldWrapper<IWork>>;
   /** Make the product visible on any shop listings (product queries) */
-  publishProduct: FieldWrapper<IProduct>;
+  readonly publishProduct: FieldWrapper<IProduct>;
   /**
    * Register credentials for an existing payment provider allowing to store and use them
    * for later payments (1-click checkout or enrollments)
    */
-  registerPaymentCredentials?: Maybe<FieldWrapper<IPaymentCredentials>>;
+  readonly registerPaymentCredentials?: Maybe<
+    FieldWrapper<IPaymentCredentials>
+  >;
   /** Manually reject an order which is in progress */
-  rejectOrder: FieldWrapper<IOrder>;
+  readonly rejectOrder: FieldWrapper<IOrder>;
   /** Reject an RFP, this is possible as long as a quotation is not fullfilled */
-  rejectQuotation: FieldWrapper<IQuotation>;
+  readonly rejectQuotation: FieldWrapper<IQuotation>;
   /** Removes assortment with the provided ID */
-  removeAssortment: FieldWrapper<IAssortment>;
+  readonly removeAssortment: FieldWrapper<IAssortment>;
   /** Remove a product from an assortment */
-  removeAssortmentFilter: FieldWrapper<IAssortmentFilter>;
+  readonly removeAssortmentFilter: FieldWrapper<IAssortmentFilter>;
   /** Remove a child/parent assortment link from it's parent */
-  removeAssortmentLink: FieldWrapper<IAssortmentLink>;
+  readonly removeAssortmentLink: FieldWrapper<IAssortmentLink>;
   /** Remove a media asset from a assortment */
-  removeAssortmentMedia: FieldWrapper<IAssortmentMedia>;
+  readonly removeAssortmentMedia: FieldWrapper<IAssortmentMedia>;
   /** Remove a product from an assortment */
-  removeAssortmentProduct: FieldWrapper<IAssortmentProduct>;
+  readonly removeAssortmentProduct: FieldWrapper<IAssortmentProduct>;
   /** Remove an existing bookmark by ID */
-  removeBookmark: FieldWrapper<IBookmark>;
+  readonly removeBookmark: FieldWrapper<IBookmark>;
   /** Removes products bundle item found at the given 0 based index. */
-  removeBundleItem: FieldWrapper<IProduct>;
+  readonly removeBundleItem: FieldWrapper<IProduct>;
   /** Remove a discount from the cart */
-  removeCartDiscount: FieldWrapper<IOrderDiscount>;
+  readonly removeCartDiscount: FieldWrapper<IOrderDiscount>;
   /** Remove an item from an open order */
-  removeCartItem: FieldWrapper<IOrderItem>;
+  readonly removeCartItem: FieldWrapper<IOrderItem>;
   /** Deletes the specified country */
-  removeCountry: FieldWrapper<ICountry>;
+  readonly removeCountry: FieldWrapper<ICountry>;
   /** Deletes the specified currency */
-  removeCurrency: FieldWrapper<ICurrency>;
+  readonly removeCurrency: FieldWrapper<ICurrency>;
   /**
    * Deletes a delivery provider by setting the deleted field to current timestamp.
    * Note the delivery provider still exists.
    */
-  removeDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  readonly removeDeliveryProvider: FieldWrapper<IDeliveryProvider>;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
-  removeEmail: FieldWrapper<IUser>;
+  readonly removeEmail: FieldWrapper<IUser>;
   /** Deletes the specified filter */
-  removeFilter: FieldWrapper<IFilter>;
+  readonly removeFilter: FieldWrapper<IFilter>;
   /** Removes the filter option from the specified filter. */
-  removeFilterOption: FieldWrapper<IFilter>;
+  readonly removeFilterOption: FieldWrapper<IFilter>;
   /** Deletes the specified languages */
-  removeLanguage: FieldWrapper<ILanguage>;
+  readonly removeLanguage: FieldWrapper<ILanguage>;
   /** Remove an order while it's still open */
-  removeOrder: FieldWrapper<IOrder>;
+  readonly removeOrder: FieldWrapper<IOrder>;
   /** Deletes the specified payment credential. */
-  removePaymentCredentials?: Maybe<FieldWrapper<IPaymentCredentials>>;
+  readonly removePaymentCredentials?: Maybe<FieldWrapper<IPaymentCredentials>>;
   /**
    * Deletes the specified payment provider by setting the deleted filed to current timestamp.
    * Note the payment provider is still available only it’s status is deleted
    */
-  removePaymentProvider: FieldWrapper<IPaymentProvider>;
+  readonly removePaymentProvider: FieldWrapper<IPaymentProvider>;
   /** Remove the product completely! */
-  removeProduct: FieldWrapper<IProduct>;
+  readonly removeProduct: FieldWrapper<IProduct>;
   /**
    * Unlinks a product from a ConfigurableProduct by providing a configuration
    * combination that uniquely identifies a row in the assignment matrix
    */
-  removeProductAssignment: FieldWrapper<IProduct>;
+  readonly removeProductAssignment: FieldWrapper<IProduct>;
   /** Remove a media asset from a product's visualization */
-  removeProductMedia: FieldWrapper<IProductMedia>;
+  readonly removeProductMedia: FieldWrapper<IProductMedia>;
   /** Remove an existing ProductReview. The logic to allow/dissallow removal is controlled by product plugin logic */
-  removeProductReview: FieldWrapper<IProductReview>;
+  readonly removeProductReview: FieldWrapper<IProductReview>;
   /** Remove a vote from a ProductReview */
-  removeProductReviewVote: FieldWrapper<IProductReview>;
+  readonly removeProductReviewVote: FieldWrapper<IProductReview>;
   /** Removes product variation with the provided ID */
-  removeProductVariation: FieldWrapper<IProductVariation>;
+  readonly removeProductVariation: FieldWrapper<IProductVariation>;
   /** Removes product option value for product variation with the provided variation option value */
-  removeProductVariationOption: FieldWrapper<IProductVariation>;
+  readonly removeProductVariationOption: FieldWrapper<IProductVariation>;
   /** Remove user W3C push subscription object */
-  removePushSubscription: FieldWrapper<IUser>;
+  readonly removePushSubscription: FieldWrapper<IUser>;
   /** Remove any user or logged in user if userId is not provided */
-  removeUser: FieldWrapper<IUser>;
+  readonly removeUser: FieldWrapper<IUser>;
   /**
    * Deletes the specified warehousing provider by setting the deleted filed to current timestamp.
    * Note warehousing provider still exists in the system after successful
    * completing of this operation with status deleted.
    */
-  removeWarehousingProvider: FieldWrapper<IWarehousingProvider>;
-  removeWeb3Address: FieldWrapper<IUser>;
+  readonly removeWarehousingProvider: FieldWrapper<IWarehousingProvider>;
+  readonly removeWeb3Address: FieldWrapper<IUser>;
   /** Remove WebAuthn Credentials for current user */
-  removeWebAuthnCredentials: FieldWrapper<IUser>;
+  readonly removeWebAuthnCredentials: FieldWrapper<IUser>;
   /** Manually remove a work */
-  removeWork: FieldWrapper<IWork>;
+  readonly removeWork: FieldWrapper<IWork>;
   /** Reorder the products in an assortment */
-  reorderAssortmentFilters: Array<FieldWrapper<IAssortmentFilter>>;
+  readonly reorderAssortmentFilters: ReadonlyArray<
+    FieldWrapper<IAssortmentFilter>
+  >;
   /** Reorder the child assortment links in it's parent */
-  reorderAssortmentLinks: Array<FieldWrapper<IAssortmentLink>>;
+  readonly reorderAssortmentLinks: ReadonlyArray<FieldWrapper<IAssortmentLink>>;
   /** Reorder a media asset (first is primary) */
-  reorderAssortmentMedia: Array<FieldWrapper<IAssortmentMedia>>;
+  readonly reorderAssortmentMedia: ReadonlyArray<
+    FieldWrapper<IAssortmentMedia>
+  >;
   /** Reorder the products in an assortment */
-  reorderAssortmentProducts: Array<FieldWrapper<IAssortmentProduct>>;
+  readonly reorderAssortmentProducts: ReadonlyArray<
+    FieldWrapper<IAssortmentProduct>
+  >;
   /** Reorder a media asset (first is primary) */
-  reorderProductMedia: Array<FieldWrapper<IProductMedia>>;
+  readonly reorderProductMedia: ReadonlyArray<FieldWrapper<IProductMedia>>;
   /** Request for Proposal (RFP) for the specified product */
-  requestQuotation: FieldWrapper<IQuotation>;
+  readonly requestQuotation: FieldWrapper<IQuotation>;
   /** Reset the password for a user using a token received in email. Logs the user in afterwards. */
-  resetPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly resetPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Forcefully trigger an enrollment email for already added users by e-mail */
-  sendEnrollmentEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly sendEnrollmentEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
   /** Send an email with a link the user can use verify their email address. */
-  sendVerificationEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
+  readonly sendVerificationEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
   /**
    * Makes the assortment provided as the base assortment and make
    * any other existing base assortment regular assortments.
    */
-  setBaseAssortment: FieldWrapper<IAssortment>;
+  readonly setBaseAssortment: FieldWrapper<IAssortment>;
   /**
    * Change the delivery method/provider to an order. If the delivery provider
    * doesn’t exists new delivery provider will be created with the provided ID.
    */
-  setOrderDeliveryProvider: FieldWrapper<IOrder>;
+  readonly setOrderDeliveryProvider: FieldWrapper<IOrder>;
   /**
    * Change the payment method/provider to an order. If the payment provider
    * doesn’t exists new payment provider will be created with the provided ID.
    */
-  setOrderPaymentProvider: FieldWrapper<IOrder>;
+  readonly setOrderPaymentProvider: FieldWrapper<IOrder>;
   /** Set a new password for a specific user */
-  setPassword: FieldWrapper<IUser>;
+  readonly setPassword: FieldWrapper<IUser>;
   /** Set roles of a user */
-  setRoles: FieldWrapper<IUser>;
+  readonly setRoles: FieldWrapper<IUser>;
   /** Set tags of user */
-  setUserTags: FieldWrapper<IUser>;
+  readonly setUserTags: FieldWrapper<IUser>;
   /** Set username for a specific user */
-  setUsername: FieldWrapper<IUser>;
+  readonly setUsername: FieldWrapper<IUser>;
   /** Sign a generic order payment */
-  signPaymentProviderForCheckout: FieldWrapper<Scalars['String']['output']>;
+  readonly signPaymentProviderForCheckout: FieldWrapper<
+    Scalars['String']['output']
+  >;
   /** Sign a generic payment provider for registration */
-  signPaymentProviderForCredentialRegistration?: Maybe<
+  readonly signPaymentProviderForCredentialRegistration?: Maybe<
     FieldWrapper<Scalars['String']['output']>
   >;
   /** End customer impersonated user session and resume the impersonator session */
-  stopImpersonation: FieldWrapper<ILoginMethodResponse>;
+  readonly stopImpersonation: FieldWrapper<ILoginMethodResponse>;
   /** Terminate an actively running enrollment by changing it's status to TERMINATED */
-  terminateEnrollment: FieldWrapper<IEnrollment>;
-  unlinkOAuthAccount: FieldWrapper<IUser>;
+  readonly terminateEnrollment: FieldWrapper<IEnrollment>;
+  readonly unlinkOAuthAccount: FieldWrapper<IUser>;
   /** Hide the product visible from any shop listings (product queries) */
-  unpublishProduct: FieldWrapper<IProduct>;
+  readonly unpublishProduct: FieldWrapper<IProduct>;
   /** Updates the provided assortment */
-  updateAssortment: FieldWrapper<IAssortment>;
+  readonly updateAssortment: FieldWrapper<IAssortment>;
   /** Modify localized texts part of a assortment media asset */
-  updateAssortmentMediaTexts: Array<FieldWrapper<IAssortmentMediaTexts>>;
+  readonly updateAssortmentMediaTexts: ReadonlyArray<
+    FieldWrapper<IAssortmentMediaTexts>
+  >;
   /** Modify localized texts part of an assortment */
-  updateAssortmentTexts: Array<FieldWrapper<IAssortmentTexts>>;
+  readonly updateAssortmentTexts: ReadonlyArray<FieldWrapper<IAssortmentTexts>>;
   /**
    * Change billing address and order contact of an open order (cart). All of the parameters
    * except order ID are optional and the update will ocure for parameters provided.
    * If the delivery provider or payment provider ID provided doesn’t already exist new order payment
    * will be created with the provided ID.
    */
-  updateCart: FieldWrapper<IOrder>;
+  readonly updateCart: FieldWrapper<IOrder>;
   /**
    * Change the quantity or configuration of an item in an open order.align-baselineAll
    * of the parameters are optional except item ID and for the parameters provided the
    * update will be performed accordingly.
    */
-  updateCartItem: FieldWrapper<IOrderItem>;
+  readonly updateCartItem: FieldWrapper<IOrderItem>;
   /** Updates provided country information */
-  updateCountry: FieldWrapper<ICountry>;
+  readonly updateCountry: FieldWrapper<ICountry>;
   /** Updates the specified currency */
-  updateCurrency: FieldWrapper<ICurrency>;
+  readonly updateCurrency: FieldWrapper<ICurrency>;
   /** Updates the delivery provider specified */
-  updateDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  readonly updateDeliveryProvider: FieldWrapper<IDeliveryProvider>;
   /** Update a enrollment */
-  updateEnrollment: FieldWrapper<IEnrollment>;
+  readonly updateEnrollment: FieldWrapper<IEnrollment>;
   /** Updates the specified filter with the information passed. */
-  updateFilter: FieldWrapper<IFilter>;
+  readonly updateFilter: FieldWrapper<IFilter>;
   /** Updates or created specified filter texts for filter with ID provided and locale and optionally filterOptionValue */
-  updateFilterTexts: Array<FieldWrapper<IFilterTexts>>;
+  readonly updateFilterTexts: ReadonlyArray<FieldWrapper<IFilterTexts>>;
   /** Updates the specified language. */
-  updateLanguage: FieldWrapper<ILanguage>;
+  readonly updateLanguage: FieldWrapper<ILanguage>;
   /** Update a Pick Up Delivery Provider's specific configuration */
-  updateOrderDeliveryPickUp: FieldWrapper<IOrderDeliveryPickUp>;
+  readonly updateOrderDeliveryPickUp: FieldWrapper<IOrderDeliveryPickUp>;
   /** Update a Shipping Delivery Provider's specific configuration */
-  updateOrderDeliveryShipping: FieldWrapper<IOrderDeliveryShipping>;
+  readonly updateOrderDeliveryShipping: FieldWrapper<IOrderDeliveryShipping>;
   /** Update a Card Payment Provider's specific configuration */
-  updateOrderPaymentCard: FieldWrapper<IOrderPaymentCard>;
+  readonly updateOrderPaymentCard: FieldWrapper<IOrderPaymentCard>;
   /** Update a Generic Payment Provider's specific configuration */
-  updateOrderPaymentGeneric: FieldWrapper<IOrderPaymentGeneric>;
+  readonly updateOrderPaymentGeneric: FieldWrapper<IOrderPaymentGeneric>;
   /** Update an Invoice Payment Provider's specific configuration */
-  updateOrderPaymentInvoice: FieldWrapper<IOrderPaymentInvoice>;
+  readonly updateOrderPaymentInvoice: FieldWrapper<IOrderPaymentInvoice>;
   /** Updates payment provider information with the provided ID */
-  updatePaymentProvider: FieldWrapper<IPaymentProvider>;
+  readonly updatePaymentProvider: FieldWrapper<IPaymentProvider>;
   /** Modify generic infos of a product (tags for ex.) */
-  updateProduct?: Maybe<FieldWrapper<IProduct>>;
+  readonly updateProduct?: Maybe<FieldWrapper<IProduct>>;
   /** Modify commerce part of a product */
-  updateProductCommerce?: Maybe<FieldWrapper<IProduct>>;
+  readonly updateProductCommerce?: Maybe<FieldWrapper<IProduct>>;
   /** Modify localized texts part of a product's media asset */
-  updateProductMediaTexts: Array<FieldWrapper<IProductMediaTexts>>;
+  readonly updateProductMediaTexts: ReadonlyArray<
+    FieldWrapper<IProductMediaTexts>
+  >;
   /** Modify plan part of a product */
-  updateProductPlan?: Maybe<FieldWrapper<IProduct>>;
+  readonly updateProductPlan?: Maybe<FieldWrapper<IProduct>>;
   /** Update an existing ProductReview. The logic to allow/dissallow editing is controlled by product plugin logic */
-  updateProductReview: FieldWrapper<IProductReview>;
+  readonly updateProductReview: FieldWrapper<IProductReview>;
   /** Modify delivery part of a product */
-  updateProductSupply?: Maybe<FieldWrapper<IProduct>>;
+  readonly updateProductSupply?: Maybe<FieldWrapper<IProduct>>;
   /** Modify localized texts part of a product */
-  updateProductTexts: Array<FieldWrapper<IProductTexts>>;
+  readonly updateProductTexts: ReadonlyArray<FieldWrapper<IProductTexts>>;
   /** Modify tokenization part of a product */
-  updateProductTokenization?: Maybe<FieldWrapper<ITokenizedProduct>>;
+  readonly updateProductTokenization?: Maybe<FieldWrapper<ITokenizedProduct>>;
   /**
    * Update product variation texts with the specified locales for product variations
    * that match the provided variation ID and production option value
    */
-  updateProductVariationTexts: Array<FieldWrapper<IProductVariationTexts>>;
+  readonly updateProductVariationTexts: ReadonlyArray<
+    FieldWrapper<IProductVariationTexts>
+  >;
   /** Modify warehousing part of a product */
-  updateProductWarehousing?: Maybe<FieldWrapper<IProduct>>;
+  readonly updateProductWarehousing?: Maybe<FieldWrapper<IProduct>>;
   /** Update Avatar of any user or logged in user if userId is not provided */
-  updateUserAvatar: FieldWrapper<IUser>;
+  readonly updateUserAvatar: FieldWrapper<IUser>;
   /** Update Profile of any user or logged in user if userId is not provided */
-  updateUserProfile: FieldWrapper<IUser>;
+  readonly updateUserProfile: FieldWrapper<IUser>;
   /** Updates warehousing provider information with the provided ID */
-  updateWarehousingProvider: FieldWrapper<IWarehousingProvider>;
+  readonly updateWarehousingProvider: FieldWrapper<IWarehousingProvider>;
   /** Marks the user's email address as verified. Logs the user in afterwards. */
-  verifyEmail?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  readonly verifyEmail?: Maybe<FieldWrapper<ILoginMethodResponse>>;
   /** Verify quotation request elligibility. and marks requested quotations as verified if it is */
-  verifyQuotation: FieldWrapper<IQuotation>;
-  verifyWeb3Address: FieldWrapper<IUser>;
+  readonly verifyQuotation: FieldWrapper<IQuotation>;
+  readonly verifyWeb3Address: FieldWrapper<IUser>;
 };
 
 export type IMutationActivateEnrollmentArgs = {
@@ -1280,13 +1340,13 @@ export type IMutationActivateEnrollmentArgs = {
 export type IMutationAddAssortmentFilterArgs = {
   assortmentId: Scalars['ID']['input'];
   filterId: Scalars['ID']['input'];
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IMutationAddAssortmentLinkArgs = {
   childAssortmentId: Scalars['ID']['input'];
   parentAssortmentId: Scalars['ID']['input'];
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IMutationAddAssortmentMediaArgs = {
@@ -1297,7 +1357,7 @@ export type IMutationAddAssortmentMediaArgs = {
 export type IMutationAddAssortmentProductArgs = {
   assortmentId: Scalars['ID']['input'];
   productId: Scalars['ID']['input'];
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IMutationAddCartDiscountArgs = {
@@ -1306,14 +1366,18 @@ export type IMutationAddCartDiscountArgs = {
 };
 
 export type IMutationAddCartProductArgs = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
+  configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
   orderId?: InputMaybe<Scalars['ID']['input']>;
   productId: Scalars['ID']['input'];
   quantity?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type IMutationAddCartQuotationArgs = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
+  configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
   orderId?: InputMaybe<Scalars['ID']['input']>;
   quantity?: InputMaybe<Scalars['Int']['input']>;
   quotationId: Scalars['ID']['input'];
@@ -1325,14 +1389,14 @@ export type IMutationAddEmailArgs = {
 };
 
 export type IMutationAddMultipleCartProductsArgs = {
-  items: Array<IOrderItemInput>;
+  items: ReadonlyArray<IOrderItemInput>;
   orderId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type IMutationAddProductAssignmentArgs = {
   productId: Scalars['ID']['input'];
   proxyId: Scalars['ID']['input'];
-  vectors: Array<IProductAssignmentVectorInput>;
+  vectors: ReadonlyArray<IProductAssignmentVectorInput>;
 };
 
 export type IMutationAddProductMediaArgs = {
@@ -1370,7 +1434,7 @@ export type IMutationAddWorkArgs = {
 };
 
 export type IMutationAllocateWorkArgs = {
-  types?: InputMaybe<Array<InputMaybe<IWorkType>>>;
+  types?: InputMaybe<ReadonlyArray<InputMaybe<IWorkType>>>;
   worker?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1720,7 +1784,7 @@ export type IMutationRemoveProductArgs = {
 
 export type IMutationRemoveProductAssignmentArgs = {
   proxyId: Scalars['ID']['input'];
-  vectors: Array<IProductAssignmentVectorInput>;
+  vectors: ReadonlyArray<IProductAssignmentVectorInput>;
 };
 
 export type IMutationRemoveProductMediaArgs = {
@@ -1770,27 +1834,29 @@ export type IMutationRemoveWorkArgs = {
 };
 
 export type IMutationReorderAssortmentFiltersArgs = {
-  sortKeys: Array<IReorderAssortmentFilterInput>;
+  sortKeys: ReadonlyArray<IReorderAssortmentFilterInput>;
 };
 
 export type IMutationReorderAssortmentLinksArgs = {
-  sortKeys: Array<IReorderAssortmentLinkInput>;
+  sortKeys: ReadonlyArray<IReorderAssortmentLinkInput>;
 };
 
 export type IMutationReorderAssortmentMediaArgs = {
-  sortKeys: Array<IReorderAssortmentMediaInput>;
+  sortKeys: ReadonlyArray<IReorderAssortmentMediaInput>;
 };
 
 export type IMutationReorderAssortmentProductsArgs = {
-  sortKeys: Array<IReorderAssortmentProductInput>;
+  sortKeys: ReadonlyArray<IReorderAssortmentProductInput>;
 };
 
 export type IMutationReorderProductMediaArgs = {
-  sortKeys: Array<IReorderProductMediaInput>;
+  sortKeys: ReadonlyArray<IReorderProductMediaInput>;
 };
 
 export type IMutationRequestQuotationArgs = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
+  configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
   productId: Scalars['ID']['input'];
 };
 
@@ -1827,12 +1893,12 @@ export type IMutationSetPasswordArgs = {
 };
 
 export type IMutationSetRolesArgs = {
-  roles: Array<Scalars['String']['input']>;
+  roles: ReadonlyArray<Scalars['String']['input']>;
   userId: Scalars['ID']['input'];
 };
 
 export type IMutationSetUserTagsArgs = {
-  tags: Array<InputMaybe<Scalars['LowerCaseString']['input']>>;
+  tags: ReadonlyArray<InputMaybe<Scalars['LowerCaseString']['input']>>;
   userId: Scalars['ID']['input'];
 };
 
@@ -1870,12 +1936,12 @@ export type IMutationUpdateAssortmentArgs = {
 
 export type IMutationUpdateAssortmentMediaTextsArgs = {
   assortmentMediaId: Scalars['ID']['input'];
-  texts: Array<IUpdateAssortmentMediaTextInput>;
+  texts: ReadonlyArray<IUpdateAssortmentMediaTextInput>;
 };
 
 export type IMutationUpdateAssortmentTextsArgs = {
   assortmentId: Scalars['ID']['input'];
-  texts: Array<IUpdateAssortmentTextInput>;
+  texts: ReadonlyArray<IUpdateAssortmentTextInput>;
 };
 
 export type IMutationUpdateCartArgs = {
@@ -1888,7 +1954,9 @@ export type IMutationUpdateCartArgs = {
 };
 
 export type IMutationUpdateCartItemArgs = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
+  configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
   itemId: Scalars['ID']['input'];
   quantity?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -1926,7 +1994,7 @@ export type IMutationUpdateFilterArgs = {
 export type IMutationUpdateFilterTextsArgs = {
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput>;
+  texts: ReadonlyArray<IUpdateFilterTextInput>;
 };
 
 export type IMutationUpdateLanguageArgs = {
@@ -1978,7 +2046,7 @@ export type IMutationUpdateProductCommerceArgs = {
 
 export type IMutationUpdateProductMediaTextsArgs = {
   productMediaId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductMediaTextInput>;
+  texts: ReadonlyArray<IUpdateProductMediaTextInput>;
 };
 
 export type IMutationUpdateProductPlanArgs = {
@@ -1998,7 +2066,7 @@ export type IMutationUpdateProductSupplyArgs = {
 
 export type IMutationUpdateProductTextsArgs = {
   productId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductTextInput>;
+  texts: ReadonlyArray<IUpdateProductTextInput>;
 };
 
 export type IMutationUpdateProductTokenizationArgs = {
@@ -2009,7 +2077,7 @@ export type IMutationUpdateProductTokenizationArgs = {
 export type IMutationUpdateProductVariationTextsArgs = {
   productVariationId: Scalars['ID']['input'];
   productVariationOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateProductVariationTextInput>;
+  texts: ReadonlyArray<IUpdateProductVariationTextInput>;
 };
 
 export type IMutationUpdateProductWarehousingArgs = {
@@ -2048,41 +2116,45 @@ export type IMutationVerifyWeb3AddressArgs = {
 };
 
 export type IOAuthAccount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  authorizationCode: FieldWrapper<Scalars['String']['output']>;
-  provider: FieldWrapper<IOAuthProvider>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly authorizationCode: FieldWrapper<Scalars['String']['output']>;
+  readonly provider: FieldWrapper<IOAuthProvider>;
 };
 
 export type IOAuthProvider = {
-  _id: FieldWrapper<Scalars['String']['output']>;
-  clientId: FieldWrapper<Scalars['String']['output']>;
-  scopes: Array<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['String']['output']>;
+  readonly clientId: FieldWrapper<Scalars['String']['output']>;
+  readonly scopes: ReadonlyArray<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /** Just an order */
 export type IOrder = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  billingAddress?: Maybe<FieldWrapper<IAddress>>;
-  confirmed?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  contact?: Maybe<FieldWrapper<IContact>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  delivery?: Maybe<FieldWrapper<IOrderDelivery>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDiscount>>>;
-  enrollment?: Maybe<FieldWrapper<IEnrollment>>;
-  fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  items?: Maybe<Array<FieldWrapper<IOrderItem>>>;
-  orderNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  ordered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  payment?: Maybe<FieldWrapper<IOrderPayment>>;
-  rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status?: Maybe<FieldWrapper<IOrderStatus>>;
-  supportedDeliveryProviders: Array<FieldWrapper<IDeliveryProvider>>;
-  supportedPaymentProviders: Array<FieldWrapper<IPaymentProvider>>;
-  total?: Maybe<FieldWrapper<IPrice>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user?: Maybe<FieldWrapper<IUser>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly billingAddress?: Maybe<FieldWrapper<IAddress>>;
+  readonly confirmed?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly contact?: Maybe<FieldWrapper<IContact>>;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly currency?: Maybe<FieldWrapper<ICurrency>>;
+  readonly delivery?: Maybe<FieldWrapper<IOrderDelivery>>;
+  readonly discounts?: Maybe<ReadonlyArray<FieldWrapper<IOrderDiscount>>>;
+  readonly enrollment?: Maybe<FieldWrapper<IEnrollment>>;
+  readonly fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly items?: Maybe<ReadonlyArray<FieldWrapper<IOrderItem>>>;
+  readonly orderNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly ordered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly payment?: Maybe<FieldWrapper<IOrderPayment>>;
+  readonly rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly status?: Maybe<FieldWrapper<IOrderStatus>>;
+  readonly supportedDeliveryProviders: ReadonlyArray<
+    FieldWrapper<IDeliveryProvider>
+  >;
+  readonly supportedPaymentProviders: ReadonlyArray<
+    FieldWrapper<IPaymentProvider>
+  >;
+  readonly total?: Maybe<FieldWrapper<IPrice>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly user?: Maybe<FieldWrapper<IUser>>;
 };
 
 /** Just an order */
@@ -2091,40 +2163,46 @@ export type IOrderTotalArgs = {
 };
 
 export type IOrderDelivery = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderDeliveryDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
 };
 
 export type IOrderDeliveryDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  delivery: FieldWrapper<IOrderDelivery>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly delivery: FieldWrapper<IOrderDelivery>;
+  readonly orderDiscount: FieldWrapper<IOrderDiscount>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IOrderDeliveryPickUp = IOrderDelivery & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  activePickUpLocation?: Maybe<FieldWrapper<IOrderPickUpLocation>>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  pickUpLocations: Array<FieldWrapper<IOrderPickUpLocation>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly activePickUpLocation?: Maybe<FieldWrapper<IOrderPickUpLocation>>;
+  readonly delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderDeliveryDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly pickUpLocations: ReadonlyArray<FieldWrapper<IOrderPickUpLocation>>;
+  readonly provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
 };
 
 export type IOrderDeliveryShipping = IOrderDelivery & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  address?: Maybe<FieldWrapper<IAddress>>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly address?: Maybe<FieldWrapper<IAddress>>;
+  readonly delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderDeliveryDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
 };
 
 export enum IOrderDeliveryStatus {
@@ -2137,13 +2215,13 @@ export enum IOrderDeliveryStatus {
 }
 
 export type IOrderDiscount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  code?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  discounted?: Maybe<Array<FieldWrapper<IOrderDiscountable>>>;
-  interface?: Maybe<FieldWrapper<IDiscountInterface>>;
-  order: FieldWrapper<IOrder>;
-  total: FieldWrapper<IPrice>;
-  trigger: FieldWrapper<IOrderDiscountTrigger>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly code?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly discounted?: Maybe<ReadonlyArray<FieldWrapper<IOrderDiscountable>>>;
+  readonly interface?: Maybe<FieldWrapper<IDiscountInterface>>;
+  readonly order: FieldWrapper<IOrder>;
+  readonly total: FieldWrapper<IPrice>;
+  readonly trigger: FieldWrapper<IOrderDiscountTrigger>;
 };
 
 export enum IOrderDiscountTrigger {
@@ -2154,30 +2232,32 @@ export enum IOrderDiscountTrigger {
 }
 
 export type IOrderDiscountable = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly orderDiscount: FieldWrapper<IOrderDiscount>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IOrderGlobalDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  order: FieldWrapper<IOrder>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly order: FieldWrapper<IOrder>;
+  readonly orderDiscount: FieldWrapper<IOrderDiscount>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IOrderItem = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderItemDiscount>>>;
-  dispatches?: Maybe<Array<FieldWrapper<IDispatch>>>;
-  order: FieldWrapper<IOrder>;
-  originalProduct: FieldWrapper<IProduct>;
-  product: FieldWrapper<IProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
-  quotation?: Maybe<FieldWrapper<IQuotation>>;
-  total?: Maybe<FieldWrapper<IPrice>>;
-  unitPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly configuration?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductConfigurationParameter>>
+  >;
+  readonly discounts?: Maybe<ReadonlyArray<FieldWrapper<IOrderItemDiscount>>>;
+  readonly dispatches?: Maybe<ReadonlyArray<FieldWrapper<IDispatch>>>;
+  readonly order: FieldWrapper<IOrder>;
+  readonly originalProduct: FieldWrapper<IProduct>;
+  readonly product: FieldWrapper<IProduct>;
+  readonly quantity: FieldWrapper<Scalars['Int']['output']>;
+  readonly quotation?: Maybe<FieldWrapper<IQuotation>>;
+  readonly total?: Maybe<FieldWrapper<IPrice>>;
+  readonly unitPrice?: Maybe<FieldWrapper<IPrice>>;
 };
 
 export type IOrderItemTotalArgs = {
@@ -2185,16 +2265,18 @@ export type IOrderItemTotalArgs = {
 };
 
 export type IOrderItemDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  item: FieldWrapper<IOrderItem>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly item: FieldWrapper<IOrderItem>;
+  readonly orderDiscount: FieldWrapper<IOrderDiscount>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IOrderItemInput = {
-  configuration?: InputMaybe<Array<IProductConfigurationParameterInput>>;
-  productId: Scalars['ID']['input'];
-  quantity?: InputMaybe<Scalars['Int']['input']>;
+  readonly configuration?: InputMaybe<
+    ReadonlyArray<IProductConfigurationParameterInput>
+  >;
+  readonly productId: Scalars['ID']['input'];
+  readonly quantity?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export enum IOrderItemPriceCategory {
@@ -2207,46 +2289,54 @@ export enum IOrderItemPriceCategory {
 }
 
 export type IOrderPayment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderPaymentDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
 };
 
 export type IOrderPaymentCard = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderPaymentDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
 };
 
 export type IOrderPaymentDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  payment: FieldWrapper<IOrderPayment>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly orderDiscount: FieldWrapper<IOrderDiscount>;
+  readonly payment: FieldWrapper<IOrderPayment>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IOrderPaymentGeneric = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderPaymentDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
 };
 
 export type IOrderPaymentInvoice = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly discounts?: Maybe<
+    ReadonlyArray<FieldWrapper<IOrderPaymentDiscount>>
+  >;
+  readonly fee?: Maybe<FieldWrapper<IPrice>>;
+  readonly paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
 };
 
 export enum IOrderPaymentStatus {
@@ -2259,11 +2349,11 @@ export enum IOrderPaymentStatus {
 }
 
 export type IOrderPickUpLocation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  address?: Maybe<FieldWrapper<IAddress>>;
-  geoPoint?: Maybe<FieldWrapper<IGeoPosition>>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  order: FieldWrapper<IOrder>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly address?: Maybe<FieldWrapper<IAddress>>;
+  readonly geoPoint?: Maybe<FieldWrapper<IGeoPosition>>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly order: FieldWrapper<IOrder>;
 };
 
 export enum IOrderPriceCategory {
@@ -2293,32 +2383,32 @@ export enum IOrderStatus {
 }
 
 export type IPaymentCredentials = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isPreferred: FieldWrapper<Scalars['Boolean']['output']>;
-  isValid: FieldWrapper<Scalars['Boolean']['output']>;
-  meta?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  paymentProvider: FieldWrapper<IPaymentProvider>;
-  token?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  user: FieldWrapper<IUser>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly isPreferred: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly isValid: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly meta?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly paymentProvider: FieldWrapper<IPaymentProvider>;
+  readonly token?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly user: FieldWrapper<IUser>;
 };
 
 export type IPaymentInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IPaymentProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IPaymentProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IPaymentInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  type?: Maybe<FieldWrapper<IPaymentProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly configurationError?: Maybe<FieldWrapper<IPaymentProviderError>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly interface?: Maybe<FieldWrapper<IPaymentInterface>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly type?: Maybe<FieldWrapper<IPaymentProviderType>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 export type IPaymentProviderSimulatedPriceArgs = {
@@ -2346,26 +2436,30 @@ export enum IPaymentProviderType {
 
 /** Plan (Virtual Product that somebody can enroll to) */
 export type IPlanProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  plan?: Maybe<FieldWrapper<IProductPlanConfiguration>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  salesQuantityPerUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly catalogPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly leveledCatalogPrices: ReadonlyArray<FieldWrapper<IPriceLevel>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
+  readonly plan?: Maybe<FieldWrapper<IProductPlanConfiguration>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly salesQuantityPerUnit?: Maybe<
+    FieldWrapper<Scalars['String']['output']>
+  >;
+  readonly salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** Plan (Virtual Product that somebody can enroll to) */
@@ -2388,7 +2482,7 @@ export type IPlanProductLeveledCatalogPricesArgs = {
 export type IPlanProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Plan (Virtual Product that somebody can enroll to) */
@@ -2396,7 +2490,7 @@ export type IPlanProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** Plan (Virtual Product that somebody can enroll to) */
@@ -2425,47 +2519,49 @@ export type IPlanProductTextsArgs = {
 };
 
 export type IPrice = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  amount: FieldWrapper<Scalars['Int']['output']>;
-  currency: FieldWrapper<Scalars['String']['output']>;
-  isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
-  isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly amount: FieldWrapper<Scalars['Int']['output']>;
+  readonly currency: FieldWrapper<Scalars['String']['output']>;
+  readonly isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export type IPriceLevel = {
-  maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  minQuantity: FieldWrapper<Scalars['Int']['output']>;
-  price: FieldWrapper<IPrice>;
+  readonly maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly minQuantity: FieldWrapper<Scalars['Int']['output']>;
+  readonly price: FieldWrapper<IPrice>;
 };
 
 export type IPriceRange = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  maxPrice: FieldWrapper<IPrice>;
-  minPrice: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly maxPrice: FieldWrapper<IPrice>;
+  readonly minPrice: FieldWrapper<IPrice>;
 };
 
 /** Abstract Product */
 export type IProduct = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** Abstract Product */
 export type IProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Abstract Product */
@@ -2473,7 +2569,7 @@ export type IProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** Abstract Product */
@@ -2495,54 +2591,58 @@ export type IProductTextsArgs = {
 };
 
 export type IProductAssignmentVectorInput = {
-  key: Scalars['String']['input'];
-  value: Scalars['String']['input'];
+  readonly key: Scalars['String']['input'];
+  readonly value: Scalars['String']['input'];
 };
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IProductAssortmentPath = {
-  assortmentProduct: FieldWrapper<IAssortmentProduct>;
-  links: Array<FieldWrapper<IAssortmentPathLink>>;
+  readonly assortmentProduct: FieldWrapper<IAssortmentProduct>;
+  readonly links: ReadonlyArray<FieldWrapper<IAssortmentPathLink>>;
 };
 
 export type IProductBundleItem = {
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  product: FieldWrapper<IProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
+  readonly configuration?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductConfigurationParameter>>
+  >;
+  readonly product: FieldWrapper<IProduct>;
+  readonly quantity: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type IProductCatalogPrice = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  amount: FieldWrapper<Scalars['Int']['output']>;
-  country: FieldWrapper<ICountry>;
-  currency: FieldWrapper<ICurrency>;
-  isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
-  isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
-  maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly amount: FieldWrapper<Scalars['Int']['output']>;
+  readonly country: FieldWrapper<ICountry>;
+  readonly currency: FieldWrapper<ICurrency>;
+  readonly isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
 };
 
 export type IProductConfigurationParameter = {
-  key: FieldWrapper<Scalars['String']['output']>;
-  value: FieldWrapper<Scalars['String']['output']>;
+  readonly key: FieldWrapper<Scalars['String']['output']>;
+  readonly value: FieldWrapper<Scalars['String']['output']>;
 };
 
 export type IProductConfigurationParameterInput = {
-  key: Scalars['String']['input'];
-  value: Scalars['String']['input'];
+  readonly key: Scalars['String']['input'];
+  readonly value: Scalars['String']['input'];
 };
 
 export type IProductDiscount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  interface?: Maybe<FieldWrapper<IDiscountInterface>>;
-  total: FieldWrapper<IPrice>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly interface?: Maybe<FieldWrapper<IDiscountInterface>>;
+  readonly total: FieldWrapper<IPrice>;
 };
 
 export type IProductMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  file: FieldWrapper<IMedia>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductMediaTexts>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly file: FieldWrapper<IMedia>;
+  readonly sortKey: FieldWrapper<Scalars['Int']['output']>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductMediaTexts>>;
 };
 
 export type IProductMediaTextsArgs = {
@@ -2550,18 +2650,20 @@ export type IProductMediaTextsArgs = {
 };
 
 export type IProductMediaTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IProductPlanConfiguration = {
-  billingInterval: FieldWrapper<IProductPlanConfigurationInterval>;
-  billingIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  trialInterval?: Maybe<FieldWrapper<IProductPlanConfigurationInterval>>;
-  trialIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  usageCalculationType: FieldWrapper<IProductPlanUsageCalculationType>;
+  readonly billingInterval: FieldWrapper<IProductPlanConfigurationInterval>;
+  readonly billingIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly trialInterval?: Maybe<
+    FieldWrapper<IProductPlanConfigurationInterval>
+  >;
+  readonly trialIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly usageCalculationType: FieldWrapper<IProductPlanUsageCalculationType>;
 };
 
 export enum IProductPlanConfigurationInterval {
@@ -2578,17 +2680,17 @@ export enum IProductPlanUsageCalculationType {
 }
 
 export type IProductReview = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  author: FieldWrapper<IUser>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  ownVotes: Array<FieldWrapper<IProductReviewVote>>;
-  product: FieldWrapper<IProduct>;
-  rating?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  review?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  voteCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly author: FieldWrapper<IUser>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly ownVotes: ReadonlyArray<FieldWrapper<IProductReviewVote>>;
+  readonly product: FieldWrapper<IProduct>;
+  readonly rating?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly review?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly voteCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
 };
 
 export type IProductReviewVoteCountArgs = {
@@ -2596,15 +2698,15 @@ export type IProductReviewVoteCountArgs = {
 };
 
 export type IProductReviewInput = {
-  rating?: InputMaybe<Scalars['Int']['input']>;
-  review?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly rating?: InputMaybe<Scalars['Int']['input']>;
+  readonly review?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IProductReviewVote = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
-  type: FieldWrapper<IProductReviewVoteType>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
+  readonly type: FieldWrapper<IProductReviewVoteType>;
 };
 
 export enum IProductReviewVoteType {
@@ -2615,10 +2717,10 @@ export enum IProductReviewVoteType {
 
 /** Search result */
 export type IProductSearchResult = {
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  filters: Array<FieldWrapper<ILoadedFilter>>;
-  products: Array<FieldWrapper<IProduct>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly filters: ReadonlyArray<FieldWrapper<ILoadedFilter>>;
+  readonly products: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly productsCount: FieldWrapper<Scalars['Int']['output']>;
 };
 
 /** Search result */
@@ -2637,23 +2739,27 @@ export enum IProductStatus {
 }
 
 export type IProductTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  brand?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  labels?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  vendor?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly brand?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly labels?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly vendor?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IProductVariation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  options?: Maybe<Array<FieldWrapper<IProductVariationOption>>>;
-  texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
-  type?: Maybe<FieldWrapper<IProductVariationType>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly options?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductVariationOption>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
+  readonly type?: Maybe<FieldWrapper<IProductVariationType>>;
 };
 
 export type IProductVariationTextsArgs = {
@@ -2662,24 +2768,26 @@ export type IProductVariationTextsArgs = {
 
 /** Key Value Combination to Product Assignment */
 export type IProductVariationAssignment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
   /** Assigned Product */
-  product?: Maybe<FieldWrapper<IProduct>>;
+  readonly product?: Maybe<FieldWrapper<IProduct>>;
   /** Query string key=val&key=val ... */
-  vectors?: Maybe<Array<FieldWrapper<IProductVariationAssignmentVector>>>;
+  readonly vectors?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductVariationAssignmentVector>>
+  >;
 };
 
 /** Key Value Combination */
 export type IProductVariationAssignmentVector = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  option?: Maybe<FieldWrapper<IProductVariationOption>>;
-  variation?: Maybe<FieldWrapper<IProductVariation>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly option?: Maybe<FieldWrapper<IProductVariationOption>>;
+  readonly variation?: Maybe<FieldWrapper<IProductVariation>>;
 };
 
 export type IProductVariationOption = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
-  value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
+  readonly value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IProductVariationOptionTextsArgs = {
@@ -2687,10 +2795,10 @@ export type IProductVariationOptionTextsArgs = {
 };
 
 export type IProductVariationTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export enum IProductVariationType {
@@ -2701,150 +2809,164 @@ export enum IProductVariationType {
 }
 
 export type IPushSubscription = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  endpoint: FieldWrapper<Scalars['String']['output']>;
-  expirationTime?: Maybe<FieldWrapper<Scalars['Timestamp']['output']>>;
-  userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly endpoint: FieldWrapper<Scalars['String']['output']>;
+  readonly expirationTime?: Maybe<FieldWrapper<Scalars['Timestamp']['output']>>;
+  readonly userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IQuery = {
   /** Get List of currently registered worker plugins */
-  activeWorkTypes: Array<FieldWrapper<IWorkType>>;
+  readonly activeWorkTypes: ReadonlyArray<FieldWrapper<IWorkType>>;
   /** Get a specific assortment by ID */
-  assortment?: Maybe<FieldWrapper<IAssortment>>;
+  readonly assortment?: Maybe<FieldWrapper<IAssortment>>;
   /** Get all root assortments, by default sorted by sequence (ascending) */
-  assortments: Array<FieldWrapper<IAssortment>>;
+  readonly assortments: ReadonlyArray<FieldWrapper<IAssortment>>;
   /** Returns total number of assortments that match a given criteria or all if no criteria is given */
-  assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get all countries, by default sorted by creation date (ascending) */
-  countries: Array<FieldWrapper<ICountry>>;
+  readonly countries: ReadonlyArray<FieldWrapper<ICountry>>;
   /** Returns total number of countries */
-  countriesCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly countriesCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific country by ID */
-  country?: Maybe<FieldWrapper<ICountry>>;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
   /** Get all currencies, by default sorted by creation date (ascending) */
-  currencies: Array<FieldWrapper<ICurrency>>;
+  readonly currencies: ReadonlyArray<FieldWrapper<ICurrency>>;
   /** Returns total number of currencies */
-  currenciesCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly currenciesCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific currency by ID */
-  currency?: Maybe<FieldWrapper<ICurrency>>;
+  readonly currency?: Maybe<FieldWrapper<ICurrency>>;
   /** Get all delivery interfaces filtered by type */
-  deliveryInterfaces: Array<FieldWrapper<IDeliveryInterface>>;
+  readonly deliveryInterfaces: ReadonlyArray<FieldWrapper<IDeliveryInterface>>;
   /** Get a specific delivery provider by ID */
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
   /** Get all delivery providers, optionally filtered by type */
-  deliveryProviders: Array<FieldWrapper<IDeliveryProvider>>;
+  readonly deliveryProviders: ReadonlyArray<FieldWrapper<IDeliveryProvider>>;
   /** Returns total number of delivery providers, optionally filtered by type */
-  deliveryProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly deliveryProvidersCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific quotation by ID */
-  enrollment?: Maybe<FieldWrapper<IEnrollment>>;
+  readonly enrollment?: Maybe<FieldWrapper<IEnrollment>>;
   /** Get all enrollments, by default sorted by creation date (ascending) */
-  enrollments: Array<FieldWrapper<IEnrollment>>;
+  readonly enrollments: ReadonlyArray<FieldWrapper<IEnrollment>>;
   /** Returns total number of enrollments */
-  enrollmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly enrollmentsCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific work unit by ID */
-  event?: Maybe<FieldWrapper<IEvent>>;
+  readonly event?: Maybe<FieldWrapper<IEvent>>;
   /** Get all emitted events, by default sorted by creation date (desc) */
-  events: Array<FieldWrapper<IEvent>>;
+  readonly events: ReadonlyArray<FieldWrapper<IEvent>>;
   /** Get total count of all emitted events */
-  eventsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly eventsCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific filter by ID */
-  filter?: Maybe<FieldWrapper<IFilter>>;
+  readonly filter?: Maybe<FieldWrapper<IFilter>>;
   /** Get all filters, by default sorted by creation date (ascending) */
-  filters: Array<FieldWrapper<IFilter>>;
+  readonly filters: ReadonlyArray<FieldWrapper<IFilter>>;
   /** Returns total number of filters */
-  filtersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly filtersCount: FieldWrapper<Scalars['Int']['output']>;
   /** User impersonating current user session using the  impersonate API */
-  impersonator?: Maybe<FieldWrapper<IUser>>;
+  readonly impersonator?: Maybe<FieldWrapper<IUser>>;
   /** Get a specific language */
-  language?: Maybe<FieldWrapper<ILanguage>>;
+  readonly language?: Maybe<FieldWrapper<ILanguage>>;
   /** Get all languages, by default sorted by creation date (ascending) */
-  languages: Array<Maybe<FieldWrapper<ILanguage>>>;
+  readonly languages: ReadonlyArray<Maybe<FieldWrapper<ILanguage>>>;
   /** Returns total number languages */
-  languagesCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly languagesCount: FieldWrapper<Scalars['Int']['output']>;
   /** Currently logged in user */
-  me?: Maybe<FieldWrapper<IUser>>;
+  readonly me?: Maybe<FieldWrapper<IUser>>;
   /** Get a specific single order */
-  order?: Maybe<FieldWrapper<IOrder>>;
+  readonly order?: Maybe<FieldWrapper<IOrder>>;
   /** Get all orders, by default sorted by creation date (descending) */
-  orders: Array<FieldWrapper<IOrder>>;
+  readonly orders: ReadonlyArray<FieldWrapper<IOrder>>;
   /** Returns total number of orders */
-  ordersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly ordersCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get all payment interfaces filtered by type */
-  paymentInterfaces: Array<FieldWrapper<IPaymentInterface>>;
+  readonly paymentInterfaces: ReadonlyArray<FieldWrapper<IPaymentInterface>>;
   /** Get a specific payment provider by ID */
-  paymentProvider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  readonly paymentProvider?: Maybe<FieldWrapper<IPaymentProvider>>;
   /** Get all payment providers, optionally filtered by type */
-  paymentProviders: Array<FieldWrapper<IPaymentProvider>>;
+  readonly paymentProviders: ReadonlyArray<FieldWrapper<IPaymentProvider>>;
   /** Returns total number of payment providers, optionally filtered by type */
-  paymentProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly paymentProvidersCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific product by id or slug */
-  product?: Maybe<FieldWrapper<IProduct>>;
+  readonly product?: Maybe<FieldWrapper<IProduct>>;
   /** List products specified prices */
-  productCatalogPrices: Array<FieldWrapper<IProductCatalogPrice>>;
+  readonly productCatalogPrices: ReadonlyArray<
+    FieldWrapper<IProductCatalogPrice>
+  >;
   /** Get a specific product review by ID */
-  productReview: FieldWrapper<IProductReview>;
+  readonly productReview: FieldWrapper<IProductReview>;
   /** Get all product reviews, by default sorted by creation date (descending) */
-  productReviews: Array<FieldWrapper<IProductReview>>;
+  readonly productReviews: ReadonlyArray<FieldWrapper<IProductReview>>;
   /** Returns total number of product reviews */
-  productReviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly productReviewsCount: FieldWrapper<Scalars['Int']['output']>;
   /**
    * Simple list of published products filtered either by tags or explicit slugs
    * If a slug is provided, limit and offset don't have any effect on the result
    * By default sorted by sequence (ascending) and published (ascending) unless a queryString is set
    */
-  products: Array<FieldWrapper<IProduct>>;
+  readonly products: ReadonlyArray<FieldWrapper<IProduct>>;
   /**
    * Return total number of published products filtered either by tags or explicit slugs
    * If a slug is provided
    */
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly productsCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific quotation by ID */
-  quotation?: Maybe<FieldWrapper<IQuotation>>;
+  readonly quotation?: Maybe<FieldWrapper<IQuotation>>;
   /** Get all quotations, by default sorted by creation date (ascending) */
-  quotations: Array<FieldWrapper<IQuotation>>;
+  readonly quotations: ReadonlyArray<FieldWrapper<IQuotation>>;
   /** Returns total number of quotations */
-  quotationsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly quotationsCount: FieldWrapper<Scalars['Int']['output']>;
   /** Search assortments */
-  searchAssortments: FieldWrapper<IAssortmentSearchResult>;
+  readonly searchAssortments: FieldWrapper<IAssortmentSearchResult>;
   /** Search products */
-  searchProducts: FieldWrapper<IProductSearchResult>;
+  readonly searchProducts: FieldWrapper<IProductSearchResult>;
   /** Get shop-global data and the resolved country/language pair */
-  shopInfo: FieldWrapper<IShop>;
+  readonly shopInfo: FieldWrapper<IShop>;
   /** Get token */
-  token?: Maybe<FieldWrapper<IToken>>;
+  readonly token?: Maybe<FieldWrapper<IToken>>;
   /** Localization: Media title/subtitle of a media that is attached to a assortment */
-  translatedAssortmentMediaTexts: Array<FieldWrapper<IAssortmentMediaTexts>>;
+  readonly translatedAssortmentMediaTexts: ReadonlyArray<
+    FieldWrapper<IAssortmentMediaTexts>
+  >;
   /** Localization: Meta data for assortments */
-  translatedAssortmentTexts: Array<FieldWrapper<IAssortmentTexts>>;
+  readonly translatedAssortmentTexts: ReadonlyArray<
+    FieldWrapper<IAssortmentTexts>
+  >;
   /** Localization: Filters and Filter Options */
-  translatedFilterTexts: Array<FieldWrapper<IFilterTexts>>;
+  readonly translatedFilterTexts: ReadonlyArray<FieldWrapper<IFilterTexts>>;
   /** Localization: Media title/subtitle of a media that is attached to a product */
-  translatedProductMediaTexts: Array<FieldWrapper<IProductMediaTexts>>;
+  readonly translatedProductMediaTexts: ReadonlyArray<
+    FieldWrapper<IProductMediaTexts>
+  >;
   /** Localization: Meta data for product */
-  translatedProductTexts: Array<FieldWrapper<IProductTexts>>;
+  readonly translatedProductTexts: ReadonlyArray<FieldWrapper<IProductTexts>>;
   /** Localization: Variations and Variation Options */
-  translatedProductVariationTexts: Array<FieldWrapper<IProductVariationTexts>>;
+  readonly translatedProductVariationTexts: ReadonlyArray<
+    FieldWrapper<IProductVariationTexts>
+  >;
   /** Specific user data if userId provided, else returns currently logged in */
-  user?: Maybe<FieldWrapper<IUser>>;
+  readonly user?: Maybe<FieldWrapper<IUser>>;
   /** Get list of users, by default sorted by creation date (ascending) unless a queryString is set */
-  users: Array<FieldWrapper<IUser>>;
+  readonly users: ReadonlyArray<FieldWrapper<IUser>>;
   /** Get total number of users in the system that match query */
-  usersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly usersCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get all warehousing interfaces filtered by type */
-  warehousingInterfaces: Array<FieldWrapper<IWarehousingInterface>>;
+  readonly warehousingInterfaces: ReadonlyArray<
+    FieldWrapper<IWarehousingInterface>
+  >;
   /** Get a specific warehousing provider by ID */
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  readonly warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
   /** Get all warehousing providers, optionally filtered by type */
-  warehousingProviders: Array<FieldWrapper<IWarehousingProvider>>;
+  readonly warehousingProviders: ReadonlyArray<
+    FieldWrapper<IWarehousingProvider>
+  >;
   /** Returns total number of delivery providers, optionally filtered by type */
-  warehousingProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly warehousingProvidersCount: FieldWrapper<Scalars['Int']['output']>;
   /** Get a specific work unit by ID */
-  work?: Maybe<FieldWrapper<IWork>>;
+  readonly work?: Maybe<FieldWrapper<IWork>>;
   /** Get all work from the queue, by default sorted by start date (desc), priority (desc), originalWorkId (asc) and created (asc) */
-  workQueue: Array<FieldWrapper<IWork>>;
+  readonly workQueue: ReadonlyArray<FieldWrapper<IWork>>;
   /** Return total number of workers filtered the provided arguments */
-  workQueueCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly workQueueCount: FieldWrapper<Scalars['Int']['output']>;
 };
 
 export type IQueryAssortmentArgs = {
@@ -2858,17 +2980,17 @@ export type IQueryAssortmentsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  slugs?: InputMaybe<Array<Scalars['String']['input']>>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IQueryAssortmentsCountArgs = {
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   includeLeaves?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  slugs?: InputMaybe<Array<Scalars['String']['input']>>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IQueryCountriesArgs = {
@@ -2876,7 +2998,7 @@ export type IQueryCountriesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryCountriesCountArgs = {
@@ -2893,7 +3015,7 @@ export type IQueryCurrenciesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryCurrenciesCountArgs = {
@@ -2929,13 +3051,13 @@ export type IQueryEnrollmentsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  status?: InputMaybe<Array<Scalars['String']['input']>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  status?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 };
 
 export type IQueryEnrollmentsCountArgs = {
   queryString?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Array<Scalars['String']['input']>>;
+  status?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 };
 
 export type IQueryEventArgs = {
@@ -2947,14 +3069,14 @@ export type IQueryEventsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  types?: InputMaybe<Array<Scalars['String']['input']>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  types?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 };
 
 export type IQueryEventsCountArgs = {
   created?: InputMaybe<Scalars['DateTime']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  types?: InputMaybe<Array<Scalars['String']['input']>>;
+  types?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 };
 
 export type IQueryFilterArgs = {
@@ -2966,7 +3088,7 @@ export type IQueryFiltersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryFiltersCountArgs = {
@@ -2983,7 +3105,7 @@ export type IQueryLanguagesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryLanguagesCountArgs = {
@@ -3000,7 +3122,7 @@ export type IQueryOrdersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryOrdersCountArgs = {
@@ -3041,7 +3163,7 @@ export type IQueryProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryProductReviewsCountArgs = {
@@ -3053,16 +3175,16 @@ export type IQueryProductsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  slugs?: InputMaybe<Array<Scalars['String']['input']>>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IQueryProductsCountArgs = {
   includeDrafts?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  slugs?: InputMaybe<Array<Scalars['String']['input']>>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 export type IQueryQuotationArgs = {
@@ -3073,7 +3195,7 @@ export type IQueryQuotationsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryQuotationsCountArgs = {
@@ -3081,7 +3203,7 @@ export type IQueryQuotationsCountArgs = {
 };
 
 export type IQuerySearchAssortmentsArgs = {
-  assortmentIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  assortmentIds?: InputMaybe<ReadonlyArray<Scalars['ID']['input']>>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
   queryString?: InputMaybe<Scalars['String']['input']>;
@@ -3089,7 +3211,7 @@ export type IQuerySearchAssortmentsArgs = {
 
 export type IQuerySearchProductsArgs = {
   assortmentId?: InputMaybe<Scalars['ID']['input']>;
-  filterQuery?: InputMaybe<Array<IFilterQueryInput>>;
+  filterQuery?: InputMaybe<ReadonlyArray<IFilterQueryInput>>;
   ignoreChildAssortments?: InputMaybe<Scalars['Boolean']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
@@ -3135,7 +3257,7 @@ export type IQueryUsersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IQueryUsersCountArgs = {
@@ -3168,34 +3290,36 @@ export type IQueryWorkQueueArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  status?: InputMaybe<Array<IWorkStatus>>;
-  types?: InputMaybe<Array<IWorkType>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  status?: InputMaybe<ReadonlyArray<IWorkStatus>>;
+  types?: InputMaybe<ReadonlyArray<IWorkType>>;
 };
 
 export type IQueryWorkQueueCountArgs = {
   created?: InputMaybe<IDateFilterInput>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  status?: InputMaybe<Array<IWorkStatus>>;
-  types?: InputMaybe<Array<IWorkType>>;
+  status?: InputMaybe<ReadonlyArray<IWorkStatus>>;
+  types?: InputMaybe<ReadonlyArray<IWorkType>>;
 };
 
 /** Quotation */
 export type IQuotation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  product: FieldWrapper<IProduct>;
-  quotationNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status: FieldWrapper<IQuotationStatus>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user: FieldWrapper<IUser>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly configuration?: Maybe<
+    ReadonlyArray<FieldWrapper<IProductConfigurationParameter>>
+  >;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
+  readonly created: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly currency?: Maybe<FieldWrapper<ICurrency>>;
+  readonly expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly product: FieldWrapper<IProduct>;
+  readonly quotationNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly status: FieldWrapper<IQuotationStatus>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly user: FieldWrapper<IUser>;
 };
 
 /** Quotation */
@@ -3224,28 +3348,28 @@ export enum IQuotationStatus {
 }
 
 export type IReorderAssortmentFilterInput = {
-  assortmentFilterId: Scalars['ID']['input'];
-  sortKey: Scalars['Int']['input'];
+  readonly assortmentFilterId: Scalars['ID']['input'];
+  readonly sortKey: Scalars['Int']['input'];
 };
 
 export type IReorderAssortmentLinkInput = {
-  assortmentLinkId: Scalars['ID']['input'];
-  sortKey: Scalars['Int']['input'];
+  readonly assortmentLinkId: Scalars['ID']['input'];
+  readonly sortKey: Scalars['Int']['input'];
 };
 
 export type IReorderAssortmentMediaInput = {
-  assortmentMediaId: Scalars['ID']['input'];
-  sortKey: Scalars['Int']['input'];
+  readonly assortmentMediaId: Scalars['ID']['input'];
+  readonly sortKey: Scalars['Int']['input'];
 };
 
 export type IReorderAssortmentProductInput = {
-  assortmentProductId: Scalars['ID']['input'];
-  sortKey: Scalars['Int']['input'];
+  readonly assortmentProductId: Scalars['ID']['input'];
+  readonly sortKey: Scalars['Int']['input'];
 };
 
 export type IReorderProductMediaInput = {
-  productMediaId: Scalars['ID']['input'];
-  sortKey: Scalars['Int']['input'];
+  readonly productMediaId: Scalars['ID']['input'];
+  readonly sortKey: Scalars['Int']['input'];
 };
 
 export enum IRoleAction {
@@ -3360,10 +3484,10 @@ export enum ISearchOrderBy {
 
 /** Search result */
 export type ISearchResult = {
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  filters: Array<FieldWrapper<ILoadedFilter>>;
-  products: Array<FieldWrapper<IProduct>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly filters: ReadonlyArray<FieldWrapper<ILoadedFilter>>;
+  readonly products: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly productsCount: FieldWrapper<Scalars['Int']['output']>;
 };
 
 /** Search result */
@@ -3373,43 +3497,47 @@ export type ISearchResultProductsArgs = {
 };
 
 export type IShop = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  adminUiConfig: FieldWrapper<IAdminUiConfig>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  externalLinks: Array<Maybe<FieldWrapper<ILink>>>;
-  language?: Maybe<FieldWrapper<ILanguage>>;
-  oAuthProviders: Array<FieldWrapper<IOAuthProvider>>;
-  userRoles: Array<FieldWrapper<Scalars['String']['output']>>;
-  vapidPublicKey?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly adminUiConfig: FieldWrapper<IAdminUiConfig>;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
+  readonly externalLinks: ReadonlyArray<Maybe<FieldWrapper<ILink>>>;
+  readonly language?: Maybe<FieldWrapper<ILanguage>>;
+  readonly oAuthProviders: ReadonlyArray<FieldWrapper<IOAuthProvider>>;
+  readonly userRoles: ReadonlyArray<FieldWrapper<Scalars['String']['output']>>;
+  readonly vapidPublicKey?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /** Simple Product */
 export type ISimpleProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  baseUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  dimensions?: Maybe<FieldWrapper<IDimensions>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  salesQuantityPerUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedDispatches?: Maybe<Array<FieldWrapper<IDispatch>>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  simulatedStocks?: Maybe<Array<FieldWrapper<IStock>>>;
-  sku?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly baseUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly catalogPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly dimensions?: Maybe<FieldWrapper<IDimensions>>;
+  readonly leveledCatalogPrices: ReadonlyArray<FieldWrapper<IPriceLevel>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly salesQuantityPerUnit?: Maybe<
+    FieldWrapper<Scalars['String']['output']>
+  >;
+  readonly salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly simulatedDispatches?: Maybe<ReadonlyArray<FieldWrapper<IDispatch>>>;
+  readonly simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly simulatedStocks?: Maybe<ReadonlyArray<FieldWrapper<IStock>>>;
+  readonly sku?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** Simple Product */
@@ -3427,7 +3555,7 @@ export type ISimpleProductLeveledCatalogPricesArgs = {
 export type ISimpleProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Simple Product */
@@ -3435,7 +3563,7 @@ export type ISimpleProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** Simple Product */
@@ -3487,32 +3615,32 @@ export enum ISortDirection {
 }
 
 export type ISortOptionInput = {
-  key: Scalars['String']['input'];
-  value: ISortDirection;
+  readonly key: Scalars['String']['input'];
+  readonly value: ISortDirection;
 };
 
 export type IStock = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  quantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  readonly quantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
 };
 
 export type ISuccessResponse = {
-  success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
 };
 
 export type IToken = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  chainId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  chainTokenId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  ercMetadata?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  product: FieldWrapper<ITokenizedProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
-  status: FieldWrapper<ITokenExportStatus>;
-  user?: Maybe<FieldWrapper<IUser>>;
-  walletAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly chainId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly chainTokenId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly ercMetadata?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly product: FieldWrapper<ITokenizedProduct>;
+  readonly quantity: FieldWrapper<Scalars['Int']['output']>;
+  readonly status: FieldWrapper<ITokenExportStatus>;
+  readonly user?: Maybe<FieldWrapper<IUser>>;
+  readonly walletAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type ITokenErcMetadataArgs = {
@@ -3527,26 +3655,28 @@ export enum ITokenExportStatus {
 
 /** Tokenized Product (Blockchain materialized Product) */
 export type ITokenizedProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  contractConfiguration?: Maybe<FieldWrapper<IContractConfiguration>>;
-  contractStandard?: Maybe<FieldWrapper<ISmartContractStandard>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  simulatedStocks?: Maybe<Array<FieldWrapper<IStock>>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly assortmentPaths: ReadonlyArray<FieldWrapper<IProductAssortmentPath>>;
+  readonly catalogPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly contractConfiguration?: Maybe<FieldWrapper<IContractConfiguration>>;
+  readonly contractStandard?: Maybe<FieldWrapper<ISmartContractStandard>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly leveledCatalogPrices: ReadonlyArray<FieldWrapper<IPriceLevel>>;
+  readonly media: ReadonlyArray<FieldWrapper<IProductMedia>>;
+  readonly published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly sequence: FieldWrapper<Scalars['Int']['output']>;
+  readonly siblings: ReadonlyArray<FieldWrapper<IProduct>>;
+  readonly simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
+  readonly simulatedStocks?: Maybe<ReadonlyArray<FieldWrapper<IStock>>>;
+  readonly status: FieldWrapper<IProductStatus>;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly texts?: Maybe<FieldWrapper<IProductTexts>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 /** Tokenized Product (Blockchain materialized Product) */
@@ -3569,7 +3699,7 @@ export type ITokenizedProductLeveledCatalogPricesArgs = {
 export type ITokenizedProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 };
 
 /** Tokenized Product (Blockchain materialized Product) */
@@ -3577,7 +3707,7 @@ export type ITokenizedProductReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 /** Tokenized Product (Blockchain materialized Product) */
@@ -3611,164 +3741,174 @@ export type ITokenizedProductTextsArgs = {
 };
 
 export type IUpdateAssortmentInput = {
-  isActive?: InputMaybe<Scalars['Boolean']['input']>;
-  isRoot?: InputMaybe<Scalars['Boolean']['input']>;
-  sequence?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  readonly isActive?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly isRoot?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly sequence?: InputMaybe<Scalars['Int']['input']>;
+  readonly tags?: InputMaybe<
+    ReadonlyArray<Scalars['LowerCaseString']['input']>
+  >;
 };
 
 export type IUpdateAssortmentMediaTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly locale: Scalars['String']['input'];
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateAssortmentTextInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  locale: Scalars['String']['input'];
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly description?: InputMaybe<Scalars['String']['input']>;
+  readonly locale: Scalars['String']['input'];
+  readonly slug?: InputMaybe<Scalars['String']['input']>;
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateCountryInput = {
-  defaultCurrencyId?: InputMaybe<Scalars['String']['input']>;
-  isActive?: InputMaybe<Scalars['Boolean']['input']>;
-  isoCode: Scalars['String']['input'];
+  readonly defaultCurrencyId?: InputMaybe<Scalars['String']['input']>;
+  readonly isActive?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type IUpdateCurrencyInput = {
-  contractAddress?: InputMaybe<Scalars['String']['input']>;
-  decimals?: InputMaybe<Scalars['Int']['input']>;
-  isActive?: InputMaybe<Scalars['Boolean']['input']>;
-  isoCode: Scalars['String']['input'];
+  readonly contractAddress?: InputMaybe<Scalars['String']['input']>;
+  readonly decimals?: InputMaybe<Scalars['Int']['input']>;
+  readonly isActive?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type IUpdateFilterInput = {
-  isActive?: InputMaybe<Scalars['Boolean']['input']>;
-  key?: InputMaybe<Scalars['String']['input']>;
+  readonly isActive?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly key?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateFilterTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly locale: Scalars['String']['input'];
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateLanguageInput = {
-  isActive?: InputMaybe<Scalars['Boolean']['input']>;
-  isoCode: Scalars['String']['input'];
+  readonly isActive?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly isoCode: Scalars['String']['input'];
 };
 
 export type IUpdateProductCommerceInput = {
-  pricing: Array<IUpdateProductCommercePricingInput>;
+  readonly pricing: ReadonlyArray<IUpdateProductCommercePricingInput>;
 };
 
 export type IUpdateProductCommercePricingInput = {
-  amount: Scalars['Int']['input'];
-  countryCode: Scalars['String']['input'];
-  currencyCode: Scalars['String']['input'];
-  isNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
-  isTaxable?: InputMaybe<Scalars['Boolean']['input']>;
-  maxQuantity?: InputMaybe<Scalars['Int']['input']>;
+  readonly amount: Scalars['Int']['input'];
+  readonly countryCode: Scalars['String']['input'];
+  readonly currencyCode: Scalars['String']['input'];
+  readonly isNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly isTaxable?: InputMaybe<Scalars['Boolean']['input']>;
+  readonly maxQuantity?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type IUpdateProductInput = {
-  meta?: InputMaybe<Scalars['JSON']['input']>;
-  sequence?: InputMaybe<Scalars['Int']['input']>;
-  tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+  readonly meta?: InputMaybe<Scalars['JSON']['input']>;
+  readonly sequence?: InputMaybe<Scalars['Int']['input']>;
+  readonly tags?: InputMaybe<
+    ReadonlyArray<Scalars['LowerCaseString']['input']>
+  >;
 };
 
 export type IUpdateProductMediaTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly locale: Scalars['String']['input'];
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateProductPlanInput = {
-  billingInterval: IProductPlanConfigurationInterval;
-  billingIntervalCount?: InputMaybe<Scalars['Int']['input']>;
-  trialInterval?: InputMaybe<IProductPlanConfigurationInterval>;
-  trialIntervalCount?: InputMaybe<Scalars['Int']['input']>;
-  usageCalculationType: IProductPlanUsageCalculationType;
+  readonly billingInterval: IProductPlanConfigurationInterval;
+  readonly billingIntervalCount?: InputMaybe<Scalars['Int']['input']>;
+  readonly trialInterval?: InputMaybe<IProductPlanConfigurationInterval>;
+  readonly trialIntervalCount?: InputMaybe<Scalars['Int']['input']>;
+  readonly usageCalculationType: IProductPlanUsageCalculationType;
 };
 
 export type IUpdateProductSupplyInput = {
-  heightInMillimeters?: InputMaybe<Scalars['Int']['input']>;
-  lengthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
-  weightInGram?: InputMaybe<Scalars['Int']['input']>;
-  widthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
+  readonly heightInMillimeters?: InputMaybe<Scalars['Int']['input']>;
+  readonly lengthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
+  readonly weightInGram?: InputMaybe<Scalars['Int']['input']>;
+  readonly widthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type IUpdateProductTextInput = {
-  brand?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  labels?: InputMaybe<Array<Scalars['String']['input']>>;
-  locale: Scalars['String']['input'];
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  vendor?: InputMaybe<Scalars['String']['input']>;
+  readonly brand?: InputMaybe<Scalars['String']['input']>;
+  readonly description?: InputMaybe<Scalars['String']['input']>;
+  readonly labels?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
+  readonly locale: Scalars['String']['input'];
+  readonly slug?: InputMaybe<Scalars['String']['input']>;
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
+  readonly vendor?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateProductTokenizationInput = {
-  contractAddress: Scalars['String']['input'];
-  contractStandard: ISmartContractStandard;
-  ercMetadataProperties?: InputMaybe<Scalars['JSON']['input']>;
-  supply: Scalars['Int']['input'];
-  tokenId: Scalars['String']['input'];
+  readonly contractAddress: Scalars['String']['input'];
+  readonly contractStandard: ISmartContractStandard;
+  readonly ercMetadataProperties?: InputMaybe<Scalars['JSON']['input']>;
+  readonly supply: Scalars['Int']['input'];
+  readonly tokenId: Scalars['String']['input'];
 };
 
 export type IUpdateProductVariationTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
+  readonly locale: Scalars['String']['input'];
+  readonly subtitle?: InputMaybe<Scalars['String']['input']>;
+  readonly title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateProductWarehousingInput = {
-  baseUnit?: InputMaybe<Scalars['String']['input']>;
-  sku?: InputMaybe<Scalars['String']['input']>;
+  readonly baseUnit?: InputMaybe<Scalars['String']['input']>;
+  readonly sku?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateProviderInput = {
-  configuration?: InputMaybe<Array<Scalars['JSON']['input']>>;
+  readonly configuration?: InputMaybe<ReadonlyArray<Scalars['JSON']['input']>>;
 };
 
 export type IUser = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  allowedActions: Array<FieldWrapper<IRoleAction>>;
-  avatar?: Maybe<FieldWrapper<IMedia>>;
-  bookmarks: Array<FieldWrapper<IBookmark>>;
-  cart?: Maybe<FieldWrapper<IOrder>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  emails?: Maybe<Array<FieldWrapper<IUserEmail>>>;
-  enrollments: Array<FieldWrapper<IEnrollment>>;
-  isGuest: FieldWrapper<Scalars['Boolean']['output']>;
-  isInitialPassword: FieldWrapper<Scalars['Boolean']['output']>;
-  isTwoFactorEnabled: FieldWrapper<Scalars['Boolean']['output']>;
-  language?: Maybe<FieldWrapper<ILanguage>>;
-  lastBillingAddress?: Maybe<FieldWrapper<IAddress>>;
-  lastContact?: Maybe<FieldWrapper<IContact>>;
-  lastLogin?: Maybe<FieldWrapper<IUserLoginTracker>>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  oAuthAccounts: Array<FieldWrapper<IOAuthAccount>>;
-  orders: Array<FieldWrapper<IOrder>>;
-  paymentCredentials: Array<FieldWrapper<IPaymentCredentials>>;
-  primaryEmail?: Maybe<FieldWrapper<IUserEmail>>;
-  profile?: Maybe<FieldWrapper<IUserProfile>>;
-  pushSubscriptions: Array<FieldWrapper<IPushSubscription>>;
-  quotations: Array<FieldWrapper<IQuotation>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  roles?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  tokens: Array<FieldWrapper<IToken>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  username?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  web3Addresses: Array<FieldWrapper<IWeb3Address>>;
-  webAuthnCredentials: Array<FieldWrapper<IWebAuthnCredentials>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly allowedActions: ReadonlyArray<FieldWrapper<IRoleAction>>;
+  readonly avatar?: Maybe<FieldWrapper<IMedia>>;
+  readonly bookmarks: ReadonlyArray<FieldWrapper<IBookmark>>;
+  readonly cart?: Maybe<FieldWrapper<IOrder>>;
+  readonly country?: Maybe<FieldWrapper<ICountry>>;
+  readonly created: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly emails?: Maybe<ReadonlyArray<FieldWrapper<IUserEmail>>>;
+  readonly enrollments: ReadonlyArray<FieldWrapper<IEnrollment>>;
+  readonly isGuest: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly isInitialPassword: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly isTwoFactorEnabled: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly language?: Maybe<FieldWrapper<ILanguage>>;
+  readonly lastBillingAddress?: Maybe<FieldWrapper<IAddress>>;
+  readonly lastContact?: Maybe<FieldWrapper<IContact>>;
+  readonly lastLogin?: Maybe<FieldWrapper<IUserLoginTracker>>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly oAuthAccounts: ReadonlyArray<FieldWrapper<IOAuthAccount>>;
+  readonly orders: ReadonlyArray<FieldWrapper<IOrder>>;
+  readonly paymentCredentials: ReadonlyArray<FieldWrapper<IPaymentCredentials>>;
+  readonly primaryEmail?: Maybe<FieldWrapper<IUserEmail>>;
+  readonly profile?: Maybe<FieldWrapper<IUserProfile>>;
+  readonly pushSubscriptions: ReadonlyArray<FieldWrapper<IPushSubscription>>;
+  readonly quotations: ReadonlyArray<FieldWrapper<IQuotation>>;
+  readonly reviews: ReadonlyArray<FieldWrapper<IProductReview>>;
+  readonly reviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  readonly roles?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly tags?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['LowerCaseString']['output']>>
+  >;
+  readonly tokens: ReadonlyArray<FieldWrapper<IToken>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly username?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly web3Addresses: ReadonlyArray<FieldWrapper<IWeb3Address>>;
+  readonly webAuthnCredentials: ReadonlyArray<
+    FieldWrapper<IWebAuthnCredentials>
+  >;
 };
 
 export type IUserCartArgs = {
@@ -3779,8 +3919,8 @@ export type IUserEnrollmentsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-  status?: InputMaybe<Array<Scalars['String']['input']>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  status?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 };
 
 export type IUserOrdersArgs = {
@@ -3788,68 +3928,68 @@ export type IUserOrdersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IUserQuotationsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IUserReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 };
 
 export type IUserEmail = {
-  address: FieldWrapper<Scalars['String']['output']>;
-  verified: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly address: FieldWrapper<Scalars['String']['output']>;
+  readonly verified: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export type IUserLoginTracker = {
-  countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  remoteAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  remotePort?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
-  userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly remoteAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly remotePort?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
+  readonly userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IUserProfile = {
-  address?: Maybe<FieldWrapper<IAddress>>;
-  birthday?: Maybe<FieldWrapper<Scalars['Date']['output']>>;
-  displayName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  gender?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  phoneMobile?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly address?: Maybe<FieldWrapper<IAddress>>;
+  readonly birthday?: Maybe<FieldWrapper<Scalars['Date']['output']>>;
+  readonly displayName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly gender?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly phoneMobile?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IUserProfileInput = {
-  address?: InputMaybe<IAddressInput>;
-  birthday?: InputMaybe<Scalars['Timestamp']['input']>;
-  displayName?: InputMaybe<Scalars['String']['input']>;
-  gender?: InputMaybe<Scalars['String']['input']>;
-  phoneMobile?: InputMaybe<Scalars['String']['input']>;
+  readonly address?: InputMaybe<IAddressInput>;
+  readonly birthday?: InputMaybe<Scalars['Timestamp']['input']>;
+  readonly displayName?: InputMaybe<Scalars['String']['input']>;
+  readonly gender?: InputMaybe<Scalars['String']['input']>;
+  readonly phoneMobile?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IWarehousingInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IWarehousingProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IWarehousingProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IWarehousingInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  type?: Maybe<FieldWrapper<IWarehousingProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly configurationError?: Maybe<FieldWrapper<IWarehousingProviderError>>;
+  readonly created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly interface?: Maybe<FieldWrapper<IWarehousingInterface>>;
+  readonly isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly type?: Maybe<FieldWrapper<IWarehousingProviderType>>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
 };
 
 export enum IWarehousingProviderError {
@@ -3867,73 +4007,85 @@ export enum IWarehousingProviderType {
 }
 
 export type IWeb3Address = {
-  address: FieldWrapper<Scalars['String']['output']>;
-  nonce?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  verified: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly address: FieldWrapper<Scalars['String']['output']>;
+  readonly nonce?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly verified: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export type IWebAuthnCredentials = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  aaguid: FieldWrapper<Scalars['String']['output']>;
-  counter: FieldWrapper<Scalars['Int']['output']>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  mdsMetadata?: Maybe<FieldWrapper<IWebAuthnMdSv3Metadata>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly aaguid: FieldWrapper<Scalars['String']['output']>;
+  readonly counter: FieldWrapper<Scalars['Int']['output']>;
+  readonly created: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly mdsMetadata?: Maybe<FieldWrapper<IWebAuthnMdSv3Metadata>>;
 };
 
 export type IWebAuthnMdSv3Metadata = {
-  attachmentHint?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  attestationRootCertificates?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
+  readonly attachmentHint?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
   >;
-  attestationTypes?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  authenticationAlgorithms?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
+  readonly attestationRootCertificates?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
   >;
-  authenticatorGetInfo?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  authenticatorVersion?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  cryptoStrength?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  icon?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  keyProtection?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  legalHeader?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  matcherProtection?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  protocolFamily?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  publicKeyAlgAndEncodings?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
+  readonly attestationTypes?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
   >;
-  schema?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  tcDisplay?: Maybe<Array<FieldWrapper<Scalars['JSON']['output']>>>;
-  upv?: Maybe<Array<FieldWrapper<Scalars['JSON']['output']>>>;
-  userVerificationDetails?: Maybe<
-    Array<FieldWrapper<Scalars['JSON']['output']>>
+  readonly authenticationAlgorithms?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly authenticatorGetInfo?: Maybe<
+    FieldWrapper<Scalars['JSON']['output']>
+  >;
+  readonly authenticatorVersion?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly cryptoStrength?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly icon?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly keyProtection?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly legalHeader?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly matcherProtection?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly protocolFamily?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly publicKeyAlgAndEncodings?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['String']['output']>>
+  >;
+  readonly schema?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly tcDisplay?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['JSON']['output']>>
+  >;
+  readonly upv?: Maybe<ReadonlyArray<FieldWrapper<Scalars['JSON']['output']>>>;
+  readonly userVerificationDetails?: Maybe<
+    ReadonlyArray<FieldWrapper<Scalars['JSON']['output']>>
   >;
 };
 
 export type IWork = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  finished?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  input?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  original?: Maybe<FieldWrapper<IWork>>;
-  priority: FieldWrapper<Scalars['Int']['output']>;
-  result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  retries: FieldWrapper<Scalars['Int']['output']>;
-  scheduled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  started?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status: FieldWrapper<IWorkStatus>;
-  success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  timeout?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  type: FieldWrapper<IWorkType>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  worker?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly _id: FieldWrapper<Scalars['ID']['output']>;
+  readonly created: FieldWrapper<Scalars['DateTime']['output']>;
+  readonly deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly finished?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly input?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly original?: Maybe<FieldWrapper<IWork>>;
+  readonly priority: FieldWrapper<Scalars['Int']['output']>;
+  readonly result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly retries: FieldWrapper<Scalars['Int']['output']>;
+  readonly scheduled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly started?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly status: FieldWrapper<IWorkStatus>;
+  readonly success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  readonly timeout?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  readonly type: FieldWrapper<IWorkType>;
+  readonly updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  readonly worker?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 export type IWorkOutput = {
-  error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  success: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
+  readonly success: FieldWrapper<Scalars['Boolean']['output']>;
 };
 
 export enum IWorkStatus {
@@ -3966,20 +4118,20 @@ export enum IWorkType {
 
 /** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
 export type I__EnumValue = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
 export type I__Field = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  args: Array<FieldWrapper<I__InputValue>>;
-  type: FieldWrapper<I__Type>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly args: ReadonlyArray<FieldWrapper<I__InputValue>>;
+  readonly type: FieldWrapper<I__Type>;
+  readonly isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
@@ -3989,13 +4141,13 @@ export type I__FieldArgsArgs = {
 
 /** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
 export type I__InputValue = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  type: FieldWrapper<I__Type>;
+  readonly name: FieldWrapper<Scalars['String']['output']>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly type: FieldWrapper<I__Type>;
   /** A GraphQL-formatted string representing the default value for this input value. */
-  defaultValue?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly defaultValue?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
+  readonly deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
 };
 
 /**
@@ -4004,16 +4156,16 @@ export type I__InputValue = {
  * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
  */
 export type I__Type = {
-  kind: FieldWrapper<I__TypeKind>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  specifiedByURL?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  fields?: Maybe<Array<FieldWrapper<I__Field>>>;
-  interfaces?: Maybe<Array<FieldWrapper<I__Type>>>;
-  possibleTypes?: Maybe<Array<FieldWrapper<I__Type>>>;
-  enumValues?: Maybe<Array<FieldWrapper<I__EnumValue>>>;
-  inputFields?: Maybe<Array<FieldWrapper<I__InputValue>>>;
-  ofType?: Maybe<FieldWrapper<I__Type>>;
+  readonly kind: FieldWrapper<I__TypeKind>;
+  readonly name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly specifiedByURL?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  readonly fields?: Maybe<ReadonlyArray<FieldWrapper<I__Field>>>;
+  readonly interfaces?: Maybe<ReadonlyArray<FieldWrapper<I__Type>>>;
+  readonly possibleTypes?: Maybe<ReadonlyArray<FieldWrapper<I__Type>>>;
+  readonly enumValues?: Maybe<ReadonlyArray<FieldWrapper<I__EnumValue>>>;
+  readonly inputFields?: Maybe<ReadonlyArray<FieldWrapper<I__InputValue>>>;
+  readonly ofType?: Maybe<FieldWrapper<I__Type>>;
 };
 
 /**
@@ -4063,134 +4215,140 @@ export enum I__TypeKind {
   NonNull = 'NON_NULL',
 }
 
-export type IMd5MetaDataFragmentFragment = {
-  legalHeader?: string | null;
-  description?: string | null;
-  authenticatorVersion?: number | null;
-  protocolFamily?: string | null;
-  schema?: number | null;
-  authenticationAlgorithms?: Array<string> | null;
-  publicKeyAlgAndEncodings?: Array<string> | null;
-  attestationTypes?: Array<string> | null;
-  keyProtection?: Array<string> | null;
-  upv?: Array<any> | null;
-  tcDisplay?: Array<any> | null;
-  icon?: string | null;
-  authenticatorGetInfo?: any | null;
+export type IMd5MetaDataFragment = {
+  readonly legalHeader?: string | null;
+  readonly description?: string | null;
+  readonly authenticatorVersion?: number | null;
+  readonly protocolFamily?: string | null;
+  readonly schema?: number | null;
+  readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+  readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+  readonly attestationTypes?: ReadonlyArray<string> | null;
+  readonly keyProtection?: ReadonlyArray<string> | null;
+  readonly upv?: ReadonlyArray<any> | null;
+  readonly tcDisplay?: ReadonlyArray<any> | null;
+  readonly icon?: string | null;
+  readonly authenticatorGetInfo?: any | null;
 };
 
-export type IMd5MetaDataFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IMd5MetaDataFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IUserFragmentFragment = {
-  _id: string;
-  isTwoFactorEnabled: boolean;
-  allowedActions: Array<IRoleAction>;
-  username?: string | null;
-  isGuest: boolean;
-  isInitialPassword: boolean;
-  name: string;
-  roles?: Array<string> | null;
-  tags?: Array<any> | null;
-  lastBillingAddress?: {
-    firstName?: string | null;
-    lastName?: string | null;
-    company?: string | null;
-    addressLine?: string | null;
-    addressLine2?: string | null;
-    postalCode?: string | null;
-    countryCode?: string | null;
-    regionCode?: string | null;
-    city?: string | null;
+export type IUserFragment = {
+  readonly _id: string;
+  readonly isTwoFactorEnabled: boolean;
+  readonly allowedActions: ReadonlyArray<IRoleAction>;
+  readonly username?: string | null;
+  readonly isGuest: boolean;
+  readonly isInitialPassword: boolean;
+  readonly name: string;
+  readonly roles?: ReadonlyArray<string> | null;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly lastBillingAddress?: {
+    readonly firstName?: string | null;
+    readonly lastName?: string | null;
+    readonly company?: string | null;
+    readonly addressLine?: string | null;
+    readonly addressLine2?: string | null;
+    readonly postalCode?: string | null;
+    readonly countryCode?: string | null;
+    readonly regionCode?: string | null;
+    readonly city?: string | null;
   } | null;
-  lastContact?: {
-    emailAddress?: string | null;
-    telNumber?: string | null;
+  readonly lastContact?: {
+    readonly emailAddress?: string | null;
+    readonly telNumber?: string | null;
   } | null;
-  lastLogin?: {
-    countryCode?: string | null;
-    locale?: string | null;
-    remoteAddress?: string | null;
-    remotePort?: string | null;
-    timestamp: any;
-    userAgent?: string | null;
+  readonly lastLogin?: {
+    readonly countryCode?: string | null;
+    readonly locale?: string | null;
+    readonly remoteAddress?: string | null;
+    readonly remotePort?: string | null;
+    readonly timestamp: any;
+    readonly userAgent?: string | null;
   } | null;
-  avatar?: {
-    _id: string;
-    name: string;
-    size: number;
-    type: string;
-    url: string;
+  readonly avatar?: {
+    readonly _id: string;
+    readonly name: string;
+    readonly size: number;
+    readonly type: string;
+    readonly url: string;
   } | null;
-  paymentCredentials: Array<{
-    _id: string;
-    isValid: boolean;
-    isPreferred: boolean;
-    paymentProvider: {
-      _id: string;
-      type?: IPaymentProviderType | null;
-      interface?: {
-        _id: string;
-        label?: string | null;
-        version?: string | null;
+  readonly paymentCredentials: ReadonlyArray<{
+    readonly _id: string;
+    readonly isValid: boolean;
+    readonly isPreferred: boolean;
+    readonly paymentProvider: {
+      readonly _id: string;
+      readonly type?: IPaymentProviderType | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
       } | null;
     };
   }>;
-  emails?: Array<{ verified: boolean; address: string }> | null;
-  web3Addresses: Array<{
-    address: string;
-    nonce?: number | null;
-    verified: boolean;
+  readonly emails?: ReadonlyArray<{
+    readonly verified: boolean;
+    readonly address: string;
+  }> | null;
+  readonly web3Addresses: ReadonlyArray<{
+    readonly address: string;
+    readonly nonce?: number | null;
+    readonly verified: boolean;
   }>;
-  webAuthnCredentials: Array<{
-    _id: string;
-    created: any;
-    aaguid: string;
-    counter: number;
-    mdsMetadata?: {
-      legalHeader?: string | null;
-      description?: string | null;
-      authenticatorVersion?: number | null;
-      protocolFamily?: string | null;
-      schema?: number | null;
-      authenticationAlgorithms?: Array<string> | null;
-      publicKeyAlgAndEncodings?: Array<string> | null;
-      attestationTypes?: Array<string> | null;
-      keyProtection?: Array<string> | null;
-      upv?: Array<any> | null;
-      tcDisplay?: Array<any> | null;
-      icon?: string | null;
-      authenticatorGetInfo?: any | null;
+  readonly webAuthnCredentials: ReadonlyArray<{
+    readonly _id: string;
+    readonly created: any;
+    readonly aaguid: string;
+    readonly counter: number;
+    readonly mdsMetadata?: {
+      readonly legalHeader?: string | null;
+      readonly description?: string | null;
+      readonly authenticatorVersion?: number | null;
+      readonly protocolFamily?: string | null;
+      readonly schema?: number | null;
+      readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+      readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+      readonly attestationTypes?: ReadonlyArray<string> | null;
+      readonly keyProtection?: ReadonlyArray<string> | null;
+      readonly upv?: ReadonlyArray<any> | null;
+      readonly tcDisplay?: ReadonlyArray<any> | null;
+      readonly icon?: string | null;
+      readonly authenticatorGetInfo?: any | null;
     } | null;
   }>;
-  profile?: {
-    displayName?: string | null;
-    phoneMobile?: string | null;
-    gender?: string | null;
-    birthday?: any | null;
-    address?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly profile?: {
+    readonly displayName?: string | null;
+    readonly phoneMobile?: string | null;
+    readonly gender?: string | null;
+    readonly birthday?: any | null;
+    readonly address?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
   } | null;
-  primaryEmail?: { verified: boolean; address: string } | null;
+  readonly primaryEmail?: {
+    readonly verified: boolean;
+    readonly address: string;
+  } | null;
 };
 
-export type IUserFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type IUserFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ILogoutMutationVariables = Exact<{
   token?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type ILogoutMutation = { logout?: { success?: boolean | null } | null };
+export type ILogoutMutation = {
+  readonly logout?: { readonly success?: boolean | null } | null;
+};
 
 export type IAddEmailMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -4198,105 +4356,111 @@ export type IAddEmailMutationVariables = Exact<{
 }>;
 
 export type IAddEmailMutation = {
-  addEmail: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly addEmail: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -4305,105 +4469,111 @@ export type IAddWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IAddWeb3AddressMutation = {
-  addWeb3Address: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly addWeb3Address: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -4412,105 +4582,111 @@ export type IAddWebAuthnCredentialsMutationVariables = Exact<{
 }>;
 
 export type IAddWebAuthnCredentialsMutation = {
-  addWebAuthnCredentials: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+  readonly addWebAuthnCredentials: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -4519,7 +4695,7 @@ export type IBuildSecretTotpAuthUrlMutationVariables = Exact<{
 }>;
 
 export type IBuildSecretTotpAuthUrlMutation = {
-  buildSecretTOTPAuthURL: string;
+  readonly buildSecretTOTPAuthURL: string;
 };
 
 export type IChangePasswordMutationVariables = Exact<{
@@ -4528,7 +4704,7 @@ export type IChangePasswordMutationVariables = Exact<{
 }>;
 
 export type IChangePasswordMutation = {
-  changePassword?: { success?: boolean | null } | null;
+  readonly changePassword?: { readonly success?: boolean | null } | null;
 };
 
 export type ICreateUserMutationVariables = Exact<{
@@ -4540,17 +4716,25 @@ export type ICreateUserMutationVariables = Exact<{
 }>;
 
 export type ICreateUserMutation = {
-  createUser?: { id: string; token: string; tokenExpires: any } | null;
+  readonly createUser?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  } | null;
 };
 
-export type ICreateUserWithWebAuthMutationMutationVariables = Exact<{
+export type ICreateUserWithWebAuthMutationVariables = Exact<{
   username?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   webAuthnPublicKeyCredentials?: InputMaybe<Scalars['JSON']['input']>;
 }>;
 
-export type ICreateUserWithWebAuthMutationMutation = {
-  createUser?: { id: string; token: string; tokenExpires: any } | null;
+export type ICreateUserWithWebAuthMutation = {
+  readonly createUser?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  } | null;
 };
 
 export type ICreateWebAuthnCredentialCreationOptionsMutationVariables = Exact<{
@@ -4558,7 +4742,7 @@ export type ICreateWebAuthnCredentialCreationOptionsMutationVariables = Exact<{
 }>;
 
 export type ICreateWebAuthnCredentialCreationOptionsMutation = {
-  createWebAuthnCredentialCreationOptions: any;
+  readonly createWebAuthnCredentialCreationOptions: any;
 };
 
 export type ICreateWebAuthnCredentialRequestOptionsMutationVariables = Exact<{
@@ -4566,119 +4750,128 @@ export type ICreateWebAuthnCredentialRequestOptionsMutationVariables = Exact<{
 }>;
 
 export type ICreateWebAuthnCredentialRequestOptionsMutation = {
-  createWebAuthnCredentialRequestOptions: any;
+  readonly createWebAuthnCredentialRequestOptions: any;
 };
 
 export type ICurrentUserRoleQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ICurrentUserRoleQuery = {
-  me?: { _id: string; allowedActions: Array<IRoleAction> } | null;
+  readonly me?: {
+    readonly _id: string;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+  } | null;
 };
 
 export type ICurrentUserQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ICurrentUserQuery = {
-  me?: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly me?: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   } | null;
-  impersonator?: { _id: string } | null;
+  readonly impersonator?: { readonly _id: string } | null;
 };
 
 export type IDisableTotpMutationVariables = Exact<{
@@ -4687,105 +4880,111 @@ export type IDisableTotpMutationVariables = Exact<{
 }>;
 
 export type IDisableTotpMutation = {
-  disableTOTP: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly disableTOTP: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -4795,105 +4994,111 @@ export type IEnableTotpMutationVariables = Exact<{
 }>;
 
 export type IEnableTotpMutation = {
-  enableTOTP: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly enableTOTP: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -4904,105 +5109,111 @@ export type IEnrollUserMutationVariables = Exact<{
 }>;
 
 export type IEnrollUserMutation = {
-  enrollUser: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly enrollUser: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -5011,7 +5222,7 @@ export type IForgotPasswordMutationVariables = Exact<{
 }>;
 
 export type IForgotPasswordMutation = {
-  forgotPassword?: { success?: boolean | null } | null;
+  readonly forgotPassword?: { readonly success?: boolean | null } | null;
 };
 
 export type IImpersonateMutationVariables = Exact<{
@@ -5019,11 +5230,11 @@ export type IImpersonateMutationVariables = Exact<{
 }>;
 
 export type IImpersonateMutation = {
-  impersonate: {
-    id: string;
-    tokenExpires: any;
-    token: string;
-    user?: { _id: string } | null;
+  readonly impersonate: {
+    readonly id: string;
+    readonly tokenExpires: any;
+    readonly token: string;
+    readonly user?: { readonly _id: string } | null;
   };
 };
 
@@ -5034,7 +5245,11 @@ export type ILogInWithOAuthMutationVariables = Exact<{
 }>;
 
 export type ILogInWithOAuthMutation = {
-  loginWithOAuth?: { id: string; token: string; tokenExpires: any } | null;
+  readonly loginWithOAuth?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  } | null;
 };
 
 export type ILoginWithPasswordMutationVariables = Exact<{
@@ -5045,15 +5260,15 @@ export type ILoginWithPasswordMutationVariables = Exact<{
 }>;
 
 export type ILoginWithPasswordMutation = {
-  loginWithPassword?: {
-    id: string;
-    token: string;
-    tokenExpires: any;
-    user?: {
-      _id: string;
-      allowedActions: Array<IRoleAction>;
-      roles?: Array<string> | null;
-      isTwoFactorEnabled: boolean;
+  readonly loginWithPassword?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+    readonly user?: {
+      readonly _id: string;
+      readonly allowedActions: ReadonlyArray<IRoleAction>;
+      readonly roles?: ReadonlyArray<string> | null;
+      readonly isTwoFactorEnabled: boolean;
     } | null;
   } | null;
 };
@@ -5063,7 +5278,11 @@ export type ILoginWithWebAuthnMutationVariables = Exact<{
 }>;
 
 export type ILoginWithWebAuthnMutation = {
-  loginWithWebAuthn?: { id: string; token: string; tokenExpires: any } | null;
+  readonly loginWithWebAuthn?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  } | null;
 };
 
 export type IRemoveEmailMutationVariables = Exact<{
@@ -5072,105 +5291,111 @@ export type IRemoveEmailMutationVariables = Exact<{
 }>;
 
 export type IRemoveEmailMutation = {
-  removeEmail: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly removeEmail: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -5179,105 +5404,111 @@ export type IRemoveWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IRemoveWeb3AddressMutation = {
-  removeWeb3Address: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly removeWeb3Address: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -5286,105 +5517,111 @@ export type IRemoveWebAuthCredentialsMutationVariables = Exact<{
 }>;
 
 export type IRemoveWebAuthCredentialsMutation = {
-  removeWebAuthnCredentials: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly removeWebAuthnCredentials: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
@@ -5394,7 +5631,11 @@ export type IResetPasswordMutationVariables = Exact<{
 }>;
 
 export type IResetPasswordMutation = {
-  resetPassword?: { id: string; token: string; tokenExpires: any } | null;
+  readonly resetPassword?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  } | null;
 };
 
 export type ISendVerificationEmailMutationVariables = Exact<{
@@ -5402,7 +5643,7 @@ export type ISendVerificationEmailMutationVariables = Exact<{
 }>;
 
 export type ISendVerificationEmailMutation = {
-  sendVerificationEmail?: { success?: boolean | null } | null;
+  readonly sendVerificationEmail?: { readonly success?: boolean | null } | null;
 };
 
 export type ISetPasswordMutationVariables = Exact<{
@@ -5411,225 +5652,238 @@ export type ISetPasswordMutationVariables = Exact<{
 }>;
 
 export type ISetPasswordMutation = {
-  setPassword: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly setPassword: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
 export type ISetRolesMutationVariables = Exact<{
-  roles: Array<Scalars['String']['input']> | Scalars['String']['input'];
+  roles: ReadonlyArray<Scalars['String']['input']>;
   userId: Scalars['ID']['input'];
 }>;
 
 export type ISetRolesMutation = {
-  setRoles: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly setRoles: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
 export type ISetUserTagsMutationVariables = Exact<{
-  tags:
-    | Array<InputMaybe<Scalars['LowerCaseString']['input']>>
-    | InputMaybe<Scalars['LowerCaseString']['input']>;
+  tags: ReadonlyArray<InputMaybe<Scalars['LowerCaseString']['input']>>;
   userId: Scalars['ID']['input'];
 }>;
 
 export type ISetUserTagsMutation = {
-  setUserTags: { _id: string; tags?: Array<any> | null };
+  readonly setUserTags: {
+    readonly _id: string;
+    readonly tags?: ReadonlyArray<any> | null;
+  };
 };
 
 export type ISetUsernameMutationVariables = Exact<{
@@ -5638,112 +5892,122 @@ export type ISetUsernameMutationVariables = Exact<{
 }>;
 
 export type ISetUsernameMutation = {
-  setUsername: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly setUsername: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
 export type IStopImpersonateMutationVariables = Exact<{ [key: string]: never }>;
 
 export type IStopImpersonateMutation = {
-  stopImpersonation: { id: string; token: string; tokenExpires: any };
+  readonly stopImpersonation: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+  };
 };
 
 export type IUserQueryVariables = Exact<{
@@ -5751,105 +6015,111 @@ export type IUserQueryVariables = Exact<{
 }>;
 
 export type IUserQuery = {
-  user?: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   } | null;
 };
 
@@ -5858,27 +6128,27 @@ export type IUserWebAuthnCredentialsQueryVariables = Exact<{
 }>;
 
 export type IUserWebAuthnCredentialsQuery = {
-  user?: {
-    _id: string;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
   } | null;
@@ -5892,106 +6162,112 @@ export type IUsersQueryVariables = Exact<{
 }>;
 
 export type IUsersQuery = {
-  usersCount: number;
-  users: Array<{
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly usersCount: number;
+  readonly users: ReadonlyArray<{
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   }>;
 };
 
@@ -6000,109 +6276,115 @@ export type IVerifyEmailMutationVariables = Exact<{
 }>;
 
 export type IVerifyEmailMutation = {
-  verifyEmail?: {
-    id: string;
-    token: string;
-    tokenExpires: any;
-    user?: {
-      _id: string;
-      isTwoFactorEnabled: boolean;
-      allowedActions: Array<IRoleAction>;
-      username?: string | null;
-      isGuest: boolean;
-      isInitialPassword: boolean;
-      name: string;
-      roles?: Array<string> | null;
-      tags?: Array<any> | null;
-      lastBillingAddress?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+  readonly verifyEmail?: {
+    readonly id: string;
+    readonly token: string;
+    readonly tokenExpires: any;
+    readonly user?: {
+      readonly _id: string;
+      readonly isTwoFactorEnabled: boolean;
+      readonly allowedActions: ReadonlyArray<IRoleAction>;
+      readonly username?: string | null;
+      readonly isGuest: boolean;
+      readonly isInitialPassword: boolean;
+      readonly name: string;
+      readonly roles?: ReadonlyArray<string> | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly lastBillingAddress?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
-      lastContact?: {
-        emailAddress?: string | null;
-        telNumber?: string | null;
+      readonly lastContact?: {
+        readonly emailAddress?: string | null;
+        readonly telNumber?: string | null;
       } | null;
-      lastLogin?: {
-        countryCode?: string | null;
-        locale?: string | null;
-        remoteAddress?: string | null;
-        remotePort?: string | null;
-        timestamp: any;
-        userAgent?: string | null;
+      readonly lastLogin?: {
+        readonly countryCode?: string | null;
+        readonly locale?: string | null;
+        readonly remoteAddress?: string | null;
+        readonly remotePort?: string | null;
+        readonly timestamp: any;
+        readonly userAgent?: string | null;
       } | null;
-      avatar?: {
-        _id: string;
-        name: string;
-        size: number;
-        type: string;
-        url: string;
+      readonly avatar?: {
+        readonly _id: string;
+        readonly name: string;
+        readonly size: number;
+        readonly type: string;
+        readonly url: string;
       } | null;
-      paymentCredentials: Array<{
-        _id: string;
-        isValid: boolean;
-        isPreferred: boolean;
-        paymentProvider: {
-          _id: string;
-          type?: IPaymentProviderType | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
+      readonly paymentCredentials: ReadonlyArray<{
+        readonly _id: string;
+        readonly isValid: boolean;
+        readonly isPreferred: boolean;
+        readonly paymentProvider: {
+          readonly _id: string;
+          readonly type?: IPaymentProviderType | null;
+          readonly interface?: {
+            readonly _id: string;
+            readonly label?: string | null;
+            readonly version?: string | null;
           } | null;
         };
       }>;
-      emails?: Array<{ verified: boolean; address: string }> | null;
-      web3Addresses: Array<{
-        address: string;
-        nonce?: number | null;
-        verified: boolean;
+      readonly emails?: ReadonlyArray<{
+        readonly verified: boolean;
+        readonly address: string;
+      }> | null;
+      readonly web3Addresses: ReadonlyArray<{
+        readonly address: string;
+        readonly nonce?: number | null;
+        readonly verified: boolean;
       }>;
-      webAuthnCredentials: Array<{
-        _id: string;
-        created: any;
-        aaguid: string;
-        counter: number;
-        mdsMetadata?: {
-          legalHeader?: string | null;
-          description?: string | null;
-          authenticatorVersion?: number | null;
-          protocolFamily?: string | null;
-          schema?: number | null;
-          authenticationAlgorithms?: Array<string> | null;
-          publicKeyAlgAndEncodings?: Array<string> | null;
-          attestationTypes?: Array<string> | null;
-          keyProtection?: Array<string> | null;
-          upv?: Array<any> | null;
-          tcDisplay?: Array<any> | null;
-          icon?: string | null;
-          authenticatorGetInfo?: any | null;
+      readonly webAuthnCredentials: ReadonlyArray<{
+        readonly _id: string;
+        readonly created: any;
+        readonly aaguid: string;
+        readonly counter: number;
+        readonly mdsMetadata?: {
+          readonly legalHeader?: string | null;
+          readonly description?: string | null;
+          readonly authenticatorVersion?: number | null;
+          readonly protocolFamily?: string | null;
+          readonly schema?: number | null;
+          readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+          readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+          readonly attestationTypes?: ReadonlyArray<string> | null;
+          readonly keyProtection?: ReadonlyArray<string> | null;
+          readonly upv?: ReadonlyArray<any> | null;
+          readonly tcDisplay?: ReadonlyArray<any> | null;
+          readonly icon?: string | null;
+          readonly authenticatorGetInfo?: any | null;
         } | null;
       }>;
-      profile?: {
-        displayName?: string | null;
-        phoneMobile?: string | null;
-        gender?: string | null;
-        birthday?: any | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
-          company?: string | null;
-          addressLine?: string | null;
-          addressLine2?: string | null;
-          postalCode?: string | null;
-          countryCode?: string | null;
-          regionCode?: string | null;
-          city?: string | null;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly phoneMobile?: string | null;
+        readonly gender?: string | null;
+        readonly birthday?: any | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
+          readonly company?: string | null;
+          readonly addressLine?: string | null;
+          readonly addressLine2?: string | null;
+          readonly postalCode?: string | null;
+          readonly countryCode?: string | null;
+          readonly regionCode?: string | null;
+          readonly city?: string | null;
         } | null;
       } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     } | null;
   } | null;
 };
@@ -6113,316 +6395,308 @@ export type IVerifyWeb3AddressMutationVariables = Exact<{
 }>;
 
 export type IVerifyWeb3AddressMutation = {
-  verifyWeb3Address: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
+  readonly verifyWeb3Address: {
+    readonly _id: string;
+    readonly isTwoFactorEnabled: boolean;
+    readonly allowedActions: ReadonlyArray<IRoleAction>;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly isInitialPassword: boolean;
+    readonly name: string;
+    readonly roles?: ReadonlyArray<string> | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly lastBillingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
     } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly lastContact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
+    readonly lastLogin?: {
+      readonly countryCode?: string | null;
+      readonly locale?: string | null;
+      readonly remoteAddress?: string | null;
+      readonly remotePort?: string | null;
+      readonly timestamp: any;
+      readonly userAgent?: string | null;
     } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
+    readonly avatar?: {
+      readonly _id: string;
+      readonly name: string;
+      readonly size: number;
+      readonly type: string;
+      readonly url: string;
     } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly paymentCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly isValid: boolean;
+      readonly isPreferred: boolean;
+      readonly paymentProvider: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
       };
     }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+    readonly emails?: ReadonlyArray<{
+      readonly verified: boolean;
+      readonly address: string;
+    }> | null;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
+    readonly webAuthnCredentials: ReadonlyArray<{
+      readonly _id: string;
+      readonly created: any;
+      readonly aaguid: string;
+      readonly counter: number;
+      readonly mdsMetadata?: {
+        readonly legalHeader?: string | null;
+        readonly description?: string | null;
+        readonly authenticatorVersion?: number | null;
+        readonly protocolFamily?: string | null;
+        readonly schema?: number | null;
+        readonly authenticationAlgorithms?: ReadonlyArray<string> | null;
+        readonly publicKeyAlgAndEncodings?: ReadonlyArray<string> | null;
+        readonly attestationTypes?: ReadonlyArray<string> | null;
+        readonly keyProtection?: ReadonlyArray<string> | null;
+        readonly upv?: ReadonlyArray<any> | null;
+        readonly tcDisplay?: ReadonlyArray<any> | null;
+        readonly icon?: string | null;
+        readonly authenticatorGetInfo?: any | null;
       } | null;
     }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly phoneMobile?: string | null;
+      readonly gender?: string | null;
+      readonly birthday?: any | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+        readonly company?: string | null;
+        readonly addressLine?: string | null;
+        readonly addressLine2?: string | null;
+        readonly postalCode?: string | null;
+        readonly countryCode?: string | null;
+        readonly regionCode?: string | null;
+        readonly city?: string | null;
       } | null;
     } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
 };
 
-export type IAssortmentChildrenFragmentFragment = {
-  _id: string;
-  childrenCount: number;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+export type IAssortmentChildrenFragment = {
+  readonly _id: string;
+  readonly childrenCount: number;
+  readonly texts?: {
+    readonly _id: string;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   } | null;
 };
 
-export type IAssortmentChildrenFragmentFragmentVariables = Exact<{
+export type IAssortmentChildrenFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IAssortmentFragmentFragment = {
-  _id: string;
-  isActive?: boolean | null;
-  created?: any | null;
-  updated?: any | null;
-  sequence: number;
-  isBase?: boolean | null;
-  isRoot?: boolean | null;
-  tags?: Array<any> | null;
-  childrenCount: number;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
+export type IAssortmentFragment = {
+  readonly _id: string;
+  readonly isActive?: boolean | null;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly sequence: number;
+  readonly isBase?: boolean | null;
+  readonly isRoot?: boolean | null;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly childrenCount: number;
+  readonly texts?: {
+    readonly _id: string;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
   } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
+  readonly media: ReadonlyArray<{
+    readonly _id: string;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly file: { readonly _id: string; readonly url: string };
   }>;
 };
 
-export type IAssortmentFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IAssortmentFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IAssortmentLinkFragmentFragment = {
-  _id: string;
-  sortKey: number;
-  parent: {
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+export type IAssortmentLinkFragment = {
+  readonly _id: string;
+  readonly sortKey: number;
+  readonly parent: {
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   };
-  child: {
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+  readonly child: {
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   };
 };
 
-export type IAssortmentLinkFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IAssortmentLinkFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IAssortmentMediaFragmentFragment = {
-  _id: string;
-  tags?: Array<any> | null;
-  file: { _id: string; url: string };
-  texts?: {
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+export type IAssortmentMediaFragment = {
+  readonly _id: string;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly file: { readonly _id: string; readonly url: string };
+  readonly texts?: {
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   } | null;
 };
 
-export type IAssortmentMediaFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IAssortmentMediaFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IAssortmentMediaTextsFragmentFragment = {
-  _id: string;
-  locale?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
+export type IAssortmentMediaTextsFragment = {
+  readonly _id: string;
+  readonly locale?: string | null;
+  readonly title?: string | null;
+  readonly subtitle?: string | null;
 };
 
-export type IAssortmentMediaTextsFragmentFragmentVariables = Exact<{
+export type IAssortmentMediaTextsFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IAssortmentTextsFragmentFragment = {
-  _id: string;
-  locale?: string | null;
-  slug?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
-  description?: string | null;
+export type IAssortmentTextsFragment = {
+  readonly _id: string;
+  readonly locale?: string | null;
+  readonly slug?: string | null;
+  readonly title?: string | null;
+  readonly subtitle?: string | null;
+  readonly description?: string | null;
 };
 
-export type IAssortmentTextsFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IAssortmentTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddAssortmentFilterMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
   filterId: Scalars['ID']['input'];
-  tags?: InputMaybe<
-    | Array<Scalars['LowerCaseString']['input']>
-    | Scalars['LowerCaseString']['input']
-  >;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 }>;
 
 export type IAddAssortmentFilterMutation = {
-  addAssortmentFilter: { _id: string };
+  readonly addAssortmentFilter: { readonly _id: string };
 };
 
 export type IAddAssortmentLinkMutationVariables = Exact<{
   parentAssortmentId: Scalars['ID']['input'];
   childAssortmentId: Scalars['ID']['input'];
-  tags?: InputMaybe<
-    | Array<Scalars['LowerCaseString']['input']>
-    | Scalars['LowerCaseString']['input']
-  >;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 }>;
 
 export type IAddAssortmentLinkMutation = {
-  addAssortmentLink: {
-    _id: string;
-    sortKey: number;
-    parent: {
-      _id: string;
-      isActive?: boolean | null;
-      created?: any | null;
-      updated?: any | null;
-      sequence: number;
-      isBase?: boolean | null;
-      isRoot?: boolean | null;
-      tags?: Array<any> | null;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
+  readonly addAssortmentLink: {
+    readonly _id: string;
+    readonly sortKey: number;
+    readonly parent: {
+      readonly _id: string;
+      readonly isActive?: boolean | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly sequence: number;
+      readonly isBase?: boolean | null;
+      readonly isRoot?: boolean | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
       } | null;
-      media: Array<{
-        _id: string;
-        tags?: Array<any> | null;
-        file: { _id: string; url: string };
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
       }>;
     };
-    child: {
-      _id: string;
-      isActive?: boolean | null;
-      created?: any | null;
-      updated?: any | null;
-      sequence: number;
-      isBase?: boolean | null;
-      isRoot?: boolean | null;
-      tags?: Array<any> | null;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
+    readonly child: {
+      readonly _id: string;
+      readonly isActive?: boolean | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly sequence: number;
+      readonly isBase?: boolean | null;
+      readonly isRoot?: boolean | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
       } | null;
-      media: Array<{
-        _id: string;
-        tags?: Array<any> | null;
-        file: { _id: string; url: string };
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
       }>;
     };
   };
@@ -6434,15 +6708,15 @@ export type IAddAssortmentMediaMutationVariables = Exact<{
 }>;
 
 export type IAddAssortmentMediaMutation = {
-  addAssortmentMedia: {
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-    texts?: {
-      _id: string;
-      locale?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
+  readonly addAssortmentMedia: {
+    readonly _id: string;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly file: { readonly _id: string; readonly url: string };
+    readonly texts?: {
+      readonly _id: string;
+      readonly locale?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
     } | null;
   };
 };
@@ -6450,14 +6724,11 @@ export type IAddAssortmentMediaMutation = {
 export type IAddAssortmentProductMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
   productId: Scalars['ID']['input'];
-  tags?: InputMaybe<
-    | Array<Scalars['LowerCaseString']['input']>
-    | Scalars['LowerCaseString']['input']
-  >;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
 }>;
 
 export type IAddAssortmentProductMutation = {
-  addAssortmentProduct: { _id: string };
+  readonly addAssortmentProduct: { readonly _id: string };
 };
 
 export type IAssortmentQueryVariables = Exact<{
@@ -6466,58 +6737,56 @@ export type IAssortmentQueryVariables = Exact<{
 }>;
 
 export type IAssortmentQuery = {
-  assortment?: {
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+  readonly assortment?: {
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   } | null;
 };
 
 export type IAssortmentChildrenQueryVariables = Exact<{
-  slugs?: InputMaybe<
-    Array<Scalars['String']['input']> | Scalars['String']['input']
-  >;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   includeLeaves?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 export type IAssortmentChildrenQuery = {
-  assortments: Array<{
-    _id: string;
-    childrenCount: number;
-    children?: Array<{
-      _id: string;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
+  readonly assortments: ReadonlyArray<{
+    readonly _id: string;
+    readonly childrenCount: number;
+    readonly children?: ReadonlyArray<{
+      readonly _id: string;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
       } | null;
     }> | null;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
     } | null;
   }>;
 };
@@ -6528,27 +6797,27 @@ export type IAssortmentFiltersQueryVariables = Exact<{
 }>;
 
 export type IAssortmentFiltersQuery = {
-  assortment?: {
-    _id: string;
-    filterAssignments?: Array<{
-      _id: string;
-      sortKey: number;
-      tags?: Array<any> | null;
-      filter: {
-        _id: string;
-        updated?: any | null;
-        created?: any | null;
-        key?: string | null;
-        isActive?: boolean | null;
-        type?: IFilterType | null;
-        options?: Array<{
-          _id: string;
-          value?: string | null;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-            locale?: string | null;
+  readonly assortment?: {
+    readonly _id: string;
+    readonly filterAssignments?: ReadonlyArray<{
+      readonly _id: string;
+      readonly sortKey: number;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly filter: {
+        readonly _id: string;
+        readonly updated?: any | null;
+        readonly created?: any | null;
+        readonly key?: string | null;
+        readonly isActive?: boolean | null;
+        readonly type?: IFilterType | null;
+        readonly options?: ReadonlyArray<{
+          readonly _id: string;
+          readonly value?: string | null;
+          readonly texts?: {
+            readonly _id: string;
+            readonly title?: string | null;
+            readonly subtitle?: string | null;
+            readonly locale?: string | null;
           } | null;
         }> | null;
       };
@@ -6562,55 +6831,55 @@ export type IAssortmentLinksQueryVariables = Exact<{
 }>;
 
 export type IAssortmentLinksQuery = {
-  assortment?: {
-    _id: string;
-    linkedAssortments?: Array<{
-      _id: string;
-      sortKey: number;
-      parent: {
-        _id: string;
-        isActive?: boolean | null;
-        created?: any | null;
-        updated?: any | null;
-        sequence: number;
-        isBase?: boolean | null;
-        isRoot?: boolean | null;
-        tags?: Array<any> | null;
-        childrenCount: number;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
+  readonly assortment?: {
+    readonly _id: string;
+    readonly linkedAssortments?: ReadonlyArray<{
+      readonly _id: string;
+      readonly sortKey: number;
+      readonly parent: {
+        readonly _id: string;
+        readonly isActive?: boolean | null;
+        readonly created?: any | null;
+        readonly updated?: any | null;
+        readonly sequence: number;
+        readonly isBase?: boolean | null;
+        readonly isRoot?: boolean | null;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly childrenCount: number;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly description?: string | null;
         } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
       };
-      child: {
-        _id: string;
-        isActive?: boolean | null;
-        created?: any | null;
-        updated?: any | null;
-        sequence: number;
-        isBase?: boolean | null;
-        isRoot?: boolean | null;
-        tags?: Array<any> | null;
-        childrenCount: number;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
+      readonly child: {
+        readonly _id: string;
+        readonly isActive?: boolean | null;
+        readonly created?: any | null;
+        readonly updated?: any | null;
+        readonly sequence: number;
+        readonly isBase?: boolean | null;
+        readonly isRoot?: boolean | null;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly childrenCount: number;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly description?: string | null;
         } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
       };
     }> | null;
@@ -6623,24 +6892,24 @@ export type IAssortmentMediaQueryVariables = Exact<{
 }>;
 
 export type IAssortmentMediaQuery = {
-  assortment?: {
-    _id: string;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      sortKey: number;
-      texts?: {
-        _id: string;
-        locale?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
+  readonly assortment?: {
+    readonly _id: string;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly sortKey: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly locale?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
       } | null;
-      file: {
-        _id: string;
-        url: string;
-        name: string;
-        size: number;
-        type: string;
+      readonly file: {
+        readonly _id: string;
+        readonly url: string;
+        readonly name: string;
+        readonly size: number;
+        readonly type: string;
       };
     }>;
   } | null;
@@ -6651,8 +6920,10 @@ export type IAssortmentPathsQueryVariables = Exact<{
 }>;
 
 export type IAssortmentPathsQuery = {
-  assortment?: {
-    assortmentPaths: Array<{ links: Array<{ assortmentId: string }> }>;
+  readonly assortment?: {
+    readonly assortmentPaths: ReadonlyArray<{
+      readonly links: ReadonlyArray<{ readonly assortmentId: string }>;
+    }>;
   } | null;
 };
 
@@ -6662,172 +6933,76 @@ export type IAssortmentProductsQueryVariables = Exact<{
 }>;
 
 export type IAssortmentProductsQuery = {
-  assortment?: {
-    _id: string;
-    productAssignments?: Array<{
-      _id: string;
-      sortKey: number;
-      tags?: Array<any> | null;
-      product:
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          };
+  readonly assortment?: {
+    readonly _id: string;
+    readonly productAssignments?: ReadonlyArray<{
+      readonly _id: string;
+      readonly sortKey: number;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly product: {
+        readonly _id: string;
+        readonly sequence: number;
+        readonly status: IProductStatus;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly updated?: any | null;
+        readonly published?: any | null;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly description?: string | null;
+          readonly vendor?: string | null;
+          readonly brand?: string | null;
+          readonly labels?: ReadonlyArray<string> | null;
+        } | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
+        }>;
+      };
     }> | null;
   } | null;
 };
 
 export type IAssortmentsQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
-  tags?: InputMaybe<
-    | Array<Scalars['LowerCaseString']['input']>
-    | Scalars['LowerCaseString']['input']
-  >;
-  slugs?: InputMaybe<
-    Array<Scalars['String']['input']> | Scalars['String']['input']
-  >;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   includeLeaves?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IAssortmentsQuery = {
-  assortmentsCount: number;
-  assortments: Array<{
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    linkedAssortments?: Array<{ child: { _id: string } }> | null;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+  readonly assortmentsCount: number;
+  readonly assortments: ReadonlyArray<{
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly linkedAssortments?: ReadonlyArray<{
+      readonly child: { readonly _id: string };
+    }> | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   }>;
 };
@@ -6837,27 +7012,27 @@ export type ICreateAssortmentMutationVariables = Exact<{
 }>;
 
 export type ICreateAssortmentMutation = {
-  createAssortment: {
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+  readonly createAssortment: {
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   };
 };
@@ -6866,14 +7041,16 @@ export type IRemoveAssortmentMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveAssortmentMutation = { removeAssortment: { _id: string } };
+export type IRemoveAssortmentMutation = {
+  readonly removeAssortment: { readonly _id: string };
+};
 
 export type IRemoveAssortmentFilterMutationVariables = Exact<{
   assortmentFilterId: Scalars['ID']['input'];
 }>;
 
 export type IRemoveAssortmentFilterMutation = {
-  removeAssortmentFilter: { _id: string };
+  readonly removeAssortmentFilter: { readonly _id: string };
 };
 
 export type IRemoveAssortmentLinkMutationVariables = Exact<{
@@ -6881,53 +7058,53 @@ export type IRemoveAssortmentLinkMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentLinkMutation = {
-  removeAssortmentLink: {
-    _id: string;
-    sortKey: number;
-    parent: {
-      _id: string;
-      isActive?: boolean | null;
-      created?: any | null;
-      updated?: any | null;
-      sequence: number;
-      isBase?: boolean | null;
-      isRoot?: boolean | null;
-      tags?: Array<any> | null;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
+  readonly removeAssortmentLink: {
+    readonly _id: string;
+    readonly sortKey: number;
+    readonly parent: {
+      readonly _id: string;
+      readonly isActive?: boolean | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly sequence: number;
+      readonly isBase?: boolean | null;
+      readonly isRoot?: boolean | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
       } | null;
-      media: Array<{
-        _id: string;
-        tags?: Array<any> | null;
-        file: { _id: string; url: string };
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
       }>;
     };
-    child: {
-      _id: string;
-      isActive?: boolean | null;
-      created?: any | null;
-      updated?: any | null;
-      sequence: number;
-      isBase?: boolean | null;
-      isRoot?: boolean | null;
-      tags?: Array<any> | null;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
+    readonly child: {
+      readonly _id: string;
+      readonly isActive?: boolean | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly sequence: number;
+      readonly isBase?: boolean | null;
+      readonly isRoot?: boolean | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
       } | null;
-      media: Array<{
-        _id: string;
-        tags?: Array<any> | null;
-        file: { _id: string; url: string };
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
       }>;
     };
   };
@@ -6938,7 +7115,7 @@ export type IRemoveAssortmentMediaMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentMediaMutation = {
-  removeAssortmentMedia: { _id: string };
+  readonly removeAssortmentMedia: { readonly _id: string };
 };
 
 export type IRemoveAssortmentProductMutationVariables = Exact<{
@@ -6946,43 +7123,39 @@ export type IRemoveAssortmentProductMutationVariables = Exact<{
 }>;
 
 export type IRemoveAssortmentProductMutation = {
-  removeAssortmentProduct: { _id: string };
+  readonly removeAssortmentProduct: { readonly _id: string };
 };
 
 export type IReorderAssortmentFiltersMutationVariables = Exact<{
-  sortKeys:
-    | Array<IReorderAssortmentFilterInput>
-    | IReorderAssortmentFilterInput;
+  sortKeys: ReadonlyArray<IReorderAssortmentFilterInput>;
 }>;
 
 export type IReorderAssortmentFiltersMutation = {
-  reorderAssortmentFilters: Array<{ _id: string }>;
+  readonly reorderAssortmentFilters: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type IReorderAssortmentLinksMutationVariables = Exact<{
-  sortKeys: Array<IReorderAssortmentLinkInput> | IReorderAssortmentLinkInput;
+  sortKeys: ReadonlyArray<IReorderAssortmentLinkInput>;
 }>;
 
 export type IReorderAssortmentLinksMutation = {
-  reorderAssortmentLinks: Array<{ _id: string }>;
+  readonly reorderAssortmentLinks: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type IReorderAssortmentMediaMutationVariables = Exact<{
-  sortKeys: Array<IReorderAssortmentMediaInput> | IReorderAssortmentMediaInput;
+  sortKeys: ReadonlyArray<IReorderAssortmentMediaInput>;
 }>;
 
 export type IReorderAssortmentMediaMutation = {
-  reorderAssortmentMedia: Array<{ _id: string }>;
+  readonly reorderAssortmentMedia: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type IReorderAssortmentProductsMutationVariables = Exact<{
-  sortKeys:
-    | Array<IReorderAssortmentProductInput>
-    | IReorderAssortmentProductInput;
+  sortKeys: ReadonlyArray<IReorderAssortmentProductInput>;
 }>;
 
 export type IReorderAssortmentProductsMutation = {
-  reorderAssortmentProducts: Array<{ _id: string }>;
+  readonly reorderAssortmentProducts: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type ISearchAssortmentsQueryVariables = Exact<{
@@ -6992,28 +7165,28 @@ export type ISearchAssortmentsQueryVariables = Exact<{
 }>;
 
 export type ISearchAssortmentsQuery = {
-  searchAssortments: {
-    assortments: Array<{
-      _id: string;
-      isActive?: boolean | null;
-      created?: any | null;
-      updated?: any | null;
-      sequence: number;
-      isBase?: boolean | null;
-      isRoot?: boolean | null;
-      tags?: Array<any> | null;
-      childrenCount: number;
-      texts?: {
-        _id: string;
-        slug?: string | null;
-        title?: string | null;
-        subtitle?: string | null;
-        description?: string | null;
+  readonly searchAssortments: {
+    readonly assortments: ReadonlyArray<{
+      readonly _id: string;
+      readonly isActive?: boolean | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly sequence: number;
+      readonly isBase?: boolean | null;
+      readonly isRoot?: boolean | null;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly childrenCount: number;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
       } | null;
-      media: Array<{
-        _id: string;
-        tags?: Array<any> | null;
-        file: { _id: string; url: string };
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
       }>;
     }>;
   };
@@ -7024,7 +7197,10 @@ export type ISetBaseAssortmentMutationVariables = Exact<{
 }>;
 
 export type ISetBaseAssortmentMutation = {
-  setBaseAssortment: { _id: string; isBase?: boolean | null };
+  readonly setBaseAssortment: {
+    readonly _id: string;
+    readonly isBase?: boolean | null;
+  };
 };
 
 export type ITranslatedAssortmentMediaTextsQueryVariables = Exact<{
@@ -7032,11 +7208,11 @@ export type ITranslatedAssortmentMediaTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedAssortmentMediaTextsQuery = {
-  translatedAssortmentMediaTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly translatedAssortmentMediaTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
@@ -7045,13 +7221,13 @@ export type ITranslatedAssortmentTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedAssortmentTextsQuery = {
-  translatedAssortmentTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
+  readonly translatedAssortmentTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
   }>;
 };
 
@@ -7061,87 +7237,91 @@ export type IUpdateAssortmentMutationVariables = Exact<{
 }>;
 
 export type IUpdateAssortmentMutation = {
-  updateAssortment: {
-    _id: string;
-    isActive?: boolean | null;
-    created?: any | null;
-    updated?: any | null;
-    sequence: number;
-    isBase?: boolean | null;
-    isRoot?: boolean | null;
-    tags?: Array<any> | null;
-    childrenCount: number;
-    texts?: {
-      _id: string;
-      slug?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      description?: string | null;
+  readonly updateAssortment: {
+    readonly _id: string;
+    readonly isActive?: boolean | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly sequence: number;
+    readonly isBase?: boolean | null;
+    readonly isRoot?: boolean | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly childrenCount: number;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
     } | null;
-    media: Array<{
-      _id: string;
-      tags?: Array<any> | null;
-      file: { _id: string; url: string };
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
     }>;
   };
 };
 
 export type IUpdateAssortmentMediaTextsMutationVariables = Exact<{
   assortmentMediaId: Scalars['ID']['input'];
-  texts:
-    | Array<IUpdateAssortmentMediaTextInput>
-    | IUpdateAssortmentMediaTextInput;
+  texts: ReadonlyArray<IUpdateAssortmentMediaTextInput>;
 }>;
 
 export type IUpdateAssortmentMediaTextsMutation = {
-  updateAssortmentMediaTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly updateAssortmentMediaTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
 export type IUpdateAssortmentTextsMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
-  texts: Array<IUpdateAssortmentTextInput> | IUpdateAssortmentTextInput;
+  texts: ReadonlyArray<IUpdateAssortmentTextInput>;
 }>;
 
 export type IUpdateAssortmentTextsMutation = {
-  updateAssortmentTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
+  readonly updateAssortmentTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
   }>;
 };
 
 export type IShopInfoQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IShopInfoQuery = {
-  shopInfo: {
-    _id: string;
-    version?: string | null;
-    language?: {
-      _id: string;
-      isoCode?: string | null;
-      name?: string | null;
+  readonly shopInfo: {
+    readonly _id: string;
+    readonly version?: string | null;
+    readonly language?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly name?: string | null;
     } | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
-      defaultCurrency?: { _id: string; isoCode: string } | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
+      readonly defaultCurrency?: {
+        readonly _id: string;
+        readonly isoCode: string;
+      } | null;
     } | null;
-    externalLinks: Array<{
-      href?: string | null;
-      title?: string | null;
+    readonly externalLinks: ReadonlyArray<{
+      readonly href?: string | null;
+      readonly title?: string | null;
     } | null>;
-    adminUiConfig: {
-      customProperties: Array<{ entityName: string; inlineFragment: string }>;
+    readonly adminUiConfig: {
+      readonly customProperties: ReadonlyArray<{
+        readonly entityName: string;
+        readonly inlineFragment: string;
+      }>;
     };
   };
 };
@@ -7149,35 +7329,44 @@ export type IShopInfoQuery = {
 export type ISystemRolesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ISystemRolesQuery = {
-  shopInfo: { _id: string; userRoles: Array<string> };
+  readonly shopInfo: {
+    readonly _id: string;
+    readonly userRoles: ReadonlyArray<string>;
+  };
 };
 
-export type ICountryFragmentFragment = {
-  _id: string;
-  isoCode?: string | null;
-  isActive?: boolean | null;
-  isBase?: boolean | null;
-  defaultCurrency?: { _id: string; isoCode: string } | null;
+export type ICountryFragment = {
+  readonly _id: string;
+  readonly isoCode?: string | null;
+  readonly isActive?: boolean | null;
+  readonly isBase?: boolean | null;
+  readonly defaultCurrency?: {
+    readonly _id: string;
+    readonly isoCode: string;
+  } | null;
 };
 
-export type ICountryFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type ICountryFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICountriesQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type ICountriesQuery = {
-  countriesCount: number;
-  countries: Array<{
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    defaultCurrency?: { _id: string; isoCode: string } | null;
+  readonly countriesCount: number;
+  readonly countries: ReadonlyArray<{
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly defaultCurrency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
   }>;
 };
 
@@ -7186,12 +7375,15 @@ export type ICountryQueryVariables = Exact<{
 }>;
 
 export type ICountryQuery = {
-  country?: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    defaultCurrency?: { _id: string; isoCode: string } | null;
+  readonly country?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly defaultCurrency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
   } | null;
 };
 
@@ -7200,12 +7392,15 @@ export type ICreateCountryMutationVariables = Exact<{
 }>;
 
 export type ICreateCountryMutation = {
-  createCountry: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    defaultCurrency?: { _id: string; isoCode: string } | null;
+  readonly createCountry: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly defaultCurrency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
   };
 };
 
@@ -7214,12 +7409,15 @@ export type IRemoveCountryMutationVariables = Exact<{
 }>;
 
 export type IRemoveCountryMutation = {
-  removeCountry: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    defaultCurrency?: { _id: string; isoCode: string } | null;
+  readonly removeCountry: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly defaultCurrency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
   };
 };
 
@@ -7229,38 +7427,39 @@ export type IUpdateCountryMutationVariables = Exact<{
 }>;
 
 export type IUpdateCountryMutation = {
-  updateCountry: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    defaultCurrency?: { _id: string; isoCode: string } | null;
+  readonly updateCountry: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly defaultCurrency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
   };
 };
 
-export type ICurrencyFragmentFragment = {
-  _id: string;
-  isoCode: string;
-  isActive?: boolean | null;
-  contractAddress?: string | null;
-  decimals?: number | null;
+export type ICurrencyFragment = {
+  readonly _id: string;
+  readonly isoCode: string;
+  readonly isActive?: boolean | null;
+  readonly contractAddress?: string | null;
+  readonly decimals?: number | null;
 };
 
-export type ICurrencyFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type ICurrencyFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateCurrencyMutationVariables = Exact<{
   currency: ICreateCurrencyInput;
 }>;
 
 export type ICreateCurrencyMutation = {
-  createCurrency: {
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-    contractAddress?: string | null;
-    decimals?: number | null;
+  readonly createCurrency: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
   };
 };
 
@@ -7269,17 +7468,17 @@ export type ICurrenciesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type ICurrenciesQuery = {
-  currenciesCount: number;
-  currencies: Array<{
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-    contractAddress?: string | null;
-    decimals?: number | null;
+  readonly currenciesCount: number;
+  readonly currencies: ReadonlyArray<{
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
   }>;
 };
 
@@ -7288,12 +7487,12 @@ export type ICurrencyQueryVariables = Exact<{
 }>;
 
 export type ICurrencyQuery = {
-  currency?: {
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-    contractAddress?: string | null;
-    decimals?: number | null;
+  readonly currency?: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
   } | null;
 };
 
@@ -7302,12 +7501,12 @@ export type IRemoveCurrencyMutationVariables = Exact<{
 }>;
 
 export type IRemoveCurrencyMutation = {
-  removeCurrency: {
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-    contractAddress?: string | null;
-    decimals?: number | null;
+  readonly removeCurrency: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
   };
 };
 
@@ -7317,32 +7516,32 @@ export type IUpdateCurrencyMutationVariables = Exact<{
 }>;
 
 export type IUpdateCurrencyMutation = {
-  updateCurrency: {
-    _id: string;
-    isoCode: string;
-    isActive?: boolean | null;
-    contractAddress?: string | null;
-    decimals?: number | null;
+  readonly updateCurrency: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
   };
 };
 
-export type IDeliveryProviderFragmentFragment = {
-  _id: string;
-  created?: any | null;
-  updated?: any | null;
-  deleted?: any | null;
-  type?: IDeliveryProviderType | null;
-  isActive?: boolean | null;
-  configuration?: any | null;
-  configurationError?: IDeliveryProviderError | null;
-  interface?: {
-    _id: string;
-    label?: string | null;
-    version?: string | null;
+export type IDeliveryProviderFragment = {
+  readonly _id: string;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly deleted?: any | null;
+  readonly type?: IDeliveryProviderType | null;
+  readonly isActive?: boolean | null;
+  readonly configuration?: any | null;
+  readonly configurationError?: IDeliveryProviderError | null;
+  readonly interface?: {
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly version?: string | null;
   } | null;
 };
 
-export type IDeliveryProviderFragmentFragmentVariables = Exact<{
+export type IDeliveryProviderFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
@@ -7351,19 +7550,19 @@ export type ICreateDeliveryProviderMutationVariables = Exact<{
 }>;
 
 export type ICreateDeliveryProviderMutation = {
-  createDeliveryProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    type?: IDeliveryProviderType | null;
-    isActive?: boolean | null;
-    configuration?: any | null;
-    configurationError?: IDeliveryProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly createDeliveryProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly type?: IDeliveryProviderType | null;
+    readonly isActive?: boolean | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IDeliveryProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
@@ -7373,10 +7572,10 @@ export type IDeliveryInterfacesQueryVariables = Exact<{
 }>;
 
 export type IDeliveryInterfacesQuery = {
-  deliveryInterfaces: Array<{
-    _id: string;
-    label?: string | null;
-    value: string;
+  readonly deliveryInterfaces: ReadonlyArray<{
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly value: string;
   }>;
 };
 
@@ -7385,19 +7584,19 @@ export type IDeliveryProviderQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProviderQuery = {
-  deliveryProvider?: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    type?: IDeliveryProviderType | null;
-    isActive?: boolean | null;
-    configuration?: any | null;
-    configurationError?: IDeliveryProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly deliveryProvider?: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly type?: IDeliveryProviderType | null;
+    readonly isActive?: boolean | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IDeliveryProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   } | null;
 };
@@ -7407,8 +7606,11 @@ export type IDeliveryProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProvidersTypeQuery = {
-  deliveryProviderType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly deliveryProviderType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -7417,19 +7619,19 @@ export type IDeliveryProvidersQueryVariables = Exact<{
 }>;
 
 export type IDeliveryProvidersQuery = {
-  deliveryProviders: Array<{
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    type?: IDeliveryProviderType | null;
-    isActive?: boolean | null;
-    configuration?: any | null;
-    configurationError?: IDeliveryProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly deliveryProviders: ReadonlyArray<{
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly type?: IDeliveryProviderType | null;
+    readonly isActive?: boolean | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IDeliveryProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   }>;
 };
@@ -7439,8 +7641,11 @@ export type IOrderDeliveryStatusQueryVariables = Exact<{
 }>;
 
 export type IOrderDeliveryStatusQuery = {
-  deliveryStatusType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly deliveryStatusType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -7449,7 +7654,7 @@ export type IRemoveDeliveryProviderMutationVariables = Exact<{
 }>;
 
 export type IRemoveDeliveryProviderMutation = {
-  removeDeliveryProvider: { _id: string };
+  readonly removeDeliveryProvider: { readonly _id: string };
 };
 
 export type IUpdateDeliveryProviderMutationVariables = Exact<{
@@ -7458,151 +7663,178 @@ export type IUpdateDeliveryProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdateDeliveryProviderMutation = {
-  updateDeliveryProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    type?: IDeliveryProviderType | null;
-    isActive?: boolean | null;
-    configuration?: any | null;
-    configurationError?: IDeliveryProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly updateDeliveryProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly type?: IDeliveryProviderType | null;
+    readonly isActive?: boolean | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IDeliveryProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
 
-export type IEnrollmentDetailFragmentFragment = {
-  _id: string;
-  enrollmentNumber?: string | null;
-  updated?: any | null;
-  status: IEnrollmentStatus;
-  created: any;
-  expires?: any | null;
-  isExpired?: boolean | null;
-  country?: { _id: string; isoCode?: string | null } | null;
-  billingAddress?: {
-    addressLine?: string | null;
-    addressLine2?: string | null;
-    city?: string | null;
-    company?: string | null;
-    countryCode?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-    postalCode?: string | null;
-    regionCode?: string | null;
+export type IEnrollmentDetailFragment = {
+  readonly _id: string;
+  readonly enrollmentNumber?: string | null;
+  readonly updated?: any | null;
+  readonly status: IEnrollmentStatus;
+  readonly created: any;
+  readonly expires?: any | null;
+  readonly isExpired?: boolean | null;
+  readonly country?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
   } | null;
-  contact?: { emailAddress?: string | null; telNumber?: string | null } | null;
-  currency?: {
-    _id: string;
-    contractAddress?: string | null;
-    decimals?: number | null;
-    isActive?: boolean | null;
-    isoCode: string;
+  readonly billingAddress?: {
+    readonly addressLine?: string | null;
+    readonly addressLine2?: string | null;
+    readonly city?: string | null;
+    readonly company?: string | null;
+    readonly countryCode?: string | null;
+    readonly firstName?: string | null;
+    readonly lastName?: string | null;
+    readonly postalCode?: string | null;
+    readonly regionCode?: string | null;
   } | null;
-  delivery?: {
-    provider?: {
-      _id: string;
-      configuration?: any | null;
-      configurationError?: IDeliveryProviderError | null;
-      isActive?: boolean | null;
-      type?: IDeliveryProviderType | null;
-      interface?: {
-        _id: string;
-        label?: string | null;
-        version?: string | null;
+  readonly contact?: {
+    readonly emailAddress?: string | null;
+    readonly telNumber?: string | null;
+  } | null;
+  readonly currency?: {
+    readonly _id: string;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
+    readonly isActive?: boolean | null;
+    readonly isoCode: string;
+  } | null;
+  readonly delivery?: {
+    readonly provider?: {
+      readonly _id: string;
+      readonly configuration?: any | null;
+      readonly configurationError?: IDeliveryProviderError | null;
+      readonly isActive?: boolean | null;
+      readonly type?: IDeliveryProviderType | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
       } | null;
-      simulatedPrice?: {
-        _id: string;
-        amount: number;
-        currency: string;
-        isNetPrice: boolean;
-        isTaxable: boolean;
-      } | null;
-    } | null;
-  } | null;
-  payment?: {
-    provider?: {
-      _id: string;
-      configuration?: any | null;
-      configurationError?: IPaymentProviderError | null;
-      isActive?: boolean | null;
-      type?: IPaymentProviderType | null;
-      interface?: {
-        _id: string;
-        label?: string | null;
-        version?: string | null;
+      readonly simulatedPrice?: {
+        readonly _id: string;
+        readonly amount: number;
+        readonly currency: string;
+        readonly isNetPrice: boolean;
+        readonly isTaxable: boolean;
       } | null;
     } | null;
   } | null;
-  periods: Array<{
-    end: any;
-    isTrial: boolean;
-    start: any;
-    order?: { _id: string } | null;
+  readonly payment?: {
+    readonly provider?: {
+      readonly _id: string;
+      readonly configuration?: any | null;
+      readonly configurationError?: IPaymentProviderError | null;
+      readonly isActive?: boolean | null;
+      readonly type?: IPaymentProviderType | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  readonly periods: ReadonlyArray<{
+    readonly end: any;
+    readonly isTrial: boolean;
+    readonly start: any;
+    readonly order?: { readonly _id: string } | null;
   }>;
-  plan: {
-    quantity: number;
-    configuration?: Array<{ key: string; value: string }> | null;
-    product: {
-      _id: string;
-      texts?: { _id: string; title?: string | null } | null;
+  readonly plan: {
+    readonly quantity: number;
+    readonly configuration?: ReadonlyArray<{
+      readonly key: string;
+      readonly value: string;
+    }> | null;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+      } | null;
     };
   };
-  user: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    avatar?: { _id: string; url: string } | null;
+  readonly user: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
   };
 };
 
-export type IEnrollmentDetailFragmentFragmentVariables = Exact<{
+export type IEnrollmentDetailFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IEnrollmentFragmentFragment = {
-  _id: string;
-  enrollmentNumber?: string | null;
-  updated?: any | null;
-  status: IEnrollmentStatus;
-  created: any;
-  expires?: any | null;
-  isExpired?: boolean | null;
-  country?: { _id: string; isoCode?: string | null } | null;
-  currency?: { _id: string; isoCode: string } | null;
-  periods: Array<{ start: any; end: any; isTrial: boolean }>;
-  payment?: { provider?: { _id: string } | null } | null;
-  delivery?: { provider?: { _id: string } | null } | null;
-  plan: {
-    quantity: number;
-    product: {
-      _id: string;
-      media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      texts?: { _id: string; title?: string | null } | null;
+export type IEnrollmentFragment = {
+  readonly _id: string;
+  readonly enrollmentNumber?: string | null;
+  readonly updated?: any | null;
+  readonly status: IEnrollmentStatus;
+  readonly created: any;
+  readonly expires?: any | null;
+  readonly isExpired?: boolean | null;
+  readonly country?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+  } | null;
+  readonly currency?: { readonly _id: string; readonly isoCode: string } | null;
+  readonly periods: ReadonlyArray<{
+    readonly start: any;
+    readonly end: any;
+    readonly isTrial: boolean;
+  }>;
+  readonly payment?: {
+    readonly provider?: { readonly _id: string } | null;
+  } | null;
+  readonly delivery?: {
+    readonly provider?: { readonly _id: string } | null;
+  } | null;
+  readonly plan: {
+    readonly quantity: number;
+    readonly product: {
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+      } | null;
     };
   };
-  user: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    avatar?: { _id: string; url: string } | null;
+  readonly user: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
   };
 };
 
-export type IEnrollmentFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IEnrollmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IActivateEnrollmentMutationVariables = Exact<{
   enrollmentId: Scalars['ID']['input'];
 }>;
 
 export type IActivateEnrollmentMutation = {
-  activateEnrollment: { _id: string };
+  readonly activateEnrollment: { readonly _id: string };
 };
 
 export type IEnrollmentQueryVariables = Exact<{
@@ -7610,91 +7842,100 @@ export type IEnrollmentQueryVariables = Exact<{
 }>;
 
 export type IEnrollmentQuery = {
-  enrollment?: {
-    _id: string;
-    enrollmentNumber?: string | null;
-    updated?: any | null;
-    status: IEnrollmentStatus;
-    created: any;
-    expires?: any | null;
-    isExpired?: boolean | null;
-    country?: { _id: string; isoCode?: string | null } | null;
-    billingAddress?: {
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      city?: string | null;
-      company?: string | null;
-      countryCode?: string | null;
-      firstName?: string | null;
-      lastName?: string | null;
-      postalCode?: string | null;
-      regionCode?: string | null;
+  readonly enrollment?: {
+    readonly _id: string;
+    readonly enrollmentNumber?: string | null;
+    readonly updated?: any | null;
+    readonly status: IEnrollmentStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
     } | null;
-    contact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
+    readonly billingAddress?: {
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly city?: string | null;
+      readonly company?: string | null;
+      readonly countryCode?: string | null;
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly postalCode?: string | null;
+      readonly regionCode?: string | null;
     } | null;
-    currency?: {
-      _id: string;
-      contractAddress?: string | null;
-      decimals?: number | null;
-      isActive?: boolean | null;
-      isoCode: string;
+    readonly contact?: {
+      readonly emailAddress?: string | null;
+      readonly telNumber?: string | null;
     } | null;
-    delivery?: {
-      provider?: {
-        _id: string;
-        configuration?: any | null;
-        configurationError?: IDeliveryProviderError | null;
-        isActive?: boolean | null;
-        type?: IDeliveryProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly contractAddress?: string | null;
+      readonly decimals?: number | null;
+      readonly isActive?: boolean | null;
+      readonly isoCode: string;
+    } | null;
+    readonly delivery?: {
+      readonly provider?: {
+        readonly _id: string;
+        readonly configuration?: any | null;
+        readonly configurationError?: IDeliveryProviderError | null;
+        readonly isActive?: boolean | null;
+        readonly type?: IDeliveryProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
         } | null;
-        simulatedPrice?: {
-          _id: string;
-          amount: number;
-          currency: string;
-          isNetPrice: boolean;
-          isTaxable: boolean;
-        } | null;
-      } | null;
-    } | null;
-    payment?: {
-      provider?: {
-        _id: string;
-        configuration?: any | null;
-        configurationError?: IPaymentProviderError | null;
-        isActive?: boolean | null;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
+        readonly simulatedPrice?: {
+          readonly _id: string;
+          readonly amount: number;
+          readonly currency: string;
+          readonly isNetPrice: boolean;
+          readonly isTaxable: boolean;
         } | null;
       } | null;
     } | null;
-    periods: Array<{
-      end: any;
-      isTrial: boolean;
-      start: any;
-      order?: { _id: string } | null;
+    readonly payment?: {
+      readonly provider?: {
+        readonly _id: string;
+        readonly configuration?: any | null;
+        readonly configurationError?: IPaymentProviderError | null;
+        readonly isActive?: boolean | null;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
+        } | null;
+      } | null;
+    } | null;
+    readonly periods: ReadonlyArray<{
+      readonly end: any;
+      readonly isTrial: boolean;
+      readonly start: any;
+      readonly order?: { readonly _id: string } | null;
     }>;
-    plan: {
-      quantity: number;
-      configuration?: Array<{ key: string; value: string }> | null;
-      product: {
-        _id: string;
-        texts?: { _id: string; title?: string | null } | null;
+    readonly plan: {
+      readonly quantity: number;
+      readonly configuration?: ReadonlyArray<{
+        readonly key: string;
+        readonly value: string;
+      }> | null;
+      readonly product: {
+        readonly _id: string;
+        readonly texts?: {
+          readonly _id: string;
+          readonly title?: string | null;
+        } | null;
       };
     };
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
   } | null;
 };
@@ -7702,8 +7943,11 @@ export type IEnrollmentQuery = {
 export type IEnrollmentStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IEnrollmentStatusQuery = {
-  enrollmentStatusTypes?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly enrollmentStatusTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -7711,40 +7955,58 @@ export type IEnrollmentsQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
-  status?: InputMaybe<
-    Array<Scalars['String']['input']> | Scalars['String']['input']
-  >;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
+  status?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
 }>;
 
 export type IEnrollmentsQuery = {
-  enrollmentsCount: number;
-  enrollments: Array<{
-    _id: string;
-    enrollmentNumber?: string | null;
-    updated?: any | null;
-    status: IEnrollmentStatus;
-    created: any;
-    expires?: any | null;
-    isExpired?: boolean | null;
-    country?: { _id: string; isoCode?: string | null } | null;
-    currency?: { _id: string; isoCode: string } | null;
-    periods: Array<{ start: any; end: any; isTrial: boolean }>;
-    payment?: { provider?: { _id: string } | null } | null;
-    delivery?: { provider?: { _id: string } | null } | null;
-    plan: {
-      quantity: number;
-      product: {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        texts?: { _id: string; title?: string | null } | null;
+  readonly enrollmentsCount: number;
+  readonly enrollments: ReadonlyArray<{
+    readonly _id: string;
+    readonly enrollmentNumber?: string | null;
+    readonly updated?: any | null;
+    readonly status: IEnrollmentStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+    } | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+    } | null;
+    readonly periods: ReadonlyArray<{
+      readonly start: any;
+      readonly end: any;
+      readonly isTrial: boolean;
+    }>;
+    readonly payment?: {
+      readonly provider?: { readonly _id: string } | null;
+    } | null;
+    readonly delivery?: {
+      readonly provider?: { readonly _id: string } | null;
+    } | null;
+    readonly plan: {
+      readonly quantity: number;
+      readonly product: {
+        readonly _id: string;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly file: { readonly _id: string; readonly url: string };
+        }>;
+        readonly texts?: {
+          readonly _id: string;
+          readonly title?: string | null;
+        } | null;
       };
     };
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
   }>;
 };
@@ -7754,7 +8016,7 @@ export type ISendEnrollmentEmailMutationVariables = Exact<{
 }>;
 
 export type ISendEnrollmentEmailMutation = {
-  sendEnrollmentEmail?: { success?: boolean | null } | null;
+  readonly sendEnrollmentEmail?: { readonly success?: boolean | null } | null;
 };
 
 export type ITerminateEnrollmentMutationVariables = Exact<{
@@ -7762,7 +8024,7 @@ export type ITerminateEnrollmentMutationVariables = Exact<{
 }>;
 
 export type ITerminateEnrollmentMutation = {
-  terminateEnrollment: { _id: string };
+  readonly terminateEnrollment: { readonly _id: string };
 };
 
 export type IUserEnrollmentsQueryVariables = Exact<{
@@ -7771,86 +8033,107 @@ export type IUserEnrollmentsQueryVariables = Exact<{
 }>;
 
 export type IUserEnrollmentsQuery = {
-  user?: {
-    _id: string;
-    enrollments: Array<{
-      _id: string;
-      enrollmentNumber?: string | null;
-      updated?: any | null;
-      status: IEnrollmentStatus;
-      created: any;
-      expires?: any | null;
-      isExpired?: boolean | null;
-      country?: { _id: string; isoCode?: string | null } | null;
-      currency?: { _id: string; isoCode: string } | null;
-      periods: Array<{ start: any; end: any; isTrial: boolean }>;
-      payment?: { provider?: { _id: string } | null } | null;
-      delivery?: { provider?: { _id: string } | null } | null;
-      plan: {
-        quantity: number;
-        product: {
-          _id: string;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-          texts?: { _id: string; title?: string | null } | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly enrollments: ReadonlyArray<{
+      readonly _id: string;
+      readonly enrollmentNumber?: string | null;
+      readonly updated?: any | null;
+      readonly status: IEnrollmentStatus;
+      readonly created: any;
+      readonly expires?: any | null;
+      readonly isExpired?: boolean | null;
+      readonly country?: {
+        readonly _id: string;
+        readonly isoCode?: string | null;
+      } | null;
+      readonly currency?: {
+        readonly _id: string;
+        readonly isoCode: string;
+      } | null;
+      readonly periods: ReadonlyArray<{
+        readonly start: any;
+        readonly end: any;
+        readonly isTrial: boolean;
+      }>;
+      readonly payment?: {
+        readonly provider?: { readonly _id: string } | null;
+      } | null;
+      readonly delivery?: {
+        readonly provider?: { readonly _id: string } | null;
+      } | null;
+      readonly plan: {
+        readonly quantity: number;
+        readonly product: {
+          readonly _id: string;
+          readonly media: ReadonlyArray<{
+            readonly _id: string;
+            readonly file: { readonly _id: string; readonly url: string };
+          }>;
+          readonly texts?: {
+            readonly _id: string;
+            readonly title?: string | null;
+          } | null;
         };
       };
-      user: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        avatar?: { _id: string; url: string } | null;
+      readonly user: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly name: string;
+        readonly avatar?: { readonly _id: string; readonly url: string } | null;
       };
     }>;
   } | null;
 };
 
-export type IEventFragmentFragment = {
-  _id: string;
-  type: string;
-  payload?: any | null;
-  created: any;
+export type IEventFragment = {
+  readonly _id: string;
+  readonly type: string;
+  readonly payload?: any | null;
+  readonly created: any;
 };
 
-export type IEventFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type IEventFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IEventQueryVariables = Exact<{
   eventId: Scalars['ID']['input'];
 }>;
 
 export type IEventQuery = {
-  event?: {
-    _id: string;
-    type: string;
-    payload?: any | null;
-    created: any;
+  readonly event?: {
+    readonly _id: string;
+    readonly type: string;
+    readonly payload?: any | null;
+    readonly created: any;
   } | null;
 };
 
 export type IEventsTypeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IEventsTypeQuery = {
-  eventTypes?: {
-    options?: Array<{ value: string; label: string }> | null;
+  readonly eventTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label: string;
+    }> | null;
   } | null;
 };
 
 export type IEventsQueryVariables = Exact<{
-  types?: InputMaybe<
-    Array<Scalars['String']['input']> | Scalars['String']['input']
-  >;
+  types?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
   queryString?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type IEventsQuery = {
-  eventsCount: number;
-  events: Array<{
-    _id: string;
-    type: string;
-    payload?: any | null;
-    created: any;
+  readonly eventsCount: number;
+  readonly events: ReadonlyArray<{
+    readonly _id: string;
+    readonly type: string;
+    readonly payload?: any | null;
+    readonly created: any;
   }>;
 };
 
@@ -7859,78 +8142,77 @@ export type IRegisteredEventTypeQueryVariables = Exact<{
 }>;
 
 export type IRegisteredEventTypeQuery = {
-  registeredEvents?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly registeredEvents?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
-export type IFilterFragmentFragment = {
-  _id: string;
-  updated?: any | null;
-  created?: any | null;
-  key?: string | null;
-  isActive?: boolean | null;
-  type?: IFilterType | null;
-  options?: Array<{
-    _id: string;
-    value?: string | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      locale?: string | null;
+export type IFilterFragment = {
+  readonly _id: string;
+  readonly updated?: any | null;
+  readonly created?: any | null;
+  readonly key?: string | null;
+  readonly isActive?: boolean | null;
+  readonly type?: IFilterType | null;
+  readonly options?: ReadonlyArray<{
+    readonly _id: string;
+    readonly value?: string | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly locale?: string | null;
     } | null;
   }> | null;
 };
 
-export type IFilterFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type IFilterFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IFilterOptionFragmentFragment = {
-  _id: string;
-  value?: string | null;
-  texts?: {
-    _id: string;
-    title?: string | null;
-    subtitle?: string | null;
-    locale?: string | null;
+export type IFilterOptionFragment = {
+  readonly _id: string;
+  readonly value?: string | null;
+  readonly texts?: {
+    readonly _id: string;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly locale?: string | null;
   } | null;
 };
 
-export type IFilterOptionFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IFilterOptionFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IFilterTextsFragmentFragment = {
-  _id: string;
-  locale?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
+export type IFilterTextsFragment = {
+  readonly _id: string;
+  readonly locale?: string | null;
+  readonly title?: string | null;
+  readonly subtitle?: string | null;
 };
 
-export type IFilterTextsFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IFilterTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateFilterMutationVariables = Exact<{
   filter: ICreateFilterInput;
 }>;
 
 export type ICreateFilterMutation = {
-  createFilter: {
-    _id: string;
-    updated?: any | null;
-    created?: any | null;
-    key?: string | null;
-    isActive?: boolean | null;
-    type?: IFilterType | null;
-    options?: Array<{
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-        locale?: string | null;
+  readonly createFilter: {
+    readonly _id: string;
+    readonly updated?: any | null;
+    readonly created?: any | null;
+    readonly key?: string | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IFilterType | null;
+    readonly options?: ReadonlyArray<{
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly locale?: string | null;
       } | null;
     }> | null;
   };
@@ -7942,7 +8224,7 @@ export type ICreateFilterOptionMutationVariables = Exact<{
 }>;
 
 export type ICreateFilterOptionMutation = {
-  createFilterOption: { _id: string };
+  readonly createFilterOption: { readonly _id: string };
 };
 
 export type IFilterQueryVariables = Exact<{
@@ -7950,27 +8232,27 @@ export type IFilterQueryVariables = Exact<{
 }>;
 
 export type IFilterQuery = {
-  filter?: {
-    _id: string;
-    updated?: any | null;
-    created?: any | null;
-    key?: string | null;
-    isActive?: boolean | null;
-    type?: IFilterType | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      locale?: string | null;
+  readonly filter?: {
+    readonly _id: string;
+    readonly updated?: any | null;
+    readonly created?: any | null;
+    readonly key?: string | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IFilterType | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly locale?: string | null;
     } | null;
-    options?: Array<{
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-        locale?: string | null;
+    readonly options?: ReadonlyArray<{
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly locale?: string | null;
       } | null;
     }> | null;
   } | null;
@@ -7981,16 +8263,16 @@ export type IFilterOptionsQueryVariables = Exact<{
 }>;
 
 export type IFilterOptionsQuery = {
-  filter?: {
-    _id: string;
-    options?: Array<{
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-        locale?: string | null;
+  readonly filter?: {
+    readonly _id: string;
+    readonly options?: ReadonlyArray<{
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly locale?: string | null;
       } | null;
     }> | null;
   } | null;
@@ -7999,8 +8281,11 @@ export type IFilterOptionsQuery = {
 export type IFilterTypesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IFilterTypesQuery = {
-  filterTypes?: {
-    options?: Array<{ label: string; value: string }> | null;
+  readonly filterTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly label: string;
+      readonly value: string;
+    }> | null;
   } | null;
 };
 
@@ -8009,32 +8294,32 @@ export type IFiltersQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IFiltersQuery = {
-  filtersCount: number;
-  filters: Array<{
-    _id: string;
-    updated?: any | null;
-    created?: any | null;
-    key?: string | null;
-    isActive?: boolean | null;
-    type?: IFilterType | null;
-    texts?: {
-      _id: string;
-      title?: string | null;
-      subtitle?: string | null;
-      locale?: string | null;
+  readonly filtersCount: number;
+  readonly filters: ReadonlyArray<{
+    readonly _id: string;
+    readonly updated?: any | null;
+    readonly created?: any | null;
+    readonly key?: string | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IFilterType | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly locale?: string | null;
     } | null;
-    options?: Array<{
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-        locale?: string | null;
+    readonly options?: ReadonlyArray<{
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly locale?: string | null;
       } | null;
     }> | null;
   }>;
@@ -8042,13 +8327,15 @@ export type IFiltersQuery = {
 
 export type IFiltersCountQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IFiltersCountQuery = { filtersCount: number };
+export type IFiltersCountQuery = { readonly filtersCount: number };
 
 export type IRemoveFilterMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveFilterMutation = { removeFilter: { _id: string } };
+export type IRemoveFilterMutation = {
+  readonly removeFilter: { readonly _id: string };
+};
 
 export type IRemoveFilterOptionMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
@@ -8056,7 +8343,7 @@ export type IRemoveFilterOptionMutationVariables = Exact<{
 }>;
 
 export type IRemoveFilterOptionMutation = {
-  removeFilterOption: { _id: string };
+  readonly removeFilterOption: { readonly _id: string };
 };
 
 export type ITranslatedFilterTextsQueryVariables = Exact<{
@@ -8065,11 +8352,11 @@ export type ITranslatedFilterTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedFilterTextsQuery = {
-  translatedFilterTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly translatedFilterTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
@@ -8079,21 +8366,21 @@ export type IUpdateFilterMutationVariables = Exact<{
 }>;
 
 export type IUpdateFilterMutation = {
-  updateFilter: {
-    _id: string;
-    updated?: any | null;
-    created?: any | null;
-    key?: string | null;
-    isActive?: boolean | null;
-    type?: IFilterType | null;
-    options?: Array<{
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
-        locale?: string | null;
+  readonly updateFilter: {
+    readonly _id: string;
+    readonly updated?: any | null;
+    readonly created?: any | null;
+    readonly key?: string | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IFilterType | null;
+    readonly options?: ReadonlyArray<{
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly locale?: string | null;
       } | null;
     }> | null;
   };
@@ -8102,41 +8389,39 @@ export type IUpdateFilterMutation = {
 export type IUpdateFilterTextsMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput> | IUpdateFilterTextInput;
+  texts: ReadonlyArray<IUpdateFilterTextInput>;
 }>;
 
 export type IUpdateFilterTextsMutation = {
-  updateFilterTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly updateFilterTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
-export type ILanguageFragmentFragment = {
-  _id: string;
-  isoCode?: string | null;
-  isActive?: boolean | null;
-  isBase?: boolean | null;
-  name?: string | null;
+export type ILanguageFragment = {
+  readonly _id: string;
+  readonly isoCode?: string | null;
+  readonly isActive?: boolean | null;
+  readonly isBase?: boolean | null;
+  readonly name?: string | null;
 };
 
-export type ILanguageFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type ILanguageFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateLanguageMutationVariables = Exact<{
   language: ICreateLanguageInput;
 }>;
 
 export type ICreateLanguageMutation = {
-  createLanguage: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    name?: string | null;
+  readonly createLanguage: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly name?: string | null;
   };
 };
 
@@ -8145,12 +8430,12 @@ export type ILanguageQueryVariables = Exact<{
 }>;
 
 export type ILanguageQuery = {
-  language?: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    name?: string | null;
+  readonly language?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly name?: string | null;
   } | null;
 };
 
@@ -8159,17 +8444,17 @@ export type ILanguagesQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type ILanguagesQuery = {
-  languagesCount: number;
-  languages: Array<{
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    name?: string | null;
+  readonly languagesCount: number;
+  readonly languages: ReadonlyArray<{
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly name?: string | null;
   } | null>;
 };
 
@@ -8178,12 +8463,12 @@ export type IRemoveLanguageMutationVariables = Exact<{
 }>;
 
 export type IRemoveLanguageMutation = {
-  removeLanguage: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    name?: string | null;
+  readonly removeLanguage: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly name?: string | null;
   };
 };
 
@@ -8193,1090 +8478,513 @@ export type IUpdateLanguageMutationVariables = Exact<{
 }>;
 
 export type IUpdateLanguageMutation = {
-  updateLanguage: {
-    _id: string;
-    isoCode?: string | null;
-    isActive?: boolean | null;
-    isBase?: boolean | null;
-    name?: string | null;
+  readonly updateLanguage: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly isActive?: boolean | null;
+    readonly isBase?: boolean | null;
+    readonly name?: string | null;
   };
 };
 
-export type IOrderDetailFragmentFragment = {
-  _id: string;
-  orderNumber?: string | null;
-  status?: IOrderStatus | null;
-  created?: any | null;
-  updated?: any | null;
-  ordered?: any | null;
-  confirmed?: any | null;
-  fullfilled?: any | null;
-  totalTax?: { amount: number; currency: string } | null;
-  itemsTotal?: { amount: number; currency: string } | null;
-  totalDiscount?: { amount: number; currency: string } | null;
-  totalPayment?: { amount: number; currency: string } | null;
-  totalDelivery?: { amount: number; currency: string } | null;
-  user?: {
-    _id: string;
-    username?: string | null;
-    isGuest: boolean;
-    avatar?: { _id: string; url: string } | null;
+export type IOrderDetailFragment = {
+  readonly _id: string;
+  readonly orderNumber?: string | null;
+  readonly status?: IOrderStatus | null;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly ordered?: any | null;
+  readonly confirmed?: any | null;
+  readonly fullfilled?: any | null;
+  readonly totalTax?: {
+    readonly amount: number;
+    readonly currency: string;
   } | null;
-  discounts?: Array<{
-    _id: string;
-    trigger: IOrderDiscountTrigger;
-    code?: string | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly itemsTotal?: {
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly totalDiscount?: {
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly totalPayment?: {
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly totalDelivery?: {
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
+  } | null;
+  readonly discounts?: ReadonlyArray<{
+    readonly _id: string;
+    readonly trigger: IOrderDiscountTrigger;
+    readonly code?: string | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
-    total: {
-      amount: number;
-      currency: string;
-      isTaxable: boolean;
-      isNetPrice: boolean;
+    readonly total: {
+      readonly amount: number;
+      readonly currency: string;
+      readonly isTaxable: boolean;
+      readonly isNetPrice: boolean;
     };
-    discounted?: Array<
-      | {
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          };
-          total: {
-            amount: number;
-            currency: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
-      | {
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          };
-          total: {
-            amount: number;
-            currency: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
-      | {
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          };
-          total: {
-            amount: number;
-            currency: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
-      | {
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          };
-          total: {
-            amount: number;
-            currency: string;
-            isTaxable: boolean;
-            isNetPrice: boolean;
-          };
-        }
-    > | null;
-  }> | null;
-  payment?:
-    | {
-        _id: string;
-        status?: IOrderPaymentStatus | null;
-        paid?: any | null;
-        provider?: {
-          _id: string;
-          type?: IPaymentProviderType | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
-          } | null;
-        } | null;
-        fee?: { currency: string; amount: number } | null;
-      }
-    | {
-        _id: string;
-        status?: IOrderPaymentStatus | null;
-        paid?: any | null;
-        provider?: {
-          _id: string;
-          type?: IPaymentProviderType | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
-          } | null;
-        } | null;
-        fee?: { currency: string; amount: number } | null;
-      }
-    | {
-        _id: string;
-        status?: IOrderPaymentStatus | null;
-        paid?: any | null;
-        provider?: {
-          _id: string;
-          type?: IPaymentProviderType | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
-          } | null;
-        } | null;
-        fee?: { currency: string; amount: number } | null;
-      }
-    | null;
-  delivery?:
-    | {
-        _id: string;
-        status?: IOrderDeliveryStatus | null;
-        delivered?: any | null;
-        provider?: {
-          _id: string;
-          type?: IDeliveryProviderType | null;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          configuration?: any | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
-          } | null;
-        } | null;
-        fee?: {
-          isTaxable: boolean;
-          isNetPrice: boolean;
-          amount: number;
-          currency: string;
-        } | null;
-        discounts?: Array<{
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            trigger: IOrderDiscountTrigger;
-            code?: string | null;
-            order: { _id: string; orderNumber?: string | null };
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-            total: {
-              isTaxable: boolean;
-              isNetPrice: boolean;
-              amount: number;
-              currency: string;
-            };
-            discounted?: Array<
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-            > | null;
-          };
-        }> | null;
-      }
-    | {
-        _id: string;
-        status?: IOrderDeliveryStatus | null;
-        delivered?: any | null;
-        provider?: {
-          _id: string;
-          type?: IDeliveryProviderType | null;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          configuration?: any | null;
-          interface?: {
-            _id: string;
-            label?: string | null;
-            version?: string | null;
-          } | null;
-        } | null;
-        fee?: {
-          isTaxable: boolean;
-          isNetPrice: boolean;
-          amount: number;
-          currency: string;
-        } | null;
-        discounts?: Array<{
-          _id: string;
-          orderDiscount: {
-            _id: string;
-            trigger: IOrderDiscountTrigger;
-            code?: string | null;
-            order: { _id: string; orderNumber?: string | null };
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-            total: {
-              isTaxable: boolean;
-              isNetPrice: boolean;
-              amount: number;
-              currency: string;
-            };
-            discounted?: Array<
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-              | {
-                  _id: string;
-                  orderDiscount: {
-                    _id: string;
-                    trigger: IOrderDiscountTrigger;
-                    code?: string | null;
-                    order: { _id: string; orderNumber?: string | null };
-                    interface?: {
-                      _id: string;
-                      label?: string | null;
-                      version?: string | null;
-                    } | null;
-                    total: {
-                      isTaxable: boolean;
-                      isNetPrice: boolean;
-                      amount: number;
-                      currency: string;
-                    };
-                  };
-                }
-            > | null;
-          };
-        }> | null;
-      }
-    | null;
-  contact?: { telNumber?: string | null; emailAddress?: string | null } | null;
-  country?: {
-    _id: string;
-    isoCode?: string | null;
-    flagEmoji?: string | null;
-    name?: string | null;
-  } | null;
-  currency?: { _id: string; isoCode: string; isActive?: boolean | null } | null;
-  billingAddress?: {
-    firstName?: string | null;
-    lastName?: string | null;
-    company?: string | null;
-    addressLine?: string | null;
-    addressLine2?: string | null;
-    postalCode?: string | null;
-    countryCode?: string | null;
-    regionCode?: string | null;
-    city?: string | null;
-  } | null;
-  total?: { isTaxable: boolean; amount: number; currency: string } | null;
-  items?: Array<{
-    _id: string;
-    quantity: number;
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            brand?: string | null;
-            vendor?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            brand?: string | null;
-            vendor?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            brand?: string | null;
-            vendor?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            brand?: string | null;
-            vendor?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            brand?: string | null;
-            vendor?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
+    readonly discounted?: ReadonlyArray<{
+      readonly _id: string;
+      readonly orderDiscount: {
+        readonly _id: string;
+        readonly total: {
+          readonly amount: number;
+          readonly currency: string;
+          readonly isTaxable: boolean;
+          readonly isNetPrice: boolean;
         };
-    unitPrice?: {
-      amount: number;
-      isTaxable: boolean;
-      isNetPrice: boolean;
-      currency: string;
+      };
+      readonly total: {
+        readonly amount: number;
+        readonly currency: string;
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
+      };
+    }> | null;
+  }> | null;
+  readonly payment?: {
+    readonly _id: string;
+    readonly status?: IOrderPaymentStatus | null;
+    readonly paid?: any | null;
+    readonly provider?: {
+      readonly _id: string;
+      readonly type?: IPaymentProviderType | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
+      } | null;
     } | null;
-    total?: {
-      amount: number;
-      isTaxable: boolean;
-      isNetPrice: boolean;
-      currency: string;
+    readonly fee?: {
+      readonly currency: string;
+      readonly amount: number;
+    } | null;
+  } | null;
+  readonly delivery?: {
+    readonly _id: string;
+    readonly status?: IOrderDeliveryStatus | null;
+    readonly delivered?: any | null;
+    readonly provider?: {
+      readonly _id: string;
+      readonly type?: IDeliveryProviderType | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly deleted?: any | null;
+      readonly configuration?: any | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
+      } | null;
+    } | null;
+    readonly fee?: {
+      readonly isTaxable: boolean;
+      readonly isNetPrice: boolean;
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly discounts?: ReadonlyArray<{
+      readonly _id: string;
+      readonly orderDiscount: {
+        readonly _id: string;
+        readonly trigger: IOrderDiscountTrigger;
+        readonly code?: string | null;
+        readonly order: {
+          readonly _id: string;
+          readonly orderNumber?: string | null;
+        };
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
+        } | null;
+        readonly total: {
+          readonly isTaxable: boolean;
+          readonly isNetPrice: boolean;
+          readonly amount: number;
+          readonly currency: string;
+        };
+        readonly discounted?: ReadonlyArray<{
+          readonly _id: string;
+          readonly orderDiscount: {
+            readonly _id: string;
+            readonly trigger: IOrderDiscountTrigger;
+            readonly code?: string | null;
+            readonly order: {
+              readonly _id: string;
+              readonly orderNumber?: string | null;
+            };
+            readonly interface?: {
+              readonly _id: string;
+              readonly label?: string | null;
+              readonly version?: string | null;
+            } | null;
+            readonly total: {
+              readonly isTaxable: boolean;
+              readonly isNetPrice: boolean;
+              readonly amount: number;
+              readonly currency: string;
+            };
+          };
+        }> | null;
+      };
+    }> | null;
+  } | null;
+  readonly contact?: {
+    readonly telNumber?: string | null;
+    readonly emailAddress?: string | null;
+  } | null;
+  readonly country?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly flagEmoji?: string | null;
+    readonly name?: string | null;
+  } | null;
+  readonly currency?: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+  } | null;
+  readonly billingAddress?: {
+    readonly firstName?: string | null;
+    readonly lastName?: string | null;
+    readonly company?: string | null;
+    readonly addressLine?: string | null;
+    readonly addressLine2?: string | null;
+    readonly postalCode?: string | null;
+    readonly countryCode?: string | null;
+    readonly regionCode?: string | null;
+    readonly city?: string | null;
+  } | null;
+  readonly total?: {
+    readonly isTaxable: boolean;
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly items?: ReadonlyArray<{
+    readonly _id: string;
+    readonly quantity: number;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly brand?: string | null;
+        readonly vendor?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly unitPrice?: {
+      readonly amount: number;
+      readonly isTaxable: boolean;
+      readonly isNetPrice: boolean;
+      readonly currency: string;
+    } | null;
+    readonly total?: {
+      readonly amount: number;
+      readonly isTaxable: boolean;
+      readonly isNetPrice: boolean;
+      readonly currency: string;
     } | null;
   }> | null;
 };
 
-export type IOrderDetailFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IOrderDetailFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IOrderFragmentFragment = {
-  _id: string;
-  status?: IOrderStatus | null;
-  created?: any | null;
-  updated?: any | null;
-  ordered?: any | null;
-  orderNumber?: string | null;
-  confirmed?: any | null;
-  fullfilled?: any | null;
-  contact?: { telNumber?: string | null; emailAddress?: string | null } | null;
-  total?: {
-    _id: string;
-    isTaxable: boolean;
-    isNetPrice: boolean;
-    amount: number;
-    currency: string;
+export type IOrderFragment = {
+  readonly _id: string;
+  readonly status?: IOrderStatus | null;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly ordered?: any | null;
+  readonly orderNumber?: string | null;
+  readonly confirmed?: any | null;
+  readonly fullfilled?: any | null;
+  readonly contact?: {
+    readonly telNumber?: string | null;
+    readonly emailAddress?: string | null;
   } | null;
-  user?: {
-    _id: string;
-    username?: string | null;
-    isGuest: boolean;
-    avatar?: { _id: string; url: string } | null;
-    profile?: {
-      displayName?: string | null;
-      address?: { firstName?: string | null; lastName?: string | null } | null;
+  readonly total?: {
+    readonly _id: string;
+    readonly isTaxable: boolean;
+    readonly isNetPrice: boolean;
+    readonly amount: number;
+    readonly currency: string;
+  } | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly isGuest: boolean;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+      } | null;
     } | null;
   } | null;
 };
 
-export type IOrderFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type IOrderFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IConfirmOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IConfirmOrderMutation = { confirmOrder: { _id: string } };
+export type IConfirmOrderMutation = {
+  readonly confirmOrder: { readonly _id: string };
+};
 
 export type IDeliverOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IDeliverOrderMutation = { deliverOrder: { _id: string } };
+export type IDeliverOrderMutation = {
+  readonly deliverOrder: { readonly _id: string };
+};
 
 export type IOrderQueryVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
 export type IOrderQuery = {
-  order?: {
-    _id: string;
-    orderNumber?: string | null;
-    status?: IOrderStatus | null;
-    created?: any | null;
-    updated?: any | null;
-    ordered?: any | null;
-    confirmed?: any | null;
-    fullfilled?: any | null;
-    totalTax?: { amount: number; currency: string } | null;
-    itemsTotal?: { amount: number; currency: string } | null;
-    totalDiscount?: { amount: number; currency: string } | null;
-    totalPayment?: { amount: number; currency: string } | null;
-    totalDelivery?: { amount: number; currency: string } | null;
-    user?: {
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-      avatar?: { _id: string; url: string } | null;
+  readonly order?: {
+    readonly _id: string;
+    readonly orderNumber?: string | null;
+    readonly status?: IOrderStatus | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly ordered?: any | null;
+    readonly confirmed?: any | null;
+    readonly fullfilled?: any | null;
+    readonly totalTax?: {
+      readonly amount: number;
+      readonly currency: string;
     } | null;
-    discounts?: Array<{
-      _id: string;
-      trigger: IOrderDiscountTrigger;
-      code?: string | null;
-      interface?: {
-        _id: string;
-        label?: string | null;
-        version?: string | null;
+    readonly itemsTotal?: {
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly totalDiscount?: {
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly totalPayment?: {
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly totalDelivery?: {
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly user?: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly isGuest: boolean;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+    } | null;
+    readonly discounts?: ReadonlyArray<{
+      readonly _id: string;
+      readonly trigger: IOrderDiscountTrigger;
+      readonly code?: string | null;
+      readonly interface?: {
+        readonly _id: string;
+        readonly label?: string | null;
+        readonly version?: string | null;
       } | null;
-      total: {
-        amount: number;
-        currency: string;
-        isTaxable: boolean;
-        isNetPrice: boolean;
+      readonly total: {
+        readonly amount: number;
+        readonly currency: string;
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
       };
-      discounted?: Array<
-        | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              total: {
-                amount: number;
-                currency: string;
-                isTaxable: boolean;
-                isNetPrice: boolean;
-              };
-            };
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          }
-        | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              total: {
-                amount: number;
-                currency: string;
-                isTaxable: boolean;
-                isNetPrice: boolean;
-              };
-            };
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          }
-        | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              total: {
-                amount: number;
-                currency: string;
-                isTaxable: boolean;
-                isNetPrice: boolean;
-              };
-            };
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          }
-        | {
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              total: {
-                amount: number;
-                currency: string;
-                isTaxable: boolean;
-                isNetPrice: boolean;
-              };
-            };
-            total: {
-              amount: number;
-              currency: string;
-              isTaxable: boolean;
-              isNetPrice: boolean;
-            };
-          }
-      > | null;
-    }> | null;
-    payment?:
-      | {
-          _id: string;
-          status?: IOrderPaymentStatus | null;
-          paid?: any | null;
-          provider?: {
-            _id: string;
-            type?: IPaymentProviderType | null;
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-          } | null;
-          fee?: { currency: string; amount: number } | null;
-        }
-      | {
-          _id: string;
-          status?: IOrderPaymentStatus | null;
-          paid?: any | null;
-          provider?: {
-            _id: string;
-            type?: IPaymentProviderType | null;
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-          } | null;
-          fee?: { currency: string; amount: number } | null;
-        }
-      | {
-          _id: string;
-          status?: IOrderPaymentStatus | null;
-          paid?: any | null;
-          provider?: {
-            _id: string;
-            type?: IPaymentProviderType | null;
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-          } | null;
-          fee?: { currency: string; amount: number } | null;
-        }
-      | null;
-    delivery?:
-      | {
-          _id: string;
-          status?: IOrderDeliveryStatus | null;
-          delivered?: any | null;
-          provider?: {
-            _id: string;
-            type?: IDeliveryProviderType | null;
-            created?: any | null;
-            updated?: any | null;
-            deleted?: any | null;
-            configuration?: any | null;
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-          } | null;
-          fee?: {
-            isTaxable: boolean;
-            isNetPrice: boolean;
-            amount: number;
-            currency: string;
-          } | null;
-          discounts?: Array<{
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currency: string;
-              };
-              discounted?: Array<
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-              > | null;
-            };
-          }> | null;
-        }
-      | {
-          _id: string;
-          status?: IOrderDeliveryStatus | null;
-          delivered?: any | null;
-          provider?: {
-            _id: string;
-            type?: IDeliveryProviderType | null;
-            created?: any | null;
-            updated?: any | null;
-            deleted?: any | null;
-            configuration?: any | null;
-            interface?: {
-              _id: string;
-              label?: string | null;
-              version?: string | null;
-            } | null;
-          } | null;
-          fee?: {
-            isTaxable: boolean;
-            isNetPrice: boolean;
-            amount: number;
-            currency: string;
-          } | null;
-          discounts?: Array<{
-            _id: string;
-            orderDiscount: {
-              _id: string;
-              trigger: IOrderDiscountTrigger;
-              code?: string | null;
-              order: { _id: string; orderNumber?: string | null };
-              interface?: {
-                _id: string;
-                label?: string | null;
-                version?: string | null;
-              } | null;
-              total: {
-                isTaxable: boolean;
-                isNetPrice: boolean;
-                amount: number;
-                currency: string;
-              };
-              discounted?: Array<
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-                | {
-                    _id: string;
-                    orderDiscount: {
-                      _id: string;
-                      trigger: IOrderDiscountTrigger;
-                      code?: string | null;
-                      order: { _id: string; orderNumber?: string | null };
-                      interface?: {
-                        _id: string;
-                        label?: string | null;
-                        version?: string | null;
-                      } | null;
-                      total: {
-                        isTaxable: boolean;
-                        isNetPrice: boolean;
-                        amount: number;
-                        currency: string;
-                      };
-                    };
-                  }
-              > | null;
-            };
-          }> | null;
-        }
-      | null;
-    contact?: {
-      telNumber?: string | null;
-      emailAddress?: string | null;
-    } | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
-    } | null;
-    currency?: {
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
-    } | null;
-    billingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
-    } | null;
-    total?: { isTaxable: boolean; amount: number; currency: string } | null;
-    items?: Array<{
-      _id: string;
-      quantity: number;
-      product:
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              brand?: string | null;
-              vendor?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-            } | null;
-            media: Array<{ _id: string; file: { _id: string; url: string } }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              brand?: string | null;
-              vendor?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-            } | null;
-            media: Array<{ _id: string; file: { _id: string; url: string } }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              brand?: string | null;
-              vendor?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-            } | null;
-            media: Array<{ _id: string; file: { _id: string; url: string } }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              brand?: string | null;
-              vendor?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-            } | null;
-            media: Array<{ _id: string; file: { _id: string; url: string } }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              brand?: string | null;
-              vendor?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
-            } | null;
-            media: Array<{ _id: string; file: { _id: string; url: string } }>;
+      readonly discounted?: ReadonlyArray<{
+        readonly _id: string;
+        readonly orderDiscount: {
+          readonly _id: string;
+          readonly total: {
+            readonly amount: number;
+            readonly currency: string;
+            readonly isTaxable: boolean;
+            readonly isNetPrice: boolean;
           };
-      unitPrice?: {
-        amount: number;
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        currency: string;
+        };
+        readonly total: {
+          readonly amount: number;
+          readonly currency: string;
+          readonly isTaxable: boolean;
+          readonly isNetPrice: boolean;
+        };
+      }> | null;
+    }> | null;
+    readonly payment?: {
+      readonly _id: string;
+      readonly status?: IOrderPaymentStatus | null;
+      readonly paid?: any | null;
+      readonly provider?: {
+        readonly _id: string;
+        readonly type?: IPaymentProviderType | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
+        } | null;
       } | null;
-      total?: {
-        amount: number;
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        currency: string;
+      readonly fee?: {
+        readonly currency: string;
+        readonly amount: number;
+      } | null;
+    } | null;
+    readonly delivery?: {
+      readonly _id: string;
+      readonly status?: IOrderDeliveryStatus | null;
+      readonly delivered?: any | null;
+      readonly provider?: {
+        readonly _id: string;
+        readonly type?: IDeliveryProviderType | null;
+        readonly created?: any | null;
+        readonly updated?: any | null;
+        readonly deleted?: any | null;
+        readonly configuration?: any | null;
+        readonly interface?: {
+          readonly _id: string;
+          readonly label?: string | null;
+          readonly version?: string | null;
+        } | null;
+      } | null;
+      readonly fee?: {
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
+        readonly amount: number;
+        readonly currency: string;
+      } | null;
+      readonly discounts?: ReadonlyArray<{
+        readonly _id: string;
+        readonly orderDiscount: {
+          readonly _id: string;
+          readonly trigger: IOrderDiscountTrigger;
+          readonly code?: string | null;
+          readonly order: {
+            readonly _id: string;
+            readonly orderNumber?: string | null;
+          };
+          readonly interface?: {
+            readonly _id: string;
+            readonly label?: string | null;
+            readonly version?: string | null;
+          } | null;
+          readonly total: {
+            readonly isTaxable: boolean;
+            readonly isNetPrice: boolean;
+            readonly amount: number;
+            readonly currency: string;
+          };
+          readonly discounted?: ReadonlyArray<{
+            readonly _id: string;
+            readonly orderDiscount: {
+              readonly _id: string;
+              readonly trigger: IOrderDiscountTrigger;
+              readonly code?: string | null;
+              readonly order: {
+                readonly _id: string;
+                readonly orderNumber?: string | null;
+              };
+              readonly interface?: {
+                readonly _id: string;
+                readonly label?: string | null;
+                readonly version?: string | null;
+              } | null;
+              readonly total: {
+                readonly isTaxable: boolean;
+                readonly isNetPrice: boolean;
+                readonly amount: number;
+                readonly currency: string;
+              };
+            };
+          }> | null;
+        };
+      }> | null;
+    } | null;
+    readonly contact?: {
+      readonly telNumber?: string | null;
+      readonly emailAddress?: string | null;
+    } | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
+    } | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
+    } | null;
+    readonly billingAddress?: {
+      readonly firstName?: string | null;
+      readonly lastName?: string | null;
+      readonly company?: string | null;
+      readonly addressLine?: string | null;
+      readonly addressLine2?: string | null;
+      readonly postalCode?: string | null;
+      readonly countryCode?: string | null;
+      readonly regionCode?: string | null;
+      readonly city?: string | null;
+    } | null;
+    readonly total?: {
+      readonly isTaxable: boolean;
+      readonly amount: number;
+      readonly currency: string;
+    } | null;
+    readonly items?: ReadonlyArray<{
+      readonly _id: string;
+      readonly quantity: number;
+      readonly product: {
+        readonly _id: string;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly brand?: string | null;
+          readonly vendor?: string | null;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+        } | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly file: { readonly _id: string; readonly url: string };
+        }>;
+      };
+      readonly unitPrice?: {
+        readonly amount: number;
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
+        readonly currency: string;
+      } | null;
+      readonly total?: {
+        readonly amount: number;
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
+        readonly currency: string;
       } | null;
     }> | null;
   } | null;
@@ -9285,8 +8993,11 @@ export type IOrderQuery = {
 export type IOrderStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IOrderStatusQuery = {
-  orderStatusType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly orderStatusType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -9295,41 +9006,41 @@ export type IOrdersQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeCarts?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IOrdersQuery = {
-  ordersCount: number;
-  orders: Array<{
-    _id: string;
-    status?: IOrderStatus | null;
-    created?: any | null;
-    updated?: any | null;
-    ordered?: any | null;
-    orderNumber?: string | null;
-    confirmed?: any | null;
-    fullfilled?: any | null;
-    contact?: {
-      telNumber?: string | null;
-      emailAddress?: string | null;
+  readonly ordersCount: number;
+  readonly orders: ReadonlyArray<{
+    readonly _id: string;
+    readonly status?: IOrderStatus | null;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly ordered?: any | null;
+    readonly orderNumber?: string | null;
+    readonly confirmed?: any | null;
+    readonly fullfilled?: any | null;
+    readonly contact?: {
+      readonly telNumber?: string | null;
+      readonly emailAddress?: string | null;
     } | null;
-    total?: {
-      _id: string;
-      isTaxable: boolean;
-      isNetPrice: boolean;
-      amount: number;
-      currency: string;
+    readonly total?: {
+      readonly _id: string;
+      readonly isTaxable: boolean;
+      readonly isNetPrice: boolean;
+      readonly amount: number;
+      readonly currency: string;
     } | null;
-    user?: {
-      _id: string;
-      username?: string | null;
-      isGuest: boolean;
-      avatar?: { _id: string; url: string } | null;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+    readonly user?: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly isGuest: boolean;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
     } | null;
@@ -9340,58 +9051,62 @@ export type IPayOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IPayOrderMutation = { payOrder: { _id: string } };
+export type IPayOrderMutation = { readonly payOrder: { readonly _id: string } };
 
 export type IRejectOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IRejectOrderMutation = { rejectOrder: { _id: string } };
+export type IRejectOrderMutation = {
+  readonly rejectOrder: { readonly _id: string };
+};
 
 export type IRemoveOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveOrderMutation = { removeOrder: { _id: string } };
+export type IRemoveOrderMutation = {
+  readonly removeOrder: { readonly _id: string };
+};
 
 export type IUserOrderQueryVariables = Exact<{
   userId?: InputMaybe<Scalars['ID']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IUserOrderQuery = {
-  user?: {
-    orders: Array<{
-      _id: string;
-      status?: IOrderStatus | null;
-      created?: any | null;
-      updated?: any | null;
-      ordered?: any | null;
-      orderNumber?: string | null;
-      confirmed?: any | null;
-      fullfilled?: any | null;
-      contact?: {
-        telNumber?: string | null;
-        emailAddress?: string | null;
+  readonly user?: {
+    readonly orders: ReadonlyArray<{
+      readonly _id: string;
+      readonly status?: IOrderStatus | null;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly ordered?: any | null;
+      readonly orderNumber?: string | null;
+      readonly confirmed?: any | null;
+      readonly fullfilled?: any | null;
+      readonly contact?: {
+        readonly telNumber?: string | null;
+        readonly emailAddress?: string | null;
       } | null;
-      total?: {
-        _id: string;
-        isTaxable: boolean;
-        isNetPrice: boolean;
-        amount: number;
-        currency: string;
+      readonly total?: {
+        readonly _id: string;
+        readonly isTaxable: boolean;
+        readonly isNetPrice: boolean;
+        readonly amount: number;
+        readonly currency: string;
       } | null;
-      user?: {
-        _id: string;
-        username?: string | null;
-        isGuest: boolean;
-        avatar?: { _id: string; url: string } | null;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
+      readonly user?: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
+        readonly avatar?: { readonly _id: string; readonly url: string } | null;
+        readonly profile?: {
+          readonly displayName?: string | null;
+          readonly address?: {
+            readonly firstName?: string | null;
+            readonly lastName?: string | null;
           } | null;
         } | null;
       } | null;
@@ -9399,44 +9114,42 @@ export type IUserOrderQuery = {
   } | null;
 };
 
-export type IPaymentProviderFragmentFragment = {
-  _id: string;
-  created?: any | null;
-  updated?: any | null;
-  deleted?: any | null;
-  isActive?: boolean | null;
-  type?: IPaymentProviderType | null;
-  configuration?: any | null;
-  configurationError?: IPaymentProviderError | null;
-  interface?: {
-    _id: string;
-    label?: string | null;
-    version?: string | null;
+export type IPaymentProviderFragment = {
+  readonly _id: string;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly deleted?: any | null;
+  readonly isActive?: boolean | null;
+  readonly type?: IPaymentProviderType | null;
+  readonly configuration?: any | null;
+  readonly configurationError?: IPaymentProviderError | null;
+  readonly interface?: {
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly version?: string | null;
   } | null;
 };
 
-export type IPaymentProviderFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IPaymentProviderFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreatePaymentProviderMutationVariables = Exact<{
   paymentProvider: ICreatePaymentProviderInput;
 }>;
 
 export type ICreatePaymentProviderMutation = {
-  createPaymentProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IPaymentProviderType | null;
-    configuration?: any | null;
-    configurationError?: IPaymentProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly createPaymentProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IPaymentProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IPaymentProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
@@ -9446,10 +9159,10 @@ export type IPaymentInterfacesQueryVariables = Exact<{
 }>;
 
 export type IPaymentInterfacesQuery = {
-  paymentInterfaces: Array<{
-    _id: string;
-    label?: string | null;
-    value: string;
+  readonly paymentInterfaces: ReadonlyArray<{
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly value: string;
   }>;
 };
 
@@ -9458,19 +9171,19 @@ export type IPaymentProviderQueryVariables = Exact<{
 }>;
 
 export type IPaymentProviderQuery = {
-  paymentProvider?: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IPaymentProviderType | null;
-    configuration?: any | null;
-    configurationError?: IPaymentProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly paymentProvider?: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IPaymentProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IPaymentProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   } | null;
 };
@@ -9480,8 +9193,11 @@ export type IPaymentProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IPaymentProvidersTypeQuery = {
-  paymentProviderType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly paymentProviderType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -9490,19 +9206,19 @@ export type IPaymentProvidersQueryVariables = Exact<{
 }>;
 
 export type IPaymentProvidersQuery = {
-  paymentProviders: Array<{
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IPaymentProviderType | null;
-    configuration?: any | null;
-    configurationError?: IPaymentProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly paymentProviders: ReadonlyArray<{
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IPaymentProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IPaymentProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   }>;
 };
@@ -9510,8 +9226,11 @@ export type IPaymentProvidersQuery = {
 export type IOrderPaymentStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IOrderPaymentStatusQuery = {
-  paymentStatusTypes?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly paymentStatusTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -9520,7 +9239,7 @@ export type IRemovePaymentProviderMutationVariables = Exact<{
 }>;
 
 export type IRemovePaymentProviderMutation = {
-  removePaymentProvider: { _id: string };
+  readonly removePaymentProvider: { readonly _id: string };
 };
 
 export type IUpdatePaymentProviderMutationVariables = Exact<{
@@ -9529,170 +9248,109 @@ export type IUpdatePaymentProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdatePaymentProviderMutation = {
-  updatePaymentProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IPaymentProviderType | null;
-    configuration?: any | null;
-    configurationError?: IPaymentProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly updatePaymentProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IPaymentProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IPaymentProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
 
-export type IProductReviewDetailFragmentFragment = {
-  _id: string;
-  created?: any | null;
-  updated?: any | null;
-  deleted?: any | null;
-  rating?: number | null;
-  title?: string | null;
-  review?: string | null;
-  upVote?: number | null;
-  downVote?: number | null;
-  voteReport?: number | null;
-  author: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    isGuest: boolean;
-    profile?: {
-      displayName?: string | null;
-      address?: { firstName?: string | null; lastName?: string | null } | null;
+export type IProductReviewDetailFragment = {
+  readonly _id: string;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly deleted?: any | null;
+  readonly rating?: number | null;
+  readonly title?: string | null;
+  readonly review?: string | null;
+  readonly upVote?: number | null;
+  readonly downVote?: number | null;
+  readonly voteReport?: number | null;
+  readonly author: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly isGuest: boolean;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+      } | null;
     } | null;
-    avatar?: { _id: string; url: string } | null;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
   };
-  product:
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      };
-  ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+  readonly product: {
+    readonly _id: string;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+    } | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+  };
+  readonly ownVotes: ReadonlyArray<{
+    readonly timestamp: any;
+    readonly type: IProductReviewVoteType;
+  }>;
 };
 
-export type IProductReviewDetailFragmentFragmentVariables = Exact<{
+export type IProductReviewDetailFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IProductReviewFragmentFragment = {
-  _id: string;
-  created?: any | null;
-  updated?: any | null;
-  deleted?: any | null;
-  rating?: number | null;
-  title?: string | null;
-  upVote?: number | null;
-  downVote?: number | null;
-  voteReport?: number | null;
-  author: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    isGuest: boolean;
-    profile?: {
-      displayName?: string | null;
-      address?: { firstName?: string | null; lastName?: string | null } | null;
+export type IProductReviewFragment = {
+  readonly _id: string;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly deleted?: any | null;
+  readonly rating?: number | null;
+  readonly title?: string | null;
+  readonly upVote?: number | null;
+  readonly downVote?: number | null;
+  readonly voteReport?: number | null;
+  readonly author: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly isGuest: boolean;
+    readonly profile?: {
+      readonly displayName?: string | null;
+      readonly address?: {
+        readonly firstName?: string | null;
+        readonly lastName?: string | null;
+      } | null;
     } | null;
-    avatar?: { _id: string; url: string } | null;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
   };
-  product:
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-        } | null;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      };
+  readonly product: {
+    readonly _id: string;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+    } | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+  };
 };
 
-export type IProductReviewFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IProductReviewFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddProductReviewVoteMutationVariables = Exact<{
   productReviewId: Scalars['ID']['input'];
@@ -9701,78 +9359,47 @@ export type IAddProductReviewVoteMutationVariables = Exact<{
 }>;
 
 export type IAddProductReviewVoteMutation = {
-  addProductReviewVote: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    upVote?: number | null;
-    downVote?: number | null;
-    voteReport?: number | null;
-    author: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      isGuest: boolean;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+  readonly addProductReviewVote: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly upVote?: number | null;
+    readonly downVote?: number | null;
+    readonly voteReport?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly isGuest: boolean;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { _id: string; url: string } | null;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        };
-    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly timestamp: any;
+      readonly type: IProductReviewVoteType;
+    }>;
   };
 };
 
@@ -9782,78 +9409,47 @@ export type ICreateProductReviewMutationVariables = Exact<{
 }>;
 
 export type ICreateProductReviewMutation = {
-  createProductReview: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    upVote?: number | null;
-    downVote?: number | null;
-    voteReport?: number | null;
-    author: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      isGuest: boolean;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+  readonly createProductReview: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly upVote?: number | null;
+    readonly downVote?: number | null;
+    readonly voteReport?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly isGuest: boolean;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { _id: string; url: string } | null;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        };
-    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly timestamp: any;
+      readonly type: IProductReviewVoteType;
+    }>;
   };
 };
 
@@ -9862,78 +9458,47 @@ export type IProductReviewQueryVariables = Exact<{
 }>;
 
 export type IProductReviewQuery = {
-  productReview: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    upVote?: number | null;
-    downVote?: number | null;
-    voteReport?: number | null;
-    author: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      isGuest: boolean;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+  readonly productReview: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly upVote?: number | null;
+    readonly downVote?: number | null;
+    readonly voteReport?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly isGuest: boolean;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { _id: string; url: string } | null;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        };
-    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly timestamp: any;
+      readonly type: IProductReviewVoteType;
+    }>;
   };
 };
 
@@ -9942,472 +9507,56 @@ export type IProductReviewByProductQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IProductReviewByProductQuery = {
-  product?:
-    | {
-        _id: string;
-        reviewsCount: number;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          upVote?: number | null;
-          downVote?: number | null;
-          voteReport?: number | null;
-          author: {
-            _id: string;
-            username?: string | null;
-            name: string;
-            isGuest: boolean;
-            profile?: {
-              displayName?: string | null;
-              address?: {
-                firstName?: string | null;
-                lastName?: string | null;
-              } | null;
-            } | null;
-            avatar?: { _id: string; url: string } | null;
-          };
-          product:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              };
-          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+  readonly product?: {
+    readonly _id: string;
+    readonly reviewsCount: number;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly deleted?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly upVote?: number | null;
+      readonly downVote?: number | null;
+      readonly voteReport?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly name: string;
+        readonly isGuest: boolean;
+        readonly profile?: {
+          readonly displayName?: string | null;
+          readonly address?: {
+            readonly firstName?: string | null;
+            readonly lastName?: string | null;
+          } | null;
+        } | null;
+        readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      };
+      readonly product: {
+        readonly _id: string;
+        readonly texts?: {
+          readonly _id: string;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+        } | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
-      }
-    | {
-        _id: string;
-        reviewsCount: number;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          upVote?: number | null;
-          downVote?: number | null;
-          voteReport?: number | null;
-          author: {
-            _id: string;
-            username?: string | null;
-            name: string;
-            isGuest: boolean;
-            profile?: {
-              displayName?: string | null;
-              address?: {
-                firstName?: string | null;
-                lastName?: string | null;
-              } | null;
-            } | null;
-            avatar?: { _id: string; url: string } | null;
-          };
-          product:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              };
-          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-        }>;
-      }
-    | {
-        _id: string;
-        reviewsCount: number;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          upVote?: number | null;
-          downVote?: number | null;
-          voteReport?: number | null;
-          author: {
-            _id: string;
-            username?: string | null;
-            name: string;
-            isGuest: boolean;
-            profile?: {
-              displayName?: string | null;
-              address?: {
-                firstName?: string | null;
-                lastName?: string | null;
-              } | null;
-            } | null;
-            avatar?: { _id: string; url: string } | null;
-          };
-          product:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              };
-          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-        }>;
-      }
-    | {
-        _id: string;
-        reviewsCount: number;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          upVote?: number | null;
-          downVote?: number | null;
-          voteReport?: number | null;
-          author: {
-            _id: string;
-            username?: string | null;
-            name: string;
-            isGuest: boolean;
-            profile?: {
-              displayName?: string | null;
-              address?: {
-                firstName?: string | null;
-                lastName?: string | null;
-              } | null;
-            } | null;
-            avatar?: { _id: string; url: string } | null;
-          };
-          product:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              };
-          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-        }>;
-      }
-    | {
-        _id: string;
-        reviewsCount: number;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          updated?: any | null;
-          deleted?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          upVote?: number | null;
-          downVote?: number | null;
-          voteReport?: number | null;
-          author: {
-            _id: string;
-            username?: string | null;
-            name: string;
-            isGuest: boolean;
-            profile?: {
-              displayName?: string | null;
-              address?: {
-                firstName?: string | null;
-                lastName?: string | null;
-              } | null;
-            } | null;
-            avatar?: { _id: string; url: string } | null;
-          };
-          product:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  subtitle?: string | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  file: { _id: string; url: string };
-                }>;
-              };
-          ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
-        }>;
-      }
-    | null;
+      };
+      readonly ownVotes: ReadonlyArray<{
+        readonly timestamp: any;
+        readonly type: IProductReviewVoteType;
+      }>;
+    }>;
+  } | null;
 };
 
 export type IRemoveProductReviewMutationVariables = Exact<{
@@ -10415,7 +9564,7 @@ export type IRemoveProductReviewMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductReviewMutation = {
-  removeProductReview: { _id: string };
+  readonly removeProductReview: { readonly _id: string };
 };
 
 export type IRemoveProductReviewVoteMutationVariables = Exact<{
@@ -10424,78 +9573,47 @@ export type IRemoveProductReviewVoteMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductReviewVoteMutation = {
-  removeProductReviewVote: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    upVote?: number | null;
-    downVote?: number | null;
-    voteReport?: number | null;
-    author: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      isGuest: boolean;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+  readonly removeProductReviewVote: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly upVote?: number | null;
+    readonly downVote?: number | null;
+    readonly voteReport?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly isGuest: boolean;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { _id: string; url: string } | null;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        };
-    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly timestamp: any;
+      readonly type: IProductReviewVoteType;
+    }>;
   };
 };
 
@@ -10503,749 +9621,312 @@ export type IUserProductReviewsQueryVariables = Exact<{
   userId: Scalars['ID']['input'];
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IUserProductReviewsQuery = {
-  user?: {
-    _id: string;
-    reviewsCount: number;
-    reviews: Array<{
-      _id: string;
-      created?: any | null;
-      updated?: any | null;
-      deleted?: any | null;
-      rating?: number | null;
-      title?: string | null;
-      review?: string | null;
-      upVote?: number | null;
-      downVote?: number | null;
-      voteReport?: number | null;
-      product:
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              slug?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              slug?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              slug?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              slug?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            sequence: number;
-            status: IProductStatus;
-            tags?: Array<any> | null;
-            updated?: any | null;
-            published?: any | null;
-            texts?: {
-              _id: string;
-              title?: string | null;
-              subtitle?: string | null;
-              slug?: string | null;
-              description?: string | null;
-              vendor?: string | null;
-              brand?: string | null;
-              labels?: Array<string> | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              tags?: Array<any> | null;
-              file: { _id: string; url: string };
-            }>;
-          };
-      author: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        isGuest: boolean;
-        profile?: {
-          displayName?: string | null;
-          address?: {
-            firstName?: string | null;
-            lastName?: string | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly reviewsCount: number;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly updated?: any | null;
+      readonly deleted?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly upVote?: number | null;
+      readonly downVote?: number | null;
+      readonly voteReport?: number | null;
+      readonly product: {
+        readonly _id: string;
+        readonly sequence: number;
+        readonly status: IProductStatus;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly updated?: any | null;
+        readonly published?: any | null;
+        readonly texts?: {
+          readonly _id: string;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly slug?: string | null;
+          readonly description?: string | null;
+          readonly vendor?: string | null;
+          readonly brand?: string | null;
+          readonly labels?: ReadonlyArray<string> | null;
+        } | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
+        }>;
+      };
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly name: string;
+        readonly isGuest: boolean;
+        readonly profile?: {
+          readonly displayName?: string | null;
+          readonly address?: {
+            readonly firstName?: string | null;
+            readonly lastName?: string | null;
           } | null;
         } | null;
-        avatar?: { _id: string; url: string } | null;
+        readonly avatar?: { readonly _id: string; readonly url: string } | null;
       };
-      ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+      readonly ownVotes: ReadonlyArray<{
+        readonly timestamp: any;
+        readonly type: IProductReviewVoteType;
+      }>;
     }>;
   } | null;
 };
 
-export type IProductAssignmentFragmentFragment = {
-  _id: string;
-  vectors?: Array<{
-    _id: string;
-    option?: {
-      _id: string;
-      value?: string | null;
-      texts?: {
-        _id: string;
-        title?: string | null;
-        subtitle?: string | null;
+export type IProductAssignmentFragment = {
+  readonly _id: string;
+  readonly vectors?: ReadonlyArray<{
+    readonly _id: string;
+    readonly option?: {
+      readonly _id: string;
+      readonly value?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
       } | null;
     } | null;
-    variation?: {
-      _id: string;
-      key?: string | null;
-      texts?: {
-        _id: string;
-        locale?: string | null;
-        title?: string | null;
+    readonly variation?: {
+      readonly _id: string;
+      readonly key?: string | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly locale?: string | null;
+        readonly title?: string | null;
       } | null;
     } | null;
   }> | null;
-  product?:
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          slug?: string | null;
-          subtitle?: string | null;
-        } | null;
-      }
-    | null;
+  readonly product?: {
+    readonly _id: string;
+    readonly texts?: {
+      readonly _id: string;
+      readonly title?: string | null;
+      readonly slug?: string | null;
+      readonly subtitle?: string | null;
+    } | null;
+  } | null;
 };
 
-export type IProductAssignmentFragmentFragmentVariables = Exact<{
+export type IProductAssignmentFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-type IProductBriefFragment_BundleProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
+export type IProductBriefFragment = {
+  readonly _id: string;
+  readonly sequence: number;
+  readonly status: IProductStatus;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly updated?: any | null;
+  readonly published?: any | null;
+  readonly texts?: {
+    readonly _id: string;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
+    readonly vendor?: string | null;
+    readonly brand?: string | null;
+    readonly labels?: ReadonlyArray<string> | null;
   } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
+  readonly media: ReadonlyArray<{
+    readonly _id: string;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly file: { readonly _id: string; readonly url: string };
   }>;
 };
 
-type IProductBriefFragment_ConfigurableProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
-  } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-};
+export type IProductBriefFragmentVariables = Exact<{ [key: string]: never }>;
 
-type IProductBriefFragment_PlanProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
-  } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-};
-
-type IProductBriefFragment_SimpleProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
-  } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-};
-
-type IProductBriefFragment_TokenizedProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  texts?: {
-    _id: string;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
-  } | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-};
-
-export type IProductBriefFragmentFragment =
-  | IProductBriefFragment_BundleProduct_Fragment
-  | IProductBriefFragment_ConfigurableProduct_Fragment
-  | IProductBriefFragment_PlanProduct_Fragment
-  | IProductBriefFragment_SimpleProduct_Fragment
-  | IProductBriefFragment_TokenizedProduct_Fragment;
-
-export type IProductBriefFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type IProductCatalogPriceFragmentFragment = {
-  _id: string;
-  isTaxable: boolean;
-  isNetPrice: boolean;
-  amount: number;
-  maxQuantity?: number | null;
-  country: {
-    _id: string;
-    isoCode?: string | null;
-    name?: string | null;
-    flagEmoji?: string | null;
+export type IProductCatalogPriceFragment = {
+  readonly _id: string;
+  readonly isTaxable: boolean;
+  readonly isNetPrice: boolean;
+  readonly amount: number;
+  readonly maxQuantity?: number | null;
+  readonly country: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly name?: string | null;
+    readonly flagEmoji?: string | null;
   };
-  currency: { _id: string; isoCode: string; isActive?: boolean | null };
+  readonly currency: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+  };
 };
 
-export type IProductCatalogPriceFragmentFragmentVariables = Exact<{
+export type IProductCatalogPriceFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-type IProductDetailFragment_BundleProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  created?: any | null;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
+export type IProductDetailFragment = {
+  readonly _id: string;
+  readonly sequence: number;
+  readonly status: IProductStatus;
+  readonly created?: any | null;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly updated?: any | null;
+  readonly published?: any | null;
+  readonly media: ReadonlyArray<{
+    readonly _id: string;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly file: { readonly _id: string; readonly url: string };
   }>;
-  reviews: Array<{
-    _id: string;
-    created?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    voteCount?: number | null;
-    author: { _id: string; username?: string | null; isGuest: boolean };
-    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+  readonly reviews: ReadonlyArray<{
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly voteCount?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly isGuest: boolean;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly type: IProductReviewVoteType;
+      readonly timestamp: any;
+    }>;
   }>;
-  siblings: Array<
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-  >;
+  readonly siblings: ReadonlyArray<{
+    readonly _id: string;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+  }>;
 };
 
-type IProductDetailFragment_ConfigurableProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  created?: any | null;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-  reviews: Array<{
-    _id: string;
-    created?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    voteCount?: number | null;
-    author: { _id: string; username?: string | null; isGuest: boolean };
-    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-  }>;
-  siblings: Array<
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-  >;
+export type IProductDetailFragmentVariables = Exact<{ [key: string]: never }>;
+
+export type IProductDimensionFragment = {
+  readonly weight?: number | null;
+  readonly length?: number | null;
+  readonly width?: number | null;
+  readonly height?: number | null;
 };
 
-type IProductDetailFragment_PlanProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  created?: any | null;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-  reviews: Array<{
-    _id: string;
-    created?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    voteCount?: number | null;
-    author: { _id: string; username?: string | null; isGuest: boolean };
-    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-  }>;
-  siblings: Array<
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-  >;
-};
-
-type IProductDetailFragment_SimpleProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  created?: any | null;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-  reviews: Array<{
-    _id: string;
-    created?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    voteCount?: number | null;
-    author: { _id: string; username?: string | null; isGuest: boolean };
-    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-  }>;
-  siblings: Array<
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-  >;
-};
-
-type IProductDetailFragment_TokenizedProduct_Fragment = {
-  _id: string;
-  sequence: number;
-  status: IProductStatus;
-  created?: any | null;
-  tags?: Array<any> | null;
-  updated?: any | null;
-  published?: any | null;
-  media: Array<{
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-  }>;
-  reviews: Array<{
-    _id: string;
-    created?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    voteCount?: number | null;
-    author: { _id: string; username?: string | null; isGuest: boolean };
-    ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-  }>;
-  siblings: Array<
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-    | {
-        _id: string;
-        media: Array<{ _id: string; file: { _id: string; url: string } }>;
-      }
-  >;
-};
-
-export type IProductDetailFragmentFragment =
-  | IProductDetailFragment_BundleProduct_Fragment
-  | IProductDetailFragment_ConfigurableProduct_Fragment
-  | IProductDetailFragment_PlanProduct_Fragment
-  | IProductDetailFragment_SimpleProduct_Fragment
-  | IProductDetailFragment_TokenizedProduct_Fragment;
-
-export type IProductDetailFragmentFragmentVariables = Exact<{
+export type IProductDimensionFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IProductDimensionFragmentFragment = {
-  weight?: number | null;
-  length?: number | null;
-  width?: number | null;
-  height?: number | null;
-};
-
-export type IProductDimensionFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type IProductMediaFragmentFragment = {
-  _id: string;
-  tags?: Array<any> | null;
-  sortKey: number;
-  file: { _id: string; name: string; type: string; size: number; url: string };
-  texts?: {
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+export type IProductMediaFragment = {
+  readonly _id: string;
+  readonly tags?: ReadonlyArray<any> | null;
+  readonly sortKey: number;
+  readonly file: {
+    readonly _id: string;
+    readonly name: string;
+    readonly type: string;
+    readonly size: number;
+    readonly url: string;
+  };
+  readonly texts?: {
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   } | null;
 };
 
-export type IProductMediaFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IProductMediaFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IProductMediaTextsFragmentFragment = {
-  _id: string;
-  locale?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
+export type IProductMediaTextsFragment = {
+  readonly _id: string;
+  readonly locale?: string | null;
+  readonly title?: string | null;
+  readonly subtitle?: string | null;
 };
 
-export type IProductMediaTextsFragmentFragmentVariables = Exact<{
+export type IProductMediaTextsFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IProductPlanConfigurationFragmentFragment = {
-  usageCalculationType: IProductPlanUsageCalculationType;
-  billingInterval: IProductPlanConfigurationInterval;
-  trialInterval?: IProductPlanConfigurationInterval | null;
-  trialIntervalCount?: number | null;
-  billingIntervalCount?: number | null;
+export type IProductPlanConfigurationFragment = {
+  readonly usageCalculationType: IProductPlanUsageCalculationType;
+  readonly billingInterval: IProductPlanConfigurationInterval;
+  readonly trialInterval?: IProductPlanConfigurationInterval | null;
+  readonly trialIntervalCount?: number | null;
+  readonly billingIntervalCount?: number | null;
 };
 
-export type IProductPlanConfigurationFragmentFragmentVariables = Exact<{
+export type IProductPlanConfigurationFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type IProductTextsFragmentFragment = {
-  _id: string;
-  locale?: string | null;
-  slug?: string | null;
-  title?: string | null;
-  subtitle?: string | null;
-  description?: string | null;
-  vendor?: string | null;
-  brand?: string | null;
-  labels?: Array<string> | null;
+export type IProductTextsFragment = {
+  readonly _id: string;
+  readonly locale?: string | null;
+  readonly slug?: string | null;
+  readonly title?: string | null;
+  readonly subtitle?: string | null;
+  readonly description?: string | null;
+  readonly vendor?: string | null;
+  readonly brand?: string | null;
+  readonly labels?: ReadonlyArray<string> | null;
 };
 
-export type IProductTextsFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IProductTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IProductVariationFragmentFragment = {
-  _id: string;
-  type?: IProductVariationType | null;
-  key?: string | null;
-  texts?: {
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+export type IProductVariationFragment = {
+  readonly _id: string;
+  readonly type?: IProductVariationType | null;
+  readonly key?: string | null;
+  readonly texts?: {
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   } | null;
-  options?: Array<{
-    _id: string;
-    value?: string | null;
-    texts?: {
-      _id: string;
-      locale?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
+  readonly options?: ReadonlyArray<{
+    readonly _id: string;
+    readonly value?: string | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly locale?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
     } | null;
   }> | null;
 };
 
-export type IProductVariationFragmentFragmentVariables = Exact<{
+export type IProductVariationFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-export type ITokenFragmentFragment = {
-  _id: string;
-  walletAddress?: string | null;
-  status: ITokenExportStatus;
-  quantity: number;
-  contractAddress?: string | null;
-  chainId?: string | null;
-  chainTokenId?: string | null;
+export type ITokenFragment = {
+  readonly _id: string;
+  readonly walletAddress?: string | null;
+  readonly status: ITokenExportStatus;
+  readonly quantity: number;
+  readonly contractAddress?: string | null;
+  readonly chainId?: string | null;
+  readonly chainTokenId?: string | null;
 };
 
-export type ITokenFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type ITokenFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddProductAssignmentMutationVariables = Exact<{
   proxyId: Scalars['ID']['input'];
   productId: Scalars['ID']['input'];
-  vectors: Array<IProductAssignmentVectorInput> | IProductAssignmentVectorInput;
+  vectors: ReadonlyArray<IProductAssignmentVectorInput>;
 }>;
 
 export type IAddProductAssignmentMutation = {
-  addProductAssignment:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string };
+  readonly addProductAssignment: { readonly _id: string };
 };
 
 export type IAddProductMediaMutationVariables = Exact<{
@@ -11253,244 +9934,53 @@ export type IAddProductMediaMutationVariables = Exact<{
   media: Scalars['Upload']['input'];
 }>;
 
-export type IAddProductMediaMutation = { addProductMedia: { _id: string } };
+export type IAddProductMediaMutation = {
+  readonly addProductMedia: { readonly _id: string };
+};
 
 export type ICreateProductMutationVariables = Exact<{
   product: ICreateProductInput;
 }>;
 
 export type ICreateProductMutation = {
-  createProduct:
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
+  readonly createProduct: {
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly created?: any | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly voteCount?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
       };
+      readonly ownVotes: ReadonlyArray<{
+        readonly type: IProductReviewVoteType;
+        readonly timestamp: any;
+      }>;
+    }>;
+    readonly siblings: ReadonlyArray<{
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
+  };
 };
 
 export type ICreateProductBundleItemMutationVariables = Exact<{
@@ -11499,12 +9989,7 @@ export type ICreateProductBundleItemMutationVariables = Exact<{
 }>;
 
 export type ICreateProductBundleItemMutation = {
-  createProductBundleItem:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string };
+  readonly createProductBundleItem: { readonly _id: string };
 };
 
 export type ICreateProductVariationMutationVariables = Exact<{
@@ -11513,7 +9998,7 @@ export type ICreateProductVariationMutationVariables = Exact<{
 }>;
 
 export type ICreateProductVariationMutation = {
-  createProductVariation: { _id: string };
+  readonly createProductVariation: { readonly _id: string };
 };
 
 export type ICreateProductVariationOptionMutationVariables = Exact<{
@@ -11522,7 +10007,7 @@ export type ICreateProductVariationOptionMutationVariables = Exact<{
 }>;
 
 export type ICreateProductVariationOptionMutation = {
-  createProductVariationOption: { _id: string };
+  readonly createProductVariationOption: { readonly _id: string };
 };
 
 export type IExportTokenMutationVariables = Exact<{
@@ -11532,14 +10017,14 @@ export type IExportTokenMutationVariables = Exact<{
 }>;
 
 export type IExportTokenMutation = {
-  exportToken: {
-    _id: string;
-    walletAddress?: string | null;
-    status: ITokenExportStatus;
-    quantity: number;
-    contractAddress?: string | null;
-    chainId?: string | null;
-    chainTokenId?: string | null;
+  readonly exportToken: {
+    readonly _id: string;
+    readonly walletAddress?: string | null;
+    readonly status: ITokenExportStatus;
+    readonly quantity: number;
+    readonly contractAddress?: string | null;
+    readonly chainId?: string | null;
+    readonly chainTokenId?: string | null;
   };
 };
 
@@ -11549,260 +10034,88 @@ export type IProductQueryVariables = Exact<{
 }>;
 
 export type IProductQuery = {
-  product?:
+  readonly product?:
     | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
+        readonly _id: string;
+        readonly sequence: number;
+        readonly status: IProductStatus;
+        readonly created?: any | null;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly updated?: any | null;
+        readonly published?: any | null;
+        readonly texts?: {
+          readonly _id: string;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly description?: string | null;
         } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        readonly reviews: ReadonlyArray<{
+          readonly _id: string;
+          readonly created?: any | null;
+          readonly rating?: number | null;
+          readonly title?: string | null;
+          readonly review?: string | null;
+          readonly voteCount?: number | null;
+          readonly author: {
+            readonly _id: string;
+            readonly username?: string | null;
+            readonly isGuest: boolean;
+          };
+          readonly ownVotes: ReadonlyArray<{
+            readonly type: IProductReviewVoteType;
+            readonly timestamp: any;
+          }>;
         }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
+        readonly siblings: ReadonlyArray<{
+          readonly _id: string;
+          readonly media: ReadonlyArray<{
+            readonly _id: string;
+            readonly file: { readonly _id: string; readonly url: string };
+          }>;
+        }>;
       }
     | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly _id: string;
+        readonly sequence: number;
+        readonly status: IProductStatus;
+        readonly created?: any | null;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly updated?: any | null;
+        readonly published?: any | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
+        readonly reviews: ReadonlyArray<{
+          readonly _id: string;
+          readonly created?: any | null;
+          readonly rating?: number | null;
+          readonly title?: string | null;
+          readonly review?: string | null;
+          readonly voteCount?: number | null;
+          readonly author: {
+            readonly _id: string;
+            readonly username?: string | null;
+            readonly isGuest: boolean;
+          };
+          readonly ownVotes: ReadonlyArray<{
+            readonly type: IProductReviewVoteType;
+            readonly timestamp: any;
+          }>;
         }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly siblings: ReadonlyArray<{
+          readonly _id: string;
+          readonly media: ReadonlyArray<{
+            readonly _id: string;
+            readonly file: { readonly _id: string; readonly url: string };
+          }>;
         }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
       }
     | null;
 };
@@ -11813,101 +10126,66 @@ export type IProductAssignmentsQueryVariables = Exact<{
 }>;
 
 export type IProductAssignmentsQuery = {
-  product?:
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
     | {
-        _id: string;
-        texts?: {
-          _id: string;
-          subtitle?: string | null;
-          slug?: string | null;
-          title?: string | null;
+        readonly _id: string;
+        readonly texts?: {
+          readonly _id: string;
+          readonly subtitle?: string | null;
+          readonly slug?: string | null;
+          readonly title?: string | null;
         } | null;
-        variations?: Array<{
-          _id: string;
-          key?: string | null;
-          texts?: { _id: string; title?: string | null } | null;
-          options?: Array<{
-            _id: string;
-            value?: string | null;
-            texts?: { _id: string; title?: string | null } | null;
+        readonly variations?: ReadonlyArray<{
+          readonly _id: string;
+          readonly key?: string | null;
+          readonly texts?: {
+            readonly _id: string;
+            readonly title?: string | null;
+          } | null;
+          readonly options?: ReadonlyArray<{
+            readonly _id: string;
+            readonly value?: string | null;
+            readonly texts?: {
+              readonly _id: string;
+              readonly title?: string | null;
+            } | null;
           }> | null;
         }> | null;
-        assignments: Array<{
-          _id: string;
-          vectors?: Array<{
-            _id: string;
-            option?: {
-              _id: string;
-              value?: string | null;
-              texts?: {
-                _id: string;
-                title?: string | null;
-                subtitle?: string | null;
+        readonly assignments: ReadonlyArray<{
+          readonly _id: string;
+          readonly vectors?: ReadonlyArray<{
+            readonly _id: string;
+            readonly option?: {
+              readonly _id: string;
+              readonly value?: string | null;
+              readonly texts?: {
+                readonly _id: string;
+                readonly title?: string | null;
+                readonly subtitle?: string | null;
               } | null;
             } | null;
-            variation?: {
-              _id: string;
-              key?: string | null;
-              texts?: {
-                _id: string;
-                locale?: string | null;
-                title?: string | null;
+            readonly variation?: {
+              readonly _id: string;
+              readonly key?: string | null;
+              readonly texts?: {
+                readonly _id: string;
+                readonly locale?: string | null;
+                readonly title?: string | null;
               } | null;
             } | null;
           }> | null;
-          product?:
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  slug?: string | null;
-                  subtitle?: string | null;
-                } | null;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  slug?: string | null;
-                  subtitle?: string | null;
-                } | null;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  slug?: string | null;
-                  subtitle?: string | null;
-                } | null;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  slug?: string | null;
-                  subtitle?: string | null;
-                } | null;
-              }
-            | {
-                _id: string;
-                texts?: {
-                  _id: string;
-                  title?: string | null;
-                  slug?: string | null;
-                  subtitle?: string | null;
-                } | null;
-              }
-            | null;
+          readonly product?: {
+            readonly _id: string;
+            readonly texts?: {
+              readonly _id: string;
+              readonly title?: string | null;
+              readonly slug?: string | null;
+              readonly subtitle?: string | null;
+            } | null;
+          } | null;
         }>;
       }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
     | null;
 };
 
@@ -11917,133 +10195,37 @@ export type IProductBundleItemsQueryVariables = Exact<{
 }>;
 
 export type IProductBundleItemsQuery = {
-  product?:
+  readonly product?:
     | {
-        _id: string;
-        bundleItems?: Array<{
-          quantity: number;
-          product:
-            | {
-                _id: string;
-                sequence: number;
-                status: IProductStatus;
-                tags?: Array<any> | null;
-                updated?: any | null;
-                published?: any | null;
-                texts?: {
-                  _id: string;
-                  slug?: string | null;
-                  title?: string | null;
-                  subtitle?: string | null;
-                  description?: string | null;
-                  vendor?: string | null;
-                  brand?: string | null;
-                  labels?: Array<string> | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  tags?: Array<any> | null;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                sequence: number;
-                status: IProductStatus;
-                tags?: Array<any> | null;
-                updated?: any | null;
-                published?: any | null;
-                texts?: {
-                  _id: string;
-                  slug?: string | null;
-                  title?: string | null;
-                  subtitle?: string | null;
-                  description?: string | null;
-                  vendor?: string | null;
-                  brand?: string | null;
-                  labels?: Array<string> | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  tags?: Array<any> | null;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                sequence: number;
-                status: IProductStatus;
-                tags?: Array<any> | null;
-                updated?: any | null;
-                published?: any | null;
-                texts?: {
-                  _id: string;
-                  slug?: string | null;
-                  title?: string | null;
-                  subtitle?: string | null;
-                  description?: string | null;
-                  vendor?: string | null;
-                  brand?: string | null;
-                  labels?: Array<string> | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  tags?: Array<any> | null;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                sequence: number;
-                status: IProductStatus;
-                tags?: Array<any> | null;
-                updated?: any | null;
-                published?: any | null;
-                texts?: {
-                  _id: string;
-                  slug?: string | null;
-                  title?: string | null;
-                  subtitle?: string | null;
-                  description?: string | null;
-                  vendor?: string | null;
-                  brand?: string | null;
-                  labels?: Array<string> | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  tags?: Array<any> | null;
-                  file: { _id: string; url: string };
-                }>;
-              }
-            | {
-                _id: string;
-                sequence: number;
-                status: IProductStatus;
-                tags?: Array<any> | null;
-                updated?: any | null;
-                published?: any | null;
-                texts?: {
-                  _id: string;
-                  slug?: string | null;
-                  title?: string | null;
-                  subtitle?: string | null;
-                  description?: string | null;
-                  vendor?: string | null;
-                  brand?: string | null;
-                  labels?: Array<string> | null;
-                } | null;
-                media: Array<{
-                  _id: string;
-                  tags?: Array<any> | null;
-                  file: { _id: string; url: string };
-                }>;
-              };
+        readonly _id: string;
+        readonly bundleItems?: ReadonlyArray<{
+          readonly quantity: number;
+          readonly product: {
+            readonly _id: string;
+            readonly sequence: number;
+            readonly status: IProductStatus;
+            readonly tags?: ReadonlyArray<any> | null;
+            readonly updated?: any | null;
+            readonly published?: any | null;
+            readonly texts?: {
+              readonly _id: string;
+              readonly slug?: string | null;
+              readonly title?: string | null;
+              readonly subtitle?: string | null;
+              readonly description?: string | null;
+              readonly vendor?: string | null;
+              readonly brand?: string | null;
+              readonly labels?: ReadonlyArray<string> | null;
+            } | null;
+            readonly media: ReadonlyArray<{
+              readonly _id: string;
+              readonly tags?: ReadonlyArray<any> | null;
+              readonly file: { readonly _id: string; readonly url: string };
+            }>;
+          };
         }> | null;
       }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
+    | { readonly _id: string }
     | null;
 };
 
@@ -12052,19 +10234,23 @@ export type IProductCatalogPricesQueryVariables = Exact<{
 }>;
 
 export type IProductCatalogPricesQuery = {
-  productCatalogPrices: Array<{
-    _id: string;
-    isTaxable: boolean;
-    isNetPrice: boolean;
-    amount: number;
-    maxQuantity?: number | null;
-    country: {
-      _id: string;
-      isoCode?: string | null;
-      name?: string | null;
-      flagEmoji?: string | null;
+  readonly productCatalogPrices: ReadonlyArray<{
+    readonly _id: string;
+    readonly isTaxable: boolean;
+    readonly isNetPrice: boolean;
+    readonly amount: number;
+    readonly maxQuantity?: number | null;
+    readonly country: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly name?: string | null;
+      readonly flagEmoji?: string | null;
     };
-    currency: { _id: string; isoCode: string; isActive?: boolean | null };
+    readonly currency: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
+    };
   }>;
 };
 
@@ -12073,11 +10259,17 @@ export type IProductDimensionUnitsQueryVariables = Exact<{
 }>;
 
 export type IProductDimensionUnitsQuery = {
-  massUnits?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly massUnits?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
-  lengthUnits?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly lengthUnits?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -12087,113 +10279,27 @@ export type IProductMediaQueryVariables = Exact<{
 }>;
 
 export type IProductMediaQuery = {
-  product?:
-    | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          sortKey: number;
-          file: {
-            _id: string;
-            name: string;
-            type: string;
-            size: number;
-            url: string;
-          };
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-        }>;
-      }
-    | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          sortKey: number;
-          file: {
-            _id: string;
-            name: string;
-            type: string;
-            size: number;
-            url: string;
-          };
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-        }>;
-      }
-    | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          sortKey: number;
-          file: {
-            _id: string;
-            name: string;
-            type: string;
-            size: number;
-            url: string;
-          };
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-        }>;
-      }
-    | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          sortKey: number;
-          file: {
-            _id: string;
-            name: string;
-            type: string;
-            size: number;
-            url: string;
-          };
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-        }>;
-      }
-    | {
-        _id: string;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          sortKey: number;
-          file: {
-            _id: string;
-            name: string;
-            type: string;
-            size: number;
-            url: string;
-          };
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-        }>;
-      }
-    | null;
+  readonly product?: {
+    readonly _id: string;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly sortKey: number;
+      readonly file: {
+        readonly _id: string;
+        readonly name: string;
+        readonly type: string;
+        readonly size: number;
+        readonly url: string;
+      };
+      readonly texts?: {
+        readonly _id: string;
+        readonly locale?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+    }>;
+  } | null;
 };
 
 export type IProductPlanQueryVariables = Exact<{
@@ -12202,21 +10308,18 @@ export type IProductPlanQueryVariables = Exact<{
 }>;
 
 export type IProductPlanQuery = {
-  product?:
-    | { _id: string }
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
     | {
-        _id: string;
-        plan?: {
-          usageCalculationType: IProductPlanUsageCalculationType;
-          billingInterval: IProductPlanConfigurationInterval;
-          trialInterval?: IProductPlanConfigurationInterval | null;
-          trialIntervalCount?: number | null;
-          billingIntervalCount?: number | null;
+        readonly _id: string;
+        readonly plan?: {
+          readonly usageCalculationType: IProductPlanUsageCalculationType;
+          readonly billingInterval: IProductPlanConfigurationInterval;
+          readonly trialInterval?: IProductPlanConfigurationInterval | null;
+          readonly trialIntervalCount?: number | null;
+          readonly billingIntervalCount?: number | null;
         } | null;
       }
-    | { _id: string }
-    | { _id: string }
     | null;
 };
 
@@ -12225,11 +10328,17 @@ export type IProductPlanConfigurationOptionsQueryVariables = Exact<{
 }>;
 
 export type IProductPlanConfigurationOptionsQuery = {
-  usageCalculationTypes?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly usageCalculationTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
-  configurationIntervals?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly configurationIntervals?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -12237,82 +10346,51 @@ export type IProductReviewsQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IProductReviewsQuery = {
-  productReviews: Array<{
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    rating?: number | null;
-    title?: string | null;
-    review?: string | null;
-    upVote?: number | null;
-    downVote?: number | null;
-    voteReport?: number | null;
-    author: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      isGuest: boolean;
-      profile?: {
-        displayName?: string | null;
-        address?: {
-          firstName?: string | null;
-          lastName?: string | null;
+  readonly productReviews: ReadonlyArray<{
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly rating?: number | null;
+    readonly title?: string | null;
+    readonly review?: string | null;
+    readonly upVote?: number | null;
+    readonly downVote?: number | null;
+    readonly voteReport?: number | null;
+    readonly author: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly isGuest: boolean;
+      readonly profile?: {
+        readonly displayName?: string | null;
+        readonly address?: {
+          readonly firstName?: string | null;
+          readonly lastName?: string | null;
         } | null;
       } | null;
-      avatar?: { _id: string; url: string } | null;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            title?: string | null;
-            subtitle?: string | null;
-          } | null;
-          media: Array<{ _id: string; file: { _id: string; url: string } }>;
-        };
-    ownVotes: Array<{ timestamp: any; type: IProductReviewVoteType }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    };
+    readonly ownVotes: ReadonlyArray<{
+      readonly timestamp: any;
+      readonly type: IProductReviewVoteType;
+    }>;
   }>;
 };
 
@@ -12322,20 +10400,17 @@ export type IProductSupplyQueryVariables = Exact<{
 }>;
 
 export type IProductSupplyQuery = {
-  product?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
     | {
-        _id: string;
-        dimensions?: {
-          weight?: number | null;
-          length?: number | null;
-          width?: number | null;
-          height?: number | null;
+        readonly _id: string;
+        readonly dimensions?: {
+          readonly weight?: number | null;
+          readonly length?: number | null;
+          readonly width?: number | null;
+          readonly height?: number | null;
         } | null;
       }
-    | { _id: string }
     | null;
 };
 
@@ -12345,16 +10420,16 @@ export type IProductTokenizationQueryVariables = Exact<{
 }>;
 
 export type IProductTokenizationQuery = {
-  product?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
     | {
-        contractStandard?: ISmartContractStandard | null;
-        contractAddress?: string | null;
-        _id: string;
-        contractConfiguration?: { tokenId: string; supply: number } | null;
+        readonly contractStandard?: ISmartContractStandard | null;
+        readonly contractAddress?: string | null;
+        readonly _id: string;
+        readonly contractConfiguration?: {
+          readonly tokenId: string;
+          readonly supply: number;
+        } | null;
       }
     | null;
 };
@@ -12364,8 +10439,11 @@ export type IProductVariationTypeQueryVariables = Exact<{
 }>;
 
 export type IProductVariationTypeQuery = {
-  variationTypes?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly variationTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -12375,35 +10453,32 @@ export type IProductVariationsQueryVariables = Exact<{
 }>;
 
 export type IProductVariationsQuery = {
-  product?:
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
     | {
-        _id: string;
-        variations?: Array<{
-          _id: string;
-          type?: IProductVariationType | null;
-          key?: string | null;
-          texts?: {
-            _id: string;
-            locale?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
+        readonly _id: string;
+        readonly variations?: ReadonlyArray<{
+          readonly _id: string;
+          readonly type?: IProductVariationType | null;
+          readonly key?: string | null;
+          readonly texts?: {
+            readonly _id: string;
+            readonly locale?: string | null;
+            readonly title?: string | null;
+            readonly subtitle?: string | null;
           } | null;
-          options?: Array<{
-            _id: string;
-            value?: string | null;
-            texts?: {
-              _id: string;
-              locale?: string | null;
-              title?: string | null;
-              subtitle?: string | null;
+          readonly options?: ReadonlyArray<{
+            readonly _id: string;
+            readonly value?: string | null;
+            readonly texts?: {
+              readonly _id: string;
+              readonly locale?: string | null;
+              readonly title?: string | null;
+              readonly subtitle?: string | null;
             } | null;
           }> | null;
         }> | null;
       }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
     | null;
 };
 
@@ -12413,399 +10488,108 @@ export type IProductWarehousingQueryVariables = Exact<{
 }>;
 
 export type IProductWarehousingQuery = {
-  product?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { sku?: string | null; baseUnit?: string | null; _id: string }
-    | { _id: string }
+  readonly product?:
+    | { readonly _id: string }
+    | {
+        readonly sku?: string | null;
+        readonly baseUnit?: string | null;
+        readonly _id: string;
+      }
     | null;
 };
 
 export type IProductsQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
-  tags?: InputMaybe<
-    | Array<Scalars['LowerCaseString']['input']>
-    | Scalars['LowerCaseString']['input']
-  >;
-  slugs?: InputMaybe<
-    Array<Scalars['String']['input']> | Scalars['String']['input']
-  >;
+  tags?: InputMaybe<ReadonlyArray<Scalars['LowerCaseString']['input']>>;
+  slugs?: InputMaybe<ReadonlyArray<Scalars['String']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeDrafts?: InputMaybe<Scalars['Boolean']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IProductsQuery = {
-  productsCount: number;
-  products: Array<
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-      }
-  >;
+  readonly productsCount: number;
+  readonly products: ReadonlyArray<{
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly title?: string | null;
+      readonly subtitle?: string | null;
+      readonly description?: string | null;
+      readonly vendor?: string | null;
+      readonly brand?: string | null;
+      readonly labels?: ReadonlyArray<string> | null;
+    } | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+  }>;
 };
 
 export type IProductsCountQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IProductsCountQuery = { productsCount: number };
+export type IProductsCountQuery = { readonly productsCount: number };
 
 export type IPublishProductMutationVariables = Exact<{
   productId: Scalars['ID']['input'];
 }>;
 
 export type IPublishProductMutation = {
-  publishProduct:
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
+  readonly publishProduct: {
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly created?: any | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly voteCount?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
       };
+      readonly ownVotes: ReadonlyArray<{
+        readonly type: IProductReviewVoteType;
+        readonly timestamp: any;
+      }>;
+    }>;
+    readonly siblings: ReadonlyArray<{
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
+  };
 };
 
 export type IReOrderProductMediaMutationVariables = Exact<{
-  sortKeys: Array<IReorderProductMediaInput> | IReorderProductMediaInput;
+  sortKeys: ReadonlyArray<IReorderProductMediaInput>;
 }>;
 
 export type IReOrderProductMediaMutation = {
-  reorderProductMedia: Array<{ _id: string }>;
+  readonly reorderProductMedia: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type IRemoveBundleItemMutationVariables = Exact<{
@@ -12814,12 +10598,7 @@ export type IRemoveBundleItemMutationVariables = Exact<{
 }>;
 
 export type IRemoveBundleItemMutation = {
-  removeBundleItem:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string };
+  readonly removeBundleItem: { readonly _id: string };
 };
 
 export type IRemoveProductMutationVariables = Exact<{
@@ -12827,26 +10606,16 @@ export type IRemoveProductMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductMutation = {
-  removeProduct:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string };
+  readonly removeProduct: { readonly _id: string };
 };
 
 export type IRemoveProductAssignmentMutationVariables = Exact<{
   proxyId: Scalars['ID']['input'];
-  vectors: Array<IProductAssignmentVectorInput> | IProductAssignmentVectorInput;
+  vectors: ReadonlyArray<IProductAssignmentVectorInput>;
 }>;
 
 export type IRemoveProductAssignmentMutation = {
-  removeProductAssignment:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string };
+  readonly removeProductAssignment: { readonly _id: string };
 };
 
 export type IRemoveProductMediaMutationVariables = Exact<{
@@ -12854,7 +10623,7 @@ export type IRemoveProductMediaMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductMediaMutation = {
-  removeProductMedia: { _id: string };
+  readonly removeProductMedia: { readonly _id: string };
 };
 
 export type IRemoveProductVariationMutationVariables = Exact<{
@@ -12862,7 +10631,7 @@ export type IRemoveProductVariationMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductVariationMutation = {
-  removeProductVariation: { _id: string };
+  readonly removeProductVariation: { readonly _id: string };
 };
 
 export type IRemoveProductVariationOptionMutationVariables = Exact<{
@@ -12871,12 +10640,12 @@ export type IRemoveProductVariationOptionMutationVariables = Exact<{
 }>;
 
 export type IRemoveProductVariationOptionMutation = {
-  removeProductVariationOption: { _id: string };
+  readonly removeProductVariationOption: { readonly _id: string };
 };
 
 export type ISearchProductsQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
-  filterQuery?: InputMaybe<Array<IFilterQueryInput> | IFilterQueryInput>;
+  filterQuery?: InputMaybe<ReadonlyArray<IFilterQueryInput>>;
   assortmentId?: InputMaybe<Scalars['ID']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
@@ -12886,126 +10655,32 @@ export type ISearchProductsQueryVariables = Exact<{
 }>;
 
 export type ISearchProductsQuery = {
-  searchProducts: {
-    productsCount: number;
-    filteredProductsCount: number;
-    products: Array<
-      | {
-          _id: string;
-          sequence: number;
-          status: IProductStatus;
-          tags?: Array<any> | null;
-          updated?: any | null;
-          published?: any | null;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-            description?: string | null;
-            vendor?: string | null;
-            brand?: string | null;
-            labels?: Array<string> | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            tags?: Array<any> | null;
-            file: { _id: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          sequence: number;
-          status: IProductStatus;
-          tags?: Array<any> | null;
-          updated?: any | null;
-          published?: any | null;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-            description?: string | null;
-            vendor?: string | null;
-            brand?: string | null;
-            labels?: Array<string> | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            tags?: Array<any> | null;
-            file: { _id: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          sequence: number;
-          status: IProductStatus;
-          tags?: Array<any> | null;
-          updated?: any | null;
-          published?: any | null;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-            description?: string | null;
-            vendor?: string | null;
-            brand?: string | null;
-            labels?: Array<string> | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            tags?: Array<any> | null;
-            file: { _id: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          sequence: number;
-          status: IProductStatus;
-          tags?: Array<any> | null;
-          updated?: any | null;
-          published?: any | null;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-            description?: string | null;
-            vendor?: string | null;
-            brand?: string | null;
-            labels?: Array<string> | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            tags?: Array<any> | null;
-            file: { _id: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          sequence: number;
-          status: IProductStatus;
-          tags?: Array<any> | null;
-          updated?: any | null;
-          published?: any | null;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            title?: string | null;
-            subtitle?: string | null;
-            description?: string | null;
-            vendor?: string | null;
-            brand?: string | null;
-            labels?: Array<string> | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            tags?: Array<any> | null;
-            file: { _id: string; url: string };
-          }>;
-        }
-    >;
+  readonly searchProducts: {
+    readonly productsCount: number;
+    readonly filteredProductsCount: number;
+    readonly products: ReadonlyArray<{
+      readonly _id: string;
+      readonly sequence: number;
+      readonly status: IProductStatus;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly updated?: any | null;
+      readonly published?: any | null;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly title?: string | null;
+        readonly subtitle?: string | null;
+        readonly description?: string | null;
+        readonly vendor?: string | null;
+        readonly brand?: string | null;
+        readonly labels?: ReadonlyArray<string> | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
   };
 };
 
@@ -13014,8 +10689,11 @@ export type ISmartContractStandardsQueryVariables = Exact<{
 }>;
 
 export type ISmartContractStandardsQuery = {
-  smartContractStandards?: {
-    options?: Array<{ value: string; label: string }> | null;
+  readonly smartContractStandards?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label: string;
+    }> | null;
   } | null;
 };
 
@@ -13024,11 +10702,11 @@ export type ITranslatedProductMediaTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductMediaTextsQuery = {
-  translatedProductMediaTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly translatedProductMediaTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
@@ -13037,16 +10715,16 @@ export type ITranslatedProductTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductTextsQuery = {
-  translatedProductTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
+  readonly translatedProductTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
+    readonly vendor?: string | null;
+    readonly brand?: string | null;
+    readonly labels?: ReadonlyArray<string> | null;
   }>;
 };
 
@@ -13056,11 +10734,11 @@ export type ITranslatedProductVariationTextsQueryVariables = Exact<{
 }>;
 
 export type ITranslatedProductVariationTextsQuery = {
-  translatedProductVariationTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly translatedProductVariationTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
@@ -13069,237 +10747,44 @@ export type IUnpublishProductMutationVariables = Exact<{
 }>;
 
 export type IUnpublishProductMutation = {
-  unpublishProduct:
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
+  readonly unpublishProduct: {
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly created?: any | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly voteCount?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
       };
+      readonly ownVotes: ReadonlyArray<{
+        readonly type: IProductReviewVoteType;
+        readonly timestamp: any;
+      }>;
+    }>;
+    readonly siblings: ReadonlyArray<{
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
+  };
 };
 
 export type IUpdateProductMutationVariables = Exact<{
@@ -13308,238 +10793,44 @@ export type IUpdateProductMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductMutation = {
-  updateProduct?:
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | null;
+  readonly updateProduct?: {
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly created?: any | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly voteCount?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
+      };
+      readonly ownVotes: ReadonlyArray<{
+        readonly type: IProductReviewVoteType;
+        readonly timestamp: any;
+      }>;
+    }>;
+    readonly siblings: ReadonlyArray<{
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
+  } | null;
 };
 
 export type IUpdateProductCommerceMutationVariables = Exact<{
@@ -13548,251 +10839,57 @@ export type IUpdateProductCommerceMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductCommerceMutation = {
-  updateProductCommerce?:
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        created?: any | null;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
-        }>;
-        reviews: Array<{
-          _id: string;
-          created?: any | null;
-          rating?: number | null;
-          title?: string | null;
-          review?: string | null;
-          voteCount?: number | null;
-          author: { _id: string; username?: string | null; isGuest: boolean };
-          ownVotes: Array<{ type: IProductReviewVoteType; timestamp: any }>;
-        }>;
-        siblings: Array<
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-          | {
-              _id: string;
-              media: Array<{ _id: string; file: { _id: string; url: string } }>;
-            }
-        >;
-      }
-    | null;
+  readonly updateProductCommerce?: {
+    readonly _id: string;
+    readonly sequence: number;
+    readonly status: IProductStatus;
+    readonly created?: any | null;
+    readonly tags?: ReadonlyArray<any> | null;
+    readonly updated?: any | null;
+    readonly published?: any | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly tags?: ReadonlyArray<any> | null;
+      readonly file: { readonly _id: string; readonly url: string };
+    }>;
+    readonly reviews: ReadonlyArray<{
+      readonly _id: string;
+      readonly created?: any | null;
+      readonly rating?: number | null;
+      readonly title?: string | null;
+      readonly review?: string | null;
+      readonly voteCount?: number | null;
+      readonly author: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly isGuest: boolean;
+      };
+      readonly ownVotes: ReadonlyArray<{
+        readonly type: IProductReviewVoteType;
+        readonly timestamp: any;
+      }>;
+    }>;
+    readonly siblings: ReadonlyArray<{
+      readonly _id: string;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: { readonly _id: string; readonly url: string };
+      }>;
+    }>;
+  } | null;
 };
 
 export type IUpdateProductMediaTextsMutationVariables = Exact<{
   productMediaId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductMediaTextInput> | IUpdateProductMediaTextInput;
+  texts: ReadonlyArray<IUpdateProductMediaTextInput>;
 }>;
 
 export type IUpdateProductMediaTextsMutation = {
-  updateProductMediaTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
+  readonly updateProductMediaTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
   }>;
 };
 
@@ -13802,13 +10899,7 @@ export type IUpdateProductPlanMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductPlanMutation = {
-  updateProductPlan?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | null;
+  readonly updateProductPlan?: { readonly _id: string } | null;
 };
 
 export type IUpdateProductSupplyMutationVariables = Exact<{
@@ -13817,39 +10908,36 @@ export type IUpdateProductSupplyMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductSupplyMutation = {
-  updateProductSupply?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
+  readonly updateProductSupply?:
+    | { readonly _id: string }
     | {
-        _id: string;
-        dimensions?: {
-          weight?: number | null;
-          length?: number | null;
-          width?: number | null;
-          height?: number | null;
+        readonly _id: string;
+        readonly dimensions?: {
+          readonly weight?: number | null;
+          readonly length?: number | null;
+          readonly width?: number | null;
+          readonly height?: number | null;
         } | null;
       }
-    | { _id: string }
     | null;
 };
 
 export type IUpdateProductTextsMutationVariables = Exact<{
   productId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductTextInput> | IUpdateProductTextInput;
+  texts: ReadonlyArray<IUpdateProductTextInput>;
 }>;
 
 export type IUpdateProductTextsMutation = {
-  updateProductTexts: Array<{
-    _id: string;
-    locale?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    description?: string | null;
-    vendor?: string | null;
-    brand?: string | null;
-    labels?: Array<string> | null;
+  readonly updateProductTexts: ReadonlyArray<{
+    readonly _id: string;
+    readonly locale?: string | null;
+    readonly slug?: string | null;
+    readonly title?: string | null;
+    readonly subtitle?: string | null;
+    readonly description?: string | null;
+    readonly vendor?: string | null;
+    readonly brand?: string | null;
+    readonly labels?: ReadonlyArray<string> | null;
   }>;
 };
 
@@ -13859,19 +10947,17 @@ export type IUpdateProductTokenizationMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductTokenizationMutation = {
-  updateProductTokenization?: { _id: string } | null;
+  readonly updateProductTokenization?: { readonly _id: string } | null;
 };
 
 export type IUpdateProductVariationTextsMutationVariables = Exact<{
   productVariationId: Scalars['ID']['input'];
   productVariationOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts:
-    | Array<IUpdateProductVariationTextInput>
-    | IUpdateProductVariationTextInput;
+  texts: ReadonlyArray<IUpdateProductVariationTextInput>;
 }>;
 
 export type IUpdateProductVariationTextsMutation = {
-  updateProductVariationTexts: Array<{ _id: string }>;
+  readonly updateProductVariationTexts: ReadonlyArray<{ readonly _id: string }>;
 };
 
 export type IUpdateProductWarehousingMutationVariables = Exact<{
@@ -13880,12 +10966,13 @@ export type IUpdateProductWarehousingMutationVariables = Exact<{
 }>;
 
 export type IUpdateProductWarehousingMutation = {
-  updateProductWarehousing?:
-    | { _id: string }
-    | { _id: string }
-    | { _id: string }
-    | { sku?: string | null; baseUnit?: string | null; _id: string }
-    | { _id: string }
+  readonly updateProductWarehousing?:
+    | { readonly _id: string }
+    | {
+        readonly sku?: string | null;
+        readonly baseUnit?: string | null;
+        readonly _id: string;
+      }
     | null;
 };
 
@@ -13894,254 +10981,157 @@ export type IUserTokensQueryVariables = Exact<{
 }>;
 
 export type IUserTokensQuery = {
-  user?: {
-    _id: string;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
+  readonly user?: {
+    readonly _id: string;
+    readonly web3Addresses: ReadonlyArray<{
+      readonly address: string;
+      readonly nonce?: number | null;
+      readonly verified: boolean;
     }>;
-    tokens: Array<{
-      _id: string;
-      walletAddress?: string | null;
-      status: ITokenExportStatus;
-      quantity: number;
-      contractAddress?: string | null;
-      chainId?: string | null;
-      chainTokenId?: string | null;
-      product: {
-        _id: string;
-        sequence: number;
-        status: IProductStatus;
-        tags?: Array<any> | null;
-        updated?: any | null;
-        published?: any | null;
-        simulatedPrice?: {
-          _id: string;
-          amount: number;
-          currency: string;
+    readonly tokens: ReadonlyArray<{
+      readonly _id: string;
+      readonly walletAddress?: string | null;
+      readonly status: ITokenExportStatus;
+      readonly quantity: number;
+      readonly contractAddress?: string | null;
+      readonly chainId?: string | null;
+      readonly chainTokenId?: string | null;
+      readonly product: {
+        readonly _id: string;
+        readonly sequence: number;
+        readonly status: IProductStatus;
+        readonly tags?: ReadonlyArray<any> | null;
+        readonly updated?: any | null;
+        readonly published?: any | null;
+        readonly simulatedPrice?: {
+          readonly _id: string;
+          readonly amount: number;
+          readonly currency: string;
         } | null;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          title?: string | null;
-          subtitle?: string | null;
-          description?: string | null;
-          vendor?: string | null;
-          brand?: string | null;
-          labels?: Array<string> | null;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly title?: string | null;
+          readonly subtitle?: string | null;
+          readonly description?: string | null;
+          readonly vendor?: string | null;
+          readonly brand?: string | null;
+          readonly labels?: ReadonlyArray<string> | null;
         } | null;
-        media: Array<{
-          _id: string;
-          tags?: Array<any> | null;
-          file: { _id: string; url: string };
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly tags?: ReadonlyArray<any> | null;
+          readonly file: { readonly _id: string; readonly url: string };
         }>;
       };
     }>;
   } | null;
 };
 
-export type IQuotationDetailFragmentFragment = {
-  _id: string;
-  status: IQuotationStatus;
-  created: any;
-  expires?: any | null;
-  updated?: any | null;
-  isExpired?: boolean | null;
-  quotationNumber?: string | null;
-  fullfilled?: any | null;
-  rejected?: any | null;
-  user: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    avatar?: { _id: string; url: string } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+export type IQuotationDetailFragment = {
+  readonly _id: string;
+  readonly status: IQuotationStatus;
+  readonly created: any;
+  readonly expires?: any | null;
+  readonly updated?: any | null;
+  readonly isExpired?: boolean | null;
+  readonly quotationNumber?: string | null;
+  readonly fullfilled?: any | null;
+  readonly rejected?: any | null;
+  readonly user: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
-  configuration?: Array<{ key: string; value: string }> | null;
-  country?: {
-    _id: string;
-    isoCode?: string | null;
-    flagEmoji?: string | null;
-    name?: string | null;
+  readonly configuration?: ReadonlyArray<{
+    readonly key: string;
+    readonly value: string;
+  }> | null;
+  readonly country?: {
+    readonly _id: string;
+    readonly isoCode?: string | null;
+    readonly flagEmoji?: string | null;
+    readonly name?: string | null;
   } | null;
-  currency?: { _id: string; isoCode: string; isActive?: boolean | null } | null;
-  product:
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
+  readonly currency?: {
+    readonly _id: string;
+    readonly isoCode: string;
+    readonly isActive?: boolean | null;
+  } | null;
+  readonly product: {
+    readonly _id: string;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly subtitle?: string | null;
+      readonly title?: string | null;
+      readonly description?: string | null;
+    } | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly file: {
+        readonly _id: string;
+        readonly type: string;
+        readonly url: string;
       };
+    }>;
+  };
 };
 
-export type IQuotationDetailFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IQuotationDetailFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type IQuotationFragmentFragment = {
-  _id: string;
-  status: IQuotationStatus;
-  created: any;
-  expires?: any | null;
-  updated?: any | null;
-  isExpired?: boolean | null;
-  quotationNumber?: string | null;
-  fullfilled?: any | null;
-  rejected?: any | null;
-  user: {
-    _id: string;
-    username?: string | null;
-    name: string;
-    avatar?: { _id: string; url: string } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
+export type IQuotationFragment = {
+  readonly _id: string;
+  readonly status: IQuotationStatus;
+  readonly created: any;
+  readonly expires?: any | null;
+  readonly updated?: any | null;
+  readonly isExpired?: boolean | null;
+  readonly quotationNumber?: string | null;
+  readonly fullfilled?: any | null;
+  readonly rejected?: any | null;
+  readonly user: {
+    readonly _id: string;
+    readonly username?: string | null;
+    readonly name: string;
+    readonly avatar?: { readonly _id: string; readonly url: string } | null;
+    readonly primaryEmail?: {
+      readonly verified: boolean;
+      readonly address: string;
+    } | null;
   };
-  product:
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
-      }
-    | {
-        _id: string;
-        texts?: {
-          _id: string;
-          slug?: string | null;
-          subtitle?: string | null;
-          title?: string | null;
-          description?: string | null;
-        } | null;
-        media: Array<{
-          _id: string;
-          file: { _id: string; type: string; url: string };
-        }>;
+  readonly product: {
+    readonly _id: string;
+    readonly texts?: {
+      readonly _id: string;
+      readonly slug?: string | null;
+      readonly subtitle?: string | null;
+      readonly title?: string | null;
+      readonly description?: string | null;
+    } | null;
+    readonly media: ReadonlyArray<{
+      readonly _id: string;
+      readonly file: {
+        readonly _id: string;
+        readonly type: string;
+        readonly url: string;
       };
-  currency?: {
-    _id: string;
-    contractAddress?: string | null;
-    decimals?: number | null;
-    isoCode: string;
+    }>;
+  };
+  readonly currency?: {
+    readonly _id: string;
+    readonly contractAddress?: string | null;
+    readonly decimals?: number | null;
+    readonly isoCode: string;
   } | null;
 };
 
-export type IQuotationFragmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
+export type IQuotationFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IMakeQuotationProposalMutationVariables = Exact<{
   quotationId: Scalars['ID']['input'];
@@ -14149,106 +11139,59 @@ export type IMakeQuotationProposalMutationVariables = Exact<{
 }>;
 
 export type IMakeQuotationProposalMutation = {
-  makeQuotationProposal: {
-    _id: string;
-    status: IQuotationStatus;
-    created: any;
-    expires?: any | null;
-    updated?: any | null;
-    isExpired?: boolean | null;
-    quotationNumber?: string | null;
-    fullfilled?: any | null;
-    rejected?: any | null;
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+  readonly makeQuotationProposal: {
+    readonly _id: string;
+    readonly status: IQuotationStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly updated?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly quotationNumber?: string | null;
+    readonly fullfilled?: any | null;
+    readonly rejected?: any | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     };
-    configuration?: Array<{ key: string; value: string }> | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
+    readonly configuration?: ReadonlyArray<{
+      readonly key: string;
+      readonly value: string;
+    }> | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
     } | null;
-    currency?: {
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
     } | null;
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly subtitle?: string | null;
+        readonly title?: string | null;
+        readonly description?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: {
+          readonly _id: string;
+          readonly type: string;
+          readonly url: string;
         };
+      }>;
+    };
   };
 };
 
@@ -14257,115 +11200,71 @@ export type IQuotationQueryVariables = Exact<{
 }>;
 
 export type IQuotationQuery = {
-  quotationsCount: number;
-  quotation?: {
-    _id: string;
-    status: IQuotationStatus;
-    created: any;
-    expires?: any | null;
-    updated?: any | null;
-    isExpired?: boolean | null;
-    quotationNumber?: string | null;
-    fullfilled?: any | null;
-    rejected?: any | null;
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+  readonly quotationsCount: number;
+  readonly quotation?: {
+    readonly _id: string;
+    readonly status: IQuotationStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly updated?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly quotationNumber?: string | null;
+    readonly fullfilled?: any | null;
+    readonly rejected?: any | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     };
-    configuration?: Array<{ key: string; value: string }> | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
+    readonly configuration?: ReadonlyArray<{
+      readonly key: string;
+      readonly value: string;
+    }> | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
     } | null;
-    currency?: {
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
     } | null;
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly subtitle?: string | null;
+        readonly title?: string | null;
+        readonly description?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: {
+          readonly _id: string;
+          readonly type: string;
+          readonly url: string;
         };
+      }>;
+    };
   } | null;
 };
 
 export type IQuotationStatusQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IQuotationStatusQuery = {
-  quotationStatusType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly quotationStatusType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -14373,104 +11272,54 @@ export type IQuotationsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IQuotationsQuery = {
-  quotationsCount: number;
-  quotations: Array<{
-    _id: string;
-    status: IQuotationStatus;
-    created: any;
-    expires?: any | null;
-    updated?: any | null;
-    isExpired?: boolean | null;
-    quotationNumber?: string | null;
-    fullfilled?: any | null;
-    rejected?: any | null;
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+  readonly quotationsCount: number;
+  readonly quotations: ReadonlyArray<{
+    readonly _id: string;
+    readonly status: IQuotationStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly updated?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly quotationNumber?: string | null;
+    readonly fullfilled?: any | null;
+    readonly rejected?: any | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     };
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly subtitle?: string | null;
+        readonly title?: string | null;
+        readonly description?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: {
+          readonly _id: string;
+          readonly type: string;
+          readonly url: string;
         };
-    currency?: {
-      _id: string;
-      contractAddress?: string | null;
-      decimals?: number | null;
-      isoCode: string;
+      }>;
+    };
+    readonly currency?: {
+      readonly _id: string;
+      readonly contractAddress?: string | null;
+      readonly decimals?: number | null;
+      readonly isoCode: string;
     } | null;
   }>;
 };
@@ -14481,106 +11330,59 @@ export type IRejectQuotationMutationVariables = Exact<{
 }>;
 
 export type IRejectQuotationMutation = {
-  rejectQuotation: {
-    _id: string;
-    status: IQuotationStatus;
-    created: any;
-    expires?: any | null;
-    updated?: any | null;
-    isExpired?: boolean | null;
-    quotationNumber?: string | null;
-    fullfilled?: any | null;
-    rejected?: any | null;
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+  readonly rejectQuotation: {
+    readonly _id: string;
+    readonly status: IQuotationStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly updated?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly quotationNumber?: string | null;
+    readonly fullfilled?: any | null;
+    readonly rejected?: any | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     };
-    configuration?: Array<{ key: string; value: string }> | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
+    readonly configuration?: ReadonlyArray<{
+      readonly key: string;
+      readonly value: string;
+    }> | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
     } | null;
-    currency?: {
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
     } | null;
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly subtitle?: string | null;
+        readonly title?: string | null;
+        readonly description?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: {
+          readonly _id: string;
+          readonly type: string;
+          readonly url: string;
         };
+      }>;
+    };
   };
 };
 
@@ -14590,101 +11392,51 @@ export type IUserQuotationsQueryVariables = Exact<{
 }>;
 
 export type IUserQuotationsQuery = {
-  user?: {
-    _id: string;
-    quotations: Array<{
-      _id: string;
-      status: IQuotationStatus;
-      created: any;
-      expires?: any | null;
-      updated?: any | null;
-      isExpired?: boolean | null;
-      quotationNumber?: string | null;
-      fullfilled?: any | null;
-      rejected?: any | null;
-      user: {
-        _id: string;
-        username?: string | null;
-        name: string;
-        avatar?: { _id: string; url: string } | null;
-        primaryEmail?: { verified: boolean; address: string } | null;
+  readonly user?: {
+    readonly _id: string;
+    readonly quotations: ReadonlyArray<{
+      readonly _id: string;
+      readonly status: IQuotationStatus;
+      readonly created: any;
+      readonly expires?: any | null;
+      readonly updated?: any | null;
+      readonly isExpired?: boolean | null;
+      readonly quotationNumber?: string | null;
+      readonly fullfilled?: any | null;
+      readonly rejected?: any | null;
+      readonly user: {
+        readonly _id: string;
+        readonly username?: string | null;
+        readonly name: string;
+        readonly avatar?: { readonly _id: string; readonly url: string } | null;
+        readonly primaryEmail?: {
+          readonly verified: boolean;
+          readonly address: string;
+        } | null;
       };
-      product:
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              subtitle?: string | null;
-              title?: string | null;
-              description?: string | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              file: { _id: string; type: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              subtitle?: string | null;
-              title?: string | null;
-              description?: string | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              file: { _id: string; type: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              subtitle?: string | null;
-              title?: string | null;
-              description?: string | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              file: { _id: string; type: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              subtitle?: string | null;
-              title?: string | null;
-              description?: string | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              file: { _id: string; type: string; url: string };
-            }>;
-          }
-        | {
-            _id: string;
-            texts?: {
-              _id: string;
-              slug?: string | null;
-              subtitle?: string | null;
-              title?: string | null;
-              description?: string | null;
-            } | null;
-            media: Array<{
-              _id: string;
-              file: { _id: string; type: string; url: string };
-            }>;
+      readonly product: {
+        readonly _id: string;
+        readonly texts?: {
+          readonly _id: string;
+          readonly slug?: string | null;
+          readonly subtitle?: string | null;
+          readonly title?: string | null;
+          readonly description?: string | null;
+        } | null;
+        readonly media: ReadonlyArray<{
+          readonly _id: string;
+          readonly file: {
+            readonly _id: string;
+            readonly type: string;
+            readonly url: string;
           };
-      currency?: {
-        _id: string;
-        contractAddress?: string | null;
-        decimals?: number | null;
-        isoCode: string;
+        }>;
+      };
+      readonly currency?: {
+        readonly _id: string;
+        readonly contractAddress?: string | null;
+        readonly decimals?: number | null;
+        readonly isoCode: string;
       } | null;
     }>;
   } | null;
@@ -14696,106 +11448,59 @@ export type IVerifyQuotationMutationVariables = Exact<{
 }>;
 
 export type IVerifyQuotationMutation = {
-  verifyQuotation: {
-    _id: string;
-    status: IQuotationStatus;
-    created: any;
-    expires?: any | null;
-    updated?: any | null;
-    isExpired?: boolean | null;
-    quotationNumber?: string | null;
-    fullfilled?: any | null;
-    rejected?: any | null;
-    user: {
-      _id: string;
-      username?: string | null;
-      name: string;
-      avatar?: { _id: string; url: string } | null;
-      primaryEmail?: { verified: boolean; address: string } | null;
+  readonly verifyQuotation: {
+    readonly _id: string;
+    readonly status: IQuotationStatus;
+    readonly created: any;
+    readonly expires?: any | null;
+    readonly updated?: any | null;
+    readonly isExpired?: boolean | null;
+    readonly quotationNumber?: string | null;
+    readonly fullfilled?: any | null;
+    readonly rejected?: any | null;
+    readonly user: {
+      readonly _id: string;
+      readonly username?: string | null;
+      readonly name: string;
+      readonly avatar?: { readonly _id: string; readonly url: string } | null;
+      readonly primaryEmail?: {
+        readonly verified: boolean;
+        readonly address: string;
+      } | null;
     };
-    configuration?: Array<{ key: string; value: string }> | null;
-    country?: {
-      _id: string;
-      isoCode?: string | null;
-      flagEmoji?: string | null;
-      name?: string | null;
+    readonly configuration?: ReadonlyArray<{
+      readonly key: string;
+      readonly value: string;
+    }> | null;
+    readonly country?: {
+      readonly _id: string;
+      readonly isoCode?: string | null;
+      readonly flagEmoji?: string | null;
+      readonly name?: string | null;
     } | null;
-    currency?: {
-      _id: string;
-      isoCode: string;
-      isActive?: boolean | null;
+    readonly currency?: {
+      readonly _id: string;
+      readonly isoCode: string;
+      readonly isActive?: boolean | null;
     } | null;
-    product:
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
-        }
-      | {
-          _id: string;
-          texts?: {
-            _id: string;
-            slug?: string | null;
-            subtitle?: string | null;
-            title?: string | null;
-            description?: string | null;
-          } | null;
-          media: Array<{
-            _id: string;
-            file: { _id: string; type: string; url: string };
-          }>;
+    readonly product: {
+      readonly _id: string;
+      readonly texts?: {
+        readonly _id: string;
+        readonly slug?: string | null;
+        readonly subtitle?: string | null;
+        readonly title?: string | null;
+        readonly description?: string | null;
+      } | null;
+      readonly media: ReadonlyArray<{
+        readonly _id: string;
+        readonly file: {
+          readonly _id: string;
+          readonly type: string;
+          readonly url: string;
         };
+      }>;
+    };
   };
 };
 
@@ -14803,51 +11508,51 @@ export type ISyncReportsQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
-  status?: InputMaybe<Array<IWorkStatus> | IWorkStatus>;
-  types?: InputMaybe<Array<IWorkType> | IWorkType>;
+  status?: InputMaybe<ReadonlyArray<IWorkStatus>>;
+  types?: InputMaybe<ReadonlyArray<IWorkType>>;
   created?: InputMaybe<IDateFilterInput>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type ISyncReportsQuery = {
-  workQueue: Array<{
-    _id: string;
-    type: IWorkType;
-    scheduled?: any | null;
-    status: IWorkStatus;
-    started?: any | null;
-    success?: boolean | null;
-    finished?: any | null;
-    created: any;
-    deleted?: any | null;
-    priority: number;
-    worker?: string | null;
-    retries: number;
-    timeout?: number | null;
-    input?: any | null;
-    result?: any | null;
-    error?: any | null;
-    original?: { _id: string } | null;
+  readonly workQueue: ReadonlyArray<{
+    readonly _id: string;
+    readonly type: IWorkType;
+    readonly scheduled?: any | null;
+    readonly status: IWorkStatus;
+    readonly started?: any | null;
+    readonly success?: boolean | null;
+    readonly finished?: any | null;
+    readonly created: any;
+    readonly deleted?: any | null;
+    readonly priority: number;
+    readonly worker?: string | null;
+    readonly retries: number;
+    readonly timeout?: number | null;
+    readonly input?: any | null;
+    readonly result?: any | null;
+    readonly error?: any | null;
+    readonly original?: { readonly _id: string } | null;
   }>;
 };
 
-export type IWarehousingProviderFragmentFragment = {
-  _id: string;
-  created?: any | null;
-  updated?: any | null;
-  deleted?: any | null;
-  isActive?: boolean | null;
-  type?: IWarehousingProviderType | null;
-  configuration?: any | null;
-  configurationError?: IWarehousingProviderError | null;
-  interface?: {
-    _id: string;
-    label?: string | null;
-    version?: string | null;
+export type IWarehousingProviderFragment = {
+  readonly _id: string;
+  readonly created?: any | null;
+  readonly updated?: any | null;
+  readonly deleted?: any | null;
+  readonly isActive?: boolean | null;
+  readonly type?: IWarehousingProviderType | null;
+  readonly configuration?: any | null;
+  readonly configurationError?: IWarehousingProviderError | null;
+  readonly interface?: {
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly version?: string | null;
   } | null;
 };
 
-export type IWarehousingProviderFragmentFragmentVariables = Exact<{
+export type IWarehousingProviderFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
@@ -14856,19 +11561,19 @@ export type ICreateWarehousingProviderMutationVariables = Exact<{
 }>;
 
 export type ICreateWarehousingProviderMutation = {
-  createWarehousingProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IWarehousingProviderType | null;
-    configuration?: any | null;
-    configurationError?: IWarehousingProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly createWarehousingProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IWarehousingProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IWarehousingProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
@@ -14878,7 +11583,7 @@ export type IRemoveWarehousingProviderMutationVariables = Exact<{
 }>;
 
 export type IRemoveWarehousingProviderMutation = {
-  removeWarehousingProvider: { _id: string };
+  readonly removeWarehousingProvider: { readonly _id: string };
 };
 
 export type IUpdateWarehousingProviderMutationVariables = Exact<{
@@ -14887,19 +11592,19 @@ export type IUpdateWarehousingProviderMutationVariables = Exact<{
 }>;
 
 export type IUpdateWarehousingProviderMutation = {
-  updateWarehousingProvider: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IWarehousingProviderType | null;
-    configuration?: any | null;
-    configurationError?: IWarehousingProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly updateWarehousingProvider: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IWarehousingProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IWarehousingProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   };
 };
@@ -14909,10 +11614,10 @@ export type IWarehousingInterfacesQueryVariables = Exact<{
 }>;
 
 export type IWarehousingInterfacesQuery = {
-  warehousingInterfaces: Array<{
-    _id: string;
-    label?: string | null;
-    value: string;
+  readonly warehousingInterfaces: ReadonlyArray<{
+    readonly _id: string;
+    readonly label?: string | null;
+    readonly value: string;
   }>;
 };
 
@@ -14921,19 +11626,19 @@ export type IWarehousingProviderQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProviderQuery = {
-  warehousingProvider?: {
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IWarehousingProviderType | null;
-    configuration?: any | null;
-    configurationError?: IWarehousingProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly warehousingProvider?: {
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IWarehousingProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IWarehousingProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   } | null;
 };
@@ -14943,8 +11648,11 @@ export type IWarehousingProvidersTypeQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProvidersTypeQuery = {
-  warehousingProviderType?: {
-    options?: Array<{ value: string; label?: string | null }> | null;
+  readonly warehousingProviderType?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label?: string | null;
+    }> | null;
   } | null;
 };
 
@@ -14953,40 +11661,42 @@ export type IWarehousingProvidersQueryVariables = Exact<{
 }>;
 
 export type IWarehousingProvidersQuery = {
-  warehousingProviders: Array<{
-    _id: string;
-    created?: any | null;
-    updated?: any | null;
-    deleted?: any | null;
-    isActive?: boolean | null;
-    type?: IWarehousingProviderType | null;
-    configuration?: any | null;
-    configurationError?: IWarehousingProviderError | null;
-    interface?: {
-      _id: string;
-      label?: string | null;
-      version?: string | null;
+  readonly warehousingProviders: ReadonlyArray<{
+    readonly _id: string;
+    readonly created?: any | null;
+    readonly updated?: any | null;
+    readonly deleted?: any | null;
+    readonly isActive?: boolean | null;
+    readonly type?: IWarehousingProviderType | null;
+    readonly configuration?: any | null;
+    readonly configurationError?: IWarehousingProviderError | null;
+    readonly interface?: {
+      readonly _id: string;
+      readonly label?: string | null;
+      readonly version?: string | null;
     } | null;
   }>;
 };
 
-export type IWorkFragmentFragment = {
-  _id: string;
-  type: IWorkType;
-  scheduled?: any | null;
-  status: IWorkStatus;
-  started?: any | null;
-  success?: boolean | null;
-  finished?: any | null;
-  created: any;
-  deleted?: any | null;
+export type IWorkFragment = {
+  readonly _id: string;
+  readonly type: IWorkType;
+  readonly scheduled?: any | null;
+  readonly status: IWorkStatus;
+  readonly started?: any | null;
+  readonly success?: boolean | null;
+  readonly finished?: any | null;
+  readonly created: any;
+  readonly deleted?: any | null;
 };
 
-export type IWorkFragmentFragmentVariables = Exact<{ [key: string]: never }>;
+export type IWorkFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IActiveWorkTypesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type IActiveWorkTypesQuery = { activeWorkTypes: Array<IWorkType> };
+export type IActiveWorkTypesQuery = {
+  readonly activeWorkTypes: ReadonlyArray<IWorkType>;
+};
 
 export type IAddWorkMutationVariables = Exact<{
   type: IWorkType;
@@ -14997,20 +11707,27 @@ export type IAddWorkMutationVariables = Exact<{
   retries?: Scalars['Int']['input'];
 }>;
 
-export type IAddWorkMutation = { addWork?: { _id: string } | null };
+export type IAddWorkMutation = {
+  readonly addWork?: { readonly _id: string } | null;
+};
 
 export type IAllocateWorkMutationVariables = Exact<{
-  types?: InputMaybe<Array<InputMaybe<IWorkType>> | InputMaybe<IWorkType>>;
+  types?: InputMaybe<ReadonlyArray<InputMaybe<IWorkType>>>;
   worker?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type IAllocateWorkMutation = { allocateWork?: { _id: string } | null };
+export type IAllocateWorkMutation = {
+  readonly allocateWork?: { readonly _id: string } | null;
+};
 
 export type IWorkTypesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IWorkTypesQuery = {
-  registeredWorkTypes?: {
-    options?: Array<{ value: string; label: string }> | null;
+  readonly registeredWorkTypes?: {
+    readonly options?: ReadonlyArray<{
+      readonly value: string;
+      readonly label: string;
+    }> | null;
   } | null;
 };
 
@@ -15018,31 +11735,33 @@ export type IRemoveWorkMutationVariables = Exact<{
   workId: Scalars['ID']['input'];
 }>;
 
-export type IRemoveWorkMutation = { removeWork: { _id: string } };
+export type IRemoveWorkMutation = {
+  readonly removeWork: { readonly _id: string };
+};
 
 export type IWorkQueryVariables = Exact<{
   workId: Scalars['ID']['input'];
 }>;
 
 export type IWorkQuery = {
-  work?: {
-    input?: any | null;
-    result?: any | null;
-    error?: any | null;
-    priority: number;
-    worker?: string | null;
-    retries: number;
-    timeout?: number | null;
-    _id: string;
-    type: IWorkType;
-    scheduled?: any | null;
-    status: IWorkStatus;
-    started?: any | null;
-    success?: boolean | null;
-    finished?: any | null;
-    created: any;
-    deleted?: any | null;
-    original?: { _id: string } | null;
+  readonly work?: {
+    readonly input?: any | null;
+    readonly result?: any | null;
+    readonly error?: any | null;
+    readonly priority: number;
+    readonly worker?: string | null;
+    readonly retries: number;
+    readonly timeout?: number | null;
+    readonly _id: string;
+    readonly type: IWorkType;
+    readonly scheduled?: any | null;
+    readonly status: IWorkStatus;
+    readonly started?: any | null;
+    readonly success?: boolean | null;
+    readonly finished?: any | null;
+    readonly created: any;
+    readonly deleted?: any | null;
+    readonly original?: { readonly _id: string } | null;
   } | null;
 };
 
@@ -15050,24 +11769,24 @@ export type IWorkQueueQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
-  status?: InputMaybe<Array<IWorkStatus> | IWorkStatus>;
-  types?: InputMaybe<Array<IWorkType> | IWorkType>;
+  status?: InputMaybe<ReadonlyArray<IWorkStatus>>;
+  types?: InputMaybe<ReadonlyArray<IWorkType>>;
   created?: InputMaybe<IDateFilterInput>;
-  sort?: InputMaybe<Array<ISortOptionInput> | ISortOptionInput>;
+  sort?: InputMaybe<ReadonlyArray<ISortOptionInput>>;
 }>;
 
 export type IWorkQueueQuery = {
-  activeWorkTypes: Array<IWorkType>;
-  workQueueCount: number;
-  workQueue: Array<{
-    _id: string;
-    type: IWorkType;
-    scheduled?: any | null;
-    status: IWorkStatus;
-    started?: any | null;
-    success?: boolean | null;
-    finished?: any | null;
-    created: any;
-    deleted?: any | null;
+  readonly activeWorkTypes: ReadonlyArray<IWorkType>;
+  readonly workQueueCount: number;
+  readonly workQueue: ReadonlyArray<{
+    readonly _id: string;
+    readonly type: IWorkType;
+    readonly scheduled?: any | null;
+    readonly status: IWorkStatus;
+    readonly started?: any | null;
+    readonly success?: boolean | null;
+    readonly finished?: any | null;
+    readonly created: any;
+    readonly deleted?: any | null;
   }>;
 };

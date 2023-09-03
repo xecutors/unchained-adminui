@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveCountryMutation,
+  IRemoveCountryMutationVariables,
+} from '../../../gql/types';
 import CountryFragment from '../fragments/CountryFragment';
 
 const RemoveCountryMutation = gql`
@@ -11,9 +15,14 @@ const RemoveCountryMutation = gql`
 `;
 
 const useRemoveCountry = () => {
-  const [removeCountryMutation] = useMutation(RemoveCountryMutation);
+  const [removeCountryMutation] = useMutation<
+    IRemoveCountryMutation,
+    IRemoveCountryMutationVariables
+  >(RemoveCountryMutation);
 
-  const removeCountry = async ({ countryId }) => {
+  const removeCountry = async ({
+    countryId,
+  }: IRemoveCountryMutationVariables) => {
     return removeCountryMutation({
       variables: { countryId },
       refetchQueries: ['Countries'],

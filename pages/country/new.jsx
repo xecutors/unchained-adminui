@@ -12,7 +12,7 @@ const AddCountries = () => {
   const { push } = useRouter();
   const { createCountry } = useCreateCountry();
   const onCreateCountry = async ({ isoCode }) => {
-    const { data, errors } = await createCountry({ isoCode });
+    const { data, errors } = await createCountry({ country: { isoCode } });
     if (errors?.length) return false;
     return { success: true, data: data?.createCountry };
   };

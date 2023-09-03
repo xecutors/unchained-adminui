@@ -28,10 +28,7 @@ const UpdateCurrency = () => {
   const onSubmit = async ({ isActive, isoCode, contractAddress, decimals }) => {
     await updateCurrency({
       currencyId,
-      isActive,
-      isoCode,
-      contractAddress,
-      decimals,
+      currency: { isActive, isoCode, contractAddress, decimals },
     });
     return true;
   };

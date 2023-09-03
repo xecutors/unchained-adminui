@@ -16,9 +16,7 @@ const AddCurrency = () => {
 
   const onSubmit = async ({ isoCode, contractAddress, decimals }) => {
     const { data, errors } = await createCurrency({
-      isoCode,
-      contractAddress,
-      decimals,
+      currency: { isoCode, contractAddress, decimals },
     });
     if (errors?.length) return false;
     return { success: true, data: data?.createCurrency };

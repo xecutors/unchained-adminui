@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ICurrenciesQuery,
+  ICurrenciesQueryVariables,
+} from '../../../gql/types';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
 export const CurrenciesQuery = gql`
@@ -32,8 +36,11 @@ const useCurrencies = ({
   offset = 0,
   includeInactive = true,
   sort = [],
-} = {}) => {
-  const { data, loading, error } = useQuery(CurrenciesQuery, {
+}: ICurrenciesQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    ICurrenciesQuery,
+    ICurrenciesQueryVariables
+  >(CurrenciesQuery, {
     variables: { queryString, limit, offset, includeInactive, sort },
   });
 

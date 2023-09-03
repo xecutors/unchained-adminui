@@ -37,10 +37,8 @@ const UpdateCountry = () => {
 
   const onSubmit = async ({ isActive, isoCode, defaultCurrencyId }) => {
     await updateCountry({
+      country: { isActive, isoCode, defaultCurrencyId },
       countryId,
-      isActive,
-      isoCode,
-      defaultCurrencyId,
     });
 
     return true;

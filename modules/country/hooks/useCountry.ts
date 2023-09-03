@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { ICountryQuery, ICountryQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CountryFragment from '../fragments/CountryFragment';
 
@@ -12,15 +13,15 @@ export const GetCountryQuery = (inlineFragment = '') => gql`
   ${CountryFragment}
 `;
 
-const useCountry = ({ countryId }) => {
+const useCountry = ({ countryId }: ICountryQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetCountryQuery(customProperties?.Country),
-    {
-      skip: !countryId,
-      variables: { countryId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    ICountryQuery,
+    ICountryQueryVariables
+  >(GetCountryQuery(customProperties?.Country), {
+    skip: !countryId,
+    variables: { countryId },
+  });
 
   return {
     country: data?.country,
