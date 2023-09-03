@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IUserEnrollmentsQuery,
+  IUserEnrollmentsQueryVariables,
+} from '../../../gql/types';
 import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
 export const UserEnrollmentsQuery = gql`
@@ -13,8 +17,15 @@ export const UserEnrollmentsQuery = gql`
   ${EnrollmentFragment}
 `;
 
-const useUserEnrollments = ({ userId = null, queryString = '' } = {}) => {
-  const { data, loading, error } = useQuery(UserEnrollmentsQuery, {
+const useUserEnrollments = ({
+  userId = null,
+  queryString = '',
+}: IUserEnrollmentsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IUserEnrollmentsQuery,
+    IUserEnrollmentsQueryVariables
+  >(UserEnrollmentsQuery, {
+    skip: !userId,
     variables: { userId, queryString },
   });
   const enrollments = data?.user?.enrollments || [];

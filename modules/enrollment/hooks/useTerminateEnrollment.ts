@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ITerminateEnrollmentMutation,
+  ITerminateEnrollmentMutationVariables,
+} from '../../../gql/types';
 
 const TerminateEnrollmentMutation = gql`
   mutation TerminateEnrollment($enrollmentId: ID!) {
@@ -9,11 +13,14 @@ const TerminateEnrollmentMutation = gql`
 `;
 
 const useTerminateEnrollment = () => {
-  const [terminateEnrollmentMutation] = useMutation(
-    TerminateEnrollmentMutation,
-  );
+  const [terminateEnrollmentMutation] = useMutation<
+    ITerminateEnrollmentMutation,
+    ITerminateEnrollmentMutationVariables
+  >(TerminateEnrollmentMutation);
 
-  const terminateEnrollment = async ({ enrollmentId }) => {
+  const terminateEnrollment = async ({
+    enrollmentId,
+  }: ITerminateEnrollmentMutationVariables) => {
     return terminateEnrollmentMutation({
       variables: { enrollmentId },
       refetchQueries: ['Enrollments', 'Enrollment'],

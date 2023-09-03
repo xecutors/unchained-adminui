@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IEnrollmentStatusQuery,
+  IEnrollmentStatusQueryVariables,
+} from '../../../gql/types';
 
 export const EnrollmentStatusTypes = gql`
   query EnrollmentStatus {
@@ -12,7 +16,10 @@ export const EnrollmentStatusTypes = gql`
 `;
 
 const useEnrollmentStatusTypes = () => {
-  const { data, loading, error } = useQuery(EnrollmentStatusTypes);
+  const { data, loading, error } = useQuery<
+    IEnrollmentStatusQuery,
+    IEnrollmentStatusQueryVariables
+  >(EnrollmentStatusTypes);
 
   const enrollmentStatusTypes = data?.enrollmentStatusTypes?.options || [];
 

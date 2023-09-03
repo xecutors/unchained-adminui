@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IEnrollmentsQuery,
+  IEnrollmentsQueryVariables,
+} from '../../../gql/types';
 import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
 export const EnrollmentsQuery = gql`
@@ -29,8 +33,11 @@ const useEnrollments = ({
   queryString = '',
   sort = [],
   status = null,
-} = {}) => {
-  const { data, loading, error } = useQuery(EnrollmentsQuery, {
+}: IEnrollmentsQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IEnrollmentsQuery,
+    IEnrollmentsQueryVariables
+  >(EnrollmentsQuery, {
     variables: { limit, offset, queryString, sort, status },
   });
   const enrollments = data?.enrollments || [];
