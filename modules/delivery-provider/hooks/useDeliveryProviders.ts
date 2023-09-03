@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IDeliveryProvidersQuery,
+  IDeliveryProvidersQueryVariables,
+} from '../../../gql/types';
 import DeliveryProviderFragment from '../fragments/DeliveryProviderFragment';
 
 export const DeliveryProvidersQuery = gql`
@@ -10,8 +14,13 @@ export const DeliveryProvidersQuery = gql`
   ${DeliveryProviderFragment}
 `;
 
-const useDeliveryProviders = ({ type = null } = {}) => {
-  const { data, loading, error } = useQuery(DeliveryProvidersQuery, {
+const useDeliveryProviders = ({
+  type = null,
+}: IDeliveryProvidersQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IDeliveryProvidersQuery,
+    IDeliveryProvidersQueryVariables
+  >(DeliveryProvidersQuery, {
     variables: { type },
   });
 

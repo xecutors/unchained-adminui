@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateDeliveryProviderMutation,
+  IUpdateDeliveryProviderMutationVariables,
+} from '../../../gql/types';
 import DeliveryProviderFragment from '../fragments/DeliveryProviderFragment';
 
 const UpdateDeliveryProviderMutation = gql`
@@ -17,14 +21,15 @@ const UpdateDeliveryProviderMutation = gql`
 `;
 
 const useUpdateDeliveryProvider = () => {
-  const [updateDeliveryProviderMutation] = useMutation(
-    UpdateDeliveryProviderMutation,
-  );
+  const [updateDeliveryProviderMutation] = useMutation<
+    IUpdateDeliveryProviderMutation,
+    IUpdateDeliveryProviderMutationVariables
+  >(UpdateDeliveryProviderMutation);
 
   const updateDeliveryProvider = async ({
-    configuration,
+    deliveryProvider: { configuration },
     deliveryProviderId,
-  }) => {
+  }: IUpdateDeliveryProviderMutationVariables) => {
     return updateDeliveryProviderMutation({
       variables: {
         deliveryProvider: { configuration },

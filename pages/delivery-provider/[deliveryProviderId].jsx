@@ -32,7 +32,9 @@ const DeliveryProviderUpdate = () => {
 
   const onSubmit = async ({ configuration: config }) => {
     await updateDeliveryProvider({
-      configuration: JSON.parse(config || '[]'),
+      deliveryProvider: {
+        configuration: JSON.parse(config || '[]'),
+      },
       deliveryProviderId,
     });
     return true;

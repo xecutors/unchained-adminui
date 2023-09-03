@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IDeliveryInterfacesQuery,
+  IDeliveryInterfacesQueryVariables,
+} from '../../../gql/types';
 
 export const DeliveryInterfacesQuery = gql`
   query DeliveryInterfaces($providerType: DeliveryProviderType!) {
@@ -10,9 +14,15 @@ export const DeliveryInterfacesQuery = gql`
   }
 `;
 
-const useDeliveryInterfacesByType = ({ type = null } = {}) => {
-  const { data, loading, error } = useQuery(DeliveryInterfacesQuery, {
-    variables: { providerType: type },
+const useDeliveryInterfacesByType = ({
+  providerType = null,
+}: IDeliveryInterfacesQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IDeliveryInterfacesQuery,
+    IDeliveryInterfacesQueryVariables
+  >(DeliveryInterfacesQuery, {
+    skip: !providerType,
+    variables: { providerType },
   });
 
   const deliveryInterfaces = data?.deliveryInterfaces || [];

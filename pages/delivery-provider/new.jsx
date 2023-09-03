@@ -17,12 +17,14 @@ const NewDeliveryProvider = () => {
   const { createDeliveryProvider } = useCreateDeliveryProvider();
   const { deliveryProviderType } = useDeliveryProviderTypes();
   const { deliveryInterfaces } = useDeliveryInterfacesByType({
-    type: selectedType,
+    providerType: selectedType,
   });
   const { hasRole } = useAuth();
 
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data, errors } = await createDeliveryProvider({ adapterKey, type });
+    const { data, errors } = await createDeliveryProvider({
+      deliveryProvider: { adapterKey, type },
+    });
     if (errors?.length) return false;
     return { success: true, data: data?.createDeliveryProvider };
   };
