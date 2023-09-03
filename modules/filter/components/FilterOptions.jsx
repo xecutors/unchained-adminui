@@ -16,7 +16,7 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
   const { createFilterOption } = useCreateFilterOption();
 
   const onSubmit = async ({ value, title }) => {
-    await createFilterOption({ filterId, value, title });
+    await createFilterOption({ filterId, option: { value, title } });
     setModal('');
     return true;
   };

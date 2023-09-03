@@ -1,7 +1,7 @@
 import { useMutation, gql } from '@apollo/client';
 import {
-  ICreateUserWithWebAuthMutationMutation,
-  ICreateUserWithWebAuthMutationMutationVariables,
+  ICreateUserWithWebAuthMutation,
+  ICreateUserWithWebAuthMutationVariables,
 } from '../../../gql/types';
 
 const CreateUserWithWebAuthMutation = gql`
@@ -24,15 +24,15 @@ const CreateUserWithWebAuthMutation = gql`
 
 const useCreateUserWithWebAuth = () => {
   const [createUserWithWebAuthMutation, { data, error, loading }] = useMutation<
-    ICreateUserWithWebAuthMutationMutation,
-    ICreateUserWithWebAuthMutationMutationVariables
+    ICreateUserWithWebAuthMutation,
+    ICreateUserWithWebAuthMutationVariables
   >(CreateUserWithWebAuthMutation);
 
   const createUserWithWebAuth = async ({
     username,
     email,
     webAuthnPublicKeyCredentials,
-  }: ICreateUserWithWebAuthMutationMutationVariables) => {
+  }: ICreateUserWithWebAuthMutationVariables) => {
     const variables = {
       username,
       email,

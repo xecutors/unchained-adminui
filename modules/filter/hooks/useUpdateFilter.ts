@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateFilterMutation,
+  IUpdateFilterMutationVariables,
+} from '../../../gql/types';
 import FilterFragment from '../fragments/FilterFragment';
 
 const UpdateFilterMutation = gql`
@@ -11,11 +15,17 @@ const UpdateFilterMutation = gql`
 `;
 
 const useUpdateFilter = () => {
-  const [updateFilterMutation] = useMutation(UpdateFilterMutation);
+  const [updateFilterMutation] = useMutation<
+    IUpdateFilterMutation,
+    IUpdateFilterMutationVariables
+  >(UpdateFilterMutation);
 
-  const updateFilter = async ({ filterId, isActive, key }) => {
+  const updateFilter = async ({
+    filterId,
+    filter,
+  }: IUpdateFilterMutationVariables) => {
     return updateFilterMutation({
-      variables: { filter: { isActive, key }, filterId },
+      variables: { filter, filterId },
     });
   };
 

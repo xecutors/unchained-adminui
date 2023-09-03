@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IFilterQuery, IFilterQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import FilterFragment from '../fragments/FilterFragment';
 
@@ -18,15 +19,15 @@ export const GetFilterQuery = (inlineFragment = '') => gql`
   ${FilterFragment}
 `;
 
-const useFilter = ({ filterId = null } = {}) => {
+const useFilter = ({ filterId = null }: IFilterQueryVariables = {}) => {
   const { customProperties, hydrateFragment } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetFilterQuery(customProperties?.Filter),
-    {
-      skip: !filterId,
-      variables: { filterId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    IFilterQuery,
+    IFilterQueryVariables
+  >(GetFilterQuery(customProperties?.Filter), {
+    skip: !filterId,
+    variables: { filterId },
+  });
 
   const filter = data?.filter;
   const extendedData = hydrateFragment(customProperties?.Filter, filter);

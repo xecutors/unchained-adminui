@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateFilterOptionMutation,
+  ICreateFilterOptionMutationVariables,
+} from '../../../gql/types';
 
 const CreateFilterOptionMutation = gql`
   mutation CreateFilterOption(
@@ -12,11 +16,17 @@ const CreateFilterOptionMutation = gql`
 `;
 
 const useCreateFilterOption = () => {
-  const [createFilterOptionMutation] = useMutation(CreateFilterOptionMutation);
+  const [createFilterOptionMutation] = useMutation<
+    ICreateFilterOptionMutation,
+    ICreateFilterOptionMutationVariables
+  >(CreateFilterOptionMutation);
 
-  const createFilterOption = async ({ filterId, value, title }) => {
+  const createFilterOption = async ({
+    filterId,
+    option,
+  }: ICreateFilterOptionMutationVariables) => {
     return createFilterOptionMutation({
-      variables: { filterId, option: { value, title } },
+      variables: { filterId, option },
       refetchQueries: ['FilterOptions'],
     });
   };

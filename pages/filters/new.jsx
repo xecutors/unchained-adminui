@@ -14,10 +14,12 @@ const AddFilter = () => {
 
   const onSubmit = async ({ key, title, type, options }) => {
     const { data, errors } = await createFilter({
-      options,
-      key,
-      title,
-      type,
+      filter: {
+        options,
+        key,
+        title,
+        type,
+      },
     });
     return { success: !errors?.length, data: data?.createFilter };
   };

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedFilterTextsQuery,
+  ITranslatedFilterTextsQueryVariables,
+} from '../../../gql/types';
 
 import FilterTextsFragment from '../fragments/FilterTextsFragment';
 
@@ -17,8 +21,11 @@ export const TranslatedFilterTextsQuery = gql`
 const useTranslatedFilterTexts = ({
   filterId = null,
   filterOptionValue = null,
-} = {}) => {
-  const { data, loading, error } = useQuery(TranslatedFilterTextsQuery, {
+}: ITranslatedFilterTextsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    ITranslatedFilterTextsQuery,
+    ITranslatedFilterTextsQueryVariables
+  >(TranslatedFilterTextsQuery, {
     variables: { filterId, filterOptionValue },
   });
 

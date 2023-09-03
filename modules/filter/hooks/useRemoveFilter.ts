@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveFilterMutation,
+  IRemoveFilterMutationVariables,
+} from '../../../gql/types';
 
 const RemoveFilterMutation = gql`
   mutation RemoveFilter($filterId: ID!) {
@@ -9,9 +13,12 @@ const RemoveFilterMutation = gql`
 `;
 
 const useRemoveFilter = () => {
-  const [removeFilterMutation] = useMutation(RemoveFilterMutation);
+  const [removeFilterMutation] = useMutation<
+    IRemoveFilterMutation,
+    IRemoveFilterMutationVariables
+  >(RemoveFilterMutation);
 
-  const removeFilter = async ({ filterId }) => {
+  const removeFilter = async ({ filterId }: IRemoveFilterMutationVariables) => {
     return removeFilterMutation({
       variables: { filterId },
       refetchQueries: ['Filters'],

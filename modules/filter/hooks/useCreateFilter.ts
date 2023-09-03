@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateFilterMutation,
+  ICreateFilterMutationVariables,
+} from '../../../gql/types';
 import FilterFragment from '../fragments/FilterFragment';
 
 const CreateFilterMutation = gql`
@@ -11,10 +15,14 @@ const CreateFilterMutation = gql`
 `;
 
 const useCreateFilter = () => {
-  const [createFilterMutation, { data, loading, error }] =
-    useMutation(CreateFilterMutation);
+  const [createFilterMutation, { data, loading, error }] = useMutation<
+    ICreateFilterMutation,
+    ICreateFilterMutationVariables
+  >(CreateFilterMutation);
 
-  const createFilter = async ({ key, type, title, options }) => {
+  const createFilter = async ({
+    filter: { key, type, title, options },
+  }: ICreateFilterMutationVariables) => {
     return createFilterMutation({
       variables: { filter: { key, title, type, options } },
     });

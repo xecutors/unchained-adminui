@@ -85,7 +85,7 @@ const FilterDetail = ({ filter, extendedData }) => {
       onClick: async () => {
         await updateFilter({
           filterId,
-          isActive: true,
+          filter: { isActive: true },
         });
         toast.success(
           formatMessage({
@@ -108,7 +108,7 @@ const FilterDetail = ({ filter, extendedData }) => {
       onClick: async () => {
         await updateFilter({
           filterId,
-          isActive: false,
+          filter: { isActive: false },
         });
         toast.success(
           formatMessage({

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IFilterTypesQuery,
+  IFilterTypesQueryVariables,
+} from '../../../gql/types';
 
 export const FilterTypesQuery = gql`
   query FilterTypes {
@@ -12,7 +16,10 @@ export const FilterTypesQuery = gql`
 `;
 
 const useFilterTypes = () => {
-  const { data, loading, error } = useQuery(FilterTypesQuery);
+  const { data, loading, error } = useQuery<
+    IFilterTypesQuery,
+    IFilterTypesQueryVariables
+  >(FilterTypesQuery);
 
   const filterTypes = data?.filterTypes?.options || [];
 
