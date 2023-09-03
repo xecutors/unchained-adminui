@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IExportTokenMutation,
+  IExportTokenMutationVariables,
+} from '../../../gql/types';
 import TokenFragment from '../fragments/TokenFragment';
 
 const ExportTokenMutation = gql`
@@ -19,9 +23,16 @@ const ExportTokenMutation = gql`
 `;
 
 const useExportToken = () => {
-  const [exportTokenMutation] = useMutation(ExportTokenMutation);
+  const [exportTokenMutation] = useMutation<
+    IExportTokenMutation,
+    IExportTokenMutationVariables
+  >(ExportTokenMutation);
 
-  const exportToken = async ({ quantity, recipientWalletAddress, tokenId }) => {
+  const exportToken = async ({
+    quantity,
+    recipientWalletAddress,
+    tokenId,
+  }: IExportTokenMutationVariables) => {
     return exportTokenMutation({
       variables: {
         quantity,

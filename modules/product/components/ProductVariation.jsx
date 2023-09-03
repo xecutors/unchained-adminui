@@ -17,7 +17,10 @@ const ProductVariation = ({ productId, selectedLocale }) => {
   });
 
   const onSubmit = async ({ title, key, type }) => {
-    await createProductVariation({ productId, key, type, title });
+    await createProductVariation({
+      productId,
+      variation: { key, type, title },
+    });
     return true;
   };
   if (loading) return <Loading />;

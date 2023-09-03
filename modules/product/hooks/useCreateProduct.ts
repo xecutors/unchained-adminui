@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateProductMutation,
+  ICreateProductMutationVariables,
+} from '../../../gql/types';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 const CreateProductMutation = gql`
@@ -11,11 +15,14 @@ const CreateProductMutation = gql`
 `;
 
 const useCreateProduct = () => {
-  const [createProductMutation, { data, error, loading }] = useMutation(
-    CreateProductMutation,
-  );
+  const [createProductMutation, { data, error, loading }] = useMutation<
+    ICreateProductMutation,
+    ICreateProductMutationVariables
+  >(CreateProductMutation);
 
-  const createProduct = async ({ type, title, tags }) => {
+  const createProduct = async ({
+    product: { type, title, tags },
+  }: ICreateProductMutationVariables) => {
     return createProductMutation({
       variables: { product: { title, type, tags } },
       refetchQueries: ['Products'],

@@ -46,7 +46,7 @@ const useProducts = ({
   tags = null,
   includeDrafts = true,
   slugs = null,
-  sort: sortOptions = [] as ISortOptionInput[],
+  sort: sortOptions = [],
   forceLocale = '',
 }: IProductsQueryVariables & { forceLocale?: string } = {}) => {
   const { data, loading, error } = useQuery<
@@ -65,7 +65,7 @@ const useProducts = ({
       includeDrafts,
       tags,
       slugs,
-      sort: (sortOptions as ISortOptionInput[]).length
+      sort: sortOptions.length
         ? sortOptions
         : ([{ key: 'sequence', value: 'ASC' }] as ISortOptionInput[]),
     },

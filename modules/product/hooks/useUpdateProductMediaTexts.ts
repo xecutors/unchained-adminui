@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateProductMediaTextsMutation,
+  IUpdateProductMediaTextsMutationVariables,
+} from '../../../gql/types';
 import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 
 const UpdateProductMediaTextsMutation = gql`
@@ -14,11 +18,15 @@ const UpdateProductMediaTextsMutation = gql`
 `;
 
 const useUpdateProductMediaTexts = () => {
-  const [updateProductMediaTextsMutation] = useMutation(
-    UpdateProductMediaTextsMutation,
-  );
+  const [updateProductMediaTextsMutation] = useMutation<
+    IUpdateProductMediaTextsMutation,
+    IUpdateProductMediaTextsMutationVariables
+  >(UpdateProductMediaTextsMutation);
 
-  const updateProductMediaTexts = async ({ productMediaId, texts }) => {
+  const updateProductMediaTexts = async ({
+    productMediaId,
+    texts,
+  }: IUpdateProductMediaTextsMutationVariables) => {
     return updateProductMediaTextsMutation({
       variables: { productMediaId, texts },
       refetchQueries: ['TranslatedProductMediaTexts'],

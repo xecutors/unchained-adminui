@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type Auth = () => boolean;
+export type Auth = (actionName: string) => boolean;
 export type AuthState = () => boolean | string[];
 export type AuthReset = () => void;
 const AuthContext = React.createContext<{

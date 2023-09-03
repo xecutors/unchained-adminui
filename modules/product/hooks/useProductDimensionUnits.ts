@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductDimensionUnitsQuery,
+  IProductDimensionUnitsQueryVariables,
+} from '../../../gql/types';
 
 export const ProductDimensionUnitsTypeQuery = gql`
   query ProductDimensionUnits {
@@ -18,7 +22,10 @@ export const ProductDimensionUnitsTypeQuery = gql`
 `;
 
 const useProductDimensionUnits = () => {
-  const { data, loading, error } = useQuery(ProductDimensionUnitsTypeQuery);
+  const { data, loading, error } = useQuery<
+    IProductDimensionUnitsQuery,
+    IProductDimensionUnitsQueryVariables
+  >(ProductDimensionUnitsTypeQuery);
 
   const { massUnits: massU = {}, lengthUnits: lengthU = {} } = data || {};
   const massUnits = massU?.options || [];

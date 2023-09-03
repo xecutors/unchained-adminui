@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateProductPlanMutation,
+  IUpdateProductPlanMutationVariables,
+} from '../../../gql/types';
 
 const UpdateProductPlanMutation = gql`
   mutation UpdateProductPlan($productId: ID!, $plan: UpdateProductPlanInput!) {
@@ -9,16 +13,21 @@ const UpdateProductPlanMutation = gql`
 `;
 
 const useUpdateProductPlan = () => {
-  const [updateProductPlanMutation] = useMutation(UpdateProductPlanMutation);
+  const [updateProductPlanMutation] = useMutation<
+    IUpdateProductPlanMutation,
+    IUpdateProductPlanMutationVariables
+  >(UpdateProductPlanMutation);
 
   const updateProductPlan = async ({
     productId,
-    usageCalculationType,
-    billingInterval,
-    billingIntervalCount = null,
-    trialInterval = null,
-    trialIntervalCount = null,
-  }) => {
+    plan: {
+      usageCalculationType,
+      billingInterval,
+      billingIntervalCount = null,
+      trialInterval = null,
+      trialIntervalCount = null,
+    },
+  }: IUpdateProductPlanMutationVariables) => {
     return updateProductPlanMutation({
       variables: {
         productId,

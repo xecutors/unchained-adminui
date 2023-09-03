@@ -4,10 +4,10 @@ import { bgColor, textColor, borderColor } from '../data/miscellaneous';
 const Badge = ({
   text,
   className: classes = '',
-  dotted,
+  dotted = null,
   color = 'green',
-  square,
-  onClick,
+  square = null,
+  onClick = null,
 }) => {
   const normalizedColor = color?.trim();
 

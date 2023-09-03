@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-const FormWrapper = ({ children, className }) => {
+const FormWrapper = ({ children, className = '' }) => {
   return (
     <div className="sm:max-w-full">
       <div

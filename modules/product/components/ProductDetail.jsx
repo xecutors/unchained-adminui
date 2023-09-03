@@ -89,7 +89,9 @@ const ProductDetail = ({ product, extendedData }) => {
     if (e.target.value)
       await updateProduct({
         productId: product?._id,
-        sequence: parseInt(e.target.value, 10),
+        product: {
+          sequence: parseInt(e.target.value, 10),
+        },
       });
   };
   const { status, __typename } = product;
@@ -244,7 +246,7 @@ const ProductDetail = ({ product, extendedData }) => {
   ];
 
   const onUpdateTags = async ({ tags }) => {
-    await updateProduct({ productId: product?._id, tags });
+    await updateProduct({ productId: product?._id, product: { tags } });
     return true;
   };
 

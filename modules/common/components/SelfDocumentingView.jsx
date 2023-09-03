@@ -3,9 +3,9 @@ import classNames from 'classnames';
 const SelfDocumentingView = ({
   documentationLabel,
   documentation,
-  mainContent,
-  sideComponents,
-  className,
+  mainContent = '',
+  sideComponents = '',
+  className = '',
   children,
 }) => {
   return (

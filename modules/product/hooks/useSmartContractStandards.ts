@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ISmartContractStandardsQuery,
+  ISmartContractStandardsQueryVariables,
+} from '../../../gql/types';
 
 export const SmartContractStandardsQuery = gql`
   query SmartContractStandards {
@@ -12,7 +16,10 @@ export const SmartContractStandardsQuery = gql`
 `;
 
 const useSmartContractStandards = () => {
-  const { data, loading, error } = useQuery(SmartContractStandardsQuery);
+  const { data, loading, error } = useQuery<
+    ISmartContractStandardsQuery,
+    ISmartContractStandardsQueryVariables
+  >(SmartContractStandardsQuery);
 
   const smartContractStandards = data?.smartContractStandards?.options || [];
 

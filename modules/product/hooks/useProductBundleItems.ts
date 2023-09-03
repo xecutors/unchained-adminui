@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductBundleItemsQuery,
+  IProductBundleItemsQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
@@ -19,14 +23,20 @@ export const ProductBundleItemQuery = gql`
   ${ProductBriefFragment}
 `;
 
-const useProductBundleItems = ({ productId: id = null, slug = null } = {}) => {
+const useProductBundleItems = ({
+  productId: id = null,
+  slug = null,
+}: IProductBundleItemsQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(ProductBundleItemQuery, {
+  const { data, loading, error } = useQuery<
+    IProductBundleItemsQuery,
+    IProductBundleItemsQueryVariables
+  >(ProductBundleItemQuery, {
     skip: !id && !parsedId,
     variables: { productId: id || parsedId },
   });
 
-  const bundleItems = data?.product?.bundleItems || [];
+  const bundleItems = data?.product?.bundleItems;
 
   return {
     bundleItems,

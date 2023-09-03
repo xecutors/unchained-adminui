@@ -4,11 +4,11 @@ const DangerMessage = ({
   onOkClick,
   onCancelClick,
   okText,
-  cancelText,
-  headerText,
-  message,
-  icon,
-  close,
+  cancelText = null,
+  headerText = null,
+  message = null,
+  icon = null,
+  close = null,
 }) => {
   const { formatMessage } = useIntl();
   return (

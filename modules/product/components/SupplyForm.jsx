@@ -24,10 +24,12 @@ const SupplyForm = ({ productId }) => {
   const onSubmit = async ({ weight, length, width, height }) => {
     await updateProductSupply({
       productId,
-      weightInGram: weight,
-      lengthInMillimeters: length,
-      heightInMillimeters: height,
-      widthInMillimeters: width,
+      supply: {
+        weightInGram: weight,
+        lengthInMillimeters: length,
+        heightInMillimeters: height,
+        widthInMillimeters: width,
+      },
     });
     return true;
   };

@@ -46,7 +46,7 @@ const CommerceForm = ({ productId }) => {
   const defaultCountryValue = baseCountry?.isoCode;
   const defaultCurrencyValue = baseCountry?.defaultCurrency?.isoCode;
   const onSubmit = async ({ pricing }) => {
-    await updateProductCommerce({ productId, pricing });
+    await updateProductCommerce({ productId, commerce: { pricing } });
     return true;
   };
   const successMessage = formatMessage({

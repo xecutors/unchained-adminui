@@ -6,7 +6,7 @@ import useFormContext from '../hooks/useFormContext';
 const SubmitButton = ({
   label,
   disabled: disabledProp = false,
-  className,
+  className = '',
   hidden,
   ...props
 }) => {

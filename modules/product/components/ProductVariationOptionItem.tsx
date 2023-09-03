@@ -16,21 +16,21 @@ const ProductVariationOptionItem = ({
   selectedLocale,
 }) => {
   const { formatMessage } = useIntl();
-  const [isEdit, setIsEdit] = useState();
+  const [isEdit, setIsEdit] = useState(false);
   const successMessage = formatMessage({
     id: 'variation_option_updated',
     defaultMessage: 'Variation option updated successfully!',
   });
   const { updateProductVariationTexts } = useUpdateProductVariationTexts();
 
-  const onUpdate = async ({ title, subtitle }) => {
-    await updateProductVariationTexts({
+  const onUpdate = async ({ title, subtitle }: any) => {
+    const data = await updateProductVariationTexts({
       productVariationId: variationId,
       productVariationOptionValue: option.value,
-      texts: { title, subtitle, locale: selectedLocale },
+      texts: [{ title, subtitle, locale: selectedLocale }],
     });
     setIsEdit(false);
-    return true;
+    return { data, success: true };
   };
   const form = useForm({
     submit: onUpdate,

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedProductTextsQuery,
+  ITranslatedProductTextsQueryVariables,
+} from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import ProductTextsFragment from '../fragments/ProductTextsFragment';
 
@@ -12,17 +16,19 @@ export const GetTranslatedProductTextsQuery = (inlineFragment = '') => gql`
   ${ProductTextsFragment}
 `;
 
-const useTranslatedProductTexts = ({ productId }) => {
+const useTranslatedProductTexts = ({
+  productId,
+}: ITranslatedProductTextsQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetTranslatedProductTextsQuery(customProperties?.ProductTexts),
-    {
-      skip: !productId,
-      variables: {
-        productId,
-      },
+  const { data, loading, error } = useQuery<
+    ITranslatedProductTextsQuery,
+    ITranslatedProductTextsQueryVariables
+  >(GetTranslatedProductTextsQuery(customProperties?.ProductTexts), {
+    skip: !productId,
+    variables: {
+      productId,
     },
-  );
+  });
   const translatedTexts = data?.translatedProductTexts || [];
 
   return {

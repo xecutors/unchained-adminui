@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUnpublishProductMutation,
+  IUnpublishProductMutationVariables,
+} from '../../../gql/types';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
 const UnPublishProductMutation = gql`
@@ -11,9 +15,14 @@ const UnPublishProductMutation = gql`
 `;
 
 const useUnPublishProduct = () => {
-  const [unPublishProductMutation] = useMutation(UnPublishProductMutation);
+  const [unPublishProductMutation] = useMutation<
+    IUnpublishProductMutation,
+    IUnpublishProductMutationVariables
+  >(UnPublishProductMutation);
 
-  const unPublishProduct = async ({ productId }) => {
+  const unPublishProduct = async ({
+    productId,
+  }: IUnpublishProductMutationVariables) => {
     return unPublishProductMutation({
       variables: { productId },
     });

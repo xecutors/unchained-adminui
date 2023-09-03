@@ -1,3 +1,4 @@
+import * as Operations from '';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -4230,8 +4231,6 @@ export type IMd5MetaDataFragment = {
   readonly authenticatorGetInfo?: any | null;
 };
 
-export type IMd5MetaDataFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IUserFragment = {
   readonly _id: string;
   readonly isTwoFactorEnabled: boolean;
@@ -4338,8 +4337,6 @@ export type IUserFragment = {
     readonly address: string;
   } | null;
 };
-
-export type IUserFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ILogoutMutationVariables = Exact<{
   token?: InputMaybe<Scalars['String']['input']>;
@@ -6513,10 +6510,6 @@ export type IAssortmentChildrenFragment = {
   } | null;
 };
 
-export type IAssortmentChildrenFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type IAssortmentFragment = {
   readonly _id: string;
   readonly isActive?: boolean | null;
@@ -6540,8 +6533,6 @@ export type IAssortmentFragment = {
     readonly file: { readonly _id: string; readonly url: string };
   }>;
 };
-
-export type IAssortmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAssortmentLinkFragment = {
   readonly _id: string;
@@ -6594,8 +6585,6 @@ export type IAssortmentLinkFragment = {
   };
 };
 
-export type IAssortmentLinkFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IAssortmentMediaFragment = {
   readonly _id: string;
   readonly tags?: ReadonlyArray<any> | null;
@@ -6608,18 +6597,12 @@ export type IAssortmentMediaFragment = {
   } | null;
 };
 
-export type IAssortmentMediaFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IAssortmentMediaTextsFragment = {
   readonly _id: string;
   readonly locale?: string | null;
   readonly title?: string | null;
   readonly subtitle?: string | null;
 };
-
-export type IAssortmentMediaTextsFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type IAssortmentTextsFragment = {
   readonly _id: string;
@@ -6629,8 +6612,6 @@ export type IAssortmentTextsFragment = {
   readonly subtitle?: string | null;
   readonly description?: string | null;
 };
-
-export type IAssortmentTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddAssortmentFilterMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
@@ -7345,8 +7326,6 @@ export type ICountryFragment = {
   } | null;
 };
 
-export type ICountryFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type ICountriesQueryVariables = Exact<{
   queryString?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -7446,8 +7425,6 @@ export type ICurrencyFragment = {
   readonly decimals?: number | null;
 };
 
-export type ICurrencyFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type ICreateCurrencyMutationVariables = Exact<{
   currency: ICreateCurrencyInput;
 }>;
@@ -7539,10 +7516,6 @@ export type IDeliveryProviderFragment = {
     readonly version?: string | null;
   } | null;
 };
-
-export type IDeliveryProviderFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type ICreateDeliveryProviderMutationVariables = Exact<{
   deliveryProvider: ICreateDeliveryProviderInput;
@@ -7776,10 +7749,6 @@ export type IEnrollmentDetailFragment = {
   };
 };
 
-export type IEnrollmentDetailFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type IEnrollmentFragment = {
   readonly _id: string;
   readonly enrollmentNumber?: string | null;
@@ -7825,8 +7794,6 @@ export type IEnrollmentFragment = {
     readonly avatar?: { readonly _id: string; readonly url: string } | null;
   };
 };
-
-export type IEnrollmentFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IActivateEnrollmentMutationVariables = Exact<{
   enrollmentId: Scalars['ID']['input'];
@@ -8092,8 +8059,6 @@ export type IEventFragment = {
   readonly created: any;
 };
 
-export type IEventFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IEventQueryVariables = Exact<{
   eventId: Scalars['ID']['input'];
 }>;
@@ -8168,8 +8133,6 @@ export type IFilterFragment = {
   }> | null;
 };
 
-export type IFilterFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IFilterOptionFragment = {
   readonly _id: string;
   readonly value?: string | null;
@@ -8181,16 +8144,12 @@ export type IFilterOptionFragment = {
   } | null;
 };
 
-export type IFilterOptionFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IFilterTextsFragment = {
   readonly _id: string;
   readonly locale?: string | null;
   readonly title?: string | null;
   readonly subtitle?: string | null;
 };
-
-export type IFilterTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateFilterMutationVariables = Exact<{
   filter: ICreateFilterInput;
@@ -8324,10 +8283,6 @@ export type IFiltersQuery = {
   }>;
 };
 
-export type IFiltersCountQueryVariables = Exact<{ [key: string]: never }>;
-
-export type IFiltersCountQuery = { readonly filtersCount: number };
-
 export type IRemoveFilterMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
 }>;
@@ -8407,8 +8362,6 @@ export type ILanguageFragment = {
   readonly isBase?: boolean | null;
   readonly name?: string | null;
 };
-
-export type ILanguageFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateLanguageMutationVariables = Exact<{
   language: ICreateLanguageInput;
@@ -8707,8 +8660,6 @@ export type IOrderDetailFragment = {
   }> | null;
 };
 
-export type IOrderDetailFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IOrderFragment = {
   readonly _id: string;
   readonly status?: IOrderStatus | null;
@@ -8743,8 +8694,6 @@ export type IOrderFragment = {
     } | null;
   } | null;
 };
-
-export type IOrderFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IConfirmOrderMutationVariables = Exact<{
   orderId: Scalars['ID']['input'];
@@ -9129,8 +9078,6 @@ export type IPaymentProviderFragment = {
   } | null;
 };
 
-export type IPaymentProviderFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type ICreatePaymentProviderMutationVariables = Exact<{
   paymentProvider: ICreatePaymentProviderInput;
 }>;
@@ -9307,10 +9254,6 @@ export type IProductReviewDetailFragment = {
   }>;
 };
 
-export type IProductReviewDetailFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type IProductReviewFragment = {
   readonly _id: string;
   readonly created?: any | null;
@@ -9348,8 +9291,6 @@ export type IProductReviewFragment = {
     }>;
   };
 };
-
-export type IProductReviewFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddProductReviewVoteMutationVariables = Exact<{
   productReviewId: Scalars['ID']['input'];
@@ -9717,10 +9658,6 @@ export type IProductAssignmentFragment = {
   } | null;
 };
 
-export type IProductAssignmentFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type IProductBriefFragment = {
   readonly _id: string;
   readonly sequence: number;
@@ -9745,8 +9682,6 @@ export type IProductBriefFragment = {
   }>;
 };
 
-export type IProductBriefFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IProductCatalogPriceFragment = {
   readonly _id: string;
   readonly isTaxable: boolean;
@@ -9765,10 +9700,6 @@ export type IProductCatalogPriceFragment = {
     readonly isActive?: boolean | null;
   };
 };
-
-export type IProductCatalogPriceFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type IProductDetailFragment = {
   readonly _id: string;
@@ -9809,18 +9740,12 @@ export type IProductDetailFragment = {
   }>;
 };
 
-export type IProductDetailFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IProductDimensionFragment = {
   readonly weight?: number | null;
   readonly length?: number | null;
   readonly width?: number | null;
   readonly height?: number | null;
 };
-
-export type IProductDimensionFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type IProductMediaFragment = {
   readonly _id: string;
@@ -9841,18 +9766,12 @@ export type IProductMediaFragment = {
   } | null;
 };
 
-export type IProductMediaFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IProductMediaTextsFragment = {
   readonly _id: string;
   readonly locale?: string | null;
   readonly title?: string | null;
   readonly subtitle?: string | null;
 };
-
-export type IProductMediaTextsFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type IProductPlanConfigurationFragment = {
   readonly usageCalculationType: IProductPlanUsageCalculationType;
@@ -9861,10 +9780,6 @@ export type IProductPlanConfigurationFragment = {
   readonly trialIntervalCount?: number | null;
   readonly billingIntervalCount?: number | null;
 };
-
-export type IProductPlanConfigurationFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
 
 export type IProductTextsFragment = {
   readonly _id: string;
@@ -9877,8 +9792,6 @@ export type IProductTextsFragment = {
   readonly brand?: string | null;
   readonly labels?: ReadonlyArray<string> | null;
 };
-
-export type IProductTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IProductVariationFragment = {
   readonly _id: string;
@@ -9902,10 +9815,6 @@ export type IProductVariationFragment = {
   }> | null;
 };
 
-export type IProductVariationFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type ITokenFragment = {
   readonly _id: string;
   readonly walletAddress?: string | null;
@@ -9915,8 +9824,6 @@ export type ITokenFragment = {
   readonly chainId?: string | null;
   readonly chainTokenId?: string | null;
 };
-
-export type ITokenFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IAddProductAssignmentMutationVariables = Exact<{
   proxyId: Scalars['ID']['input'];
@@ -11082,8 +10989,6 @@ export type IQuotationDetailFragment = {
   };
 };
 
-export type IQuotationDetailFragmentVariables = Exact<{ [key: string]: never }>;
-
 export type IQuotationFragment = {
   readonly _id: string;
   readonly status: IQuotationStatus;
@@ -11129,8 +11034,6 @@ export type IQuotationFragment = {
     readonly isoCode: string;
   } | null;
 };
-
-export type IQuotationFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IMakeQuotationProposalMutationVariables = Exact<{
   quotationId: Scalars['ID']['input'];
@@ -11551,10 +11454,6 @@ export type IWarehousingProviderFragment = {
   } | null;
 };
 
-export type IWarehousingProviderFragmentVariables = Exact<{
-  [key: string]: never;
-}>;
-
 export type ICreateWarehousingProviderMutationVariables = Exact<{
   warehousingProvider: ICreateWarehousingProviderInput;
 }>;
@@ -11688,8 +11587,6 @@ export type IWorkFragment = {
   readonly created: any;
   readonly deleted?: any | null;
 };
-
-export type IWorkFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IActiveWorkTypesQueryVariables = Exact<{ [key: string]: never }>;
 

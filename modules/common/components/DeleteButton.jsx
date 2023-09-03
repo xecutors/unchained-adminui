@@ -8,7 +8,7 @@ const DeleteButton = ({
   icon = null,
   textRight = '',
   textLeft = '',
-  ariaLabel,
+  ariaLabel = '',
 } = {}) => {
   const { formatMessage } = useIntl();
   return (

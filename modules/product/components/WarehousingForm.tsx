@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { IUpdateProductWarehousingInput } from '../../../gql/types';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
@@ -22,9 +23,15 @@ const WarehousingForm = ({ productId }) => {
     defaultMessage: 'Saved',
   });
 
-  const onSubmit = async ({ sku, baseUnit }) => {
-    await updateProductWarehousing({ productId, baseUnit, sku });
-    return true;
+  const onSubmit = async ({
+    sku,
+    baseUnit,
+  }: IUpdateProductWarehousingInput) => {
+    const data = await updateProductWarehousing({
+      productId,
+      warehousing: { baseUnit, sku },
+    });
+    return { data, success: true };
   };
 
   const form = useForm({

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductMediaQuery,
+  IProductMediaQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductMediaFragment from '../fragments/ProductMediaFragment';
 
@@ -14,9 +18,15 @@ export const ProductMediaQuery = gql`
   ${ProductMediaFragment}
 `;
 
-const useProductMedia = ({ productId: id = null, slug = null } = {}) => {
+const useProductMedia = ({
+  productId: id = null,
+  slug = null,
+}: IProductMediaQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(ProductMediaQuery, {
+  const { data, loading, error } = useQuery<
+    IProductMediaQuery,
+    IProductMediaQueryVariables
+  >(ProductMediaQuery, {
     skip: !id && !parsedId,
     variables: { productId: id || parsedId },
   });

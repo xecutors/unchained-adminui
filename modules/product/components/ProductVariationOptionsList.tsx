@@ -27,6 +27,7 @@ const ProductVariationOptionsList = ({
           defaultMessage:
             'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this option? ',
         })}
+        onCancelClick={() => setModal('')}
         onOkClick={async () => {
           setModal('');
           await removeProductVariationOption({
@@ -51,8 +52,7 @@ const ProductVariationOptionsList = ({
   const onSubmit = async ({ value, title }) => {
     await createProductVariationOption({
       productVariationId: variationId,
-      value,
-      title,
+      option: { value, title },
     });
     return true;
   };
@@ -63,7 +63,6 @@ const ProductVariationOptionsList = ({
       {options.length ? (
         options.map((option) => (
           <ProductVariationOptionItem
-            locale={selectedLocale}
             variationId={variationId}
             key={option._id}
             option={option}

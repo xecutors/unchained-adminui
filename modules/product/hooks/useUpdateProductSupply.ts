@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateProductSupplyMutation,
+  IUpdateProductSupplyMutationVariables,
+} from '../../../gql/types';
 import ProductDimensionFragment from '../fragments/ProductDimensionFragment';
 
 const UpdateProductSupplyMutation = gql`
@@ -19,17 +23,20 @@ const UpdateProductSupplyMutation = gql`
 `;
 
 const useUpdateProductSupply = () => {
-  const [updateProductSupplyMutation] = useMutation(
-    UpdateProductSupplyMutation,
-  );
+  const [updateProductSupplyMutation] = useMutation<
+    IUpdateProductSupplyMutation,
+    IUpdateProductSupplyMutationVariables
+  >(UpdateProductSupplyMutation);
 
   const updateProductSupply = async ({
     productId,
-    weightInGram: weight = null,
-    heightInMillimeters: height = null,
-    lengthInMillimeters: length = null,
-    widthInMillimeters: width = null,
-  }) => {
+    supply: {
+      weightInGram: weight = null,
+      heightInMillimeters: height = null,
+      lengthInMillimeters: length = null,
+      widthInMillimeters: width = null,
+    },
+  }: IUpdateProductSupplyMutationVariables) => {
     return updateProductSupplyMutation({
       variables: {
         productId,

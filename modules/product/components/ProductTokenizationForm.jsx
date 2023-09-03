@@ -28,10 +28,12 @@ const ProductTokenizationForm = ({ productId }) => {
   }) => {
     await updateProductTokenization({
       productId,
-      contractAddress,
-      contractStandard,
-      tokenId: tokenId || '',
-      supply,
+      tokenization: {
+        contractAddress,
+        contractStandard,
+        tokenId: tokenId || '',
+        supply,
+      },
     });
   };
 

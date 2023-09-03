@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductWarehousingQuery,
+  IProductWarehousingQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 export const ProductWarehousingQuery = gql`
@@ -13,9 +17,15 @@ export const ProductWarehousingQuery = gql`
   }
 `;
 
-const useProductWarehousing = ({ productId: id = null, slug = null } = {}) => {
+const useProductWarehousing = ({
+  productId: id = null,
+  slug = null,
+}: IProductWarehousingQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(ProductWarehousingQuery, {
+  const { data, loading, error } = useQuery<
+    IProductWarehousingQuery,
+    IProductWarehousingQueryVariables
+  >(ProductWarehousingQuery, {
     skip: !id && !parsedId,
     variables: {
       productId: id || parsedId,

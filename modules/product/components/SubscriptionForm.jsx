@@ -36,11 +36,13 @@ const SubscriptionForm = ({ productId }) => {
   }) => {
     await updateProductPlan({
       productId,
-      billingInterval,
-      usageCalculationType,
-      billingIntervalCount,
-      trialInterval,
-      trialIntervalCount,
+      plan: {
+        billingInterval,
+        usageCalculationType,
+        billingIntervalCount,
+        trialInterval,
+        trialIntervalCount,
+      },
     });
     return true;
   };

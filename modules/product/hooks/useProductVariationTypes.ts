@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductVariationTypeQuery,
+  IProductVariationTypeQueryVariables,
+} from '../../../gql/types';
 
 export const ProductVariationTypesQuery = gql`
   query ProductVariationType {
@@ -12,7 +16,10 @@ export const ProductVariationTypesQuery = gql`
 `;
 
 const useProductVariationTypes = () => {
-  const { data, loading, error } = useQuery(ProductVariationTypesQuery);
+  const { data, loading, error } = useQuery<
+    IProductVariationTypeQuery,
+    IProductVariationTypeQueryVariables
+  >(ProductVariationTypesQuery);
 
   const variationTypes = data?.variationTypes?.options || [];
 

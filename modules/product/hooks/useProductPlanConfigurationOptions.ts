@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductPlanConfigurationOptionsQuery,
+  IProductPlanConfigurationOptionsQueryVariables,
+} from '../../../gql/types';
 
 export const ProductPlanConfigurationOptionsQuery = gql`
   query ProductPlanConfigurationOptions {
@@ -18,9 +22,10 @@ export const ProductPlanConfigurationOptionsQuery = gql`
 `;
 
 const useProductPlanConfigurationOptions = () => {
-  const { data, loading, error } = useQuery(
-    ProductPlanConfigurationOptionsQuery,
-  );
+  const { data, loading, error } = useQuery<
+    IProductPlanConfigurationOptionsQuery,
+    IProductPlanConfigurationOptionsQueryVariables
+  >(ProductPlanConfigurationOptionsQuery);
 
   const usageCalculationTypes = data?.usageCalculationTypes?.options || [];
   const configurationIntervals = data?.configurationIntervals?.options || [];

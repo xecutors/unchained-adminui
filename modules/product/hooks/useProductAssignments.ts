@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductAssignmentsQuery,
+  IProductAssignmentsQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductAssignmentFragment from '../fragments/ProductAssignmentFragment';
@@ -39,10 +43,16 @@ export const ProductAssignmentQuery = gql`
   ${ProductAssignmentFragment}
 `;
 
-const useProductAssignments = ({ productId: id = null, slug = null } = {}) => {
+const useProductAssignments = ({
+  productId: id = null,
+  slug = null,
+}: IProductAssignmentsQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
 
-  const { data, loading, error } = useQuery(ProductAssignmentQuery, {
+  const { data, loading, error } = useQuery<
+    IProductAssignmentsQuery,
+    IProductAssignmentsQueryVariables
+  >(ProductAssignmentQuery, {
     skip: !id && !parsedId,
     variables: { productId: id || parsedId },
   });

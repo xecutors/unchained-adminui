@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductTokenizationQuery,
+  IProductTokenizationQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 export const ProductTokenizationQuery = gql`
@@ -17,17 +21,23 @@ export const ProductTokenizationQuery = gql`
   }
 `;
 
-const useProductTokenization = ({ productId: id = null, slug = null } = {}) => {
+const useProductTokenization = ({
+  productId: id = null,
+  slug = null,
+}: IProductTokenizationQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
 
-  const { data, loading, error } = useQuery(ProductTokenizationQuery, {
+  const { data, loading, error } = useQuery<
+    IProductTokenizationQuery,
+    IProductTokenizationQueryVariables
+  >(ProductTokenizationQuery, {
     skip: !id && !slug,
     variables: {
       productId: id || parsedId,
     },
   });
 
-  const product = data?.product || {};
+  const product = data?.product;
 
   return {
     product,

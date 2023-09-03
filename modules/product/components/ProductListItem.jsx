@@ -21,7 +21,9 @@ const ProductListItem = ({ product, showAvatar }) => {
     if (e.target.value)
       await updateProduct({
         productId: product?._id,
-        sequence: parseInt(e.target.value, 10),
+        product: {
+          sequence: parseInt(e.target.value, 10),
+        },
       });
   };
   return (
