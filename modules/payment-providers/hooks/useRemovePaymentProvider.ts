@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemovePaymentProviderMutation,
+  IRemovePaymentProviderMutationVariables,
+} from '../../../gql/types';
 
 const RemovePaymentProviderMutation = gql`
   mutation RemovePaymentProvider($paymentProviderId: ID!) {
@@ -9,11 +13,14 @@ const RemovePaymentProviderMutation = gql`
 `;
 
 const useRemovePaymentProvider = () => {
-  const [removePaymentProviderMutation] = useMutation(
-    RemovePaymentProviderMutation,
-  );
+  const [removePaymentProviderMutation] = useMutation<
+    IRemovePaymentProviderMutation,
+    IRemovePaymentProviderMutationVariables
+  >(RemovePaymentProviderMutation);
 
-  const removePaymentProvider = async ({ paymentProviderId }) => {
+  const removePaymentProvider = async ({
+    paymentProviderId,
+  }: IRemovePaymentProviderMutationVariables) => {
     return removePaymentProviderMutation({
       variables: {
         paymentProviderId,

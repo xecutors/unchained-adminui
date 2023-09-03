@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdatePaymentProviderMutation,
+  IUpdatePaymentProviderMutationVariables,
+} from '../../../gql/types';
 import PaymentProviderFragment from '../fragments/PaymentProviderFragment';
 
 const UpdatePaymentProviderMutation = gql`
@@ -17,9 +21,10 @@ const UpdatePaymentProviderMutation = gql`
 `;
 
 const useUpdatePaymentProvider = () => {
-  const [updatePaymentProviderMutation] = useMutation(
-    UpdatePaymentProviderMutation,
-  );
+  const [updatePaymentProviderMutation] = useMutation<
+    IUpdatePaymentProviderMutation,
+    IUpdatePaymentProviderMutationVariables
+  >(UpdatePaymentProviderMutation);
 
   const updatePaymentProvider = async ({
     configuration,

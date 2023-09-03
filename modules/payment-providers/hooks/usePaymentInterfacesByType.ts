@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IPaymentInterfacesQuery,
+  IPaymentInterfacesQueryVariables,
+} from '../../../gql/types';
 
 export const PaymentInterfacesQuery = gql`
   query PaymentInterfaces($providerType: PaymentProviderType!) {
@@ -10,9 +14,15 @@ export const PaymentInterfacesQuery = gql`
   }
 `;
 
-const usePaymentInterfacesByType = ({ type = null } = {}) => {
-  const { data, loading, error } = useQuery(PaymentInterfacesQuery, {
-    variables: { providerType: type },
+const usePaymentInterfacesByType = ({
+  providerType,
+}: IPaymentInterfacesQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IPaymentInterfacesQuery,
+    IPaymentInterfacesQueryVariables
+  >(PaymentInterfacesQuery, {
+    skip: !providerType,
+    variables: { providerType },
   });
 
   const paymentInterfaces = data?.paymentInterfaces || [];

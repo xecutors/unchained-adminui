@@ -18,11 +18,13 @@ const NewPaymentProvider = () => {
   const { createPaymentProvider } = useCreatePaymentProvider();
   const { paymentProviderType } = usePaymentProviderTypes();
   const { paymentInterfaces } = usePaymentInterfacesByType({
-    type: selectedType,
+    providerType: selectedType,
   });
   const { hasRole } = useAuth();
   const onSubmit = async ({ adapterKey, type }) => {
-    const { data, errors } = await createPaymentProvider({ adapterKey, type });
+    const { data, errors } = await createPaymentProvider({
+      paymentProvider: { adapterKey, type },
+    });
     if (errors?.length) return false;
     return { success: true, data: data?.createPaymentProvider };
   };
