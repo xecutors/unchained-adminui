@@ -1,6 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
 import {
-  IMutationRemoveLanguageArgs,
   IRemoveLanguageMutation,
   IRemoveLanguageMutationVariables,
 } from '../../../gql/types';
@@ -23,7 +22,7 @@ const useRemoveLanguage = () => {
 
   const removeLanguage = async ({
     languageId,
-  }: IMutationRemoveLanguageArgs) => {
+  }: IRemoveLanguageMutationVariables) => {
     return removeLanguageMutation({
       variables: { languageId },
       refetchQueries: ['Languages'],

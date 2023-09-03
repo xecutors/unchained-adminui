@@ -1,9 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
-import {
-  ILanguagesQuery,
-  ILanguagesQueryVariables,
-  IQueryLanguagesArgs,
-} from '../../../gql/types';
+import { ILanguagesQuery, ILanguagesQueryVariables } from '../../../gql/types';
 import LanguageFragment from '../fragments/LanguageFragment';
 
 export const LanguagesQuery = gql`
@@ -34,7 +30,7 @@ const useLanguages = ({
   offset = 0,
   includeInactive = true,
   sort = [],
-}: IQueryLanguagesArgs = {}) => {
+}: ILanguagesQueryVariables = {}) => {
   const { data, loading, error } = useQuery<
     ILanguagesQuery,
     ILanguagesQueryVariables

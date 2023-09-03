@@ -1,7 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
 import {
-  IMutationUpdateLanguageArgs,
-  IUpdateLanguageInput,
   IUpdateLanguageMutation,
   IUpdateLanguageMutationVariables,
 } from '../../../gql/types';
@@ -25,7 +23,7 @@ const useUpdateLanguage = () => {
   const updateLanguage = async ({
     language: { isoCode, isActive },
     languageId,
-  }: IMutationUpdateLanguageArgs) => {
+  }: IUpdateLanguageMutationVariables) => {
     return updateLanguageMutation({
       variables: {
         language: { isoCode, isActive },
