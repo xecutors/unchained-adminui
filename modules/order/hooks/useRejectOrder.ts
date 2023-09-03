@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRejectOrderMutation,
+  IRejectOrderMutationVariables,
+} from '../../../gql/types';
 
 const RejectOrderMutation = gql`
   mutation RejectOrder($orderId: ID!) {
@@ -9,9 +13,12 @@ const RejectOrderMutation = gql`
 `;
 
 const useRejectOrder = () => {
-  const [rejectOrderMutation] = useMutation(RejectOrderMutation);
+  const [rejectOrderMutation] = useMutation<
+    IRejectOrderMutation,
+    IRejectOrderMutationVariables
+  >(RejectOrderMutation);
 
-  const rejectOrder = async ({ orderId }: { orderId: string }) => {
+  const rejectOrder = async ({ orderId }: IRejectOrderMutationVariables) => {
     return rejectOrderMutation({
       variables: {
         orderId,

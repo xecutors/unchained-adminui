@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveOrderMutation,
+  IRemoveOrderMutationVariables,
+} from '../../../gql/types';
 
 const RemoveOrderMutation = gql`
   mutation RemoveOrder($orderId: ID!) {
@@ -9,9 +13,12 @@ const RemoveOrderMutation = gql`
 `;
 
 const useRemoveOrder = () => {
-  const [removeOrderMutation] = useMutation(RemoveOrderMutation);
+  const [removeOrderMutation] = useMutation<
+    IRemoveOrderMutation,
+    IRemoveOrderMutationVariables
+  >(RemoveOrderMutation);
 
-  const removeOrder = async ({ orderId }: { orderId: string }) => {
+  const removeOrder = async ({ orderId }: IRemoveOrderMutationVariables) => {
     return removeOrderMutation({
       variables: {
         orderId,

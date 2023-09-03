@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IPayOrderMutation,
+  IPayOrderMutationVariables,
+} from '../../../gql/types';
 
 const PayOrderMutation = gql`
   mutation PayOrder($orderId: ID!) {
@@ -9,9 +13,12 @@ const PayOrderMutation = gql`
 `;
 
 const usePayOrder = () => {
-  const [payOrderMutation] = useMutation(PayOrderMutation);
+  const [payOrderMutation] = useMutation<
+    IPayOrderMutation,
+    IPayOrderMutationVariables
+  >(PayOrderMutation);
 
-  const payOrder = async ({ orderId }: { orderId: string }) => {
+  const payOrder = async ({ orderId }: IPayOrderMutationVariables) => {
     return payOrderMutation({
       variables: {
         orderId,

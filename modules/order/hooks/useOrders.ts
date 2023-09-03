@@ -1,4 +1,9 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IOrdersQuery,
+  IOrdersQueryVariables,
+  ISortOptionInput,
+} from '../../../gql/types';
 import { DefaultLimit } from '../../common/data/miscellaneous';
 import OrderFragment from '../fragments/OrderFragment';
 
@@ -30,8 +35,11 @@ const useOrders = ({
   includeCarts = false,
   queryString = '',
   sort: sortOptions = [],
-} = {}) => {
-  const { data, loading, error } = useQuery(OrdersQuery, {
+}: IOrdersQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IOrdersQuery,
+    IOrdersQueryVariables
+  >(OrdersQuery, {
     variables: {
       limit,
       offset,
@@ -39,7 +47,7 @@ const useOrders = ({
       queryString,
       sort: sortOptions.length
         ? sortOptions
-        : [{ key: 'ordered', value: 'DESC' }],
+        : ([{ key: 'ordered', value: 'DESC' }] as ISortOptionInput[]),
     },
   });
   const orders = data?.orders || [];

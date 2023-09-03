@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IOrderStatusQuery,
+  IOrderStatusQueryVariables,
+} from '../../../gql/types';
 
 export const OrderStatusTypesQuery = gql`
   query OrderStatus {
@@ -12,7 +16,10 @@ export const OrderStatusTypesQuery = gql`
 `;
 
 const useOrderStatusTypes = () => {
-  const { data, loading, error } = useQuery(OrderStatusTypesQuery);
+  const { data, loading, error } = useQuery<
+    IOrderStatusQuery,
+    IOrderStatusQueryVariables
+  >(OrderStatusTypesQuery);
 
   const orderStatusType = data?.orderStatusType?.options || [];
 

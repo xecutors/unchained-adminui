@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IConfirmOrderMutation,
+  IConfirmOrderMutationVariables,
+} from '../../../gql/types';
 
 const ConfirmOrderMutation = gql`
   mutation ConfirmOrder($orderId: ID!) {
@@ -9,9 +13,12 @@ const ConfirmOrderMutation = gql`
 `;
 
 const useConfirmOrder = () => {
-  const [confirmOrderMutation] = useMutation(ConfirmOrderMutation);
+  const [confirmOrderMutation] = useMutation<
+    IConfirmOrderMutation,
+    IConfirmOrderMutationVariables
+  >(ConfirmOrderMutation);
 
-  const confirmOrder = async ({ orderId }: { orderId: string }) => {
+  const confirmOrder = async ({ orderId }: IConfirmOrderMutationVariables) => {
     return confirmOrderMutation({
       variables: {
         orderId,
