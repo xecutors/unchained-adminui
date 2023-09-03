@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IQuotationsQuery,
+  IQuotationsQueryVariables,
+} from '../../../gql/types';
 import QuotationFragment from '../fragments/QuotationFragment';
 
 export const QuotationsQuery = gql`
@@ -26,8 +30,11 @@ const useQuotations = ({
   offset = 0,
   queryString = '',
   sort = [],
-} = {}) => {
-  const { data, loading, error } = useQuery(QuotationsQuery, {
+}: IQuotationsQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IQuotationsQuery,
+    IQuotationsQueryVariables
+  >(QuotationsQuery, {
     variables: { limit, offset, queryString, sort },
   });
   const quotations = data?.quotations || [];

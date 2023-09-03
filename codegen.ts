@@ -28,8 +28,6 @@ const config: CodegenConfig = {
         dedupeOperationSuffix: true,
         namingConvention: 'change-case-all#pascalCase',
         arrayInputCoercion: false,
-        immutableTypes: true,
-        mergeFragmentTypes: true,
       },
     },
   },

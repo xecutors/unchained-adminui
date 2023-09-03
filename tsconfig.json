@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./gql/types"],
     // "baseUrl": ".",
     "target": "es6",
     "lib": [

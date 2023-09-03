@@ -36,7 +36,7 @@ const useProductPlan = ({
     },
   });
 
-  const product = data?.product;
+  const product = data?.product as any;
 
   return {
     plan: product?.plan,

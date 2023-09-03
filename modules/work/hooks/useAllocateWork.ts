@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAllocateWorkMutation,
+  IAllocateWorkMutationVariables,
+} from '../../../gql/types';
 
 const AllocateWorkMutation = gql`
   mutation AllocateWork($types: [WorkType], $worker: String) {
@@ -9,15 +13,15 @@ const AllocateWorkMutation = gql`
 `;
 
 const useAllocateWork = () => {
-  const [allocateWorkMutation] = useMutation(AllocateWorkMutation);
+  const [allocateWorkMutation] = useMutation<
+    IAllocateWorkMutation,
+    IAllocateWorkMutationVariables
+  >(AllocateWorkMutation);
 
   const allocateWork = async ({
     types,
     worker,
-  }: {
-    types: [string];
-    worker?: string;
-  }) => {
+  }: IAllocateWorkMutationVariables) => {
     return allocateWorkMutation({
       variables: {
         types,

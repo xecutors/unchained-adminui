@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IWarehousingProvidersTypeQuery,
+  IWarehousingProvidersTypeQueryVariables,
+} from '../../../gql/types';
 
 export const WarehousingProvidersTypeQuery = gql`
   query WarehousingProvidersType {
@@ -12,7 +16,10 @@ export const WarehousingProvidersTypeQuery = gql`
 `;
 
 const useWarehousingProviderTypes = () => {
-  const { data, loading, error } = useQuery(WarehousingProvidersTypeQuery);
+  const { data, loading, error } = useQuery<
+    IWarehousingProvidersTypeQuery,
+    IWarehousingProvidersTypeQueryVariables
+  >(WarehousingProvidersTypeQuery);
 
   const warehousingProviderType = data?.warehousingProviderType?.options || [];
 

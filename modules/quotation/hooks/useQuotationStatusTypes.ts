@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IQuotationStatusQuery,
+  IQuotationStatusQueryVariables,
+} from '../../../gql/types';
 
 export const QuotationStatusTypesQuery = gql`
   query QuotationStatus {
@@ -12,7 +16,10 @@ export const QuotationStatusTypesQuery = gql`
 `;
 
 const useQuotationStatusTypes = () => {
-  const { data, loading, error } = useQuery(QuotationStatusTypesQuery);
+  const { data, loading, error } = useQuery<
+    IQuotationStatusQuery,
+    IQuotationStatusQueryVariables
+  >(QuotationStatusTypesQuery);
 
   const quotationStatusTypes = data?.quotationStatusType?.options || [];
 

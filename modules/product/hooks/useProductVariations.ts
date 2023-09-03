@@ -35,7 +35,7 @@ const useProductVariations = ({
     variables: { productId: id || parsedId },
   });
 
-  const product = data?.product;
+  const product = data?.product as any;
   const variations = product?.variations;
 
   return {

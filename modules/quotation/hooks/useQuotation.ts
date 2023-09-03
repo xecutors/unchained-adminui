@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IQuotationQuery, IQuotationQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
@@ -14,15 +15,15 @@ export const GetQuotationsQuery = (inlineFragment = '') => gql`
   ${QuotationDetailFragment}
 `;
 
-const useQuotation = ({ quotationId }) => {
+const useQuotation = ({ quotationId }: IQuotationQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetQuotationsQuery(customProperties?.Quotation),
-    {
-      skip: !quotationId,
-      variables: { quotationId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    IQuotationQuery,
+    IQuotationQueryVariables
+  >(GetQuotationsQuery(customProperties?.Quotation), {
+    skip: !quotationId,
+    variables: { quotationId },
+  });
 
   return {
     quotation: data?.quotation,

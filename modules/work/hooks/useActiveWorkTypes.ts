@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IActiveWorkTypesQuery,
+  IActiveWorkTypesQueryVariables,
+} from '../../../gql/types';
 
 export const ActiveWorkTypeQuery = gql`
   query ActiveWorkTypes {
@@ -7,7 +11,10 @@ export const ActiveWorkTypeQuery = gql`
 `;
 
 const useActiveWorkTypes = () => {
-  const { data, loading, error } = useQuery(ActiveWorkTypeQuery);
+  const { data, loading, error } = useQuery<
+    IActiveWorkTypesQuery,
+    IActiveWorkTypesQueryVariables
+  >(ActiveWorkTypeQuery);
 
   const activeWorkTypes = data?.activeWorkTypes || [];
 

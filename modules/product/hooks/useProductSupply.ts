@@ -37,7 +37,7 @@ const useProductSupply = ({
     },
   });
 
-  const product = data?.product;
+  const product = data?.product as any;
   const dimensions = product?.dimensions || {};
 
   return {

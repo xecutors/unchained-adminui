@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IWarehousingProviderQuery,
+  IWarehousingProviderQueryVariables,
+} from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import WarehousingProviderFragment from '../fragments/WarehousingProviderFragment';
 
@@ -12,15 +16,17 @@ export const GetWarehousingProviderQuery = (inlineFragment = '') => gql`
   ${WarehousingProviderFragment}
 `;
 
-const useWarehousingProvider = ({ warehousingProviderId = null } = {}) => {
+const useWarehousingProvider = ({
+  warehousingProviderId = null,
+}: IWarehousingProviderQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetWarehousingProviderQuery(customProperties?.WarehousingProvider),
-    {
-      skip: !warehousingProviderId,
-      variables: { warehousingProviderId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    IWarehousingProviderQuery,
+    IWarehousingProviderQueryVariables
+  >(GetWarehousingProviderQuery(customProperties?.WarehousingProvider), {
+    skip: !warehousingProviderId,
+    variables: { warehousingProviderId },
+  });
 
   return {
     warehousingProvider: data?.warehousingProvider,

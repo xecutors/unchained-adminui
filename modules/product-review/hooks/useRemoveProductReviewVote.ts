@@ -1,9 +1,13 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveProductReviewVoteMutation,
+  IRemoveProductReviewVoteMutationVariables,
+} from '../../../gql/types';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 import { ProductReviewVoteType } from './useAddProductReviewVote';
 
 const RemoveProductReviewVoteMutation = gql`
-  mutation removeProductReviewVote(
+  mutation RemoveProductReviewVote(
     $productReviewId: ID!
     $type: ProductReviewVoteType!
   ) {
@@ -15,17 +19,15 @@ const RemoveProductReviewVoteMutation = gql`
 `;
 
 const useRemoveProductReviewVote = () => {
-  const [removeProductReviewVoteMutation] = useMutation(
-    RemoveProductReviewVoteMutation,
-  );
+  const [removeProductReviewVoteMutation] = useMutation<
+    IRemoveProductReviewVoteMutation,
+    IRemoveProductReviewVoteMutationVariables
+  >(RemoveProductReviewVoteMutation);
 
   const removeProductReviewVote = async ({
     productReviewId,
     type,
-  }: {
-    productReviewId: string;
-    type: ProductReviewVoteType;
-  }) => {
+  }: IRemoveProductReviewVoteMutationVariables) => {
     return removeProductReviewVoteMutation({
       variables: {
         productReviewId,

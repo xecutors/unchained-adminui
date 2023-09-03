@@ -36,7 +36,7 @@ const useProductBundleItems = ({
     variables: { productId: id || parsedId },
   });
 
-  const bundleItems = data?.product?.bundleItems;
+  const bundleItems = (data?.product as any).bundleItems;
 
   return {
     bundleItems,

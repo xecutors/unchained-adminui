@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRejectQuotationMutation,
+  IRejectQuotationMutationVariables,
+} from '../../../gql/types';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 const RejectQuotationMutation = gql`
@@ -14,12 +18,15 @@ const RejectQuotationMutation = gql`
 `;
 
 const useRejectQuotation = () => {
-  const [rejectQuotationMutation] = useMutation(RejectQuotationMutation);
+  const [rejectQuotationMutation] = useMutation<
+    IRejectQuotationMutation,
+    IRejectQuotationMutationVariables
+  >(RejectQuotationMutation);
 
   const rejectQuotation = async ({
     quotationId = null,
     quotationContext = {},
-  }) => {
+  }: IRejectQuotationMutationVariables) => {
     return rejectQuotationMutation({
       variables: { quotationId, quotationContext },
     });

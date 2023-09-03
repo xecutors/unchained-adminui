@@ -9,7 +9,7 @@ import TextAreaField from '../../forms/components/TextAreaField';
 
 const ProductReviewForm = ({
   onSubmit,
-  onSubmitSuccess,
+  onSubmitSuccess = null,
   defaultValue = {},
   isEdit = false,
 }) => {

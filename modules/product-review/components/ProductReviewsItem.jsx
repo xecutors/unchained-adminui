@@ -27,7 +27,11 @@ const voteTypes = {
   REPORT: 'REPORT',
 };
 
-const ProductReviewsItem = ({ review, enableDelete = true, showProduct }) => {
+const ProductReviewsItem = ({
+  review,
+  enableDelete = true,
+  showProduct = false,
+}) => {
   const { formatMessage } = useIntl();
   const { currentUser } = useCurrentUser();
   const { formatDateTime } = useFormatDateTime();

@@ -17,14 +17,16 @@ const NewPaymentProvider = () => {
   const { createWarehousingProvider } = useCreateWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
   const { warehousingInterfaces } = useWarehousingInterfacesByType({
-    type: selectedType,
+    providerType: selectedType,
   });
   const { hasRole } = useAuth();
 
   const onSubmit = async ({ adapterKey, type }) => {
     const { data, errors } = await createWarehousingProvider({
-      adapterKey,
-      type,
+      warehousingProvider: {
+        adapterKey,
+        type,
+      },
     });
     if (errors?.length) return false;
     return { success: true, data: data?.createWarehousingProvider };
