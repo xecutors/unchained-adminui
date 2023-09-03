@@ -82,7 +82,6 @@ const ProductReviewsItem = ({
 
   const canManageVotes = !review.deleted && hasRole('voteProductReview');
   const product = review?.product;
-  console.log(product);
 
   const onRemove = async (productReviewId) => {
     await setModal(

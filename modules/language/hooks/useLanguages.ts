@@ -37,7 +37,7 @@ const useLanguages = ({
   >(LanguagesQuery, {
     variables: { queryString, limit, offset, includeInactive, sort },
   });
-  const languages = data?.languages;
+  const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;
 
   return {
