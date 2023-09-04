@@ -48,13 +48,10 @@ const handleRouteChange = async (url) => {
   });
 };
 
-const UnchainedAdmin = ({ Component, componentName, pageProps, ...rest }) => {
-  const router = useRouter();
+const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   const endpointContext = useSetEndpointContext();
-  const { locale } = router;
 
   const apollo = useApollo(pageProps, {
-    locale,
     endpoint: endpointContext.endpoint,
   });
 
@@ -68,7 +65,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, ...rest }) => {
         </>
       )
     : (page) => (
-        <Layout apollo={apollo} {...rest}>
+        <Layout apollo={apollo} router={router}>
           {page}
         </Layout>
       );

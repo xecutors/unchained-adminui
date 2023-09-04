@@ -2,12 +2,14 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { IProduct, IProductTexts, ISimpleProduct } from '../../gql/types';
 
 import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
+import CustomError from '../../modules/common/CustomError';
 import useFormatDateTime from '../../modules/common/utils/useFormatDateTime';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
@@ -23,7 +25,7 @@ const ProductDetailPage = () => {
   const { setModal } = useModal();
 
   const { slug = [] } = query || {};
-  const normalizedSlug = slug.join('/');
+  const normalizedSlug = (slug as string[])?.join('/');
   const { product, loading, extendedData } = useProduct({
     slug: normalizedSlug,
   });
@@ -32,6 +34,7 @@ const ProductDetailPage = () => {
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
+        onCancelClick={() => setModal('')}
         message={formatMessage({
           id: 'delete_product_confirmation',
           defaultMessage:
@@ -48,14 +51,15 @@ const ProductDetailPage = () => {
               }),
             );
             router.push('/products');
-          } catch (e) {
+          } catch (e: any) {
             await setModal(
               <DangerMessage
+                onCancelClick={() => setModal('')}
                 headerText={formatMessage({
                   id: 'error',
                   defaultMessage: 'Error',
                 })}
-                message={e.message}
+                message={e instanceof CustomError ? e.message : e}
                 icon={
                   <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                     <XMarkIcon
@@ -70,7 +74,7 @@ const ProductDetailPage = () => {
                     />
                   </div>
                 }
-                buttonText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
+                okText={formatMessage({ id: 'ok', defaultMessage: 'Ok' })}
                 onOkClick={async () => {
                   setModal('');
                 }}
@@ -87,7 +91,9 @@ const ProductDetailPage = () => {
       <BreadCrumbs
         routeName={normalizedSlug}
         depth={3}
-        currentPageTitle={product?.texts?.title}
+        currentPageTitle={
+          ((product as IProduct)?.texts as IProductTexts)?.title
+        }
       />
       <div className="align-center flex min-w-full justify-between">
         <PageHeader

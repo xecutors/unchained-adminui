@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 
-const ImageWithFallback = ({ fallbackSrc, src, ...props }) => {
+const ImageWithFallback = ({ fallbackSrc = '', src, ...props }) => {
   const [imageSrc, setImageSrc] = useState(src);
   const { formatMessage } = useIntl();
 

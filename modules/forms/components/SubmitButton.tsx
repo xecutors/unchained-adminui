@@ -7,7 +7,7 @@ const SubmitButton = ({
   label,
   disabled: disabledProp = false,
   className = '',
-  hidden,
+  hidden = false,
   ...props
 }) => {
   const formik = useFormikContext();

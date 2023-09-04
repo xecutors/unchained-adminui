@@ -52,8 +52,7 @@ const CreateUser = () => {
   };
 
   const onSubmitSuccess = (_, { enrollUser: user }) => {
-    if (hasRole('showUser'));
-    router.push(`/users/${user?._id}`);
+    if (hasRole('showUser')) router.push(`/users/${user?._id}`);
   };
   return (
     <>

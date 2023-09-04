@@ -16,7 +16,10 @@ const WorkDetailPage = () => {
   const { formatMessage } = useIntl();
   const { query } = useRouter();
   const { workId } = query;
-  const { work, loading } = useWork({ workId, pollInterval: 2000 });
+  const { work, loading } = useWork({
+    workId: workId as string,
+    pollInterval: 2000,
+  });
 
   const { setModal } = useModal();
   const { removeWork } = useRemoveWork();
@@ -26,6 +29,7 @@ const WorkDetailPage = () => {
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
+        onCancelClick={() => setModal('')}
         message={formatMessage({
           id: 'delete_work_confirmation',
           defaultMessage:
@@ -33,7 +37,7 @@ const WorkDetailPage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWork({ workId });
+          await removeWork({ workId: workId as string });
           toast.success(
             formatMessage({
               id: 'work_deleted',

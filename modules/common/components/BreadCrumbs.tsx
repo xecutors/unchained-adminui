@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const BreadCrumbs = ({ routeName, currentPageTitle, depth }) => {
+const BreadCrumbs = ({
+  routeName = null,
+  currentPageTitle = null,
+  depth = null,
+}) => {
   const router = useRouter();
   const pathArr = router.asPath
 
     .split('/')
     .filter((name, i) => router.asPath.split('/').indexOf(name) === i);
-  if (pathArr.length === 1) return '';
+  if (pathArr.length === 1) return null;
 
   let currentRoute = '';
   // location of the page, used when supporting  non-url safe urls that may have / in them to tell it where the page is located on the page hierarchy

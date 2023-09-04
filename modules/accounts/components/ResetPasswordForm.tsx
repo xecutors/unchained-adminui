@@ -3,9 +3,18 @@ import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
 import SubmitButton from '../../forms/components/SubmitButton';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 
-const ResetPasswordForm = ({ onSubmit, onSubmitSuccess = () => true }) => {
+const ResetPasswordForm = ({
+  onSubmit,
+  onSubmitSuccess = () => true,
+}: {
+  onSubmit: OnSubmitType;
+  onSubmitSuccess: OnSubmitSuccessType;
+}) => {
   const { formatMessage } = useIntl();
 
   const form = useForm({

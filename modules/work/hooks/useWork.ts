@@ -23,7 +23,10 @@ export const GetWorkQuery = (inlineFragment = '') => gql`
   ${WorkFragment}
 `;
 
-const useWork = ({ workId = null, ...options }: IWorkQueryVariables) => {
+const useWork = ({
+  workId = null,
+  ...options
+}: IWorkQueryVariables & { pollInterval?: number }) => {
   const { customProperties } = useUnchainedContext();
   const { data, loading, error } = useQuery<IWorkQuery, IWorkQueryVariables>(
     GetWorkQuery(customProperties?.Work),

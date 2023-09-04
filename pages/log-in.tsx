@@ -1,7 +1,7 @@
-import LogIn from '../modules/accounts/components/Login';
+import LogInForm from '../modules/accounts/components/LogInForm';
 
 const LogInPage = () => {
-  return <LogIn />;
+  return <LogInForm />;
 };
 
 export default LogInPage;

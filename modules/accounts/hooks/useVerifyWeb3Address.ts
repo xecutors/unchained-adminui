@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IVerifyWeb3AddressMutation,
+  IVerifyWeb3AddressMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const VerifyWeb3AddressMutation = gql`
@@ -11,8 +15,14 @@ const VerifyWeb3AddressMutation = gql`
 `;
 
 const useVerifyWeb3Address = () => {
-  const [verifyWeb3AddressMutation] = useMutation(VerifyWeb3AddressMutation);
-  const verifyWeb3Address = async ({ address, hash }) => {
+  const [verifyWeb3AddressMutation] = useMutation<
+    IVerifyWeb3AddressMutation,
+    IVerifyWeb3AddressMutationVariables
+  >(VerifyWeb3AddressMutation);
+  const verifyWeb3Address = async ({
+    address,
+    hash,
+  }: IVerifyWeb3AddressMutationVariables) => {
     return verifyWeb3AddressMutation({
       variables: {
         address,

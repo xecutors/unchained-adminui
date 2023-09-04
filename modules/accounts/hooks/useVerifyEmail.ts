@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IVerifyEmailMutation,
+  IVerifyEmailMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const VerifyEmailMutation = gql`
@@ -16,9 +20,12 @@ const VerifyEmailMutation = gql`
 `;
 
 const useVerifyEmail = () => {
-  const [verifyEmailMutation] = useMutation(VerifyEmailMutation);
+  const [verifyEmailMutation] = useMutation<
+    IVerifyEmailMutation,
+    IVerifyEmailMutationVariables
+  >(VerifyEmailMutation);
 
-  const verifyEmail = async ({ token }) => {
+  const verifyEmail = async ({ token }: IVerifyEmailMutationVariables) => {
     return verifyEmailMutation({
       variables: { token },
     });

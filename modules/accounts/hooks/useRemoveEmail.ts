@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveEmailMutation,
+  IRemoveEmailMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const RemoveEmailMutation = gql`
@@ -11,9 +15,15 @@ const RemoveEmailMutation = gql`
 `;
 
 const useRemoveEmail = () => {
-  const [removeEmailMutation] = useMutation(RemoveEmailMutation);
+  const [removeEmailMutation] = useMutation<
+    IRemoveEmailMutation,
+    IRemoveEmailMutationVariables
+  >(RemoveEmailMutation);
 
-  const removeEmail = async ({ email, userId }) => {
+  const removeEmail = async ({
+    email,
+    userId,
+  }: IRemoveEmailMutationVariables) => {
     return removeEmailMutation({
       variables: {
         email,

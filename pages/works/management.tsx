@@ -5,10 +5,10 @@ import Tab from '../../modules/common/components/Tab';
 import AllocateWorkForm from '../../modules/work/components/AllocateWorkForm';
 import WorkForm from '../../modules/work/components/WorkForm';
 
-const GetCurrentTab = ({ selectedView }) => {
+const GetCurrentTab = ({ selectedView = null }) => {
   if (selectedView === 'add_work') return <WorkForm />;
   if (selectedView === 'allocate_work') return <AllocateWorkForm />;
-  return null;
+  return <WorkForm />;
 };
 const WorkManagement = () => {
   const { formatMessage } = useIntl();

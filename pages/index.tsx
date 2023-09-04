@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    workbox?: any;
+  }
+}
+
 import React, { useEffect } from 'react';
 
 /* eslint-disable no-restricted-globals */

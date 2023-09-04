@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import useVerifyEmail from '../modules/accounts/hooks/useVerifyEmail';
 import Loading from '../modules/common/components/Loading';
+import CustomError from '../modules/common/CustomError';
 
 const VerifyEmail = () => {
   const { query } = useRouter();
@@ -16,13 +17,13 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verify = async () => {
       try {
-        await verifyEmail({ token: query.token });
+        await verifyEmail({ token: query.token as string });
         setResult({
           ...result,
           success: true,
         });
-      } catch (e) {
-        if (e.message.includes('expired'))
+      } catch (e: unknown) {
+        if (e instanceof CustomError && e.message.includes('expired'))
           setResult({
             success: false,
             message: formatMessage({

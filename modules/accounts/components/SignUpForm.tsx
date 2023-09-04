@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import getConfig from 'next/config';
 import FormWrapper from '../../common/components/FormWrapper';
@@ -13,57 +11,19 @@ import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
-import useCreateUser from '../hooks/useCreateUser';
-import useGenerateWebAuthCredentials from '../hooks/useGenerateWebAuthCredentials';
-import { storeLoginToken } from '../utils/store';
 
 const {
   publicRuntimeConfig: { logo },
 } = getConfig();
 
-const SignUpForm = () => {
+const SignUpForm = ({
+  onSubmit,
+  onSubmitSuccess,
+  authenticateWithDevice,
+  onAuthenticateWithDeviceChange,
+}) => {
   const { formatMessage } = useIntl();
-  const [authenticateWithDevice, setAuthenticateWithDevice] = useState(true);
-  const { generateWebAuthCredentials } = useGenerateWebAuthCredentials();
-  const { createUser } = useCreateUser();
-  const { push } = useRouter();
-  const registerWithWebAuth = async (username) => {
-    const webAuthnPublicKeyCredentials = await generateWebAuthCredentials({
-      username,
-    });
 
-    const { data } = await createUser({
-      username,
-      webAuthnPublicKeyCredentials,
-    });
-
-    if (data && data?.createUser) {
-      const { id, token, tokenExpires } = data.createUser;
-      await storeLoginToken(id, token, new Date(tokenExpires));
-    }
-  };
-
-  const onSubmit = async ({ username, email, password }) => {
-    if (authenticateWithDevice) {
-      await registerWithWebAuth(username);
-      return true;
-    }
-
-    const { data } = await createUser({
-      username,
-      email,
-      plainPassword: password,
-    });
-    const { id, token, tokenExpires } = data.createUser;
-    await storeLoginToken(id, token, new Date(tokenExpires));
-    if (id) return true;
-
-    return false;
-  };
-
-  const onSubmitSuccess = () => {
-    push('/account');
-  };
   const form = useForm({
     getSubmitErrorMessage: (error) => {
       if (error?.message?.toLowerCase().includes('email already exists'))
@@ -87,7 +47,7 @@ const SignUpForm = () => {
     initialValues: {
       username: null,
       email: null,
-      password: null,
+      plainPassword: null,
     },
   });
   return (
@@ -146,8 +106,8 @@ const SignUpForm = () => {
                   </div>
                   <div>
                     <PasswordField
-                      id="password"
-                      name="password"
+                      id="plainPassword"
+                      name="plainPassword"
                       autoComplete="current-password"
                       required
                       label={formatMessage({
@@ -159,9 +119,7 @@ const SignUpForm = () => {
                 </>
               )}
               <Toggle
-                onToggle={() =>
-                  setAuthenticateWithDevice(!authenticateWithDevice)
-                }
+                onToggle={onAuthenticateWithDeviceChange}
                 toggleText={formatMessage({
                   id: 'use_authenticator',
                   defaultMessage: 'Use authenticator',

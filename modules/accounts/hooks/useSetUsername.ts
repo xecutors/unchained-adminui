@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ISetUsernameMutation,
+  ISetUsernameMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const SetUserNameMutation = gql`
@@ -11,9 +15,15 @@ const SetUserNameMutation = gql`
 `;
 
 const useSetUserName = () => {
-  const [setUserNameMutation] = useMutation(SetUserNameMutation);
+  const [setUserNameMutation] = useMutation<
+    ISetUsernameMutation,
+    ISetUsernameMutationVariables
+  >(SetUserNameMutation);
 
-  const setUserName = async ({ username, userId }) => {
+  const setUserName = async ({
+    username,
+    userId,
+  }: ISetUsernameMutationVariables) => {
     return setUserNameMutation({
       variables: {
         username,

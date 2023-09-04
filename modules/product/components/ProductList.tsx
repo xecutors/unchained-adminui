@@ -12,7 +12,7 @@ const ProductList = ({
   offset,
   tags,
   sortKeys,
-  selectedLocale,
+  selectedLocale = null,
   includeDrafts,
   sortable,
 }) => {

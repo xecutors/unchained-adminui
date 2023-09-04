@@ -1,6 +1,11 @@
 import { useIntl } from 'react-intl';
 
-const PageHeader = ({ headerText, onEdit, onDelete, children }) => {
+const PageHeader = ({
+  headerText = null,
+  onEdit = null,
+  onDelete = null,
+  children = null,
+}) => {
   const { formatMessage } = useIntl();
   return (
     <div className="my-2 md:flex md:items-center md:justify-between w-full">

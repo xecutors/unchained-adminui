@@ -11,7 +11,7 @@ const UserProfile = () => {
   const { query } = useRouter();
   const { userId } = query;
 
-  const { user, extendedData } = useUser({ userId });
+  const { user, extendedData } = useUser({ userId: userId as string });
 
   return (
     <div className=" max-w-6xl">

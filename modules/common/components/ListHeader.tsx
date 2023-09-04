@@ -2,7 +2,11 @@ import { PlusSmallIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
-const ListHeader = ({ addPath, children, addButtonText }) => {
+const ListHeader = ({
+  addPath = null,
+  children = null,
+  addButtonText = null,
+}) => {
   const { formatMessage } = useIntl();
 
   return (

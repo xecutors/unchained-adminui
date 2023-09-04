@@ -13,12 +13,13 @@ import ListHeader from '../../modules/common/components/ListHeader';
 import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
 import useAuth from '../../modules/Auth/useAuth';
+import { IPaymentProviderType } from '../../gql/types';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { paymentProviders, loading } = usePaymentProviders({
-    type: router.query?.type,
+    type: router.query?.type as IPaymentProviderType,
   });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
@@ -28,6 +29,7 @@ const PaymentProviders = () => {
   const onRemovePaymentProvider = async (paymentProviderId) => {
     await setModal(
       <DangerMessage
+        onCancelClick={() => setModal('')}
         message={formatMessage({
           id: 'delete_paymentProvider_confirmation',
           defaultMessage:

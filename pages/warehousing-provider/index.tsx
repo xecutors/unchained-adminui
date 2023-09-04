@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
+import { IWarehousingProviderType } from '../../gql/types';
 import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import ListHeader from '../../modules/common/components/ListHeader';
@@ -20,7 +21,7 @@ const WarehousingProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { warehousingProviders, loading } = useWarehousingProviders({
-    type: router.query?.type,
+    type: router.query?.type as IWarehousingProviderType,
   });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
@@ -30,6 +31,7 @@ const WarehousingProviders = () => {
   const onRemoveWarehousingProvider = async (warehousingProviderId) => {
     await setModal(
       <DangerMessage
+        onCancelClick={() => setModal('')}
         message={formatMessage({
           id: 'delete_warehousing_provider_confirmation',
           defaultMessage:
@@ -81,7 +83,7 @@ const WarehousingProviders = () => {
           providers={warehousingProviders}
           onRemove={onRemoveWarehousingProvider}
           canDelete={hasRole('removeWarehousingProvider')}
-          canUpdate={hasRole('editWarehousingProvider')}
+          canEdit={hasRole('editWarehousingProvider')}
         />
       )}
     </>

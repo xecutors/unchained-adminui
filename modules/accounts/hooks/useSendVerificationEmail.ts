@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ISendVerificationEmailMutation,
+  ISendVerificationEmailMutationVariables,
+} from '../../../gql/types';
 
 const SendVerificationEmailMutation = gql`
   mutation SendVerificationEmail($email: String) {
@@ -9,11 +13,14 @@ const SendVerificationEmailMutation = gql`
 `;
 
 const useSendVerificationEmail = () => {
-  const [sendVerificationEmailMutation] = useMutation(
-    SendVerificationEmailMutation,
-  );
+  const [sendVerificationEmailMutation] = useMutation<
+    ISendVerificationEmailMutation,
+    ISendVerificationEmailMutationVariables
+  >(SendVerificationEmailMutation);
 
-  const sendVerificationEmail = async ({ email }) => {
+  const sendVerificationEmail = async ({
+    email,
+  }: ISendVerificationEmailMutationVariables) => {
     return sendVerificationEmailMutation({
       variables: { email },
     });

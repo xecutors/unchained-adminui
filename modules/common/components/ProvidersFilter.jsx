@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
-const ProvidersFilter = ({ providerType, onProviderFilterChange }) => {
+const ProvidersFilter = ({ providerType, onProviderFilterChange = null }) => {
   const { formatMessage } = useIntl();
 
   const router = useRouter();

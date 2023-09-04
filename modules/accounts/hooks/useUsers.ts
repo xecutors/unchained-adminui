@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IUsersQuery, IUsersQueryVariables } from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 export const UsersQuery = gql`
@@ -26,10 +27,13 @@ const useUsers = ({
   offset = 0,
   includeGuests = false,
   queryString = null,
-}) => {
-  const { data, loading, error } = useQuery(UsersQuery, {
-    variables: { limit, offset, includeGuests, queryString },
-  });
+}: IUsersQueryVariables) => {
+  const { data, loading, error } = useQuery<IUsersQuery, IUsersQueryVariables>(
+    UsersQuery,
+    {
+      variables: { limit, offset, includeGuests, queryString },
+    },
+  );
 
   const users = data?.users || [];
   const usersCount = data?.usersCount;

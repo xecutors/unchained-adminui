@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
 import Button from './Button';
 
-const Step = ({ onClick, disabled, label }) => {
+const Step = ({ onClick, disabled = false, label }) => {
   return (
     <button
       type="button"
@@ -25,16 +25,13 @@ const Step = ({ onClick, disabled, label }) => {
   );
 };
 
-const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
+const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
   const { formatMessage } = useIntl();
   const router = useRouter();
-  const limit = parseInt(router.query?.limit, 10) || DefaultLimit;
-  const offset = parseInt(router.query?.skip, 10) || 0;
+  const limit = parseInt(router.query?.limit as string, 10) || DefaultLimit;
+  const offset = parseInt(router.query?.skip as string, 10) || 0;
 
-  const currentPage =
-    parseInt(offset, 10) === 0
-      ? 1
-      : Math.ceil((parseInt(offset, 10) + 1) / parseInt(limit, 10));
+  const currentPage = offset === 0 ? 1 : Math.ceil((offset + 1) / limit);
 
   const changeOffset = (newOffset) => {
     router.push({
@@ -53,7 +50,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
     return (
       <Step
         key={`start-${stepOffset}`}
-        type="button"
         onClick={() => changeOffset(limit * stepOffset)}
         aria-current="page"
         disabled={currentPage === number}
@@ -62,7 +58,7 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
     );
   };
 
-  const Steps = () => {
+  const Steps = (): any => {
     const steps = [];
     const pages = total ? Math.ceil(total / limit) : 0;
     const center = [
@@ -89,7 +85,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       filteredCenter.unshift(
         <Step
           key="dash-1"
-          type="button"
           aria-current="page"
           onClick={(e) => {
             e.stopPropagation();
@@ -101,7 +96,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       filteredCenter.push(
         <Step
           key="dash-2"
-          type="button"
           aria-current="page"
           onClick={(e) => {
             e.stopPropagation();
@@ -124,7 +118,6 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => false }) => {
       {!total && data?.length && onLoadMore ? (
         <Button
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
-          type="button"
           onClick={onLoadMore}
           className="py-2.5"
         />

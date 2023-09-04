@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ISetRolesMutation,
+  ISetRolesMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const SetRoleMutation = gql`
@@ -11,9 +15,15 @@ const SetRoleMutation = gql`
 `;
 
 const useSetRoles = () => {
-  const [setRoleMutation] = useMutation(SetRoleMutation);
+  const [setRoleMutation] = useMutation<
+    ISetRolesMutation,
+    ISetRolesMutationVariables
+  >(SetRoleMutation);
 
-  const setRoles = async ({ roles = [], userId = null } = {}) => {
+  const setRoles = async ({
+    roles = [],
+    userId = null,
+  }: ISetRolesMutationVariables) => {
     return setRoleMutation({
       variables: {
         roles,

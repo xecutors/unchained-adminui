@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import ResetPasswordForm from '../modules/accounts/components/ResetPasswordForm';
 import useResetPassword from '../modules/accounts/hooks/useResetPassword';
+import { OnSubmitSuccessType } from '../modules/forms/hooks/useForm';
 
 const PasswordReset = () => {
   const { query, push } = useRouter();
@@ -11,7 +12,7 @@ const PasswordReset = () => {
   const { resetPassword } = useResetPassword();
   const { token } = query;
 
-  const onPasswordChangedSuccessfully = () => {
+  const onPasswordChangedSuccessfully: OnSubmitSuccessType = () => {
     toast.success(
       formatMessage({
         id: 'password_changed_success',
@@ -19,10 +20,16 @@ const PasswordReset = () => {
       }),
     );
     push('/');
+    return true;
   };
 
-  const onSubmit = async ({ newPassword }) => {
-    return resetPassword({ newPassword, token });
+  const onSubmit = async (variables) => {
+    const { newPassword: newPlainPassword } = variables;
+    const data = await resetPassword({
+      newPlainPassword,
+      token: token as string,
+    });
+    return { success: true, data };
   };
 
   return (

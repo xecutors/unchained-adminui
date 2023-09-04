@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ILoginWithPasswordMutation,
+  ILoginWithPasswordMutationVariables,
+} from '../../../gql/types';
 import isEmail from '../../common/utils/isEmail';
 
 const LogInWithPasswordMutation = gql`
@@ -28,7 +32,10 @@ const LogInWithPasswordMutation = gql`
 `;
 
 const useLoginWithPassword = () => {
-  const [logInWithPasswordMutation] = useMutation(LogInWithPasswordMutation, {
+  const [logInWithPasswordMutation] = useMutation<
+    ILoginWithPasswordMutation,
+    ILoginWithPasswordMutationVariables
+  >(LogInWithPasswordMutation, {
     errorPolicy: 'all',
   });
 

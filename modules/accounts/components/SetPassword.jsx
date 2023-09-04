@@ -17,9 +17,9 @@ const SetPassword = ({ userId, isInitialPassword, primaryEmail }) => {
   const { formatMessage } = useIntl();
   const { sendEnrollmentEmail } = useSendEnrollmentEmail();
 
-  const onSubmit = async ({ newPassword }) => {
+  const onSubmit = async ({ newPassword: newPlainPassword }) => {
     const { data } = await setPassword({
-      newPassword,
+      newPlainPassword,
       userId,
     });
 

@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IStopImpersonateMutation,
+  IStopImpersonateMutationVariables,
+} from '../../../gql/types';
 
 export const STOP_IMPERSONATION_MUTATION = gql`
   mutation StopImpersonate {
@@ -11,13 +15,13 @@ export const STOP_IMPERSONATION_MUTATION = gql`
 `;
 
 const useStopImpersonation = () => {
-  const [stopImpersonationMutation, { client }] = useMutation(
-    STOP_IMPERSONATION_MUTATION,
-    {
-      awaitRefetchQueries: true,
-      refetchQueries: ['User'],
-    },
-  );
+  const [stopImpersonationMutation, { client }] = useMutation<
+    IStopImpersonateMutation,
+    IStopImpersonateMutationVariables
+  >(STOP_IMPERSONATION_MUTATION, {
+    awaitRefetchQueries: true,
+    refetchQueries: ['User'],
+  });
 
   const stopImpersonation = async () => {
     const result = await stopImpersonationMutation();

@@ -5,11 +5,15 @@ import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import clean from '../lib/clean';
 
-type OnSubmitSuccessType = (
+export type OnSubmitSuccessType = (
   result: boolean,
 
   values: FormikValues,
 ) => Promise<boolean> | boolean;
+
+export type OnSubmitType = (
+  variables: Record<string, any>,
+) => Promise<{ success: boolean; data?: any; errors?: any }>;
 
 /**
  * @param onSubmitSuccess Return `false` to skip redirect
@@ -26,9 +30,7 @@ const useForm = ({
   enableReinitialize,
   validate,
 }: {
-  submit: (
-    variables: Record<string, any>,
-  ) => Promise<{ success: boolean; data?: any; errors?: any }>;
+  submit: OnSubmitType;
 
   getSubmitErrorMessage?: (error?: Error | any) => Promise<string> | string;
   onSubmitSuccess?: OnSubmitSuccessType;

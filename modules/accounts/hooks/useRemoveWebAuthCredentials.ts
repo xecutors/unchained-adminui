@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveWebAuthCredentialsMutation,
+  IRemoveWebAuthCredentialsMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const RemoveWebAuthCredentialsMutation = gql`
@@ -11,10 +15,13 @@ const RemoveWebAuthCredentialsMutation = gql`
 `;
 
 const useRemoveWebAuthCredentials = () => {
-  const [removeWebAuthCredentialsMutation] = useMutation(
-    RemoveWebAuthCredentialsMutation,
-  );
-  const removeWebAuthCredentials = async ({ credentialsId }) => {
+  const [removeWebAuthCredentialsMutation] = useMutation<
+    IRemoveWebAuthCredentialsMutation,
+    IRemoveWebAuthCredentialsMutationVariables
+  >(RemoveWebAuthCredentialsMutation);
+  const removeWebAuthCredentials = async ({
+    credentialsId,
+  }: IRemoveWebAuthCredentialsMutationVariables) => {
     return removeWebAuthCredentialsMutation({
       variables: { credentialsId },
     });

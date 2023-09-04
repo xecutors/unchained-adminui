@@ -43,11 +43,10 @@ const SortButton = ({ onSort, sortDirection }) => {
 const TableCell = ({
   className = '',
   header = false,
-  enableSort,
+  enableSort = false,
   children,
-  sortKey,
-  defaultSortDirection,
-  index,
+  sortKey = null,
+  defaultSortDirection = null,
   ...props
 }) => {
   const router = useRouter();

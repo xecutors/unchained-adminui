@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 
-const HeaderDeleteButton = ({ onClick, text, Icon }) => {
+const HeaderDeleteButton = ({ onClick, text = null, Icon = null }) => {
   const { formatMessage } = useIntl();
   return (
     <button

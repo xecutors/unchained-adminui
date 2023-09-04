@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 const DangerMessage = ({
   onOkClick,
   onCancelClick,
-  okText,
+  okText = null,
   cancelText = null,
   headerText = null,
   message = null,

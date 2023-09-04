@@ -10,9 +10,12 @@ import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayO
 import useCreatePaymentProvider from '../../modules/payment-providers/hooks/useCreatePaymentProvider';
 import usePaymentInterfacesByType from '../../modules/payment-providers/hooks/usePaymentInterfacesByType';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
+import { IPaymentProviderType } from '../../gql/types';
 
 const NewPaymentProvider = () => {
-  const [selectedType, setSelectedType] = useState('INVOICE');
+  const [selectedType, setSelectedType] = useState<IPaymentProviderType>(
+    IPaymentProviderType.Invoice,
+  );
   const { formatMessage } = useIntl();
 
   const { createPaymentProvider } = useCreatePaymentProvider();

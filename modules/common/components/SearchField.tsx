@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import deBounce from '../utils/deBounce';
 
-const SearchField = ({ inputText, onInputChange, defaultValue }) => {
+const SearchField = ({ inputText = null, onInputChange, defaultValue }) => {
   const { formatMessage } = useIntl();
   const deBouncedInput = deBounce(200)(onInputChange);
   return (

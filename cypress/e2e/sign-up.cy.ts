@@ -51,7 +51,7 @@ describe('Sign Up', () => {
 
     cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('new@unchained.shop');
-    cy.get('input[name="password"]').type('password');
+    cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain.text', localizations.en.sign_up)
       .click();
@@ -102,7 +102,7 @@ describe('Sign Up', () => {
     cy.get('input[name="username"]').type('admin');
     cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('admin@unchained.shop');
-    cy.get('input[name="password"]').type('password');
+    cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain', localizations.en.sign_up)
       .click();
@@ -142,7 +142,7 @@ describe('Sign Up', () => {
         localizations.en.email,
       ),
     );
-    cy.get('label[for="password"]').should(
+    cy.get('label[for="plainPassword"]').should(
       'contain',
       replaceIntlPlaceholder(
         localizations.en.error_required,

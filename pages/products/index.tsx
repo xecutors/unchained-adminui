@@ -20,11 +20,11 @@ const Products = () => {
   const { formatMessage } = useIntl();
 
   const { query, push } = useRouter();
-  const limit = parseInt(query?.limit, 10) || DefaultLimit;
-  const offset = parseInt(query?.skip, 10) || 0;
+  const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip as string, 10) || 0;
   const includeDrafts =
     query?.includeDrafts === 'true' || !query?.includeDrafts;
-  const tags = query.tags?.split(',') || undefined;
+  const tags = (query.tags as string)?.split(',') || undefined;
   const sort = query.sort || '';
   const { hasRole } = useAuth();
   const { queryString, ...restQuery } = query;

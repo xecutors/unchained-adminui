@@ -5,9 +5,9 @@ import { normalizeQuery } from '../utils/utils';
 const Toggle = ({
   toggleText = '',
   toggleKey,
-  onToggle,
-  active,
-  className,
+  onToggle = null,
+  active = false,
+  className = '',
   disabled = false,
   ...props
 }) => {

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IUserWebAuthnCredentialsQuery,
+  IUserWebAuthnCredentialsQueryVariables,
+} from '../../../gql/types';
 import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
 
 export const UserWebAuthnCredentialsQuery = gql`
@@ -19,8 +23,13 @@ export const UserWebAuthnCredentialsQuery = gql`
   ${MD5MetaDataFragment}
 `;
 
-const useUserWebAuthnCredentials = ({ userId }) => {
-  const { data, loading, error } = useQuery(UserWebAuthnCredentialsQuery, {
+const useUserWebAuthnCredentials = ({
+  userId,
+}: IUserWebAuthnCredentialsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IUserWebAuthnCredentialsQuery,
+    IUserWebAuthnCredentialsQueryVariables
+  >(UserWebAuthnCredentialsQuery, {
     variables: { userId },
   });
 

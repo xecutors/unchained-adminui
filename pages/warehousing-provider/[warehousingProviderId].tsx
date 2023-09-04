@@ -27,7 +27,7 @@ const WarehousingProviderUpdate = () => {
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
 
   const { warehousingProvider, loading } = useWarehousingProvider({
-    warehousingProviderId,
+    warehousingProviderId: warehousingProviderId as string,
   });
 
   const onSubmit = async ({ configuration: config }) => {
@@ -35,7 +35,7 @@ const WarehousingProviderUpdate = () => {
       warehousingProvider: {
         configuration: JSON.parse(config || '[]'),
       },
-      warehousingProviderId,
+      warehousingProviderId: warehousingProviderId as string,
     });
     return true;
   };
@@ -47,6 +47,7 @@ const WarehousingProviderUpdate = () => {
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
+        onCancelClick={() => setModal('')}
         message={formatMessage({
           id: 'delete_warehousing_provider_confirmation',
           defaultMessage:
@@ -54,7 +55,9 @@ const WarehousingProviderUpdate = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWarehousingProvider({ warehousingProviderId });
+          await removeWarehousingProvider({
+            warehousingProviderId: warehousingProviderId as string,
+          });
           toast.success(
             formatMessage({
               id: 'warehousing_provider_deleted',

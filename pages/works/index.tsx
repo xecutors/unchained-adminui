@@ -16,6 +16,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
 
 const WorkQueueView = () => {
   const { query, push } = useRouter();
@@ -27,11 +28,11 @@ const WorkQueueView = () => {
       start: query?.start,
       end: query?.end,
     },
-    status: query?.status?.split(','),
-    types: query?.types?.split(','),
+    status: (query?.status as string)?.split(',') as IWorkStatus[],
+    types: (query?.types as string)?.split(',') as IWorkType[],
   };
 
-  const limit = parseInt(query?.limit, 10) || DefaultLimit;
+  const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
 
   const sort = query?.sort || '';
 
@@ -52,10 +53,10 @@ const WorkQueueView = () => {
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
   const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
-    queryString,
+    queryString: queryString as string,
     limit,
     ...filter,
-    sort: sortKeys,
+    sort: sortKeys as ISortOptionInput[],
   });
 
   return (

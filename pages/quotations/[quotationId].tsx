@@ -13,7 +13,9 @@ const QuotationDetailPage = () => {
   const { query } = useRouter();
   const { quotationId } = query;
 
-  const { quotation, loading } = useQuotation({ quotationId });
+  const { quotation, loading } = useQuotation({
+    quotationId: quotationId as string,
+  });
 
   return (
     <div className="mt-6 max-w-full">

@@ -10,9 +10,12 @@ import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayO
 import useCreateWarehousingProvider from '../../modules/warehousing-providers/hooks/useCreateWarehousingProvider';
 import useWarehousingInterfacesByType from '../../modules/warehousing-providers/hooks/useWarehousingInterfacesByType';
 import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
+import { IWarehousingProviderType } from '../../gql/types';
 
 const NewPaymentProvider = () => {
-  const [selectedType, setSelectedType] = useState('PHYSICAL');
+  const [selectedType, setSelectedType] = useState<IWarehousingProviderType>(
+    IWarehousingProviderType.Physical,
+  );
   const { formatMessage } = useIntl();
   const { createWarehousingProvider } = useCreateWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();

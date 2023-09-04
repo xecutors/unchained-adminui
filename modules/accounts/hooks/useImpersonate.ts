@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IImpersonateMutation,
+  IImpersonateMutationVariables,
+} from '../../../gql/types';
 
 export const IMPERSONATE_MUTATION = gql`
   mutation Impersonate($userId: ID!) {
@@ -14,9 +18,12 @@ export const IMPERSONATE_MUTATION = gql`
 `;
 
 const useImpersonate = () => {
-  const [impersonateAsMutation, { client }] = useMutation(IMPERSONATE_MUTATION);
+  const [impersonateAsMutation, { client }] = useMutation<
+    IImpersonateMutation,
+    IImpersonateMutationVariables
+  >(IMPERSONATE_MUTATION);
 
-  const impersonateAs = async ({ userId }) => {
+  const impersonateAs = async ({ userId }: IImpersonateMutationVariables) => {
     const result = await impersonateAsMutation({
       variables: {
         userId,
