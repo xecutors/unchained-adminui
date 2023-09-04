@@ -1,3 +1,6 @@
+import { FaceFrownIcon } from '@heroicons/react/24/solid';
+import { useIntl } from 'react-intl';
+import NoData from '../../common/components/NoData';
 import ProductReviewsItem from './ProductReviewsItem';
 
 const ProductReviewsList = ({
@@ -6,7 +9,14 @@ const ProductReviewsList = ({
   enableDelete = false,
   showProduct = false,
 }) => {
-  if (!reviews || !reviews.length) return null;
+  const { formatMessage } = useIntl();
+  if (!reviews || !reviews.length)
+    return (
+      <NoData
+        message={formatMessage({ id: 'reviews', defaultMessage: 'Reviews' })}
+        Icon={<FaceFrownIcon />}
+      />
+    );
 
   return (
     <div className={`${className || ''} `}>
