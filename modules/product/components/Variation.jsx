@@ -18,7 +18,7 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   const onSubmit = async ({ title, subtitle }) => {
     await updateProductVariationTexts({
       productVariationId: variation._id,
-      texts: { title, subtitle, locale: selectedLocale },
+      texts: [{ title, subtitle, locale: selectedLocale }],
     });
     return true;
   };

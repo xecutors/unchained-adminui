@@ -27,7 +27,7 @@ const UpdateLanguage = () => {
   const { formatMessage, locale } = useIntl();
 
   const onSubmit = async ({ isoCode, isActive }) => {
-    await updateLanguage({ isoCode, isActive, languageId });
+    await updateLanguage({ language: { isoCode, isActive }, languageId });
     return true;
   };
 

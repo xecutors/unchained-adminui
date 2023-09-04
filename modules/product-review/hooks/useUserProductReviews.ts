@@ -43,7 +43,7 @@ const useUserProductReviews = ({
     skip: !userId,
     variables: { userId, limit, offset, sort: sortOptions },
   });
-  const user = data.user;
+  const user = data?.user;
   const reviews = user?.reviews || [];
   const reviewsCount = user?.reviewsCount || 0;
 

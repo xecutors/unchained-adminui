@@ -32,7 +32,7 @@ describe('Sign Up', () => {
         if (req.headers?.cookie && req.headers?.cookie.includes('token')) {
           req.reply(CurrentUserResponse);
         } else {
-          req.reply({ data: { me: null } });
+          req.reply({ data: { impersonator: null, me: null } });
         }
       }
     });
@@ -72,7 +72,9 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
 
@@ -91,7 +93,9 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
 
@@ -122,7 +126,9 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
     cy.get('button#totp[role="switch"]').click();

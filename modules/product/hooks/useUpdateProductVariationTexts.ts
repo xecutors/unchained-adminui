@@ -35,7 +35,7 @@ const useUpdateProductVariationTexts = () => {
       variables: {
         productVariationId,
         productVariationOptionValue,
-        texts: texts,
+        texts,
       },
       refetchQueries: ['ProductVariations'],
     });

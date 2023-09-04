@@ -1,5 +1,6 @@
 export const CurrentUserResponse = {
   data: {
+    impersonator: null,
     me: {
       _id: 'SIgmXcECVYiDTVeh0',
       email: 'admin@unchained.local',

@@ -20,27 +20,27 @@ const ProductReviews = ({ productId }) => {
         <div className="mx-auto p-4 sm:p-6 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:p-8">
           <ProductReviewsReport productReviews={productReviews} />
 
-            <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
-              {productId && (
-                <ProductReviewForm
-                  onSubmit={async ({ title, review, rating }) =>
-                    await createProductReview({
-                      productId,
-                      productReview: {
-                        title,
-                        review,
-                        rating: 10,
-                      },
-                    })
-                  }
-                />
-              )}
-              <h3 className="sr-only">
-                {formatMessage({
-                  id: 'recent_reviews',
-                  defaultMessage: 'Recent reviews',
-                })}
-              </h3>
+          <div className="mt-16 lg:col-span-7 lg:col-start-6 lg:mt-0">
+            {productId && (
+              <ProductReviewForm
+                onSubmit={async ({ title, review, rating }) =>
+                  await createProductReview({
+                    productId,
+                    productReview: {
+                      title,
+                      review,
+                      rating: 10,
+                    },
+                  })
+                }
+              />
+            )}
+            <h3 className="sr-only">
+              {formatMessage({
+                id: 'recent_reviews',
+                defaultMessage: 'Recent reviews',
+              })}
+            </h3>
 
             <div className="flow-root">
               <div className="-my-3">
