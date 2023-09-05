@@ -1,88 +1,92 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 
-import useAddAssortmentProduct from '../hooks/useAddAssortmentProduct';
+import useAddAssortmentFilter from '../hooks/useAddAssortmentFilter';
+
 import FilterableDropdown from '../../common/components/FilterableDropdown';
+
 import TagInputField from '../../forms/components/TagInputField';
+
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import useProducts from '../../product/hooks/useProducts';
+import FormErrors from '../../forms/components/FormErrors';
+import useFilters from '../../filter/hooks/useFilters';
+import { ISortDirection } from '../../../gql/types';
 
-const normalizeProducts = (productsList = []) => {
-  return productsList?.map(({ _id, status, texts, media }) => ({
+const normalizeFilters = (filterList) => {
+  return filterList?.map(({ _id, texts, key }) => ({
     id: _id,
-    tag: status,
-    ...texts,
-    image: media?.length ? media[0]?.file.url : null,
+    title: ` (${key})-${texts?.title}`,
   }));
 };
 
-const AssortmentProductForm = ({ assortmentId }) => {
-  const [queryString, setQueryString] = useState('');
+const AssortmentFiltersForm = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
-  const { addAssortmentProduct } = useAddAssortmentProduct();
+  const { addAssortmentFilter } = useAddAssortmentFilter();
   const { hasRole } = useAuth();
+
+  const [queryString, setQueryString] = useState('');
+  const { filters } = useFilters({
+    queryString,
+    limit: 50,
+    includeInactive: true,
+    sort: [{ key: 'created', value: ISortDirection.Desc }],
+  });
 
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
 
-  const { products, loading } = useProducts({
-    queryString,
-    includeDrafts: true,
-    limit: 50,
-    sort: [{ key: 'created', value: 'DESC' }],
-  });
+  const onSubmit: OnSubmitType = async ({ filterId, tags }) => {
+    await addAssortmentFilter({ filterId, assortmentId, tags });
 
-  const onSubmit = async ({ productId, tags }) => {
-    await addAssortmentProduct({ productId, assortmentId, tags });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({
     submit: onSubmit,
     successMessage,
     initialValues: {
-      productId: '',
+      filterId: '',
       tags: '',
     },
   });
 
   return (
     <FormWrapper>
-      <Form form={form} id="assortment_product_form">
+      <Form form={form} id="assortment_filter_form">
         <div className="shadow dark:shadow-none sm:rounded-md">
           <div className="grid gap-6 px-4 py-5 sm:p-6">
             <div className="col-span-12">
               <TagInputField
                 name="tags"
                 id="tags"
-                className="mt-1 w-full text-sm font-medium"
+                label={formatMessage({ id: 'tags', defaultMessage: 'Tags' })}
+                className="mt-1 w-full text-sm font-medium text-slate-500"
               />
-
               <FilterableDropdown
-                name="productId"
-                data={normalizeProducts(products)}
-                isLoading={loading}
-                label={formatMessage({
-                  id: 'product',
-                  defaultMessage: 'Product',
-                })}
+                name="filterId"
                 required
-                onFilter={setQueryString}
+                label={formatMessage({
+                  id: 'filter',
+                  defaultMessage: 'Filter',
+                })}
+                data={normalizeFilters(filters)}
                 queryString={queryString}
+                onFilter={setQueryString}
                 className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
               />
             </div>
           </div>
+          <FormErrors />
           <div className="border-t-indigo-50 border-t dark:border-t-slate-700 bg-slate-50 dark:bg-slate-800 px-4 py-5 text-right sm:px-6">
             <SubmitButton
-              hidden={!hasRole('addAssortmentProduct')}
+              hidden={!hasRole('addAssortmentFilter')}
               label={formatMessage({
                 id: 'save',
                 defaultMessage: 'Save',
@@ -95,4 +99,4 @@ const AssortmentProductForm = ({ assortmentId }) => {
   );
 };
 
-export default AssortmentProductForm;
+export default AssortmentFiltersForm;

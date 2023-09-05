@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../components/ThemeWrapper';
 
 const useTheme = () => {
-  const context = useContext(ThemeContext);
+  const context = useContext<any>(ThemeContext);
 
   if (context === undefined) {
     throw new Error('Theme Context was used outside of its Provider');

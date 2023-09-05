@@ -17,11 +17,13 @@ const AssortmentMediaListItem = ({ media, onDelete, locale, id }) => {
   const onUpdateMediaText = async ({ title, subtitle }) => {
     await updateAssortmentMediaTexts({
       assortmentMediaId: media._id,
-      texts: {
-        title,
-        locale,
-        subtitle,
-      },
+      texts: [
+        {
+          title,
+          locale,
+          subtitle,
+        },
+      ],
     });
     setIsEditing(false);
     return true;

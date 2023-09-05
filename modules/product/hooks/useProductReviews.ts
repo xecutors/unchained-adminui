@@ -2,9 +2,8 @@ import { useQuery, gql } from '@apollo/client';
 import {
   IProductReviewsQuery,
   IProductReviewsQueryVariables,
-  ISortOptionInput,
+  ISortDirection,
 } from '../../../gql/types';
-import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductReviewDetailFragment from '../../product-review/fragments/ProductReviewDetailFragment';
 
 export const ProductReviewQuery = gql`
@@ -42,7 +41,7 @@ const useProductReviews = ({
       offset: offset || 0,
       sort: sortOptions?.length
         ? sortOptions
-        : ([{ key: 'created', value: 'DESC' }] as ISortOptionInput[]),
+        : [{ key: 'created', value: ISortDirection.Desc }],
     },
   });
 

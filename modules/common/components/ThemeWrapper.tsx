@@ -1,7 +1,7 @@
 import { createContext, useEffect, useMemo } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext({});
 const ThemeWrapper = ({ children }) => {
   const [theme, setTheme] = useLocalStorage('theme', 'light');
 

@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import {
   IOrdersQuery,
   IOrdersQueryVariables,
-  ISortOptionInput,
+  ISortDirection,
 } from '../../../gql/types';
 import { DefaultLimit } from '../../common/data/miscellaneous';
 import OrderFragment from '../fragments/OrderFragment';
@@ -47,7 +47,7 @@ const useOrders = ({
       queryString,
       sort: sortOptions.length
         ? sortOptions
-        : ([{ key: 'ordered', value: 'DESC' }] as ISortOptionInput[]),
+        : [{ key: 'ordered', value: ISortDirection.Desc }],
     },
   });
   const orders = data?.orders || [];

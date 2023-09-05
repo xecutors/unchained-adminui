@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import {
-  ISortOptionInput,
+  ISortDirection,
   IWorkQueueQuery,
   IWorkQueueQueryVariables,
 } from '../../../gql/types';
@@ -68,7 +68,7 @@ const useWorkQueue = ({
       ),
       sort: (sortOptions || []).length
         ? sortOptions
-        : ([{ key: 'scheduled', value: 'DESC' }] as ISortOptionInput[]),
+        : [{ key: 'scheduled', value: ISortDirection.Desc }],
     },
   });
   const workQueue = data?.workQueue || [];

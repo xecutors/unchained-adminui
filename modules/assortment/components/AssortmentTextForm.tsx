@@ -5,7 +5,7 @@ import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 
 import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
 import useUpdateAssortmentTexts from '../hooks/useUpdateAssortmentTexts';
@@ -27,20 +27,27 @@ const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
     defaultMessage: 'Saved',
   });
 
-  const { updateAssortmentTexts } = useUpdateAssortmentTexts({ assortmentId });
+  const { updateAssortmentTexts } = useUpdateAssortmentTexts();
 
-  const onSubmit = async ({ slug, title, subtitle, description }) => {
+  const onSubmit: OnSubmitType = async ({
+    slug,
+    title,
+    subtitle,
+    description,
+  }) => {
     await updateAssortmentTexts({
       assortmentId,
-      texts: {
-        locale: selectedLocale,
-        slug,
-        title,
-        subtitle,
-        description,
-      },
+      texts: [
+        {
+          locale: selectedLocale,
+          slug,
+          title,
+          subtitle,
+          description,
+        },
+      ],
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({

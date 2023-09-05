@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+import { ISortDirection } from '../../../gql/types';
 import useAuth from '../../Auth/useAuth';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import Form from '../../forms/components/Form';
@@ -26,7 +27,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
     queryString,
     includeDrafts: true,
     limit: 50,
-    sort: [{ key: 'created', value: 'DESC' }],
+    sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
 
   const onSubmit = async ({ productId, quantity }) => {

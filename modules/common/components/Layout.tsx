@@ -314,7 +314,11 @@ const Layout = ({
             />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
-            <UserAvatar {...currentUser} onLogout={onLogout} />
+            <UserAvatar
+              avatar={currentUser?.avatar}
+              {...currentUser}
+              onLogout={onLogout}
+            />
           </div>
         </div>
       </div>
@@ -338,7 +342,11 @@ const Layout = ({
             <SideNav navigation={defaultNavigation} />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
-            <UserAvatar {...currentUser} onLogout={onLogout} />
+            <UserAvatar
+              avatar={currentUser?.avatar}
+              {...currentUser}
+              onLogout={onLogout}
+            />
             <div className="ml-auto self-center">
               <LocaleSwitcher />
             </div>

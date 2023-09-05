@@ -14,7 +14,7 @@ import generateUniqueId from '../../common/utils/getUniqueId';
 
 const color = scaleOrdinal(schemeDark2);
 
-const TangleTree = ({ data, options = {} }) => {
+const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
   const { formatMessage } = useIntl();
   const router = useRouter();
 
@@ -90,7 +90,7 @@ const TangleTree = ({ data, options = {} }) => {
               width="100%"
               height="100%"
             >
-              <div xmlns="http://www.w3.org/1999/xhtml">
+              <div>
                 <Link
                   href={`/assortments/${generateUniqueId({
                     _id: n?.id,

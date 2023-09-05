@@ -5,6 +5,7 @@ import {
 } from '@dnd-kit/sortable';
 import NoData from '../../common/components/NoData';
 import AssortmentMediaListItem from './AssortmentMediaListItem';
+import { IAssortmentMedia } from '../../../gql/types';
 
 const AssortmentMediaList = ({
   medias,
@@ -29,9 +30,9 @@ const AssortmentMediaList = ({
             <ul className="space-y-4 p-5 transition-[background-color] ease-in-out delay-200">
               {medias.length ? (
                 items.map((id) => {
-                  const media = Object.values(medias).find(
-                    (md) => md._id === id,
-                  );
+                  const media = Object.values(
+                    medias as IAssortmentMedia[],
+                  ).find((md) => md._id === id);
 
                   return (
                     <AssortmentMediaListItem

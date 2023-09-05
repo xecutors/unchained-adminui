@@ -21,8 +21,8 @@ const TagInput = ({
   disabled = false,
   name = 'tag-input',
   id = 'tag-input',
-  className: classes,
-  placeholder,
+  className: classes = '',
+  placeholder = '',
 }) => {
   const { formatMessage } = useIntl();
   const [tagList, setTagList] = useState(normalizeTagValue(tags));

@@ -18,7 +18,6 @@ export type Incremental<T> =
   | {
       [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
     };
-export type FieldWrapper<T> = T | Promise<T>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -35,15 +34,15 @@ export type Scalars = {
 };
 
 export type IAddress = {
-  addressLine?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  addressLine2?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  city?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  company?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  firstName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  lastName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  postalCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  regionCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  addressLine?: Maybe<Scalars['String']['output']>;
+  addressLine2?: Maybe<Scalars['String']['output']>;
+  city?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  countryCode?: Maybe<Scalars['String']['output']>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  lastName?: Maybe<Scalars['String']['output']>;
+  postalCode?: Maybe<Scalars['String']['output']>;
+  regionCode?: Maybe<Scalars['String']['output']>;
 };
 
 export type IAddressInput = {
@@ -59,34 +58,34 @@ export type IAddressInput = {
 };
 
 export type IAdminUiConfig = {
-  customProperties: Array<FieldWrapper<IAdminUiConfigCustomEntityInterface>>;
+  customProperties: Array<IAdminUiConfigCustomEntityInterface>;
 };
 
 export type IAdminUiConfigCustomEntityInterface = {
-  entityName: FieldWrapper<Scalars['String']['output']>;
-  inlineFragment: FieldWrapper<Scalars['String']['output']>;
+  entityName: Scalars['String']['output'];
+  inlineFragment: Scalars['String']['output'];
 };
 
 /** Assortment */
 export type IAssortment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IAssortmentPath>>;
-  children?: Maybe<Array<FieldWrapper<IAssortment>>>;
-  childrenCount: FieldWrapper<Scalars['Int']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  filterAssignments?: Maybe<Array<FieldWrapper<IAssortmentFilter>>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isRoot?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  linkedAssortments?: Maybe<Array<FieldWrapper<IAssortmentLink>>>;
-  media: Array<FieldWrapper<IAssortmentMedia>>;
-  productAssignments?: Maybe<Array<FieldWrapper<IAssortmentProduct>>>;
-  searchProducts: FieldWrapper<IProductSearchResult>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IAssortmentTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IAssortmentPath>;
+  children?: Maybe<Array<IAssortment>>;
+  childrenCount: Scalars['Int']['output'];
+  created?: Maybe<Scalars['DateTime']['output']>;
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  filterAssignments?: Maybe<Array<IAssortmentFilter>>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  isBase?: Maybe<Scalars['Boolean']['output']>;
+  isRoot?: Maybe<Scalars['Boolean']['output']>;
+  linkedAssortments?: Maybe<Array<IAssortmentLink>>;
+  media: Array<IAssortmentMedia>;
+  productAssignments?: Maybe<Array<IAssortmentProduct>>;
+  searchProducts: IProductSearchResult;
+  sequence: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IAssortmentTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Assortment */
@@ -121,27 +120,27 @@ export type IAssortmentTextsArgs = {
 };
 
 export type IAssortmentFilter = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortment: FieldWrapper<IAssortment>;
-  filter: FieldWrapper<IFilter>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  _id: Scalars['ID']['output'];
+  assortment: IAssortment;
+  filter: IFilter;
+  sortKey: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
 };
 
 export type IAssortmentLink = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  child: FieldWrapper<IAssortment>;
-  parent: FieldWrapper<IAssortment>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  _id: Scalars['ID']['output'];
+  child: IAssortment;
+  parent: IAssortment;
+  sortKey: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
 };
 
 export type IAssortmentMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  file: FieldWrapper<IMedia>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IAssortmentMediaTexts>>;
+  _id: Scalars['ID']['output'];
+  file: IMedia;
+  sortKey: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IAssortmentMediaTexts>;
 };
 
 export type IAssortmentMediaTextsArgs = {
@@ -149,15 +148,15 @@ export type IAssortmentMediaTextsArgs = {
 };
 
 export type IAssortmentMediaTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IAssortmentPath = {
-  links: Array<FieldWrapper<IAssortmentPathLink>>;
+  links: Array<IAssortmentPathLink>;
 };
 
 /**
@@ -166,9 +165,9 @@ export type IAssortmentPath = {
  * to short-circuit breadcrumb lookups
  */
 export type IAssortmentPathLink = {
-  assortmentId: FieldWrapper<Scalars['ID']['output']>;
-  assortmentTexts: FieldWrapper<IAssortmentTexts>;
-  link?: Maybe<FieldWrapper<IAssortmentLink>>;
+  assortmentId: Scalars['ID']['output'];
+  assortmentTexts: IAssortmentTexts;
+  link?: Maybe<IAssortmentLink>;
 };
 
 /**
@@ -181,16 +180,16 @@ export type IAssortmentPathLinkAssortmentTextsArgs = {
 };
 
 export type IAssortmentProduct = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortment: FieldWrapper<IAssortment>;
-  product: FieldWrapper<IProduct>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
+  _id: Scalars['ID']['output'];
+  assortment: IAssortment;
+  product: IProduct;
+  sortKey: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
 };
 
 export type IAssortmentSearchResult = {
-  assortments: Array<FieldWrapper<IAssortment>>;
-  assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  assortments: Array<IAssortment>;
+  assortmentsCount: Scalars['Int']['output'];
 };
 
 export type IAssortmentSearchResultAssortmentsArgs = {
@@ -199,37 +198,37 @@ export type IAssortmentSearchResultAssortmentsArgs = {
 };
 
 export type IAssortmentTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  locale?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type IBookmark = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  product: FieldWrapper<IProduct>;
-  user: FieldWrapper<IUser>;
+  _id: Scalars['ID']['output'];
+  created?: Maybe<Scalars['DateTime']['output']>;
+  product: IProduct;
+  user: IUser;
 };
 
 /** A Bundle product consists of multiple configured products */
 export type IBundleProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  bundleItems?: Maybe<Array<FieldWrapper<IProductBundleItem>>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IProductAssortmentPath>;
+  bundleItems?: Maybe<Array<IProductBundleItem>>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  media: Array<IProductMedia>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** A Bundle product consists of multiple configured products */
@@ -271,36 +270,36 @@ export enum ICacheControlScope {
 }
 
 export type IColor = {
-  blue?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  green?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  hex?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  red?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  blue?: Maybe<Scalars['Int']['output']>;
+  green?: Maybe<Scalars['Int']['output']>;
+  hex?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  red?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Configurable Product (Proxy) */
 export type IConfigurableProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
+  _id: Scalars['ID']['output'];
   /** Complete assignment matrix */
-  assignments: Array<FieldWrapper<IProductVariationAssignment>>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
+  assignments: Array<IProductVariationAssignment>;
+  assortmentPaths: Array<IProductAssortmentPath>;
+  catalogPriceRange?: Maybe<IPriceRange>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  media: Array<IProductMedia>;
   /** Reduced list of possible products by key/value combinations */
-  products?: Maybe<Array<FieldWrapper<IProduct>>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPriceRange?: Maybe<FieldWrapper<IPriceRange>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  products?: Maybe<Array<IProduct>>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  simulatedPriceRange?: Maybe<IPriceRange>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
   /** Product's variations (keys) and their options (values) */
-  variations?: Maybe<Array<FieldWrapper<IProductVariation>>>;
+  variations?: Maybe<Array<IProductVariation>>;
 };
 
 /** Configurable Product (Proxy) */
@@ -365,8 +364,8 @@ export type IConfigurableProductTextsArgs = {
 };
 
 export type IContact = {
-  emailAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  telNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  emailAddress?: Maybe<Scalars['String']['output']>;
+  telNumber?: Maybe<Scalars['String']['output']>;
 };
 
 export type IContactInput = {
@@ -375,20 +374,20 @@ export type IContactInput = {
 };
 
 export type IContractConfiguration = {
-  ercMetadataProperties?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  supply: FieldWrapper<Scalars['Int']['output']>;
-  tokenId: FieldWrapper<Scalars['String']['output']>;
+  ercMetadataProperties?: Maybe<Scalars['JSON']['output']>;
+  supply: Scalars['Int']['output'];
+  tokenId: Scalars['String']['output'];
 };
 
 export type ICountry = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  defaultCurrency?: Maybe<FieldWrapper<ICurrency>>;
-  flagEmoji?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  _id: Scalars['ID']['output'];
+  defaultCurrency?: Maybe<ICurrency>;
+  flagEmoji?: Maybe<Scalars['String']['output']>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  isBase?: Maybe<Scalars['Boolean']['output']>;
   /** ISO 3166-1 alpha-2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements */
-  isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  isoCode?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type ICountryNameArgs = {
@@ -465,11 +464,11 @@ export type ICreateWarehousingProviderInput = {
 };
 
 export type ICurrency = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  decimals?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isoCode: FieldWrapper<Scalars['String']['output']>;
+  _id: Scalars['ID']['output'];
+  contractAddress?: Maybe<Scalars['String']['output']>;
+  decimals?: Maybe<Scalars['Int']['output']>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  isoCode: Scalars['String']['output'];
 };
 
 export type IDateFilterInput = {
@@ -478,22 +477,22 @@ export type IDateFilterInput = {
 };
 
 export type IDeliveryInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  version?: Maybe<Scalars['String']['output']>;
 };
 
 export type IDeliveryProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IDeliveryProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IDeliveryInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  type?: Maybe<FieldWrapper<IDeliveryProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  configuration?: Maybe<Scalars['JSON']['output']>;
+  configurationError?: Maybe<IDeliveryProviderError>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  interface?: Maybe<IDeliveryInterface>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  simulatedPrice?: Maybe<IPrice>;
+  type?: Maybe<IDeliveryProviderType>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type IDeliveryProviderSimulatedPriceArgs = {
@@ -518,10 +517,10 @@ export enum IDeliveryProviderType {
 }
 
 export type IDimensions = {
-  height?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  length?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  weight?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  width?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
+  height?: Maybe<Scalars['Float']['output']>;
+  length?: Maybe<Scalars['Float']['output']>;
+  weight?: Maybe<Scalars['Float']['output']>;
+  width?: Maybe<Scalars['Float']['output']>;
 };
 
 export type IDimensionsHeightArgs = {
@@ -541,39 +540,39 @@ export type IDimensionsWidthArgs = {
 };
 
 export type IDiscountInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isManualAdditionAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isManualRemovalAllowed?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  isManualAdditionAllowed?: Maybe<Scalars['Boolean']['output']>;
+  isManualRemovalAllowed?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  version?: Maybe<Scalars['String']['output']>;
 };
 
 export type IDispatch = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  earliestDelivery?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  shipping?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  _id: Scalars['ID']['output'];
+  deliveryProvider?: Maybe<IDeliveryProvider>;
+  earliestDelivery?: Maybe<Scalars['DateTime']['output']>;
+  shipping?: Maybe<Scalars['DateTime']['output']>;
+  warehousingProvider?: Maybe<IWarehousingProvider>;
 };
 
 /** Enrollment */
 export type IEnrollment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  billingAddress?: Maybe<FieldWrapper<IAddress>>;
-  contact?: Maybe<FieldWrapper<IContact>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  delivery?: Maybe<FieldWrapper<IEnrollmentDelivery>>;
-  enrollmentNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  payment?: Maybe<FieldWrapper<IEnrollmentPayment>>;
-  periods: Array<FieldWrapper<IEnrollmentPeriod>>;
-  plan: FieldWrapper<IEnrollmentPlan>;
-  status: FieldWrapper<IEnrollmentStatus>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user: FieldWrapper<IUser>;
+  _id: Scalars['ID']['output'];
+  billingAddress?: Maybe<IAddress>;
+  contact?: Maybe<IContact>;
+  country?: Maybe<ICountry>;
+  created: Scalars['DateTime']['output'];
+  currency?: Maybe<ICurrency>;
+  delivery?: Maybe<IEnrollmentDelivery>;
+  enrollmentNumber?: Maybe<Scalars['String']['output']>;
+  expires?: Maybe<Scalars['DateTime']['output']>;
+  isExpired?: Maybe<Scalars['Boolean']['output']>;
+  payment?: Maybe<IEnrollmentPayment>;
+  periods: Array<IEnrollmentPeriod>;
+  plan: IEnrollmentPlan;
+  status: IEnrollmentStatus;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  user: IUser;
 };
 
 /** Enrollment */
@@ -582,7 +581,7 @@ export type IEnrollmentIsExpiredArgs = {
 };
 
 export type IEnrollmentDelivery = {
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  provider?: Maybe<IDeliveryProvider>;
 };
 
 export type IEnrollmentDeliveryInput = {
@@ -591,7 +590,7 @@ export type IEnrollmentDeliveryInput = {
 };
 
 export type IEnrollmentPayment = {
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  provider?: Maybe<IPaymentProvider>;
 };
 
 export type IEnrollmentPaymentInput = {
@@ -600,16 +599,16 @@ export type IEnrollmentPaymentInput = {
 };
 
 export type IEnrollmentPeriod = {
-  end: FieldWrapper<Scalars['DateTime']['output']>;
-  isTrial: FieldWrapper<Scalars['Boolean']['output']>;
-  order?: Maybe<FieldWrapper<IOrder>>;
-  start: FieldWrapper<Scalars['DateTime']['output']>;
+  end: Scalars['DateTime']['output'];
+  isTrial: Scalars['Boolean']['output'];
+  order?: Maybe<IOrder>;
+  start: Scalars['DateTime']['output'];
 };
 
 export type IEnrollmentPlan = {
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  product: FieldWrapper<IPlanProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
+  configuration?: Maybe<Array<IProductConfigurationParameter>>;
+  product: IPlanProduct;
+  quantity: Scalars['Int']['output'];
 };
 
 export type IEnrollmentPlanInput = {
@@ -630,10 +629,10 @@ export enum IEnrollmentStatus {
 }
 
 export type IEvent = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created: FieldWrapper<Scalars['Timestamp']['output']>;
-  payload?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  type: FieldWrapper<Scalars['String']['output']>;
+  _id: Scalars['ID']['output'];
+  created: Scalars['Timestamp']['output'];
+  payload?: Maybe<Scalars['JSON']['output']>;
+  type: Scalars['String']['output'];
 };
 
 export enum IEventType {
@@ -752,14 +751,14 @@ export enum IEventType {
 }
 
 export type IFilter = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  options?: Maybe<Array<FieldWrapper<IFilterOption>>>;
-  texts?: Maybe<FieldWrapper<IFilterTexts>>;
-  type?: Maybe<FieldWrapper<IFilterType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  created?: Maybe<Scalars['DateTime']['output']>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  key?: Maybe<Scalars['String']['output']>;
+  options?: Maybe<Array<IFilterOption>>;
+  texts?: Maybe<IFilterTexts>;
+  type?: Maybe<IFilterType>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type IFilterTextsArgs = {
@@ -767,9 +766,9 @@ export type IFilterTextsArgs = {
 };
 
 export type IFilterOption = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  texts?: Maybe<FieldWrapper<IFilterTexts>>;
-  value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  texts?: Maybe<IFilterTexts>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 export type IFilterOptionTextsArgs = {
@@ -782,10 +781,10 @@ export type IFilterQueryInput = {
 };
 
 export type IFilterTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export enum IFilterType {
@@ -800,18 +799,18 @@ export enum IFilterType {
 }
 
 export type IGeoPosition = {
-  altitute?: Maybe<FieldWrapper<Scalars['Float']['output']>>;
-  latitude: FieldWrapper<Scalars['Float']['output']>;
-  longitude: FieldWrapper<Scalars['Float']['output']>;
+  altitute?: Maybe<Scalars['Float']['output']>;
+  latitude: Scalars['Float']['output'];
+  longitude: Scalars['Float']['output'];
 };
 
 export type ILanguage = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  isBase?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  _id: Scalars['ID']['output'];
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  isBase?: Maybe<Scalars['Boolean']['output']>;
   /** ISO 639-1 alpha-2 https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes */
-  isoCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  isoCode?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export enum ILengthUnit {
@@ -821,34 +820,34 @@ export enum ILengthUnit {
 }
 
 export type ILink = {
-  href?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  href?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type ILoadedFilter = {
-  definition: FieldWrapper<IFilter>;
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  options?: Maybe<Array<FieldWrapper<ILoadedFilterOption>>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  definition: IFilter;
+  filteredProductsCount: Scalars['Int']['output'];
+  isSelected?: Maybe<Scalars['Boolean']['output']>;
+  options?: Maybe<Array<ILoadedFilterOption>>;
+  productsCount: Scalars['Int']['output'];
 };
 
 export type ILoadedFilterOption = {
-  definition: FieldWrapper<IFilterOption>;
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  isSelected?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  definition: IFilterOption;
+  filteredProductsCount: Scalars['Int']['output'];
+  isSelected?: Maybe<Scalars['Boolean']['output']>;
 };
 
 /** Type returned when the user logs in */
 export type ILoginMethodResponse = {
   /** Id of the user logged in user */
-  id: FieldWrapper<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
   /** Token of the connection */
-  token: FieldWrapper<Scalars['String']['output']>;
+  token: Scalars['String']['output'];
   /** Expiration date for the token */
-  tokenExpires: FieldWrapper<Scalars['DateTime']['output']>;
+  tokenExpires: Scalars['DateTime']['output'];
   /** The logged in user */
-  user?: Maybe<FieldWrapper<IUser>>;
+  user?: Maybe<IUser>;
 };
 
 export enum IMassUnit {
@@ -858,11 +857,11 @@ export enum IMassUnit {
 }
 
 export type IMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  size: FieldWrapper<Scalars['Int']['output']>;
-  type: FieldWrapper<Scalars['String']['output']>;
-  url: FieldWrapper<Scalars['String']['output']>;
+  _id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  size: Scalars['Int']['output'];
+  type: Scalars['String']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type IMediaUrlArgs = {
@@ -871,405 +870,401 @@ export type IMediaUrlArgs = {
 };
 
 export type IMediaUploadTicket = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  expires: FieldWrapper<Scalars['DateTime']['output']>;
-  putURL: FieldWrapper<Scalars['String']['output']>;
+  _id: Scalars['ID']['output'];
+  expires: Scalars['DateTime']['output'];
+  putURL: Scalars['String']['output'];
 };
 
 export type IMutation = {
   /** Activate a enrollment by changing the status to ACTIVE */
-  activateEnrollment: FieldWrapper<IEnrollment>;
+  activateEnrollment: IEnrollment;
   /** Add a new filter to an assortment */
-  addAssortmentFilter: FieldWrapper<IAssortmentFilter>;
+  addAssortmentFilter: IAssortmentFilter;
   /** Add a new child assortment to an assortment */
-  addAssortmentLink: FieldWrapper<IAssortmentLink>;
+  addAssortmentLink: IAssortmentLink;
   /** Add a new media to a assortment */
-  addAssortmentMedia: FieldWrapper<IAssortmentMedia>;
+  addAssortmentMedia: IAssortmentMedia;
   /** Add a new product to an assortment */
-  addAssortmentProduct: FieldWrapper<IAssortmentProduct>;
+  addAssortmentProduct: IAssortmentProduct;
   /** Add a new discount to the cart, a new order gets generated with status = open (= order before checkout / cart) if necessary */
-  addCartDiscount: FieldWrapper<IOrderDiscount>;
+  addCartDiscount: IOrderDiscount;
   /** Add a new item to the cart. Order gets generated with status = open (= order before checkout / cart) if necessary. */
-  addCartProduct: FieldWrapper<IOrderItem>;
+  addCartProduct: IOrderItem;
   /** Add a new quotation to the cart. */
-  addCartQuotation: FieldWrapper<IOrderItem>;
+  addCartQuotation: IOrderItem;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
-  addEmail: FieldWrapper<IUser>;
+  addEmail: IUser;
   /** Add multiple new item to the cart. Order gets generated with status = open (= order before checkout / cart) if necessary. */
-  addMultipleCartProducts: Array<Maybe<FieldWrapper<IOrderItem>>>;
+  addMultipleCartProducts: Array<Maybe<IOrderItem>>;
   /**
    * Link a new product to a ConfigurableProduct by providing a configuration
    * combination that uniquely identifies a row in the assignment matrix
    */
-  addProductAssignment: FieldWrapper<IProduct>;
+  addProductAssignment: IProduct;
   /** Add a new media to a product's visualization */
-  addProductMedia: FieldWrapper<IProductMedia>;
+  addProductMedia: IProductMedia;
   /**
    * Add a vote to a ProductReview.
    * If there there is a previous vote from the user invoking this it will be removed and updated with the new vote
    */
-  addProductReviewVote: FieldWrapper<IProductReview>;
+  addProductReviewVote: IProductReview;
   /** Store user W3C Push subscription object */
-  addPushSubscription: FieldWrapper<IUser>;
+  addPushSubscription: IUser;
   /** Web3 */
-  addWeb3Address: FieldWrapper<IUser>;
+  addWeb3Address: IUser;
   /** Register WebAuthn Credentials for current user */
-  addWebAuthnCredentials: FieldWrapper<IUser>;
+  addWebAuthnCredentials: IUser;
   /**
    * Add work to the work queue. Each type has its own input shape. If you pinpoint the worker by setting it
    * during creation, the work will be only run by the worker who identifies as that worker.
    */
-  addWork?: Maybe<FieldWrapper<IWork>>;
+  addWork?: Maybe<IWork>;
   /**
    * Get the next task from the worker queue. This will also mark the task as "started".
    * Optional worker to identify the worker.
    */
-  allocateWork?: Maybe<FieldWrapper<IWork>>;
+  allocateWork?: Maybe<IWork>;
   /**
    * Toggle Bookmark state on a product as currently logged in user,
    * Does not work when multiple bookmarks with different explicit meta configurations exist.
    * In those cases please use createBookmark and removeBookmark
    */
-  bookmark: FieldWrapper<IBookmark>;
+  bookmark: IBookmark;
   /** In order to activate TOTP, generate a secret and return */
-  buildSecretTOTPAuthURL: FieldWrapper<Scalars['String']['output']>;
+  buildSecretTOTPAuthURL: Scalars['String']['output'];
   /** Change the current user's password. Must be logged in. */
-  changePassword?: Maybe<FieldWrapper<ISuccessResponse>>;
+  changePassword?: Maybe<ISuccessResponse>;
   /**
    * Process the checkout (automatically charge & deliver if possible), the cart will get
    * transformed to an ordinary order if everything goes well.
    */
-  checkoutCart: FieldWrapper<IOrder>;
-  confirmMediaUpload: FieldWrapper<IMedia>;
+  checkoutCart: IOrder;
+  confirmMediaUpload: IMedia;
   /** Manually confirm an order which is in progress */
-  confirmOrder: FieldWrapper<IOrder>;
+  confirmOrder: IOrder;
   /** Creates new assortment. */
-  createAssortment: FieldWrapper<IAssortment>;
+  createAssortment: IAssortment;
   /** Create a bookmark for a specific user */
-  createBookmark: FieldWrapper<IBookmark>;
+  createBookmark: IBookmark;
   /**
    * Creates an alternative cart. If you use this feature, you should use explicit orderId's when using the
    * cart mutations. Else it will work like a stack and the checkout will use the very first cart of the user.
    */
-  createCart: FieldWrapper<IOrder>;
-  createCountry: FieldWrapper<ICountry>;
-  createCurrency: FieldWrapper<ICurrency>;
+  createCart: IOrder;
+  createCountry: ICountry;
+  createCurrency: ICurrency;
   /** Creates new delivery provider */
-  createDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  createDeliveryProvider: IDeliveryProvider;
   /** Create a enrollment. */
-  createEnrollment: FieldWrapper<IEnrollment>;
+  createEnrollment: IEnrollment;
   /** Creates new Filter along with the user who created it. */
-  createFilter: FieldWrapper<IFilter>;
+  createFilter: IFilter;
   /** Adds new option to filters */
-  createFilterOption: FieldWrapper<IFilter>;
+  createFilterOption: IFilter;
   /** Adds new language along with the user who created it */
-  createLanguage: FieldWrapper<ILanguage>;
+  createLanguage: ILanguage;
   /** Adds new payment provider */
-  createPaymentProvider: FieldWrapper<IPaymentProvider>;
+  createPaymentProvider: IPaymentProvider;
   /** Create a new product */
-  createProduct: FieldWrapper<IProduct>;
+  createProduct: IProduct;
   /** Adds one product as bundle for another products */
-  createProductBundleItem: FieldWrapper<IProduct>;
+  createProductBundleItem: IProduct;
   /** Add a new ProductReview */
-  createProductReview: FieldWrapper<IProductReview>;
+  createProductReview: IProductReview;
   /** Creates new product variation for a product. */
-  createProductVariation: FieldWrapper<IProductVariation>;
+  createProductVariation: IProductVariation;
   /** Adds variation option to an existing product variations */
-  createProductVariationOption: FieldWrapper<IProductVariation>;
+  createProductVariationOption: IProductVariation;
   /** Create a new user. */
-  createUser?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  createUser?: Maybe<ILoginMethodResponse>;
   /** Creates new warehouse provider. */
-  createWarehousingProvider: FieldWrapper<IWarehousingProvider>;
+  createWarehousingProvider: IWarehousingProvider;
   /** Create WebAuthn PublicKeyCredentialCreationOptions to use for Registering a new WebAuthn Device */
-  createWebAuthnCredentialCreationOptions: FieldWrapper<
-    Scalars['JSON']['output']
-  >;
+  createWebAuthnCredentialCreationOptions: Scalars['JSON']['output'];
   /** Create WebAuthn PublicKeyCredentialRequestrOptions to use for WebAuthn Login Flow */
-  createWebAuthnCredentialRequestOptions: FieldWrapper<
-    Scalars['JSON']['output']
-  >;
+  createWebAuthnCredentialRequestOptions: Scalars['JSON']['output'];
   /** Manually mark a undelivered order as delivered */
-  deliverOrder: FieldWrapper<IOrder>;
+  deliverOrder: IOrder;
   /** Disable the 2nd factor (TOTP) */
-  disableTOTP: FieldWrapper<IUser>;
+  disableTOTP: IUser;
   /**
    * Remove all items of an open order (cart) if possible.
    * if you want to remove single cart item use removeCartItem instead
    */
-  emptyCart?: Maybe<FieldWrapper<IOrder>>;
+  emptyCart?: Maybe<IOrder>;
   /** In order to activate 2nd factor (TOTP), generate a secret and return */
-  enableTOTP: FieldWrapper<IUser>;
+  enableTOTP: IUser;
   /** Enroll a new user, setting enroll to true will let the user choose his password (e-mail gets sent) */
-  enrollUser: FieldWrapper<IUser>;
+  enrollUser: IUser;
   /** Tokenize */
-  exportToken: FieldWrapper<IToken>;
+  exportToken: IToken;
   /**
    * Register a work attempt manually.
    * Note: Usually, work attempts are handled internally by the inbuilt cron
    * worker. This mutation is part of the interface for "outside" workers.
    */
-  finishWork: FieldWrapper<IWork>;
+  finishWork: IWork;
   /** Request a forgot password email. */
-  forgotPassword?: Maybe<FieldWrapper<ISuccessResponse>>;
+  forgotPassword?: Maybe<ISuccessResponse>;
   /**
    * Update hearbeat (updates user activity information such as last
    * login and logged in user IP address, locale and country where they
    * accessed the system)
    */
-  heartbeat: FieldWrapper<IUser>;
+  heartbeat: IUser;
   /** Impersonate a user */
-  impersonate: FieldWrapper<ILoginMethodResponse>;
+  impersonate: ILoginMethodResponse;
   /** OAuth2 */
-  linkOAuthAccount: FieldWrapper<IUser>;
+  linkOAuthAccount: IUser;
   /** Login as Guest User (creates an anonymous user and returns logged in token) */
-  loginAsGuest?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  loginAsGuest?: Maybe<ILoginMethodResponse>;
   /** Log the user with OAuth2 service provider */
-  loginWithOAuth?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  loginWithOAuth?: Maybe<ILoginMethodResponse>;
   /** Log the user in with a password. */
-  loginWithPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  loginWithPassword?: Maybe<ILoginMethodResponse>;
   /** Log the user in with a WebAuthn device */
-  loginWithWebAuthn?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  loginWithWebAuthn?: Maybe<ILoginMethodResponse>;
   /** Log the user out. */
-  logout?: Maybe<FieldWrapper<ISuccessResponse>>;
+  logout?: Maybe<ISuccessResponse>;
   /** Log out all sessions related with user. */
-  logoutAllSessions?: Maybe<FieldWrapper<ISuccessResponse>>;
+  logoutAllSessions?: Maybe<ISuccessResponse>;
   /** Make a proposal as answer to the RFP by changing its status to PROCESSED */
-  makeQuotationProposal: FieldWrapper<IQuotation>;
+  makeQuotationProposal: IQuotation;
   /** Make's the provided payment credential as the users preferred method of payment. */
-  markPaymentCredentialsPreferred?: Maybe<FieldWrapper<IPaymentCredentials>>;
-  pageView: FieldWrapper<Scalars['String']['output']>;
+  markPaymentCredentialsPreferred?: Maybe<IPaymentCredentials>;
+  pageView: Scalars['String']['output'];
   /** Manually mark an unpaid/partially paid order as fully paid */
-  payOrder: FieldWrapper<IOrder>;
-  prepareAssortmentMediaUpload: FieldWrapper<IMediaUploadTicket>;
-  prepareProductMediaUpload: FieldWrapper<IMediaUploadTicket>;
-  prepareUserAvatarUpload: FieldWrapper<IMediaUploadTicket>;
+  payOrder: IOrder;
+  prepareAssortmentMediaUpload: IMediaUploadTicket;
+  prepareProductMediaUpload: IMediaUploadTicket;
+  prepareUserAvatarUpload: IMediaUploadTicket;
   /**
    * This will pick up non-external work, execute, await result and finish
    * it up on the target system. This function allows you to do work queue "ticks"
    * from outside instead of waiting for default Cron and Event Listener to trigger
    * and can be helpful in serverless environments.
    */
-  processNextWork?: Maybe<FieldWrapper<IWork>>;
+  processNextWork?: Maybe<IWork>;
   /** Make the product visible on any shop listings (product queries) */
-  publishProduct: FieldWrapper<IProduct>;
+  publishProduct: IProduct;
   /**
    * Register credentials for an existing payment provider allowing to store and use them
    * for later payments (1-click checkout or enrollments)
    */
-  registerPaymentCredentials?: Maybe<FieldWrapper<IPaymentCredentials>>;
+  registerPaymentCredentials?: Maybe<IPaymentCredentials>;
   /** Manually reject an order which is in progress */
-  rejectOrder: FieldWrapper<IOrder>;
+  rejectOrder: IOrder;
   /** Reject an RFP, this is possible as long as a quotation is not fullfilled */
-  rejectQuotation: FieldWrapper<IQuotation>;
+  rejectQuotation: IQuotation;
   /** Removes assortment with the provided ID */
-  removeAssortment: FieldWrapper<IAssortment>;
+  removeAssortment: IAssortment;
   /** Remove a product from an assortment */
-  removeAssortmentFilter: FieldWrapper<IAssortmentFilter>;
+  removeAssortmentFilter: IAssortmentFilter;
   /** Remove a child/parent assortment link from it's parent */
-  removeAssortmentLink: FieldWrapper<IAssortmentLink>;
+  removeAssortmentLink: IAssortmentLink;
   /** Remove a media asset from a assortment */
-  removeAssortmentMedia: FieldWrapper<IAssortmentMedia>;
+  removeAssortmentMedia: IAssortmentMedia;
   /** Remove a product from an assortment */
-  removeAssortmentProduct: FieldWrapper<IAssortmentProduct>;
+  removeAssortmentProduct: IAssortmentProduct;
   /** Remove an existing bookmark by ID */
-  removeBookmark: FieldWrapper<IBookmark>;
+  removeBookmark: IBookmark;
   /** Removes products bundle item found at the given 0 based index. */
-  removeBundleItem: FieldWrapper<IProduct>;
+  removeBundleItem: IProduct;
   /** Remove a discount from the cart */
-  removeCartDiscount: FieldWrapper<IOrderDiscount>;
+  removeCartDiscount: IOrderDiscount;
   /** Remove an item from an open order */
-  removeCartItem: FieldWrapper<IOrderItem>;
+  removeCartItem: IOrderItem;
   /** Deletes the specified country */
-  removeCountry: FieldWrapper<ICountry>;
+  removeCountry: ICountry;
   /** Deletes the specified currency */
-  removeCurrency: FieldWrapper<ICurrency>;
+  removeCurrency: ICurrency;
   /**
    * Deletes a delivery provider by setting the deleted field to current timestamp.
    * Note the delivery provider still exists.
    */
-  removeDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  removeDeliveryProvider: IDeliveryProvider;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
-  removeEmail: FieldWrapper<IUser>;
+  removeEmail: IUser;
   /** Deletes the specified filter */
-  removeFilter: FieldWrapper<IFilter>;
+  removeFilter: IFilter;
   /** Removes the filter option from the specified filter. */
-  removeFilterOption: FieldWrapper<IFilter>;
+  removeFilterOption: IFilter;
   /** Deletes the specified languages */
-  removeLanguage: FieldWrapper<ILanguage>;
+  removeLanguage: ILanguage;
   /** Remove an order while it's still open */
-  removeOrder: FieldWrapper<IOrder>;
+  removeOrder: IOrder;
   /** Deletes the specified payment credential. */
-  removePaymentCredentials?: Maybe<FieldWrapper<IPaymentCredentials>>;
+  removePaymentCredentials?: Maybe<IPaymentCredentials>;
   /**
    * Deletes the specified payment provider by setting the deleted filed to current timestamp.
    * Note the payment provider is still available only it’s status is deleted
    */
-  removePaymentProvider: FieldWrapper<IPaymentProvider>;
+  removePaymentProvider: IPaymentProvider;
   /** Remove the product completely! */
-  removeProduct: FieldWrapper<IProduct>;
+  removeProduct: IProduct;
   /**
    * Unlinks a product from a ConfigurableProduct by providing a configuration
    * combination that uniquely identifies a row in the assignment matrix
    */
-  removeProductAssignment: FieldWrapper<IProduct>;
+  removeProductAssignment: IProduct;
   /** Remove a media asset from a product's visualization */
-  removeProductMedia: FieldWrapper<IProductMedia>;
+  removeProductMedia: IProductMedia;
   /** Remove an existing ProductReview. The logic to allow/dissallow removal is controlled by product plugin logic */
-  removeProductReview: FieldWrapper<IProductReview>;
+  removeProductReview: IProductReview;
   /** Remove a vote from a ProductReview */
-  removeProductReviewVote: FieldWrapper<IProductReview>;
+  removeProductReviewVote: IProductReview;
   /** Removes product variation with the provided ID */
-  removeProductVariation: FieldWrapper<IProductVariation>;
+  removeProductVariation: IProductVariation;
   /** Removes product option value for product variation with the provided variation option value */
-  removeProductVariationOption: FieldWrapper<IProductVariation>;
+  removeProductVariationOption: IProductVariation;
   /** Remove user W3C push subscription object */
-  removePushSubscription: FieldWrapper<IUser>;
+  removePushSubscription: IUser;
   /** Remove any user or logged in user if userId is not provided */
-  removeUser: FieldWrapper<IUser>;
+  removeUser: IUser;
   /**
    * Deletes the specified warehousing provider by setting the deleted filed to current timestamp.
    * Note warehousing provider still exists in the system after successful
    * completing of this operation with status deleted.
    */
-  removeWarehousingProvider: FieldWrapper<IWarehousingProvider>;
-  removeWeb3Address: FieldWrapper<IUser>;
+  removeWarehousingProvider: IWarehousingProvider;
+  removeWeb3Address: IUser;
   /** Remove WebAuthn Credentials for current user */
-  removeWebAuthnCredentials: FieldWrapper<IUser>;
+  removeWebAuthnCredentials: IUser;
   /** Manually remove a work */
-  removeWork: FieldWrapper<IWork>;
+  removeWork: IWork;
   /** Reorder the products in an assortment */
-  reorderAssortmentFilters: Array<FieldWrapper<IAssortmentFilter>>;
+  reorderAssortmentFilters: Array<IAssortmentFilter>;
   /** Reorder the child assortment links in it's parent */
-  reorderAssortmentLinks: Array<FieldWrapper<IAssortmentLink>>;
+  reorderAssortmentLinks: Array<IAssortmentLink>;
   /** Reorder a media asset (first is primary) */
-  reorderAssortmentMedia: Array<FieldWrapper<IAssortmentMedia>>;
+  reorderAssortmentMedia: Array<IAssortmentMedia>;
   /** Reorder the products in an assortment */
-  reorderAssortmentProducts: Array<FieldWrapper<IAssortmentProduct>>;
+  reorderAssortmentProducts: Array<IAssortmentProduct>;
   /** Reorder a media asset (first is primary) */
-  reorderProductMedia: Array<FieldWrapper<IProductMedia>>;
+  reorderProductMedia: Array<IProductMedia>;
   /** Request for Proposal (RFP) for the specified product */
-  requestQuotation: FieldWrapper<IQuotation>;
+  requestQuotation: IQuotation;
   /** Reset the password for a user using a token received in email. Logs the user in afterwards. */
-  resetPassword?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  resetPassword?: Maybe<ILoginMethodResponse>;
   /** Forcefully trigger an enrollment email for already added users by e-mail */
-  sendEnrollmentEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
+  sendEnrollmentEmail?: Maybe<ISuccessResponse>;
   /** Send an email with a link the user can use verify their email address. */
-  sendVerificationEmail?: Maybe<FieldWrapper<ISuccessResponse>>;
+  sendVerificationEmail?: Maybe<ISuccessResponse>;
   /**
    * Makes the assortment provided as the base assortment and make
    * any other existing base assortment regular assortments.
    */
-  setBaseAssortment: FieldWrapper<IAssortment>;
+  setBaseAssortment: IAssortment;
   /**
    * Change the delivery method/provider to an order. If the delivery provider
    * doesn’t exists new delivery provider will be created with the provided ID.
    */
-  setOrderDeliveryProvider: FieldWrapper<IOrder>;
+  setOrderDeliveryProvider: IOrder;
   /**
    * Change the payment method/provider to an order. If the payment provider
    * doesn’t exists new payment provider will be created with the provided ID.
    */
-  setOrderPaymentProvider: FieldWrapper<IOrder>;
+  setOrderPaymentProvider: IOrder;
   /** Set a new password for a specific user */
-  setPassword: FieldWrapper<IUser>;
+  setPassword: IUser;
   /** Set roles of a user */
-  setRoles: FieldWrapper<IUser>;
+  setRoles: IUser;
   /** Set tags of user */
-  setUserTags: FieldWrapper<IUser>;
+  setUserTags: IUser;
   /** Set username for a specific user */
-  setUsername: FieldWrapper<IUser>;
+  setUsername: IUser;
   /** Sign a generic order payment */
-  signPaymentProviderForCheckout: FieldWrapper<Scalars['String']['output']>;
+  signPaymentProviderForCheckout: Scalars['String']['output'];
   /** Sign a generic payment provider for registration */
   signPaymentProviderForCredentialRegistration?: Maybe<
-    FieldWrapper<Scalars['String']['output']>
+    Scalars['String']['output']
   >;
   /** End customer impersonated user session and resume the impersonator session */
-  stopImpersonation: FieldWrapper<ILoginMethodResponse>;
+  stopImpersonation: ILoginMethodResponse;
   /** Terminate an actively running enrollment by changing it's status to TERMINATED */
-  terminateEnrollment: FieldWrapper<IEnrollment>;
-  unlinkOAuthAccount: FieldWrapper<IUser>;
+  terminateEnrollment: IEnrollment;
+  unlinkOAuthAccount: IUser;
   /** Hide the product visible from any shop listings (product queries) */
-  unpublishProduct: FieldWrapper<IProduct>;
+  unpublishProduct: IProduct;
   /** Updates the provided assortment */
-  updateAssortment: FieldWrapper<IAssortment>;
+  updateAssortment: IAssortment;
   /** Modify localized texts part of a assortment media asset */
-  updateAssortmentMediaTexts: Array<FieldWrapper<IAssortmentMediaTexts>>;
+  updateAssortmentMediaTexts: Array<IAssortmentMediaTexts>;
   /** Modify localized texts part of an assortment */
-  updateAssortmentTexts: Array<FieldWrapper<IAssortmentTexts>>;
+  updateAssortmentTexts: Array<IAssortmentTexts>;
   /**
    * Change billing address and order contact of an open order (cart). All of the parameters
    * except order ID are optional and the update will ocure for parameters provided.
    * If the delivery provider or payment provider ID provided doesn’t already exist new order payment
    * will be created with the provided ID.
    */
-  updateCart: FieldWrapper<IOrder>;
+  updateCart: IOrder;
   /**
    * Change the quantity or configuration of an item in an open order.align-baselineAll
    * of the parameters are optional except item ID and for the parameters provided the
    * update will be performed accordingly.
    */
-  updateCartItem: FieldWrapper<IOrderItem>;
+  updateCartItem: IOrderItem;
   /** Updates provided country information */
-  updateCountry: FieldWrapper<ICountry>;
+  updateCountry: ICountry;
   /** Updates the specified currency */
-  updateCurrency: FieldWrapper<ICurrency>;
+  updateCurrency: ICurrency;
   /** Updates the delivery provider specified */
-  updateDeliveryProvider: FieldWrapper<IDeliveryProvider>;
+  updateDeliveryProvider: IDeliveryProvider;
   /** Update a enrollment */
-  updateEnrollment: FieldWrapper<IEnrollment>;
+  updateEnrollment: IEnrollment;
   /** Updates the specified filter with the information passed. */
-  updateFilter: FieldWrapper<IFilter>;
+  updateFilter: IFilter;
   /** Updates or created specified filter texts for filter with ID provided and locale and optionally filterOptionValue */
-  updateFilterTexts: Array<FieldWrapper<IFilterTexts>>;
+  updateFilterTexts: Array<IFilterTexts>;
   /** Updates the specified language. */
-  updateLanguage: FieldWrapper<ILanguage>;
+  updateLanguage: ILanguage;
   /** Update a Pick Up Delivery Provider's specific configuration */
-  updateOrderDeliveryPickUp: FieldWrapper<IOrderDeliveryPickUp>;
+  updateOrderDeliveryPickUp: IOrderDeliveryPickUp;
   /** Update a Shipping Delivery Provider's specific configuration */
-  updateOrderDeliveryShipping: FieldWrapper<IOrderDeliveryShipping>;
+  updateOrderDeliveryShipping: IOrderDeliveryShipping;
   /** Update a Card Payment Provider's specific configuration */
-  updateOrderPaymentCard: FieldWrapper<IOrderPaymentCard>;
+  updateOrderPaymentCard: IOrderPaymentCard;
   /** Update a Generic Payment Provider's specific configuration */
-  updateOrderPaymentGeneric: FieldWrapper<IOrderPaymentGeneric>;
+  updateOrderPaymentGeneric: IOrderPaymentGeneric;
   /** Update an Invoice Payment Provider's specific configuration */
-  updateOrderPaymentInvoice: FieldWrapper<IOrderPaymentInvoice>;
+  updateOrderPaymentInvoice: IOrderPaymentInvoice;
   /** Updates payment provider information with the provided ID */
-  updatePaymentProvider: FieldWrapper<IPaymentProvider>;
+  updatePaymentProvider: IPaymentProvider;
   /** Modify generic infos of a product (tags for ex.) */
-  updateProduct?: Maybe<FieldWrapper<IProduct>>;
+  updateProduct?: Maybe<IProduct>;
   /** Modify commerce part of a product */
-  updateProductCommerce?: Maybe<FieldWrapper<IProduct>>;
+  updateProductCommerce?: Maybe<IProduct>;
   /** Modify localized texts part of a product's media asset */
-  updateProductMediaTexts: Array<FieldWrapper<IProductMediaTexts>>;
+  updateProductMediaTexts: Array<IProductMediaTexts>;
   /** Modify plan part of a product */
-  updateProductPlan?: Maybe<FieldWrapper<IProduct>>;
+  updateProductPlan?: Maybe<IProduct>;
   /** Update an existing ProductReview. The logic to allow/dissallow editing is controlled by product plugin logic */
-  updateProductReview: FieldWrapper<IProductReview>;
+  updateProductReview: IProductReview;
   /** Modify delivery part of a product */
-  updateProductSupply?: Maybe<FieldWrapper<IProduct>>;
+  updateProductSupply?: Maybe<IProduct>;
   /** Modify localized texts part of a product */
-  updateProductTexts: Array<FieldWrapper<IProductTexts>>;
+  updateProductTexts: Array<IProductTexts>;
   /** Modify tokenization part of a product */
-  updateProductTokenization?: Maybe<FieldWrapper<ITokenizedProduct>>;
+  updateProductTokenization?: Maybe<ITokenizedProduct>;
   /**
    * Update product variation texts with the specified locales for product variations
    * that match the provided variation ID and production option value
    */
-  updateProductVariationTexts: Array<FieldWrapper<IProductVariationTexts>>;
+  updateProductVariationTexts: Array<IProductVariationTexts>;
   /** Modify warehousing part of a product */
-  updateProductWarehousing?: Maybe<FieldWrapper<IProduct>>;
+  updateProductWarehousing?: Maybe<IProduct>;
   /** Update Avatar of any user or logged in user if userId is not provided */
-  updateUserAvatar: FieldWrapper<IUser>;
+  updateUserAvatar: IUser;
   /** Update Profile of any user or logged in user if userId is not provided */
-  updateUserProfile: FieldWrapper<IUser>;
+  updateUserProfile: IUser;
   /** Updates warehousing provider information with the provided ID */
-  updateWarehousingProvider: FieldWrapper<IWarehousingProvider>;
+  updateWarehousingProvider: IWarehousingProvider;
   /** Marks the user's email address as verified. Logs the user in afterwards. */
-  verifyEmail?: Maybe<FieldWrapper<ILoginMethodResponse>>;
+  verifyEmail?: Maybe<ILoginMethodResponse>;
   /** Verify quotation request elligibility. and marks requested quotations as verified if it is */
-  verifyQuotation: FieldWrapper<IQuotation>;
-  verifyWeb3Address: FieldWrapper<IUser>;
+  verifyQuotation: IQuotation;
+  verifyWeb3Address: IUser;
 };
 
 export type IMutationActivateEnrollmentArgs = {
@@ -2047,41 +2042,41 @@ export type IMutationVerifyWeb3AddressArgs = {
 };
 
 export type IOAuthAccount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  authorizationCode: FieldWrapper<Scalars['String']['output']>;
-  provider: FieldWrapper<IOAuthProvider>;
+  _id: Scalars['ID']['output'];
+  authorizationCode: Scalars['String']['output'];
+  provider: IOAuthProvider;
 };
 
 export type IOAuthProvider = {
-  _id: FieldWrapper<Scalars['String']['output']>;
-  clientId: FieldWrapper<Scalars['String']['output']>;
-  scopes: Array<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['String']['output'];
+  clientId: Scalars['String']['output'];
+  scopes: Array<Scalars['String']['output']>;
 };
 
 /** Just an order */
 export type IOrder = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  billingAddress?: Maybe<FieldWrapper<IAddress>>;
-  confirmed?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  contact?: Maybe<FieldWrapper<IContact>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  delivery?: Maybe<FieldWrapper<IOrderDelivery>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDiscount>>>;
-  enrollment?: Maybe<FieldWrapper<IEnrollment>>;
-  fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  items?: Maybe<Array<FieldWrapper<IOrderItem>>>;
-  orderNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  ordered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  payment?: Maybe<FieldWrapper<IOrderPayment>>;
-  rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status?: Maybe<FieldWrapper<IOrderStatus>>;
-  supportedDeliveryProviders: Array<FieldWrapper<IDeliveryProvider>>;
-  supportedPaymentProviders: Array<FieldWrapper<IPaymentProvider>>;
-  total?: Maybe<FieldWrapper<IPrice>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user?: Maybe<FieldWrapper<IUser>>;
+  _id: Scalars['ID']['output'];
+  billingAddress?: Maybe<IAddress>;
+  confirmed?: Maybe<Scalars['DateTime']['output']>;
+  contact?: Maybe<IContact>;
+  country?: Maybe<ICountry>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  currency?: Maybe<ICurrency>;
+  delivery?: Maybe<IOrderDelivery>;
+  discounts?: Maybe<Array<IOrderDiscount>>;
+  enrollment?: Maybe<IEnrollment>;
+  fullfilled?: Maybe<Scalars['DateTime']['output']>;
+  items?: Maybe<Array<IOrderItem>>;
+  orderNumber?: Maybe<Scalars['String']['output']>;
+  ordered?: Maybe<Scalars['DateTime']['output']>;
+  payment?: Maybe<IOrderPayment>;
+  rejected?: Maybe<Scalars['DateTime']['output']>;
+  status?: Maybe<IOrderStatus>;
+  supportedDeliveryProviders: Array<IDeliveryProvider>;
+  supportedPaymentProviders: Array<IPaymentProvider>;
+  total?: Maybe<IPrice>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  user?: Maybe<IUser>;
 };
 
 /** Just an order */
@@ -2090,40 +2085,40 @@ export type IOrderTotalArgs = {
 };
 
 export type IOrderDelivery = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  _id: Scalars['ID']['output'];
+  delivered?: Maybe<Scalars['DateTime']['output']>;
+  discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
+  fee?: Maybe<IPrice>;
+  provider?: Maybe<IDeliveryProvider>;
+  status?: Maybe<IOrderDeliveryStatus>;
 };
 
 export type IOrderDeliveryDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  delivery: FieldWrapper<IOrderDelivery>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  delivery: IOrderDelivery;
+  orderDiscount: IOrderDiscount;
+  total: IPrice;
 };
 
 export type IOrderDeliveryPickUp = IOrderDelivery & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  activePickUpLocation?: Maybe<FieldWrapper<IOrderPickUpLocation>>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  pickUpLocations: Array<FieldWrapper<IOrderPickUpLocation>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  _id: Scalars['ID']['output'];
+  activePickUpLocation?: Maybe<IOrderPickUpLocation>;
+  delivered?: Maybe<Scalars['DateTime']['output']>;
+  discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
+  fee?: Maybe<IPrice>;
+  pickUpLocations: Array<IOrderPickUpLocation>;
+  provider?: Maybe<IDeliveryProvider>;
+  status?: Maybe<IOrderDeliveryStatus>;
 };
 
 export type IOrderDeliveryShipping = IOrderDelivery & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  address?: Maybe<FieldWrapper<IAddress>>;
-  delivered?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderDeliveryDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  provider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  status?: Maybe<FieldWrapper<IOrderDeliveryStatus>>;
+  _id: Scalars['ID']['output'];
+  address?: Maybe<IAddress>;
+  delivered?: Maybe<Scalars['DateTime']['output']>;
+  discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
+  fee?: Maybe<IPrice>;
+  provider?: Maybe<IDeliveryProvider>;
+  status?: Maybe<IOrderDeliveryStatus>;
 };
 
 export enum IOrderDeliveryStatus {
@@ -2136,13 +2131,13 @@ export enum IOrderDeliveryStatus {
 }
 
 export type IOrderDiscount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  code?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  discounted?: Maybe<Array<FieldWrapper<IOrderDiscountable>>>;
-  interface?: Maybe<FieldWrapper<IDiscountInterface>>;
-  order: FieldWrapper<IOrder>;
-  total: FieldWrapper<IPrice>;
-  trigger: FieldWrapper<IOrderDiscountTrigger>;
+  _id: Scalars['ID']['output'];
+  code?: Maybe<Scalars['String']['output']>;
+  discounted?: Maybe<Array<IOrderDiscountable>>;
+  interface?: Maybe<IDiscountInterface>;
+  order: IOrder;
+  total: IPrice;
+  trigger: IOrderDiscountTrigger;
 };
 
 export enum IOrderDiscountTrigger {
@@ -2153,30 +2148,30 @@ export enum IOrderDiscountTrigger {
 }
 
 export type IOrderDiscountable = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  orderDiscount: IOrderDiscount;
+  total: IPrice;
 };
 
 export type IOrderGlobalDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  order: FieldWrapper<IOrder>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  order: IOrder;
+  orderDiscount: IOrderDiscount;
+  total: IPrice;
 };
 
 export type IOrderItem = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderItemDiscount>>>;
-  dispatches?: Maybe<Array<FieldWrapper<IDispatch>>>;
-  order: FieldWrapper<IOrder>;
-  originalProduct: FieldWrapper<IProduct>;
-  product: FieldWrapper<IProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
-  quotation?: Maybe<FieldWrapper<IQuotation>>;
-  total?: Maybe<FieldWrapper<IPrice>>;
-  unitPrice?: Maybe<FieldWrapper<IPrice>>;
+  _id: Scalars['ID']['output'];
+  configuration?: Maybe<Array<IProductConfigurationParameter>>;
+  discounts?: Maybe<Array<IOrderItemDiscount>>;
+  dispatches?: Maybe<Array<IDispatch>>;
+  order: IOrder;
+  originalProduct: IProduct;
+  product: IProduct;
+  quantity: Scalars['Int']['output'];
+  quotation?: Maybe<IQuotation>;
+  total?: Maybe<IPrice>;
+  unitPrice?: Maybe<IPrice>;
 };
 
 export type IOrderItemTotalArgs = {
@@ -2184,10 +2179,10 @@ export type IOrderItemTotalArgs = {
 };
 
 export type IOrderItemDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  item: FieldWrapper<IOrderItem>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  item: IOrderItem;
+  orderDiscount: IOrderDiscount;
+  total: IPrice;
 };
 
 export type IOrderItemInput = {
@@ -2206,46 +2201,46 @@ export enum IOrderItemPriceCategory {
 }
 
 export type IOrderPayment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  _id: Scalars['ID']['output'];
+  discounts?: Maybe<Array<IOrderPaymentDiscount>>;
+  fee?: Maybe<IPrice>;
+  paid?: Maybe<Scalars['DateTime']['output']>;
+  provider?: Maybe<IPaymentProvider>;
+  status?: Maybe<IOrderPaymentStatus>;
 };
 
 export type IOrderPaymentCard = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  _id: Scalars['ID']['output'];
+  discounts?: Maybe<Array<IOrderPaymentDiscount>>;
+  fee?: Maybe<IPrice>;
+  paid?: Maybe<Scalars['DateTime']['output']>;
+  provider?: Maybe<IPaymentProvider>;
+  status?: Maybe<IOrderPaymentStatus>;
 };
 
 export type IOrderPaymentDiscount = IOrderDiscountable & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  orderDiscount: FieldWrapper<IOrderDiscount>;
-  payment: FieldWrapper<IOrderPayment>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  orderDiscount: IOrderDiscount;
+  payment: IOrderPayment;
+  total: IPrice;
 };
 
 export type IOrderPaymentGeneric = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  _id: Scalars['ID']['output'];
+  discounts?: Maybe<Array<IOrderPaymentDiscount>>;
+  fee?: Maybe<IPrice>;
+  paid?: Maybe<Scalars['DateTime']['output']>;
+  provider?: Maybe<IPaymentProvider>;
+  status?: Maybe<IOrderPaymentStatus>;
 };
 
 export type IOrderPaymentInvoice = IOrderPayment & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  discounts?: Maybe<Array<FieldWrapper<IOrderPaymentDiscount>>>;
-  fee?: Maybe<FieldWrapper<IPrice>>;
-  paid?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  provider?: Maybe<FieldWrapper<IPaymentProvider>>;
-  status?: Maybe<FieldWrapper<IOrderPaymentStatus>>;
+  _id: Scalars['ID']['output'];
+  discounts?: Maybe<Array<IOrderPaymentDiscount>>;
+  fee?: Maybe<IPrice>;
+  paid?: Maybe<Scalars['DateTime']['output']>;
+  provider?: Maybe<IPaymentProvider>;
+  status?: Maybe<IOrderPaymentStatus>;
 };
 
 export enum IOrderPaymentStatus {
@@ -2258,11 +2253,11 @@ export enum IOrderPaymentStatus {
 }
 
 export type IOrderPickUpLocation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  address?: Maybe<FieldWrapper<IAddress>>;
-  geoPoint?: Maybe<FieldWrapper<IGeoPosition>>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  order: FieldWrapper<IOrder>;
+  _id: Scalars['ID']['output'];
+  address?: Maybe<IAddress>;
+  geoPoint?: Maybe<IGeoPosition>;
+  name: Scalars['String']['output'];
+  order: IOrder;
 };
 
 export enum IOrderPriceCategory {
@@ -2292,32 +2287,32 @@ export enum IOrderStatus {
 }
 
 export type IPaymentCredentials = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  isPreferred: FieldWrapper<Scalars['Boolean']['output']>;
-  isValid: FieldWrapper<Scalars['Boolean']['output']>;
-  meta?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  paymentProvider: FieldWrapper<IPaymentProvider>;
-  token?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  user: FieldWrapper<IUser>;
+  _id: Scalars['ID']['output'];
+  isPreferred: Scalars['Boolean']['output'];
+  isValid: Scalars['Boolean']['output'];
+  meta?: Maybe<Scalars['JSON']['output']>;
+  paymentProvider: IPaymentProvider;
+  token?: Maybe<Scalars['JSON']['output']>;
+  user: IUser;
 };
 
 export type IPaymentInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  version?: Maybe<Scalars['String']['output']>;
 };
 
 export type IPaymentProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IPaymentProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IPaymentInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  type?: Maybe<FieldWrapper<IPaymentProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  configuration?: Maybe<Scalars['JSON']['output']>;
+  configurationError?: Maybe<IPaymentProviderError>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  interface?: Maybe<IPaymentInterface>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  simulatedPrice?: Maybe<IPrice>;
+  type?: Maybe<IPaymentProviderType>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type IPaymentProviderSimulatedPriceArgs = {
@@ -2345,26 +2340,26 @@ export enum IPaymentProviderType {
 
 /** Plan (Virtual Product that somebody can enroll to) */
 export type IPlanProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  plan?: Maybe<FieldWrapper<IProductPlanConfiguration>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  salesQuantityPerUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IProductAssortmentPath>;
+  catalogPrice?: Maybe<IPrice>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  defaultOrderQuantity?: Maybe<Scalars['Int']['output']>;
+  leveledCatalogPrices: Array<IPriceLevel>;
+  media: Array<IProductMedia>;
+  plan?: Maybe<IProductPlanConfiguration>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  salesQuantityPerUnit?: Maybe<Scalars['String']['output']>;
+  salesUnit?: Maybe<Scalars['String']['output']>;
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  simulatedPrice?: Maybe<IPrice>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Plan (Virtual Product that somebody can enroll to) */
@@ -2424,40 +2419,40 @@ export type IPlanProductTextsArgs = {
 };
 
 export type IPrice = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  amount: FieldWrapper<Scalars['Int']['output']>;
-  currency: FieldWrapper<Scalars['String']['output']>;
-  isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
-  isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
+  _id: Scalars['ID']['output'];
+  amount: Scalars['Int']['output'];
+  currency: Scalars['String']['output'];
+  isNetPrice: Scalars['Boolean']['output'];
+  isTaxable: Scalars['Boolean']['output'];
 };
 
 export type IPriceLevel = {
-  maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  minQuantity: FieldWrapper<Scalars['Int']['output']>;
-  price: FieldWrapper<IPrice>;
+  maxQuantity?: Maybe<Scalars['Int']['output']>;
+  minQuantity: Scalars['Int']['output'];
+  price: IPrice;
 };
 
 export type IPriceRange = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  maxPrice: FieldWrapper<IPrice>;
-  minPrice: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  maxPrice: IPrice;
+  minPrice: IPrice;
 };
 
 /** Abstract Product */
 export type IProduct = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IProductAssortmentPath>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  media: Array<IProductMedia>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Abstract Product */
@@ -2500,29 +2495,29 @@ export type IProductAssignmentVectorInput = {
 
 /** Directed assortment to product paths (breadcrumbs) */
 export type IProductAssortmentPath = {
-  assortmentProduct: FieldWrapper<IAssortmentProduct>;
-  links: Array<FieldWrapper<IAssortmentPathLink>>;
+  assortmentProduct: IAssortmentProduct;
+  links: Array<IAssortmentPathLink>;
 };
 
 export type IProductBundleItem = {
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  product: FieldWrapper<IProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
+  configuration?: Maybe<Array<IProductConfigurationParameter>>;
+  product: IProduct;
+  quantity: Scalars['Int']['output'];
 };
 
 export type IProductCatalogPrice = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  amount: FieldWrapper<Scalars['Int']['output']>;
-  country: FieldWrapper<ICountry>;
-  currency: FieldWrapper<ICurrency>;
-  isNetPrice: FieldWrapper<Scalars['Boolean']['output']>;
-  isTaxable: FieldWrapper<Scalars['Boolean']['output']>;
-  maxQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  _id: Scalars['ID']['output'];
+  amount: Scalars['Int']['output'];
+  country: ICountry;
+  currency: ICurrency;
+  isNetPrice: Scalars['Boolean']['output'];
+  isTaxable: Scalars['Boolean']['output'];
+  maxQuantity?: Maybe<Scalars['Int']['output']>;
 };
 
 export type IProductConfigurationParameter = {
-  key: FieldWrapper<Scalars['String']['output']>;
-  value: FieldWrapper<Scalars['String']['output']>;
+  key: Scalars['String']['output'];
+  value: Scalars['String']['output'];
 };
 
 export type IProductConfigurationParameterInput = {
@@ -2531,17 +2526,17 @@ export type IProductConfigurationParameterInput = {
 };
 
 export type IProductDiscount = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  interface?: Maybe<FieldWrapper<IDiscountInterface>>;
-  total: FieldWrapper<IPrice>;
+  _id: Scalars['ID']['output'];
+  interface?: Maybe<IDiscountInterface>;
+  total: IPrice;
 };
 
 export type IProductMedia = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  file: FieldWrapper<IMedia>;
-  sortKey: FieldWrapper<Scalars['Int']['output']>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductMediaTexts>>;
+  _id: Scalars['ID']['output'];
+  file: IMedia;
+  sortKey: Scalars['Int']['output'];
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductMediaTexts>;
 };
 
 export type IProductMediaTextsArgs = {
@@ -2549,18 +2544,18 @@ export type IProductMediaTextsArgs = {
 };
 
 export type IProductMediaTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type IProductPlanConfiguration = {
-  billingInterval: FieldWrapper<IProductPlanConfigurationInterval>;
-  billingIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  trialInterval?: Maybe<FieldWrapper<IProductPlanConfigurationInterval>>;
-  trialIntervalCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  usageCalculationType: FieldWrapper<IProductPlanUsageCalculationType>;
+  billingInterval: IProductPlanConfigurationInterval;
+  billingIntervalCount?: Maybe<Scalars['Int']['output']>;
+  trialInterval?: Maybe<IProductPlanConfigurationInterval>;
+  trialIntervalCount?: Maybe<Scalars['Int']['output']>;
+  usageCalculationType: IProductPlanUsageCalculationType;
 };
 
 export enum IProductPlanConfigurationInterval {
@@ -2577,17 +2572,17 @@ export enum IProductPlanUsageCalculationType {
 }
 
 export type IProductReview = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  author: FieldWrapper<IUser>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  ownVotes: Array<FieldWrapper<IProductReviewVote>>;
-  product: FieldWrapper<IProduct>;
-  rating?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  review?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  voteCount?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
+  _id: Scalars['ID']['output'];
+  author: IUser;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  ownVotes: Array<IProductReviewVote>;
+  product: IProduct;
+  rating?: Maybe<Scalars['Int']['output']>;
+  review?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  voteCount?: Maybe<Scalars['Int']['output']>;
 };
 
 export type IProductReviewVoteCountArgs = {
@@ -2601,9 +2596,9 @@ export type IProductReviewInput = {
 };
 
 export type IProductReviewVote = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
-  type: FieldWrapper<IProductReviewVoteType>;
+  _id: Scalars['ID']['output'];
+  timestamp: Scalars['Timestamp']['output'];
+  type: IProductReviewVoteType;
 };
 
 export enum IProductReviewVoteType {
@@ -2614,10 +2609,10 @@ export enum IProductReviewVoteType {
 
 /** Search result */
 export type IProductSearchResult = {
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  filters: Array<FieldWrapper<ILoadedFilter>>;
-  products: Array<FieldWrapper<IProduct>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  filteredProductsCount: Scalars['Int']['output'];
+  filters: Array<ILoadedFilter>;
+  products: Array<IProduct>;
+  productsCount: Scalars['Int']['output'];
 };
 
 /** Search result */
@@ -2636,23 +2631,23 @@ export enum IProductStatus {
 }
 
 export type IProductTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  brand?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  labels?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  slug?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  vendor?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  brand?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  labels?: Maybe<Array<Scalars['String']['output']>>;
+  locale?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  vendor?: Maybe<Scalars['String']['output']>;
 };
 
 export type IProductVariation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  key?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  options?: Maybe<Array<FieldWrapper<IProductVariationOption>>>;
-  texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
-  type?: Maybe<FieldWrapper<IProductVariationType>>;
+  _id: Scalars['ID']['output'];
+  key?: Maybe<Scalars['String']['output']>;
+  options?: Maybe<Array<IProductVariationOption>>;
+  texts?: Maybe<IProductVariationTexts>;
+  type?: Maybe<IProductVariationType>;
 };
 
 export type IProductVariationTextsArgs = {
@@ -2661,24 +2656,24 @@ export type IProductVariationTextsArgs = {
 
 /** Key Value Combination to Product Assignment */
 export type IProductVariationAssignment = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
+  _id: Scalars['ID']['output'];
   /** Assigned Product */
-  product?: Maybe<FieldWrapper<IProduct>>;
+  product?: Maybe<IProduct>;
   /** Query string key=val&key=val ... */
-  vectors?: Maybe<Array<FieldWrapper<IProductVariationAssignmentVector>>>;
+  vectors?: Maybe<Array<IProductVariationAssignmentVector>>;
 };
 
 /** Key Value Combination */
 export type IProductVariationAssignmentVector = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  option?: Maybe<FieldWrapper<IProductVariationOption>>;
-  variation?: Maybe<FieldWrapper<IProductVariation>>;
+  _id: Scalars['ID']['output'];
+  option?: Maybe<IProductVariationOption>;
+  variation?: Maybe<IProductVariation>;
 };
 
 export type IProductVariationOption = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  texts?: Maybe<FieldWrapper<IProductVariationTexts>>;
-  value?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  texts?: Maybe<IProductVariationTexts>;
+  value?: Maybe<Scalars['String']['output']>;
 };
 
 export type IProductVariationOptionTextsArgs = {
@@ -2686,10 +2681,10 @@ export type IProductVariationOptionTextsArgs = {
 };
 
 export type IProductVariationTexts = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  subtitle?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  title?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export enum IProductVariationType {
@@ -2700,150 +2695,150 @@ export enum IProductVariationType {
 }
 
 export type IPushSubscription = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  endpoint: FieldWrapper<Scalars['String']['output']>;
-  expirationTime?: Maybe<FieldWrapper<Scalars['Timestamp']['output']>>;
-  userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  endpoint: Scalars['String']['output'];
+  expirationTime?: Maybe<Scalars['Timestamp']['output']>;
+  userAgent?: Maybe<Scalars['String']['output']>;
 };
 
 export type IQuery = {
   /** Get List of currently registered worker plugins */
-  activeWorkTypes: Array<FieldWrapper<IWorkType>>;
+  activeWorkTypes: Array<IWorkType>;
   /** Get a specific assortment by ID */
-  assortment?: Maybe<FieldWrapper<IAssortment>>;
+  assortment?: Maybe<IAssortment>;
   /** Get all root assortments, by default sorted by sequence (ascending) */
-  assortments: Array<FieldWrapper<IAssortment>>;
+  assortments: Array<IAssortment>;
   /** Returns total number of assortments that match a given criteria or all if no criteria is given */
-  assortmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  assortmentsCount: Scalars['Int']['output'];
   /** Get all countries, by default sorted by creation date (ascending) */
-  countries: Array<FieldWrapper<ICountry>>;
+  countries: Array<ICountry>;
   /** Returns total number of countries */
-  countriesCount: FieldWrapper<Scalars['Int']['output']>;
+  countriesCount: Scalars['Int']['output'];
   /** Get a specific country by ID */
-  country?: Maybe<FieldWrapper<ICountry>>;
+  country?: Maybe<ICountry>;
   /** Get all currencies, by default sorted by creation date (ascending) */
-  currencies: Array<FieldWrapper<ICurrency>>;
+  currencies: Array<ICurrency>;
   /** Returns total number of currencies */
-  currenciesCount: FieldWrapper<Scalars['Int']['output']>;
+  currenciesCount: Scalars['Int']['output'];
   /** Get a specific currency by ID */
-  currency?: Maybe<FieldWrapper<ICurrency>>;
+  currency?: Maybe<ICurrency>;
   /** Get all delivery interfaces filtered by type */
-  deliveryInterfaces: Array<FieldWrapper<IDeliveryInterface>>;
+  deliveryInterfaces: Array<IDeliveryInterface>;
   /** Get a specific delivery provider by ID */
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
+  deliveryProvider?: Maybe<IDeliveryProvider>;
   /** Get all delivery providers, optionally filtered by type */
-  deliveryProviders: Array<FieldWrapper<IDeliveryProvider>>;
+  deliveryProviders: Array<IDeliveryProvider>;
   /** Returns total number of delivery providers, optionally filtered by type */
-  deliveryProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  deliveryProvidersCount: Scalars['Int']['output'];
   /** Get a specific quotation by ID */
-  enrollment?: Maybe<FieldWrapper<IEnrollment>>;
+  enrollment?: Maybe<IEnrollment>;
   /** Get all enrollments, by default sorted by creation date (ascending) */
-  enrollments: Array<FieldWrapper<IEnrollment>>;
+  enrollments: Array<IEnrollment>;
   /** Returns total number of enrollments */
-  enrollmentsCount: FieldWrapper<Scalars['Int']['output']>;
+  enrollmentsCount: Scalars['Int']['output'];
   /** Get a specific work unit by ID */
-  event?: Maybe<FieldWrapper<IEvent>>;
+  event?: Maybe<IEvent>;
   /** Get all emitted events, by default sorted by creation date (desc) */
-  events: Array<FieldWrapper<IEvent>>;
+  events: Array<IEvent>;
   /** Get total count of all emitted events */
-  eventsCount: FieldWrapper<Scalars['Int']['output']>;
+  eventsCount: Scalars['Int']['output'];
   /** Get a specific filter by ID */
-  filter?: Maybe<FieldWrapper<IFilter>>;
+  filter?: Maybe<IFilter>;
   /** Get all filters, by default sorted by creation date (ascending) */
-  filters: Array<FieldWrapper<IFilter>>;
+  filters: Array<IFilter>;
   /** Returns total number of filters */
-  filtersCount: FieldWrapper<Scalars['Int']['output']>;
+  filtersCount: Scalars['Int']['output'];
   /** User impersonating current user session using the  impersonate API */
-  impersonator?: Maybe<FieldWrapper<IUser>>;
+  impersonator?: Maybe<IUser>;
   /** Get a specific language */
-  language?: Maybe<FieldWrapper<ILanguage>>;
+  language?: Maybe<ILanguage>;
   /** Get all languages, by default sorted by creation date (ascending) */
-  languages: Array<Maybe<FieldWrapper<ILanguage>>>;
+  languages: Array<Maybe<ILanguage>>;
   /** Returns total number languages */
-  languagesCount: FieldWrapper<Scalars['Int']['output']>;
+  languagesCount: Scalars['Int']['output'];
   /** Currently logged in user */
-  me?: Maybe<FieldWrapper<IUser>>;
+  me?: Maybe<IUser>;
   /** Get a specific single order */
-  order?: Maybe<FieldWrapper<IOrder>>;
+  order?: Maybe<IOrder>;
   /** Get all orders, by default sorted by creation date (descending) */
-  orders: Array<FieldWrapper<IOrder>>;
+  orders: Array<IOrder>;
   /** Returns total number of orders */
-  ordersCount: FieldWrapper<Scalars['Int']['output']>;
+  ordersCount: Scalars['Int']['output'];
   /** Get all payment interfaces filtered by type */
-  paymentInterfaces: Array<FieldWrapper<IPaymentInterface>>;
+  paymentInterfaces: Array<IPaymentInterface>;
   /** Get a specific payment provider by ID */
-  paymentProvider?: Maybe<FieldWrapper<IPaymentProvider>>;
+  paymentProvider?: Maybe<IPaymentProvider>;
   /** Get all payment providers, optionally filtered by type */
-  paymentProviders: Array<FieldWrapper<IPaymentProvider>>;
+  paymentProviders: Array<IPaymentProvider>;
   /** Returns total number of payment providers, optionally filtered by type */
-  paymentProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  paymentProvidersCount: Scalars['Int']['output'];
   /** Get a specific product by id or slug */
-  product?: Maybe<FieldWrapper<IProduct>>;
+  product?: Maybe<IProduct>;
   /** List products specified prices */
-  productCatalogPrices: Array<FieldWrapper<IProductCatalogPrice>>;
+  productCatalogPrices: Array<IProductCatalogPrice>;
   /** Get a specific product review by ID */
-  productReview: FieldWrapper<IProductReview>;
+  productReview: IProductReview;
   /** Get all product reviews, by default sorted by creation date (descending) */
-  productReviews: Array<FieldWrapper<IProductReview>>;
+  productReviews: Array<IProductReview>;
   /** Returns total number of product reviews */
-  productReviewsCount: FieldWrapper<Scalars['Int']['output']>;
+  productReviewsCount: Scalars['Int']['output'];
   /**
    * Simple list of published products filtered either by tags or explicit slugs
    * If a slug is provided, limit and offset don't have any effect on the result
    * By default sorted by sequence (ascending) and published (ascending) unless a queryString is set
    */
-  products: Array<FieldWrapper<IProduct>>;
+  products: Array<IProduct>;
   /**
    * Return total number of published products filtered either by tags or explicit slugs
    * If a slug is provided
    */
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  productsCount: Scalars['Int']['output'];
   /** Get a specific quotation by ID */
-  quotation?: Maybe<FieldWrapper<IQuotation>>;
+  quotation?: Maybe<IQuotation>;
   /** Get all quotations, by default sorted by creation date (ascending) */
-  quotations: Array<FieldWrapper<IQuotation>>;
+  quotations: Array<IQuotation>;
   /** Returns total number of quotations */
-  quotationsCount: FieldWrapper<Scalars['Int']['output']>;
+  quotationsCount: Scalars['Int']['output'];
   /** Search assortments */
-  searchAssortments: FieldWrapper<IAssortmentSearchResult>;
+  searchAssortments: IAssortmentSearchResult;
   /** Search products */
-  searchProducts: FieldWrapper<IProductSearchResult>;
+  searchProducts: IProductSearchResult;
   /** Get shop-global data and the resolved country/language pair */
-  shopInfo: FieldWrapper<IShop>;
+  shopInfo: IShop;
   /** Get token */
-  token?: Maybe<FieldWrapper<IToken>>;
+  token?: Maybe<IToken>;
   /** Localization: Media title/subtitle of a media that is attached to a assortment */
-  translatedAssortmentMediaTexts: Array<FieldWrapper<IAssortmentMediaTexts>>;
+  translatedAssortmentMediaTexts: Array<IAssortmentMediaTexts>;
   /** Localization: Meta data for assortments */
-  translatedAssortmentTexts: Array<FieldWrapper<IAssortmentTexts>>;
+  translatedAssortmentTexts: Array<IAssortmentTexts>;
   /** Localization: Filters and Filter Options */
-  translatedFilterTexts: Array<FieldWrapper<IFilterTexts>>;
+  translatedFilterTexts: Array<IFilterTexts>;
   /** Localization: Media title/subtitle of a media that is attached to a product */
-  translatedProductMediaTexts: Array<FieldWrapper<IProductMediaTexts>>;
+  translatedProductMediaTexts: Array<IProductMediaTexts>;
   /** Localization: Meta data for product */
-  translatedProductTexts: Array<FieldWrapper<IProductTexts>>;
+  translatedProductTexts: Array<IProductTexts>;
   /** Localization: Variations and Variation Options */
-  translatedProductVariationTexts: Array<FieldWrapper<IProductVariationTexts>>;
+  translatedProductVariationTexts: Array<IProductVariationTexts>;
   /** Specific user data if userId provided, else returns currently logged in */
-  user?: Maybe<FieldWrapper<IUser>>;
+  user?: Maybe<IUser>;
   /** Get list of users, by default sorted by creation date (ascending) unless a queryString is set */
-  users: Array<FieldWrapper<IUser>>;
+  users: Array<IUser>;
   /** Get total number of users in the system that match query */
-  usersCount: FieldWrapper<Scalars['Int']['output']>;
+  usersCount: Scalars['Int']['output'];
   /** Get all warehousing interfaces filtered by type */
-  warehousingInterfaces: Array<FieldWrapper<IWarehousingInterface>>;
+  warehousingInterfaces: Array<IWarehousingInterface>;
   /** Get a specific warehousing provider by ID */
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  warehousingProvider?: Maybe<IWarehousingProvider>;
   /** Get all warehousing providers, optionally filtered by type */
-  warehousingProviders: Array<FieldWrapper<IWarehousingProvider>>;
+  warehousingProviders: Array<IWarehousingProvider>;
   /** Returns total number of delivery providers, optionally filtered by type */
-  warehousingProvidersCount: FieldWrapper<Scalars['Int']['output']>;
+  warehousingProvidersCount: Scalars['Int']['output'];
   /** Get a specific work unit by ID */
-  work?: Maybe<FieldWrapper<IWork>>;
+  work?: Maybe<IWork>;
   /** Get all work from the queue, by default sorted by start date (desc), priority (desc), originalWorkId (asc) and created (asc) */
-  workQueue: Array<FieldWrapper<IWork>>;
+  workQueue: Array<IWork>;
   /** Return total number of workers filtered the provided arguments */
-  workQueueCount: FieldWrapper<Scalars['Int']['output']>;
+  workQueueCount: Scalars['Int']['output'];
 };
 
 export type IQueryAssortmentArgs = {
@@ -3181,20 +3176,20 @@ export type IQueryWorkQueueCountArgs = {
 
 /** Quotation */
 export type IQuotation = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<Array<FieldWrapper<IProductConfigurationParameter>>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  currency?: Maybe<FieldWrapper<ICurrency>>;
-  expires?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  fullfilled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  isExpired?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  product: FieldWrapper<IProduct>;
-  quotationNumber?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  rejected?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status: FieldWrapper<IQuotationStatus>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  user: FieldWrapper<IUser>;
+  _id: Scalars['ID']['output'];
+  configuration?: Maybe<Array<IProductConfigurationParameter>>;
+  country?: Maybe<ICountry>;
+  created: Scalars['DateTime']['output'];
+  currency?: Maybe<ICurrency>;
+  expires?: Maybe<Scalars['DateTime']['output']>;
+  fullfilled?: Maybe<Scalars['DateTime']['output']>;
+  isExpired?: Maybe<Scalars['Boolean']['output']>;
+  product: IProduct;
+  quotationNumber?: Maybe<Scalars['String']['output']>;
+  rejected?: Maybe<Scalars['DateTime']['output']>;
+  status: IQuotationStatus;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  user: IUser;
 };
 
 /** Quotation */
@@ -3359,10 +3354,10 @@ export enum ISearchOrderBy {
 
 /** Search result */
 export type ISearchResult = {
-  filteredProductsCount: FieldWrapper<Scalars['Int']['output']>;
-  filters: Array<FieldWrapper<ILoadedFilter>>;
-  products: Array<FieldWrapper<IProduct>>;
-  productsCount: FieldWrapper<Scalars['Int']['output']>;
+  filteredProductsCount: Scalars['Int']['output'];
+  filters: Array<ILoadedFilter>;
+  products: Array<IProduct>;
+  productsCount: Scalars['Int']['output'];
 };
 
 /** Search result */
@@ -3372,43 +3367,43 @@ export type ISearchResultProductsArgs = {
 };
 
 export type IShop = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  adminUiConfig: FieldWrapper<IAdminUiConfig>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  externalLinks: Array<Maybe<FieldWrapper<ILink>>>;
-  language?: Maybe<FieldWrapper<ILanguage>>;
-  oAuthProviders: Array<FieldWrapper<IOAuthProvider>>;
-  userRoles: Array<FieldWrapper<Scalars['String']['output']>>;
-  vapidPublicKey?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  adminUiConfig: IAdminUiConfig;
+  country?: Maybe<ICountry>;
+  externalLinks: Array<Maybe<ILink>>;
+  language?: Maybe<ILanguage>;
+  oAuthProviders: Array<IOAuthProvider>;
+  userRoles: Array<Scalars['String']['output']>;
+  vapidPublicKey?: Maybe<Scalars['String']['output']>;
+  version?: Maybe<Scalars['String']['output']>;
 };
 
 /** Simple Product */
 export type ISimpleProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  baseUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  defaultOrderQuantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  dimensions?: Maybe<FieldWrapper<IDimensions>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  salesQuantityPerUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  salesUnit?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedDispatches?: Maybe<Array<FieldWrapper<IDispatch>>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  simulatedStocks?: Maybe<Array<FieldWrapper<IStock>>>;
-  sku?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IProductAssortmentPath>;
+  baseUnit?: Maybe<Scalars['String']['output']>;
+  catalogPrice?: Maybe<IPrice>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  defaultOrderQuantity?: Maybe<Scalars['Int']['output']>;
+  dimensions?: Maybe<IDimensions>;
+  leveledCatalogPrices: Array<IPriceLevel>;
+  media: Array<IProductMedia>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  salesQuantityPerUnit?: Maybe<Scalars['String']['output']>;
+  salesUnit?: Maybe<Scalars['String']['output']>;
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  simulatedDispatches?: Maybe<Array<IDispatch>>;
+  simulatedPrice?: Maybe<IPrice>;
+  simulatedStocks?: Maybe<Array<IStock>>;
+  sku?: Maybe<Scalars['String']['output']>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Simple Product */
@@ -3491,27 +3486,27 @@ export type ISortOptionInput = {
 };
 
 export type IStock = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  deliveryProvider?: Maybe<FieldWrapper<IDeliveryProvider>>;
-  quantity?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  warehousingProvider?: Maybe<FieldWrapper<IWarehousingProvider>>;
+  _id: Scalars['ID']['output'];
+  deliveryProvider?: Maybe<IDeliveryProvider>;
+  quantity?: Maybe<Scalars['Int']['output']>;
+  warehousingProvider?: Maybe<IWarehousingProvider>;
 };
 
 export type ISuccessResponse = {
-  success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
+  success?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type IToken = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  chainId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  chainTokenId?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  ercMetadata?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  product: FieldWrapper<ITokenizedProduct>;
-  quantity: FieldWrapper<Scalars['Int']['output']>;
-  status: FieldWrapper<ITokenExportStatus>;
-  user?: Maybe<FieldWrapper<IUser>>;
-  walletAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  chainId?: Maybe<Scalars['String']['output']>;
+  chainTokenId?: Maybe<Scalars['String']['output']>;
+  contractAddress?: Maybe<Scalars['String']['output']>;
+  ercMetadata?: Maybe<Scalars['JSON']['output']>;
+  product: ITokenizedProduct;
+  quantity: Scalars['Int']['output'];
+  status: ITokenExportStatus;
+  user?: Maybe<IUser>;
+  walletAddress?: Maybe<Scalars['String']['output']>;
 };
 
 export type ITokenErcMetadataArgs = {
@@ -3526,26 +3521,26 @@ export enum ITokenExportStatus {
 
 /** Tokenized Product (Blockchain materialized Product) */
 export type ITokenizedProduct = IProduct & {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  assortmentPaths: Array<FieldWrapper<IProductAssortmentPath>>;
-  catalogPrice?: Maybe<FieldWrapper<IPrice>>;
-  contractAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  contractConfiguration?: Maybe<FieldWrapper<IContractConfiguration>>;
-  contractStandard?: Maybe<FieldWrapper<ISmartContractStandard>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  leveledCatalogPrices: Array<FieldWrapper<IPriceLevel>>;
-  media: Array<FieldWrapper<IProductMedia>>;
-  published?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  sequence: FieldWrapper<Scalars['Int']['output']>;
-  siblings: Array<FieldWrapper<IProduct>>;
-  simulatedPrice?: Maybe<FieldWrapper<IPrice>>;
-  simulatedStocks?: Maybe<Array<FieldWrapper<IStock>>>;
-  status: FieldWrapper<IProductStatus>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  texts?: Maybe<FieldWrapper<IProductTexts>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  assortmentPaths: Array<IProductAssortmentPath>;
+  catalogPrice?: Maybe<IPrice>;
+  contractAddress?: Maybe<Scalars['String']['output']>;
+  contractConfiguration?: Maybe<IContractConfiguration>;
+  contractStandard?: Maybe<ISmartContractStandard>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  leveledCatalogPrices: Array<IPriceLevel>;
+  media: Array<IProductMedia>;
+  published?: Maybe<Scalars['DateTime']['output']>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  sequence: Scalars['Int']['output'];
+  siblings: Array<IProduct>;
+  simulatedPrice?: Maybe<IPrice>;
+  simulatedStocks?: Maybe<Array<IStock>>;
+  status: IProductStatus;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  texts?: Maybe<IProductTexts>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /** Tokenized Product (Blockchain materialized Product) */
@@ -3734,40 +3729,40 @@ export type IUpdateProviderInput = {
 };
 
 export type IUser = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  allowedActions: Array<FieldWrapper<IRoleAction>>;
-  avatar?: Maybe<FieldWrapper<IMedia>>;
-  bookmarks: Array<FieldWrapper<IBookmark>>;
-  cart?: Maybe<FieldWrapper<IOrder>>;
-  country?: Maybe<FieldWrapper<ICountry>>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  emails?: Maybe<Array<FieldWrapper<IUserEmail>>>;
-  enrollments: Array<FieldWrapper<IEnrollment>>;
-  isGuest: FieldWrapper<Scalars['Boolean']['output']>;
-  isInitialPassword: FieldWrapper<Scalars['Boolean']['output']>;
-  isTwoFactorEnabled: FieldWrapper<Scalars['Boolean']['output']>;
-  language?: Maybe<FieldWrapper<ILanguage>>;
-  lastBillingAddress?: Maybe<FieldWrapper<IAddress>>;
-  lastContact?: Maybe<FieldWrapper<IContact>>;
-  lastLogin?: Maybe<FieldWrapper<IUserLoginTracker>>;
-  name: FieldWrapper<Scalars['String']['output']>;
-  oAuthAccounts: Array<FieldWrapper<IOAuthAccount>>;
-  orders: Array<FieldWrapper<IOrder>>;
-  paymentCredentials: Array<FieldWrapper<IPaymentCredentials>>;
-  primaryEmail?: Maybe<FieldWrapper<IUserEmail>>;
-  profile?: Maybe<FieldWrapper<IUserProfile>>;
-  pushSubscriptions: Array<FieldWrapper<IPushSubscription>>;
-  quotations: Array<FieldWrapper<IQuotation>>;
-  reviews: Array<FieldWrapper<IProductReview>>;
-  reviewsCount: FieldWrapper<Scalars['Int']['output']>;
-  roles?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  tags?: Maybe<Array<FieldWrapper<Scalars['LowerCaseString']['output']>>>;
-  tokens: Array<FieldWrapper<IToken>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  username?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  web3Addresses: Array<FieldWrapper<IWeb3Address>>;
-  webAuthnCredentials: Array<FieldWrapper<IWebAuthnCredentials>>;
+  _id: Scalars['ID']['output'];
+  allowedActions: Array<IRoleAction>;
+  avatar?: Maybe<IMedia>;
+  bookmarks: Array<IBookmark>;
+  cart?: Maybe<IOrder>;
+  country?: Maybe<ICountry>;
+  created: Scalars['DateTime']['output'];
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  emails?: Maybe<Array<IUserEmail>>;
+  enrollments: Array<IEnrollment>;
+  isGuest: Scalars['Boolean']['output'];
+  isInitialPassword: Scalars['Boolean']['output'];
+  isTwoFactorEnabled: Scalars['Boolean']['output'];
+  language?: Maybe<ILanguage>;
+  lastBillingAddress?: Maybe<IAddress>;
+  lastContact?: Maybe<IContact>;
+  lastLogin?: Maybe<IUserLoginTracker>;
+  name: Scalars['String']['output'];
+  oAuthAccounts: Array<IOAuthAccount>;
+  orders: Array<IOrder>;
+  paymentCredentials: Array<IPaymentCredentials>;
+  primaryEmail?: Maybe<IUserEmail>;
+  profile?: Maybe<IUserProfile>;
+  pushSubscriptions: Array<IPushSubscription>;
+  quotations: Array<IQuotation>;
+  reviews: Array<IProductReview>;
+  reviewsCount: Scalars['Int']['output'];
+  roles?: Maybe<Array<Scalars['String']['output']>>;
+  tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
+  tokens: Array<IToken>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  username?: Maybe<Scalars['String']['output']>;
+  web3Addresses: Array<IWeb3Address>;
+  webAuthnCredentials: Array<IWebAuthnCredentials>;
 };
 
 export type IUserCartArgs = {
@@ -3804,25 +3799,25 @@ export type IUserReviewsArgs = {
 };
 
 export type IUserEmail = {
-  address: FieldWrapper<Scalars['String']['output']>;
-  verified: FieldWrapper<Scalars['Boolean']['output']>;
+  address: Scalars['String']['output'];
+  verified: Scalars['Boolean']['output'];
 };
 
 export type IUserLoginTracker = {
-  countryCode?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  locale?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  remoteAddress?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  remotePort?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  timestamp: FieldWrapper<Scalars['Timestamp']['output']>;
-  userAgent?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  countryCode?: Maybe<Scalars['String']['output']>;
+  locale?: Maybe<Scalars['String']['output']>;
+  remoteAddress?: Maybe<Scalars['String']['output']>;
+  remotePort?: Maybe<Scalars['String']['output']>;
+  timestamp: Scalars['Timestamp']['output'];
+  userAgent?: Maybe<Scalars['String']['output']>;
 };
 
 export type IUserProfile = {
-  address?: Maybe<FieldWrapper<IAddress>>;
-  birthday?: Maybe<FieldWrapper<Scalars['Date']['output']>>;
-  displayName?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  gender?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  phoneMobile?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  address?: Maybe<IAddress>;
+  birthday?: Maybe<Scalars['Date']['output']>;
+  displayName?: Maybe<Scalars['String']['output']>;
+  gender?: Maybe<Scalars['String']['output']>;
+  phoneMobile?: Maybe<Scalars['String']['output']>;
 };
 
 export type IUserProfileInput = {
@@ -3834,21 +3829,21 @@ export type IUserProfileInput = {
 };
 
 export type IWarehousingInterface = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  label?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  version?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  version?: Maybe<Scalars['String']['output']>;
 };
 
 export type IWarehousingProvider = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  configuration?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  configurationError?: Maybe<FieldWrapper<IWarehousingProviderError>>;
-  created?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  interface?: Maybe<FieldWrapper<IWarehousingInterface>>;
-  isActive?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  type?: Maybe<FieldWrapper<IWarehousingProviderType>>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
+  _id: Scalars['ID']['output'];
+  configuration?: Maybe<Scalars['JSON']['output']>;
+  configurationError?: Maybe<IWarehousingProviderError>;
+  created?: Maybe<Scalars['DateTime']['output']>;
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  interface?: Maybe<IWarehousingInterface>;
+  isActive?: Maybe<Scalars['Boolean']['output']>;
+  type?: Maybe<IWarehousingProviderType>;
+  updated?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export enum IWarehousingProviderError {
@@ -3866,73 +3861,65 @@ export enum IWarehousingProviderType {
 }
 
 export type IWeb3Address = {
-  address: FieldWrapper<Scalars['String']['output']>;
-  nonce?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  verified: FieldWrapper<Scalars['Boolean']['output']>;
+  address: Scalars['String']['output'];
+  nonce?: Maybe<Scalars['Int']['output']>;
+  verified: Scalars['Boolean']['output'];
 };
 
 export type IWebAuthnCredentials = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  aaguid: FieldWrapper<Scalars['String']['output']>;
-  counter: FieldWrapper<Scalars['Int']['output']>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  mdsMetadata?: Maybe<FieldWrapper<IWebAuthnMdSv3Metadata>>;
+  _id: Scalars['ID']['output'];
+  aaguid: Scalars['String']['output'];
+  counter: Scalars['Int']['output'];
+  created: Scalars['DateTime']['output'];
+  mdsMetadata?: Maybe<IWebAuthnMdSv3Metadata>;
 };
 
 export type IWebAuthnMdSv3Metadata = {
-  attachmentHint?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  attestationRootCertificates?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
-  >;
-  attestationTypes?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  authenticationAlgorithms?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
-  >;
-  authenticatorGetInfo?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  authenticatorVersion?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  cryptoStrength?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  icon?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  keyProtection?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  legalHeader?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  matcherProtection?: Maybe<Array<FieldWrapper<Scalars['String']['output']>>>;
-  protocolFamily?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  publicKeyAlgAndEncodings?: Maybe<
-    Array<FieldWrapper<Scalars['String']['output']>>
-  >;
-  schema?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  tcDisplay?: Maybe<Array<FieldWrapper<Scalars['JSON']['output']>>>;
-  upv?: Maybe<Array<FieldWrapper<Scalars['JSON']['output']>>>;
-  userVerificationDetails?: Maybe<
-    Array<FieldWrapper<Scalars['JSON']['output']>>
-  >;
+  attachmentHint?: Maybe<Array<Scalars['String']['output']>>;
+  attestationRootCertificates?: Maybe<Array<Scalars['String']['output']>>;
+  attestationTypes?: Maybe<Array<Scalars['String']['output']>>;
+  authenticationAlgorithms?: Maybe<Array<Scalars['String']['output']>>;
+  authenticatorGetInfo?: Maybe<Scalars['JSON']['output']>;
+  authenticatorVersion?: Maybe<Scalars['Int']['output']>;
+  cryptoStrength?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  keyProtection?: Maybe<Array<Scalars['String']['output']>>;
+  legalHeader?: Maybe<Scalars['String']['output']>;
+  matcherProtection?: Maybe<Array<Scalars['String']['output']>>;
+  protocolFamily?: Maybe<Scalars['String']['output']>;
+  publicKeyAlgAndEncodings?: Maybe<Array<Scalars['String']['output']>>;
+  schema?: Maybe<Scalars['Int']['output']>;
+  tcDisplay?: Maybe<Array<Scalars['JSON']['output']>>;
+  upv?: Maybe<Array<Scalars['JSON']['output']>>;
+  userVerificationDetails?: Maybe<Array<Scalars['JSON']['output']>>;
 };
 
 export type IWork = {
-  _id: FieldWrapper<Scalars['ID']['output']>;
-  created: FieldWrapper<Scalars['DateTime']['output']>;
-  deleted?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  finished?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  input?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  original?: Maybe<FieldWrapper<IWork>>;
-  priority: FieldWrapper<Scalars['Int']['output']>;
-  result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  retries: FieldWrapper<Scalars['Int']['output']>;
-  scheduled?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  started?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  status: FieldWrapper<IWorkStatus>;
-  success?: Maybe<FieldWrapper<Scalars['Boolean']['output']>>;
-  timeout?: Maybe<FieldWrapper<Scalars['Int']['output']>>;
-  type: FieldWrapper<IWorkType>;
-  updated?: Maybe<FieldWrapper<Scalars['DateTime']['output']>>;
-  worker?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  _id: Scalars['ID']['output'];
+  created: Scalars['DateTime']['output'];
+  deleted?: Maybe<Scalars['DateTime']['output']>;
+  error?: Maybe<Scalars['JSON']['output']>;
+  finished?: Maybe<Scalars['DateTime']['output']>;
+  input?: Maybe<Scalars['JSON']['output']>;
+  original?: Maybe<IWork>;
+  priority: Scalars['Int']['output'];
+  result?: Maybe<Scalars['JSON']['output']>;
+  retries: Scalars['Int']['output'];
+  scheduled?: Maybe<Scalars['DateTime']['output']>;
+  started?: Maybe<Scalars['DateTime']['output']>;
+  status: IWorkStatus;
+  success?: Maybe<Scalars['Boolean']['output']>;
+  timeout?: Maybe<Scalars['Int']['output']>;
+  type: IWorkType;
+  updated?: Maybe<Scalars['DateTime']['output']>;
+  worker?: Maybe<Scalars['String']['output']>;
 };
 
 export type IWorkOutput = {
-  error?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  result?: Maybe<FieldWrapper<Scalars['JSON']['output']>>;
-  success: FieldWrapper<Scalars['Boolean']['output']>;
+  error?: Maybe<Scalars['JSON']['output']>;
+  result?: Maybe<Scalars['JSON']['output']>;
+  success: Scalars['Boolean']['output'];
 };
 
 export enum IWorkStatus {
@@ -3965,20 +3952,20 @@ export enum IWorkType {
 
 /** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
 export type I__EnumValue = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
 };
 
 /** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
 export type I__Field = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  args: Array<FieldWrapper<I__InputValue>>;
-  type: FieldWrapper<I__Type>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  args: Array<I__InputValue>;
+  type: I__Type;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
 };
 
 /** Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type. */
@@ -3988,13 +3975,13 @@ export type I__FieldArgsArgs = {
 
 /** Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value. */
 export type I__InputValue = {
-  name: FieldWrapper<Scalars['String']['output']>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  type: FieldWrapper<I__Type>;
+  name: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  type: I__Type;
   /** A GraphQL-formatted string representing the default value for this input value. */
-  defaultValue?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  isDeprecated: FieldWrapper<Scalars['Boolean']['output']>;
-  deprecationReason?: Maybe<FieldWrapper<Scalars['String']['output']>>;
+  defaultValue?: Maybe<Scalars['String']['output']>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
 };
 
 /**
@@ -4003,16 +3990,16 @@ export type I__InputValue = {
  * Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
  */
 export type I__Type = {
-  kind: FieldWrapper<I__TypeKind>;
-  name?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  description?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  specifiedByURL?: Maybe<FieldWrapper<Scalars['String']['output']>>;
-  fields?: Maybe<Array<FieldWrapper<I__Field>>>;
-  interfaces?: Maybe<Array<FieldWrapper<I__Type>>>;
-  possibleTypes?: Maybe<Array<FieldWrapper<I__Type>>>;
-  enumValues?: Maybe<Array<FieldWrapper<I__EnumValue>>>;
-  inputFields?: Maybe<Array<FieldWrapper<I__InputValue>>>;
-  ofType?: Maybe<FieldWrapper<I__Type>>;
+  kind: I__TypeKind;
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  specifiedByURL?: Maybe<Scalars['String']['output']>;
+  fields?: Maybe<Array<I__Field>>;
+  interfaces?: Maybe<Array<I__Type>>;
+  possibleTypes?: Maybe<Array<I__Type>>;
+  enumValues?: Maybe<Array<I__EnumValue>>;
+  inputFields?: Maybe<Array<I__InputValue>>;
+  ofType?: Maybe<I__Type>;
 };
 
 /**
@@ -11850,130 +11837,128 @@ export type IProductBundleItemsQueryVariables = Exact<{
 }>;
 
 export type IProductBundleItemsQuery = {
-  product:
+  product?:
     | {
         _id: string;
-        bundleItems?:
-          | {
-              quantity: number;
-              product:
-                | {
-                    _id: string;
-                    sequence: number;
-                    status: IProductStatus;
-                    tags?: Array<any> | null;
-                    updated?: any | null;
-                    published?: any | null;
-                    texts?: {
-                      _id: string;
-                      slug?: string | null;
-                      title?: string | null;
-                      subtitle?: string | null;
-                      description?: string | null;
-                      vendor?: string | null;
-                      brand?: string | null;
-                      labels?: Array<string> | null;
-                    } | null;
-                    media: Array<{
-                      _id: string;
-                      tags?: Array<any> | null;
-                      file: { _id: string; url: string };
-                    }>;
-                  }
-                | {
-                    _id: string;
-                    sequence: number;
-                    status: IProductStatus;
-                    tags?: Array<any> | null;
-                    updated?: any | null;
-                    published?: any | null;
-                    texts?: {
-                      _id: string;
-                      slug?: string | null;
-                      title?: string | null;
-                      subtitle?: string | null;
-                      description?: string | null;
-                      vendor?: string | null;
-                      brand?: string | null;
-                      labels?: Array<string> | null;
-                    } | null;
-                    media: Array<{
-                      _id: string;
-                      tags?: Array<any> | null;
-                      file: { _id: string; url: string };
-                    }>;
-                  }
-                | {
-                    _id: string;
-                    sequence: number;
-                    status: IProductStatus;
-                    tags?: Array<any> | null;
-                    updated?: any | null;
-                    published?: any | null;
-                    texts?: {
-                      _id: string;
-                      slug?: string | null;
-                      title?: string | null;
-                      subtitle?: string | null;
-                      description?: string | null;
-                      vendor?: string | null;
-                      brand?: string | null;
-                      labels?: Array<string> | null;
-                    } | null;
-                    media: Array<{
-                      _id: string;
-                      tags?: Array<any> | null;
-                      file: { _id: string; url: string };
-                    }>;
-                  }
-                | {
-                    _id: string;
-                    sequence: number;
-                    status: IProductStatus;
-                    tags?: Array<any> | null;
-                    updated?: any | null;
-                    published?: any | null;
-                    texts?: {
-                      _id: string;
-                      slug?: string | null;
-                      title?: string | null;
-                      subtitle?: string | null;
-                      description?: string | null;
-                      vendor?: string | null;
-                      brand?: string | null;
-                      labels?: Array<string> | null;
-                    } | null;
-                    media: Array<{
-                      _id: string;
-                      tags?: Array<any> | null;
-                      file: { _id: string; url: string };
-                    }>;
-                  }
-                | {
-                    _id: string;
-                    sequence: number;
-                    status: IProductStatus;
-                    tags?: Array<any> | null;
-                    updated?: any | null;
-                    published?: any | null;
-                    texts?: {
-                      _id: string;
-                      slug?: string | null;
-                      title?: string | null;
-                      subtitle?: string | null;
-                      description?: string | null;
-                      vendor?: string | null;
-                      brand?: string | null;
-                      labels?: Array<string> | null;
-                    } | null;
-                    media: Array<{
-                      _id: string;
-                      tags?: Array<any> | null;
-                      file: { _id: string; url: string };
-                    }>;
-                  };
-            }[]
-          | null;
+        bundleItems?: Array<{
+          quantity: number;
+          product:
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file: { _id: string; url: string };
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file: { _id: string; url: string };
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file: { _id: string; url: string };
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file: { _id: string; url: string };
+                }>;
+              }
+            | {
+                _id: string;
+                sequence: number;
+                status: IProductStatus;
+                tags?: Array<any> | null;
+                updated?: any | null;
+                published?: any | null;
+                texts?: {
+                  _id: string;
+                  slug?: string | null;
+                  title?: string | null;
+                  subtitle?: string | null;
+                  description?: string | null;
+                  vendor?: string | null;
+                  brand?: string | null;
+                  labels?: Array<string> | null;
+                } | null;
+                media: Array<{
+                  _id: string;
+                  tags?: Array<any> | null;
+                  file: { _id: string; url: string };
+                }>;
+              };
+        }> | null;
       }
     | { _id: string }
     | { _id: string }

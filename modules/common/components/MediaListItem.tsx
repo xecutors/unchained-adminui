@@ -160,7 +160,7 @@ const MediaListItem = ({
         </Form>
       </div>
       <span
-        className="flex items-start items-center "
+        className="flex items-center"
         onClick={(e) => {
           e.stopPropagation();
         }}

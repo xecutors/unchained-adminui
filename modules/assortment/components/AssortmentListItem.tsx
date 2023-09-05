@@ -18,7 +18,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
     if (e.target.value) {
       await updateAssortment({
         assortmentId: assortment?._id,
-        sequence: parseInt(e.target.value, 10),
+        assortment: { sequence: parseInt(e.target.value, 10) },
       });
     }
   };

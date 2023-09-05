@@ -14,8 +14,6 @@ const config: CodegenConfig = {
 
       config: {
         typesPrefix: 'I',
-        fieldWrapperValue: 'T | Promise<T>',
-        wrapFieldDefinitions: true,
         withHooks: false,
         withMutationFn: false,
         withRefetchFn: false,

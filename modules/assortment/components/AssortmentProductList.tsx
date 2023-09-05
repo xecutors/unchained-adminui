@@ -5,6 +5,7 @@ import {
 } from '@dnd-kit/sortable';
 import NoData from '../../common/components/NoData';
 import AssortmentProductListItem from './AssortmentProductListItem';
+import { IProduct } from '../../../gql/types';
 
 const AssortmentProductsList = ({ products, onRemoveProduct, items }) => {
   const { formatMessage } = useIntl();
@@ -12,7 +13,9 @@ const AssortmentProductsList = ({ products, onRemoveProduct, items }) => {
     <SortableContext items={items} strategy={verticalListSortingStrategy}>
       <div className="space-y-4 block py-3 rounded px-6 bg-white dark:bg-slate-800 shadow dark:shadow-none transition-[background-color] ease-in-out delay-200">
         {items.map((id) => {
-          const product = Object.values(products).find((pr) => pr._id === id);
+          const product = Object.values(products as IProduct[]).find(
+            (pr) => pr._id === id,
+          );
           return (
             <AssortmentProductListItem
               id={id}

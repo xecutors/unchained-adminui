@@ -6,6 +6,7 @@ import {
 
 import NoData from '../../common/components/NoData';
 import AssortmentFiltersListItem from './AssortmentFiltersListItem';
+import { IFilter } from '../../../gql/types';
 
 const AssortmentFiltersList = ({ filters, onRemoveFilter, items }) => {
   const { formatMessage } = useIntl();
@@ -13,7 +14,9 @@ const AssortmentFiltersList = ({ filters, onRemoveFilter, items }) => {
     <SortableContext items={items} strategy={verticalListSortingStrategy}>
       <div className="space-y-4 py-3 px-6 rounded transition-[background-color] ease-in-out delay-200">
         {items.map((id) => {
-          const filter = Object.values(filters).find((fl) => fl._id === id);
+          const filter = Object.values(filters as IFilter).find(
+            (fl) => fl._id === id,
+          );
           return (
             <AssortmentFiltersListItem
               id={id}

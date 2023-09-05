@@ -49,9 +49,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
         <Badge color="indigo" text={filter?.type} />
       </div>
       <div className="basis-1/4 space-y-1 p-2">
-        {tags?.map((tag) => (
-          <Badge color="indigo" text={tag} key={tag} />
-        ))}
+        {tags?.map((tag) => <Badge color="indigo" text={tag} key={tag} />)}
       </div>
       <div
         onClick={(e) => {

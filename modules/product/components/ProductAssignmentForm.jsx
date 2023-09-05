@@ -14,6 +14,7 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import deBounce from '../../common/utils/deBounce';
 import useProducts from '../hooks/useProducts';
+import { ISortDirection } from '../../../gql/types';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -58,7 +59,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
   const { products } = useProducts({
     queryString,
     limit: 50,
-    sort: [{ key: 'created', value: 'DESC' }],
+    sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
   const { product, loading } = useProductAssignments({ productId: proxyId });
 

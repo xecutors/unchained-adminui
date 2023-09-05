@@ -84,7 +84,7 @@ const BillingAddressInfo = ({
   regionCode,
   city,
 }) => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
 
   return (
     <div className="mt-2 bg-white text-slate-500 dark:text-slate-200">
@@ -142,7 +142,7 @@ const BillingAddressInfo = ({
         </label>
         <div className="flex text-sm text-slate-900 dark:text-slate-200 sm:col-span-2 sm:mt-0">
           <span className="flex-grow">
-            {normalizeCountryISOCode(countryCode)}
+            {normalizeCountryISOCode(locale, countryCode)}
           </span>
         </div>
       </div>

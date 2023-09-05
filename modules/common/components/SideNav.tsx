@@ -65,7 +65,7 @@ const ChildrenNav = ({ item, hasRole, onSelected }) => {
   ) : null;
 };
 
-const SideNav = ({ navigation, onClick = () => true }) => {
+const SideNav = ({ navigation, onClick = null }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const router = useRouter();

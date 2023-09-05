@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useAddAssortmentLink from '../hooks/useAddAssortmentLink';
 import FilterableDropdown from '../../common/components/FilterableDropdown';
 import TagInputField from '../../forms/components/TagInputField';
@@ -12,6 +12,7 @@ import FormWrapper from '../../common/components/FormWrapper';
 import FormErrors from '../../forms/components/FormErrors';
 import useAssortments from '../hooks/useAssortments';
 import useAssortmentPaths from '../hooks/useAssortmentPaths';
+import { ISortDirection } from '../../../gql/types';
 
 const normalizeAssortments = (productsList = []) => {
   return productsList?.map(({ _id, status, texts, media }) => ({
@@ -38,16 +39,16 @@ const AssortmentLinkForm = ({ assortmentId }) => {
     includeInactive: true,
     includeLeaves: true,
     limit: 50,
-    sort: [{ key: 'created', value: 'DESC' }],
+    sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
 
-  const onSubmit = async ({ childAssortmentId, tags }) => {
+  const onSubmit: OnSubmitType = async ({ childAssortmentId, tags }) => {
     await addAssortmentLink({
       childAssortmentId,
       parentAssortmentId: assortmentId,
       tags,
     });
-    return true;
+    return { success: true };
   };
 
   const successMessage = formatMessage({

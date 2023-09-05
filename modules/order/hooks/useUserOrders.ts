@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import {
-  ISortOptionInput,
+  ISortDirection,
   IUserOrderQuery,
   IUserOrderQueryVariables,
 } from '../../../gql/types';
@@ -36,7 +36,7 @@ const useUserOrders = ({
       queryString,
       sort: sortOptions.length
         ? sortOptions
-        : ([{ key: 'ordered', value: 'DESC' }] as ISortOptionInput[]),
+        : [{ key: 'ordered', value: ISortDirection.Desc }],
     },
   });
 

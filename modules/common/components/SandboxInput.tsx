@@ -2,12 +2,18 @@ import { XCircleIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import CustomError from '../CustomError';
 
 const isSafariBrowser = (userAgent) =>
   userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') <= -1;
 
 const testConnection = async (url) => {
-  const result = { error: null, connection: null, endpoint: url };
+  const result = {
+    error: null,
+    connection: null,
+    endpoint: url,
+    response: null,
+  };
   try {
     if (typeof window !== 'undefined') {
       const newUrl = new URL(url);
@@ -28,20 +34,25 @@ const testConnection = async (url) => {
             }),
           });
           result.response = response;
-        } catch (e) {
-          result.error = e.message;
-          result.response = { ok: false };
+        } catch (e: any) {
+          if (e instanceof CustomError) {
+            result.error = e.message;
+            result.response = { ok: false };
+          }
         }
       }
     }
-  } catch (e) {
-    result.error = e.message;
+  } catch (e: any) {
+    if (e instanceof CustomError) result.error = e.message;
   }
   return result;
 };
 
 const SandboxInput = ({ handleOnBlur, endpoint }) => {
-  const [connection, setConnectionState] = useState({});
+  const [connection, setConnectionState] = useState<{
+    error?: string;
+    endpoint?: string;
+  }>({});
   const [currentEndpoint, setCurrentEndpoint] = useState(endpoint);
 
   const { formatMessage } = useIntl();

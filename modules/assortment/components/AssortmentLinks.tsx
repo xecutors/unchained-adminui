@@ -2,55 +2,55 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 
 import {
-  closestCenter,
   DndContext,
+  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import Loading from '../../common/components/Loading';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
-
-import useAssortmentProducts from '../hooks/useAssortmentProducts';
-import useRemoveAssortmentProduct from '../hooks/useRemoveAssortmentProduct';
-import AssortmentProductForm from './AssortmentProductForm';
-import AssortmentProductList from './AssortmentProductList';
-import Loading from '../../common/components/Loading';
-import useReorderAssortmentProducts from '../hooks/useReorderAssortmentProducts';
+import useAssortmentLinks from '../hooks/useAssortmentLinks';
+import useRemoveAssortmentLink from '../hooks/useRemoveAssortmentLink';
+import AssortmentLinkForm from './AssortmentLinkForm';
+import AssortmentLinksList from './AssortmentLinksList';
+import useReorderAssortmentLink from '../hooks/useReorderAssortmentLinks';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 
-const AssortmentProducts = ({ assortmentId }) => {
+const AssortmentLinks = ({ assortmentId }) => {
   const { formatMessage } = useIntl();
-  const { linkedProducts, loading } = useAssortmentProducts({ assortmentId });
   const { setModal } = useModal();
-  const { removeAssortmentProduct } = useRemoveAssortmentProduct();
-  const { reorderAssortmentProducts } = useReorderAssortmentProducts();
+  const { linkedAssortments, loading } = useAssortmentLinks({ assortmentId });
 
-  const items = linkedProducts?.map((product) => product._id);
+  const { removeAssortmentLink } = useRemoveAssortmentLink();
+  const { reorderAssortmentLink } = useReorderAssortmentLink();
+  const items = linkedAssortments?.map((link) => link._id);
 
-  const onRemoveProduct = async (assortmentProductId) => {
+  const onRemoveLink = async (assortmentLinkId) => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
-          id: 'delete_product_confirmation',
+          id: 'delete_assortment_link',
           defaultMessage:
-            'This action might cause inconsistencies with other data that relates to it and it is nonreversible. Are you sure you want to delete this product? ',
+            'This action might cause inconsistencies with other data that relates to it. Are you sure you want to delete this language? ',
         })}
         onOkClick={async () => {
           setModal('');
-          await removeAssortmentProduct({ assortmentProductId });
+          await removeAssortmentLink({ assortmentLinkId });
           toast.success(
             formatMessage({
-              id: 'product_deleted',
-              defaultMessage: 'Product deleted successfully',
+              id: 'assortment_link',
+              defaultMessage: 'Link deleted successfully',
             }),
           );
         }}
         okText={formatMessage({
-          id: 'delete_product',
-          defaultMessage: 'Delete Product',
+          id: 'delete_link',
+          defaultMessage: 'Delete link',
         })}
       />,
     );
@@ -65,12 +65,12 @@ const AssortmentProducts = ({ assortmentId }) => {
       const newItems = arrayMove(items, oldIndex, newIndex);
 
       const sortedItems = newItems.map((id, index) => ({
-        assortmentProductId: id,
+        assortmentLinkId: id,
         sortKey: index,
       }));
 
       try {
-        await reorderAssortmentProducts({ sortKeys: sortedItems });
+        await reorderAssortmentLink({ sortKeys: sortedItems });
         toast.success(
           formatMessage({
             id: 'link_reorder',
@@ -102,9 +102,6 @@ const AssortmentProducts = ({ assortmentId }) => {
       },
     }),
     useSensor(KeyboardSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
@@ -113,14 +110,14 @@ const AssortmentProducts = ({ assortmentId }) => {
     <>
       <SelfDocumentingView
         documentationLabel={formatMessage({
-          id: 'assortment_product_form_header',
-          defaultMessage: 'Products',
+          id: 'assortment_link_form_header',
+          defaultMessage: 'Child assortments',
         })}
         className="mt-2 sm:mt-0"
         documentation={
           <FormattedMessage
-            id="assortment_product_form_description"
-            defaultMessage="<ul> <li>Products that belong to this assortment </li>
+            id="assortment_link_form_description"
+            defaultMessage="<ul> <li>Assign assortment that are direct child of this assortment </li>
           </ul>"
             values={{
               ul: (chunk) => (
@@ -131,21 +128,21 @@ const AssortmentProducts = ({ assortmentId }) => {
           />
         }
       >
-        <AssortmentProductForm assortmentId={assortmentId} />
+        <AssortmentLinkForm assortmentId={assortmentId} />
       </SelfDocumentingView>
-
       <SelfDocumentingView
         documentationLabel={formatMessage({
-          id: 'assortment_products_header',
-          defaultMessage: 'Assortment product',
+          id: 'assortment_links_header',
+          defaultMessage: 'Assortment links',
         })}
         className="sm:mt-4"
         documentation={
           <FormattedMessage
-            id="assortment_product_list_description"
-            defaultMessage="<ul> <li>All products that belong to this assortment</li>
-            <li> Drag and drop list items to sort products order </li>
-          </ul>"
+            id="assortment_link_list_description"
+            defaultMessage="<ul> <li>All assortments found on the assortment relation tree</li>
+            <li> Drag and drop list items to sort assortment links </li>
+         <li> Parents are assortments found in the ancestors tree on any level </li>
+         <li> Descendants are assortments found in the children tree on any level </li> </ul>"
             values={{
               ul: (chunk) => (
                 <ul className="list-disc list-inside">{chunk} </ul>
@@ -156,20 +153,19 @@ const AssortmentProducts = ({ assortmentId }) => {
         }
       >
         {loading ? (
-          <div className="ml-auto w-full md:col-span-2 my-auto">
-            <Loading />
-          </div>
+          <Loading />
         ) : (
-          <div className="ml-auto my-auto w-full rounded shadow dark:shadow-none md:col-span-2">
+          <div className="ml-auto shadow dark:shadow-none dark:bg-slate-800 w-full md:col-span-2 bg-white">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
-              id="assortment-product"
+              id="assortment-link"
             >
-              <AssortmentProductList
-                products={linkedProducts}
-                onRemoveProduct={onRemoveProduct}
+              <AssortmentLinksList
+                currentAssortmentId={assortmentId}
+                links={linkedAssortments || []}
+                onRemoveLink={onRemoveLink}
                 items={items}
               />
             </DndContext>
@@ -180,4 +176,4 @@ const AssortmentProducts = ({ assortmentId }) => {
   );
 };
 
-export default AssortmentProducts;
+export default AssortmentLinks;
