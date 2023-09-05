@@ -24,17 +24,9 @@ const useUpdateAssortment = () => {
   >(UpdateAssortmentMutation);
 
   const updateAssortment = async ({
-    isRoot,
     assortmentId,
-    tags,
-    sequence,
-    isActive,
-  }: IUpdateAssortmentMutationVariables & {
-    isRoot: boolean;
-    tags?: string[];
-    sequence?: number;
-    isActive?: boolean;
-  }) => {
+    assortment: { isRoot, tags, sequence, isActive },
+  }: IUpdateAssortmentMutationVariables) => {
     return updateAssortmentMutation({
       variables: {
         assortment: { isRoot, tags, sequence, isActive },

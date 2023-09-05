@@ -14,7 +14,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 
-const AssortmentTextForm = ({ assortmentId, selectedLocale }) => {
+const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 

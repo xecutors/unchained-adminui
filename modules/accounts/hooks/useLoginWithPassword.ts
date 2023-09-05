@@ -39,7 +39,11 @@ const useLoginWithPassword = () => {
     errorPolicy: 'all',
   });
 
-  const logInWithPassword = async ({ usernameOrEmail, password, totpCode }) => {
+  const logInWithPassword = async ({
+    usernameOrEmail,
+    password,
+    totpCode = null,
+  }) => {
     const variables = {
       username: null,
       email: null,
