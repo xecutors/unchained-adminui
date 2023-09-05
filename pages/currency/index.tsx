@@ -59,6 +59,7 @@ const Currencies = () => {
   const { removeCurrency } = useRemoveCurrency();
 
   const onRemove = async (currencyId) => {
+    alert('sssssssssssss');
     await setModal(
       <DangerMessage
         onCancelClick={async () => setModal('')}

@@ -13,7 +13,7 @@ const ModalWrapper = ({ children }) => {
     const setModal = (
       newModalChildren,
       { closeOnOutsideClick: newCloseOnOutsideClick = false } = {},
-    ) => {
+    ): Promise<boolean> => {
       return new Promise((resolve) => {
         if (!newModalChildren) {
           resolve(true);

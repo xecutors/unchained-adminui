@@ -1,40 +1,45 @@
-import React from 'react';
-import { injectIntl, useIntl } from 'react-intl';
+import React, { ComponentType, useEffect, useRef, useState } from 'react';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import ReactDOM from 'react-dom';
 
-class ModalInner extends React.Component {
-  constructor(props) {
-    super(props);
-    this.el = document.createElement('div');
-  }
-
-  componentDidMount() {
-    document.body.appendChild(this.el);
-  }
-
-  componentWillUnmount() {
-    document.body.removeChild(this.el);
-  }
-
-  render() {
-    const { el, props } = this;
-    return ReactDOM.createPortal(props.children, el);
-  }
+interface ModalInnerProps extends WrappedComponentProps<'intl'> {
+  onClose?: () => void;
+  children?: React.ReactNode;
+  visible?: boolean;
+  closeOnOutsideClick?: boolean;
 }
+
+const ModalInner: React.FC<ModalInnerProps> = ({ children = null }) => {
+  const elRef = useRef<HTMLDivElement | null>(null);
+  const [, setIsVisible] = useState(false);
+  useEffect(() => {
+    const el = document.createElement('div');
+    elRef.current = el;
+    document.body.appendChild(el);
+    setIsVisible(true);
+    return () => {
+      if (elRef.current) {
+        document.body.removeChild(elRef.current);
+      }
+    };
+  }, []);
+
+  return elRef.current ? ReactDOM.createPortal(children, elRef.current) : null;
+};
 
 const Modal = ({
   onClose: close,
   children,
   visible,
   closeOnOutsideClick = false,
+  intl,
 }) => {
-  const { formatMessage } = useIntl();
   const onOverlayClick = () => {
     if (closeOnOutsideClick && visible) close();
   };
 
   return visible ? (
-    <ModalInner>
+    <ModalInner intl={intl}>
       <div className="fixed inset-0 z-10 overflow-y-auto" aria-modal="true">
         <div
           className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0"
@@ -70,7 +75,7 @@ const Modal = ({
                 className="rounded-md bg-white text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               >
                 <span className="sr-only">
-                  {formatMessage({ id: 'close', defaultMessage: 'Close' })}
+                  {intl.formatMessage({ id: 'close', defaultMessage: 'Close' })}
                 </span>
 
                 <svg
@@ -98,4 +103,4 @@ const Modal = ({
   ) : null;
 };
 
-export default injectIntl(Modal);
+export default injectIntl(Modal as unknown as ComponentType<ModalInnerProps>);
