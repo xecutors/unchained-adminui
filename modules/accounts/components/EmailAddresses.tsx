@@ -62,13 +62,22 @@ const EmailAddresses = ({
   };
 
   const onSendVerification = async ({ email }) => {
-    await sendVerificationEmail({ email });
-    toast.success(
-      formatMessage({
-        id: 'verification_sent_success',
-        defaultMessage: 'Verification email sent successfully ',
-      }),
-    );
+    const { data } = await sendVerificationEmail({ email });
+    if (data.sendVerificationEmail.success)
+      toast.success(
+        formatMessage({
+          id: 'verification_sent_success',
+          defaultMessage: 'Verification email sent successfully ',
+        }),
+      );
+    else
+      toast.error(
+        formatMessage({
+          id: 'verification_sent_error',
+          defaultMessage:
+            'Error occurred while sending verification email, please try again',
+        }),
+      );
   };
 
   const successMessage = formatMessage({

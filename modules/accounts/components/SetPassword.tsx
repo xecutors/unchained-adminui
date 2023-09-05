@@ -27,13 +27,21 @@ const SetPassword = ({ userId, isInitialPassword, primaryEmail }) => {
   };
 
   const onSendEnrollmentEmail = async () => {
-    await sendEnrollmentEmail({ email: primaryEmail.address });
-    toast.success(
-      formatMessage({
-        id: 'terminate_enrollment_success',
-        defaultMessage: 'Email sent to the user successfully',
-      }),
-    );
+    const { data } = await sendEnrollmentEmail({ email: primaryEmail.address });
+    if (data?.sendEnrollmentEmail?.success)
+      toast.success(
+        formatMessage({
+          id: 'terminate_enrollment_success',
+          defaultMessage: 'Email sent to the user successfully',
+        }),
+      );
+    else
+      toast.error(
+        formatMessage({
+          id: 'terminate_enrollment_error',
+          defaultMessage: 'Failed sending email, please try again',
+        }),
+      );
   };
 
   const form = useForm({

@@ -311,11 +311,13 @@ describe('Filter', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             filterId: SingleFilterResponse.data.filter._id,
-            texts: {
-              locale: fistLanguage.isoCode,
-              title: 'Updated filter title',
-              subtitle: 'Updated filter subtitle',
-            },
+            texts: [
+              {
+                locale: fistLanguage.isoCode,
+                title: 'Updated filter title',
+                subtitle: 'Updated filter subtitle',
+              },
+            ],
           });
           expect(response.body).to.deep.eq(UpdateFilterTextResponse);
         },
@@ -338,11 +340,13 @@ describe('Filter', () => {
           const { request, response } = currentSubject;
           expect(request.body.variables).to.deep.eq({
             filterId: SingleFilterResponse.data.filter._id,
-            texts: {
-              locale: secondLanguage.isoCode,
-              title: 'Updated filter title',
-              subtitle: 'Updated filter subtitle',
-            },
+            texts: [
+              {
+                locale: secondLanguage.isoCode,
+                title: 'Updated filter title',
+                subtitle: 'Updated filter subtitle',
+              },
+            ],
           });
           expect(response.body).to.deep.eq(UpdateFilterTextResponse);
         },
@@ -553,10 +557,12 @@ describe('Filter', () => {
             filterId: SingleFilterResponse.data.filter._id,
             filterOptionValue:
               FilterOptionsResponse.data.filter.options[0].value,
-            texts: {
-              ...UpdateFilterOptionVariables.texts,
-              locale: firstLanguage.isoCode,
-            },
+            texts: [
+              {
+                ...UpdateFilterOptionVariables.texts,
+                locale: firstLanguage.isoCode,
+              },
+            ],
           });
           expect(response.body).to.deep.eq(UpdateFilterTextResponse);
         },

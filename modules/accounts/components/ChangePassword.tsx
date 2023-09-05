@@ -15,7 +15,7 @@ const ChangePassword = () => {
   const onSubmit: OnSubmitType = async ({ oldPassword, newPassword }) => {
     const { data } = await changePassword({ oldPassword, newPassword });
 
-    return { success: true, data: data?.changePassword };
+    return { success: data?.changePassword?.success };
   };
 
   const form = useForm({

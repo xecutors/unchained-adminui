@@ -233,11 +233,13 @@ describe('Assortment Detail Media', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentMediaId:
             AssortmentMediaResponse.data.assortment.media[0]._id,
-          texts: {
-            locale: firstText.locale,
-            title: firstText.title,
-            subtitle: firstText.subtitle,
-          },
+          texts: [
+            {
+              locale: firstText.locale,
+              title: firstText.title,
+              subtitle: firstText.subtitle,
+            },
+          ],
         });
         expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
       },
@@ -262,11 +264,13 @@ describe('Assortment Detail Media', () => {
         expect(request.body.variables).to.deep.eq({
           assortmentMediaId:
             AssortmentMediaResponse.data.assortment.media[0]._id,
-          texts: {
-            locale: secondTexts.locale,
-            title: secondTexts.title,
-            subtitle: secondTexts.subtitle,
-          },
+          texts: [
+            {
+              locale: secondTexts.locale,
+              title: secondTexts.title,
+              subtitle: secondTexts.subtitle,
+            },
+          ],
         });
         expect(response.body).to.deep.eq(UpdateAssortmentMediaTextsResponse);
       },

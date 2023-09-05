@@ -34,7 +34,7 @@ const ForgotPassword = () => {
   };
   const onSubmit: OnSubmitType = async ({ email }) => {
     const { data } = await forgotPassword({ email });
-    return { success: true, data: data?.forgotPassword };
+    return { success: data?.forgotPassword?.success };
   };
 
   return (

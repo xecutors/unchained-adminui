@@ -261,15 +261,17 @@ describe('Assortment Detail Texts', () => {
         const { request, response } = currentSubject;
         expect({
           ...request.body.variables,
-          texts: { ...request.body.variables.texts, description: null },
+          texts: [{ ...request.body.variables.texts[0], description: null }],
         }).to.deep.eq({
-          texts: {
-            locale: firstText.locale,
-            slug: firstText.slug,
-            title: firstText.title,
-            subtitle: firstText.subtitle,
-            description: null,
-          },
+          texts: [
+            {
+              locale: firstText.locale,
+              slug: firstText.slug,
+              title: firstText.title,
+              subtitle: firstText.subtitle,
+              description: null,
+            },
+          ],
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(UpdateAssortmentTextsResponse);
@@ -297,15 +299,17 @@ describe('Assortment Detail Texts', () => {
         const { request, response } = currentSubject;
         expect({
           ...request.body.variables,
-          texts: { ...request.body.variables.texts, description: null },
+          texts: [{ ...request.body.variables.texts[0], description: null }],
         }).to.deep.eq({
-          texts: {
-            locale: secondText.locale,
-            slug: secondText.slug,
-            title: secondText.title,
-            subtitle: secondText.subtitle,
-            description: null,
-          },
+          texts: [
+            {
+              locale: secondText.locale,
+              slug: secondText.slug,
+              title: secondText.title,
+              subtitle: secondText.subtitle,
+              description: null,
+            },
+          ],
           assortmentId: assortment._id,
         });
         expect(response.body).to.deep.eq(UpdateAssortmentTextsResponse);

@@ -85,13 +85,24 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await sendEnrollmentEmail({ email: enrollment.contact.emailAddress });
-          toast.success(
-            formatMessage({
-              id: 'terminate_enrollment_success',
-              defaultMessage: 'Subscription terminated successfully',
-            }),
-          );
+          const { data } = await sendEnrollmentEmail({
+            email: enrollment.contact.emailAddress,
+          });
+          if (data?.sendEnrollmentEmail?.success)
+            toast.success(
+              formatMessage({
+                id: 'terminate_enrollment_success',
+                defaultMessage: 'Subscription activation email sent',
+              }),
+            );
+          else
+            toast.error(
+              formatMessage({
+                id: 'terminate_enrollment_error',
+                defaultMessage:
+                  'Failed when sending subscription activation email, please try again',
+              }),
+            );
         }}
       />,
     );

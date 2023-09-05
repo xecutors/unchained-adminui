@@ -90,6 +90,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         plainPassword: 'correct',
         username: null,
+        totpCode: null,
       });
       expect(response.body).to.deep.eq(LogInSuccessResponse);
     });
@@ -134,6 +135,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         plainPassword: 'wrong-password',
         username: null,
+        totpCode: null,
       });
       expect(response.body).to.deep.eq(InvalidCredentialErrorResponse);
     });
