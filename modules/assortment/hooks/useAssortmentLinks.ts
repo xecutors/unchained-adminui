@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IAssortmentLinksQuery } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
@@ -23,14 +24,17 @@ export const AssortmentLinksQuery = gql`
 
 const useAssortmentLinks = ({ assortmentId: id = null, slug = null } = {}) => {
   const parsedId = parseUniqueId(slug);
-  const { data, loading, error } = useQuery(AssortmentLinksQuery, {
-    skip: !id && !parsedId,
-    variables: {
-      assortmentId: id || parsedId,
+  const { data, loading, error } = useQuery<IAssortmentLinksQuery>(
+    AssortmentLinksQuery,
+    {
+      skip: !id && !parsedId,
+      variables: {
+        assortmentId: id || parsedId,
+      },
+      fetchPolicy: 'cache-first',
     },
-    fetchPolicy: 'cache-first',
-  });
-  const assortment = data?.assortment || {};
+  );
+  const assortment = data?.assortment;
   const linkedAssortments = assortment?.linkedAssortments || [];
 
   return {

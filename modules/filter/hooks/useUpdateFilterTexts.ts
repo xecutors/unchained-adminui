@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateFilterTextsMutation,
+  IUpdateFilterTextsMutationVariables,
+} from '../../../gql/types';
 import FilterTextsFragment from '../fragments/FilterTextsFragment';
 
 const UpdateFilterTextsMutation = gql`
@@ -19,9 +23,16 @@ const UpdateFilterTextsMutation = gql`
 `;
 
 const useUpdateFilterTexts = () => {
-  const [updateFilterTextsMutation] = useMutation(UpdateFilterTextsMutation);
+  const [updateFilterTextsMutation] = useMutation<
+    IUpdateFilterTextsMutation,
+    IUpdateFilterTextsMutationVariables
+  >(UpdateFilterTextsMutation);
 
-  const updateFilterTexts = async ({ filterId, filterOptionValue, texts }) => {
+  const updateFilterTexts = async ({
+    filterId,
+    filterOptionValue,
+    texts,
+  }: IUpdateFilterTextsMutationVariables) => {
     return updateFilterTextsMutation({
       variables: { filterOptionValue, filterId, texts },
       refetchQueries: ['TranslatedFilterTexts'],

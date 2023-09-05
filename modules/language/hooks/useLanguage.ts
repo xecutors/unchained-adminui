@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { ILanguageQuery, ILanguageQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import LanguageFragment from '../fragments/LanguageFragment';
 
@@ -12,15 +13,15 @@ export const GetLanguageQuery = (inlineFragment = '') => gql`
   ${LanguageFragment}
 `;
 
-const useLanguage = ({ languageId }) => {
+const useLanguage = ({ languageId }: ILanguageQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetLanguageQuery(customProperties?.Language),
-    {
-      skip: !languageId,
-      variables: { languageId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    ILanguageQuery,
+    ILanguageQueryVariables
+  >(GetLanguageQuery(customProperties?.Language), {
+    skip: !languageId,
+    variables: { languageId },
+  });
 
   return {
     language: data?.language,

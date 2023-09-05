@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveWarehousingProviderMutation,
+  IRemoveWarehousingProviderMutationVariables,
+} from '../../../gql/types';
 
 const RemoveWarehousingProviderMutation = gql`
   mutation RemoveWarehousingProvider($warehousingProviderId: ID!) {
@@ -9,11 +13,14 @@ const RemoveWarehousingProviderMutation = gql`
 `;
 
 const useRemoveWarehousingProvider = () => {
-  const [removeWarehousingProviderMutation] = useMutation(
-    RemoveWarehousingProviderMutation,
-  );
+  const [removeWarehousingProviderMutation] = useMutation<
+    IRemoveWarehousingProviderMutation,
+    IRemoveWarehousingProviderMutationVariables
+  >(RemoveWarehousingProviderMutation);
 
-  const removeWarehousingProvider = async ({ warehousingProviderId }) => {
+  const removeWarehousingProvider = async ({
+    warehousingProviderId,
+  }: IRemoveWarehousingProviderMutationVariables) => {
     return removeWarehousingProviderMutation({
       variables: {
         warehousingProviderId,

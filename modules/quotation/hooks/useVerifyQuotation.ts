@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IVerifyQuotationMutation,
+  IVerifyQuotationMutationVariables,
+} from '../../../gql/types';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 const VerifyQuotationMutation = gql`
@@ -14,12 +18,15 @@ const VerifyQuotationMutation = gql`
 `;
 
 const useVerifyQuotation = () => {
-  const [verifyQuotationMutation] = useMutation(VerifyQuotationMutation);
+  const [verifyQuotationMutation] = useMutation<
+    IVerifyQuotationMutation,
+    IVerifyQuotationMutationVariables
+  >(VerifyQuotationMutation);
 
   const VerifyQuotation = async ({
     quotationId = null,
     quotationContext = {},
-  }) => {
+  }: IVerifyQuotationMutationVariables) => {
     return verifyQuotationMutation({
       variables: { quotationId, quotationContext },
     });

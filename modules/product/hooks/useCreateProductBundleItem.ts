@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateProductBundleItemMutation,
+  ICreateProductBundleItemMutationVariables,
+} from '../../../gql/types';
 
 const CreateProductBundleItemMutation = gql`
   mutation CreateProductBundleItem(
@@ -12,11 +16,15 @@ const CreateProductBundleItemMutation = gql`
 `;
 
 const useCreateProductBundleItem = () => {
-  const [createProductBundleItemMutation] = useMutation(
-    CreateProductBundleItemMutation,
-  );
+  const [createProductBundleItemMutation] = useMutation<
+    ICreateProductBundleItemMutation,
+    ICreateProductBundleItemMutationVariables
+  >(CreateProductBundleItemMutation);
 
-  const createProductBundleItem = async ({ productId, item }) => {
+  const createProductBundleItem = async ({
+    productId,
+    item,
+  }: ICreateProductBundleItemMutationVariables) => {
     return createProductBundleItemMutation({
       variables: { productId, item },
       refetchQueries: ['ProductBundleItems'],

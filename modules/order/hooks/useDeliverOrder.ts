@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IDeliverOrderMutation,
+  IDeliverOrderMutationVariables,
+} from '../../../gql/types';
 
 const DeliverOrderMutation = gql`
   mutation DeliverOrder($orderId: ID!) {
@@ -9,9 +13,12 @@ const DeliverOrderMutation = gql`
 `;
 
 const useDeliverOrder = () => {
-  const [deliverOrderMutation] = useMutation(DeliverOrderMutation);
+  const [deliverOrderMutation] = useMutation<
+    IDeliverOrderMutation,
+    IDeliverOrderMutationVariables
+  >(DeliverOrderMutation);
 
-  const deliverOrder = async ({ orderId }: { orderId: string }) => {
+  const deliverOrder = async ({ orderId }: IDeliverOrderMutationVariables) => {
     return deliverOrderMutation({
       variables: {
         orderId,

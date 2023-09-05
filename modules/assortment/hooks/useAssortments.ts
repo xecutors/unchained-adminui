@@ -1,4 +1,9 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IAssortmentsQuery,
+  IAssortmentsQueryVariables,
+  ISortOptionInput,
+} from '../../../gql/types';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 export const AssortmentsQuery = gql`
@@ -50,25 +55,28 @@ const useAssortments = ({
   includeLeaves = false,
   sort: sortOptions = [],
   forceLocale = '',
-} = {}) => {
-  const { data, loading, error } = useQuery(AssortmentsQuery, {
-    fetchPolicy: 'cache-first',
-    variables: {
-      queryString,
-      tags,
-      slugs: slugs || null,
-      limit,
-      offset,
-      includeInactive,
-      includeLeaves,
-      sort: sortOptions.length
-        ? sortOptions
-        : [{ key: 'sequence', value: 'ASC' }],
+}: IAssortmentsQueryVariables & { forceLocale?: string } = {}) => {
+  const { data, loading, error } = useQuery<IAssortmentsQuery>(
+    AssortmentsQuery,
+    {
+      fetchPolicy: 'cache-first',
+      variables: {
+        queryString,
+        tags,
+        slugs: slugs || null,
+        limit,
+        offset,
+        includeInactive,
+        includeLeaves,
+        sort: (sortOptions as ISortOptionInput[]).length
+          ? sortOptions
+          : [{ key: 'sequence', value: 'ASC' }],
+      },
+      context: {
+        headers: { forceLocale },
+      },
     },
-    context: {
-      headers: { forceLocale },
-    },
-  });
+  );
   const assortments = data?.assortments || [];
   const assortmentsCount = data?.assortmentsCount;
   const hasMore = assortments?.length < assortmentsCount;

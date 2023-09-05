@@ -1,7 +1,7 @@
 import TextField from './TextField';
 import { validateEmail } from '../lib/validators';
 
-const EmailField = ({ validators = [], value, ...props }) => {
+const EmailField = ({ validators = [], value = '', ...props }) => {
   return (
     <TextField
       {...{

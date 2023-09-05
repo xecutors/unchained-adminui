@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IEventQuery, IEventQueryVariables } from '../../../gql/types';
 import EventFragment from '../fragments/EventFragment';
 
 export const EventQuery = gql`
@@ -10,11 +11,14 @@ export const EventQuery = gql`
   ${EventFragment}
 `;
 
-const useEnrollments = ({ eventId = null } = {}) => {
-  const { data, loading, error } = useQuery(EventQuery, {
-    skip: !eventId,
-    variables: { eventId },
-  });
+const useEnrollments = ({ eventId = null }: IEventQueryVariables) => {
+  const { data, loading, error } = useQuery<IEventQuery, IEventQueryVariables>(
+    EventQuery,
+    {
+      skip: !eventId,
+      variables: { eventId },
+    },
+  );
   const event = data?.event || [];
 
   return {

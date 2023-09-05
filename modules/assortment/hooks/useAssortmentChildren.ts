@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IAssortmentChildrenQuery,
+  IAssortmentChildrenQueryVariables,
+} from '../../../gql/types';
 import { parseSlug } from '../../common/utils/getUniqueId';
 import AssortmentChildrenFragment from '../fragments/AssortmentChildrenFragment';
 
@@ -27,22 +31,25 @@ const useAssortmentChildren = ({
   includeInactive = false,
   includeLeaves = false,
   forceLocale,
-}) => {
-  const normalizedSlug = slugs?.map((slug) => parseSlug(slug));
-  const { data, loading, error } = useQuery(AssortmentChildrenQuery, {
-    variables: {
-      slugs: normalizedSlug,
-      includeInactive,
-      includeLeaves,
-    },
-    context: {
-      headers: {
-        forceLocale,
+}: IAssortmentChildrenQueryVariables & { forceLocale?: string }) => {
+  const normalizedSlug = (slugs as string[])?.map((slug) => parseSlug(slug));
+  const { data, loading, error } = useQuery<IAssortmentChildrenQuery>(
+    AssortmentChildrenQuery,
+    {
+      variables: {
+        slugs: normalizedSlug,
+        includeInactive,
+        includeLeaves,
       },
+      context: {
+        headers: {
+          forceLocale,
+        },
+      },
+      returnPartialData: true,
+      notifyOnNetworkStatusChange: true,
     },
-    returnPartialData: true,
-    notifyOnNetworkStatusChange: true,
-  });
+  );
 
   const assortments = data?.assortments || [];
 

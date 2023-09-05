@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateProductTokenizationMutation,
+  IUpdateProductTokenizationMutationVariables,
+} from '../../../gql/types';
 
 const UpdateProductTokenizationMutation = gql`
   mutation UpdateProductTokenization(
@@ -15,17 +19,15 @@ const UpdateProductTokenizationMutation = gql`
 `;
 
 const useUpdateProductTokenization = () => {
-  const [updateProductTokenizationMutation] = useMutation(
-    UpdateProductTokenizationMutation,
-  );
+  const [updateProductTokenizationMutation] = useMutation<
+    IUpdateProductTokenizationMutation,
+    IUpdateProductTokenizationMutationVariables
+  >(UpdateProductTokenizationMutation);
 
   const updateProductTokenization = async ({
     productId,
-    contractAddress,
-    contractStandard,
-    tokenId,
-    supply,
-  }) => {
+    tokenization: { contractAddress, contractStandard, tokenId, supply },
+  }: IUpdateProductTokenizationMutationVariables) => {
     return updateProductTokenizationMutation({
       variables: {
         productId,
@@ -33,7 +35,7 @@ const useUpdateProductTokenization = () => {
           contractAddress,
           contractStandard,
           tokenId,
-          supply: parseInt(supply, 10),
+          supply: parseInt(supply as unknown as string, 10),
         },
       },
       refetchQueries: ['Product', 'Products'],

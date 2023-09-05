@@ -1,7 +1,11 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ISendEnrollmentEmailMutation,
+  ISendEnrollmentEmailMutationVariables,
+} from '../../../gql/types';
 
 const SendEnrollmentEmailMutation = gql`
-  mutation sendEnrollmentEmail($email: String!) {
+  mutation SendEnrollmentEmail($email: String!) {
     sendEnrollmentEmail(email: $email) {
       success
     }
@@ -9,11 +13,14 @@ const SendEnrollmentEmailMutation = gql`
 `;
 
 const useSendEnrollmentEmail = () => {
-  const [sendEnrollmentEmailMutation] = useMutation(
-    SendEnrollmentEmailMutation,
-  );
+  const [sendEnrollmentEmailMutation] = useMutation<
+    ISendEnrollmentEmailMutation,
+    ISendEnrollmentEmailMutationVariables
+  >(SendEnrollmentEmailMutation);
 
-  const sendEnrollmentEmail = async ({ email }) => {
+  const sendEnrollmentEmail = async ({
+    email,
+  }: ISendEnrollmentEmailMutationVariables) => {
     return sendEnrollmentEmailMutation({
       variables: { email },
     });

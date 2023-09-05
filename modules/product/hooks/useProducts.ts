@@ -1,4 +1,11 @@
 import { useQuery, gql } from '@apollo/client';
+
+import {
+  IProductsQuery,
+  IProductsQueryVariables,
+  ISortOptionInput,
+} from '../../../gql/types';
+
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
 export const ProductsQuery = gql`
@@ -41,8 +48,11 @@ const useProducts = ({
   slugs = null,
   sort: sortOptions = [],
   forceLocale = '',
-} = {}) => {
-  const { data, loading, error } = useQuery(ProductsQuery, {
+}: IProductsQueryVariables & { forceLocale?: string } = {}) => {
+  const { data, loading, error } = useQuery<
+    IProductsQuery,
+    IProductsQueryVariables
+  >(ProductsQuery, {
     context: {
       headers: {
         forceLocale,
@@ -57,7 +67,7 @@ const useProducts = ({
       slugs,
       sort: sortOptions.length
         ? sortOptions
-        : [{ key: 'sequence', value: 'ASC' }],
+        : ([{ key: 'sequence', value: 'ASC' }] as ISortOptionInput[]),
     },
   });
   const products = data?.products || [];

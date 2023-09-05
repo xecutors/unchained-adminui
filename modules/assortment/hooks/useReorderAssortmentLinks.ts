@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IReorderAssortmentLinksMutation,
+  IReorderAssortmentLinksMutationVariables,
+} from '../../../gql/types';
 
 const ReorderAssortmentLinkMutation = gql`
   mutation ReorderAssortmentLinks($sortKeys: [ReorderAssortmentLinkInput!]!) {
@@ -9,11 +13,14 @@ const ReorderAssortmentLinkMutation = gql`
 `;
 
 const useReorderAssortmentLink = () => {
-  const [reorderAssortmentLinkMutation] = useMutation(
-    ReorderAssortmentLinkMutation,
-  );
+  const [reorderAssortmentLinkMutation] = useMutation<
+    IReorderAssortmentLinksMutation,
+    IReorderAssortmentLinksMutationVariables
+  >(ReorderAssortmentLinkMutation);
 
-  const reorderAssortmentLink = async ({ sortKeys }) => {
+  const reorderAssortmentLink = async ({
+    sortKeys,
+  }: IReorderAssortmentLinksMutationVariables) => {
     return reorderAssortmentLinkMutation({
       variables: { sortKeys },
       refetchQueries: ['AssortmentLinks'],

@@ -1,7 +1,11 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedProductVariationTextsQuery,
+  ITranslatedProductVariationTextsQueryVariables,
+} from '../../../gql/types';
 
-export const TranslatedProductVariationQuery = gql`
-  query translatedProductVariationTexts(
+export const TranslatedProductVariationTextsQuery = gql`
+  query TranslatedProductVariationTexts(
     $productVariationId: ID!
     $productVariationOptionValue: String
   ) {
@@ -20,8 +24,11 @@ export const TranslatedProductVariationQuery = gql`
 const useTranslatedProductVariationTexts = ({
   productVariationId,
   productVariationOptionValue,
-}) => {
-  const { data, loading, error } = useQuery(TranslatedProductVariationQuery, {
+}: ITranslatedProductVariationTextsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    ITranslatedProductVariationTextsQuery,
+    ITranslatedProductVariationTextsQueryVariables
+  >(TranslatedProductVariationTextsQuery, {
     skip: !productVariationId,
     variables: {
       productVariationId,

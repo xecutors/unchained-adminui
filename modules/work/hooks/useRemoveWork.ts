@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveWorkMutation,
+  IRemoveWorkMutationVariables,
+} from '../../../gql/types';
 
 const RemoveWorkMutation = gql`
   mutation RemoveWork($workId: ID!) {
@@ -9,9 +13,12 @@ const RemoveWorkMutation = gql`
 `;
 
 const useRemoveWork = () => {
-  const [removeWorkMutation] = useMutation(RemoveWorkMutation);
+  const [removeWorkMutation] = useMutation<
+    IRemoveWorkMutation,
+    IRemoveWorkMutationVariables
+  >(RemoveWorkMutation);
 
-  const removeWork = async ({ workId }: { workId: string }) => {
+  const removeWork = async ({ workId }: IRemoveWorkMutationVariables) => {
     return removeWorkMutation({
       variables: {
         workId,

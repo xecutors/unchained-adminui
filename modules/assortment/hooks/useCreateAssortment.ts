@@ -1,4 +1,9 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateAssortmentInput,
+  ICreateAssortmentMutation,
+  ICreateAssortmentMutationVariables,
+} from '../../../gql/types';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 const CreateAssortmentMutation = gql`
@@ -11,11 +16,16 @@ const CreateAssortmentMutation = gql`
 `;
 
 const useCreateAssortment = () => {
-  const [createAssortmentMutation, { data, error, loading }] = useMutation(
-    CreateAssortmentMutation,
-  );
+  const [createAssortmentMutation, { data, error, loading }] = useMutation<
+    ICreateAssortmentMutation,
+    ICreateAssortmentMutationVariables
+  >(CreateAssortmentMutation);
 
-  const createAssortment = async ({ isRoot = false, tags = [], title }) => {
+  const createAssortment = async ({
+    isRoot = false,
+    tags = [],
+    title,
+  }: ICreateAssortmentInput) => {
     return createAssortmentMutation({
       variables: { assortment: { isRoot, title, tags } },
       refetchQueries: ['Assortments'],

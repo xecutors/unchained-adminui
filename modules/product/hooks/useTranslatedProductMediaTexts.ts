@@ -1,7 +1,11 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedProductMediaTextsQuery,
+  ITranslatedProductMediaTextsQueryVariables,
+} from '../../../gql/types';
 import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 
-export const TranslatedProductMediaQuery = gql`
+export const TranslatedProductMediaTextsQuery = gql`
   query TranslatedProductMediaTexts($productMediaId: ID!) {
     translatedProductMediaTexts(productMediaId: $productMediaId) {
       ...ProductMediaTextsFragment
@@ -10,8 +14,13 @@ export const TranslatedProductMediaQuery = gql`
   ${ProductMediaTextsFragment}
 `;
 
-const useTranslatedProductMediaTexts = ({ productMediaId }) => {
-  const { data, loading, error } = useQuery(TranslatedProductMediaQuery, {
+const useTranslatedProductMediaTexts = ({
+  productMediaId,
+}: ITranslatedProductMediaTextsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    ITranslatedProductMediaTextsQuery,
+    ITranslatedProductMediaTextsQueryVariables
+  >(TranslatedProductMediaTextsQuery, {
     skip: !productMediaId,
     variables: {
       productMediaId,

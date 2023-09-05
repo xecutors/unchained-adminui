@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IEventsTypeQuery,
+  IEventsTypeQueryVariables,
+} from '../../../gql/types';
 
 export const EventsTypeQuery = gql`
   query EventsType {
@@ -12,7 +16,10 @@ export const EventsTypeQuery = gql`
 `;
 
 const useEventTypes = () => {
-  const { data, loading, error } = useQuery(EventsTypeQuery);
+  const { data, loading, error } = useQuery<
+    IEventsTypeQuery,
+    IEventsTypeQueryVariables
+  >(EventsTypeQuery);
 
   const eventsType = data?.eventTypes?.options || [];
 

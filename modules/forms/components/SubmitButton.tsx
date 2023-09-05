@@ -6,8 +6,8 @@ import useFormContext from '../hooks/useFormContext';
 const SubmitButton = ({
   label,
   disabled: disabledProp = false,
-  className,
-  hidden,
+  className = '',
+  hidden = false,
   ...props
 }) => {
   const formik = useFormikContext();

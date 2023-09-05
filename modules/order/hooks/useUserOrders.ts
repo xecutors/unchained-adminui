@@ -1,4 +1,9 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ISortDirection,
+  IUserOrderQuery,
+  IUserOrderQueryVariables,
+} from '../../../gql/types';
 import OrderFragment from '../fragments/OrderFragment';
 
 export const UserOrdersQuery = gql`
@@ -20,15 +25,18 @@ const useUserOrders = ({
   userId = null,
   queryString = '',
   sort: sortOptions = [],
-} = {}) => {
-  const { data, loading, error } = useQuery(UserOrdersQuery, {
+}: IUserOrderQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IUserOrderQuery,
+    IUserOrderQueryVariables
+  >(UserOrdersQuery, {
     skip: !userId,
     variables: {
       userId,
       queryString,
       sort: sortOptions.length
         ? sortOptions
-        : [{ key: 'ordered', value: 'DESC' }],
+        : [{ key: 'ordered', value: ISortDirection.Desc }],
     },
   });
 

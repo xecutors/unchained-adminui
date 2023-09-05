@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IAssortmentQuery,
+  IAssortmentQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 
@@ -14,10 +18,13 @@ export const GetAssortmentQuery = (inlineFragment = '') => gql`
   ${AssortmentFragment}
 `;
 
-const useAssortment = ({ assortmentId: id = null, slug = null } = {}) => {
+const useAssortment = ({
+  assortmentId: id = null,
+  slug = null,
+}: IAssortmentQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
   const { customProperties, hydrateFragment } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
+  const { data, loading, error } = useQuery<IAssortmentQuery>(
     GetAssortmentQuery(customProperties?.Assortment),
     {
       skip: !id && !slug,

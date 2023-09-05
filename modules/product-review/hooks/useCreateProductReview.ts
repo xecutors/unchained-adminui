@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateProductReviewMutation,
+  ICreateProductReviewMutationVariables,
+} from '../../../gql/types';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 
 const CreateProductReviewMutation = gql`
@@ -14,11 +18,15 @@ const CreateProductReviewMutation = gql`
 `;
 
 const useCreateProductReview = () => {
-  const [createProductReviewMutation] = useMutation(
-    CreateProductReviewMutation,
-  );
+  const [createProductReviewMutation] = useMutation<
+    ICreateProductReviewMutation,
+    ICreateProductReviewMutationVariables
+  >(CreateProductReviewMutation);
 
-  const createProductReview = async ({ productId, title, rating, review }) => {
+  const createProductReview = async ({
+    productId,
+    productReview: { title, rating, review },
+  }: ICreateProductReviewMutationVariables) => {
     return createProductReviewMutation({
       variables: {
         productId,

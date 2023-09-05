@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IUserQuotationsQuery,
+  IUserQuotationsQueryVariables,
+} from '../../../gql/types';
 import QuotationFragment from '../fragments/QuotationFragment';
 
 export const UserQuotationsQuery = gql`
@@ -13,8 +17,14 @@ export const UserQuotationsQuery = gql`
   ${QuotationFragment}
 `;
 
-const useUserQuotations = ({ userId = null, queryString = '' } = {}) => {
-  const { data, loading, error } = useQuery(UserQuotationsQuery, {
+const useUserQuotations = ({
+  userId = null,
+  queryString = '',
+}: IUserQuotationsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IUserQuotationsQuery,
+    IUserQuotationsQueryVariables
+  >(UserQuotationsQuery, {
     skip: !userId,
     variables: { userId, queryString },
   });

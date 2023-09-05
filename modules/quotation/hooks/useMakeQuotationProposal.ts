@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IMakeQuotationProposalMutation,
+  IMakeQuotationProposalMutationVariables,
+} from '../../../gql/types';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
 const MakeQuotationProposalMutation = gql`
@@ -14,14 +18,15 @@ const MakeQuotationProposalMutation = gql`
 `;
 
 const useMakeQuotationProposal = () => {
-  const [makeQuotationProposalMutation] = useMutation(
-    MakeQuotationProposalMutation,
-  );
+  const [makeQuotationProposalMutation] = useMutation<
+    IMakeQuotationProposalMutation,
+    IMakeQuotationProposalMutationVariables
+  >(MakeQuotationProposalMutation);
 
   const makeQuotationProposal = async ({
     quotationId = null,
     quotationContext = {},
-  }) => {
+  }: IMakeQuotationProposalMutationVariables) => {
     return makeQuotationProposalMutation({
       variables: { quotationId, quotationContext },
     });

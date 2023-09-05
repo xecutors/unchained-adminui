@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveBundleItemMutation,
+  IRemoveBundleItemMutationVariables,
+} from '../../../gql/types';
 
 const RemoveBundleItemMutation = gql`
   mutation RemoveBundleItem($productId: ID!, $index: Int!) {
@@ -9,9 +13,15 @@ const RemoveBundleItemMutation = gql`
 `;
 
 const useRemoveBundleItem = () => {
-  const [removeBundleItemMutation] = useMutation(RemoveBundleItemMutation);
+  const [removeBundleItemMutation] = useMutation<
+    IRemoveBundleItemMutation,
+    IRemoveBundleItemMutationVariables
+  >(RemoveBundleItemMutation);
 
-  const removeBundleItem = async ({ productId, index }) => {
+  const removeBundleItem = async ({
+    productId,
+    index,
+  }: IRemoveBundleItemMutationVariables) => {
     return removeBundleItemMutation({
       variables: { productId, index },
       refetchQueries: ['ProductBundleItems'],

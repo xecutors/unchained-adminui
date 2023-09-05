@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddWorkMutation,
+  IAddWorkMutationVariables,
+} from '../../../gql/types';
 
 const AddWorkMutation = gql`
   mutation AddWork(
@@ -23,7 +27,10 @@ const AddWorkMutation = gql`
 `;
 
 const useAddWork = () => {
-  const [addWorkMutation] = useMutation(AddWorkMutation);
+  const [addWorkMutation] = useMutation<
+    IAddWorkMutation,
+    IAddWorkMutationVariables
+  >(AddWorkMutation);
 
   const addWork = async ({
     type,
@@ -32,14 +39,7 @@ const useAddWork = () => {
     originalWorkId,
     scheduled = null,
     retries,
-  }: {
-    type: string;
-    priority: number;
-    input?: JSON;
-    originalWorkId?: string;
-    scheduled?: number;
-    retries: number;
-  }) => {
+  }: IAddWorkMutationVariables) => {
     return addWorkMutation({
       variables: {
         type,

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IProductVariationsQuery,
+  IProductVariationsQueryVariables,
+} from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductVariationFragment from '../fragments/ProductVariationFragment';
@@ -17,16 +21,22 @@ export const ProductVariationQuery = gql`
   ${ProductVariationFragment}
 `;
 
-const useProductVariations = ({ productId: id = null, slug = null } = {}) => {
+const useProductVariations = ({
+  productId: id = null,
+  slug = null,
+}: IProductVariationsQueryVariables = {}) => {
   const parsedId = parseUniqueId(slug);
 
-  const { data, loading, error } = useQuery(ProductVariationQuery, {
+  const { data, loading, error } = useQuery<
+    IProductVariationsQuery,
+    IProductVariationsQueryVariables
+  >(ProductVariationQuery, {
     skip: !id && !parsedId,
     variables: { productId: id || parsedId },
   });
 
-  const product = data?.product || {};
-  const variations = product?.variations || [];
+  const product = data?.product as any;
+  const variations = product?.variations;
 
   return {
     variations,

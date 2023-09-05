@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IReorderAssortmentMediaMutation,
+  IReorderAssortmentMediaMutationVariables,
+} from '../../../gql/types';
 
 const ReorderAssortmentMediaMutation = gql`
   mutation ReorderAssortmentMedia($sortKeys: [ReorderAssortmentMediaInput!]!) {
@@ -9,11 +13,14 @@ const ReorderAssortmentMediaMutation = gql`
 `;
 
 const useReorderAssortmentMedia = () => {
-  const [reorderAssortmentMediaMutation] = useMutation(
-    ReorderAssortmentMediaMutation,
-  );
+  const [reorderAssortmentMediaMutation] = useMutation<
+    IReorderAssortmentMediaMutation,
+    IReorderAssortmentMediaMutationVariables
+  >(ReorderAssortmentMediaMutation);
 
-  const reorderAssortmentMedia = async ({ sortKeys }) => {
+  const reorderAssortmentMedia = async ({
+    sortKeys,
+  }: IReorderAssortmentMediaMutationVariables) => {
     return reorderAssortmentMediaMutation({
       variables: { sortKeys },
       refetchQueries: ['AssortmentMedia'],

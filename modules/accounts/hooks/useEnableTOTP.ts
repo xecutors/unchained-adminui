@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IEnableTotpMutation,
+  IEnableTotpMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const EnableTOTPMutation = gql`
@@ -11,7 +15,10 @@ const EnableTOTPMutation = gql`
 `;
 
 const useEnableTOTP = () => {
-  const [enableTOTPMutation] = useMutation(EnableTOTPMutation);
+  const [enableTOTPMutation] = useMutation<
+    IEnableTotpMutation,
+    IEnableTotpMutationVariables
+  >(EnableTOTPMutation);
 
   const enableTOTP = async ({ otpauthUrl, code }) => {
     let secretBase32;

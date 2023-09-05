@@ -1,4 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
+import {
+  ICurrentUserRoleQuery,
+  ICurrentUserRoleQueryVariables,
+} from '../../../gql/types';
 
 const UserRolesQuery = gql`
   query CurrentUserRole {
@@ -9,8 +13,11 @@ const UserRolesQuery = gql`
   }
 `;
 
-const useCurrentRoles = () => {
-  const { loading, error, data } = useQuery(UserRolesQuery, {});
+const useCurrentRoles = (params?: ICurrentUserRoleQueryVariables) => {
+  const { loading, error, data } = useQuery<
+    ICurrentUserRoleQuery,
+    ICurrentUserRoleQueryVariables
+  >(UserRolesQuery, {});
 
   const roles = data?.me?.allowedActions;
 

@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IPaymentProvidersQuery,
+  IPaymentProvidersQueryVariables,
+} from '../../../gql/types';
 import PaymentProviderFragment from '../fragments/PaymentProviderFragment';
 
 export const PaymentProvidersQuery = gql`
@@ -10,8 +14,13 @@ export const PaymentProvidersQuery = gql`
   ${PaymentProviderFragment}
 `;
 
-const usePaymentProviders = ({ type = null } = {}) => {
-  const { data, loading, error }: any = useQuery(PaymentProvidersQuery, {
+const usePaymentProviders = ({
+  type = null,
+}: IPaymentProvidersQueryVariables = {}) => {
+  const { data, loading, error }: any = useQuery<
+    IPaymentProvidersQuery,
+    IPaymentProvidersQueryVariables
+  >(PaymentProvidersQuery, {
     variables: { type },
   });
 

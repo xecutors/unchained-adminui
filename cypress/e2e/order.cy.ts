@@ -349,7 +349,7 @@ describe('Order', () => {
         .click({ force: true });
 
       cy.get('button#danger_continue')
-        .contains(localizations.en.continue)
+        .contains(localizations.en.reject_order_alert_button)
         .click({
           force: true,
         });

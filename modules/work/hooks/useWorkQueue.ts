@@ -1,4 +1,9 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ISortDirection,
+  IWorkQueueQuery,
+  IWorkQueueQueryVariables,
+} from '../../../gql/types';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import WorkFragment from '../fragments/WorkFragment';
 
@@ -42,9 +47,12 @@ const useWorkQueue = ({
   types = undefined,
   created = null,
   sort: sortOptions = [],
-} = {}) => {
+}: IWorkQueueQueryVariables) => {
   const { parseDate } = useFormatDateTime();
-  const { data, loading, error, fetchMore } = useQuery(WorkQueueQuery, {
+  const { data, loading, error, fetchMore } = useQuery<
+    IWorkQueueQuery,
+    IWorkQueueQueryVariables
+  >(WorkQueueQuery, {
     fetchPolicy: 'cache-and-network',
     pollInterval: 1000,
     variables: {
@@ -60,7 +68,7 @@ const useWorkQueue = ({
       ),
       sort: (sortOptions || []).length
         ? sortOptions
-        : [{ key: 'scheduled', value: 'DESC' }],
+        : [{ key: 'scheduled', value: ISortDirection.Desc }],
     },
   });
   const workQueue = data?.workQueue || [];

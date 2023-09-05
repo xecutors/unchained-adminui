@@ -13,7 +13,7 @@ export interface CommonFieldProps {
   id?: string;
   required?: boolean;
   disabled?: boolean;
-  value: string;
+  value?: string;
   autoComplete?: 'on' | 'off';
   label?: string;
   errorMessage?: string;

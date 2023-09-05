@@ -42,7 +42,7 @@ describe('Login', () => {
         aliasQuery(req, UserOperations.CurrentUser);
         if (req.headers?.cookie && req.headers?.cookie.includes('token')) {
           req.reply(CurrentUserResponse);
-        } else req.reply({ data: { me: null } });
+        } else req.reply({ data: { impersonator: null, me: null } });
       }
     });
     cy.visit('/');
@@ -58,7 +58,9 @@ describe('Login', () => {
       (currentSubject) => {
         const { response } = currentSubject;
 
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
     cy.get('input[name="usernameOrEmail"]').type('admin@unchained.local');
@@ -88,6 +90,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         plainPassword: 'correct',
         username: null,
+        totpCode: null,
       });
       expect(response.body).to.deep.eq(LogInSuccessResponse);
     });
@@ -132,6 +135,7 @@ describe('Login', () => {
         email: 'admin@unchained.local',
         plainPassword: 'wrong-password',
         username: null,
+        totpCode: null,
       });
       expect(response.body).to.deep.eq(InvalidCredentialErrorResponse);
     });

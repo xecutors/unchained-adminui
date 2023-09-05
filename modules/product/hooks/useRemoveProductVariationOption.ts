@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveProductVariationOptionMutation,
+  IRemoveProductVariationOptionMutationVariables,
+} from '../../../gql/types';
 
 const RemoveProductVariationOptionMutation = gql`
   mutation RemoveProductVariationOption(
@@ -15,14 +19,15 @@ const RemoveProductVariationOptionMutation = gql`
 `;
 
 const useRemoveProductVariationOption = () => {
-  const [removeProductVariationOptionMutation] = useMutation(
-    RemoveProductVariationOptionMutation,
-  );
+  const [removeProductVariationOptionMutation] = useMutation<
+    IRemoveProductVariationOptionMutation,
+    IRemoveProductVariationOptionMutationVariables
+  >(RemoveProductVariationOptionMutation);
 
   const removeProductVariationOption = async ({
     productVariationId,
     productVariationOptionValue,
-  }) => {
+  }: IRemoveProductVariationOptionMutationVariables) => {
     return removeProductVariationOptionMutation({
       variables: { productVariationId, productVariationOptionValue },
       refetchQueries: ['ProductVariations'],

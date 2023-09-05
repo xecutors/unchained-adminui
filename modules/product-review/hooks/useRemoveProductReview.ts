@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IRemoveProductReviewMutation,
+  IRemoveProductReviewMutationVariables,
+} from '../../../gql/types';
 
 const RemoveProductReviewMutation = gql`
   mutation RemoveProductReview($productReviewId: ID!) {
@@ -9,11 +13,14 @@ const RemoveProductReviewMutation = gql`
 `;
 
 const useRemoveProductReview = () => {
-  const [removeProductReviewMutation] = useMutation(
-    RemoveProductReviewMutation,
-  );
+  const [removeProductReviewMutation] = useMutation<
+    IRemoveProductReviewMutation,
+    IRemoveProductReviewMutationVariables
+  >(RemoveProductReviewMutation);
 
-  const removeProductReview = async ({ productReviewId }) => {
+  const removeProductReview = async ({
+    productReviewId,
+  }: IRemoveProductReviewMutationVariables) => {
     return removeProductReviewMutation({
       variables: {
         productReviewId,

@@ -32,7 +32,7 @@ describe('Sign Up', () => {
         if (req.headers?.cookie && req.headers?.cookie.includes('token')) {
           req.reply(CurrentUserResponse);
         } else {
-          req.reply({ data: { me: null } });
+          req.reply({ data: { impersonator: null, me: null } });
         }
       }
     });
@@ -51,7 +51,7 @@ describe('Sign Up', () => {
 
     cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('new@unchained.shop');
-    cy.get('input[name="password"]').type('password');
+    cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain.text', localizations.en.sign_up)
       .click();
@@ -72,7 +72,9 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
 
@@ -91,14 +93,16 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
 
     cy.get('input[name="username"]').type('admin');
     cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('admin@unchained.shop');
-    cy.get('input[name="password"]').type('password');
+    cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
       .should('contain', localizations.en.sign_up)
       .click();
@@ -122,7 +126,9 @@ describe('Sign Up', () => {
     cy.wait(fullAliasName(UserOperations.CurrentUser)).then(
       (currentSubject) => {
         const { response } = currentSubject;
-        expect(response.body).to.deep.eq({ data: { me: null } });
+        expect(response.body).to.deep.eq({
+          data: { impersonator: null, me: null },
+        });
       },
     );
     cy.get('button#totp[role="switch"]').click();
@@ -136,7 +142,7 @@ describe('Sign Up', () => {
         localizations.en.email,
       ),
     );
-    cy.get('label[for="password"]').should(
+    cy.get('label[for="plainPassword"]').should(
       'contain',
       replaceIntlPlaceholder(
         localizations.en.error_required,

@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { ISortDirection } from '../../../gql/types';
 import { DefaultLimit } from '../../common/data/miscellaneous';
 
 export const SyncReportQuery = gql`
@@ -54,7 +55,7 @@ const useDailySyncs = ({
       status: ['SUCCESS', 'FAILED'],
       types: ['PUBLICARE_DAILY_ANALYTICS'],
       limit,
-      sort: [{ key: 'created', value: 'DESC' }],
+      sort: [{ key: 'created', value: ISortDirection.Desc }],
     },
   });
 

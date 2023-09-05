@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { ICountriesQuery, ICountriesQueryVariables } from '../../../gql/types';
 import CountryFragment from '../fragments/CountryFragment';
 
 export const CountriesQuery = gql`
@@ -31,7 +32,10 @@ const useCountries = ({
   includeInactive = true,
   sort = [],
 } = {}) => {
-  const { data, loading, error }: any = useQuery(CountriesQuery, {
+  const { data, loading, error } = useQuery<
+    ICountriesQuery,
+    ICountriesQueryVariables
+  >(CountriesQuery, {
     variables: { queryString, limit, offset, includeInactive, sort },
   });
 

@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateWarehousingProviderMutation,
+  IUpdateWarehousingProviderMutationVariables,
+} from '../../../gql/types';
 import WarehousingProviderFragment from '../fragments/WarehousingProviderFragment';
 
 const UpdateWarehousingProviderMutation = gql`
@@ -17,14 +21,15 @@ const UpdateWarehousingProviderMutation = gql`
 `;
 
 const useUpdateWarehousingProvider = () => {
-  const [updateWarehousingProviderMutation] = useMutation(
-    UpdateWarehousingProviderMutation,
-  );
+  const [updateWarehousingProviderMutation] = useMutation<
+    IUpdateWarehousingProviderMutation,
+    IUpdateWarehousingProviderMutationVariables
+  >(UpdateWarehousingProviderMutation);
 
   const updateWarehousingProvider = async ({
-    configuration,
+    warehousingProvider: { configuration },
     warehousingProviderId,
-  }) => {
+  }: IUpdateWarehousingProviderMutationVariables) => {
     return updateWarehousingProviderMutation({
       variables: {
         warehousingProvider: { configuration },

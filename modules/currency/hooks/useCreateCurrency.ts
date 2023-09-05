@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateCurrencyMutation,
+  ICreateCurrencyMutationVariables,
+} from '../../../gql/types';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
 const CreateCurrencyMutation = gql`
@@ -11,17 +15,20 @@ const CreateCurrencyMutation = gql`
 `;
 
 const useCreateCurrency = () => {
-  const [createCurrencyMutation, { data, loading, error }] = useMutation(
-    CreateCurrencyMutation,
-  );
+  const [createCurrencyMutation, { data, loading, error }] = useMutation<
+    ICreateCurrencyMutation,
+    ICreateCurrencyMutationVariables
+  >(CreateCurrencyMutation);
 
-  const createCurrency = async ({ isoCode, contractAddress, decimals }) => {
+  const createCurrency = async ({
+    currency: { isoCode, contractAddress, decimals },
+  }: ICreateCurrencyMutationVariables) => {
     return createCurrencyMutation({
       variables: {
         currency: {
           isoCode,
           contractAddress,
-          decimals: parseInt(decimals || '2', 10),
+          decimals: parseInt((decimals || '2') as string, 10),
         },
       },
     });

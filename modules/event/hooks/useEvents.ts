@@ -1,4 +1,10 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IEventsQuery,
+  IEventsQueryVariables,
+  ISortDirection,
+  ISortOptionInput,
+} from '../../../gql/types';
 import EventFragment from '../fragments/EventFragment';
 
 export const EventQuery = gql`
@@ -29,15 +35,18 @@ const useEvents = ({
   offset = 0,
   sort: sortOptions = [],
   queryString = null,
-} = {}) => {
-  const { data, loading, error } = useQuery(EventQuery, {
+}: IEventsQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IEventsQuery,
+    IEventsQueryVariables
+  >(EventQuery, {
     variables: {
       types,
       limit,
       offset,
       sort: sortOptions?.length
         ? sortOptions
-        : [{ key: 'created', value: 'DESC' }],
+        : [{ key: 'created', value: ISortDirection.Desc }],
       queryString,
     },
   });

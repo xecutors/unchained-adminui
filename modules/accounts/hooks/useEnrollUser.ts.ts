@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IEnrollUserMutation,
+  IEnrollUserMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const EnrollUserMutation = gql`
@@ -19,8 +23,10 @@ const EnrollUserMutation = gql`
 `;
 
 const useEnrollUser = () => {
-  const [enrollUserMutation, { data, error, loading }] =
-    useMutation(EnrollUserMutation);
+  const [enrollUserMutation, { data, error, loading }] = useMutation<
+    IEnrollUserMutation,
+    IEnrollUserMutationVariables
+  >(EnrollUserMutation);
 
   const enrollUser = async ({ email, password, profile }) => {
     const variables = {

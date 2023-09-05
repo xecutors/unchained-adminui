@@ -1,4 +1,4 @@
-const generateUniqueId = ({ _id, texts }) => {
+const generateUniqueId = ({ _id, texts }: any) => {
   return `${texts?.slug}_id_${_id}`;
 };
 

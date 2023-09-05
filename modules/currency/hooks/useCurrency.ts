@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { ICurrencyQuery, ICurrencyQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
@@ -12,15 +13,15 @@ export const GetCurrencyQuery = (inlineFragment = '') => gql`
   ${CurrencyFragment}
 `;
 
-const useCurrency = ({ currencyId }) => {
+const useCurrency = ({ currencyId }: ICurrencyQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetCurrencyQuery(customProperties?.Currency),
-    {
-      skip: !currencyId,
-      variables: { currencyId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    ICurrencyQuery,
+    ICurrencyQueryVariables
+  >(GetCurrencyQuery(customProperties?.Currency), {
+    skip: !currencyId,
+    variables: { currencyId },
+  });
 
   return {
     currency: data?.currency,

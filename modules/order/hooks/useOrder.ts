@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IOrderQuery, IOrderQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import OrderDetailFragment from '../fragments/OrderDetailFragment';
 
@@ -12,9 +13,9 @@ export const GetOrderQuery = (inlineFragment = '') => gql`
   ${OrderDetailFragment}
 `;
 
-const useOrder = ({ orderId = null } = {}) => {
+const useOrder = ({ orderId = null }: IOrderQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
+  const { data, loading, error } = useQuery<IOrderQuery, IOrderQueryVariables>(
     GetOrderQuery(customProperties?.Order),
     {
       skip: !orderId,

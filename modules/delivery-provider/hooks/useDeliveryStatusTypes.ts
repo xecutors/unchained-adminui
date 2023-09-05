@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IOrderDeliveryStatusQuery,
+  IOrderDeliveryStatusQueryVariables,
+} from '../../../gql/types';
 
 export const DeliveryStatusTypesQuery = gql`
   query OrderDeliveryStatus {
@@ -12,7 +16,10 @@ export const DeliveryStatusTypesQuery = gql`
 `;
 
 const useDeliveryStatusTypes = () => {
-  const { data, loading, error } = useQuery(DeliveryStatusTypesQuery);
+  const { data, loading, error } = useQuery<
+    IOrderDeliveryStatusQuery,
+    IOrderDeliveryStatusQueryVariables
+  >(DeliveryStatusTypesQuery);
 
   const deliveryStatusType = data?.deliveryStatusType?.options || [];
 

@@ -207,11 +207,13 @@ describe('Product Media', () => {
       const { request, response } = currentSubject;
       expect(request.body.variables).to.deep.eq({
         productMediaId: ProductMediaResponse.data.product.media[0]._id,
-        texts: {
-          locale: 'en',
-          title: mediaTexts[0].title,
-          subtitle: mediaTexts[0].title,
-        },
+        texts: [
+          {
+            locale: 'en',
+            title: mediaTexts[0].title,
+            subtitle: mediaTexts[0].title,
+          },
+        ],
       });
       expect(response.body).to.deep.eq(UpdateProductMediaTextsResponse);
     });

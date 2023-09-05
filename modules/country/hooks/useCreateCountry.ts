@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateCountryMutation,
+  ICreateCountryMutationVariables,
+} from '../../../gql/types';
 import CountryFragment from '../fragments/CountryFragment';
 
 const CreateCountryMutation = gql`
@@ -11,13 +15,16 @@ const CreateCountryMutation = gql`
 `;
 
 const useCreateCountry = () => {
-  const [createCountryMutation, { data, loading, error }] = useMutation(
-    CreateCountryMutation,
-  );
+  const [createCountryMutation, { data, loading, error }] = useMutation<
+    ICreateCountryMutation,
+    ICreateCountryMutationVariables
+  >(CreateCountryMutation);
 
-  const createCountry = async ({ isoCode }) => {
+  const createCountry = async ({
+    country,
+  }: ICreateCountryMutationVariables) => {
     return createCountryMutation({
-      variables: { country: { isoCode } },
+      variables: { country },
     });
   };
   const newCountry = data?.createCountry;

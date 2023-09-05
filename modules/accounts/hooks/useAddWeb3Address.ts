@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddWeb3AddressMutation,
+  IAddWeb3AddressMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const AddWeb3AddressMutation = gql`
@@ -11,8 +15,13 @@ const AddWeb3AddressMutation = gql`
 `;
 
 const useAddWeb3Address = () => {
-  const [addWeb3AddressMutation] = useMutation(AddWeb3AddressMutation);
-  const addWeb3Address = async ({ address }) => {
+  const [addWeb3AddressMutation] = useMutation<
+    IAddWeb3AddressMutation,
+    IAddWeb3AddressMutationVariables
+  >(AddWeb3AddressMutation);
+  const addWeb3Address = async ({
+    address,
+  }: IAddWeb3AddressMutationVariables) => {
     return addWeb3AddressMutation({
       variables: {
         address,

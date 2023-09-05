@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddAssortmentMediaMutation,
+  IAddAssortmentMediaMutationVariables,
+} from '../../../gql/types';
 import AssortmentMediaFragment from '../fragments/AssortmentMediaFragment';
 
 const AddAssortmentMediaMutation = gql`
@@ -11,9 +15,15 @@ const AddAssortmentMediaMutation = gql`
 `;
 
 const useAddAssortmentMedia = () => {
-  const [addAssortmentMediaMutation] = useMutation(AddAssortmentMediaMutation);
+  const [addAssortmentMediaMutation] = useMutation<
+    IAddAssortmentMediaMutation,
+    IAddAssortmentMediaMutationVariables
+  >(AddAssortmentMediaMutation);
 
-  const addAssortmentMedia = async ({ assortmentId, media }) => {
+  const addAssortmentMedia = async ({
+    assortmentId,
+    media,
+  }: IAddAssortmentMediaMutationVariables) => {
     return addAssortmentMediaMutation({
       variables: { assortmentId, media },
       refetchQueries: ['AssortmentMedia'],

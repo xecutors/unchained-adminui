@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ITranslatedAssortmentMediaTextsQuery,
+  ITranslatedAssortmentMediaTextsQueryVariables,
+} from '../../../gql/types';
 
 import AssortmentMediaTextsFragment from '../fragments/AssortmentMediaTextsFragment';
 
@@ -13,16 +17,16 @@ export const TranslatedAssortmentMediaTextsQuery = gql`
 
 const useTranslatedAssortmentMediaTexts = ({
   assortmentMediaId = null,
-} = {}) => {
-  const { data, loading, error } = useQuery(
-    TranslatedAssortmentMediaTextsQuery,
-    {
-      skip: !assortmentMediaId,
-      variables: {
-        assortmentMediaId,
-      },
+}: ITranslatedAssortmentMediaTextsQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    ITranslatedAssortmentMediaTextsQuery,
+    ITranslatedAssortmentMediaTextsQueryVariables
+  >(TranslatedAssortmentMediaTextsQuery, {
+    skip: !assortmentMediaId,
+    variables: {
+      assortmentMediaId,
     },
-  );
+  });
   const translatedAssortmentMediaTexts =
     data?.translatedAssortmentMediaTexts || [];
 

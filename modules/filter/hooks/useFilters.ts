@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IFiltersQuery, IFiltersQueryVariables } from '../../../gql/types';
 import FilterFragment from '../fragments/FilterFragment';
 
 export const FiltersQuery = gql`
@@ -36,8 +37,11 @@ const useFilters = ({
   includeInactive = true,
   sort = [],
   forceLocale = '',
-} = {}) => {
-  const { data, loading, error } = useQuery(FiltersQuery, {
+}: IFiltersQueryVariables & { forceLocale?: string } = {}) => {
+  const { data, loading, error } = useQuery<
+    IFiltersQuery,
+    IFiltersQueryVariables & { forceLocale?: string }
+  >(FiltersQuery, {
     context: {
       headers: {
         forceLocale,

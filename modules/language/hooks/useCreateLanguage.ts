@@ -1,4 +1,9 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ICreateLanguageInput,
+  ICreateLanguageMutation,
+  ICreateLanguageMutationVariables,
+} from '../../../gql/types';
 import LanguageFragment from '../fragments/LanguageFragment';
 
 const CreateLanguageMutation = gql`
@@ -11,11 +16,12 @@ const CreateLanguageMutation = gql`
 `;
 
 const useCreateLanguage = () => {
-  const [createLanguageMutation, { data, loading, error }] = useMutation(
-    CreateLanguageMutation,
-  );
+  const [createLanguageMutation, { data, loading, error }] = useMutation<
+    ICreateLanguageMutation,
+    ICreateLanguageMutationVariables
+  >(CreateLanguageMutation);
 
-  const createLanguage = async ({ isoCode }) => {
+  const createLanguage = async ({ isoCode }: ICreateLanguageInput) => {
     return createLanguageMutation({
       variables: { language: { isoCode } },
     });

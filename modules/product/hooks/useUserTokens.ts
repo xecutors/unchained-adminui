@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IUserTokensQuery,
+  IUserTokensQueryVariables,
+} from '../../../gql/types';
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 import TokenFragment from '../fragments/TokenFragment';
 
@@ -29,8 +33,11 @@ export const UserTokensQuery = gql`
   ${ProductBriefFragment}
 `;
 
-const useUserTokens = ({ userId = null } = {}) => {
-  const { data, loading, error } = useQuery(UserTokensQuery, {
+const useUserTokens = ({ userId = null }: IUserTokensQueryVariables) => {
+  const { data, loading, error } = useQuery<
+    IUserTokensQuery,
+    IUserTokensQueryVariables
+  >(UserTokensQuery, {
     variables: { userId },
   });
   const tokens = data?.user?.tokens || [];

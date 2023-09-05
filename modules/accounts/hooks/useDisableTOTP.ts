@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IDisableTotpMutation,
+  IDisableTotpMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const DisableTOTPMutation = gql`
@@ -11,9 +15,15 @@ const DisableTOTPMutation = gql`
 `;
 
 const useDisableTOTP = () => {
-  const [disableTOTPMutation] = useMutation(DisableTOTPMutation);
+  const [disableTOTPMutation] = useMutation<
+    IDisableTotpMutation,
+    IDisableTotpMutationVariables
+  >(DisableTOTPMutation);
 
-  const disableTOTP = async ({ code, userId = null }) => {
+  const disableTOTP = async ({
+    code,
+    userId = null,
+  }: IDisableTotpMutationVariables) => {
     return disableTOTPMutation({
       variables: {
         code,

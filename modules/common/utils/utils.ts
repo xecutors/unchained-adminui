@@ -1,3 +1,5 @@
+import { ISortOptionInput } from '../../../gql/types';
+
 const useFormatPrice = () => {
   const formatPrice = (price: { currency: string; amount: number }) => {
     if (!price?.currency) return 'n/a';
@@ -67,11 +69,11 @@ const getSortKeys = (sort) => {
     {}
   );
 };
-export const convertSortFieldsToQueryFormat = (sort) => {
+export const convertSortFieldsToQueryFormat = (sort): ISortOptionInput[] => {
   return Object.entries(getSortKeys(sort)).map(([key, value]) => ({
     key,
     value,
-  }));
+  })) as ISortOptionInput[];
 };
 
 const reducerToObject = (array) => {
@@ -89,7 +91,7 @@ const normalizeObjectToString = (object: Object) => {
 
 const normalizeQuery = (
   oldQuery: Object,
-  newState?: boolean,
+  newState?: any,
   keyLabel?: string,
 ) => {
   const newQuery = keyLabel ? { ...oldQuery, [keyLabel]: newState } : oldQuery;

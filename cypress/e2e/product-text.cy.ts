@@ -142,19 +142,21 @@ describe('Product Text', () => {
         const { request, response } = currentSubject;
         expect({
           ...request.body.variables,
-          texts: { ...request.body.variables.texts, description: null },
+          texts: [{ ...request.body.variables.texts[0], description: null }],
         }).to.deep.eq({
           productId: product._id,
-          texts: {
-            title: 'updated title',
-            slug: 'updated slug',
-            subtitle: 'updated subtitle',
-            brand: 'updated brand',
-            vendor: 'updated vendor',
-            labels: ['test label en', 'updated label'],
-            locale: deLocale.isoCode,
-            description: null,
-          },
+          texts: [
+            {
+              title: 'updated title',
+              slug: 'updated slug',
+              subtitle: 'updated subtitle',
+              brand: 'updated brand',
+              vendor: 'updated vendor',
+              labels: ['test label en', 'updated label'],
+              locale: deLocale.isoCode,
+              description: null,
+            },
+          ],
         });
         expect(response.body).to.deep.eq(UpdateProductTextsResponse);
       },

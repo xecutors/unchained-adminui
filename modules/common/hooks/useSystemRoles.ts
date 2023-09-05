@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  ISystemRolesQuery,
+  ISystemRolesQueryVariables,
+} from '../../../gql/types';
 
 export const SystemRolesQuery = gql`
   query SystemRoles {
@@ -10,7 +14,10 @@ export const SystemRolesQuery = gql`
 `;
 
 const useSystemRoles = () => {
-  const { data, loading, error } = useQuery(SystemRolesQuery);
+  const { data, loading, error } = useQuery<
+    ISystemRolesQuery,
+    ISystemRolesQueryVariables
+  >(SystemRolesQuery);
   return {
     systemRoles: data?.shopInfo?.userRoles || [],
     loading,

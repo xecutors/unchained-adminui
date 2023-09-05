@@ -342,7 +342,9 @@ describe('User', () => {
       cy.get('button#add_tag').click();
       cy.get('input#tags').type('new');
       cy.contains(localizations.en.add_tag).click();
-      cy.get('input[type="submit"]').contains(localizations.en.save).click();
+      cy.get('input[type="submit"]')
+        .contains(localizations.en.save)
+        .click({ force: true });
 
       cy.wait(fullAliasMutationName(UserOperations.SetUserTags)).then(
         (currentSubject) => {

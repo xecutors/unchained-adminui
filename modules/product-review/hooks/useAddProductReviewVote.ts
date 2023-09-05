@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IAddProductReviewVoteMutation,
+  IAddProductReviewVoteMutationVariables,
+} from '../../../gql/types';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 export enum ProductReviewVoteType {
   UPVOTE = 'UPVOTE',
@@ -23,19 +27,16 @@ const AddProductReviewVoteMutation = gql`
 `;
 
 const useAddProductReviewVote = () => {
-  const [addProductReviewVoteMutation] = useMutation(
-    AddProductReviewVoteMutation,
-  );
+  const [addProductReviewVoteMutation] = useMutation<
+    IAddProductReviewVoteMutation,
+    IAddProductReviewVoteMutationVariables
+  >(AddProductReviewVoteMutation);
 
   const addProductReviewVote = async ({
     productReviewId,
     type,
     meta,
-  }: {
-    productReviewId: string;
-    type: ProductReviewVoteType;
-    meta?: any;
-  }) => {
+  }: IAddProductReviewVoteMutationVariables) => {
     return addProductReviewVoteMutation({
       variables: {
         productReviewId,

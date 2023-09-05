@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IDeliveryProviderQuery,
+  IDeliveryProviderQueryVariables,
+} from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import DeliveryProviderFragment from '../fragments/DeliveryProviderFragment';
 
@@ -12,15 +16,17 @@ export const GetDeliveryProviderQuery = (inlineFragment = '') => gql`
   ${DeliveryProviderFragment}
 `;
 
-const useDeliveryProvider = ({ deliveryProviderId = null } = {}) => {
+const useDeliveryProvider = ({
+  deliveryProviderId = null,
+}: IDeliveryProviderQueryVariables) => {
   const { customProperties } = useUnchainedContext();
-  const { data, loading, error } = useQuery(
-    GetDeliveryProviderQuery(customProperties?.DeliveryProvider),
-    {
-      skip: !deliveryProviderId,
-      variables: { deliveryProviderId },
-    },
-  );
+  const { data, loading, error } = useQuery<
+    IDeliveryProviderQuery,
+    IDeliveryProviderQueryVariables
+  >(GetDeliveryProviderQuery(customProperties?.DeliveryProvider), {
+    skip: !deliveryProviderId,
+    variables: { deliveryProviderId },
+  });
 
   return {
     deliveryProvider: data?.deliveryProvider,

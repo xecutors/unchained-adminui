@@ -1,8 +1,20 @@
 import { useMutation, gql, useApolloClient } from '@apollo/client';
+import {
+  ILogInWithOAuthMutation,
+  ILogInWithOAuthMutationVariables,
+} from '../../../gql/types';
 
 const LogInWithOauthMutation = gql`
-  mutation LogInWithOAuth($authorizationCode: String!, $provider: String!) {
-    loginWithOAuth(provider: $provider, authorizationCode: $authorizationCode) {
+  mutation LogInWithOAuth(
+    $authorizationCode: String!
+    $provider: String!
+    $redirectUrl: String!
+  ) {
+    loginWithOAuth(
+      provider: $provider
+      authorizationCode: $authorizationCode
+      redirectUrl: $redirectUrl
+    ) {
       id
       token
       tokenExpires
@@ -12,11 +24,18 @@ const LogInWithOauthMutation = gql`
 
 const useLogInWithOAuth = () => {
   const apollo = useApolloClient();
-  const [logInWithOAuthMutation] = useMutation(LogInWithOauthMutation);
+  const [logInWithOAuthMutation] = useMutation<
+    ILogInWithOAuthMutation,
+    ILogInWithOAuthMutationVariables
+  >(LogInWithOauthMutation);
 
-  const logInWithOAuth = async ({ authorizationCode, provider }) => {
+  const logInWithOAuth = async ({
+    authorizationCode,
+    provider,
+    redirectUrl,
+  }: ILogInWithOAuthMutationVariables) => {
     const loginResult = await logInWithOAuthMutation({
-      variables: { authorizationCode, provider },
+      variables: { authorizationCode, provider, redirectUrl },
       awaitRefetchQueries: true,
     });
 

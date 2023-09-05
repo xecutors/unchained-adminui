@@ -1,7 +1,11 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  ISetUserTagsMutation,
+  ISetUserTagsMutationVariables,
+} from '../../../gql/types';
 
 const SetUserTagsMutation = gql`
-  mutation setUserTags($tags: [LowerCaseString]!, $userId: ID!) {
+  mutation SetUserTags($tags: [LowerCaseString]!, $userId: ID!) {
     setUserTags(tags: $tags, userId: $userId) {
       _id
       tags
@@ -10,9 +14,15 @@ const SetUserTagsMutation = gql`
 `;
 
 const useSetUserTags = () => {
-  const [setUserTagsMutation] = useMutation(SetUserTagsMutation);
+  const [setUserTagsMutation] = useMutation<
+    ISetUserTagsMutation,
+    ISetUserTagsMutationVariables
+  >(SetUserTagsMutation);
 
-  const setUserTags = async ({ tags = [], userId = null } = {}) => {
+  const setUserTags = async ({
+    tags = [],
+    userId = null,
+  }: ISetUserTagsMutationVariables) => {
     return setUserTagsMutation({
       variables: {
         tags,

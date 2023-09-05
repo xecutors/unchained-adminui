@@ -1,4 +1,8 @@
 import { useQuery, gql } from '@apollo/client';
+import {
+  IFilterOptionsQuery,
+  IFilterOptionsQueryVariables,
+} from '../../../gql/types';
 import FilterOptionFragment from '../fragments/FilterOptionFragment';
 
 export const FilterOptionsQuery = gql`
@@ -13,8 +17,13 @@ export const FilterOptionsQuery = gql`
   ${FilterOptionFragment}
 `;
 
-const useFilterOptions = ({ filterId = null } = {}) => {
-  const { data, loading, error } = useQuery(FilterOptionsQuery, {
+const useFilterOptions = ({
+  filterId = null,
+}: IFilterOptionsQueryVariables = {}) => {
+  const { data, loading, error } = useQuery<
+    IFilterOptionsQuery,
+    IFilterOptionsQueryVariables
+  >(FilterOptionsQuery, {
     skip: !filterId,
     variables: { filterId },
   });
