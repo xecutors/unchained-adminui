@@ -26,7 +26,7 @@ const useEnrollment = ({ enrollmentId = null }: IEnrollmentQueryVariables) => {
     skip: !enrollmentId,
     variables: { enrollmentId },
   });
-  const enrollment = data?.enrollment || {};
+  const enrollment = data?.enrollment;
 
   return {
     enrollment,
