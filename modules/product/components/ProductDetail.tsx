@@ -187,7 +187,7 @@ const ProductDetail = ({ product, extendedData }) => {
       }),
       Icon: <PuzzlePieceIcon className="h-4 w-5" />,
     },
-  ].filter((item) => item !== false);
+  ].filter((item) => item);
 
   const activeOptions = [
     {

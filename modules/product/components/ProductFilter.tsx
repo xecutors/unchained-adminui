@@ -33,7 +33,7 @@ const ProductFilter = () => {
             id: 'add',
             defaultMessage: 'Add',
           })}
-          tagList={router?.query?.tags?.split(',')}
+          tagList={(router?.query?.tags as string)?.split(',')}
           onChange={handleOnChange}
         />
       </div>

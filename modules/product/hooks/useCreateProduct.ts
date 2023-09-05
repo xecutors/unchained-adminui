@@ -4,14 +4,41 @@ import {
   ICreateProductMutationVariables,
 } from '../../../gql/types';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
+import ProductTextsFragment from '../fragments/ProductTextsFragment';
 
 const CreateProductMutation = gql`
   mutation CreateProduct($product: CreateProductInput!) {
     createProduct(product: $product) {
       ...ProductDetailFragment
+      ... on SimpleProduct {
+        texts {
+          ...ProductTextsFragment
+        }
+      }
+      ... on ConfigurableProduct {
+        texts {
+          ...ProductTextsFragment
+        }
+      }
+      ... on BundleProduct {
+        texts {
+          ...ProductTextsFragment
+        }
+      }
+      ... on TokenizedProduct {
+        texts {
+          ...ProductTextsFragment
+        }
+      }
+      ... on PlanProduct {
+        texts {
+          ...ProductTextsFragment
+        }
+      }
     }
   }
   ${ProductDetailFragment}
+  ${ProductTextsFragment}
 `;
 
 const useCreateProduct = () => {

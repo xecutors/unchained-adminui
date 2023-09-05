@@ -6,6 +6,7 @@ import {
 import NoData from '../../common/components/NoData';
 
 import ProductMediaListItem from './ProductMediaListItem';
+import { IProductMedia } from '../../../gql/types';
 
 const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
   const { formatMessage } = useIntl();
@@ -23,9 +24,9 @@ const ProductMediaList = ({ medias, selectedLocale, onDeleteMedia, items }) => {
         <div className="flow-root dark:bg-slate-800">
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             <ul className="space-y-4 p-5 rounded-md transition-[background-color] ease-in-out delay-200 ">
-              {medias.length ? (
+              {medias?.length ? (
                 items.map((id) => {
-                  const media = Object.values(medias).find(
+                  const media = Object.values(medias as IProductMedia[]).find(
                     (md) => md._id === id,
                   );
                   return (

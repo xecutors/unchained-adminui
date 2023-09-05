@@ -4,7 +4,10 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
-import { OnSubmitSuccessType } from '../../modules/forms/hooks/useForm';
+import {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../modules/forms/hooks/useForm';
 import ProductForm from '../../modules/product/components/ProductForm';
 import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
 import { PRODUCT_TYPES } from '../../modules/product/ProductTypes';
@@ -18,7 +21,7 @@ const AddProduct = () => {
     return true;
   };
 
-  const onSubmit = async ({ title, type, tags }) => {
+  const onSubmit: OnSubmitType = async ({ title, type, tags }) => {
     const { data, errors } = await createProduct({
       product: {
         title,
@@ -26,7 +29,7 @@ const AddProduct = () => {
         tags,
       },
     });
-    if (errors?.length) return false;
+    if (errors?.length) return { success: false };
     return { success: true, data: data?.createProduct };
   };
   return (

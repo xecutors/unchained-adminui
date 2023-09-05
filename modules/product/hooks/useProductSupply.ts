@@ -2,6 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import {
   IProductSupplyQuery,
   IProductSupplyQueryVariables,
+  ISimpleProduct,
 } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
@@ -37,7 +38,7 @@ const useProductSupply = ({
     },
   });
 
-  const product = data?.product as any;
+  const product = data?.product as ISimpleProduct;
   const dimensions = product?.dimensions || {};
 
   return {

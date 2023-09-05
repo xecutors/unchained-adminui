@@ -5,7 +5,7 @@ import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import useUpdateProductTexts from '../hooks/useUpdateProductTexts';
 import useAuth from '../../Auth/useAuth';
@@ -15,7 +15,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
 
-const ProductTextsForm = ({ productId, selectedLocale }) => {
+const ProductTextsForm = ({ productId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
@@ -27,7 +27,7 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
 
   const { updateProductTexts } = useUpdateProductTexts();
 
-  const onSubmit = async ({
+  const onSubmit: OnSubmitType = async ({
     slug,
     title,
     subtitle,
@@ -38,18 +38,20 @@ const ProductTextsForm = ({ productId, selectedLocale }) => {
   }) => {
     await updateProductTexts({
       productId,
-      texts: {
-        locale: selectedLocale,
-        slug,
-        title,
-        subtitle,
-        vendor,
-        description,
-        brand,
-        labels,
-      },
+      texts: [
+        {
+          locale: selectedLocale,
+          slug,
+          title,
+          subtitle,
+          vendor,
+          description,
+          brand,
+          labels,
+        },
+      ],
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({

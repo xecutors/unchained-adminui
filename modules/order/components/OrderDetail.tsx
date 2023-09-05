@@ -40,6 +40,10 @@ const OrderDetail = ({ order }) => {
           id: 'confirm_order_alert_header',
           defaultMessage: 'Confirm order?',
         })}
+        message={formatMessage({
+          id: 'confirm_order_alert_message',
+          defaultMessage: 'This will mark order as confirmed',
+        })}
         onOkClick={async () => {
           setModal('');
           await confirmOrder({ orderId: order._id });
@@ -57,7 +61,8 @@ const OrderDetail = ({ order }) => {
   const onRejectOrder = async () => {
     await setModal(
       <DangerMessage
-        buttonText={formatMessage({
+        onCancelClick={async () => setModal('')}
+        okText={formatMessage({
           id: 'reject_order_alert_button',
           defaultMessage: 'Reject',
         })}
@@ -99,7 +104,7 @@ const OrderDetail = ({ order }) => {
             {formatMessage({
               id: 'confirm_order',
               defaultMessage: 'Confirm order',
-            })}{' '}
+            })}
           </button>
           <button
             id="reject_order"
@@ -110,7 +115,7 @@ const OrderDetail = ({ order }) => {
             {formatMessage({
               id: 'reject_order',
               defaultMessage: 'Reject order',
-            })}{' '}
+            })}
           </button>
         </>
       ),

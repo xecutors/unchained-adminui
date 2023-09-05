@@ -10,7 +10,7 @@ import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useProductPlan from '../hooks/useProductPlan';
 import useProductPlanConfigurationOptions from '../hooks/useProductPlanConfigurationOptions';
 import useUpdateProductPlan from '../hooks/useUpdateProductPlan';
@@ -27,7 +27,7 @@ const SubscriptionForm = ({ productId }) => {
     defaultMessage: 'Enrollment saved successfully',
   });
 
-  const onSubmit = async ({
+  const onSubmit: OnSubmitType = async ({
     trialInterval,
     trialIntervalCount,
     billingInterval,
@@ -44,7 +44,7 @@ const SubscriptionForm = ({ productId }) => {
         trialIntervalCount,
       },
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({

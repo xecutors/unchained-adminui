@@ -74,7 +74,7 @@ const DiscountList = ({ discounts }) => {
             defaultMessage: 'Discounts',
           })}
           className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6"
-          icon={FaceFrownIcon}
+          Icon={FaceFrownIcon}
         />
       )}
     </div>

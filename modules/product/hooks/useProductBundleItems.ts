@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import {
+  IBundleProduct,
   IProductBundleItemsQuery,
   IProductBundleItemsQueryVariables,
 } from '../../../gql/types';
@@ -36,7 +37,7 @@ const useProductBundleItems = ({
     variables: { productId: id || parsedId },
   });
 
-  const bundleItems = (data?.product as any)?.bundleItems || [];
+  const bundleItems = (data?.product as IBundleProduct)?.bundleItems || [];
 
   return {
     bundleItems,

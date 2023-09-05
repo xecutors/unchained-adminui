@@ -16,11 +16,13 @@ const ProductMediaListItem = ({ media, onDelete, locale, id }) => {
   const onUpdateMediaText = async ({ title, subtitle }) => {
     await updateProductMediaTexts({
       productMediaId: media._id,
-      texts: {
-        title,
-        locale,
-        subtitle,
-      },
+      texts: [
+        {
+          title,
+          locale,
+          subtitle,
+        },
+      ],
     });
     setIsEditing(false);
     return true;

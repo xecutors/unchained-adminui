@@ -28,6 +28,11 @@ const OrderDetailDelivery = ({ order }) => {
           id: 'delivered',
           defaultMessage: 'Delivered',
         })}
+        message={formatMessage({
+          id: 'mark_as_delivered_message',
+          defaultMessage:
+            'This will change the order delivery status to delivered',
+        })}
         headerText={formatMessage({
           id: 'mark_as_delivered_question',
           defaultMessage: 'Mark as delivered ?',

@@ -81,9 +81,7 @@ const ProductListItem = ({ product, showAvatar }) => {
       </Table.Cell>
 
       <Table.Cell>
-        {product.tags?.map((t) => (
-          <Badge key={t} text={t} color="indigo" />
-        ))}
+        {product.tags?.map((t) => <Badge key={t} text={t} color="indigo" />)}
       </Table.Cell>
       <Table.Cell>
         <input

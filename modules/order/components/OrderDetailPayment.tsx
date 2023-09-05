@@ -29,6 +29,10 @@ const OrderDetailPayment = ({ order }) => {
           id: 'pay',
           defaultMessage: 'PAY',
         })}
+        message={formatMessage({
+          id: 'mark_as_paid_question',
+          defaultMessage: 'This will change the order payment status as Paid.',
+        })}
         headerText={formatMessage({
           id: 'mark_as_paid_question',
           defaultMessage: 'Mark as paid ?',

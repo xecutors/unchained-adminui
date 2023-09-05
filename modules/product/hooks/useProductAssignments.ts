@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import {
+  IConfigurableProduct,
   IProductAssignmentsQuery,
   IProductAssignmentsQueryVariables,
 } from '../../../gql/types';
@@ -57,7 +58,7 @@ const useProductAssignments = ({
     variables: { productId: id || parsedId },
   });
 
-  const product = data?.product || {};
+  const product = data?.product as IConfigurableProduct;
 
   return {
     product,

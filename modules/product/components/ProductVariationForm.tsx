@@ -8,10 +8,10 @@ import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useProductVariationTypes from '../hooks/useProductVariationTypes';
 
-const ProductVariationForm = ({ onSubmit }) => {
+const ProductVariationForm = ({ onSubmit }: { onSubmit: OnSubmitType }) => {
   const { formatMessage } = useIntl();
 
   const { variationTypes } = useProductVariationTypes();

@@ -6,7 +6,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import { validateInteger } from '../../forms/lib/validators';
 import useProductSupply from '../hooks/useProductSupply';
 import useUpdateProductSupply from '../hooks/useUpdateProductSupply';
@@ -21,7 +21,7 @@ const SupplyForm = ({ productId }) => {
   const { updateProductSupply } = useUpdateProductSupply();
   const { dimensions } = useProductSupply({ productId });
 
-  const onSubmit = async ({ weight, length, width, height }) => {
+  const onSubmit: OnSubmitType = async ({ weight, length, width, height }) => {
     await updateProductSupply({
       productId,
       supply: {
@@ -31,7 +31,7 @@ const SupplyForm = ({ productId }) => {
         widthInMillimeters: width,
       },
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({
@@ -62,6 +62,7 @@ const SupplyForm = ({ productId }) => {
           'Invalid value, only integer is accepted',
         );
       }
+      return null;
     },
     successMessage,
     initialValues: {

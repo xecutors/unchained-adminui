@@ -7,7 +7,7 @@ import DeleteButton from '../../common/components/DeleteButton';
 import EditIcon from '../../common/components/EditIcon';
 import Form from '../../forms/components/Form';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useUpdateProductVariationTexts from '../hooks/useUpdateProductVariationTexts';
 
 const Variation = ({ type, variation, selectedLocale, onDelete }) => {
@@ -15,12 +15,12 @@ const Variation = ({ type, variation, selectedLocale, onDelete }) => {
   const [isEdit, setIsEdit] = useState(false);
   const { formatMessage } = useIntl();
 
-  const onSubmit = async ({ title, subtitle }) => {
+  const onSubmit: OnSubmitType = async ({ title, subtitle }) => {
     await updateProductVariationTexts({
       productVariationId: variation._id,
       texts: [{ title, subtitle, locale: selectedLocale }],
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({

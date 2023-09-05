@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Select from 'react-select';
+import Select, { GroupBase, OptionsOrGroups } from 'react-select';
 
 import FormWrapper from '../../common/components/FormWrapper';
 
@@ -14,7 +14,7 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import deBounce from '../../common/utils/deBounce';
 import useProducts from '../hooks/useProducts';
-import { ISortDirection } from '../../../gql/types';
+import { IConfigurableProduct, ISortDirection } from '../../../gql/types';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
@@ -44,7 +44,7 @@ const matrixGenerator = (columns, rowContainer, currentIndex) => {
   );
 };
 
-const normalizeProduct = ({ _id, texts }) => ({
+const normalizeProduct = ({ _id, texts }: any) => ({
   value: _id,
   label: texts?.title,
 });
@@ -63,7 +63,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
   });
   const { product, loading } = useProductAssignments({ productId: proxyId });
 
-  const variations = (product && product.variations) || [];
+  const variations = (product && product?.variations) || [];
 
   const columnKeys = variations
     .filter(({ options }) => options.length)
@@ -131,6 +131,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
     const removeAssignment = async () => {
       await setModal(
         <DangerMessage
+          onCancelClick={async () => setModal('')}
           message={formatMessage({
             id: 'delete_product_assignment',
             defaultMessage:
@@ -173,10 +174,14 @@ const ProductAssignmentForm = ({ proxyId }) => {
                     defaultMessage: 'Search product',
                   })}
                   isLoading={loading}
-                  onChange={handleProductAssignment(columns)}
+                  onChange={handleProductAssignment(columns) as any}
                   onInputChange={debouncedQuery}
                   value={queryString}
-                  options={(products || []).map(normalizeProduct)}
+                  options={
+                    (products || []).map(
+                      normalizeProduct,
+                    ) as unknown as OptionsOrGroups<string, GroupBase<string>>
+                  }
                   className="mt-1 w-full py-2 text-sm font-medium text-slate-500"
                 />
               )}

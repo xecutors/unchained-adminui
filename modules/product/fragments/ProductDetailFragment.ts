@@ -9,6 +9,7 @@ const ProductDetailFragment = gql`
     tags
     updated
     published
+
     media {
       _id
       tags

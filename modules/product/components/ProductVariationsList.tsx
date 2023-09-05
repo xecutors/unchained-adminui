@@ -21,6 +21,7 @@ const ProductVariationsList = ({
   const onDeleteVariation = async () => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'delete_product_variation_confirmation',
           defaultMessage:

@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import {
+  IPlanProduct,
   IProductPlanQuery,
   IProductPlanQueryVariables,
 } from '../../../gql/types';
@@ -36,7 +37,7 @@ const useProductPlan = ({
     },
   });
 
-  const product = data?.product as any;
+  const product = data?.product as IPlanProduct;
 
   return {
     plan: product?.plan,

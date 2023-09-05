@@ -2,6 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import {
   IProductTokenizationQuery,
   IProductTokenizationQueryVariables,
+  ITokenizedProduct,
 } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
@@ -37,7 +38,7 @@ const useProductTokenization = ({
     },
   });
 
-  const product = data?.product;
+  const product = data?.product as ITokenizedProduct;
 
   return {
     product,

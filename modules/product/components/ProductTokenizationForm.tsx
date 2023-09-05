@@ -8,7 +8,7 @@ import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useProductTokenization from '../hooks/useProductTokenization';
 import useSmartContractStandards from '../hooks/useSmartContractStandards';
 import useUpdateProductTokenization from '../hooks/useUpdateProductTokenization';
@@ -20,7 +20,7 @@ const ProductTokenizationForm = ({ productId }) => {
   const { updateProductTokenization } = useUpdateProductTokenization();
   const { product, loading } = useProductTokenization({ productId });
 
-  const onSubmit = async ({
+  const onSubmit: OnSubmitType = async ({
     contractAddress,
     contractStandard,
     tokenId,
@@ -35,6 +35,7 @@ const ProductTokenizationForm = ({ productId }) => {
         supply,
       },
     });
+    return { success: true };
   };
 
   const successMessage = formatMessage({

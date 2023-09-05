@@ -6,7 +6,7 @@ import FilterableDropdown from '../../common/components/FilterableDropdown';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useCreateProductBundleItem from '../hooks/useCreateProductBundleItem';
 import useProducts from '../hooks/useProducts';
 
@@ -30,12 +30,12 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
     sort: [{ key: 'created', value: ISortDirection.Desc }],
   });
 
-  const onSubmit = async ({ productId, quantity }) => {
+  const onSubmit: OnSubmitType = async ({ productId, quantity }) => {
     await createProductBundleItem({
       item: { productId, quantity },
       productId: currentProductId,
     });
-    return true;
+    return { success: true };
   };
   const successMessage = formatMessage({
     id: 'bundle_item_added',
@@ -46,6 +46,7 @@ const BundleProductsForm = ({ productId: currentProductId }) => {
     successMessage,
     onSubmitSuccess: () => {
       form.formik.resetForm();
+      return null;
     },
     initialValues: {
       productId: '',

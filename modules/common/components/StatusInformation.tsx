@@ -1,4 +1,9 @@
-const StatusInformation = ({ enumType, currentType, label, component }) => {
+const StatusInformation = ({
+  enumType,
+  currentType,
+  label,
+  component = null,
+}) => {
   return (
     component || (
       <span

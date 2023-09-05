@@ -13,7 +13,7 @@ import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import {
   validateProductCommerce,
   validateProductCommerceOneNull,
@@ -45,9 +45,9 @@ const CommerceForm = ({ productId }) => {
 
   const defaultCountryValue = baseCountry?.isoCode;
   const defaultCurrencyValue = baseCountry?.defaultCurrency?.isoCode;
-  const onSubmit = async ({ pricing }) => {
+  const onSubmit: OnSubmitType = async ({ pricing }) => {
     await updateProductCommerce({ productId, commerce: { pricing } });
-    return true;
+    return { success: true };
   };
   const successMessage = formatMessage({
     id: 'saved',

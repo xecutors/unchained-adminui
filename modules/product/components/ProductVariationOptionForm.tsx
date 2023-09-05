@@ -3,9 +3,13 @@ import useAuth from '../../Auth/useAuth';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 
-const ProductVariationOptionForm = ({ onSubmit }) => {
+const ProductVariationOptionForm = ({
+  onSubmit,
+}: {
+  onSubmit: OnSubmitType;
+}) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 

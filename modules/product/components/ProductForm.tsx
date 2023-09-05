@@ -6,10 +6,19 @@ import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 import { PRODUCT_TYPES } from '../ProductTypes';
 
-const ProductForm = ({ onSubmit, onSubmitSuccess }) => {
+const ProductForm = ({
+  onSubmit,
+  onSubmitSuccess,
+}: {
+  onSubmit: OnSubmitType;
+  onSubmitSuccess: OnSubmitSuccessType;
+}) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const successMessage = formatMessage({

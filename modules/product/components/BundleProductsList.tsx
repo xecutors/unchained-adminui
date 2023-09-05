@@ -6,7 +6,7 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useProductBundleItems from '../hooks/useProductBundleItems';
 import useRemoveBundleItem from '../hooks/useRemoveBundleItem';
-import ProductBundleItemsListItem from './BundleProductsListItem';
+import BundleProductsListItem from './BundleProductsListItem';
 
 const BundleProductList = ({ productId }) => {
   const { formatMessage } = useIntl();
@@ -18,6 +18,7 @@ const BundleProductList = ({ productId }) => {
   const onRemoveBundleItem = async (index) => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'delete_bundle_item_confirmation',
           defaultMessage:
@@ -44,14 +45,16 @@ const BundleProductList = ({ productId }) => {
   if (loading) return <Loading />;
 
   return bundleItems.length ? (
-    bundleItems.map((product, index) => (
-      <ProductBundleItemsListItem
-        key={product._id}
-        index={index}
-        item={product}
-        onDelete={onRemoveBundleItem}
-      />
-    ))
+    <>
+      {bundleItems.map((bundleItem, index) => (
+        <BundleProductsListItem
+          key={bundleItem.product._id}
+          index={index}
+          item={bundleItem}
+          onDelete={onRemoveBundleItem}
+        />
+      ))}
+    </>
   ) : (
     <NoData
       message={formatMessage({

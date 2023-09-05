@@ -1,27 +1,27 @@
 import { useIntl } from 'react-intl';
 import Loading from '../../common/components/Loading';
 import NoData from '../../common/components/NoData';
+import { OnSubmitType } from '../../forms/hooks/useForm';
 import useCreateProductVariation from '../hooks/useCreateProductVariation';
 import useProductVariations from '../hooks/useProductVariations';
 import ProductVariationForm from './ProductVariationForm';
 
 import ProductVariationsList from './ProductVariationsList';
 
-const ProductVariation = ({ productId, selectedLocale }) => {
+const ProductVariation = ({ productId, selectedLocale = null }) => {
   const { createProductVariation } = useCreateProductVariation();
   const { formatMessage } = useIntl();
 
   const { variations, loading } = useProductVariations({
     productId,
-    locale: selectedLocale,
   });
 
-  const onSubmit = async ({ title, key, type }) => {
+  const onSubmit: OnSubmitType = async ({ title, key, type }) => {
     await createProductVariation({
       productId,
       variation: { key, type, title },
     });
-    return true;
+    return { success: true };
   };
   if (loading) return <Loading />;
 

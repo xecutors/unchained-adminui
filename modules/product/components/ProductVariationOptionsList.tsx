@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import NoData from '../../common/components/NoData';
+import { OnSubmitType } from '../../forms/hooks/useForm';
 import DangerMessage from '../../modal/components/DangerMessage';
 import useModal from '../../modal/hooks/useModal';
 import useCreateProductVariationOption from '../hooks/useCreateProductVariationOption';
@@ -49,12 +50,12 @@ const ProductVariationOptionsList = ({
     );
   };
 
-  const onSubmit = async ({ value, title }) => {
+  const onSubmit: OnSubmitType = async ({ value, title }) => {
     await createProductVariationOption({
       productVariationId: variationId,
       option: { value, title },
     });
-    return true;
+    return { success: true };
   };
 
   return (

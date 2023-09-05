@@ -19,7 +19,7 @@ import useRemoveProductMedia from '../hooks/useRemoveProductMedia';
 import ProductMediaList from './ProductMediaList';
 import useReOrderProductMedia from '../hooks/useReOrderProductMedia';
 
-const ProductMediaForm = ({ productId, selectedLocale }) => {
+const ProductMediaForm = ({ productId, selectedLocale = null }) => {
   const { productMedia } = useProductMedia({ productId });
   const { setModal } = useModal();
   const { formatMessage } = useIntl();
@@ -50,6 +50,7 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
   const onRemoveMedia = async (productMediaId) => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'delete_product_media_confirmation',
           defaultMessage:
@@ -119,9 +120,6 @@ const ProductMediaForm = ({ productId, selectedLocale }) => {
       },
     }),
     useSensor(KeyboardSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
