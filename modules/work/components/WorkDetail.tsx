@@ -25,7 +25,7 @@ const WorkDetail = ({ work }) => {
     };
   }, [work?.status]);
 
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     timeStyle: 'medium',
     dateStyle: 'long',
   };

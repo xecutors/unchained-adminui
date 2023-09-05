@@ -10,8 +10,9 @@ const Oauth = () => {
     const asyncLogin = async () => {
       if (router.query.code && router.query.state) {
         await logInWithOAuth({
-          provider: router.query.state,
-          authorizationCode: router.query.code,
+          provider: router.query.state as string,
+          authorizationCode: router.query.code as string,
+          redirectUrl: '',
         });
         router.push('/');
       }

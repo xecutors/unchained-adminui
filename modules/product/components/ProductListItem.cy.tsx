@@ -9,7 +9,7 @@ const MOCK_PRODUCT = {
 };
 describe('<ProductListItem />', () => {
   it('renders', () => {
-    cy.mount(<ProductListItem product={MOCK_PRODUCT} />);
+    cy.mount(<ProductListItem showAvatar={false} product={MOCK_PRODUCT} />);
     cy.get('.flex.items-center').should('be.visible');
     cy.get('.text-blue-600').should('be.visible');
     cy.get('.whitespace-nowrap').should('be.visible');

@@ -262,7 +262,7 @@ const JobBody = ({ job }) => {
               </dd>
             </div>
           )}
-          {Object.entries(job).map(([type, stat]) => (
+          {Object.entries(job).map(([type, stat]: any) => (
             <JobDetail type={type} stat={stat} key={stat?._id} />
           ))}
         </dl>
@@ -279,7 +279,7 @@ const SyncJobs = () => {
   const { query, back } = useRouter();
   const { id } = query;
 
-  const { work, loading } = useWork({ workId: id });
+  const { work, loading } = useWork({ workId: id as string });
 
   if (loading || !work) return <Loading />;
   const { result } = work;

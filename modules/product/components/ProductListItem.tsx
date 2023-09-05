@@ -13,7 +13,7 @@ const PRODUCT_STATUS = {
   DELETED: 'red',
 };
 
-const ProductListItem = ({ product, showAvatar }) => {
+const ProductListItem = ({ product, showAvatar = false }) => {
   const { formatMessage } = useIntl();
   const { updateProduct } = useUpdateProduct();
 

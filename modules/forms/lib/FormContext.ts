@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormContext = React.createContext({
   submitError: '',
-  formik: {},
+  formik: null,
   setSubmitError: () => {},
   disabled: false,
 });

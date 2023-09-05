@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IUpdateUserProfileMutation,
+  IUpdateUserProfileMutationVariables,
+} from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
 const UpdateUserProfileMutation = gql`
@@ -11,9 +15,15 @@ const UpdateUserProfileMutation = gql`
 `;
 
 const useUpdateUserProfile = () => {
-  const [updateUserProfileMutation] = useMutation(UpdateUserProfileMutation);
+  const [updateUserProfileMutation] = useMutation<
+    IUpdateUserProfileMutation,
+    IUpdateUserProfileMutationVariables
+  >(UpdateUserProfileMutation);
 
-  const updateUserProfile = async ({ profile, userId = null } = {}) => {
+  const updateUserProfile = async ({
+    profile,
+    userId = null,
+  }: IUpdateUserProfileMutationVariables) => {
     return updateUserProfileMutation({
       variables: {
         profile,

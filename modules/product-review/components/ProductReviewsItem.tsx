@@ -20,6 +20,9 @@ import useRemoveProductReviewVote from '../hooks/useRemoveProductReviewVote';
 import useAuth from '../../Auth/useAuth';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import ProductReviewReportCommentForm from './ProductReviewReportCommentForm';
+import CustomError from '../../common/CustomError';
+import { OnSubmitType } from '../../forms/hooks/useForm';
+import { IUser } from '../../../gql/types';
 
 const voteTypes = {
   UPVOTE: 'UPVOTE',
@@ -43,16 +46,18 @@ const ProductReviewsItem = ({
   const hasAlreadyVoted = (type) =>
     !!review.ownVotes.find((v) => v.type === type);
   const toggleVote = async (type) => {
-    const onReportSubmit = async ({ message }) => {
+    const onReportSubmit: OnSubmitType = async ({ message }) => {
       try {
         await addProductReviewVote({
           productReviewId: review._id,
           type,
           meta: { message },
         });
-        return true;
-      } catch (e) {
-        return e?.message || e;
+        return { success: true };
+      } catch (e: any) {
+        if (e instanceof CustomError)
+          return { success: false, error: e?.message };
+        else return { success: false, error: e };
       }
     };
 
@@ -78,7 +83,7 @@ const ProductReviewsItem = ({
       hasRole('voteProductReview') &&
       enableDelete &&
       review?.author?._id === currentUser._id) ||
-    (isAdmin(currentUser) && !review.deleted);
+    (isAdmin(currentUser as IUser) && !review.deleted);
 
   const canManageVotes = !review.deleted && hasRole('voteProductReview');
   const product = review?.product;
@@ -86,6 +91,7 @@ const ProductReviewsItem = ({
   const onRemove = async (productReviewId) => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'delete_review_confirmation',
           defaultMessage:

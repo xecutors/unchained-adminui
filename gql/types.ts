@@ -5728,6 +5728,222 @@ export type IStopImpersonateMutation = {
   stopImpersonation: { id: string; token: string; tokenExpires: any };
 };
 
+export type IUpdateUserAvatarMutationVariables = Exact<{
+  avatar: Scalars['Upload']['input'];
+  userId?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+export type IUpdateUserAvatarMutation = {
+  updateUserAvatar: {
+    _id: string;
+    isTwoFactorEnabled: boolean;
+    allowedActions: Array<IRoleAction>;
+    username?: string | null;
+    isGuest: boolean;
+    isInitialPassword: boolean;
+    name: string;
+    roles?: Array<string> | null;
+    tags?: Array<any> | null;
+    lastBillingAddress?: {
+      firstName?: string | null;
+      lastName?: string | null;
+      company?: string | null;
+      addressLine?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryCode?: string | null;
+      regionCode?: string | null;
+      city?: string | null;
+    } | null;
+    lastContact?: {
+      emailAddress?: string | null;
+      telNumber?: string | null;
+    } | null;
+    lastLogin?: {
+      countryCode?: string | null;
+      locale?: string | null;
+      remoteAddress?: string | null;
+      remotePort?: string | null;
+      timestamp: any;
+      userAgent?: string | null;
+    } | null;
+    avatar?: {
+      _id: string;
+      name: string;
+      size: number;
+      type: string;
+      url: string;
+    } | null;
+    paymentCredentials: Array<{
+      _id: string;
+      isValid: boolean;
+      isPreferred: boolean;
+      paymentProvider: {
+        _id: string;
+        type?: IPaymentProviderType | null;
+        interface?: {
+          _id: string;
+          label?: string | null;
+          version?: string | null;
+        } | null;
+      };
+    }>;
+    emails?: Array<{ verified: boolean; address: string }> | null;
+    web3Addresses: Array<{
+      address: string;
+      nonce?: number | null;
+      verified: boolean;
+    }>;
+    webAuthnCredentials: Array<{
+      _id: string;
+      created: any;
+      aaguid: string;
+      counter: number;
+      mdsMetadata?: {
+        legalHeader?: string | null;
+        description?: string | null;
+        authenticatorVersion?: number | null;
+        protocolFamily?: string | null;
+        schema?: number | null;
+        authenticationAlgorithms?: Array<string> | null;
+        publicKeyAlgAndEncodings?: Array<string> | null;
+        attestationTypes?: Array<string> | null;
+        keyProtection?: Array<string> | null;
+        upv?: Array<any> | null;
+        tcDisplay?: Array<any> | null;
+        icon?: string | null;
+        authenticatorGetInfo?: any | null;
+      } | null;
+    }>;
+    profile?: {
+      displayName?: string | null;
+      phoneMobile?: string | null;
+      gender?: string | null;
+      birthday?: any | null;
+      address?: {
+        firstName?: string | null;
+        lastName?: string | null;
+        company?: string | null;
+        addressLine?: string | null;
+        addressLine2?: string | null;
+        postalCode?: string | null;
+        countryCode?: string | null;
+        regionCode?: string | null;
+        city?: string | null;
+      } | null;
+    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
+  };
+};
+
+export type IUpdateUserProfileMutationVariables = Exact<{
+  profile: IUserProfileInput;
+  userId?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+export type IUpdateUserProfileMutation = {
+  updateUserProfile: {
+    _id: string;
+    isTwoFactorEnabled: boolean;
+    allowedActions: Array<IRoleAction>;
+    username?: string | null;
+    isGuest: boolean;
+    isInitialPassword: boolean;
+    name: string;
+    roles?: Array<string> | null;
+    tags?: Array<any> | null;
+    lastBillingAddress?: {
+      firstName?: string | null;
+      lastName?: string | null;
+      company?: string | null;
+      addressLine?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryCode?: string | null;
+      regionCode?: string | null;
+      city?: string | null;
+    } | null;
+    lastContact?: {
+      emailAddress?: string | null;
+      telNumber?: string | null;
+    } | null;
+    lastLogin?: {
+      countryCode?: string | null;
+      locale?: string | null;
+      remoteAddress?: string | null;
+      remotePort?: string | null;
+      timestamp: any;
+      userAgent?: string | null;
+    } | null;
+    avatar?: {
+      _id: string;
+      name: string;
+      size: number;
+      type: string;
+      url: string;
+    } | null;
+    paymentCredentials: Array<{
+      _id: string;
+      isValid: boolean;
+      isPreferred: boolean;
+      paymentProvider: {
+        _id: string;
+        type?: IPaymentProviderType | null;
+        interface?: {
+          _id: string;
+          label?: string | null;
+          version?: string | null;
+        } | null;
+      };
+    }>;
+    emails?: Array<{ verified: boolean; address: string }> | null;
+    web3Addresses: Array<{
+      address: string;
+      nonce?: number | null;
+      verified: boolean;
+    }>;
+    webAuthnCredentials: Array<{
+      _id: string;
+      created: any;
+      aaguid: string;
+      counter: number;
+      mdsMetadata?: {
+        legalHeader?: string | null;
+        description?: string | null;
+        authenticatorVersion?: number | null;
+        protocolFamily?: string | null;
+        schema?: number | null;
+        authenticationAlgorithms?: Array<string> | null;
+        publicKeyAlgAndEncodings?: Array<string> | null;
+        attestationTypes?: Array<string> | null;
+        keyProtection?: Array<string> | null;
+        upv?: Array<any> | null;
+        tcDisplay?: Array<any> | null;
+        icon?: string | null;
+        authenticatorGetInfo?: any | null;
+      } | null;
+    }>;
+    profile?: {
+      displayName?: string | null;
+      phoneMobile?: string | null;
+      gender?: string | null;
+      birthday?: any | null;
+      address?: {
+        firstName?: string | null;
+        lastName?: string | null;
+        company?: string | null;
+        addressLine?: string | null;
+        addressLine2?: string | null;
+        postalCode?: string | null;
+        countryCode?: string | null;
+        regionCode?: string | null;
+        city?: string | null;
+      } | null;
+    } | null;
+    primaryEmail?: { verified: boolean; address: string } | null;
+  };
+};
+
 export type IUserQueryVariables = Exact<{
   userId?: InputMaybe<Scalars['ID']['input']>;
 }>;
@@ -11189,6 +11405,17 @@ export type ICreateProductMutation = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          locale?: string | null;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -11235,6 +11462,17 @@ export type ICreateProductMutation = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          locale?: string | null;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -11281,6 +11519,17 @@ export type ICreateProductMutation = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          locale?: string | null;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -11327,6 +11576,17 @@ export type ICreateProductMutation = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          locale?: string | null;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;
@@ -11373,6 +11633,17 @@ export type ICreateProductMutation = {
         tags?: Array<any> | null;
         updated?: any | null;
         published?: any | null;
+        texts?: {
+          _id: string;
+          locale?: string | null;
+          slug?: string | null;
+          title?: string | null;
+          subtitle?: string | null;
+          description?: string | null;
+          vendor?: string | null;
+          brand?: string | null;
+          labels?: Array<string> | null;
+        } | null;
         media: Array<{
           _id: string;
           tags?: Array<any> | null;

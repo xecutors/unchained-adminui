@@ -142,7 +142,6 @@ const WorkFilter = ({ workTypes = [] }) => {
           <div>
             <div className="mt-4">
               <MultipleSelect
-                className="text-sm text-slate-900 dark:text-slate-200"
                 label={formatMessage({
                   id: 'select_type',
                   defaultMessage: 'Select type',

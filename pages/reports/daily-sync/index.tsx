@@ -16,11 +16,14 @@ const SyncReport = () => {
   const router = useRouter();
 
   const { getDateFormatPattern, parseDate } = useFormatDateTime();
-
+  const limit = parseInt(
+    ((router.query?.limit as string) || DefaultLimit) as string,
+    10,
+  );
   const { dailySync, loadMore, loading } = useDailySyncs({
     start: router?.query?.start,
     end: router?.query?.end,
-    limit: parseInt(router.query?.limit || DefaultLimit, 10),
+    limit,
   });
   const { formatMessage } = useIntl();
 
@@ -87,12 +90,7 @@ const SyncReport = () => {
           />
         </div>
         {loading ? <Loading /> : <SyncReportList data={dailySync} />}
-        <Pagination
-          onLoadMore={loadMore}
-          limit={router.query?.limit || DefaultLimit}
-          onLimitChange={(limit) => router.push({ query: { limit } })}
-          data={dailySync}
-        />
+        <Pagination onLoadMore={loadMore} data={dailySync} />
       </div>
     </>
   );

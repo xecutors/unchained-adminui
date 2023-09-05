@@ -9,7 +9,7 @@ const QuotationConfigurationForm = ({
   successMessage,
   onSubmit,
   onCancel,
-  icon,
+  icon = null,
   headerText,
   submitButtonText,
 }) => {

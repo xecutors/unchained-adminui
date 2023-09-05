@@ -23,7 +23,7 @@ const TabComponentMap = {
   updatedFilters: FiltersAlphabeticalList,
 };
 
-const Wrapper = ({ selectedView, workId }) => {
+const Wrapper = ({ selectedView = null, workId }) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -68,7 +68,7 @@ const DailyAnalyticsReportList = () => {
   const { query, push } = useRouter();
   const { id } = query;
 
-  const { work, loading } = useWork({ workId: id });
+  const { work, loading } = useWork({ workId: id as string });
 
   if (loading || !work) return <Loading />;
 

@@ -10,17 +10,19 @@ const createHandler = (name) => () => {
 
 const flatten = (obj, path = '') => {
   // eslint-disable-next-line
-  const entries = Object.entries(obj).reduce((carry = [], [key, value]) => {
-    // Do no walk react elements
-    if (typeof value === 'string' || React.isValidElement(value)) {
-      return [...carry, [`${path}${key}`, value]];
-    }
+  const entries = Object.entries(obj).reduce((carry = [], [key, value]: any) => {
+      // Do no walk react elements
+      if (typeof value === 'string' || React.isValidElement(value)) {
+        return [...carry, [`${path}${key}`, value]];
+      }
 
-    const subentries = Object.entries(
-      flatten(Object.assign({}, ...value), `${path}${key}.`),
-    );
-    return [...subentries, ...carry];
-  }, []);
+      const subentries = Object.entries(
+        flatten(Object.assign({}, ...value), `${path}${key}.`),
+      );
+      return [...subentries, ...carry];
+    },
+    [],
+  );
 
   return Object.fromEntries(entries);
 };
@@ -58,7 +60,7 @@ export const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
 const FormErrors = ({ displayFieldErrors = false }) => {
   const { submitError, formik } = useFormContext();
 
-  const fieldErrors = formik.errors;
+  const fieldErrors = formik?.errors;
 
   const show = submitError || displayFieldErrors;
 

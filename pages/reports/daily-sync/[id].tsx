@@ -24,7 +24,7 @@ const SyncDetail = () => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -42,7 +42,7 @@ const SyncDetail = () => {
 
   const { id } = query;
 
-  const { work, loading } = useWork({ workId: id });
+  const { work, loading } = useWork({ workId: id as string });
   if (loading || !work) return <Loading />;
 
   const {

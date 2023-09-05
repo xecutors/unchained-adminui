@@ -10,7 +10,10 @@ import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 import useAllocateWork from '../hooks/useAllocateWork';
 import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
@@ -20,13 +23,14 @@ const AllocateWorkForm = () => {
   const { allocateWork } = useAllocateWork();
   const { hasRole } = useAuth();
 
-  const onSubmit = async ({ types, worker }) => {
+  const onSubmit: OnSubmitType = async ({ types, worker }) => {
     const { data, errors } = await allocateWork({ types, worker });
     return { success: !!data?.allocateWork, data: data?.allocateWork, errors };
   };
 
-  const onSubmitSuccess = (_, { _id }) => {
+  const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
     router.push(`/works/${_id}`);
+    return null;
   };
   const successMessage = formatMessage({
     id: 'work_allocated_success',

@@ -3,11 +3,17 @@ import useAuth from '../../Auth/useAuth';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 
 const ProductReviewReportCommentForm = ({
   onSubmit,
   onSubmitSuccess = async () => true,
+}: {
+  onSubmit: OnSubmitType;
+  onSubmitSuccess: OnSubmitSuccessType;
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();

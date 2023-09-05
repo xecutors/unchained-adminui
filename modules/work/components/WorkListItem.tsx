@@ -27,7 +27,7 @@ const WorkListItem = ({ work }) => {
     };
   }, [work?.status]);
 
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     dateStyle: 'short',
     timeStyle: 'short',
   };

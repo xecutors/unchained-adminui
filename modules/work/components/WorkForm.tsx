@@ -10,7 +10,10 @@ import JSONAreaField from '../../forms/components/JSONAreaField';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 import useAddWork from '../hooks/useAddWork';
 import useRegisteredWorkTypes from '../hooks/useRegisteredWorkTypes';
 
@@ -25,11 +28,12 @@ const WorkForm = () => {
     defaultMessage: 'Work added successfully!',
   });
 
-  const onSubmitSuccess = (_, { _id }) => {
+  const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
     router.push(`/works/${_id}`);
+    return true;
   };
 
-  const onSubmit = async ({
+  const onSubmit: OnSubmitType = async ({
     type,
     retries: inputRetry,
     priority: inputPriority,
@@ -48,7 +52,7 @@ const WorkForm = () => {
       scheduled,
       originalWorkId,
     });
-    if (errors?.length) return false;
+    if (errors?.length) return { success: false };
     return { success: true, data: data?.addWork };
   };
 

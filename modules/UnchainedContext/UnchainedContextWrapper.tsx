@@ -50,7 +50,7 @@ const hydrateFragment = (fragment, source) => {
   if (!fragment || !source) return null;
   const queryFragment = gql`fragment CustomProperty on ExtendedUnchainedSchema { ${fragment}  }`;
   const fragmentKeys = getKeyValuePair(
-    queryFragment?.definitions[0]?.selectionSet?.selections,
+    (queryFragment?.definitions[0] as any)?.selectionSet?.selections,
   );
   return assignObjectValue(source, fragmentKeys);
 };
