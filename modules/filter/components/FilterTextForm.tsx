@@ -5,14 +5,14 @@ import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 
-const FilterTextForm = ({ filterId, selectedLocale }) => {
+const FilterTextForm = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
@@ -25,16 +25,18 @@ const FilterTextForm = ({ filterId, selectedLocale }) => {
 
   const { updateFilterTexts } = useUpdateFilterTexts();
 
-  const onSubmit = async ({ title, subtitle }) => {
+  const onSubmit: OnSubmitType = async ({ title, subtitle }) => {
     await updateFilterTexts({
       filterId,
-      texts: {
-        locale: selectedLocale,
-        title,
-        subtitle,
-      },
+      texts: [
+        {
+          locale: selectedLocale,
+          title,
+          subtitle,
+        },
+      ],
     });
-    return true;
+    return { success: true };
   };
 
   const form = useForm({

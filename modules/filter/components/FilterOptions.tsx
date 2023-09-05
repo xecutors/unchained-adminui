@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
+import { OnSubmitType } from '../../forms/hooks/useForm';
 
 import useModal from '../../modal/hooks/useModal';
 import useCreateFilterOption from '../hooks/useCreateFilterOption';
@@ -8,17 +9,17 @@ import FilterOptionForm from './FilterOptionForm';
 
 import FilterOptionsList from './FilterOptionsList';
 
-const FilterFormView = ({ filterId, selectedLocale }) => {
+const FilterFormView = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { filterOptions } = useFilterOptions({ filterId });
   const { setModal } = useModal();
 
   const { createFilterOption } = useCreateFilterOption();
 
-  const onSubmit = async ({ value, title }) => {
+  const onSubmit: OnSubmitType = async ({ value, title }) => {
     await createFilterOption({ filterId, option: { value, title } });
     setModal('');
-    return true;
+    return { success: true };
   };
 
   return (
@@ -33,7 +34,6 @@ const FilterFormView = ({ filterId, selectedLocale }) => {
           onClick={() =>
             setModal(
               <FilterOptionForm
-                filterId={filterId}
                 onSubmit={onSubmit}
                 onCancel={() => setModal('')}
               />,

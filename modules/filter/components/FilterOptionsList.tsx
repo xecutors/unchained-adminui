@@ -6,7 +6,7 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import FilterOptionsListItem from './FilterOptionsListItem';
 
-const FilterListView = ({ filterId, options, selectedLocale }) => {
+const FilterListView = ({ filterId, options, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeFilterOption } = useRemoveFilterOption();
@@ -14,6 +14,7 @@ const FilterListView = ({ filterId, options, selectedLocale }) => {
   const onRemoveFilterOption = async (filterOptionValue) => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'delete_filter_option_confirmation',
           defaultMessage:

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
+import { IEnrollment } from '../../gql/types';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
@@ -31,7 +32,11 @@ const EnrollmentDetailPage = () => {
           })}
         />
       </div>
-      {loading ? <Loading /> : <EnrollmentDetail enrollment={enrollment} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <EnrollmentDetail enrollment={enrollment as IEnrollment} />
+      )}
     </div>
   );
 };

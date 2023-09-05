@@ -19,8 +19,9 @@ import DangerMessage from '../../modal/components/DangerMessage';
 import EnrollmentDetailHeader from './EnrollmentDetailHeader';
 import JSONView from '../../common/components/JSONView';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
+import { IEnrollment } from '../../../gql/types';
 
-const EnrollmentDetail = ({ enrollment }) => {
+const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
 
@@ -46,7 +47,7 @@ const EnrollmentDetail = ({ enrollment }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await activateEnrollment();
+          await activateEnrollment({ enrollmentId: enrollment?._id });
           toast.success(
             formatMessage({
               id: 'success_message',
@@ -99,6 +100,7 @@ const EnrollmentDetail = ({ enrollment }) => {
   const onTerminateEnrollment = async () => {
     await setModal(
       <DangerMessage
+        onCancelClick={async () => setModal('')}
         message={formatMessage({
           id: 'terminate_enrollment_confirmation',
           defaultMessage:
@@ -195,7 +197,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                   <ImageWithFallback
                     loader={defaultNextImageLoader}
                     src={enrollment?.plan?.product?.media?.[0]?.file?.url}
-                    alt={enrollment?.plan?.product?.text?.title}
+                    alt={enrollment?.plan?.product?.texts?.title}
                     layout="fill"
                     objectFit="contain"
                   />
@@ -228,7 +230,7 @@ const EnrollmentDetail = ({ enrollment }) => {
                   className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
                   value={JSON.stringify(
                     (enrollment.plan.configuration || []).map(
-                      ({ __typename, ...rest }) => rest,
+                      ({ __typename, ...rest }: any) => rest,
                     ),
                     null,
                     2,

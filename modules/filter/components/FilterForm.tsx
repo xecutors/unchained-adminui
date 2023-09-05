@@ -9,10 +9,19 @@ import FormErrors from '../../forms/components/FormErrors';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../forms/hooks/useForm';
 import useFilterTypes from '../hooks/useFilterTypes';
 
-const FilterForm = ({ onSubmit, onSubmitSuccess }) => {
+const FilterForm = ({
+  onSubmit,
+  onSubmitSuccess,
+}: {
+  onSubmit: OnSubmitType;
+  onSubmitSuccess: OnSubmitSuccessType;
+}) => {
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();

@@ -3,10 +3,10 @@ import AccordionItem from './AccordionItem';
 
 const Accordion = ({
   data,
-  containerCSS,
-  headerCSS,
-  bodyCSS,
-  itemContainerCSS,
+  containerCSS = '',
+  headerCSS = '',
+  bodyCSS = '',
+  itemContainerCSS = '',
   ...rest
 }) => {
   return (

@@ -5,6 +5,10 @@ import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
 import FilterForm from '../../modules/filter/components/FilterForm';
 import useCreateFilter from '../../modules/filter/hooks/useCreateFilter';
+import {
+  OnSubmitSuccessType,
+  OnSubmitType,
+} from '../../modules/forms/hooks/useForm';
 
 const AddFilter = () => {
   const router = useRouter();
@@ -12,7 +16,7 @@ const AddFilter = () => {
 
   const { createFilter } = useCreateFilter();
 
-  const onSubmit = async ({ key, title, type, options }) => {
+  const onSubmit: OnSubmitType = async ({ key, title, type, options }) => {
     const { data, errors } = await createFilter({
       filter: {
         options,
@@ -24,8 +28,9 @@ const AddFilter = () => {
     return { success: !errors?.length, data: data?.createFilter };
   };
 
-  const onSubmitSuccess = (_, { _id }) => {
+  const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
     router.push(`/filters/${_id}`);
+    return null;
   };
 
   return (

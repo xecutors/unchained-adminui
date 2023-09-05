@@ -132,12 +132,7 @@ const FilterDetail = ({ filter, extendedData }) => {
     <>
       <div className="flex items-center justify-between">
         <div>
-          <FilterSummary
-            filterKey={key}
-            filterType={type}
-            createdAt={formatDate(created)}
-            updatedAt={formatDate(updated)}
-          />
+          <FilterSummary filterKey={key} filterType={type} />
         </div>
         <div className="self-end">
           <SelectOptions

@@ -4,9 +4,15 @@ import Form from '../../forms/components/Form';
 
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextField from '../../forms/components/TextField';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 
-const FilterOptionForm = ({ onCancel, onSubmit }) => {
+const FilterOptionForm = ({
+  onCancel,
+  onSubmit,
+}: {
+  onSubmit: OnSubmitType;
+  onCancel: any;
+}) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const successMessage = formatMessage({

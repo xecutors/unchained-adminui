@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import TextField from '../../forms/components/TextField';
 import Form from '../../forms/components/Form';
-import useForm from '../../forms/hooks/useForm';
+import useForm, { OnSubmitType } from '../../forms/hooks/useForm';
 import useUpdateFilterTexts from '../hooks/useUpdateFilterTexts';
 import DeleteButton from '../../common/components/DeleteButton';
 import Badge from '../../common/components/Badge';
@@ -25,18 +25,20 @@ const FilterOptionsListItem = ({
 
   const { updateFilterTexts } = useUpdateFilterTexts();
 
-  const onSubmit = async ({ title, value, subtitle }) => {
+  const onSubmit: OnSubmitType = async ({ title, value, subtitle }) => {
     await updateFilterTexts({
       filterId,
       filterOptionValue: value,
-      texts: {
-        locale: selectedLocale,
-        title,
-        subtitle,
-      },
+      texts: [
+        {
+          locale: selectedLocale,
+          title,
+          subtitle,
+        },
+      ],
     });
     setIsEdit(false);
-    return true;
+    return { success: true };
   };
 
   const form = useForm({
@@ -124,7 +126,7 @@ const FilterOptionsListItem = ({
                 <div className="flex items-center gap-2">
                   <div
                     onClick={() => setIsEdit(!isEdit)}
-                    tabIndex="-1"
+                    tabIndex={-1}
                     role="button"
                     aria-label={formatMessage({
                       id: 'edit',
