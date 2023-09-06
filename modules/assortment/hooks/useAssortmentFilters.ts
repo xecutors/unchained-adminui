@@ -6,7 +6,7 @@ import {
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import FilterFragment from '../../filter/fragments/FilterFragment';
 
-export const AssortmentFiltersQuery = gql`
+const AssortmentFiltersQuery = gql`
   query AssortmentFilters($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id

@@ -5,5 +5,3 @@ export const PRODUCT_TYPES = {
   ConfigurableProduct: 'ConfigurableProduct',
   TokenizedProduct: 'TokenizedProduct',
 };
-
-export default PRODUCT_TYPES;

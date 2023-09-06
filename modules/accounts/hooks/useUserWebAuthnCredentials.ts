@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import MD5MetaDataFragment from '../fragment/MD5MetaDataFragment';
 
-export const UserWebAuthnCredentialsQuery = gql`
+const UserWebAuthnCredentialsQuery = gql`
   query UserWebAuthnCredentials($userId: ID!) {
     user(userId: $userId) {
       _id

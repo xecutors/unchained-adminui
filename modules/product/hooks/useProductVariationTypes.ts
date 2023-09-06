@@ -4,7 +4,7 @@ import {
   IProductVariationTypeQueryVariables,
 } from '../../../gql/types';
 
-export const ProductVariationTypesQuery = gql`
+const ProductVariationTypesQuery = gql`
   query ProductVariationType {
     variationTypes: __type(name: "ProductVariationType") {
       options: enumValues {

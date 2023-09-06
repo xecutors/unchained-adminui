@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import WarehousingProviderFragment from '../fragments/WarehousingProviderFragment';
 
-export const WarehousingProvidersQuery = gql`
+const WarehousingProvidersQuery = gql`
   query WarehousingProviders($type: WarehousingProviderType) {
     warehousingProviders(type: $type) {
       ...WarehousingProviderFragment

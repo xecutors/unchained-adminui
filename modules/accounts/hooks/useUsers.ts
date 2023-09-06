@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import { IUsersQuery, IUsersQueryVariables } from '../../../gql/types';
 import UserFragment from '../fragment/UserFragment';
 
-export const UsersQuery = gql`
+const UsersQuery = gql`
   query Users(
     $limit: Int
     $offset: Int

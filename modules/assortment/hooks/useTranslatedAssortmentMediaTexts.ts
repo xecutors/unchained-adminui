@@ -6,7 +6,7 @@ import {
 
 import AssortmentMediaTextsFragment from '../fragments/AssortmentMediaTextsFragment';
 
-export const TranslatedAssortmentMediaTextsQuery = gql`
+const TranslatedAssortmentMediaTextsQuery = gql`
   query TranslatedAssortmentMediaTexts($assortmentMediaId: ID!) {
     translatedAssortmentMediaTexts(assortmentMediaId: $assortmentMediaId) {
       ...AssortmentMediaTextsFragment

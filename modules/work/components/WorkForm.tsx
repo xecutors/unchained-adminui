@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
 
 import DatePickerField from '../../forms/components/DatePickerField';
 import Form from '../../forms/components/Form';

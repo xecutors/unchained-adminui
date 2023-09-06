@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import QuotationFragment from '../fragments/QuotationFragment';
 
-export const QuotationsQuery = gql`
+const QuotationsQuery = gql`
   query Quotations(
     $limit: Int
     $offset: Int

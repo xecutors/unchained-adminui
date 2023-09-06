@@ -1,9 +1,8 @@
 import React from 'react';
 import { IUser } from '../../gql/types';
 
-export type Auth = (currentUser?: IUser) => boolean;
-export type AuthState = (user?: IUser) => boolean | string[];
-export type AuthReset = () => void;
+type Auth = (currentUser?: IUser) => boolean;
+type AuthState = (user?: IUser) => boolean | string[];
 const AuthContext = React.createContext<{
   isAuthenticated: AuthState;
   isAdmin: Auth;

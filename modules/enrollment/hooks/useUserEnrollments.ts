@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
-export const UserEnrollmentsQuery = gql`
+const UserEnrollmentsQuery = gql`
   query UserEnrollments($userId: ID!, $queryString: String) {
     user(userId: $userId) {
       _id

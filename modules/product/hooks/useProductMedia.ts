@@ -6,7 +6,7 @@ import {
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 import ProductMediaFragment from '../fragments/ProductMediaFragment';
 
-export const ProductMediaQuery = gql`
+const ProductMediaQuery = gql`
   query ProductMedia($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id

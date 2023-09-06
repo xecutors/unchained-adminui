@@ -3,7 +3,7 @@ import { IUserQuery, IUserQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import UserFragment from '../fragment/UserFragment';
 
-export const GetUserQuery = (inlineFragment = '') => gql`
+const GetUserQuery = (inlineFragment = '') => gql`
   query User($userId: ID) {
     user(userId: $userId) {
       ${inlineFragment}

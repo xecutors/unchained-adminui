@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
-export const AssortmentMediaQuery = gql`
+const AssortmentMediaQuery = gql`
   query AssortmentMedia($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       _id

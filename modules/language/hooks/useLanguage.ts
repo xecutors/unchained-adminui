@@ -3,7 +3,7 @@ import { ILanguageQuery, ILanguageQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import LanguageFragment from '../fragments/LanguageFragment';
 
-export const GetLanguageQuery = (inlineFragment = '') => gql`
+const GetLanguageQuery = (inlineFragment = '') => gql`
   query Language($languageId: ID!) {
     language(languageId: $languageId) {
       ...LanguageFragment

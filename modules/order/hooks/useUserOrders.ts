@@ -6,7 +6,7 @@ import {
 } from '../../../gql/types';
 import OrderFragment from '../fragments/OrderFragment';
 
-export const UserOrdersQuery = gql`
+const UserOrdersQuery = gql`
   query UserOrder(
     $userId: ID
     $queryString: String

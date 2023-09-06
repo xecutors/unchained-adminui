@@ -6,11 +6,7 @@ const config: CodegenConfig = {
   documents: 'modules/**/*.{ts,tsx}',
   generates: {
     'gql/types.ts': {
-      plugins: [
-        'typescript',
-        'typescript-operations',
-        'typescript-react-apollo',
-      ],
+      plugins: ['typescript', 'typescript-operations'],
 
       config: {
         typesPrefix: 'I',

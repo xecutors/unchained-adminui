@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import EnrollmentFragment from '../fragments/EnrollmentFragment';
 
-export const EnrollmentsQuery = gql`
+const EnrollmentsQuery = gql`
   query Enrollments(
     $offset: Int
     $limit: Int

@@ -4,7 +4,7 @@ import {
   IFilterTypesQueryVariables,
 } from '../../../gql/types';
 
-export const FilterTypesQuery = gql`
+const FilterTypesQuery = gql`
   query FilterTypes {
     filterTypes: __type(name: "FilterType") {
       options: enumValues {

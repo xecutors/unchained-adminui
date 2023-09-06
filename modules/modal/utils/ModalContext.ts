@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 
-export type SetModal = (
+type SetModal = (
   // eslint-disable-next-line no-undef
   children: JSX.Element | string,
   options?: { closeOnOutsideClick?: boolean },

@@ -7,7 +7,7 @@ import {
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import WorkFragment from '../fragments/WorkFragment';
 
-export const WorkQueueQuery = gql`
+const WorkQueueQuery = gql`
   query WorkQueue(
     $queryString: String
     $offset: Int

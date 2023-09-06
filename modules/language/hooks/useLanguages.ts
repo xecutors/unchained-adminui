@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import { ILanguagesQuery, ILanguagesQueryVariables } from '../../../gql/types';
 import LanguageFragment from '../fragments/LanguageFragment';
 
-export const LanguagesQuery = gql`
+const LanguagesQuery = gql`
   query Languages(
     $queryString: String
     $offset: Int

@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import QuotationFragment from '../fragments/QuotationFragment';
 
-export const UserQuotationsQuery = gql`
+const UserQuotationsQuery = gql`
   query UserQuotations($userId: ID!, $queryString: String) {
     user(userId: $userId) {
       _id

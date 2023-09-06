@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import { ICountriesQuery, ICountriesQueryVariables } from '../../../gql/types';
 import CountryFragment from '../fragments/CountryFragment';
 
-export const CountriesQuery = gql`
+const CountriesQuery = gql`
   query Countries(
     $queryString: String
     $limit: Int

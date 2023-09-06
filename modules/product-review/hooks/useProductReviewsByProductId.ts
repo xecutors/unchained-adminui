@@ -6,7 +6,7 @@ import {
 } from '../../../gql/types';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 
-export const ProductReviewQuery = gql`
+const ProductReviewQuery = gql`
   query ProductReviewByProduct(
     $productId: ID
     $slug: String

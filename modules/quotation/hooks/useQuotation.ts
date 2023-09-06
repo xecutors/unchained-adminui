@@ -3,7 +3,7 @@ import { IQuotationQuery, IQuotationQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import QuotationDetailFragment from '../fragments/QuotationDetailFragment';
 
-export const GetQuotationsQuery = (inlineFragment = '') => gql`
+const GetQuotationsQuery = (inlineFragment = '') => gql`
   query Quotation($quotationId: ID!) {
     quotation(quotationId: $quotationId) {
       _id

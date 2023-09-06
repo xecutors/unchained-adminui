@@ -4,7 +4,7 @@ import {
   ISmartContractStandardsQueryVariables,
 } from '../../../gql/types';
 
-export const SmartContractStandardsQuery = gql`
+const SmartContractStandardsQuery = gql`
   query SmartContractStandards {
     smartContractStandards: __type(name: "SmartContractStandard") {
       options: enumValues {

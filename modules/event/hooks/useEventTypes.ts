@@ -4,7 +4,7 @@ import {
   IEventsTypeQueryVariables,
 } from '../../../gql/types';
 
-export const EventsTypeQuery = gql`
+const EventsTypeQuery = gql`
   query EventsType {
     eventTypes: __type(name: "EventType") {
       options: enumValues {

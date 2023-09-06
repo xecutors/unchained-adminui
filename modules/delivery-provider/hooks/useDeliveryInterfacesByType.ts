@@ -4,7 +4,7 @@ import {
   IDeliveryInterfacesQueryVariables,
 } from '../../../gql/types';
 
-export const DeliveryInterfacesQuery = gql`
+const DeliveryInterfacesQuery = gql`
   query DeliveryInterfaces($providerType: DeliveryProviderType!) {
     deliveryInterfaces(type: $providerType) {
       _id

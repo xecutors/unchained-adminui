@@ -1,7 +1,7 @@
 import { offsetLimitPagination } from '@apollo/client/utilities';
 
 /* eslint-disable no-underscore-dangle */
-export const keyMappings: any = {
+const keyMappings: any = {
   Query: {
     fields: {
       Assortments: {
@@ -116,7 +116,7 @@ export const keyMappings: any = {
   },
 };
 
-export const keyFields: any = {
+const keyFields: any = {
   keyFields: (result: any) => {
     if (result?._id && result?.__typename) {
       return `${result?.__typename}:${result?._id}`;

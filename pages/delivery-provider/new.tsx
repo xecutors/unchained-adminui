@@ -6,7 +6,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import PageHeader from '../../modules/common/components/PageHeader';
-import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../modules/common/convertArrayOfObjectToObject';
 import useCreateDeliveryProvider from '../../modules/delivery-provider/hooks/useCreateDeliveryProvider';
 import useDeliveryInterfacesByType from '../../modules/delivery-provider/hooks/useDeliveryInterfacesByType';
 import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useDeliveryProviderTypes';

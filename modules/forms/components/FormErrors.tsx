@@ -27,7 +27,7 @@ const flatten = (obj, path = '') => {
   return Object.fromEntries(entries);
 };
 
-export const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
+const FormErrorsPure = ({ submitError = '', fieldErrors = [] }) => {
   return (
     <div className="mx-4 pl-4 text-left text-red-600">
       <ul className="list-disc list-inside">

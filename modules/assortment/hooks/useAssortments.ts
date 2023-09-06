@@ -6,7 +6,7 @@ import {
 } from '../../../gql/types';
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
-export const AssortmentsQuery = gql`
+const AssortmentsQuery = gql`
   query Assortments(
     $queryString: String
     $tags: [LowerCaseString!]

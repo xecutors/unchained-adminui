@@ -6,7 +6,7 @@ import {
 } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
-export const ProductTokenizationQuery = gql`
+const ProductTokenizationQuery = gql`
   query ProductTokenization($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id

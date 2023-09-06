@@ -4,7 +4,7 @@ import {
   IEnrollmentStatusQueryVariables,
 } from '../../../gql/types';
 
-export const EnrollmentStatusTypes = gql`
+const EnrollmentStatusTypes = gql`
   query EnrollmentStatus {
     enrollmentStatusTypes: __type(name: "EnrollmentStatus") {
       options: enumValues {

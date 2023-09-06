@@ -4,7 +4,7 @@ import {
   IOrderPaymentStatusQueryVariables,
 } from '../../../gql/types';
 
-export const PaymentStatusTypesQuery = gql`
+const PaymentStatusTypesQuery = gql`
   query OrderPaymentStatus {
     paymentStatusTypes: __type(name: "OrderPaymentStatus") {
       options: enumValues {

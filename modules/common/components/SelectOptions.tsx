@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export type SelectOptionsProp = {
+type SelectOptionsProp = {
   id: string;
   title: string;
   selectedTitle?: string;

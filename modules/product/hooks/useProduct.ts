@@ -4,7 +4,7 @@ import { parseUniqueId } from '../../common/utils/getUniqueId';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import ProductDetailFragment from '../fragments/ProductDetailFragment';
 
-export const GetProductQuery = (inlineFragment = '') => gql`
+const GetProductQuery = (inlineFragment = '') => gql`
   query Product($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       ...ProductDetailFragment

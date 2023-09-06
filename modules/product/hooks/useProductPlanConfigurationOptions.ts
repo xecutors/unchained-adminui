@@ -4,7 +4,7 @@ import {
   IProductPlanConfigurationOptionsQueryVariables,
 } from '../../../gql/types';
 
-export const ProductPlanConfigurationOptionsQuery = gql`
+const ProductPlanConfigurationOptionsQuery = gql`
   query ProductPlanConfigurationOptions {
     usageCalculationTypes: __type(name: "ProductPlanUsageCalculationType") {
       options: enumValues {

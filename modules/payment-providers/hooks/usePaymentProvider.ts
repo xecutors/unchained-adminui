@@ -6,7 +6,7 @@ import {
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import PaymentProviderFragment from '../fragments/PaymentProviderFragment';
 
-export const GetPaymentProviderQuery = (inlineFragment = '') => gql`
+const GetPaymentProviderQuery = (inlineFragment = '') => gql`
   query PaymentProvider($paymentProviderId: ID!) {
     paymentProvider(paymentProviderId: $paymentProviderId) {
       ...PaymentProviderFragment

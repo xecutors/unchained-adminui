@@ -6,7 +6,7 @@ import {
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 import TokenFragment from '../fragments/TokenFragment';
 
-export const UserTokensQuery = gql`
+const UserTokensQuery = gql`
   query UserTokens($userId: ID!) {
     user(userId: $userId) {
       _id

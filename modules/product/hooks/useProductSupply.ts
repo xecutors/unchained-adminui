@@ -8,7 +8,7 @@ import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductDimensionFragment from '../fragments/ProductDimensionFragment';
 
-export const ProductSupplyQuery = gql`
+const ProductSupplyQuery = gql`
   query ProductSupply($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id

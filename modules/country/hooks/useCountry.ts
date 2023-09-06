@@ -3,7 +3,7 @@ import { ICountryQuery, ICountryQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CountryFragment from '../fragments/CountryFragment';
 
-export const GetCountryQuery = (inlineFragment = '') => gql`
+const GetCountryQuery = (inlineFragment = '') => gql`
   query Country($countryId: ID!) {
     country(countryId: $countryId) {
       ...CountryFragment

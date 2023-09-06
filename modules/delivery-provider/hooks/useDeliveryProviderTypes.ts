@@ -4,7 +4,7 @@ import {
   IDeliveryProvidersTypeQueryVariables,
 } from '../../../gql/types';
 
-export const DeliveryProvidersTypeQuery = gql`
+const DeliveryProvidersTypeQuery = gql`
   query DeliveryProvidersType {
     deliveryProviderType: __type(name: "DeliveryProviderType") {
       options: enumValues {

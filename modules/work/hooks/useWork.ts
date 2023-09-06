@@ -3,7 +3,7 @@ import { IWorkQuery, IWorkQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import WorkFragment from '../fragments/WorkFragment';
 
-export const GetWorkQuery = (inlineFragment = '') => gql`
+const GetWorkQuery = (inlineFragment = '') => gql`
   query Work($workId: ID!) {
     work(workId: $workId) {
       ...WorkFragment

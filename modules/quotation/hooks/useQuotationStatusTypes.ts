@@ -4,7 +4,7 @@ import {
   IQuotationStatusQueryVariables,
 } from '../../../gql/types';
 
-export const QuotationStatusTypesQuery = gql`
+const QuotationStatusTypesQuery = gql`
   query QuotationStatus {
     quotationStatusType: __type(name: "QuotationStatus") {
       options: enumValues {

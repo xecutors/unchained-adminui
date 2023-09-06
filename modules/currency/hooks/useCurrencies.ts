@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
-export const CurrenciesQuery = gql`
+const CurrenciesQuery = gql`
   query Currencies(
     $queryString: String
     $limit: Int

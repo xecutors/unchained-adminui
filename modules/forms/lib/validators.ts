@@ -1,18 +1,13 @@
 /* eslint-disable no-undef */
 import isLength from 'validator/lib/isLength';
 import isEmail from 'validator/lib/isEmail';
-import matches from 'validator/lib/matches';
 import { isValid as isValidDate } from 'date-fns';
 
 import { MessageDescriptor, useIntl } from 'react-intl';
 import { PrimitiveType } from 'intl-messageformat';
-import {
-  CurrencyCodes,
-  CountryCodes,
-  LanguageCodes,
-} from '../../common/data/iso-codes';
+import { CountryCodes, LanguageCodes } from '../../common/data/iso-codes';
 
-export const DATE_FORMAT = 'd.M.y';
+const DATE_FORMAT = 'd.M.y';
 
 export type Validator = {
   // eslint-disable-next-line no-unused-vars
@@ -45,13 +40,6 @@ export const validateLanguage = (): Validator => ({
   },
 });
 
-export const validateCurrency = (): Validator => ({
-  isValid: (value) => CurrencyCodes.includes(value.toUpperCase()),
-  intlMessageDescriptor: {
-    id: 'error_currency_code',
-    defaultMessage: 'Invalid currency code',
-  },
-});
 export const isContractAddress = (isRequired = false): Validator => ({
   isValid: (value) =>
     !isRequired && !value ? true : /^(0x)?[a-z0-9]{40}$/i.test(value),
@@ -113,24 +101,6 @@ export const validateRequiredTag = (isRequired): Validator => ({
   },
 });
 
-export const validatePhoneNumber: Validator = {
-  isValid: (value) => matches(value || '', /^[0+]{1}[0-9() ]{9,25}$/g),
-  intlMessageDescriptor: {
-    id: 'error_phone_number_invalid',
-    defaultMessage: 'Invalid phone number',
-  },
-};
-export const validateRequiredTextArea = (required): Validator => {
-  return {
-    isValid: (value) =>
-      required ? value.replaceAll(/<[^>]*>/g, '').trim().length !== 0 : true,
-    intlMessageDescriptor: {
-      id: 'error_text_area_required',
-      defaultMessage: '{label} is required',
-    },
-  };
-};
-
 export const validateProductCommerce = (currentIndex, values): Validator => {
   return {
     isValid: () => {
@@ -184,7 +154,7 @@ export const validateProductCommerceOneNull = (values): Validator => {
   };
 };
 
-export const useInitializeDefaultErrorMessages = () => {
+const useInitializeDefaultErrorMessages = () => {
   const { formatMessage } = useIntl();
 
   formatMessage({

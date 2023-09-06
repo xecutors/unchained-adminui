@@ -84,14 +84,6 @@ const JSONAreaField = ({
   );
 };
 
-export const useIntlMessageValues = () => {
-  const { formatMessage } = useIntl();
-  formatMessage({
-    id: 'invalid_json_input',
-    defaultMessage: 'Invalid JSON input',
-  });
-};
-
 JSONAreaField.defaultProps = {
   rows: [],
 };

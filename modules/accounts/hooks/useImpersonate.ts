@@ -4,7 +4,7 @@ import {
   IImpersonateMutationVariables,
 } from '../../../gql/types';
 
-export const IMPERSONATE_MUTATION = gql`
+const IMPERSONATE_MUTATION = gql`
   mutation Impersonate($userId: ID!) {
     impersonate(userId: $userId) {
       id

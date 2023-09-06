@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import FilterOptionFragment from '../fragments/FilterOptionFragment';
 
-export const FilterOptionsQuery = gql`
+const FilterOptionsQuery = gql`
   query FilterOptions($filterId: ID) {
     filter(filterId: $filterId) {
       _id

@@ -3,7 +3,7 @@ import { ICurrencyQuery, ICurrencyQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import CurrencyFragment from '../fragments/CurrencyFragment';
 
-export const GetCurrencyQuery = (inlineFragment = '') => gql`
+const GetCurrencyQuery = (inlineFragment = '') => gql`
   query Currency($currencyId: ID!) {
     currency(currencyId: $currencyId) {
       ...CurrencyFragment

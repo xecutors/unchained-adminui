@@ -41,10 +41,6 @@ let tokenStore = {
   },
 };
 
-export const setTokenStore = function setTokenStore(newStore) {
-  tokenStore = newStore;
-};
-
 const tokenDidChange = async function tokenDidChange() {
   const newData = tokenStore.get();
   onChangeCallbacks.forEach((callback) => callback(newData));

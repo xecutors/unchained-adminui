@@ -3,7 +3,7 @@ import { IFilterQuery, IFilterQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import FilterFragment from '../fragments/FilterFragment';
 
-export const GetFilterQuery = (inlineFragment = '') => gql`
+const GetFilterQuery = (inlineFragment = '') => gql`
   query Filter($filterId: ID) {
     filter(filterId: $filterId) {
       ...FilterFragment

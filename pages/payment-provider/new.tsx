@@ -6,7 +6,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import NewProviderForm from '../../modules/common/components/NewProviderForm';
 import PageHeader from '../../modules/common/components/PageHeader';
-import { convertArrayOfObjectToObject } from '../../modules/common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../modules/common/convertArrayOfObjectToObject';
 import useCreatePaymentProvider from '../../modules/payment-providers/hooks/useCreatePaymentProvider';
 import usePaymentInterfacesByType from '../../modules/payment-providers/hooks/usePaymentInterfacesByType';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';

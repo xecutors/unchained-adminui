@@ -6,7 +6,7 @@ import {
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import DeliveryProviderFragment from '../fragments/DeliveryProviderFragment';
 
-export const GetDeliveryProviderQuery = (inlineFragment = '') => gql`
+const GetDeliveryProviderQuery = (inlineFragment = '') => gql`
   query DeliveryProvider($deliveryProviderId: ID!) {
     deliveryProvider(deliveryProviderId: $deliveryProviderId) {
       ...DeliveryProviderFragment

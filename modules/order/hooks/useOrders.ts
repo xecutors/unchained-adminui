@@ -7,7 +7,7 @@ import {
 import { DefaultLimit } from '../../common/data/miscellaneous';
 import OrderFragment from '../fragments/OrderFragment';
 
-export const OrdersQuery = gql`
+const OrdersQuery = gql`
   query Orders(
     $limit: Int
     $offset: Int

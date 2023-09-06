@@ -76,13 +76,6 @@ export const convertSortFieldsToQueryFormat = (sort): ISortOptionInput[] => {
   })) as ISortOptionInput[];
 };
 
-const reducerToObject = (array) => {
-  return array.reduce(
-    (acc, curr) => ({ ...acc, [curr.field]: curr.direction }),
-    {},
-  );
-};
-
 const normalizeObjectToString = (object: Object) => {
   return Object.keys(object)
     .map((key) => [key, object[key]].join('='))
@@ -124,8 +117,6 @@ export {
   normalizeCountryISOCode,
   normalizeLanguageISOCode,
   getSortKeys,
-  reducerToObject,
-  normalizeObjectToString,
   normalizeQuery,
   getContent,
 };

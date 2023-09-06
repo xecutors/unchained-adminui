@@ -8,7 +8,7 @@ import {
 
 import ProductBriefFragment from '../fragments/ProductBriefFragment';
 
-export const ProductsQuery = gql`
+const ProductsQuery = gql`
   query Products(
     $queryString: String
     $tags: [LowerCaseString!]

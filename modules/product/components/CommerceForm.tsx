@@ -3,7 +3,7 @@ import { FieldArray } from 'formik';
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
 import useCountries from '../../country/hooks/useCountries';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 

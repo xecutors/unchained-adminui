@@ -4,7 +4,7 @@ import {
   IPaymentInterfacesQueryVariables,
 } from '../../../gql/types';
 
-export const PaymentInterfacesQuery = gql`
+const PaymentInterfacesQuery = gql`
   query PaymentInterfaces($providerType: PaymentProviderType!) {
     paymentInterfaces(type: $providerType) {
       _id

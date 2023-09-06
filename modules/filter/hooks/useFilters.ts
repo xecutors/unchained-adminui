@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import { IFiltersQuery, IFiltersQueryVariables } from '../../../gql/types';
 import FilterFragment from '../fragments/FilterFragment';
 
-export const FiltersQuery = gql`
+const FiltersQuery = gql`
   query Filters(
     $queryString: String
     $limit: Int

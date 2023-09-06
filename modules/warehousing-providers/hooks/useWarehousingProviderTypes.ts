@@ -4,7 +4,7 @@ import {
   IWarehousingProvidersTypeQueryVariables,
 } from '../../../gql/types';
 
-export const WarehousingProvidersTypeQuery = gql`
+const WarehousingProvidersTypeQuery = gql`
   query WarehousingProvidersType {
     warehousingProviderType: __type(name: "WarehousingProviderType") {
       options: enumValues {

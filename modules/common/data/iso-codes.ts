@@ -858,5 +858,3 @@ export const LanguageCodes = [
   'yo',
   'za',
 ];
-const ISOCodes = { CurrencyCodes, CountryCodes, LanguageCodes };
-export default ISOCodes;

@@ -8,7 +8,7 @@ import {
 import ProductBriefFragment from '../../product/fragments/ProductBriefFragment';
 import ProductReviewDetailFragment from '../fragments/ProductReviewDetailFragment';
 
-export const ProductReviewQuery = gql`
+const ProductReviewQuery = gql`
   query UserProductReviews(
     $userId: ID!
     $limit: Int

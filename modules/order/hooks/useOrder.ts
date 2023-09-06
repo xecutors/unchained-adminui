@@ -3,7 +3,7 @@ import { IOrderQuery, IOrderQueryVariables } from '../../../gql/types';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import OrderDetailFragment from '../fragments/OrderDetailFragment';
 
-export const GetOrderQuery = (inlineFragment = '') => gql`
+const GetOrderQuery = (inlineFragment = '') => gql`
   query Order($orderId: ID!) {
     order(orderId: $orderId) {
       ...OrderDetailFragment

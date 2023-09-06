@@ -1,7 +1,7 @@
 import { useQuery, gql } from '@apollo/client';
 import { IWorkTypesQuery, IWorkTypesQueryVariables } from '../../../gql/types';
 
-export const WorkTypesQuery = gql`
+const WorkTypesQuery = gql`
   query WorkTypes {
     registeredWorkTypes: __type(name: "WorkType") {
       options: enumValues {

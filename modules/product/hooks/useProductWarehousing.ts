@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import { parseUniqueId } from '../../common/utils/getUniqueId';
 
-export const ProductWarehousingQuery = gql`
+const ProductWarehousingQuery = gql`
   query ProductWarehousing($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id

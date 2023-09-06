@@ -6,7 +6,7 @@ import {
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 import EnrollmentDetailFragment from '../fragments/EnrollmentDetailFragment';
 
-export const GetEnrollmentQuery = (inlineFragment = '') => gql`
+const GetEnrollmentQuery = (inlineFragment = '') => gql`
   query Enrollment($enrollmentId: ID!) {
     enrollment(enrollmentId: $enrollmentId) {
       ...EnrollmentDetailFragment

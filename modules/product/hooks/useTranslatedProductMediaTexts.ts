@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 
-export const TranslatedProductMediaTextsQuery = gql`
+const TranslatedProductMediaTextsQuery = gql`
   query TranslatedProductMediaTexts($productMediaId: ID!) {
     translatedProductMediaTexts(productMediaId: $productMediaId) {
       ...ProductMediaTextsFragment

@@ -3,11 +3,10 @@ import {
   IEventsQuery,
   IEventsQueryVariables,
   ISortDirection,
-  ISortOptionInput,
 } from '../../../gql/types';
 import EventFragment from '../fragments/EventFragment';
 
-export const EventQuery = gql`
+const EventQuery = gql`
   query Events(
     $types: [String!]
     $limit: Int

@@ -7,7 +7,7 @@ import { parseUniqueId } from '../../common/utils/getUniqueId';
 
 import ProductVariationFragment from '../fragments/ProductVariationFragment';
 
-export const ProductVariationQuery = gql`
+const ProductVariationQuery = gql`
   query ProductVariations($productId: ID, $slug: String) {
     product(productId: $productId, slug: $slug) {
       _id

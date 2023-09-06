@@ -4,7 +4,7 @@ import {
   IPaymentProvidersTypeQuery,
 } from '../../../gql/types';
 
-export const PaymentProvidersTypeQuery = gql`
+const PaymentProvidersTypeQuery = gql`
   query PaymentProvidersType {
     paymentProviderType: __type(name: "PaymentProviderType") {
       options: enumValues {

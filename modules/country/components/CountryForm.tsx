@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
 import useCurrencies from '../../currency/hooks/useCurrencies';
 import CheckboxField from '../../forms/components/CheckboxField';
 import Form from '../../forms/components/Form';

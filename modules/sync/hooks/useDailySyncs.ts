@@ -2,7 +2,7 @@ import { useQuery, gql } from '@apollo/client';
 import { ISortDirection } from '../../../gql/types';
 import { DefaultLimit } from '../../common/data/miscellaneous';
 
-export const SyncReportQuery = gql`
+const SyncReportQuery = gql`
   query SyncReports(
     $queryString: String
     $offset: Int

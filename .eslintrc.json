@@ -21,6 +21,15 @@
     "mocha": true
 
   },
+  "overrides": [
+    {
+      "files": ["./pages/**/*", "./gql/**/*", "./cypress/**/*", "./cypress.config.ts", "./codegen.ts"], // Adjust this to match your folder structure
+      "rules": {
+        "import/no-unused-modules": "off"
+      }
+      
+    }
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     // allow jsx syntax in js files (for next.js project)
@@ -29,6 +38,7 @@
       { "allowAsProps": true  }
     ],
     "no-unused-vars": "off",
+    "import/no-unused-modules": [1, {"unusedExports": true}],
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "off", // Checks effect dependencies
     "formatjs/no-offset": "error",

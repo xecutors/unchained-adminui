@@ -10,24 +10,8 @@ export const isTruthy = (val) => {
   return true;
 };
 
-export const arrayToBooleanObject = (key, val) => ({ ...key, [val]: true });
-
 export const extractQuery = (query) => {
   return decodeURIComponent(query || [])
     .split(',')
     .filter(Boolean);
 };
-
-const normalizeFilterKeys = (rawFilter) => {
-  return Object.keys(rawFilter)
-    .filter((key) => isTruthy(rawFilter[key]))
-    .map((key) => {
-      const valueIsArray = Array.isArray(rawFilter[key])
-        ? rawFilter[key].join(',')
-        : rawFilter[key];
-      return `${encodeURIComponent(key)}=${valueIsArray}`;
-    })
-    .join('&');
-};
-
-export default normalizeFilterKeys;

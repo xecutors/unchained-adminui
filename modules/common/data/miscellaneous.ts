@@ -726,10 +726,6 @@ export const borderColor = (color, hue) => {
   return `${ColorLookupTable[color]?.border[hue]}`;
 };
 
-export const getColor = (type, color, hue) => {
-  return `${ColorLookupTable[color][type][hue]}`;
-};
-
 const shadowStyle = {
   NEW: `shadow-[inset_-5px_5px_0px_0px_#c084fc,inset_5px_-5px_0px_0px_#c084fc]`,
   ALLOCATED: `shadow-[inset_-5px_5px_0px_0px_#60a5fa,inset_5px_-5px_0px_0px_#60a5fa]`,
@@ -766,6 +762,3 @@ export const ORDER_STATUSES = {
   FULLFILLED: 'green',
   REJECTED: 'red',
 };
-
-const Miscellaneous = { LimitSteps, DefaultLimit };
-export default Miscellaneous;

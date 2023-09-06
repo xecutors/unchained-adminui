@@ -4,7 +4,7 @@ import {
   ISystemRolesQueryVariables,
 } from '../../../gql/types';
 
-export const SystemRolesQuery = gql`
+const SystemRolesQuery = gql`
   query SystemRoles {
     shopInfo {
       _id

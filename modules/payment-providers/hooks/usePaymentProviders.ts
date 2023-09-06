@@ -5,7 +5,7 @@ import {
 } from '../../../gql/types';
 import PaymentProviderFragment from '../fragments/PaymentProviderFragment';
 
-export const PaymentProvidersQuery = gql`
+const PaymentProvidersQuery = gql`
   query PaymentProviders($type: PaymentProviderType) {
     paymentProviders(type: $type) {
       ...PaymentProviderFragment

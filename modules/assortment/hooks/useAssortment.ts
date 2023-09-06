@@ -8,7 +8,7 @@ import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
 
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
-export const GetAssortmentQuery = (inlineFragment = '') => gql`
+const GetAssortmentQuery = (inlineFragment = '') => gql`
   query Assortment($assortmentId: ID, $slug: String) {
     assortment(assortmentId: $assortmentId, slug: $slug) {
       ...AssortmentFragment

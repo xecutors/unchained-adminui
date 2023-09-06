@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import SelfDocumentingView from '../../common/components/SelfDocumentingView';
-import { convertArrayOfObjectToObject } from '../../common/convertArrayOfObjectToObject';
+import convertArrayOfObjectToObject from '../../common/convertArrayOfObjectToObject';
 import Form from '../../forms/components/Form';
 import SelectField from '../../forms/components/SelectField';
 import SubmitButton from '../../forms/components/SubmitButton';
