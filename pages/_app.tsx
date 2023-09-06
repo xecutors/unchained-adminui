@@ -28,6 +28,7 @@ import { GetCurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
 import formatUsername from '../modules/common/utils/formatUsername';
+import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 
 const handleRouteChange = async (url) => {
   const apolloClient = initializeApollo();
@@ -81,36 +82,32 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   }, [apollo]);
 
   return (
-    <>
-      <Head>
-        {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
-          <>
-            <Script
-              id="matomo-script"
-              src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
-            />
-            <Script
-              id="matomo-config"
-              dangerouslySetInnerHTML={{
-                __html: `
+    <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
+      <ErrorBoundary>
+        <Head>
+          {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
+            <>
+              <Script
+                id="matomo-script"
+                src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
+              />
+              <Script
+                id="matomo-config"
+                dangerouslySetInnerHTML={{
+                  __html: `
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
   _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
   `,
-              }}
-            />
-          </>
-        ) : null}
-      </Head>
-      <EndpointContext.Provider value={endpointContext}>
-        <ApolloProvider client={apollo}>
-          <IntlWrapper
-            locale={router.locale}
-            messages={messages}
-            key="intl-provider"
-          >
+                }}
+              />
+            </>
+          ) : null}
+        </Head>
+        <EndpointContext.Provider value={endpointContext}>
+          <ApolloProvider client={apollo}>
             <AuthWrapper apolloClient={apollo} componentName={componentName}>
               <UnchainedContextWrapper>
                 <ThemeWrapper>
@@ -129,10 +126,10 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
                 </ThemeWrapper>
               </UnchainedContextWrapper>
             </AuthWrapper>
-          </IntlWrapper>
-        </ApolloProvider>
-      </EndpointContext.Provider>
-    </>
+          </ApolloProvider>
+        </EndpointContext.Provider>
+      </ErrorBoundary>
+    </IntlWrapper>
   );
 };
 
