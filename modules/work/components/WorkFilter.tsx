@@ -15,6 +15,8 @@ const WorkFilter = ({ workTypes = [] }) => {
   const { getDateFormatPattern, parseDate } = useFormatDateTime();
   const router = useRouter();
   const { formatMessage } = useIntl();
+  const appliedStatuses = extractQuery(router.query.status);
+  const appliedTypes = extractQuery(router.query.types);
 
   const typeChangeHandler = (selectedTypes) => {
     const { types, ...rest } = router.query;
@@ -146,7 +148,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                   id: 'select_type',
                   defaultMessage: 'Select type',
                 })}
-                tagList={extractQuery(router.query?.types)}
+                tagList={appliedTypes}
                 onChange={typeChangeHandler}
                 options={workTypes.map((type) => ({
                   label: type,
@@ -165,7 +167,7 @@ const WorkFilter = ({ workTypes = [] }) => {
         <div className="m-1 mt-3 grid grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:pr-5">
           <StatusFilter
             onStatusChange={onStatusChange}
-            selectedStatuses={router.query.status}
+            selectedStatuses={appliedStatuses}
             statuses={WORK_STATUSES}
           />
         </div>

@@ -6,7 +6,7 @@
 
 /**
  * @type {import('next').NextConfig}
- * */
+ **/
 
 require('./node_env');
 const fs = require('fs');
@@ -55,6 +55,9 @@ module.exports = {
   swcMinify: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
+  },
+  experimental: {
+    typedRoutes: true,
   },
   i18n: {
     locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
