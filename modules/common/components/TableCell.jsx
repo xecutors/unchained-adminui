@@ -79,7 +79,7 @@ const TableCell = ({
       .join('&');
 
     const newURL =
-      rest === {}
+      Object.keys(rest).length === 0
         ? `${router.basePath}?sort=${sort}`
         : `${router.basePath}?${newRest}&sort=${sort}`;
 
