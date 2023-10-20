@@ -2,12 +2,10 @@
 import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
-  const { localStorage } = window;
-
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      if (localStorage) {
-        const item = localStorage.getItem(key);
+      if (window.localStorage) {
+        const item = window.localStorage.getItem(key);
         return item || initialValue;
       }
       return initialValue;
@@ -19,11 +17,11 @@ const useLocalStorage = (key, initialValue) => {
 
   const setValue = (value) => {
     try {
-      if (localStorage) {
+      if (window.localStorage) {
         const valueToStore =
           value instanceof Function ? value(storedValue) : value;
         setStoredValue(valueToStore);
-        localStorage.setItem(key, JSON.stringify(valueToStore));
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } else {
         console.log('localStorage is not available');
       }

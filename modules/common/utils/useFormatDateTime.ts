@@ -4,7 +4,9 @@ const useFormatDateTime = () => {
   const formatDateTime = (date, options: Intl.DateTimeFormatOptions = {}) => {
     if (!date) return 'n/a';
     try {
-      return Intl.DateTimeFormat(navigator.language || 'de-ch', options).format(
+      const locale =
+        (typeof navigator !== 'undefined' && navigator.language) || 'de-ch';
+      return Intl.DateTimeFormat(locale, options).format(
         new Date(date).getTime(),
       );
     } catch {
@@ -32,7 +34,9 @@ const useFormatDateTime = () => {
       }
     };
 
-    return new Intl.DateTimeFormat(navigator.language || 'de-ch')
+    const locale =
+      (typeof navigator !== 'undefined' && navigator.language) || 'de-ch';
+    return new Intl.DateTimeFormat(locale)
       .formatToParts(new Date())
       .map(getPatternForPart)
       .join('');
