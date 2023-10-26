@@ -25,7 +25,7 @@ const Home = () => {
     if (
       typeof window !== 'undefined' &&
       'serviceWorker' in navigator &&
-      window.workbox !== undefined
+      window?.workbox !== undefined
     ) {
       const wb = window.workbox;
 
@@ -41,7 +41,7 @@ const Home = () => {
           )
         ) {
           wb.addEventListener('controlling', () => {
-            window.location.reload();
+            window?.location.reload();
           });
 
           wb.messageSkipWaiting();

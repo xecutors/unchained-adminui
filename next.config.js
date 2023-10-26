@@ -56,9 +56,6 @@ module.exports = {
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
-  experimental: {
-    typedRoutes: true,
-  },
   i18n: {
     locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
