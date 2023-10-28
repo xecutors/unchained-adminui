@@ -65,7 +65,7 @@ const WorkListItem = ({ work }) => {
 
       <Table.Cell>
         <div className="flex items-center text-sm">
-          <Tooltip text={formatDateTime(work.scheduled, options)}>
+          <Tooltip text={formatDateTime(work?.scheduled, options)}>
             {getScheduledTime(work)}
           </Tooltip>
         </div>

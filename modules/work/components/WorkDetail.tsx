@@ -156,7 +156,7 @@ const WorkDetail = ({ work }) => {
                 })}
               </div>
               <div className="flex text-sm w-100">
-                <Tooltip text={formatDateTime(work.scheduled, options)}>
+                <Tooltip text={formatDateTime(work?.scheduled, options)}>
                   {getScheduledTime(work)}
                 </Tooltip>
               </div>
