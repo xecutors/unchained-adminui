@@ -5,16 +5,22 @@ import { toast } from 'react-toastify';
 import WorkDetail from '../../modules/work/components/WorkDetail';
 import useWork from '../../modules/work/hooks/useWork';
 import useRemoveWork from '../../modules/work/hooks/useRemoveWork';
+import useAddWork from '../../modules/work/hooks/useAddWork';
 import Loading from '../../modules/common/components/Loading';
 import PageHeader from '../../modules/common/components/PageHeader';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { useCallback } from 'react';
+
+import { IWorkStatus } from '../../gql/types';
 
 const WorkDetailPage = () => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
+
   const { workId } = query;
   const { work, loading } = useWork({
     workId: workId as string,
@@ -23,9 +29,21 @@ const WorkDetailPage = () => {
 
   const { setModal } = useModal();
   const { removeWork } = useRemoveWork();
+  const { addWork } = useAddWork();
+
   const isDeletable = (status) => {
-    return status === 'NEW' || status === 'ALLOCATED';
+    return status === IWorkStatus.New || status === IWorkStatus.Allocated;
   };
+
+  const retryWork = useCallback(async () => {
+    const { data } = await addWork({
+      ...work,
+      scheduled: null,
+      originalWorkId: work?._id,
+    });
+    push(`/works/${data.addWork._id}`);
+  }, [work]);
+
   const handleOnClick = async () => {
     await setModal(
       <DangerMessage
@@ -63,7 +81,23 @@ const WorkDetailPage = () => {
             defaultMessage: 'Work Detail',
           })}
         />
-        {work && isDeletable(work?.status) ? (
+        {work && work.status === IWorkStatus.Failed ? (
+          <button
+            type="button"
+            aria-describedby="header-delete-button"
+            className="my-auto flex items-center justify-center rounded border-2 border-green-600 px-3 py-2 text-sm font-semibold text-green-600 shadow-sm hover:border-green-800 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
+            onClick={retryWork}
+          >
+            <span className="pr-1">
+              {<ArrowPathIcon className="h-5 w-5" />}
+            </span>
+            {formatMessage({
+              id: 'retry-work',
+              defaultMessage: 'Retry',
+            })}
+          </button>
+        ) : null}
+        {work && isDeletable(work) ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>

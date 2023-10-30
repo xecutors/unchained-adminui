@@ -8,6 +8,7 @@ import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
 import JSONView from '../../common/components/JSONView';
 import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 import Tooltip from '../../common/components/ToolTip';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -113,7 +114,8 @@ const WorkDetail = ({ work }) => {
               )}
             </div>
           </div>
-          {work?.retries ? (
+
+          {work?.retries || work?.original ? (
             <div className="mb-2 flex flex-wrap items-center justify-between">
               <div className="mr-4 text-base font-semibold text-slate-500 dark:text-slate-200 sm:text-lg sm:font-bold">
                 {formatMessage({
@@ -123,10 +125,10 @@ const WorkDetail = ({ work }) => {
               </div>
               <div className="mt-2 max-w-prose space-y-5 text-sm">
                 <Link
-                  href={`/works/${work?.work?._id}`}
+                  href={`/works/${work?.original?._id}`}
                   className="text-blue-600 dark:text-blue-400"
                 >
-                  {work?.work?._id}
+                  {work?.original?._id}
                 </Link>
               </div>
             </div>
