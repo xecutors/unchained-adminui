@@ -1,4 +1,3 @@
-import { FaceFrownIcon } from '@heroicons/react/24/solid';
 import { useIntl } from 'react-intl';
 import NoData from '../../common/components/NoData';
 import ProductReviewsItem from './ProductReviewsItem';
@@ -14,7 +13,6 @@ const ProductReviewsList = ({
     return (
       <NoData
         message={formatMessage({ id: 'reviews', defaultMessage: 'Reviews' })}
-        Icon={<FaceFrownIcon />}
       />
     );
 

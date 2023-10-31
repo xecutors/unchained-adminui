@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import { FaceFrownIcon } from '@heroicons/react/24/solid';
 import { Fragment } from 'react';
 
 import Table from '../../common/components/Table';
@@ -74,7 +73,6 @@ const DiscountList = ({ discounts }) => {
             defaultMessage: 'Discounts',
           })}
           className="border-t border-indigo-50 dark:border-slate-700 px-4 py-4 sm:px-6"
-          Icon={FaceFrownIcon}
         />
       )}
     </div>
