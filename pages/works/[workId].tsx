@@ -97,7 +97,7 @@ const WorkDetailPage = () => {
             })}
           </button>
         ) : null}
-        {work && isDeletable(work) ? (
+        {work && isDeletable(work?.status) ? (
           <HeaderDeleteButton onClick={handleOnClick} />
         ) : null}
       </div>
