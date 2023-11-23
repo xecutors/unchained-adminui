@@ -59,7 +59,6 @@ const useAssortments = ({
   const { data, loading, error } = useQuery<IAssortmentsQuery>(
     AssortmentsQuery,
     {
-      fetchPolicy: 'cache-first',
       variables: {
         queryString,
         tags,
