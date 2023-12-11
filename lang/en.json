@@ -66,6 +66,9 @@
   "add_product": {
     "defaultMessage": "Add product"
   },
+  "add_review": {
+    "defaultMessage": "Add Review"
+  },
   "add_tag": {
     "defaultMessage": "Add tag"
   },
@@ -283,6 +286,9 @@
   "child_assortment": {
     "defaultMessage": "Sub-Assortment"
   },
+  "children": {
+    "defaultMessage": "Children:"
+  },
   "city": {
     "defaultMessage": "City"
   },
@@ -318,6 +324,9 @@
   },
   "confirm_order_alert_header": {
     "defaultMessage": "Confirm order?"
+  },
+  "confirm_order_alert_message": {
+    "defaultMessage": "This will mark order as confirmed"
   },
   "confirm_password": {
     "defaultMessage": "Confirm password"
@@ -728,8 +737,17 @@
   "enrollment_detail": {
     "defaultMessage": "Enrollment Detail"
   },
+  "enrollment_error": {
+    "defaultMessage": "Failed sending email, please try again"
+  },
   "enrollment_number": {
     "defaultMessage": "Enrollment number"
+  },
+  "enrollment_success": {
+    "defaultMessage": "Email sent to the user successfully"
+  },
+  "enrollment_success_message": {
+    "defaultMessage": "Subscription activation email sent"
   },
   "enrollment_updated_successfully": {
     "defaultMessage": "Enrollment saved successfully"
@@ -896,9 +914,6 @@
   "filter_type": {
     "defaultMessage": "Filter Type"
   },
-  "filtered_data": {
-    "defaultMessage": "Filtered data"
-  },
   "filters": {
     "defaultMessage": "Filters"
   },
@@ -968,6 +983,9 @@
   "image_not_available": {
     "defaultMessage": "Image not available"
   },
+  "impersonate-user-account": {
+    "defaultMessage": "Impersonate Account"
+  },
   "import": {
     "defaultMessage": "Import",
     "description": "Name"
@@ -1018,9 +1036,6 @@
   "invalid_credential_error": {
     "defaultMessage": "Invalid credential, please try again"
   },
-  "invalid_json_input": {
-    "defaultMessage": "Invalid JSON input"
-  },
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
   },
@@ -1066,6 +1081,9 @@
   "last_updated": {
     "defaultMessage": "Last Updated:"
   },
+  "latest-reviews": {
+    "defaultMessage": "Latest Reviews"
+  },
   "leaf": {
     "defaultMessage": "Leaf"
   },
@@ -1084,6 +1102,9 @@
   "links": {
     "defaultMessage": "Links"
   },
+  "load-more-reviews": {
+    "defaultMessage": "Load reviews"
+  },
   "load_more": {
     "defaultMessage": "Load more"
   },
@@ -1101,9 +1122,6 @@
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
-  },
-  "logs": {
-    "defaultMessage": "Logs"
   },
   "make-proposal-header": {
     "defaultMessage": "Make quotation proposal"
@@ -1126,6 +1144,9 @@
   "mark_as_delivered": {
     "defaultMessage": "Mark as delivered"
   },
+  "mark_as_delivered_message": {
+    "defaultMessage": "This will change the order delivery status to delivered"
+  },
   "mark_as_delivered_question": {
     "defaultMessage": "Mark as delivered ?"
   },
@@ -1133,6 +1154,9 @@
     "defaultMessage": "Mark as Paid"
   },
   "mark_as_paid_question": {
+    "defaultMessage": "This will change the order payment status as Paid."
+  },
+  "mark_as_paid_question_header": {
     "defaultMessage": "Mark as paid ?"
   },
   "max_quantity": {
@@ -1149,6 +1173,9 @@
   },
   "media_updated": {
     "defaultMessage": "Media updated"
+  },
+  "message": {
+    "defaultMessage": "message"
   },
   "method": {
     "defaultMessage": "Method"
@@ -1361,9 +1388,6 @@
   "photo": {
     "defaultMessage": "Photo"
   },
-  "photo_updated": {
-    "defaultMessage": "Profile Photo updated successfully!"
-  },
   "plan_product_definition": {
     "defaultMessage": "<h3>Plan</h3> <p>Plan product is use when you have a product that is offered per subscription base. Since for this type of product the payment is usually recurring, you can adjust the interval of payment calculation. </p>"
   },
@@ -1426,6 +1450,12 @@
   },
   "product_quantity": {
     "defaultMessage": "Quantity"
+  },
+  "product_review_added": {
+    "defaultMessage": "Review added successfully!"
+  },
+  "product_review_updated": {
+    "defaultMessage": "Review updated successfully!"
   },
   "product_subscription_form_description": {
     "defaultMessage": "<ul><li> Information that will be used to calculate price of a subscription based product </li> <li>The price specified in commerce section will be used when calculating fees on each interval. </li> <li>Price will not be included for the specified trial period </li> </ul>"
@@ -1529,6 +1559,9 @@
   "region_Code": {
     "defaultMessage": "Region"
   },
+  "register-with-web3": {
+    "defaultMessage": "Register"
+  },
   "reject-quotation-quotation": {
     "defaultMessage": "Reject quotation?"
   },
@@ -1552,6 +1585,9 @@
   },
   "reorder_original": {
     "defaultMessage": "Reorder to original location"
+  },
+  "report-submit": {
+    "defaultMessage": "Submit"
   },
   "reports": {
     "defaultMessage": "Reports"
@@ -1592,11 +1628,17 @@
   "retry": {
     "defaultMessage": "Retry"
   },
+  "retry-work": {
+    "defaultMessage": "Retry"
+  },
+  "review": {
+    "defaultMessage": "Review"
+  },
   "review_data": {
     "defaultMessage": "Review data"
   },
   "review_deleted": {
-    "defaultMessage": "Review {reviewId} deleted successfully"
+    "defaultMessage": "Review deleted successfully"
   },
   "review_summary": {
     "defaultMessage": "<div> Based on <cta> {total} </cta> reviews</div>"
@@ -1663,6 +1705,9 @@
   },
   "select_type": {
     "defaultMessage": "Select type"
+  },
+  "send__enrollment_email_button": {
+    "defaultMessage": "Send enrollment Email"
   },
   "send_activation_email_confirm": {
     "defaultMessage": "Are you sure you want to send email?"
@@ -1827,6 +1872,9 @@
   "terminate_enrollment_confirmation": {
     "defaultMessage": "Are you sure you want to terminate this subscription?"
   },
+  "terminate_enrollment_error": {
+    "defaultMessage": "Failed when sending subscription activation email, please try again"
+  },
   "terminate_enrollment_success": {
     "defaultMessage": "Subscription terminated successfully"
   },
@@ -1900,6 +1948,9 @@
   "trial_unit": {
     "defaultMessage": "Trial Unit"
   },
+  "try-again": {
+    "defaultMessage": "Try again"
+  },
   "try_again": {
     "defaultMessage": "try-again"
   },
@@ -1954,6 +2005,9 @@
   "update_profile": {
     "defaultMessage": "Update profile / address"
   },
+  "update_review": {
+    "defaultMessage": "Update Review"
+  },
   "update_role": {
     "defaultMessage": "Update role"
   },
@@ -1995,6 +2049,9 @@
   },
   "user": {
     "defaultMessage": "User"
+  },
+  "user-activities": {
+    "defaultMessage": "Activity"
   },
   "user_avatar": {
     "defaultMessage": "User avatar"
@@ -2052,6 +2109,9 @@
   },
   "vendor": {
     "defaultMessage": "Vendor"
+  },
+  "verification_sent_error": {
+    "defaultMessage": "Error occurred while sending verification email, please try again"
   },
   "verification_sent_success": {
     "defaultMessage": "Verification email sent successfully"

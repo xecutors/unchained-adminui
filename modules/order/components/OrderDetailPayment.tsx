@@ -34,7 +34,7 @@ const OrderDetailPayment = ({ order }) => {
           defaultMessage: 'This will change the order payment status as Paid.',
         })}
         headerText={formatMessage({
-          id: 'mark_as_paid_question',
+          id: 'mark_as_paid_question_header',
           defaultMessage: 'Mark as paid ?',
         })}
         onOkClick={async () => {

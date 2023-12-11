@@ -91,7 +91,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
           if (data?.sendEnrollmentEmail?.success)
             toast.success(
               formatMessage({
-                id: 'terminate_enrollment_success',
+                id: 'enrollment_success_message',
                 defaultMessage: 'Subscription activation email sent',
               }),
             );

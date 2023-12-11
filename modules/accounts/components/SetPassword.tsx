@@ -31,14 +31,14 @@ const SetPassword = ({ userId, isInitialPassword, primaryEmail }) => {
     if (data?.sendEnrollmentEmail?.success)
       toast.success(
         formatMessage({
-          id: 'terminate_enrollment_success',
+          id: 'enrollment_success',
           defaultMessage: 'Email sent to the user successfully',
         }),
       );
     else
       toast.error(
         formatMessage({
-          id: 'terminate_enrollment_error',
+          id: 'enrollment_error',
           defaultMessage: 'Failed sending email, please try again',
         }),
       );

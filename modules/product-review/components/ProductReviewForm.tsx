@@ -44,7 +44,7 @@ const ProductReviewForm = ({
           id="title"
           label={formatMessage({
             id: 'title',
-            defaultMessage: 'title',
+            defaultMessage: 'Title',
           })}
           autoComplete="off"
           required
