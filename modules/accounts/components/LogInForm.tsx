@@ -104,7 +104,6 @@ const GetCurrentStep = ({ step }) => {
 const LogInForm = () => {
   const intl = useIntl();
   const { logInWithPassword } = useLoginWithPassword();
-  const { isAuthenticated } = useAuth();
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
 
   const { setEndpoint, endpoint } = useEndpoint();
@@ -255,11 +254,7 @@ const LogInForm = () => {
           step: 1,
         },
       });
-  }, []);
-
-  if (isAuthenticated()) {
-    router.replace('/');
-  }
+  }, [router.query?.step]);
 
   return (
     <>
