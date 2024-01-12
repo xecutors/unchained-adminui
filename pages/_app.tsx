@@ -1,14 +1,11 @@
 import { ApolloProvider } from '@apollo/client';
 import App from 'next/app';
-
-import { Router, useRouter } from 'next/router';
-
+import { Router } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
-
-import { initializeApollo, useApollo } from '../modules/apollo/apolloClient';
+import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
@@ -24,29 +21,12 @@ import {
 } from '../modules/apollo/EndpointWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
-import { GetCurrentUserQuery } from '../modules/accounts/hooks/useCurrentUser';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
 import UnchainedContextWrapper from '../modules/UnchainedContext/UnchainedContextWrapper';
-import formatUsername from '../modules/common/utils/formatUsername';
 import ErrorBoundary from '../modules/common/components/ErrorBoundary';
 
-const handleRouteChange = async (url) => {
-  const apolloClient = initializeApollo();
-  const { data: { me } = {} } = await apolloClient.query({
-    query: GetCurrentUserQuery(),
-    errorPolicy: 'none',
-    fetchPolicy: 'cache-first',
-  });
-
-  const emailAddress = me?.primaryEmail?.address;
-  const username = formatUsername(me);
-  const clientId = me?._id;
-
-  matomo.pageView(document.location.origin + url, document.title, {
-    username,
-    emailAddress,
-    clientId,
-  });
+const handleRouteChange = (url) => {
+  matomo.pageView(document.location.origin + url, document.title);
 };
 
 const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
@@ -108,24 +88,27 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
         </Head>
         <EndpointContext.Provider value={endpointContext}>
           <ApolloProvider client={apollo}>
-            <AuthWrapper apolloClient={apollo} componentName={componentName}>
-              <UnchainedContextWrapper>
-                <ThemeWrapper>
-                  <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                  />
-                  <ModalWrapper>
+            <UnchainedContextWrapper>
+              <ThemeWrapper>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  newestOnTop={false}
+                  closeOnClick
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
+                <ModalWrapper>
+                  <AuthWrapper
+                    apolloClient={apollo}
+                    componentName={componentName}
+                  >
                     {getLayout(<Component {...pageProps} />)}
-                  </ModalWrapper>
-                </ThemeWrapper>
-              </UnchainedContextWrapper>
-            </AuthWrapper>
+                  </AuthWrapper>
+                </ModalWrapper>
+              </ThemeWrapper>
+            </UnchainedContextWrapper>
           </ApolloProvider>
         </EndpointContext.Provider>
       </ErrorBoundary>

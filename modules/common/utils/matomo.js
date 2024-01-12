@@ -5,7 +5,11 @@ export const getTracker = (...props) => {
 
 const usernameToHex = (username) => username.substr(3).padStart(16, '0');
 
-export const pageView = (url, title, { username, clientId, emailAddress }) => {
+export const pageView = (
+  url,
+  title,
+  { username, clientId, emailAddress } = {},
+) => {
   const tracker = getTracker();
   if (tracker) {
     if (emailAddress || username) {
