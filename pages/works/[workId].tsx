@@ -34,6 +34,13 @@ const WorkDetailPage = () => {
   const isDeletable = (status) => {
     return status === IWorkStatus.New || status === IWorkStatus.Allocated;
   };
+  const canBeRetried = (work) => {
+    return (
+      work &&
+      (work?.status === IWorkStatus.Failed ||
+        work?.status === IWorkStatus.Success)
+    );
+  };
 
   const retryWork = useCallback(async () => {
     const { data } = await addWork({
@@ -81,7 +88,7 @@ const WorkDetailPage = () => {
             defaultMessage: 'Work Detail',
           })}
         />
-        {work && work.status === IWorkStatus.Failed ? (
+        {canBeRetried(work) ? (
           <button
             type="button"
             aria-describedby="header-delete-button"
