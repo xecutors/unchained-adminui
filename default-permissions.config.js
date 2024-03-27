@@ -260,6 +260,15 @@ module.exports = () => {
     '/verify-email',
     '/403',
   ];
+
+  const OnlyPublicPages = [
+    '/log-in',
+    '/sign-up',
+    '/oauth',
+    '/account/forgot-password',
+    '/reset-password',
+    '/api/graphql',
+  ];
   return {
     UnrestrictedPages,
     checkAccess: (
@@ -290,6 +299,10 @@ module.exports = () => {
       return false;
     },
     isUserAdmin: isAdmin,
+    isPublicOnlyPage: (router) => {
+      const { pathname } = router;
+      return OnlyPublicPages.includes(pathname);
+    },
     isUserAuthenticated: (user) => {
       return !!user?._id;
     },

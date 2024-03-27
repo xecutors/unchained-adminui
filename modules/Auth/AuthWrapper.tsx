@@ -14,10 +14,13 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
 
-  const { checkAccess, isUserAuthenticated, isUserAdmin, checkRole } = useMemo(
-    () => loadRoleConfig(),
-    [],
-  );
+  const {
+    checkAccess,
+    isUserAuthenticated,
+    isUserAdmin,
+    checkRole,
+    isPublicOnlyPage,
+  } = useMemo(() => loadRoleConfig(), []);
 
   const isAuthenticated = (user) => {
     if (!isUserAuthenticated) return false;
@@ -60,6 +63,8 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
       if (isAuthenticated(currentUser)) {
         if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
+        } else if (isPublicOnlyPage(router)) {
+          router.replace('/');
         } else if (
           !isAdmin(currentUser) &&
           restrictNonAdmin &&

@@ -23,7 +23,7 @@ const useLocalStorage = (key, initialValue) => {
         setStoredValue(valueToStore);
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } else {
-        console.log('localStorage is not available');
+        console.error('localStorage is not available');
       }
     } catch (error) {
       console.error(error);
