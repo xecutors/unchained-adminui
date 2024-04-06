@@ -20,7 +20,6 @@ const AccountView = ({
   username,
   roles,
   tags,
-  isTwoFactorEnabled,
   isInitialPassword,
   primaryEmail,
 }) => {
@@ -144,34 +143,6 @@ const AccountView = ({
         </SelfDocumentingView>
       )}
 
-      {currentUser?._id === _id &&
-        !isTwoFactorEnabled &&
-        hasRole('showTwoFactor') && (
-          <SelfDocumentingView
-            documentationLabel={formatMessage({
-              id: 'enable_2fa_auth_header',
-              defaultMessage: 'Enable 2FA authentication',
-            })}
-          >
-            <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-              <EnableTwoFactorAuthForm />
-            </div>
-          </SelfDocumentingView>
-        )}
-
-      {((isTwoFactorEnabled && currentUser?._id === _id) ||
-        (isTwoFactorEnabled && hasRole('showTwoFactor'))) && (
-        <SelfDocumentingView
-          documentationLabel={formatMessage({
-            id: 'disable_2fa_auth_header',
-            defaultMessage: 'Disable 2FA authentication',
-          })}
-        >
-          <div className="space-y-6 overflow-hidden rounded-md border-b bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-800 px-4 py-5 shadow sm:p-6">
-            <DisableTwoFactorAuthForm userId={_id} />
-          </div>
-        </SelfDocumentingView>
-      )}
       {hasRole('showWebAuthn') && (
         <SelfDocumentingView
           documentationLabel={formatMessage({

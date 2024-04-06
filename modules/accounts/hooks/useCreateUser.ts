@@ -19,7 +19,7 @@ const CreateUserMutation = gql`
       profile: $profile
       webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
     ) {
-      id
+      _id
       token
       tokenExpires
     }

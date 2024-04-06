@@ -7,7 +7,7 @@ import {
 const ResetPasswordMutation = gql`
   mutation ResetPassword($newPlainPassword: String, $token: String!) {
     resetPassword(newPlainPassword: $newPlainPassword, token: $token) {
-      id
+      _id
       token
       tokenExpires
     }

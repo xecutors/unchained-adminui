@@ -9,23 +9,15 @@ const LogInWithPasswordMutation = gql`
   mutation LoginWithPassword(
     $username: String
     $email: String
-    $plainPassword: String
-    $totpCode: String
+    $password: String
   ) {
-    loginWithPassword(
-      username: $username
-      email: $email
-      plainPassword: $plainPassword
-      totpCode: $totpCode
-    ) {
-      id
-      token
+    loginWithPassword(username: $username, email: $email, password: $password) {
+      _id
       tokenExpires
       user {
         _id
         allowedActions
         roles
-        isTwoFactorEnabled
       }
     }
   }
@@ -39,16 +31,11 @@ const useLoginWithPassword = () => {
     errorPolicy: 'all',
   });
 
-  const logInWithPassword = async ({
-    usernameOrEmail,
-    password,
-    totpCode = null,
-  }) => {
+  const logInWithPassword = async ({ usernameOrEmail, password }) => {
     const variables = {
       username: null,
       email: null,
-      totpCode,
-      plainPassword: null,
+      password: null,
     };
 
     if (isEmail(usernameOrEmail)) {
@@ -58,7 +45,7 @@ const useLoginWithPassword = () => {
       variables.username = usernameOrEmail;
     }
 
-    variables.plainPassword = password;
+    variables.password = password;
     return logInWithPasswordMutation({
       variables,
       notifyOnNetworkStatusChange: true,

@@ -15,7 +15,7 @@ const LogInWithOauthMutation = gql`
       authorizationCode: $authorizationCode
       redirectUrl: $redirectUrl
     ) {
-      id
+      _id
       token
       tokenExpires
     }
