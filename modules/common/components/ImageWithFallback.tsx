@@ -9,7 +9,7 @@ const ImageWithFallback = ({ fallbackSrc = '', src, ...props }) => {
 
   return (
     <Image
-      src={imageSrc}
+      src={imageSrc || '/no-image.jpg'}
       blurDataURL="/no-image.jpg"
       loader={defaultNextImageLoader}
       alt={formatMessage({
