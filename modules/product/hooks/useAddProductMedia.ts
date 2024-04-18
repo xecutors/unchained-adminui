@@ -1,30 +1,36 @@
 import { useMutation, gql } from '@apollo/client';
-import {
-  IAddProductMediaMutation,
-  IAddProductMediaMutationVariables,
-} from '../../../gql/types';
+import PUTMedia from '../../common/utils/PUTMedia';
+import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
 
-const AddProductMediaMutation = gql`
-  mutation AddProductMedia($productId: ID!, $media: Upload!) {
-    addProductMedia(productId: $productId, media: $media) {
+const PrepareProductMediaUploadMutation = gql`
+  mutation PrepareProductMediaUpload($mediaName: String!, $productId: ID) {
+    prepareProductMediaUpload(mediaName: $mediaName, productId: $productId) {
       _id
+      putURL
+      expires
     }
   }
 `;
 
 const useAddProductMedia = () => {
-  const [addProductMediaMutation] = useMutation<
-    IAddProductMediaMutation,
-    IAddProductMediaMutationVariables
-  >(AddProductMediaMutation);
+  const [prepareProductMediaUploadMutation] = useMutation(
+    PrepareProductMediaUploadMutation,
+  );
+  const { confirmMediaUpload } = useConfirmMediaUpload();
 
-  const addProductMedia = async ({
-    productId,
-    media,
-  }: IAddProductMediaMutationVariables) => {
-    return addProductMediaMutation({
+  const addProductMedia = async ({ productId, media }) => {
+    const { data } = await prepareProductMediaUploadMutation({
       variables: { productId, media },
-      refetchQueries: ['ProductMedia'],
+    });
+    const { prepareProductMediaUpload } = data;
+    const uploadedMedia = await PUTMedia(
+      media,
+      prepareProductMediaUpload.putURL,
+    );
+    return confirmMediaUpload({
+      mediaUploadTicketId: prepareProductMediaUpload._id,
+      size: 10000,
+      type: 'image/jpeg',
     });
   };
 

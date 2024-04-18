@@ -1,35 +1,44 @@
 import { useMutation, gql } from '@apollo/client';
-import {
-  IAddAssortmentMediaMutation,
-  IAddAssortmentMediaMutationVariables,
-} from '../../../gql/types';
-import AssortmentMediaFragment from '../fragments/AssortmentMediaFragment';
+import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
+import PUTMedia from '../../common/utils/PUTMedia';
 
-const AddAssortmentMediaMutation = gql`
-  mutation AddAssortmentMedia($assortmentId: ID!, $media: Upload!) {
-    addAssortmentMedia(assortmentId: $assortmentId, media: $media) {
-      ...AssortmentMediaFragment
+const PrepareAssortmentMediaUploadMutation = gql`
+  mutation PrepareAssortmentMediaUpload(
+    $mediaName: String!
+    $assortmentId: ID
+  ) {
+    prepareAssortmentMediaUpload(
+      mediaName: $mediaName
+      assortmentId: $assortmentId
+    ) {
+      _id
+      putURL
+      expires
     }
   }
-  ${AssortmentMediaFragment}
 `;
 
 const useAddAssortmentMedia = () => {
-  const [addAssortmentMediaMutation] = useMutation<
-    IAddAssortmentMediaMutation,
-    IAddAssortmentMediaMutationVariables
-  >(AddAssortmentMediaMutation);
+  const [prepareAssortmentMediaUploadMutation] = useMutation(
+    PrepareAssortmentMediaUploadMutation,
+  );
+  const { confirmMediaUpload } = useConfirmMediaUpload();
+  const addAssortmentMedia = async ({ assortmentId, media }) => {
+    const { data } = await prepareAssortmentMediaUploadMutation({
+      variables: { assortmentId, mediaName: media.name },
+    });
 
-  const addAssortmentMedia = async ({
-    assortmentId,
-    media,
-  }: IAddAssortmentMediaMutationVariables) => {
-    return addAssortmentMediaMutation({
-      variables: { assortmentId, media },
-      refetchQueries: ['AssortmentMedia'],
+    const { prepareAssortmentMediaUpload } = data;
+    const uploadedMedia = await PUTMedia(
+      media,
+      prepareAssortmentMediaUpload.putURL,
+    );
+    await confirmMediaUpload({
+      mediaUploadTicketId: prepareAssortmentMediaUpload._id,
+      size: 1000,
+      type: 'image/jpeg',
     });
   };
-
   return {
     addAssortmentMedia,
   };

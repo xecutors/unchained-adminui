@@ -1,34 +1,39 @@
 import { useMutation, gql } from '@apollo/client';
-import {
-  IUpdateUserAvatarMutation,
-  IUpdateUserAvatarMutationVariables,
-} from '../../../gql/types';
-import UserFragment from '../fragment/UserFragment';
-
-const UpdateUserAvatarMutation = gql`
-  mutation UpdateUserAvatar($avatar: Upload!, $userId: ID) {
-    updateUserAvatar(avatar: $avatar, userId: $userId) {
-      ...UserFragment
+import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
+import PUTMedia from '../../common/utils/PUTMedia';
+const PrepareUserAvatarUploadMutation = gql`
+  mutation PrepareUserAvatarUpload($mediaName: String!, $userId: ID) {
+    prepareUserAvatarUpload(mediaName: $mediaName, userId: $userId) {
+      _id
+      putURL
+      expires
     }
   }
-  ${UserFragment}
 `;
 
 const useUpdateUserAvatar = () => {
-  const [updateUserAvatarMutation] = useMutation<
-    IUpdateUserAvatarMutation,
-    IUpdateUserAvatarMutationVariables
-  >(UpdateUserAvatarMutation);
+  const [prepareUserAvatarUploadMutation] = useMutation(
+    PrepareUserAvatarUploadMutation,
+  );
+  const { confirmMediaUpload } = useConfirmMediaUpload();
 
-  const updateUserAvatar = async ({
-    avatar,
-    userId = null,
-  }: IUpdateUserAvatarMutationVariables) => {
-    return updateUserAvatarMutation({
+  const updateUserAvatar = async ({ avatar, userId = null }) => {
+    const { data } = await prepareUserAvatarUploadMutation({
       variables: {
-        avatar,
+        mediaName: avatar.name,
         userId,
       },
+    });
+
+    const { prepareUserAvatarUpload } = data;
+    const uploadedMedia = await PUTMedia(
+      avatar,
+      prepareUserAvatarUpload.putURL,
+    );
+    await confirmMediaUpload({
+      mediaUploadTicketId: prepareUserAvatarUpload._id,
+      size: 10000,
+      type: 'image/jpeg',
     });
   };
 
