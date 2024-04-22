@@ -16,17 +16,16 @@ const useAddProductMedia = () => {
   const [prepareProductMediaUploadMutation] = useMutation(
     PrepareProductMediaUploadMutation,
   );
-  const { confirmMediaUpload } = useConfirmMediaUpload();
+  const { confirmMediaUpload } = useConfirmMediaUpload({
+    refetchQueries: ['Product'],
+  });
 
   const addProductMedia = async ({ productId, media }) => {
     const { data } = await prepareProductMediaUploadMutation({
       variables: { productId, mediaName: media.name },
     });
     const { prepareProductMediaUpload } = data;
-    await PUTMedia(
-      media,
-      prepareProductMediaUpload.putURL,
-    );
+    await PUTMedia(media, prepareProductMediaUpload.putURL);
     return confirmMediaUpload({
       mediaUploadTicketId: prepareProductMediaUpload._id,
       size: media?.size,

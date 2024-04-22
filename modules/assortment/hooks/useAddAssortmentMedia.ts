@@ -22,17 +22,16 @@ const useAddAssortmentMedia = () => {
   const [prepareAssortmentMediaUploadMutation] = useMutation(
     PrepareAssortmentMediaUploadMutation,
   );
-  const { confirmMediaUpload } = useConfirmMediaUpload();
+  const { confirmMediaUpload } = useConfirmMediaUpload({
+    refetchQueries: ['Assortment'],
+  });
   const addAssortmentMedia = async ({ assortmentId, media }) => {
     const { data } = await prepareAssortmentMediaUploadMutation({
       variables: { assortmentId, mediaName: media.name },
     });
 
     const { prepareAssortmentMediaUpload } = data;
-    await PUTMedia(
-      media,
-      prepareAssortmentMediaUpload.putURL,
-    );
+    await PUTMedia(media, prepareAssortmentMediaUpload.putURL);
     await confirmMediaUpload({
       mediaUploadTicketId: prepareAssortmentMediaUpload._id,
       size: media?.size,

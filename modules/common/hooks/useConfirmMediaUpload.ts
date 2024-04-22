@@ -20,13 +20,15 @@ const ConfirmMediaUploadMutation = gql`
   }
 `;
 
-const useConfirmMediaUpload = () => {
-  const [confirmMediaUploadMutation] = useMutation(ConfirmMediaUploadMutation);
+const useConfirmMediaUpload = (options = {}) => {
+  const [confirmMediaUploadMutation] = useMutation(
+    ConfirmMediaUploadMutation,
+    options,
+  );
 
   const confirmMediaUpload = async ({ mediaUploadTicketId, size, type }) => {
     return confirmMediaUploadMutation({
       variables: { mediaUploadTicketId, size, type },
-      refetchQueries: ['CurrentUser', "User"]
     });
   };
 

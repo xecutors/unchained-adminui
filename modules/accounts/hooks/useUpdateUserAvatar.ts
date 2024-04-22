@@ -15,7 +15,9 @@ const useUpdateUserAvatar = () => {
   const [prepareUserAvatarUploadMutation] = useMutation(
     PrepareUserAvatarUploadMutation,
   );
-  const { confirmMediaUpload } = useConfirmMediaUpload();
+  const { confirmMediaUpload } = useConfirmMediaUpload({
+    refetchQueries: ['User'],
+  });
 
   const updateUserAvatar = async ({ avatar, userId = null }) => {
     const { data } = await prepareUserAvatarUploadMutation({
@@ -24,12 +26,8 @@ const useUpdateUserAvatar = () => {
         userId,
       },
     });
-    console.log(avatar)
     const { prepareUserAvatarUpload } = data;
-    await PUTMedia(
-      avatar,
-      prepareUserAvatarUpload.putURL,
-    );
+    await PUTMedia(avatar, prepareUserAvatarUpload.putURL);
     await confirmMediaUpload({
       mediaUploadTicketId: prepareUserAvatarUpload._id,
       size: avatar.size,
