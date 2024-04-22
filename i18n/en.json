@@ -343,6 +343,7 @@
   "internal_server_error_message": "Sorry, It is not you, it is us. We are working on to fix this. .",
   "invalid_credential_error": "Invalid credential, please try again",
   "invalid_signature_length": "Invalid signature",
+  "invalid_json_input": "Invalid JSON input",
   "ip": "IP Address",
   "iso_code": "ISO code",
   "item_quantity": "Quantity:",
