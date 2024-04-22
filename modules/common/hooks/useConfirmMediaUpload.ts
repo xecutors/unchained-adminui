@@ -26,6 +26,7 @@ const useConfirmMediaUpload = () => {
   const confirmMediaUpload = async ({ mediaUploadTicketId, size, type }) => {
     return confirmMediaUploadMutation({
       variables: { mediaUploadTicketId, size, type },
+      refetchQueries: ['CurrentUser', "User"]
     });
   };
 

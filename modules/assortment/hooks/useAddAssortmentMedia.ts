@@ -5,7 +5,7 @@ import PUTMedia from '../../common/utils/PUTMedia';
 const PrepareAssortmentMediaUploadMutation = gql`
   mutation PrepareAssortmentMediaUpload(
     $mediaName: String!
-    $assortmentId: ID
+    $assortmentId: ID!
   ) {
     prepareAssortmentMediaUpload(
       mediaName: $mediaName
@@ -29,14 +29,14 @@ const useAddAssortmentMedia = () => {
     });
 
     const { prepareAssortmentMediaUpload } = data;
-    const uploadedMedia = await PUTMedia(
+    await PUTMedia(
       media,
       prepareAssortmentMediaUpload.putURL,
     );
     await confirmMediaUpload({
       mediaUploadTicketId: prepareAssortmentMediaUpload._id,
-      size: 1000,
-      type: 'image/jpeg',
+      size: media?.size,
+      type: media?.type,
     });
   };
   return {

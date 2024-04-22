@@ -24,16 +24,16 @@ const useUpdateUserAvatar = () => {
         userId,
       },
     });
-
+    console.log(avatar)
     const { prepareUserAvatarUpload } = data;
-    const uploadedMedia = await PUTMedia(
+    await PUTMedia(
       avatar,
       prepareUserAvatarUpload.putURL,
     );
     await confirmMediaUpload({
       mediaUploadTicketId: prepareUserAvatarUpload._id,
-      size: 10000,
-      type: 'image/jpeg',
+      size: avatar.size,
+      type: avatar.type,
     });
   };
 
