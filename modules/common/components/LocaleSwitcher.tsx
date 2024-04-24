@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
-import { useIntl } from 'react-intl';
 
 const LocaleSwitcher = () => {
-  const { formatMessage } = useIntl();
   const { pathname, asPath, query, push, locale, locales } = useRouter();
 
   const handleOnChange = (e) => {
@@ -16,10 +14,6 @@ const LocaleSwitcher = () => {
     <div className="ml-auto">
       <select
         className="cursor-pointer rounded-md border-slate-300 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-white  dark:bg-slate-400"
-        placeholder={formatMessage({
-          id: 'select_language',
-          defaultMessage: 'Select language',
-        })}
         value={locale}
         onChange={handleOnChange}
       >
