@@ -6,7 +6,7 @@ import useLanguages from '../../language/hooks/useLanguages';
 
 const LocaleWrapper = ({ children }) => {
   const { languages, loading } = useLanguages();
-  const { formatMessage, locale } = useIntl();
+  const { locale } = useIntl();
 
   const [selectedLocale, setSelectedLocale] = useState(locale);
 
@@ -28,10 +28,6 @@ const LocaleWrapper = ({ children }) => {
           <select
             id="locale-wrapper"
             className="cursor-pointer rounded-md border-slate-300 dark:border-slate-700 py-[0.25rem] pr-8 text-sm lg:py-1 lg:pr-10 text-black dark:text-slate-400 dark:bg-slate-800"
-            placeholder={formatMessage({
-              id: 'select_language',
-              defaultMessage: 'Select language',
-            })}
             value={selectedLocale}
             onChange={(e) => {
               e.stopPropagation();

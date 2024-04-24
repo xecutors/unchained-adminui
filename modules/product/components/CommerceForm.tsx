@@ -240,10 +240,6 @@ const CommerceForm = ({ productId }) => {
                                 'isoCode',
                               )}
                               hideLabel
-                              placeholder={formatMessage({
-                                id: 'country',
-                                defaultMessage: 'Country',
-                              })}
                             />
 
                             <SelectField

@@ -35,10 +35,6 @@ const ProvidersFilter = ({ providerType, onProviderFilterChange = null }) => {
           defaultValue={null}
           id="select-type"
           name="select-type"
-          placeholder={formatMessage({
-            id: 'filter_by_type',
-            defaultMessage: 'Filter by type',
-          })}
           autoComplete="off"
           className="dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 w-50 block w-full rounded-md border-slate-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         >
