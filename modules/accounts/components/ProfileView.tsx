@@ -119,7 +119,6 @@ const ProfileView = ({ profile, avatar, _id }) => {
       });
     }
   }, [profile]);
-
   return (
     <FormWrapper className="shadow-none">
       <Form form={form}>
@@ -181,6 +180,7 @@ const ProfileView = ({ profile, avatar, _id }) => {
                       />
                       {avatar ? (
                         <ImageWithFallback
+                          key={avatar?.url}
                           src={avatar?.url}
                           width={100}
                           height={100}
