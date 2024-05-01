@@ -8,6 +8,7 @@ import { WORK_STATUSES } from '../../common/data/miscellaneous';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 import Tooltip from '../../common/components/ToolTip';
+import RetryStatistics from './RetryStatistics';
 
 const WorkListItem = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -31,7 +32,6 @@ const WorkListItem = ({ work }) => {
     dateStyle: 'short',
     timeStyle: 'short',
   };
-
   return (
     <Table.Row>
       <Table.Cell>
@@ -40,15 +40,17 @@ const WorkListItem = ({ work }) => {
             href={`/works/${work._id}`}
             className="text-blue-600 dark:text-blue-400"
           >
-            {work?.type || (
-              <>
-                {work._id}{' '}
-                <Badge
-                  color="blue"
-                  text={formatMessage({ id: 'type', defaultMessage: 'Type' })}
-                />
-              </>
-            )}
+            <RetryStatistics work={work}>
+              {work?.type || (
+                <>
+                  {work._id}{' '}
+                  <Badge
+                    color="blue"
+                    text={formatMessage({ id: 'type', defaultMessage: 'Type' })}
+                  />
+                </>
+              )}
+            </RetryStatistics>
           </Link>
         </div>
       </Table.Cell>

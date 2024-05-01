@@ -11,6 +11,11 @@ const WorkFragment = gql`
     finished
     created
     deleted
+    retries
+    original {
+      _id
+      retries
+    }
   }
 `;
 

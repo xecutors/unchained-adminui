@@ -8,7 +8,7 @@ import { WORK_STATUSES, getShadowStyle } from '../../common/data/miscellaneous';
 import JSONView from '../../common/components/JSONView';
 import useFormatWorkDurations from '../hooks/useFormatWorkDurations';
 import Tooltip from '../../common/components/ToolTip';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import RetryStatistics from './RetryStatistics';
 
 const WorkDetail = ({ work }) => {
   const { formatMessage } = useIntl();
@@ -83,7 +83,7 @@ const WorkDetail = ({ work }) => {
               })}
             </div>
             <div className="mt-2 max-w-prose space-y-5 text-sm">
-              {work?.retries}
+              <RetryStatistics work={work} />
             </div>
           </div>
 
