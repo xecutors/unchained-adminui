@@ -16,7 +16,7 @@ const useUpdateUserAvatar = () => {
     PrepareUserAvatarUploadMutation,
   );
   const { confirmMediaUpload } = useConfirmMediaUpload({
-    refetchQueries: ['User'],
+    refetchQueries: ['User', 'CurrentUser'],
   });
 
   const updateUserAvatar = async ({ avatar, userId = null }) => {

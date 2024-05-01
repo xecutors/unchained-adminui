@@ -13,7 +13,7 @@ const Accordion = ({
     <div className={classNames('my-3', containerCSS)} {...rest}>
       {data.map(({ header, body }, key) => (
         <AccordionItem
-          itemIndex={key}
+          itemindex={key}
           header={header}
           body={body}
           // eslint-disable-next-line react/no-array-index-key

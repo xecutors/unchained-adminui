@@ -53,8 +53,8 @@ const Home = () => {
   }, [formatMessage]);
 
   return (
-    <div className="xl:grid xl:grid-cols-2 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200 sm:w-max xl:w-max">
-      <div className="xl:col-span-1 overflow-x-auto">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 md:mt-10 xl:mt-20 text-slate-700 dark:text-slate-200">
+      <div className="overflow-x-auto order-2 md:order-1">
         {hasRole('showOrders') && (
           <h2 className="ml-4 mb-3 text-xl">
             {formatMessage({ id: 'orders', defaultMessage: 'Orders' })}{' '}
@@ -63,75 +63,75 @@ const Home = () => {
         {hasRole('showOrders') && <LatestOrders />}
       </div>
 
-      <div className="xl:col-span-1">
-        {hasRole('addProduct') ||
+      <div className="order-1 md:order-2">
+        {(hasRole('addProduct') ||
           hasRole('addUser') ||
-          (hasRole('addAssortment') && (
-            <div className="mb-10">
-              <h2 className="ml-4 mb-3 text-xl text-slate-700">
-                {formatMessage({
-                  id: 'shortcuts',
-                  defaultMessage: 'Shortcuts',
-                })}
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                {hasRole('addProduct') && (
-                  <Link
-                    href="/products/new"
-                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                  >
-                    <PlusIcon
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    />
-                    <span className="ml-2">
-                      {formatMessage({
-                        id: 'product',
-                        defaultMessage: 'Product',
-                      })}
-                    </span>
-                  </Link>
-                )}
-                {hasRole('addProduct') && (
-                  <Link
-                    href="/users/new"
-                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                  >
-                    <PlusIcon
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    />
-                    <span className="ml-2">
-                      {formatMessage({
-                        id: 'user',
-                        defaultMessage: 'User',
-                      })}
-                    </span>
-                  </Link>
-                )}
-                {hasRole('addAssortment') && (
-                  <Link
-                    href="/assortments/new"
-                    className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-                  >
-                    <PlusIcon
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    />
-                    <span className="ml-2">
-                      {formatMessage({
-                        id: 'assortment',
-                        defaultMessage: 'Assortment',
-                      })}
-                    </span>
-                  </Link>
-                )}
-              </div>
+          hasRole('addAssortment')) && (
+          <div className="mb-10">
+            <h2 className="ml-4 mb-3 text-xl text-slate-700">
+              {formatMessage({
+                id: 'shortcuts',
+                defaultMessage: 'Shortcuts',
+              })}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {hasRole('addProduct') && (
+                <Link
+                  href="/products/new"
+                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                >
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
+                  <span className="ml-2">
+                    {formatMessage({
+                      id: 'product',
+                      defaultMessage: 'Product',
+                    })}
+                  </span>
+                </Link>
+              )}
+              {hasRole('addProduct') && (
+                <Link
+                  href="/users/new"
+                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                >
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
+                  <span className="ml-2">
+                    {formatMessage({
+                      id: 'user',
+                      defaultMessage: 'User',
+                    })}
+                  </span>
+                </Link>
+              )}
+              {hasRole('addAssortment') && (
+                <Link
+                  href="/assortments/new"
+                  className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                >
+                  <PlusIcon
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  />
+                  <span className="ml-2">
+                    {formatMessage({
+                      id: 'assortment',
+                      defaultMessage: 'Assortment',
+                    })}
+                  </span>
+                </Link>
+              )}
             </div>
-          ))}
+          </div>
+        )}
         <div>
           <SystemInformation />
 

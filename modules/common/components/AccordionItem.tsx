@@ -8,13 +8,13 @@ const AccordionItem = ({
   headerCSS = '',
   bodyCSS = '',
   itemContainerCSS = '',
-  itemIndex = 1,
+  itemindex = 1,
 }) => {
   const [show, setShow] = useState(false);
   return (
     <div
       className={classNames('mt-3', itemContainerCSS)}
-      data-itemIndex={itemIndex}
+      data-itemindex={itemindex}
     >
       <button
         type="button"
