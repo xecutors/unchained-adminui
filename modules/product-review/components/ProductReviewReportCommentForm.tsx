@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import useAuth from '../../Auth/useAuth';
 import Form from '../../forms/components/Form';
 import SubmitButton from '../../forms/components/SubmitButton';
 import TextAreaField from '../../forms/components/TextAreaField';
@@ -16,8 +15,6 @@ const ProductReviewReportCommentForm = ({
   onSubmitSuccess: OnSubmitSuccessType;
 }) => {
   const { formatMessage } = useIntl();
-  const { hasRole } = useAuth();
-
   const successMessage = formatMessage({
     id: 'product_review_added',
     defaultMessage: 'Review added successfully!',
@@ -47,7 +44,6 @@ const ProductReviewReportCommentForm = ({
       </div>
       <div className="border-t-indigo-50 border-t dark:border-t-slate-700 sm:px-15 space-y-6 rounded-b-md bg-slate-50 dark:bg-slate-800 p-5 text-right">
         <SubmitButton
-          hidden={!hasRole('voteProductReview')}
           label={formatMessage({
             id: 'report-submit',
             defaultMessage: 'Submit',
