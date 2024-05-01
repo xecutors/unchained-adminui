@@ -112,11 +112,7 @@ const BillingAddressInfo = ({
   );
 };
 
-const DisplayUserLastLogs = ({
-  lastBillingAddress,
-  lastContact,
-  lastLogin,
-}) => (
+const DisplayUserLastLogs = ({ lastBillingAddress, lastLogin }) => (
   <div className="container mx-auto p-4">
     <div className="row">
       <LoginInfo loginData={lastLogin} />

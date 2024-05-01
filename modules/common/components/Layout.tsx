@@ -218,10 +218,16 @@ const Layout = ({
       name: formatMessage({ id: 'extensions', defaultMessage: 'Extensions' }),
       icon: LinkIcon,
       href: '/',
-      children: shopInfo.externalLinks.map((link) => ({
-        name: link.title,
-        href: link.href,
-      })),
+      children: shopInfo.externalLinks.map((link) => {
+        let normalizedHref = link.href;
+        if (link?.target === 'SELF')
+          normalizedHref = `/external?url=${link.href}`;
+
+        return {
+          name: link.title,
+          href: normalizedHref,
+        };
+      }),
     },
   ].filter(Boolean);
 
