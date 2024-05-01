@@ -280,9 +280,5 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
     </div>
   );
 };
-Pagination.defaultProps = {
-  data: [],
-  total: 0,
-};
 
 export default Pagination;

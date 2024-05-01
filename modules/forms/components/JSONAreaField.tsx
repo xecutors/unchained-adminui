@@ -84,7 +84,4 @@ const JSONAreaField = ({
   );
 };
 
-JSONAreaField.defaultProps = {
-  rows: [],
-};
 export default JSONAreaField;

@@ -11,7 +11,7 @@ export interface TextFieldProps extends FieldHookProps {
 }
 
 const TextField = ({
-  maxLength,
+  maxLength = 0,
   validators = [],
   ...props
 }: TextFieldProps) => {
@@ -39,17 +39,12 @@ const TextField = ({
         onChange={field.onChange}
         onBlur={field.onBlur}
         placeholder={field.placeholder}
-        autoComplete={field.autoComplete}
-        type={field.type}
+        autoComplete={field.autoComplete || 'off'}
+        type={field.type || 'text'}
         value={field.value}
       />
     </FieldWrapper>
   );
 };
 
-TextField.defaultProps = {
-  autoComplete: 'off',
-  type: 'text',
-  maxLength: 0,
-};
 export default TextField;

@@ -10,7 +10,7 @@ const RetryStatistics = ({ work, children = null }) => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="w-4 h-4 inline-block text-gray-500 mr-2"
+          className="w-3 h-3 inline-block text-gray-500 mr-2"
         >
           <path
             stroke-linecap="round"
@@ -24,14 +24,14 @@ const RetryStatistics = ({ work, children = null }) => {
 
   return (
     <span>
-      <span className="text-[12]">
+      <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="w-4 h-4 inline-block text-gray-500 mr-2"
+          className="w-3 h-3 inline-block text-gray-500 mr-2"
         >
           <path
             stroke-linecap="round"
@@ -40,7 +40,7 @@ const RetryStatistics = ({ work, children = null }) => {
           />
         </svg>
         {children}
-        <span className="text-red-400 ml-2">
+        <span className="text-red-400 text-sm ml-2">
           {`${work?.retries} / ${work?.original?.retries}`}
         </span>
       </span>

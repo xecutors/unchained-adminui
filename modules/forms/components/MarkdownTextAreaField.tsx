@@ -34,11 +34,11 @@ const GetCurrentTab = ({ selectedView = 'edit', ...field }) => {
       disabled={field.disabled}
       id={field.name}
       name={field.name}
-      rows={field.rows}
+      rows={field.rows || 10}
       onChange={field.onChange}
       onBlur={field.onBlur}
       placeholder={field.placeholder}
-      autoComplete={field.autoComplete}
+      autoComplete={field.autoComplete || 'off'}
       value={field.value}
     />
   );
@@ -87,11 +87,6 @@ const MarkdownTextAreaField = ({
       </Tab>
     </FieldWrapper>
   );
-};
-
-MarkdownTextAreaField.defaultProps = {
-  autoComplete: 'off',
-  rows: 10,
 };
 
 export default MarkdownTextAreaField;

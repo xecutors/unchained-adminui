@@ -172,8 +172,4 @@ const SelectOptions = ({
   );
 };
 
-SelectOptions.defaultProps = {
-  type: 'toggle',
-};
-
 export default SelectOptions;

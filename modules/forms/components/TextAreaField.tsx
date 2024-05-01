@@ -33,20 +33,15 @@ const TextAreaField = ({
         disabled={field.disabled}
         id={field.name}
         name={field.name}
-        rows={field.rows}
+        rows={field.rows || 10}
         onChange={field.onChange}
         onBlur={field.onBlur}
         placeholder={field.placeholder}
-        autoComplete={field.autoComplete}
+        autoComplete={field.autoComplete || 'off'}
         value={field.value}
       />
     </FieldWrapper>
   );
-};
-
-TextAreaField.defaultProps = {
-  autoComplete: 'off',
-  rows: 10,
 };
 
 export default TextAreaField;

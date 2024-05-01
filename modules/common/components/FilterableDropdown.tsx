@@ -62,9 +62,4 @@ const FilterableDropdown = ({
   );
 };
 
-FilterableDropdown.defaultProps = {
-  data: [],
-  onFilter: () => {},
-};
-
 export default FilterableDropdown;
