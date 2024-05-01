@@ -149,7 +149,8 @@ export const validateProductCommerceOneNull = (values): Validator => {
 
     intlMessageDescriptor: {
       id: 'error_commerce_quantity_null_required',
-      defaultMessage: '{label} should have one price with null max quantity',
+      defaultMessage:
+        '{label} should have one price with null /empty max quantity',
     },
   };
 };
@@ -222,6 +223,7 @@ const useInitializeDefaultErrorMessages = () => {
   });
   formatMessage({
     id: 'error_commerce_quantity_null_required',
-    defaultMessage: '{label} should have one price with null max quantity',
+    defaultMessage:
+      '{label} should have one price with null /empty max quantity',
   });
 };

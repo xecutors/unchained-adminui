@@ -777,7 +777,7 @@
     "defaultMessage": "500, unexpected error"
   },
   "error_commerce_quantity_null_required": {
-    "defaultMessage": "{label} should have one price with null max quantity"
+    "defaultMessage": "{label} should have one price with null /empty max quantity"
   },
   "error_contract_address": {
     "defaultMessage": "Invalid contract address"

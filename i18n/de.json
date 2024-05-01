@@ -233,7 +233,7 @@
   "error": "Error",
   "error_403": "403 unauthorized",
   "error_404": "404 error",
-  "error_commerce_quantity_null_required": "{label} should have one price with null max quantity",
+  "error_commerce_quantity_null_required": "{label} should have one price with null /empty max quantity",
   "error_contract_address": "Invalid contract address",
   "error_country_code": "Invalid country code",
   "error_currency_code": "Invalid currency code",
