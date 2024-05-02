@@ -35,7 +35,7 @@ const useEvents = ({
   sort: sortOptions = [],
   queryString = null,
 }: IEventsQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore, previousData } = useQuery<
     IEventsQuery,
     IEventsQueryVariables
   >(EventQuery, {
@@ -49,15 +49,21 @@ const useEvents = ({
       queryString,
     },
   });
-  const events = data?.events || [];
+  const events = data?.events || previousData?.events || [];
   const eventsCount = data?.eventsCount;
 
   const hasMore = events?.length < eventsCount;
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: events.length },
+    });
+  };
 
   return {
     events,
     hasMore,
     eventsCount,
+    loadMore,
     loading,
     error,
   };

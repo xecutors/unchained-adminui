@@ -56,7 +56,7 @@ const Events = () => {
     }
   };
 
-  const { events, eventsCount, loading } = useEvents({
+  const { events, eventsCount, loading, loadMore } = useEvents({
     limit,
     types: (query?.types as string)?.split(','),
     offset,
@@ -111,7 +111,7 @@ const Events = () => {
         <ListHeader />
 
         {loading ? <Loading /> : <EventList events={events} sortable />}
-        <Pagination data={events} total={eventsCount} />
+        <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
       </div>
     </>
   );

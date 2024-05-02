@@ -82,8 +82,8 @@ const keyMappings: any = {
           return [...existing, ...incoming];
         },
       },
-      Events: {
-        keyArgs: ['limit', 'offset', 'types', 'queryString'],
+      events: {
+        keyArgs: ['limit', 'types', 'queryString'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },

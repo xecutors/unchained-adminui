@@ -21,7 +21,10 @@ const EventList = ({ events, sortable }) => {
       ))}
 
       {events?.map((event) => (
-        <EventListItem key={`${event?._id}-body`} event={event} />
+        <EventListItem
+          key={`${event?._id}-body${event.created}`}
+          event={event}
+        />
       ))}
     </Table>
   );
