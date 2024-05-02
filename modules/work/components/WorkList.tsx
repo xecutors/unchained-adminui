@@ -57,7 +57,10 @@ const WorkList = ({ workQueue, sortable }) => {
       ))}
 
       {workQueue?.map((work) => (
-        <WorkListItem key={`${work?._id}-body`} work={work} />
+        <WorkListItem
+          key={`${work?._id}-body-${JSON.stringify(work)}`}
+          work={work}
+        />
       ))}
     </Table>
   );

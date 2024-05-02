@@ -47,9 +47,10 @@ const useWorkQueue = ({
   types = undefined,
   created = null,
   sort: sortOptions = [],
+  offset = 0,
 }: IWorkQueueQueryVariables) => {
   const { parseDate } = useFormatDateTime();
-  const { data, loading, error, fetchMore } = useQuery<
+  const { data, loading, error, fetchMore, previousData } = useQuery<
     IWorkQueueQuery,
     IWorkQueueQueryVariables
   >(WorkQueueQuery, {
@@ -57,7 +58,7 @@ const useWorkQueue = ({
     pollInterval: 1000,
     variables: {
       queryString,
-      offset: 0,
+      offset,
       limit,
       status,
       types,
@@ -71,7 +72,7 @@ const useWorkQueue = ({
         : [{ key: 'scheduled', value: ISortDirection.Desc }],
     },
   });
-  const workQueue = data?.workQueue || [];
+  const workQueue = data?.workQueue || previousData?.workQueue || [];
   const activeWorkTypes = data?.activeWorkTypes || [];
 
   const loadMore = () => {
@@ -81,6 +82,7 @@ const useWorkQueue = ({
   };
   return {
     workQueue,
+    total: data?.workQueueCount || 0,
     activeWorkTypes,
     loading,
     error,

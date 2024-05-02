@@ -33,6 +33,7 @@ const WorkQueueView = () => {
   };
 
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
+  const offset = parseInt(query?.skip as string, 10) || 0;
 
   const sort = query?.sort || '';
 
@@ -52,12 +53,15 @@ const WorkQueueView = () => {
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { workQueue, loadMore, loading, activeWorkTypes } = useWorkQueue({
-    queryString: queryString as string,
-    limit,
-    ...filter,
-    sort: sortKeys as ISortOptionInput[],
-  });
+  const { workQueue, loadMore, loading, activeWorkTypes, total } = useWorkQueue(
+    {
+      queryString: queryString as string,
+      limit,
+      ...filter,
+      sort: sortKeys as ISortOptionInput[],
+      offset,
+    },
+  );
 
   return (
     <>
@@ -94,7 +98,7 @@ const WorkQueueView = () => {
         />
 
         {loading ? <Loading /> : <WorkList workQueue={workQueue} sortable />}
-        <Pagination data={workQueue} onLoadMore={loadMore} />
+        <Pagination total={total} data={workQueue} onLoadMore={loadMore} />
       </div>
     </>
   );

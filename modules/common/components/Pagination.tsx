@@ -5,6 +5,78 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
 import Button from './Button';
 
+const MobilePaginator = ({
+  onOffsetChange,
+  onLimitChange,
+  offset,
+  limit,
+  total,
+}) => {
+  const { formatMessage } = useIntl();
+
+  return (
+    <div className="flex h-8 flex-1 justify-between sm:hidden">
+      <button
+        type="button"
+        disabled={!offset}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onOffsetChange(offset - limit);
+        }}
+        className={classNames(
+          'relative inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-500',
+          {
+            'text-slate-200': !offset,
+            'text-slate-700': offset,
+          },
+        )}
+      >
+        {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
+      </button>
+      <div className="flex justify-between sm:justify-end">
+        <div>
+          <select
+            onChange={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onLimitChange(parseInt(e.target.value, 10));
+            }}
+            id="location"
+            defaultValue={DefaultLimit}
+            name="location"
+            className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
+          >
+            {LimitSteps.map((l) => (
+              <option key={l} value={l}>
+                {l}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <button
+        type="button"
+        disabled={offset + limit >= total}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onOffsetChange(offset + limit);
+        }}
+        className={classNames(
+          'relative ml-3 inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
+          {
+            'text-slate-200': offset + limit >= total,
+            'text-slate-700': offset + limit < total,
+          },
+        )}
+      >
+        {formatMessage({ id: 'next', defaultMessage: 'Next' })}
+      </button>
+    </div>
+  );
+};
+
 const Step = ({ onClick, disabled = false, label }) => {
   return (
     <button
@@ -13,10 +85,12 @@ const Step = ({ onClick, disabled = false, label }) => {
       aria-current="page"
       disabled={disabled}
       className={classNames(
-        'relative inline-flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500 dark:text-slate-400 dark:hover:text-slate-100',
+        'relative inline-flex items-center border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium  hover:bg-slate-50 ',
         {
-          'z-10 border-indigo-500 bg-indigo-50 text-indigo-600 dark:bg-slate-500 dark:border-indigo-300 dark:text-slate-200':
+          'z-10 border-indigo-500 bg-indigo-50 text-indigo-400 dark:bg-slate-500 dark:border-indigo-300 dark:text-slate-200':
             disabled,
+          'text-slate-500 dark:hover:bg-slate-500 dark:text-slate-400 dark:hover:text-slate-100':
+            !disabled,
         },
       )}
     >
@@ -34,15 +108,23 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
   const currentPage = offset === 0 ? 1 : Math.ceil((offset + 1) / limit);
 
   const changeOffset = (newOffset) => {
-    router.push({
-      query: { ...router.query, skip: newOffset },
-    });
+    router.push(
+      {
+        query: { ...router.query, skip: newOffset },
+      },
+      undefined,
+      { scroll: false },
+    );
   };
 
   const changeLimit = (newLimit) => {
-    router.push({
-      query: { ...router.query, limit: newLimit },
-    });
+    router.push(
+      {
+        query: { ...router.query, limit: newLimit },
+      },
+      undefined,
+      { scroll: false },
+    );
   };
 
   const addStep = (number) => {
@@ -50,7 +132,11 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
     return (
       <Step
         key={`start-${stepOffset}`}
-        onClick={() => changeOffset(limit * stepOffset)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          changeOffset(limit * stepOffset);
+        }}
         aria-current="page"
         disabled={currentPage === number}
         label={number}
@@ -115,13 +201,15 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
 
   return (
     <div className="flex items-center justify-between px-4 py-3">
-      {!total && data?.length && onLoadMore ? (
+      {total !== data?.length && data?.length && onLoadMore ? (
         <Button
           text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
           onClick={onLoadMore}
           className="py-2.5"
         />
-      ) : (
+      ) : null}
+
+      {!onLoadMore ? (
         <>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div className="sm:block">
@@ -158,11 +246,16 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
                 <button
                   type="button"
                   disabled={!offset}
-                  onClick={() => changeOffset(offset - limit)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    changeOffset(offset - limit);
+                  }}
                   className={classNames(
-                    'relative inline-flex items-center rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium text-slate-600  hover:bg-slate-50 dark:hover:bg-slate-500',
+                    'relative inline-flex items-center rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
                     {
                       'text-slate-200': !offset,
+                      'text-slate-600': offset,
                     },
                   )}
                 >
@@ -191,12 +284,17 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
 
                 <button
                   type="button"
-                  onClick={() => changeOffset(offset + limit)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    changeOffset(offset + limit);
+                  }}
                   disabled={offset + limit >= total}
                   className={classNames(
-                    'relative inline-flex items-center rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-500',
+                    'relative inline-flex items-center rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-2 text-sm font-medium  hover:bg-slate-50 dark:hover:bg-slate-500',
                     {
                       'text-slate-200': offset + limit >= total,
+                      'text-slate-500': offset + limit < total,
                     },
                   )}
                 >
@@ -222,48 +320,24 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
             </div>
           </div>
 
-          <div className="flex h-8 flex-1 justify-between sm:hidden">
-            <button
-              type="button"
-              disabled={!offset}
-              onClick={() => changeOffset(offset - limit)}
-              className="relative inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
-            >
-              {formatMessage({ id: 'previous', defaultMessage: 'Previous' })}{' '}
-            </button>
-            <div className="flex justify-between sm:justify-end">
-              <div>
-                <select
-                  onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
-                  id="location"
-                  defaultValue={DefaultLimit}
-                  name="location"
-                  className="block h-8 w-full rounded-md dark:bg-slate-400 border-slate-300 dark:border-slate-700 py-0 text-base focus:border-indigo-400 focus:outline-none focus:ring-indigo-400 sm:text-sm"
-                >
-                  {LimitSteps.map((l) => (
-                    <option key={l} value={l}>
-                      {l}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <button
-              type="button"
-              disabled={offset + limit >= total}
-              onClick={() => changeOffset(offset + limit)}
-              className="relative ml-3 inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:hover:bg-slate-500"
-            >
-              {formatMessage({ id: 'next', defaultMessage: 'Next' })}
-            </button>
-          </div>
+          <MobilePaginator
+            offset={offset}
+            limit={limit}
+            total={total}
+            onLimitChange={changeLimit}
+            onOffsetChange={changeOffset}
+          />
         </>
-      )}
+      ) : null}
 
       <div className="ml-2 hidden justify-between sm:block sm:justify-end">
         <div>
           <select
-            onChange={(e) => changeLimit(parseInt(e.target.value, 10))}
+            onChange={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              changeLimit(parseInt(e.target.value, 10));
+            }}
             id="location"
             defaultValue={limit}
             name="location"
