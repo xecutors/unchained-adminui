@@ -132,7 +132,8 @@ const ProductMediaForm = ({
   );
 
   useEffect(() => {
-    addAdditionalLocales(translatedTexts.map((l) => l.locale));
+    if (typeof addAdditionalLocales === 'function')
+      addAdditionalLocales(translatedTexts.map((l) => l.locale));
   }, [translatedTexts, selectedLocale]);
 
   return (

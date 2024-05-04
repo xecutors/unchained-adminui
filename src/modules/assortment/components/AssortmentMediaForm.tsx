@@ -135,7 +135,8 @@ const AssortmentMediaForm = ({
   );
 
   useEffect(() => {
-    addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
+    if (typeof addAdditionalLocales === 'function')
+      addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
   }, [translatedAssortmentTexts, selectedLocale]);
   return (
     <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded-sm">

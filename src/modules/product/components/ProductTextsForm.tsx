@@ -77,7 +77,8 @@ const ProductTextsForm = ({
       (text) => text.locale === selectedLocale,
     );
     if (value) form.formik.setValues(value);
-    addAdditionalLocales(translatedTexts.map((l) => l.locale));
+    if (typeof addAdditionalLocales === 'function')
+      addAdditionalLocales(translatedTexts.map((l) => l.locale));
   }, [translatedTexts, selectedLocale]);
 
   return (

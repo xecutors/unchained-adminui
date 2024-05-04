@@ -74,7 +74,8 @@ const AssortmentTextForm = ({
       (text) => text.locale === selectedLocale,
     );
     if (value) form.formik.setValues(value);
-    addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
+    if (typeof addAdditionalLocales === 'function')
+      addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
   }, [translatedAssortmentTexts, selectedLocale]);
 
   return (

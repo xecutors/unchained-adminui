@@ -17,14 +17,12 @@ const FilterOptionsListItem = ({
 }) => {
   const { formatMessage } = useIntl();
   const [isEdit, setIsEdit] = useState(false);
-
   const successMessage = formatMessage({
     id: 'saved',
     defaultMessage: 'Saved',
   });
 
   const { updateFilterTexts } = useUpdateFilterTexts();
-
   const onSubmit: OnSubmitType = async ({ title, value, subtitle }) => {
     let restLocaleOptions = [];
     if (Array.isArray(option.texts)) {
@@ -42,7 +40,7 @@ const FilterOptionsListItem = ({
       texts: [
         ...restLocaleOptions,
         {
-          locale: selectedLocale,
+          locale: option?.texts?.locale,
           title,
           subtitle,
         },
