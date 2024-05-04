@@ -29,6 +29,7 @@ const useUpdateAssortmentTexts = () => {
   }: IUpdateAssortmentTextsMutationVariables) => {
     return updateAssortmentTextsMutation({
       variables: { assortmentId, texts },
+      refetchQueries: ['TranslatedAssortmentTexts'],
     });
   };
 
