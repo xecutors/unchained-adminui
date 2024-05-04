@@ -423,6 +423,7 @@ export type ICreateFilterInput = {
 };
 
 export type ICreateFilterOptionInput = {
+  locale?: InputMaybe<Scalars['String']['input']>;
   title: Scalars['String']['input'];
   value: Scalars['String']['input'];
 };
@@ -653,7 +654,7 @@ export enum IEventType {
   AssortmentSetBase = 'ASSORTMENT_SET_BASE',
   AssortmentUpdate = 'ASSORTMENT_UPDATE',
   AssortmentUpdateMediaText = 'ASSORTMENT_UPDATE_MEDIA_TEXT',
-  AssortmentUpdateTexts = 'ASSORTMENT_UPDATE_TEXTS',
+  AssortmentUpdateText = 'ASSORTMENT_UPDATE_TEXT',
   BookmarkCreate = 'BOOKMARK_CREATE',
   BookmarkRemove = 'BOOKMARK_REMOVE',
   BookmarkUpdate = 'BOOKMARK_UPDATE',
@@ -676,7 +677,7 @@ export enum IEventType {
   FilterCreate = 'FILTER_CREATE',
   FilterRemove = 'FILTER_REMOVE',
   FilterUpdate = 'FILTER_UPDATE',
-  FilterUpdateTexts = 'FILTER_UPDATE_TEXTS',
+  FilterUpdateText = 'FILTER_UPDATE_TEXT',
   LanguageCreate = 'LANGUAGE_CREATE',
   LanguageRemove = 'LANGUAGE_REMOVE',
   LanguageUpdate = 'LANGUAGE_UPDATE',
@@ -728,8 +729,8 @@ export enum IEventType {
   ProductUpdate = 'PRODUCT_UPDATE',
   ProductUpdateMediaText = 'PRODUCT_UPDATE_MEDIA_TEXT',
   ProductUpdateReview = 'PRODUCT_UPDATE_REVIEW',
-  ProductUpdateTexts = 'PRODUCT_UPDATE_TEXTS',
-  ProductUpdateVariationTexts = 'PRODUCT_UPDATE_VARIATION_TEXTS',
+  ProductUpdateText = 'PRODUCT_UPDATE_TEXT',
+  ProductUpdateVariationText = 'PRODUCT_UPDATE_VARIATION_TEXT',
   ProductVariationOptionCreate = 'PRODUCT_VARIATION_OPTION_CREATE',
   QuotationRemove = 'QUOTATION_REMOVE',
   QuotationRequestCreate = 'QUOTATION_REQUEST_CREATE',
@@ -748,6 +749,12 @@ export enum IEventType {
   WarehousingProviderCreate = 'WAREHOUSING_PROVIDER_CREATE',
   WarehousingProviderRemove = 'WAREHOUSING_PROVIDER_REMOVE',
   WarehousingProviderUpdate = 'WAREHOUSING_PROVIDER_UPDATE',
+  WorkAdded = 'WORK_ADDED',
+  WorkAllocated = 'WORK_ALLOCATED',
+  WorkDeleted = 'WORK_DELETED',
+  WorkDone = 'WORK_DONE',
+  WorkFinished = 'WORK_FINISHED',
+  WorkRescheduled = 'WORK_RESCHEDULED',
 }
 
 export type IFilter = {
@@ -1836,7 +1843,7 @@ export type IMutationSetUsernameArgs = {
 };
 
 export type IMutationSignPaymentProviderForCheckoutArgs = {
-  orderPaymentId: Scalars['ID']['input'];
+  orderPaymentId?: InputMaybe<Scalars['ID']['input']>;
   transactionContext?: InputMaybe<Scalars['JSON']['input']>;
 };
 
@@ -2082,6 +2089,7 @@ export type IOrder = {
 /** Just an order */
 export type IOrderTotalArgs = {
   category?: InputMaybe<IOrderPriceCategory>;
+  useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type IOrderDelivery = {
@@ -2140,6 +2148,10 @@ export type IOrderDiscount = {
   trigger: IOrderDiscountTrigger;
 };
 
+export type IOrderDiscountTotalArgs = {
+  useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export enum IOrderDiscountTrigger {
   /** System triggered */
   System = 'SYSTEM',
@@ -2176,6 +2188,11 @@ export type IOrderItem = {
 
 export type IOrderItemTotalArgs = {
   category?: InputMaybe<IOrderItemPriceCategory>;
+  useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type IOrderItemUnitPriceArgs = {
+  useNetPrice?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type IOrderItemDiscount = IOrderDiscountable & {
@@ -2825,6 +2842,10 @@ export type IQuery = {
   users: Array<IUser>;
   /** Get total number of users in the system that match query */
   usersCount: Scalars['Int']['output'];
+  /** Determines if a token is valid/active for reset password */
+  validateResetPasswordToken: Scalars['Boolean']['output'];
+  /** Determines if a token is valid/active for email verification */
+  validateVerifyEmailToken: Scalars['Boolean']['output'];
   /** Get all warehousing interfaces filtered by type */
   warehousingInterfaces: Array<IWarehousingInterface>;
   /** Get a specific warehousing provider by ID */
@@ -3137,6 +3158,14 @@ export type IQueryUsersCountArgs = {
   queryString?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type IQueryValidateResetPasswordTokenArgs = {
+  token: Scalars['String']['input'];
+};
+
+export type IQueryValidateVerifyEmailTokenArgs = {
+  token: Scalars['String']['input'];
+};
+
 export type IQueryWarehousingInterfacesArgs = {
   type: IWarehousingProviderType;
 };
@@ -3249,6 +3278,7 @@ export enum IRoleAction {
   BulkImport = 'bulkImport',
   ChangePassword = 'changePassword',
   CheckoutCart = 'checkoutCart',
+  ConfirmMediaUpload = 'confirmMediaUpload',
   CreateCart = 'createCart',
   CreateEnrollment = 'createEnrollment',
   CreateUser = 'createUser',
@@ -3897,6 +3927,7 @@ export type IWebAuthnMdSv3Metadata = {
 
 export type IWork = {
   _id: Scalars['ID']['output'];
+  autoscheduled?: Maybe<Scalars['Boolean']['output']>;
   created: Scalars['DateTime']['output'];
   deleted?: Maybe<Scalars['DateTime']['output']>;
   error?: Maybe<Scalars['JSON']['output']>;
@@ -5712,112 +5743,13 @@ export type IStopImpersonateMutation = {
   stopImpersonation: { id: string; token: string; tokenExpires: any };
 };
 
-export type IUpdateUserAvatarMutationVariables = Exact<{
-  avatar: Scalars['Upload']['input'];
+export type IPrepareUserAvatarUploadMutationVariables = Exact<{
+  mediaName: Scalars['String']['input'];
   userId?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
-export type IUpdateUserAvatarMutation = {
-  updateUserAvatar: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
-    } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
-    } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
-    } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
-    } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      };
-    }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
-    }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
-      } | null;
-    }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
-      } | null;
-    } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
-  };
+export type IPrepareUserAvatarUploadMutation = {
+  prepareUserAvatarUpload: { _id: string; putURL: string; expires: any };
 };
 
 export type IUpdateUserProfileMutationVariables = Exact<{
@@ -6596,23 +6528,13 @@ export type IAddAssortmentLinkMutation = {
   };
 };
 
-export type IAddAssortmentMediaMutationVariables = Exact<{
+export type IPrepareAssortmentMediaUploadMutationVariables = Exact<{
+  mediaName: Scalars['String']['input'];
   assortmentId: Scalars['ID']['input'];
-  media: Scalars['Upload']['input'];
 }>;
 
-export type IAddAssortmentMediaMutation = {
-  addAssortmentMedia: {
-    _id: string;
-    tags?: Array<any> | null;
-    file: { _id: string; url: string };
-    texts?: {
-      _id: string;
-      locale?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-    } | null;
-  };
+export type IPrepareAssortmentMediaUploadMutation = {
+  prepareAssortmentMediaUpload: { _id: string; putURL: string; expires: any };
 };
 
 export type IAddAssortmentProductMutationVariables = Exact<{
@@ -7234,6 +7156,22 @@ export type IUpdateAssortmentTextsMutation = {
     subtitle?: string | null;
     description?: string | null;
   }>;
+};
+
+export type IConfirmMediaUploadMutationVariables = Exact<{
+  mediaUploadTicketId: Scalars['ID']['input'];
+  size: Scalars['Int']['input'];
+  type: Scalars['String']['input'];
+}>;
+
+export type IConfirmMediaUploadMutation = {
+  confirmMediaUpload: {
+    _id: string;
+    name: string;
+    type: string;
+    size: number;
+    url: string;
+  };
 };
 
 export type IShopInfoQueryVariables = Exact<{ [key: string]: never }>;
@@ -10665,7 +10603,7 @@ export type IProductAssignmentFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-type IProductBriefFragment_BundleProduct_ = {
+type IProductBriefFragment_BundleProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10689,7 +10627,7 @@ type IProductBriefFragment_BundleProduct_ = {
   }>;
 };
 
-type IProductBriefFragment_ConfigurableProduct_ = {
+type IProductBriefFragment_ConfigurableProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10713,7 +10651,7 @@ type IProductBriefFragment_ConfigurableProduct_ = {
   }>;
 };
 
-type IProductBriefFragment_PlanProduct_ = {
+type IProductBriefFragment_PlanProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10737,7 +10675,7 @@ type IProductBriefFragment_PlanProduct_ = {
   }>;
 };
 
-type IProductBriefFragment_SimpleProduct_ = {
+type IProductBriefFragment_SimpleProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10761,7 +10699,7 @@ type IProductBriefFragment_SimpleProduct_ = {
   }>;
 };
 
-type IProductBriefFragment_TokenizedProduct_ = {
+type IProductBriefFragment_TokenizedProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10786,11 +10724,11 @@ type IProductBriefFragment_TokenizedProduct_ = {
 };
 
 export type IProductBriefFragment =
-  | IProductBriefFragment_BundleProduct_
-  | IProductBriefFragment_ConfigurableProduct_
-  | IProductBriefFragment_PlanProduct_
-  | IProductBriefFragment_SimpleProduct_
-  | IProductBriefFragment_TokenizedProduct_;
+  | IProductBriefFragment_BundleProduct
+  | IProductBriefFragment_ConfigurableProduct
+  | IProductBriefFragment_PlanProduct
+  | IProductBriefFragment_SimpleProduct
+  | IProductBriefFragment_TokenizedProduct;
 
 export type IProductBriefFragmentVariables = Exact<{ [key: string]: never }>;
 
@@ -10813,7 +10751,7 @@ export type IProductCatalogPriceFragmentVariables = Exact<{
   [key: string]: never;
 }>;
 
-type IProductDetailFragment_BundleProduct_ = {
+type IProductDetailFragment_BundleProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10860,7 +10798,7 @@ type IProductDetailFragment_BundleProduct_ = {
   >;
 };
 
-type IProductDetailFragment_ConfigurableProduct_ = {
+type IProductDetailFragment_ConfigurableProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10907,7 +10845,7 @@ type IProductDetailFragment_ConfigurableProduct_ = {
   >;
 };
 
-type IProductDetailFragment_PlanProduct_ = {
+type IProductDetailFragment_PlanProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -10954,7 +10892,7 @@ type IProductDetailFragment_PlanProduct_ = {
   >;
 };
 
-type IProductDetailFragment_SimpleProduct_ = {
+type IProductDetailFragment_SimpleProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -11001,7 +10939,7 @@ type IProductDetailFragment_SimpleProduct_ = {
   >;
 };
 
-type IProductDetailFragment_TokenizedProduct_ = {
+type IProductDetailFragment_TokenizedProduct = {
   _id: string;
   sequence: number;
   status: IProductStatus;
@@ -11049,11 +10987,11 @@ type IProductDetailFragment_TokenizedProduct_ = {
 };
 
 export type IProductDetailFragment =
-  | IProductDetailFragment_BundleProduct_
-  | IProductDetailFragment_ConfigurableProduct_
-  | IProductDetailFragment_PlanProduct_
-  | IProductDetailFragment_SimpleProduct_
-  | IProductDetailFragment_TokenizedProduct_;
+  | IProductDetailFragment_BundleProduct
+  | IProductDetailFragment_ConfigurableProduct
+  | IProductDetailFragment_PlanProduct
+  | IProductDetailFragment_SimpleProduct
+  | IProductDetailFragment_TokenizedProduct;
 
 export type IProductDetailFragmentVariables = Exact<{ [key: string]: never }>;
 
@@ -11173,12 +11111,14 @@ export type IAddProductAssignmentMutation = {
     | { _id: string };
 };
 
-export type IAddProductMediaMutationVariables = Exact<{
+export type IPrepareProductMediaUploadMutationVariables = Exact<{
+  mediaName: Scalars['String']['input'];
   productId: Scalars['ID']['input'];
-  media: Scalars['Upload']['input'];
 }>;
 
-export type IAddProductMediaMutation = { addProductMedia: { _id: string } };
+export type IPrepareProductMediaUploadMutation = {
+  prepareProductMediaUpload: { _id: string; putURL: string; expires: any };
+};
 
 export type ICreateProductMutationVariables = Exact<{
   product: ICreateProductInput;
@@ -14783,6 +14723,8 @@ export type IWorkFragment = {
   finished?: any | null;
   created: any;
   deleted?: any | null;
+  retries: number;
+  original?: { _id: string; retries: number } | null;
 };
 
 export type IWorkFragmentVariables = Exact<{ [key: string]: never }>;
@@ -14841,7 +14783,7 @@ export type IWorkQuery = {
     finished?: any | null;
     created: any;
     deleted?: any | null;
-    original?: { _id: string } | null;
+    original?: { _id: string; retries: number } | null;
   } | null;
 };
 
@@ -14868,5 +14810,7 @@ export type IWorkQueueQuery = {
     finished?: any | null;
     created: any;
     deleted?: any | null;
+    retries: number;
+    original?: { _id: string; retries: number } | null;
   }>;
 };

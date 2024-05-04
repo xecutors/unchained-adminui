@@ -1,6 +1,10 @@
 import { useMutation, gql } from '@apollo/client';
 import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
 import PUTMedia from '../../common/utils/PUTMedia';
+import {
+  IPrepareAssortmentMediaUploadMutation,
+  IPrepareAssortmentMediaUploadMutationVariables,
+} from '../../../gql/types';
 
 const PrepareAssortmentMediaUploadMutation = gql`
   mutation PrepareAssortmentMediaUpload(
@@ -19,9 +23,10 @@ const PrepareAssortmentMediaUploadMutation = gql`
 `;
 
 const useAddAssortmentMedia = () => {
-  const [prepareAssortmentMediaUploadMutation] = useMutation(
-    PrepareAssortmentMediaUploadMutation,
-  );
+  const [prepareAssortmentMediaUploadMutation] = useMutation<
+    IPrepareAssortmentMediaUploadMutation,
+    IPrepareAssortmentMediaUploadMutationVariables
+  >(PrepareAssortmentMediaUploadMutation);
   const { confirmMediaUpload } = useConfirmMediaUpload({
     refetchQueries: ['Assortment'],
   });

@@ -1,6 +1,10 @@
 import { useMutation, gql } from '@apollo/client';
 import useConfirmMediaUpload from '../../common/hooks/useConfirmMediaUpload';
 import PUTMedia from '../../common/utils/PUTMedia';
+import {
+  IPrepareUserAvatarUploadMutation,
+  IPrepareUserAvatarUploadMutationVariables,
+} from '../../../gql/types';
 const PrepareUserAvatarUploadMutation = gql`
   mutation PrepareUserAvatarUpload($mediaName: String!, $userId: ID) {
     prepareUserAvatarUpload(mediaName: $mediaName, userId: $userId) {
@@ -12,9 +16,10 @@ const PrepareUserAvatarUploadMutation = gql`
 `;
 
 const useUpdateUserAvatar = () => {
-  const [prepareUserAvatarUploadMutation] = useMutation(
-    PrepareUserAvatarUploadMutation,
-  );
+  const [prepareUserAvatarUploadMutation] = useMutation<
+    IPrepareUserAvatarUploadMutation,
+    IPrepareUserAvatarUploadMutationVariables
+  >(PrepareUserAvatarUploadMutation);
   const { confirmMediaUpload } = useConfirmMediaUpload({
     refetchQueries: ['User', 'CurrentUser'],
   });

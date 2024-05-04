@@ -1,4 +1,8 @@
 import { useMutation, gql } from '@apollo/client';
+import {
+  IConfirmMediaUploadMutation,
+  IConfirmMediaUploadMutationVariables,
+} from '../../../gql/types';
 
 const ConfirmMediaUploadMutation = gql`
   mutation ConfirmMediaUpload(
@@ -21,10 +25,10 @@ const ConfirmMediaUploadMutation = gql`
 `;
 
 const useConfirmMediaUpload = (options = {}) => {
-  const [confirmMediaUploadMutation] = useMutation(
-    ConfirmMediaUploadMutation,
-    options,
-  );
+  const [confirmMediaUploadMutation] = useMutation<
+    IConfirmMediaUploadMutation,
+    IConfirmMediaUploadMutationVariables
+  >(ConfirmMediaUploadMutation, options);
 
   const confirmMediaUpload = async ({ mediaUploadTicketId, size, type }) => {
     return confirmMediaUploadMutation({
