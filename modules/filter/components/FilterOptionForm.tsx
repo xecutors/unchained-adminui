@@ -67,11 +67,10 @@ const FilterOptionForm = ({
         </button>
         <span className="flex items-center">
           <SubmitButton
-            hidden={!hasRole('addFilterOption')}
             className="m-auto w-full"
             label={formatMessage({
               id: 'add_filter_option',
-              defaultMessage: 'Add option',
+              defaultMessage: 'Add option sadasd',
             })}
           />
         </span>
