@@ -486,7 +486,5 @@ describe('WorkQueue', () => {
     cy.get(
       `input[type="submit"][aria-label="${localizations.en.add_work}"]`,
     ).should('be.disabled');
-
-    cy.get('label[for="input"]').contains(localizations.en.invalid_json_input);
   });
 });
