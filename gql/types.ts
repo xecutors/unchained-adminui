@@ -6109,6 +6109,14 @@ export type IUsersQuery = {
   }>;
 };
 
+export type IValidateVerifyEmailTokenQueryVariables = Exact<{
+  token: Scalars['String']['input'];
+}>;
+
+export type IValidateVerifyEmailTokenQuery = {
+  validateVerifyEmailToken: boolean;
+};
+
 export type IValidateResetPasswordTokenQueryVariables = Exact<{
   token: Scalars['String']['input'];
 }>;

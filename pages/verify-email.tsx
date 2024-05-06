@@ -3,21 +3,27 @@ import { ClockIcon, EnvelopeOpenIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import useVerifyEmail from '../modules/accounts/hooks/useVerifyEmail';
 import Loading from '../modules/common/components/Loading';
 import CustomError from '../modules/common/CustomError';
+import useValidateEmailVerificationToken from '../modules/accounts/hooks/useValidateEmailVerificationToken';
+import useModal from '../modules/modal/hooks/useModal';
+import BlockingContent from '../modules/common/components/BlockingContent';
 
 const VerifyEmail = () => {
   const { query } = useRouter();
   const { verifyEmail } = useVerifyEmail();
   const { formatMessage } = useIntl();
+  const { token } = query;
   const [result, setResult] = useState({ success: null, message: null });
+  const { isValid, loading } = useValidateEmailVerificationToken({ token });
+  const { setModal } = useModal();
 
   useEffect(() => {
     const verify = async () => {
       try {
-        await verifyEmail({ token: query.token as string });
+        await verifyEmail({ token: token as string });
         setResult({
           ...result,
           success: true,
@@ -44,8 +50,46 @@ const VerifyEmail = () => {
     if (query.token) verify();
   }, [query.token]);
 
-  if (result.success === null) return <Loading />;
-  return (
+  if (loading || typeof isValid !== 'boolean') return <Loading />;
+  return !isValid ? (
+    <BlockingContent>
+      <h1 className="text-red-500 text-center font-extrabold text-2xl">
+        Token invalid/expired
+      </h1>
+      <FormattedMessage
+        tagName="dl"
+        id="verify_email_token_invalid_error"
+        defaultMessage="The email verification token is either invalid or expired. Please use
+          the last reset link sent in your email or
+          start the process again by going to {link}"
+        values={{
+          dl: (chunks) => <dl>{chunks}</dl>,
+          dt: (chunks) => <dt>{chunks}</dt>,
+          dd: (chunks) => <dd>{chunks}</dd>,
+          link: (
+            <Link
+              href="/account/forgot-password"
+              className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+            >
+              {formatMessage({
+                id: 'forget_password',
+                defaultMessage: 'Forgot your password?',
+              })}
+            </Link>
+          ),
+        }}
+      />
+      <Link
+        href="/"
+        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+      >
+        {formatMessage({
+          id: 'go-home',
+          defaultMessage: 'Go back home',
+        })}
+      </Link>
+    </BlockingContent>
+  ) : (
     <div className="flex items-center justify-center min-h-screen p-5 bg-blue-100 min-w-screen">
       <div
         className={classNames(

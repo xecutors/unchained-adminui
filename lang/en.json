@@ -932,9 +932,6 @@
   "forget_password": {
     "defaultMessage": "Forgot your password?"
   },
-  "forgot_password": {
-    "defaultMessage": "Forgot your password?"
-  },
   "forgot_password_header_description": {
     "defaultMessage": "Enter your email address below and we'll send you a link to reset your password!"
   },
@@ -952,6 +949,9 @@
   },
   "general_text": {
     "defaultMessage": "Text"
+  },
+  "go-home": {
+    "defaultMessage": "Go back home"
   },
   "go_back_home": {
     "defaultMessage": "Go back home"
@@ -1610,6 +1610,9 @@
   "reset_token_expired": {
     "defaultMessage": "Token link invalid or has expired"
   },
+  "reset_token_invalid_warning": {
+    "defaultMessage": "The reset token is either invalid or expired. Please use the last reset link sent in your email or start the process again by going to {link}"
+  },
   "resolved_country": {
     "defaultMessage": "Resolved country"
   },
@@ -1690,9 +1693,6 @@
   },
   "search_tag": {
     "defaultMessage": "Search tag"
-  },
-  "select_language": {
-    "defaultMessage": "Select language"
   },
   "select_options_toggle": {
     "defaultMessage": "Change {type} status"
@@ -2127,6 +2127,9 @@
   },
   "verify-quotation-submit": {
     "defaultMessage": "Verify"
+  },
+  "verify_email_token_invalid_error": {
+    "defaultMessage": "The email verification token is either invalid or expired. Please use the last reset link sent in your email or start the process again by going to {link}"
   },
   "view_all": {
     "defaultMessage": "View all"

@@ -8,6 +8,7 @@ import useResetPassword from '../modules/accounts/hooks/useResetPassword';
 import { OnSubmitSuccessType } from '../modules/forms/hooks/useForm';
 import Link from 'next/link';
 import Loading from '../modules/common/components/Loading';
+import BlockingContent from '../modules/common/components/BlockingContent';
 
 const PasswordReset = () => {
   const { query, push } = useRouter();
@@ -40,45 +41,43 @@ const PasswordReset = () => {
   if (loading || typeof isValid !== 'boolean') return <Loading />;
 
   return !isValid ? (
-    <>
-      <div className="flex min-h-full flex-col bg-white dark:bg-slate-900 pt-16 pb-12 ">
-        <div className="mx-auto flex w-full max-w-7xl flex-grow flex-col justify-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center">Token invalid/expired</h2>
-          <FormattedMessage
-            tagName="dl"
-            id="reset_token_invalid_warning"
-            defaultMessage="The reset token is either invalid or expired. Please use
+    <BlockingContent>
+      <h1 className="text-red-500 text-center font-extrabold text-2xl">
+        Token invalid/expired
+      </h1>
+      <FormattedMessage
+        tagName="dl"
+        id="reset_token_invalid_warning"
+        defaultMessage="The reset token is either invalid or expired. Please use
           the last reset link sent in your email or
           start the process again by going to {link}"
-            values={{
-              dl: (chunks) => <dl>{chunks}</dl>,
-              dt: (chunks) => <dt>{chunks}</dt>,
-              dd: (chunks) => <dd>{chunks}</dd>,
-              link: (
-                <Link
-                  href="/account/forgot-password"
-                  className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
-                >
-                  {formatMessage({
-                    id: 'forget_password',
-                    defaultMessage: 'Forgot your password?',
-                  })}
-                </Link>
-              ),
-            }}
-          />
-          <Link
-            href="/"
-            className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-          >
-            {formatMessage({
-              id: 'go-home',
-              defaultMessage: 'Go back home',
-            })}
-          </Link>
-        </div>
-      </div>
-    </>
+        values={{
+          dl: (chunks) => <dl>{chunks}</dl>,
+          dt: (chunks) => <dt>{chunks}</dt>,
+          dd: (chunks) => <dd>{chunks}</dd>,
+          link: (
+            <Link
+              href="/account/forgot-password"
+              className="text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300"
+            >
+              {formatMessage({
+                id: 'forget_password',
+                defaultMessage: 'Forgot your password?',
+              })}
+            </Link>
+          ),
+        }}
+      />
+      <Link
+        href="/"
+        className="m-auto group relative flex justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+      >
+        {formatMessage({
+          id: 'go-home',
+          defaultMessage: 'Go back home',
+        })}
+      </Link>
+    </BlockingContent>
   ) : (
     <div className="flex min-h-screen justify-center bg-slate-100 dark:bg-slate-900 antialiased">
       <div className="container my-auto mt-24 max-w-md border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow rounded dark:shadow-none p-3 sm:mt-40">
