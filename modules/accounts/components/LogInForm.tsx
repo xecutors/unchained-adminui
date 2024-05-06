@@ -1,10 +1,8 @@
 import getConfig from 'next/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useEndpoint } from '../../apollo/EndpointWrapper';
-import useAuth from '../../Auth/useAuth';
 
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
@@ -109,10 +107,12 @@ const LogInForm = () => {
   const { setEndpoint, endpoint } = useEndpoint();
 
   const router = useRouter();
+  const step = router.query?.step ?? '1';
+
   const nextStep = () => {
     router.push({
       query: {
-        step: parseInt(router.query.step as string, 10) + 1,
+        step: parseInt(step as string, 10) + 1,
       },
     });
   };
@@ -124,7 +124,7 @@ const LogInForm = () => {
   const previousStep = () => {
     router.push({
       query: {
-        step: parseInt(router.query.step as string, 10) - 1,
+        step: parseInt(step as string, 10) - 1,
       },
     });
   };
@@ -160,12 +160,12 @@ const LogInForm = () => {
     password,
     totpCode,
   }) => {
-    if (router.query.step === '1') {
+    if (step === '1') {
       const { success, errors } = await logInWithWebAuth(usernameOrEmail);
       if (errors.length) return { success: true, errors };
       if (!success) nextStep();
     }
-    if (router.query.step === '2') {
+    if (step === '2') {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -183,7 +183,7 @@ const LogInForm = () => {
         return { success: false, errors };
       }
     }
-    if (router.query.step === '3') {
+    if (step === '3') {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -247,15 +247,6 @@ const LogInForm = () => {
     },
   });
 
-  useEffect(() => {
-    if (router.query?.step === undefined || router.query?.step === null)
-      router.push({
-        query: {
-          step: 1,
-        },
-      });
-  }, [router.query?.step]);
-
   return (
     <>
       {allowEndpointSwitch ? (
@@ -287,11 +278,11 @@ const LogInForm = () => {
               form={form}
               className="mt-8 space-y-6 px-4 pt-3 pb-8 sm:rounded-lg sm:px-10"
             >
-              <GetCurrentStep step={router.query.step} />
+              <GetCurrentStep step={step} />
 
               <FormErrors />
               <div className="flex items-center gap-4 mt-4">
-                {router.query.step !== '1' && (
+                {step !== '1' && (
                   <button
                     type="button"
                     id="previous-button"
