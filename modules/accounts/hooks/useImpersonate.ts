@@ -8,7 +8,7 @@ const IMPERSONATE_MUTATION = gql`
   mutation Impersonate($userId: ID!) {
     impersonate(userId: $userId) {
       id
-      tokenExpires
+      _tokenExpires
       token
       user {
         _id

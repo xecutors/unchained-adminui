@@ -7,7 +7,7 @@ import {
 const STOP_IMPERSONATION_MUTATION = gql`
   mutation StopImpersonate {
     stopImpersonation {
-      id
+      _id
       token
       tokenExpires
     }

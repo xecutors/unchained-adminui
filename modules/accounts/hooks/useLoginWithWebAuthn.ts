@@ -9,7 +9,7 @@ const LogWithWebAuthnMutation = gql`
     loginWithWebAuthn(
       webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
     ) {
-      id
+      _id
       token
       tokenExpires
     }

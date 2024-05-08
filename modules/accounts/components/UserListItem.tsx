@@ -69,14 +69,6 @@ const UserListItem = ({ user }) => {
                         })}
                       />
                     )}
-                    {user.isTwoFactorEnabled && (
-                      <Badge
-                        text={formatMessage({
-                          id: 'two_factor_auth_enabled',
-                          defaultMessage: '2FA Enabled',
-                        })}
-                      />
-                    )}
                   </div>
                   <div className="mt-2 flex items-center text-sm text-slate-500 dark:text-slate-200">
                     <ActiveInActive isActive={isVerified} />

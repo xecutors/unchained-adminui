@@ -173,7 +173,6 @@ const LogInForm = () => {
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
         await storeLoginToken(id, token, new Date(tokenExpires));
-        if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
       const [error] = errors;
@@ -192,7 +191,6 @@ const LogInForm = () => {
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
         await storeLoginToken(id, token, new Date(tokenExpires));
-        if (user.isTwoFactorEnabled) nextStep();
         return { success: Boolean(id), ...data.loginWithPassword };
       }
       return { success: false, errors };

@@ -8,7 +8,7 @@ import UserFragment from '../fragment/UserFragment';
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($token: String!) {
     verifyEmail(token: $token) {
-      id
+      _id
       token
       tokenExpires
       user {

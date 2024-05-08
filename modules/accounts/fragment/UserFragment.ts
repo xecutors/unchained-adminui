@@ -4,7 +4,6 @@ import MD5MetaDataFragment from './MD5MetaDataFragment';
 const UserFragment = gql`
   fragment UserFragment on User {
     _id
-    isTwoFactorEnabled
     lastBillingAddress {
       firstName
       lastName
