@@ -1039,6 +1039,9 @@
   "invalid_signature_length": {
     "defaultMessage": "Invalid signature"
   },
+  "invalid_url": {
+    "defaultMessage": "Invalid page url"
+  },
   "ip": {
     "defaultMessage": "IP Address"
   },

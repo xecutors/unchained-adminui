@@ -23,6 +23,7 @@ const ShopInfoQuery = gql`
       externalLinks {
         href
         title
+        target
       }
       adminUiConfig {
         customProperties {

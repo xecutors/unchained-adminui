@@ -240,6 +240,7 @@ module.exports = () => {
     '/423': 'UNRESTRICTED',
     '/verify-email': 'UNRESTRICTED',
     '/oauth': 'UNRESTRICTED',
+    '/external': 'UNRESTRICTED',
     '/orders/[orderId]': ACTION_ROLES.orders.manageOrders,
     '/orders': ACTION_ROLES.orders.manageOrders,
     '/quotations': ACTION_ROLES.quotations.showQuotations,
@@ -259,6 +260,7 @@ module.exports = () => {
     '/_offline',
     '/verify-email',
     '/403',
+    '/external',
   ];
 
   const OnlyPublicPages = [
