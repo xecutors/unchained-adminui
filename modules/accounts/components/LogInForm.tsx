@@ -186,7 +186,6 @@ const LogInForm = () => {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
-        totpCode,
       });
       if (!errors?.length) {
         const { id, token, tokenExpires, user } = data.loginWithPassword;
