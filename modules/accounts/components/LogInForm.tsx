@@ -61,22 +61,6 @@ const GetCurrentStep = ({ step }) => {
           </div>
         </>
       );
-    case 3:
-      return (
-        <TextField
-          id="totp-code"
-          name="totpCode"
-          autoComplete="off"
-          label={formatMessage({
-            id: 'totp_code',
-            defaultMessage: 'TOTP code',
-          })}
-          placeholder={formatMessage({
-            id: 'totp_code',
-            defaultMessage: 'TOTP code',
-          })}
-        />
-      );
     default:
       return (
         <TextField
@@ -146,20 +130,16 @@ const LogInForm = () => {
         webAuthnPublicKeyCredentials,
       });
       if (data && data?.loginWithWebAuthn) {
-        const { id, token, tokenExpires } = data.loginWithWebAuthn;
+        const { _id, tokenExpires } = data.loginWithWebAuthn;
 
-        await storeLoginToken(id, token, new Date(tokenExpires));
+        await storeLoginToken(_id, new Date(tokenExpires));
         return { success: true, errors };
       }
     }
     return { success: false, errors: [] };
   };
 
-  const onSubmit: OnSubmitType = async ({
-    usernameOrEmail,
-    password,
-    totpCode,
-  }) => {
+  const onSubmit: OnSubmitType = async ({ usernameOrEmail, password }) => {
     if (step === '1') {
       const { success, errors } = await logInWithWebAuth(usernameOrEmail);
       if (errors.length) return { success: true, errors };
@@ -171,9 +151,9 @@ const LogInForm = () => {
         password,
       });
       if (!errors?.length) {
-        const { id, token, tokenExpires, user } = data.loginWithPassword;
-        await storeLoginToken(id, token, new Date(tokenExpires));
-        return { success: Boolean(id), ...data.loginWithPassword };
+        const { _id, tokenExpires, user } = data.loginWithPassword;
+        await storeLoginToken(_id, new Date(tokenExpires));
+        return { success: Boolean(_id), ...data.loginWithPassword };
       }
       const [error] = errors;
       if (error?.message?.includes('2FA code required')) {
@@ -188,9 +168,9 @@ const LogInForm = () => {
         password,
       });
       if (!errors?.length) {
-        const { id, token, tokenExpires, user } = data.loginWithPassword;
-        await storeLoginToken(id, token, new Date(tokenExpires));
-        return { success: Boolean(id), ...data.loginWithPassword };
+        const { _id, tokenExpires } = data.loginWithPassword;
+        await storeLoginToken(_id, new Date(tokenExpires));
+        return { success: Boolean(_id), ...data.loginWithPassword };
       }
       return { success: false, errors };
     }
@@ -218,15 +198,6 @@ const LogInForm = () => {
           defaultMessage: 'User password not set',
         });
       }
-      if (error?.message?.includes("2FA code didn't match")) {
-        form.formik.setFieldError(
-          'totpCode',
-          formatMessage({
-            id: 'totp_code_not_match',
-            defaultMessage: 'TOTP code did not match',
-          }),
-        );
-      }
       if (error?.message?.toLowerCase().includes('is not valid json')) {
         return formatMessage({
           id: 'connection_to_server_error',
@@ -240,7 +211,6 @@ const LogInForm = () => {
     initialValues: {
       usernameOrEmail: null,
       password: null,
-      totpCode: null,
     },
   });
 

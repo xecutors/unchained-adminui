@@ -20,8 +20,8 @@ const AddFilter = () => {
     const { data, errors } = await createFilter({
       filter: {
         options,
-        key,
         title,
+        key,
         type,
       },
     });

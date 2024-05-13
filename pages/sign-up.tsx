@@ -22,8 +22,8 @@ const SignUpPage = () => {
     });
 
     if (data && data?.createUser) {
-      const { id, token, tokenExpires } = data.createUser;
-      await storeLoginToken(id, token, new Date(tokenExpires));
+      const { _id, tokenExpires } = data.createUser;
+      await storeLoginToken(_id, new Date(tokenExpires));
     }
     return data;
   };
@@ -40,9 +40,9 @@ const SignUpPage = () => {
       email,
       plainPassword,
     });
-    const { id, token, tokenExpires } = data.createUser;
-    await storeLoginToken(id, token, new Date(tokenExpires));
-    if (id) return { success: true };
+    const { _id, tokenExpires } = data.createUser;
+    await storeLoginToken(_id, new Date(tokenExpires));
+    if (_id) return { success: true };
 
     return { success: false, data };
   };

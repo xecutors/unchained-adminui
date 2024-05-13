@@ -5,8 +5,8 @@ const logOut = async (apollo) => {
   const token = await getLoginToken();
   await apollo.mutate({
     mutation: gql`
-      mutation logout($token: String) {
-        logout(token: $token) {
+      mutation Logout {
+        logout {
           success
         }
       }

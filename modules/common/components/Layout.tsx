@@ -11,7 +11,7 @@ import {
   Bars4Icon,
   AdjustmentsVerticalIcon,
 } from '@heroicons/react/24/outline';
-import { BoltIcon, LinkIcon, StopCircleIcon } from '@heroicons/react/24/solid';
+import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -28,9 +28,6 @@ import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
-import Button from './Button';
-import useStopImpersonation from '../../accounts/hooks/useStopImpersonation';
-import classNames from 'classnames';
 
 const {
   publicRuntimeConfig: { logo },
@@ -61,7 +58,6 @@ const Layout = ({
   const { currentUser } = useCurrentUser();
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
-  const { stopImpersonation } = useStopImpersonation();
 
   const showCustomReports =
     publicRuntimeConfig.showCustomReports ??

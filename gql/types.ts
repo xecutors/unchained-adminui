@@ -423,7 +423,6 @@ export type ICreateFilterInput = {
 };
 
 export type ICreateFilterOptionInput = {
-  locale?: InputMaybe<Scalars['String']['input']>;
   title: Scalars['String']['input'];
   value: Scalars['String']['input'];
 };
@@ -637,6 +636,8 @@ export type IEvent = {
 };
 
 export enum IEventType {
+  ApiLoginTokenCreated = 'API_LOGIN_TOKEN_CREATED',
+  ApiLogout = 'API_LOGOUT',
   AssortmentAddFilter = 'ASSORTMENT_ADD_FILTER',
   AssortmentAddLink = 'ASSORTMENT_ADD_LINK',
   AssortmentAddMedia = 'ASSORTMENT_ADD_MEDIA',
@@ -736,25 +737,36 @@ export enum IEventType {
   QuotationRequestCreate = 'QUOTATION_REQUEST_CREATE',
   QuotationUpdate = 'QUOTATION_UPDATE',
   Unknown = 'UNKNOWN',
+  UserAccountAction = 'USER_ACCOUNT_ACTION',
   UserAddRoles = 'USER_ADD_ROLES',
+  UserCreate = 'USER_CREATE',
   UserRemove = 'USER_REMOVE',
   UserUpdate = 'USER_UPDATE',
   UserUpdateAvatar = 'USER_UPDATE_AVATAR',
   UserUpdateBillingAddress = 'USER_UPDATE_BILLING_ADDRESS',
+  UserUpdateGuest = 'USER_UPDATE_GUEST',
   UserUpdateHeartbeat = 'USER_UPDATE_HEARTBEAT',
   UserUpdateLastContact = 'USER_UPDATE_LAST_CONTACT',
+  UserUpdatePassword = 'USER_UPDATE_PASSWORD',
   UserUpdateProfile = 'USER_UPDATE_PROFILE',
   UserUpdateRole = 'USER_UPDATE_ROLE',
   UserUpdateTags = 'USER_UPDATE_TAGS',
+  UserUpdateUsername = 'USER_UPDATE_USERNAME',
   WarehousingProviderCreate = 'WAREHOUSING_PROVIDER_CREATE',
   WarehousingProviderRemove = 'WAREHOUSING_PROVIDER_REMOVE',
   WarehousingProviderUpdate = 'WAREHOUSING_PROVIDER_UPDATE',
   WorkAdded = 'WORK_ADDED',
   WorkAllocated = 'WORK_ALLOCATED',
   WorkDeleted = 'WORK_DELETED',
-  WorkDone = 'WORK_DONE',
   WorkFinished = 'WORK_FINISHED',
   WorkRescheduled = 'WORK_RESCHEDULED',
+}
+
+export enum IExternalLinkTarget {
+  /** Open on new tab */
+  Blank = 'BLANK',
+  /** Open in own Iframe */
+  Self = 'SELF',
 }
 
 export type IFilter = {
@@ -828,6 +840,7 @@ export enum ILengthUnit {
 
 export type ILink = {
   href?: Maybe<Scalars['String']['output']>;
+  target?: Maybe<IExternalLinkTarget>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -847,10 +860,8 @@ export type ILoadedFilterOption = {
 
 /** Type returned when the user logs in */
 export type ILoginMethodResponse = {
-  /** Id of the user logged in user */
-  id: Scalars['String']['output'];
-  /** Token of the connection */
-  token: Scalars['String']['output'];
+  /** Session ID */
+  _id: Scalars['String']['output'];
   /** Expiration date for the token */
   tokenExpires: Scalars['DateTime']['output'];
   /** The logged in user */
@@ -937,8 +948,6 @@ export type IMutation = {
    * In those cases please use createBookmark and removeBookmark
    */
   bookmark: IBookmark;
-  /** In order to activate TOTP, generate a secret and return */
-  buildSecretTOTPAuthURL: Scalars['String']['output'];
   /** Change the current user's password. Must be logged in. */
   changePassword?: Maybe<ISuccessResponse>;
   /**
@@ -992,15 +1001,11 @@ export type IMutation = {
   createWebAuthnCredentialRequestOptions: Scalars['JSON']['output'];
   /** Manually mark a undelivered order as delivered */
   deliverOrder: IOrder;
-  /** Disable the 2nd factor (TOTP) */
-  disableTOTP: IUser;
   /**
    * Remove all items of an open order (cart) if possible.
    * if you want to remove single cart item use removeCartItem instead
    */
   emptyCart?: Maybe<IOrder>;
-  /** In order to activate 2nd factor (TOTP), generate a secret and return */
-  enableTOTP: IUser;
   /** Enroll a new user, setting enroll to true will let the user choose his password (e-mail gets sent) */
   enrollUser: IUser;
   /** Tokenize */
@@ -1019,22 +1024,14 @@ export type IMutation = {
    * accessed the system)
    */
   heartbeat: IUser;
-  /** Impersonate a user */
-  impersonate: ILoginMethodResponse;
-  /** OAuth2 */
-  linkOAuthAccount: IUser;
   /** Login as Guest User (creates an anonymous user and returns logged in token) */
   loginAsGuest?: Maybe<ILoginMethodResponse>;
-  /** Log the user with OAuth2 service provider */
-  loginWithOAuth?: Maybe<ILoginMethodResponse>;
   /** Log the user in with a password. */
   loginWithPassword?: Maybe<ILoginMethodResponse>;
   /** Log the user in with a WebAuthn device */
   loginWithWebAuthn?: Maybe<ILoginMethodResponse>;
   /** Log the user out. */
   logout?: Maybe<ISuccessResponse>;
-  /** Log out all sessions related with user. */
-  logoutAllSessions?: Maybe<ISuccessResponse>;
   /** Make a proposal as answer to the RFP by changing its status to PROCESSED */
   makeQuotationProposal: IQuotation;
   /** Make's the provided payment credential as the users preferred method of payment. */
@@ -1186,11 +1183,8 @@ export type IMutation = {
   signPaymentProviderForCredentialRegistration?: Maybe<
     Scalars['String']['output']
   >;
-  /** End customer impersonated user session and resume the impersonator session */
-  stopImpersonation: ILoginMethodResponse;
   /** Terminate an actively running enrollment by changing it's status to TERMINATED */
   terminateEnrollment: IEnrollment;
-  unlinkOAuthAccount: IUser;
   /** Hide the product visible from any shop listings (product queries) */
   unpublishProduct: IProduct;
   /** Updates the provided assortment */
@@ -1381,8 +1375,8 @@ export type IMutationBookmarkArgs = {
 };
 
 export type IMutationChangePasswordArgs = {
-  newPlainPassword?: InputMaybe<Scalars['String']['input']>;
-  oldPlainPassword?: InputMaybe<Scalars['String']['input']>;
+  newPassword?: InputMaybe<Scalars['String']['input']>;
+  oldPassword?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IMutationCheckoutCartArgs = {
@@ -1483,7 +1477,7 @@ export type IMutationCreateProductVariationOptionArgs = {
 
 export type IMutationCreateUserArgs = {
   email?: InputMaybe<Scalars['String']['input']>;
-  plainPassword?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
   profile?: InputMaybe<IUserProfileInput>;
   username?: InputMaybe<Scalars['String']['input']>;
   webAuthnPublicKeyCredentials?: InputMaybe<Scalars['JSON']['input']>;
@@ -1507,23 +1501,13 @@ export type IMutationDeliverOrderArgs = {
   orderId: Scalars['ID']['input'];
 };
 
-export type IMutationDisableTotpArgs = {
-  code: Scalars['String']['input'];
-  userId?: InputMaybe<Scalars['ID']['input']>;
-};
-
 export type IMutationEmptyCartArgs = {
   orderId?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type IMutationEnableTotpArgs = {
-  code: Scalars['String']['input'];
-  secretBase32: Scalars['String']['input'];
-};
-
 export type IMutationEnrollUserArgs = {
   email: Scalars['String']['input'];
-  plainPassword?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
   profile: IUserProfileInput;
 };
 
@@ -1547,35 +1531,14 @@ export type IMutationForgotPasswordArgs = {
   email: Scalars['String']['input'];
 };
 
-export type IMutationImpersonateArgs = {
-  userId: Scalars['ID']['input'];
-};
-
-export type IMutationLinkOAuthAccountArgs = {
-  authorizationCode: Scalars['String']['input'];
-  provider: Scalars['String']['input'];
-  redirectUrl: Scalars['String']['input'];
-};
-
-export type IMutationLoginWithOAuthArgs = {
-  authorizationCode: Scalars['String']['input'];
-  provider: Scalars['String']['input'];
-  redirectUrl: Scalars['String']['input'];
-};
-
 export type IMutationLoginWithPasswordArgs = {
   email?: InputMaybe<Scalars['String']['input']>;
-  plainPassword?: InputMaybe<Scalars['String']['input']>;
-  totpCode?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IMutationLoginWithWebAuthnArgs = {
   webAuthnPublicKeyCredentials: Scalars['JSON']['input'];
-};
-
-export type IMutationLogoutArgs = {
-  token?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IMutationMakeQuotationProposalArgs = {
@@ -1796,7 +1759,7 @@ export type IMutationRequestQuotationArgs = {
 };
 
 export type IMutationResetPasswordArgs = {
-  newPlainPassword?: InputMaybe<Scalars['String']['input']>;
+  newPassword?: InputMaybe<Scalars['String']['input']>;
   token: Scalars['String']['input'];
 };
 
@@ -1823,7 +1786,7 @@ export type IMutationSetOrderPaymentProviderArgs = {
 };
 
 export type IMutationSetPasswordArgs = {
-  newPlainPassword?: InputMaybe<Scalars['String']['input']>;
+  newPassword?: InputMaybe<Scalars['String']['input']>;
   userId: Scalars['ID']['input'];
 };
 
@@ -1853,11 +1816,6 @@ export type IMutationSignPaymentProviderForCredentialRegistrationArgs = {
 
 export type IMutationTerminateEnrollmentArgs = {
   enrollmentId: Scalars['ID']['input'];
-};
-
-export type IMutationUnlinkOAuthAccountArgs = {
-  oAuthAccountId: Scalars['ID']['input'];
-  provider: Scalars['String']['input'];
 };
 
 export type IMutationUnpublishProductArgs = {
@@ -2046,18 +2004,6 @@ export type IMutationVerifyQuotationArgs = {
 export type IMutationVerifyWeb3AddressArgs = {
   address: Scalars['String']['input'];
   hash: Scalars['String']['input'];
-};
-
-export type IOAuthAccount = {
-  _id: Scalars['ID']['output'];
-  authorizationCode: Scalars['String']['output'];
-  provider: IOAuthProvider;
-};
-
-export type IOAuthProvider = {
-  _id: Scalars['String']['output'];
-  clientId: Scalars['String']['output'];
-  scopes: Array<Scalars['String']['output']>;
 };
 
 /** Just an order */
@@ -2765,8 +2711,6 @@ export type IQuery = {
   filters: Array<IFilter>;
   /** Returns total number of filters */
   filtersCount: Scalars['Int']['output'];
-  /** User impersonating current user session using the  impersonate API */
-  impersonator?: Maybe<IUser>;
   /** Get a specific language */
   language?: Maybe<ILanguage>;
   /** Get all languages, by default sorted by creation date (ascending) */
@@ -3273,7 +3217,6 @@ export type IReorderProductMediaInput = {
 
 export enum IRoleAction {
   AnswerQuotation = 'answerQuotation',
-  AuthTwoFactor = 'authTwoFactor',
   BookmarkProduct = 'bookmarkProduct',
   BulkImport = 'bulkImport',
   ChangePassword = 'changePassword',
@@ -3284,13 +3227,10 @@ export enum IRoleAction {
   CreateUser = 'createUser',
   ForgotPassword = 'forgotPassword',
   Heartbeat = 'heartbeat',
-  Impersonate = 'impersonate',
   LoginAsGuest = 'loginAsGuest',
-  LoginWithOAuth = 'loginWithOAuth',
   LoginWithPassword = 'loginWithPassword',
   LoginWithWebAuthn = 'loginWithWebAuthn',
   Logout = 'logout',
-  LogoutAllSessions = 'logoutAllSessions',
   ManageAssortments = 'manageAssortments',
   ManageBookmarks = 'manageBookmarks',
   ManageCountries = 'manageCountries',
@@ -3303,7 +3243,6 @@ export enum IRoleAction {
   ManageProductReviews = 'manageProductReviews',
   ManageProducts = 'manageProducts',
   ManageQuotations = 'manageQuotations',
-  ManageTwoFactor = 'manageTwoFactor',
   ManageUsers = 'manageUsers',
   ManageWarehousingProviders = 'manageWarehousingProviders',
   ManageWorker = 'manageWorker',
@@ -3318,7 +3257,6 @@ export enum IRoleAction {
   ReviewProduct = 'reviewProduct',
   Search = 'search',
   SendEmail = 'sendEmail',
-  StopImpersonation = 'stopImpersonation',
   UpdateCart = 'updateCart',
   UpdateEnrollment = 'updateEnrollment',
   UpdateOrder = 'updateOrder',
@@ -3402,7 +3340,6 @@ export type IShop = {
   country?: Maybe<ICountry>;
   externalLinks: Array<Maybe<ILink>>;
   language?: Maybe<ILanguage>;
-  oAuthProviders: Array<IOAuthProvider>;
   userRoles: Array<Scalars['String']['output']>;
   vapidPublicKey?: Maybe<Scalars['String']['output']>;
   version?: Maybe<Scalars['String']['output']>;
@@ -3771,13 +3708,11 @@ export type IUser = {
   enrollments: Array<IEnrollment>;
   isGuest: Scalars['Boolean']['output'];
   isInitialPassword: Scalars['Boolean']['output'];
-  isTwoFactorEnabled: Scalars['Boolean']['output'];
   language?: Maybe<ILanguage>;
   lastBillingAddress?: Maybe<IAddress>;
   lastContact?: Maybe<IContact>;
   lastLogin?: Maybe<IUserLoginTracker>;
   name: Scalars['String']['output'];
-  oAuthAccounts: Array<IOAuthAccount>;
   orders: Array<IOrder>;
   paymentCredentials: Array<IPaymentCredentials>;
   primaryEmail?: Maybe<IUserEmail>;
@@ -4100,7 +4035,6 @@ export type IMd5MetaDataFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type IUserFragment = {
   _id: string;
-  isTwoFactorEnabled: boolean;
   allowedActions: Array<IRoleAction>;
   username?: string | null;
   isGuest: boolean;
@@ -4201,9 +4135,7 @@ export type IUserFragment = {
 
 export type IUserFragmentVariables = Exact<{ [key: string]: never }>;
 
-export type ILogoutMutationVariables = Exact<{
-  token?: InputMaybe<Scalars['String']['input']>;
-}>;
+export type ILogoutMutationVariables = Exact<{ [key: string]: never }>;
 
 export type ILogoutMutation = { logout?: { success?: boolean | null } | null };
 
@@ -4215,7 +4147,6 @@ export type IAddEmailMutationVariables = Exact<{
 export type IAddEmailMutation = {
   addEmail: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -4322,7 +4253,6 @@ export type IAddWeb3AddressMutationVariables = Exact<{
 export type IAddWeb3AddressMutation = {
   addWeb3Address: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -4429,7 +4359,6 @@ export type IAddWebAuthnCredentialsMutationVariables = Exact<{
 export type IAddWebAuthnCredentialsMutation = {
   addWebAuthnCredentials: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -4529,14 +4458,6 @@ export type IAddWebAuthnCredentialsMutation = {
   };
 };
 
-export type IBuildSecretTotpAuthUrlMutationVariables = Exact<{
-  [key: string]: never;
-}>;
-
-export type IBuildSecretTotpAuthUrlMutation = {
-  buildSecretTOTPAuthURL: string;
-};
-
 export type IChangePasswordMutationVariables = Exact<{
   oldPassword: Scalars['String']['input'];
   newPassword: Scalars['String']['input'];
@@ -4555,7 +4476,7 @@ export type ICreateUserMutationVariables = Exact<{
 }>;
 
 export type ICreateUserMutation = {
-  createUser?: { id: string; token: string; tokenExpires: any } | null;
+  createUser?: { _id: string; tokenExpires: any } | null;
 };
 
 export type ICreateWebAuthnCredentialCreationOptionsMutationVariables = Exact<{
@@ -4579,7 +4500,6 @@ export type ICurrentUserQueryVariables = Exact<{ [key: string]: never }>;
 export type ICurrentUserQuery = {
   me?: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -4677,223 +4597,6 @@ export type ICurrentUserQuery = {
     } | null;
     primaryEmail?: { verified: boolean; address: string } | null;
   } | null;
-  impersonator?: { _id: string } | null;
-};
-
-export type IDisableTotpMutationVariables = Exact<{
-  code: Scalars['String']['input'];
-  userId?: InputMaybe<Scalars['ID']['input']>;
-}>;
-
-export type IDisableTotpMutation = {
-  disableTOTP: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
-    } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
-    } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
-    } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
-    } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      };
-    }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
-    }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
-      } | null;
-    }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
-      } | null;
-    } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
-  };
-};
-
-export type IEnableTotpMutationVariables = Exact<{
-  secretBase32: Scalars['String']['input'];
-  code: Scalars['String']['input'];
-}>;
-
-export type IEnableTotpMutation = {
-  enableTOTP: {
-    _id: string;
-    isTwoFactorEnabled: boolean;
-    allowedActions: Array<IRoleAction>;
-    username?: string | null;
-    isGuest: boolean;
-    isInitialPassword: boolean;
-    name: string;
-    roles?: Array<string> | null;
-    tags?: Array<any> | null;
-    lastBillingAddress?: {
-      firstName?: string | null;
-      lastName?: string | null;
-      company?: string | null;
-      addressLine?: string | null;
-      addressLine2?: string | null;
-      postalCode?: string | null;
-      countryCode?: string | null;
-      regionCode?: string | null;
-      city?: string | null;
-    } | null;
-    lastContact?: {
-      emailAddress?: string | null;
-      telNumber?: string | null;
-    } | null;
-    lastLogin?: {
-      countryCode?: string | null;
-      locale?: string | null;
-      remoteAddress?: string | null;
-      remotePort?: string | null;
-      timestamp: any;
-      userAgent?: string | null;
-    } | null;
-    avatar?: {
-      _id: string;
-      name: string;
-      size: number;
-      type: string;
-      url: string;
-    } | null;
-    paymentCredentials: Array<{
-      _id: string;
-      isValid: boolean;
-      isPreferred: boolean;
-      paymentProvider: {
-        _id: string;
-        type?: IPaymentProviderType | null;
-        interface?: {
-          _id: string;
-          label?: string | null;
-          version?: string | null;
-        } | null;
-      };
-    }>;
-    emails?: Array<{ verified: boolean; address: string }> | null;
-    web3Addresses: Array<{
-      address: string;
-      nonce?: number | null;
-      verified: boolean;
-    }>;
-    webAuthnCredentials: Array<{
-      _id: string;
-      created: any;
-      aaguid: string;
-      counter: number;
-      mdsMetadata?: {
-        legalHeader?: string | null;
-        description?: string | null;
-        authenticatorVersion?: number | null;
-        protocolFamily?: string | null;
-        schema?: number | null;
-        authenticationAlgorithms?: Array<string> | null;
-        publicKeyAlgAndEncodings?: Array<string> | null;
-        attestationTypes?: Array<string> | null;
-        keyProtection?: Array<string> | null;
-        upv?: Array<any> | null;
-        tcDisplay?: Array<any> | null;
-        icon?: string | null;
-        authenticatorGetInfo?: any | null;
-      } | null;
-    }>;
-    profile?: {
-      displayName?: string | null;
-      phoneMobile?: string | null;
-      gender?: string | null;
-      birthday?: any | null;
-      address?: {
-        firstName?: string | null;
-        lastName?: string | null;
-        company?: string | null;
-        addressLine?: string | null;
-        addressLine2?: string | null;
-        postalCode?: string | null;
-        countryCode?: string | null;
-        regionCode?: string | null;
-        city?: string | null;
-      } | null;
-    } | null;
-    primaryEmail?: { verified: boolean; address: string } | null;
-  };
 };
 
 export type IEnrollUserMutationVariables = Exact<{
@@ -4905,7 +4608,6 @@ export type IEnrollUserMutationVariables = Exact<{
 export type IEnrollUserMutation = {
   enrollUser: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5013,46 +4715,20 @@ export type IForgotPasswordMutation = {
   forgotPassword?: { success?: boolean | null } | null;
 };
 
-export type IImpersonateMutationVariables = Exact<{
-  userId: Scalars['ID']['input'];
-}>;
-
-export type IImpersonateMutation = {
-  impersonate: {
-    id: string;
-    tokenExpires: any;
-    token: string;
-    user?: { _id: string } | null;
-  };
-};
-
-export type ILogInWithOAuthMutationVariables = Exact<{
-  authorizationCode: Scalars['String']['input'];
-  provider: Scalars['String']['input'];
-  redirectUrl: Scalars['String']['input'];
-}>;
-
-export type ILogInWithOAuthMutation = {
-  loginWithOAuth?: { id: string; token: string; tokenExpires: any } | null;
-};
-
 export type ILoginWithPasswordMutationVariables = Exact<{
   username?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
-  plainPassword?: InputMaybe<Scalars['String']['input']>;
-  totpCode?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type ILoginWithPasswordMutation = {
   loginWithPassword?: {
-    id: string;
-    token: string;
+    _id: string;
     tokenExpires: any;
     user?: {
       _id: string;
       allowedActions: Array<IRoleAction>;
       roles?: Array<string> | null;
-      isTwoFactorEnabled: boolean;
     } | null;
   } | null;
 };
@@ -5062,7 +4738,7 @@ export type ILoginWithWebAuthnMutationVariables = Exact<{
 }>;
 
 export type ILoginWithWebAuthnMutation = {
-  loginWithWebAuthn?: { id: string; token: string; tokenExpires: any } | null;
+  loginWithWebAuthn?: { _id: string; tokenExpires: any } | null;
 };
 
 export type IRemoveEmailMutationVariables = Exact<{
@@ -5073,7 +4749,6 @@ export type IRemoveEmailMutationVariables = Exact<{
 export type IRemoveEmailMutation = {
   removeEmail: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5180,7 +4855,6 @@ export type IRemoveWeb3AddressMutationVariables = Exact<{
 export type IRemoveWeb3AddressMutation = {
   removeWeb3Address: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5287,7 +4961,6 @@ export type IRemoveWebAuthCredentialsMutationVariables = Exact<{
 export type IRemoveWebAuthCredentialsMutation = {
   removeWebAuthnCredentials: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5393,7 +5066,7 @@ export type IResetPasswordMutationVariables = Exact<{
 }>;
 
 export type IResetPasswordMutation = {
-  resetPassword?: { id: string; token: string; tokenExpires: any } | null;
+  resetPassword?: { _id: string; tokenExpires: any } | null;
 };
 
 export type ISendVerificationEmailMutationVariables = Exact<{
@@ -5412,7 +5085,6 @@ export type ISetPasswordMutationVariables = Exact<{
 export type ISetPasswordMutation = {
   setPassword: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5520,7 +5192,6 @@ export type ISetRolesMutationVariables = Exact<{
 export type ISetRolesMutation = {
   setRoles: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5637,7 +5308,6 @@ export type ISetUsernameMutationVariables = Exact<{
 export type ISetUsernameMutation = {
   setUsername: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5737,12 +5407,6 @@ export type ISetUsernameMutation = {
   };
 };
 
-export type IStopImpersonateMutationVariables = Exact<{ [key: string]: never }>;
-
-export type IStopImpersonateMutation = {
-  stopImpersonation: { id: string; token: string; tokenExpires: any };
-};
-
 export type IPrepareUserAvatarUploadMutationVariables = Exact<{
   mediaName: Scalars['String']['input'];
   userId?: InputMaybe<Scalars['ID']['input']>;
@@ -5760,7 +5424,6 @@ export type IUpdateUserProfileMutationVariables = Exact<{
 export type IUpdateUserProfileMutation = {
   updateUserProfile: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -5867,7 +5530,6 @@ export type IUserQueryVariables = Exact<{
 export type IUserQuery = {
   user?: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -6009,7 +5671,6 @@ export type IUsersQuery = {
   usersCount: number;
   users: Array<{
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -6131,12 +5792,10 @@ export type IVerifyEmailMutationVariables = Exact<{
 
 export type IVerifyEmailMutation = {
   verifyEmail?: {
-    id: string;
-    token: string;
+    _id: string;
     tokenExpires: any;
     user?: {
       _id: string;
-      isTwoFactorEnabled: boolean;
       allowedActions: Array<IRoleAction>;
       username?: string | null;
       isGuest: boolean;
@@ -6245,7 +5904,6 @@ export type IVerifyWeb3AddressMutationVariables = Exact<{
 export type IVerifyWeb3AddressMutation = {
   verifyWeb3Address: {
     _id: string;
-    isTwoFactorEnabled: boolean;
     allowedActions: Array<IRoleAction>;
     username?: string | null;
     isGuest: boolean;
@@ -7211,6 +6869,7 @@ export type IShopInfoQuery = {
     externalLinks: Array<{
       href?: string | null;
       title?: string | null;
+      target?: IExternalLinkTarget | null;
     } | null>;
     adminUiConfig: {
       customProperties: Array<{ entityName: string; inlineFragment: string }>;

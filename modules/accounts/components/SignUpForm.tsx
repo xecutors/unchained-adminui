@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import getConfig from 'next/config';
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
-import Toggle from '../../common/components/Toggle';
 
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
@@ -118,16 +117,6 @@ const SignUpForm = ({
                   </div>
                 </>
               )}
-              <Toggle
-                onToggle={onAuthenticateWithDeviceChange}
-                toggleText={formatMessage({
-                  id: 'use_authenticator',
-                  defaultMessage: 'Use authenticator',
-                })}
-                className="ml-2 my-3"
-                toggleKey="totp"
-                active={authenticateWithDevice}
-              />
             </div>
             <FormErrors />
 

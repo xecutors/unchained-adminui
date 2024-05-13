@@ -11,11 +11,7 @@ const EnrollUserMutation = gql`
     $plainPassword: String
     $profile: UserProfileInput!
   ) {
-    enrollUser(
-      email: $email
-      plainPassword: $plainPassword
-      profile: $profile
-    ) {
+    enrollUser(email: $email, password: $plainPassword, profile: $profile) {
       ...UserFragment
     }
   }

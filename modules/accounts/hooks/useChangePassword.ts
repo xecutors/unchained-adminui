@@ -6,10 +6,7 @@ import {
 
 const ChangePasswordMutation = gql`
   mutation ChangePassword($oldPassword: String!, $newPassword: String!) {
-    changePassword(
-      oldPlainPassword: $oldPassword
-      newPlainPassword: $newPassword
-    ) {
+    changePassword(oldPassword: $oldPassword, newPassword: $newPassword) {
       success
     }
   }

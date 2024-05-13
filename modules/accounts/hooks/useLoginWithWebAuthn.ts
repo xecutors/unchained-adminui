@@ -10,7 +10,6 @@ const LogWithWebAuthnMutation = gql`
       webAuthnPublicKeyCredentials: $webAuthnPublicKeyCredentials
     ) {
       _id
-      token
       tokenExpires
     }
   }

@@ -9,7 +9,6 @@ const VerifyEmailMutation = gql`
   mutation VerifyEmail($token: String!) {
     verifyEmail(token: $token) {
       _id
-      token
       tokenExpires
       user {
         ...UserFragment
