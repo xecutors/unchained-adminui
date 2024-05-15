@@ -17,14 +17,20 @@ const AddFilter = () => {
 
   const { createFilter } = useCreateFilter();
 
-  const onSubmit: OnSubmitType = async ({ key, title, type, options, locale }) => {
+  const onSubmit: OnSubmitType = async ({
+    key,
+    title,
+    type,
+    options,
+    locale,
+  }) => {
     const { data, errors } = await createFilter({
       filter: {
         options,
-        title,
         key,
         type,
-        locale
+      },
+      texts: [{ title, locale }],
     });
     return { success: !errors?.length, data: data?.createFilter };
   };

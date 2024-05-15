@@ -3,9 +3,28 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import useLanguages from '../../language/hooks/useLanguages';
+import useCountries from '../../country/hooks/useCountries';
+
+const createLanguageDialectList = (languages, countries) => {
+  const result = [];
+
+  languages.forEach(({ _id: languageId, isoCode: baseIsoCode }) => {
+    result.push({ _id: languageId, isoCode: baseIsoCode });
+    countries.forEach(({ isoCode: countryIsoCode, _id: countryId }) => {
+      const dialectIsoCode = `${baseIsoCode}_${countryIsoCode.toLowerCase()}`;
+      result.push({
+        _id: `${countryId}-${languageId}`,
+        isoCode: dialectIsoCode,
+      });
+    });
+  });
+
+  return result;
+};
 
 const LocaleWrapper = ({ children }) => {
   const { languages, loading } = useLanguages();
+  const { countries } = useCountries();
   const { locale } = useIntl();
 
   const [selectedLocale, setSelectedLocale] = useState(locale);
@@ -21,6 +40,8 @@ const LocaleWrapper = ({ children }) => {
     }
   }, [languages, loading, locale]);
 
+  const languageDialectList = createLanguageDialectList(languages, countries);
+
   return (
     <div className="my-3">
       <div className="relative mb-2">
@@ -34,11 +55,13 @@ const LocaleWrapper = ({ children }) => {
               setSelectedLocale(e.target.value);
             }}
           >
-            {languages.map((language) => (
-              <option key={language._id} value={language.isoCode}>
-                {language.isoCode}
-              </option>
-            ))}
+            {languageDialectList.map((language) => {
+              return (
+                <option key={language._id} value={language.isoCode}>
+                  {language.isoCode}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>

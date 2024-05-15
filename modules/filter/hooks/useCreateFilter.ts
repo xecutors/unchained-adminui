@@ -6,7 +6,10 @@ import {
 import FilterFragment from '../fragments/FilterFragment';
 
 const CreateFilterMutation = gql`
-  mutation CreateFilter($filter: CreateFilterInput!, $texts: [FilterTextInput!]) {
+  mutation CreateFilter(
+    $filter: CreateFilterInput!
+    $texts: [FilterTextInput!]!
+  ) {
     createFilter(filter: $filter, texts: $texts) {
       ...FilterFragment
     }
@@ -21,10 +24,11 @@ const useCreateFilter = () => {
   >(CreateFilterMutation);
 
   const createFilter = async ({
-    filter: { key, type, title, options, locale },
+    filter: { key, type, options },
+    texts,
   }: ICreateFilterMutationVariables) => {
     return createFilterMutation({
-      variables: { filter: { key, type, options }, texts: [{ title, locale }] },
+      variables: { filter: { key, type, options }, texts },
     });
   };
   const newFilter = data?.createFilter;

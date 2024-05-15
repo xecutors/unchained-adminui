@@ -418,7 +418,6 @@ export type ICreateDeliveryProviderInput = {
 export type ICreateFilterInput = {
   key: Scalars['String']['input'];
   options?: InputMaybe<Array<Scalars['String']['input']>>;
-  title: Scalars['String']['input'];
   type: IFilterType;
 };
 
@@ -797,6 +796,12 @@ export type IFilterOptionTextsArgs = {
 export type IFilterQueryInput = {
   key: Scalars['String']['input'];
   value?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IFilterTextInput = {
+  locale: Scalars['String']['input'];
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IFilterTexts = {
@@ -1436,11 +1441,13 @@ export type IMutationCreateEnrollmentArgs = {
 
 export type IMutationCreateFilterArgs = {
   filter: ICreateFilterInput;
+  texts: Array<IFilterTextInput>;
 };
 
 export type IMutationCreateFilterOptionArgs = {
   filterId: Scalars['ID']['input'];
   option: ICreateFilterOptionInput;
+  texts?: InputMaybe<Array<IFilterTextInput>>;
 };
 
 export type IMutationCreateLanguageArgs = {
@@ -1885,7 +1892,7 @@ export type IMutationUpdateFilterArgs = {
 export type IMutationUpdateFilterTextsArgs = {
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput>;
+  texts: Array<IFilterTextInput>;
 };
 
 export type IMutationUpdateLanguageArgs = {
@@ -3608,12 +3615,6 @@ export type IUpdateCurrencyInput = {
 export type IUpdateFilterInput = {
   isActive?: InputMaybe<Scalars['Boolean']['input']>;
   key?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type IUpdateFilterTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateLanguageInput = {
@@ -7622,6 +7623,7 @@ export type IFilterTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateFilterMutationVariables = Exact<{
   filter: ICreateFilterInput;
+  texts: Array<IFilterTextInput>;
 }>;
 
 export type ICreateFilterMutation = {
@@ -7807,7 +7809,7 @@ export type IUpdateFilterMutation = {
 export type IUpdateFilterTextsMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput>;
+  texts: Array<IFilterTextInput>;
 }>;
 
 export type IUpdateFilterTextsMutation = {
