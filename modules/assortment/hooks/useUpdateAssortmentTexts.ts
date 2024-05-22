@@ -8,7 +8,7 @@ import AssortmentTextsFragment from '../fragments/AssortmentTextsFragment';
 const UpdateAssortmentTextsMutation = gql`
   mutation updateAssortmentTexts(
     $assortmentId: ID!
-    $texts: [UpdateAssortmentTextInput!]!
+    $texts: [AssortmentTextInput!]!
   ) {
     updateAssortmentTexts(assortmentId: $assortmentId, texts: $texts) {
       ...AssortmentTextsFragment

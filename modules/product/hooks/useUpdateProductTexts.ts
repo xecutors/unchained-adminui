@@ -6,10 +6,7 @@ import {
 import ProductTextsFragment from '../fragments/ProductTextsFragment';
 
 const UpdateProductTextsMutation = gql`
-  mutation UpdateProductTexts(
-    $productId: ID!,
-    $texts: [ProductTextInput!]!
-  ) {
+  mutation UpdateProductTexts($productId: ID!, $texts: [ProductTextInput!]!) {
     updateProductTexts(productId: $productId, texts: $texts) {
       ...ProductTextsFragment
     }

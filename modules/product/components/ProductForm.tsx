@@ -28,8 +28,11 @@ const ProductForm = ({
     defaultMessage: 'Product added successfully!',
   });
   const form = useForm({
-    submit: ({ title, ...rest }) =>
-      onSubmit({ texts: [{ title, locale: selectedLocale }], ...rest }),
+    submit: ({ title, subtitle, ...rest }) =>
+      onSubmit({
+        texts: [{ title, subtitle, locale: selectedLocale }],
+        ...rest,
+      }),
     onSubmitSuccess,
     enableReinitialize: true,
     successMessage,
@@ -53,6 +56,21 @@ const ProductForm = ({
           placeholder={formatMessage({
             id: 'name',
             defaultMessage: 'Name',
+          })}
+          required
+          className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
+        />
+
+        <TextField
+          name="subtitle"
+          id="subtitle"
+          label={formatMessage({
+            id: 'subtitle',
+            defaultMessage: 'Subtitle',
+          })}
+          placeholder={formatMessage({
+            id: 'subtitle',
+            defaultMessage: 'Subtitle',
           })}
           required
           className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"

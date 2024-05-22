@@ -8,7 +8,11 @@ import TagInputField from '../../forms/components/TagInputField';
 import TextField from '../../forms/components/TextField';
 import useForm from '../../forms/hooks/useForm';
 
-const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
+const AssortmentForm = ({
+  onSubmit,
+  onSubmitSuccess,
+  selectedLocale = null,
+}) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const successMessage = formatMessage({
@@ -16,7 +20,7 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
     defaultMessage: 'Assortment added successfully!',
   });
   const form = useForm({
-    submit: onSubmit,
+    submit: async (data) => onSubmit({ ...data, locale: selectedLocale }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,
@@ -36,6 +40,17 @@ const AssortmentForm = ({ onSubmit, onSubmitSuccess }) => {
           label={formatMessage({
             id: 'title',
             defaultMessage: 'Title',
+          })}
+          autoComplete="off"
+          required
+          className="mb-5"
+        />
+        <TextField
+          name="subtitle"
+          id="subtitle"
+          label={formatMessage({
+            id: 'subtitle',
+            defaultMessage: 'Subtitle',
           })}
           autoComplete="off"
           required
