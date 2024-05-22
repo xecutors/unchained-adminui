@@ -12,7 +12,10 @@ import useAuth from '../../Auth/useAuth';
 
 const FilterFormView = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
-  const { filterOptions } = useFilterOptions({ filterId });
+  const { filterOptions } = useFilterOptions({
+    filterId,
+    locale: selectedLocale,
+  });
   const { setModal } = useModal();
 
   const { createFilterOption } = useCreateFilterOption();

@@ -15,6 +15,7 @@ const FilterOptionsListItem = ({
   onDelete,
   selectedLocale,
 }) => {
+  console.log(option);
   const { formatMessage } = useIntl();
   const [isEdit, setIsEdit] = useState(false);
 
@@ -26,10 +27,21 @@ const FilterOptionsListItem = ({
   const { updateFilterTexts } = useUpdateFilterTexts();
 
   const onSubmit: OnSubmitType = async ({ title, value, subtitle }) => {
+    let restLocaleOptions = [];
+    if (Array.isArray(option.texts)) {
+      restLocaleOptions = option.texts
+        ?.filter(({ locale }) => locale !== selectedLocale)
+        .map(({ __typename, _id, ...rest }) => rest);
+    } else if (option?.texts && option?.texts?.locale !== selectedLocale) {
+      const { __typename, _id, ...rest } = option.texts;
+      restLocaleOptions.push(rest);
+    }
+
     await updateFilterTexts({
       filterId,
       filterOptionValue: value,
       texts: [
+        ...restLocaleOptions,
         {
           locale: selectedLocale,
           title,

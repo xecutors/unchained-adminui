@@ -15,9 +15,11 @@ import { PRODUCT_TYPES } from '../ProductTypes';
 const ProductForm = ({
   onSubmit,
   onSubmitSuccess,
+  selectedLocale,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
+  selectedLocale?: string;
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
@@ -26,7 +28,8 @@ const ProductForm = ({
     defaultMessage: 'Product added successfully!',
   });
   const form = useForm({
-    submit: onSubmit,
+    submit: ({ title, ...rest }) =>
+      onSubmit({ texts: [{ title, locale: selectedLocale }], ...rest }),
     onSubmitSuccess,
     enableReinitialize: true,
     successMessage,

@@ -11,6 +11,7 @@ import {
 import ProductForm from '../../modules/product/components/ProductForm';
 import useCreateProduct from '../../modules/product/hooks/useCreateProduct';
 import { PRODUCT_TYPES } from '../../modules/product/ProductTypes';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const AddProduct = () => {
   const { createProduct } = useCreateProduct();
@@ -21,10 +22,10 @@ const AddProduct = () => {
     return true;
   };
 
-  const onSubmit: OnSubmitType = async ({ title, type, tags }) => {
+  const onSubmit: OnSubmitType = async ({ texts, type, tags }) => {
     const { data, errors } = await createProduct({
       product: {
-        title,
+        texts,
         type: PRODUCT_TYPES[type],
         tags,
       },
@@ -97,10 +98,12 @@ const AddProduct = () => {
 
         <div className="lg:col-span-2">
           <FormWrapper>
-            <ProductForm
-              onSubmit={onSubmit}
-              onSubmitSuccess={onSubmitSuccess}
-            />
+            <LocaleWrapper>
+              <ProductForm
+                onSubmit={onSubmit}
+                onSubmitSuccess={onSubmitSuccess}
+              />
+            </LocaleWrapper>
           </FormWrapper>
         </div>
       </div>
