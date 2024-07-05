@@ -39,4 +39,4 @@ HEALTHCHECK --timeout=1s --start-period=2s \
 
 EXPOSE 3000
 
-CMD npm run start
+CMD ["npm", "start"]
