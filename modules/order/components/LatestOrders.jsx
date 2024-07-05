@@ -12,10 +12,10 @@ const LatestOrders = () => {
     sort: sortKeys,
   });
 
-  return loading ? (
+  return !orders?.length && loading ? (
     <Loading />
   ) : (
-    <OrderList orders={orders} showUser sortable />
+    <OrderList orders={orders} loading={loading} showUser sortable />
   );
 };
 
