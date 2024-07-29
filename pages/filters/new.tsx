@@ -9,6 +9,7 @@ import {
   OnSubmitSuccessType,
   OnSubmitType,
 } from '../../modules/forms/hooks/useForm';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const AddFilter = () => {
   const router = useRouter();
@@ -16,14 +17,20 @@ const AddFilter = () => {
 
   const { createFilter } = useCreateFilter();
 
-  const onSubmit: OnSubmitType = async ({ key, title, type, options }) => {
+  const onSubmit: OnSubmitType = async ({
+    key,
+    title,
+    type,
+    options,
+    locale,
+  }) => {
     const { data, errors } = await createFilter({
       filter: {
         options,
-        title,
         key,
         type,
       },
+      texts: [{ title, locale }],
     });
     return { success: !errors?.length, data: data?.createFilter };
   };
@@ -45,7 +52,12 @@ const AddFilter = () => {
         />
         <div className="mt-6">
           <FormWrapper>
-            <FilterForm onSubmit={onSubmit} onSubmitSuccess={onSubmitSuccess} />
+            <LocaleWrapper>
+              <FilterForm
+                onSubmit={onSubmit}
+                onSubmitSuccess={onSubmitSuccess}
+              />
+            </LocaleWrapper>
           </FormWrapper>
         </div>
       </div>

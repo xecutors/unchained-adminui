@@ -48,10 +48,10 @@ const useCreateProduct = () => {
   >(CreateProductMutation);
 
   const createProduct = async ({
-    product: { type, title, tags },
+    product: { type, texts, tags },
   }: ICreateProductMutationVariables) => {
     return createProductMutation({
-      variables: { product: { title, type, tags } },
+      variables: { product: { texts, type, tags } },
       refetchQueries: ['Products'],
     });
   };

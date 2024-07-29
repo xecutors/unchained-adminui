@@ -9,7 +9,7 @@ const UpdateFilterTextsMutation = gql`
   mutation UpdateFilterTexts(
     $filterId: ID!
     $filterOptionValue: String
-    $texts: [UpdateFilterTextInput!]!
+    $texts: [FilterTextInput!]!
   ) {
     updateFilterTexts(
       filterId: $filterId

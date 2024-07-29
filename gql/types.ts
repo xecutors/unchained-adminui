@@ -197,6 +197,14 @@ export type IAssortmentSearchResultAssortmentsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type IAssortmentTextInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  locale: Scalars['String']['input'];
+  slug?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type IAssortmentTexts = {
   _id: Scalars['ID']['output'];
   description?: Maybe<Scalars['String']['output']>;
@@ -397,7 +405,7 @@ export type ICountryNameArgs = {
 export type ICreateAssortmentInput = {
   isRoot?: InputMaybe<Scalars['Boolean']['input']>;
   tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
-  title: Scalars['String']['input'];
+  texts: Array<IAssortmentTextInput>;
 };
 
 export type ICreateCountryInput = {
@@ -418,7 +426,6 @@ export type ICreateDeliveryProviderInput = {
 export type ICreateFilterInput = {
   key: Scalars['String']['input'];
   options?: InputMaybe<Array<Scalars['String']['input']>>;
-  title: Scalars['String']['input'];
   type: IFilterType;
 };
 
@@ -443,7 +450,7 @@ export type ICreateProductBundleItemInput = {
 
 export type ICreateProductInput = {
   tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
-  title: Scalars['String']['input'];
+  texts: Array<IProductTextInput>;
   type: Scalars['String']['input'];
 };
 
@@ -797,6 +804,12 @@ export type IFilterOptionTextsArgs = {
 export type IFilterQueryInput = {
   key: Scalars['String']['input'];
   value?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IFilterTextInput = {
+  locale: Scalars['String']['input'];
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IFilterTexts = {
@@ -1436,11 +1449,13 @@ export type IMutationCreateEnrollmentArgs = {
 
 export type IMutationCreateFilterArgs = {
   filter: ICreateFilterInput;
+  texts: Array<IFilterTextInput>;
 };
 
 export type IMutationCreateFilterOptionArgs = {
   filterId: Scalars['ID']['input'];
   option: ICreateFilterOptionInput;
+  texts?: InputMaybe<Array<IFilterTextInput>>;
 };
 
 export type IMutationCreateLanguageArgs = {
@@ -1834,7 +1849,7 @@ export type IMutationUpdateAssortmentMediaTextsArgs = {
 
 export type IMutationUpdateAssortmentTextsArgs = {
   assortmentId: Scalars['ID']['input'];
-  texts: Array<IUpdateAssortmentTextInput>;
+  texts: Array<IAssortmentTextInput>;
 };
 
 export type IMutationUpdateCartArgs = {
@@ -1885,7 +1900,7 @@ export type IMutationUpdateFilterArgs = {
 export type IMutationUpdateFilterTextsArgs = {
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput>;
+  texts: Array<IFilterTextInput>;
 };
 
 export type IMutationUpdateLanguageArgs = {
@@ -1957,7 +1972,7 @@ export type IMutationUpdateProductSupplyArgs = {
 
 export type IMutationUpdateProductTextsArgs = {
   productId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductTextInput>;
+  texts: Array<IProductTextInput>;
 };
 
 export type IMutationUpdateProductTokenizationArgs = {
@@ -2592,6 +2607,17 @@ export enum IProductStatus {
   /** Unpublished (hidden from catalog) */
   Draft = 'DRAFT',
 }
+
+export type IProductTextInput = {
+  brand?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  labels?: InputMaybe<Array<Scalars['String']['input']>>;
+  locale: Scalars['String']['input'];
+  slug?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  vendor?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type IProductTexts = {
   _id: Scalars['ID']['output'];
@@ -3584,14 +3610,6 @@ export type IUpdateAssortmentMediaTextInput = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type IUpdateAssortmentTextInput = {
-  description?: InputMaybe<Scalars['String']['input']>;
-  locale: Scalars['String']['input'];
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type IUpdateCountryInput = {
   defaultCurrencyId?: InputMaybe<Scalars['String']['input']>;
   isActive?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3608,12 +3626,6 @@ export type IUpdateCurrencyInput = {
 export type IUpdateFilterInput = {
   isActive?: InputMaybe<Scalars['Boolean']['input']>;
   key?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type IUpdateFilterTextInput = {
-  locale: Scalars['String']['input'];
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateLanguageInput = {
@@ -3659,17 +3671,6 @@ export type IUpdateProductSupplyInput = {
   lengthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
   weightInGram?: InputMaybe<Scalars['Int']['input']>;
   widthInMillimeters?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type IUpdateProductTextInput = {
-  brand?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  labels?: InputMaybe<Array<Scalars['String']['input']>>;
-  locale: Scalars['String']['input'];
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  vendor?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IUpdateProductTokenizationInput = {
@@ -6818,7 +6819,7 @@ export type IUpdateAssortmentMediaTextsMutation = {
 
 export type IUpdateAssortmentTextsMutationVariables = Exact<{
   assortmentId: Scalars['ID']['input'];
-  texts: Array<IUpdateAssortmentTextInput>;
+  texts: Array<IAssortmentTextInput>;
 }>;
 
 export type IUpdateAssortmentTextsMutation = {
@@ -7622,6 +7623,7 @@ export type IFilterTextsFragmentVariables = Exact<{ [key: string]: never }>;
 
 export type ICreateFilterMutationVariables = Exact<{
   filter: ICreateFilterInput;
+  texts: Array<IFilterTextInput>;
 }>;
 
 export type ICreateFilterMutation = {
@@ -7687,6 +7689,7 @@ export type IFilterQuery = {
 
 export type IFilterOptionsQueryVariables = Exact<{
   filterId?: InputMaybe<Scalars['ID']['input']>;
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 export type IFilterOptionsQuery = {
@@ -7807,7 +7810,7 @@ export type IUpdateFilterMutation = {
 export type IUpdateFilterTextsMutationVariables = Exact<{
   filterId: Scalars['ID']['input'];
   filterOptionValue?: InputMaybe<Scalars['String']['input']>;
-  texts: Array<IUpdateFilterTextInput>;
+  texts: Array<IFilterTextInput>;
 }>;
 
 export type IUpdateFilterTextsMutation = {
@@ -13260,7 +13263,7 @@ export type IUpdateProductSupplyMutation = {
 
 export type IUpdateProductTextsMutationVariables = Exact<{
   productId: Scalars['ID']['input'];
-  texts: Array<IUpdateProductTextInput>;
+  texts: Array<IProductTextInput>;
 }>;
 
 export type IUpdateProductTextsMutation = {

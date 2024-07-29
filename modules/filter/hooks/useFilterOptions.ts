@@ -6,7 +6,7 @@ import {
 import FilterOptionFragment from '../fragments/FilterOptionFragment';
 
 const FilterOptionsQuery = gql`
-  query FilterOptions($filterId: ID) {
+  query FilterOptions($filterId: ID, $forceLocale: String) {
     filter(filterId: $filterId) {
       _id
       options {
@@ -19,13 +19,14 @@ const FilterOptionsQuery = gql`
 
 const useFilterOptions = ({
   filterId = null,
-}: IFilterOptionsQueryVariables = {}) => {
+  locale,
+}: IFilterOptionsQueryVariables & { locale?: string } = {}) => {
   const { data, loading, error } = useQuery<
     IFilterOptionsQuery,
-    IFilterOptionsQueryVariables
+    IFilterOptionsQueryVariables & { forceLocale?: string }
   >(FilterOptionsQuery, {
     skip: !filterId,
-    variables: { filterId },
+    variables: { filterId, forceLocale: locale },
   });
 
   return {

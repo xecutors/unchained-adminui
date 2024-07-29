@@ -18,10 +18,13 @@ import useFilterTypes from '../hooks/useFilterTypes';
 const FilterForm = ({
   onSubmit,
   onSubmitSuccess,
+  selectedLocale,
 }: {
   onSubmit: OnSubmitType;
   onSubmitSuccess: OnSubmitSuccessType;
+  selectedLocale?: string;
 }) => {
+  console.log(selectedLocale);
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
@@ -30,7 +33,7 @@ const FilterForm = ({
     defaultMessage: 'Filter created successfully!',
   });
   const form = useForm({
-    submit: onSubmit,
+    submit: (val) => onSubmit({ ...val, locale: selectedLocale }),
     onSubmitSuccess,
     successMessage,
     enableReinitialize: true,

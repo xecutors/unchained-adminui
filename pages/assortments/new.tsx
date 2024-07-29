@@ -7,6 +7,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import FormWrapper from '../../modules/common/components/FormWrapper';
 import PageHeader from '../../modules/common/components/PageHeader';
 import generateUniqueId from '../../modules/common/utils/getUniqueId';
+import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 
 const AddAssortments = () => {
   const { formatMessage } = useIntl();
@@ -17,8 +18,12 @@ const AddAssortments = () => {
     router.push(`/assortments/${generateUniqueId(result)}`);
   };
 
-  const onSubmit = async ({ title, isRoot, tags }) => {
-    const { data, errors } = await createAssortment({ isRoot, title, tags });
+  const onSubmit = async ({ title, subtitle, isRoot, tags, locale }) => {
+    const { data, errors } = await createAssortment({
+      isRoot,
+      texts: [{ title, subtitle, locale }],
+      tags,
+    });
     if (errors?.length) return false;
     return { success: true, data: data?.createAssortment };
   };
@@ -35,10 +40,12 @@ const AddAssortments = () => {
         />
         <div className="mt-6 sm:max-w-2xl">
           <FormWrapper>
-            <AssortmentForm
-              onSubmitSuccess={onSubmitSuccess}
-              onSubmit={onSubmit}
-            />
+            <LocaleWrapper>
+              <AssortmentForm
+                onSubmitSuccess={onSubmitSuccess}
+                onSubmit={onSubmit}
+              />
+            </LocaleWrapper>
           </FormWrapper>
         </div>
       </div>

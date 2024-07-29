@@ -24,10 +24,10 @@ const useCreateAssortment = () => {
   const createAssortment = async ({
     isRoot = false,
     tags = [],
-    title,
+    texts,
   }: ICreateAssortmentInput) => {
     return createAssortmentMutation({
-      variables: { assortment: { isRoot, title, tags } },
+      variables: { assortment: { isRoot, texts, tags } },
       refetchQueries: ['Assortments'],
     });
   };
