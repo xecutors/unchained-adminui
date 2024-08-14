@@ -60,7 +60,7 @@ pipeline {
       }
     }
     stage('Deploy Minor Version') {
-      when { branch pattern: "v[1-9].[!x]*", comparator: "GLOB" }
+      when { branch pattern: "v[1-9].*.x", comparator: "GLOB" }
       steps {
         script {
           def packageJson = readJSON file: './package.json'
