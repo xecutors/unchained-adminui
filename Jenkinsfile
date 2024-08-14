@@ -34,40 +34,6 @@ pipeline {
         }
       }
     }
-    stage('Deploy v1.x') {
-      when { branch 'v1.x' }
-      steps {
-        script {
-          def packageJson = readJSON file: './package.json'
-          def packageVersion = packageJson.version
-          def versionChunks = packageVersion.split(/\./)
-          def majorVersion = versionChunks[0]
-          def minorVersion = versionChunks[1]
-          def patchVersion = versionChunks[2]
-
-          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v1.0.0
-          adminui.push("v$majorVersion.$minorVersion") // v1.0
-          adminui.push("v$majorVersion") // v1
-        }
-      }
-    }
-    stage('Deploy v2.0.x') {
-      when { branch 'v2.0.x' }
-      steps {
-        script {
-          def packageJson = readJSON file: './package.json'
-          def packageVersion = packageJson.version
-          def versionChunks = packageVersion.split(/\./)
-          def majorVersion = versionChunks[0]
-          def minorVersion = versionChunks[1]
-          def patchVersion = versionChunks[2]
-
-          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v2.0.0
-          adminui.push("v$majorVersion.$minorVersion") // v2.0
-          adminui.push("v$majorVersion") // v2
-        }
-      }
-    }
     stage('Deploy Next') {
       when { branch 'develop' }
       steps {
@@ -76,8 +42,8 @@ pipeline {
         }
       }
     }
-    stage('Deploy Prod') {
-      when { anyOf { branch 'master'; buildingTag() } }
+    stage('Deploy Major Version') {
+      when { anyOf { branch 'master'; branch pattern: "v[1-9].x", comparator: "GLOB" } }
       steps {
         script {
           def packageJson = readJSON file: './package.json'
@@ -87,9 +53,36 @@ pipeline {
           def minorVersion = versionChunks[1]
           def patchVersion = versionChunks[2]
 
-          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v3.0.0
-          adminui.push("v$majorVersion.$minorVersion") // v3.0
-          adminui.push("v$majorVersion") // v3
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // vN.0.0
+          adminui.push("v$majorVersion.$minorVersion") // vN.0
+          adminui.push("v$majorVersion") // vN
+        }
+      }
+    }
+    stage('Deploy Minor Version') {
+      when { branch pattern: "v[1-9].[!x]*", comparator: "GLOB" }
+      steps {
+        script {
+          def packageJson = readJSON file: './package.json'
+          def packageVersion = packageJson.version
+          def versionChunks = packageVersion.split(/\./)
+          def majorVersion = versionChunks[0]
+          def minorVersion = versionChunks[1]
+          def patchVersion = versionChunks[2]
+
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // vN.0.0
+          adminui.push("v$majorVersion.$minorVersion") // vN.0
+        }
+      }
+    }
+    stage('Deploy Explicit Version') {
+      when { buildingTag() }
+      steps {
+        script {
+          def packageJson = readJSON file: './package.json'
+          def packageVersion = packageJson.version
+
+          adminui.push("v$packageVersion")
         }
       }
     }
