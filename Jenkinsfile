@@ -38,7 +38,16 @@ pipeline {
       when { branch 'v1.x' }
       steps {
         script {
-          adminui.push("1")
+          def packageJson = readJSON file: './package.json'
+          def packageVersion = packageJson.version
+          def versionChunks = packageVersion.split(/\./)
+          def majorVersion = versionChunks[0]
+          def minorVersion = versionChunks[1]
+          def patchVersion = versionChunks[2]
+
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v1.0.0
+          adminui.push("v$majorVersion.$minorVersion") // v1.0
+          adminui.push("v$majorVersion") // v1
         }
       }
     }
@@ -46,8 +55,16 @@ pipeline {
       when { branch 'v2.0.x' }
       steps {
         script {
-          adminui.push("2.0")
-          adminui.push("v2.0")
+          def packageJson = readJSON file: './package.json'
+          def packageVersion = packageJson.version
+          def versionChunks = packageVersion.split(/\./)
+          def majorVersion = versionChunks[0]
+          def minorVersion = versionChunks[1]
+          def patchVersion = versionChunks[2]
+
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v2.0.0
+          adminui.push("v$majorVersion.$minorVersion") // v2.0
+          adminui.push("v$majorVersion") // v2
         }
       }
     }
@@ -70,9 +87,9 @@ pipeline {
           def minorVersion = versionChunks[1]
           def patchVersion = versionChunks[2]
 
-          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v2.0.0
-          adminui.push("v$majorVersion.$minorVersion") // v2.0
-          adminui.push("v$majorVersion") // v2
+          adminui.push("v$majorVersion.$minorVersion.$patchVersion") // v3.0.0
+          adminui.push("v$majorVersion.$minorVersion") // v3.0
+          adminui.push("v$majorVersion") // v3
         }
       }
     }
