@@ -60,7 +60,7 @@ pipeline {
       }
     }
     stage('Deploy Prod') {
-      when { branch 'master' }
+      when { anyOf { branch 'master'; buildingTag() } }
       steps {
         script {
           def packageJson = readJSON file: './package.json'
