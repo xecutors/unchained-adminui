@@ -29,7 +29,7 @@ const UserOrders = ({ _id: userId }) => {
       });
   };
 
-  const { orders } = useUserOrders({
+  const { orders, loading } = useUserOrders({
     userId,
     queryString: queryString as string,
     sort: sortKeys,
@@ -38,7 +38,7 @@ const UserOrders = ({ _id: userId }) => {
   return (
     <div className="space-y-4 mt-4">
       <SearchField defaultValue={queryString} onInputChange={setQueryString} />
-      <OrderList orders={orders} showUser={false} sortable />
+      <OrderList loading={loading} orders={orders} showUser={false} sortable />
     </div>
   );
 };

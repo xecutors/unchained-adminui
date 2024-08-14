@@ -78,7 +78,7 @@ const Orders = () => {
         {loading ? (
           <Loading />
         ) : (
-          <OrderList orders={orders} showUser sortable />
+          <OrderList loading={loading} orders={orders} showUser sortable />
         )}
         <Pagination data={orders} total={ordersCount} />
       </div>
