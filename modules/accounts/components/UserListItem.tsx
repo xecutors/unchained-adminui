@@ -10,10 +10,11 @@ import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
 import useImpersonate from '../hooks/useImpersonate';
+import Loading from '../../common/components/Loading';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
-  const { currentUser } = useCurrentUser();
+  const { currentUser, loading } = useCurrentUser();
   const { impersonateAs } = useImpersonate();
   const { hasRole, isAdmin } = useAuth();
   const router = useRouter();
@@ -22,6 +23,9 @@ const UserListItem = ({ user }) => {
     true: 'Verified',
     false: 'Unverified',
   };
+
+  if (loading && !currentUser) return <Loading />;
+
   return (
     <li>
       <Link
