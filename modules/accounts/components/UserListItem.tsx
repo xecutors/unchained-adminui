@@ -1,7 +1,5 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import useAuth from '../../Auth/useAuth';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
@@ -12,8 +10,6 @@ import Loading from '../../common/components/Loading';
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
   const { currentUser, loading } = useCurrentUser();
-  const { hasRole, isAdmin } = useAuth();
-  const router = useRouter();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
