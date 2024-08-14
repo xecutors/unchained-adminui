@@ -12,7 +12,7 @@ ENV NEXT_TELEMETRY_DISABLED="1"
 ENV NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH="1"
 ENV TZ="Europe/Amsterdam"
 ENV NODE_ENV="development"
-RUN npm install
+RUN npm ci
 
 # Build app
 COPY . /usr/src/app/
@@ -32,10 +32,10 @@ ENV NEXT_TELEMETRY_DISABLED="1"
 ENV TZ="Europe/Amsterdam"
 ENV NODE_ENV="production"
 
-RUN npm install
+RUN npm ci
 
 HEALTHCHECK --timeout=1s --start-period=2s \
-  CMD wget --spider -q http://localhost:3000 || exit 1
+  CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:3000 || exit 1
 
 EXPOSE 3000
 

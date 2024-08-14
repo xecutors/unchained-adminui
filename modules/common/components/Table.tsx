@@ -12,9 +12,9 @@ const buildRows = (props) => {
   const footer = [];
 
   React.Children.forEach(props.children, (row) => {
-    if (row.props.header) {
+    if (row?.props?.header) {
       header.push(row);
-    } else if (row.props.footer) {
+    } else if (row?.props?.footer) {
       footer.push(row);
     } else {
       body.push(row);
