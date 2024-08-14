@@ -1,7 +1,7 @@
 {
   "name": "admin-ui",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Unchained commerce Admin UI",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev ",
