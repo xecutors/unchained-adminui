@@ -43,7 +43,7 @@ pipeline {
       }
     }
     stage('Deploy Major Version') {
-      when { anyOf { branch 'master'; branch 'v[1-9]+.x' } }
+      when { anyOf { branch 'master'; branch 'v?.x' } }
       steps {
         script {
           def packageJson = readJSON file: './package.json'
@@ -60,7 +60,7 @@ pipeline {
       }
     }
     stage('Deploy Minor Version') {
-      when { branch 'v[1-9]+.*.x' }
+      when { branch 'v?.*.x' }
       steps {
         script {
           def packageJson = readJSON file: './package.json'
