@@ -21,7 +21,7 @@ pipeline {
         stage('Building') {
           steps{
             script {
-              adminui = docker.build("registry.ucc.dev/unchained/adminui","-f ./Dockerfile .")
+              adminui = docker.build("registry.ucc.dev/unchained/adminui:$GIT_BRANCH-$GIT_COMMIT","-f ./Dockerfile .")
             }
           }
         }
