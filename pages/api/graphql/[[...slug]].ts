@@ -18,7 +18,7 @@ const agent =
 export default createProxyMiddleware({
   agent,
   cookieDomainRewrite: {
-    '*': '',
+    '*': process.env.UNCHAINED_COOKIE_DOMAIN || '',
   },
   cookiePathRewrite: '/',
   target: process.env.GRAPHQL_ENDPOINT,
