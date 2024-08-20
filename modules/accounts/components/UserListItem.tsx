@@ -6,10 +6,12 @@ import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
 import Loading from '../../common/components/Loading';
+import useDeleteAccount from '../hooks/useDeleteAccount';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
   const { currentUser, loading } = useCurrentUser();
+  const { deleteAccount } = useDeleteAccount();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
@@ -73,6 +75,9 @@ const UserListItem = ({ user }) => {
                 </div>
               </div>
             </div>
+            <button onClick={async () => deleteAccount(user._id)}>
+              Delete Account
+            </button>
           </div>
         </div>
       </Link>

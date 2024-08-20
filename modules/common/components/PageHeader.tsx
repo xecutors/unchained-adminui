@@ -21,6 +21,7 @@ const PageHeader = ({
           <button
             type="button"
             className="inline-flex items-center rounded-md border border-slate-300 bg-indigo-500 px-4 py-2 text-sm font-medium text-white dark shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+            onClick={onEdit}
           >
             {formatMessage({ id: 'edit', defaultMessage: 'Edit' })}
           </button>
@@ -30,6 +31,7 @@ const PageHeader = ({
           <button
             type="button"
             className="ml-3 inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            onClick={onDelete}
           >
             {formatMessage({ id: 'delete', defaultMessage: 'Delete' })}
           </button>
