@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IProductsCountQuery, IProductsCountQueryVariables } from '../../../gql/types';
 
 const ProductsCountQuery = gql`
   query ProductsCount(
@@ -20,8 +21,8 @@ const useProductsCount = ({
   queryString = '',
   tags = null,
   includeDrafts = true,
-}) => {
-  const { data, loading, error } = useQuery(ProductsCountQuery, {
+}: IProductsCountQueryVariables) => {
+  const { data, loading, error } = useQuery<IProductsCountQuery, IProductsCountQueryVariables>(ProductsCountQuery, {
     variables: {
       queryString,
       includeDrafts,

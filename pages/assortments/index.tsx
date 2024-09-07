@@ -50,10 +50,8 @@ const AssortmentsView = () => {
     includeInactive,
     includeLeaves,
     queryString: queryString as string,
-    slugs: [slug],
     tags,
   });
-  console.log(assortmentsCount);
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
     if (searchString) {

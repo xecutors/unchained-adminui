@@ -9,7 +9,6 @@ const ListHeader = ({
   totalRecords = null,
 }) => {
   const { formatMessage } = useIntl();
-  console.log(totalRecords);
   return (
     <div className="px-2 my-3">
       {totalRecords !== null ? (
