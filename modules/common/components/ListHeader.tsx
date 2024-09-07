@@ -6,11 +6,22 @@ const ListHeader = ({
   addPath = null,
   children = null,
   addButtonText = null,
+  totalRecords = null,
 }) => {
   const { formatMessage } = useIntl();
-
+  console.log(totalRecords);
   return (
     <div className="px-2 my-3">
+      {totalRecords !== null ? (
+        <div>
+          {formatMessage(
+            { id: 'total_records', defaultMessage: '{total} records' },
+            {
+              total: totalRecords,
+            },
+          )}
+        </div>
+      ) : null}
       <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
         {children && (
           <div className="mt-2">

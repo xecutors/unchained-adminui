@@ -10,6 +10,7 @@ const WarehousingProvidersQuery = gql`
     warehousingProviders(type: $type) {
       ...WarehousingProviderFragment
     }
+    warehousingProvidersCount(type: $type)
   }
   ${WarehousingProviderFragment}
 `;
@@ -30,6 +31,7 @@ const useWarehousingProviders = ({
     warehousingProviders,
     loading,
     error,
+    warehousingProvidersCount: data?.warehousingProvidersCount || 0,
   };
 };
 

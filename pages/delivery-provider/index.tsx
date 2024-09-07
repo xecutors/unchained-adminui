@@ -22,9 +22,10 @@ const DeliveryProviders = () => {
 
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { deliveryProviders, loading } = useDeliveryProviders({
-    type: router.query?.type as IDeliveryProviderType,
-  });
+  const { deliveryProviders, deliveryProvidersCount, loading } =
+    useDeliveryProviders({
+      type: router.query?.type as IDeliveryProviderType,
+    });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
   const { deliveryProviderType } = useDeliveryProviderTypes();
@@ -67,6 +68,7 @@ const DeliveryProviders = () => {
       />
       <ListHeader
         addPath={hasRole('addDeliveryProvider') && '/delivery-provider/new'}
+        totalRecords={deliveryProvidersCount}
       >
         <ProvidersFilter
           providerType={deliveryProviderType?.map(({ value }) => value)}

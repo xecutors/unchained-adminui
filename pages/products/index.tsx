@@ -15,6 +15,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import useProductsCount from '../../modules/product/hooks/useProductsCount';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -42,6 +43,11 @@ const Products = () => {
     }
   };
   const sortKeys = convertSortFieldsToQueryFormat(sort);
+  const { productsCount } = useProductsCount({
+    queryString: queryString as string,
+    includeDrafts,
+    tags,
+  });
 
   return (
     <>
@@ -62,7 +68,10 @@ const Products = () => {
         <ProductFilter />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addProduct') && '/products/new'}>
+        <ListHeader
+          addPath={hasRole('addProduct') && '/products/new'}
+          totalRecords={productsCount}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'include_drafts',

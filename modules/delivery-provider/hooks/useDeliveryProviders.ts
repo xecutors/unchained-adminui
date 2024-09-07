@@ -10,6 +10,7 @@ const DeliveryProvidersQuery = gql`
     deliveryProviders(type: $type) {
       ...DeliveryProviderFragment
     }
+    deliveryProvidersCount(type: $type)
   }
   ${DeliveryProviderFragment}
 `;
@@ -30,6 +31,7 @@ const useDeliveryProviders = ({
     deliveryProviders,
     loading,
     error,
+    deliveryProvidersCount: data?.deliveryProvidersCount || 0,
   };
 };
 

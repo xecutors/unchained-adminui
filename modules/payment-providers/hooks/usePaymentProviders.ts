@@ -10,6 +10,7 @@ const PaymentProvidersQuery = gql`
     paymentProviders(type: $type) {
       ...PaymentProviderFragment
     }
+    paymentProvidersCount(type: $type)
   }
   ${PaymentProviderFragment}
 `;
@@ -30,6 +31,7 @@ const usePaymentProviders = ({
     paymentProviders,
     loading,
     error,
+    paymentProvidersCount: data?.paymentProvidersCount || 0,
   };
 };
 

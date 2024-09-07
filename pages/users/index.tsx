@@ -59,7 +59,7 @@ const Users = () => {
           onInputChange={setQueryString}
         />
       </div>
-      <ListHeader addPath="/users/new">
+      <ListHeader addPath="/users/new" totalRecords={usersCount}>
         <Toggle
           toggleKey="includeGuests"
           toggleText={formatMessage({

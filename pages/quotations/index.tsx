@@ -63,7 +63,7 @@ const Quotations = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader />
+        <ListHeader totalRecords={quotationsCount} />
         {loading ? (
           <Loading />
         ) : (

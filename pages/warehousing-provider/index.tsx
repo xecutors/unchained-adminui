@@ -20,9 +20,10 @@ import useWarehousingProviderTypes from '../../modules/warehousing-providers/hoo
 const WarehousingProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
-  const { warehousingProviders, loading } = useWarehousingProviders({
-    type: router.query?.type as IWarehousingProviderType,
-  });
+  const { warehousingProviders, warehousingProvidersCount, loading } =
+    useWarehousingProviders({
+      type: router.query?.type as IWarehousingProviderType,
+    });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
   const { setModal } = useModal();
@@ -70,6 +71,7 @@ const WarehousingProviders = () => {
         addPath={
           hasRole('addWarehousingProvider') && '/warehousing-provider/new'
         }
+        totalRecords={warehousingProvidersCount}
       >
         <ProvidersFilter
           providerType={warehousingProviderType?.map(({ value }) => value)}

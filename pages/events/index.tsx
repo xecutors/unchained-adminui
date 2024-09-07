@@ -108,7 +108,7 @@ const Events = () => {
         </div>
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader />
+        <ListHeader totalRecords={eventsCount} />
 
         {loading ? <Loading /> : <EventList events={events} sortable />}
         <Pagination data={events} total={eventsCount} onLoadMore={loadMore} />
