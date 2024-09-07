@@ -1,15 +1,18 @@
 import { useQuery, gql } from '@apollo/client';
-import { IAssortmentsCountQuery, IAssortmentsCountQueryVariables } from '../../../gql/types';
+import {
+  IAssortmentsCountQuery,
+  IAssortmentsCountQueryVariables,
+} from '../../../gql/types';
 
 const AssortmentsCountQuery = gql`
   query AssortmentsCount(
     $queryString: String
-    $tags: [LowerCaseString!]    
+    $tags: [LowerCaseString!]
     $includeInactive: Boolean
     $includeLeaves: Boolean
   ) {
     assortmentsCount(
-      tags: $tags      
+      tags: $tags
       includeInactive: $includeInactive
       includeLeaves: $includeLeaves
       queryString: $queryString
@@ -23,7 +26,10 @@ const useAssortmentsCount = ({
   includeInactive = true,
   includeLeaves = false,
 }: IAssortmentsCountQueryVariables) => {
-  const { data, loading, error } = useQuery<IAssortmentsCountQuery, IAssortmentsCountQueryVariables>(AssortmentsCountQuery, {
+  const { data, loading, error } = useQuery<
+    IAssortmentsCountQuery,
+    IAssortmentsCountQueryVariables
+  >(AssortmentsCountQuery, {
     variables: {
       queryString,
       tags,
