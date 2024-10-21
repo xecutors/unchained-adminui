@@ -8,7 +8,7 @@ import AssortmentMediaTextsFragment from '../fragments/AssortmentMediaTextsFragm
 const UpdateAssortmentMediaTextsMutation = gql`
   mutation UpdateAssortmentMediaTexts(
     $assortmentMediaId: ID!
-    $texts: [UpdateAssortmentMediaTextInput!]!
+    $texts: [AssortmentMediaTextInput!]!
   ) {
     updateAssortmentMediaTexts(
       assortmentMediaId: $assortmentMediaId

@@ -8,7 +8,7 @@ import ProductMediaTextsFragment from '../fragments/ProductMediaTextsFragment';
 const UpdateProductMediaTextsMutation = gql`
   mutation UpdateProductMediaTexts(
     $productMediaId: ID!
-    $texts: [UpdateProductMediaTextInput!]!
+    $texts: [ProductMediaTextInput!]!
   ) {
     updateProductMediaTexts(productMediaId: $productMediaId, texts: $texts) {
       ...ProductMediaTextsFragment

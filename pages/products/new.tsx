@@ -25,10 +25,10 @@ const AddProduct = () => {
   const onSubmit: OnSubmitType = async ({ texts, type, tags }) => {
     const { data, errors } = await createProduct({
       product: {
-        texts,
         type: PRODUCT_TYPES[type],
         tags,
       },
+      texts,
     });
     if (errors?.length) return { success: false };
     return { success: true, data: data?.createProduct };

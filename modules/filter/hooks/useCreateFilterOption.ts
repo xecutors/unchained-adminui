@@ -7,7 +7,8 @@ import {
 const CreateFilterOptionMutation = gql`
   mutation CreateFilterOption(
     $filterId: ID!
-    $option: CreateFilterOptionInput!
+    $option: String!
+    $title: String
   ) {
     createFilterOption(filterId: $filterId, option: $option) {
       _id
@@ -24,9 +25,10 @@ const useCreateFilterOption = () => {
   const createFilterOption = async ({
     filterId,
     option,
+    title,
   }: ICreateFilterOptionMutationVariables) => {
     return createFilterOptionMutation({
-      variables: { filterId, option },
+      variables: { filterId, option, title },
       refetchQueries: ['FilterOptions'],
     });
   };

@@ -18,9 +18,10 @@ import { IPaymentProviderType } from '../../gql/types';
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
-  const { paymentProviders, loading } = usePaymentProviders({
-    type: router.query?.type as IPaymentProviderType,
-  });
+  const { paymentProviders, paymentProvidersCount, loading } =
+    usePaymentProviders({
+      type: router.query?.type as IPaymentProviderType,
+    });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
   const { paymentProviderType } = usePaymentProviderTypes();
@@ -64,6 +65,7 @@ const PaymentProviders = () => {
       />
       <ListHeader
         addPath={hasRole('addPaymentProvider') && '/payment-provider/new'}
+        totalRecords={paymentProvidersCount}
       >
         <ProvidersFilter
           providerType={paymentProviderType?.map(({ value }) => value)}

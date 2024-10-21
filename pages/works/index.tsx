@@ -91,6 +91,7 @@ const WorkQueueView = () => {
             (hasRole('allocateWork') || hasRole('addWork')) &&
             '/works/management'
           }
+          totalRecords={total}
           addButtonText={formatMessage({
             id: 'manage',
             defaultMessage: 'Manage',

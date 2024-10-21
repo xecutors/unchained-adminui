@@ -1,4 +1,4 @@
-import { PlusSmallIcon } from '@heroicons/react/24/outline';
+import { PlusIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 
@@ -6,11 +6,21 @@ const ListHeader = ({
   addPath = null,
   children = null,
   addButtonText = null,
+  totalRecords = null,
 }) => {
   const { formatMessage } = useIntl();
-
   return (
     <div className="px-2 my-3">
+      {totalRecords !== null ? (
+        <div className="text-lg italic text-indigo-900 font-black">
+          {formatMessage(
+            { id: 'total_records', defaultMessage: '{total} records found' },
+            {
+              total: totalRecords,
+            },
+          )}
+        </div>
+      ) : null}
       <div className="-ml-2 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
         {children && (
           <div className="mt-2">
@@ -24,7 +34,7 @@ const ListHeader = ({
               href={addPath}
               className="relative inline-flex items-center rounded border border-transparent bg-indigo-500 px-3 py-3 text-sm font-medium  text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
             >
-              <PlusSmallIcon className="h-5 w-5" />
+              <PlusIcon className="h-5 w-5" />
               <span className="ml-2">
                 {addButtonText ||
                   formatMessage({ id: 'add', defaultMessage: 'Add' })}

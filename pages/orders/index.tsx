@@ -65,7 +65,7 @@ const Orders = () => {
         />
       </div>
       <div className="mt-5 inline-block min-w-full overflow-x-auto">
-        <ListHeader>
+        <ListHeader totalRecords={ordersCount}>
           <Toggle
             toggleText={formatMessage({
               id: 'show_carts',

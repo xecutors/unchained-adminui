@@ -18,6 +18,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -31,6 +32,10 @@ const FiltersListView = () => {
   const { removeFilter } = useRemoveFilter();
 
   const { queryString, ...restQuery } = query;
+  const { filtersCount } = useFiltersCount({
+    queryString: queryString as string,
+    includeInactive,
+  });
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -91,7 +96,10 @@ const FiltersListView = () => {
       </div>
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addFilter') && '/filters/new'}>
+        <ListHeader
+          addPath={hasRole('addFilter') && '/filters/new'}
+          totalRecords={filtersCount}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'include_inactive',

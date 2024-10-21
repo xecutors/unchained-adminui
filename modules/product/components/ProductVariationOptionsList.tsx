@@ -53,7 +53,8 @@ const ProductVariationOptionsList = ({
   const onSubmit: OnSubmitType = async ({ value, title }) => {
     await createProductVariationOption({
       productVariationId: variationId,
-      option: { value, title },
+      option: value,
+      texts: [{ title, locale: selectedLocale }],
     });
     return { success: true };
   };

@@ -7,11 +7,13 @@ import {
 const CreateProductVariationOptionMutation = gql`
   mutation CreateProductVariationOption(
     $productVariationId: ID!
-    $option: CreateProductVariationOptionInput!
+    $option: String!
+    $texts: [ProductVariationTextInput!]
   ) {
     createProductVariationOption(
       productVariationId: $productVariationId
       option: $option
+      texts: $texts
     ) {
       _id
     }
@@ -26,10 +28,11 @@ const useCreateProductVariationOption = () => {
 
   const createProductVariationOption = async ({
     productVariationId,
-    option: { value, title },
+    option,
+    texts,
   }: ICreateProductVariationOptionMutationVariables) => {
     return createProductVariationOptionMutation({
-      variables: { productVariationId, option: { value, title } },
+      variables: { productVariationId, option, texts },
       refetchQueries: ['ProductVariations'],
     });
   };

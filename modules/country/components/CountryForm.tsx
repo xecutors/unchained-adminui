@@ -75,8 +75,8 @@ const CountryForm = ({
         {isEdit && (
           <div className="my-3 min-w-0 flex-1">
             <SelectField
-              name="defaultCurrencyId"
-              id="defaultCurrencyId"
+              name="defaultCurrencyCode"
+              id="defaultCurrencyCode"
               label={formatMessage({
                 id: 'default_currency',
                 defaultMessage: 'Default currency',
@@ -88,7 +88,7 @@ const CountryForm = ({
               options={convertArrayOfObjectToObject(
                 currencies,
                 'isoCode',
-                '_id',
+                'isoCode',
               )}
               className="mb-2 text-sm"
             />

@@ -102,7 +102,10 @@ const Currencies = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addCurrency') && '/currency/new'}>
+        <ListHeader
+          addPath={hasRole('addCurrency') && '/currency/new'}
+          totalRecords={currenciesCount}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

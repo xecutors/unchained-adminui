@@ -20,7 +20,6 @@ const normalizeCountry = (country) => {
   return {
     isActive: country?.isActive,
     isoCode: country?.isoCode,
-    defaultCurrencyId: country?.defaultCurrency?._id,
   };
 };
 
@@ -35,9 +34,9 @@ const UpdateCountry = () => {
   const { updateCountry } = useUpdateCountry();
   const { removeCountry } = useRemoveCountry();
 
-  const onSubmit = async ({ isActive, isoCode, defaultCurrencyId }) => {
+  const onSubmit = async ({ isActive, isoCode, defaultCurrencyCode }) => {
     await updateCountry({
-      country: { isActive, isoCode, defaultCurrencyId },
+      country: { isActive, isoCode, defaultCurrencyCode },
       countryId: countryId as string,
     });
 

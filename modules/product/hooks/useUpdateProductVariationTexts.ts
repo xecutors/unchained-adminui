@@ -8,7 +8,7 @@ const UpdateProductVariationTextsMutation = gql`
   mutation UpdateProductVariationTexts(
     $productVariationId: ID!
     $productVariationOptionValue: String
-    $texts: [UpdateProductVariationTextInput!]!
+    $texts: [ProductVariationTextInput!]!
   ) {
     updateProductVariationTexts(
       productVariationId: $productVariationId

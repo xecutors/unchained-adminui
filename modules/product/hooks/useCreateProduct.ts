@@ -7,8 +7,11 @@ import ProductDetailFragment from '../fragments/ProductDetailFragment';
 import ProductTextsFragment from '../fragments/ProductTextsFragment';
 
 const CreateProductMutation = gql`
-  mutation CreateProduct($product: CreateProductInput!) {
-    createProduct(product: $product) {
+  mutation CreateProduct(
+    $product: CreateProductInput!
+    $texts: [ProductTextInput!]
+  ) {
+    createProduct(product: $product, texts: $texts) {
       ...ProductDetailFragment
       ... on SimpleProduct {
         texts {
@@ -48,10 +51,11 @@ const useCreateProduct = () => {
   >(CreateProductMutation);
 
   const createProduct = async ({
-    product: { type, texts, tags },
+    product: { type, tags },
+    texts,
   }: ICreateProductMutationVariables) => {
     return createProductMutation({
-      variables: { product: { texts, type, tags } },
+      variables: { product: { type, tags }, texts },
       refetchQueries: ['Products'],
     });
   };

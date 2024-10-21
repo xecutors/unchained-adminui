@@ -1,5 +1,6 @@
 import { useMutation, gql } from '@apollo/client';
 import {
+  IAssortmentTextInput,
   ICreateAssortmentInput,
   ICreateAssortmentMutation,
   ICreateAssortmentMutationVariables,
@@ -7,7 +8,10 @@ import {
 import AssortmentFragment from '../fragments/AssortmentFragment';
 
 const CreateAssortmentMutation = gql`
-  mutation CreateAssortment($assortment: CreateAssortmentInput!) {
+  mutation CreateAssortment(
+    $assortment: CreateAssortmentInput!
+    $texts: [AssortmentTextInput!]
+  ) {
     createAssortment(assortment: $assortment) {
       ...AssortmentFragment
     }
@@ -25,9 +29,9 @@ const useCreateAssortment = () => {
     isRoot = false,
     tags = [],
     texts,
-  }: ICreateAssortmentInput) => {
+  }: ICreateAssortmentInput & { texts: IAssortmentTextInput[] }) => {
     return createAssortmentMutation({
-      variables: { assortment: { isRoot, texts, tags } },
+      variables: { assortment: { isRoot, tags }, texts },
       refetchQueries: ['Assortments'],
     });
   };

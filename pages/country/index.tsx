@@ -104,7 +104,10 @@ const Country = () => {
         />
       </div>
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addCountry') && '/country/new'}>
+        <ListHeader
+          addPath={hasRole('addCountry') && '/country/new'}
+          totalRecords={countriesCount}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

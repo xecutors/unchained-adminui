@@ -101,7 +101,10 @@ const Languages = () => {
       </div>
 
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addLanguage') && '/language/new'}>
+        <ListHeader
+          addPath={hasRole('addLanguage') && '/language/new'}
+          totalRecords={languagesCount}
+        >
           <Toggle
             toggleText={formatMessage({
               id: 'show_inactive',

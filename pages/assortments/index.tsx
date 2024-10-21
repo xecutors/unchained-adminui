@@ -14,6 +14,7 @@ import AssortmentGraphView from '../../modules/assortment/components/AssortmentG
 import AssortmentListView from '../../modules/assortment/components/AssortmentListView';
 import { normalizeQuery } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
+import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
@@ -45,7 +46,12 @@ const AssortmentsView = () => {
   const sort = query?.sort || '';
 
   const { queryString, ...restQuery } = query;
-
+  const { assortmentsCount } = useAssortmentsCount({
+    includeInactive,
+    includeLeaves,
+    queryString: queryString as string,
+    tags,
+  });
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
     if (searchString) {
@@ -88,7 +94,10 @@ const AssortmentsView = () => {
       </div>
       <AssortmentSearchFilter />
       <div className="min-w-full overflow-x-auto">
-        <ListHeader addPath={hasRole('addAssortment') && '/assortments/new'}>
+        <ListHeader
+          addPath={hasRole('addAssortment') && '/assortments/new'}
+          totalRecords={assortmentsCount}
+        >
           <div className="flex gap-4">
             <Toggle
               toggleKey="includeInactive"

@@ -8,8 +8,13 @@ const CreateProductVariationMutation = gql`
   mutation CreateProductVariation(
     $productId: ID!
     $variation: CreateProductVariationInput!
+    $texts: [ProductVariationTextInput!]
   ) {
-    createProductVariation(productId: $productId, variation: $variation) {
+    createProductVariation(
+      productId: $productId
+      variation: $variation
+      texts: $texts
+    ) {
       _id
     }
   }
@@ -23,10 +28,11 @@ const useCreateProductVariation = () => {
 
   const createProductVariation = async ({
     productId,
-    variation: { key, type, title },
+    variation: { key, type },
+    texts,
   }: ICreateProductVariationMutationVariables) => {
     return createProductVariationMutation({
-      variables: { productId, variation: { key, type, title } },
+      variables: { productId, variation: { key, type }, texts },
       refetchQueries: ['ProductVariations'],
     });
   };
