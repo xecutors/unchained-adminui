@@ -2,7 +2,7 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 
 const useFormatDateTime = () => {
   const formatDateTime = (date, options: Intl.DateTimeFormatOptions = {}) => {
-    if (!date) return 'n/a';
+    if (!date || !Date.parse(date)) return 'n/a';
     try {
       const locale =
         (typeof navigator !== 'undefined' && navigator.language) || 'de-ch';
