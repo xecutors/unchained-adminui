@@ -1,7 +1,7 @@
 import {
   ApolloClient,
   ApolloLink,
-  createHttpLink,
+  HttpLink,
   NormalizedCacheObject,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -62,9 +62,9 @@ const createApolloClient = ({
   });
 
   const uri = resolveUri(endpoint);
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri,
-    credentials: 'same-origin',
+    credentials: 'include',
     includeExtensions: true,
   });
 
