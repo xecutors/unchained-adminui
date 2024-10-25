@@ -1,14 +1,13 @@
 import {
   ApolloClient,
   ApolloLink,
+  createHttpLink,
   NormalizedCacheObject,
 } from '@apollo/client';
-import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import getConfig from 'next/config';
-import { onTokenChange, getLoginToken } from '../../accounts/utils/store';
-import apolloCache, { resetCache } from './apolloCache';
+import apolloCache from './apolloCache';
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch, publicGraphQLEndpoint },
@@ -61,33 +60,12 @@ const createApolloClient = ({
   const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
     return setLocale({ ...headersOverride, ...contextHeaders }, locale);
   });
-  const authLink = new ApolloLink((operation, forward) => {
-    const context = operation.getContext();
-    const headers: { authorization?: string } = {};
-
-    const foundToken = getLoginToken();
-    if (foundToken) {
-      headers.authorization = `Bearer ${foundToken}`;
-    }
-
-    operation.setContext({
-      headers: {
-        ...(context?.headers || {}),
-        ...headers,
-      },
-    });
-    return forward(operation);
-  });
 
   const uri = resolveUri(endpoint);
-  const httpLink = createUploadLink({
+  const httpLink = createHttpLink({
     uri,
     credentials: 'same-origin',
     includeExtensions: true,
-    headers: {
-      'apollo-require-preflight': true,
-      'x-unchained-bust-cache': true,
-    },
   });
 
   const errorLink = onError(({ response, graphQLErrors, networkError }) => {
@@ -119,19 +97,8 @@ const createApolloClient = ({
       },
     },
     ssrMode: typeof window === 'undefined',
-    link: ApolloLink.from(
-      [authLink, errorLink, localeLink, httpLink].filter(Boolean),
-    ),
-
+    link: ApolloLink.from([errorLink, localeLink, httpLink].filter(Boolean)),
     cache,
-  });
-
-  apolloClient.onResetStore(async () => {
-    resetCache(cache);
-  });
-
-  onTokenChange(() => {
-    apolloClient.resetStore();
   });
 
   return apolloClient;

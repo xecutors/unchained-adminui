@@ -3,7 +3,6 @@ import { useState } from 'react';
 import SignUpForm from '../modules/accounts/components/SignUpForm';
 import useCreateUser from '../modules/accounts/hooks/useCreateUser';
 import useGenerateWebAuthCredentials from '../modules/accounts/hooks/useGenerateWebAuthCredentials';
-import { storeLoginToken } from '../modules/accounts/utils/store';
 import { OnSubmitSuccessType } from '../modules/forms/hooks/useForm';
 
 const SignUpPage = () => {
@@ -21,10 +20,6 @@ const SignUpPage = () => {
       webAuthnPublicKeyCredentials,
     });
 
-    if (data && data?.createUser) {
-      const { _id, tokenExpires } = data.createUser;
-      await storeLoginToken(_id, new Date(tokenExpires));
-    }
     return data;
   };
 
@@ -40,10 +35,8 @@ const SignUpPage = () => {
       email,
       plainPassword,
     });
-    const { _id, tokenExpires } = data.createUser;
-    await storeLoginToken(_id, new Date(tokenExpires));
+    const { _id } = data.createUser;
     if (_id) return { success: true };
-
     return { success: false, data };
   };
 

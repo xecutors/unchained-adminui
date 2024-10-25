@@ -15,19 +15,16 @@ import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { toast } from 'react-toastify';
 import getConfig from 'next/config';
-
-import logOut from '../../accounts/hooks/logOut';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
-
 import SideNav from './SideNav';
 import UserAvatar from './UserAvatar';
 import LocaleSwitcher from './LocaleSwitcher';
 import ThemeToggle from './ThemeToggle';
 import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
+import AuthWrapper from '../../Auth/AuthWrapper';
 
 const {
   publicRuntimeConfig: { logo },
@@ -48,10 +45,8 @@ const QuotationIcon = ({ className }) => (
 
 const Layout = ({
   children,
-  apollo,
-  router,
   pageHeader = '',
-
+  componentName,
   /* navigationType = 'default', */
 }) => {
   const { formatMessage } = useIntl();
@@ -227,17 +222,6 @@ const Layout = ({
     },
   ].filter(Boolean);
 
-  const onLogout = async () => {
-    await logOut(apollo);
-    toast.success(
-      formatMessage({
-        id: 'logged_out',
-        defaultMessage: 'Logged out',
-      }),
-    );
-    router.push('/log-in');
-  };
-
   const handleClickOutside = () => {
     setHideNav(true);
   };
@@ -245,7 +229,7 @@ const Layout = ({
   const ref = useOutsideClick(handleClickOutside);
 
   return (
-    <div>
+    <AuthWrapper componentName={componentName}>
       <div
         className={`fixed inset-0 z-40 flex md:hidden  ${
           hideNav ? 'hidden' : ''
@@ -311,11 +295,7 @@ const Layout = ({
             />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
-            <UserAvatar
-              avatar={currentUser?.avatar}
-              {...currentUser}
-              onLogout={onLogout}
-            />
+            <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
           </div>
         </div>
       </div>
@@ -339,11 +319,7 @@ const Layout = ({
             <SideNav navigation={defaultNavigation} />
           </div>
           <div className="flex flex-shrink-0 border-t border-slate-200 dark:border-slate-800 p-4">
-            <UserAvatar
-              avatar={currentUser?.avatar}
-              {...currentUser}
-              onLogout={onLogout}
-            />
+            <UserAvatar avatar={currentUser?.avatar} {...currentUser} />
             <div className="ml-auto self-center">
               <LocaleSwitcher />
             </div>
@@ -384,7 +360,7 @@ const Layout = ({
           {React.cloneElement(children)}
         </main>
       </div>
-    </div>
+    </AuthWrapper>
   );
 };
 

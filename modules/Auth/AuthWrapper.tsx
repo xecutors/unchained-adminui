@@ -3,16 +3,17 @@ import React, { useEffect, useMemo } from 'react';
 import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import AuthContext from './AuthContext';
-
 import loadRoleConfig from '../common/utils/loadRoleConfig';
+import { useApolloClient } from '@apollo/client';
 
 const {
   publicRuntimeConfig: { restrictNonAdmin },
 } = getConfig();
 
-const AuthWrapper = ({ children, apolloClient, componentName }) => {
+const AuthWrapper = ({ children, componentName }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
+  const apolloClient = useApolloClient();
 
   const {
     checkAccess,
@@ -20,7 +21,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
     isUserAdmin,
     checkRole,
     isPublicOnlyPage,
-  } = useMemo(() => loadRoleConfig(), []);
+  } = loadRoleConfig();
 
   const isAuthenticated = (user) => {
     if (!isUserAuthenticated) return false;
@@ -60,6 +61,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
 
   useEffect(() => {
     if (!loading) {
+      console.log('currentUser', currentUser);
       if (isAuthenticated(currentUser)) {
         if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
@@ -76,7 +78,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
         router.replace('/log-in');
       }
     }
-  }, [router, currentUser?._id, hasAccess, isAuthenticated, loading]);
+  }, [router, currentUser, hasAccess, isAuthenticated, loading]);
 
   return <AuthContext.Provider value={ctx}>{children}</AuthContext.Provider>;
 };

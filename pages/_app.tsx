@@ -45,11 +45,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
           {Component.getLayout(page)}
         </>
       )
-    : (page) => (
-        <Layout apollo={apollo} router={router}>
-          {page}
-        </Layout>
-      );
+    : (page) => <Layout componentName={componentName}>{page}</Layout>;
 
   const messages = getMessages(router.locale);
 
@@ -100,12 +96,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
                   pauseOnHover
                 />
                 <ModalWrapper>
-                  <AuthWrapper
-                    apolloClient={apollo}
-                    componentName={componentName}
-                  >
-                    {getLayout(<Component {...pageProps} />)}
-                  </AuthWrapper>
+                  {getLayout(<Component {...pageProps} />)}
                 </ModalWrapper>
               </ThemeWrapper>
             </UnchainedContextWrapper>

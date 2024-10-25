@@ -11,8 +11,7 @@ export const GetCurrentUserQuery = (inlineFragment = '') => gql`
     me {
       ...UserFragment
       ${inlineFragment}
-    }    
-
+    }
   }
   ${UserFragment}
 `;
@@ -22,10 +21,7 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
   const { data, loading, error } = useQuery<
     ICurrentUserQuery,
     ICurrentUserQueryVariables
-  >(GetCurrentUserQuery(customProperties?.User), {
-    fetchPolicy: 'cache-first',
-    notifyOnNetworkStatusChange: true,
-  });
+  >(GetCurrentUserQuery(customProperties?.User));
 
   const currentUser = data?.me;
   const extendedData = hydrateFragment(customProperties?.User, currentUser);

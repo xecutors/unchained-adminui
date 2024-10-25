@@ -46,8 +46,6 @@ const useAssortmentChildren = ({
           forceLocale,
         },
       },
-      returnPartialData: true,
-      notifyOnNetworkStatusChange: true,
     },
   );
 

@@ -19,7 +19,6 @@ import useForm, {
 import useGenerateLoginCredentials from '../hooks/useGenerateLoginCredentials';
 import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
-import { storeLoginToken } from '../utils/store';
 import GoogleOauth from './GoogleOauth';
 
 const {
@@ -131,8 +130,6 @@ const LogInForm = () => {
       });
       if (data && data?.loginWithWebAuthn) {
         const { _id, tokenExpires } = data.loginWithWebAuthn;
-
-        await storeLoginToken(_id, new Date(tokenExpires));
         return { success: true, errors };
       }
     }
@@ -151,8 +148,7 @@ const LogInForm = () => {
         password,
       });
       if (!errors?.length) {
-        const { _id, tokenExpires, user } = data.loginWithPassword;
-        await storeLoginToken(_id, new Date(tokenExpires));
+        const { _id } = data.loginWithPassword;
         return { success: Boolean(_id), ...data.loginWithPassword };
       }
       const [error] = errors;
@@ -168,8 +164,7 @@ const LogInForm = () => {
         password,
       });
       if (!errors?.length) {
-        const { _id, tokenExpires } = data.loginWithPassword;
-        await storeLoginToken(_id, new Date(tokenExpires));
+        const { _id } = data.loginWithPassword;
         return { success: Boolean(_id), ...data.loginWithPassword };
       }
       return { success: false, errors };

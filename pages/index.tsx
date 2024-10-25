@@ -8,10 +8,8 @@ import React, { useEffect } from 'react';
 
 /* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
-
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-
 import SystemInformation from '../modules/common/components/SystemInformation';
 import LatestOrders from '../modules/order/components/LatestOrders';
 import useAuth from '../modules/Auth/useAuth';

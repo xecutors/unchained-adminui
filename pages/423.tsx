@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import logOut from '../modules/accounts/hooks/logOut';
-import { useApollo } from '../modules/apollo/apolloClient';
+import { useApolloClient } from '@apollo/client';
 
 const Locked = () => {
   const { formatMessage } = useIntl();
 
-  const apollo = useApollo({});
+  const apollo = useApolloClient();
   const router = useRouter();
 
   return (
@@ -47,7 +47,6 @@ const Locked = () => {
         id="submit"
         onClick={async () => {
           await logOut(apollo);
-          router.push('/log-in');
         }}
       >
         {formatMessage({

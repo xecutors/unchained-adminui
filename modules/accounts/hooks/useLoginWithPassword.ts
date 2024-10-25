@@ -24,7 +24,7 @@ const LogInWithPasswordMutation = gql`
 `;
 
 const useLoginWithPassword = () => {
-  const [logInWithPasswordMutation] = useMutation<
+  const [logInWithPasswordMutation, { client }] = useMutation<
     ILoginWithPasswordMutation,
     ILoginWithPasswordMutationVariables
   >(LogInWithPasswordMutation, {
@@ -46,10 +46,11 @@ const useLoginWithPassword = () => {
     }
 
     variables.password = password;
-    return logInWithPasswordMutation({
+    const result = logInWithPasswordMutation({
       variables,
-      notifyOnNetworkStatusChange: true,
     });
+    await client.resetStore();
+    return result;
   };
 
   return {

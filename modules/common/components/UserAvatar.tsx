@@ -2,9 +2,24 @@ import { useIntl } from 'react-intl';
 import defaultNextImageLoader from '../utils/defaultNextImageLoader';
 import formatUsername from '../utils/formatUsername';
 import ImageWithFallback from './ImageWithFallback';
+import { useApolloClient } from '@apollo/client';
+import { toast } from 'react-toastify';
+import logOut from '../../accounts/hooks/logOut';
 
-const UserAvatar = ({ avatar, onLogout, ...user }) => {
+const UserAvatar = ({ avatar, ...user }) => {
   const { formatMessage } = useIntl();
+  const apolloClient = useApolloClient();
+
+  const onLogout = async () => {
+    await logOut(apolloClient);
+    toast.success(
+      formatMessage({
+        id: 'logged_out',
+        defaultMessage: 'Logged out',
+      }),
+    );
+  };
+
   return (
     <a href="#" onClick={onLogout} className="group block flex-shrink-0">
       <div className="flex items-center">
