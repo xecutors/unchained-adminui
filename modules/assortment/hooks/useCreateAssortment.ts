@@ -12,7 +12,7 @@ const CreateAssortmentMutation = gql`
     $assortment: CreateAssortmentInput!
     $texts: [AssortmentTextInput!]
   ) {
-    createAssortment(assortment: $assortment) {
+    createAssortment(assortment: $assortment, texts: $texts) {
       ...AssortmentFragment
     }
   }

@@ -53,7 +53,6 @@ const AssortmentForm = ({
             defaultMessage: 'Subtitle',
           })}
           autoComplete="off"
-          required
           className="mb-5"
         />
 
