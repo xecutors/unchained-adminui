@@ -9,7 +9,7 @@ const LogInWithPasswordMutation = gql`
   mutation LoginWithPassword(
     $username: String
     $email: String
-    $password: String
+    $password: String!
   ) {
     loginWithPassword(username: $username, email: $email, password: $password) {
       _id
