@@ -10,6 +10,7 @@ const ReorderAssortmentProductsMutation = gql`
   ) {
     reorderAssortmentProducts(sortKeys: $sortKeys) {
       _id
+      sortKey
     }
   }
 `;

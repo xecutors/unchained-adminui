@@ -8,6 +8,7 @@ const ReorderAssortmentLinkMutation = gql`
   mutation ReorderAssortmentLinks($sortKeys: [ReorderAssortmentLinkInput!]!) {
     reorderAssortmentLinks(sortKeys: $sortKeys) {
       _id
+      sortKey
     }
   }
 `;

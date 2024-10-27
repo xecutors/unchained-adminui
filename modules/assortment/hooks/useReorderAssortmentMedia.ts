@@ -8,6 +8,7 @@ const ReorderAssortmentMediaMutation = gql`
   mutation ReorderAssortmentMedia($sortKeys: [ReorderAssortmentMediaInput!]!) {
     reorderAssortmentMedia(sortKeys: $sortKeys) {
       _id
+      sortKey
     }
   }
 `;
