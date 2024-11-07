@@ -41,7 +41,7 @@ const Orders = () => {
   };
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
-  const { orders, ordersCount, loading } = useOrders({
+  const { orders, ordersCount, loading, loadMore } = useOrders({
     limit,
     includeCarts,
     queryString: queryString as string,
@@ -80,7 +80,7 @@ const Orders = () => {
         ) : (
           <OrderList loading={loading} orders={orders} showUser sortable />
         )}
-        <Pagination data={orders} total={ordersCount} />
+        <Pagination data={orders} total={ordersCount} onLoadMore={loadMore} />
       </div>
     </>
   );

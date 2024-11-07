@@ -37,7 +37,7 @@ const useCurrencies = ({
   includeInactive = true,
   sort = [],
 }: ICurrenciesQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     ICurrenciesQuery,
     ICurrenciesQueryVariables
   >(CurrenciesQuery, {
@@ -48,12 +48,19 @@ const useCurrencies = ({
   const currenciesCount = data?.currenciesCount;
   const hasMore = currencies?.length < currenciesCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: currencies?.length },
+    });
+  };
+
   return {
     currencies,
     currenciesCount,
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

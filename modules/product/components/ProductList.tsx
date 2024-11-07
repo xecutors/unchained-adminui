@@ -17,7 +17,7 @@ const ProductList = ({
   sortable,
 }) => {
   const { formatMessage } = useIntl();
-  const { products, productsCount, loading } = useProducts({
+  const { products, productsCount, loading, loadMore } = useProducts({
     queryString,
     includeDrafts,
     limit,
@@ -34,7 +34,7 @@ const ProductList = ({
       ) : (
         <Table className="min-w-full ">
           {products?.map((product) => (
-            <Table.Row key={product._id} header enableSort={sortable}>
+            <Table.Row key={product._id} header enablesort={sortable}>
               <Table.Cell>
                 {formatMessage({
                   id: 'name',
@@ -72,7 +72,7 @@ const ProductList = ({
           ))}
         </Table>
       )}
-      <Pagination data={products} total={productsCount} />
+      <Pagination data={products} total={productsCount} onLoadMore={loadMore} />
     </>
   );
 };

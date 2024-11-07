@@ -8,7 +8,7 @@ const EnrollmentList = ({ enrollments, showUser = null, sortable = false }) => {
   return (
     <Table className="min-w-full">
       {enrollments?.map((enrollment) => (
-        <Table.Row key={enrollment._id} header enableSort={sortable}>
+        <Table.Row key={enrollment._id} header enablesort={sortable}>
           <Table.Cell sortKey="enrollmentNumber">
             {formatMessage({
               id: 'enrollment_number',

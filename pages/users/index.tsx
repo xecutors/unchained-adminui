@@ -37,7 +37,7 @@ const Users = () => {
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeGuests = query?.includeGuests === 'true';
 
-  const { users, usersCount, loading } = useUsers({
+  const { users, usersCount, loading, loadMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
@@ -72,7 +72,7 @@ const Users = () => {
       <div className="my-3 shadow">
         {loading ? <Loading /> : <UserList users={users} />}
       </div>
-      <Pagination data={users} total={usersCount} />
+      <Pagination data={users} total={usersCount} onLoadMore={loadMore} />
     </div>
   );
 };

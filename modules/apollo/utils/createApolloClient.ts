@@ -92,7 +92,6 @@ const createApolloClient = ({
     connectToDevTools: typeof window !== 'undefined',
     defaultOptions: {
       watchQuery: {
-        fetchPolicy: 'cache-and-network',
         errorPolicy: 'ignore',
       },
     },

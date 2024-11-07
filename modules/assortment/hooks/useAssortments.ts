@@ -56,7 +56,7 @@ const useAssortments = ({
   sort: sortOptions = [],
   forceLocale = '',
 }: IAssortmentsQueryVariables & { forceLocale?: string } = {}) => {
-  const { data, loading, error } = useQuery<IAssortmentsQuery>(
+  const { data, loading, error, fetchMore } = useQuery<IAssortmentsQuery>(
     AssortmentsQuery,
     {
       variables: {
@@ -80,12 +80,19 @@ const useAssortments = ({
   const assortmentsCount = data?.assortmentsCount;
   const hasMore = assortments?.length < assortmentsCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: assortments?.length },
+    });
+  };
+
   return {
     loading,
     error,
     assortmentsCount,
     hasMore,
     assortments: data?.assortments || [],
+    loadMore,
   };
 };
 
