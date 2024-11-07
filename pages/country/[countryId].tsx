@@ -35,9 +35,9 @@ const UpdateCountry = () => {
   const { updateCountry } = useUpdateCountry();
   const { removeCountry } = useRemoveCountry();
 
-  const onSubmit = async ({ isActive, isoCode, defaultCurrencyId }) => {
+  const onSubmit = async ({ isActive, isoCode }) => {
     await updateCountry({
-      country: { isActive, isoCode, defaultCurrencyId },
+      country: { isActive, isoCode },
       countryId: countryId as string,
     });
 

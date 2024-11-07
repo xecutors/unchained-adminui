@@ -87,6 +87,13 @@ const WorkDetailPage = () => {
             id: 'work_detail',
             defaultMessage: 'Work Detail',
           })}
+          title={formatMessage(
+            {
+              id: 'work_detail_title',
+              defaultMessage: 'Work {id}',
+            },
+            { id: work?._id },
+          )}
         />
         {canBeRetried(work) ? (
           <button

@@ -82,6 +82,13 @@ const PaymentProviderUpdate = () => {
             id: 'update_payment_provider_header',
             defaultMessage: 'Update payment provider',
           })}
+          title={formatMessage(
+            {
+              id: 'payment_detail_title',
+              defaultMessage: 'Payment provider {id}',
+            },
+            { id: paymentProvider?._id },
+          )}
         />
         {hasRole('removePaymentProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />
