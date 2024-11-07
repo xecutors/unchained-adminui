@@ -1,23 +1,15 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { IUser } from '../../../gql/types';
-import useAuth from '../../Auth/useAuth';
 import ActiveInActive from '../../common/components/ActiveInActive';
 import Badge from '../../common/components/Badge';
-import Button from '../../common/components/Button';
 import MiniUserAvatar from '../../common/components/MiniUserAvatar';
 import formatUsername from '../../common/utils/formatUsername';
 import useCurrentUser from '../hooks/useCurrentUser';
-import useImpersonate from '../hooks/useImpersonate';
 import Loading from '../../common/components/Loading';
 
 const UserListItem = ({ user }) => {
   const { formatMessage } = useIntl();
   const { currentUser, loading } = useCurrentUser();
-  const { impersonateAs } = useImpersonate();
-  const { hasRole, isAdmin } = useAuth();
-  const router = useRouter();
   const isVerified = !!user?.primaryEmail?.verified;
   const UserTypes = {
     true: 'Verified',
@@ -89,25 +81,6 @@ const UserListItem = ({ user }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="ml-auto flex-shrink-0 flex items-center">
-            {(hasRole('impersonate') || isAdmin(currentUser as IUser)) &&
-            user._id !== currentUser._id ? (
-              <Button
-                onClick={async (e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  await impersonateAs({ userId: user._id });
-                  router.push('/');
-                }}
-                text={formatMessage({
-                  id: 'impersonate-user-account',
-                  defaultMessage: 'Impersonate Account',
-                })}
-              />
-            ) : (
-              <div className="w-40" />
-            )}
           </div>
         </div>
       </Link>
