@@ -57,6 +57,13 @@ const UserProfile = () => {
           defaultMessage: 'User settings',
         })}
         onDelete={!user?.deleted ? onDeleteUser : null}
+        title={formatMessage(
+          {
+            id: 'user_detail_title',
+            defaultMessage: 'User {id}',
+          },
+          { id: user?.username },
+        )}
       />
       <UserSettings user={user} extendedData={extendedData} />
     </div>
