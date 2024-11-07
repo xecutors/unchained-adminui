@@ -46,7 +46,7 @@ const Languages = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { languages, languagesCount, loading } = useLanguages({
+  const { languages, languagesCount, loading, loadMore } = useLanguages({
     queryString: queryString as string,
     limit,
     includeInactive,
@@ -123,7 +123,11 @@ const Languages = () => {
             onRemoveLanguage={onRemoveLanguage}
           />
         )}
-        <Pagination data={languages} total={languagesCount} />
+        <Pagination
+          data={languages}
+          total={languagesCount}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );

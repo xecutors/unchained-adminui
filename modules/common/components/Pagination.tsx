@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DefaultLimit, LimitSteps } from '../data/miscellaneous';
 import Button from './Button';
+import Loading from './Loading';
 
 const MobilePaginator = ({
   onOffsetChange,
@@ -99,7 +100,12 @@ const Step = ({ onClick, disabled = false, label }) => {
   );
 };
 
-const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
+const Pagination = ({
+  total = 0,
+  data = [],
+  onLoadMore = null,
+  isLoading = false,
+}) => {
   const { formatMessage } = useIntl();
   const router = useRouter();
   const limit = parseInt(router.query?.limit as string, 10) || DefaultLimit;
@@ -202,11 +208,18 @@ const Pagination = ({ total = 0, data = [], onLoadMore = () => {} }) => {
   return (
     <div className="flex items-center justify-between px-4 py-3">
       {total !== data?.length && data?.length && onLoadMore ? (
-        <Button
-          text={formatMessage({ id: 'load_more', defaultMessage: 'Load more' })}
-          onClick={onLoadMore}
-          className="py-2.5"
-        />
+        !isLoading ? (
+          <Button
+            text={formatMessage({
+              id: 'load_more',
+              defaultMessage: 'Load more',
+            })}
+            onClick={onLoadMore}
+            className="py-2.5"
+          />
+        ) : (
+          <Loading />
+        )
       ) : null}
 
       {!onLoadMore ? (

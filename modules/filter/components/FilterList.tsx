@@ -17,7 +17,7 @@ const FilterList = ({
 }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
-  const { filters, filtersCount, loading } = useFilters({
+  const { filters, filtersCount, loading, loadMore } = useFilters({
     queryString,
     limit,
     includeInactive,
@@ -80,7 +80,7 @@ const FilterList = ({
           ))}
         </Table>
       )}
-      <Pagination data={filters} total={filtersCount} />
+      <Pagination data={filters} total={filtersCount} onLoadMore={loadMore} />
     </>
   );
 };

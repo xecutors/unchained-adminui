@@ -31,7 +31,7 @@ const useQuotations = ({
   queryString = '',
   sort = [],
 }: IQuotationsQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     IQuotationsQuery,
     IQuotationsQueryVariables
   >(QuotationsQuery, {
@@ -41,12 +41,19 @@ const useQuotations = ({
   const quotationsCount = data?.quotationsCount;
   const hasMore = quotations?.length < quotationsCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: quotations?.length },
+    });
+  };
+
   return {
     quotations,
     quotationsCount,
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

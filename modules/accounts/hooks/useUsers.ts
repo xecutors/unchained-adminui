@@ -28,16 +28,22 @@ const useUsers = ({
   includeGuests = false,
   queryString = null,
 }: IUsersQueryVariables) => {
-  const { data, loading, error } = useQuery<IUsersQuery, IUsersQueryVariables>(
-    UsersQuery,
-    {
-      variables: { limit, offset, includeGuests, queryString },
-    },
-  );
+  const { data, loading, error, fetchMore } = useQuery<
+    IUsersQuery,
+    IUsersQueryVariables
+  >(UsersQuery, {
+    variables: { limit, offset, includeGuests, queryString },
+  });
 
   const users = data?.users || [];
   const usersCount = data?.usersCount;
   const hasMore = users?.length < usersCount;
+
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: users?.length },
+    });
+  };
 
   return {
     users,
@@ -45,6 +51,7 @@ const useUsers = ({
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

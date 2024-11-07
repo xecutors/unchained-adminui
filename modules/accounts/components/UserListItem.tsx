@@ -90,22 +90,24 @@ const UserListItem = ({ user }) => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="ml-auto flex-shrink-0 flex items-center">
             {(hasRole('impersonate') || isAdmin(currentUser as IUser)) &&
-              user._id !== currentUser._id && (
-                <Button
-                  onClick={async (e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    await impersonateAs({ userId: user._id });
-                    router.push('/');
-                  }}
-                  text={formatMessage({
-                    id: 'impersonate-user-account',
-                    defaultMessage: 'Impersonate Account',
-                  })}
-                />
-              )}
+            user._id !== currentUser._id ? (
+              <Button
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  await impersonateAs({ userId: user._id });
+                  router.push('/');
+                }}
+                text={formatMessage({
+                  id: 'impersonate-user-account',
+                  defaultMessage: 'Impersonate Account',
+                })}
+              />
+            ) : (
+              <div className="w-40" />
+            )}
           </div>
         </div>
       </Link>

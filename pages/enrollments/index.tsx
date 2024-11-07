@@ -42,7 +42,7 @@ const EnrollmentListView = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { enrollments, enrollmentsCount, loading } = useEnrollments({
+  const { enrollments, enrollmentsCount, loading, loadMore } = useEnrollments({
     queryString: queryString as string,
     limit,
     offset,
@@ -102,7 +102,11 @@ const EnrollmentListView = () => {
         ) : (
           <EnrollmentList enrollments={enrollments} showUser sortable />
         )}
-        <Pagination data={enrollments} total={enrollmentsCount} />
+        <Pagination
+          data={enrollments}
+          total={enrollmentsCount}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );

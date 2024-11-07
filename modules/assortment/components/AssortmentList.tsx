@@ -7,7 +7,7 @@ const AssortmentList = ({ assortments, showAvatar = true, sortable }) => {
   return (
     <Table className="min-w-full">
       {assortments?.map((assortment) => (
-        <Table.Row key={assortment._id} header enableSort={sortable}>
+        <Table.Row key={assortment._id} header enablesort={sortable}>
           <Table.Cell>
             {formatMessage({
               id: 'name',
