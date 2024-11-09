@@ -10,13 +10,11 @@ const LogInWithPasswordMutation = gql`
     $username: String
     $email: String
     $plainPassword: String
-    $totpCode: String
   ) {
     loginWithPassword(
       username: $username
       email: $email
       plainPassword: $plainPassword
-      totpCode: $totpCode
     ) {
       id
       token
@@ -25,7 +23,6 @@ const LogInWithPasswordMutation = gql`
         _id
         allowedActions
         roles
-        isTwoFactorEnabled
       }
     }
   }
@@ -39,15 +36,10 @@ const useLoginWithPassword = () => {
     errorPolicy: 'all',
   });
 
-  const logInWithPassword = async ({
-    usernameOrEmail,
-    password,
-    totpCode = null,
-  }) => {
+  const logInWithPassword = async ({ usernameOrEmail, password }) => {
     const variables = {
       username: null,
       email: null,
-      totpCode,
       plainPassword: null,
     };
 

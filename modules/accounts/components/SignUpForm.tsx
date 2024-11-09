@@ -118,16 +118,6 @@ const SignUpForm = ({
                   </div>
                 </>
               )}
-              <Toggle
-                onToggle={onAuthenticateWithDeviceChange}
-                toggleText={formatMessage({
-                  id: 'use_authenticator',
-                  defaultMessage: 'Use authenticator',
-                })}
-                className="ml-2 my-3"
-                toggleKey="totp"
-                active={authenticateWithDevice}
-              />
             </div>
             <FormErrors />
 

@@ -93,7 +93,7 @@ const keyMappings: any = {
         },
       },
       orders: {
-        keyArgs: ['includeCarts', 'queryString', 'sort'],
+        keyArgs: ['includeCarts', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },

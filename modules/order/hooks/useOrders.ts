@@ -24,7 +24,7 @@ const OrdersQuery = gql`
     ) {
       ...OrderFragment
     }
-    ordersCount
+    ordersCount(includeCarts: $includeCarts, queryString: $queryString)
   }
   ${OrderFragment}
 `;
