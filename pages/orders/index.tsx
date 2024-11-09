@@ -48,7 +48,6 @@ const Orders = () => {
     offset,
     sort: sortKeys,
   });
-  console.log(orders?.length, ordersCount);
   return (
     <>
       <BreadCrumbs />
