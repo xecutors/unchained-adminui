@@ -20,6 +20,13 @@ const OrderDetailPage = () => {
           id: 'event_detail',
           defaultMessage: 'Event Detail',
         })}
+        title={formatMessage(
+          {
+            id: 'event_detail_title',
+            defaultMessage: 'Event {id}',
+          },
+          { id: (event as any)?._id },
+        )}
       />
       {loading ? <Loading /> : <EventDetail event={event} />}
     </div>

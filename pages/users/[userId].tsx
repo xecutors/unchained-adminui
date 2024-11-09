@@ -21,6 +21,13 @@ const UserProfile = () => {
           id: 'users_setting_list_header',
           defaultMessage: 'User settings',
         })}
+        title={formatMessage(
+          {
+            id: 'user_detail_title',
+            defaultMessage: 'User {id}',
+          },
+          { id: user?.username },
+        )}
       />
       <UserSettings user={user} extendedData={extendedData} />
     </div>

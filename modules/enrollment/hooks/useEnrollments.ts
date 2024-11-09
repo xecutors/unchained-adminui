@@ -34,7 +34,7 @@ const useEnrollments = ({
   sort = [],
   status = null,
 }: IEnrollmentsQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     IEnrollmentsQuery,
     IEnrollmentsQueryVariables
   >(EnrollmentsQuery, {
@@ -43,11 +43,18 @@ const useEnrollments = ({
   const enrollments = data?.enrollments || [];
   const enrollmentsCount = data?.enrollmentsCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: enrollments?.length },
+    });
+  };
+
   return {
     enrollments,
     enrollmentsCount,
     loading,
     error,
+    loadMore,
   };
 };
 

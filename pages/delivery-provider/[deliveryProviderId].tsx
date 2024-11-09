@@ -85,6 +85,13 @@ const DeliveryProviderUpdate = () => {
             id: 'update_delivery_configuration',
             defaultMessage: 'Update delivery provider',
           })}
+          title={formatMessage(
+            {
+              id: 'delivery_provider_title',
+              defaultMessage: 'Delivery provider {id}',
+            },
+            { id: deliveryProvider?._id },
+          )}
         />
         {hasRole('removeDeliveryProvider') && (
           <HeaderDeleteButton onClick={handleOnClick} />

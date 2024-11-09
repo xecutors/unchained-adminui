@@ -4,7 +4,6 @@ import MD5MetaDataFragment from './MD5MetaDataFragment';
 const UserFragment = gql`
   fragment UserFragment on User {
     _id
-    isTwoFactorEnabled
     lastBillingAddress {
       firstName
       lastName
@@ -95,6 +94,18 @@ const UserFragment = gql`
     name
     roles
     tags
+    cart {
+      _id
+      items {
+        _id
+      }
+    }
+    orders {
+      _id
+      items {
+        _id
+      }
+    }
   }
   ${MD5MetaDataFragment}
 `;

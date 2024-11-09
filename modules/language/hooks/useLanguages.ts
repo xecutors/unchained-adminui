@@ -31,7 +31,7 @@ const useLanguages = ({
   includeInactive = true,
   sort = [],
 }: ILanguagesQueryVariables = {}) => {
-  const { data, loading, error } = useQuery<
+  const { data, loading, error, fetchMore } = useQuery<
     ILanguagesQuery,
     ILanguagesQueryVariables
   >(LanguagesQuery, {
@@ -40,11 +40,18 @@ const useLanguages = ({
   const languages = data?.languages || [];
   const languagesCount = data?.languagesCount;
 
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: languages?.length },
+    });
+  };
+
   return {
     languages,
     languagesCount,
     loading,
     error,
+    loadMore,
   };
 };
 

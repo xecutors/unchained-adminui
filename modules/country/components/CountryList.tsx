@@ -10,7 +10,7 @@ const CountryList = ({ countries, onRemoveCountry, sortable }) => {
   return (
     <Table className="min-w-full ">
       {countries?.map((country) => (
-        <Table.Row key={country._id} header enableSort={sortable}>
+        <Table.Row key={country._id} header enablesort={sortable}>
           <Table.Cell sortKey="isoCode">
             {formatMessage({
               id: 'iso_code',

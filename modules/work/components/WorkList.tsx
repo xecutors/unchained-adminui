@@ -8,7 +8,7 @@ const WorkList = ({ workQueue, sortable }) => {
   return (
     <Table className="min-w-full ">
       {workQueue?.map((work) => (
-        <Table.Row key={`${work._id}-header`} header enableSort={sortable}>
+        <Table.Row key={`${work._id}-header`} header enablesort={sortable}>
           <Table.Cell sortKey="type">
             {formatMessage({
               id: 'work_type_header',

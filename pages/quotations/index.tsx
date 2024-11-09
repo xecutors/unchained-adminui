@@ -40,7 +40,7 @@ const Quotations = () => {
 
   const sortKeys = convertSortFieldsToQueryFormat(sort);
 
-  const { quotations, quotationsCount, loading } = useQuotations({
+  const { quotations, quotationsCount, loading, loadMore } = useQuotations({
     queryString: queryString as string,
     limit,
     offset,
@@ -69,7 +69,11 @@ const Quotations = () => {
         ) : (
           <QuotationList sortable quotations={quotations} showUser />
         )}
-        <Pagination data={quotations} total={quotationsCount} />
+        <Pagination
+          data={quotations}
+          total={quotationsCount}
+          onLoadMore={loadMore}
+        />
       </div>
     </>
   );

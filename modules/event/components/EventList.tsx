@@ -7,7 +7,7 @@ const EventList = ({ events, sortable }) => {
   return (
     <Table className="min-w-full ">
       {events?.map((event) => (
-        <Table.Row key={event._id} header enableSort={sortable}>
+        <Table.Row key={event._id} header enablesort={sortable}>
           <Table.Cell sortKey="type">
             {formatMessage({ id: 'type', defaultMessage: 'Type' })}
           </Table.Cell>

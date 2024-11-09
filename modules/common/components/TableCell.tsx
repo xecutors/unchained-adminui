@@ -43,7 +43,7 @@ const SortButton = ({ onSort, sortDirection }) => {
 const TableCell = ({
   className = '',
   header = false,
-  enableSort = false,
+  enablesort = false,
   children,
   sortKey = null,
   defaultSortDirection = null,
@@ -101,7 +101,7 @@ const TableCell = ({
       {...props}
     >
       <div className="flex">
-        {Td === 'th' && enableSort && sortKey && (
+        {Td === 'th' && enablesort && sortKey && (
           <SortButton
             onSort={onSort}
             sortDirection={

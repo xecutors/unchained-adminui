@@ -10,7 +10,7 @@ const OrderList = ({ orders, showUser, loading, sortable }) => {
     <>
       <Table className="min-w-full">
         {(orders || [])?.map((order) => (
-          <Table.Row key={order._id} header enableSort={sortable}>
+          <Table.Row key={order._id} header enablesort={sortable}>
             <Table.Cell sortKey="orderNumber">
               {formatMessage({
                 id: 'order_number',

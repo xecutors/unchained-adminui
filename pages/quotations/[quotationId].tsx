@@ -26,6 +26,15 @@ const QuotationDetailPage = () => {
             id: 'quotation_detail',
             defaultMessage: 'Quotation Detail',
           })}
+          title={formatMessage(
+            {
+              id: 'quotation_detail_title',
+              defaultMessage: 'Quotation {id}',
+            },
+            {
+              id: quotation?._id,
+            },
+          )}
         />
       </div>
       {/* TODO change mock props data */}

@@ -4,65 +4,57 @@ import { offsetLimitPagination } from '@apollo/client/utilities';
 const keyMappings: any = {
   Query: {
     fields: {
-      Assortments: {
+      assortments: {
         keyArgs: [
-          'limit',
           'includeLeaves',
           'includeInactive',
-          'offset',
           'tags',
           'queryString',
           'slugs',
-        ],
-        merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
-        },
-      },
-      Products: {
-        keyArgs: [
           'limit',
-          'includeDrafts',
-          'offset',
-          'tags',
-          'queryString',
-          'sort',
         ],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Product: {
+      products: {
+        keyArgs: ['includeDrafts', 'tags', 'queryString', 'sort', 'limit'],
+        merge(existing = [], incoming) {
+          return [...existing, ...incoming];
+        },
+      },
+      product: {
         keyArgs: ['productId', 'slug'],
         fields: {
           reviews: offsetLimitPagination(),
         },
       },
-      User: {
+      user: {
         keyArgs: ['userId'],
         fields: {
           reviews: offsetLimitPagination(),
         },
       },
-      Countries: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
+      countries: {
+        keyArgs: ['includeInactive', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Currencies: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
+      currencies: {
+        keyArgs: ['includeInactive', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Enrollments: {
-        keyArgs: ['limit', 'offset', 'queryString'],
+      enrollments: {
+        keyArgs: ['queryString', 'status', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Quotations: {
-        keyArgs: ['limit', 'offset', 'queryString'],
+      quotations: {
+        keyArgs: ['queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
@@ -76,42 +68,36 @@ const keyMappings: any = {
           'limit',
         ]),
       },
-      Languages: {
-        keyArgs: ['limit', 'includeInactive', 'offset', 'queryString'],
+      languages: {
+        keyArgs: ['includeInactive', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
       events: {
-        keyArgs: ['limit', 'types', 'queryString'],
+        keyArgs: ['types', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Users: {
-        keyArgs: ['limit', 'includeGuests', 'queryString', 'offset'],
+      users: {
+        keyArgs: ['includeGuests', 'queryString', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-      Filters: {
-        keyArgs: ['limit', 'offset', 'queryString'],
+      filters: {
+        keyArgs: ['queryString', 'includeInactive', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
           return [...existing, ...incoming];
         },
       },
-    },
-    Orders: {
-      keyArgs: ['limit', 'includeCarts', 'offset', 'queryString'],
-      merge(existing = [], incoming = []) {
-        return [...existing, ...incoming];
+      orders: {
+        keyArgs: ['includeCarts', 'queryString', 'sort', 'limit'],
+        merge(existing = [], incoming = []) {
+          return [...existing, ...incoming];
+        },
       },
-    },
-  },
-
-  SearchResult: {
-    fields: {
-      products: offsetLimitPagination(),
     },
   },
 };
