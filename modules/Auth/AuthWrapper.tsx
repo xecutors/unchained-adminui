@@ -42,6 +42,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   };
 
   const hasAccess = ({ user, action = '' }) => {
+    console.log('ppppppppppppppppp   ', user);
     if (!checkAccess) return false;
     return checkAccess(user, action, apolloClient, {
       router,
@@ -59,7 +60,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   }, [currentUser, router.pathname]);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && currentUser !== undefined) {
       if (isAuthenticated(currentUser)) {
         if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
