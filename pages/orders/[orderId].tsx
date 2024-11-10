@@ -66,13 +66,23 @@ const OrderDetailPage = () => {
             id: 'order_detail',
             defaultMessage: 'Order Detail',
           })}
-          title={formatMessage(
-            {
-              id: 'order_detail_title',
-              defaultMessage: 'Order {id}',
-            },
-            { id: order?.orderNumber || order?._id },
-          )}
+          title={
+            order?.orderNumber
+              ? formatMessage(
+                  {
+                    id: 'order_detail_title',
+                    defaultMessage: 'Order {id}',
+                  },
+                  { id: order?.orderNumber },
+                )
+              : formatMessage(
+                  {
+                    id: 'cart_detail_title',
+                    defaultMessage: 'Cart {id}',
+                  },
+                  { id: order?._id },
+                )
+          }
         />
         {order && isDeletable(order.status) && hasRole('removeOrder') ? (
           <HeaderDeleteButton onClick={handleOnClick} />

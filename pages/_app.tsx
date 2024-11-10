@@ -61,6 +61,7 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
     <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
       <ErrorBoundary>
         <Head>
+          <title>Unchained: Admin UI</title>
           {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
             <>
               <Script
