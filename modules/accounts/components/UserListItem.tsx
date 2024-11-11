@@ -10,11 +10,8 @@ import { ShoppingBagIcon, ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 const UserLastLogin = ({ lastLogin }) => {
   const { formatMessage, locale } = useIntl();
-  const loginDate = lastLogin?.timestamp
-    ? new Date(lastLogin?.timestamp)
-    : new Date();
+  const loginDate = new Date(lastLogin?.timestamp);
   if (!loginDate?.getTime()) return null;
-
   const formattedDate = loginDate.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'numeric',
@@ -24,7 +21,6 @@ const UserLastLogin = ({ lastLogin }) => {
     hour: '2-digit',
     minute: '2-digit',
   });
-
   return (
     <div className="text-xs text-gray-500">
       <span className="font-semibold">
