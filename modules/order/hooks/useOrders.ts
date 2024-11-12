@@ -46,8 +46,11 @@ const useOrders = ({
       includeCarts,
       queryString,
       sort: sortOptions.length
-        ? sortOptions
-        : [{ key: 'ordered', value: ISortDirection.Desc }],
+        ? [...sortOptions, { key: 'created', value: ISortDirection.Desc }]
+        : [
+            { key: 'ordered', value: ISortDirection.Desc },
+            { key: 'created', value: ISortDirection.Desc },
+          ],
     },
   });
   const orders = data?.orders || [];
