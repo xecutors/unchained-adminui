@@ -30,7 +30,7 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
     notifyOnNetworkStatusChange: true,
   });
 
-  const currentUser = data?.me;
+  const currentUser = data?.me || null;
   const extendedData = hydrateFragment(customProperties?.User, currentUser);
   const impersonator = data?.impersonator;
 
