@@ -95,7 +95,19 @@ const keyMappings: any = {
       orders: {
         keyArgs: ['includeCarts', 'queryString', 'sort', 'limit'],
         merge(existing = [], incoming = []) {
-          return [...existing, ...incoming];
+          const merged = [...existing];
+          incoming.forEach((item) => {
+            if (!merged.some((existingItem) => existingItem?.__ref === item?.__ref)) {
+              merged.push(item);
+            }
+          });
+          return merged;
+        },
+      },
+      ordersCount: {
+        keyArgs: ['includeCarts', 'queryString'],
+        merge(existing = [], incoming = []) {
+          return incoming ?? existing;
         },
       },
     },

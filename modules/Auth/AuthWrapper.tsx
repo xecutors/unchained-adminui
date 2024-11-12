@@ -43,7 +43,6 @@ const AuthWrapper = ({ children, componentName }) => {
   };
 
   const hasAccess = ({ user, action = '' }) => {
-    console.log('ppppppppppppppppp   ', user);
     if (!checkAccess) return false;
     return checkAccess(user, action, apolloClient, {
       router,
