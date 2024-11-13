@@ -2,34 +2,11 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
-import { normalizeQuery } from '../../common/utils/utils';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
-
-enum UserOrderFilter {
-  HAS_ORDERS = 'HAS_ORDERS',
-  NO_ORDERS = 'NO_ORDERS',
-}
 
 enum UserVerificationFilter {
   VERIFIED = 'VERIFIED',
   UNVERIFIED = 'UNVERIFIED',
-}
-
-enum UserCartFilter {
-  HAS_CART = 'HAS_CART',
-  NO_CART = 'NO_CART',
-}
-
-interface DateFilterInput {
-  start?: string;
-  end?: string;
-}
-
-interface UserFilterInput {
-  verificationStatus?: UserVerificationFilter;
-  loginWithinDays?: DateFilterInput;
-  cartItems?: UserCartFilter;
-  orderItems?: UserOrderFilter;
 }
 
 const UserFilter: React.FC = () => {
@@ -137,53 +114,6 @@ const UserFilter: React.FC = () => {
               className="w-full rounded-md border py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400"
             />
           </div>
-        </div>
-      </div>
-
-      <hr className="my-4 w-full bg-slate-200 dark:bg-slate-700" />
-
-      <div className="mb-4 lg:flex lg:justify-between py-4">
-        <div className="flex-1  mr-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {formatMessage({ id: 'cart_items', defaultMessage: 'Cart Items' })}
-          </label>
-          <select
-            className="w-full p-2 border rounded-lg"
-            defaultValue={router.query?.cartItems || ''}
-            onChange={(e) => updateQuery('cartItems', e.target.value)}
-          >
-            <option value="">
-              {formatMessage({
-                id: 'select_cart_status',
-                defaultMessage: 'Select Cart Status',
-              })}
-            </option>
-            <option value={UserCartFilter.HAS_CART}>Has Cart</option>
-            <option value={UserCartFilter.NO_CART}>No Cart</option>
-          </select>
-        </div>
-
-        <div className="flex-1 ">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {formatMessage({
-              id: 'order_status',
-              defaultMessage: 'Order Status',
-            })}
-          </label>
-          <select
-            className="w-full p-2 border rounded-lg"
-            defaultValue={router.query?.orderItems || ''}
-            onChange={(e) => updateQuery('orderItems', e.target.value)}
-          >
-            <option value="">
-              {formatMessage({
-                id: 'select_order_status',
-                defaultMessage: 'Select Order Status',
-              })}
-            </option>
-            <option value={UserOrderFilter.HAS_ORDERS}>Has Orders</option>
-            <option value={UserOrderFilter.NO_ORDERS}>No Orders</option>
-          </select>
         </div>
       </div>
     </>

@@ -11,27 +11,12 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
-import {
-  IUserCartFilter,
-  IUserOrderFilter,
-  IUserVerificationFilter,
-} from '../../gql/types';
+import { IUserVerificationFilter } from '../../gql/types';
 
 const Users = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
   const { queryString, ...rest } = query;
-
-  const filter = {
-    loginWithinDays: {
-      start: query?.start as string,
-      end: query?.end as string,
-    },
-    verificationStatus:
-      (query?.verificationStatus as IUserVerificationFilter) ?? undefined,
-    cartItems: (query?.cartItems as IUserCartFilter) ?? undefined,
-    orderItems: (query?.orderItems as IUserOrderFilter) ?? undefined,
-  };
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest || { skip: null };
@@ -59,9 +44,13 @@ const Users = () => {
     includeGuests,
     queryString: queryString as string,
     offset,
-    filter,
+    loginWithinDays: {
+      start: query?.start as string,
+      end: query?.end as string,
+    },
+    verificationStatus:
+      (query?.verificationStatus as IUserVerificationFilter) ?? undefined,
   });
-  console.log(users);
   return (
     <div className="mb-10">
       <BreadCrumbs />
