@@ -96,9 +96,6 @@ const keyMappings: any = {
           'limit',
         ]),
       },
-      ordersCount: {
-        ...offsetLimitPagination(['includeCarts', 'queryString']),
-      },
     },
   },
 };
