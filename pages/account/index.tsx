@@ -5,8 +5,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import PageHeader from '../../modules/common/components/PageHeader';
 
 import UserSettings from '../../modules/accounts/components/UserSettings';
-import { useCallback } from 'react';
-import useDeleteAccount from '../../modules/accounts/hooks/useDeleteAccount';
+import useDeleteUser from '../../modules/accounts/hooks/useDeleteUser';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import { toast } from 'react-toastify';
@@ -16,11 +15,11 @@ import logOut from '../../modules/accounts/hooks/logOut';
 const Profile = () => {
   const { formatMessage } = useIntl();
   const { currentUser, extendedData } = useCurrentUser();
-  const { deleteAccount } = useDeleteAccount();
+  const { deleteUser } = useDeleteUser();
   const { setModal } = useModal();
   const apollo = useApollo({});
 
-  const onDeleteAccount = async () => {
+  const onDeleteUser = async () => {
     await setModal(
       <DangerMessage
         onCancelClick={async () => setModal('')}
@@ -31,7 +30,7 @@ const Profile = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await deleteAccount();
+          await deleteUser();
           toast.success(
             formatMessage({
               id: 'account_deleted',
@@ -56,7 +55,7 @@ const Profile = () => {
           id: 'account',
           defaultMessage: 'Account',
         })}
-        onDelete={onDeleteAccount}
+        onDelete={onDeleteUser}
       />
       <UserSettings user={currentUser} extendedData={extendedData} />
     </div>

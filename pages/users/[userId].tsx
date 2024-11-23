@@ -5,7 +5,7 @@ import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 
 import PageHeader from '../../modules/common/components/PageHeader';
 import UserSettings from '../../modules/accounts/components/UserSettings';
-import useDeleteAccount from '../../modules/accounts/hooks/useDeleteAccount';
+import useDeleteUser from '../../modules/accounts/hooks/useDeleteUser';
 import { useCallback } from 'react';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
@@ -16,10 +16,10 @@ const UserProfile = () => {
   const { query } = useRouter();
   const { userId } = query;
   const { setModal } = useModal();
-  const { deleteAccount } = useDeleteAccount();
+  const { deleteUser } = useDeleteUser();
   const { user, extendedData } = useUser({ userId: userId as string });
 
-  const onDeleteAccount = useCallback(async () => {
+  const onDeleteUser = useCallback(async () => {
     await setModal(
       <DangerMessage
         onCancelClick={async () => setModal('')}
@@ -30,7 +30,7 @@ const UserProfile = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await deleteAccount(user._id);
+          await deleteUser(user._id);
           toast.success(
             formatMessage({
               id: 'user_deleted',
@@ -54,7 +54,7 @@ const UserProfile = () => {
           id: 'users_setting_list_header',
           defaultMessage: 'User settings',
         })}
-        onDelete={onDeleteAccount}
+        onDelete={!user?.deleted ? onDeleteUser : null}
       />
       <UserSettings user={user} extendedData={extendedData} />
     </div>
