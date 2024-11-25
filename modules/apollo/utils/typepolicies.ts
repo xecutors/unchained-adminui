@@ -81,8 +81,8 @@ const keyMappings: any = {
         ...offsetLimitPagination([
           'includeGuests',
           'queryString',
-          'verificationStatus',
-          'loginWithinDays',
+          'emailVerified',
+          'lastLogin',
           'limit',
         ]),
       },

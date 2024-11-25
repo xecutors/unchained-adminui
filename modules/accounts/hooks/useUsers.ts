@@ -8,24 +8,24 @@ const UsersQuery = gql`
     $offset: Int
     $includeGuests: Boolean
     $queryString: String
-    $loginWithinDays: DateFilterInput
-    $verificationStatus: UserVerificationFilter
+    $lastLogin: DateFilterInput
+    $emailVerified: Boolean
   ) {
     users(
       limit: $limit
       offset: $offset
       includeGuests: $includeGuests
       queryString: $queryString
-      loginWithinDays: $loginWithinDays
-      verificationStatus: $verificationStatus
+      lastLogin: $lastLogin
+      emailVerified: $emailVerified
     ) {
       ...UserFragment
     }
     usersCount(
       includeGuests: $includeGuests
       queryString: $queryString
-      loginWithinDays: $loginWithinDays
-      verificationStatus: $verificationStatus
+      lastLogin: $lastLogin
+      emailVerified: $emailVerified
     )
   }
   ${UserFragment}
@@ -36,8 +36,8 @@ const useUsers = ({
   offset = 0,
   includeGuests = false,
   queryString = null,
-  loginWithinDays = null,
-  verificationStatus = null,
+  lastLogin = null,
+  emailVerified = null,
 }: IUsersQueryVariables) => {
   const { data, loading, error, fetchMore } = useQuery<
     IUsersQuery,
@@ -48,8 +48,8 @@ const useUsers = ({
       offset,
       includeGuests,
       queryString,
-      loginWithinDays,
-      verificationStatus,
+      lastLogin,
+      emailVerified,
     },
   });
 
