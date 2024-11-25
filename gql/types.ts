@@ -3201,18 +3201,18 @@ export type IQueryUserArgs = {
 export type IQueryUsersArgs = {
   includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
-  loginWithinDays?: InputMaybe<IDateFilterInput>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   sort?: InputMaybe<Array<ISortOptionInput>>;
-  verificationStatus?: InputMaybe<IUserVerificationFilter>;
+  emailVerified?: InputMaybe<IUserVerificationFilter>;
 };
 
 export type IQueryUsersCountArgs = {
   includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
-  loginWithinDays?: InputMaybe<IDateFilterInput>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  verificationStatus?: InputMaybe<IUserVerificationFilter>;
+  emailVerified?: InputMaybe<IUserVerificationFilter>;
 };
 
 export type IQueryValidateResetPasswordTokenArgs = {
@@ -5860,8 +5860,8 @@ export type IUsersQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
-  loginWithinDays?: InputMaybe<IDateFilterInput>;
-  verificationStatus?: InputMaybe<IUserVerificationFilter>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
+  emailVerified?: InputMaybe<IUserVerificationFilter>;
 }>;
 
 export type IUsersQuery = {

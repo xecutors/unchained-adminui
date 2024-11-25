@@ -11,7 +11,6 @@ import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
-import { IUserVerificationFilter } from '../../gql/types';
 
 const Users = () => {
   const { formatMessage } = useIntl();
@@ -38,18 +37,23 @@ const Users = () => {
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeGuests = query?.includeGuests === 'true';
+  let emailVerified = null;
+  if (query?.emailVerified === 'true') {
+    emailVerified = true;
+  } else if (query?.emailVerified === 'false') {
+    emailVerified = false;
+  }
 
   const { users, usersCount, loading, loadMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
     offset,
-    loginWithinDays: {
+    lastLogin: {
       start: query?.start as string,
       end: query?.end as string,
     },
-    verificationStatus:
-      (query?.verificationStatus as IUserVerificationFilter) ?? undefined,
+    emailVerified,
   });
   return (
     <div className="mb-10">

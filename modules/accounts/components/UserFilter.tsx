@@ -4,11 +4,6 @@ import DatePicker from 'react-datepicker';
 import { useIntl } from 'react-intl';
 import useFormatDateTime from '../../common/utils/useFormatDateTime';
 
-enum UserVerificationFilter {
-  VERIFIED = 'VERIFIED',
-  UNVERIFIED = 'UNVERIFIED',
-}
-
 const UserFilter: React.FC = () => {
   const { getDateFormatPattern, parseDate } = useFormatDateTime();
   const router = useRouter();
@@ -39,24 +34,32 @@ const UserFilter: React.FC = () => {
         <div className="flex-1  mr-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">
             {formatMessage({
-              id: 'verification_status',
-              defaultMessage: 'Verification Status',
+              id: 'email_verified_label',
+              defaultMessage: 'E-Mail verified',
             })}
           </label>
           <select
             className="w-full p-2 border rounded-lg"
-            defaultValue={router.query?.verificationStatus || ''}
-            onChange={(e) => updateQuery('verificationStatus', e.target.value)}
+            defaultValue={router.query?.emailVerified || ''}
+            onChange={(e) => updateQuery('emailVerified', e.target.value)}
           >
             <option value="">
               {formatMessage({
-                id: 'select_verification_status',
-                defaultMessage: 'Select Verification Status',
+                id: 'email_verified_default',
+                defaultMessage: 'All',
               })}
             </option>
-            <option value={UserVerificationFilter.VERIFIED}>Verified</option>
-            <option value={UserVerificationFilter.UNVERIFIED}>
-              Unverified
+            <option value={true.toString()}>
+              {formatMessage({
+                id: 'email_verified_true',
+                defaultMessage: 'Only verified',
+              })}
+            </option>
+            <option value={false.toString()}>
+              {formatMessage({
+                id: 'email_verified_false',
+                defaultMessage: 'Only unverified',
+              })}
             </option>
           </select>
         </div>
