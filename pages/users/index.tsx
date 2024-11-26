@@ -44,15 +44,17 @@ const Users = () => {
     emailVerified = false;
   }
 
+  const lastLogin = (query?.start || query?.end) && {
+    start: query?.start as string,
+    end: query?.end as string,
+  };
+
   const { users, usersCount, loading, loadMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
     offset,
-    lastLogin: {
-      start: query?.start as string,
-      end: query?.end as string,
-    },
+    lastLogin,
     emailVerified,
   });
   return (

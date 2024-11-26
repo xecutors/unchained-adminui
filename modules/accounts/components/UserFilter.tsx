@@ -72,11 +72,11 @@ const UserFilter: React.FC = () => {
             })}
           </label>
           <div className="flex items-center space-x-3">
-            <label htmlFor="work-start" className="text-sm">
+            <label htmlFor="lastLoginStart" className="text-sm">
               {formatMessage({ id: 'from', defaultMessage: 'From' })}
             </label>
             <DatePicker
-              id="work-start"
+              id="lastLoginStart"
               onChange={(date) =>
                 updateQuery('start', date ? new Date(date).toISOString() : null)
               }
@@ -95,11 +95,11 @@ const UserFilter: React.FC = () => {
               }
               className="w-full rounded-md border py-2 px-3 shadow-sm focus:outline-none focus:ring-indigo-400"
             />
-            <label htmlFor="work-end" className="text-sm">
+            <label htmlFor="lastLoginEnd" className="text-sm">
               {formatMessage({ id: 'to', defaultMessage: 'To' })}
             </label>
             <DatePicker
-              id="work-end"
+              id="lastLoginEnd"
               onChange={(date) =>
                 updateQuery('end', date ? new Date(date).toISOString() : null)
               }
