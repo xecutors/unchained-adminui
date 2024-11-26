@@ -10,6 +10,7 @@ import SearchField from '../../modules/common/components/SearchField';
 import Toggle from '../../modules/common/components/Toggle';
 import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
+import UserFilter from '../../modules/accounts/components/UserFilter';
 
 const Users = () => {
   const { formatMessage } = useIntl();
@@ -36,14 +37,26 @@ const Users = () => {
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
   const includeGuests = query?.includeGuests === 'true';
+  let emailVerified = null;
+  if (query?.emailVerified === 'true') {
+    emailVerified = true;
+  } else if (query?.emailVerified === 'false') {
+    emailVerified = false;
+  }
+
+  const lastLogin = (query?.start || query?.end) && {
+    start: query?.start as string,
+    end: query?.end as string,
+  };
 
   const { users, usersCount, loading, loadMore } = useUsers({
     limit,
     includeGuests,
     queryString: queryString as string,
     offset,
+    lastLogin,
+    emailVerified,
   });
-
   return (
     <div className="mb-10">
       <BreadCrumbs />
@@ -59,6 +72,7 @@ const Users = () => {
           onInputChange={setQueryString}
         />
       </div>
+      <UserFilter />
       <ListHeader addPath="/users/new" totalRecords={usersCount}>
         <Toggle
           toggleKey="includeGuests"

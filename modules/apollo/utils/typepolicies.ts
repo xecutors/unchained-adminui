@@ -78,7 +78,13 @@ const keyMappings: any = {
         ...offsetLimitPagination(['types', 'queryString', 'sort', 'limit']),
       },
       users: {
-        ...offsetLimitPagination(['includeGuests', 'queryString', 'limit']),
+        ...offsetLimitPagination([
+          'includeGuests',
+          'queryString',
+          'emailVerified',
+          'lastLogin',
+          'limit',
+        ]),
       },
       filters: {
         ...offsetLimitPagination([
