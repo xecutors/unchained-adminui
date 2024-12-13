@@ -351,7 +351,7 @@ export const SuccessResponse = {
           code: 'de-CH',
           language: 'de',
           country: 'CH',
-          normalized: 'de_CH',
+          normalized: 'de-CH',
           score: 1,
           defaulted: false,
         },

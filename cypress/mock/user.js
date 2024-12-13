@@ -12,7 +12,7 @@ export const CurrentUserResponse = {
       lastContact: null,
       lastLogin: {
         countryCode: 'CH',
-        locale: 'de_CH',
+        locale: 'de-CH',
         remoteAddress: '::1',
         remotePort: '51356',
         timestamp: 1690888482538,
@@ -187,7 +187,7 @@ export const UserListResponse = {
         lastContact: null,
         lastLogin: {
           countryCode: 'CH',
-          locale: 'de_CH',
+          locale: 'de-CH',
           remoteAddress: '::1',
           remotePort: '51356',
           timestamp: 1690888482538,
@@ -401,7 +401,7 @@ export const UserListResponse = {
         lastContact: null,
         lastLogin: {
           countryCode: 'CH',
-          locale: 'de_CH',
+          locale: 'de-CH',
           remoteAddress: '::1',
           remotePort: '51356',
           timestamp: 1690888482538,
@@ -546,7 +546,7 @@ export const UserListResponse = {
         lastContact: null,
         lastLogin: {
           countryCode: 'CH',
-          locale: 'de_CH',
+          locale: 'de-CH',
           remoteAddress: '::1',
           remotePort: '51356',
           timestamp: 1690888482538,
@@ -711,7 +711,7 @@ export const CreateUserResponse = {
       lastContact: null,
       lastLogin: {
         countryCode: 'CH',
-        locale: 'de_CH',
+        locale: 'de-CH',
         remoteAddress: '::1',
         remotePort: '51356',
         timestamp: 1690888482538,
@@ -880,7 +880,7 @@ export const UpdateUserResponse = {
       lastContact: null,
       lastLogin: {
         countryCode: 'CH',
-        locale: 'de_CH',
+        locale: 'de-CH',
         remoteAddress: '::1',
         remotePort: '51356',
         timestamp: 1690888482538,
