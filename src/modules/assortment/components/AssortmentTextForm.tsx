@@ -14,11 +14,7 @@ import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 
-const AssortmentTextForm = ({
-  assortmentId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const AssortmentTextForm = ({ assortmentId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
@@ -74,8 +70,6 @@ const AssortmentTextForm = ({
       (text) => text.locale === selectedLocale,
     );
     if (value) form.formik.setValues(value);
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
   }, [translatedAssortmentTexts, selectedLocale]);
 
   return (

@@ -18,18 +18,9 @@ import useAssortmentMedia from '../hooks/useAssortmentMedia';
 import useRemoveAssortmentMedia from '../hooks/useRemoveAssortmentMedia';
 import useReorderAssortmentMedia from '../hooks/useReorderAssortmentMedia';
 import AssortmentMediaList from './AssortmentMediaList';
-import useTranslatedAssortmentTexts from '../hooks/useTranslatedAssortmentTexts';
-import { useEffect } from 'react';
 
-const AssortmentMediaForm = ({
-  assortmentId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const AssortmentMediaForm = ({ assortmentId, selectedLocale = null }) => {
   const { assortmentMedia } = useAssortmentMedia({ assortmentId });
-  const { translatedAssortmentTexts } = useTranslatedAssortmentTexts({
-    assortmentId,
-  });
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeAssortmentMedia } = useRemoveAssortmentMedia();
@@ -134,10 +125,6 @@ const AssortmentMediaForm = ({
     }),
   );
 
-  useEffect(() => {
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedAssortmentTexts.map((l) => l.locale));
-  }, [translatedAssortmentTexts, selectedLocale]);
   return (
     <div className="mx-auto mt-5 max-w-full bg-white dark:bg-slate-800 py-6 shadow-sm dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded-sm">
       <div className="mx-auto w-full px-6 lg:col-span-6 lg:col-start-1">

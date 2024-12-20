@@ -12,11 +12,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import useAuth from '../../Auth/useAuth';
 import FormWrapper from '../../common/components/FormWrapper';
 
-const FilterTextForm = ({
-  filterId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const FilterTextForm = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { translatedFilterTexts, loading } = useTranslatedFilterTexts({
     filterId,
@@ -62,8 +58,6 @@ const FilterTextForm = ({
       (text) => text.locale === selectedLocale,
     );
     if (value) form.formik.setValues(value);
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedFilterTexts.map((l) => l.locale));
   }, [translatedFilterTexts, selectedLocale]);
 
   return (

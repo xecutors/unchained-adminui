@@ -15,11 +15,7 @@ import SelfDocumentingView from '../../common/components/SelfDocumentingView';
 import MarkdownTextAreaField from '../../forms/components/MarkdownTextAreaField';
 import TagInputField from '../../forms/components/TagInputField';
 
-const ProductTextsForm = ({
-  productId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const ProductTextsForm = ({ productId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
 
@@ -77,8 +73,6 @@ const ProductTextsForm = ({
       (text) => text.locale === selectedLocale,
     );
     if (value) form.formik.setValues(value);
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedTexts.map((l) => l.locale));
   }, [translatedTexts, selectedLocale]);
 
   return (

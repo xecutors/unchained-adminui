@@ -21,16 +21,11 @@ import useReOrderProductMedia from '../hooks/useReOrderProductMedia';
 import useTranslatedProductTexts from '../hooks/useTranslatedProductTexts';
 import { useEffect } from 'react';
 
-const ProductMediaForm = ({
-  productId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const ProductMediaForm = ({ productId, selectedLocale = null }) => {
   const { productMedia } = useProductMedia({ productId });
   const { setModal } = useModal();
   const { formatMessage } = useIntl();
   const { removeProductMedia } = useRemoveProductMedia();
-  const { translatedTexts } = useTranslatedProductTexts({ productId });
   const { addProductMedia } = useAddProductMedia();
   const { reOrderProductMedia } = useReOrderProductMedia();
   const items = productMedia?.map((media) => media._id);
@@ -130,11 +125,6 @@ const ProductMediaForm = ({
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-
-  useEffect(() => {
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedTexts.map((l) => l.locale));
-  }, [translatedTexts, selectedLocale]);
 
   return (
     <div className="mx-auto mt-5 space-y-5 lg:space-y-0 max-w-full bg-white dark:bg-slate-900 py-6 shadow-sm dark:shadow-none lg:grid lg:grid-cols-12 lg:gap-4 lg:rounded-sm">

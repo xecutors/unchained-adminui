@@ -9,17 +9,14 @@ import FilterOptionForm from './FilterOptionForm';
 
 import FilterOptionsList from './FilterOptionsList';
 import useAuth from '../../Auth/useAuth';
-import { useCallback, useEffect } from 'react';
-import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
+import { useCallback } from 'react';
 
-const FilterOptions = ({
-  filterId,
-  selectedLocale = null,
-  addAdditionalLocales = null,
-}) => {
+const FilterOptions = ({ filterId, selectedLocale = null }) => {
   const { formatMessage } = useIntl();
-  const { filterOptions } = useFilterOptions({ filterId });
-  const { translatedFilterTexts } = useTranslatedFilterTexts({ filterId });
+  const { filterOptions } = useFilterOptions({
+    filterId,
+    locale: selectedLocale,
+  });
   const { setModal } = useModal();
 
   const { createFilterOption } = useCreateFilterOption();
@@ -37,10 +34,6 @@ const FilterOptions = ({
     [selectedLocale, filterId],
   );
 
-  useEffect(() => {
-    if (typeof addAdditionalLocales === 'function')
-      addAdditionalLocales(translatedFilterTexts.map((l) => l.locale));
-  }, [translatedFilterTexts, selectedLocale]);
   return (
     <SelfDocumentingView
       documentationLabel={formatMessage({
@@ -72,9 +65,8 @@ const FilterOptions = ({
       <div className="mt-8 w-full border-slate-200 dark:border-slate-800 p-3 sm:mt-0 shadow-md  bg-white dark:bg-slate-900">
         <FilterOptionsList
           filterId={filterId}
-          options={filterOptions.filter(
-            ({ texts: { locale } }) => locale === selectedLocale,
-          )}
+          options={filterOptions}
+          selectedLocale={selectedLocale}
         />
       </div>
     </SelfDocumentingView>
