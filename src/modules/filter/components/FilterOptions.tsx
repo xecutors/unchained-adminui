@@ -9,7 +9,7 @@ import FilterOptionForm from './FilterOptionForm';
 
 import FilterOptionsList from './FilterOptionsList';
 import useAuth from '../../Auth/useAuth';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useTranslatedFilterTexts from '../hooks/useTranslatedFilterTexts';
 
 const FilterOptions = ({
@@ -24,14 +24,18 @@ const FilterOptions = ({
 
   const { createFilterOption } = useCreateFilterOption();
   const { hasRole } = useAuth();
-  const onSubmit: OnSubmitType = async ({ value, title }) => {
-    await createFilterOption({
-      filterId,
-      option: { value, title },
-    });
-    setModal('');
-    return { success: true };
-  };
+  const onSubmit: OnSubmitType = useCallback(
+    async ({ value, title }) => {
+      await createFilterOption({
+        filterId,
+        option: value,
+        texts: [{ title, locale: selectedLocale }],
+      });
+      setModal('');
+      return { success: true };
+    },
+    [selectedLocale, filterId],
+  );
 
   useEffect(() => {
     if (typeof addAdditionalLocales === 'function')
