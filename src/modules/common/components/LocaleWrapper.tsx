@@ -11,7 +11,7 @@ const createLanguageDialectList = (languages, countries) => {
   languages.forEach(({ _id: languageId, isoCode: baseIsoCode }) => {
     result.push({ _id: languageId, isoCode: baseIsoCode });
     countries.forEach(({ isoCode: countryIsoCode, _id: countryId }) => {
-      const dialectIsoCode = `${baseIsoCode}_${countryIsoCode.toLowerCase()}`;
+      const dialectIsoCode = `${baseIsoCode}-${countryIsoCode.toLowerCase()}`;
       result.push({
         _id: `${countryId}-${languageId}`,
         isoCode: dialectIsoCode,
