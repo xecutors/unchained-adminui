@@ -26,14 +26,9 @@ export default createProxyMiddleware({
   proxyTimeout: 60000,
   on: {
     proxyRes: (proxyRes) => {
-      const removeSecure = (str) => str.replace(/; Secure/i, '');
       const set = proxyRes.headers['set-cookie'];
       if (set) {
-        const result = Array.isArray(set)
-          ? set.map(removeSecure)
-          : removeSecure(set);
-        // eslint-disable-next-line
-        proxyRes.headers['set-cookie'] = result;
+        proxyRes.headers['set-cookie'] = set;
       }
     },
   },

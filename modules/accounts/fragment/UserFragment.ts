@@ -94,6 +94,7 @@ const UserFragment = gql`
     name
     roles
     tags
+    deleted
   }
   ${MD5MetaDataFragment}
 `;

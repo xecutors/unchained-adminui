@@ -24,7 +24,6 @@ const FilterForm = ({
   onSubmitSuccess: OnSubmitSuccessType;
   selectedLocale?: string;
 }) => {
-  console.log(selectedLocale);
   const { filterTypes } = useFilterTypes();
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();

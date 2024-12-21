@@ -15,7 +15,6 @@ const FilterOptionsListItem = ({
   onDelete,
   selectedLocale,
 }) => {
-  console.log(option);
   const { formatMessage } = useIntl();
   const [isEdit, setIsEdit] = useState(false);
 
