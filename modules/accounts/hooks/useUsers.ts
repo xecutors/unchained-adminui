@@ -8,16 +8,25 @@ const UsersQuery = gql`
     $offset: Int
     $includeGuests: Boolean
     $queryString: String
+    $lastLogin: DateFilterInput
+    $emailVerified: Boolean
   ) {
     users(
       limit: $limit
       offset: $offset
       includeGuests: $includeGuests
       queryString: $queryString
+      lastLogin: $lastLogin
+      emailVerified: $emailVerified
     ) {
       ...UserFragment
     }
-    usersCount(includeGuests: $includeGuests, queryString: $queryString)
+    usersCount(
+      includeGuests: $includeGuests
+      queryString: $queryString
+      lastLogin: $lastLogin
+      emailVerified: $emailVerified
+    )
   }
   ${UserFragment}
 `;
@@ -27,17 +36,32 @@ const useUsers = ({
   offset = 0,
   includeGuests = false,
   queryString = null,
+  lastLogin = null,
+  emailVerified = null,
 }: IUsersQueryVariables) => {
-  const { data, loading, error } = useQuery<IUsersQuery, IUsersQueryVariables>(
-    UsersQuery,
-    {
-      variables: { limit, offset, includeGuests, queryString },
+  const { data, loading, error, fetchMore } = useQuery<
+    IUsersQuery,
+    IUsersQueryVariables
+  >(UsersQuery, {
+    variables: {
+      limit,
+      offset,
+      includeGuests,
+      queryString,
+      lastLogin,
+      emailVerified,
     },
-  );
+  });
 
   const users = data?.users || [];
   const usersCount = data?.usersCount;
   const hasMore = users?.length < usersCount;
+
+  const loadMore = () => {
+    fetchMore({
+      variables: { offset: users?.length },
+    });
+  };
 
   return {
     users,
@@ -45,6 +69,7 @@ const useUsers = ({
     hasMore,
     loading,
     error,
+    loadMore,
   };
 };
 

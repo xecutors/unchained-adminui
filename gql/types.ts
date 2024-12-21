@@ -5735,6 +5735,8 @@ export type IUsersQueryVariables = Exact<{
   offset?: InputMaybe<Scalars['Int']['input']>;
   includeGuests?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+  lastLogin?: InputMaybe<IDateFilterInput>;
+  emailVerified?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 export type IUsersQuery = {

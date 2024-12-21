@@ -10,6 +10,7 @@ import { useCallback } from 'react';
 import useModal from '../../modules/modal/hooks/useModal';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import { toast } from 'react-toastify';
+import useAuth from '../../modules/Auth/useAuth';
 
 const UserProfile = () => {
   const { formatMessage } = useIntl();
@@ -19,6 +20,7 @@ const UserProfile = () => {
   const { deleteUser } = useDeleteUser();
   const { user, extendedData } = useUser({ userId: userId as string });
   const router = useRouter();
+  const { hasRole } = useAuth();
 
   const onDeleteUser = useCallback(async () => {
     await setModal(
@@ -47,7 +49,6 @@ const UserProfile = () => {
       />,
     );
   }, [user]);
-
   return (
     <div className=" max-w-6xl">
       <BreadCrumbs currentPageTitle={user ? `${user?.name}` : ''} />
@@ -56,7 +57,7 @@ const UserProfile = () => {
           id: 'users_setting_list_header',
           defaultMessage: 'User settings',
         })}
-        onDelete={!user?.deleted ? onDeleteUser : null}
+        onDelete={!user?.deleted && hasRole('removeUser') ? onDeleteUser : null}
       />
       <UserSettings user={user} extendedData={extendedData} />
     </div>

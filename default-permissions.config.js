@@ -161,6 +161,7 @@ module.exports = () => {
       manageUsers: 'manageUsers',
       enrollUser: 'manageUsers',
       showWebAuthn: 'manageUsers',
+      removeUser: 'removeUser',
     },
     shopInfo: {
       viewShopInfo: 'viewShopInfo',

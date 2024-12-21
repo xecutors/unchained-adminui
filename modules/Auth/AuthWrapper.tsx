@@ -61,7 +61,6 @@ const AuthWrapper = ({ children, componentName }) => {
 
   useEffect(() => {
     if (!loading) {
-      console.log('currentUser', currentUser);
       if (isAuthenticated(currentUser)) {
         if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
