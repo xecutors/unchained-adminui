@@ -47,7 +47,6 @@ const EnrollmentDetailFragment = gql`
         isActive
 
         simulatedPrice {
-          _id
           amount
           currency
           isNetPrice

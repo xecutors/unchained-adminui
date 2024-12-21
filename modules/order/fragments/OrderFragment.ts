@@ -15,7 +15,6 @@ const OrderFragment = gql`
       emailAddress
     }
     total {
-      _id
       isTaxable
       isNetPrice
       amount

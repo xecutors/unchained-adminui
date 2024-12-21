@@ -18,6 +18,7 @@ const UserProfile = () => {
   const { setModal } = useModal();
   const { deleteUser } = useDeleteUser();
   const { user, extendedData } = useUser({ userId: userId as string });
+  const router = useRouter();
 
   const onDeleteUser = useCallback(async () => {
     await setModal(
@@ -37,6 +38,7 @@ const UserProfile = () => {
               defaultMessage: 'User deleted successfully',
             }),
           );
+          router.push('/users');
         }}
         okText={formatMessage({
           id: 'delete_user_account',
