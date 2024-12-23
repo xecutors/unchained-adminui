@@ -14484,6 +14484,70 @@ export type ISyncReportsQuery = {
   }>;
 };
 
+export type ITokenQueryVariables = Exact<{
+  tokenId: Scalars['ID']['input'];
+}>;
+
+export type ITokenQuery = {
+  token?: {
+    _id: string;
+    walletAddress?: string | null;
+    status: ITokenExportStatus;
+    quantity: number;
+    contractAddress?: string | null;
+    chainId?: string | null;
+    chainTokenId?: string | null;
+    invalidatedDate?: any | null;
+    expiryDate?: any | null;
+    ercMetadata?: any | null;
+    accessKey: string;
+    isInvalidateable: boolean;
+    product: {
+      _id: string;
+      sequence: number;
+      status: IProductStatus;
+      tags?: Array<any> | null;
+      updated?: any | null;
+      published?: any | null;
+      simulatedPrice?: { _id: string; amount: number; currency: string } | null;
+      texts?: {
+        _id: string;
+        slug?: string | null;
+        title?: string | null;
+        subtitle?: string | null;
+        description?: string | null;
+        vendor?: string | null;
+        brand?: string | null;
+        labels?: Array<string> | null;
+      } | null;
+      media: Array<{
+        _id: string;
+        tags?: Array<any> | null;
+        file: { _id: string; url: string };
+      }>;
+    };
+    user?: {
+      _id: string;
+      username?: string | null;
+      isGuest: boolean;
+      name: string;
+      avatar?: { _id: string; url: string } | null;
+      primaryEmail?: { verified: boolean; address: string } | null;
+      lastContact?: {
+        telNumber?: string | null;
+        emailAddress?: string | null;
+      } | null;
+      profile?: {
+        displayName?: string | null;
+        address?: {
+          firstName?: string | null;
+          lastName?: string | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
 export type ITokensQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;

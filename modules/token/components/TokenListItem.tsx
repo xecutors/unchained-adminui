@@ -13,6 +13,16 @@ const TokenListItem = ({ token }) => {
     <Table.Row key={token._id}>
       <Table.Cell>
         <div className="flex items-center text-sm">
+          <Link
+            href={`/tokens/${token._id}`}
+            className="font-medium text-blue-500 dark:text-blue-400"
+          >
+            {token?._id}
+          </Link>
+        </div>
+      </Table.Cell>
+      <Table.Cell>
+        <div className="flex items-center text-sm">
           {token.product?.texts?.title || 'N/A'}
         </div>
       </Table.Cell>
@@ -28,7 +38,9 @@ const TokenListItem = ({ token }) => {
       </Table.Cell>
       <Table.Cell>
         <Badge
-          text={token?.status}
+          text={
+            token?.status === 'CENTRALIZED' ? 'Off-Chain 🏛' : 'On-Chain ⛓'
+          }
           color={TOKEN_STATUSES[token.status]}
           square
         />
