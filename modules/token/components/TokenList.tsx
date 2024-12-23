@@ -10,6 +10,9 @@ const TokenList = ({ tokens }) => {
       <Table className="min-w-full">
         <Table.Row header>
           <Table.Cell>
+            {formatMessage({ id: 'id', defaultMessage: 'ID' })}
+          </Table.Cell>
+          <Table.Cell>
             {formatMessage({ id: 'name', defaultMessage: 'Name' })}
           </Table.Cell>
           <Table.Cell>

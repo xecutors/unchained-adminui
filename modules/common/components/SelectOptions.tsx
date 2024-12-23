@@ -30,7 +30,7 @@ const SelectOptions = ({
     options?.filter(({ current }) => current)[0],
   );
   const { formatMessage } = useIntl();
-
+  if (!select?.id) return null;
   return (
     <Listbox value={select} onChange={setSelected}>
       {({ open }) => (
