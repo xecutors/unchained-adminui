@@ -762,3 +762,9 @@ export const ORDER_STATUSES = {
   FULLFILLED: 'green',
   REJECTED: 'red',
 };
+
+export const TOKEN_STATUSES = {
+  CENTRALIZED: 'blue',
+  EXPORTING: 'yellow',
+  DECENTRALIZED: 'green',
+};

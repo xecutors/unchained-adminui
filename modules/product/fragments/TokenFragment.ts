@@ -9,6 +9,11 @@ const TokenFragment = gql`
     contractAddress
     chainId
     chainTokenId
+    invalidatedDate
+    expiryDate
+    ercMetadata
+    accessKey
+    isInvalidateable
   }
 `;
 

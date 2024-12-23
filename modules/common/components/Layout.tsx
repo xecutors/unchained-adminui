@@ -97,6 +97,11 @@ const Layout = ({
       href: '/products',
     },
     {
+      name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
+      icon: TagIcon,
+      href: '/tokens',
+    },
+    {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),
       icon: RectangleStackIcon,
       href: '/assortments',
