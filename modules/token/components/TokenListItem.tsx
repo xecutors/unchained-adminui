@@ -60,11 +60,6 @@ const TokenListItem = ({ token }) => {
           {token.quantity || 'N/A'}
         </div>
       </Table.Cell>
-      <Table.Cell>
-        <div className="flex items-center text-sm">
-          {token.ercMetadata?.properties?.slot || 'N/A'}
-        </div>
-      </Table.Cell>
 
       <Table.Cell>
         <div className="flex items-center text-sm">
@@ -73,7 +68,7 @@ const TokenListItem = ({ token }) => {
                 dateStyle: 'short',
                 timeStyle: 'short',
               })
-            : 'N/A'}
+            : null}
         </div>
       </Table.Cell>
     </Table.Row>

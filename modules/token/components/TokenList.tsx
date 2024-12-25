@@ -28,10 +28,6 @@ const TokenList = ({ tokens }) => {
             {formatMessage({ id: 'quantity', defaultMessage: 'Quantity' })}
           </Table.Cell>
           <Table.Cell>
-            {formatMessage({ id: 'token_slot', defaultMessage: 'Slot' })}
-          </Table.Cell>
-
-          <Table.Cell>
             {formatMessage({
               id: 'token_invalidation_date',
               defaultMessage: 'Invalidated',
