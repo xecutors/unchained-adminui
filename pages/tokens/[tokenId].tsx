@@ -12,6 +12,7 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useInvalidateTicket from '../../modules/token/hooks/useInvalidateTicket';
 import { toast } from 'react-toastify';
 import { useCallback } from 'react';
+import useAuth from '../../modules/Auth/useAuth';
 
 const TokenDetailView = () => {
   const { query } = useRouter();
@@ -20,6 +21,7 @@ const TokenDetailView = () => {
   const { tokenId } = query;
   const { token, loading } = useToken({ tokenId: tokenId as string });
   const { invalidateTicket } = useInvalidateTicket();
+  const { hasRole } = useAuth();
 
   const onInvalidateToken = useCallback(async () => {
     await setModal(
@@ -61,21 +63,16 @@ const TokenDetailView = () => {
             },
             { chainTokenId: token?.chainTokenId },
           )}
-          title={formatMessage(
-            {
-              id: 'token-id',
-              defaultMessage: 'Token ID {chainTokenId}',
-            },
-            { chainTokenId: token?.chainTokenId },
-          )}
         >
-          {token.status !== 'DECENTRALIZED' && (
+          {token.status !== 'DECENTRALIZED' && hasRole('editToken') && (
             <div className="mr-2">
               <ExportToken tokenId={token._id} tokenStatus={token.status} />
             </div>
           )}
         </PageHeader>
-        {!token.invalidatedDate && token.isInvalidateable ? (
+        {!token.invalidatedDate &&
+        token.isInvalidateable &&
+        hasRole('editToken') ? (
           <HeaderDeleteButton
             onClick={onInvalidateToken}
             text={formatMessage({

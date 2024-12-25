@@ -98,6 +98,7 @@ const Layout = ({ children, apollo, router, pageHeader = '' }) => {
       name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
       icon: QrCodeIcon,
       href: '/tokens',
+      requiredRole: 'viewTokens',
     },
     {
       name: formatMessage({ id: 'assortments', defaultMessage: 'Assortments' }),

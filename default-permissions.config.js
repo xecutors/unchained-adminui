@@ -28,6 +28,11 @@ module.exports = () => {
       removeAssortmentFilter: 'manageAssortments',
       reorderAssortmentFilter: 'manageAssortments',
     },
+    tokens: {
+      showTokens: 'viewTokens',
+      showToken: 'viewToken',
+      editToken: 'updateToken',
+    },
     products: {
       showProduct: 'viewProduct',
       showProducts: 'viewProducts',
@@ -161,6 +166,7 @@ module.exports = () => {
       manageUsers: 'manageUsers',
       enrollUser: 'manageUsers',
       showWebAuthn: 'manageUsers',
+      removeUser: 'removeUser',
     },
     shopInfo: {
       viewShopInfo: 'viewShopInfo',
@@ -240,6 +246,7 @@ module.exports = () => {
     '/423': 'UNRESTRICTED',
     '/verify-email': 'UNRESTRICTED',
     '/oauth': 'UNRESTRICTED',
+    '/external': 'UNRESTRICTED',
     '/orders/[orderId]': ACTION_ROLES.orders.manageOrders,
     '/orders': ACTION_ROLES.orders.manageOrders,
     '/quotations': ACTION_ROLES.quotations.showQuotations,
@@ -259,6 +266,7 @@ module.exports = () => {
     '/_offline',
     '/verify-email',
     '/403',
+    '/external',
   ];
 
   const OnlyPublicPages = [
