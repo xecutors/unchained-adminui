@@ -24,7 +24,10 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
   >(GetCurrentUserQuery(customProperties?.User));
 
   const currentUser = data?.me;
-  const extendedData = hydrateFragment(customProperties?.User, currentUser);
+  const extendedData = hydrateFragment(
+    customProperties?.User,
+    currentUser || null,
+  );
 
   return {
     currentUser,
