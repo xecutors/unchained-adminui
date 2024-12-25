@@ -28,6 +28,11 @@ module.exports = () => {
       removeAssortmentFilter: 'manageAssortments',
       reorderAssortmentFilter: 'manageAssortments',
     },
+    tokens: {
+      showTokens: 'viewTokens',
+      showToken: 'viewToken',
+      editToken: 'updateToken',
+    },
     products: {
       showProduct: 'viewProduct',
       showProducts: 'viewProducts',

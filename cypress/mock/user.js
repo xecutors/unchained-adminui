@@ -694,12 +694,6 @@ export const SingleUserResponse = {
   },
 };
 
-export const TOTPEnabledUser = {
-  data: {
-    user: UserListResponse.data.users[0],
-  },
-};
-
 export const CreateUserResponse = {
   data: {
     enrollUser: {
@@ -1126,51 +1120,6 @@ export const SetPasswordResponse = {
   data: {
     setPassword: SingleUserResponse.data.user,
   },
-};
-
-export const BuildSecretTOTPAuthURLResponse = {
-  data: {
-    buildSecretTOTPAuthURL:
-      'otpauth://totp/SecretKey?secret=PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
-  },
-};
-
-export const EnableTOTPResponse = {
-  data: {
-    enableTOTP: SingleUserResponse.data.user,
-  },
-};
-
-export const UnsuccessfulEnableTOTPResponse = {
-  data: { enableTOTP: null },
-  errors: [
-    {
-      message: "2FA code didn't match",
-      path: ['enableTOTP'],
-      extensions: {
-        code: 'INTERNAL_SERVER_ERROR',
-      },
-    },
-  ],
-};
-
-export const DisableTOTPResponse = {
-  data: {
-    disableTOTP: SingleUserResponse.data.user,
-  },
-};
-
-export const UnsuccessfulDisableTOTPResponse = {
-  data: { disableTOTP: null },
-  errors: [
-    {
-      message: "2FA code didn't match",
-      path: ['disableTOTP'],
-      extensions: {
-        code: 'INTERNAL_SERVER_ERROR',
-      },
-    },
-  ],
 };
 
 export const SystemRolesResponse = {
@@ -2014,9 +1963,6 @@ export const UserOperations = {
   SetUserTags: 'setUserTags',
   SetRoles: 'SetRoles',
   SetPassword: 'ChangePassword',
-  BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
-  EnableTOTP: 'EnableTOTP',
-  DisableTOTP: 'DisableTOTP',
   SystemRoles: 'SystemRoles',
   UserOrder: 'UserOrder',
   UserQuotations: 'UserQuotations',

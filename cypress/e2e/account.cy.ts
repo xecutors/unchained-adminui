@@ -2,15 +2,10 @@ import localizations from '../../i18n';
 import { AccountOperations, ChangePasswordResponse } from '../mock/account';
 import {
   AddEmailResponse,
-  BuildSecretTOTPAuthURLResponse,
   createUserRequestVariables,
   CurrentUserResponse,
-  DisableTOTPResponse,
-  EnableTOTPResponse,
   RemoveEmailResponse,
   SendVerificationEmailResponse,
-  UnsuccessfulDisableTOTPResponse,
-  UnsuccessfulEnableTOTPResponse,
   UpdateUserResponse,
 } from '../mock/user';
 import { aliasMutation, fullAliasMutationName } from '../utils/aliasMutation';
@@ -50,29 +45,6 @@ describe('Account', () => {
       if (hasOperationName(req, AccountOperations.AddEmail)) {
         aliasMutation(req, AccountOperations.AddEmail);
         req.reply(AddEmailResponse);
-      }
-      if (hasOperationName(req, AccountOperations.BuildSecretTOTPAuthURL)) {
-        aliasMutation(req, AccountOperations.BuildSecretTOTPAuthURL);
-        req.reply(BuildSecretTOTPAuthURLResponse);
-      }
-      if (hasOperationName(req, AccountOperations.EnableTOTP)) {
-        const { body } = req;
-        if (body.variables?.code?.length === 6) {
-          aliasMutation(req, AccountOperations.EnableTOTP);
-          req.reply(EnableTOTPResponse);
-        } else {
-          aliasMutation(req, AccountOperations.EnableTOTP);
-          req.reply(UnsuccessfulEnableTOTPResponse);
-        }
-      }
-      if (hasOperationName(req, AccountOperations.DisableTOTP)) {
-        if (req.body.variables?.code?.length === 6) {
-          aliasMutation(req, AccountOperations.DisableTOTP);
-          req.reply(DisableTOTPResponse);
-        } else {
-          aliasMutation(req, AccountOperations.DisableTOTP);
-          req.reply(UnsuccessfulDisableTOTPResponse);
-        }
       }
     });
     cy.visit('/');
@@ -383,178 +355,6 @@ describe('Account', () => {
 
       cy.get(`input[type="submit"][aria-label="${localizations.en.add_email}"]`)
         .should('have.value', localizations.en.add_email)
-
-        .should('be.disabled');
-    });
-  });
-
-  context('Enable TOTP', () => {
-    beforeEach(() => {
-      cy.intercept('POST', '/api/graphql', (req) => {
-        if (hasOperationName(req, AccountOperations.CurrentUser)) {
-          req.reply(CurrentUserResponse);
-        }
-      });
-      cy.get('#account').first().click();
-      cy.get('button[role="switch"]').click();
-
-      cy.wait(
-        fullAliasMutationName(AccountOperations.BuildSecretTOTPAuthURL),
-      ).then((currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
-      });
-    });
-
-    it('Should [ENABLE TOTP] successfully', () => {
-      cy.get('input#code').type('213746');
-      cy.get(`input[type="submit"][aria-label="${localizations.en.enable}"]`)
-        .should('have.value', localizations.en.enable)
-        .click();
-
-      cy.wait(fullAliasMutationName(AccountOperations.EnableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213746',
-            secretBase32: 'PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
-          });
-          expect(response.body).to.deep.eq(EnableTOTPResponse);
-        },
-      );
-    });
-
-    it('Should [ERROR] when required fields are not provided in enable totp', () => {
-      cy.get('input#code').type('1234').clear().blur();
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.totp_code,
-        ),
-      );
-
-      cy.get(`input[type="submit"][aria-label="${localizations.en.enable}"]`)
-        .should('have.value', localizations.en.enable)
-        .should('be.disabled');
-    });
-
-    it('Should [ERROR] when enable totp unsuccessful', () => {
-      cy.get('input#code').type('213');
-      cy.get(`input[type="submit"][aria-label="${localizations.en.enable}"]`)
-        .should('have.value', localizations.en.enable)
-        .click();
-
-      cy.wait(fullAliasMutationName(AccountOperations.EnableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213',
-            secretBase32: 'PVJS4TSIGNJSS63YNMYGCZKUKJ2SG6R6',
-          });
-          expect(response.body).to.deep.eq(UnsuccessfulEnableTOTPResponse);
-        },
-      );
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        localizations.en.totp_code_not_match,
-      );
-
-      cy.get(`input[type="submit"][aria-label="${localizations.en.enable}"]`)
-        .should('have.value', localizations.en.enable)
-
-        .should('be.disabled');
-    });
-  });
-
-  context('Disable TOTP', () => {
-    const { me } = CurrentUserResponse.data;
-    beforeEach(() => {
-      cy.intercept('POST', '/api/graphql', (req) => {
-        if (hasOperationName(req, AccountOperations.CurrentUser)) {
-          req.reply({
-            ...CurrentUserResponse,
-            data: {
-              ...CurrentUserResponse.data,
-              me: {
-                ...CurrentUserResponse.data.me,
-                isTwoFactorEnabled: true,
-              },
-            },
-          });
-        }
-      });
-      cy.visit('/account');
-      cy.get('#account').first().click();
-    });
-    it('Should [DISABLE TOTP] successfully', () => {
-      cy.get('input#code').type('213746');
-      cy.get(
-        `input[type="submit"][aria-label="${localizations.en.disable_totp}"]`,
-      )
-        .should('have.value', localizations.en.disable_totp)
-        .click();
-
-      cy.wait(fullAliasMutationName(AccountOperations.DisableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213746',
-            userId: me._id,
-          });
-          expect(response.body).to.deep.eq(DisableTOTPResponse);
-        },
-      );
-    });
-
-    it('Should [ERROR] when required fields are not provided in disable totp', () => {
-      cy.get('input#code').type('2137').clear().blur();
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.totp_code,
-        ),
-      );
-
-      cy.get(
-        `input[type="submit"][aria-label="${localizations.en.disable_totp}"]`,
-      )
-        .should('have.value', localizations.en.disable_totp)
-
-        .should('be.disabled');
-    });
-
-    it('Should [ERROR] when disable totp unsuccessful', () => {
-      cy.get('input#code').type('213');
-      cy.get(
-        `input[type="submit"][aria-label="${localizations.en.disable_totp}"]`,
-      )
-        .should('have.value', localizations.en.disable_totp)
-        .click();
-
-      cy.wait(fullAliasMutationName(AccountOperations.DisableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213',
-            userId: me._id,
-          });
-          expect(response.body).to.deep.eq(UnsuccessfulDisableTOTPResponse);
-        },
-      );
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        localizations.en.totp_code_not_match,
-      );
-
-      cy.get(
-        `input[type="submit"][aria-label="${localizations.en.disable_totp}"]`,
-      )
-        .should('have.value', localizations.en.disable_totp)
 
         .should('be.disabled');
     });

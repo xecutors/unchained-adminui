@@ -13,7 +13,4 @@ export const AccountOperations = {
   SendVerificationEmail: 'SendVerificationEmail',
   RemoveEmail: 'RemoveEmail',
   AddEmail: 'AddEmail',
-  BuildSecretTOTPAuthURL: 'BuildSecretTOTPAuthURL',
-  DisableTOTP: 'DisableTOTP',
-  EnableTOTP: 'EnableTOTP',
 };

@@ -48,8 +48,6 @@ describe('Sign Up', () => {
 
   it('Should [CREATE USER] successfully', () => {
     cy.get('input[name="username"]').type('new');
-
-    cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('new@unchained.shop');
     cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
@@ -100,7 +98,6 @@ describe('Sign Up', () => {
     );
 
     cy.get('input[name="username"]').type('admin');
-    cy.get('button#totp[role="switch"]').click();
     cy.get('input[name="email"]').type('admin@unchained.shop');
     cy.get('input[name="plainPassword"]').type('password');
     cy.get('button[type="submit"]')
@@ -131,7 +128,6 @@ describe('Sign Up', () => {
         });
       },
     );
-    cy.get('button#totp[role="switch"]').click();
     cy.get('button[type="submit"]')
       .should('contain.text', localizations.en.sign_up)
       .click();

@@ -10,7 +10,6 @@ const TokenQuery = gql`
       product {
         ...ProductBriefFragment
         simulatedPrice {
-          _id
           amount
           currency
         }

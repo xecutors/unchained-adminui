@@ -2,9 +2,6 @@ import localizations from '../../i18n';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   AddEmailResponse,
-  BuildSecretTOTPAuthURLResponse,
-  DisableTOTPResponse,
-  EnableTOTPResponse,
   RemoveEmailResponse,
   SendVerificationEmailResponse,
   SetPasswordResponse,
@@ -13,9 +10,6 @@ import {
   SetUserTagsResponse,
   SingleUserResponse,
   SystemRolesResponse,
-  TOTPEnabledUser,
-  UnsuccessfulDisableTOTPResponse,
-  UnsuccessfulEnableTOTPResponse,
   UserListResponse,
   UserOperations,
   UserWebAuthCredentials,
@@ -81,27 +75,6 @@ describe('User', () => {
       if (hasOperationName(req, UserOperations.SetPassword)) {
         aliasMutation(req, UserOperations.SetPassword);
         req.reply(SetPasswordResponse);
-      }
-      if (hasOperationName(req, UserOperations.BuildSecretTOTPAuthURL)) {
-        aliasMutation(req, UserOperations.BuildSecretTOTPAuthURL);
-        req.reply(BuildSecretTOTPAuthURLResponse);
-      }
-      if (hasOperationName(req, UserOperations.EnableTOTP)) {
-        aliasMutation(req, UserOperations.EnableTOTP);
-        const { body } = req;
-        if (body.variables?.code === '123456') {
-          req.reply(EnableTOTPResponse);
-        } else {
-          req.reply(UnsuccessfulEnableTOTPResponse);
-        }
-      }
-      if (hasOperationName(req, UserOperations.DisableTOTP)) {
-        aliasMutation(req, UserOperations.DisableTOTP);
-        if (req.body.variables?.code === '123456') {
-          req.reply(DisableTOTPResponse);
-        } else {
-          req.reply(UnsuccessfulDisableTOTPResponse);
-        }
       }
     });
     cy.visit('/');
@@ -475,200 +448,6 @@ describe('User', () => {
 
       cy.get('input[type="submit"]')
         .contains(localizations.en.change_password)
-        .should('be.disabled');
-    });
-  });
-
-  context('TOTP Disabled', () => {
-    const { user } = SingleUserResponse.data;
-    beforeEach(() => {
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.location('pathname').should('eq', `/users/${user._id}`);
-      cy.get(`a#account`).contains(localizations.en.account).click();
-
-      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-        (currentSubject) => {
-          const { response } = currentSubject;
-          expect(response.body).to.deep.eq(SystemRolesResponse);
-        },
-      );
-
-      cy.location().then((current) => {
-        expect(current.pathname).to.eq(`/users/${user._id}`);
-        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-          tab: 'account',
-        });
-      });
-    });
-
-    it('Should [ENABLE TOTP] successfully', () => {
-      cy.get('button[role="switch"]#totp-toggle').click();
-
-      cy.wait(
-        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
-      ).then((currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
-      });
-
-      cy.get('input#code').type('123456');
-      cy.get('input[type="submit"]').contains(localizations.en.enable).click();
-
-      cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '123456',
-            secretBase32:
-              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL?.split(
-                '=',
-              )[1],
-          });
-          expect(response.body).to.deep.eq(EnableTOTPResponse);
-        },
-      );
-    });
-
-    it('Should [ERROR] when required fields are not provided in enable totp', () => {
-      cy.get('button[role="switch"]#totp-toggle').click();
-
-      cy.wait(
-        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
-      ).then((currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
-      });
-
-      cy.get('input#code').type('1234').clear().blur();
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.totp_code,
-        ),
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.enable)
-        .should('be.disabled');
-    });
-
-    it('Should [ERROR] when enable totp unsuccessful', () => {
-      cy.get('button[role="switch"]#totp-toggle').click();
-
-      cy.wait(
-        fullAliasMutationName(UserOperations.BuildSecretTOTPAuthURL),
-      ).then((currentSubject) => {
-        const { response } = currentSubject;
-        expect(response.body).to.deep.eq(BuildSecretTOTPAuthURLResponse);
-      });
-
-      cy.get('input#code').type('213');
-      cy.get('input[type="submit"]').contains(localizations.en.enable).click();
-
-      cy.wait(fullAliasMutationName(UserOperations.EnableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213',
-            secretBase32:
-              BuildSecretTOTPAuthURLResponse.data.buildSecretTOTPAuthURL?.split(
-                'secret=',
-              )[1],
-          });
-          expect(response.body).to.deep.eq(UnsuccessfulEnableTOTPResponse);
-        },
-      );
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        localizations.en.totp_code_not_match,
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.enable)
-        .should('be.disabled');
-    });
-  });
-  context('TOTP Enabled', () => {
-    const { user } = TOTPEnabledUser.data;
-    beforeEach(() => {
-      cy.get(`a[href="/users/${user._id}"]`).click();
-      cy.location('pathname').should('eq', `/users/${user._id}`);
-      cy.get(`a#account`).contains(localizations.en.account).click();
-
-      cy.wait(fullAliasName(UserOperations.SystemRoles)).then(
-        (currentSubject) => {
-          const { response } = currentSubject;
-          expect(response.body).to.deep.eq(SystemRolesResponse);
-        },
-      );
-      cy.location().then((current) => {
-        expect(current.pathname).to.eq(`/users/${user._id}`);
-        expect(convertURLSearchParamToObj(current.search)).to.deep.eq({
-          tab: 'account',
-        });
-      });
-    });
-
-    it('Should [DISABLE TOTP] successfully', () => {
-      cy.get('input#code').type('123456');
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.disable_totp)
-        .click();
-
-      cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '123456',
-            userId: user._id,
-          });
-          expect(response.body).to.deep.eq(DisableTOTPResponse);
-        },
-      );
-    });
-
-    it('Should [ERROR] when required fields are not provided in disable totp', () => {
-      cy.get('input#code').type('2137').clear().blur();
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        replaceIntlPlaceholder(
-          localizations.en.error_required,
-          localizations.en.totp_code,
-        ),
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.disable_totp)
-        .should('be.disabled');
-    });
-
-    it('Should [ERROR] when disable totp unsuccessful', () => {
-      cy.get('input#code').type('213');
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.disable_totp)
-        .click();
-
-      cy.wait(fullAliasMutationName(UserOperations.DisableTOTP)).then(
-        (currentSubject) => {
-          const { request, response } = currentSubject;
-          expect(request.body.variables).to.deep.eq({
-            code: '213',
-            userId: user._id,
-          });
-          expect(response.body).to.deep.eq(UnsuccessfulDisableTOTPResponse);
-        },
-      );
-
-      cy.get('label[for="code"]').should(
-        'contain.text',
-        localizations.en.totp_code_not_match,
-      );
-
-      cy.get('input[type="submit"]')
-        .contains(localizations.en.disable_totp)
         .should('be.disabled');
     });
   });
