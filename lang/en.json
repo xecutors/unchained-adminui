@@ -147,6 +147,9 @@
   "assortment_detail_header": {
     "defaultMessage": "Assortment detail <b>({id})</b>"
   },
+  "assortment_detail_title": {
+    "defaultMessage": "Assortment {id}"
+  },
   "assortment_filter_deleted": {
     "defaultMessage": "Assortment filter deleted successfully"
   },
@@ -271,11 +274,17 @@
   "cart": {
     "defaultMessage": "Cart"
   },
+  "cart_detail_title": {
+    "defaultMessage": "Cart {id}"
+  },
   "categories": {
     "defaultMessage": "Categories"
   },
   "chain-id": {
-    "defaultMessage": "Chain ID {chainId}"
+    "defaultMessage": "Chain ID"
+  },
+  "chain-token-id": {
+    "defaultMessage": "Chain Token ID"
   },
   "change": {
     "defaultMessage": "Change"
@@ -620,6 +629,9 @@
   "delivery_provider_deleted": {
     "defaultMessage": "Delivery provider deleted successfully"
   },
+  "delivery_provider_title": {
+    "defaultMessage": "Delivery provider {id}"
+  },
   "delivery_providers": {
     "defaultMessage": "Delivery providers"
   },
@@ -634,12 +646,6 @@
   },
   "different_browser": {
     "defaultMessage": "Visit this page from a browser that supports HTTPS requests to local HTTP endpoints, like Chrome or Firefox."
-  },
-  "disable_2fa_auth_header": {
-    "defaultMessage": "Disable 2FA authentication"
-  },
-  "disable_totp": {
-    "defaultMessage": "Disable TOTP"
   },
   "discount": {
     "defaultMessage": "Discount"
@@ -707,17 +713,20 @@
   "email_verification_failed": {
     "defaultMessage": "Email verification failed"
   },
+  "email_verified_default": {
+    "defaultMessage": "All"
+  },
+  "email_verified_false": {
+    "defaultMessage": "Only unverified"
+  },
+  "email_verified_label": {
+    "defaultMessage": "E-Mail verified"
+  },
   "email_verified_successfully": {
     "defaultMessage": "Email Verified successfully"
   },
-  "enable": {
-    "defaultMessage": "Enable"
-  },
-  "enable_2fa_auth_header": {
-    "defaultMessage": "Enable 2FA authentication"
-  },
-  "enable_totp": {
-    "defaultMessage": "Enable TOTP"
+  "email_verified_true": {
+    "defaultMessage": "Only verified"
   },
   "end": {
     "defaultMessage": "End"
@@ -736,6 +745,9 @@
   },
   "enrollment_detail": {
     "defaultMessage": "Enrollment Detail"
+  },
+  "enrollment_detail_title": {
+    "defaultMessage": "Enrollment {id}"
   },
   "enrollment_error": {
     "defaultMessage": "Failed sending email, please try again"
@@ -830,6 +842,9 @@
   "event_detail": {
     "defaultMessage": "Event Detail"
   },
+  "event_detail_title": {
+    "defaultMessage": "Event {id}"
+  },
   "events_list_header": {
     "defaultMessage": "Events"
   },
@@ -891,6 +906,9 @@
   },
   "filter_detail": {
     "defaultMessage": "Filter Detail"
+  },
+  "filter_detail_title": {
+    "defaultMessage": "Filter {id}"
   },
   "filter_key": {
     "defaultMessage": "Key",
@@ -977,14 +995,14 @@
   "home": {
     "defaultMessage": "Home"
   },
+  "id": {
+    "defaultMessage": "ID"
+  },
   "image-not-found": {
     "defaultMessage": "Image not found"
   },
   "image_not_available": {
     "defaultMessage": "Image not available"
-  },
-  "impersonate-user-account": {
-    "defaultMessage": "Impersonate Account"
   },
   "import": {
     "defaultMessage": "Import",
@@ -1042,6 +1060,12 @@
   "invalid_url": {
     "defaultMessage": "Invalid page url"
   },
+  "invalidate-token": {
+    "defaultMessage": "Invalidate"
+  },
+  "invalidated": {
+    "defaultMessage": "Invalidated"
+  },
   "ip": {
     "defaultMessage": "IP Address"
   },
@@ -1080,6 +1104,9 @@
   },
   "last_Name": {
     "defaultMessage": "Last name"
+  },
+  "last_login": {
+    "defaultMessage": "Last Login:"
   },
   "last_updated": {
     "defaultMessage": "Last Updated:"
@@ -1122,6 +1149,9 @@
   },
   "logged_out": {
     "defaultMessage": "Logged out"
+  },
+  "login_date_range": {
+    "defaultMessage": "Login Date Range"
   },
   "login_header": {
     "defaultMessage": "Log in to your account"
@@ -1259,6 +1289,9 @@
   "no_tag": {
     "defaultMessage": "No Tag"
   },
+  "not-applicable": {
+    "defaultMessage": "N/A"
+  },
   "not_access_message": {
     "defaultMessage": "Sorry, The page you trying to access has restricted access."
   },
@@ -1306,6 +1339,12 @@
   },
   "order_detail": {
     "defaultMessage": "Order Detail"
+  },
+  "order_detail_title": {
+    "defaultMessage": "Order {id}"
+  },
+  "order_id": {
+    "defaultMessage": "Order"
   },
   "order_number": {
     "defaultMessage": "Order #"
@@ -1366,6 +1405,9 @@
   },
   "payment_credentials": {
     "defaultMessage": "Payment credentials"
+  },
+  "payment_detail_title": {
+    "defaultMessage": "Payment provider {id}"
   },
   "payment_provider": {
     "defaultMessage": "Payment provider"
@@ -1435,6 +1477,9 @@
   },
   "product_detail_header": {
     "defaultMessage": "Product detail <b>({id})</b>"
+  },
+  "product_detail_title": {
+    "defaultMessage": "Product {id}"
   },
   "product_drafted": {
     "defaultMessage": "Drafted successfully"
@@ -1540,6 +1585,9 @@
   },
   "quotation_detail": {
     "defaultMessage": "Quotation Detail"
+  },
+  "quotation_detail_title": {
+    "defaultMessage": "Quotation {id}"
   },
   "quotation_list_header": {
     "defaultMessage": "Quotations"
@@ -1917,6 +1965,9 @@
   "token-supply": {
     "defaultMessage": "Supply"
   },
+  "token_invalidation_date": {
+    "defaultMessage": "Invalidated"
+  },
   "token_updated": {
     "defaultMessage": "Token update successfully!"
   },
@@ -1932,15 +1983,12 @@
   "total_products": {
     "defaultMessage": "Total products"
   },
+  "total_records": {
+    "defaultMessage": "{total} records found"
+  },
   "total_variable_category": {
     "defaultMessage": "Total { categoryName }",
     "description": "Used in report where category is swapped with product, filter or assortment "
-  },
-  "totp_code": {
-    "defaultMessage": "TOTP code"
-  },
-  "totp_code_not_match": {
-    "defaultMessage": "TOTP code did not match"
   },
   "trial": {
     "defaultMessage": "Trial"
@@ -1956,12 +2004,6 @@
   },
   "try_again": {
     "defaultMessage": "try-again"
-  },
-  "two_factor_auth_enabled": {
-    "defaultMessage": "2FA Enabled"
-  },
-  "two_factor_code_not_match": {
-    "defaultMessage": "Two factor authentication code did not match"
   },
   "type": {
     "defaultMessage": "Type"
@@ -2047,9 +2089,6 @@
   "use_another_verification_token": {
     "defaultMessage": "Please resend another verification email and try to verify again"
   },
-  "use_authenticator": {
-    "defaultMessage": "Use authenticator"
-  },
   "user": {
     "defaultMessage": "User"
   },
@@ -2058,6 +2097,9 @@
   },
   "user_avatar": {
     "defaultMessage": "User avatar"
+  },
+  "user_detail_title": {
+    "defaultMessage": "User {id}"
   },
   "user_password_not_set": {
     "defaultMessage": "User password not set"
@@ -2140,6 +2182,9 @@
   "wallet-address": {
     "defaultMessage": "Wallet {walletAddress}"
   },
+  "warehouse_detail_title": {
+    "defaultMessage": "Warehouse {id}"
+  },
   "warehousing": {
     "defaultMessage": "Warehousing"
   },
@@ -2211,6 +2256,9 @@
   },
   "work_detail": {
     "defaultMessage": "Work Detail"
+  },
+  "work_detail_title": {
+    "defaultMessage": "Work {id}"
   },
   "work_finished": {
     "defaultMessage": "Finished"

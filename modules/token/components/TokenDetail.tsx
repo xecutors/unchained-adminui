@@ -16,57 +16,52 @@ const TokenDetail = ({ token }) => {
   const { formatPrice } = useFormatPrice();
 
   if (!token) return null;
+
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <div
-        key={token?._id}
-        className="group relative border-r border-b border-gray-200 p-4 sm:p-6"
-      >
+    <div className="grid gap-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+      <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
         <Link
           href={`/products/${generateUniqueId(token?.product)}`}
-          className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
+          className="block overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 hover:opacity-90"
         >
-          <div>
-            <ImageWithFallback
-              src={
-                (token?.product?.media?.length &&
-                  token?.product.media[0].file?.url) ||
-                '/no-image.jpg'
-              }
-              loader={defaultNextImageLoader}
-              alt={formatMessage({
-                id: 'product-image',
-                defaultMessage: 'Product image',
-              })}
-              width={100}
-              height={100}
-              layout="responsive"
-              className=" h-full w-full "
-            />
-          </div>
-          <div className="pt-2">
-            <h3 className="text-lg font-medium text-gray-900">
-              {token?.product?.texts?.title}
-            </h3>
-            <p className="mt-2 text-base font-medium text-gray-900">
-              {formatPrice(token?.product?.simulatedPrice)}
-            </p>
-            <div className="mt-2 text-base font-medium text-gray-900">
-              {formatMessage({
-                id: 'item_quantity',
-                defaultMessage: 'Quantity:',
-              })}
-              <span className="ml-2 font-bold">{token?.quantity}</span>
-            </div>
-          </div>
+          <ImageWithFallback
+            src={
+              (token?.product?.media?.length &&
+                token?.product.media[0].file?.url) ||
+              '/no-image.jpg'
+            }
+            loader={defaultNextImageLoader}
+            alt={formatMessage({
+              id: 'product-image',
+              defaultMessage: 'Product image',
+            })}
+            width={200}
+            height={200}
+            layout="responsive"
+            className="h-full w-full object-cover"
+          />
         </Link>
+        <div className="mt-4">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+            {token?.product?.texts?.title || 'Untitled Product'}
+          </h3>
+          <p className="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-300">
+            {formatPrice(token?.product?.simulatedPrice)}
+          </p>
+          <p className="mt-2 text-gray-700 dark:text-gray-400">
+            {formatMessage({
+              id: 'item_quantity',
+              defaultMessage: 'Quantity:',
+            })}{' '}
+            <span className="font-bold">{token?.quantity}</span>
+          </p>
+        </div>
       </div>
-
-      <div>
-        <span className="font-medium text-gray-700">
-          {formatMessage({ id: 'status', defaultMessage: 'Status' })}
-        </span>
-        <p className="text-gray-900">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <span className="block font-medium text-gray-700 dark:text-gray-300">
+            {formatMessage({ id: 'status', defaultMessage: 'Status' })}
+          </span>
           <Badge
             text={
               token?.status === 'CENTRALIZED' ? 'Off-Chain 🏛' : 'On-Chain ⛓'
@@ -74,71 +69,78 @@ const TokenDetail = ({ token }) => {
             color={TOKEN_STATUSES[token.status]}
             square
           />
-        </p>
-      </div>
+        </div>
 
-      <div className="text-gray-900">
-        {formatMessage(
-          {
-            id: 'token-id',
-            defaultMessage: 'Token ID {chainTokenId}',
-          },
-          { chainTokenId: token.chainTokenId },
-        )}
-      </div>
-      <div className="text-gray-900">
-        {formatMessage(
-          {
-            id: 'chain-id',
-            defaultMessage: 'Chain ID {chainId}',
-          },
-          { chainId: token?.chainId },
-        )}
-      </div>
-      <div>
-        <span className="font-medium text-gray-700">Order ID:</span>
-        <p className="text-gray-900">
-          <div className="flex items-center text-sm">
-            <Link
-              href={`/orders/${token.ercMetadata?.orderId}`}
-              className="font-medium text-blue-500 dark:text-blue-400"
-            >
-              {token?.ercMetadata?.orderId}
-            </Link>
-          </div>
-        </p>
-      </div>
-      <div>
-        <span className="font-medium text-gray-700">Invalidated:</span>
-        <p className="text-gray-900">
-          {token.invalidatedDate
-            ? formatDateTime(token.invalidatedDate)
-            : 'N/A'}
-        </p>
-      </div>
-      {token?.walletAddress ? (
         <div>
-          <span className="font-medium text-gray-700">Wallet Address:</span>
-          <p>
-            {token?.walletAddress ? (
-              <div>
-                {formatMessage(
-                  {
-                    id: 'wallet-address',
-                    defaultMessage: 'Wallet {walletAddress}',
-                  },
-                  { walletAddress: shortenAddress(token?.walletAddress) },
-                )}
-              </div>
-            ) : null}
+          <span className="block font-medium text-gray-700 dark:text-gray-300">
+            {formatMessage({
+              id: 'chain-token-id',
+              defaultMessage: 'Chain Token ID',
+            })}
+            :
+          </span>
+          <p className="text-gray-900 dark:text-gray-100">
+            {token?.chainTokenId}
           </p>
         </div>
-      ) : null}
-      <div>
-        <span className="font-medium text-gray-700">User:</span>
-        <p className="text-gray-900">
-          <DetailHeader user={token?.user} contact={token?.user.lastContact} />
-        </p>
+
+        <div>
+          <span className="block font-medium text-gray-700 dark:text-gray-300">
+            {formatMessage({
+              id: 'chain-id',
+              defaultMessage: 'Chain ID {chainId}',
+            })}
+            :
+          </span>
+          <p className="text-gray-900 dark:text-gray-100">{token?.chainId}</p>
+        </div>
+
+        <div>
+          <span className="block font-medium text-gray-700 dark:text-gray-300">
+            {formatMessage({ id: 'order', defaultMessage: 'Order' })}:
+          </span>
+          <Link
+            href={`/orders/${token.ercMetadata?.orderId}`}
+            className="text-blue-500 dark:text-blue-400 hover:underline"
+          >
+            {token?.ercMetadata?.orderId}
+          </Link>
+        </div>
+
+        <div>
+          <span className="block font-medium text-gray-700 dark:text-gray-300">
+            {formatMessage({
+              id: 'invalidated',
+              defaultMessage: 'Invalidated',
+            })}
+            :
+          </span>
+          <p className="text-gray-900 dark:text-gray-100">
+            {token?.invalidatedDate
+              ? formatDateTime(token.invalidatedDate)
+              : formatMessage({ id: 'not-applicable', defaultMessage: 'N/A' })}
+          </p>
+        </div>
+
+        {token?.walletAddress && (
+          <div>
+            <span className="block font-medium text-gray-700 dark:text-gray-300">
+              {formatMessage(
+                {
+                  id: 'wallet-address',
+                  defaultMessage: 'Wallet {walletAddress}',
+                },
+                {
+                  walletAddress: shortenAddress(token?.walletAddress),
+                },
+              )}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="pt-6">
+        <DetailHeader user={token?.user} contact={token?.user?.lastContact} />
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import {
   Bars4Icon,
   AdjustmentsVerticalIcon,
 } from '@heroicons/react/24/outline';
-import { BoltIcon, LinkIcon } from '@heroicons/react/24/solid';
+import { BoltIcon, LinkIcon, QrCodeIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -98,7 +98,7 @@ const Layout = ({
     },
     {
       name: formatMessage({ id: 'tokens', defaultMessage: 'Tokens' }),
-      icon: TagIcon,
+      icon: QrCodeIcon,
       href: '/tokens',
     },
     {

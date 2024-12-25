@@ -20,6 +20,10 @@ const TokensQuery = gql`
         _id
         username
         isGuest
+        primaryEmail {
+          address
+          verified
+        }
         avatar {
           _id
           url

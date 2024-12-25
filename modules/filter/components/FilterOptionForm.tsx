@@ -70,7 +70,7 @@ const FilterOptionForm = ({
             className="m-auto w-full"
             label={formatMessage({
               id: 'add_filter_option',
-              defaultMessage: 'Add option sadasd',
+              defaultMessage: 'Add option',
             })}
           />
         </span>
