@@ -21,6 +21,7 @@ import useLoginWithPassword from '../hooks/useLoginWithPassword';
 import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import { storeLoginToken } from '../utils/store';
 import GoogleOauth from './GoogleOauth';
+import { useCallback, useState } from 'react';
 
 const {
   publicRuntimeConfig: { allowEndpointSwitch, logo },
@@ -29,7 +30,7 @@ const {
 const GetCurrentStep = ({ step }) => {
   const { formatMessage } = useIntl();
 
-  switch (parseInt(step, 10)) {
+  switch (step) {
     case 2:
       return (
         <>
@@ -91,27 +92,19 @@ const LogInForm = () => {
   const { setEndpoint, endpoint } = useEndpoint();
 
   const router = useRouter();
-  const step = router.query?.step ?? '1';
+  const [step, setStep] = useState(1);
 
-  const nextStep = () => {
-    router.push({
-      query: {
-        step: parseInt(step as string, 10) + 1,
-      },
-    });
-  };
+  const nextStep = useCallback(() => {
+    setStep(step + 1);
+  }, [step]);
 
   const onEndpointChange = (newEndpoint) => {
     setEndpoint(newEndpoint);
   };
 
-  const previousStep = () => {
-    router.push({
-      query: {
-        step: parseInt(step as string, 10) - 1,
-      },
-    });
-  };
+  const previousStep = useCallback(() => {
+    setStep(step - 1);
+  }, [step]);
 
   const { generateLoginCredentials } = useGenerateLoginCredentials();
 
@@ -140,12 +133,12 @@ const LogInForm = () => {
   };
 
   const onSubmit: OnSubmitType = async ({ usernameOrEmail, password }) => {
-    if (step === '1') {
+    if (step === 1) {
       const { success, errors } = await logInWithWebAuth(usernameOrEmail);
       if (errors.length) return { success: true, errors };
       if (!success) nextStep();
     }
-    if (step === '2') {
+    if (step === 2) {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -162,7 +155,7 @@ const LogInForm = () => {
         return { success: false, errors };
       }
     }
-    if (step === '3') {
+    if (step === 3) {
       const { data, errors } = await logInWithPassword({
         usernameOrEmail,
         password,
@@ -248,7 +241,7 @@ const LogInForm = () => {
 
               <FormErrors />
               <div className="flex items-center gap-4 mt-4">
-                {step !== '1' && (
+                {step !== 1 && (
                   <button
                     type="button"
                     id="previous-button"
