@@ -2813,6 +2813,8 @@ export type IQuery = {
   token?: Maybe<IToken>;
   /** Get all tokens */
   tokens: Array<IToken>;
+  /** Returns total tokens */
+  tokensCount: Scalars['Int']['output'];
   /** Localization: Media title/subtitle of a media that is attached to a assortment */
   translatedAssortmentMediaTexts: Array<IAssortmentMediaTexts>;
   /** Localization: Meta data for assortments */
@@ -3119,6 +3121,11 @@ export type IQueryTokenArgs = {
 export type IQueryTokensArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IQueryTokensCountArgs = {
+  queryString?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type IQueryTranslatedAssortmentMediaTextsArgs = {
@@ -15095,11 +15102,13 @@ export type ITokenQuery = {
 };
 
 export type ITokensQueryVariables = Exact<{
+  queryString?: InputMaybe<Scalars['String']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 export type ITokensQuery = {
+  tokensCount: number;
   tokens: Array<{
     _id: string;
     walletAddress?: string | null;

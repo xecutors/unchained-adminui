@@ -5,8 +5,8 @@ import ProductBriefFragment from '../../product/fragments/ProductBriefFragment';
 import { DefaultLimit } from '../../common/data/miscellaneous';
 
 const TokensQuery = gql`
-  query Tokens($limit: Int, $offset: Int) {
-    tokens(limit: $limit, offset: $offset) {
+  query Tokens($queryString: String, $limit: Int, $offset: Int) {
+    tokens(queryString: $queryString, limit: $limit, offset: $offset) {
       ...TokenFragment
       product {
         ...ProductBriefFragment
@@ -36,12 +36,14 @@ const TokensQuery = gql`
         }
       }
     }
+    tokensCount(queryString: $queryString)
   }
   ${TokenFragment}
   ${ProductBriefFragment}
 `;
 
 const useTokens = ({
+  queryString = null,
   limit = DefaultLimit,
   offset = 0,
 }: ITokensQueryVariables) => {
@@ -49,7 +51,7 @@ const useTokens = ({
     ITokensQuery,
     ITokensQueryVariables
   >(TokensQuery, {
-    variables: { limit, offset },
+    variables: { queryString, limit, offset },
   });
   const tokens = data?.tokens || [];
 
@@ -57,6 +59,7 @@ const useTokens = ({
     tokens,
     loading,
     error,
+    tokensCount: data?.tokensCount || 0,
   };
 };
 
