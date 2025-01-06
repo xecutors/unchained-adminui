@@ -88,9 +88,9 @@ const ProductAssignmentForm = ({ proxyId }) => {
     assignment.vectors.forEach((vector) => {
       selector[vector?.variation?.key] = vector?.option?.value;
     });
-
     allAssignedRowsProducts[Object.values(selector).join('')] = {
-      [assignment.product?._id]: [assignment.product?.texts?.title],
+      ...allAssignedRowsProducts[Object.values(selector).join('')],
+      [assignment.product?._id]: assignment.product?.texts?.title,
     };
   });
   const rows = allRowsPossible
@@ -119,7 +119,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
     return assignVector;
   };
 
-  const handleRemoveAssignment = (context) => {
+  const handleRemoveAssignment = (context, productId) => {
     const removeAssignment = async () => {
       await setModal(
         <DangerMessage
@@ -132,7 +132,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
           onOkClick={async () => {
             setModal('');
             const vectors = context.map(getRowVector);
-            await removeProductAssignment({ proxyId, vectors });
+            await removeProductAssignment({ proxyId, vectors, productId });
           }}
           okText={formatMessage({
             id: 'delete_variation_assignment',
@@ -144,7 +144,11 @@ const ProductAssignmentForm = ({ proxyId }) => {
     return removeAssignment;
   };
   const debouncedQuery = deBounce(200)(setQueryString);
-
+  const availableAssignableProductsFilter = (rowVector) => {
+    return (p) =>
+      p._id !== proxyId &&
+      !allAssignedRowsProducts?.[rowVector.join('')]?.[p._id];
+  };
   return (
     <>
       <FormWrapper>
@@ -170,10 +174,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
                   value={queryString}
                   options={
                     (products || [])
-                      .filter(
-                        (p) =>
-                          !allAssignedRowsProducts?.[columns.join('')]?.[p._id],
-                      )
+                      .filter(availableAssignableProductsFilter(columns))
                       .map(normalizeProduct) as unknown as OptionsOrGroups<
                       string,
                       GroupBase<string>
@@ -188,9 +189,19 @@ const ProductAssignmentForm = ({ proxyId }) => {
       </FormWrapper>
       <Table>
         <Table.Row header>
-          <Table.Cell>Variation</Table.Cell>
-          <Table.Cell>Options</Table.Cell>
-          <Table.Cell>Product</Table.Cell>
+          <Table.Cell>
+            {formatMessage({
+              id: 'variations-title',
+              defaultMessage: 'Variation',
+            })}
+          </Table.Cell>
+          <Table.Cell>
+            {formatMessage({ id: 'options', defaultMessage: 'Options' })}
+          </Table.Cell>
+          <Table.Cell>
+            {formatMessage({ id: 'product', defaultMessage: 'Product' })}
+          </Table.Cell>
+          <Table.Cell>&nbsp;</Table.Cell>
         </Table.Row>
 
         {assignments.map((assignment, index) => (
@@ -212,6 +223,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
               <DeleteButton
                 onClick={handleRemoveAssignment(
                   assignment.vectors.map((vector) => vector.option?.value),
+                  assignment.product._id,
                 )}
               />
             </Table.Cell>

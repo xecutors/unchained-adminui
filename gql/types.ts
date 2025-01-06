@@ -1845,6 +1845,7 @@ export type IMutationRemoveProductArgs = {
 
 
 export type IMutationRemoveProductAssignmentArgs = {
+  productId: Scalars['ID']['input'];
   proxyId: Scalars['ID']['input'];
   vectors: Array<IProductAssignmentVectorInput>;
 };
@@ -5864,6 +5865,7 @@ export type IRemoveProductMutation = { removeProduct: { _id: string } | { _id: s
 export type IRemoveProductAssignmentMutationVariables = Exact<{
   proxyId: Scalars['ID']['input'];
   vectors: Array<IProductAssignmentVectorInput>;
+  productId: Scalars['ID']['input'];
 }>;
 
 

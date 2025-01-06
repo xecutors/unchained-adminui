@@ -8,8 +8,13 @@ const RemoveProductAssignmentMutation = gql`
   mutation RemoveProductAssignment(
     $proxyId: ID!
     $vectors: [ProductAssignmentVectorInput!]!
+    $productId: ID!
   ) {
-    removeProductAssignment(proxyId: $proxyId, vectors: $vectors) {
+    removeProductAssignment(
+      proxyId: $proxyId
+      productId: $productId
+      vectors: $vectors
+    ) {
       _id
     }
   }
@@ -24,9 +29,10 @@ const useRemoveProductAssignment = () => {
   const removeProductAssignment = async ({
     proxyId,
     vectors,
+    productId,
   }: IRemoveProductAssignmentMutationVariables) => {
     return removeProductAssignmentMutation({
-      variables: { proxyId, vectors },
+      variables: { proxyId, vectors, productId },
       refetchQueries: ['ProductAssignments'],
     });
   };
