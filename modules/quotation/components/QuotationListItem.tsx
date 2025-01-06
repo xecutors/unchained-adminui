@@ -26,7 +26,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
             href={`/quotations/${quotation._id}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
-            {quotation?.quotationNumber || quotation._id?.substr(0, 10)}
+            {quotation?.quotationNumber || quotation?._id}
           </Link>
         </div>
       </Table.Cell>

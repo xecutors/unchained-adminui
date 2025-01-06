@@ -20,7 +20,7 @@ const QuotationsQuery = gql`
     ) {
       ...QuotationFragment
     }
-    quotationsCount
+    quotationsCount(queryString: $queryString)
   }
   ${QuotationFragment}
 `;

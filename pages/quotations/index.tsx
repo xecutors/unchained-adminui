@@ -17,7 +17,7 @@ const Quotations = () => {
   const { query, push } = useRouter();
   const limit = parseInt(query?.limit as string, 10) || DefaultLimit;
   const offset = parseInt(query?.skip as string, 10) || 0;
-  const sort = query?.set || '';
+  const sort = query?.sort || '';
 
   const { queryString, ...rest } = query;
 
