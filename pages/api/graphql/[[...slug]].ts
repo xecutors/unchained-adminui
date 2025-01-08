@@ -13,7 +13,9 @@ export const config = {
 };
 
 const agent =
-  engineURL.protocol === 'https:' ? new https.Agent({}) : new http.Agent({});
+  engineURL.protocol === 'https:'
+    ? new https.Agent({ keepAlive: true })
+    : new http.Agent({ keepAlive: true });
 
 export default createProxyMiddleware({
   agent,
@@ -21,9 +23,10 @@ export default createProxyMiddleware({
     '*': process.env.UNCHAINED_COOKIE_DOMAIN || '',
   },
   cookiePathRewrite: '/',
-  target: process.env.GRAPHQL_ENDPOINT,
+  target: engineURL.origin,
   changeOrigin: true,
   proxyTimeout: 60000,
+  pathRewrite: { '^/api/graphql': '/graphql' },
   on: {
     proxyRes: (proxyRes) => {
       const set = proxyRes.headers['set-cookie'];

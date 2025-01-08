@@ -60,22 +60,22 @@ const AuthWrapper = ({ children, componentName }) => {
   }, [currentUser, router.pathname]);
 
   useEffect(() => {
-    if (!loading && currentUser !== undefined) {
-      if (isAuthenticated(currentUser)) {
-        if (!hasAccess({ user: currentUser })) {
-          router.replace('/403');
-        } else if (isPublicOnlyPage(router)) {
-          router.replace('/');
-        } else if (
-          !isAdmin(currentUser) &&
-          restrictNonAdmin &&
-          router.pathname !== '/423'
-        ) {
-          router.replace('/423');
-        }
-      } else if (!hasAccess({ user: currentUser })) {
-        router.replace('/log-in');
+    if (loading) return;
+
+    if (isAuthenticated(currentUser)) {
+      if (!hasAccess({ user: currentUser })) {
+        router.replace('/403');
+      } else if (isPublicOnlyPage(router)) {
+        router.replace('/');
+      } else if (
+        !isAdmin(currentUser) &&
+        restrictNonAdmin &&
+        router.pathname !== '/423'
+      ) {
+        router.replace('/423');
       }
+    } else if (!hasAccess({ user: currentUser })) {
+      router.replace('/log-in');
     }
   }, [router, currentUser, hasAccess, isAuthenticated, loading]);
 
