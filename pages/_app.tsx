@@ -3,8 +3,6 @@ import App from 'next/app';
 import { Router } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import React, { useEffect } from 'react';
-import Head from 'next/head';
-import Script from 'next/script';
 import { useApollo } from '../modules/apollo/apolloClient';
 import '../styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,9 +10,8 @@ import 'react-datepicker/dist/react-datepicker.min.css';
 import getMessages from '../modules/i18n/utils/getMessages';
 import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
-
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
-import AuthWrapper from '../modules/Auth/AuthWrapper';
+
 import {
   EndpointContext,
   useSetEndpointContext,
@@ -60,28 +57,6 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
   return (
     <IntlWrapper locale={router.locale} messages={messages} key="intl-provider">
       <ErrorBoundary>
-        <Head>
-          {process.env.NEXT_PUBLIC_MATOMO_SITE_ID ? (
-            <>
-              <Script
-                id="matomo-script"
-                src={`${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.js`}
-              />
-              <Script
-                id="matomo-config"
-                dangerouslySetInnerHTML={{
-                  __html: `
-  var _paq = window._paq = window._paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  _paq.push(['setTrackerUrl', '${process.env.NEXT_PUBLIC_MATOMO_URL}/matomo.php']);
-  _paq.push(['setSiteId', '${process.env.NEXT_PUBLIC_MATOMO_SITE_ID}']);
-  `,
-                }}
-              />
-            </>
-          ) : null}
-        </Head>
         <EndpointContext.Provider value={endpointContext}>
           <ApolloProvider client={apollo}>
             <UnchainedContextWrapper>

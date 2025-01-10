@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { IShopInfoQuery, IShopInfoQueryVariables } from '../../../gql/types';
 
 const ShopInfoQuery = gql`
   query ShopInfo {
@@ -20,12 +21,13 @@ const ShopInfoQuery = gql`
           isoCode
         }
       }
-      externalLinks {
-        href
-        title
-        target
-      }
       adminUiConfig {
+        singleSignOnURL
+        externalLinks {
+          href
+          title
+          target
+        }
         customProperties {
           entityName
           inlineFragment
@@ -36,7 +38,10 @@ const ShopInfoQuery = gql`
 `;
 
 const useShopInfo = () => {
-  const { data, loading, error } = useQuery(ShopInfoQuery, {
+  const { data, loading, error } = useQuery<
+    IShopInfoQuery,
+    IShopInfoQueryVariables
+  >(ShopInfoQuery, {
     fetchPolicy: 'cache-first',
   });
   return {

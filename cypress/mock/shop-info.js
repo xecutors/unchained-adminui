@@ -22,8 +22,8 @@ export const ShopInfoResponse = {
         __typename: 'Country',
       },
       __typename: 'Shop',
-      externalLinks: [],
       adminUiConfig: {
+        externalLinks: [],
         customProperties: [
           {
             entityName: 'Enrollment',
