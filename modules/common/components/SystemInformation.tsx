@@ -82,7 +82,7 @@ const ShopInformation = () => {
                     new Intl.DisplayNames([locale], {
                       type: 'currency',
                     }).of(shopInfo?.country?.defaultCurrency?.isoCode)) ||
-                    shopInfo?.country?.defaultCurrency?.name}{' '}
+                    shopInfo?.country?.defaultCurrency?._id}{' '}
                   ({shopInfo?.country?.defaultCurrency?.isoCode})
                 </div>
               </div>
