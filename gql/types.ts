@@ -15,9 +15,13 @@ export type Scalars = {
   Date: { input: any; output: any; }
   DateTimeISO: { input: any; output: any; }
   JSON: { input: any; output: any; }
+  JsonType: { input: any; output: any; }
+  LocalDate: { input: any; output: any; }
   Locale: { input: any; output: any; }
   LowerCaseString: { input: any; output: any; }
+  NumericType: { input: any; output: any; }
   Timestamp: { input: any; output: any; }
+  Upload: { input: any; output: any; }
 };
 
 export type IAddress = {
@@ -75,6 +79,7 @@ export type IAssortment = {
   isRoot?: Maybe<Scalars['Boolean']['output']>;
   linkedAssortments?: Maybe<Array<IAssortmentLink>>;
   media: Array<IAssortmentMedia>;
+  navigationId?: Maybe<Scalars['String']['output']>;
   productAssignments?: Maybe<Array<IAssortmentProduct>>;
   searchProducts: IProductSearchResult;
   sequence: Scalars['Int']['output'];
@@ -237,6 +242,7 @@ export type IBundleProduct = IProduct & {
   bundleItems?: Maybe<Array<IProductBundleItem>>;
   created?: Maybe<Scalars['DateTimeISO']['output']>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
   reviews: Array<IProductReview>;
   reviewsCount: Scalars['Int']['output'];
@@ -291,6 +297,13 @@ export enum ICacheControlScope {
   Public = 'PUBLIC'
 }
 
+export type ICmsSearchResult = {
+  events: Array<Scalars['JSON']['output']>;
+  news: Array<Maybe<Scalars['JSON']['output']>>;
+  pages: Array<Scalars['JSON']['output']>;
+  stories: Array<Scalars['JSON']['output']>;
+};
+
 export type IColor = {
   blue?: Maybe<Scalars['Int']['output']>;
   green?: Maybe<Scalars['Int']['output']>;
@@ -308,6 +321,7 @@ export type IConfigurableProduct = IProduct & {
   catalogPriceRange?: Maybe<IPriceRange>;
   created?: Maybe<Scalars['DateTimeISO']['output']>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
   /** Reduced list of possible products by key/value combinations */
   products?: Maybe<Array<IProduct>>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
@@ -489,16 +503,39 @@ export type ICurrency = {
   isoCode: Scalars['String']['output'];
 };
 
+export type ICutting = {
+  type: Scalars['String']['output'];
+  value?: Maybe<Scalars['JSON']['output']>;
+};
+
 export type IDateFilterInput = {
   end?: InputMaybe<Scalars['DateTimeISO']['input']>;
   start?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
+
+export type IDeclarationFilterData = {
+  creators: Array<Maybe<IPublicareClient>>;
+  patients: Array<Maybe<IRecipePatient>>;
+};
+
+export enum IDeclarationSortOptions {
+  CreatedAsc = 'created_ASC',
+  CreatedDesc = 'created_DESC',
+  LastNameAsc = 'lastName_ASC',
+  LastNameDesc = 'lastName_DESC'
+}
 
 export type IDeliveryInterface = {
   _id: Scalars['ID']['output'];
   label?: Maybe<Scalars['String']['output']>;
   version?: Maybe<Scalars['String']['output']>;
 };
+
+export enum IDeliveryOptions {
+  Door = 'DOOR',
+  Etage = 'ETAGE',
+  No = 'NO'
+}
 
 export type IDeliveryProvider = {
   _id: Scalars['ID']['output'];
@@ -534,6 +571,15 @@ export enum IDeliveryProviderType {
   /** Shipping */
   Shipping = 'SHIPPING'
 }
+
+export type IDetektivoSearchResult = {
+  estimatedTotalHits?: Maybe<Scalars['Int']['output']>;
+  hits?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
+  limit?: Maybe<Scalars['Int']['output']>;
+  offset?: Maybe<Scalars['Int']['output']>;
+  processingTimeMs?: Maybe<Scalars['Int']['output']>;
+  query?: Maybe<Scalars['String']['output']>;
+};
 
 export type IDimensions = {
   height?: Maybe<Scalars['Float']['output']>;
@@ -575,6 +621,14 @@ export type IDispatch = {
   earliestDelivery?: Maybe<Scalars['DateTimeISO']['output']>;
   shipping?: Maybe<Scalars['DateTimeISO']['output']>;
   warehousingProvider?: Maybe<IWarehousingProvider>;
+};
+
+export type IEngineSearchResult = {
+  events: Array<Scalars['JSON']['output']>;
+  news: Array<Maybe<Scalars['JSON']['output']>>;
+  pages: Array<Scalars['JSON']['output']>;
+  products: Array<Maybe<IProduct>>;
+  stories: Array<Scalars['JSON']['output']>;
 };
 
 /** Enrollment */
@@ -666,129 +720,8 @@ export type IEventStatistics = {
 export enum IEventType {
   ApiLoginTokenCreated = 'API_LOGIN_TOKEN_CREATED',
   ApiLogout = 'API_LOGOUT',
-  AssortmentAddFilter = 'ASSORTMENT_ADD_FILTER',
-  AssortmentAddLink = 'ASSORTMENT_ADD_LINK',
-  AssortmentAddMedia = 'ASSORTMENT_ADD_MEDIA',
-  AssortmentAddProduct = 'ASSORTMENT_ADD_PRODUCT',
-  AssortmentCreate = 'ASSORTMENT_CREATE',
-  AssortmentRemove = 'ASSORTMENT_REMOVE',
-  AssortmentRemoveFilter = 'ASSORTMENT_REMOVE_FILTER',
-  AssortmentRemoveLink = 'ASSORTMENT_REMOVE_LINK',
-  AssortmentRemoveMedia = 'ASSORTMENT_REMOVE_MEDIA',
-  AssortmentRemoveProduct = 'ASSORTMENT_REMOVE_PRODUCT',
-  AssortmentReorderFilters = 'ASSORTMENT_REORDER_FILTERS',
-  AssortmentReorderLinks = 'ASSORTMENT_REORDER_LINKS',
-  AssortmentReorderMedia = 'ASSORTMENT_REORDER_MEDIA',
-  AssortmentReorderProducts = 'ASSORTMENT_REORDER_PRODUCTS',
-  AssortmentSetBase = 'ASSORTMENT_SET_BASE',
-  AssortmentUpdate = 'ASSORTMENT_UPDATE',
-  AssortmentUpdateMediaText = 'ASSORTMENT_UPDATE_MEDIA_TEXT',
-  AssortmentUpdateText = 'ASSORTMENT_UPDATE_TEXT',
-  BookmarkCreate = 'BOOKMARK_CREATE',
-  BookmarkRemove = 'BOOKMARK_REMOVE',
-  BookmarkUpdate = 'BOOKMARK_UPDATE',
-  CountryCreate = 'COUNTRY_CREATE',
-  CountryRemove = 'COUNTRY_REMOVE',
-  CountryUpdate = 'COUNTRY_UPDATE',
-  CurrencyCreate = 'CURRENCY_CREATE',
-  CurrencyRemove = 'CURRENCY_REMOVE',
-  CurrencyUpdate = 'CURRENCY_UPDATE',
-  DeliveryProviderCreate = 'DELIVERY_PROVIDER_CREATE',
-  DeliveryProviderRemove = 'DELIVERY_PROVIDER_REMOVE',
-  DeliveryProviderUpdate = 'DELIVERY_PROVIDER_UPDATE',
-  EnrollmentAddPeriod = 'ENROLLMENT_ADD_PERIOD',
-  EnrollmentCreate = 'ENROLLMENT_CREATE',
-  EnrollmentRemove = 'ENROLLMENT_REMOVE',
-  EnrollmentUpdate = 'ENROLLMENT_UPDATE',
-  FileCreate = 'FILE_CREATE',
-  FileRemove = 'FILE_REMOVE',
-  FileUpdate = 'FILE_UPDATE',
-  FilterCreate = 'FILTER_CREATE',
-  FilterRemove = 'FILTER_REMOVE',
-  FilterUpdate = 'FILTER_UPDATE',
-  FilterUpdateText = 'FILTER_UPDATE_TEXT',
-  LanguageCreate = 'LANGUAGE_CREATE',
-  LanguageRemove = 'LANGUAGE_REMOVE',
-  LanguageUpdate = 'LANGUAGE_UPDATE',
-  OrderAddProduct = 'ORDER_ADD_PRODUCT',
-  OrderCheckout = 'ORDER_CHECKOUT',
-  OrderConfirmed = 'ORDER_CONFIRMED',
-  OrderCreate = 'ORDER_CREATE',
-  OrderCreateDiscount = 'ORDER_CREATE_DISCOUNT',
-  OrderDeliver = 'ORDER_DELIVER',
-  OrderEmptyCart = 'ORDER_EMPTY_CART',
-  OrderFullfilled = 'ORDER_FULLFILLED',
-  OrderPay = 'ORDER_PAY',
-  OrderRejected = 'ORDER_REJECTED',
-  OrderRemove = 'ORDER_REMOVE',
-  OrderRemoveCartItem = 'ORDER_REMOVE_CART_ITEM',
-  OrderRemoveDiscount = 'ORDER_REMOVE_DISCOUNT',
-  OrderSetDeliveryProvider = 'ORDER_SET_DELIVERY_PROVIDER',
-  OrderSetPaymentProvider = 'ORDER_SET_PAYMENT_PROVIDER',
-  OrderSignPayment = 'ORDER_SIGN_PAYMENT',
-  OrderUpdate = 'ORDER_UPDATE',
-  OrderUpdateCartItem = 'ORDER_UPDATE_CART_ITEM',
-  OrderUpdateDelivery = 'ORDER_UPDATE_DELIVERY',
-  OrderUpdateDiscount = 'ORDER_UPDATE_DISCOUNT',
-  OrderUpdatePayment = 'ORDER_UPDATE_PAYMENT',
   PageView = 'PAGE_VIEW',
-  PaymentProviderCreate = 'PAYMENT_PROVIDER_CREATE',
-  PaymentProviderRemove = 'PAYMENT_PROVIDER_REMOVE',
-  PaymentProviderUpdate = 'PAYMENT_PROVIDER_UPDATE',
-  ProductAddAssignment = 'PRODUCT_ADD_ASSIGNMENT',
-  ProductAddMedia = 'PRODUCT_ADD_MEDIA',
-  ProductCreate = 'PRODUCT_CREATE',
-  ProductCreateBundleItem = 'PRODUCT_CREATE_BUNDLE_ITEM',
-  ProductCreateVariation = 'PRODUCT_CREATE_VARIATION',
-  ProductPublish = 'PRODUCT_PUBLISH',
-  ProductRemove = 'PRODUCT_REMOVE',
-  ProductRemoveAssignment = 'PRODUCT_REMOVE_ASSIGNMENT',
-  ProductRemoveBundleItem = 'PRODUCT_REMOVE_BUNDLE_ITEM',
-  ProductRemoveMedia = 'PRODUCT_REMOVE_MEDIA',
-  ProductRemoveReview = 'PRODUCT_REMOVE_REVIEW',
-  ProductRemoveReviewVote = 'PRODUCT_REMOVE_REVIEW_VOTE',
-  ProductRemoveVariation = 'PRODUCT_REMOVE_VARIATION',
-  ProductRemoveVariationOption = 'PRODUCT_REMOVE_VARIATION_OPTION',
-  ProductReorderMedia = 'PRODUCT_REORDER_MEDIA',
-  ProductReviewAddVote = 'PRODUCT_REVIEW_ADD_VOTE',
-  ProductReviewCreate = 'PRODUCT_REVIEW_CREATE',
-  ProductSetBase = 'PRODUCT_SET_BASE',
-  ProductUnpublish = 'PRODUCT_UNPUBLISH',
-  ProductUpdate = 'PRODUCT_UPDATE',
-  ProductUpdateMediaText = 'PRODUCT_UPDATE_MEDIA_TEXT',
-  ProductUpdateReview = 'PRODUCT_UPDATE_REVIEW',
-  ProductUpdateText = 'PRODUCT_UPDATE_TEXT',
-  ProductUpdateVariationText = 'PRODUCT_UPDATE_VARIATION_TEXT',
-  ProductVariationOptionCreate = 'PRODUCT_VARIATION_OPTION_CREATE',
-  QuotationRemove = 'QUOTATION_REMOVE',
-  QuotationRequestCreate = 'QUOTATION_REQUEST_CREATE',
-  QuotationUpdate = 'QUOTATION_UPDATE',
-  TokenInvalidated = 'TOKEN_INVALIDATED',
-  TokenOwnershipChanged = 'TOKEN_OWNERSHIP_CHANGED',
-  Unknown = 'UNKNOWN',
-  UserAccountAction = 'USER_ACCOUNT_ACTION',
-  UserAddRoles = 'USER_ADD_ROLES',
-  UserCreate = 'USER_CREATE',
-  UserRemove = 'USER_REMOVE',
-  UserUpdate = 'USER_UPDATE',
-  UserUpdateAvatar = 'USER_UPDATE_AVATAR',
-  UserUpdateBillingAddress = 'USER_UPDATE_BILLING_ADDRESS',
-  UserUpdateGuest = 'USER_UPDATE_GUEST',
-  UserUpdateHeartbeat = 'USER_UPDATE_HEARTBEAT',
-  UserUpdateLastContact = 'USER_UPDATE_LAST_CONTACT',
-  UserUpdatePassword = 'USER_UPDATE_PASSWORD',
-  UserUpdateProfile = 'USER_UPDATE_PROFILE',
-  UserUpdateRole = 'USER_UPDATE_ROLE',
-  UserUpdateTags = 'USER_UPDATE_TAGS',
-  UserUpdateUsername = 'USER_UPDATE_USERNAME',
-  WarehousingProviderCreate = 'WAREHOUSING_PROVIDER_CREATE',
-  WarehousingProviderRemove = 'WAREHOUSING_PROVIDER_REMOVE',
-  WarehousingProviderUpdate = 'WAREHOUSING_PROVIDER_UPDATE',
-  WorkAdded = 'WORK_ADDED',
-  WorkAllocated = 'WORK_ALLOCATED',
-  WorkDeleted = 'WORK_DELETED',
-  WorkFinished = 'WORK_FINISHED',
-  WorkRescheduled = 'WORK_RESCHEDULED'
+  Unknown = 'UNKNOWN'
 }
 
 export enum IExternalLinkTarget {
@@ -797,6 +730,12 @@ export enum IExternalLinkTarget {
   /** Open in own Iframe */
   Self = 'SELF'
 }
+
+export type IFavoriteListInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  isPatientOrder?: InputMaybe<Scalars['Boolean']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type IFilter = {
   _id: Scalars['ID']['output'];
@@ -889,6 +828,12 @@ export type ILoadedFilterOption = {
   isSelected?: Maybe<Scalars['Boolean']['output']>;
 };
 
+export type ILogInMetric = {
+  PERIGON?: Maybe<Scalars['Int']['output']>;
+  SWING?: Maybe<Scalars['Int']['output']>;
+  default?: Maybe<Scalars['Int']['output']>;
+};
+
 /** Type returned when the user logs in */
 export type ILoginMethodResponse = {
   /** Session ID */
@@ -925,6 +870,12 @@ export type IMediaUploadTicket = {
   putURL: Scalars['String']['output'];
 };
 
+export enum IMigelConformity {
+  Conformant = 'CONFORMANT',
+  Default = 'DEFAULT',
+  NonConformant = 'NON_CONFORMANT'
+}
+
 export type IMutation = {
   /** Activate a enrollment by changing the status to ACTIVE */
   activateEnrollment: IEnrollment;
@@ -942,6 +893,7 @@ export type IMutation = {
   addCartQuotation: IOrderItem;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
   addEmail: IUser;
+  addLimitedScopeRule: IPublicareScopeRule;
   /** Add multiple new item to the cart. Order gets generated with status = open (= order before checkout / cart) if necessary. */
   addMultipleCartProducts: IOrder;
   /**
@@ -954,6 +906,7 @@ export type IMutation = {
    * If there there is a previous vote from the user invoking this it will be removed and updated with the new vote
    */
   addProductReviewVote: IProductReview;
+  addProductToFavoriteList?: Maybe<IPublicareFavoriteList>;
   /** Store user W3C Push subscription object */
   addPushSubscription: IUser;
   /** Web3 */
@@ -970,6 +923,7 @@ export type IMutation = {
    * Optional worker to identify the worker.
    */
   allocateWork?: Maybe<IWork>;
+  archiveRecipe: IPublicareRecipe;
   /**
    * Toggle Bookmark state on a product as currently logged in user,
    * Does not work when multiple bookmarks with different explicit meta configurations exist.
@@ -995,12 +949,19 @@ export type IMutation = {
    * cart mutations. Else it will work like a stack and the checkout will use the very first cart of the user.
    */
   createCart: IOrder;
+  createClient?: Maybe<IPublicareClient>;
+  createClientAddress?: Maybe<IPublicareClient>;
+  createClientCart?: Maybe<IOrder>;
+  createClientWithConnectToken?: Maybe<IPublicareClient>;
   createCountry: ICountry;
   createCurrency: ICurrency;
+  createDeclaration?: Maybe<IPublicareDeclaration>;
   /** Creates new delivery provider */
   createDeliveryProvider: IDeliveryProvider;
+  createEmployee?: Maybe<IPublicareClient>;
   /** Create a enrollment. */
   createEnrollment: IEnrollment;
+  createFavoriteList?: Maybe<IPublicareFavoriteList>;
   /** Creates new Filter along with the user who created it. */
   createFilter: IFilter;
   /** Adds new option to filters */
@@ -1019,6 +980,8 @@ export type IMutation = {
   createProductVariation: IProductVariation;
   /** Adds variation option to an existing product variations */
   createProductVariationOption: IProductVariation;
+  createPublicareUser?: Maybe<ILoginMethodResponse>;
+  createRecipe?: Maybe<IPublicareRecipe>;
   /** Create a new user. */
   createUser?: Maybe<ILoginMethodResponse>;
   /** Creates new warehouse provider. */
@@ -1045,6 +1008,7 @@ export type IMutation = {
   finishWork: IWork;
   /** Request a forgot password email. */
   forgotPassword?: Maybe<ISuccessResponse>;
+  forwardRecipe?: Maybe<IPublicareRecipe>;
   /**
    * Update hearbeat (updates user activity information such as last
    * login and logged in user IP address, locale and country where they
@@ -1055,8 +1019,10 @@ export type IMutation = {
   impersonate: ILoginMethodResponse;
   /** Tokenize */
   invalidateToken: IToken;
+  linkRecipe?: Maybe<IPublicareRecipe>;
   /** Login as Guest User (creates an anonymous user and returns logged in token) */
   loginAsGuest?: Maybe<ILoginMethodResponse>;
+  loginWithConnectToken?: Maybe<IPublicareConnectLoginResponse>;
   /** Log the user in with a password. */
   loginWithPassword?: Maybe<ILoginMethodResponse>;
   /** Log the user in with a WebAuthn device */
@@ -1065,13 +1031,16 @@ export type IMutation = {
   logout?: Maybe<ISuccessResponse>;
   /** Make a proposal as answer to the RFP by changing its status to PROCESSED */
   makeQuotationProposal: IQuotation;
+  markClientLeft?: Maybe<Scalars['Boolean']['output']>;
   /** Make's the provided payment credential as the users preferred method of payment. */
   markPaymentCredentialsPreferred?: Maybe<IPaymentCredentials>;
+  newsletterRegister: Scalars['Boolean']['output'];
   pageView: Scalars['String']['output'];
   /** Manually mark an unpaid/partially paid order as fully paid */
   payOrder: IOrder;
   prepareAssortmentMediaUpload: IMediaUploadTicket;
   prepareProductMediaUpload: IMediaUploadTicket;
+  prepareRecipeDocumentUpload: IMediaUploadTicket;
   prepareUserAvatarUpload: IMediaUploadTicket;
   /**
    * This will pick up non-external work, execute, await result and finish
@@ -1109,6 +1078,7 @@ export type IMutation = {
   removeCartDiscount: IOrderDiscount;
   /** Remove an item from an open order */
   removeCartItem: IOrderItem;
+  removeClientAddress?: Maybe<Scalars['Boolean']['output']>;
   /** Deletes the specified country */
   removeCountry: ICountry;
   /** Deletes the specified currency */
@@ -1120,12 +1090,15 @@ export type IMutation = {
   removeDeliveryProvider: IDeliveryProvider;
   /** Update E-Mail address of any user or logged in user if userId is not provided */
   removeEmail: IUser;
+  removeEmployee?: Maybe<IPublicareClient>;
+  removeFavoriteList?: Maybe<IPublicareFavoriteList>;
   /** Deletes the specified filter */
   removeFilter: IFilter;
   /** Removes the filter option from the specified filter. */
   removeFilterOption: IFilter;
   /** Deletes the specified languages */
   removeLanguage: ILanguage;
+  removeLimitedScopeRule: IPublicareScopeRule;
   /** Remove an order while it's still open */
   removeOrder: IOrder;
   /** Deletes the specified payment credential. */
@@ -1142,6 +1115,7 @@ export type IMutation = {
    * combination that uniquely identifies a row in the assignment matrix
    */
   removeProductAssignment: IProduct;
+  removeProductFromFavoriteList?: Maybe<IPublicareFavoriteList>;
   /** Remove a media asset from a product's visualization */
   removeProductMedia: IProductMedia;
   /** Remove an existing ProductReview. The logic to allow/dissallow removal is controlled by product plugin logic */
@@ -1154,6 +1128,7 @@ export type IMutation = {
   removeProductVariationOption: IProductVariation;
   /** Remove user W3C push subscription object */
   removePushSubscription: IUser;
+  removeRecipe?: Maybe<IPublicareRecipe>;
   /** Remove any user or logged in user if userId is not provided */
   removeUser: IUser;
   /** Remove product reviews of a user */
@@ -1169,6 +1144,7 @@ export type IMutation = {
   removeWebAuthnCredentials: IUser;
   /** Manually remove a work */
   removeWork: IWork;
+  renameFavoriteList?: Maybe<IPublicareFavoriteList>;
   /** Reorder the products in an assortment */
   reorderAssortmentFilters: Array<IAssortmentFilter>;
   /** Reorder the child assortment links in it's parent */
@@ -1183,6 +1159,7 @@ export type IMutation = {
   requestQuotation: IQuotation;
   /** Reset the password for a user using a token received in email. Logs the user in afterwards. */
   resetPassword?: Maybe<ILoginMethodResponse>;
+  sendContactForm?: Maybe<Scalars['Boolean']['output']>;
   /** Forcefully trigger an enrollment email for already added users by e-mail */
   sendEnrollmentEmail?: Maybe<ISuccessResponse>;
   /** Send an email with a link the user can use verify their email address. */
@@ -1192,6 +1169,8 @@ export type IMutation = {
    * any other existing base assortment regular assortments.
    */
   setBaseAssortment: IAssortment;
+  setCurrentClient?: Maybe<IPublicareClient>;
+  setMyPublicareBetaMode: Scalars['Boolean']['output'];
   /**
    * Change the delivery method/provider to an order. If the delivery provider
    * doesn’t exists new delivery provider will be created with the provided ID.
@@ -1210,6 +1189,7 @@ export type IMutation = {
   setUserTags: IUser;
   /** Set username for a specific user */
   setUsername: IUser;
+  signDeclaration?: Maybe<IPublicareRecipe>;
   /** Sign a generic order payment */
   signPaymentProviderForCheckout: Scalars['String']['output'];
   /** Sign a generic payment provider for registration */
@@ -1239,12 +1219,20 @@ export type IMutation = {
    * update will be performed accordingly.
    */
   updateCartItem: IOrderItem;
+  updateClient?: Maybe<IPublicareClient>;
+  updateClientEmail?: Maybe<IPublicareClient>;
+  updateClientInsurance?: Maybe<IPublicareClient>;
+  updateClientNotifications?: Maybe<IPublicareClient>;
+  updateClientPassword?: Maybe<Scalars['ID']['output']>;
+  updateClientRole?: Maybe<IPublicareClient>;
   /** Updates provided country information */
   updateCountry: ICountry;
   /** Updates the specified currency */
   updateCurrency: ICurrency;
+  updateDeclarationDocuments: IPublicareDeclaration;
   /** Updates the delivery provider specified */
   updateDeliveryProvider: IDeliveryProvider;
+  updateEmail?: Maybe<IUser>;
   /** Update a enrollment */
   updateEnrollment: IEnrollment;
   /** Updates the specified filter with the information passed. */
@@ -1288,10 +1276,15 @@ export type IMutation = {
   updateProductVariationTexts: Array<IProductVariationTexts>;
   /** Modify warehousing part of a product */
   updateProductWarehousing?: Maybe<IProduct>;
+  updateRecipe?: Maybe<IPublicareRecipe>;
+  updateRecipeDocuments: IPublicareRecipe;
   /** Update Profile of any user or logged in user if userId is not provided */
   updateUserProfile: IUser;
   /** Updates warehousing provider information with the provided ID */
   updateWarehousingProvider: IWarehousingProvider;
+  uploadDeclaration?: Maybe<IPublicareRecipe>;
+  uploadRecipe?: Maybe<IPublicareRecipe>;
+  uploadSignature?: Maybe<IPublicareRecipe>;
   /** Marks the user's email address as verified. Logs the user in afterwards. */
   verifyEmail?: Maybe<ILoginMethodResponse>;
   /** Verify quotation request elligibility. and marks requested quotations as verified if it is */
@@ -1354,6 +1347,13 @@ export type IMutationAddEmailArgs = {
 };
 
 
+export type IMutationAddLimitedScopeRuleArgs = {
+  companyNumber: Scalars['ID']['input'];
+  type: IPublicareScopeRuleType;
+  value: Scalars['String']['input'];
+};
+
+
 export type IMutationAddMultipleCartProductsArgs = {
   items: Array<IOrderItemInput>;
   orderId?: InputMaybe<Scalars['ID']['input']>;
@@ -1371,6 +1371,12 @@ export type IMutationAddProductReviewVoteArgs = {
   meta?: InputMaybe<Scalars['JSON']['input']>;
   productReviewId: Scalars['ID']['input'];
   type: IProductReviewVoteType;
+};
+
+
+export type IMutationAddProductToFavoriteListArgs = {
+  listId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
 };
 
 
@@ -1404,6 +1410,11 @@ export type IMutationAddWorkArgs = {
 export type IMutationAllocateWorkArgs = {
   types?: InputMaybe<Array<InputMaybe<IWorkType>>>;
   worker?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IMutationArchiveRecipeArgs = {
+  recipeId: Scalars['ID']['input'];
 };
 
 
@@ -1459,6 +1470,32 @@ export type IMutationCreateCartArgs = {
 };
 
 
+export type IMutationCreateClientArgs = {
+  client: IPublicareClientInput;
+  companyNumber?: InputMaybe<Scalars['ID']['input']>;
+  meta?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+
+export type IMutationCreateClientAddressArgs = {
+  address: IAddressInput;
+  clientId: Scalars['ID']['input'];
+  due?: InputMaybe<Scalars['LocalDate']['input']>;
+  setPrimaryAddress?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type IMutationCreateClientCartArgs = {
+  clientId: Scalars['ID']['input'];
+};
+
+
+export type IMutationCreateClientWithConnectTokenArgs = {
+  client: IPublicareClientInput;
+  token: Scalars['String']['input'];
+};
+
+
 export type IMutationCreateCountryArgs = {
   country: ICreateCountryInput;
 };
@@ -1469,8 +1506,23 @@ export type IMutationCreateCurrencyArgs = {
 };
 
 
+export type IMutationCreateDeclarationArgs = {
+  birthday: Scalars['LocalDate']['input'];
+  clientId?: InputMaybe<Scalars['ID']['input']>;
+  firstName: Scalars['String']['input'];
+  lastName: Scalars['String']['input'];
+  type?: InputMaybe<IPublicareRecipeType>;
+};
+
+
 export type IMutationCreateDeliveryProviderArgs = {
   deliveryProvider: ICreateDeliveryProviderInput;
+};
+
+
+export type IMutationCreateEmployeeArgs = {
+  companyNumber: Scalars['ID']['input'];
+  employee: IPublicareEmployeeInput;
 };
 
 
@@ -1481,6 +1533,12 @@ export type IMutationCreateEnrollmentArgs = {
   meta?: InputMaybe<Scalars['JSON']['input']>;
   payment?: InputMaybe<IEnrollmentPaymentInput>;
   plan: IEnrollmentPlanInput;
+};
+
+
+export type IMutationCreateFavoriteListArgs = {
+  clientId: Scalars['ID']['input'];
+  list: IFavoriteListInput;
 };
 
 
@@ -1536,6 +1594,22 @@ export type IMutationCreateProductVariationOptionArgs = {
   option: Scalars['String']['input'];
   productVariationId: Scalars['ID']['input'];
   texts?: InputMaybe<Array<IProductVariationTextInput>>;
+};
+
+
+export type IMutationCreatePublicareUserArgs = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  meta?: InputMaybe<Scalars['JSON']['input']>;
+  plainPassword?: InputMaybe<Scalars['String']['input']>;
+  profile?: InputMaybe<IUserProfileInput>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IMutationCreateRecipeArgs = {
+  clientId?: InputMaybe<Scalars['ID']['input']>;
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  payload: Scalars['JSON']['input'];
 };
 
 
@@ -1605,6 +1679,15 @@ export type IMutationForgotPasswordArgs = {
 };
 
 
+export type IMutationForwardRecipeArgs = {
+  body: Scalars['String']['input'];
+  cc?: InputMaybe<Scalars['String']['input']>;
+  recipeId: Scalars['ID']['input'];
+  subject: Scalars['String']['input'];
+  to: Scalars['String']['input'];
+};
+
+
 export type IMutationImpersonateArgs = {
   userId: Scalars['ID']['input'];
 };
@@ -1612,6 +1695,18 @@ export type IMutationImpersonateArgs = {
 
 export type IMutationInvalidateTokenArgs = {
   tokenId: Scalars['ID']['input'];
+};
+
+
+export type IMutationLinkRecipeArgs = {
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  originalRecipeId: Scalars['ID']['input'];
+  recipeId: Scalars['ID']['input'];
+};
+
+
+export type IMutationLoginWithConnectTokenArgs = {
+  token: Scalars['String']['input'];
 };
 
 
@@ -1633,8 +1728,24 @@ export type IMutationMakeQuotationProposalArgs = {
 };
 
 
+export type IMutationMarkClientLeftArgs = {
+  clientId: Scalars['ID']['input'];
+  type: Scalars['Int']['input'];
+};
+
+
 export type IMutationMarkPaymentCredentialsPreferredArgs = {
   paymentCredentialsId: Scalars['ID']['input'];
+};
+
+
+export type IMutationNewsletterRegisterArgs = {
+  emailAddress: Scalars['String']['input'];
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  languageCode?: InputMaybe<Scalars['String']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  reCaptcha?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1658,6 +1769,13 @@ export type IMutationPrepareAssortmentMediaUploadArgs = {
 export type IMutationPrepareProductMediaUploadArgs = {
   mediaName: Scalars['String']['input'];
   productId: Scalars['ID']['input'];
+};
+
+
+export type IMutationPrepareRecipeDocumentUploadArgs = {
+  mediaName: Scalars['String']['input'];
+  recipeId: Scalars['String']['input'];
+  type: IRecipeDocuments;
 };
 
 
@@ -1743,6 +1861,12 @@ export type IMutationRemoveCartItemArgs = {
 };
 
 
+export type IMutationRemoveClientAddressArgs = {
+  addressId: Scalars['ID']['input'];
+  clientId: Scalars['ID']['input'];
+};
+
+
 export type IMutationRemoveCountryArgs = {
   countryId: Scalars['ID']['input'];
 };
@@ -1764,6 +1888,16 @@ export type IMutationRemoveEmailArgs = {
 };
 
 
+export type IMutationRemoveEmployeeArgs = {
+  clientId: Scalars['ID']['input'];
+};
+
+
+export type IMutationRemoveFavoriteListArgs = {
+  listId: Scalars['ID']['input'];
+};
+
+
 export type IMutationRemoveFilterArgs = {
   filterId: Scalars['ID']['input'];
 };
@@ -1777,6 +1911,11 @@ export type IMutationRemoveFilterOptionArgs = {
 
 export type IMutationRemoveLanguageArgs = {
   languageId: Scalars['ID']['input'];
+};
+
+
+export type IMutationRemoveLimitedScopeRuleArgs = {
+  scopeRuleId: Scalars['ID']['input'];
 };
 
 
@@ -1803,6 +1942,12 @@ export type IMutationRemoveProductArgs = {
 export type IMutationRemoveProductAssignmentArgs = {
   proxyId: Scalars['ID']['input'];
   vectors: Array<IProductAssignmentVectorInput>;
+};
+
+
+export type IMutationRemoveProductFromFavoriteListArgs = {
+  listId: Scalars['ID']['input'];
+  productId: Scalars['ID']['input'];
 };
 
 
@@ -1838,6 +1983,11 @@ export type IMutationRemovePushSubscriptionArgs = {
 };
 
 
+export type IMutationRemoveRecipeArgs = {
+  recipeId: Scalars['ID']['input'];
+};
+
+
 export type IMutationRemoveUserArgs = {
   removeUserReviews?: InputMaybe<Scalars['Boolean']['input']>;
   userId?: InputMaybe<Scalars['ID']['input']>;
@@ -1866,6 +2016,12 @@ export type IMutationRemoveWebAuthnCredentialsArgs = {
 
 export type IMutationRemoveWorkArgs = {
   workId: Scalars['ID']['input'];
+};
+
+
+export type IMutationRenameFavoriteListArgs = {
+  listId: Scalars['ID']['input'];
+  title: Scalars['String']['input'];
 };
 
 
@@ -1906,6 +2062,11 @@ export type IMutationResetPasswordArgs = {
 };
 
 
+export type IMutationSendContactFormArgs = {
+  formData: IPublicareContactFormInput;
+};
+
+
 export type IMutationSendEnrollmentEmailArgs = {
   email: Scalars['String']['input'];
 };
@@ -1918,6 +2079,16 @@ export type IMutationSendVerificationEmailArgs = {
 
 export type IMutationSetBaseAssortmentArgs = {
   assortmentId: Scalars['ID']['input'];
+};
+
+
+export type IMutationSetCurrentClientArgs = {
+  clientId: Scalars['ID']['input'];
+};
+
+
+export type IMutationSetMyPublicareBetaModeArgs = {
+  enabled: Scalars['Boolean']['input'];
 };
 
 
@@ -1954,6 +2125,13 @@ export type IMutationSetUserTagsArgs = {
 export type IMutationSetUsernameArgs = {
   userId: Scalars['ID']['input'];
   username: Scalars['String']['input'];
+};
+
+
+export type IMutationSignDeclarationArgs = {
+  declarationSignature: Scalars['Upload']['input'];
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+  recipeId: Scalars['ID']['input'];
 };
 
 
@@ -2014,6 +2192,43 @@ export type IMutationUpdateCartItemArgs = {
 };
 
 
+export type IMutationUpdateClientArgs = {
+  client: IPublicareClientInput;
+  clientId: Scalars['ID']['input'];
+};
+
+
+export type IMutationUpdateClientEmailArgs = {
+  clientId: Scalars['ID']['input'];
+  email: Scalars['String']['input'];
+};
+
+
+export type IMutationUpdateClientInsuranceArgs = {
+  clientId: Scalars['ID']['input'];
+  due?: InputMaybe<Scalars['LocalDate']['input']>;
+  insurance: IPublicareClientInsuranceInput;
+};
+
+
+export type IMutationUpdateClientNotificationsArgs = {
+  clientId: Scalars['ID']['input'];
+  notifications: IPublicareClientNotificationsInput;
+};
+
+
+export type IMutationUpdateClientPasswordArgs = {
+  clientId: Scalars['ID']['input'];
+  password: Scalars['String']['input'];
+};
+
+
+export type IMutationUpdateClientRoleArgs = {
+  clientId: Scalars['ID']['input'];
+  role: IPublicareRole;
+};
+
+
 export type IMutationUpdateCountryArgs = {
   country: IUpdateCountryInput;
   countryId: Scalars['ID']['input'];
@@ -2026,9 +2241,23 @@ export type IMutationUpdateCurrencyArgs = {
 };
 
 
+export type IMutationUpdateDeclarationDocumentsArgs = {
+  declarationDocumentId?: InputMaybe<Scalars['String']['input']>;
+  declarationId: Scalars['ID']['input'];
+  declarationSignatureAddress?: InputMaybe<Scalars['String']['input']>;
+  declarationSignatureId?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type IMutationUpdateDeliveryProviderArgs = {
   deliveryProvider: IUpdateProviderInput;
   deliveryProviderId: Scalars['ID']['input'];
+};
+
+
+export type IMutationUpdateEmailArgs = {
+  email: Scalars['String']['input'];
+  userId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
@@ -2161,6 +2390,24 @@ export type IMutationUpdateProductWarehousingArgs = {
 };
 
 
+export type IMutationUpdateRecipeArgs = {
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  institutionName?: InputMaybe<Scalars['String']['input']>;
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+  recipeId: Scalars['ID']['input'];
+  status?: InputMaybe<IPublicareRecipeStatus>;
+};
+
+
+export type IMutationUpdateRecipeDocumentsArgs = {
+  declarationId?: InputMaybe<Scalars['String']['input']>;
+  declarationSignatureId?: InputMaybe<Scalars['String']['input']>;
+  documentId?: InputMaybe<Scalars['String']['input']>;
+  recipeId: Scalars['ID']['input'];
+  signatureId?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type IMutationUpdateUserProfileArgs = {
   meta?: InputMaybe<Scalars['JSON']['input']>;
   profile?: InputMaybe<IUserProfileInput>;
@@ -2171,6 +2418,28 @@ export type IMutationUpdateUserProfileArgs = {
 export type IMutationUpdateWarehousingProviderArgs = {
   warehousingProvider: IUpdateProviderInput;
   warehousingProviderId: Scalars['ID']['input'];
+};
+
+
+export type IMutationUploadDeclarationArgs = {
+  declaration: Scalars['Upload']['input'];
+  recipeId: Scalars['ID']['input'];
+};
+
+
+export type IMutationUploadRecipeArgs = {
+  clientId?: InputMaybe<Scalars['ID']['input']>;
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+  pdf: Scalars['Upload']['input'];
+};
+
+
+export type IMutationUploadSignatureArgs = {
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+  recipeId: Scalars['ID']['input'];
+  signature: Scalars['Upload']['input'];
 };
 
 
@@ -2194,6 +2463,8 @@ export type IMutationVerifyWeb3AddressArgs = {
 export type IOrder = {
   _id: Scalars['ID']['output'];
   billingAddress?: Maybe<IAddress>;
+  clientId?: Maybe<Scalars['String']['output']>;
+  comment?: Maybe<Scalars['String']['output']>;
   confirmed?: Maybe<Scalars['DateTimeISO']['output']>;
   contact?: Maybe<IContact>;
   country?: Maybe<ICountry>;
@@ -2207,7 +2478,12 @@ export type IOrder = {
   orderNumber?: Maybe<Scalars['String']['output']>;
   ordered?: Maybe<Scalars['DateTimeISO']['output']>;
   payment?: Maybe<IOrderPayment>;
+  prescriber?: Maybe<IPublicareRelation>;
+  publicareOrder?: Maybe<IPublicareOrder>;
+  recipeConfiguration?: Maybe<Scalars['JSON']['output']>;
+  reference?: Maybe<Scalars['String']['output']>;
   rejected?: Maybe<Scalars['DateTimeISO']['output']>;
+  splitOrder?: Maybe<Scalars['Boolean']['output']>;
   status?: Maybe<IOrderStatus>;
   supportedDeliveryProviders: Array<IDeliveryProvider>;
   supportedPaymentProviders: Array<IPaymentProvider>;
@@ -2226,10 +2502,15 @@ export type IOrderTotalArgs = {
 export type IOrderDelivery = {
   _id: Scalars['ID']['output'];
   delivered?: Maybe<Scalars['DateTimeISO']['output']>;
+  deliveryAddressId?: Maybe<Scalars['String']['output']>;
+  deliveryDate?: Maybe<Scalars['Date']['output']>;
+  deliveryOption?: Maybe<IDeliveryOptions>;
+  deliveryType?: Maybe<Scalars['String']['output']>;
   discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
   fee?: Maybe<IPrice>;
   provider?: Maybe<IDeliveryProvider>;
   status?: Maybe<IOrderDeliveryStatus>;
+  wrapping?: Maybe<IWrappingOptions>;
 };
 
 export type IOrderDeliveryDiscount = IOrderDiscountable & {
@@ -2243,21 +2524,31 @@ export type IOrderDeliveryPickUp = IOrderDelivery & {
   _id: Scalars['ID']['output'];
   activePickUpLocation?: Maybe<IOrderPickUpLocation>;
   delivered?: Maybe<Scalars['DateTimeISO']['output']>;
+  deliveryAddressId?: Maybe<Scalars['String']['output']>;
+  deliveryDate?: Maybe<Scalars['Date']['output']>;
+  deliveryOption?: Maybe<IDeliveryOptions>;
+  deliveryType?: Maybe<Scalars['String']['output']>;
   discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
   fee?: Maybe<IPrice>;
   pickUpLocations: Array<IOrderPickUpLocation>;
   provider?: Maybe<IDeliveryProvider>;
   status?: Maybe<IOrderDeliveryStatus>;
+  wrapping?: Maybe<IWrappingOptions>;
 };
 
 export type IOrderDeliveryShipping = IOrderDelivery & {
   _id: Scalars['ID']['output'];
   address?: Maybe<IAddress>;
   delivered?: Maybe<Scalars['DateTimeISO']['output']>;
+  deliveryAddressId?: Maybe<Scalars['String']['output']>;
+  deliveryDate?: Maybe<Scalars['Date']['output']>;
+  deliveryOption?: Maybe<IDeliveryOptions>;
+  deliveryType?: Maybe<Scalars['String']['output']>;
   discounts?: Maybe<Array<IOrderDeliveryDiscount>>;
   fee?: Maybe<IPrice>;
   provider?: Maybe<IDeliveryProvider>;
   status?: Maybe<IOrderDeliveryStatus>;
+  wrapping?: Maybe<IWrappingOptions>;
 };
 
 export enum IOrderDeliveryStatus {
@@ -2508,6 +2799,7 @@ export type IPlanProduct = IProduct & {
   defaultOrderQuantity?: Maybe<Scalars['Int']['output']>;
   leveledCatalogPrices: Array<IPriceLevel>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
   plan?: Maybe<IProductPlanConfiguration>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
   reviews: Array<IProductReview>;
@@ -2613,6 +2905,7 @@ export type IProduct = {
   assortmentPaths: Array<IProductAssortmentPath>;
   created?: Maybe<Scalars['DateTimeISO']['output']>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
   reviews: Array<IProductReview>;
   reviewsCount: Scalars['Int']['output'];
@@ -2813,6 +3106,12 @@ export enum IProductStatus {
   Draft = 'DRAFT'
 }
 
+export type IProductSuggestion = {
+  _id: Scalars['String']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  text: Scalars['String']['output'];
+};
+
 export type IProductTextInput = {
   brand?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2827,12 +3126,15 @@ export type IProductTextInput = {
 export type IProductTexts = {
   _id: Scalars['ID']['output'];
   brand?: Maybe<Scalars['String']['output']>;
+  categories?: Maybe<Array<Scalars['String']['output']>>;
   description?: Maybe<Scalars['String']['output']>;
   labels?: Maybe<Array<Scalars['String']['output']>>;
   locale?: Maybe<Scalars['Locale']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  variant1?: Maybe<Scalars['String']['output']>;
+  variant2?: Maybe<Scalars['String']['output']>;
   vendor?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2896,6 +3198,439 @@ export enum IProductVariationType {
   Text = 'TEXT'
 }
 
+export type IPublicareClient = {
+  _id: Scalars['ID']['output'];
+  additionalName?: Maybe<Scalars['String']['output']>;
+  addressLine?: Maybe<Scalars['String']['output']>;
+  addressLine2?: Maybe<Scalars['String']['output']>;
+  birthday?: Maybe<Scalars['Date']['output']>;
+  cart?: Maybe<IOrder>;
+  city?: Maybe<Scalars['String']['output']>;
+  companyNumber?: Maybe<Scalars['ID']['output']>;
+  contactNumber?: Maybe<Scalars['ID']['output']>;
+  countryCode?: Maybe<Scalars['String']['output']>;
+  customerNumber?: Maybe<Scalars['ID']['output']>;
+  cuttingConfigurations: Array<IPublicareCuttingConfiguration>;
+  defaultShippingOption?: Maybe<Scalars['String']['output']>;
+  defaultShippingType?: Maybe<Scalars['String']['output']>;
+  doctors: Array<IPublicareRelation>;
+  emailAddress?: Maybe<Scalars['String']['output']>;
+  emailNotificationAddress?: Maybe<Scalars['String']['output']>;
+  employees: Array<IPublicareClient>;
+  emsDepartmentDescription?: Maybe<Scalars['String']['output']>;
+  emsDepartmentName?: Maybe<Scalars['String']['output']>;
+  familyDoctor?: Maybe<Scalars['String']['output']>;
+  favoriteLists: Array<IPublicareFavoriteList>;
+  firstName?: Maybe<Scalars['String']['output']>;
+  gender?: Maybe<Scalars['String']['output']>;
+  institution?: Maybe<IPublicareClient>;
+  insuranceHeadquarters?: Maybe<Scalars['String']['output']>;
+  insuranceName?: Maybe<Scalars['String']['output']>;
+  insuranceNumber?: Maybe<Scalars['String']['output']>;
+  invalidityNumber?: Maybe<Scalars['String']['output']>;
+  isInstitution?: Maybe<Scalars['Boolean']['output']>;
+  isNewCustomer?: Maybe<Scalars['Boolean']['output']>;
+  isNotifyByEmailEnabled?: Maybe<Scalars['Boolean']['output']>;
+  isNotifyByMobileEnabled?: Maybe<Scalars['Boolean']['output']>;
+  isNotifyPatientByEmailEnabled?: Maybe<Scalars['Boolean']['output']>;
+  isPrescriptionist?: Maybe<Scalars['Boolean']['output']>;
+  isPrivateCustomer?: Maybe<Scalars['Boolean']['output']>;
+  isValidated?: Maybe<Scalars['Boolean']['output']>;
+  languageCode?: Maybe<Scalars['String']['output']>;
+  lastName?: Maybe<Scalars['String']['output']>;
+  lastOrderAddress?: Maybe<IPublicareOrderAddress>;
+  mobileNumber?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  orderAddresses: Array<IPublicareOrderAddress>;
+  orders: Array<IPublicareOrder>;
+  ordersCount: Scalars['Int']['output'];
+  patientEmailNotificationAddress?: Maybe<Scalars['String']['output']>;
+  patients: Array<IPublicareClient>;
+  postalCode?: Maybe<Scalars['String']['output']>;
+  prescriber?: Maybe<IPublicareRelation>;
+  recipes: Array<IPublicareRecipe>;
+  regionCode?: Maybe<Scalars['String']['output']>;
+  roles: Array<Scalars['String']['output']>;
+  searchProducts: IProductSearchResult;
+  showEMSDepartment?: Maybe<Scalars['Boolean']['output']>;
+  showMigelConformityInCatalog?: Maybe<Scalars['Boolean']['output']>;
+  showMigelConformityInRecipes?: Maybe<Scalars['Boolean']['output']>;
+  telephoneNumber?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type IPublicareClientEmployeesArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IPublicareClientFavoriteListsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IPublicareClientOrdersArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<ISortOptionInput>;
+  status?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
+export type IPublicareClientOrdersCountArgs = {
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
+export type IPublicareClientPatientsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IPublicareClientRecipesArgs = {
+  status?: InputMaybe<IPublicareRecipeStatus>;
+};
+
+
+export type IPublicareClientSearchProductsArgs = {
+  filterQuery?: InputMaybe<Array<IFilterQueryInput>>;
+  orderBy?: InputMaybe<ISearchOrderBy>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareClientInput = {
+  additionalName?: InputMaybe<Scalars['String']['input']>;
+  addressGroup?: InputMaybe<Scalars['String']['input']>;
+  addressGroupId?: InputMaybe<Scalars['String']['input']>;
+  addressLine?: InputMaybe<Scalars['String']['input']>;
+  addressLine2?: InputMaybe<Scalars['String']['input']>;
+  birthday?: InputMaybe<Scalars['LocalDate']['input']>;
+  city?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  contactNumber?: InputMaybe<Scalars['String']['input']>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  familyDoctor?: InputMaybe<Scalars['String']['input']>;
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  insuranceHeadquarters?: InputMaybe<Scalars['String']['input']>;
+  insuranceName?: InputMaybe<Scalars['String']['input']>;
+  insuranceNumber?: InputMaybe<Scalars['String']['input']>;
+  invalidityNumber?: InputMaybe<Scalars['String']['input']>;
+  languageCode?: InputMaybe<Scalars['String']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  mobileNumber?: InputMaybe<Scalars['String']['input']>;
+  postalCode?: InputMaybe<Scalars['String']['input']>;
+  prescriber?: InputMaybe<Scalars['String']['input']>;
+  prescriberContactNumber?: InputMaybe<Scalars['String']['input']>;
+  prescriberEmailAddress?: InputMaybe<Scalars['String']['input']>;
+  recipeCategories?: InputMaybe<Array<Scalars['String']['input']>>;
+  telephoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareClientInsuranceInput = {
+  insuranceHeadquarters?: InputMaybe<Scalars['String']['input']>;
+  insuranceName?: InputMaybe<Scalars['String']['input']>;
+  insuranceNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareClientNotificationsInput = {
+  emailNotificationAddress?: InputMaybe<Scalars['String']['input']>;
+  isNotifyByEmailEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  isNotifyByMobileEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  isNotifyPatientByEmailEnabled?: InputMaybe<Scalars['Boolean']['input']>;
+  mobileNumber?: InputMaybe<Scalars['String']['input']>;
+  patientEmailNotificationAddress?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareConnectDetails = {
+  _id: Scalars['ID']['output'];
+  created?: Maybe<Scalars['Date']['output']>;
+  events?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
+  parsedPayload?: Maybe<Scalars['JSON']['output']>;
+  payload?: Maybe<Scalars['JSON']['output']>;
+  type?: Maybe<IPublicareConnectType>;
+  userId: Scalars['ID']['output'];
+};
+
+/** Extended from LoginMethodResponse */
+export type IPublicareConnectLoginResponse = {
+  _id: Scalars['String']['output'];
+  client?: Maybe<IPublicareClient>;
+  status?: Maybe<IPublicareConnectLoginStatus>;
+  token: Scalars['String']['output'];
+  tokenExpires: Scalars['Date']['output'];
+  user?: Maybe<IUser>;
+};
+
+export enum IPublicareConnectLoginStatus {
+  Error = 'ERROR',
+  NoPermission = 'NO_PERMISSION',
+  Ok = 'OK'
+}
+
+export type IPublicareConnectStatus = {
+  _id: Scalars['ID']['output'];
+  parsedPayload?: Maybe<Scalars['JSON']['output']>;
+  type?: Maybe<IPublicareConnectType>;
+};
+
+export enum IPublicareConnectType {
+  Nexus = 'NEXUS',
+  Perigon = 'PERIGON',
+  Swing = 'SWING'
+}
+
+export type IPublicareContactFormInput = {
+  company?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['LocalDate']['input']>;
+  emailAddress: Scalars['String']['input'];
+  fullName?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  topic?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<IPublicareContactFormInputType>;
+};
+
+export enum IPublicareContactFormInputType {
+  Callback = 'CALLBACK',
+  Message = 'MESSAGE'
+}
+
+export type IPublicareCuttingConfiguration = {
+  _id: Scalars['ID']['output'];
+  cutting: ICutting;
+  itemNumber: Scalars['String']['output'];
+};
+
+export type IPublicareDeclaration = {
+  _id: Scalars['ID']['output'];
+  birthday: Scalars['Timestamp']['output'];
+  created: Scalars['Date']['output'];
+  creator: Scalars['String']['output'];
+  document?: Maybe<IPublicareFile>;
+  firstName: Scalars['String']['output'];
+  isPurged: Scalars['Boolean']['output'];
+  lastName: Scalars['String']['output'];
+  signature?: Maybe<IPublicareFile>;
+  status: IPublicareDeclarationStatus;
+  updated?: Maybe<Scalars['Date']['output']>;
+};
+
+export enum IPublicareDeclarationStatus {
+  Draft = 'DRAFT',
+  Signed = 'SIGNED'
+}
+
+export type IPublicareEmployeeInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  gender?: InputMaybe<Scalars['String']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+  mobileNumber?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<IPublicareRole>;
+  telephoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareFavoriteList = {
+  _id: Scalars['ID']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  isEditable?: Maybe<Scalars['Boolean']['output']>;
+  isPatientOrder?: Maybe<Scalars['Boolean']['output']>;
+  items: Array<IPublicareFavoriteListItem>;
+  number: Scalars['Int']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type IPublicareFavoriteListItem = {
+  _id: Scalars['ID']['output'];
+  cuttingConfiguration?: Maybe<IPublicareCuttingConfiguration>;
+  isBlocked?: Maybe<Scalars['Boolean']['output']>;
+  itemNumber: Scalars['String']['output'];
+  product?: Maybe<IProduct>;
+  quantity: Scalars['Int']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+export type IPublicareFavoriteListItemQuantityArgs = {
+  clientId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type IPublicareFile = {
+  _id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  size: Scalars['Int']['output'];
+  type: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+};
+
+
+export type IPublicareFileUrlArgs = {
+  baseUrl?: InputMaybe<Scalars['String']['input']>;
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type IPublicareOrder = {
+  _id: Scalars['ID']['output'];
+  billingAddress?: Maybe<IAddress>;
+  comment?: Maybe<Scalars['String']['output']>;
+  deliveryAddress?: Maybe<IAddress>;
+  deliveryOption?: Maybe<Scalars['String']['output']>;
+  deliveryType?: Maybe<Scalars['String']['output']>;
+  earliestDeliveryDate?: Maybe<Scalars['Date']['output']>;
+  employeeName?: Maybe<Scalars['String']['output']>;
+  items: Array<IPublicareOrderItem>;
+  orderDate?: Maybe<Scalars['Date']['output']>;
+  orderNumber?: Maybe<Scalars['String']['output']>;
+  reference?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  unchainedOrder?: Maybe<IOrder>;
+  unchainedOrderDate?: Maybe<Scalars['Date']['output']>;
+  wrapping?: Maybe<Scalars['String']['output']>;
+};
+
+export type IPublicareOrderAddress = {
+  _id: Scalars['ID']['output'];
+  address: IAddress;
+  code: Scalars['String']['output'];
+};
+
+export type IPublicareOrderItem = {
+  _id: Scalars['ID']['output'];
+  cutting?: Maybe<ICutting>;
+  earliestDeliveryDate?: Maybe<Scalars['Date']['output']>;
+  itemNumber?: Maybe<Scalars['String']['output']>;
+  lineNumber?: Maybe<Scalars['Int']['output']>;
+  product?: Maybe<IProduct>;
+  quantity: Scalars['Float']['output'];
+  quantityOutstanding: Scalars['Float']['output'];
+  quantityShipped: Scalars['Float']['output'];
+  status?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  unit?: Maybe<Scalars['String']['output']>;
+};
+
+export type IPublicareProductAttributes = {
+  attributes?: Maybe<Array<Scalars['JSON']['output']>>;
+  category?: Maybe<Scalars['String']['output']>;
+  clientMigelConformity?: Maybe<IMigelConformity>;
+  crossdockingShipmentDate?: Maybe<Scalars['DateTimeISO']['output']>;
+  cutting?: Maybe<Array<Scalars['Float']['output']>>;
+  eclass?: Maybe<Scalars['String']['output']>;
+  eclassVersion?: Maybe<Scalars['String']['output']>;
+  gtin?: Maybe<Scalars['String']['output']>;
+  institutionalMigelConformity?: Maybe<IMigelConformity>;
+  isNotReturnable?: Maybe<Scalars['Boolean']['output']>;
+  isOnlyForMedProfessionals?: Maybe<Scalars['Boolean']['output']>;
+  maxCompensation?: Maybe<Scalars['Float']['output']>;
+  maxCompensationCare?: Maybe<Scalars['Float']['output']>;
+  migel?: Maybe<Array<Scalars['String']['output']>>;
+  migelQuantityPerUnit?: Maybe<Scalars['Float']['output']>;
+  migelTarifFlatRate?: Maybe<Scalars['Boolean']['output']>;
+  migelTarifQuantity?: Maybe<Scalars['Float']['output']>;
+  mwst?: Maybe<Scalars['Float']['output']>;
+  packagingReferenceNumber?: Maybe<Scalars['String']['output']>;
+  pharmaCode?: Maybe<Scalars['String']['output']>;
+  recipeType?: Maybe<Scalars['String']['output']>;
+  swissmedic?: Maybe<Array<Scalars['String']['output']>>;
+  vocFee?: Maybe<Scalars['Float']['output']>;
+};
+
+export type IPublicareRecipe = {
+  _id: Scalars['ID']['output'];
+  created: Scalars['Date']['output'];
+  creator: Scalars['String']['output'];
+  declaration?: Maybe<IPublicareFile>;
+  declarationSignature?: Maybe<IPublicareFile>;
+  document?: Maybe<IPublicareFile>;
+  generatedAsFirstRecipe: Scalars['Boolean']['output'];
+  isPurged: Scalars['Boolean']['output'];
+  payload?: Maybe<Scalars['JSON']['output']>;
+  recipeForm?: Maybe<IPublicareRecipeForm>;
+  signature?: Maybe<IPublicareFile>;
+  status: IPublicareRecipeStatus;
+  updated?: Maybe<Scalars['Date']['output']>;
+};
+
+export type IPublicareRecipeForm = {
+  _id: Scalars['ID']['output'];
+  declarationPreviewEndpoint?: Maybe<Scalars['String']['output']>;
+  previewEndpoint?: Maybe<Scalars['String']['output']>;
+  schema?: Maybe<Scalars['JSON']['output']>;
+  templateUrl?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  type?: Maybe<IPublicareRecipeType>;
+};
+
+
+export type IPublicareRecipeFormDeclarationPreviewEndpointArgs = {
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+
+export type IPublicareRecipeFormPreviewEndpointArgs = {
+  payload?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export enum IPublicareRecipeStatus {
+  Archived = 'ARCHIVED',
+  Draft = 'DRAFT',
+  Final = 'FINAL',
+  First = 'FIRST',
+  Ready = 'READY',
+  Sent = 'SENT'
+}
+
+export enum IPublicareRecipeType {
+  Declaration = 'DECLARATION',
+  Inko = 'INKO',
+  InkoStoma = 'INKO_STOMA',
+  InkoWund = 'INKO_WUND',
+  Medizinische = 'MEDIZINISCHE',
+  Stoma = 'STOMA',
+  StomaWund = 'STOMA_WUND',
+  Tracheo = 'TRACHEO',
+  Wund = 'WUND'
+}
+
+export type IPublicareRelation = {
+  contactAddress?: Maybe<Scalars['String']['output']>;
+  contactEmail?: Maybe<Scalars['String']['output']>;
+  contactLanguage?: Maybe<Scalars['String']['output']>;
+  contactName?: Maybe<Scalars['String']['output']>;
+  contactNumber?: Maybe<Scalars['String']['output']>;
+  contactPhone?: Maybe<Scalars['String']['output']>;
+};
+
+export enum IPublicareRole {
+  Administrator = 'ADMINISTRATOR',
+  Orderer = 'ORDERER',
+  OrdererRestricted = 'ORDERER_RESTRICTED',
+  OrdererRestrictedStrict = 'ORDERER_RESTRICTED_STRICT',
+  User = 'USER'
+}
+
+export type IPublicareScopeRule = {
+  _id: Scalars['ID']['output'];
+  type: IPublicareScopeRuleType;
+  value: Scalars['String']['output'];
+};
+
+export enum IPublicareScopeRuleType {
+  Article = 'ARTICLE',
+  Brand = 'BRAND',
+  Navigation = 'NAVIGATION'
+}
+
 export type IPushSubscription = {
   _id: Scalars['ID']['output'];
   endpoint: Scalars['String']['output'];
@@ -2906,12 +3641,20 @@ export type IPushSubscription = {
 export type IQuery = {
   /** Get List of currently registered worker plugins */
   activeWorkTypes: Array<IWorkType>;
+  advantagesModel?: Maybe<Array<Maybe<IAdvantagesModel>>>;
   /** Get a specific assortment by ID */
   assortment?: Maybe<IAssortment>;
+  assortmentSearchSolrConfigModel?: Maybe<IAssortmentSearchSolrConfigModel>;
   /** Get all root assortments, by default sorted by sequence (ascending) */
   assortments: Array<IAssortment>;
   /** Returns total number of assortments that match a given criteria or all if no criteria is given */
   assortmentsCount: Scalars['Int']['output'];
+  autoSuggestProducts?: Maybe<Array<IProductSuggestion>>;
+  client?: Maybe<IPublicareClient>;
+  cmsRouteSiblings?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
+  content?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
+  contentSearchSolrConfigModel?: Maybe<IContentSearchSolrConfigModel>;
+  contentTree?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
   /** Get all countries, by default sorted by creation date (ascending) */
   countries: Array<ICountry>;
   /** Returns total number of countries */
@@ -2924,6 +3667,9 @@ export type IQuery = {
   currenciesCount: Scalars['Int']['output'];
   /** Get a specific currency by ID */
   currency?: Maybe<ICurrency>;
+  declaration?: Maybe<IPublicareDeclaration>;
+  declarationFilterData: IDeclarationFilterData;
+  declarations: Array<IPublicareDeclaration>;
   /** Get all delivery interfaces filtered by type */
   deliveryInterfaces: Array<IDeliveryInterface>;
   /** Get a specific delivery provider by ID */
@@ -2932,6 +3678,9 @@ export type IQuery = {
   deliveryProviders: Array<IDeliveryProvider>;
   /** Returns total number of delivery providers, optionally filtered by type */
   deliveryProvidersCount: Scalars['Int']['output'];
+  detektivoSearch?: Maybe<IDetektivoSearchResult>;
+  downloadsModel?: Maybe<Array<Maybe<IDownloadsModel>>>;
+  employeesModel?: Maybe<Array<Maybe<IEmployeesModel>>>;
   /** Get a specific quotation by ID */
   enrollment?: Maybe<IEnrollment>;
   /** Get all enrollments, by default sorted by creation date (ascending) */
@@ -2942,10 +3691,15 @@ export type IQuery = {
   event?: Maybe<IEvent>;
   /** Returns aggregated report of all the events that occurred in the system */
   eventStatistics: Array<IEventStatistics>;
+  eventcatagoriesModel?: Maybe<Array<Maybe<IEventcatagoriesModel>>>;
   /** Get all emitted events, by default sorted by creation date (desc) */
   events: Array<IEvent>;
   /** Get total count of all emitted events */
   eventsCount: Scalars['Int']['output'];
+  eventsModel?: Maybe<Array<Maybe<IEventsModel>>>;
+  eventsTreeModel?: Maybe<Array<Maybe<IEventsTreeModel>>>;
+  faqModel?: Maybe<Array<Maybe<IFaqModel>>>;
+  favoriteList?: Maybe<IPublicareFavoriteList>;
   /** Get a specific filter by ID */
   filter?: Maybe<IFilter>;
   /** Get all filters, by default sorted by creation date (ascending) */
@@ -2954,14 +3708,22 @@ export type IQuery = {
   filtersCount: Scalars['Int']['output'];
   /** User impersonating currently logged in user */
   impersonator?: Maybe<IUser>;
+  infoTextModel?: Maybe<Array<Maybe<IInfoTextModel>>>;
+  instructionTargetsModel?: Maybe<Array<Maybe<IInstructionTargetsModel>>>;
+  instructionsModel?: Maybe<Array<Maybe<IInstructionsModel>>>;
+  isProductInCustomAssortment?: Maybe<Scalars['Boolean']['output']>;
   /** Get a specific language */
   language?: Maybe<ILanguage>;
   /** Get all languages, by default sorted by creation date (ascending) */
   languages: Array<Maybe<ILanguage>>;
   /** Returns total number languages */
   languagesCount: Scalars['Int']['output'];
+  lokalize?: Maybe<Scalars['JsonType']['output']>;
+  maintenanceModel?: Maybe<Array<Maybe<IMaintenanceModel>>>;
   /** Currently logged in user */
   me?: Maybe<IUser>;
+  newsModel?: Maybe<Array<Maybe<INewsModel>>>;
+  newsletterModel?: Maybe<Array<Maybe<INewsletterModel>>>;
   /** Get a specific single order */
   order?: Maybe<IOrder>;
   /** Returns aggregated report of all the orders that occurred in the system */
@@ -2970,6 +3732,11 @@ export type IQuery = {
   orders: Array<IOrder>;
   /** Returns total number of orders */
   ordersCount: Scalars['Int']['output'];
+  pageByID?: Maybe<Scalars['JsonType']['output']>;
+  pageByRoute?: Maybe<Scalars['JsonType']['output']>;
+  pages?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
+  pagesMenu?: Maybe<Scalars['JsonType']['output']>;
+  pagesMenus?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
   /** Get all payment interfaces filtered by type */
   paymentInterfaces: Array<IPaymentInterface>;
   /** Get a specific payment provider by ID */
@@ -2978,16 +3745,19 @@ export type IQuery = {
   paymentProviders: Array<IPaymentProvider>;
   /** Returns total number of payment providers, optionally filtered by type */
   paymentProvidersCount: Scalars['Int']['output'];
+  popupModel?: Maybe<Array<Maybe<IPopupModel>>>;
   /** Get a specific product by id or slug */
   product?: Maybe<IProduct>;
   /** List products specified prices */
   productCatalogPrices: Array<IProductCatalogPrice>;
+  productReplacements: Array<Maybe<IProduct>>;
   /** Get a specific product review by ID */
   productReview: IProductReview;
   /** Get all product reviews, by default sorted by creation date (descending) */
   productReviews: Array<IProductReview>;
   /** Returns total number of product reviews */
   productReviewsCount: Scalars['Int']['output'];
+  productSolrSearchConfigModel?: Maybe<IProductSolrSearchConfigModel>;
   /**
    * Simple list of published products filtered either by tags or explicit slugs
    * If a slug is provided, limit and offset don't have any effect on the result
@@ -2999,18 +3769,34 @@ export type IQuery = {
    * If a slug is provided
    */
   productsCount: Scalars['Int']['output'];
+  publicareConnectCheckoutReference?: Maybe<Scalars['String']['output']>;
+  publicareConnectStatus?: Maybe<IPublicareConnectStatus>;
+  publicareOrder?: Maybe<IPublicareOrder>;
+  publicareOrders: Array<IPublicareOrder>;
+  publicareOrdersCount: Scalars['Int']['output'];
   /** Get a specific quotation by ID */
   quotation?: Maybe<IQuotation>;
   /** Get all quotations, by default sorted by creation date (ascending) */
   quotations: Array<IQuotation>;
   /** Returns total number of quotations */
   quotationsCount: Scalars['Int']['output'];
+  recipe?: Maybe<IPublicareRecipe>;
+  recipeFilterData: IRecipeFilterData;
+  recipeForm?: Maybe<IPublicareRecipeForm>;
+  recipeForms: Array<IPublicareRecipeForm>;
+  recipes: Array<IPublicareRecipe>;
+  redirectsModel?: Maybe<Array<Maybe<IRedirectsModel>>>;
+  releasesModel?: Maybe<Array<Maybe<IReleasesModel>>>;
   /** Search assortments */
   searchAssortments: IAssortmentSearchResult;
+  searchCms?: Maybe<ICmsSearchResult>;
   /** Search products */
   searchProducts: IProductSearchResult;
   /** Get shop-global data and the resolved country/language pair */
   shopInfo: IShop;
+  shopMenu?: Maybe<Scalars['JSON']['output']>;
+  shopcategoriesModel?: Maybe<Array<Maybe<IShopcategoriesModel>>>;
+  systemstatusModel?: Maybe<Array<Maybe<ISystemstatusModel>>>;
   /** Get token */
   token?: Maybe<IToken>;
   /** Get all tokens */
@@ -3058,9 +3844,27 @@ export type IQuery = {
 };
 
 
+export type IQueryAdvantagesModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
 export type IQueryAssortmentArgs = {
   assortmentId?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryAssortmentSearchSolrConfigModelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -3082,6 +3886,50 @@ export type IQueryAssortmentsCountArgs = {
   queryString?: InputMaybe<Scalars['String']['input']>;
   slugs?: InputMaybe<Array<Scalars['String']['input']>>;
   tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+};
+
+
+export type IQueryAutoSuggestProductsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  queryString: Scalars['String']['input'];
+};
+
+
+export type IQueryClientArgs = {
+  clientId: Scalars['ID']['input'];
+};
+
+
+export type IQueryCmsRouteSiblingsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  route: Scalars['String']['input'];
+};
+
+
+export type IQueryContentArgs = {
+  fields?: InputMaybe<Scalars['JsonType']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  model: Scalars['String']['input'];
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryContentSearchSolrConfigModelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IQueryContentTreeArgs = {
+  fields?: InputMaybe<Scalars['JsonType']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  model: Scalars['String']['input'];
+  parent?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -3125,6 +3973,19 @@ export type IQueryCurrencyArgs = {
 };
 
 
+export type IQueryDeclarationArgs = {
+  declarationId: Scalars['ID']['input'];
+};
+
+
+export type IQueryDeclarationsArgs = {
+  creator?: InputMaybe<Array<Scalars['String']['input']>>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  sortBy?: InputMaybe<IDeclarationSortOptions>;
+  status?: InputMaybe<Array<IPublicareDeclarationStatus>>;
+};
+
+
 export type IQueryDeliveryInterfacesArgs = {
   type: IDeliveryProviderType;
 };
@@ -3142,6 +4003,38 @@ export type IQueryDeliveryProvidersArgs = {
 
 export type IQueryDeliveryProvidersCountArgs = {
   type?: InputMaybe<IDeliveryProviderType>;
+};
+
+
+export type IQueryDetektivoSearchArgs = {
+  index: Scalars['String']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  q?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryDownloadsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryEmployeesModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
 };
 
 
@@ -3176,6 +4069,18 @@ export type IQueryEventStatisticsArgs = {
 };
 
 
+export type IQueryEventcatagoriesModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
 export type IQueryEventsArgs = {
   created?: InputMaybe<Scalars['DateTimeISO']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3190,6 +4095,47 @@ export type IQueryEventsCountArgs = {
   created?: InputMaybe<Scalars['DateTimeISO']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
   types?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
+export type IQueryEventsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryEventsTreeModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryFaqModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryFavoriteListArgs = {
+  listId: Scalars['ID']['input'];
 };
 
 
@@ -3213,6 +4159,48 @@ export type IQueryFiltersCountArgs = {
 };
 
 
+export type IQueryInfoTextModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryInstructionTargetsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryInstructionsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryIsProductInCustomAssortmentArgs = {
+  clientId: Scalars['ID']['input'];
+  productSku: Scalars['String']['input'];
+};
+
+
 export type IQueryLanguageArgs = {
   languageId: Scalars['ID']['input'];
 };
@@ -3230,6 +4218,49 @@ export type IQueryLanguagesArgs = {
 export type IQueryLanguagesCountArgs = {
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryLokalizeArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  nested?: InputMaybe<Scalars['Int']['input']>;
+  project: Scalars['String']['input'];
+};
+
+
+export type IQueryMaintenanceModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryNewsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryNewsletterModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
 };
 
 
@@ -3259,6 +4290,38 @@ export type IQueryOrdersCountArgs = {
 };
 
 
+export type IQueryPageByIdArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IQueryPageByRouteArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  route: Scalars['String']['input'];
+};
+
+
+export type IQueryPagesArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryPagesMenuArgs = {
+  inactive?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+
+export type IQueryPagesMenusArgs = {
+  inactive?: InputMaybe<Scalars['Boolean']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
 export type IQueryPaymentInterfacesArgs = {
   type: IPaymentProviderType;
 };
@@ -3279,6 +4342,18 @@ export type IQueryPaymentProvidersCountArgs = {
 };
 
 
+export type IQueryPopupModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
 export type IQueryProductArgs = {
   productId?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -3287,6 +4362,11 @@ export type IQueryProductArgs = {
 
 export type IQueryProductCatalogPricesArgs = {
   productId: Scalars['ID']['input'];
+};
+
+
+export type IQueryProductReplacementsArgs = {
+  sku: Scalars['String']['input'];
 };
 
 
@@ -3305,6 +4385,12 @@ export type IQueryProductReviewsArgs = {
 
 export type IQueryProductReviewsCountArgs = {
   queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryProductSolrSearchConfigModelArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -3327,6 +4413,31 @@ export type IQueryProductsCountArgs = {
 };
 
 
+export type IQueryPublicareConnectStatusArgs = {
+  token?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryPublicareOrderArgs = {
+  orderNumber: Scalars['String']['input'];
+};
+
+
+export type IQueryPublicareOrdersArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<ISortOptionInput>;
+  status?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
+export type IQueryPublicareOrdersCountArgs = {
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+
 export type IQueryQuotationArgs = {
   quotationId: Scalars['ID']['input'];
 };
@@ -3345,11 +4456,69 @@ export type IQueryQuotationsCountArgs = {
 };
 
 
+export type IQueryRecipeArgs = {
+  recipeId: Scalars['ID']['input'];
+};
+
+
+export type IQueryRecipeFormArgs = {
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+  type: Scalars['String']['input'];
+};
+
+
+export type IQueryRecipeFormsArgs = {
+  forceLocale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryRecipesArgs = {
+  creator?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  patient?: InputMaybe<Scalars['String']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
+  sortBy?: InputMaybe<IRecipeSortOptions>;
+  status?: InputMaybe<Array<IPublicareRecipeStatus>>;
+  type?: InputMaybe<Array<IPublicareRecipeType>>;
+};
+
+
+export type IQueryRedirectsModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQueryReleasesModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
 export type IQuerySearchAssortmentsArgs = {
   assortmentIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQuerySearchCmsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  queryString: Scalars['String']['input'];
 };
 
 
@@ -3360,6 +4529,35 @@ export type IQuerySearchProductsArgs = {
   includeInactive?: InputMaybe<Scalars['Boolean']['input']>;
   orderBy?: InputMaybe<ISearchOrderBy>;
   queryString?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IQueryShopMenuArgs = {
+  locale: Scalars['String']['input'];
+};
+
+
+export type IQueryShopcategoriesModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
+};
+
+
+export type IQuerySystemstatusModelArgs = {
+  _id?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['JsonType']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  populate?: InputMaybe<Scalars['Int']['input']>;
+  projection?: InputMaybe<Scalars['String']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Scalars['JsonType']['input']>;
 };
 
 
@@ -3539,6 +4737,32 @@ export enum IQuotationStatus {
   Requested = 'REQUESTED'
 }
 
+export enum IRecipeDocuments {
+  Declaration = 'DECLARATION',
+  DeclarationSignature = 'DECLARATION_SIGNATURE',
+  Document = 'DOCUMENT',
+  DocumentSignature = 'DOCUMENT_SIGNATURE'
+}
+
+export type IRecipeFilterData = {
+  creators: Array<Maybe<IPublicareClient>>;
+  patients: Array<Maybe<IRecipePatient>>;
+};
+
+export type IRecipePatient = {
+  _id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+export enum IRecipeSortOptions {
+  CreatedAsc = 'created_ASC',
+  CreatedDesc = 'created_DESC',
+  PayloadPersonLastNameAsc = 'payload_person_lastName_ASC',
+  PayloadPersonLastNameDesc = 'payload_person_lastName_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC'
+}
+
 export type IReorderAssortmentFilterInput = {
   assortmentFilterId: Scalars['ID']['input'];
   sortKey: Scalars['Int']['input'];
@@ -3572,7 +4796,12 @@ export enum IRoleAction {
   CheckoutCart = 'checkoutCart',
   ConfirmMediaUpload = 'confirmMediaUpload',
   CreateCart = 'createCart',
+  CreateClient = 'createClient',
+  CreateEmployee = 'createEmployee',
   CreateEnrollment = 'createEnrollment',
+  CreateFavoriteList = 'createFavoriteList',
+  CreateLimitedScopeRule = 'createLimitedScopeRule',
+  CreateRecipe = 'createRecipe',
   CreateUser = 'createUser',
   DownloadFile = 'downloadFile',
   ForgotPassword = 'forgotPassword',
@@ -3584,16 +4813,21 @@ export enum IRoleAction {
   Logout = 'logout',
   ManageAssortments = 'manageAssortments',
   ManageBookmarks = 'manageBookmarks',
+  ManageClients = 'manageClients',
   ManageCountries = 'manageCountries',
   ManageCurrencies = 'manageCurrencies',
   ManageDeliveryProviders = 'manageDeliveryProviders',
+  ManageEmployees = 'manageEmployees',
+  ManageFavoriteLists = 'manageFavoriteLists',
   ManageFilters = 'manageFilters',
   ManageLanguages = 'manageLanguages',
+  ManageLimitedScopeRules = 'manageLimitedScopeRules',
   ManagePaymentCredentials = 'managePaymentCredentials',
   ManagePaymentProviders = 'managePaymentProviders',
   ManageProductReviews = 'manageProductReviews',
   ManageProducts = 'manageProducts',
   ManageQuotations = 'manageQuotations',
+  ManageRecipes = 'manageRecipes',
   ManageUsers = 'manageUsers',
   ManageWarehousingProviders = 'manageWarehousingProviders',
   ManageWorker = 'manageWorker',
@@ -3601,6 +4835,7 @@ export enum IRoleAction {
   MarkOrderDelivered = 'markOrderDelivered',
   MarkOrderPaid = 'markOrderPaid',
   MarkOrderRejected = 'markOrderRejected',
+  OrderForClient = 'orderForClient',
   PageView = 'pageView',
   RegisterPaymentCredentials = 'registerPaymentCredentials',
   RemoveUser = 'removeUser',
@@ -3611,6 +4846,7 @@ export enum IRoleAction {
   SendEmail = 'sendEmail',
   StopImpersonation = 'stopImpersonation',
   UpdateCart = 'updateCart',
+  UpdateClient = 'updateClient',
   UpdateEnrollment = 'updateEnrollment',
   UpdateOrder = 'updateOrder',
   UpdateOrderDelivery = 'updateOrderDelivery',
@@ -3626,6 +4862,8 @@ export enum IRoleAction {
   VerifyEmail = 'verifyEmail',
   ViewAssortment = 'viewAssortment',
   ViewAssortments = 'viewAssortments',
+  ViewClient = 'viewClient',
+  ViewConnectEntries = 'viewConnectEntries',
   ViewCountries = 'viewCountries',
   ViewCountry = 'viewCountry',
   ViewCurrencies = 'viewCurrencies',
@@ -3637,6 +4875,7 @@ export enum IRoleAction {
   ViewEnrollments = 'viewEnrollments',
   ViewEvent = 'viewEvent',
   ViewEvents = 'viewEvents',
+  ViewFavoriteList = 'viewFavoriteList',
   ViewFilter = 'viewFilter',
   ViewFilters = 'viewFilters',
   ViewLanguage = 'viewLanguage',
@@ -3649,8 +4888,12 @@ export enum IRoleAction {
   ViewPaymentProviders = 'viewPaymentProviders',
   ViewProduct = 'viewProduct',
   ViewProducts = 'viewProducts',
+  ViewPublicareOrder = 'viewPublicareOrder',
+  ViewPublicareOrders = 'viewPublicareOrders',
   ViewQuotation = 'viewQuotation',
   ViewQuotations = 'viewQuotations',
+  ViewRecipe = 'viewRecipe',
+  ViewRecipes = 'viewRecipes',
   ViewShopInfo = 'viewShopInfo',
   ViewStatistics = 'viewStatistics',
   ViewToken = 'viewToken',
@@ -3673,7 +4916,19 @@ export enum IRoleAction {
 }
 
 export enum ISearchOrderBy {
-  Default = 'default'
+  Default = 'default',
+  MetaInStockDesc = 'meta_inStock_DESC',
+  MetaMigelConformitySortOrderAsc = 'meta_migelConformitySortOrder_ASC',
+  MetaProductTitleDeAsc = 'meta_productTitleDe_ASC',
+  MetaProductTitleDeDesc = 'meta_productTitleDe_DESC',
+  MetaProductTitleFrAsc = 'meta_productTitleFr_ASC',
+  MetaProductTitleFrDesc = 'meta_productTitleFr_DESC',
+  MetaProductTitleItAsc = 'meta_productTitleIt_ASC',
+  MetaProductTitleItDesc = 'meta_productTitleIt_DESC',
+  MetaUnitPriceAsc = 'meta_unitPrice_ASC',
+  MetaUnitPriceDesc = 'meta_unitPrice_DESC',
+  WarehousingSkuAsc = 'warehousing_sku_ASC',
+  WarehousingSkuDesc = 'warehousing_sku_DESC'
 }
 
 /** Search result */
@@ -3691,11 +4946,69 @@ export type ISearchResultProductsArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type ISetBq = {
+  boost: Scalars['String']['output'];
+  field: Scalars['String']['output'];
+};
+
+export type ISetQf = {
+  field: Scalars['String']['output'];
+  weight: Scalars['String']['output'];
+};
+
+export type ISetQf1 = {
+  field: Scalars['String']['output'];
+  weight: Scalars['String']['output'];
+};
+
+export type ISetQf2 = {
+  field: Scalars['String']['output'];
+  weight: Scalars['String']['output'];
+};
+
+export type ISetSchedule = {
+  value?: Maybe<ISetValue>;
+};
+
+export type ISetSort = {
+  direction: Scalars['String']['output'];
+  field: Scalars['String']['output'];
+};
+
+export type ISetSort1 = {
+  direction: Scalars['String']['output'];
+  field: Scalars['String']['output'];
+};
+
+export type ISetSort2 = {
+  direction: Scalars['String']['output'];
+  field: Scalars['String']['output'];
+};
+
+export type ISetSpeakers = {
+  value?: Maybe<ISetValue1>;
+};
+
+export type ISetValue = {
+  date?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  time?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ISetValue1 = {
+  description?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  photo?: Maybe<Scalars['JsonType']['output']>;
+};
+
 export type IShop = {
   _id: Scalars['ID']['output'];
   adminUiConfig: IAdminUiConfig;
   country?: Maybe<ICountry>;
+  isMaintenanceMode?: Maybe<Scalars['Boolean']['output']>;
   language?: Maybe<ILanguage>;
+  publicareVersion?: Maybe<Scalars['String']['output']>;
   userRoles: Array<Scalars['String']['output']>;
   vapidPublicKey?: Maybe<Scalars['String']['output']>;
   version?: Maybe<Scalars['String']['output']>;
@@ -3710,8 +5023,20 @@ export type ISimpleProduct = IProduct & {
   created?: Maybe<Scalars['DateTimeISO']['output']>;
   defaultOrderQuantity?: Maybe<Scalars['Int']['output']>;
   dimensions?: Maybe<IDimensions>;
+  index?: Maybe<Scalars['Int']['output']>;
   leveledCatalogPrices: Array<IPriceLevel>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
+  publicare?: Maybe<IPublicareProductAttributes>;
+  publicareFeedPrice?: Maybe<IPrice>;
+  publicareLastCuttingConfiguration?: Maybe<IPublicareCuttingConfiguration>;
+  publicareListHeaders: Array<Array<Scalars['String']['output']>>;
+  publicareListValues: Array<Array<Scalars['String']['output']>>;
+  publicarePredecessorIds: Array<Scalars['String']['output']>;
+  publicarePrimaryAssortment?: Maybe<IAssortment>;
+  publicarePrimaryAssortmentId?: Maybe<Scalars['ID']['output']>;
+  publicareProductSuggestions: Array<IProduct>;
+  publicareTranslatedSalesUnit?: Maybe<Scalars['String']['output']>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
   reviews: Array<IProductReview>;
   reviewsCount: Scalars['Int']['output'];
@@ -3748,6 +5073,18 @@ export type ISimpleProductMediaArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Array<Scalars['LowerCaseString']['input']>>;
+};
+
+
+/** Simple Product */
+export type ISimpleProductPublicareFeedPriceArgs = {
+  channelIdentifier: Scalars['String']['input'];
+};
+
+
+/** Simple Product */
+export type ISimpleProductPublicareProductSuggestionsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -3869,6 +5206,7 @@ export type ITokenizedProduct = IProduct & {
   created?: Maybe<Scalars['DateTimeISO']['output']>;
   leveledCatalogPrices: Array<IPriceLevel>;
   media: Array<IProductMedia>;
+  meta?: Maybe<Scalars['JSON']['output']>;
   published?: Maybe<Scalars['DateTimeISO']['output']>;
   reviews: Array<IProductReview>;
   reviewsCount: Scalars['Int']['output'];
@@ -4043,13 +5381,16 @@ export type IUser = {
   avatar?: Maybe<IMedia>;
   bookmarks: Array<IBookmark>;
   cart?: Maybe<IOrder>;
+  clients: Array<IPublicareClient>;
   country?: Maybe<ICountry>;
   created: Scalars['DateTimeISO']['output'];
+  currentClient?: Maybe<IPublicareClient>;
   deleted?: Maybe<Scalars['DateTimeISO']['output']>;
   emails?: Maybe<Array<IUserEmail>>;
   enrollments: Array<IEnrollment>;
   isGuest: Scalars['Boolean']['output'];
   isInitialPassword: Scalars['Boolean']['output'];
+  isPublicareConnectModeActive: Scalars['Boolean']['output'];
   language?: Maybe<ILanguage>;
   lastBillingAddress?: Maybe<IAddress>;
   lastContact?: Maybe<IContact>;
@@ -4061,9 +5402,11 @@ export type IUser = {
   profile?: Maybe<IUserProfile>;
   pushSubscriptions: Array<IPushSubscription>;
   quotations: Array<IQuotation>;
+  recentClients: Array<IPublicareClient>;
   reviews: Array<IProductReview>;
   reviewsCount: Scalars['Int']['output'];
   roles?: Maybe<Array<Scalars['String']['output']>>;
+  self?: Maybe<IPublicareClient>;
   tags?: Maybe<Array<Scalars['LowerCaseString']['output']>>;
   tokens: Array<IToken>;
   updated?: Maybe<Scalars['DateTimeISO']['output']>;
@@ -4075,6 +5418,12 @@ export type IUser = {
 
 export type IUserCartArgs = {
   orderNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type IUserClientsArgs = {
+  filterEmptyCartClients?: InputMaybe<Scalars['Boolean']['input']>;
+  queryString?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -4261,9 +5610,343 @@ export enum IWorkType {
   Heartbeat = 'HEARTBEAT',
   HttpRequest = 'HTTP_REQUEST',
   Message = 'MESSAGE',
+  NewsletterRegister = 'NEWSLETTER_REGISTER',
+  PublicareDispatch = 'PUBLICARE_DISPATCH',
+  PublicarePurgeArchiveRecipes = 'PUBLICARE_PURGE_ARCHIVE_RECIPES',
+  PublicareSendEnrollmentMails = 'PUBLICARE_SEND_ENROLLMENT_MAILS',
+  PublicareSendOrder = 'PUBLICARE_SEND_ORDER',
+  PublicareUpdateSolr = 'PUBLICARE_UPDATE_SOLR',
   Unknown = 'UNKNOWN',
   ZombieKiller = 'ZOMBIE_KILLER'
 }
+
+export enum IWrappingOptions {
+  Discrete = 'DISCRETE',
+  Normal = 'NORMAL'
+}
+
+export type IAdvantagesModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  label?: Maybe<Scalars['String']['output']>;
+  text: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type IAssortmentSearchSolrConfigModel = {
+  _cby?: Maybe<Scalars['String']['output']>;
+  _created?: Maybe<Scalars['Int']['output']>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _mby?: Maybe<Scalars['String']['output']>;
+  _modified?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['Int']['output']>;
+  qf?: Maybe<Array<Maybe<ISetQf>>>;
+  sort?: Maybe<Array<Maybe<ISetSort>>>;
+};
+
+export type IContentSearchSolrConfigModel = {
+  _cby?: Maybe<Scalars['String']['output']>;
+  _created?: Maybe<Scalars['Int']['output']>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _mby?: Maybe<Scalars['String']['output']>;
+  _modified?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['Int']['output']>;
+  qf?: Maybe<Array<Maybe<ISetQf1>>>;
+  sort?: Maybe<Array<Maybe<ISetSort1>>>;
+};
+
+export type IDeleteContentItemOutput = {
+  error?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type IDownloadsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  code?: Maybe<Scalars['String']['output']>;
+  file: Scalars['JsonType']['output'];
+  language?: Maybe<Scalars['String']['output']>;
+  service: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type IEmployeesModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  competence?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  department?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['JsonType']['output']>;
+  name: Scalars['String']['output'];
+  order?: Maybe<Scalars['NumericType']['output']>;
+  tel?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type IEventcatagoriesModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  catagory: Scalars['String']['output'];
+  contentTitle: Scalars['String']['output'];
+  index?: Maybe<Scalars['String']['output']>;
+  navigationTitle: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+};
+
+export type IEventsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  asdf?: Maybe<Scalars['String']['output']>;
+};
+
+export type IEventsTreeModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _o: Scalars['Int']['output'];
+  _pid?: Maybe<Scalars['String']['output']>;
+  _state: Scalars['Int']['output'];
+  archiveDate: Scalars['String']['output'];
+  closed?: Maybe<Scalars['Boolean']['output']>;
+  content: Scalars['String']['output'];
+  costs: Scalars['String']['output'];
+  date: Scalars['String']['output'];
+  dateShort: Scalars['String']['output'];
+  elog: Scalars['String']['output'];
+  handoutCode?: Maybe<Scalars['String']['output']>;
+  handouts?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
+  image: Scalars['JsonType']['output'];
+  language: Scalars['String']['output'];
+  link?: Maybe<Scalars['String']['output']>;
+  location: Scalars['String']['output'];
+  locationShort: Scalars['String']['output'];
+  pdfSchedule?: Maybe<Scalars['JsonType']['output']>;
+  routeLink?: Maybe<Scalars['String']['output']>;
+  schedule?: Maybe<Array<Maybe<ISetSchedule>>>;
+  signup?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  speakers?: Maybe<Array<Maybe<ISetSpeakers>>>;
+  subTitle?: Maybe<Scalars['String']['output']>;
+  targetGroup: Scalars['JsonType']['output'];
+  title: Scalars['String']['output'];
+  title_slug?: Maybe<Scalars['String']['output']>;
+};
+
+export type IFaqModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _o: Scalars['Int']['output'];
+  _pid?: Maybe<Scalars['String']['output']>;
+  _state: Scalars['Int']['output'];
+  answer: Scalars['String']['output'];
+  question: Scalars['String']['output'];
+};
+
+export type IInfoTextModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  backgroundColor?: Maybe<Scalars['String']['output']>;
+  closable?: Maybe<Scalars['Boolean']['output']>;
+  endDateTime?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<Scalars['JsonType']['output']>;
+  startDateTime: Scalars['String']['output'];
+  text: Scalars['String']['output'];
+  textColor?: Maybe<Scalars['String']['output']>;
+};
+
+export type IInstructionTargetsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  index?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  target: Scalars['String']['output'];
+};
+
+export type IInstructionsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  content: Scalars['String']['output'];
+  document?: Maybe<Scalars['JsonType']['output']>;
+  header: Scalars['String']['output'];
+  image?: Maybe<Scalars['JsonType']['output']>;
+  language: Scalars['String']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  targetGroup?: Maybe<Scalars['JsonType']['output']>;
+  title: Scalars['String']['output'];
+};
+
+export type IMaintenanceModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _o: Scalars['Int']['output'];
+  _pid?: Maybe<Scalars['String']['output']>;
+  _state: Scalars['Int']['output'];
+  from: Scalars['String']['output'];
+  text: Scalars['String']['output'];
+  to?: Maybe<Scalars['String']['output']>;
+};
+
+export type INewsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  content?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['JsonType']['output']>;
+  publicationDate: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
+  subTitle?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  title_slug: Scalars['String']['output'];
+};
+
+export type INewsletterModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  content: Scalars['String']['output'];
+  image: Scalars['JsonType']['output'];
+  newsletterTitle: Scalars['String']['output'];
+  publicationDate?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  subTitle?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
+
+export type IPopupModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  displayTo: Scalars['String']['output'];
+  endDateTime?: Maybe<Scalars['String']['output']>;
+  image: Scalars['JsonType']['output'];
+  link?: Maybe<Scalars['JsonType']['output']>;
+  startDateTime: Scalars['String']['output'];
+};
+
+export type IProductSolrSearchConfigModel = {
+  _cby?: Maybe<Scalars['String']['output']>;
+  _created?: Maybe<Scalars['Int']['output']>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _mby?: Maybe<Scalars['String']['output']>;
+  _modified?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['Int']['output']>;
+  bq?: Maybe<Array<Maybe<ISetBq>>>;
+  qf?: Maybe<Array<Maybe<ISetQf2>>>;
+  sort?: Maybe<Array<Maybe<ISetSort2>>>;
+};
+
+export type IRedirectsModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  destination: Scalars['String']['output'];
+  source: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export type IReleasesModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  content: Scalars['String']['output'];
+  date: Scalars['String']['output'];
+  summary: Scalars['String']['output'];
+  version: Scalars['String']['output'];
+  videos?: Maybe<Array<Maybe<Scalars['JsonType']['output']>>>;
+};
+
+export type ISaveContentItemOutput = {
+  error?: Maybe<Scalars['String']['output']>;
+  item?: Maybe<Scalars['JsonType']['output']>;
+};
+
+export type IShopcategoriesModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _state: Scalars['Int']['output'];
+  image?: Maybe<Scalars['JsonType']['output']>;
+  metaDescription?: Maybe<Scalars['String']['output']>;
+  metaTitle?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  unchainedAssortmentSlug?: Maybe<Scalars['String']['output']>;
+  visibleInShop?: Maybe<Scalars['Boolean']['output']>;
+  visibleOnHome?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type ISystemstatusModel = {
+  _cby: Scalars['String']['output'];
+  _created: Scalars['Int']['output'];
+  _id: Scalars['String']['output'];
+  _mby: Scalars['String']['output'];
+  _modified: Scalars['Int']['output'];
+  _o: Scalars['Int']['output'];
+  _pid?: Maybe<Scalars['String']['output']>;
+  _state: Scalars['Int']['output'];
+  link?: Maybe<Scalars['JsonType']['output']>;
+  linkText?: Maybe<Scalars['String']['output']>;
+  status: Scalars['String']['output'];
+  text?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+};
 
 /** One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string. */
 export type I__EnumValue = {
@@ -5975,19 +7658,6 @@ export type IVerifyQuotationMutationVariables = Exact<{
 
 
 export type IVerifyQuotationMutation = { verifyQuotation: { _id: string, status: IQuotationStatus, created: any, expires?: any | null, updated?: any | null, isExpired?: boolean | null, quotationNumber?: string | null, fullfilled?: any | null, rejected?: any | null, user: { _id: string, username?: string | null, name: string, avatar?: { _id: string, url?: string | null } | null, primaryEmail?: { verified: boolean, address: string } | null }, configuration?: Array<{ key: string, value: string }> | null, country?: { _id: string, isoCode?: string | null, flagEmoji?: string | null, name?: string | null } | null, currency?: { _id: string, isoCode: string, isActive?: boolean | null } | null, product: { _id: string, texts?: { _id: string, slug?: string | null, subtitle?: string | null, title?: string | null, description?: string | null } | null, media: Array<{ _id: string, file?: { _id: string, type: string, url?: string | null } | null }> } | { _id: string, texts?: { _id: string, slug?: string | null, subtitle?: string | null, title?: string | null, description?: string | null } | null, media: Array<{ _id: string, file?: { _id: string, type: string, url?: string | null } | null }> } | { _id: string, texts?: { _id: string, slug?: string | null, subtitle?: string | null, title?: string | null, description?: string | null } | null, media: Array<{ _id: string, file?: { _id: string, type: string, url?: string | null } | null }> } | { _id: string, texts?: { _id: string, slug?: string | null, subtitle?: string | null, title?: string | null, description?: string | null } | null, media: Array<{ _id: string, file?: { _id: string, type: string, url?: string | null } | null }> } | { _id: string, texts?: { _id: string, slug?: string | null, subtitle?: string | null, title?: string | null, description?: string | null } | null, media: Array<{ _id: string, file?: { _id: string, type: string, url?: string | null } | null }> } } };
-
-export type ISyncReportsQueryVariables = Exact<{
-  queryString?: InputMaybe<Scalars['String']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  status?: InputMaybe<Array<IWorkStatus>>;
-  types?: InputMaybe<Array<IWorkType>>;
-  created?: InputMaybe<IDateFilterInput>;
-  sort?: InputMaybe<Array<ISortOptionInput>>;
-}>;
-
-
-export type ISyncReportsQuery = { workQueue: Array<{ _id: string, type: IWorkType, scheduled?: any | null, status: IWorkStatus, started?: any | null, success?: boolean | null, finished?: any | null, created: any, deleted?: any | null, priority: number, worker?: string | null, retries: number, timeout?: number | null, input?: any | null, result?: any | null, error?: any | null, original?: { _id: string } | null }> };
 
 export type IInvalidateTokenMutationVariables = Exact<{
   tokenId: Scalars['ID']['input'];

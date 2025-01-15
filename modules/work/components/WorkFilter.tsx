@@ -63,7 +63,7 @@ const WorkFilter = ({ workTypes = [] }) => {
               <DatePicker
                 name="startDate"
                 id="work-start"
-                onChange={(value) => {
+                onChange={(value: any) => {
                   if (value)
                     router.push({
                       query: normalizeQuery(
@@ -85,6 +85,7 @@ const WorkFilter = ({ workTypes = [] }) => {
                 dateFormat={getDateFormatPattern()}
                 showYearDropdown
                 dropdownMode="select"
+                selectsMultiple={null}
                 selected={
                   router?.query?.start ? parseDate(router?.query?.start) : null
                 }
@@ -94,9 +95,10 @@ const WorkFilter = ({ workTypes = [] }) => {
                 {formatMessage({ id: 'to', defaultMessage: 'To' })}
               </label>
               <DatePicker
+                selectsMultiple={null}
                 name="endDate"
                 id="work-end"
-                onChange={(value) => {
+                onChange={(value: any) => {
                   if (value)
                     router.push({
                       query: normalizeQuery(

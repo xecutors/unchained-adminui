@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [16]
+        node: [22]
     name: Admin UI e2e test on v${{ matrix.node }}
     steps:
       - name: Checkout 🛎

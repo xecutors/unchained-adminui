@@ -1,4 +1,4 @@
-import { zonedTimeToUtc } from 'date-fns-tz';
+import { fromZonedTime } from 'date-fns-tz';
 
 const useFormatDateTime = () => {
   const formatDateTime = (date, options: Intl.DateTimeFormatOptions = {}) => {
@@ -43,7 +43,7 @@ const useFormatDateTime = () => {
   };
 
   const parseDate = (value) => {
-    return zonedTimeToUtc(
+    return fromZonedTime(
       value,
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
