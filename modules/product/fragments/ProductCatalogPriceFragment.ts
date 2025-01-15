@@ -2,7 +2,6 @@ import { gql } from '@apollo/client';
 
 const ProductCatalogPriceFragment = gql`
   fragment ProductCatalogPriceFragment on ProductCatalogPrice {
-    _id
     isTaxable
     isNetPrice
     country {

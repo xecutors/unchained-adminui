@@ -2973,7 +2973,6 @@ export type IProductBundleItem = {
 };
 
 export type IProductCatalogPrice = {
-  _id: Scalars['ID']['output'];
   amount: Scalars['Int']['output'];
   country: ICountry;
   currency: ICurrency;
@@ -7193,7 +7192,7 @@ export type IProductBriefFragment = IProductBriefFragment_BundleProduct | IProdu
 
 export type IProductBriefFragmentVariables = Exact<{ [key: string]: never; }>;
 
-export type IProductCatalogPriceFragment = { _id: string, isTaxable: boolean, isNetPrice: boolean, amount: number, maxQuantity?: number | null, country: { _id: string, isoCode?: string | null, name?: string | null, flagEmoji?: string | null }, currency: { _id: string, isoCode: string, isActive?: boolean | null } };
+export type IProductCatalogPriceFragment = { isTaxable: boolean, isNetPrice: boolean, amount: number, maxQuantity?: number | null, country: { _id: string, isoCode?: string | null, name?: string | null, flagEmoji?: string | null }, currency: { _id: string, isoCode: string, isActive?: boolean | null } };
 
 
 export type IProductCatalogPriceFragmentVariables = Exact<{ [key: string]: never; }>;
@@ -7337,7 +7336,7 @@ export type IProductCatalogPricesQueryVariables = Exact<{
 }>;
 
 
-export type IProductCatalogPricesQuery = { productCatalogPrices: Array<{ _id: string, isTaxable: boolean, isNetPrice: boolean, amount: number, maxQuantity?: number | null, country: { _id: string, isoCode?: string | null, name?: string | null, flagEmoji?: string | null }, currency: { _id: string, isoCode: string, isActive?: boolean | null } }> };
+export type IProductCatalogPricesQuery = { productCatalogPrices: Array<{ isTaxable: boolean, isNetPrice: boolean, amount: number, maxQuantity?: number | null, country: { _id: string, isoCode?: string | null, name?: string | null, flagEmoji?: string | null }, currency: { _id: string, isoCode: string, isActive?: boolean | null } }> };
 
 export type IProductMediaQueryVariables = Exact<{
   productId?: InputMaybe<Scalars['ID']['input']>;
