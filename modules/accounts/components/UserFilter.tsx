@@ -77,7 +77,7 @@ const UserFilter: React.FC = () => {
             </label>
             <DatePicker
               id="lastLoginStart"
-              onChange={(date) =>
+              onChange={(date: any) =>
                 updateQuery('start', date ? new Date(date).toISOString() : null)
               }
               placeholderText={formatMessage({
@@ -88,6 +88,7 @@ const UserFilter: React.FC = () => {
               showMonthDropdown
               showYearDropdown
               dropdownMode="select"
+              selectsMultiple={null}
               selected={
                 router.query.start
                   ? parseDate(router.query.start as string)
@@ -100,7 +101,7 @@ const UserFilter: React.FC = () => {
             </label>
             <DatePicker
               id="lastLoginEnd"
-              onChange={(date) =>
+              onChange={(date: any) =>
                 updateQuery('end', date ? new Date(date).toISOString() : null)
               }
               placeholderText={formatMessage({
@@ -111,6 +112,7 @@ const UserFilter: React.FC = () => {
               showMonthDropdown
               showYearDropdown
               dropdownMode="select"
+              selectsMultiple={null}
               selected={
                 router.query.end ? parseDate(router.query.end as string) : null
               }
