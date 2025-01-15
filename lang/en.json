@@ -437,9 +437,6 @@
   "customer_reviews": {
     "defaultMessage": "Customer Reviews"
   },
-  "daily_sync": {
-    "defaultMessage": "Daily sync"
-  },
   "data": {
     "defaultMessage": "Data"
   },
@@ -1277,9 +1274,6 @@
   "no_internet_access": {
     "defaultMessage": "You aren't connected to a working internet connection"
   },
-  "no_job": {
-    "defaultMessage": "sync report found"
-  },
   "no_payload": {
     "defaultMessage": "Payload"
   },
@@ -1877,30 +1871,6 @@
   },
   "supply": {
     "defaultMessage": "Supply"
-  },
-  "sync_added": {
-    "defaultMessage": "Added { categoryName }"
-  },
-  "sync_jobs": {
-    "defaultMessage": "Sync jobs"
-  },
-  "sync_jobs_detail": {
-    "defaultMessage": "Sync Jobs detail"
-  },
-  "sync_removed": {
-    "defaultMessage": "Removed { categoryName }"
-  },
-  "sync_report": {
-    "defaultMessage": "Sync report"
-  },
-  "sync_status": {
-    "defaultMessage": "Sync status"
-  },
-  "sync_updated": {
-    "defaultMessage": "Updated { categoryName }"
-  },
-  "synced_items_report": {
-    "defaultMessage": "Synced items report"
   },
   "system": {
     "defaultMessage": "System settings"

@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 require('./node_env');
-const fetch = require('cross-fetch');
 const fs = require('fs');
 
 const { GRAPHQL_ENDPOINT } = process.env;

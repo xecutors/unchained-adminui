@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import merge from 'deepmerge';
-import isEqual from 'lodash/isEqual';
+import isEqual from 'lodash.isequal';
 
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import createApolloClient from './utils/createApolloClient';

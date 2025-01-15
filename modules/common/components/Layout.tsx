@@ -54,29 +54,11 @@ const Layout = ({
   const { shopInfo } = useShopInfo();
   const [hideNav, setHideNav] = useState(true);
 
-  const showCustomReports =
-    publicRuntimeConfig.showCustomReports ??
-    process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS;
-
   const defaultNavigation = [
     {
       name: formatMessage({ id: 'home', defaultMessage: 'Home' }),
       icon: HomeIcon,
       href: '/',
-    },
-    showCustomReports && {
-      name: formatMessage({ id: 'reports', defaultMessage: 'Reports' }),
-      icon: ChartBarIcon,
-      children: [
-        {
-          name: formatMessage({
-            id: 'daily_sync',
-            defaultMessage: 'Daily sync',
-          }),
-          requiredRole: 'manageWorker',
-          href: '/reports/daily-sync',
-        },
-      ],
     },
     {
       name: formatMessage({

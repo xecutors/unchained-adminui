@@ -63,10 +63,6 @@ module.exports = {
   },
   publicRuntimeConfig: {
     oAuthClientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
-    showCustomReports: parseInt(
-      process.env.NEXT_PUBLIC_SHOW_CUSTOM_REPORTS,
-      10,
-    ),
     permissionConfig,
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     logo: process.env.NEXT_PUBLIC_LOGO,
