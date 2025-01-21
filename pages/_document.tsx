@@ -210,7 +210,6 @@ class MyDocument extends Document {
             src="/api/permission-config"
             id="role-config-script"
             type="module"
-            async
           />
         </Head>
         <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
