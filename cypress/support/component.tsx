@@ -65,7 +65,9 @@ Cypress.Commands.add('mount', (component, options: any) => {
 
   return mount(
     <MockedProvider>
+      {/* @ts-ignore */}
       <IntlProvider messages={{}} locale="de">
+        {/* @ts-ignore */}
         {component}
       </IntlProvider>
     </MockedProvider>,

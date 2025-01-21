@@ -19,7 +19,7 @@ const useValidateEmailVerificationToken = ({ token }) => {
     variables: {
       token,
     },
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
   });
 
   return {

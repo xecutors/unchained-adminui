@@ -31,7 +31,6 @@ const useAssortmentLinks = ({ assortmentId: id = null, slug = null } = {}) => {
       variables: {
         assortmentId: id || parsedId,
       },
-      fetchPolicy: 'cache-first',
     },
   );
   const assortment = data?.assortment;

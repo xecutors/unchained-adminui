@@ -26,7 +26,6 @@ const useCurrentUser = (params?: ICurrentUserQueryVariables) => {
     ICurrentUserQuery,
     ICurrentUserQueryVariables
   >(GetCurrentUserQuery(customProperties?.User), {
-    fetchPolicy: 'cache-first',
     notifyOnNetworkStatusChange: true,
   });
 

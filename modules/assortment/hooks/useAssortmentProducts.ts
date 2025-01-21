@@ -35,7 +35,6 @@ const useAssortmentProducts = ({
       variables: {
         assortmentId: id || parsedId,
       },
-      fetchPolicy: 'cache-first',
     },
   );
   const assortment = data?.assortment;

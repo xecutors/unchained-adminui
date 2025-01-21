@@ -59,7 +59,11 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
   }, [currentUser, router.pathname]);
 
   useEffect(() => {
-    if (!loading && currentUser !== undefined) {
+    if (loading) return;
+
+    console.log('currentUser', currentUser);
+    
+    if (currentUser !== undefined) {
       if (isAuthenticated(currentUser)) {
         if (!hasAccess({ user: currentUser })) {
           router.replace('/403');
@@ -76,7 +80,7 @@ const AuthWrapper = ({ children, apolloClient, componentName }) => {
         router.replace('/log-in');
       }
     }
-  }, [router, currentUser?._id, hasAccess, isAuthenticated, loading]);
+  }, [currentUser?._id, loading]);
 
   return <AuthContext.Provider value={ctx}>{children}</AuthContext.Provider>;
 };

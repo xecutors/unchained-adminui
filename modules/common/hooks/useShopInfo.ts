@@ -35,9 +35,7 @@ const ShopInfoQuery = gql`
 `;
 
 const useShopInfo = () => {
-  const { data, loading, error } = useQuery(ShopInfoQuery, {
-    fetchPolicy: 'cache-first',
-  });
+  const { data, loading, error } = useQuery(ShopInfoQuery);
   return {
     shopInfo: data?.shopInfo,
     loading,
