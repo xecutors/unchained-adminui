@@ -28,6 +28,11 @@ export default createProxyMiddleware({
   proxyTimeout: 60000,
   pathRewrite: { '^/api/graphql': '/graphql' },
   on: {
+    proxyReq: (proxyReq) => {
+      if (process.env.PERSISTED_QUERIES_KEY) {
+        proxyReq.setHeader('X-Unlock-API', process.env.PERSISTED_QUERIES_KEY);
+      }
+    },
     proxyRes: (proxyRes) => {
       const set = proxyRes.headers['set-cookie'];
       if (set) {
