@@ -42,7 +42,7 @@ const UserRolesView = ({ roles, userId }) => {
         choiceContainerClassName="flex flex-wrap"
         inputClassName="ml-2"
         options={Object.fromEntries(
-          systemRoles || [].map((role) => [role, role]),
+          (systemRoles || []).map((role) => [role, role]),
         )}
         label={formatMessage({
           id: 'select_role',
