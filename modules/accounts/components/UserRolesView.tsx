@@ -39,10 +39,10 @@ const UserRolesView = ({ roles, userId }) => {
         key="user-roles"
         name="updatedRoles"
         labelClassName="flex items-center mt-1"
-        choiceContainerClassName="flex"
+        choiceContainerClassName="flex flex-wrap"
         inputClassName="ml-2"
         options={Object.fromEntries(
-          (systemRoles || []).map((role) => [role, role]),
+          systemRoles || [].map((role) => [role, role]),
         )}
         label={formatMessage({
           id: 'select_role',
