@@ -1,4 +1,4 @@
-import React, { ComponentType, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import ReactDOM from 'react-dom';
 
@@ -103,4 +103,4 @@ const Modal = ({
   ) : null;
 };
 
-export default injectIntl(Modal as unknown as ComponentType<ModalInnerProps>);
+export default injectIntl(Modal as unknown as (props: ModalInnerProps) => any);
