@@ -54,7 +54,7 @@ const GetCurrentTab = ({ id, selectedView, ...extendedData }) => {
   );
 };
 const AssortmentDetail = ({ assortment, extendedData }) => {
-  const { isActive, isBase, isRoot } = assortment;
+  const { isActive, isBase, isRoot } = assortment || {};
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const { updateAssortment } = useUpdateAssortment();

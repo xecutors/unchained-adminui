@@ -12,6 +12,6 @@ export const isTruthy = (val) => {
 
 export const extractQuery = (query) => {
   return decodeURIComponent(query || [])
-    .split(',')
-    .filter(Boolean);
+    ?.split(',')
+    ?.filter(Boolean);
 };

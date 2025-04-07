@@ -11,7 +11,7 @@ const QuotationDetailHeader = ({ quotation }) => {
 
   return (
     <section>
-      <DetailHeader user={quotation.user} contact={quotation.contact} />
+      <DetailHeader user={quotation?.user} contact={quotation?.contact} />
       <div className="mt-2 flex border-b border-slate-200 dark:border-slate-800 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-slate-500 sm:block">
@@ -23,9 +23,9 @@ const QuotationDetailHeader = ({ quotation }) => {
           </dt>
           <dd className="inline-flex text-lg font-medium text-slate-900 sm:text-xl sm:font-bold">
             <span className="sm:hidden">&#35;&nbsp;</span>
-            {quotation.quotationNumber ? (
+            {quotation?.quotationNumber ? (
               <Badge
-                text={quotation.quotationNumber}
+                text={quotation?.quotationNumber}
                 color="indigo"
                 square
                 className="text-lg font-medium sm:text-xl sm:font-bold"
@@ -48,7 +48,7 @@ const QuotationDetailHeader = ({ quotation }) => {
           </dt>
           <dd className="font-medium text-slate-900">
             {quotation?.ordered &&
-              formatDateTime(quotation.ordered, {
+              formatDateTime(quotation?.ordered, {
                 timeStyle: 'short',
                 dateStyle: 'full',
               })}

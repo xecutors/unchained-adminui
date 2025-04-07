@@ -17,7 +17,7 @@ const LocaleSwitcher = () => {
         value={locale}
         onChange={handleOnChange}
       >
-        {locales.map((language) => (
+        {locales?.map((language) => (
           <option key={language} value={language}>
             {new Intl.DisplayNames([locale], {
               type: 'language',

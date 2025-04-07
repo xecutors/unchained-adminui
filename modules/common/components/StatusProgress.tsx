@@ -7,7 +7,7 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
 
-  const { content = {}, id: currentId } = timeline[data?.status];
+  const { content = {}, id: currentId } = timeline[data?.status] || {};
 
   const status = statusTypes.filter(({ value }) => timeline[value]?.visible);
 
@@ -55,8 +55,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                     </div>
                     {currentId >= timeline[value].id ? (
                       <div className="whitespace-nowrap text-right text-sm text-slate-500 dark:text-slate-200 ml-4">
-                        {data[timeline[value].content]
-                          ? formatDateTime(data[timeline[value].content], {
+                        {data[timeline?.[value]?.content]
+                          ? formatDateTime(data[timeline?.[value]?.content], {
                               dateStyle: 'short',
 
                               timeStyle: 'short',
@@ -122,8 +122,8 @@ const StatusProgress = ({ data, statusTypes, timeline }) => {
                       : value}
                   </span>
                   <span className="block text-slate-900 dark:text-slate-200">
-                    {currentId >= timeline[value].id
-                      ? formatDateTime(data[timeline[value].content], {
+                    {currentId >= timeline?.[value]?.id
+                      ? formatDateTime(data[timeline?.[value]?.content], {
                           dateStyle: 'short',
                           timeStyle: 'short',
                         })

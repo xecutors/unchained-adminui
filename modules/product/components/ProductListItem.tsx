@@ -73,8 +73,8 @@ const ProductListItem = ({ product, showAvatar = false }) => {
 
       <Table.Cell className="whitespace-nowrap px-6">
         <Badge
-          text={product.status}
-          color={PRODUCT_STATUS[product.status]}
+          text={product?.status}
+          color={PRODUCT_STATUS[product?.status]}
           square
           dotted
         />

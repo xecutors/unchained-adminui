@@ -15,7 +15,7 @@ const loadPermissionConfig = require('./loadPermissionConfig');
 
 const normalizePaths = (paths) => {
   if (paths) {
-    return paths.split(',').map((file) => {
+    return paths?.split(',')?.map((file) => {
       if (path.extname(file) !== '.json') {
         throw new Error(`${file}: extension should be json`);
       }
@@ -49,17 +49,23 @@ const translatedLanguages = extendedLanguages?.map((file) => {
   }
 });
 
-const languages = extendedLanguages.map((file) => path.basename(file, '.json'));
+const languages = extendedLanguages?.map((file) =>
+  path.basename(file, '.json'),
+);
 
 module.exports = {
-  swcMinify: true,
+  output: 'export',
+  trailingSlash: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
-  i18n: {
+  /* i18n: {
     locales: extendedLanguages?.length ? ['en', ...languages] : ['en'],
     defaultLocale: 'en',
     localeDetection: false,
+  }, */
+  images: {
+    unoptimized: true,
   },
   publicRuntimeConfig: {
     oAuthClientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,

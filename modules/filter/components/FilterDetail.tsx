@@ -39,7 +39,7 @@ const GetCurrentTab = ({ selectedView, id, ...extendedData }) => {
 };
 
 const FilterDetail = ({ filter, extendedData }) => {
-  const { _id: filterId, isActive, key, type, created, updated } = filter;
+  const { _id: filterId, isActive, key, type, created, updated } = filter || {};
   const { formatMessage, formatDate } = useIntl();
   const { updateFilter } = useUpdateFilter();
 

@@ -9,8 +9,8 @@ const normalizeTagValue = (tags) => {
     if (Array.isArray(tags)) return tags;
     return tags
       .toString()
-      .split(',')
-      .map((str) => str.trim());
+      ?.split(',')
+      ?.map((str) => str.trim());
   }
   return [];
 };

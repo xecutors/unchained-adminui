@@ -11,7 +11,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
 
   return (
     <section>
-      <DetailHeader user={enrollment.user} contact={enrollment.contact} />
+      <DetailHeader user={enrollment?.user} contact={enrollment?.contact} />
       <div className="mt-2 flex border-b border-slate-200 dark:border-slate-800 pb-2 text-sm">
         <dl className="flex flex-wrap items-center gap-1">
           <dt className="hidden capitalize text-slate-500 sm:block">
@@ -23,10 +23,10 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
           </dt>
           <dd className="inline-flex text-lg font-medium text-slate-900 sm:flex-none sm:text-xl sm:font-bold">
             <span className="sm:hidden">&#35;&nbsp;</span>
-            {enrollment.enrollmentNumber ? (
+            {enrollment?.enrollmentNumber ? (
               <Badge
                 color="indigo"
-                text={enrollment.enrollmentNumber}
+                text={enrollment?.enrollmentNumber}
                 className="p-0 text-lg font-medium sm:text-xl sm:font-bold"
               />
             ) : (
@@ -46,7 +46,7 @@ const EnrollmentDetailHeader = ({ enrollment }) => {
             </span>
           </dt>
           <dd className="font-medium text-slate-900">
-            {enrollment?.ordered ? formatDateTime(enrollment.ordered) : null}
+            {enrollment?.ordered ? formatDateTime(enrollment?.ordered) : null}
           </dd>
         </dl>
         <div className="ml-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-slate-900 sm:text-base">

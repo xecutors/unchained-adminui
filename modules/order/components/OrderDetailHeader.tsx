@@ -7,7 +7,7 @@ import { normalizeCurrencyISOCode } from '../../common/utils/utils';
 const OrderDetailHeader = ({ order }) => {
   const { formatMessage, locale } = useIntl();
   const { formatDateTime } = useFormatDateTime();
-
+  if (!order) return null;
   return (
     <div className="bg-white dark:bg-slate-800 rounded-md shadow dark:shadow-none p-4 space-y-5 ">
       <div className="flex items-center justify-between">

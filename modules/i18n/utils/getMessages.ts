@@ -6,7 +6,7 @@ const {
 } = getConfig();
 
 const getMessages = (locale) => {
-  const language = locale.split('-').shift();
+  const language = locale?.split('-')?.shift() || 'de';
   return { ...defaultTranslations, ...extendedLanguages }[language];
 };
 

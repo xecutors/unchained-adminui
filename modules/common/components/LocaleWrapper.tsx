@@ -33,7 +33,7 @@ const LocaleWrapper = ({ children }) => {
     if (!loading) {
       const baseLanguage = languages
         .filter((l) => l.isBase || l.isoCode === locale)
-        .map(({ isoCode }) => isoCode);
+        ?.map(({ isoCode }) => isoCode);
       setSelectedLocale(
         baseLanguage.includes(locale) ? locale : baseLanguage[0],
       );
@@ -55,7 +55,7 @@ const LocaleWrapper = ({ children }) => {
               setSelectedLocale(e.target.value);
             }}
           >
-            {languageDialectList.map((language) => {
+            {languageDialectList?.map((language) => {
               return (
                 <option key={language._id} value={language.isoCode}>
                   {language.isoCode}

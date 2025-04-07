@@ -59,8 +59,8 @@ const normalizeCurrencyISOCode = (locale, isoCode, showIso = true) => {
 const getSortKeys = (sort) => {
   return (
     (sort &&
-      sort.split(',').reduce((acc, curr) => {
-        const [key = null, value = null] = (curr || '').split('_');
+      sort?.split(',').reduce((acc, curr) => {
+        const [key = null, value = null] = (curr || '')?.split('_') || [];
         return {
           ...acc,
           [key]: value,
@@ -70,7 +70,7 @@ const getSortKeys = (sort) => {
   );
 };
 export const convertSortFieldsToQueryFormat = (sort): ISortOptionInput[] => {
-  return Object.entries(getSortKeys(sort)).map(([key, value]) => ({
+  return Object.entries(getSortKeys(sort))?.map(([key, value]) => ({
     key,
     value,
   })) as ISortOptionInput[];
@@ -78,8 +78,8 @@ export const convertSortFieldsToQueryFormat = (sort): ISortOptionInput[] => {
 
 const normalizeObjectToString = (object: Object) => {
   return Object.keys(object)
-    .map((key) => [key, object[key]].join('='))
-    .join('&');
+    ?.map((key) => [key, object[key]].join('='))
+    ?.join('&');
 };
 
 const normalizeQuery = (

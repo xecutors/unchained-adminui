@@ -12,8 +12,8 @@ const MiniUserAvatar = ({ name = '', url = '', showName = true } = {}) => {
             <span className="text-center text-sm font-medium leading-none text-white">
               {name
                 ?.split(' ')
-                .map((n) => n[0]?.toUpperCase())
-                .join('')}
+                ?.map((n) => n[0]?.toUpperCase())
+                ?.join('')}
             </span>
           </span>
         ) : (

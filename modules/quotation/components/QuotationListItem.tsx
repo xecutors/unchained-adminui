@@ -23,7 +23,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
       <Table.Cell>
         <div className="flex items-center text-sm ">
           <Link
-            href={`/quotations/${quotation._id}`}
+            href={`/quotations/${quotation?._id}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
             {quotation?.quotationNumber || quotation?._id}
@@ -61,12 +61,12 @@ const QuotationListItem = ({ quotation, showUser }) => {
       {showUser && (
         <Table.Cell>
           <Link
-            href={`/users/${quotation.user._id}`}
+            href={`/users/${quotation?.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
-            <MediaAvatar file={quotation.user?.avatar} className="mr-2" />
+            <MediaAvatar file={quotation?.user?.avatar} className="mr-2" />
             <span className="font-medium ml-2">
-              {formatUsername(quotation.user)}
+              {formatUsername(quotation?.user)}
             </span>
           </Link>
         </Table.Cell>
@@ -91,7 +91,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
       <Table.Cell>
         <Badge
           text={quotation?.status}
-          color={QUOTATION_STATUS[quotation.status]}
+          color={QUOTATION_STATUS[quotation?.status]}
           square
         />
       </Table.Cell>

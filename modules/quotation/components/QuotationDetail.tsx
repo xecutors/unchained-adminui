@@ -25,13 +25,14 @@ const QuotationDetail = ({ quotation }) => {
   const { VerifyQuotation } = useVerifyQuotation();
   const { rejectQuotation } = useRejectQuotation();
   const { makeQuotationProposal } = useMakeQuotationProposal();
+  if (!quotation) return null;
 
   const onVerify = async () => {
     await setModal(
       <QuotationConfigurationForm
         onSubmit={async ({ quotationContext }) => {
           await VerifyQuotation({
-            quotationId: quotation._id,
+            quotationId: quotation?._id,
             quotationContext: quotationContext
               ? JSON.parse(quotationContext || null)
               : null,
@@ -61,7 +62,7 @@ const QuotationDetail = ({ quotation }) => {
       <QuotationConfigurationForm
         onSubmit={async ({ quotationContext }) => {
           await rejectQuotation({
-            quotationId: quotation._id,
+            quotationId: quotation?._id,
             quotationContext: quotationContext
               ? JSON.parse(quotationContext || null)
               : null,
@@ -95,7 +96,7 @@ const QuotationDetail = ({ quotation }) => {
       <QuotationConfigurationForm
         onSubmit={async ({ quotationContext }) => {
           await makeQuotationProposal({
-            quotationId: quotation._id,
+            quotationId: quotation?._id,
             quotationContext: quotationContext
               ? JSON.parse(quotationContext || null)
               : null,
@@ -129,7 +130,7 @@ const QuotationDetail = ({ quotation }) => {
       id: 1,
       content: 'created',
       visible: true,
-      Component: quotation.status === 'REQUESTED' && (
+      Component: quotation?.status === 'REQUESTED' && (
         <Button
           text="Verify"
           onClick={onVerify}
@@ -140,8 +141,8 @@ const QuotationDetail = ({ quotation }) => {
     PROCESSING: {
       id: 2,
       content: 'updated',
-      visible: quotation.status === 'PROCESSING',
-      Component: quotation.status === 'PROCESSING' && (
+      visible: quotation?.status === 'PROCESSING',
+      Component: quotation?.status === 'PROCESSING' && (
         <Button
           text="Propose"
           onClick={proposeQuote}
@@ -157,9 +158,9 @@ const QuotationDetail = ({ quotation }) => {
     REJECTED: {
       id: 4,
       content: 'rejected',
-      visible: quotation.status !== 'FULLFILLED',
-      Component: quotation.status !== 'FULLFILLED' &&
-        quotation.status !== 'REJECTED' && (
+      visible: quotation?.status !== 'FULLFILLED',
+      Component: quotation?.status !== 'FULLFILLED' &&
+        quotation?.status !== 'REJECTED' && (
           <Button
             text="Reject"
             onClick={onReject}
@@ -189,7 +190,7 @@ const QuotationDetail = ({ quotation }) => {
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
                 <ImageWithFallback
                   src={
-                    quotation.product?.media[0]?.file?.url || '/no-image.jpg'
+                    quotation?.product?.media[0]?.file?.url || '/no-image.jpg'
                   }
                   layout="responsive"
                   width="100"
@@ -203,18 +204,20 @@ const QuotationDetail = ({ quotation }) => {
             </div>
             <div className="pt-6 pl-4 sm:col-span-7 md:row-end-1">
               <h3 className="text-lg font-medium text-slate-900">
-                <Link href={`/products/${generateUniqueId(quotation.product)}`}>
-                  {quotation.product?.texts?.title}
+                <Link
+                  href={`/products/${generateUniqueId(quotation?.product)}`}
+                >
+                  {quotation?.product?.texts?.title}
                 </Link>
               </h3>
               <p className="mt-3 text-slate-500">
-                {quotation.product?.description}
+                {quotation?.product?.description}
               </p>
 
               <JSONView
                 disabled
                 value={JSON.stringify(
-                  (quotation.configuration || []).map(
+                  (quotation?.configuration || []).map(
                     ({ __typename, ...rest }) => rest,
                   ),
                   null,
