@@ -94,7 +94,7 @@ const ProductDetail = ({ product, extendedData }) => {
         },
       });
   };
-  const { status, __typename } = product;
+  const { status, __typename } = product || {};
 
   const productOptions = [
     {

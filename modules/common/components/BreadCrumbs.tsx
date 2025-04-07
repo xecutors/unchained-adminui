@@ -9,8 +9,8 @@ const BreadCrumbs = ({
   const router = useRouter();
   const pathArr = router.asPath
 
-    .split('/')
-    .filter((name, i) => router.asPath.split('/').indexOf(name) === i);
+    ?.split('/')
+    ?.filter((name, i) => router.asPath?.split('/')?.indexOf(name) === i);
   if (pathArr.length === 1) return null;
 
   let currentRoute = '';
@@ -19,7 +19,7 @@ const BreadCrumbs = ({
   // if current page name is provided use it as the last item of breadcrumb
   if (routeName) pathArr[pathArr.length - 1] = routeName;
 
-  const result = pathArr.map((e) => {
+  const result = pathArr?.map((e) => {
     currentRoute += `${e}/`;
     if (!e) {
       return {
@@ -30,8 +30,8 @@ const BreadCrumbs = ({
     // if routeName is given dont modify the string else
     // remove hyphens incase it hyphen deliminated slug
     const pathName = routeName
-      ? e.split('?')[0]
-      : e.split('?')[0].replace(/-/g, ' ');
+      ? e?.split('?')[0]
+      : e?.split('?')[0].replace(/-/g, ' ');
     return {
       name: decodeURIComponent(pathName),
       path: currentRoute.replace(/.$/, ''),
@@ -43,7 +43,7 @@ const BreadCrumbs = ({
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-4">
-        {result.map((data, i) => (
+        {result?.map((data, i) => (
           <li key={data.path}>
             <div className="flex items-center">
               {i !== 0 && (

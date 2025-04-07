@@ -14,7 +14,7 @@ const isBoolean = (value) => {
 const isImageURL = (value) => {
   try {
     const { pathname } = new URL(value);
-    const parts = pathname.split('.');
+    const parts = pathname?.split('.');
     const ext = `.${parts[parts.length - 1]}`;
 
     return ['.jpg', '.jpeg', '.png', '.gif', '.bmp'].includes(ext);
@@ -109,7 +109,7 @@ const DisplayExtendedFields = (props) => {
       if (value.every((v) => typeof v === 'string' || typeof v === 'number')) {
         elements.push(
           <div key={key} className="  p-2">
-            {value.map((item) => (
+            {value?.map((item) => (
               <span
                 key={item}
                 className="inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800 ml-2"

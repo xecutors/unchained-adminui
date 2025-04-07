@@ -8,6 +8,7 @@
     "dev:turbo": "NODE_OPTIONS='--inspect' next dev --turbo ",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "lint": "next lint",
     "format": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
     "extract-translation": "formatjs extract '(pages|modules)/**/*.{ts,tsx,jsx}' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",

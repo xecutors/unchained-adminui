@@ -47,3 +47,4 @@ next-env.d.ts
 manifest.json
 
 /app-permissions.config.js
+.qodo

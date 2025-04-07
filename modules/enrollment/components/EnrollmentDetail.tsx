@@ -30,6 +30,8 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
   const { terminateEnrollment } = useTerminateEnrollment();
   const { sendEnrollmentEmail } = useSendEnrollmentEmail();
 
+  if (!enrollment) return null;
+
   const onActivateEnrollment = async () => {
     await setModal(
       <AlertMessage
@@ -86,7 +88,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         onOkClick={async () => {
           setModal('');
           const { data } = await sendEnrollmentEmail({
-            email: enrollment.contact.emailAddress,
+            email: enrollment?.contact.emailAddress,
           });
           if (data?.sendEnrollmentEmail?.success)
             toast.success(
@@ -119,7 +121,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         })}
         onOkClick={async () => {
           setModal('');
-          await terminateEnrollment({ enrollmentId: enrollment._id });
+          await terminateEnrollment({ enrollmentId: enrollment?._id });
           toast.success(
             formatMessage({
               id: 'terminate_enrollment_success',
@@ -150,7 +152,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
       id: 3,
       content: 'updated',
       visible: true,
-      Component: enrollment.status === 'PAUSED' && (
+      Component: enrollment?.status === 'PAUSED' && (
         <Button
           text="Activate"
           onClick={onActivateEnrollment}
@@ -162,7 +164,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
       id: 4,
       content: 'updated',
       visible: true,
-      Component: enrollment.status !== 'TERMINATED' && (
+      Component: enrollment?.status !== 'TERMINATED' && (
         <Button
           text={formatMessage({
             id: 'terminate_enrollment',
@@ -187,7 +189,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
         })}
       </span>
     ),
-    body: <SubscriptionList periods={enrollment.periods} />,
+    body: <SubscriptionList periods={enrollment?.periods} />,
   };
 
   return (
@@ -221,7 +223,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                     })}
                   </dt>
                   <dd className="my-2 text-sm text-slate-500">
-                    {enrollment.plan.product.texts.title}
+                    {enrollment?.plan.product.texts.title}
                   </dd>
                   <dt className="font-medium text-slate-900">
                     {formatMessage({
@@ -240,7 +242,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                   disabled
                   className="bg-white dark:bg-slate-900 dark:text-slate-200 mt-1 block w-full max-w-full rounded-md border-2 resize-none border-slate-200 dark:border-slate-800 shadow-sm sm:text-sm"
                   value={JSON.stringify(
-                    (enrollment.plan.configuration || []).map(
+                    (enrollment?.plan.configuration || []).map(
                       ({ __typename, ...rest }: any) => rest,
                     ),
                     null,

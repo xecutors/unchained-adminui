@@ -29,6 +29,8 @@ const OrderDetail = ({ order }) => {
 
   const { orderStatusType } = useOrderStatusTypes();
 
+  if (!order) return null;
+
   const onConfirmOrder = async () => {
     await setModal(
       <AlertMessage
