@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import getConfig from 'next/config';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
-
-const {
-  publicRuntimeConfig: { logo },
-} = getConfig();
 
 const NotFound = () => {
   const { formatMessage } = useIntl();
@@ -21,7 +16,7 @@ const NotFound = () => {
               })}{' '}
             </span>
             <ImageWithFallback
-              src={logo}
+              src={process.env.NEXT_PUBLIC_LOGO}
               width={200}
               height={100}
               alt={formatMessage({

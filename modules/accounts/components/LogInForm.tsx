@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
@@ -22,10 +21,6 @@ import useLoginWithWebAuthn from '../hooks/useLoginWithWebAuthn';
 import GoogleOauth from './GoogleOauth';
 import { useCallback, useState } from 'react';
 import useUnchainedContext from '../../UnchainedContext/useUnchainedContext';
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch, logo },
-} = getConfig();
 
 const GetCurrentStep = ({ step }) => {
   const { formatMessage } = useIntl();
@@ -206,7 +201,7 @@ const LogInForm = () => {
 
   return (
     <>
-      {allowEndpointSwitch ? (
+      {process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH ? (
         <SandboxInput handleOnBlur={onEndpointChange} endpoint={endpoint} />
       ) : null}
 
@@ -215,7 +210,7 @@ const LogInForm = () => {
           <div>
             <ImageWithFallback
               className="mx-auto"
-              src={logo}
+              src={process.env.NEXT_PUBLIC_LOGO}
               width={160}
               height={100}
               alt={formatMessage({

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import getConfig from 'next/config';
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
 
@@ -10,11 +9,6 @@ import PasswordField from '../../forms/components/PasswordField';
 import TextField from '../../forms/components/TextField';
 
 import useForm from '../../forms/hooks/useForm';
-
-const {
-  publicRuntimeConfig: { logo },
-} = getConfig();
-
 const SignUpForm = ({
   onSubmit,
   onSubmitSuccess,
@@ -55,7 +49,7 @@ const SignUpForm = ({
         <div>
           <ImageWithFallback
             className="mx-auto"
-            src={logo}
+            src={process.env.NEXT_PUBLIC_LOGO}
             width={160}
             height={100}
             alt={formatMessage({

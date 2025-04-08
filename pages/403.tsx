@@ -1,13 +1,8 @@
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
-import getConfig from 'next/config';
 import useCurrentUser from '../modules/accounts/hooks/useCurrentUser';
 import ImageWithFallback from '../modules/common/components/ImageWithFallback';
-
-const {
-  publicRuntimeConfig: { logo },
-} = getConfig();
 
 const NotAuthorized = () => {
   const { formatMessage } = useIntl();
@@ -24,7 +19,7 @@ const NotAuthorized = () => {
               })}{' '}
             </span>
             <ImageWithFallback
-              src={logo}
+              src={process.env.NEXT_PUBLIC_LOGO}
               width={200}
               height={100}
               alt={formatMessage({

@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import getConfig from 'next/config';
 import ForgotPasswordForm from '../../modules/accounts/components/ForgotPasswordForm';
 import useForgotPassword from '../../modules/accounts/hooks/useForgotPassword';
 import ImageWithFallback from '../../modules/common/components/ImageWithFallback';
@@ -8,10 +7,6 @@ import {
   OnSubmitSuccessType,
   OnSubmitType,
 } from '../../modules/forms/hooks/useForm';
-
-const {
-  publicRuntimeConfig: { logo },
-} = getConfig();
 
 const ForgotPassword = () => {
   const { forgotPassword } = useForgotPassword();
@@ -43,7 +38,7 @@ const ForgotPassword = () => {
         <div>
           <ImageWithFallback
             className="mx-auto"
-            src={logo}
+            src={process.env.NEXT_PUBLIC_LOGO}
             width={160}
             height={100}
             alt={formatMessage({

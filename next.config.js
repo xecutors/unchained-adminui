@@ -11,7 +11,6 @@
 require('./node_env');
 const fs = require('fs');
 const path = require('path');
-const loadPermissionConfig = require('./loadPermissionConfig');
 
 const normalizePaths = (paths) => {
   if (paths) {
@@ -24,8 +23,6 @@ const normalizePaths = (paths) => {
   }
   return [];
 };
-
-const permissionConfig = loadPermissionConfig()?.toString();
 
 const { UNCHAINED_ADMINUI_TRANSLATIONS: translatedFiles } = process.env;
 const extendedLanguages = normalizePaths(translatedFiles);
@@ -56,6 +53,7 @@ const languages = extendedLanguages?.map((file) =>
 module.exports = {
   output: 'export',
   trailingSlash: true,
+  assetPrefix: './',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
@@ -67,9 +65,8 @@ module.exports = {
   images: {
     unoptimized: true,
   },
-  publicRuntimeConfig: {
+  /* publicRuntimeConfig: {
     oAuthClientId: process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
-    permissionConfig,
     publicGraphQLEndpoint: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
     logo: process.env.NEXT_PUBLIC_LOGO,
     restrictNonAdmin: !!process.env.NEXT_PUBLIC_ONLY_ADMIN,
@@ -78,5 +75,5 @@ module.exports = {
       (prev, next) => ({ ...prev, [next?.lang]: next.data }),
       {},
     ),
-  },
+  }, */
 };

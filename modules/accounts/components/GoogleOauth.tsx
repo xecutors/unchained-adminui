@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const getClientId = async () => {
-  const result = await fetch('/api/runtime-config');
-  const json = await result.json();
-  return json.oAuthClientId;
+  return process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID;
 };
 
 let getClientIdPromise;

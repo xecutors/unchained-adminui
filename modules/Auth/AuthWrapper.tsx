@@ -1,14 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
-import getConfig from 'next/config';
 import useCurrentUser from '../accounts/hooks/useCurrentUser';
 import AuthContext from './AuthContext';
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 import { useApolloClient } from '@apollo/client';
-
-const {
-  publicRuntimeConfig: { restrictNonAdmin },
-} = getConfig();
 
 const AuthWrapper = ({ children, componentName }) => {
   const router = useRouter();
@@ -69,7 +64,7 @@ const AuthWrapper = ({ children, componentName }) => {
         router.replace('/');
       } else if (
         !isAdmin(currentUser) &&
-        restrictNonAdmin &&
+        !!process.env.NEXT_PUBLIC_ONLY_ADMIN &&
         router.pathname !== '/423'
       ) {
         router.replace('/423');
