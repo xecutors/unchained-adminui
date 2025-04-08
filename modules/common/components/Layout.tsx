@@ -15,7 +15,6 @@ import { BoltIcon, LinkIcon, QrCodeIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import getConfig from 'next/config';
 import useCurrentUser from '../../accounts/hooks/useCurrentUser';
 import useShopInfo from '../hooks/useShopInfo';
 import SideNav from './SideNav';
@@ -26,11 +25,6 @@ import useOutsideClick from '../hooks/useOutsideClick';
 import ImageWithFallback from './ImageWithFallback';
 import AuthWrapper from '../../Auth/AuthWrapper';
 
-const {
-  publicRuntimeConfig: { logo },
-} = getConfig();
-
-const { publicRuntimeConfig } = getConfig();
 const QuotationIcon = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -267,7 +261,7 @@ const Layout = ({
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
                 <ImageWithFallback
-                  src={logo}
+                  src={process.env.NEXT_PUBLIC_LOGO}
                   width={125}
                   height={100}
                   alt={formatMessage({
@@ -294,7 +288,7 @@ const Layout = ({
             <div className="flex flex-shrink-0 items-center px-4">
               <Link href="/">
                 <ImageWithFallback
-                  src={logo}
+                  src={process.env.NEXT_PUBLIC_LOGO}
                   width={175}
                   height={100}
                   alt={formatMessage({

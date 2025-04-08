@@ -9,8 +9,8 @@ const ImageWithFallback = ({ fallbackSrc = '', src, ...props }) => {
 
   return (
     <Image
-      src={imageSrc || '/no-image.jpg'}
-      blurDataURL="/no-image.jpg"
+      src={imageSrc || './no-image.jpg'}
+      blurDataURL="./no-image.jpg"
       loader={defaultNextImageLoader}
       alt={formatMessage({
         id: 'image-not-found',
@@ -19,7 +19,7 @@ const ImageWithFallback = ({ fallbackSrc = '', src, ...props }) => {
       placeholder="blur"
       {...props}
       onError={() => {
-        setImageSrc(fallbackSrc || '/no-image.jpg');
+        setImageSrc(fallbackSrc || './no-image.jpg');
       }}
     />
   );

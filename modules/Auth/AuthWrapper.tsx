@@ -7,10 +7,6 @@ import AuthContext from './AuthContext';
 import loadRoleConfig from '../common/utils/loadRoleConfig';
 import Loading from '../common/components/Loading';
 
-const {
-  publicRuntimeConfig: { restrictNonAdmin },
-} = getConfig();
-
 const AuthWrapper = ({ children }) => {
   const router = useRouter();
   const { currentUser, loading } = useCurrentUser();
@@ -47,7 +43,7 @@ const AuthWrapper = ({ children }) => {
         nextPathname = '/';
       } else if (
         !isUserAdmin(currentUser) &&
-        restrictNonAdmin &&
+        !!process.env.NEXT_PUBLIC_ONLY_ADMIN &&
         router.pathname !== '/423'
       ) {
         nextPathname = '/423';

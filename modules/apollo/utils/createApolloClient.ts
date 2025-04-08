@@ -6,12 +6,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
-import getConfig from 'next/config';
 import apolloCache from './apolloCache';
-
-const {
-  publicRuntimeConfig: { allowEndpointSwitch, publicGraphQLEndpoint },
-} = getConfig();
 
 const allowedHeaders = [
   'accept-language',
@@ -44,8 +39,8 @@ const setLocale = (headers, locale) => {
 
 const resolveUri = (endpointInSession) => {
   if (typeof window !== 'undefined') {
-    if (allowEndpointSwitch && endpointInSession) return endpointInSession; // use user-selected endpoint
-    if (publicGraphQLEndpoint) return publicGraphQLEndpoint; // use pre-set public endpoint
+    if (!!process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH && endpointInSession) return endpointInSession; // use user-selected endpoint
+    if (process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT) return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT; // use pre-set public endpoint
     return `${window.location.origin}/api/graphql`; // use the proxy that moves calls to GRAPHQL_ENDPOINT
   }
   // server side is direct (without using the proxy in next)

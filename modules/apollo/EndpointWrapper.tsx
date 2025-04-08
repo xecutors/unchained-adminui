@@ -1,20 +1,16 @@
 import { useState, createContext, useContext } from 'react';
-import getConfig from 'next/config';
 import {
   getEndpoint as getEndpointFromSession,
   setEndpoint as setEndpointInSession,
 } from '../common/utils/utils';
-
-const {
-  publicRuntimeConfig: { publicGraphQLEndpoint },
-} = getConfig();
 
 const EndpointContext = createContext<{
   setEndpoint: typeof setEndpointInSession;
   endpoint: string;
 }>({
   setEndpoint: () => null,
-  endpoint: publicGraphQLEndpoint || 'http://localhost:4010/graphql',
+  endpoint:
+    process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || 'http://localhost:4010/graphql',
 });
 
 const useSetEndpointContext = () => {
@@ -27,7 +23,7 @@ const useSetEndpointContext = () => {
     } catch (err) {
       /* */
     }
-    return publicGraphQLEndpoint;
+    return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
   });
 
   return {

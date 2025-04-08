@@ -51,7 +51,7 @@ const UserTokens = ({ _id: userId }) => {
                   <ImageWithFallback
                     src={
                       (product?.media?.length && product.media[0].file?.url) ||
-                      '/no-image.jpg'
+                      './no-image.jpg'
                     }
                     loader={defaultNextImageLoader}
                     alt={formatMessage({
