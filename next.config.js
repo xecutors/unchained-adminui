@@ -52,8 +52,9 @@ const languages = extendedLanguages?.map((file) =>
 
 module.exports = {
   output: 'export',
+  basepath: '/out',
   trailingSlash: true,
-  assetPrefix: './',
+  assetPrefix: '/out',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
