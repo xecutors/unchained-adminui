@@ -61,7 +61,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
       {showUser && (
         <Table.Cell>
           <Link
-            href={`/users/${quotation?.user._id}`}
+            href={`/users?userId=${quotation?.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <MediaAvatar file={quotation?.user?.avatar} className="mr-2" />

@@ -12,11 +12,12 @@ import { DefaultLimit } from '../../modules/common/data/miscellaneous';
 import ListHeader from '../../modules/common/components/ListHeader';
 import UserFilter from '../../modules/accounts/components/UserFilter';
 import NoData from '../../modules/common/components/NoData';
+import UserDetailPage from './UserDetailPage';
 
 const Users = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
-  const { queryString, ...rest } = query;
+  const { queryString, userId, ...rest } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest || { skip: null };
@@ -58,6 +59,9 @@ const Users = () => {
     lastLogin,
     emailVerified,
   });
+
+  if (userId) return <UserDetailPage userId={userId} />;
+
   return (
     <div className="mb-10">
       <BreadCrumbs />

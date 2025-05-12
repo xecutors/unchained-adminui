@@ -64,7 +64,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       {showUser && enrollment.user && (
         <Table.Cell>
           <Link
-            href={`/users/${enrollment.user._id}`}
+            href={`/users?userId=${enrollment.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <span className="inline-block h-9 w-9 rounded-full">
