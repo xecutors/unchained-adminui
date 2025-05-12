@@ -336,7 +336,7 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${generateUniqueId(
+        `/products?slug=${generateUniqueId(
           CreateProductResponse.data.createProduct,
         )}`,
       );
@@ -371,7 +371,7 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${generateUniqueId(
+        `/products?slug=${generateUniqueId(
           CreateProductResponse.data.createProduct,
         )}`,
       );
@@ -406,7 +406,7 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${generateUniqueId(
+        `/products?slug=${generateUniqueId(
           CreateProductResponse.data.createProduct,
         )}`,
       );
@@ -441,7 +441,7 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${generateUniqueId(
+        `/products?slug=${generateUniqueId(
           CreateProductResponse.data.createProduct,
         )}`,
       );
@@ -476,7 +476,7 @@ describe('Product', () => {
       );
       cy.location('pathname').should(
         'eq',
-        `/products/${generateUniqueId(
+        `/products?slug=${generateUniqueId(
           CreateProductResponse.data.createProduct,
         )}`,
       );
@@ -521,7 +521,7 @@ describe('Product', () => {
         ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
 
-      cy.get(`a[href="/products/${DRAFT_PRODUCT_SLUG}"]`).first().click();
+      cy.get(`a[href="/products?slug=${DRAFT_PRODUCT_SLUG}"]`).first().click();
       cy.get('div#draft').within(() => {
         cy.get('button[type="button"]').click({
           multiple: true,
@@ -541,7 +541,7 @@ describe('Product', () => {
     });
 
     it('Delete product button should be visible for unpublished/draft product', () => {
-      cy.get(`a[href="/products/${DRAFT_PRODUCT_SLUG}"]`).first().click();
+      cy.get(`a[href="/products?slug=${DRAFT_PRODUCT_SLUG}"]`).first().click();
       cy.get(
         'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
       )
@@ -550,7 +550,7 @@ describe('Product', () => {
     });
 
     it('Delete product button should [NOT] be visible for published product', () => {
-      cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).click();
+      cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).click();
       cy.get(
         'button.my-auto.flex.items-center.justify-center.rounded.border-2.border-red-600.px-3.py-2',
       ).should('not.exist');
@@ -560,7 +560,7 @@ describe('Product', () => {
       const [firstProduct] = ProductListResponse.data.products.filter(
         ({ _id }) => _id === parseUniqueId(ACTIVE_PRODUCT_SLUG),
       );
-      cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+      cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).first().click();
       cy.get('div#active').within(() => {
         cy.get('button[type="button"]')
           .contains(
@@ -592,7 +592,7 @@ describe('Product', () => {
         ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
 
-      cy.get(`a[href="/products/${generateUniqueId(firstProduct)}"]`)
+      cy.get(`a[href="/products?slug=${generateUniqueId(firstProduct)}"]`)
         .first()
         .click();
       cy.get(
@@ -620,7 +620,7 @@ describe('Product', () => {
         ({ _id }) => _id === parseUniqueId(DRAFT_PRODUCT_SLUG),
       );
 
-      cy.get(`a[href="/products/${generateUniqueId(firstProduct)}"]`)
+      cy.get(`a[href="/products?slug=${generateUniqueId(firstProduct)}"]`)
         .first()
         .click();
       cy.get(
@@ -635,7 +635,7 @@ describe('Product', () => {
 
   context('Detail page sequence update', () => {
     it('[UPDATE SEQUENCE] successfully', () => {
-      cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+      cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).first().click();
       const { _id } = ProductListResponse.data.products[0];
       cy.get(`input#sequence-input`).clear().type('50').blur();
 
@@ -652,13 +652,13 @@ describe('Product', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/products/${ACTIVE_PRODUCT_SLUG}`);
+      cy.location('pathname').should('eq', `/products?slug=${ACTIVE_PRODUCT_SLUG}`);
     });
   });
 
   context('Displayed tabs for types', () => {
     beforeEach(() => {
-      cy.get(`a[href="/products/${DRAFT_PRODUCT_SLUG}"]`).first().click();
+      cy.get(`a[href="/products?slug=${DRAFT_PRODUCT_SLUG}"]`).first().click();
     });
     it('SimpleProduct', () => {
       cy.get('a#texts').should('contain.text', localizations.en.text);

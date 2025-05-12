@@ -205,7 +205,7 @@ const QuotationDetail = ({ quotation }) => {
             <div className="pt-6 pl-4 sm:col-span-7 md:row-end-1">
               <h3 className="text-lg font-medium text-slate-900">
                 <Link
-                  href={`/products/${generateUniqueId(quotation?.product)}`}
+                  href={`/products?slug=${generateUniqueId(quotation?.product)}`}
                 >
                   {quotation?.product?.texts?.title}
                 </Link>

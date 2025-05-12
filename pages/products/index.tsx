@@ -16,6 +16,7 @@ import {
 } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import useProductsCount from '../../modules/product/hooks/useProductsCount';
+import ProductDetailPage from './ProductDetailPage';
 
 const Products = () => {
   const { formatMessage } = useIntl();
@@ -28,7 +29,7 @@ const Products = () => {
   const tags = (query.tags as string)?.split(',') || undefined;
   const sort = query.sort || '';
   const { hasRole } = useAuth();
-  const { queryString, ...restQuery } = query;
+  const { queryString, slug, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -49,6 +50,7 @@ const Products = () => {
     tags,
   });
 
+  if (slug) return <ProductDetailPage slug={slug} />;
   return (
     <>
       <BreadCrumbs />

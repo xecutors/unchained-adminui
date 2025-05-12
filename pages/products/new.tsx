@@ -18,7 +18,7 @@ const AddProduct = () => {
   const router = useRouter();
   const { formatMessage } = useIntl();
   const onSubmitSuccess: OnSubmitSuccessType = (_, { ...result }) => {
-    router.push(`/products/${generateUniqueId(result)}`);
+    router.push(`/products?slug=${generateUniqueId(result)}`);
     return true;
   };
 

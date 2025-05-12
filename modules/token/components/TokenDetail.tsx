@@ -21,7 +21,7 @@ const TokenDetail = ({ token }) => {
     <div className="grid gap-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
         <Link
-          href={`/products/${generateUniqueId(token?.product)}`}
+          href={`/products?slug=${generateUniqueId(token?.product)}`}
           className="block overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 hover:opacity-90"
         >
           <ImageWithFallback

@@ -17,17 +17,15 @@ import ProductDetail from '../../modules/product/components/ProductDetail';
 import useProduct from '../../modules/product/hooks/useProduct';
 import useRemoveProduct from '../../modules/product/hooks/useRemoveProduct';
 
-const ProductDetailPage = () => {
+const ProductDetailPage = ({ slug }) => {
   const { formatMessage } = useIntl();
   const { formatDateTime } = useFormatDateTime();
   const { hasRole } = useAuth();
   const { query, ...router } = useRouter();
   const { setModal } = useModal();
 
-  const { slug = [] } = query || {};
-  const normalizedSlug = (slug as string[])?.join('/');
   const { product, loading, extendedData } = useProduct({
-    slug: normalizedSlug,
+    slug,
   });
   const { removeProduct } = useRemoveProduct();
 
@@ -89,7 +87,7 @@ const ProductDetailPage = () => {
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs
-        routeName={normalizedSlug}
+        routeName={slug}
         depth={3}
         currentPageTitle={
           ((product as IProduct)?.texts as IProductTexts)?.title
