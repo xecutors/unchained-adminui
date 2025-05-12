@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
 import Loading from '../../modules/common/components/Loading';
@@ -6,10 +5,9 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import EventDetail from '../../modules/event/components/EventDetail';
 import useEvent from '../../modules/event/hooks/useEvent';
 
-const OrderDetailPage = () => {
+const EventDetailPage = ({ eventId }) => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
-  const { eventId } = query;
+
   const { event, loading } = useEvent({ eventId: eventId as string });
 
   return (
@@ -33,4 +31,4 @@ const OrderDetailPage = () => {
   );
 };
 
-export default OrderDetailPage;
+export default EventDetailPage;

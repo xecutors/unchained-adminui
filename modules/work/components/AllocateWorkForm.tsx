@@ -29,7 +29,7 @@ const AllocateWorkForm = () => {
   };
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
-    router.push(`/works/${_id}`);
+    router.push(`/works?workerId=${_id}`);
     return null;
   };
   const successMessage = formatMessage({

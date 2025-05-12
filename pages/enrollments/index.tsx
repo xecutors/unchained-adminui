@@ -17,6 +17,7 @@ import {
 
 import useEnrollmentStatusTypes from '../../modules/enrollment/hooks/useEnrollmentStatusTypes';
 import StatusFilter from '../../modules/common/components/StatusFilter';
+import EnrollmentDetailPage from './EnrollmentDetailPage';
 
 const EnrollmentListView = () => {
   const { formatMessage } = useIntl();
@@ -25,7 +26,7 @@ const EnrollmentListView = () => {
   const offset = parseInt(query?.skip as string, 10) || 0;
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, enrollmentId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -67,6 +68,7 @@ const EnrollmentListView = () => {
       });
   };
 
+  if (enrollmentId) return <EnrollmentDetailPage enrollmentId={enrollmentId} />;
   return (
     <>
       <BreadCrumbs />

@@ -11,7 +11,7 @@ const AddCurrency = () => {
   const router = useRouter();
   const { formatMessage } = useIntl();
   const onSubmitSuccess = (_, { _id }) => {
-    router.push(`/currency/${_id}`);
+    router.push(`/currency?currencyId=${_id}`);
   };
 
   const onSubmit = async ({ isoCode, contractAddress, decimals }) => {

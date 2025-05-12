@@ -22,6 +22,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import CountryDetailPage from './CountryDetailPage';
 
 const Country = () => {
   const { formatMessage } = useIntl();
@@ -33,7 +34,7 @@ const Country = () => {
     query?.includeInactive === 'true' || !query?.includeInactive;
   const { hasRole } = useAuth();
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, countryId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -87,6 +88,8 @@ const Country = () => {
       />,
     );
   };
+
+  if (countryId) return <CountryDetailPage countryId={countryId} />;
 
   return (
     <>

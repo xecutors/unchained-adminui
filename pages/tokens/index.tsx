@@ -8,12 +8,13 @@ import NoData from '../../modules/common/components/NoData';
 import { useRouter } from 'next/router';
 import ListHeader from '../../modules/common/components/ListHeader';
 import SearchField from '../../modules/common/components/SearchField';
+import TokenDetailPage from './TokenDetailPage';
 
 const TokensPage = () => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
 
-  const { queryString, ...rest } = query;
+  const { queryString, tokenId, ...rest } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest;
@@ -37,6 +38,7 @@ const TokensPage = () => {
     queryString: queryString as string,
   });
 
+  if (tokenId) return <TokenDetailPage tokenId={tokenId} />;
   return (
     <>
       <BreadCrumbs />

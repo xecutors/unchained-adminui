@@ -15,6 +15,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import OrderDetailPage from './OrderDetailPage';
 
 const Orders = () => {
   const { formatMessage } = useIntl();
@@ -25,7 +26,7 @@ const Orders = () => {
   const includeCarts = query?.includeCarts === 'true';
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, orderId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -48,6 +49,9 @@ const Orders = () => {
     offset,
     sort: sortKeys,
   });
+
+  if (orderId) return <OrderDetailPage orderId={orderId} />;
+
   return (
     <>
       <BreadCrumbs />

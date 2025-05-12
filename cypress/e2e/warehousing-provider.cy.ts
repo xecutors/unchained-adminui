@@ -190,7 +190,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/warehousing-provider/${CreateWarehousingProviderResponse.data.createWarehousingProvider._id}`,
+      `/warehousing-provider?warehousingProviderId==${CreateWarehousingProviderResponse.data.createWarehousingProvider._id}`,
     );
   });
 
@@ -241,7 +241,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
-      `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
+      `a[href="/warehousing-provider?warehousingProviderId==${warehousingProvider._id}"]`,
     ).click();
 
     cy.wait(
@@ -256,7 +256,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/warehousing-provider/${warehousingProvider._id}`,
+      `/warehousing-provider?warehousingProviderId==${warehousingProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -274,7 +274,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
-      `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
+      `a[href="/warehousing-provider?warehousingProviderId==${warehousingProvider._id}"]`,
     ).click();
 
     cy.wait(
@@ -289,7 +289,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/warehousing-provider/${warehousingProvider._id}`,
+      `/warehousing-provider?warehousingProviderId==${warehousingProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -328,7 +328,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
-      `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
+      `a[href="/warehousing-provider?warehousingProviderId==${warehousingProvider._id}"]`,
     ).click();
 
     cy.wait(
@@ -343,7 +343,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/warehousing-provider/${warehousingProvider._id}`,
+      `/warehousing-provider?warehousingProviderId==${warehousingProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -364,7 +364,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should('eq', '/warehousing-provider');
     cy.get(
-      `a[href="/warehousing-provider/${warehousingProvider._id}"]`,
+      `a[href="/warehousing-provider?warehousingProviderId==${warehousingProvider._id}"]`,
     ).click();
 
     cy.wait(
@@ -379,7 +379,7 @@ describe('Warehousing Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/warehousing-provider/${warehousingProvider._id}`,
+      `/warehousing-provider?warehousingProviderId==${warehousingProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',

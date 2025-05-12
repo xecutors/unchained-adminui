@@ -16,7 +16,7 @@ import UserDetailPage from './UserDetailPage';
 
 const Users = () => {
   const { formatMessage } = useIntl();
-  const { query, push } = useRouter();
+  const { query, push, isReady } = useRouter();
   const { queryString, userId, ...rest } = query;
 
   const setQueryString = (searchString) => {
@@ -59,6 +59,9 @@ const Users = () => {
     lastLogin,
     emailVerified,
   });
+  if (!isReady) {
+    return null; // or a loading spinner
+  }
 
   if (userId) return <UserDetailPage userId={userId} />;
 

@@ -15,10 +15,10 @@ import FormWrapper from '../../modules/common/components/FormWrapper';
 import Loading from '../../modules/common/components/Loading';
 import useAuth from '../../modules/Auth/useAuth';
 
-const UpdateLanguage = () => {
+const LanguageDetailPage = ({ languageId }) => {
   const { updateLanguage } = useUpdateLanguage();
-  const { push, query } = useRouter();
-  const { languageId } = query;
+  const { push } = useRouter();
+
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
   const { language, loading } = useLanguage({
@@ -94,4 +94,4 @@ const UpdateLanguage = () => {
   );
 };
 
-export default UpdateLanguage;
+export default LanguageDetailPage;

@@ -14,7 +14,7 @@ const TokenListItem = ({ token }) => {
       <Table.Cell>
         <div className="flex items-center text-sm">
           <Link
-            href={`/tokens/${token._id}`}
+            href={`/tokens?tokenId=${token._id}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
             {token?._id}
@@ -48,7 +48,7 @@ const TokenListItem = ({ token }) => {
       <Table.Cell>
         <div className="flex items-center text-sm">
           <Link
-            href={`/orders/${token.ercMetadata?.orderId}`}
+            href={`/orders?orderId=${token.ercMetadata?.orderId}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
             {token?.ercMetadata?.orderId}

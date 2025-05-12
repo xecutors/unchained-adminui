@@ -16,12 +16,12 @@ import Loading from '../../modules/common/components/Loading';
 import { normalizeCurrencyISOCode } from '../../modules/common/utils/utils';
 import useAuth from '../../modules/Auth/useAuth';
 
-const UpdateCurrency = () => {
-  const { push, query } = useRouter();
+const CurrencyDetailPage = ({ currencyId }) => {
+  const { push } = useRouter();
   const { formatMessage, locale } = useIntl();
   const { hasRole } = useAuth();
   const { setModal } = useModal();
-  const { currencyId } = query;
+
   const { currency, loading } = useCurrency({
     currencyId: currencyId as string,
   });
@@ -87,4 +87,4 @@ const UpdateCurrency = () => {
   );
 };
 
-export default UpdateCurrency;
+export default CurrencyDetailPage;

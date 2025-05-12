@@ -14,13 +14,16 @@ import ProvidersFilter from '../../modules/common/components/ProvidersFilter';
 import usePaymentProviderTypes from '../../modules/payment-providers/hooks/usePaymentProviderTypes';
 import useAuth from '../../modules/Auth/useAuth';
 import { IPaymentProviderType } from '../../gql/types';
+import PaymentProviderDetailPage from './PaymentProviderDetailPage';
 
 const PaymentProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
+  const { query } = router;
+  const { type, paymentProviderId } = query;
   const { paymentProviders, paymentProvidersCount, loading } =
     usePaymentProviders({
-      type: router.query?.type as IPaymentProviderType,
+      type: type as IPaymentProviderType,
     });
   const { setModal } = useModal();
   const { removePaymentProvider } = useRemovePaymentProvider();
@@ -54,6 +57,8 @@ const PaymentProviders = () => {
     );
   };
 
+  if (paymentProviderId)
+    return <PaymentProviderDetailPage paymentProviderId={paymentProviderId} />;
   return (
     <>
       <BreadCrumbs />

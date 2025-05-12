@@ -16,13 +16,16 @@ import useModal from '../../modules/modal/hooks/useModal';
 import useRemoveWarehousingProvider from '../../modules/warehousing-providers/hooks/useRemoveWarehousingProvider';
 import useWarehousingProviders from '../../modules/warehousing-providers/hooks/useWarehousingProviders';
 import useWarehousingProviderTypes from '../../modules/warehousing-providers/hooks/useWarehousingProviderTypes';
+import WarehousingProviderDetailPage from './WarehousingProviderDetailPage';
 
 const WarehousingProviders = () => {
   const { formatMessage } = useIntl();
   const router = useRouter();
+  const { query } = router;
+  const { type, warehousingProviderId } = query;
   const { warehousingProviders, warehousingProvidersCount, loading } =
     useWarehousingProviders({
-      type: router.query?.type as IWarehousingProviderType,
+      type: type as IWarehousingProviderType,
     });
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
   const { warehousingProviderType } = useWarehousingProviderTypes();
@@ -58,6 +61,12 @@ const WarehousingProviders = () => {
     return true;
   };
 
+  if (warehousingProviderId)
+    return (
+      <WarehousingProviderDetailPage
+        warehousingProviderId={warehousingProviderId}
+      />
+    );
   return (
     <>
       <BreadCrumbs />

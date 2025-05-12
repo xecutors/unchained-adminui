@@ -100,7 +100,7 @@ const TokenDetail = ({ token }) => {
             {formatMessage({ id: 'order', defaultMessage: 'Order' })}:
           </span>
           <Link
-            href={`/orders/${token.ercMetadata?.orderId}`}
+            href={`/orders?orderId=${token.ercMetadata?.orderId}`}
             className="text-blue-500 dark:text-blue-400 hover:underline"
           >
             {token?.ercMetadata?.orderId}

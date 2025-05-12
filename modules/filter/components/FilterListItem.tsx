@@ -22,7 +22,7 @@ const FilterListItem = ({ filter, onRemove }) => {
       <Table.Cell>
         <div className="flex items-center text-sm text-slate-900">
           <Link
-            href={`/filters/${filter._id}`}
+            href={`/filters?filterId=${filter._id}`}
             className="text-blue-600 dark:text-blue-400"
           >
             {filter?.texts &&

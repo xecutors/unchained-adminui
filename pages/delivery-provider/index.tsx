@@ -16,15 +16,18 @@ import useDeliveryProviderTypes from '../../modules/delivery-provider/hooks/useD
 import useRemoveDeliveryProvider from '../../modules/delivery-provider/hooks/useRemoveDeliveryProvider';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
+import DeliveryProviderDetailPage from './DeliveryProviderDetailPage';
 
 const DeliveryProviders = () => {
   const router = useRouter();
+  const { query } = router;
+  const { type, deliveryProviderId } = query;
 
   const { formatMessage } = useIntl();
   const { hasRole } = useAuth();
   const { deliveryProviders, deliveryProvidersCount, loading } =
     useDeliveryProviders({
-      type: router.query?.type as IDeliveryProviderType,
+      type: type as IDeliveryProviderType,
     });
   const { setModal } = useModal();
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
@@ -57,6 +60,10 @@ const DeliveryProviders = () => {
     );
   };
 
+  if (deliveryProviderId)
+    return (
+      <DeliveryProviderDetailPage deliveryProviderId={deliveryProviderId} />
+    );
   return (
     <>
       <BreadCrumbs />

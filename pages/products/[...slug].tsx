@@ -2,7 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { IProduct, IProductTexts, ISimpleProduct } from '../../gql/types';
+import { IProduct, IProductTexts } from '../../gql/types';
 
 import useAuth from '../../modules/Auth/useAuth';
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';

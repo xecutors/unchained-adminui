@@ -15,13 +15,11 @@ import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButt
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
 import useAuth from '../../modules/Auth/useAuth';
 
-const WarehousingProviderUpdate = () => {
+const WarehousingProviderDetailPage = ({ warehousingProviderId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { push: routerPush, query } = useRouter();
   const { hasRole } = useAuth();
-
-  const { warehousingProviderId } = query;
 
   const { updateWarehousingProvider } = useUpdateWarehousingProvider();
   const { removeWarehousingProvider } = useRemoveWarehousingProvider();
@@ -112,4 +110,4 @@ const WarehousingProviderUpdate = () => {
   );
 };
 
-export default WarehousingProviderUpdate;
+export default WarehousingProviderDetailPage;

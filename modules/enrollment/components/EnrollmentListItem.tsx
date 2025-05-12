@@ -25,7 +25,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
       <Table.Cell>
         <div className="text-sm">
           <Link
-            href={`/enrollments/${enrollment._id}`}
+            href={`/enrollments?enrollmentId=${enrollment._id}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
             {enrollment?.enrollmentNumber || enrollment._id?.substr(0, 10)}

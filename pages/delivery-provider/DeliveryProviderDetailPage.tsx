@@ -15,13 +15,11 @@ import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButt
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
 import useAuth from '../../modules/Auth/useAuth';
 
-const DeliveryProviderUpdate = () => {
+const DeliveryProviderDetailPage = ({ deliveryProviderId }) => {
   const { formatMessage } = useIntl();
-  const { push: routerPush, query } = useRouter();
+  const { push: routerPush } = useRouter();
   const { setModal } = useModal();
   const { hasRole } = useAuth();
-
-  const { deliveryProviderId } = query;
 
   const { removeDeliveryProvider } = useRemoveDeliveryProvider();
   const { updateDeliveryProvider } = useUpdateDeliveryProvider();
@@ -111,4 +109,4 @@ const DeliveryProviderUpdate = () => {
   );
 };
 
-export default DeliveryProviderUpdate;
+export default DeliveryProviderDetailPage;

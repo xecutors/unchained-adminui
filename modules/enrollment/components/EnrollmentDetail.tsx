@@ -262,7 +262,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 </dt>
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
-                    href={`/payment-provider/${enrollment?.payment?.provider?._id}`}
+                    href={`/payment-provider?paymentProviderId=${enrollment?.payment?.provider?._id}`}
                     className="text-blue-600 dark:text-blue-400"
                   >
                     {getInterfaceLabel(
@@ -281,7 +281,7 @@ const EnrollmentDetail = ({ enrollment }: { enrollment: IEnrollment }) => {
                 </dt>
                 <dd className="mt-2 text-sm text-slate-500">
                   <Link
-                    href={`/delivery-provider/${enrollment?.delivery?.provider._id}`}
+                    href={`/delivery-provider?deliveryProviderId=${enrollment?.delivery?.provider._id}`}
                     className="text-blue-600 dark:text-blue-400"
                   >
                     {getInterfaceLabel(

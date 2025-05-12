@@ -58,7 +58,7 @@ const CountryListItem = ({ country, onRemove, enableEdit, enableDelete }) => {
         <Table.Cell className="whitespace-nowrap">
           <div className="flex items-center">
             {enableEdit && (
-              <Link href={`/country/${country._id}`}>
+              <Link href={`/country?countryId=${country._id}`}>
                 <EditIcon />
               </Link>
             )}
