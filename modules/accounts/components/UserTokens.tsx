@@ -44,7 +44,7 @@ const UserTokens = ({ _id: userId }) => {
               className="group relative border-r border-b border-gray-200 p-4 sm:p-6"
             >
               <Link
-                href={`/products/${generateUniqueId(product)}`}
+                href={`/products?slug=${generateUniqueId(product)}`}
                 className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75"
               >
                 <div>

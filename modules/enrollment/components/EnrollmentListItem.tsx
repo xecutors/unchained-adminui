@@ -77,7 +77,7 @@ const EnrollmentListItem = ({ enrollment, showUser }) => {
 
       <Table.Cell>
         <Link
-          href={`/products/${generateUniqueId(enrollment.plan.product)}`}
+          href={`/products?slug=${generateUniqueId(enrollment.plan.product)}`}
           className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
         >
           <MediaAvatar

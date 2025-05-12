@@ -45,16 +45,16 @@ const translatedLanguages = extendedLanguages?.map((file) => {
     throw Error(`${lang} json file is not provided`);
   }
 });
-
+const isExporting = process.env.NEXT_PHASE === 'export';
 const languages = extendedLanguages?.map((file) =>
   path.basename(file, '.json'),
 );
 
 module.exports = {
   output: 'export',
-  basepath: '/out',
+  basePath: isExporting ? '/out' : '',
   trailingSlash: true,
-  assetPrefix: '/out',
+  assetPrefix: isExporting ? '/out/' : '',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },

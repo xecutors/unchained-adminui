@@ -74,7 +74,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
       <Table.Cell>
         <div>
           <Link
-            href={`/products/${generateUniqueId(quotation.product)}`}
+            href={`/products?slug=${generateUniqueId(quotation.product)}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <MediaAvatar

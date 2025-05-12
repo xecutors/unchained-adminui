@@ -38,7 +38,7 @@ const ProductListItem = ({ product, showAvatar = false }) => {
           )}
           {product?.status !== 'DELETED' ? (
             <Link
-              href={`/products/${generateUniqueId(product)}`}
+              href={`/products?slug=${generateUniqueId(product)}`}
               className="text-blue-600 dark:text-blue-400"
             >
               {product?.texts?.title || (

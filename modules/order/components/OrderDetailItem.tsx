@@ -9,7 +9,7 @@ const OrderDetailItem = ({ item }) => {
   const { formatPrice } = useFormatPrice();
   return (
     <section aria-labelledby="products-heading">
-      <Link href={`/products/${generateUniqueId(item.product)}`}>
+      <Link href={`/products?slug=${generateUniqueId(item.product)}`}>
         <h2 id="products-heading" className="sr-only">
           {formatMessage({
             id: 'purchased_products',

@@ -24,7 +24,7 @@ const AssortmentProductListItem = ({ link, onDelete, id }) => {
       style={style}
       className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
       onClick={() => {
-        router.push(`/products/${generateUniqueId(link?.product)}`);
+        router.push(`/products?slug=${generateUniqueId(link?.product)}`);
       }}
     >
       <div className="flex items-center  py-4">

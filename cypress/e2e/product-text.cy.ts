@@ -67,8 +67,8 @@ describe('Product Text', () => {
     );
     cy.get('h2').should('contain.text', localizations.en.products);
 
-    cy.get(`a[href="/products/${ACTIVE_PRODUCT_SLUG}"]`).first().click();
-    cy.location('pathname').should('eq', `/products/${ACTIVE_PRODUCT_SLUG}`);
+    cy.get(`a[href="/products?slug=${ACTIVE_PRODUCT_SLUG}"]`).first().click();
+    cy.location('pathname').should('eq', `/products?slug=${ACTIVE_PRODUCT_SLUG}`);
     cy.wait(fullAliasName(ProductOperations.GetSingleProduct)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -194,7 +194,7 @@ describe('Product Text', () => {
       .click({ force: true });
     cy.location('pathname').should(
       'eq',
-      `/products/${generateUniqueId(product)}`,
+      `/products?slug=${generateUniqueId(product)}`,
     );
   });
 
