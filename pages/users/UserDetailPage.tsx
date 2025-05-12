@@ -12,10 +12,9 @@ import DangerMessage from '../../modules/modal/components/DangerMessage';
 import { toast } from 'react-toastify';
 import useAuth from '../../modules/Auth/useAuth';
 
-const UserProfile = () => {
+const UserDetailPage = ({ userId }) => {
   const { formatMessage } = useIntl();
-  const { query } = useRouter();
-  const { userId } = query;
+
   const { setModal } = useModal();
   const { deleteUser } = useDeleteUser();
   const { user, extendedData } = useUser({ userId: userId as string });
@@ -64,4 +63,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserDetailPage;

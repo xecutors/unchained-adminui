@@ -28,7 +28,7 @@ const TokenListItem = ({ token }) => {
       </Table.Cell>
       <Table.Cell>
         <Link
-          href={`/users/${token.user._id}`}
+          href={`/users?userId=${token.user._id}`}
           className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
         >
           <MediaAvatar file={token.user?.avatar} className="mr-2" />

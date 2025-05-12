@@ -48,7 +48,7 @@ const OrderListItem = ({ order, showUser }) => {
       {showUser && order.user && (
         <Table.Cell>
           <Link
-            href={`/users/${order.user._id}`}
+            href={`/users?userId=${order.user._id}`}
             className="flex items-center text-sm text-blue-500 dark:text-blue-400 hover:text-decoration"
           >
             <MediaAvatar file={order.user?.avatar} className="mr-2" />
