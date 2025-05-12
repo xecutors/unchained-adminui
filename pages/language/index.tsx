@@ -19,6 +19,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import LanguageDetailPage from './LanguageDetailPage';
 
 const Languages = () => {
   const { formatMessage } = useIntl();
@@ -29,7 +30,7 @@ const Languages = () => {
   const includeInactive =
     query?.includeInactive === 'true' || !query?.includeInactive;
   const sort = query?.sort || '';
-  const { queryString, ...restQuery } = query;
+  const { queryString, languageId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -57,6 +58,7 @@ const Languages = () => {
   const { setModal } = useModal();
   const { removeLanguage } = useRemoveLanguage();
 
+  if (languageId) return <LanguageDetailPage languageId={languageId} />;
   const onRemoveLanguage = async (languageId) => {
     await setModal(
       <DangerMessage

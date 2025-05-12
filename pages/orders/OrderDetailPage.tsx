@@ -13,13 +13,12 @@ import useRemoveOrder from '../../modules/order/hooks/useRemoveOrder';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 import useAuth from '../../modules/Auth/useAuth';
 
-const OrderDetailPage = () => {
+const OrderDetailPage = ({ orderId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
   const { removeOrder } = useRemoveOrder();
-  const { query, ...router } = useRouter();
+  const router = useRouter();
   const { hasRole } = useAuth();
-  const { orderId } = query;
   const { order, loading } = useOrder({ orderId: orderId as string });
 
   const isDeletable = (status) => {

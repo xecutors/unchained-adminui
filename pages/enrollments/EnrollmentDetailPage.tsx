@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { IEnrollment } from '../../gql/types';
 
@@ -8,11 +7,9 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import EnrollmentDetail from '../../modules/enrollment/components/EnrollmentDetail';
 import useEnrollment from '../../modules/enrollment/hooks/useEnrollment';
 
-const EnrollmentDetailPage = () => {
+const EnrollmentDetailPage = ({ enrollmentId }) => {
   const { formatMessage } = useIntl();
 
-  const { query } = useRouter();
-  const { enrollmentId } = query;
   const { enrollment, loading } = useEnrollment({
     enrollmentId: enrollmentId as string,
   });

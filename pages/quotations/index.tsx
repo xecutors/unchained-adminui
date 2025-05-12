@@ -11,6 +11,7 @@ import QuotationList from '../../modules/quotation/components/QuotationList';
 import useQuotations from '../../modules/quotation/hooks/useQuotations';
 import SearchField from '../../modules/common/components/SearchField';
 import { convertSortFieldsToQueryFormat } from '../../modules/common/utils/utils';
+import QuotationDetailPage from './QuotationDetailPage';
 
 const Quotations = () => {
   const { formatMessage } = useIntl();
@@ -19,7 +20,7 @@ const Quotations = () => {
   const offset = parseInt(query?.skip as string, 10) || 0;
   const sort = query?.sort || '';
 
-  const { queryString, ...rest } = query;
+  const { queryString, quotationId, ...rest } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = rest;
@@ -47,6 +48,7 @@ const Quotations = () => {
     sort: sortKeys,
   });
 
+  if (quotationId) return <QuotationDetailPage quotationId={quotationId} />;
   return (
     <>
       <BreadCrumbs />

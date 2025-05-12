@@ -15,12 +15,11 @@ import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButt
 import { getInterfaceLabel } from '../../modules/common/utils/utils';
 import useAuth from '../../modules/Auth/useAuth';
 
-const PaymentProviderUpdate = () => {
+const PaymentProviderDetailPage = ({ paymentProviderId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { push: routerPush, query } = useRouter();
+  const { push: routerPush } = useRouter();
   const { hasRole } = useAuth();
-  const { paymentProviderId } = query;
 
   const { updatePaymentProvider } = useUpdatePaymentProvider();
   const { removePaymentProvider } = useRemovePaymentProvider();
@@ -101,4 +100,4 @@ const PaymentProviderUpdate = () => {
   );
 };
 
-export default PaymentProviderUpdate;
+export default PaymentProviderDetailPage;

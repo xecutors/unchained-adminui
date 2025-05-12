@@ -14,11 +14,10 @@ import { toast } from 'react-toastify';
 import { useCallback } from 'react';
 import useAuth from '../../modules/Auth/useAuth';
 
-const TokenDetailView = () => {
-  const { query } = useRouter();
+const TokenDetailPage = ({ tokenId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { tokenId } = query;
+
   const { token, loading } = useToken({ tokenId: tokenId as string });
   const { invalidateTicket } = useInvalidateTicket();
   const { hasRole } = useAuth();
@@ -87,4 +86,4 @@ const TokenDetailView = () => {
   );
 };
 
-export default TokenDetailView;
+export default TokenDetailPage;

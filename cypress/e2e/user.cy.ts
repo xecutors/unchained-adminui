@@ -117,8 +117,8 @@ describe('User', () => {
 
     it('Show Navigate to [ORDER] page successfully', () => {
       const { order } = SingleOrderResponse.data;
-      cy.get(`a[href="/orders/${order._id}"]`).click();
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.get(`a[href="/orders?orderId=${order._id}"]`).click();
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('should update data and route when [SEARCHING] accordingly', () => {
@@ -289,9 +289,9 @@ describe('User', () => {
           tab: 'quotations',
         });
       });
-      cy.get(`a[href="/quotations/${quotation._id}"]`).first().click();
+      cy.get(`a[href="/quotations?quotationId=${quotation._id}"]`).first().click();
 
-      cy.location('pathname').should('eq', `/quotations/${quotation._id}`);
+      cy.location('pathname').should('eq', `/quotations?quotationId=${quotation._id}`);
     });
   });
 
@@ -409,9 +409,9 @@ describe('User', () => {
           tab: 'enrollments',
         });
       });
-      cy.get(`a[href="/enrollments/${enrollment._id}"]`).first().click();
+      cy.get(`a[href="/enrollments?enrollmentId=${enrollment._id}"]`).first().click();
 
-      cy.location('pathname').should('eq', `/enrollments/${enrollment._id}`);
+      cy.location('pathname').should('eq', `/enrollments?enrollmentId=${enrollment._id}`);
     });
   });
 

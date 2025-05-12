@@ -20,6 +20,7 @@ import {
   convertSortFieldsToQueryFormat,
   normalizeQuery,
 } from '../../modules/common/utils/utils';
+import CurrencyDetailPage from './CurrencyDetailPage';
 
 const Currencies = () => {
   const { formatMessage } = useIntl();
@@ -31,7 +32,7 @@ const Currencies = () => {
     query?.includeInactive === 'true' || !query?.includeInactive;
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, currencyId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -59,7 +60,6 @@ const Currencies = () => {
   const { removeCurrency } = useRemoveCurrency();
 
   const onRemove = async (currencyId) => {
-    alert('sssssssssssss');
     await setModal(
       <DangerMessage
         onCancelClick={async () => setModal('')}
@@ -86,6 +86,7 @@ const Currencies = () => {
     );
   };
 
+  if (currencyId) return <CurrencyDetailPage currencyId={currencyId} />;
   return (
     <>
       <BreadCrumbs />

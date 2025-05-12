@@ -23,9 +23,9 @@ const normalizeCountry = (country) => {
   };
 };
 
-const UpdateCountry = () => {
-  const { push, query } = useRouter();
-  const { countryId } = query;
+const CountryDetailPage = ({ countryId }) => {
+  const { push } = useRouter();
+
   const { formatMessage, locale } = useIntl();
   const { setModal } = useModal();
   const { hasRole } = useAuth();
@@ -99,4 +99,4 @@ const UpdateCountry = () => {
   );
 };
 
-export default UpdateCountry;
+export default CountryDetailPage;

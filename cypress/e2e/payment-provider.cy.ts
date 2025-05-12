@@ -199,7 +199,7 @@ describe('Payment Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/payment-provider/${CreatePaymentProviderResponse.data.createPaymentProvider._id}`,
+      `/payment-provider?paymentProviderId=${CreatePaymentProviderResponse.data.createPaymentProvider._id}`,
     );
   });
 
@@ -257,10 +257,10 @@ describe('Payment Provider', () => {
   it('Should [INITIALIZE PAYMENT PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.get(`a[href="/payment-provider?paymentProviderId=${paymentProvider._id}"]`).click();
     cy.location('pathname').should(
       'eq',
-      `/payment-provider/${paymentProvider._id}`,
+      `/payment-provider?paymentProviderId=${paymentProvider._id}`,
     );
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
@@ -287,10 +287,10 @@ describe('Payment Provider', () => {
   it('Should [UPDATE DELIVERY PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.get(`a[href="/payment-provider?paymentProviderId=${paymentProvider._id}"]`).click();
     cy.location('pathname').should(
       'eq',
-      `/payment-provider/${paymentProvider._id}`,
+      `/payment-provider?paymentProviderId=${paymentProvider._id}`,
     );
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -337,10 +337,10 @@ describe('Payment Provider', () => {
   it('Should [ERROR] when pattern of configuration fields are not correct in update provider', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.get(`a[href="/payment-provider?paymentProviderId=${paymentProvider._id}"]`).click();
     cy.location('pathname').should(
       'eq',
-      `/payment-provider/${paymentProvider._id}`,
+      `/payment-provider?paymentProviderId=${paymentProvider._id}`,
     );
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -369,10 +369,10 @@ describe('Payment Provider', () => {
   it('Should [DELETE PAYMENT PROVIDER] successfully', () => {
     const { paymentProvider } = SinglePaymentProviderResponse.data;
 
-    cy.get(`a[href="/payment-provider/${paymentProvider._id}"]`).click();
+    cy.get(`a[href="/payment-provider?paymentProviderId=${paymentProvider._id}"]`).click();
     cy.location('pathname').should(
       'eq',
-      `/payment-provider/${paymentProvider._id}`,
+      `/payment-provider?paymentProviderId=${paymentProvider._id}`,
     );
 
     cy.wait(fullAliasName(PaymentProviderOperations.GetSingleProvider)).then(

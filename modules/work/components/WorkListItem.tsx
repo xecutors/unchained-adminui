@@ -37,7 +37,7 @@ const WorkListItem = ({ work }) => {
       <Table.Cell>
         <div className="flex items-center text-sm">
           <Link
-            href={`/works/${work._id}`}
+            href={`/works?workerId=${work._id}`}
             className="text-blue-600 dark:text-blue-400"
           >
             <RetryStatistics work={work}>

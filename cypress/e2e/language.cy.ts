@@ -213,7 +213,7 @@ describe('Languages', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/language/${CreateLanguageResponse.data.createLanguage._id}`,
+      `/language?languageId=${CreateLanguageResponse.data.createLanguage._id}`,
     );
   });
 
@@ -240,8 +240,8 @@ describe('Languages', () => {
     const { language } = SingleLanguageResponse.data;
 
     cy.location('pathname').should('eq', '/language');
-    cy.get(`a[href="/language/${language._id}"]`).click();
-    cy.location('pathname').should('eq', `/language/${language._id}`);
+    cy.get(`a[href="/language?languageId=${language._id}"]`).click();
+    cy.location('pathname').should('eq', `/language?languageId=${language._id}`);
     cy.wait(fullAliasName(LanguageOperations.GetSingleLanguage)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -258,8 +258,8 @@ describe('Languages', () => {
   it('Show [UPDATE LANGUAGE] successfully', () => {
     const { language } = SingleLanguageResponse.data;
     cy.location('pathname').should('eq', '/language');
-    cy.get(`a[href="/language/${language._id}"]`).click();
-    cy.location('pathname').should('eq', `/language/${language._id}`);
+    cy.get(`a[href="/language?languageId=${language._id}"]`).click();
+    cy.location('pathname').should('eq', `/language?languageId=${language._id}`);
     cy.get('input[type="checkbox"]#isActive').uncheck();
     cy.get('input[type="submit"]')
       .contains(localizations.en.update_language)
@@ -279,7 +279,7 @@ describe('Languages', () => {
     );
     cy.location('pathname').should(
       'eq',
-      `/language/${UpdateLanguageResponse.data.updateLanguage._id}`,
+      `/language?languageId=${UpdateLanguageResponse.data.updateLanguage._id}`,
     );
   });
 
@@ -287,8 +287,8 @@ describe('Languages', () => {
     const { language } = SingleLanguageResponse.data;
 
     cy.location('pathname').should('eq', '/language');
-    cy.get(`a[href="/language/${language._id}"]`).click();
-    cy.location('pathname').should('eq', `/language/${language._id}`);
+    cy.get(`a[href="/language?languageId=${language._id}"]`).click();
+    cy.location('pathname').should('eq', `/language?languageId=${language._id}`);
     cy.get('input[type="checkbox"]#isActive');
     cy.get('[aria-label="true"]').should('not.to.be', undefined);
     cy.get('button[type="button"]').contains(localizations.en.delete).click();

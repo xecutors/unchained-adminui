@@ -17,6 +17,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import { ISortOptionInput, IWorkStatus, IWorkType } from '../../gql/types';
+import WorkDetailPage from './WorkDetailPage';
 
 const WorkQueueView = () => {
   const { query, push } = useRouter();
@@ -37,7 +38,7 @@ const WorkQueueView = () => {
 
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, workerId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -63,6 +64,7 @@ const WorkQueueView = () => {
     },
   );
 
+  if (workerId) return <WorkDetailPage workerId={workerId} />;
   return (
     <>
       <BreadCrumbs

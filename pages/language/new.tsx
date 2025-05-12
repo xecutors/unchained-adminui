@@ -15,7 +15,7 @@ const AddLanguage = () => {
   const router = useRouter();
 
   const onSubmitSuccess: OnSubmitSuccessType = (_, { _id }) => {
-    router.push(`/language/${_id}`);
+    router.push(`/language?languageId=${_id}`);
     return true;
   };
 

@@ -18,7 +18,7 @@ const AddCountries = () => {
   };
 
   const onSubmitSuccess = (_, { _id }) => {
-    push(`/country/${_id}`);
+    push(`/country?countryId=${_id}`);
   };
 
   return (

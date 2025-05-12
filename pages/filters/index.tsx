@@ -19,6 +19,7 @@ import {
 } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import useFiltersCount from '../../modules/filter/hooks/useFiltersCount';
+import FilterDetailPage from './FilterDetailPage';
 
 const FiltersListView = () => {
   const { query, push } = useRouter();
@@ -31,7 +32,7 @@ const FiltersListView = () => {
   const { setModal } = useModal();
   const { removeFilter } = useRemoveFilter();
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, filterId, ...restQuery } = query;
   const { filtersCount } = useFiltersCount({
     queryString: queryString as string,
     includeInactive,
@@ -79,6 +80,7 @@ const FiltersListView = () => {
     );
   };
 
+  if (filterId) return <FilterDetailPage filterId={filterId} />;
   return (
     <>
       <BreadCrumbs />

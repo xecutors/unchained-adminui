@@ -45,7 +45,7 @@ const LanguageListItem = ({ language, onRemove, enableEdit, enableDelete }) => {
         <Table.Cell>
           <div className="flex">
             {enableEdit && (
-              <Link href={`/language/${language?._id}`}>
+              <Link href={`/language?languageId=${language?._id}`}>
                 <EditIcon />
               </Link>
             )}

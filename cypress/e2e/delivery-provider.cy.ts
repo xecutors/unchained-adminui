@@ -194,7 +194,7 @@ describe('Delivery Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/delivery-provider/${CreateDeliveryProviderResponse.data.createDeliveryProvider._id}`,
+      `/delivery-provider?deliveryProviderId=${CreateDeliveryProviderResponse.data.createDeliveryProvider._id}`,
     );
   });
 
@@ -249,7 +249,7 @@ describe('Delivery Provider', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
     cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
+    cy.get(`a[href="/delivery-provider?deliveryProviderId=${deliveryProvider._id}"]`).click();
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -263,7 +263,7 @@ describe('Delivery Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/delivery-provider/${deliveryProvider._id}`,
+      `/delivery-provider?deliveryProviderId=${deliveryProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -280,7 +280,7 @@ describe('Delivery Provider', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
     cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
+    cy.get(`a[href="/delivery-provider?deliveryProviderId=${deliveryProvider._id}"]`).click();
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -294,7 +294,7 @@ describe('Delivery Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/delivery-provider/${deliveryProvider._id}`,
+      `/delivery-provider?deliveryProviderId=${deliveryProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -332,7 +332,7 @@ describe('Delivery Provider', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
     cy.location('pathname').should('eq', '/delivery-provider');
-    cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
+    cy.get(`a[href="/delivery-provider?deliveryProviderId=${deliveryProvider._id}"]`).click();
 
     cy.wait(fullAliasName(DeliveryProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
@@ -346,7 +346,7 @@ describe('Delivery Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/delivery-provider/${deliveryProvider._id}`,
+      `/delivery-provider?deliveryProviderId=${deliveryProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',
@@ -365,7 +365,7 @@ describe('Delivery Provider', () => {
   it('Show [DELETE DELIVERY PROVIDER] successfully', () => {
     const { deliveryProvider } = SingleDeliveryProviderResponse.data;
 
-    cy.get(`a[href="/delivery-provider/${deliveryProvider._id}"]`).click();
+    cy.get(`a[href="/delivery-provider?deliveryProviderId=${deliveryProvider._id}"]`).click();
     cy.wait(fullAliasName(DeliveryProviderOperations.GetSingleProvider)).then(
       (currentSubject) => {
         const { request, response } = currentSubject;
@@ -378,7 +378,7 @@ describe('Delivery Provider', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/delivery-provider/${deliveryProvider._id}`,
+      `/delivery-provider?deliveryProviderId=${deliveryProvider._id}`,
     );
     cy.get('h2').should(
       'contain.text',

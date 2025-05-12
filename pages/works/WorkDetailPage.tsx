@@ -17,13 +17,12 @@ import { useCallback } from 'react';
 
 import { IWorkStatus } from '../../gql/types';
 
-const WorkDetailPage = () => {
+const WorkDetailPage = ({ workerId }) => {
   const { formatMessage } = useIntl();
   const { query, push } = useRouter();
 
-  const { workId } = query;
   const { work, loading } = useWork({
-    workId: workId as string,
+    workId: workerId as string,
     pollInterval: 2000,
   });
 
@@ -48,7 +47,7 @@ const WorkDetailPage = () => {
       scheduled: null,
       originalWorkId: work?._id,
     });
-    push(`/works/${data.addWork._id}`);
+    push(`/works?workerId=${data.addWork._id}`);
   }, [work]);
 
   const handleOnClick = async () => {
@@ -62,7 +61,7 @@ const WorkDetailPage = () => {
         })}
         onOkClick={async () => {
           setModal('');
-          await removeWork({ workId: workId as string });
+          await removeWork({ workId: workerId as string });
           toast.success(
             formatMessage({
               id: 'work_deleted',

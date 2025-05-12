@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 
 import BreadCrumbs from '../../modules/common/components/BreadCrumbs';
@@ -7,11 +6,8 @@ import PageHeader from '../../modules/common/components/PageHeader';
 import QuotationDetail from '../../modules/quotation/components/QuotationDetail';
 import useQuotation from '../../modules/quotation/hooks/useQuotation';
 
-const QuotationDetailPage = () => {
+const QuotationDetailPage = ({ quotationId }) => {
   const { formatMessage } = useIntl();
-
-  const { query } = useRouter();
-  const { quotationId } = query;
 
   const { quotation, loading } = useQuotation({
     quotationId: quotationId as string,

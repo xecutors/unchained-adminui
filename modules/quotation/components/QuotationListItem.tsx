@@ -23,7 +23,7 @@ const QuotationListItem = ({ quotation, showUser }) => {
       <Table.Cell>
         <div className="flex items-center text-sm ">
           <Link
-            href={`/quotations/${quotation?._id}`}
+            href={`/quotations?quotationId=${quotation?._id}`}
             className="font-medium text-blue-500 dark:text-blue-400"
           >
             {quotation?.quotationNumber || quotation?._id}

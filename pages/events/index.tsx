@@ -18,6 +18,7 @@ import {
   normalizeQuery,
 } from '../../modules/common/utils/utils';
 import ListHeader from '../../modules/common/components/ListHeader';
+import EventDetailPage from './EventDetailPage';
 
 const Events = () => {
   const { formatMessage } = useIntl();
@@ -26,7 +27,7 @@ const Events = () => {
   const offset = parseInt(query?.skip as string, 10) || 0;
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, eventId, ...restQuery } = query;
 
   const setQueryString = (searchString) => {
     const { skip, ...withoutSkip } = restQuery;
@@ -66,6 +67,7 @@ const Events = () => {
 
   const { eventsType } = useEventTypes();
 
+  if (eventId) return <EventDetailPage eventId={eventId} />;
   return (
     <>
       <BreadCrumbs />

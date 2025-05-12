@@ -250,7 +250,7 @@ describe('Order', () => {
     const { order } = SingleOrderResponse.data;
 
     beforeEach(() => {
-      cy.get(`a[href="/orders/${order._id}"]`).click();
+      cy.get(`a[href="/orders?orderId=${order._id}"]`).click();
 
       cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
         (currentSubject) => {
@@ -300,7 +300,7 @@ describe('Order', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
       cy.get('h2').should('contain.text', localizations.en.order_detail);
     });
 
@@ -328,7 +328,7 @@ describe('Order', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show cancel [CONFIRM ORDER ] on order detail page successfully', () => {
@@ -340,7 +340,7 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show [REJECT ORDER ] on order detail page successfully', () => {
@@ -363,7 +363,7 @@ describe('Order', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show cancel [REJECT ORDER ] on order detail page successfully', () => {
@@ -375,7 +375,7 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show [DELIVER ORDER ] on order detail page successfully', () => {
@@ -396,7 +396,7 @@ describe('Order', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show cancel [DELIVERY ORDER ] on order detail page successfully', () => {
@@ -408,7 +408,7 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show [PAY ORDER ] on order detail page successfully', () => {
@@ -429,7 +429,7 @@ describe('Order', () => {
         },
       );
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
 
     it('Show cancel [PAY ORDER ] on order detail page successfully', () => {
@@ -441,14 +441,14 @@ describe('Order', () => {
         force: true,
       });
 
-      cy.location('pathname').should('eq', `/orders/${order._id}`);
+      cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     });
   });
 
   it('Show [ORDER NUMBER] in detail page successfully', () => {
     const { order } = SingleOrderOpenResponse.data;
 
-    cy.get(`a[href="/orders/${order._id}"]`).click();
+    cy.get(`a[href="/orders?orderId=${order._id}"]`).click();
 
     cy.wait(fullAliasName(OrderOperations.GetSingleOrder)).then(
       (currentSubject) => {
@@ -498,7 +498,7 @@ describe('Order', () => {
       },
     );
 
-    cy.location('pathname').should('eq', `/orders/${order._id}`);
+    cy.location('pathname').should('eq', `/orders?orderId=${order._id}`);
     cy.get('h2').should('contain.text', localizations.en.order_detail);
 
     cy.get('span#order_number_badge').within(() => {

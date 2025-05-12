@@ -13,12 +13,11 @@ import useRemoveFilter from '../../modules/filter/hooks/useRemoveFilter';
 import DangerMessage from '../../modules/modal/components/DangerMessage';
 import useModal from '../../modules/modal/hooks/useModal';
 
-const FilterDetailPage = () => {
+const FilterDetailPage = ({ filterId }) => {
   const { formatMessage } = useIntl();
   const { setModal } = useModal();
-  const { query } = useRouter();
   const router = useRouter();
-  const { filterId = '' } = query || {};
+
   const { filter, loading, extendedData } = useFilter({
     filterId: filterId as string,
   });

@@ -22,7 +22,7 @@ const AssortmentFiltersListItem = ({ link, onDelete, id }) => {
   return (
     <div
       onClick={() => {
-        router.push(`/filters/${filter._id}`);
+        router.push(`/filters?filterId=${filter._id}`);
       }}
       ref={setNodeRef}
       style={style}
