@@ -1,10 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 const documentPrefix = process.env.NEXT_PUBLIC_PHASE === 'export' ? '/out' : '';
 
-console.log(
-  'documentPrefixdocumentPrefixdocumentPrefixdocumentPrefixdocumentPrefixdocumentPrefix   ',
-  documentPrefix,
-);
 const metaLinks = [
   {
     rel: 'icon',
