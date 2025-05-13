@@ -92,7 +92,7 @@ const TangleTree = ({ data, options = {} }: { data: any; options?: any }) => {
             >
               <div>
                 <Link
-                  href={`/assortments/${generateUniqueId({
+                  href={`/assortments?assortmentSlug=${generateUniqueId({
                     _id: n?.id,
                     texts: n,
                   })}`}

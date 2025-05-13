@@ -15,6 +15,7 @@ import AssortmentListView from '../../modules/assortment/components/AssortmentLi
 import { normalizeQuery } from '../../modules/common/utils/utils';
 import LocaleWrapper from '../../modules/common/components/LocaleWrapper';
 import useAssortmentsCount from '../../modules/assortment/hooks/useAssortmentsCount';
+import AssortmentDetailPage from './AssortmentDetailPage';
 
 const GetCurrentView = ({ options, queryString }) => {
   const { graph, ...rest } = options;
@@ -45,7 +46,7 @@ const AssortmentsView = () => {
   const slug = query?.slug || '';
   const sort = query?.sort || '';
 
-  const { queryString, ...restQuery } = query;
+  const { queryString, assortmentSlug, ...restQuery } = query;
   const { assortmentsCount } = useAssortmentsCount({
     includeInactive,
     includeLeaves,
@@ -76,7 +77,8 @@ const AssortmentsView = () => {
       });
     }
   };
-
+  if (assortmentSlug)
+    return <AssortmentDetailPage assortmentSlug={assortmentSlug} />;
   return (
     <>
       <BreadCrumbs />

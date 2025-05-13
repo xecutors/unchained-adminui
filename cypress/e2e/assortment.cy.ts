@@ -536,7 +536,7 @@ describe('Assortment', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${generateUniqueId(
+      `/assortments?assortmentSlug=${generateUniqueId(
         CreateAssortmentResponse.data.createAssortment,
       )}`,
     );

@@ -34,7 +34,7 @@ const AssortmentListItem = ({ assortment, showAvatar }) => {
             />
           )}
           <Link
-            href={`/assortments/${generateUniqueId(assortment)}`}
+            href={`/assortments?assortmentSlug=${generateUniqueId(assortment)}`}
             className="text-blue-600 dark:text-blue-400"
           >
             {assortment?.texts?.title || (

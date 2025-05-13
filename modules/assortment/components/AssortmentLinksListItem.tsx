@@ -20,7 +20,7 @@ const AssortmentLinksListItem = ({ link, onDelete, linkId, isParent, id }) => {
       className="flex items-center justify-between rounded border-b px-2 text-slate-900 dark:text-slate-200 border-slate-200 dark:border-slate-600 last:border-none hover:cursor-pointer"
       ref={setNodeRef}
       onClick={() => {
-        router.push(`/assortments/${generateUniqueId(link)}`);
+        router.push(`/assortments?assortmentSlug=${generateUniqueId(link)}`);
       }}
       style={style}
     >
