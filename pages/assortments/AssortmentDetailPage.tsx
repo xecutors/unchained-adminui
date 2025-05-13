@@ -13,18 +13,16 @@ import useRemoveAssortment from '../../modules/assortment/hooks/useRemoveAssortm
 import useAuth from '../../modules/Auth/useAuth';
 import HeaderDeleteButton from '../../modules/common/components/HeaderDeleteButton';
 
-const AssortmentDetailPage = () => {
+const AssortmentDetailPage = ({ assortmentSlug }) => {
   const { formatDateTime } = useFormatDateTime();
   const { hasRole } = useAuth();
   const { formatMessage } = useIntl();
   const router = useRouter();
   const { removeAssortment } = useRemoveAssortment();
-  const { query } = useRouter();
   const { setModal } = useModal();
-  const { slug = [] } = query || {};
-  const normalizedSlug = (slug as string[])?.join('/');
+
   const { assortment, loading, extendedData } = useAssortment({
-    slug: normalizedSlug,
+    slug: assortmentSlug,
   });
 
   const handleOnClick = async () => {
@@ -54,7 +52,7 @@ const AssortmentDetailPage = () => {
   return (
     <div className="mt-6 max-w-full">
       <BreadCrumbs
-        routeName={normalizedSlug}
+        routeName={assortmentSlug}
         depth={3}
         currentPageTitle={assortment?.texts?.title}
       />

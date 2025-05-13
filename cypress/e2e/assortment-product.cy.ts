@@ -90,7 +90,7 @@ describe('Assortment Detail Products', () => {
       localizations.en.assortments_list_header,
     );
 
-    cy.get(`a[href="/assortments/${generateUniqueId(assortment)}"]`)
+    cy.get(`a[href="/assortments?assortmentSlug=${generateUniqueId(assortment)}"]`)
       .contains(assortment?.texts?.title)
       .click();
 
@@ -116,7 +116,7 @@ describe('Assortment Detail Products', () => {
 
     cy.location('pathname').should(
       'eq',
-      `/assortments/${generateUniqueId(assortment)}`,
+      `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
     );
     cy.get('h2').within(() => {
       cy.get('span').should(
@@ -147,7 +147,7 @@ describe('Assortment Detail Products', () => {
   afterEach(() => {
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq(
-        `/assortments/${generateUniqueId(assortment)}`,
+        `/assortments?assortmentSlug=${generateUniqueId(assortment)}`,
       );
       expect(convertURLSearchParamToObj(loc.search)).to.deep.eq({
         tab: 'products',

@@ -45,7 +45,7 @@ const translatedLanguages = extendedLanguages?.map((file) => {
     throw Error(`${lang} json file is not provided`);
   }
 });
-const isExporting = process.env.NEXT_PHASE === 'export';
+const isExporting = process.env.NEXT_PUBLIC_PHASE === 'export';
 const languages = extendedLanguages?.map((file) =>
   path.basename(file, '.json'),
 );
