@@ -14,12 +14,11 @@ import useModal from '../../modal/hooks/useModal';
 import DangerMessage from '../../modal/components/DangerMessage';
 import deBounce from '../../common/utils/deBounce';
 import useProducts from '../hooks/useProducts';
-import { IConfigurableProduct, ISortDirection } from '../../../gql/types';
+import { ISortDirection } from '../../../gql/types';
 
 const matrixGenerator = (columns, rowContainer, currentIndex) => {
   const column = columns[currentIndex];
   const newRows = [];
-
   column?.values
     .filter((v) => v.length)
     .forEach((value) => {
@@ -28,8 +27,6 @@ const matrixGenerator = (columns, rowContainer, currentIndex) => {
       if (rowContainer.length > 0) {
         rowContainer.forEach((oldRow) => {
           newRows.push({ ...oldRow, ...tempRow });
-          newRows.push(tempRow);
-          newRows.push(oldRow);
         });
       } else {
         newRows.push(tempRow);
@@ -82,7 +79,7 @@ const ProductAssignmentForm = ({ proxyId }) => {
           0,
         )
       : [];
-
+  console.log(allRowsPossible);
   const assignments = (product && product.assignments) || [];
   const allAssignedRows = {};
   assignments.forEach((assignment) => {
