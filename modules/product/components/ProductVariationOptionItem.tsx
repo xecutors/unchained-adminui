@@ -116,7 +116,7 @@ const ProductVariationOptionItem = ({
                 <div className="flex items-center space-x-2">
                   <div
                     onClick={() => setIsEdit(!isEdit)}
-                    data-optionValue={option?.value}
+                    data-optionvalue={option?.value}
                     id="edit_variation_option"
                   >
                     <EditIcon />

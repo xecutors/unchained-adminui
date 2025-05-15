@@ -30,7 +30,7 @@ const useCreateProductVariationOption = () => {
   }: ICreateProductVariationOptionMutationVariables) => {
     return createProductVariationOptionMutation({
       variables: { productVariationId, option: { value, title } },
-      refetchQueries: ['ProductVariations'],
+      refetchQueries: ['ProductVariations', 'Product'],
     });
   };
 
