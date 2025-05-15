@@ -68,7 +68,7 @@ const ProductVariationsList = ({
 
   return (
     <Accordion
-      data-variationId={variation._id}
+      data-variationid={variation._id}
       data={variations}
       containerCSS="w-full my-0"
       bodyCSS="bg-white dark:bg-slate-800"

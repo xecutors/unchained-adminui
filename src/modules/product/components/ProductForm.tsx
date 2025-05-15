@@ -72,7 +72,6 @@ const ProductForm = ({
             id: 'subtitle',
             defaultMessage: 'Subtitle',
           })}
-          required
           className="block w-full max-w-full rounded-md border-slate-200 dark:border-slate-800 text-sm focus:border-indigo-400 focus:ring-indigo-400 sm:text-sm"
         />
 
