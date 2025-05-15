@@ -79,7 +79,6 @@ const ProductAssignmentForm = ({ proxyId }) => {
           0,
         )
       : [];
-  console.log(allRowsPossible);
   const assignments = (product && product.assignments) || [];
   const allAssignedRows = {};
   assignments.forEach((assignment) => {
