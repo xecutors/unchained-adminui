@@ -28,7 +28,7 @@ const TokenDetail = ({ token }) => {
             src={
               (token?.product?.media?.length &&
                 token?.product.media[0].file?.url) ||
-              './no-image.jpg'
+              '/no-image.jpg'
             }
             loader={defaultNextImageLoader}
             alt={formatMessage({

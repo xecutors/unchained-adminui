@@ -39,7 +39,7 @@ const DetailHeader = ({ user, contact }) => {
           <span className="block h-8 w-8 rounded-full sm:hidden">
             {user?.avatar ? (
               <ImageWithFallback
-                src="./no-image.jpg"
+                src="/no-image.jpg"
                 alt={user.name || user.username}
                 width={8}
                 height={8}

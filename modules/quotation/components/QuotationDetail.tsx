@@ -190,7 +190,7 @@ const QuotationDetail = ({ quotation }) => {
               <div className="m:col-span-4 rounded-lg bg-slate-50 md:col-span-5 md:row-span-2 md:row-end-2">
                 <ImageWithFallback
                   src={
-                    quotation?.product?.media[0]?.file?.url || './no-image.jpg'
+                    quotation?.product?.media[0]?.file?.url || '/no-image.jpg'
                   }
                   layout="responsive"
                   width="100"

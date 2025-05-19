@@ -10,12 +10,11 @@
 
 require('./node_env');
 
-const isExporting = process.env.NEXT_PUBLIC_PHASE === 'export';
 module.exports = {
   output: 'export',
-  basePath: isExporting ? '/out' : '',
+  basePath: '',
   trailingSlash: true,
-  assetPrefix: isExporting ? '/out/' : '',
+  assetPrefix: '',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
