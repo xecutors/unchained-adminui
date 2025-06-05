@@ -10,7 +10,8 @@
   ],
   "exports": {
     ".": {
-      "require": "./index.js"
+          "require": "./dist/index.js",
+          "import": "./dist/index.js"
     }
   },
   "scripts": {
