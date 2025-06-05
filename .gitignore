@@ -48,3 +48,5 @@ manifest.json
 
 /app-permissions.config.js
 .qodo
+
+dist

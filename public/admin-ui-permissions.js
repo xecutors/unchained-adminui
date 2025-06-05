@@ -281,7 +281,8 @@ window.AdminUiPermissions = () => {
       apolloClient,
       { componentName, router },
     ) => {
-      const { pathname } = router;      
+      const { pathname } = router;
+      console.log('checkAccesscheckAccess   ', router);
       if (!user?._id && !UnrestrictedPages?.includes(pathname)) return false;
 
       if (
@@ -302,7 +303,8 @@ window.AdminUiPermissions = () => {
       return false;
     },
     isUserAdmin: isAdmin,
-    isPublicOnlyPage: (router) => {      
+    isPublicOnlyPage: (router) => {
+      console.log('isPublicOnlyPage   ', router);
       const { pathname } = router;
       return OnlyPublicPages.includes(pathname);
     },
