@@ -6,7 +6,7 @@ import {
 import UserFragment from '../fragment/UserFragment';
 
 const SetPasswordMutation = gql`
-  mutation SetPassword($newPlainPassword: String, $userId: ID!) {
+  mutation SetPassword($newPlainPassword: String!, $userId: ID!) {
     setPassword(newPassword: $newPlainPassword, userId: $userId) {
       ...UserFragment
     }

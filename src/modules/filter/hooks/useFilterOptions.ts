@@ -6,7 +6,7 @@ import {
 import FilterOptionFragment from '../fragments/FilterOptionFragment';
 
 const FilterOptionsQuery = gql`
-  query FilterOptions($filterId: ID, $forceLocale: String) {
+  query FilterOptions($filterId: ID, $forceLocale: Locale) {
     filter(filterId: $filterId) {
       _id
       options {

@@ -22,7 +22,7 @@ const UserTokensQuery = gql`
           ...ProductBriefFragment
           simulatedPrice {
             amount
-            currency
+            currencyCode
           }
         }
       }

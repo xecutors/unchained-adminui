@@ -1,13 +1,13 @@
 import { ISortOptionInput } from '../../../gql/types';
 
 const useFormatPrice = () => {
-  const formatPrice = (price: { currency: string; amount: number }) => {
-    if (!price?.currency) return 'n/a';
+  const formatPrice = (price: { currencyCode: string; amount: number }) => {
+    if (!price?.currencyCode) return 'n/a';
     if (price?.amount === undefined || price?.amount === null) return '';
-    const { amount, currency } = price || {};
+    const { amount, currencyCode } = price || {};
     return new Intl.NumberFormat(navigator.language, {
       style: 'currency',
-      currency,
+      currency: currencyCode,
     }).format(amount / 100);
   };
 
