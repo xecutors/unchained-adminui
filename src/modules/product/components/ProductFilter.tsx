@@ -16,7 +16,6 @@ const ProductFilter = () => {
         query: normalizeQuery(router.query, value?.join(','), 'tags'),
       });
     } else {
-      // eslint-disable-next-line no-unused-vars
       const { tags, ...rest } = router.query;
 
       router.push({

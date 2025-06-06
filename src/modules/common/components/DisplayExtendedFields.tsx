@@ -124,7 +124,6 @@ const DisplayExtendedFields = (props) => {
         value.forEach((item, i) => {
           listItems.push(
             <li
-              // eslint-disable-next-line react/no-array-index-key
               key={i}
               className="flex items-center text-slate-600  justify-between py-3 pl-3 pr-4 text-sm"
             >

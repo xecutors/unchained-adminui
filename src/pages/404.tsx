@@ -29,7 +29,10 @@ const NotFound = () => {
         <div className="py-16">
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-wide text-red-600">
-              {formatMessage({ id: 'error_404', defaultMessage: '404 error' })}{' '}
+              {formatMessage({
+                id: 'error_404',
+                defaultMessage: '404 error',
+              })}{' '}
             </p>
             <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 sm:text-5xl">
               {formatMessage({

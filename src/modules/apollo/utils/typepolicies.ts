@@ -1,6 +1,5 @@
 import { offsetLimitPagination } from '@apollo/client/utilities';
 
-/* eslint-disable no-underscore-dangle */
 const keyMappings: any = {
   Query: {
     fields: {

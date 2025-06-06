@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { InMemoryCache } from '@apollo/client';
 import possibleTypes from '../possibleTypes.json';
 import typePolicies from './typepolicies';

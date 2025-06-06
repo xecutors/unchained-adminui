@@ -203,14 +203,12 @@ class MyDocument extends Document {
           ))}
 
           {(metaLinks || []).map((attr, i) => (
-            // eslint-disable-next-line react/no-array-index-key
             <link key={`${attr?.href}-${attr.type}-${i}`} {...attr} />
           ))}
           <script src={`/admin-ui-permissions.js`} id="role-config-script" />
         </Head>
         <body className="h-full bg-slate-100 dark:bg-slate-900 dark:text-slate-200">
           <noscript
-            // eslint-disable-next-line
             dangerouslySetInnerHTML={{
               __html: `
   <!--

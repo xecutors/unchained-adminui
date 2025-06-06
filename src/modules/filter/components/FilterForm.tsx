@@ -119,7 +119,6 @@ const FilterForm = ({
               {values.options.map((p, index) => {
                 return (
                   <div
-                    // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     className="mb-3 flex justify-between align-baseline"
                   >

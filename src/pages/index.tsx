@@ -6,7 +6,6 @@ declare global {
 
 import React, { useEffect } from 'react';
 
-/* eslint-disable no-restricted-globals */
 import { useIntl } from 'react-intl';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -29,7 +28,6 @@ const Home = () => {
 
       const promptNewVersionAvailable = () => {
         if (
-          // eslint-disable-next-line no-alert
           confirm(
             formatMessage({
               id: 'app_new_version_available',

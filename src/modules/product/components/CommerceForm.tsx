@@ -151,7 +151,6 @@ const CommerceForm = ({ productId }) => {
                     {values.pricing.map((p, index) => {
                       return (
                         <div
-                          // eslint-disable-next-line react/no-array-index-key
                           key={index}
                           className="relative max-w-full border-b py-3 align-baseline lg:flex"
                         >
