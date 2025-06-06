@@ -2,12 +2,16 @@ import path from 'path';
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import fastifyStatic from '@fastify/static';
 
-const staticPath = path.join(__dirname, 'out'); // after build, dist/out/index.html
+const staticPath = path.join(__dirname, '..', 'out');
 
-const fastifyRouter: FastifyPluginAsync = async (fastify: FastifyInstance) => {
+interface FastifyRouterOptions {
+  prefix?: string;
+}
+
+const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (fastify: FastifyInstance, opts) => {
   fastify.register(fastifyStatic, {
     root: staticPath,
-    prefix: '/', // configurable at register time
+    prefix: opts.prefix || '/',
   });
 
   fastify.setNotFoundHandler((request, reply) => {
@@ -18,6 +22,5 @@ const fastifyRouter: FastifyPluginAsync = async (fastify: FastifyInstance) => {
     }
   });
 };
-
 
 export default fastifyRouter;
