@@ -8,13 +8,14 @@
  * @type {import('next').NextConfig}
  **/
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('./node_env');
 
 module.exports = {
   output: 'export',
   basePath: '',
   trailingSlash: true,
-  assetPrefix: '/public',
+  assetPrefix: '',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },

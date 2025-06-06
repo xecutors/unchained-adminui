@@ -6,7 +6,7 @@ const staticPath = path.join(__dirname, '..', 'out');
 
 expressRouter.use(express.static(staticPath));
 
-expressRouter.get('*', (_, res) => {
+expressRouter.get(/(.*)/, (_, res) => {
   res.sendFile(path.join(staticPath, 'index.html'));
 });
 

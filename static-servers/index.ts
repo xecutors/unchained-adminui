@@ -1,5 +1,2 @@
-import fastifyRouter from './fastify';
-import expressRouter from './express';
-
-
-export { fastifyRouter, expressRouter };
+export { default as fastifyRouter } from './fastify';
+export { default as expressRouter } from './express';
