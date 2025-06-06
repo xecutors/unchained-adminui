@@ -12,10 +12,6 @@ import IntlWrapper from '../modules/i18n/components/IntlWrapper';
 import Layout from '../modules/common/components/Layout';
 import ModalWrapper from '../modules/modal/components/ModalWrapper';
 
-import {
-  EndpointContext,
-  useSetEndpointContext,
-} from '../modules/apollo/EndpointWrapper';
 import ThemeWrapper from '../modules/common/components/ThemeWrapper';
 import * as matomo from '../modules/common/utils/matomo';
 import ThemeToggle from '../modules/common/components/ThemeToggle';
@@ -29,11 +25,7 @@ const handleRouteChange = (url) => {
 };
 
 const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
-  const endpointContext = useSetEndpointContext();
-
-  const apollo = useApollo(pageProps, {
-    endpoint: endpointContext.endpoint,
-  });
+  const apollo = useApollo(pageProps);
 
   const getLayout = Component.getLayout
     ? (page) => (
@@ -82,26 +74,24 @@ const UnchainedAdmin = ({ Component, componentName, pageProps, router }) => {
             </>
           ) : null}
         </Head>
-        <EndpointContext.Provider value={endpointContext}>
-          <ApolloProvider client={apollo}>
-            <UnchainedContextWrapper>
-              <ThemeWrapper>
-                <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  newestOnTop={false}
-                  closeOnClick
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                />
-                <ModalWrapper>
-                  {getLayout(<Component {...pageProps} />)}
-                </ModalWrapper>
-              </ThemeWrapper>
-            </UnchainedContextWrapper>
-          </ApolloProvider>
-        </EndpointContext.Provider>
+        <ApolloProvider client={apollo}>
+          <UnchainedContextWrapper>
+            <ThemeWrapper>
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <ModalWrapper>
+                {getLayout(<Component {...pageProps} />)}
+              </ModalWrapper>
+            </ThemeWrapper>
+          </UnchainedContextWrapper>
+        </ApolloProvider>
       </ErrorBoundary>
     </IntlWrapper>
   );

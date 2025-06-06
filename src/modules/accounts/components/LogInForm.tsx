@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-import { useEndpoint } from '../../apollo/EndpointWrapper';
 
 import FormWrapper from '../../common/components/FormWrapper';
 import ImageWithFallback from '../../common/components/ImageWithFallback';
-import SandboxInput from '../../common/components/SandboxInput';
 import Form from '../../forms/components/Form';
 import FormErrors from '../../forms/components/FormErrors';
 import PasswordField from '../../forms/components/PasswordField';
@@ -85,7 +83,6 @@ const LogInForm = () => {
   const { loginWithWebAuthn } = useLoginWithWebAuthn();
   const { singleSignOnURL } = useUnchainedContext();
 
-  const { setEndpoint, endpoint } = useEndpoint();
   const [step, setStep] = useState(1);
 
   const router = useRouter();
@@ -93,10 +90,6 @@ const LogInForm = () => {
   const nextStep = useCallback(() => {
     setStep(step + 1);
   }, [step]);
-
-  const onEndpointChange = (newEndpoint) => {
-    setEndpoint(newEndpoint);
-  };
 
   const previousStep = useCallback(() => {
     setStep(step - 1);
@@ -200,10 +193,6 @@ const LogInForm = () => {
 
   return (
     <>
-      {process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH ? (
-        <SandboxInput handleOnBlur={onEndpointChange} endpoint={endpoint} />
-      ) : null}
-
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 text-center">
           <div>
