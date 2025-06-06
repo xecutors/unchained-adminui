@@ -3,3 +3,13 @@ cypress/
 node_modules/
 .next/
 .github/
+dist/
+.vscode/
+coverage/
+*.log
+*.env*
+*.tsbuildinfo
+*.d.ts
+*.js
+.next/
+out/

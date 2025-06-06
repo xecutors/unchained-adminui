@@ -91,18 +91,6 @@ const normalizeQuery = (
   return normalizeObjectToString(newQuery);
 };
 
-export const setEndpoint = (endpoint: string): string | null => {
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem('selectedUnchainedEndpoint', endpoint);
-  }
-  return endpoint;
-};
-
-export const getEndpoint = (): string => {
-  const endpointInSession = sessionStorage.getItem('selectedUnchainedEndpoint');
-  return endpointInSession;
-};
-
 const getContent = (content) => {
   const span = document.createElement('span');
   span.innerHTML = content;
