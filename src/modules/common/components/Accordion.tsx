@@ -16,7 +16,6 @@ const Accordion = ({
           itemindex={key}
           header={header}
           body={body}
-          // eslint-disable-next-line react/no-array-index-key
           key={key}
           headerCSS={headerCSS}
           bodyCSS={bodyCSS}

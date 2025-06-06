@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import classnames from 'classnames';
 
 import { ComputedProps } from '../hooks/useField';

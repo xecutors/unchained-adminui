@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import isLength from 'validator/lib/isLength';
 import isEmail from 'validator/lib/isEmail';
 import { isValid as isValidDate } from 'date-fns';
@@ -10,7 +9,6 @@ import { CountryCodes, LanguageCodes } from '../../common/data/iso-codes';
 const DATE_FORMAT = 'd.M.y';
 
 export type Validator = {
-  // eslint-disable-next-line no-unused-vars
   isValid: (arg0: any) => boolean;
   intlMessageDescriptor: MessageDescriptor;
   intlMessageValues?: Record<string, PrimitiveType>;

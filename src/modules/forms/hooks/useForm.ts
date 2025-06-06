@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { useFormik, FormikValues, FormikErrors, FormikTouched } from 'formik';
 import { useIntl } from 'react-intl';

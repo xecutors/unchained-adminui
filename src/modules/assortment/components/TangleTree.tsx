@@ -1,7 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-shadow */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-return-assign */
 import { Fragment } from 'react';
 import { scaleOrdinal, schemeDark2 } from 'd3';
 import { useIntl } from 'react-intl';

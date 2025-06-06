@@ -85,11 +85,7 @@ const AllocateWorkForm = () => {
               <div>
                 {values.types.map((p, index) => {
                   return (
-                    <div
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={index}
-                      className="flex max-w-4xl items-center"
-                    >
+                    <div key={index} className="flex max-w-4xl items-center">
                       <div className="w-100 relative w-full space-y-1 rounded-md sm:pr-2">
                         <div className="max-w-4xl justify-between align-baseline sm:flex">
                           <SelectField

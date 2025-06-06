@@ -13,7 +13,6 @@ const useOutsideClick = (callback) => {
     [ref, callback],
   );
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (document) {
       document.addEventListener('click', handleClick);

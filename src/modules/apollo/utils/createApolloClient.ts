@@ -68,7 +68,6 @@ const createApolloClient = ({
       response?.errors.concat(graphQLErrors);
       graphQLErrors.forEach(({ message, locations, path }) => {
         console.log(
-          // eslint-disable-line
           `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
             locations,
           )}, Path: ${path}`,
@@ -77,7 +76,7 @@ const createApolloClient = ({
     }
 
     if (networkError) {
-      console.error(`[Network error]: ${networkError}`); // eslint-disable-line
+      console.error(`[Network error]: ${networkError}`);
     }
   });
 
