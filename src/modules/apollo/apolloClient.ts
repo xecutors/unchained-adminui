@@ -11,14 +11,13 @@ let apolloClient;
 
 const initializeApollo = (
   initialState = null,
-  { headers = {}, locale = '', endpoint = null } = {},
+  { headers = {}, locale = '' } = {},
 ): ApolloClient<NormalizedCacheObject> => {
   const client =
     apolloClient ??
     createApolloClient({
       headers,
       locale,
-      endpoint,
     });
 
   if (initialState) {
@@ -47,6 +46,6 @@ export function useApollo(pageProps, { endpoint = null, ...rest } = {}) {
   const state = pageProps?.[APOLLO_STATE_PROP_NAME];
 
   return useMemo(() => {
-    return initializeApollo(state, { endpoint, ...rest });
+    return initializeApollo(state, { ...rest });
   }, [state, endpoint]);
 }

@@ -1,6 +1,6 @@
-import localizations from '../../i18n';
-import generateUniqueId from '../../modules/common/utils/getUniqueId';
-import { getContent } from '../../modules/common/utils/utils';
+import localizations from '../../src/i18n';
+import generateUniqueId from '../../src/modules/common/utils/getUniqueId';
+import { getContent } from '../../src/modules/common/utils/utils';
 import {
   AddAssortmentFilterResponse,
   AssortmentFiltersResponse,

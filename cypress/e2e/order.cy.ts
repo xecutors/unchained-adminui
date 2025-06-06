@@ -1,4 +1,4 @@
-import localizations from '../../i18n/index';
+import localizations from '../../src/i18n/index';
 import { DeliveryProvidersTypeResponse } from '../mock/delivery-provider';
 import {
   ConfirmOrderResponse,

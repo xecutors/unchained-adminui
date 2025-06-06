@@ -13,6 +13,6 @@
       "isolatedModules": true,
       "forceConsistentCasingInFileNames": true
     },
-    "include": ["index.ts", "expressServer.ts"]
+    "include": ["static-servers"]
   }
   

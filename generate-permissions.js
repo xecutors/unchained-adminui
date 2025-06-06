@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { getProcessedPermissions } = require('./lib/permissionConfig');
+const { getProcessedPermissions } = require('./src/lib/permissionConfig');
 
 const output = `window.AdminUiPermissions = ${getProcessedPermissions()};`;
 fs.writeFileSync(

@@ -1,11 +1,12 @@
 {
   "root": true,
-  "plugins": ["cypress", "formatjs"],
+  "plugins": ["cypress", "formatjs","@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "next"
+    "next",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "project": "./tsconfig.json",
@@ -33,7 +34,13 @@
         "proseWrap": "always"
       }
     ],
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-wrapper-object-types": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/no-unsafe-function-type": "off",
+        "typescript-eslint/no-require-imports": "off"        
   },
   "settings": {
     "import/resolver": {
