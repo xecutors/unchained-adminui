@@ -48,7 +48,7 @@ const EnrollmentDetailFragment = gql`
 
         simulatedPrice {
           amount
-          currency
+          currencyCode
           isNetPrice
           isTaxable
         }

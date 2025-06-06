@@ -11,7 +11,12 @@ setDefaultLocale(process.env.NEXT_PUBLIC_DEFAULT_LOCALE);
 
 const IntlWrapper = ({ children, locale, messages }) => {
   return (
-    <IntlProvider locale={locale} messages={messages} textComponent="span">
+    <IntlProvider
+      onError={() => {}}
+      locale={locale}
+      messages={messages}
+      textComponent="span"
+    >
       {children}
     </IntlProvider>
   );

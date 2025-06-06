@@ -8,7 +8,7 @@ interface FastifyRouterOptions {
   prefix?: string;
 }
 
-const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (fastify: FastifyInstance, opts) => {
+export const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (fastify: FastifyInstance, opts) => {
   fastify.register(fastifyStatic, {
     root: staticPath,
     prefix: opts.prefix || '/',
@@ -22,5 +22,3 @@ const fastifyRouter: FastifyPluginAsync<FastifyRouterOptions> = async (fastify: 
     }
   });
 };
-
-export default fastifyRouter;

@@ -18,7 +18,7 @@ const OrderFragment = gql`
       isTaxable
       isNetPrice
       amount
-      currency
+      currencyCode
     }
     user {
       _id
