@@ -40,5 +40,6 @@ apollo.config.js
 default-permissions.config.js
 loadPermissionConfig.js
 expressServer.ts
+fastifyServer.ts
 Dockerfile
 Jenkinsfile

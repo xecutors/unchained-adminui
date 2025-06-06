@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./gql/types"],
+    "typeRoots": ["src/gql/types"],
     // "baseUrl": ".",
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],

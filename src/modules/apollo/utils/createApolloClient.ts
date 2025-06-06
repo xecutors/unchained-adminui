@@ -37,28 +37,26 @@ const setLocale = (headers, locale) => {
   return { headers: newHeaders };
 };
 
-const resolveUri = (endpointInSession) => {
+const resolveUri = () => {
   if (typeof window !== 'undefined') {
-    if (!!process.env.NEXT_PUBLIC_ALLOW_ENDPOINT_SWITCH && endpointInSession)
-      return endpointInSession; // use user-selected endpoint
-    if (process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT)
-      return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT; // use pre-set public endpoint
-    return `${window.location.origin}/api/graphql`; // use the proxy that moves calls to GRAPHQL_ENDPOINT
+    return (
+      process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT ||
+      `${window.location.origin}/graphql`
+    );
   }
-  // server side is direct (without using the proxy in next)
-  return process.env.GRAPHQL_ENDPOINT;
+  return process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 };
 
 const createApolloClient = ({
   headers: headersOverride = {},
   locale,
-  endpoint,
 }): ApolloClient<NormalizedCacheObject> => {
   const localeLink = setContext((_, { headers: contextHeaders = {} }) => {
     return setLocale({ ...headersOverride, ...contextHeaders }, locale);
   });
 
-  const uri = resolveUri(endpoint);
+  const uri = resolveUri();
+
   const httpLink = new HttpLink({
     uri,
     credentials: 'include',

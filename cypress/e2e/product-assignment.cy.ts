@@ -1,5 +1,5 @@
-import localizations from '../../i18n';
-import { parseUniqueId } from '../../modules/common/utils/getUniqueId';
+import localizations from '../../src/i18n';
+import { parseUniqueId } from '../../src/modules/common/utils/getUniqueId';
 
 import {
   ACTIVE_PRODUCT_SLUG,

@@ -14,7 +14,7 @@ module.exports = {
   output: 'export',
   basePath: '',
   trailingSlash: true,
-  assetPrefix: '',
+  assetPrefix: '/public',
   typescript: {
     tsconfigPath: './tsconfig.json',
   },

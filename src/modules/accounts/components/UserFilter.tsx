@@ -18,7 +18,7 @@ const UserFilter: React.FC = () => {
         },
       });
     else if (!value && router.query?.[field]) {
-      let newQuery = router.query;
+      const newQuery = router.query;
       delete newQuery[field];
       router.push({
         query: {

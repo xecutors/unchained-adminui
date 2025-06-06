@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import convertURLSearchParamToObj from '../utils/convertURLSearchParamToObj';
 import {
   CreateCurrencyResponse,

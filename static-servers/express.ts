@@ -1,13 +1,13 @@
 import express from 'express';
 import path from 'path';
 
-const router = express.Router();
+const expressRouter = express.Router();
 const staticPath = path.join(__dirname, '..', 'out');
 
-router.use(express.static(staticPath));
+expressRouter.use(express.static(staticPath));
 
-router.get('*', (_, res) => {
+expressRouter.get('*', (_, res) => {
   res.sendFile(path.join(staticPath, 'index.html'));
 });
 
-export { router as expressRouter };
+export default expressRouter;

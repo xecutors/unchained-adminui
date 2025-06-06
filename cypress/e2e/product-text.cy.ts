@@ -1,7 +1,7 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import generateUniqueId, {
   parseUniqueId,
-} from '../../modules/common/utils/getUniqueId';
+} from '../../src/modules/common/utils/getUniqueId';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import {
   ACTIVE_PRODUCT_SLUG,

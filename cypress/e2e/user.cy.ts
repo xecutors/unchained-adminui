@@ -1,4 +1,4 @@
-import localizations from '../../i18n';
+import localizations from '../../src/i18n';
 import { DeliveryProvidersTypeResponse } from '../mock/delivery-provider';
 import { LanguageOperations, LanguagesResponse } from '../mock/language';
 import { PaymentProvidersTypeResponse } from '../mock/payment-provider';
